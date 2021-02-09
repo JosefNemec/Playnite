@@ -69,8 +69,6 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public DesignMainViewModel()
         {
-            GameMenuVisible = false;
-            SettingsMenuVisible  = false;
             GameListVisible = true;
             GameDetailsVisible  = false;
             FilterPanelVisible = true;
@@ -96,7 +94,6 @@ namespace Playnite.FullscreenApp.ViewModels
             SelectedGame = GamesView.Items[0];
             SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
 
-            SettingsMenuVisible = false;
             AppSettings = new PlayniteSettings();
             AppSettings.Fullscreen.ShowBattery = true;
             AppSettings.Fullscreen.ShowBatteryPercentage = true;

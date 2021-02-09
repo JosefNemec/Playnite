@@ -99,7 +99,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ButtonOptions = Template.FindName("PART_ButtonOptions", this) as ButtonBase;
                 if (ButtonOptions != null)
                 {
-                    ButtonOptions.Command = mainModel.ToggleGameOptionsCommand;
+                    ButtonOptions.Command = mainModel.OpenGameMenuCommand;
                 }
 
                 ImageCover = Template.FindName("PART_ImageCover", this) as Image;

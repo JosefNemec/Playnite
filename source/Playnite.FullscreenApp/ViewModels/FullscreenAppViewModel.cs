@@ -229,28 +229,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        private bool gameMenuVisible = false;
-        public bool GameMenuVisible
-        {
-            get => gameMenuVisible;
-            set
-            {
-                gameMenuVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool settingsMenuVisible = false;
-        public bool SettingsMenuVisible
-        {
-            get => settingsMenuVisible;
-            set
-            {
-                settingsMenuVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool gameListFocused = false;
         public bool GameListFocused
         {
@@ -258,17 +236,6 @@ namespace Playnite.FullscreenApp.ViewModels
             set
             {
                 gameListFocused = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool mainMenuFocused = false;
-        public bool MainMenuFocused
-        {
-            get => mainMenuFocused;
-            set
-            {
-                mainMenuFocused = value;
                 OnPropertyChanged();
             }
         }
@@ -405,7 +372,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<EventArgs> WindowGotFocusCommand { get; private set; }
         public RelayCommand<object> ToggleFullscreenCommand { get; private set; }
         public RelayCommand<object> OpenMainMenuCommand { get; private set; }
-        public RelayCommand<object> ToggleGameOptionsCommand { get; private set; }
+        public RelayCommand<object> OpenGameMenuCommand { get; private set; }
         public RelayCommand<object> ToggleGameDetailsCommand { get; private set; }
         public RelayCommand<object> ToggleFiltersCommand { get; private set; }
         public RelayCommand<object> ToggleNotificationsCommand { get; private set; }
@@ -585,32 +552,9 @@ namespace Playnite.FullscreenApp.ViewModels
                 ToggleFullscreen();
             });
 
-            ToggleGameOptionsCommand = new RelayCommand<object>((a) =>
+            OpenGameMenuCommand = new RelayCommand<object>((a) =>
             {
-                if (GameMenuVisible)
-                {
-                    if (GameDetailsVisible)
-                    {
-                        GameDetailsFocused = true;
-                    }
-                    else
-                    {
-                        GameListFocused = true;
-                    }
-                }
-                else
-                {
-                    if (GameDetailsVisible)
-                    {
-                        GameDetailsFocused = false;
-                    }
-                    else
-                    {
-                        GameListFocused = false;
-                    }
-                }
-
-                GameMenuVisible = !GameMenuVisible;
+                OpenGameMenu();
             }, (a) => SelectedGame != null);
 
             ToggleGameDetailsCommand = new RelayCommand<object>((a) =>
@@ -879,6 +823,12 @@ namespace Playnite.FullscreenApp.ViewModels
         public void OpenMainMenu()
         {
             var vm = new MainMenuViewModel(new MainMenuWindowFactory(), this);
+            vm.OpenView();
+        }
+
+        public void OpenGameMenu()
+        {
+            var vm = new GameMenuViewModel(new GameMenuWindowFactory(), this, SelectedGameDetails, GamesEditor);
             vm.OpenView();
         }
 

@@ -364,11 +364,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ).ToString());
 
                     ListGameItems.SetResourceReference(ListBoxEx.ItemContainerStyleProperty, "ListGameItemStyle");
-                    ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameOptionsCommand, Key = Key.X });
+                    ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenGameMenuCommand, Key = Key.X });
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = Key.A });
                     ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ActivateSelectedCommand, Key = Key.Enter });
 
-                    ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ToggleGameOptionsCommand, XInputButton.Start));
+                    ListGameItems.InputBindings.Add(new XInputBinding(mainModel.OpenGameMenuCommand, XInputButton.Start));
                     ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ToggleGameDetailsCommand, XInputButton.A));
                     ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ActivateSelectedCommand, XInputButton.X));
 
@@ -427,7 +427,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                         converter: new Converters.BooleanToVisibilityConverter());
                 }
 
-                AssignButtonWithCommand(ref ButtonGameOptions, "PART_ButtonGameOptions", mainModel.ToggleGameOptionsCommand);
+                AssignButtonWithCommand(ref ButtonGameOptions, "PART_ButtonGameOptions", mainModel.OpenGameMenuCommand);
                 if (ButtonGameOptions != null)
                 {
                     BindingTools.SetBinding(

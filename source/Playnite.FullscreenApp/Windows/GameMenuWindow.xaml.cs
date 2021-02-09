@@ -1,4 +1,5 @@
 ﻿using Playnite.Controls;
+using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,14 @@ using System.Windows.Shapes;
 
 namespace Playnite.FullscreenApp.Windows
 {
+    public class GameMenuWindowFactory : WindowFactory
+    {
+        public override WindowBase CreateNewWindowInstance()
+        {
+            return new GameMenuWindow();
+        }
+    }
+
     /// <summary>
     /// Interaction logic for GameMenuWindow.xaml
     /// </summary>
@@ -30,6 +39,8 @@ namespace Playnite.FullscreenApp.Windows
                 Width = model.WindowWidth;
                 Height = model.WindowHeight;
             }
+
+            GridMain.Width = model.ViewportWidth;
         }
     }
 }
