@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Layout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.FullscreenApp.Controls.SettingsSections"             
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+             xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
+        </StackPanel.Resources>
+        
+        <TextBlock Text="Layout" Style="{StaticResource TextBlockBaseStyle}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"  />
+        
+        <pctrls:CheckBoxEx x:Name="ToggleHorizontalLayout"
+                    Margin="{StaticResource ItemMargin}"
+                    Style="{DynamicResource CheckBoxSettings}"
+                    Content="{DynamicResource LOCSettingsFullscreenHorizontalScrolling}"
+                           pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                           Tag="PART_ToggleHorizontalLayout"/>
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCColumns}" Margin="0,0,5,0" VerticalAlignment="Center"
+                       Style="{DynamicResource TextBlockBaseStyle}" />
+            <TextBlock Text="{Binding Value, ElementName=SliderColumns}" VerticalAlignment="Center" DockPanel.Dock="Right"
+                       Style="{DynamicResource TextBlockBaseStyle}"
+                        Width="50" TextAlignment="Right"/>
+            <pctrls:SliderEx x:Name="SliderColumns" Width="300" DockPanel.Dock="Right"
+                      Margin="{StaticResource ItemMargin}"
+                             Tag="PART_SliderColumns"/>
+        </DockPanel>
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCRows}" Margin="0,0,5,0"
+                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
+            <TextBlock Text="{Binding Value, ElementName=SliderRows}" DockPanel.Dock="Right"
+                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       Width="50" TextAlignment="Right"/>
+            <pctrls:SliderEx x:Name="SliderRows" Width="300" DockPanel.Dock="Right"
+                      Margin="{StaticResource ItemMargin}" VerticalAlignment="Center"
+                             Tag="PART_SliderRows"/>
+        </DockPanel>
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}" Margin="0,0,5,0"
+                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
+            <TextBlock Text="{Binding Value, ElementName=SliderItemSpacing}" DockPanel.Dock="Right"
+                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       Width="50" TextAlignment="Right"/>
+            <pctrls:SliderEx x:Name="SliderItemSpacing" Width="300" DockPanel.Dock="Right"
+                        VerticalAlignment="Center" Margin="{StaticResource ItemMargin}"
+                             Tag="PART_SliderItemSpacing"/>
+        </DockPanel>
+    </StackPanel>
+</UserControl>

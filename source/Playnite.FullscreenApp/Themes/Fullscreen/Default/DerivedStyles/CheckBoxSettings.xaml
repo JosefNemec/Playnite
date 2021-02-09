@@ -2,7 +2,60 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="CheckBoxSettings" BasedOn="{StaticResource {x:Type CheckBox}}" TargetType="CheckBox">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="0,5,0,5" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                        FontFamily="{DynamicResource FontTitilliumWeb}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Grid.Column="0" TextTrimming="WordEllipsis">
+                                <ContentPresenter RecognizesAccessKey="True" />
+                            </TextBlock>                            
+                            <Border Background="{DynamicResource ControlBackgroundDarkBrush}"
+                                    VerticalAlignment="Center"
+                                    BorderThickness="2" BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                                    Grid.Column="1" Margin="0,0,10,0" Width="24" Height="24">
+                                <Viewbox x:Name="CheckIcon" Visibility="Collapsed">
+                                    <TextBlock Text="b" FontFamily="Marlett" Foreground="White"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </Border>
+                        </Grid>
+                        <Border x:Name="BorderFocus" Margin="-3"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                BorderBrush="{DynamicResource SelectionBrush}"
+                                BorderThickness="3" Visibility="Hidden" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundDarkBrush}" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource ControlBackgroundDarkBrush}" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

@@ -85,8 +85,6 @@ namespace TestPlugin
 
         public override void OnGameSelected(GameSelectionEventArgs args)
         {
-            logger.Info("TestPluginDev INFO OnGameSelected");
-            logger.Trace("TestPluginDev TRACE OnGameSelected");
         }
 
         public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
@@ -189,18 +187,18 @@ namespace TestPlugin
             return items;
         }
 
-        public override List<PlayAction> GetPlayActions(GetPlayActionsArgs args)
-        {
-            return new List<PlayAction>
-            {
-                new GenericPlayAction
-                {
-                    Name = "Test Action",
-                    Path = "calc",
-                    Type = GenericPlayActionType.File
-                }
-            };
-        }
+        //public override List<PlayAction> GetPlayActions(GetPlayActionsArgs args)
+        //{
+        //    return new List<PlayAction>
+        //    {
+        //        new GenericPlayAction
+        //        {
+        //            Name = "Test Action",
+        //            Path = "calc",
+        //            Type = GenericPlayActionType.File
+        //        }
+        //    };
+        //}
 
         public override Control GetGameViewControl(GetGameViewControlArgs args)
         {

@@ -132,6 +132,15 @@
     <Compile Include="Controls\ScrollViewerEx.cs" />
     <Compile Include="Controls\ItemsControlEx.cs" />
     <Compile Include="Controls\ButtonEx.cs" />
+    <Compile Include="Controls\SettingsSections\Layout.xaml.cs">
+      <DependentUpon>Layout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Visuals.xaml.cs">
+      <DependentUpon>Visuals.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SliderEx.cs" />
     <Compile Include="Controls\ComboBoxEx.cs" />
     <Compile Include="Controls\FilterDbItemtSelection.cs" />
@@ -142,7 +151,6 @@
     <Compile Include="Controls\Views\Main.cs" />
     <Compile Include="Controls\Views\MainMenu.cs" />
     <Compile Include="Controls\Views\Notifications.cs" />
-    <Compile Include="Controls\Views\SettingsMenu.cs" />
     <Compile Include="FullscreenCollectionView.cs" />
     <Compile Include="FullscreenDialogs.cs" />
     <Compile Include="Markup\Markups.cs" />
@@ -150,6 +158,7 @@
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
       <DependentUpon>ActionSelectionWindow.xaml</DependentUpon>
     </Compile>
@@ -164,6 +173,15 @@
     </Compile>
     <Compile Include="Windows\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GameMenuWindow.xaml.cs">
+      <DependentUpon>GameMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainMenuWindow.xaml.cs">
+      <DependentUpon>MainMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\RandomGameSelectWindow.xaml.cs">
       <DependentUpon>RandomGameSelectWindow.xaml</DependentUpon>
@@ -200,6 +218,18 @@
     <None Include="Themes\Fullscreen\Default\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Include="Controls\SettingsSections\Layout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\General.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Visuals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GlobalResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -372,6 +402,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\GameMenuWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainMenuWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\RandomGameSelectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -393,11 +435,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Themes\Fullscreen\Default\Views\GameMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\Views\SettingsMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

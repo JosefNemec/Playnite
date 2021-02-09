@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.General"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.FullscreenApp.Controls.SettingsSections"
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+             xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+             mc:Ignorable="d"             
+             d:DesignHeight="550" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
+        </StackPanel.Resources>
+
+        <TextBlock Text="General" Style="{StaticResource TextBlockBaseStyle}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"  />
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCSettingsTargetMonitor}"
+                       VerticalAlignment="Center"                  
+                                           Style="{DynamicResource TextBlockBaseStyle}" />
+            <pctrls:ComboBoxEx x:Name="SelectMonitor" pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                        DockPanel.Dock="Right"
+                    Width="300"  />
+
+            
+        </DockPanel>
+        
+        <pctrls:CheckBoxEx x:Name="ToggleBattery"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{DynamicResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsShowBatteryStatus}"  />
+
+        <pctrls:CheckBoxEx x:Name="ToggleBatteryPercentage"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{StaticResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsShowBatteryPercentage}"  />
+
+        <pctrls:CheckBoxEx x:Name="ToggleClock"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{DynamicResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsShowClock}"  />
+    </StackPanel>
+</UserControl>

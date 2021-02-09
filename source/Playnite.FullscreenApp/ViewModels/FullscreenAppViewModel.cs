@@ -444,6 +444,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
         public RelayCommand<object> UpdateGamesCommand { get; private set; }
+        public RelayCommand<object> OpenSettingsCommand { get; private set; }
         #endregion Commands
 
         public FullscreenAppViewModel()
@@ -1021,6 +1022,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 await UpdateDatabase(AppSettings.DownloadMetadataOnImport);
             }, (a) => !DatabaseUpdateRunning);
+
+            OpenSettingsCommand = new RelayCommand<object>((_) => OpenSettings());
+        }
+
+        public void OpenSettings()
+        {
+            var vm = new SettingsViewModel(new SettingsWindowFactory(), this);
+            vm.OpenView();
         }
 
         public void SwitchToDesktopMode()
