@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Playnite.FullscreenApp.Controls
 {
     public class ListBoxEx : ListBox
     {
+        private FullscreenTilePanel itemsPanel;
         static ListBoxEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBoxEx), new FrameworkPropertyMetadata(typeof(ListBoxEx)));
@@ -20,7 +22,25 @@ namespace Playnite.FullscreenApp.Controls
         public ListBoxEx() : base()
         {
             SelectionChanged += ListBoxEx_SelectionChanged;
-            this.GotFocus += ListBoxEx_GotFocus;
+            GotFocus += ListBoxEx_GotFocus;
+            Loaded += ListBoxEx_Loaded;
+            Unloaded += ListBoxEx_Unloaded;
+        }
+
+        private void ListBoxEx_Unloaded(object sender, RoutedEventArgs e)
+        {
+            itemsPanel.InternalChildrenGenerated -= ItemsPanel_InternalChildrenGenerated;
+        }
+
+        private void ListBoxEx_Loaded(object sender, RoutedEventArgs e)
+        {
+            itemsPanel = ElementTreeHelper.FindVisualChildren<FullscreenTilePanel>(this).FirstOrDefault();
+            itemsPanel.InternalChildrenGenerated += ItemsPanel_InternalChildrenGenerated; ;
+        }
+
+        private void ItemsPanel_InternalChildrenGenerated(object sender, InternalChildrenGeneratedArgs e)
+        {
+            FocusSelected();
         }
 
         private void ListBoxEx_GotFocus(object sender, RoutedEventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Playnite.Common
 {
@@ -22,6 +23,11 @@ namespace Playnite.Common
                     return new AspectRatio(
                         Convert.ToInt32(regex.Groups[1].Value),
                         Convert.ToInt32(regex.Groups[2].Value));
+                }
+                else
+                {
+                    // For cases where this is called from designer element preview via binding expression
+                    return new AspectRatio();
                 }
             }
 

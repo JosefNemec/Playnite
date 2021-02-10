@@ -13,11 +13,14 @@ using System.Windows.Media;
 
 namespace Playnite.FullscreenApp.Controls
 {
+    public class InternalChildrenGeneratedArgs
+    {
+    }
+
     public class FullscreenTilePanel : VirtualizingPanel, IScrollInfo
     {
         private static ILogger logger = LogManager.GetLogger();
-        private IItemContainerGenerator generator;
-        internal ItemsControl itemsControl;
+        internal ItemsControl itemsControl => ItemsControl.GetItemsOwner(this);
         private int itemCount => itemsControl?.HasItems == true ? itemsControl.Items.Count : 0;
         private double itemWidth;
         private double itemHeight;
@@ -25,6 +28,29 @@ namespace Playnite.FullscreenApp.Controls
         private int computedRows;
         private int computedColumns;
         private const double marginOffset = 0.5;
+
+        public event EventHandler<InternalChildrenGeneratedArgs> InternalChildrenGenerated;
+
+        private void OnInternalChildrenGenerated()
+        {
+            InternalChildrenGenerated?.Invoke(this, new InternalChildrenGeneratedArgs());
+        }
+
+        private IRecyclingItemContainerGenerator itemContainerGenerator;
+        protected IRecyclingItemContainerGenerator generator
+        {
+            get
+            {
+                if (itemContainerGenerator is null)
+                {
+                    /* Because of a bug in the framework the ItemContainerGenerator
+                     * is null until InternalChildren accessed at least one time. */
+                    var children = InternalChildren;
+                    itemContainerGenerator = (IRecyclingItemContainerGenerator)base.ItemContainerGenerator;
+                }
+                return itemContainerGenerator;
+            }
+        }
 
         public int Columns
         {
@@ -153,7 +179,7 @@ namespace Playnite.FullscreenApp.Controls
 
             var startPos = generator.GeneratorPositionFromIndex(firstItemIndex);
             var childIndex = (startPos.Offset == 0) ? startPos.Index : startPos.Index + 1;
-
+            var anyItemsGenerated = false;
             using (generator.StartAt(startPos, GeneratorDirection.Forward, true))
             {
                 for (int itemIndex = firstItemIndex; itemIndex <= lastItemIndex; ++itemIndex, ++childIndex)
@@ -176,11 +202,13 @@ namespace Playnite.FullscreenApp.Controls
                         }
 
                         generator.PrepareItemContainer(child);
+                        anyItemsGenerated = true;
                     }
                     else if (!InternalChildren.Contains(child))
                     {
                         InsertInternalChild(childIndex, child);
                         ItemContainerGenerator.PrepareItemContainer(child);
+                        anyItemsGenerated = true;
                     }
 
                     child.Measure(new Size(itemWidth, itemHeight));
@@ -188,6 +216,11 @@ namespace Playnite.FullscreenApp.Controls
             }
 
             CleanUpItems(firstItemIndex, lastItemIndex);
+            if (anyItemsGenerated)
+            {
+                OnInternalChildrenGenerated();
+            }
+
             if (availableSize.Width == double.PositiveInfinity || availableSize.Height == double.PositiveInfinity)
             {
                 return GetExtent();
@@ -291,7 +324,7 @@ namespace Playnite.FullscreenApp.Controls
                 var child = InternalChildren[i];
                 if ((itemIndex < firstIndex || itemIndex > lastIndex) && itemIndex > 0)
                 {
-                    generator.Remove(childGeneratorPos, 1);
+                    generator.Recycle(childGeneratorPos, 1);
                     RemoveInternalChildRange(i, 1);
                 }
                 else if (child.ToString().Contains("{DisconnectedItem}"))
@@ -321,23 +354,7 @@ namespace Playnite.FullscreenApp.Controls
                     RemoveInternalChildRange(args.Position.Index, args.ItemUICount);
                     break;
                 case NotifyCollectionChangedAction.Move:
-                    if (args.Position.Index < 0)
-                    {
-                        InvalidateMeasure();
-                        ScrollOwner?.InvalidateScrollInfo();
-                        SetVerticalOffset(0);
-                    }
-                    else
-                    {
-                        RemoveInternalChildRange(args.OldPosition.Index, args.ItemUICount);
-                    }
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    itemsControl = ItemsControl.GetItemsOwner(this);
-                    generator = (IRecyclingItemContainerGenerator)ItemContainerGenerator;
-                    InvalidateMeasure();
-                    ScrollOwner?.InvalidateScrollInfo();
-                    SetVerticalOffset(0);
+                    RemoveInternalChildRange(args.OldPosition.Index, args.ItemUICount);
                     break;
             }
         }
