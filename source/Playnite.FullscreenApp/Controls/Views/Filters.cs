@@ -75,7 +75,7 @@ namespace Playnite.FullscreenApp.Controls.Views
             var ButtonAdditional = new ButtonEx();
             ButtonAdditional.Command = mainModel.OpenAdditionalFiltersCommand;
             ButtonAdditional.Content = ResourceProvider.GetString(LOC.AditionalFilters);
-            ButtonAdditional.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelButtonEx");
+            ButtonAdditional.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelNagivationButton");
             BindingTools.SetBinding(
                 ButtonAdditional,
                 ButtonBase.TagProperty,
@@ -193,7 +193,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         {
             var button = new ButtonEx();
             button.Content = ResourceProvider.GetString(text);
-            button.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelButtonEx");
+            button.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelNagivationButton");
             button.Command = mainModel.LoadSubFilterCommand;
             button.CommandParameter = field;
             BindingTools.SetBinding(

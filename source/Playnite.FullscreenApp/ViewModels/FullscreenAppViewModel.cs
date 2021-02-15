@@ -361,6 +361,32 @@ namespace Playnite.FullscreenApp.ViewModels
             get => !AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty();
         }
 
+        public bool IsExtraFilterActive
+        {
+            get
+            {
+                if (!AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty())
+                {
+                    return false;
+                }
+
+                if (AppSettings.Fullscreen.FilterSettings.IsActive && ActiveFilterPreset == null)
+                {
+                    return true;
+                }
+                else if (ActiveFilterPreset != null)
+                {
+                    var preset = ActiveFilterPreset.Settings.GetClone();
+                    preset.Name = null;
+                    var current = AppSettings.Fullscreen.FilterSettings.GetClone();
+                    current.Name = null;
+                    return !preset.IsEqualJson(current);
+                }
+
+                return false;
+            }
+        }
+
         public FullscreenAppViewModel() : base(ApplicationMode.Fullscreen)
         {
         }
@@ -418,6 +444,7 @@ namespace Playnite.FullscreenApp.ViewModels
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
             OnPropertyChanged(nameof(IsSearchActive));
+            OnPropertyChanged(nameof(IsExtraFilterActive));
         }
 
         public void OpenMainMenu()

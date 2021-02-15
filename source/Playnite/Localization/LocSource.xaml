@@ -841,7 +841,8 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCQuickFilterMostPlayed">Most Played</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">All</sys:String>
     <sys:String x:Key="LOCGameListFiltered">There are filters applied.</sys:String>
-    <sys:String x:Key="LOCGameListSearchResults">Search results for:</sys:String>
+    <sys:String x:Key="LOCGameListExtraFiltered">There are additional filters applied.</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Showing search results for:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">An item with the same name already exists.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limit selection to current filter</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Pick another</sys:String>

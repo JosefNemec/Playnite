@@ -264,11 +264,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ElemExtraFilterActive = Template.FindName("PART_ElemExtraFilterActive", this) as FrameworkElement;
                 if (ElemExtraFilterActive != null)
                 {
-                    //BindingTools.SetBinding(ElemExtraFilterActive,
-                    //    FrameworkElement.VisibilityProperty,
-                    //    mainModel,
-                    //    nameof(FullscreenAppViewModel.IsExtraFilterActive),
-                    //    converter: new Converters.BooleanToVisibilityConverter());
+                    BindingTools.SetBinding(ElemExtraFilterActive,
+                        FrameworkElement.VisibilityProperty,
+                        mainModel,
+                        nameof(FullscreenAppViewModel.IsExtraFilterActive),
+                        converter: new Converters.BooleanToVisibilityConverter());
                 }
 
                 ElemSearchActive = Template.FindName("PART_ElemSearchActive", this) as FrameworkElement;

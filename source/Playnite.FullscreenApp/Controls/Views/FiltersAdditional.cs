@@ -106,7 +106,6 @@ namespace Playnite.FullscreenApp.Controls.Views
         {
             var button = new ButtonEx();
             button.SetResourceReference(ButtonBase.ContentProperty, title);
-            button.SetResourceReference(ButtonBase.MarginProperty, "ItemMargin");
             button.SetResourceReference(ButtonBase.StyleProperty, "FilterPanelNagivationButton");
             button.Command = mainModel.LoadSubFilterCommand;
             button.CommandParameter = field;

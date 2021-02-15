@@ -235,20 +235,19 @@
                                     <TextBlock  FontSize="18"                                                
                                                 TextAlignment="Center"
                                                 Style="{DynamicResource TextBlockBaseStyle}"
-                                                Text="Showing search results for:"/>
+                                                Text="{DynamicResource LOCGameListSearchResults}"/>
                                     <TextBlock  Foreground="White"
                                                 TextAlignment="Center"
                                                 Style="{DynamicResource TextBlockBaseStyle}"
                                                 Text="{Binding AppSettings.Fullscreen.FilterSettings.Name}"/>
                                 </StackPanel>
-                                
 
                                 <TextBlock Grid.Column="2" x:Name="PART_ElemExtraFilterActive"
                                        FontSize="20"
                                        VerticalAlignment="Center" HorizontalAlignment="Stretch"
                                        TextAlignment="Center"
                                        Style="{DynamicResource TextBlockBaseStyle}"
-                                       Text="{DynamicResource LOCGameListFiltered}"/>
+                                       Text="{DynamicResource LOCGameListExtraFiltered}"/>
 
                                 <StackPanel x:Name="PART_ElemProgressIndicator" Orientation="Horizontal"
                                         Grid.Column="3" VerticalAlignment="Center">

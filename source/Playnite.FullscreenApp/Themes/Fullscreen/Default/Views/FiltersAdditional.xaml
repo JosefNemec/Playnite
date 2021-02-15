@@ -8,12 +8,8 @@
                     <DockPanel Background="{DynamicResource OverlayMenuBackgroundBrush}"
                                 Width="{StaticResource FilterPanelWidth}"
                                 x:Name="PART_MenuHost">
-                        <DockPanel.Resources>
-                            <Thickness x:Key="ItemMargin">15,5,15,5</Thickness>
-                        </DockPanel.Resources>
-
-                        <ButtonEx Margin="{StaticResource ItemMargin}"   
-                                  BorderThickness="2" DockPanel.Dock="Top"
+                        <ButtonEx BorderThickness="2" DockPanel.Dock="Top"
+                                  Margin="15,5,15,5"
                                   x:Name="PART_ButtonBack">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
