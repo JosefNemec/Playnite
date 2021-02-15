@@ -111,8 +111,10 @@ namespace Playnite.FullscreenApp.Windows
                 Owner = owner;
             }
 
+            var model = FullscreenApplication.Current?.MainModel;
             Height = owner.Height;
             Width = owner.Width;
+            GridMain.Width = model.ViewportWidth;
             Button1.Focus();
             Text = messageBoxText;
             InputText = defaultInput ?? string.Empty;
