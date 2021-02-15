@@ -156,6 +156,7 @@
     <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />
+    <Compile Include="ViewModels\FullscreenAppViewModel_Commands.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameMenuViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
