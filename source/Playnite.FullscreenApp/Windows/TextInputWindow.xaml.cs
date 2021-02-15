@@ -77,13 +77,29 @@ namespace Playnite.FullscreenApp.Windows
             });
         }
 
+        private List<MessageBoxToggle> toggleOptions;
+        public List<MessageBoxToggle> ToggleOptions
+        {
+            get => toggleOptions;
+            set
+            {
+                toggleOptions = value;
+                OnPropertyChanged(nameof(ToggleOptions));
+            }
+        }
+
         public TextInputWindow() : base()
         {
             InitializeComponent();
             DataContext = this;
         }
 
-        public StringSelectionDialogResult ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)
+        public StringSelectionDialogResult ShowInput(
+            Window owner,
+            string messageBoxText,
+            string caption,
+            string defaultInput,
+            List<MessageBoxToggle> options = null)
         {
             if (owner == null)
             {
@@ -100,6 +116,12 @@ namespace Playnite.FullscreenApp.Windows
             Button1.Focus();
             Text = messageBoxText;
             InputText = defaultInput ?? string.Empty;
+            ToggleOptions = options;
+            if (options.HasItems())
+            {
+                ItemsToggleOptions.Visibility = Visibility.Visible;
+            }
+
             ShowDialog();
 
             if (result == MessageBoxResult.Cancel)
@@ -145,6 +167,22 @@ namespace Playnite.FullscreenApp.Windows
         public void ClearText()
         {
             InputText = string.Empty;
+        }
+
+        private void TextInputText_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                TextInputText.MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
+                e.Handled = true;
+                return;
+            }
+            else if (e.Key == Key.Down)
+            {
+                TextInputText.MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

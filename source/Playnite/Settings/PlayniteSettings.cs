@@ -1574,6 +1574,17 @@ namespace Playnite
             }
         }
 
+        private string selectedFilterPreset;
+        public string SelectedFilterPreset
+        {
+            get => selectedFilterPreset;
+            set
+            {
+                selectedFilterPreset = value;
+                OnPropertyChanged();
+            }
+        }
+
         private GridViewSpacingMode gridViewSpacingMode = GridViewSpacingMode.StartAndEndOnly;
         [RequiresRestart]
         public GridViewSpacingMode GridViewSpacingMode
@@ -1623,6 +1634,12 @@ namespace Playnite
         public List<FilterPreset> SortedFilterPresets
         {
             get => FilterPresets.OrderBy(a => a.Name).ToList();
+        }
+
+        [JsonIgnore]
+        public List<FilterPreset> SortedFilterFullscreenPresets
+        {
+            get => FilterPresets.Where(a => a.ShowInFullscreeQuickSelection).OrderBy(a => a.Name).ToList();
         }
 
         private List<SelectableItem<string>> develExtenions = new List<SelectableItem<string>>();

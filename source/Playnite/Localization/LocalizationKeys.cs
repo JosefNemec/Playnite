@@ -1254,9 +1254,13 @@ namespace Playnite
         /// </summary>
         public const string SettingsDefaultMetadataDescription = "LOCSettingsDefaultMetadataDescription";
         /// <summary>
-        /// Target Monitor
+        /// Target display
         /// </summary>
-        public const string SettingsTargetMonitor = "LOCSettingsTargetMonitor";
+        public const string SettingsTargetDisplay = "LOCSettingsTargetDisplay";
+        /// <summary>
+        /// Always use primary display
+        /// </summary>
+        public const string SettingsAlwaysUsePrimaryDisplay = "LOCSettingsAlwaysUsePrimaryDisplay";
         /// <summary>
         /// Show Game Titles
         /// </summary>
@@ -3242,6 +3246,10 @@ namespace Playnite
         /// </summary>
         public const string FilterPresetSaveViewOptions = "LOCFilterPresetSaveViewOptions";
         /// <summary>
+        /// Show as quick filter in Fullscreen mode
+        /// </summary>
+        public const string FilterPresetShowOnFSTopPanel = "LOCFilterPresetShowOnFSTopPanel";
+        /// <summary>
         /// In past 7 days
         /// </summary>
         public const string InPast7Days = "LOCInPast7Days";
@@ -3257,5 +3265,13 @@ namespace Playnite
         /// More than 365 days ago
         /// </summary>
         public const string MoreThan365DaysAgo = "LOCMoreThan365DaysAgo";
+        /// <summary>
+        /// Configure
+        /// </summary>
+        public const string Configure = "LOCConfigure";
+        /// <summary>
+        /// Save preset
+        /// </summary>
+        public const string FilterPresetSave = "LOCFilterPresetSave";
     }
 }

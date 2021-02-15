@@ -67,7 +67,6 @@
     <Compile Include="TestsSetupClass.cs" />
     <Compile Include="ViewModels\DatabaseFieldsManagerViewModelTests.cs" />
     <Compile Include="ViewModels\GameEditViewModelTests.cs" />
-    <Compile Include="ViewModels\MainViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -114,27 +114,6 @@ namespace Playnite.DesktopApp.Windows
             }
         }
 
-        private bool extraOptionSelected = false;
-        public bool ExtraOptionSelected
-        {
-            get => extraOptionSelected;
-            set
-            {
-                extraOptionSelected = value;
-                OnPropertyChanged(nameof(ExtraOptionSelected));
-            }
-        }
-
-        private string extraOptionText;
-        public string ExtraOptionText
-        {
-            get => extraOptionText;
-            set
-            {
-                extraOptionText = value;
-                OnPropertyChanged(nameof(ExtraOptionText));
-            }
-        }
         private MessageBoxImage displayIcon = MessageBoxImage.None;
         public MessageBoxImage DisplayIcon
         {
@@ -154,6 +133,17 @@ namespace Playnite.DesktopApp.Windows
             {
                 isTextReadOnly = value;
                 OnPropertyChanged(nameof(IsTextReadOnly));
+            }
+        }
+
+        private List<MessageBoxToggle> toggleOptions;
+        public List<MessageBoxToggle> ToggleOptions
+        {
+            get => toggleOptions;
+            set
+            {
+                toggleOptions = value;
+                OnPropertyChanged(nameof(ToggleOptions));
             }
         }
 
@@ -194,7 +184,7 @@ namespace Playnite.DesktopApp.Windows
             string messageBoxText,
             string caption,
             string defaultInput,
-            string additionalOptionText = null)
+            List<MessageBoxToggle> options = null)
         {
             if (owner == null || owner == this)
             {
@@ -214,21 +204,21 @@ namespace Playnite.DesktopApp.Windows
             ShowCancelButton = true;
             ButtonCancel.IsCancel = true;
             InputText = defaultInput ?? string.Empty;
-            if (!additionalOptionText.IsNullOrEmpty())
+            ToggleOptions = options;
+            if (options.HasItems())
             {
-                CheckExtraOption.Visibility = Visibility.Visible;
-                ExtraOptionText = additionalOptionText.StartsWith("LOC") ? ResourceProvider.GetString(additionalOptionText) : additionalOptionText;
+                ItemsToggleOptions.Visibility = Visibility.Visible;
             }
 
             ShowDialog();
 
             if (result == MessageBoxResult.Cancel)
             {
-                return new StringSelectionDialogResult(false, InputText) { ExtraOptionSelected = ExtraOptionSelected };
+                return new StringSelectionDialogResult(false, InputText);
             }
             else
             {
-                return new StringSelectionDialogResult(true, InputText) { ExtraOptionSelected = ExtraOptionSelected };
+                return new StringSelectionDialogResult(true, InputText);
             }
         }
 

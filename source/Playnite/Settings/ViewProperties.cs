@@ -594,12 +594,8 @@ namespace Playnite
         }
     }
 
-    public class ViewSettings : ObservableObject
+    public class ViewSettingsBase : ObservableObject
     {
-        public const double MinGridItemWidth = 60;
-        public const double DefaultGridItemWidth = 200;
-        public const double MaxGridItemWidth = 700;
-
         private SortOrder sortingOrder = SortOrder.Name;
         public SortOrder SortingOrder
         {
@@ -629,6 +625,13 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+    }
+
+    public class ViewSettings : ViewSettingsBase
+    {
+        public const double MinGridItemWidth = 60;
+        public const double DefaultGridItemWidth = 200;
+        public const double MaxGridItemWidth = 700;
 
         private GroupableField groupingOrder = GroupableField.None;
         public GroupableField GroupingOrder

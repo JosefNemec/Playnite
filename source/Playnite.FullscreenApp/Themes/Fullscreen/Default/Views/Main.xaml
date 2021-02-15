@@ -26,11 +26,7 @@
                                   Height="110">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
@@ -39,22 +35,11 @@
                                     <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
 
-                                <ToggleButton x:Name="PART_ToggleFilterRecently" Grid.Column="1"
-                                            Style="{DynamicResource ToggleButtonTopFilter}"
-                                            Content="{DynamicResource LOCQuickFilterRecentlyPlayed}" Margin="5"/>
-                                <ToggleButton x:Name="PART_ToggleFilterFavorite"  Grid.Column="2"
-                                            Style="{DynamicResource ToggleButtonTopFilter}"
-                                            Content="{DynamicResource LOCQuickFilterFavorites}" Margin="5" />
-                                <ToggleButton x:Name="PART_ToggleFilterMostPlayed" Grid.Column="3"
-                                            Style="{DynamicResource ToggleButtonTopFilter}"
-                                            Content="{DynamicResource LOCQuickFilterMostPlayed}" Margin="5"  />
-                                <ToggleButton x:Name="PART_ToggleFilterAll" Grid.Column="4"
-                                            Style="{DynamicResource ToggleButtonTopFilter}"
-                                            Content="{DynamicResource LOCQuickFilterAllGames}" Margin="5"  />
+                                <FilterPresetSelector x:Name="PART_FilterPresetSelector" Grid.Column="1" Margin="0,0,50,0" />
 
                                 <ContentControl x:Name="PART_ElemBatteryStatus" Focusable="False" FontSize="42"
                                             VerticalAlignment="Center" Margin="10,0,10,0"
-                                            Grid.Column="6">
+                                            Grid.Column="2">
                                     <ContentControl.Style>
                                         <Style TargetType="ContentControl">
                                             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
@@ -82,15 +67,15 @@
 
                                 <TextBlock x:Name="PART_TextBatteryPercentage" Style="{DynamicResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center" Margin="0,0,20,0"
-                                       Grid.Column="7"/>
+                                       Grid.Column="3"/>
 
                                 <TextBlock x:Name="PART_TextClock" Style="{DynamicResource TextBlockBaseStyle}"
                                        VerticalAlignment="Center" Margin="20,0,20,0"
-                                       Grid.Column="8"/>
+                                       Grid.Column="4"/>
 
                                 <ButtonEx x:Name="PART_ButtonNotifications" VerticalAlignment="Center"
                                           Margin="10,0,10,0" Height="48" Width="48"
-                                          Grid.Column="9">
+                                          Grid.Column="5">
                                     <Button.Content>
                                         <Grid>
                                             <TextBlock Text="&#xeea3;" FontFamily="{StaticResource FontIcoFont}"
@@ -115,7 +100,7 @@
                                 <ButtonEx x:Name="PART_ButtonMainMenu" VerticalAlignment="Center"
                                           Style="{DynamicResource ButtonTopMenu}"
                                           Margin="10,0,10,0" Height="48"
-                                          Grid.Column="10">
+                                          Grid.Column="6">
                                     <Button.Content>
                                         <Image RenderOptions.BitmapScalingMode="Fant" Margin="2"
                                            Source="{ThemeFile 'Images/applogo_clean.png'}" />

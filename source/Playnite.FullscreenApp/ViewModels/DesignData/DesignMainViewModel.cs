@@ -20,7 +20,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public new GamesCollectionViewEntry GameDetailsEntry { get; set; }
         public new GamesCollectionViewEntry SelectedGame { get; set; }
         public new bool GameDetailsButtonVisible { get; set; } = true;
-        public new bool IsExtraFilterActive { get; set; } = true;
 
         private static DesignMainViewModel designIntance;
         public static DesignMainViewModel DesignIntance

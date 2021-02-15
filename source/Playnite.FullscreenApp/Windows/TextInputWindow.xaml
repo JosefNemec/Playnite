@@ -39,18 +39,32 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBox Margin="0,140,0,0" Name="TextInputText"
                      Grid.Row="0" Grid.Column="1" FontSize="26"
+                     PreviewKeyDown="TextInputText_PreviewKeyDown"
                      Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
 
-            <Border Grid.Row="2" Grid.Column="1"
+            <ItemsControl Grid.Row="2" Grid.Column="1" Focusable="False"
+                          Name="ItemsToggleOptions" Visibility="Collapsed"
+                          ItemsSource="{Binding ToggleOptions}"
+                          Margin="0,0,0,20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <pctrls:CheckBoxEx Content="{Binding Title}"
+                                           IsChecked="{Binding Selected}"
+                                           Margin="0,8,0,8"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Border Grid.Row="3" Grid.Column="1"
                     Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,60">
                 <StackPanel>
-                    <Grid HorizontalAlignment="Center"
-                          KeyboardNavigation.DirectionalNavigation="Cycle">
+                    <Grid HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />

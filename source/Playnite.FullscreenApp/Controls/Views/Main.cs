@@ -22,10 +22,6 @@ namespace Playnite.FullscreenApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ViewHost", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_MainHost", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ToggleFilterRecently", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ToggleFilterFavorite", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ToggleFilterMostPlayed", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ToggleFilterAll", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ButtonMainMenu", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonNotifications", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_TextClock", Type = typeof(TextBlock))]
@@ -48,15 +44,12 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ContentFilterItems", Type = typeof(ContentControl))]
     [TemplatePart(Name = "PART_ElemGameDetails", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
+    [TemplatePart(Name = "PART_FilterPresetSelector", Type = typeof(FilterPresetSelector))]
     public class Main : Control
     {
         private FullscreenAppViewModel mainModel;
         private FrameworkElement ViewHost;
         private FrameworkElement MainHost;
-        private ToggleButton ToggleFilterRecently;
-        private ToggleButton ToggleFilterFavorite;
-        private ToggleButton ToggleFilterMostPlayed;
-        private ToggleButton ToggleFilterAll;
         private ButtonBase ButtonMainMenu;
         private ButtonBase ButtonNotifications;
         private TextBlock TextClock;
@@ -183,9 +176,6 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenMainMenuCommand, Key = Key.F1 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.PrevFilterViewCommand, Key = Key.F2 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.NextFilterViewCommand, Key = Key.F3 });
-                    //ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSettingsCommand, Key = Key.F4 });
-                    //ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectRandomGameCommand, Key = Key.F6 });
-                    //ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SwitchToDesktopCommand, Key = Key.F11 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSearchCommand, Key = Key.Y });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleFiltersCommand, Key = Key.F });
 
@@ -210,58 +200,6 @@ namespace Playnite.FullscreenApp.Controls.Views
                 {
                     SetBackgroundBinding();
                     SetBackgroundEffect();
-                }
-
-                ToggleFilterRecently = Template.FindName("PART_ToggleFilterRecently", this) as ToggleButton;
-                if (ToggleFilterRecently != null)
-                {
-                    BindingTools.SetBinding(
-                        ToggleFilterRecently,
-                        ToggleButton.IsCheckedProperty,
-                        mainModel.AppSettings.Fullscreen,
-                        nameof(FullscreenSettings.ActiveView),
-                        BindingMode.TwoWay,
-                        converter: new EnumToBooleanConverter(),
-                        converterParameter: ActiveFullscreenView.RecentlyPlayed);
-                }
-
-                ToggleFilterFavorite = Template.FindName("PART_ToggleFilterFavorite", this) as ToggleButton;
-                if (ToggleFilterFavorite != null)
-                {
-                    BindingTools.SetBinding(
-                        ToggleFilterFavorite,
-                        ToggleButton.IsCheckedProperty,
-                        mainModel.AppSettings.Fullscreen,
-                        nameof(FullscreenSettings.ActiveView),
-                        BindingMode.TwoWay,
-                        converter: new EnumToBooleanConverter(),
-                        converterParameter: ActiveFullscreenView.Favorites);
-                }
-
-                ToggleFilterMostPlayed = Template.FindName("PART_ToggleFilterMostPlayed", this) as ToggleButton;
-                if (ToggleFilterMostPlayed != null)
-                {
-                    BindingTools.SetBinding(
-                        ToggleFilterMostPlayed,
-                        ToggleButton.IsCheckedProperty,
-                        mainModel.AppSettings.Fullscreen,
-                        nameof(FullscreenSettings.ActiveView),
-                        BindingMode.TwoWay,
-                        converter: new EnumToBooleanConverter(),
-                        converterParameter: ActiveFullscreenView.MostPlayed);
-                }
-
-                ToggleFilterAll = Template.FindName("PART_ToggleFilterAll", this) as ToggleButton;
-                if (ToggleFilterAll != null)
-                {
-                    BindingTools.SetBinding(
-                        ToggleFilterAll,
-                        ToggleButton.IsCheckedProperty,
-                        mainModel.AppSettings.Fullscreen,
-                        nameof(FullscreenSettings.ActiveView),
-                        BindingMode.TwoWay,
-                        converter: new EnumToBooleanConverter(),
-                        converterParameter: ActiveFullscreenView.All);
                 }
 
                 TextClock = Template.FindName("PART_TextClock", this) as TextBlock;
@@ -326,11 +264,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ElemExtraFilterActive = Template.FindName("PART_ElemExtraFilterActive", this) as FrameworkElement;
                 if (ElemExtraFilterActive != null)
                 {
-                    BindingTools.SetBinding(ElemExtraFilterActive,
-                        FrameworkElement.VisibilityProperty,
-                        mainModel,
-                        nameof(FullscreenAppViewModel.IsExtraFilterActive),
-                        converter: new Converters.BooleanToVisibilityConverter());
+                    //BindingTools.SetBinding(ElemExtraFilterActive,
+                    //    FrameworkElement.VisibilityProperty,
+                    //    mainModel,
+                    //    nameof(FullscreenAppViewModel.IsExtraFilterActive),
+                    //    converter: new Converters.BooleanToVisibilityConverter());
                 }
 
                 ElemSearchActive = Template.FindName("PART_ElemSearchActive", this) as FrameworkElement;

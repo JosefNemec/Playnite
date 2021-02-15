@@ -44,7 +44,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public IResourceProvider Resources { get; }
         public GameDatabase Database { get; }
         public GamesEditor GamesEditor { get; }
-        public PlayniteSettings AppSettings { get; set; }
         public bool IsFullScreen { get; private set; } = true;
         public ObservableTime CurrentTime { get; } = new ObservableTime();
         public ObservablePowerStatus PowerStatus { get; } = new ObservablePowerStatus();
@@ -357,11 +356,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public bool IsExtraFilterActive
-        {
-            get => !IsSearchActive && GetIsExtraFilterActive(AppSettings.Fullscreen);
-        }
-
         public bool IsSearchActive
         {
             get => !AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty();
@@ -392,9 +386,8 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         #endregion Commands
 
-        public FullscreenAppViewModel()
+        public FullscreenAppViewModel() : base(ApplicationMode.Fullscreen)
         {
-            InitializeCommands();
         }
 
         public FullscreenAppViewModel(
@@ -406,7 +399,7 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : this()
+            PlayniteApplication app) : base(ApplicationMode.Fullscreen)
         {
             context = SynchronizationContext.Current;
             Application = app;
@@ -423,6 +416,8 @@ namespace Playnite.FullscreenApp.ViewModels
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
+            InitializeCommands();
+            ActiveFilterPreset = AppSettings.FilterPresets.FirstOrDefault(a => a.Name == AppSettings.Fullscreen.SelectedFilterPreset);
         }
 
         private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
@@ -435,23 +430,9 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(FullscreenSettings.ActiveView))
-            {
-                SetQuickFilter(AppSettings.Fullscreen);
-                SelectGameIndex(0);
-            }
-            else if (e.PropertyName == nameof(FullscreenSettings.Monitor) || e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay))
+            if (e.PropertyName == nameof(FullscreenSettings.Monitor) || e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay))
             {
                 SetViewSizeAndPosition(IsFullScreen);
-            }
-            else if (e.PropertyName == nameof(FullscreenSettings.InstalledOnlyInQuickFilters))
-            {
-                // TODO
-                //if (AppSettings.Fullscreen.ActiveView != ActiveFullscreenView.Explore && AppSettings.Fullscreen.ActiveView != ActiveFullscreenView.All)
-                if (AppSettings.Fullscreen.ActiveView != ActiveFullscreenView.All)
-                {
-                    AppSettings.Fullscreen.FilterSettings.IsInstalled = AppSettings.Fullscreen.InstalledOnlyInQuickFilters;
-                }
             }
             else if (e.PropertyName == nameof(FullscreenSettings.ButtonPrompts))
             {
@@ -461,62 +442,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
-            OnPropertyChanged(nameof(IsExtraFilterActive));
             OnPropertyChanged(nameof(IsSearchActive));
-        }
-
-        internal void SetQuickFilter(FullscreenSettings settings)
-        {
-            settings.FilterSettings.ClearFilters(false);
-            settings.ViewSettings.SuppressNotifications = true;
-            settings.FilterSettings.SuppressFilterChanges = true;
-
-            switch (settings.ActiveView)
-            {
-                case ActiveFullscreenView.RecentlyPlayed:
-                    // TODO buffer
-                    settings.FilterSettings.IsInstalled = settings.InstalledOnlyInQuickFilters;
-                    settings.FilterSettings.Favorite = false;
-                    settings.ViewSettings.SortingOrder = SortOrder.LastActivity;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Descending;
-                    break;
-                case ActiveFullscreenView.Favorites:
-                    settings.FilterSettings.IsInstalled = settings.InstalledOnlyInQuickFilters;
-                    settings.FilterSettings.Favorite = true;
-                    settings.ViewSettings.SortingOrder = SortOrder.Name;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Ascending;
-                    break;
-                case ActiveFullscreenView.MostPlayed:
-                    settings.FilterSettings.IsInstalled = settings.InstalledOnlyInQuickFilters;
-                    settings.FilterSettings.Favorite = false;
-                    settings.ViewSettings.SortingOrder = SortOrder.Playtime;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Descending;
-                    break;
-                case ActiveFullscreenView.All:
-                    settings.FilterSettings.IsInstalled = false;
-                    settings.FilterSettings.Favorite = false;
-                    settings.ViewSettings.SortingOrder = SortOrder.Name;
-                    settings.ViewSettings.SortingOrderDirection = SortOrderDirection.Ascending;
-                    break;
-                //case ActiveFullscreenView.Explore:
-                //    break;
-            }
-
-            settings.FilterSettings.SuppressFilterChanges = false;
-            settings.ViewSettings.SuppressNotifications = false;
-            settings.ViewSettings.OnPropertyChanged(nameof(settings.ViewSettings.SortingOrder));
-        }
-
-        internal bool GetIsExtraFilterActive(FullscreenSettings settings)
-        {
-            var tempSettings = new FullscreenSettings
-            {
-                ActiveView = settings.ActiveView,
-                InstalledOnlyInQuickFilters = settings.InstalledOnlyInQuickFilters
-            };
-
-            SetQuickFilter(tempSettings);
-            return !tempSettings.FilterSettings.IsEqualJson(settings.FilterSettings);
         }
 
         private void InitializeCommands()
@@ -722,7 +648,8 @@ namespace Playnite.FullscreenApp.ViewModels
 
             ClearFiltersCommand = new RelayCommand<object>((a) =>
             {
-                SetQuickFilter(AppSettings.Fullscreen);
+                AppSettings.Fullscreen.FilterSettings.ClearFilters();
+                ActiveFilterPreset = null;
             });
 
             ClearNotificationsCommand = new RelayCommand<object>((a) =>
@@ -770,21 +697,45 @@ namespace Playnite.FullscreenApp.ViewModels
 
             NextFilterViewCommand = new RelayCommand<object>((a) =>
             {
-                var max = AppSettings.Fullscreen.ActiveView.GetMax();
-                var next = (int)AppSettings.Fullscreen.ActiveView + 1;
-                if (next <= max)
+                var presets = AppSettings.SortedFilterFullscreenPresets;
+                if (!presets.HasItems())
                 {
-                    AppSettings.Fullscreen.ActiveView = (ActiveFullscreenView)next;
+                    return;
+                }
+
+                if (ActiveFilterPreset == null)
+                {
+                    ActiveFilterPreset = presets[0];
+                }
+                else
+                {
+                    var curIndex = presets.IndexOf(ActiveFilterPreset);
+                    if (curIndex < (presets.Count - 1))
+                    {
+                        ActiveFilterPreset = presets[curIndex + 1];
+                    }
                 }
             }, (a) => Database?.IsOpen == true);
 
             PrevFilterViewCommand = new RelayCommand<object>((a) =>
             {
-                var min = AppSettings.Fullscreen.ActiveView.GetMin();
-                var prev = (int)AppSettings.Fullscreen.ActiveView - 1;
-                if (prev >= 0)
+                var presets = AppSettings.SortedFilterFullscreenPresets;
+                if (!presets.HasItems())
                 {
-                    AppSettings.Fullscreen.ActiveView = (ActiveFullscreenView)prev;
+                    return;
+                }
+
+                if (ActiveFilterPreset == null)
+                {
+                    ActiveFilterPreset = presets[0];
+                }
+                else
+                {
+                    var curIndex = presets.IndexOf(ActiveFilterPreset);
+                    if (curIndex > 0)
+                    {
+                        ActiveFilterPreset = presets[curIndex - 1];
+                    }
                 }
             }, (a) => Database?.IsOpen == true);
 

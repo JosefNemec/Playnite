@@ -44,6 +44,42 @@ namespace Playnite.SDK
     }
 
     /// <summary>
+    /// Represents message box toggle option.
+    /// </summary>
+    public class MessageBoxToggle : ObservableObject
+    {
+        /// <summary>
+        /// Gets or sets title toggle option.
+        /// </summary>
+        public string Title { get; set; }
+
+        private bool selected;
+        /// <summary>
+        /// Gets or sets value indicating whether this is option is selected.
+        /// </summary>
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="selected"></param>
+        public MessageBoxToggle(string title, bool selected = false)
+        {
+            Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
+            Selected = selected;
+        }
+    }
+
+    /// <summary>
     /// Represents arguments for global progress action.
     /// </summary>
     public class GlobalProgressActionArgs : ObservableObject
@@ -270,11 +306,6 @@ namespace Playnite.SDK
         public string SelectedString { get; set; }
 
         /// <summary>
-        ///
-        /// </summary>
-        public bool ExtraOptionSelected { get; set; }
-
-        /// <summary>
         /// Creates new instance of StringSelectionDialogResult.
         /// </summary>
         /// <param name="result">Dialog result.</param>
@@ -426,9 +457,9 @@ namespace Playnite.SDK
         /// <param name="messageBoxText"></param>
         /// <param name="caption"></param>
         /// <param name="defaultInput"></param>
-        /// <param name="additionalOption"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
-        StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput, string additionalOption);
+        StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput, List<MessageBoxToggle> options);
 
         /// <summary>
         /// Displays dialog with textbox allowing to select/copy text.

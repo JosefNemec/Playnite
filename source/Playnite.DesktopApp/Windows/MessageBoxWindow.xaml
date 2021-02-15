@@ -63,10 +63,17 @@
                  Text="{Binding InputText, ElementName=WindowMessageBox}"
                  Visibility="{Binding ShowInputField, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-        <CheckBox Name="CheckExtraOption" Visibility="Collapsed"
-                  Content="{Binding ExtraOptionText, ElementName=WindowMessageBox}"
-                  IsChecked="{Binding ExtraOptionSelected, ElementName=WindowMessageBox}"
-                  Grid.Row="2" Grid.ColumnSpan="2" Margin="10,5,0,5" />
+        <ItemsControl Grid.Row="2" Grid.ColumnSpan="2"
+                      Name="ItemsToggleOptions" Visibility="Collapsed"
+                      ItemsSource="{Binding ToggleOptions, ElementName=WindowMessageBox}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Title}"
+                              IsChecked="{Binding Selected}"
+                              Margin="10,5,0,5"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5"
                     Name="StackButtons">

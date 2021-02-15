@@ -81,6 +81,17 @@ namespace Playnite
             }
         }
 
+        private bool showInFullscreeQuickSelection = true;
+        public bool ShowInFullscreeQuickSelection
+        {
+            get => showInFullscreeQuickSelection;
+            set
+            {
+                showInFullscreeQuickSelection = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool ShouldSerializeGroupingOrder()
         {
             return GroupingOrder != null;

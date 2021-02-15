@@ -25,52 +25,8 @@ namespace Playnite
         //Explore
     }
 
-    public class FullscreenViewSettings : ObservableObject
+    public class FullscreenViewSettings : ViewSettingsBase
     {
-        private SortOrder sortingOrder = SortOrder.Name;
-        public SortOrder SortingOrder
-        {
-            get
-            {
-                return sortingOrder;
-            }
-
-            set
-            {
-                sortingOrder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Descending;
-        public SortOrderDirection SortingOrderDirection
-        {
-            get
-            {
-                return sortingOrderDirection;
-            }
-
-            set
-            {
-                sortingOrderDirection = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private GroupableField selectedExplorerField = GroupableField.Library;
-        public GroupableField SelectedExplorerField
-        {
-            get
-            {
-                return selectedExplorerField;
-            }
-
-            set
-            {
-                selectedExplorerField = value;
-                OnPropertyChanged();
-            }
-        }
     }
 
     public class FullscreenFilterSettings : FilterSettings
@@ -118,24 +74,6 @@ namespace Playnite
 
         [JsonIgnore]
         public const FullscreenButtonPrompts DefaultButtonPrompts = FullscreenButtonPrompts.Xbox;
-
-        private ActiveFullscreenView activeView = ActiveFullscreenView.RecentlyPlayed;
-        public ActiveFullscreenView ActiveView
-        {
-            get
-            {
-                return activeView;
-            }
-
-            set
-            {
-                if (value != activeView)
-                {
-                    activeView = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         private int monitor = Computer.GetGetPrimaryScreenIndex();
         public int Monitor
@@ -287,21 +225,6 @@ namespace Playnite
             }
         }
 
-        private bool installedOnlyInQuickFilters = false;
-        public bool InstalledOnlyInQuickFilters
-        {
-            get
-            {
-                return installedOnlyInQuickFilters;
-            }
-
-            set
-            {
-                installedOnlyInQuickFilters = value;
-                OnPropertyChanged();
-            }
-        }
-
         private FullscreenFilterSettings filterSettings = new FullscreenFilterSettings();
         public FullscreenFilterSettings FilterSettings
         {
@@ -395,6 +318,17 @@ namespace Playnite
             set
             {
                 usePrimaryDisplay = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string selectedFilterPreset;
+        public string SelectedFilterPreset
+        {
+            get => selectedFilterPreset;
+            set
+            {
+                selectedFilterPreset = value;
                 OnPropertyChanged();
             }
         }

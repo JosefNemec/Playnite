@@ -281,17 +281,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private PlayniteSettings appSettings;
-        public PlayniteSettings AppSettings
-        {
-            get => appSettings;
-            set
-            {
-                appSettings = value;
-                OnPropertyChanged();
-            }
-        }
-
         private DatabaseStats gamesStats;
         public DatabaseStats GamesStats
         {
@@ -325,21 +314,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private FilterPreset activeFilterPreset;
-        public FilterPreset ActiveFilterPreset
+        public DesktopAppViewModel() : base(ApplicationMode.Desktop)
         {
-            get => activeFilterPreset;
-            set
-            {
-                activeFilterPreset = value;
-                ApplyFilterPreset(value);
-                OnPropertyChanged();
-            }
-        }
-
-        public DesktopAppViewModel()
-        {
-            InitializeCommands();
         }
 
         public DesktopAppViewModel(
@@ -351,7 +327,7 @@ namespace Playnite.DesktopApp.ViewModels
             DesktopGamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app)
+            PlayniteApplication app) : base(ApplicationMode.Desktop)
         {
             context = SynchronizationContext.Current;
             application = app;
@@ -1219,93 +1195,6 @@ namespace Playnite.DesktopApp.ViewModels
                 default:
                     Logger.Warn($"Uknown URI command {command}");
                     break;
-            }
-        }
-
-        private void ApplyFilterPreset(FilterPreset preset)
-        {
-            if (preset == null)
-            {
-                return;
-            }
-
-            if (ActiveFilterPreset != preset)
-            {
-                ActiveFilterPreset = preset;
-            }
-
-            AppSettings.FilterSettings.ApplyFilter(preset.Settings);
-            if (preset.SortingOrder != null)
-            {
-                AppSettings.ViewSettings.SortingOrder = preset.SortingOrder.Value;
-            }
-
-            if (preset.SortingOrderDirection != null)
-            {
-                AppSettings.ViewSettings.SortingOrderDirection = preset.SortingOrderDirection.Value;
-            }
-
-            if (preset.GroupingOrder != null)
-            {
-                AppSettings.ViewSettings.GroupingOrder = preset.GroupingOrder.Value;
-            }
-        }
-
-        private void RenameFilterPreset(FilterPreset preset)
-        {
-            if (preset == null)
-            {
-                return;
-            }
-
-            var res = Dialogs.SelectString(LOC.EnterName, string.Empty, preset.Name);
-            if (res.Result && !res.SelectedString.IsNullOrEmpty())
-            {
-                preset.Name = res.SelectedString;
-            }
-        }
-
-        private void RemoveFilterPreset(FilterPreset preset)
-        {
-            if (preset == null)
-            {
-                return;
-            }
-
-            if (Dialogs.ShowMessage(LOC.AskRemoveItemMessage, LOC.AskRemoveItemTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                AppSettings.FilterPresets.Remove(preset);
-                if (ActiveFilterPreset == preset)
-                {
-                    ActiveFilterPreset = null;
-                }
-
-                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterPresets));
-            }
-        }
-
-        private void AddFilterPreset()
-        {
-            var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty, LOC.FilterPresetSaveViewOptions);
-            if (res.Result && !res.SelectedString.IsNullOrEmpty())
-            {
-                var filter = AppSettings.FilterSettings.GetClone();
-                var preset = new FilterPreset
-                {
-                    Name = res.SelectedString,
-                    Settings = filter
-                };
-
-                if (res.ExtraOptionSelected)
-                {
-                    preset.SortingOrder = AppSettings.ViewSettings.SortingOrder;
-                    preset.SortingOrderDirection = AppSettings.ViewSettings.SortingOrderDirection;
-                    preset.GroupingOrder = AppSettings.ViewSettings.GroupingOrder;
-                }
-
-                AppSettings.FilterPresets.Add(preset);
-                ActiveFilterPreset = preset;
-                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterPresets));
             }
         }
     }

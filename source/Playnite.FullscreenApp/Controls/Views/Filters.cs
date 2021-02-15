@@ -52,6 +52,7 @@ namespace Playnite.FullscreenApp.Controls.Views
             }
 
             PanelItemsHost = Template.FindName("PART_PanelItemsHost", this) as Panel;
+            PanelItemsHost.Focusable = false;
 
             var ButtonClear = new ButtonEx();
             ButtonClear.Command = mainModel.ClearFiltersCommand;
@@ -114,6 +115,63 @@ namespace Playnite.FullscreenApp.Controls.Views
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
             PanelItemsHost.Children.Add(SelectSortDirection);
+
+            desc = new TextBlock();
+            desc.Text = ResourceProvider.GetString(LOC.TopPanelFilterPresets);
+            desc.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelText");
+            PanelItemsHost.Children.Add(desc);
+
+            var ComboFilterPresets = new ComboBoxEx();
+            ComboFilterPresets.SetResourceReference(ComboBoxEx.StyleProperty, "FilterPanelComboBoxEx");
+            BindingTools.SetBinding(ComboFilterPresets,
+                ComboBox.ItemsSourceProperty,
+                mainModel.AppSettings,
+                nameof(mainModel.AppSettings.SortedFilterPresets));
+            BindingTools.SetBinding(ComboFilterPresets,
+                ComboBox.SelectedItemProperty,
+                mainModel,
+                nameof(mainModel.ActiveFilterPreset),
+                mode: BindingMode.TwoWay);
+            ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
+            PanelItemsHost.Children.Add(ComboFilterPresets);
+
+            var ButtonSaveFilter = new ButtonEx();
+            BindingTools.SetBinding(ButtonSaveFilter,
+                ButtonBase.CommandProperty,
+                mainModel,
+                nameof(mainModel.AddFilterPresetCommand));
+            ButtonSaveFilter.SetResourceReference(ButtonEx.ContentTemplateProperty, "FilterPanelAddPresetTemplate");
+            ButtonSaveFilter.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelFilterPresetActionButton");
+
+            var ButtonRenameFilter = new ButtonEx();
+            BindingTools.SetBinding(ButtonRenameFilter,
+                ButtonBase.CommandProperty,
+                mainModel,
+                nameof(mainModel.RenameFilterPresetCommand));
+            BindingTools.SetBinding(ButtonRenameFilter,
+                ButtonBase.CommandParameterProperty,
+                mainModel,
+                nameof(mainModel.ActiveFilterPreset));
+            ButtonRenameFilter.SetResourceReference(ButtonEx.ContentTemplateProperty, "FilterPanelRenamePresetTemplate");
+            ButtonRenameFilter.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelFilterPresetActionButton");
+
+            var ButtonDeleteFilter = new ButtonEx();
+            BindingTools.SetBinding(ButtonDeleteFilter,
+                ButtonBase.CommandProperty,
+                mainModel,
+                nameof(mainModel.RemoveFilterPresetCommand));
+            BindingTools.SetBinding(ButtonDeleteFilter,
+                ButtonBase.CommandParameterProperty,
+                mainModel,
+                nameof(mainModel.ActiveFilterPreset));
+            ButtonDeleteFilter.SetResourceReference(ButtonEx.ContentTemplateProperty, "FilterPanelRemovePresetTemplate");
+            ButtonDeleteFilter.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelFilterPresetActionButton");
+
+            var filterButtonGrid = new UniformGrid { Columns = 3 };
+            filterButtonGrid.Children.Add(ButtonSaveFilter);
+            filterButtonGrid.Children.Add(ButtonRenameFilter);
+            filterButtonGrid.Children.Add(ButtonDeleteFilter);
+            PanelItemsHost.Children.Add(filterButtonGrid);
         }
 
         private void AssignBoolFilter(string bindBased, string text)

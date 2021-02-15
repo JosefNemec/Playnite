@@ -27,12 +27,11 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterEnumListSelection.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterStringListSelection.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterDbItemtSelection.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterPresetSelector.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/WindowBase.xaml" />
 
                 <!--Derived Styles-->
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/CheckBoxSettings.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonFilterNagivation.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonFilterNagivation.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonVirtualKeyboard.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMessageBox.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMainMenu.xaml" />
@@ -40,7 +39,7 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ListGameItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonBottomMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonTopMenu.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ToggleButtonTopFilter.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ItemFilterQuickPreset.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/MainWindowStyle.xaml" />
 
                 <!--Views-->
