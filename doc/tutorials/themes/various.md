@@ -40,6 +40,11 @@ This notifies theme engine about what kind of checkbox it is and how to hookup f
 
 This however doesn't mean that you can only include information backed by PART definition in your themes...
 
+Custom mouse cursor
+---------------------
+
+Custom mouse cursors are only supported in `.cur` and `.ani` formats. To assign custom cursor to a theme, put `cursor.cur` or `cursor.ani` file into theme directory root (next to `theme.yaml` file).
+
 Adding additional information to views
 ---------------------
 

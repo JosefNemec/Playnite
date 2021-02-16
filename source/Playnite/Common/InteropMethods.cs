@@ -708,6 +708,9 @@ namespace Playnite.Common
            string lpCurrentDirectory,
            [In] ref STARTUPINFO lpStartupInfo,
            out PROCESS_INFORMATION lpProcessInformation);
+
+        [DllImport("user32.dll")]
+        public static extern int ShowCursor(bool bShow);
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi, SetLastError = true, CharSet = CharSet.Unicode)]

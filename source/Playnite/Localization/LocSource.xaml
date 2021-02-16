@@ -356,6 +356,7 @@ The new database location will not be used until Playnite is restarted. </sys:St
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Show Battery Status</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Show Battery Percentage</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Show Clock</sys:String>
+    <sys:String x:Key="LOCSettingsHideMouseCursor">Hide Mouse Cursor</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Installed Only in Quick Filters</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Button Prompts</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Layout</sys:String>

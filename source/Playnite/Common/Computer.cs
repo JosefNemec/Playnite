@@ -224,6 +224,22 @@ namespace Playnite.Common
             return 0;
         }
 
+        public static void SetMouseCursorVisibility(bool show)
+        {
+            if (show)
+            {
+                while (ShowCursor(true) < 0)
+                {
+                }
+            }
+            else
+            {
+                while (ShowCursor(false) >= 0)
+                {
+                }
+            }
+        }
+
         public static void Shutdown()
         {
             ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");

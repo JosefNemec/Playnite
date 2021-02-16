@@ -88,7 +88,8 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 { 0, new Controls.SettingsSections.General(mainModel) { DataContext = this } },
                 { 1, new Controls.SettingsSections.Visuals(mainModel) { DataContext = this } },
-                { 2, new Controls.SettingsSections.Layout(mainModel) { DataContext = this } }
+                { 2, new Controls.SettingsSections.Layout(mainModel) { DataContext = this } },
+                { 3, new Controls.SettingsSections.Input(mainModel) { DataContext = this } }
             };
         }
 

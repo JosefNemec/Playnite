@@ -53,7 +53,9 @@
                 <pctrls:ButtonEx Content="Visuals" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="1" />
                 <pctrls:ButtonEx Content="Layout" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="2" />            
+                          Command="{Binding OpenSectionCommand}" CommandParameter="2" />
+                <pctrls:ButtonEx Content="Input" Style="{DynamicResource ButtonMainMenu}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="3" />
             </StackPanel>
 
             <ContentControl Grid.Column="1" Grid.Row="1" Focusable="False"

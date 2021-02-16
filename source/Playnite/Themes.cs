@@ -13,6 +13,8 @@ using Playnite.Common;
 using Playnite.SDK;
 using YamlDotNet.Serialization;
 using Playnite.API;
+using Playnite.Extensions.Markup;
+using System.Windows.Input;
 
 namespace Playnite
 {
@@ -141,6 +143,24 @@ namespace Playnite
                     allLoaded = false;
                     break;
                 }
+            }
+
+            try
+            {
+                var cursorFile = ThemeFile.GetFilePath("cursor.cur");
+                if (cursorFile.IsNullOrEmpty())
+                {
+                    cursorFile = ThemeFile.GetFilePath("cursor.ani");
+                }
+
+                if (!cursorFile.IsNullOrEmpty())
+                {
+                    Mouse.OverrideCursor = new Cursor(cursorFile, true);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to set custom mouse cursor.");
             }
 
             if (allLoaded)

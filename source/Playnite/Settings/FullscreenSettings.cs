@@ -332,5 +332,16 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool hideMouserCursor = false;
+        public bool HideMouserCursor
+        {
+            get => hideMouserCursor;
+            set
+            {
+                hideMouserCursor = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

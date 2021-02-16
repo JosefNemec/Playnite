@@ -419,6 +419,7 @@ namespace Playnite.FullscreenApp.ViewModels
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
             InitializeCommands();
             ActiveFilterPreset = AppSettings.FilterPresets.FirstOrDefault(a => a.Name == AppSettings.Fullscreen.SelectedFilterPreset);
+            UpdateCursorSettings();
         }
 
         private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
@@ -439,12 +440,21 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
             }
+            else if (e.PropertyName == nameof(FullscreenSettings.HideMouserCursor))
+            {
+                UpdateCursorSettings();
+            }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
             OnPropertyChanged(nameof(IsSearchActive));
             OnPropertyChanged(nameof(IsExtraFilterActive));
+        }
+
+        private void UpdateCursorSettings()
+        {
+            Computer.SetMouseCursorVisibility(!AppSettings.Fullscreen.HideMouserCursor);
         }
 
         public void OpenMainMenu()

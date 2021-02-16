@@ -133,6 +133,9 @@
     <Compile Include="Controls\ScrollViewerEx.cs" />
     <Compile Include="Controls\ItemsControlEx.cs" />
     <Compile Include="Controls\ButtonEx.cs" />
+    <Compile Include="Controls\SettingsSections\Input.xaml.cs">
+      <DependentUpon>Input.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\Layout.xaml.cs">
       <DependentUpon>Layout.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
     <None Include="Themes\Fullscreen\Default\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Include="Controls\SettingsSections\Input.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\SettingsSections\Layout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
