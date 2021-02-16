@@ -13,9 +13,6 @@
             <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
         </StackPanel.Resources>
 
-        <TextBlock Text="General" Style="{StaticResource TextBlockBaseStyle}"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"  />
-
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}" IsEnabled="{Binding IsChecked, ElementName=TogglePrimaryDisplayOnly, Converter={StaticResource NegateConverter}}">
             <TextBlock Text="{DynamicResource LOCSettingsTargetDisplay}"
                        VerticalAlignment="Center"                  
@@ -47,5 +44,10 @@
                                             Margin="{StaticResource ItemMargin}"
                                             Style="{DynamicResource CheckBoxSettings}"
                                             Content="{DynamicResource LOCSettingsShowClock}"  />
+
+        <pctrls:CheckBoxEx x:Name="ToggleAsyncImageLoad"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{DynamicResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsAsyncImageLoading}"  />
     </StackPanel>
 </UserControl>

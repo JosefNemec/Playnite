@@ -343,5 +343,20 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool asyncImageLoading = false;
+        public bool AsyncImageLoading
+        {
+            get
+            {
+                return asyncImageLoading;
+            }
+
+            set
+            {
+                asyncImageLoading = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

@@ -73,6 +73,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 nameof(FullscreenSettings.UsePrimaryDisplay),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToggleAsyncImageLoad,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.AsyncImageLoading),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
     }
 }
