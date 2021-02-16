@@ -982,13 +982,13 @@ namespace Playnite
             }
             else
             {
-                if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
-                {
-                    Application.Quit();
-                }
-                else
+                if (AppSettings.Fullscreen.MinimizeAfterGameStartup)
                 {
                     Application.Minimize();
+                }
+                else if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    Application.Quit();
                 }
             }
 

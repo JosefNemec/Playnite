@@ -358,5 +358,20 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool minimizeAfterGameStartup = true;
+        public bool MinimizeAfterGameStartup
+        {
+            get
+            {
+                return minimizeAfterGameStartup;
+            }
+
+            set
+            {
+                minimizeAfterGameStartup = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

@@ -49,5 +49,10 @@
                                             Margin="{StaticResource ItemMargin}"
                                             Style="{DynamicResource CheckBoxSettings}"
                                             Content="{DynamicResource LOCSettingsAsyncImageLoading}"  />
+
+        <pctrls:CheckBoxEx x:Name="ToggleMinimizeAfterGame"
+                                            Margin="{StaticResource ItemMargin}"
+                                            Style="{DynamicResource CheckBoxSettings}"
+                                            Content="{DynamicResource LOCSettingsMinimizeAfterStartingGame}"  />
     </StackPanel>
 </UserControl>
