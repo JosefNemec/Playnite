@@ -31,6 +31,8 @@ namespace Playnite.FullscreenApp.Windows
                 Width = model.WindowWidth;
                 Height = model.WindowHeight;
             }
+
+            GridMain.Width = model.ViewportWidth;
         }
     }
 }

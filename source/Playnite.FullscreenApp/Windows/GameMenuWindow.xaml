@@ -22,8 +22,7 @@
     </c:WindowBase.InputBindings>
     
     <Viewbox>
-        <Grid Height="1080" Width="1920" Name="GridMain"     
-              HorizontalAlignment="Stretch">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -49,7 +48,7 @@
                                 VerticalAlignment="Bottom" />
                     <pctrls:ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
                                            KeyboardNavigation.DirectionalNavigation="Once"
-                                           pbeh:FocusBahaviors.FocusBinding="{Binding FocusItems}"
+                                           pbeh:FocusBahaviors.FocusBinding="True"
                                            ItemsSource="{Binding GameItems}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

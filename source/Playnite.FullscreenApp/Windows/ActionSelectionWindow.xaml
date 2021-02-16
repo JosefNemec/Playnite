@@ -15,27 +15,64 @@
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         Style="{StaticResource MessageBoxWindowStyle}"
-        d:DesignWidth="1920" d:DesignHeight="1080">
+        d:DesignWidth="1920" d:DesignHeight="1080"
+        Name="WindowActionSelectionWindow">
     
     <c:WindowBase.InputBindings>
         <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
-        <KeyBinding Key="Backspace" Command="{Binding CancelCommand}" />
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
     </c:WindowBase.InputBindings>
 
     <Viewbox>
-        <Grid Height="1080" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=c:WindowBase}}"
-              HorizontalAlignment="Stretch">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" MinWidth="300" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>            
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Background="{DynamicResource OverlayMenuBackgroundBrush}"
+                    Grid.Column="1" Grid.Row="1"
+                    CornerRadius="3" Width="400"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <DockPanel>
+                    <TextBlock Text="{DynamicResource LOCSelectActionTitle}"
+                               Background="#AA000000" DockPanel.Dock="Top"
+                               Style="{DynamicResource TextBlockBaseStyle}"
+                               Padding="15,15,15,15" TextWrapping="Wrap"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Bottom" />
+                    <pctrls:ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
+                                           KeyboardNavigation.DirectionalNavigation="Once"
+                                           pbeh:FocusBahaviors.FocusBinding="True"
+                                           ItemsSource="{Binding Actions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <pctrls:ButtonEx Content="{Binding Item.Name}"
+                                                 Command="{Binding DataContext.PlaySpecificCommand, ElementName=WindowActionSelectionWindow}"
+                                                 CommandParameter="{Binding Item}"
+                                                 Margin="5" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <ScrollViewer Focusable="False"
+                                              HorizontalScrollBarVisibility="Disabled"
+                                              VerticalScrollBarVisibility="Auto"
+                                              CanContentScroll="True">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                    </pctrls:ItemsControlEx>
+                </DockPanel>
+            </Border>
         </Grid>            
     </Viewbox>
 </c:WindowBase>

@@ -29,6 +29,15 @@ namespace Playnite.ViewModels
             });
         }
 
+        public RelayCommand<object> PlaySpecificCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                SelectedAction = a;
+                window.Close(true);
+            });
+        }
+
         public RelayCommand<object> CancelCommand
         {
             get => new RelayCommand<object>((a) =>

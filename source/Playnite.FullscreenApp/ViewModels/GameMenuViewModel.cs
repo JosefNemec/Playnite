@@ -39,8 +39,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public bool FocusItems { get; set; } = true;
-
         public SimpleCommand CloseCommand => new SimpleCommand(() => Close());
         public SimpleCommand StartGameCommand => new SimpleCommand(() => StartGame());
         public SimpleCommand InstallGameCommand => new SimpleCommand(() => InstallGame());
