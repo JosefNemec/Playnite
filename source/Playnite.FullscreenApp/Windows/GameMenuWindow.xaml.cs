@@ -32,15 +32,7 @@ namespace Playnite.FullscreenApp.Windows
         public GameMenuWindow() : base()
         {
             InitializeComponent();
-
-            var model = FullscreenApplication.Current?.MainModel;
-            if (model != null)
-            {
-                Width = model.WindowWidth;
-                Height = model.WindowHeight;
-            }
-
-            GridMain.Width = model.ViewportWidth;
+            WindowTools.ConfigureChildWindow(this);
         }
     }
 }

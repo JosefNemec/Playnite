@@ -91,6 +91,7 @@ namespace Playnite.FullscreenApp.Windows
         public TextInputWindow() : base()
         {
             InitializeComponent();
+            WindowTools.ConfigureChildWindow(this);
             DataContext = this;
         }
 
@@ -111,10 +112,6 @@ namespace Playnite.FullscreenApp.Windows
                 Owner = owner;
             }
 
-            var model = FullscreenApplication.Current?.MainModel;
-            Height = owner.Height;
-            Width = owner.Width;
-            GridMain.Width = model.ViewportWidth;
             Button1.Focus();
             Text = messageBoxText;
             InputText = defaultInput ?? string.Empty;

@@ -21,15 +21,9 @@ namespace Playnite.FullscreenApp.Windows
     public partial class UpdateWindow : WindowBase
     {
         public UpdateWindow() : base()
-        {            
+        {
             InitializeComponent();
-
-            var model = FullscreenApplication.Current?.MainModel;
-            if (model != null)
-            {
-                Width = model.WindowWidth;
-                Height = model.WindowHeight;
-            }
+            WindowTools.ConfigureChildWindow(this);
         }
     }
 }

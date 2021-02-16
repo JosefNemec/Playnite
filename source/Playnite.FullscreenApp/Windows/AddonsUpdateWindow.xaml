@@ -24,12 +24,11 @@
     </c:WindowBase.InputBindings>
 
     <Viewbox>
-        <Grid Height="1080" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=c:WindowBase}}"
-              HorizontalAlignment="Stretch">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>

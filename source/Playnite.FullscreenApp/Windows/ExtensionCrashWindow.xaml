@@ -17,11 +17,10 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <Viewbox>
-        <Grid Height="1080" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=c:WindowBase}}"
-              HorizontalAlignment="Stretch">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>

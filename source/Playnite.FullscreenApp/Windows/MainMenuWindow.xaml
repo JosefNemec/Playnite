@@ -22,8 +22,7 @@
     </c:WindowBase.InputBindings>
     
     <Viewbox>
-        <Grid Height="1080" Width="1920"  Name="GridMain"            
-              HorizontalAlignment="Stretch">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition MinWidth="440" Width="Auto" />

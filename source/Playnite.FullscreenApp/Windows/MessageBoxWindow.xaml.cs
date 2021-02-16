@@ -126,6 +126,7 @@ namespace Playnite.FullscreenApp.Windows
         public MessageBoxWindow() : base()
         {
             InitializeComponent();
+            WindowTools.ConfigureChildWindow(this);
         }
 
         public MessageBoxResult Show(Window owner, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
@@ -140,8 +141,6 @@ namespace Playnite.FullscreenApp.Windows
                 Owner = owner;
             }
 
-            Height = owner.Height;
-            Width = owner.Width;
             result = defaultResult;
             SetStrings(messageBoxText, caption);
             DisplayIcon = icon;

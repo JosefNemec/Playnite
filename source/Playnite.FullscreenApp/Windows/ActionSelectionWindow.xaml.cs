@@ -24,15 +24,7 @@ namespace Playnite.FullscreenApp.Windows
         public ActionSelectionWindow() : base()
         {
             InitializeComponent();
-
-            var model = FullscreenApplication.Current?.MainModel;
-            if (model != null)
-            {
-                Width = model.WindowWidth;
-                Height = model.WindowHeight;
-            }
-
-            GridMain.Width = model.ViewportWidth;
+            WindowTools.ConfigureChildWindow(this);
         }
     }
 }

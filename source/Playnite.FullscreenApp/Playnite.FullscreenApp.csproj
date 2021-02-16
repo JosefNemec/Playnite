@@ -203,6 +203,7 @@
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WindowTools.cs" />
     <SplashScreen Include="SplashScreen.png" />
     <Resource Include="..\..\references\Fonts\*.*">
       <Link>Fonts\%(Filename)%(Extension)</Link>
