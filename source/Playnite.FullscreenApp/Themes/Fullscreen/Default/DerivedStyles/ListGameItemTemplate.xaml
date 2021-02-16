@@ -16,7 +16,8 @@
                         <Border Background="#AA000000" x:Name="BorderDarken" Visibility="Collapsed" />
                         <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
                                    Visibility="{Settings Fullscreen.ShowGameTitles}"
-                                   Style="{DynamicResource TextBlockBaseStyle}" FontSize="18"
+                                   Style="{DynamicResource TextBlockBaseStyle}"
+                                   FontSize="{DynamicResource FontSizeSmall}"
                                    HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                    TextAlignment="Center" Padding="5"                                    
                                    Background="{DynamicResource ControlBackgroundDarkBrush}"/>

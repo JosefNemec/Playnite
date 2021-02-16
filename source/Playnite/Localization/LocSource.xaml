@@ -917,4 +917,6 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCConfigure">Configure</sys:String>
     <sys:String x:Key="LOCFilterPresetSave">Save preset</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Minimize after starting game</sys:String>
+    <sys:String x:Key="LOCSettingsFontSize">Font Size</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizeSmall">Font Size Small</sys:String>
 </ResourceDictionary>

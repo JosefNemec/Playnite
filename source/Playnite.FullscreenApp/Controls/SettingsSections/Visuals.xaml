@@ -6,28 +6,20 @@
              xmlns:local="clr-namespace:Playnite.FullscreenApp.Controls.SettingsSections"
              xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
              xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
-             mc:Ignorable="d"             
-             d:DesignHeight="550" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800">
     <StackPanel>
         <StackPanel.Resources>
             <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
         </StackPanel.Resources>
-        
-        <TextBlock Text="Visuals" Style="{StaticResource TextBlockBaseStyle}"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"  />
 
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-            <ContentControl Content="{DynamicResource LOCSettingsSkin}" DockPanel.Dock="Left"
-                                                ContentStringFormat="{}{0} *" Focusable="False"                                                
-                                                Foreground="{DynamicResource TextBrush}"
-                                                FontSize="{DynamicResource FontSize}"
-                                                FontFamily="{DynamicResource FontTitilliumWebLight}"
-                            VerticalAlignment="Center"/>
+            <TextBlock Text="{DynamicResource LOCSettingsSkin}"
+                       VerticalAlignment="Center"           
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
             <pctrls:ComboBoxEx x:Name="SelectTheme" pbeh:FocusBahaviors.OnVisibilityFocus="True"
                         DockPanel.Dock="Right"
                     Width="300" Margin="{StaticResource ItemMargin}" />
         </DockPanel>
-
 
 
         <pctrls:CheckBoxEx x:Name="ToggleDarkenUninstalled"
@@ -43,7 +35,7 @@
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
 
             <TextBlock Text="{DynamicResource LOCSettingsBlurWindowBackgrounImage}"
-                       VerticalAlignment="Center"                   
+                       VerticalAlignment="Center"           
                                            Style="{DynamicResource TextBlockBaseStyle}"/>
             <pctrls:SliderEx x:Name="SliderBackgroundBlurAmount" DockPanel.Dock="Right" Width="300"
                                           Margin="{StaticResource ItemMargin}" />
@@ -64,8 +56,30 @@
                                             Content="{DynamicResource LOCSettingsFullscreenShowGameTitles}"  />
 
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCSettingsFontSize}"
+                       VerticalAlignment="Center"           
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+            <pctrls:SliderEx x:Name="SliderFontSize" DockPanel.Dock="Right" Width="300"
+                                          Margin="{StaticResource ItemMargin}" />
+            <TextBlock Text="{Binding Value, ElementName=SliderFontSize}" DockPanel.Dock="Right"
+                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       TextAlignment="Right" Margin="0,0,10,0"/>
+        </DockPanel>
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCSettingsFontSizeSmall}"
+                       VerticalAlignment="Center"           
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+            <pctrls:SliderEx x:Name="SliderFontSizeSmall" DockPanel.Dock="Right" Width="300"
+                                          Margin="{StaticResource ItemMargin}" />
+            <TextBlock Text="{Binding Value, ElementName=SliderFontSizeSmall}" DockPanel.Dock="Right"
+                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       TextAlignment="Right" Margin="0,0,10,0"/>
+        </DockPanel>
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
             <TextBlock Text="{DynamicResource LOCSettingsFullscreenButtonPrompts}"
-                       VerticalAlignment="Center"                   
+                       VerticalAlignment="Center"                
                                             Style="{DynamicResource TextBlockBaseStyle}" />
             <pctrls:ComboBoxEx x:Name="SelectButtonPrompts" Width="300" DockPanel.Dock="Right"
                                             Margin="{StaticResource ItemMargin}" />

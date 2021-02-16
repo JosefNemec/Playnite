@@ -373,5 +373,35 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private double fontSize = 22;
+        public double FontSize
+        {
+            get
+            {
+                return fontSize;
+            }
+
+            set
+            {
+                fontSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeSmall = 18;
+        public double FontSizeSmall
+        {
+            get
+            {
+                return fontSizeSmall;
+            }
+
+            set
+            {
+                fontSizeSmall = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

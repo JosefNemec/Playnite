@@ -315,6 +315,20 @@ namespace Playnite
                     logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
                 }
             }
+            else
+            {
+                if (AppSettings.Fullscreen.FontSize > 0)
+                {
+                    CurrentNative.Resources.Add(
+                        "FontSize", AppSettings.Fullscreen.FontSize);
+                }
+
+                if (AppSettings.Fullscreen.FontSizeSmall > 0)
+                {
+                    CurrentNative.Resources.Add(
+                        "FontSizeSmall", AppSettings.Fullscreen.FontSizeSmall);
+                }
+            }
 
             // Only use this for Desktop mode. Non-default options look terrible in Fullscreen because of viewport scaling.
             if (mode == ApplicationMode.Desktop)

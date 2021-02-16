@@ -115,6 +115,30 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                     nameof(FullscreenSettings.EnableMainBackgroundImage),
                     BindingMode.OneWay,
                     UpdateSourceTrigger.PropertyChanged);
+
+            SliderFontSize.Minimum = 10;
+            SliderFontSize.Maximum = 40;
+            SliderFontSize.TickFrequency = 1;
+            SliderFontSize.IsSnapToTickEnabled = true;
+            BindingTools.SetBinding(
+                SliderFontSize,
+                Slider.ValueProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.FontSize),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            SliderFontSizeSmall.Minimum = 10;
+            SliderFontSizeSmall.Maximum = 40;
+            SliderFontSizeSmall.TickFrequency = 1;
+            SliderFontSizeSmall.IsSnapToTickEnabled = true;
+            BindingTools.SetBinding(
+                SliderFontSizeSmall,
+                Slider.ValueProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.FontSizeSmall),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
     }
 }
