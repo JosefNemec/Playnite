@@ -444,6 +444,10 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 UpdateCursorSettings();
             }
+            else if (e.PropertyName == nameof(FullscreenSettings.EnableXinputProcessing))
+            {
+                Application.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+            }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)

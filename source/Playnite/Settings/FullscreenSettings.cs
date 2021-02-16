@@ -403,5 +403,20 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool enableXinputProcessing = true;
+        public bool EnableXinputProcessing
+        {
+            get
+            {
+                return enableXinputProcessing;
+            }
+
+            set
+            {
+                enableXinputProcessing = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

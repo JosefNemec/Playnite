@@ -746,16 +746,27 @@ namespace Playnite
             {
                 try
                 {
-                    xdevice = new XInputDevice(InputManager.Current, this)
+                    if (xdevice == null)
                     {
-                        SimulateAllKeys = false,
-                        SimulateNavigationKeys = true
-                    };
+                        xdevice = new XInputDevice(InputManager.Current, this)
+                        {
+                            SimulateAllKeys = false,
+                            SimulateNavigationKeys = true
+                        };
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed intitialize XInput");
                     Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCXInputInitErrorMessage"), "");
+                }
+            }
+            else
+            {
+                if (xdevice != null)
+                {
+                    xdevice.Dispose();
+                    xdevice = null;
                 }
             }
         }

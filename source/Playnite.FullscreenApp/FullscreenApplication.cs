@@ -61,7 +61,7 @@ namespace Playnite.FullscreenApp
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;
             MigrateDatabase();
-            SetupInputs(true);
+            SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
             OpenMainViewAsync();
 #pragma warning disable CS4014
             StartUpdateCheckerAsync();

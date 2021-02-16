@@ -18,5 +18,10 @@
                            Margin="{StaticResource ItemMargin}"
                            Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsHideMouseCursor}"  />
+
+        <pctrls:CheckBoxEx x:Name="ToggleXInput"
+                           Margin="{StaticResource ItemMargin}"
+                           Style="{DynamicResource CheckBoxSettings}"
+                           Content="{DynamicResource LOCSettingsXInputProcessing}"  />
     </StackPanel>
 </UserControl>
