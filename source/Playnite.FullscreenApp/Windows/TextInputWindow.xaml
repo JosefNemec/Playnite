@@ -104,7 +104,7 @@
                         <pctrls:ButtonEx Grid.Row="0" Grid.Column="10" Command="{Binding BackSpaceCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentControl Style="{DynamicResource ButtonPromptX}"
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptX}"
                                            Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="⌫"
                                                Style="{StaticResource TextBlockBaseStyle}" />
@@ -125,7 +125,7 @@
                         <pctrls:ButtonEx Grid.Row="1" Grid.Column="10" Grid.RowSpan="2" Command="{Binding ConfirmCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel>
-                                    <ContentControl Style="{DynamicResource ButtonPromptStart}"
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptStart}"
                                            Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCDoneCapLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
@@ -157,7 +157,7 @@
                         <pctrls:ButtonEx Grid.Row="3" Grid.Column="10" Grid.RowSpan="2" Command="{Binding CancelCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel>
-                                    <ContentControl Style="{DynamicResource ButtonPromptB}"
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptB}"
                                            Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCCancelLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
@@ -168,7 +168,7 @@
                         <pctrls:ButtonEx Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" Command="{Binding ClearTextCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentControl Style="{DynamicResource ButtonPromptLB}"
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptLB}"
                                            Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="{DynamicResource LOCClearLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />

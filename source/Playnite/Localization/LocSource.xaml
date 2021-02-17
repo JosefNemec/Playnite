@@ -921,4 +921,5 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCSettingsFontSizeSmall">Font Size Small</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">XInput Device Support</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Show items on main menu:</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Inverted X/A main view button binding</sys:String>
 </ResourceDictionary>

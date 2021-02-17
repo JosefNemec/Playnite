@@ -478,5 +478,20 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool swapStartDetailsAction = false;
+        public bool SwapStartDetailsAction
+        {
+            get
+            {
+                return swapStartDetailsAction;
+            }
+
+            set
+            {
+                swapStartDetailsAction = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

@@ -151,82 +151,29 @@
 
                                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                                     <!--Install-->
-                                    <Button x:Name="PART_ButtonInstall" Focusable="False" 
-                                    Style="{DynamicResource ButtonBottomMenu}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentControl Style="{DynamicResource ButtonPromptX}"
-                                                                Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                <TextBlock Text="{DynamicResource LOCInstallGame}" Style="{DynamicResource TextBlockBaseStyle}"
-                                                       VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-
+                                    <ButtonEx x:Name="PART_ButtonInstall"
+                                              Style="{DynamicResource ButtonBottomMenu}"
+                                              Content="{DynamicResource LOCInstallGame}" />
                                     <!--Play-->
-                                    <Button x:Name="PART_ButtonPlay" Focusable="False"
-                                    Style="{DynamicResource ButtonBottomMenu}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentControl Style="{DynamicResource ButtonPromptX}"
-                                                                Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                <TextBlock Text="{DynamicResource LOCPlayGame}" Style="{DynamicResource TextBlockBaseStyle}"
-                                                       VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-
+                                    <ButtonEx x:Name="PART_ButtonPlay"
+                                              Style="{DynamicResource ButtonBottomMenu}"
+                                              Content="{DynamicResource LOCPlayGame}" />
                                     <!--Details-->
-                                    <Button x:Name="PART_ButtonDetails" Focusable="False"
-                                    Style="{DynamicResource ButtonBottomMenu}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentControl Style="{DynamicResource ButtonPromptA}"
-                                                                Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                <TextBlock Text="{DynamicResource LOCGameDetails}" Style="{DynamicResource TextBlockBaseStyle}"
-                                                       VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-
+                                    <ButtonEx x:Name="PART_ButtonDetails"
+                                              Style="{DynamicResource ButtonBottomMenu}"
+                                              Content="{DynamicResource LOCGameDetails}" />
                                     <!--Options-->
-                                    <Button x:Name="PART_ButtonGameOptions" Focusable="False"
-                                        Style="{DynamicResource ButtonBottomMenu}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentControl Style="{DynamicResource ButtonPromptStart}"
-                                                                Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                <TextBlock Text="{DynamicResource LOCGameOptions}" Style="{DynamicResource TextBlockBaseStyle}"
-                                                       VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-
+                                    <ButtonEx x:Name="PART_ButtonGameOptions"
+                                              Style="{DynamicResource ButtonBottomMenu}"
+                                              Content="{DynamicResource LOCGameOptions}" />
                                     <!--Search-->
-                                    <Button x:Name="PART_ButtonSearch" Focusable="False"
-                                        Style="{DynamicResource ButtonBottomMenu}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentControl Style="{DynamicResource ButtonPromptY}"
-                                                                Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                <TextBlock Text="{DynamicResource LOCSearchLabel}" Style="{DynamicResource TextBlockBaseStyle}"
-                                                       VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-
+                                    <ButtonEx x:Name="PART_ButtonSearch"
+                                              Style="{DynamicResource ButtonBottomMenu}"
+                                              Content="{DynamicResource LOCSearchLabel}" />
                                     <!--Filter-->
-                                    <Button x:Name="PART_ButtonFilter" Focusable="False"
-                                        Style="{DynamicResource ButtonBottomMenu}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ContentControl Style="{DynamicResource ButtonPromptRS}"
-                                                                Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                <TextBlock Text="{DynamicResource LOCFilter}" Style="{DynamicResource TextBlockBaseStyle}"
-                                                       VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
+                                    <ButtonEx x:Name="PART_ButtonFilter"
+                                              Style="{DynamicResource ButtonBottomMenu}"
+                                              Content="{DynamicResource LOCFilter}" />
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2" x:Name="PART_ElemSearchActive"

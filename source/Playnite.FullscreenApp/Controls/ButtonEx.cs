@@ -31,6 +31,25 @@ namespace Playnite.FullscreenApp.Controls
             typeof(ButtonEx),
             new PropertyMetadata(null));
 
+        public object InputHint
+        {
+            get
+            {
+                return (string)GetValue(InputHintProperty);
+            }
+
+            set
+            {
+                SetValue(InputHintProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty InputHintProperty = DependencyProperty.Register(
+            nameof(InputHint),
+            typeof(object),
+            typeof(ButtonEx),
+            new PropertyMetadata(null));
+
         static ButtonEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ButtonEx), new FrameworkPropertyMetadata(typeof(ButtonEx)));

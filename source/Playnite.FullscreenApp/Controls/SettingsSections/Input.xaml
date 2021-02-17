@@ -23,5 +23,10 @@
                            Margin="{StaticResource ItemMargin}"
                            Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsXInputProcessing}"  />
+
+        <pctrls:CheckBoxEx x:Name="ToggleSwapXA"
+                           Margin="{StaticResource ItemMargin}"
+                           Style="{DynamicResource CheckBoxSettings}"
+                           Content="{DynamicResource LOCSettingsSwapMainViewXAButtons}"  />
     </StackPanel>
 </UserControl>
