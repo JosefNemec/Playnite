@@ -13,6 +13,25 @@ using System.Windows.Markup;
 
 namespace Playnite.Extensions.Markup
 {
+    public class SettingsBinding : Binding
+    {
+        public SettingsBinding() : this(null)
+        {
+        }
+
+        public SettingsBinding(string path) : base(path)
+        {
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            {
+                Source = new PlayniteSettings();
+            }
+            else
+            {
+                Source = PlayniteApplication.Current.AppSettings;
+            }
+        }
+    }
+
     public class Settings : BindingExtension
     {
         public bool DirectValue { get; set; } = false;

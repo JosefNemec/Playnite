@@ -418,5 +418,65 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool mainMenuShowRestart = true;
+        public bool MainMenuShowRestart
+        {
+            get
+            {
+                return mainMenuShowRestart;
+            }
+
+            set
+            {
+                mainMenuShowRestart = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowShutdown = true;
+        public bool MainMenuShowShutdown
+        {
+            get
+            {
+                return mainMenuShowShutdown;
+            }
+
+            set
+            {
+                mainMenuShowShutdown = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowSuspend = true;
+        public bool MainMenuShowSuspend
+        {
+            get
+            {
+                return mainMenuShowSuspend;
+            }
+
+            set
+            {
+                mainMenuShowSuspend = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowHibernate = true;
+        public bool MainMenuShowHibernate
+        {
+            get
+            {
+                return mainMenuShowHibernate;
+            }
+
+            set
+            {
+                mainMenuShowHibernate = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

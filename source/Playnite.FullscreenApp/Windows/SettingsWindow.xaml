@@ -37,9 +37,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="150" />
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Background="Black"  Margin="10"  
@@ -54,8 +54,10 @@
                           Command="{Binding OpenSectionCommand}" CommandParameter="1" />
                 <pctrls:ButtonEx Content="Layout" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="2" />
-                <pctrls:ButtonEx Content="Input" Style="{DynamicResource ButtonMainMenu}"
+                <pctrls:ButtonEx Content="Menus" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="3" />
+                <pctrls:ButtonEx Content="Input" Style="{DynamicResource ButtonMainMenu}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="4" />
             </StackPanel>
 
             <ContentControl Grid.Column="1" Grid.Row="1" Focusable="False"

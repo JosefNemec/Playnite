@@ -77,23 +77,27 @@
 
                 <pctrls:ButtonEx x:Name="PART_ButtonShutdownSystem"
                                  Command="{Binding ShutdownSystemCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuShutdownSystem}" />
+                                 Style="{DynamicResource ButtonMainMenu}"
+                                 Content="{DynamicResource LOCMenuShutdownSystem}"
+                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowShutdown, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <pctrls:ButtonEx x:Name="PART_ButtonSleepSystem"
                                  Command="{Binding SleepSystemCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuSuspendSystem}" />
+                                 Style="{DynamicResource ButtonMainMenu}"
+                                 Content="{DynamicResource LOCMenuSuspendSystem}"
+                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowSuspend, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 <pctrls:ButtonEx x:Name="PART_ButtonHibernateSystem"
                                  Command="{Binding HibernateSystemCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuHibernateSystem}" />
+                                 Style="{DynamicResource ButtonMainMenu}"
+                                 Content="{DynamicResource LOCMenuHibernateSystem}"
+                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowHibernate, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 <pctrls:ButtonEx x:Name="PART_ButtonRestartSystem"
                                  Command="{Binding RestartSystemCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuRestartSystem}"/>
+                                 Style="{DynamicResource ButtonMainMenu}"
+                                 Content="{DynamicResource LOCMenuRestartSystem}"
+                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowRestart, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 <Canvas Height="40" />
 

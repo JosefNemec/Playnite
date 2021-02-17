@@ -52,6 +52,17 @@ namespace Playnite.FullscreenApp.Markup
         }
     }
 
+    public class SettingsBinding : Extensions.Markup.SettingsBinding
+    {
+        public SettingsBinding() : base()
+        {
+        }
+
+        public SettingsBinding(string path) : base(path)
+        {
+        }
+    }
+
     public class ThemeFile : Extensions.Markup.ThemeFile
     {
         public ThemeFile() : base(ApplicationMode.Fullscreen)
