@@ -15,7 +15,7 @@
                         <StackPanel Orientation="Horizontal">
                             <ContentControl ContentTemplate="{TemplateBinding InputHint}"
                                             Height="30" VerticalAlignment="Center"
-                                            Margin="0,0,10,0"/>
+                                            Margin="0,0,10,0" Focusable="False"/>
                             <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                        FontFamily="{DynamicResource FontTitilliumWeb}"
                                        VerticalAlignment="Center">

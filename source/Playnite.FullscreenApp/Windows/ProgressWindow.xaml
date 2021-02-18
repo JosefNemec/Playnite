@@ -9,10 +9,10 @@
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         mc:Ignorable="d"
+        Style="{StaticResource ChildWindowStyle}"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
-        Style="{StaticResource MessageBoxWindowStyle}"
         Background="{StaticResource MainBackgourndBrush}"
         d:DesignWidth="1920" d:DesignHeight="1080">
 

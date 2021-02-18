@@ -10,4 +10,19 @@
 
     <Style TargetType="pctrls:ListBoxEx" BasedOn="{StaticResource {x:Type ListBox}}">
     </Style>
+
+    <Style TargetType="WindowBase">
+        <Setter Property="Background" Value="{DynamicResource WindowBackgourndBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type WindowBase}">
+                    <Border Background="{TemplateBinding Background}">
+                        <AdornerDecorator>
+                            <ContentPresenter />
+                        </AdornerDecorator>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

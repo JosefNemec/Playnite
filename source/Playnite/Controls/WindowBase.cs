@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Playnite.Controls
@@ -141,6 +142,19 @@ namespace Playnite.Controls
             }
         }
 
+        public bool BlockAltF4
+        {
+            get
+            {
+                return (bool)GetValue(BlockAltF4Property);
+            }
+
+            set
+            {
+                SetValue(BlockAltF4Property, value);
+            }
+        }
+
         public static readonly DependencyProperty ShowMinimizeButtonProperty =
             DependencyProperty.Register(nameof(ShowMinimizeButton), typeof(bool), typeof(WindowBase), new PropertyMetadata(true, ShowMinimizeButtonPropertyChanged));
         public static readonly DependencyProperty ShowMaximizeButtonProperty =
@@ -149,6 +163,8 @@ namespace Playnite.Controls
             DependencyProperty.Register(nameof(ShowCloseButton), typeof(bool), typeof(WindowBase), new PropertyMetadata(true, ShowCloseButtonPropertyChanged));
         public static readonly DependencyProperty ShowTitleProperty =
             DependencyProperty.Register(nameof(ShowTitle), typeof(bool), typeof(WindowBase), new PropertyMetadata(true, ShowTitlePropertyChanged));
+        public static readonly DependencyProperty BlockAltF4Property =
+            DependencyProperty.Register(nameof(BlockAltF4), typeof(bool), typeof(WindowBase), new PropertyMetadata(false));
 
         public bool IsShown { get; private set; }
 
@@ -183,6 +199,14 @@ namespace Playnite.Controls
             {
                 IsShown = true;
                 RaiseEvent(new RoutedEventArgs(LoadedRoutedEvent));
+            };
+
+            PreviewKeyDown += (_, e) =>
+            {
+                if (e.Key == Key.System && e.SystemKey == Key.F4 && BlockAltF4)
+                {
+                    e.Handled = true;
+                }
             };
         }
 

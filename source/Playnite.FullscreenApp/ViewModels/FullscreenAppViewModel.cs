@@ -356,6 +356,30 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        private bool childOpened = false;
+        public bool ChildOpened
+        {
+            get => childOpened;
+            set
+            {
+                childOpened = value;
+                if (value == false)
+                {
+                    // Super ugly hack to remove posibility of window dimming not showing up for a moment,
+                    // when child window opens another child window and also closes itself.
+                    Task.Factory.StartNew(() =>
+                    {
+                        Thread.Sleep(10);
+                        OnPropertyChanged();
+                    });
+                }
+                else
+                {
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public bool IsSearchActive
         {
             get => !AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty();
@@ -420,6 +444,18 @@ namespace Playnite.FullscreenApp.ViewModels
             InitializeCommands();
             ActiveFilterPreset = AppSettings.FilterPresets.FirstOrDefault(a => a.Name == AppSettings.Fullscreen.SelectedFilterPreset);
             UpdateCursorSettings();
+            EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
+            EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
+        }
+
+        private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
+        {
+            ChildOpened = false;
+        }
+
+        private void WindowBaseLoadedHandler(object sender, RoutedEventArgs e)
+        {
+            ChildOpened = true;
         }
 
         private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)

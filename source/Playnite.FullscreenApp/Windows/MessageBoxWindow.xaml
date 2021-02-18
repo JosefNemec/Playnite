@@ -12,7 +12,7 @@
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
-        Style="{StaticResource MessageBoxWindowStyle}"
+        Style="{StaticResource ChildWindowStyle}"
         d:DesignWidth="1920" d:DesignHeight="1080">    
     <controls:WindowBase.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
