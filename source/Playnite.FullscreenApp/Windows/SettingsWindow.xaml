@@ -58,6 +58,8 @@
                           Command="{Binding OpenSectionCommand}" CommandParameter="3" />
                 <pctrls:ButtonEx Content="Input" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="4" />
+                <pctrls:ButtonEx Content="Audio" Style="{DynamicResource ButtonMainMenu}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="5" />
             </StackPanel>
 
             <ContentControl Grid.Column="1" Grid.Row="1" Focusable="False"

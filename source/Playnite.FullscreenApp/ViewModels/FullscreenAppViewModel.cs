@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -356,6 +357,8 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        private bool GenerateAudio { get; set; } = true;
+
         private bool childOpened = false;
         public bool ChildOpened
         {
@@ -363,6 +366,7 @@ namespace Playnite.FullscreenApp.ViewModels
             set
             {
                 childOpened = value;
+                GenerateAudio = !value;
                 if (value == false)
                 {
                     // Super ugly hack to remove posibility of window dimming not showing up for a moment,
@@ -446,8 +450,38 @@ namespace Playnite.FullscreenApp.ViewModels
             UpdateCursorSettings();
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
+            EventManager.RegisterClassHandler(typeof(CheckBox), CheckBox.CheckedEvent, new RoutedEventHandler(ElemestateChangedHander));
+            EventManager.RegisterClassHandler(typeof(CheckBox), CheckBox.UncheckedEvent, new RoutedEventHandler(ElemestateChangedHander));
+            EventManager.RegisterClassHandler(typeof(Slider), Slider.ValueChangedEvent, new RoutedEventHandler(ElemestateChangedHander));
+            EventManager.RegisterClassHandler(typeof(UIElement), UIElement.GotFocusEvent, new RoutedEventHandler(ElementGotFocusHandler));
         }
 
+        private void ElementGotFocusHandler(object sender, RoutedEventArgs e)
+        {
+            if (sender is UIElement elem && elem.IsVisible)
+            {
+                switch (sender)
+                {
+                    case Button _:
+                    case ListBoxItem _:
+                    case CheckBox _:
+                    case Slider _:
+                    case ComboBox _:
+                    case TextBox _:
+                    case HtmlTextView _:
+                        FullscreenApplication.PlayNavigateSound();
+                        break;
+                }
+            }
+        }
+
+        private void ElemestateChangedHander(object sender, RoutedEventArgs e)
+        {
+            if (sender is UIElement check && check.IsFocused)
+            {
+                FullscreenApplication.PlayActivateSound();
+            }
+        }
         private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
         {
             ChildOpened = false;
@@ -483,6 +517,17 @@ namespace Playnite.FullscreenApp.ViewModels
             else if (e.PropertyName == nameof(FullscreenSettings.EnableXinputProcessing))
             {
                 Application.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+            }
+            else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
+            {
+                if (AppSettings.Fullscreen.BackgroundVolume == 0)
+                {
+                    FullscreenApplication.StopBackgroundSound();
+                }
+                else
+                {
+                    FullscreenApplication.PlayBackgroundSound();
+                }
             }
         }
 

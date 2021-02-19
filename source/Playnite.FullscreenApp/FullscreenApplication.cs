@@ -1,7 +1,9 @@
 ﻿using Playnite.API;
+using Playnite.Audio;
 using Playnite.Controllers;
 using Playnite.Database;
 using Playnite.FullscreenApp.API;
+using Playnite.FullscreenApp.Markup;
 using Playnite.FullscreenApp.ViewModels;
 using Playnite.FullscreenApp.Windows;
 using Playnite.Plugins;
@@ -26,6 +28,11 @@ namespace Playnite.FullscreenApp
         public FullscreenAppViewModel MainModel { get; set; }
         public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
+        public static AudioPlaybackEngine Audio;
+        private static CachedSound navigateSound;
+        private static CachedSound activateSound;
+        private static PlayingSound backgroundSound;
+        private static string backgroundSoundPath;
 
         public new static FullscreenApplication Current
         {
@@ -68,6 +75,8 @@ namespace Playnite.FullscreenApp
             SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
+            InitializeAudio();
+            PropertyChanged += FullscreenApplication_PropertyChanged;
         }
 
         public override void InstantiateApp()
@@ -111,6 +120,21 @@ namespace Playnite.FullscreenApp
             Api.MainView = new MainViewAPI(MainModel);
         }
 
+        private void FullscreenApplication_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteApplication.IsActive))
+            {
+                if (AppSettings.Fullscreen.MuteInBackground && IsActive == false)
+                {
+                    Audio?.PausePlayback();
+                }
+                else if (AppSettings.Fullscreen.MuteInBackground && IsActive == true)
+                {
+                    Audio?.ResumePlayback();
+                }
+            }
+        }
+
         private async void OpenMainViewAsync()
         {
             Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
@@ -129,7 +153,6 @@ namespace Playnite.FullscreenApp
                 await MainModel.CheckForAddonUpdates();
             }
         }
-
         public override void InitializeNative()
         {
             ((App)CurrentNative).InitializeComponent();
@@ -170,6 +193,98 @@ namespace Playnite.FullscreenApp
             else
             {
                 Restore();
+            }
+        }
+
+        public override void ReleaseResources(bool releaseCefSharp = true)
+        {
+            StopBackgroundSound();
+            Audio?.Dispose();
+            base.ReleaseResources(releaseCefSharp);
+        }
+
+        public static void PlayNavigateSound()
+        {
+            if (!SoundsEnabled || Current.AppSettings.Fullscreen.InterfaceVolume == 0)
+            {
+                return;
+            }
+
+            Audio?.PlaySound(navigateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+        }
+
+        public static void PlayActivateSound()
+        {
+            if (!SoundsEnabled || Current.AppSettings.Fullscreen.InterfaceVolume == 0)
+            {
+                return;
+            }
+
+            Audio?.PlaySound(activateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+        }
+
+        public static void PlayBackgroundSound()
+        {
+            if (backgroundSoundPath.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            if (backgroundSound == null)
+            {
+                backgroundSound = Audio.PlaySound(
+                    backgroundSoundPath,
+                    Current.AppSettings.Fullscreen.BackgroundVolume,
+                    true);
+            }
+
+            backgroundSound.Volume = Current.AppSettings.Fullscreen.BackgroundVolume;
+        }
+
+        public static void StopBackgroundSound()
+        {
+            if (backgroundSound != null)
+            {
+                Audio.StopPlayback(backgroundSound);
+                backgroundSound.Dispose();
+                backgroundSound = null;
+            }
+        }
+
+        private void InitializeAudio()
+        {
+            Audio = new AudioPlaybackEngine();
+            var navigationFile = ThemeFile.GetFilePath(@"audio\navigation.wav", true);
+            if (navigationFile.IsNullOrEmpty())
+            {
+                navigationFile = ThemeFile.GetFilePath(@"audio\navigation.mp3", true);
+            }
+
+            if (!navigationFile.IsNullOrEmpty())
+            {
+                navigateSound = new CachedSound(navigationFile);
+            }
+
+            var activationFile = ThemeFile.GetFilePath(@"audio\activation.wav", true);
+            if (activationFile.IsNullOrEmpty())
+            {
+                activationFile = ThemeFile.GetFilePath(@"audio\activation.mp3", true);
+            }
+
+            if (!activationFile.IsNullOrEmpty())
+            {
+                activateSound = new CachedSound(activationFile);
+            }
+
+            backgroundSoundPath = ThemeFile.GetFilePath(@"audio\background.wma", true);
+            if (backgroundSoundPath.IsNullOrEmpty())
+            {
+                backgroundSoundPath = ThemeFile.GetFilePath(@"audio\background.mp3", true);
+            }
+
+            if (AppSettings.Fullscreen.BackgroundVolume > 0)
+            {
+                PlayBackgroundSound();
             }
         }
     }

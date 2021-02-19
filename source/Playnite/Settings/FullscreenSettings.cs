@@ -493,5 +493,50 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private float interfaceVolume = 0.5f;
+        public float InterfaceVolume
+        {
+            get
+            {
+                return interfaceVolume;
+            }
+
+            set
+            {
+                interfaceVolume = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private float musicVolume = 0.5f;
+        public float BackgroundVolume
+        {
+            get
+            {
+                return musicVolume;
+            }
+
+            set
+            {
+                musicVolume = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool muteInBackground = true;
+        public bool MuteInBackground
+        {
+            get
+            {
+                return muteInBackground;
+            }
+
+            set
+            {
+                muteInBackground = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

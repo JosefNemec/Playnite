@@ -45,6 +45,19 @@ Custom mouse cursor
 
 Custom mouse cursors are only supported in `.cur` and `.ani` formats. To assign custom cursor to a theme, put `cursor.cur` or `cursor.ani` file into theme directory root (next to `theme.yaml` file).
 
+Changing audio files
+---------------------
+
+You can currently change several audio samples in Fullscreen themes:
+
+| Type | File name | Supported formats |
+| :--- | :--- | :--- |
+| Navigation sound | navigation | `.wav`, `.mp3` |
+| Activation sound | activation | `.wav`, `.mp3` |
+| Background sound/music | background | `.wma`, `.mp3` |
+
+All audio files must be stored in `audio` sub-directory and have 44.1 kHz sampling rate.
+
 Adding additional information to views
 ---------------------
 

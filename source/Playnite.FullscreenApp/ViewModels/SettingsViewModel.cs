@@ -91,6 +91,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 { 2, new Controls.SettingsSections.Layout(mainModel) { DataContext = this } },
                 { 3, new Controls.SettingsSections.Menus(mainModel) { DataContext = this } },
                 { 4, new Controls.SettingsSections.Input(mainModel) { DataContext = this } },
+                { 5, new Controls.SettingsSections.Audio(mainModel) { DataContext = this } },
             };
         }
 

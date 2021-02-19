@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Audio"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.FullscreenApp.Controls.SettingsSections"
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+             xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+             mc:Ignorable="d" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
+        </StackPanel.Resources>
+        
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+
+            <TextBlock Text="{DynamicResource LOCSettingsInterfaceVolume}"
+                       VerticalAlignment="Center"           
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+            <pctrls:SliderEx x:Name="SliderInterfaceVolume" DockPanel.Dock="Right" Width="300"
+                             pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                                          Margin="{StaticResource ItemMargin}" />
+        </DockPanel>
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCSettingsMusiVolume}"
+                                           VerticalAlignment="Center"
+                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+            <pctrls:SliderEx x:Name="SliderMusicVolume" DockPanel.Dock="Right"
+                           Width="300"               Margin="{StaticResource ItemMargin}"
+                            />
+        </DockPanel>
+
+
+        <pctrls:CheckBoxEx x:Name="ToggleMuteInBackground"
+                            Margin="{StaticResource ItemMargin}"
+                            Style="{DynamicResource CheckBoxSettings}"
+                            Content="{DynamicResource LOCSettingsMuteBackground}"  />
+    </StackPanel>
+</UserControl>

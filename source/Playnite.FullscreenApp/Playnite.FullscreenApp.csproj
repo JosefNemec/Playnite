@@ -88,6 +88,9 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -144,6 +147,9 @@
     </Compile>
     <Compile Include="Controls\SettingsSections\General.xaml.cs">
       <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Audio.xaml.cs">
+      <DependentUpon>Audio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\Visuals.xaml.cs">
       <DependentUpon>Visuals.xaml</DependentUpon>
@@ -240,6 +246,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\General.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Audio.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

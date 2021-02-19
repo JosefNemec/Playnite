@@ -75,6 +75,7 @@ namespace Playnite
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
         public ServicesClient ServicesClient { get; private set; }
+        public static bool SoundsEnabled { get; set; } = true;
 
         public PlayniteApplication()
         {

@@ -105,7 +105,7 @@
                             <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <ContentControl ContentTemplate="{DynamicResource ButtonPromptX}"
-                                           Height="22" Margin="0,0,5,0"/>
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="⌫"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
@@ -126,7 +126,7 @@
                             <pctrls:ButtonEx.Content>
                                 <StackPanel>
                                     <ContentControl ContentTemplate="{DynamicResource ButtonPromptStart}"
-                                           Height="22" Margin="0,0,0,5"/>
+                                                    Focusable="False" Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCDoneCapLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
@@ -158,7 +158,7 @@
                             <pctrls:ButtonEx.Content>
                                 <StackPanel>
                                     <ContentControl ContentTemplate="{DynamicResource ButtonPromptB}"
-                                           Height="22" Margin="0,0,0,5"/>
+                                                    Focusable="False" Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCCancelLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
@@ -169,7 +169,7 @@
                             <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <ContentControl ContentTemplate="{DynamicResource ButtonPromptLB}"
-                                           Height="22" Margin="0,0,5,0"/>
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="{DynamicResource LOCClearLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
