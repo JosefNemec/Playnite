@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Playnite.Audio;
 using Playnite.Common;
 using Playnite.SDK;
 using System;
@@ -535,6 +536,21 @@ namespace Playnite
             set
             {
                 muteInBackground = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private AudioInterfaceApi audioInterfaceApi = AudioInterfaceApi.WASAPI;
+        public AudioInterfaceApi AudioInterfaceApi
+        {
+            get
+            {
+                return audioInterfaceApi;
+            }
+
+            set
+            {
+                audioInterfaceApi = value;
                 OnPropertyChanged();
             }
         }

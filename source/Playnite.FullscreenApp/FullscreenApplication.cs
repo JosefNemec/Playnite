@@ -205,44 +205,88 @@ namespace Playnite.FullscreenApp
 
         public static void PlayNavigateSound()
         {
+            if (Audio == null)
+            {
+                return;
+            }
+
             if (!SoundsEnabled || Current.AppSettings.Fullscreen.InterfaceVolume == 0)
             {
                 return;
             }
 
-            Audio?.PlaySound(navigateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+            try
+            {
+                Audio?.PlaySound(navigateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to play navigation sound.");
+            }
         }
 
         public static void PlayActivateSound()
         {
+            if (Audio == null)
+            {
+                return;
+            }
+
             if (!SoundsEnabled || Current.AppSettings.Fullscreen.InterfaceVolume == 0)
             {
                 return;
             }
 
-            Audio?.PlaySound(activateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+            try
+            {
+                Audio?.PlaySound(activateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to play activation sound.");
+            }
         }
 
         public static void PlayBackgroundSound()
         {
+            if (Audio == null)
+            {
+                return;
+            }
+
             if (backgroundSoundPath.IsNullOrEmpty())
             {
                 return;
             }
 
-            if (backgroundSound == null)
+            try
             {
-                backgroundSound = Audio.PlaySound(
-                    backgroundSoundPath,
-                    Current.AppSettings.Fullscreen.BackgroundVolume,
-                    true);
-            }
+                if (backgroundSound == null)
+                {
+                    backgroundSound = Audio.PlaySound(
+                        backgroundSoundPath,
+                        Current.AppSettings.Fullscreen.BackgroundVolume,
+                        true);
+                }
 
-            backgroundSound.Volume = Current.AppSettings.Fullscreen.BackgroundVolume;
+                if (backgroundSound != null)
+                {
+                    backgroundSound.Volume = Current.AppSettings.Fullscreen.BackgroundVolume;
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to play background sound.");
+            }
         }
 
         public static void StopBackgroundSound()
         {
+            if (Audio == null)
+            {
+                return;
+            }
+
             if (backgroundSound != null)
             {
                 Audio.StopPlayback(backgroundSound);
@@ -253,7 +297,17 @@ namespace Playnite.FullscreenApp
 
         private void InitializeAudio()
         {
-            Audio = new AudioPlaybackEngine();
+            try
+            {
+                Audio = new AudioPlaybackEngine(AppSettings.Fullscreen.AudioInterfaceApi);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to initialize audio interface.");
+                Dialogs.ShowErrorMessage(LOC.ErrorAudioInterfaceInit, "");
+                return;
+            }
+
             var navigationFile = ThemeFile.GetFilePath(@"audio\navigation.wav", true);
             if (navigationFile.IsNullOrEmpty())
             {

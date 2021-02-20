@@ -1278,6 +1278,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsShowClock = "LOCSettingsShowClock";
         /// <summary>
+        /// Hide Mouse Cursor
+        /// </summary>
+        public const string SettingsHideMouseCursor = "LOCSettingsHideMouseCursor";
+        /// <summary>
         /// Installed Only in Quick Filters
         /// </summary>
         public const string SettingsFullscreenQuickFilterInstalled = "LOCSettingsFullscreenQuickFilterInstalled";
@@ -2982,7 +2986,11 @@ namespace Playnite
         /// </summary>
         public const string GameListFiltered = "LOCGameListFiltered";
         /// <summary>
-        /// Search results for:
+        /// There are additional filters applied.
+        /// </summary>
+        public const string GameListExtraFiltered = "LOCGameListExtraFiltered";
+        /// <summary>
+        /// Showing search results for:
         /// </summary>
         public const string GameListSearchResults = "LOCGameListSearchResults";
         /// <summary>
@@ -3273,5 +3281,45 @@ namespace Playnite
         /// Save preset
         /// </summary>
         public const string FilterPresetSave = "LOCFilterPresetSave";
+        /// <summary>
+        /// Minimize after starting game
+        /// </summary>
+        public const string SettingsMinimizeAfterStartingGame = "LOCSettingsMinimizeAfterStartingGame";
+        /// <summary>
+        /// Font Size
+        /// </summary>
+        public const string SettingsFontSize = "LOCSettingsFontSize";
+        /// <summary>
+        /// Font Size Small
+        /// </summary>
+        public const string SettingsFontSizeSmall = "LOCSettingsFontSizeSmall";
+        /// <summary>
+        /// XInput Device Support
+        /// </summary>
+        public const string SettingsXInputProcessing = "LOCSettingsXInputProcessing";
+        /// <summary>
+        /// Show items on main menu:
+        /// </summary>
+        public const string SettingsShowItemsMainMenuHeader = "LOCSettingsShowItemsMainMenuHeader";
+        /// <summary>
+        /// Inverted X/A main view button binding
+        /// </summary>
+        public const string SettingsSwapMainViewXAButtons = "LOCSettingsSwapMainViewXAButtons";
+        /// <summary>
+        /// Interface volume
+        /// </summary>
+        public const string SettingsInterfaceVolume = "LOCSettingsInterfaceVolume";
+        /// <summary>
+        /// Background volume
+        /// </summary>
+        public const string SettingsMusiVolume = "LOCSettingsMusiVolume";
+        /// <summary>
+        /// Mute when in background
+        /// </summary>
+        public const string SettingsMuteBackground = "LOCSettingsMuteBackground";
+        /// <summary>
+        /// Failed to initialize audio interface.
+        /// </summary>
+        public const string ErrorAudioInterfaceInit = "LOCErrorAudioInterfaceInit";
     }
 }

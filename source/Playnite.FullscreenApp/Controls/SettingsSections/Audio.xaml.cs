@@ -1,4 +1,6 @@
-﻿using Playnite.Common;
+﻿using Playnite.Audio;
+using Playnite.Behaviors;
+using Playnite.Common;
 using Playnite.FullscreenApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -65,6 +67,15 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 ToggleButton.IsCheckedProperty,
                 mainModel.AppSettings.Fullscreen,
                 nameof(FullscreenSettings.MuteInBackground),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            SelectorBehaviors.SetEnumSource(SelectAudioApi, typeof(AudioInterfaceApi));
+            BindingTools.SetBinding(
+                SelectAudioApi,
+                Selector.SelectedValueProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.AudioInterfaceApi),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
         }

@@ -188,14 +188,34 @@ namespace Playnite.Audio
         }
     }
 
+    public enum AudioInterfaceApi
+    {
+        WaveOut,
+        DirectSound,
+        WASAPI
+    }
+
     public class AudioPlaybackEngine : IDisposable
     {
         private readonly IWavePlayer outputDevice;
         private readonly MixingSampleProvider mixer;
+        private bool isDisposed = false;
 
-        public AudioPlaybackEngine(int sampleRate = 44100, int channelCount = 2)
+        public AudioPlaybackEngine(AudioInterfaceApi api, int sampleRate = 44100, int channelCount = 2)
         {
-            outputDevice = new DirectSoundOut();
+            switch (api)
+            {
+                case AudioInterfaceApi.WaveOut:
+                    outputDevice = new WaveOut();
+                    break;
+                case AudioInterfaceApi.DirectSound:
+                    outputDevice = new DirectSoundOut();
+                    break;
+                case AudioInterfaceApi.WASAPI:
+                    outputDevice = new WasapiOut();
+                    break;
+            }
+
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             mixer.ReadFully = true;
             outputDevice.Init(mixer);
@@ -223,16 +243,31 @@ namespace Playnite.Audio
 
         public void PausePlayback()
         {
+            if (isDisposed)
+            {
+                return;
+            }
+
             outputDevice.Pause();
         }
 
         public void ResumePlayback()
         {
+            if (isDisposed)
+            {
+                return;
+            }
+
             outputDevice.Play();
         }
 
         public VolumeSampleProvider PlaySound(CachedSound sound, float volume = 1f, bool loop = false)
         {
+            if (isDisposed)
+            {
+                return null;
+            }
+
             if (sound == null)
             {
                 return null;
@@ -247,6 +282,11 @@ namespace Playnite.Audio
 
         public PlayingSound PlaySound(string fileName, float volume = 1f, bool loop = false)
         {
+            if (isDisposed)
+            {
+                return null;
+            }
+
             if (!File.Exists(fileName))
             {
                 return null;
@@ -270,11 +310,17 @@ namespace Playnite.Audio
 
         public void StopPlayback(PlayingSound sound)
         {
+            if (isDisposed)
+            {
+                return;
+            }
+
             mixer.RemoveMixerInput(sound.SampleProvider);
         }
 
         public void Dispose()
         {
+            isDisposed = true;
             outputDevice.Dispose();
         }
     }

@@ -925,4 +925,6 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCSettingsInterfaceVolume">Interface volume</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Background volume</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Mute when in background</sys:String>
+    <sys:String x:Key="LOCErrorAudioInterfaceInit">Failed to initialize audio interface.</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi">Output API</sys:String>
 </ResourceDictionary>

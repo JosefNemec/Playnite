@@ -36,5 +36,14 @@
                             Margin="{StaticResource ItemMargin}"
                             Style="{DynamicResource CheckBoxSettings}"
                             Content="{DynamicResource LOCSettingsMuteBackground}"  />
+
+        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+            <TextBlock Text="{DynamicResource LOCSettingsAudioOutputApi}"
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource TextBlockBaseStyle}" />
+            <pctrls:ComboBoxEx x:Name="SelectAudioApi" 
+                               DockPanel.Dock="Right"
+                               MinWidth="200" />
+        </DockPanel>
     </StackPanel>
 </UserControl>

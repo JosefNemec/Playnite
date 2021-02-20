@@ -48,6 +48,8 @@ Custom mouse cursors are only supported in `.cur` and `.ani` formats. To assign 
 Changing audio files
 ---------------------
 
+All audio files must be stored in `audio` sub-directory and have **44.1 kHz** sampling rate!
+
 You can currently change several audio samples in Fullscreen themes:
 
 | Type | File name | Supported formats |
@@ -56,7 +58,6 @@ You can currently change several audio samples in Fullscreen themes:
 | Activation sound | activation | `.wav`, `.mp3` |
 | Background sound/music | background | `.wma`, `.mp3` |
 
-All audio files must be stored in `audio` sub-directory and have 44.1 kHz sampling rate.
 
 Adding additional information to views
 ---------------------
