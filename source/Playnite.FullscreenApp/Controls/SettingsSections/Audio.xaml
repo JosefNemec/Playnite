@@ -13,37 +13,38 @@
         </StackPanel.Resources>
         
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-
             <TextBlock Text="{DynamicResource LOCSettingsInterfaceVolume}"
-                       VerticalAlignment="Center"           
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource TextBlockBaseStyle}"/>
             <pctrls:SliderEx x:Name="SliderInterfaceVolume" DockPanel.Dock="Right" Width="300"
                              pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                                          Margin="{StaticResource ItemMargin}" />
+                             Margin="{StaticResource ItemMargin}" />
         </DockPanel>
 
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
             <TextBlock Text="{DynamicResource LOCSettingsMusiVolume}"
-                                           VerticalAlignment="Center"
-                                           Style="{DynamicResource TextBlockBaseStyle}"/>
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource TextBlockBaseStyle}"/>
             <pctrls:SliderEx x:Name="SliderMusicVolume" DockPanel.Dock="Right"
-                           Width="300"               Margin="{StaticResource ItemMargin}"
-                            />
+                             Width="300" Margin="{StaticResource ItemMargin}" />
         </DockPanel>
-
 
         <pctrls:CheckBoxEx x:Name="ToggleMuteInBackground"
                             Margin="{StaticResource ItemMargin}"
                             Style="{DynamicResource CheckBoxSettings}"
-                            Content="{DynamicResource LOCSettingsMuteBackground}"  />
+                            Content="{DynamicResource LOCSettingsMuteBackground}" />
 
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-            <TextBlock Text="{DynamicResource LOCSettingsAudioOutputApi}"
+            <TextBlock Text="{DynamicResource LOCSettingsAudioOutputApi}"                      
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource TextBlockBaseStyle}" />
+            <TextBlock Text="*" Margin="5,0,0,0"
                        VerticalAlignment="Center"
                        Style="{DynamicResource TextBlockBaseStyle}" />
             <pctrls:ComboBoxEx x:Name="SelectAudioApi" 
                                DockPanel.Dock="Right"
-                               MinWidth="200" />
+                               MinWidth="200"
+                               Tag="{DynamicResource LOCSettingsAudioOutputApiDescription}"/>
         </DockPanel>
     </StackPanel>
 </UserControl>

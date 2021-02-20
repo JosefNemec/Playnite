@@ -22,11 +22,13 @@
         <pctrls:CheckBoxEx x:Name="ToggleXInput"
                            Margin="{StaticResource ItemMargin}"
                            Style="{DynamicResource CheckBoxSettings}"
-                           Content="{DynamicResource LOCSettingsXInputProcessing}"  />
+                           Content="{DynamicResource LOCSettingsXInputProcessing}"
+                           Tag="{DynamicResource LOCSettingsXInputProcessingDescription}"/>
 
         <pctrls:CheckBoxEx x:Name="ToggleSwapXA"
                            Margin="{StaticResource ItemMargin}"
                            Style="{DynamicResource CheckBoxSettings}"
-                           Content="{DynamicResource LOCSettingsSwapMainViewXAButtons}"  />
+                           Content="{DynamicResource LOCSettingsSwapMainViewXAButtons}"
+                           Tag="{DynamicResource LOCSettingsSwapMainViewXAButtonsDescriptions}"/>
     </StackPanel>
 </UserControl>

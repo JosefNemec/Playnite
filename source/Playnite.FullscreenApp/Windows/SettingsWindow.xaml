@@ -32,9 +32,9 @@
     <Viewbox>
         <Grid Name="GridMain" Height="1080" Width="1920">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150" />
@@ -47,26 +47,32 @@
                         KeyboardNavigation.TabNavigation="Cycle"
                         KeyboardNavigation.DirectionalNavigation="Cycle"
                         IsEnabled="{Binding IsMenuEnabled}">
-                <pctrls:ButtonEx Content="General" Style="{DynamicResource ButtonMainMenu}"
+                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionGeneral}" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="0"
                         pbeh:FocusBahaviors.OnVisibilityFocus="True" />
-                <pctrls:ButtonEx Content="Visuals" Style="{DynamicResource ButtonMainMenu}"
+                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionVisuals}" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="1" />
-                <pctrls:ButtonEx Content="Layout" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="2" />
-                <pctrls:ButtonEx Content="Menus" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="3" />
-                <pctrls:ButtonEx Content="Input" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="4" />
-                <pctrls:ButtonEx Content="Audio" Style="{DynamicResource ButtonMainMenu}"
+                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionAudio}" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="5" />
+                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionLayout}" Style="{DynamicResource ButtonMainMenu}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="2" />
+                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionMenus}" Style="{DynamicResource ButtonMainMenu}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="3" />
+                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSection}" Style="{DynamicResource ButtonMainMenu}"
+                          Command="{Binding OpenSectionCommand}" CommandParameter="4" />
+
+                <TextBlock Style="{StaticResource TextBlockBaseStyle}"
+                           Text="{DynamicResource LOCSettingsRestartNotification}"
+                           HorizontalAlignment="Right"
+                           Margin="10,20,10,0"/>
             </StackPanel>
 
             <ContentControl Grid.Column="1" Grid.Row="1" Focusable="False"
                             Content="{Binding SelectedSectionView}" />
 
             <TextBlock Text="{Binding OptionDescription}"
-                       Grid.Column="2" Grid.Row="1"
+                       Grid.Column="2" Grid.Row="1" Margin="10"
+                       TextWrapping="Wrap"
                        Background="Black">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">

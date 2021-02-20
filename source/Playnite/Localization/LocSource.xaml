@@ -291,7 +291,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Launch in Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Includes Steam, Origin and others.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchronous image loading</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Improves scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Can improve scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Show game name if cover art is missing</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Show game names on Grid view</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Darken not installed games</sys:String>
@@ -917,14 +917,28 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCConfigure">Configure</sys:String>
     <sys:String x:Key="LOCFilterPresetSave">Save preset</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Minimize after starting game</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Minimize Playnite after a game is started.
+
+Disabling this can lead to issues with games not getting input focus on startup!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Font Size</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Font Size Small</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">XInput Device Support</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">If disabled, Playnite won't accept any XInput interface inputs.
+        
+Disable in you use tools that translate XInput inputs to mouse/keyboards inputs and you are getting double inputs in Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Show items on main menu:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Inverted X/A main view button binding</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Swaps button bindings for starting a game and showing game details page on main view.</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Interface volume</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Background volume</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Mute when in background</sys:String>
     <sys:String x:Key="LOCErrorAudioInterfaceInit">Failed to initialize audio interface.</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApi">Output API</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">API used for audio output. Change if you are experiencing issues with sound.</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionGeneral">General</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionVisuals">Visuals</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionAudio">Audio</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionLayout">Layout</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionMenus">Menus</sys:String>
+    <sys:String x:Key="LOCSettingsFSSection">Input</sys:String>
 </ResourceDictionary>

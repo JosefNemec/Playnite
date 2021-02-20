@@ -14,18 +14,16 @@
         </StackPanel.Resources>
         
         <pctrls:CheckBoxEx x:Name="ToggleHorizontalLayout"
-                    Margin="{StaticResource ItemMargin}"
-                    Style="{DynamicResource CheckBoxSettings}"
-                    Content="{DynamicResource LOCSettingsFullscreenHorizontalScrolling}"
-                           pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                           Tag="PART_ToggleHorizontalLayout"/>
+                           Margin="{StaticResource ItemMargin}"
+                           Style="{DynamicResource CheckBoxSettings}"
+                           Content="{DynamicResource LOCSettingsFullscreenHorizontalScrolling}"
+                           pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
 
         <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
             <TextBlock Text="{DynamicResource LOCColumns}" Margin="0,0,5,0" VerticalAlignment="Center"
                        Style="{DynamicResource TextBlockBaseStyle}" />
             <pctrls:SliderEx x:Name="SliderColumns" Width="300" DockPanel.Dock="Right"
-                      Margin="{StaticResource ItemMargin}"
-                             Tag="PART_SliderColumns"/>
+                             Margin="{StaticResource ItemMargin}" />
             <TextBlock Text="{Binding Value, ElementName=SliderColumns}" VerticalAlignment="Center" DockPanel.Dock="Right"
                        Style="{DynamicResource TextBlockBaseStyle}"
                        TextAlignment="Right" Margin="0,0,10,0"/>
@@ -35,8 +33,7 @@
             <TextBlock Text="{DynamicResource LOCRows}" Margin="0,0,5,0"
                        VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
             <pctrls:SliderEx x:Name="SliderRows" Width="300" DockPanel.Dock="Right"
-                      Margin="{StaticResource ItemMargin}" VerticalAlignment="Center"
-                             Tag="PART_SliderRows"/>
+                             Margin="{StaticResource ItemMargin}" VerticalAlignment="Center" />
             <TextBlock Text="{Binding Value, ElementName=SliderRows}" DockPanel.Dock="Right"
                        VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
                        TextAlignment="Right" Margin="0,0,10,0"/>
@@ -46,8 +43,7 @@
             <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}" Margin="0,0,5,0"
                        VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
             <pctrls:SliderEx x:Name="SliderItemSpacing" Width="300" DockPanel.Dock="Right"
-                        VerticalAlignment="Center" Margin="{StaticResource ItemMargin}"
-                             Tag="PART_SliderItemSpacing"/>
+                             VerticalAlignment="Center" Margin="{StaticResource ItemMargin}" />
             <TextBlock Text="{Binding Value, ElementName=SliderItemSpacing}" DockPanel.Dock="Right"
                        VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
                        TextAlignment="Right" Margin="0,0,10,0"/>

@@ -495,7 +495,7 @@ namespace Playnite
             }
         }
 
-        private float interfaceVolume = 0.5f;
+        private float interfaceVolume = 0.3f;
         public float InterfaceVolume
         {
             get
@@ -510,7 +510,7 @@ namespace Playnite
             }
         }
 
-        private float musicVolume = 0.5f;
+        private float musicVolume = 0.3f;
         public float BackgroundVolume
         {
             get

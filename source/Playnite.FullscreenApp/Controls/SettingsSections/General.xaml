@@ -46,13 +46,16 @@
                                             Content="{DynamicResource LOCSettingsShowClock}"  />
 
         <pctrls:CheckBoxEx x:Name="ToggleAsyncImageLoad"
-                                            Margin="{StaticResource ItemMargin}"
-                                            Style="{DynamicResource CheckBoxSettings}"
-                                            Content="{DynamicResource LOCSettingsAsyncImageLoading}"  />
+                           Margin="{StaticResource ItemMargin}"
+                           Style="{DynamicResource CheckBoxSettings}"
+                           Content="{DynamicResource LOCSettingsAsyncImageLoading}"
+                           ContentStringFormat="{}{0} *"
+                           Tag="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"/>
 
         <pctrls:CheckBoxEx x:Name="ToggleMinimizeAfterGame"
-                                            Margin="{StaticResource ItemMargin}"
-                                            Style="{DynamicResource CheckBoxSettings}"
-                                            Content="{DynamicResource LOCSettingsMinimizeAfterStartingGame}"  />
+                           Margin="{StaticResource ItemMargin}"
+                           Style="{DynamicResource CheckBoxSettings}"
+                           Content="{DynamicResource LOCSettingsMinimizeAfterStartingGame}"
+                           Tag="{DynamicResource LOCSettingsMinimizeAfterStartingGameDescription}"/>
     </StackPanel>
 </UserControl>
