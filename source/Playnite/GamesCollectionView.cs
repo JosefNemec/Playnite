@@ -24,6 +24,7 @@ namespace Playnite
 
         public IGameDatabase Database { get; private set; }
         public RangeObservableCollection<GamesCollectionViewEntry> Items { get; private set; }
+        public bool IgnoreViewConfigChanges { get; set; } = false;
 
         private ListCollectionView collectionView;
         public ListCollectionView CollectionView
@@ -432,6 +433,11 @@ namespace Playnite
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
+            if (IgnoreViewConfigChanges)
+            {
+                return;
+            }
+
             Logger.Debug("Refreshing collection view filter.");
             CollectionView.Refresh();
         }
@@ -445,5 +451,7 @@ namespace Playnite
 
             return null;
         }
+
+        public abstract void RefreshView();
     }
 }

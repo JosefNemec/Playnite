@@ -165,17 +165,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private DesktopCollectionView gamesView;
-        public new DesktopCollectionView GamesView
-        {
-            get => gamesView;
-            set
-            {
-                gamesView = value;
-                OnPropertyChanged();
-            }
-        }
-
         private List<ThirdPartyTool> thirdPartyTools = new List<ThirdPartyTool>();
         public List<ThirdPartyTool> ThirdPartyTools
         {

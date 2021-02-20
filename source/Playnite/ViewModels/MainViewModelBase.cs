@@ -66,8 +66,18 @@ namespace Playnite.ViewModels
             }
         }
 
+        private BaseCollectionView gamesView;
+        public BaseCollectionView GamesView
+        {
+            get => gamesView;
+            set
+            {
+                gamesView = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool IsDisposing { get; set; } = false;
-        public BaseCollectionView GamesView { get; set; }
         public GamesCollectionViewEntry SelectedGame { get; set; }
         public IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
         public RelayCommand<object> AddFilterPresetCommand { get; private set; }
@@ -142,6 +152,12 @@ namespace Playnite.ViewModels
             if (ActiveFilterPreset != preset)
             {
                 ActiveFilterPreset = preset;
+                return;
+            }
+
+            if (GamesView != null)
+            {
+                GamesView.IgnoreViewConfigChanges = true;
             }
 
             var filter = Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
@@ -160,6 +176,12 @@ namespace Playnite.ViewModels
             if (Mode == ApplicationMode.Desktop && preset.GroupingOrder != null)
             {
                 AppSettings.ViewSettings.GroupingOrder = preset.GroupingOrder.Value;
+            }
+
+            if (GamesView != null)
+            {
+                GamesView.IgnoreViewConfigChanges = false;
+                GamesView.RefreshView();
             }
         }
 

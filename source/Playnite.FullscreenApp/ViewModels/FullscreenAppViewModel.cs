@@ -126,17 +126,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        private FullscreenCollectionView gamesView;
-        public new FullscreenCollectionView GamesView
-        {
-            get => gamesView;
-            set
-            {
-                gamesView = value;
-                OnPropertyChanged();
-            }
-        }
-
         private GameDetailsViewModel selectedGameDetails;
         public GameDetailsViewModel SelectedGameDetails
         {
@@ -446,7 +435,6 @@ namespace Playnite.FullscreenApp.ViewModels
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
             InitializeCommands();
-            ActiveFilterPreset = AppSettings.FilterPresets.FirstOrDefault(a => a.Name == AppSettings.Fullscreen.SelectedFilterPreset);
             UpdateCursorSettings();
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
@@ -795,6 +783,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 SelectedGame = null;
             }
 
+            ActiveFilterPreset = AppSettings.FilterPresets.FirstOrDefault(a => a.Name == AppSettings.Fullscreen.SelectedFilterPreset);
             GameListFocused = true;
             isInitialized = true;
             Extensions.NotifiyOnApplicationStarted();

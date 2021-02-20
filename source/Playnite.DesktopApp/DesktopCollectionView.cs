@@ -127,13 +127,23 @@ namespace Playnite.DesktopApp
                 nameof(ViewSettings.SortingOrderDirection)
             }).Contains(e.PropertyName))
             {
-                Logger.Debug("Updating collection view settings.");
-                using (CollectionView.DeferRefresh())
-                {
-                    CollectionView.SortDescriptions.Clear();
-                    CollectionView.GroupDescriptions.Clear();
-                    SetViewDescriptions();
-                }
+                RefreshView();
+            }
+        }
+
+        public override void RefreshView()
+        {
+            if (IgnoreViewConfigChanges)
+            {
+                return;
+            }
+
+            Logger.Debug("Updating collection view settings.");
+            using (CollectionView.DeferRefresh())
+            {
+                CollectionView.SortDescriptions.Clear();
+                CollectionView.GroupDescriptions.Clear();
+                SetViewDescriptions();
             }
         }
 
