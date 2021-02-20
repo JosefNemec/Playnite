@@ -363,7 +363,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     Task.Factory.StartNew(() =>
                     {
                         Thread.Sleep(10);
-                        OnPropertyChanged();
+                        Window.Window.Dispatcher.Invoke(() => OnPropertyChanged());
                     });
                 }
                 else
