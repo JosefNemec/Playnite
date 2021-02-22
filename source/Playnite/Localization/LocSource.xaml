@@ -741,6 +741,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCStatsFiltered">Filtered</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">Current</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">New</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">The elements must be selected.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Save as default</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Add to Favorites</sys:String>

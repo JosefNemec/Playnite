@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,6 +23,25 @@ namespace Playnite.DesktopApp.Controls
     public partial class FilterSelectionBox : UserControl, INotifyPropertyChanged
     {
         internal bool IgnoreChanges { get; set; }
+
+        public bool UseSearchBox
+        {
+            get
+            {
+                return (bool)GetValue(UseSearchBoxProperty);
+            }
+
+            set
+            {
+                SetValue(UseSearchBoxProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty UseSearchBoxProperty = DependencyProperty.Register(
+            nameof(UseSearchBox),
+            typeof(bool),
+            typeof(FilterSelectionBox),
+            new PropertyMetadata(false));
 
         public bool IsFullTextEnabled
         {
@@ -194,6 +214,25 @@ namespace Playnite.DesktopApp.Controls
             IgnoreChanges = true;
             ItemsList?.SetSelection(null);
             IgnoreChanges = false;
+        }
+
+
+        private void PART_SearchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            SearchBox PART_SearchBox = sender as SearchBox;
+            if (ItemsList is SelectableDbItemList)
+            {
+                ((SelectableDbItemList)ItemsList).SearchItemsByString(PART_SearchBox.Text);
+            }
+        }
+
+        private void PART_SearchCheckedOnly_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton PART_SearchCheckedOnly = sender as ToggleButton;
+            if (ItemsList is SelectableDbItemList)
+            {
+                ((SelectableDbItemList)ItemsList).SearchItemsByChecked((bool)PART_SearchCheckedOnly.IsChecked);
+            }
         }
     }
 }

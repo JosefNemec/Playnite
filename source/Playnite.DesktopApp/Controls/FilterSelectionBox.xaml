@@ -9,7 +9,7 @@
              d:DesignWidth="100"
              SnapsToDevicePixels="True"
              Height="24">
-    
+
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
@@ -24,7 +24,7 @@
                           Focusable="False"
                           Foreground="{DynamicResource TextBrush}">
                 <ToggleButton.Template>
-                    <ControlTemplate>                    
+                    <ControlTemplate>
                         <Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -51,7 +51,7 @@
                                         ContentTemplate="{DynamicResource ClearTextIconTemplate}"
                                         FontSize="18"
                                         Click="ClearButton_Click">
-                                    <Button.Style>                                        
+                                    <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                                             <Setter Property="Visibility" Value="Collapsed" />
                                             <Setter Property="Background" Value="Transparent" />
@@ -70,29 +70,51 @@
                                 <Border Background="{DynamicResource PopupBackgroundBrush}"
                                             BorderThickness="{DynamicResource PopupBorderThickness}"
                                             BorderBrush="{DynamicResource PopupBorderBrush}">
-                                    <ItemsControl ItemsSource="{Binding ItemsList}"
-                                                        ScrollViewer.CanContentScroll="True"
-                                                        KeyboardNavigation.DirectionalNavigation="Contained"
-                                                        VirtualizingPanel.IsVirtualizing="True"
-                                                        VirtualizingPanel.VirtualizationMode="Recycling">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <VirtualizingStackPanel />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.Template>
-                                            <ControlTemplate>
-                                                <ScrollViewer Focusable="False">
-                                                    <ItemsPresenter />
-                                                </ScrollViewer>
-                                            </ControlTemplate>
-                                        </ItemsControl.Template>
-                                    </ItemsControl>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Margin="0,5,5,5"
+                                              Visibility="{Binding UseSearchBox, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <local:SearchBox Grid.Column="0" KeyUp="PART_SearchBox_KeyUp" />
+
+                                            <ToggleButton Grid.Column="1" Content="&#xf00d;" Margin="5,0,0,0"
+                                                          Click="PART_SearchCheckedOnly_Click"
+                                                          ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
+                                                          FontFamily="{DynamicResource FontIcoFont}" />
+                                        </Grid>
+
+                                        <ItemsControl ItemsSource="{Binding ItemsList}" Grid.Row="1"
+                                                      ScrollViewer.CanContentScroll="True"
+                                                      KeyboardNavigation.DirectionalNavigation="Contained"
+                                                      VirtualizingPanel.IsVirtualizing="True"
+                                                      VirtualizingPanel.VirtualizationMode="Recycling">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}"                                                               
+                                                              Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.Template>
+                                                <ControlTemplate>
+                                                    <ScrollViewer Focusable="False">
+                                                        <ItemsPresenter />
+                                                    </ScrollViewer>
+                                                </ControlTemplate>
+                                            </ItemsControl.Template>
+                                        </ItemsControl>
+                                    </Grid>
                                 </Border>
                             </Popup>
                         </Grid>

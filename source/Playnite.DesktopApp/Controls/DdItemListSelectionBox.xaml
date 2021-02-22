@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              d:DesignWidth="100"
              SnapsToDevicePixels="True">
-    
+
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
@@ -22,7 +22,7 @@
                           Focusable="False"
                           Foreground="{DynamicResource TextBrush}">
                 <ToggleButton.Template>
-                    <ControlTemplate>                    
+                    <ControlTemplate>
                         <Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -40,7 +40,7 @@
                                            TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
                                            VerticalAlignment="Center"
                                            Grid.Column="0" Margin="5,0,0,0"/>
-                                
+
                                 <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right"
                                         BorderThickness="0" Padding="3,0,3,0" Margin="0"
                                         ContentTemplate="{DynamicResource ClearTextIconTemplate}"
@@ -65,30 +65,53 @@
                                 <Border Background="{DynamicResource PopupBackgroundBrush}"
                                             BorderThickness="{DynamicResource PopupBorderThickness}"
                                             BorderBrush="{DynamicResource PopupBorderBrush}">
-                                    <ItemsControl ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                        ScrollViewer.CanContentScroll="True"
-                                                        KeyboardNavigation.DirectionalNavigation="Contained"
-                                                        VirtualizingPanel.IsVirtualizing="True"
-                                                        VirtualizingPanel.VirtualizationMode="Recycling">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}"
-                                                          IsThreeState="{Binding IsThreeState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <VirtualizingStackPanel />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.Template>
-                                            <ControlTemplate>
-                                                <ScrollViewer Focusable="False">
-                                                    <ItemsPresenter />
-                                                </ScrollViewer>
-                                            </ControlTemplate>
-                                        </ItemsControl.Template>
-                                    </ItemsControl>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Margin="5"
+                                              Visibility="{Binding UseSearchBox, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <local:SearchBox Grid.Column="0" KeyUp="PART_SearchBox_KeyUp" />
+
+                                            <ToggleButton Grid.Column="1" Content="&#xf00d;" Margin="5,0,0,0"
+                                                          Click="PART_SearchCheckedOnly_Click"
+                                                          ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
+                                                          FontFamily="{DynamicResource FontIcoFont}" />
+                                        </Grid>
+
+                                        <ItemsControl ItemsSource="{Binding ItemsList, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                      Grid.Row="1" Margin="5,0,0,0"      
+                                                      ScrollViewer.CanContentScroll="True"
+                                                      KeyboardNavigation.DirectionalNavigation="Contained"
+                                                      VirtualizingPanel.IsVirtualizing="True"
+                                                      VirtualizingPanel.VirtualizationMode="Recycling">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox Padding="5" IsChecked="{Binding Selected}" Content="{Binding Item.Name}"
+                                                              Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                              IsThreeState="{Binding IsThreeState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.Template>
+                                                <ControlTemplate>
+                                                    <ScrollViewer Focusable="False">
+                                                        <ItemsPresenter />
+                                                    </ScrollViewer>
+                                                </ControlTemplate>
+                                            </ItemsControl.Template>
+                                        </ItemsControl>
+                                    </Grid>
                                 </Border>
                             </Popup>
                         </Grid>

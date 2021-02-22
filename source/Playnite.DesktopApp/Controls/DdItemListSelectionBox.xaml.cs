@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -21,6 +22,25 @@ namespace Playnite.DesktopApp.Controls
     public partial class DdItemListSelectionBox : UserControl
     {
         internal bool IgnoreChanges { get; set; }
+
+        public bool UseSearchBox
+        {
+            get
+            {
+                return (bool)GetValue(UseSearchBoxProperty);
+            }
+
+            set
+            {
+                SetValue(UseSearchBoxProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty UseSearchBoxProperty = DependencyProperty.Register(
+            nameof(UseSearchBox),
+            typeof(bool),
+            typeof(DdItemListSelectionBox),
+            new PropertyMetadata(false));
 
         public SelectableDbItemList ItemsList
         {
@@ -123,6 +143,19 @@ namespace Playnite.DesktopApp.Controls
         {
             ItemsList.SetSelection(null);
             BoundIds = null;
+        }
+
+
+        private void PART_SearchBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            SearchBox PART_SearchBox = sender as SearchBox;
+            ItemsList.SearchItemsByString(PART_SearchBox.Text);
+        }
+
+        private void PART_SearchCheckedOnly_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleButton PART_SearchCheckedOnly = sender as ToggleButton;
+            ItemsList.SearchItemsByChecked((bool)PART_SearchCheckedOnly.IsChecked);
         }
     }
 }

@@ -115,7 +115,7 @@
                                     <!--Genre-->
                                     <Label Name="PART_ElemGenreLabel" Content="{StaticResource LOCGenreLabel}"
                                        Style="{StaticResource FilterLabel}"/>
-                                    <FilterSelectionBox x:Name="PART_FilterGenre" />
+                                    <FilterSelectionBox x:Name="PART_FilterGenre" UseSearchBox="True" />
 
                                     <!--ReleaseYear-->
                                     <Label Name="PART_ElemReleaseYearLabel" Content="{StaticResource LOCGameReleaseYearTitle}"
@@ -125,12 +125,12 @@
                                     <!--Developer-->
                                     <Label Name="PART_ElemDeveloperLabel" Content="{StaticResource LOCDeveloperLabel}"
                                        Style="{StaticResource FilterLabel}"/>
-                                    <FilterSelectionBox x:Name="PART_FilterDeveloper" />
+                                    <FilterSelectionBox x:Name="PART_FilterDeveloper" UseSearchBox="True" />
 
                                     <!--Publisher-->
                                     <Label Name="PART_ElemPublisherLabel" Style="{StaticResource FilterLabel}"
                                        Content="{DynamicResource LOCPublisherLabel}" />
-                                    <FilterSelectionBox x:Name="PART_FilterPublisher" />
+                                    <FilterSelectionBox x:Name="PART_FilterPublisher" UseSearchBox="True" />
 
                                     <!--Category-->
                                     <Label Name="PART_ElemCategoryLabel" Style="{StaticResource FilterLabel}"
@@ -140,12 +140,12 @@
                                     <!--Features-->
                                     <Label Name="PART_ElemFeatureLabel" Style="{StaticResource FilterLabel}" 
                                        Content="{DynamicResource LOCFeatureLabel}" />
-                                    <FilterSelectionBox x:Name="PART_FilterFeature" />
+                                    <FilterSelectionBox x:Name="PART_FilterFeature" UseSearchBox="True" />
 
                                     <!--Tag-->
                                     <Label Name="PART_ElemTagLabel" Style="{StaticResource FilterLabel}" 
                                        Content="{DynamicResource LOCTagLabel}" />
-                                    <FilterSelectionBox x:Name="PART_FilterTag" />
+                                    <FilterSelectionBox x:Name="PART_FilterTag" UseSearchBox="True" />
 
                                     <!--PlayTime-->
                                     <Label Name="PART_ElemPlayTimeLabel" Style="{StaticResource FilterLabel}" 
