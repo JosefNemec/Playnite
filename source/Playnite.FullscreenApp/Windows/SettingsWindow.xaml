@@ -34,7 +34,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150" />
@@ -42,11 +43,18 @@
                 <RowDefinition Height="150" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0" Background="Black"  Margin="10"  
-                        Grid.RowSpan="3" VerticalAlignment="Center"
+            <StackPanel Grid.Column="2"
+                        Grid.RowSpan="3" VerticalAlignment="Stretch"
                         KeyboardNavigation.TabNavigation="Cycle"
                         KeyboardNavigation.DirectionalNavigation="Cycle"
-                        IsEnabled="{Binding IsMenuEnabled}">
+                        IsEnabled="{Binding IsMenuEnabled}"
+                        Background="{DynamicResource OverlayMenuBackgroundBrush}">
+                
+                <TextBlock Text="{DynamicResource LOCSettingsLabel}"
+                           Style="{DynamicResource TextBlockBaseStyle}"
+                           FontFamily="{DynamicResource FontTitilliumWebBold}"
+                           FontSize="36" HorizontalAlignment="Right" Margin="30,30,60,30" />
+
                 <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionGeneral}" Style="{DynamicResource ButtonMainMenu}"
                           Command="{Binding OpenSectionCommand}" CommandParameter="0"
                         pbeh:FocusBahaviors.OnVisibilityFocus="True" />
@@ -65,26 +73,37 @@
                            Text="{DynamicResource LOCSettingsRestartNotification}"
                            HorizontalAlignment="Right"
                            Margin="10,20,10,0"/>
+                
+                <TextBlock Text="{Binding OptionDescription}"
+                           Margin="20,50,20,10" TextWrapping="Wrap">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding OptionDescription}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Hidden" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </StackPanel>
 
-            <ContentControl Grid.Column="1" Grid.Row="1" Focusable="False"
-                            Content="{Binding SelectedSectionView}" />
-
-            <TextBlock Text="{Binding OptionDescription}"
-                       Grid.Column="2" Grid.Row="1" Margin="10"
-                       TextWrapping="Wrap"
-                       Background="Black">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
-                        <Setter Property="Visibility" Value="Visible" />
+            <Border Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
+                    Grid.Column="1" Grid.Row="1" Focusable="False"
+                    Margin="0,0,20,0">
+                <Border.Style>
+                    <Style TargetType="Border">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding OptionDescription}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Hidden" />
+                            <DataTrigger Binding="{Binding Content, ElementName=ContentSettings}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </TextBlock.Style>
-            </TextBlock>
+                </Border.Style>
+                <ContentControl Name="ContentSettings" Content="{Binding SelectedSectionView}"
+                                Margin="20" Focusable="False"/>
+            </Border>
         </Grid>
     </Viewbox>
 </c:WindowBase>

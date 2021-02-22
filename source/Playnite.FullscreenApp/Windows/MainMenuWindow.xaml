@@ -25,7 +25,7 @@
         <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition MinWidth="440" Width="Auto" />
+                <ColumnDefinition MinWidth="400" Width="Auto" />
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
