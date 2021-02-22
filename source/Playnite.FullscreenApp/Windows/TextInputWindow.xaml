@@ -47,18 +47,20 @@
                      PreviewKeyDown="TextInputText_PreviewKeyDown"
                      Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
 
-            <ItemsControl Grid.Row="2" Grid.Column="1" Focusable="False"
-                          Name="ItemsToggleOptions" Visibility="Collapsed"
-                          ItemsSource="{Binding ToggleOptions}"
-                          Margin="0,0,0,20">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <pctrls:CheckBoxEx Content="{Binding Title}"
-                                           IsChecked="{Binding Selected}"
-                                           Margin="0,8,0,8"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Border Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
+                    Grid.Row="2" Grid.Column="1" Margin="0,0,0,20">
+                <ItemsControl Focusable="False" Margin="10"
+                              Name="ItemsToggleOptions" Visibility="Collapsed"
+                              ItemsSource="{Binding ToggleOptions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <pctrls:CheckBoxEx Content="{Binding Title}"
+                                               IsChecked="{Binding Selected}"
+                                               Margin="0,8,0,8"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
 
             <Border Grid.Row="3" Grid.Column="1"
                     Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
