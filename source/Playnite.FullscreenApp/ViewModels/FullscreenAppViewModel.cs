@@ -164,57 +164,12 @@ namespace Playnite.FullscreenApp.ViewModels
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GameDetailsButtonVisible));
 
-                if (GameDetailsVisible && (value == null || GameDetailsEntry != value))
-                {
-                    var selected = SelectClosestGameDetails();
-                    if (selected != null)
-                    {
-                        selectedGame = selected;
-                        OnPropertyChanged();
-                        OnPropertyChanged(nameof(GameDetailsButtonVisible));
-                    }
-                }
-
                 if (!IsDisposing)
                 {
                     Extensions.InvokeOnGameSelected(
                         oldValue == null ? null : new List<Game> { oldValue.Game },
                         selectedGame == null ? null : new List<Game> { selectedGame.Game });
                 }
-            }
-        }
-
-        private int lastGameDetailsIndex = -1;
-
-        private GamesCollectionViewEntry gameDetailsEntry;
-        public GamesCollectionViewEntry GameDetailsEntry
-        {
-            get => gameDetailsEntry;
-            set
-            {
-                // TODO completely rework and decouple selected game from main view and game details
-                SelectedGameDetails?.Dispose();
-                if (value == null)
-                {
-                    if (SelectedGame != null)
-                    {
-                        SelectedGameDetails = new GameDetailsViewModel(SelectedGame, Resources, GamesEditor, this, Dialogs);
-                    }
-                    else
-                    {
-                        SelectedGameDetails = null;
-                    }
-
-                    lastGameDetailsIndex = -1;
-                }
-                else
-                {
-                    SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this, Dialogs);
-                    lastGameDetailsIndex = GamesView.CollectionView.IndexOf(value);
-                }
-
-                gameDetailsEntry = value;
-                OnPropertyChanged();
             }
         }
 
@@ -260,15 +215,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 gameDetailsVisible = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GameDetailsButtonVisible));
-
-                if (value == true)
-                {
-                    GameDetailsEntry = SelectedGame;
-                }
-                else
-                {
-                    GameDetailsEntry = null;
-                }
             }
         }
 
@@ -560,36 +506,6 @@ namespace Playnite.FullscreenApp.ViewModels
                     StartInDesktop = true,
                     MasterInstance = true
                 }.ToString());
-        }
-
-        private GamesCollectionViewEntry SelectClosestGameDetails()
-        {
-            var focusIndex = -1;
-            if (lastGameDetailsIndex == 0 && GamesView.CollectionView.Count > 0)
-            {
-                focusIndex = 0;
-            }
-            else if (lastGameDetailsIndex > 0 && GamesView.CollectionView.Count < lastGameDetailsIndex && GamesView.CollectionView.Count > 0)
-            {
-                focusIndex = GamesView.CollectionView.Count + 1;
-            }
-            else
-            {
-                focusIndex = lastGameDetailsIndex - 1;
-            }
-
-            if (focusIndex > -1)
-            {
-                GameDetailsFocused = false;
-                GameDetailsEntry = GamesView.CollectionView.GetItemAt(focusIndex) as GamesCollectionViewEntry;
-                GameDetailsFocused = true;
-                return GameDetailsEntry;
-            }
-            else
-            {
-                ToggleGameDetailsCommand.Execute(null);
-                return null;
-            }
         }
 
         private void SearchText_PropertyChanged(object sender, PropertyChangedEventArgs e)

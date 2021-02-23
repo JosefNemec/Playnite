@@ -69,6 +69,10 @@ namespace Playnite.FullscreenApp.Controls
                     {
                         UpdateLayout();
                         selItem = ItemContainerGenerator.ContainerFromItem(SelectedItem) as FrameworkElement;
+                        if (selItem == null)
+                        {
+                            itemsPanel.ScrollToItem(SelectedItem);
+                        }
                     }
 
                     if (selItem != null)

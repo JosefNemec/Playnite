@@ -544,6 +544,20 @@ namespace Playnite.FullscreenApp.Controls
             InvalidateMeasure();
         }
 
+        public void ScrollToItem(object item)
+        {
+            var index = itemsControl.Items.IndexOf(item);
+            var itemRect = GetItemRect(index);
+            if (UseHorizontalLayout)
+            {
+                SetHorizontalOffset(itemRect.X);
+            }
+            else
+            {
+                SetVerticalOffset(itemRect.Y);
+            }
+        }
+
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
             var index = ((ItemContainerGenerator)generator).IndexFromContainer(visual);

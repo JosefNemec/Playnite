@@ -78,12 +78,6 @@ namespace Playnite.FullscreenApp.ViewModels
 
             ToggleGameDetailsCommand = new RelayCommand<object>((a) =>
             {
-                var oldEntr = GameDetailsEntry;
-                if (GameDetailsVisible)
-                {
-                    SelectedGame = oldEntr;
-                }
-
                 GameDetailsVisible = !GameDetailsVisible;
                 GameListVisible = !GameListVisible;
 
@@ -254,27 +248,13 @@ namespace Playnite.FullscreenApp.ViewModels
 
             ActivateSelectedCommand = new RelayCommand<object>((a) =>
             {
-                if (GameDetailsVisible)
+                if (SelectedGame?.IsInstalled == true)
                 {
-                    if (GameDetailsEntry?.IsInstalled == true)
-                    {
-                        GamesEditor.PlayGame(GameDetailsEntry.Game);
-                    }
-                    else if (GameDetailsEntry?.IsInstalled == false)
-                    {
-                        GamesEditor.InstallGame(GameDetailsEntry.Game);
-                    }
+                    GamesEditor.PlayGame(SelectedGame.Game);
                 }
-                else
+                else if (SelectedGame?.IsInstalled == false)
                 {
-                    if (SelectedGame?.IsInstalled == true)
-                    {
-                        GamesEditor.PlayGame(SelectedGame.Game);
-                    }
-                    else if (SelectedGame?.IsInstalled == false)
-                    {
-                        GamesEditor.InstallGame(SelectedGame.Game);
-                    }
+                    GamesEditor.InstallGame(SelectedGame.Game);
                 }
             }, (a) => Database?.IsOpen == true);
 
@@ -334,25 +314,21 @@ namespace Playnite.FullscreenApp.ViewModels
 
             SelectPrevGameCommand = new RelayCommand<object>((a) =>
             {
-                var currIndex = GamesView.CollectionView.IndexOf(GameDetailsEntry);
+                var currIndex = GamesView.CollectionView.IndexOf(SelectedGame);
                 var prevIndex = currIndex - 1;
                 if (prevIndex >= 0)
                 {
-                    GameDetailsFocused = false;
-                    GameDetailsEntry = GamesView.CollectionView.GetItemAt(prevIndex) as GamesCollectionViewEntry;
-                    GameDetailsFocused = true;
+                    SelectedGame = GamesView.CollectionView.GetItemAt(prevIndex) as GamesCollectionViewEntry;
                 }
             }, (a) => Database?.IsOpen == true);
 
             SelectNextGameCommand = new RelayCommand<object>((a) =>
             {
-                var currIndex = GamesView.CollectionView.IndexOf(GameDetailsEntry);
+                var currIndex = GamesView.CollectionView.IndexOf(SelectedGame);
                 var nextIndex = currIndex + 1;
                 if (nextIndex < GamesView.CollectionView.Count)
                 {
-                    GameDetailsFocused = false;
-                    GameDetailsEntry = GamesView.CollectionView.GetItemAt(nextIndex) as GamesCollectionViewEntry;
-                    GameDetailsFocused = true;
+                    SelectedGame = GamesView.CollectionView.GetItemAt(nextIndex) as GamesCollectionViewEntry;
                 }
             }, (a) => Database?.IsOpen == true);
 

@@ -17,7 +17,6 @@ namespace Playnite.FullscreenApp.ViewModels
 {
     public class DesignMainViewModel : FullscreenAppViewModel
     {
-        public new GamesCollectionViewEntry GameDetailsEntry { get; set; }
         public new GamesCollectionViewEntry SelectedGame { get; set; }
         public new bool GameDetailsButtonVisible { get; set; } = true;
 
@@ -89,7 +88,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 new PlayniteSettings(),
                 new ExtensionFactory(database, new GameControllerFactory()));
 
-            GameDetailsEntry = GamesView.Items[0];
             SelectedGame = GamesView.Items[0];
             SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
 

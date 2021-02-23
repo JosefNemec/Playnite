@@ -77,14 +77,15 @@ namespace TestPlugin
             //CrashTest();
         }
 
+        public override void OnGameSelected(GameSelectionEventArgs args)
+        {
+            logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?[0].Name}");
+        }
+
         private async void CrashTest()
         {
             await Task.Delay(100);
             throw new NotImplementedException();
-        }
-
-        public override void OnGameSelected(GameSelectionEventArgs args)
-        {
         }
 
         public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
