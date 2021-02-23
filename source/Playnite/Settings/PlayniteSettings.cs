@@ -1801,12 +1801,55 @@ namespace Playnite
             settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);
             settings.Fullscreen = LoadExternalConfig<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath, PlaynitePaths.BackupFullscreenConfigFilePath);
             settings.ImportExclusionList = LoadExternalConfig<ImportExclusionList>(PlaynitePaths.ExclusionListConfigFilePath, PlaynitePaths.BackupExclusionListConfigFilePath);
-            settings.FilterPresets = LoadExternalConfig<List<FilterPreset>>(PlaynitePaths.FilterPresetsFilePath, PlaynitePaths.BackupFilterPresetsFilePath);
+            settings.FilterPresets = LoadExternalConfig<List<FilterPreset>>(PlaynitePaths.FilterPresetsFilePath, PlaynitePaths.BackupFilterPresetsFilePath, false);
+            if (settings.FilterPresets == null)
+            {
+                settings.FilterPresets = new List<FilterPreset>
+                {
+                    new FilterPreset
+                    {
+                        Name  = "All",
+                        ShowInFullscreeQuickSelection = true,
+                        GroupingOrder = GroupableField.None,
+                        SortingOrder = SortOrder.Name,
+                        SortingOrderDirection = SortOrderDirection.Ascending,
+                        Settings = new FilterSettings()
+                    },
+                    new FilterPreset
+                    {
+                        Name  = "Recently Played",
+                        ShowInFullscreeQuickSelection = true,
+                        GroupingOrder = GroupableField.None,
+                        SortingOrder = SortOrder.LastActivity,
+                        SortingOrderDirection = SortOrderDirection.Descending,
+                        Settings = new FilterSettings { IsInstalled = true }
+                    },
+                    new FilterPreset
+                    {
+                        Name  = "Favorites",
+                        ShowInFullscreeQuickSelection = true,
+                        GroupingOrder = GroupableField.None,
+                        SortingOrder = SortOrder.Name,
+                        SortingOrderDirection = SortOrderDirection.Ascending,
+                        Settings = new FilterSettings { Favorite = true }
+                    },
+                    new FilterPreset
+                    {
+                        Name  = "Most Played",
+                        ShowInFullscreeQuickSelection = true,
+                        GroupingOrder = GroupableField.None,
+                        SortingOrder = SortOrder.Playtime,
+                        SortingOrderDirection = SortOrderDirection.Descending,
+                        Settings = new FilterSettings()
+                    }
+                };
+            }
+
             settings.BackupSettings();
             return settings;
         }
 
-        private static T LoadExternalConfig<T>(string origPath, string backupPath) where T : class, new()
+        private static T LoadExternalConfig<T>(string origPath, string backupPath, bool generateDefault = true) where T : class, new()
         {
             var name = Path.GetFileName(origPath);
             var config = LoadSettingFile<T>(origPath);
@@ -1817,7 +1860,10 @@ namespace Playnite
                 if (config == null)
                 {
                     logger.Warn($"No {name} settings backup found, creating default ones.");
-                    config = new T();
+                    if (generateDefault)
+                    {
+                        config = new T();
+                    }
                 }
             }
 
