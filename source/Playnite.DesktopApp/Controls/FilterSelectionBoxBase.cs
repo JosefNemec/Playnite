@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Xml.Linq;
 
@@ -20,6 +21,9 @@ namespace Playnite.DesktopApp.Controls
         internal Button ButtonClearFilter;
         internal TextBlock TextFilterString;
 
+        internal ToggleButton ButtonCheckedOnly;
+        internal SearchBox TextSearchBox;
+
         internal bool IgnoreChanges { get; set; }
         public abstract string ItemStyleName { get; }
 
@@ -30,6 +34,9 @@ namespace Playnite.DesktopApp.Controls
             ButtonClearFilter = Template.FindName("PART_ButtonClearFilter", this) as Button;
             TextFilterString = Template.FindName("PART_TextFilterString", this) as TextBlock;
             ItemsPanel = Template.FindName("PART_ItemsPanel", this) as ItemsControl;
+
+            ButtonCheckedOnly = Template.FindName("PART_CheckedOnly", this) as ToggleButton;
+            TextSearchBox = Template.FindName("PART_SearchBox", this) as SearchBox;
 
             if (ItemsPanel != null)
             {

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
@@ -14,6 +16,25 @@ namespace Playnite.DesktopApp.Controls
     public class DdItemListSelectionBox : FilterSelectionBoxBase
     {
         public override string ItemStyleName => "DdItemListSelectionBoxItemStyle";
+
+        public bool UseSearchBox
+        {
+            get
+            {
+                return (bool)GetValue(UseSearchBoxProperty);
+            }
+
+            set
+            {
+                SetValue(UseSearchBoxProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty UseSearchBoxProperty = DependencyProperty.Register(
+            nameof(UseSearchBox),
+            typeof(bool),
+            typeof(DdItemListSelectionBox),
+            new PropertyMetadata(false));
 
         public SelectableDbItemList ItemsList
         {
@@ -137,7 +158,27 @@ namespace Playnite.DesktopApp.Controls
                 ).ToString());
             }
 
+            if (ButtonCheckedOnly != null)
+            {
+                ButtonCheckedOnly.Click += ButtonCheckedOnly_Click;
+            }
+
+            this.Loaded += DdItemListSelectionBox_Loaded;
+
             UpdateTextStatus();
+        }
+
+        private void DdItemListSelectionBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (TextSearchBox != null)
+            {
+                BindingTools.SetBinding(TextSearchBox,
+                    SearchBox.TextProperty,
+                    ItemsList,
+                    nameof(SelectableDbItemList.SearchText),
+                    System.Windows.Data.BindingMode.TwoWay,
+                    delay: 100);
+            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
@@ -145,13 +186,18 @@ namespace Playnite.DesktopApp.Controls
             ItemsList.SetSelection(null);
             BoundIds = null;
         }
-
+        
         private void UpdateTextStatus()
         {
             if (TextFilterString != null)
             {
                 TextFilterString.Text = ItemsList?.AsString;
             }
+        }
+
+        private void ButtonCheckedOnly_Click(object sender, RoutedEventArgs e)
+        {
+            ItemsList.SearchItemsByChecked((bool)ButtonCheckedOnly.IsChecked);
         }
     }
 }
