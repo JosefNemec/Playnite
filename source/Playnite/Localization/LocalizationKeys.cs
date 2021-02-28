@@ -1034,7 +1034,7 @@ namespace Playnite
         /// </summary>
         public const string SettingsAsyncImageLoading = "LOCSettingsAsyncImageLoading";
         /// <summary>
-        /// Improves scrolling smoothness of game lists in exchange for slower image load times.
+        /// Can improve scrolling smoothness of game lists in exchange for slower image load times.
         /// </summary>
         public const string SettingsAsyncImageLoadingTooltip = "LOCSettingsAsyncImageLoadingTooltip";
         /// <summary>
@@ -3286,6 +3286,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsMinimizeAfterStartingGame = "LOCSettingsMinimizeAfterStartingGame";
         /// <summary>
+        /// Minimize Playnite after a game is started.
+        /// </summary>
+        public const string SettingsMinimizeAfterStartingGameDescription = "LOCSettingsMinimizeAfterStartingGameDescription";
+        /// <summary>
         /// Font Size
         /// </summary>
         public const string SettingsFontSize = "LOCSettingsFontSize";
@@ -3298,6 +3302,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsXInputProcessing = "LOCSettingsXInputProcessing";
         /// <summary>
+        /// If disabled, Playnite won't accept any XInput interface inputs.
+        /// </summary>
+        public const string SettingsXInputProcessingDescription = "LOCSettingsXInputProcessingDescription";
+        /// <summary>
         /// Show items on main menu:
         /// </summary>
         public const string SettingsShowItemsMainMenuHeader = "LOCSettingsShowItemsMainMenuHeader";
@@ -3305,6 +3313,10 @@ namespace Playnite
         /// Inverted X/A main view button binding
         /// </summary>
         public const string SettingsSwapMainViewXAButtons = "LOCSettingsSwapMainViewXAButtons";
+        /// <summary>
+        /// Swaps button bindings for starting a game and showing game details page on main view.
+        /// </summary>
+        public const string SettingsSwapMainViewXAButtonsDescriptions = "LOCSettingsSwapMainViewXAButtonsDescriptions";
         /// <summary>
         /// Interface volume
         /// </summary>
@@ -3321,5 +3333,45 @@ namespace Playnite
         /// Failed to initialize audio interface.
         /// </summary>
         public const string ErrorAudioInterfaceInit = "LOCErrorAudioInterfaceInit";
+        /// <summary>
+        /// Output API
+        /// </summary>
+        public const string SettingsAudioOutputApi = "LOCSettingsAudioOutputApi";
+        /// <summary>
+        /// API used for audio output. Change if you are experiencing issues with sound.
+        /// </summary>
+        public const string SettingsAudioOutputApiDescription = "LOCSettingsAudioOutputApiDescription";
+        /// <summary>
+        /// General
+        /// </summary>
+        public const string SettingsFSSectionGeneral = "LOCSettingsFSSectionGeneral";
+        /// <summary>
+        /// Visuals
+        /// </summary>
+        public const string SettingsFSSectionVisuals = "LOCSettingsFSSectionVisuals";
+        /// <summary>
+        /// Audio
+        /// </summary>
+        public const string SettingsFSSectionAudio = "LOCSettingsFSSectionAudio";
+        /// <summary>
+        /// Layout
+        /// </summary>
+        public const string SettingsFSSectionLayout = "LOCSettingsFSSectionLayout";
+        /// <summary>
+        /// Menus
+        /// </summary>
+        public const string SettingsFSSectionMenus = "LOCSettingsFSSectionMenus";
+        /// <summary>
+        /// Input
+        /// </summary>
+        public const string SettingsFSSection = "LOCSettingsFSSection";
+        /// <summary>
+        /// {0} is starting…
+        /// </summary>
+        public const string GameIsStarting = "LOCGameIsStarting";
+        /// <summary>
+        /// {0} is running…
+        /// </summary>
+        public const string GameIsRunning = "LOCGameIsRunning";
     }
 }

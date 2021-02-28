@@ -205,9 +205,12 @@
                                                 Height="38" Width="38" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Grid>
-                        </Grid>    
+                        </Grid>
 
                         <GameDetails x:Name="PART_ElemGameDetails" Grid.RowSpan="3"
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                        <GameStatus x:Name="PART_ElemGameStatus" Grid.RowSpan="3"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
                         <Notifications x:Name="PART_ElemNotifications" Grid.RowSpan="3"

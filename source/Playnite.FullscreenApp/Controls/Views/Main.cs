@@ -46,6 +46,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ElemGameDetails", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     [TemplatePart(Name = "PART_FilterPresetSelector", Type = typeof(FilterPresetSelector))]
+    [TemplatePart(Name = "PART_ElemGameStatus", Type = typeof(FrameworkElement))]
     public class Main : Control
     {
         private FullscreenAppViewModel mainModel;
@@ -73,6 +74,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ContentControl ContentFilterItems;
         private FrameworkElement ElemGameDetails;
         private FadeImage ImageBackground;
+        private FrameworkElement ElemGameStatus;
 
         static Main()
         {
@@ -456,6 +458,20 @@ namespace Playnite.FullscreenApp.Controls.Views
                         nameof(FullscreenAppViewModel.GameDetailsVisible),
                         converter: new Converters.BooleanToVisibilityConverter());
                     BindingTools.SetBinding(ElemGameDetails,
+                        FrameworkElement.DataContextProperty,
+                        mainModel,
+                        nameof(FullscreenAppViewModel.SelectedGame));
+                }
+
+                ElemGameStatus = Template.FindName("PART_ElemGameStatus", this) as FrameworkElement;
+                if (ElemGameStatus != null)
+                {
+                    BindingTools.SetBinding(ElemGameStatus,
+                        FrameworkElement.VisibilityProperty,
+                        mainModel,
+                        nameof(FullscreenAppViewModel.GameStatusVisible),
+                        converter: new Converters.BooleanToVisibilityConverter());
+                    BindingTools.SetBinding(ElemGameStatus,
                         FrameworkElement.DataContextProperty,
                         mainModel,
                         nameof(FullscreenAppViewModel.SelectedGame));

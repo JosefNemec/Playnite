@@ -218,6 +218,28 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        private bool gameStatusVisible = false;
+        public bool GameStatusVisible
+        {
+            get => gameStatusVisible;
+            set
+            {
+                gameStatusVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string gameStatusText;
+        public string GameStatusText
+        {
+            get => gameStatusText;
+            set
+            {
+                gameStatusText = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool GameDetailsButtonVisible => GameDetailsVisible == false && SelectedGame != null;
 
         private DatabaseFilter databaseFilters;
@@ -388,6 +410,32 @@ namespace Playnite.FullscreenApp.ViewModels
             EventManager.RegisterClassHandler(typeof(CheckBox), CheckBox.UncheckedEvent, new RoutedEventHandler(ElemestateChangedHander));
             EventManager.RegisterClassHandler(typeof(Slider), Slider.ValueChangedEvent, new RoutedEventHandler(ElemestateChangedHander));
             EventManager.RegisterClassHandler(typeof(UIElement), UIElement.GotFocusEvent, new RoutedEventHandler(ElementGotFocusHandler));
+            app.Controllers.Started += Controllers_Started;
+            app.Controllers.Starting += Controllers_Starting;
+            app.Controllers.Stopped += Controllers_Stopped;
+        }
+
+        private void Controllers_Stopped(object sender, GameStoppedEventArgs e)
+        {
+            if (GameStatusVisible)
+            {
+                GameStatusVisible = false;
+                GameListFocused = true;
+            }
+
+            GameStatusText = null;
+        }
+
+        private void Controllers_Starting(object sender, GameStartingEventArgs e)
+        {
+            GameListFocused = false;
+            GameStatusVisible = true;
+            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Controller.Game.Name);
+        }
+
+        private void Controllers_Started(object sender, GameStartedEventArgs e)
+        {
+            GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Controller.Game.Name);
         }
 
         private void ElementGotFocusHandler(object sender, RoutedEventArgs e)

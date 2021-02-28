@@ -46,6 +46,7 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersAdditional.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersView.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameDetails.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameStatus.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Main.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

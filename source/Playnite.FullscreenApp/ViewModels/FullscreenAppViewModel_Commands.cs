@@ -37,6 +37,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SelectPrevGameCommand { get; private set; }
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
+        public RelayCommand<object> CloseGameStatusCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -338,6 +339,12 @@ namespace Playnite.FullscreenApp.ViewModels
             });
 
             OpenMainMenuCommand = new RelayCommand<object>((_) => OpenMainMenu());
+
+            CloseGameStatusCommand = new RelayCommand<object>((_) =>
+            {
+                GameStatusVisible = false;
+                GameListFocused = true;
+            });
         }
     }
 }
