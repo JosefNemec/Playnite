@@ -278,3 +278,5 @@ source/PlayniteServices/twitchTokens.json
 # Not redistributable
 XBOXONE.ttf
 PlayStation4.ttf
+Attribution
+source/Playnite.FullscreenApp/Themes/Fullscreen/Default/audio/*

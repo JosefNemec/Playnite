@@ -24,6 +24,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+
+----------------------------------------------------------------------------------------
+Audio
+
+Background music for default Fullscreen theme obtained from https://www.zapsplat.com (Attribution license)
+Mavigation sounds for default Fullscreen theme obtained from https://www.kenney.nl (CC0 license)
+
 ----------------------------------------------------------------------------------------
 corefx
 
