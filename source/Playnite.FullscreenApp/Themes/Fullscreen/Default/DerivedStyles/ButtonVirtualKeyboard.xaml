@@ -7,5 +7,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{DynamicResource SelectionLightBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="70" />
+        <Setter Property="MinHeight" Value="70" />
     </Style>
 </ResourceDictionary>

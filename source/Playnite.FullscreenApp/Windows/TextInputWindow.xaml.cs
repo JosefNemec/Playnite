@@ -16,12 +16,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.CompilerServices;
+using Playnite.FullscreenApp.Controls;
 
 namespace Playnite.FullscreenApp.Windows
 {
     public partial class TextInputWindow : WindowBase
     {
         private MessageBoxResult result;
+        private bool capsEnabled = false;
 
         private string text = string.Empty;
         public string Text
@@ -58,6 +60,14 @@ namespace Playnite.FullscreenApp.Windows
             get => new RelayCommand<object>((a) =>
             {
                 ClearText();
+            });
+        }
+
+        public RelayCommand<object> ToggleCapsCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ToggleCaps();
             });
         }
 
@@ -182,6 +192,25 @@ namespace Playnite.FullscreenApp.Windows
                 e.Handled = true;
                 return;
             }
+        }
+
+        private void ToggleCaps()
+        {
+            foreach (var child in GridInput.Children)
+            {
+                if (child is ButtonEx button)
+                {
+                    var cont = button.Content?.ToString();
+                    if (cont.IsNullOrEmpty() || cont.Length > 1)
+                    {
+                        continue;
+                    }
+
+                    button.Content = capsEnabled ? cont.ToLower() : cont.ToUpper();
+                }
+            }
+
+            capsEnabled = !capsEnabled;
         }
     }
 }

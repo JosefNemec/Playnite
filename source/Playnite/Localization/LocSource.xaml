@@ -943,4 +943,5 @@ Disable in you use tools that translate XInput inputs to mouse/keyboards inputs 
     <sys:String x:Key="LOCSettingsFSSection">Input</sys:String>
     <sys:String x:Key="LOCGameIsStarting">{0} is starting…</sys:String>
     <sys:String x:Key="LOCGameIsRunning">{0} is running…</sys:String>
+    <sys:String x:Key="LOCTextInputCapitalize">Caps</sys:String>
 </ResourceDictionary>

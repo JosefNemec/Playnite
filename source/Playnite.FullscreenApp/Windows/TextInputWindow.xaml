@@ -20,6 +20,7 @@
         <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
         <pin:XInputBinding Button="RightShoulder" Command="{Binding ConfirmCommand}" />
         <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
+        <pin:XInputBinding Button="RightStick" Command="{Binding ToggleCapsCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
     </c:WindowBase.InputBindings>
     
@@ -66,7 +67,7 @@
                     Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel>
-                    <Grid HorizontalAlignment="Center">
+                    <Grid HorizontalAlignment="Center" Name="GridInput">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -88,7 +89,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.Resources>
-                            <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource ButtonVirtualKeyboard}">                                
+                            <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource ButtonVirtualKeyboard}">
                                 <EventSetter Event="Click" Handler="Button_Click" />
                             </Style>
                         </Grid.Resources>
@@ -178,7 +179,18 @@
                             </pctrls:ButtonEx.Content>
                         </pctrls:ButtonEx>
                         
-                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="0" Content=" " Grid.ColumnSpan="8" />
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="2" Content=" " Grid.ColumnSpan="6" />
+
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding ToggleCapsCommand}">
+                            <pctrls:ButtonEx.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptRS}"
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{DynamicResource LOCTextInputCapitalize}"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
                     </Grid>
                 </StackPanel>
             </Border>
