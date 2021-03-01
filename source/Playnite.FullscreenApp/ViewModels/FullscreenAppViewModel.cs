@@ -420,7 +420,14 @@ namespace Playnite.FullscreenApp.ViewModels
             if (GameStatusVisible)
             {
                 GameStatusVisible = false;
-                GameListFocused = true;
+                if (GameDetailsVisible)
+                {
+                    GameDetailsFocused = true;
+                }
+                else
+                {
+                    GameListFocused = true;
+                }
             }
 
             GameStatusText = null;
@@ -428,7 +435,15 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void Controllers_Starting(object sender, GameStartingEventArgs e)
         {
-            GameListFocused = false;
+            if (GameDetailsVisible)
+            {
+                GameDetailsFocused = false;
+            }
+            else
+            {
+                GameListFocused = false;
+            }
+
             GameStatusVisible = true;
             GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Controller.Game.Name);
         }
