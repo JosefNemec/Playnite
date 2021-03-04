@@ -29,13 +29,19 @@ namespace Playnite.FullscreenApp.Controls
 
         private void ListBoxEx_Unloaded(object sender, RoutedEventArgs e)
         {
-            itemsPanel.InternalChildrenGenerated -= ItemsPanel_InternalChildrenGenerated;
+            if (itemsPanel != null)
+            {
+                itemsPanel.InternalChildrenGenerated -= ItemsPanel_InternalChildrenGenerated;
+            }
         }
 
         private void ListBoxEx_Loaded(object sender, RoutedEventArgs e)
         {
             itemsPanel = ElementTreeHelper.FindVisualChildren<FullscreenTilePanel>(this).FirstOrDefault();
-            itemsPanel.InternalChildrenGenerated += ItemsPanel_InternalChildrenGenerated; ;
+            if (itemsPanel != null)
+            {
+                itemsPanel.InternalChildrenGenerated += ItemsPanel_InternalChildrenGenerated;
+            }
         }
 
         private void ItemsPanel_InternalChildrenGenerated(object sender, InternalChildrenGeneratedArgs e)
@@ -71,7 +77,7 @@ namespace Playnite.FullscreenApp.Controls
                         selItem = ItemContainerGenerator.ContainerFromItem(SelectedItem) as FrameworkElement;
                         if (selItem == null)
                         {
-                            itemsPanel.ScrollToItem(SelectedItem);
+                            itemsPanel?.ScrollToItem(SelectedItem);
                         }
                     }
 

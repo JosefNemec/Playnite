@@ -3382,9 +3382,9 @@ namespace Playnite
         /// </summary>
         public const string SettingsImageScalerMode = "LOCSettingsImageScalerMode";
         /// <summary>
-        /// None
+        /// Alternative
         /// </summary>
-        public const string SettingsImageScalingNone = "LOCSettingsImageScalingNone";
+        public const string SettingsImageScalingAlternative = "LOCSettingsImageScalingAlternative";
         /// <summary>
         /// Balanced
         /// </summary>
@@ -3393,5 +3393,9 @@ namespace Playnite
         /// Quality
         /// </summary>
         public const string SettingsImageScalingQuality = "LOCSettingsImageScalingQuality";
+        /// <summary>
+        /// Image scaler mode
+        /// </summary>
+        public const string SettingsImageScalerModeTooltip = "LOCSettingsImageScalerModeTooltip";
     }
 }

@@ -17,11 +17,15 @@ namespace Playnite
 {
     public class GamesCollectionViewEntry : INotifyPropertyChanged, IDisposable
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private PlayniteSettings settings;
         private PlayniteApplication application;
+
+        // TODO: make these static and update them outside of this class only once.
         private BitmapLoadProperties detailsListIconProperties;
         private BitmapLoadProperties gridViewCoverProperties;
         private BitmapLoadProperties backgroundImageProperties;
+        private BitmapLoadProperties fullscreenListCoverProperties;
 
         public LibraryPlugin LibraryPlugin { get; }
         public Guid Id => Game.Id;
@@ -105,6 +109,12 @@ namespace Playnite
         public object DefaultDetailsListIconObjectCached => GetDefaultIcon(true, detailsListIconProperties);
         public object DefaultGridViewCoverObjectCached => GetDefaultCoverImage(true, gridViewCoverProperties);
 
+        public object FullscreenListItemCoverObject => GetImageObject(
+            Game.CoverImage,
+            settings.Fullscreen.ImageScalerMode != ImageLoadScaling.None,
+            fullscreenListCoverProperties);
+        public object DefaultFullscreenListItemCoverObject => GetDefaultCoverImage(true, fullscreenListCoverProperties);
+
         public Series Series
         {
             get => Game.Series ?? Series.Empty;
@@ -182,12 +192,18 @@ namespace Playnite
 
         public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings)
         {
+            application = PlayniteApplication.Current;
+            if (application == null)
+            {
+                logger.Error("Creating GamesCollectionViewEntry with no application running.");
+                return;
+            }
+
             this.settings = settings;
             settings.PropertyChanged += Settings_PropertyChanged;
-
+            settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             // Use optimized rendering only for Desktop mode where we know pixel perfect data
-            application = PlayniteApplication.Current;
-            if (application?.Mode == ApplicationMode.Desktop)
+            if (application.Mode == ApplicationMode.Desktop)
             {
                 detailsListIconProperties = new BitmapLoadProperties(
                     0,
@@ -198,6 +214,10 @@ namespace Playnite
                     0,
                     application.DpiScale,
                     settings.ImageScalerMode);
+            }
+            else
+            {
+                fullscreenListCoverProperties = GetFullscreenItemRenderSettings();
             }
 
             if (application != null)
@@ -215,16 +235,53 @@ namespace Playnite
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
         }
 
+        private BitmapLoadProperties GetFullscreenItemRenderSettings()
+        {
+            var dpi = application.DpiScale;
+            var properties = new BitmapLoadProperties(0, 0, null, settings.Fullscreen.ImageScalerMode);
+            if (settings.Fullscreen.HorizontalLayout)
+            {
+                properties.MaxDecodePixelWidth = application.CurrentScreen.Bounds.Width / settings.Fullscreen.Columns;
+                properties.MaxDecodePixelWidth = (int)Math.Round(properties.MaxDecodePixelWidth / dpi.DpiScaleX);
+            }
+            else
+            {
+                properties.MaxDecodePixelHeight = application.CurrentScreen.Bounds.Height / settings.Fullscreen.Rows;
+                properties.MaxDecodePixelHeight = (int)Math.Round(properties.MaxDecodePixelHeight / dpi.DpiScaleY);
+            }
+
+            return properties;
+        }
+
+        private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(FullscreenSettings.HorizontalLayout) ||
+                e.PropertyName == nameof(FullscreenSettings.Columns) ||
+                e.PropertyName == nameof(FullscreenSettings.Rows) ||
+                e.PropertyName == nameof(FullscreenSettings.ImageScalerMode) ||
+                e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay) ||
+                e.PropertyName == nameof(FullscreenSettings.Monitor))
+            {
+                var oldSettings = fullscreenListCoverProperties;
+                fullscreenListCoverProperties = GetFullscreenItemRenderSettings();
+                if (oldSettings != fullscreenListCoverProperties)
+                {
+                    OnPropertyChanged(nameof(FullscreenListItemCoverObject));
+                    OnPropertyChanged(nameof(DefaultFullscreenListItemCoverObject));
+                }
+            }
+        }
+
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (PlayniteApplication.Current?.Mode == ApplicationMode.Desktop)
+            if (application.Mode == ApplicationMode.Desktop)
             {
                 if (e.PropertyName == nameof(PlayniteSettings.DetailsViewListIconSize))
                 {
                     detailsListIconProperties = new BitmapLoadProperties(
                         0,
                         Convert.ToInt32(settings.DetailsViewListIconSize),
-                        PlayniteApplication.Current.DpiScale);
+                        application.DpiScale);
                     OnPropertyChanged(nameof(DetailsListIconObjectCached));
                     OnPropertyChanged(nameof(DefaultDetailsListIconObjectCached));
                 }
@@ -237,7 +294,7 @@ namespace Playnite
                     gridViewCoverProperties = new BitmapLoadProperties(
                         Convert.ToInt32(settings.GridItemWidth),
                         0,
-                        PlayniteApplication.Current.DpiScale,
+                        application.DpiScale,
                         settings.ImageScalerMode);
                     OnPropertyChanged(nameof(GridViewCoverObjectCached));
                     OnPropertyChanged(nameof(DefaultGridViewCoverObjectCached));
@@ -318,6 +375,7 @@ namespace Playnite
         {
             Game.PropertyChanged -= Game_PropertyChanged;
             settings.PropertyChanged -= Settings_PropertyChanged;
+            settings.Fullscreen.PropertyChanged -= Fullscreen_PropertyChanged;
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -390,7 +448,7 @@ namespace Playnite
             }
             else if (settings.DefaultCoverSource == DefaultCoverSourceOptions.Platform && Platform?.Cover.IsNullOrEmpty() == false)
             {
-                return ImageSourceManager.GetImage(Platform.Cover, cached);
+                return ImageSourceManager.GetImage(Platform.Cover, cached, loadProperties);
             }
             else
             {

@@ -30,12 +30,19 @@
                            Content="{DynamicResource LOCSettingsShowBatteryPercentage}"  />
         <pctrls:CheckBoxEx x:Name="ToggleClock"
                            Content="{DynamicResource LOCSettingsShowClock}"  />
+        <pctrls:CheckBoxEx x:Name="ToggleMinimizeAfterGame"
+                           Content="{DynamicResource LOCSettingsMinimizeAfterStartingGame}"
+                           Tag="{DynamicResource LOCSettingsMinimizeAfterStartingGameDescription}"/>
         <pctrls:CheckBoxEx x:Name="ToggleAsyncImageLoad"
                            Content="{DynamicResource LOCSettingsAsyncImageLoading}"
                            ContentStringFormat="{}{0} *"
                            Tag="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"/>
-        <pctrls:CheckBoxEx x:Name="ToggleMinimizeAfterGame"
-                           Content="{DynamicResource LOCSettingsMinimizeAfterStartingGame}"
-                           Tag="{DynamicResource LOCSettingsMinimizeAfterStartingGameDescription}"/>
+        <DockPanel LastChildFill="False"
+                   IsEnabled="{Binding IsChecked, ElementName=TogglePrimaryDisplayOnly, Converter={StaticResource NegateConverter}}">
+            <TextBlock Text="{DynamicResource LOCSettingsImageScalerMode}"
+                       Style="{DynamicResource SettingsSectionText}" />
+            <pctrls:ComboBoxEx x:Name="SelectImageScaler" DockPanel.Dock="Right"
+                               Tag="{DynamicResource LOCSettingsImageScalerModeTooltip}"/>
+        </DockPanel>
     </StackPanel>
 </UserControl>

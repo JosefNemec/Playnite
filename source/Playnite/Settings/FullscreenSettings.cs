@@ -554,5 +554,16 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private ImageLoadScaling imageScalerMode = ImageLoadScaling.Custom;
+        public ImageLoadScaling ImageScalerMode
+        {
+            get => imageScalerMode;
+            set
+            {
+                imageScalerMode = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

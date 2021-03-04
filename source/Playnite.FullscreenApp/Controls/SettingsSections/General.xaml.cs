@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Playnite.Behaviors;
+using Playnite.Common;
 using Playnite.FullscreenApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -89,6 +90,15 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 nameof(FullscreenSettings.MinimizeAfterGameStartup),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                SelectImageScaler,
+                Selector.SelectedValueProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.ImageScalerMode),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+            SelectorBehaviors.SetEnumSource(SelectImageScaler, typeof(Playnite.ImageLoadScaling));
         }
     }
 }

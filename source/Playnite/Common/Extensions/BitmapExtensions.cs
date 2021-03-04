@@ -104,7 +104,7 @@ namespace System.Drawing.Imaging
 
         public override string ToString()
         {
-            return $"{MaxDecodePixelWidth}x{MaxDecodePixelHeight};{DpiScale?.DpiScaleX}x{DpiScale?.DpiScaleY};{Source}";
+            return $"{MaxDecodePixelWidth}x{MaxDecodePixelHeight};{DpiScale?.DpiScaleX}x{DpiScale?.DpiScaleY};{Source};{Scaling}";
         }
     }
 
@@ -195,6 +195,11 @@ namespace System.Drawing.Imaging
                     (loadProperties?.MaxDecodePixelHeight > 0 && properties?.Height > loadProperties?.MaxDecodePixelHeight))
                 {
                     shouldRescale = true;
+                }
+
+                if (loadProperties?.Scaling == ImageLoadScaling.None)
+                {
+                    shouldRescale = false;
                 }
 
                 if (shouldRescale)

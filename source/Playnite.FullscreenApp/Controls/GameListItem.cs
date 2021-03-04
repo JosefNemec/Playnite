@@ -58,14 +58,14 @@ namespace Playnite.FullscreenApp.Controls
                 var sourceBinding = new PriorityBinding();
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.CoverImageObject)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.FullscreenListItemCoverObject)),
                     IsAsync = mainModel.AppSettings.Fullscreen.AsyncImageLoading,
                     Converter = new NullToDependencyPropertyUnsetConverter(),
                     Mode = BindingMode.OneWay
                 });
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultCoverImageObject)),
+                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultFullscreenListItemCoverObject)),
                     Converter = new NullToDependencyPropertyUnsetConverter(),
                     Mode = BindingMode.OneWay
                 });

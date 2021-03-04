@@ -59,11 +59,11 @@ namespace Playnite
 
     public enum ImageLoadScaling
     {
-        [Description(LOC.SettingsImageScalingNone)]
+        [Description(LOC.SettingsImageScalingQuality)]
         None,
         [Description(LOC.SettingsImageScalingBalanced)]
         BitmapDotNet,
-        [Description(LOC.SettingsImageScalingQuality)]
+        [Description(LOC.SettingsImageScalingAlternative)]
         Custom
     }
 
