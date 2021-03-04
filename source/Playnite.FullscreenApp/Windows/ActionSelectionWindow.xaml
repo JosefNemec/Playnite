@@ -36,18 +36,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Border Background="{DynamicResource OverlayMenuBackgroundBrush}"
+            <Border Style="{DynamicResource ActionSelectionBorder}"
                     Grid.Column="1" Grid.Row="1"
-                    CornerRadius="3" Width="400"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
                 <DockPanel>
                     <TextBlock Text="{DynamicResource LOCSelectActionTitle}"
-                               Background="#AA000000" DockPanel.Dock="Top"
-                               Style="{DynamicResource TextBlockBaseStyle}"
-                               Padding="15,15,15,15" TextWrapping="Wrap"
-                               HorizontalAlignment="Stretch"
-                               VerticalAlignment="Bottom" />
+                               Style="{DynamicResource ActionSelectionHeaderText}"
+                               DockPanel.Dock="Top"/>
                     <pctrls:ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
                                            KeyboardNavigation.DirectionalNavigation="Once"
                                            pbeh:FocusBahaviors.FocusBinding="True"
@@ -57,7 +52,7 @@
                                 <pctrls:ButtonEx Content="{Binding Item.Name}"
                                                  Command="{Binding DataContext.PlaySpecificCommand, ElementName=WindowActionSelectionWindow}"
                                                  CommandParameter="{Binding Item}"
-                                                 Margin="5" />
+                                                 Style="{DynamicResource ActionSelectionButton}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.Template>

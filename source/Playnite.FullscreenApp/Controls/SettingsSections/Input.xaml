@@ -10,24 +10,15 @@
              d:DesignHeight="550" d:DesignWidth="800">
     <StackPanel>
         <StackPanel.Resources>
-            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
+            <Style TargetType="pctrls:CheckBoxEx" BasedOn="{StaticResource SettingsSectionCheckbox}" />
         </StackPanel.Resources>
-
         <pctrls:CheckBoxEx x:Name="ToggleMouseCursor"
                            pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                           Margin="{StaticResource ItemMargin}"
-                           Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsHideMouseCursor}"  />
-
         <pctrls:CheckBoxEx x:Name="ToggleXInput"
-                           Margin="{StaticResource ItemMargin}"
-                           Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsXInputProcessing}"
                            Tag="{DynamicResource LOCSettingsXInputProcessingDescription}"/>
-
         <pctrls:CheckBoxEx x:Name="ToggleSwapXA"
-                           Margin="{StaticResource ItemMargin}"
-                           Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsSwapMainViewXAButtons}"
                            Tag="{DynamicResource LOCSettingsSwapMainViewXAButtonsDescriptions}"/>
     </StackPanel>

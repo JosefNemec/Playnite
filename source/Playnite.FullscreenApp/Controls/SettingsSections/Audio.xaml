@@ -7,43 +7,34 @@
              xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
              xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
              mc:Ignorable="d" d:DesignWidth="800">
-    <StackPanel>
-        <StackPanel.Resources>
-            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
-        </StackPanel.Resources>
-        
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+    <StackPanel>        
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsInterfaceVolume}"
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}"/>
-            <pctrls:SliderEx x:Name="SliderInterfaceVolume" DockPanel.Dock="Right" Width="300"
+                       Style="{DynamicResource SettingsSectionText}"/>
+            <pctrls:SliderEx x:Name="SliderInterfaceVolume" DockPanel.Dock="Right"
                              pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                             Margin="{StaticResource ItemMargin}" />
+                             Style="{DynamicResource SettingsSectionSlider}" />
         </DockPanel>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsMusiVolume}"
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}"/>
+                       Style="{DynamicResource SettingsSectionText}"/>
             <pctrls:SliderEx x:Name="SliderMusicVolume" DockPanel.Dock="Right"
-                             Width="300" Margin="{StaticResource ItemMargin}" />
+                             Style="{DynamicResource SettingsSectionSlider}" />
         </DockPanel>
 
         <pctrls:CheckBoxEx x:Name="ToggleMuteInBackground"
-                            Margin="{StaticResource ItemMargin}"
-                            Style="{DynamicResource CheckBoxSettings}"
+                            Style="{DynamicResource SettingsSectionCheckbox}"
                             Content="{DynamicResource LOCSettingsMuteBackground}" />
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-            <TextBlock Text="{DynamicResource LOCSettingsAudioOutputApi}"                      
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}" />
+        <DockPanel LastChildFill="False">
+            <TextBlock Text="{DynamicResource LOCSettingsAudioOutputApi}"
+                       Style="{DynamicResource SettingsSectionText}" />
             <TextBlock Text="*" Margin="5,0,0,0"
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}" />
-            <pctrls:ComboBoxEx x:Name="SelectAudioApi" 
+                       Style="{DynamicResource SettingsSectionText}" />
+            <pctrls:ComboBoxEx x:Name="SelectAudioApi"                               
                                DockPanel.Dock="Right"
-                               MinWidth="200"
+                               Style="{DynamicResource SettingsSectionCombobox}"
                                Tag="{DynamicResource LOCSettingsAudioOutputApiDescription}"/>
         </DockPanel>
     </StackPanel>

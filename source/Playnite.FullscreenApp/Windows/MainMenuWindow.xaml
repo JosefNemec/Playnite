@@ -15,12 +15,12 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         Style="{StaticResource ChildWindowStyle}"
         d:DesignWidth="1920" d:DesignHeight="1080">
-    
+
     <c:WindowBase.InputBindings>
         <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
         <pin:XInputBinding Button="B" Command="{Binding CloseCommand}" />
     </c:WindowBase.InputBindings>
-    
+
     <Viewbox>
         <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
@@ -32,85 +32,67 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="1"
-                        KeyboardNavigation.TabNavigation="Cycle"
-                        KeyboardNavigation.DirectionalNavigation="Cycle"
-                        Background="{DynamicResource OverlayMenuBackgroundBrush}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30,30,40,30">
-                    <TextBlock Text="Playnite" Style="{DynamicResource TextBlockBaseStyle}"
-                                       FontFamily="{DynamicResource FontTitilliumWebBold}"
-                                       FontSize="36" Margin="0,0,20,0" />
-                    <Image Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" Height="48"
-                                   RenderOptions.BitmapScalingMode="Fant" />                   
-                    
+            <Border Grid.Column="1"
+                    KeyboardNavigation.TabNavigation="Cycle"
+                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                    Style="{DynamicResource MainMenuBorder}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource MainMenuButton}" />
+                    </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30,30,40,30">
+                        <TextBlock Text="Playnite" Style="{DynamicResource MainMenuHeaderText}"/>
+                        <Image Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" Height="48"
+                               RenderOptions.BitmapScalingMode="Fant" />
+                    </StackPanel>
+
+                    <pctrls:ButtonEx x:Name="PART_ButtonSettings"
+                                     Command="{Binding OpenSettingsCommand}"
+                                     Content="{DynamicResource LOCSettingsLabel}"
+                                     pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonUpdateLibrary"
+                                     Command="{Binding UpdateGamesCommand}"
+                                     Content="{DynamicResource LOCMenuReloadLibrary}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonExitPlaynite"
+                                     Command="{Binding ExitCommand}"
+                                     Content="{DynamicResource LOCExitPlaynite}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonSwitchToDesktop"
+                                     Command="{Binding SwitchToDesktopCommand}"
+                                     Content="{DynamicResource LOCBackToDesktopMode}" />
+
+                    <Canvas Height="40" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonPickRandomGame"
+                                     Command="{Binding SelectRandomGameCommand}"
+                                     Content="{DynamicResource LOCMenuSelectRandomGame}" />
+                    <Canvas Height="40" />
+
+                    <pctrls:ButtonEx x:Name="PART_ButtonShutdownSystem"
+                                     Command="{Binding ShutdownSystemCommand}"
+                                     Content="{DynamicResource LOCMenuShutdownSystem}"
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowShutdown, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonSleepSystem"
+                                     Command="{Binding SleepSystemCommand}"
+                                     Content="{DynamicResource LOCMenuSuspendSystem}"
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowSuspend, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonHibernateSystem"
+                                     Command="{Binding HibernateSystemCommand}"
+                                     Content="{DynamicResource LOCMenuHibernateSystem}"
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowHibernate, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonRestartSystem"
+                                     Command="{Binding RestartSystemCommand}"
+                                     Content="{DynamicResource LOCMenuRestartSystem}"
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowRestart, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <Canvas Height="40" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonFeedback"
+                                     Command="{Binding SendFeedbackCommand}"
+                                     Content="{DynamicResource LOCMenuIssues}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonPatreon"
+                                     Command="{Binding OpenPatreonCommand}"
+                                     Content="{DynamicResource LOCMenuPatreonSupport}" />
                 </StackPanel>
+            </Border>
 
-                <pctrls:ButtonEx x:Name="PART_ButtonSettings"
-                                 Command="{Binding OpenSettingsCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCSettingsLabel}"
-                                 pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
-
-                <pctrls:ButtonEx x:Name="PART_ButtonUpdateLibrary"
-                                 Command="{Binding UpdateGamesCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuReloadLibrary}" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonExitPlaynite"
-                                 Command="{Binding ExitCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCExitPlaynite}" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonSwitchToDesktop"
-                                 Command="{Binding SwitchToDesktopCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCBackToDesktopMode}" />
-
-                <Canvas Height="40" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonPickRandomGame"
-                                 Command="{Binding SelectRandomGameCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuSelectRandomGame}" />
-
-                <Canvas Height="40" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonShutdownSystem"
-                                 Command="{Binding ShutdownSystemCommand}"
-                                 Style="{DynamicResource ButtonMainMenu}"
-                                 Content="{DynamicResource LOCMenuShutdownSystem}"
-                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowShutdown, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                <pctrls:ButtonEx x:Name="PART_ButtonSleepSystem"
-                                 Command="{Binding SleepSystemCommand}"
-                                 Style="{DynamicResource ButtonMainMenu}"
-                                 Content="{DynamicResource LOCMenuSuspendSystem}"
-                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowSuspend, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonHibernateSystem"
-                                 Command="{Binding HibernateSystemCommand}"
-                                 Style="{DynamicResource ButtonMainMenu}"
-                                 Content="{DynamicResource LOCMenuHibernateSystem}"
-                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowHibernate, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonRestartSystem"
-                                 Command="{Binding RestartSystemCommand}"
-                                 Style="{DynamicResource ButtonMainMenu}"
-                                 Content="{DynamicResource LOCMenuRestartSystem}"
-                                 Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowRestart, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                <Canvas Height="40" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonFeedback"
-                                 Command="{Binding SendFeedbackCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuIssues}" />
-
-                <pctrls:ButtonEx x:Name="PART_ButtonPatreon"
-                                 Command="{Binding OpenPatreonCommand}"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuPatreonSupport}" />
-            </StackPanel>
         </Grid>
     </Viewbox>
 </c:WindowBase>

@@ -30,33 +30,30 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Border Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
+            <Border Style="{DynamicResource MessageBoxBorder}"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Grid.Column="1" Grid.Row="1">
                 <StackPanel Margin="30">
                     <TextBlock Text="{Binding Caption, ElementName=WindowMessageBox}"
-                               Style="{StaticResource TextBlockBaseStyle}"                               
-                               FontFamily="{StaticResource FontTitilliumWebBold}"
-                               FontSize="26" Margin="0,0,0,15"
-                               HorizontalAlignment="Left" TextAlignment="Left"
+                               Style="{StaticResource MessageBoxCaptionText}"
                                Visibility="{Binding Caption, ElementName=WindowMessageBox, Converter={pcon:StringNullOrEmptyToVisibilityConverter}}"/>
                     <TextBlock Text="{Binding Text, ElementName=WindowMessageBox}"
-                               Style="{StaticResource TextBlockBaseStyle}"
+                               Style="{StaticResource MessageBoxMessageText}"
                                MaxWidth="900" TextWrapping="Wrap"/>
                     <StackPanel Name="StackButtons" Orientation="Horizontal" Margin="0,25,0,0"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                 HorizontalAlignment="Left" VerticalAlignment="Center">
                         <pctrls:ButtonEx Content="{DynamicResource LOCOKLabel}" x:Name="ButtonOK" Click="ButtonOK_Click"
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Visibility="{Binding ShowOKButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <pctrls:ButtonEx Content="{DynamicResource LOCYesLabel}" x:Name="ButtonYes" Click="ButtonYes_Click"
-                                Style="{StaticResource ButtonMessageBox}"                                
+                                Style="{StaticResource MessageBoxButton}"                                
                                 Visibility="{Binding ShowYesButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <pctrls:ButtonEx Content="{DynamicResource LOCNoLabel}" x:Name="ButtonNo" Click="ButtonNo_Click"
-                                Style="{StaticResource ButtonMessageBox}"                                
+                                Style="{StaticResource MessageBoxButton}"                                
                                 Visibility="{Binding ShowNoButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}" x:Name="ButtonCancel" Click="ButtonCancel_Click"
-                                Style="{StaticResource ButtonMessageBox}"                                
+                                Style="{StaticResource MessageBoxButton}"                                
                                 Visibility="{Binding ShowCancelButton, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     </StackPanel>
                 </StackPanel>                

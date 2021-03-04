@@ -56,9 +56,9 @@
         <GradientStop Color="#AA0B1027" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="OverlayMenuBackgroundBrush" StartPoint="0.5,-0.5" EndPoint="1,1.5" >
+    <LinearGradientBrush x:Key="OverlayMenuBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5,1.5" >
         <GradientStop Color="#FF091F51" Offset="0"/>
-        <GradientStop Color="#FF0B1027" Offset="1.0"/>
+        <GradientStop Color="#FF000623" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="SelectionBrush" StartPoint="0.5,-0.5" EndPoint="1,1.5" >

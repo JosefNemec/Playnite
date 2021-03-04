@@ -9,80 +9,66 @@
              mc:Ignorable="d" d:DesignWidth="800">
     <StackPanel>
         <StackPanel.Resources>
-            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
+            <Style TargetType="pctrls:CheckBoxEx" BasedOn="{StaticResource SettingsSectionCheckbox}" />
+            <Style TargetType="pctrls:ComboBoxEx" BasedOn="{StaticResource SettingsSectionCombobox}" />
+            <Style TargetType="pctrls:SliderEx" BasedOn="{StaticResource SettingsSectionSlider}" />
         </StackPanel.Resources>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsSkin}"
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}"/>
+                       Style="{DynamicResource SettingsSectionText}"/>
             <TextBlock Text="*" Margin="5,0,0,0"
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}" />
-            <pctrls:ComboBoxEx x:Name="SelectTheme" pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                        DockPanel.Dock="Right" Width="300" Margin="{StaticResource ItemMargin}" />
+                       Style="{DynamicResource SettingsSectionText}" />
+            <pctrls:ComboBoxEx x:Name="SelectTheme" pbeh:FocusBahaviors.OnVisibilityFocus="True" 
+                               DockPanel.Dock="Right" />
         </DockPanel>
 
         <pctrls:CheckBoxEx x:Name="ToggleDarkenUninstalled"
-                           Margin="{StaticResource ItemMargin}"
-                           Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsDarkenUninstalledGridCovers}" />
-
         <pctrls:CheckBoxEx x:Name="ToggleBackgroundOnMain"
-                           Margin="{StaticResource ItemMargin}"
-                           Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsFullscreenBackgroundOnMainScreen}" />
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsBlurWindowBackgrounImage}"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
-            <pctrls:SliderEx x:Name="SliderBackgroundBlurAmount" DockPanel.Dock="Right" Width="300"
-                             Margin="{StaticResource ItemMargin}" />
+                       Style="{DynamicResource SettingsSectionText}"/>
+            <pctrls:SliderEx x:Name="SliderBackgroundBlurAmount" DockPanel.Dock="Right" />
         </DockPanel>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsDarkenWindowBackghrounImage}"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
-            <pctrls:SliderEx x:Name="SliderBackgroundDarkenAmount" DockPanel.Dock="Right"
-                             Width="300" Margin="{StaticResource ItemMargin}" />
+                       Style="{DynamicResource SettingsSectionText}"/>
+            <pctrls:SliderEx x:Name="SliderBackgroundDarkenAmount" DockPanel.Dock="Right" />
         </DockPanel>
 
         <pctrls:CheckBoxEx x:Name="ToggleGameTitles"
-                           Margin="{StaticResource ItemMargin}"
-                           Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsFullscreenShowGameTitles}"  />
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsFontSize}"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
-            <TextBlock Text="*" Margin="5,0,0,0"
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}" />
-            <pctrls:SliderEx x:Name="SliderFontSize" DockPanel.Dock="Right" Width="300"
-                             Margin="{StaticResource ItemMargin}" />
+                       Style="{DynamicResource SettingsSectionText}"/>
+            <TextBlock Text="*" Margin="5,0,0,0"                       
+                       Style="{DynamicResource SettingsSectionText}" />
+            <pctrls:SliderEx x:Name="SliderFontSize" DockPanel.Dock="Right" />
             <TextBlock Text="{Binding Value, ElementName=SliderFontSize}" DockPanel.Dock="Right"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       Style="{DynamicResource SettingsSectionText}"
                        TextAlignment="Right" Margin="0,0,10,0"/>
         </DockPanel>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsFontSizeSmall}"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
+                       Style="{DynamicResource SettingsSectionText}"/>
             <TextBlock Text="*" Margin="5,0,0,0"
-                       VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}" />
-            <pctrls:SliderEx x:Name="SliderFontSizeSmall" DockPanel.Dock="Right" Width="300"
-                             Margin="{StaticResource ItemMargin}" />
+                       Style="{DynamicResource SettingsSectionText}" />
+            <pctrls:SliderEx x:Name="SliderFontSizeSmall" DockPanel.Dock="Right" />
             <TextBlock Text="{Binding Value, ElementName=SliderFontSizeSmall}" DockPanel.Dock="Right"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       Style="{DynamicResource SettingsSectionText}"
                        TextAlignment="Right" Margin="0,0,10,0"/>
         </DockPanel>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsFullscreenButtonPrompts}"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}" />
-            <pctrls:ComboBoxEx x:Name="SelectButtonPrompts" Width="300" DockPanel.Dock="Right"
-                               Margin="{StaticResource ItemMargin}" />
+                       Style="{DynamicResource SettingsSectionText}" />
+            <pctrls:ComboBoxEx x:Name="SelectButtonPrompts" DockPanel.Dock="Right" />
         </DockPanel>
     </StackPanel>
 </UserControl>

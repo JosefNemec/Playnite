@@ -10,42 +10,39 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <StackPanel.Resources>
-            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
+            <Style TargetType="pctrls:CheckBoxEx" BasedOn="{StaticResource SettingsSectionCheckbox}" />
+            <Style TargetType="pctrls:ComboBoxEx" BasedOn="{StaticResource SettingsSectionCombobox}" />
+            <Style TargetType="pctrls:SliderEx" BasedOn="{StaticResource SettingsSectionSlider}" />
         </StackPanel.Resources>
         
         <pctrls:CheckBoxEx x:Name="ToggleHorizontalLayout"
-                           Margin="{StaticResource ItemMargin}"
-                           Style="{DynamicResource CheckBoxSettings}"
                            Content="{DynamicResource LOCSettingsFullscreenHorizontalScrolling}"
                            pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-            <TextBlock Text="{DynamicResource LOCColumns}" Margin="0,0,5,0" VerticalAlignment="Center"
-                       Style="{DynamicResource TextBlockBaseStyle}" />
-            <pctrls:SliderEx x:Name="SliderColumns" Width="300" DockPanel.Dock="Right"
-                             Margin="{StaticResource ItemMargin}" />
+        <DockPanel LastChildFill="False">
+            <TextBlock Text="{DynamicResource LOCColumns}"
+                       Style="{DynamicResource SettingsSectionText}" />
+            <pctrls:SliderEx x:Name="SliderColumns" DockPanel.Dock="Right" />
             <TextBlock Text="{Binding Value, ElementName=SliderColumns}" VerticalAlignment="Center" DockPanel.Dock="Right"
-                       Style="{DynamicResource TextBlockBaseStyle}"
+                       Style="{DynamicResource SettingsSectionText}"
                        TextAlignment="Right" Margin="0,0,10,0"/>
         </DockPanel>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-            <TextBlock Text="{DynamicResource LOCRows}" Margin="0,0,5,0"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
-            <pctrls:SliderEx x:Name="SliderRows" Width="300" DockPanel.Dock="Right"
-                             Margin="{StaticResource ItemMargin}" VerticalAlignment="Center" />
+        <DockPanel LastChildFill="False">
+            <TextBlock Text="{DynamicResource LOCRows}"
+                       Style="{DynamicResource SettingsSectionText}"/>
+            <pctrls:SliderEx x:Name="SliderRows" DockPanel.Dock="Right"/>
             <TextBlock Text="{Binding Value, ElementName=SliderRows}" DockPanel.Dock="Right"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       VerticalAlignment="Center" Style="{DynamicResource SettingsSectionText}"
                        TextAlignment="Right" Margin="0,0,10,0"/>
         </DockPanel>
 
-        <DockPanel LastChildFill="False" Margin="{StaticResource ItemMargin}">
-            <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}" Margin="0,0,5,0"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"/>
-            <pctrls:SliderEx x:Name="SliderItemSpacing" Width="300" DockPanel.Dock="Right"
-                             VerticalAlignment="Center" Margin="{StaticResource ItemMargin}" />
+        <DockPanel LastChildFill="False">
+            <TextBlock Text="{DynamicResource LOCSettingsGridItemSpacing}"
+                       Style="{DynamicResource SettingsSectionText}"/>
+            <pctrls:SliderEx x:Name="SliderItemSpacing" DockPanel.Dock="Right" />
             <TextBlock Text="{Binding Value, ElementName=SliderItemSpacing}" DockPanel.Dock="Right"
-                       VerticalAlignment="Center" Style="{DynamicResource TextBlockBaseStyle}"
+                       Style="{DynamicResource SettingsSectionText}"
                        TextAlignment="Right" Margin="0,0,10,0"/>
         </DockPanel>
     </StackPanel>

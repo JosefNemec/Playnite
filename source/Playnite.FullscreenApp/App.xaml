@@ -31,10 +31,6 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/CustomControls/FilterPresetSelector.xaml" />
 
                 <!--Derived Styles-->
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/CheckBoxSettings.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonVirtualKeyboard.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMessageBox.xaml" />
-                <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonMainMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ListGameItemStyle.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ListGameItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonBottomMenu.xaml" />
@@ -42,12 +38,18 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ItemFilterQuickPreset.xaml" />
 
                 <!--Views-->
-                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Notifications.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/ActionSelection.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersAdditional.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersView.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameDetails.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameStatus.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Main.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MainMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MessageBox.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Notifications.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/SettingsMenus.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/TextInput.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

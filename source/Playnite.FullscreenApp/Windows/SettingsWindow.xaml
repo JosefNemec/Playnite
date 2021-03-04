@@ -43,57 +43,53 @@
                 <RowDefinition Height="150" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="2"
-                        Grid.RowSpan="3" VerticalAlignment="Stretch"
-                        KeyboardNavigation.TabNavigation="Cycle"
-                        KeyboardNavigation.DirectionalNavigation="Cycle"
-                        IsEnabled="{Binding IsMenuEnabled}"
-                        Background="{DynamicResource OverlayMenuBackgroundBrush}">
-                
-                <TextBlock Text="{DynamicResource LOCSettingsLabel}"
-                           Style="{DynamicResource TextBlockBaseStyle}"
-                           FontFamily="{DynamicResource FontTitilliumWebBold}"
-                           FontSize="36" HorizontalAlignment="Right" Margin="30,30,60,30" />
+            <Border Grid.Column="2" Grid.RowSpan="3"
+                    VerticalAlignment="Stretch"
+                    KeyboardNavigation.TabNavigation="Cycle"
+                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                    IsEnabled="{Binding IsMenuEnabled}"
+                    Style="{DynamicResource SettingsMenuBorder}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource SettingsMenuButton}">
+                            <Setter Property="Command" Value="{Binding OpenSectionCommand}" />
+                        </Style>
+                    </StackPanel.Resources>
+                    
+                    <TextBlock Text="{DynamicResource LOCSettingsLabel}"
+                               Style="{DynamicResource SettingsMenuHeaderText}" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionGeneral}" CommandParameter="0"
+                                     pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionVisuals}" CommandParameter="1" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionAudio}" CommandParameter="5" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionLayout}" CommandParameter="2" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionMenus}" CommandParameter="3" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSection}" CommandParameter="4" />
 
-                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionGeneral}" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="0"
-                        pbeh:FocusBahaviors.OnVisibilityFocus="True" />
-                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionVisuals}" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="1" />
-                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionAudio}" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="5" />
-                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionLayout}" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="2" />
-                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionMenus}" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="3" />
-                <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSection}" Style="{DynamicResource ButtonMainMenu}"
-                          Command="{Binding OpenSectionCommand}" CommandParameter="4" />
-
-                <TextBlock Style="{StaticResource TextBlockBaseStyle}"
+                    <TextBlock Style="{StaticResource TextBlockBaseStyle}"
                            Text="{DynamicResource LOCSettingsRestartNotification}"
                            HorizontalAlignment="Right"
                            Margin="10,20,10,0"/>
-                
-                <TextBlock Text="{Binding OptionDescription}"
-                           Margin="20,50,20,10" TextWrapping="Wrap">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding OptionDescription}" Value="{x:Null}">
-                                    <Setter Property="Visibility" Value="Hidden" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </StackPanel>
 
-            <Border Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
-                    Grid.Column="1" Grid.Row="1" Focusable="False"
-                    Margin="0,0,20,0">
+                    <TextBlock Text="{Binding OptionDescription}"
+                               Margin="20,50,20,10" TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding OptionDescription}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="1" Focusable="False">
                 <Border.Style>
-                    <Style TargetType="Border">
+                    <Style TargetType="Border" BasedOn="{StaticResource SettingsSectionBorder}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Content, ElementName=ContentSettings}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed" />

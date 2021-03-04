@@ -10,33 +10,17 @@
              d:DesignHeight="550" d:DesignWidth="800">
     <StackPanel>
         <StackPanel.Resources>
-            <Thickness x:Key="ItemMargin">10,8,10,8</Thickness>
-            <Thickness x:Key="SubItemMargin">50,8,10,8</Thickness>
+            <Style TargetType="pctrls:CheckBoxEx" BasedOn="{StaticResource SettingsSectionCheckbox}" />
         </StackPanel.Resources>
 
         <TextBlock Text="{DynamicResource LOCSettingsShowItemsMainMenuHeader}"
-                   Style="{StaticResource TextBlockBaseStyle}"
-                   Margin="{StaticResource ItemMargin}" />
-
-        <pctrls:CheckBoxEx x:Name="ToggleShutdownSystem"
-                           pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                            Margin="{StaticResource SubItemMargin}"
-                            Style="{DynamicResource CheckBoxSettings}"
-                            Content="{DynamicResource LOCMenuShutdownSystem}"  />
-
-        <pctrls:CheckBoxEx x:Name="ToggleRestartSystem"
-                                            Margin="{StaticResource SubItemMargin}"
-                                            Style="{DynamicResource CheckBoxSettings}"
-                                            Content="{DynamicResource LOCMenuRestartSystem}"  />
-
-        <pctrls:CheckBoxEx x:Name="ToggleSuspendSystem"
-                                            Margin="{StaticResource SubItemMargin}"
-                                            Style="{DynamicResource CheckBoxSettings}"
-                                            Content="{DynamicResource LOCMenuSuspendSystem}"  />
-
-        <pctrls:CheckBoxEx x:Name="ToggleHibernateSystem"
-                                            Margin="{StaticResource SubItemMargin}"
-                                            Style="{StaticResource CheckBoxSettings}"
-                                            Content="{DynamicResource LOCMenuHibernateSystem}"  />
+                   Style="{StaticResource SettingsSectionText}" />
+        <StackPanel Margin="50,0,0,0">
+            <pctrls:CheckBoxEx x:Name="ToggleShutdownSystem" Content="{DynamicResource LOCMenuShutdownSystem}"
+                           pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+            <pctrls:CheckBoxEx x:Name="ToggleRestartSystem" Content="{DynamicResource LOCMenuRestartSystem}"  />
+            <pctrls:CheckBoxEx x:Name="ToggleSuspendSystem" Content="{DynamicResource LOCMenuSuspendSystem}"  />
+            <pctrls:CheckBoxEx x:Name="ToggleHibernateSystem" Content="{DynamicResource LOCMenuHibernateSystem}"  />
+        </StackPanel>
     </StackPanel>
 </UserControl>
