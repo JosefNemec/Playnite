@@ -633,22 +633,18 @@ namespace Playnite.FullscreenApp.Controls
 
         public void MouseWheelDown()
         {
-            LineDown();
         }
 
         public void MouseWheelLeft()
         {
-            LineLeft();
         }
 
         public void MouseWheelRight()
         {
-            LineRight();
         }
 
         public void MouseWheelUp()
         {
-            LineUp();
         }
 
         public void PageLeft()

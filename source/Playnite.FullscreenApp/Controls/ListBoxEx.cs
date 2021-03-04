@@ -25,6 +25,40 @@ namespace Playnite.FullscreenApp.Controls
             GotFocus += ListBoxEx_GotFocus;
             Loaded += ListBoxEx_Loaded;
             Unloaded += ListBoxEx_Unloaded;
+            PreviewMouseWheel += ListBoxEx_MouseWheel;
+        }
+
+        private void ListBoxEx_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (itemsPanel == null)
+            {
+                return;
+            }
+
+            if (e.Delta < 0)
+            {
+                var eventArgs = new KeyEventArgs(
+                    InputManager.Current.PrimaryKeyboardDevice,
+                    Keyboard.PrimaryDevice.ActiveSource,
+                    e.Timestamp,
+                    itemsPanel.UseHorizontalLayout ? Key.Right : Key.Down);
+                eventArgs.RoutedEvent = Keyboard.KeyDownEvent;
+                OnKeyDown(eventArgs);
+                eventArgs.RoutedEvent = Keyboard.KeyUpEvent;
+                OnKeyUp(eventArgs);
+            }
+            else
+            {
+                var eventArgs = new KeyEventArgs(
+                    InputManager.Current.PrimaryKeyboardDevice,
+                    Keyboard.PrimaryDevice.ActiveSource,
+                    e.Timestamp,
+                    itemsPanel.UseHorizontalLayout ? Key.Left : Key.Up);
+                eventArgs.RoutedEvent = Keyboard.KeyDownEvent;
+                OnKeyDown(eventArgs);
+                eventArgs.RoutedEvent = Keyboard.KeyUpEvent;
+                OnKeyUp(eventArgs);
+            }
         }
 
         private void ListBoxEx_Unloaded(object sender, RoutedEventArgs e)
