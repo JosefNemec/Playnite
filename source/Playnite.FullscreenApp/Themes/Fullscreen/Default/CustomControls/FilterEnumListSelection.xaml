@@ -6,7 +6,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type FilterEnumListSelection}">
-                    <DockPanel Width="{StaticResource FilterPanelWidth}"
+                    <DockPanel Width="{DynamicResource FilterPanelWidth}"
                                Background="{DynamicResource OverlayMenuBackgroundBrush}"
                                x:Name="PART_MenuHost">
                         <DockPanel.Resources>
