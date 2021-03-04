@@ -57,6 +57,16 @@ namespace Playnite
         Statistics
     }
 
+    public enum ImageLoadScaling
+    {
+        [Description(LOC.SettingsImageScalingNone)]
+        None,
+        [Description(LOC.SettingsImageScalingBalanced)]
+        BitmapDotNet,
+        [Description(LOC.SettingsImageScalingQuality)]
+        Custom
+    }
+
     public enum TrayIconType
     {
         [Description("TrayIcon")]
@@ -1581,6 +1591,17 @@ namespace Playnite
             set
             {
                 selectedFilterPreset = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ImageLoadScaling imageScalerMode = ImageLoadScaling.BitmapDotNet;
+        public ImageLoadScaling ImageScalerMode
+        {
+            get => imageScalerMode;
+            set
+            {
+                imageScalerMode = value;
                 OnPropertyChanged();
             }
         }

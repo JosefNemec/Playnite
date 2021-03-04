@@ -3373,5 +3373,25 @@ namespace Playnite
         /// {0} is running…
         /// </summary>
         public const string GameIsRunning = "LOCGameIsRunning";
+        /// <summary>
+        /// Caps
+        /// </summary>
+        public const string TextInputCapitalize = "LOCTextInputCapitalize";
+        /// <summary>
+        /// Image scaler mode
+        /// </summary>
+        public const string SettingsImageScalerMode = "LOCSettingsImageScalerMode";
+        /// <summary>
+        /// None
+        /// </summary>
+        public const string SettingsImageScalingNone = "LOCSettingsImageScalingNone";
+        /// <summary>
+        /// Balanced
+        /// </summary>
+        public const string SettingsImageScalingBalanced = "LOCSettingsImageScalingBalanced";
+        /// <summary>
+        /// Quality
+        /// </summary>
+        public const string SettingsImageScalingQuality = "LOCSettingsImageScalingQuality";
     }
 }

@@ -196,7 +196,8 @@ namespace Playnite
                 gridViewCoverProperties = new BitmapLoadProperties(
                     Convert.ToInt32(settings.GridItemWidth),
                     0,
-                    application.DpiScale);
+                    application.DpiScale,
+                    settings.ImageScalerMode);
             }
 
             if (application != null)
@@ -204,7 +205,8 @@ namespace Playnite
                 backgroundImageProperties = new BitmapLoadProperties(
                     application.CurrentScreen.WorkingArea.Width,
                     0,
-                    application.DpiScale);
+                    application.DpiScale,
+                    settings.ImageScalerMode);
             }
 
             LibraryPlugin = plugin;
@@ -229,14 +231,25 @@ namespace Playnite
 
                 if (e.PropertyName == nameof(PlayniteSettings.GridItemWidth) ||
                     e.PropertyName == nameof(PlayniteSettings.CoverAspectRatio) ||
-                    e.PropertyName == nameof(PlayniteSettings.CoverArtStretch))
+                    e.PropertyName == nameof(PlayniteSettings.CoverArtStretch) ||
+                    e.PropertyName == nameof(PlayniteSettings.ImageScalerMode))
                 {
                     gridViewCoverProperties = new BitmapLoadProperties(
                         Convert.ToInt32(settings.GridItemWidth),
                         0,
-                        PlayniteApplication.Current.DpiScale);
+                        PlayniteApplication.Current.DpiScale,
+                        settings.ImageScalerMode);
                     OnPropertyChanged(nameof(GridViewCoverObjectCached));
                     OnPropertyChanged(nameof(DefaultGridViewCoverObjectCached));
+                }
+
+                if (e.PropertyName == nameof(PlayniteSettings.ImageScalerMode))
+                {
+                    backgroundImageProperties = new BitmapLoadProperties(
+                        application.CurrentScreen.WorkingArea.Width,
+                        0,
+                        application.DpiScale,
+                        settings.ImageScalerMode);
                 }
             }
         }
@@ -426,7 +439,7 @@ namespace Playnite
                 }
                 else
                 {
-                    return new BitmapLoadProperties(loadProperties.MaxDecodePixelWidth, 0, loadProperties.DpiScale)
+                    return new BitmapLoadProperties(loadProperties.MaxDecodePixelWidth, 0, loadProperties.DpiScale, loadProperties.Scaling)
                     {
                         Source = imagePath
                     };
