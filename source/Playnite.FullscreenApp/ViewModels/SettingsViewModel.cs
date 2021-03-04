@@ -127,7 +127,12 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void PreviewGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
         {
-            if (e.NewFocus is FrameworkElement frm)
+            if (e.NewFocus is ComboBoxItem comboItem)
+            {
+                var cb = ItemsControl.ItemsControlFromItemContainer(comboItem) as ComboBox;
+                OptionDescription = cb?.Tag?.ToString();
+            }
+            else if (e.NewFocus is FrameworkElement frm)
             {
                 OptionDescription = frm.Tag?.ToString();
             }

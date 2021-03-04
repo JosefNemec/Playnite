@@ -944,9 +944,16 @@ Disable in you use tools that translate XInput inputs to mouse/keyboards inputs 
     <sys:String x:Key="LOCGameIsStarting">{0} is starting…</sys:String>
     <sys:String x:Key="LOCGameIsRunning">{0} is running…</sys:String>
     <sys:String x:Key="LOCTextInputCapitalize">Caps</sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerMode">Image scaler mode</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode">Image rendering scaler</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">Alternative</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced">Balanced</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingQuality">Quality</sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerModeTooltip">Image scaler mode</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve">Quality:
+Best image quality, slow, high memory usage.
+    
+Balanced:
+Good quality, fast, low memory usage.
+    
+Alternative:
+Better quality, medium speed, low memory usage.</sys:String>
 </ResourceDictionary>

@@ -36,7 +36,9 @@
                   ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                   Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
                   Margin="0,15,0,0"/>
-        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0"
+                    ToolTip="{DynamicResource LOCSettingsImageScalerModeTooltip}"
+                    ToolTipService.InitialShowDelay="0">
             <TextBlock VerticalAlignment="Center" Text="{DynamicResource LOCSettingsImageScalerMode}" />
             <ComboBox Margin="10,0,0,0" MinWidth="100"
                       SelectedValue="{Binding Settings.ImageScalerMode}"
