@@ -79,7 +79,7 @@ namespace TestPlugin
 
         public override void OnGameSelected(GameSelectionEventArgs args)
         {
-            logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?[0].Name}");
+            //logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?[0].Name}");
         }
 
         private async void CrashTest()
