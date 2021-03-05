@@ -84,6 +84,10 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
         public RelayCommand<SidebarWrapperItem> SelectSidebarViewCommand { get; private set; }
 
+        public RelayCommand<object> SwitchDetailsViewCommand { get; private set; }
+        public RelayCommand<object> SwitchGridViewCommand { get; private set; }
+        public RelayCommand<object> SwitchListViewCommand { get; private set; }
+
         private void InitializeCommands()
         {
             OpenSearchCommand = new RelayCommand<object>((game) =>
@@ -570,6 +574,10 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 a.Command.Execute(null);
             });
+
+            SwitchDetailsViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.Details);
+            SwitchGridViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.Grid);
+            SwitchListViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.List);
         }
     }
 }

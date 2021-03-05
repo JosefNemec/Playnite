@@ -30,6 +30,12 @@
                   Content="{DynamicResource LOCSettingsTopPanelSortingItem}" Margin="0,15,0,0" />
         <CheckBox IsChecked="{Binding Settings.ShowTopPanelFilterPresetsItem}"
                   Content="{DynamicResource LOCSettingsTopPanelFilterPresetsItem}" Margin="0,15,0,0" />
+        <CheckBox IsChecked="{Binding Settings.ShowTopPanelDetailsViewSwitch}"
+                  Content="{DynamicResource LOCDetailsViewLabel}" Margin="0,15,0,0" />
+        <CheckBox IsChecked="{Binding Settings.ShowTopPanelGridViewSwitch}"
+                  Content="{DynamicResource LOCGridViewLabel}" Margin="0,15,0,0" />
+        <CheckBox IsChecked="{Binding Settings.ShowTopPanelListViewSwitch}"
+                  Content="{DynamicResource LOCListViewLabel}" Margin="0,15,0,0" />
 
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCTopPanelPluginPanelPosition}"

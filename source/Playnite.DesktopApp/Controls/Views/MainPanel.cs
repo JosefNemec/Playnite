@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 using BooleanToVisibilityConverter = System.Windows.Controls.BooleanToVisibilityConverter;
 
 namespace Playnite.DesktopApp.Controls.Views
@@ -45,6 +46,13 @@ namespace Playnite.DesktopApp.Controls.Views
         private Button ButtonGroupSettings;
         private Button ButtonSortSettings;
         private Button ButtonFilterPresets;
+
+        private Button ButtonSwitchDetailsView;
+        private Button ButtonSwitchGridView;
+        private Button ButtonSwitchListView;
+
+        private Canvas LeftViewSeparator = new Canvas();
+        private Canvas RightViewSeparator = new Canvas();
 
         static MainPanel()
         {
@@ -94,6 +102,14 @@ namespace Playnite.DesktopApp.Controls.Views
             ButtonGroupSettings.Visibility = mainModel.AppSettings.ShowTopPanelGroupingItem ? Visibility.Visible : Visibility.Collapsed;
             ButtonSortSettings.Visibility = mainModel.AppSettings.ShowTopPanelSortingItem ? Visibility.Visible : Visibility.Collapsed;
             ButtonFilterPresets.Visibility = mainModel.AppSettings.ShowTopPanelFilterPresetsItem ? Visibility.Visible : Visibility.Collapsed;
+
+            ButtonSwitchDetailsView.Visibility = mainModel.AppSettings.ShowTopPanelDetailsViewSwitch ? Visibility.Visible : Visibility.Collapsed;
+            ButtonSwitchGridView.Visibility = mainModel.AppSettings.ShowTopPanelGridViewSwitch ? Visibility.Visible : Visibility.Collapsed;
+            ButtonSwitchListView.Visibility = mainModel.AppSettings.ShowTopPanelListViewSwitch ? Visibility.Visible : Visibility.Collapsed;
+
+            var showSeparators = ButtonSwitchDetailsView.Visibility == Visibility.Visible || ButtonSwitchGridView.Visibility == Visibility.Visible || ButtonSwitchListView.Visibility == Visibility.Visible;
+            LeftViewSeparator.Visibility = showSeparators ? Visibility.Visible : Visibility.Collapsed;
+            RightViewSeparator.Visibility = showSeparators ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private Button AssignPanelButton(string contentTemplate, ContextMenu menu, string tooltip)
@@ -105,6 +121,16 @@ namespace Playnite.DesktopApp.Controls.Views
             menu.SetResourceReference(ContextMenu.StyleProperty, "MainPanelMenu");
             button.ContextMenu = menu;
             button.ToolTip = ResourceProvider.GetString(tooltip);
+            return button;
+        }
+
+        private Button AssignPanelButton(string contentTemplate, ICommand command, string tooltip)
+        {
+            var button = new Button();
+            button.SetResourceReference(Button.ContentTemplateProperty, contentTemplate);
+            button.SetResourceReference(Button.StyleProperty, "MainPanelButton");
+            button.Command = command;
+            button.ToolTip = tooltip;
             return button;
         }
 
@@ -129,6 +155,16 @@ namespace Playnite.DesktopApp.Controls.Views
                 PanelMainItems.Children.Add(ButtonFilterPresets = AssignPanelButton("FilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.TopPanelFilterPresets));
                 PanelMainItems.Children.Add(ButtonGroupSettings = AssignPanelButton("GroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings));
                 PanelMainItems.Children.Add(ButtonSortSettings = AssignPanelButton("SortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings));
+
+                var separatorWidth = ResourceProvider.GetResource<double>("TopPanelSectionSeparatorWidth");
+                LeftViewSeparator.Width = separatorWidth;
+                RightViewSeparator.Width = separatorWidth;
+                PanelMainItems.Children.Add(LeftViewSeparator);
+                PanelMainItems.Children.Add(ButtonSwitchDetailsView = AssignPanelButton("SwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription()));
+                PanelMainItems.Children.Add(ButtonSwitchGridView = AssignPanelButton("SwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription()));
+                PanelMainItems.Children.Add(ButtonSwitchListView = AssignPanelButton("SwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription()));
+                PanelMainItems.Children.Add(RightViewSeparator);
+
                 SetButtonVisibility();
             }
 

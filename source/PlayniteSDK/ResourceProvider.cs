@@ -49,5 +49,16 @@ namespace Playnite.SDK
         {
             return Application.Current?.TryFindResource(key);
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static T GetResource<T>(string key)
+        {
+            return (T)Application.Current?.TryFindResource(key);
+        }
     }
 }

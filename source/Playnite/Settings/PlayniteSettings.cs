@@ -1558,6 +1558,39 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelDetailsViewSwitch = false;
+        public bool ShowTopPanelDetailsViewSwitch
+        {
+            get => showTopPanelDetailsViewSwitch;
+            set
+            {
+                showTopPanelDetailsViewSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelGridViewSwitch = false;
+        public bool ShowTopPanelGridViewSwitch
+        {
+            get => showTopPanelGridViewSwitch;
+            set
+            {
+                showTopPanelGridViewSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelListViewSwitch = false;
+        public bool ShowTopPanelListViewSwitch
+        {
+            get => showTopPanelListViewSwitch;
+            set
+            {
+                showTopPanelListViewSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Dock pluginTopPanelAlignment = Dock.Right;
         public Dock PluginTopPanelAlignment
         {
