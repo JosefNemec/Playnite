@@ -368,6 +368,10 @@ namespace Playnite.Toolbox
                 defaultThemeXamlFiles.Add(val.Replace('/', '\\'));
             }
 
+            // Remove resources that should not be part of the theme
+            var hidden = appXaml.Descendants().FirstOrDefault(a => a.Attribute("Source")?.Value == "HiddenStyles.xaml");
+            hidden?.Remove();
+
             // Change localization file reference
             var langElem = appXaml.Descendants().First(a => a.Attribute("Source")?.Value.EndsWith(PlaynitePaths.EngLocSourceFileName) == true);
             langElem.Attribute("Source").Value = PlaynitePaths.EngLocSourceFileName;

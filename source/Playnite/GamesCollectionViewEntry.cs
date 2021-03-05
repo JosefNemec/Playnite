@@ -193,35 +193,30 @@ namespace Playnite
         public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings)
         {
             application = PlayniteApplication.Current;
-            if (application == null)
-            {
-                logger.Error("Creating GamesCollectionViewEntry with no application running.");
-                return;
-            }
-
             this.settings = settings;
             settings.PropertyChanged += Settings_PropertyChanged;
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
-            // Use optimized rendering only for Desktop mode where we know pixel perfect data
-            if (application.Mode == ApplicationMode.Desktop)
-            {
-                detailsListIconProperties = new BitmapLoadProperties(
-                    0,
-                    Convert.ToInt32(settings.DetailsViewListIconSize),
-                    application.DpiScale);
-                gridViewCoverProperties = new BitmapLoadProperties(
-                    Convert.ToInt32(settings.GridItemWidth),
-                    0,
-                    application.DpiScale,
-                    settings.ImageScalerMode);
-            }
-            else
-            {
-                fullscreenListCoverProperties = GetFullscreenItemRenderSettings();
-            }
 
-            if (application != null)
+            if (application != null) // Null happens when running in XAML design view
             {
+                // Use optimized rendering only for Desktop mode where we know pixel perfect data
+                if (application.Mode == ApplicationMode.Desktop)
+                {
+                    detailsListIconProperties = new BitmapLoadProperties(
+                        0,
+                        Convert.ToInt32(settings.DetailsViewListIconSize),
+                        application.DpiScale);
+                    gridViewCoverProperties = new BitmapLoadProperties(
+                        Convert.ToInt32(settings.GridItemWidth),
+                        0,
+                        application.DpiScale,
+                        settings.ImageScalerMode);
+                }
+                else
+                {
+                    fullscreenListCoverProperties = GetFullscreenItemRenderSettings();
+                }
+
                 backgroundImageProperties = new BitmapLoadProperties(
                     application.CurrentScreen.WorkingArea.Width,
                     0,
@@ -237,6 +232,11 @@ namespace Playnite
 
         private BitmapLoadProperties GetFullscreenItemRenderSettings()
         {
+            if (application == null)
+            {
+                return null;
+            }
+
             var dpi = application.DpiScale;
             var properties = new BitmapLoadProperties(0, 0, null, settings.Fullscreen.ImageScalerMode);
             if (settings.Fullscreen.HorizontalLayout)

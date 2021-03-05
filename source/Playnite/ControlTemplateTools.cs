@@ -24,6 +24,11 @@ namespace Playnite
             object contextSource,
             string contextPath)
         {
+            if (DesignerTools.IsInDesignMode)
+            {
+                return;
+            }
+
             foreach (var p in extensions.CustomElementList)
             {
                 foreach (var elemName in p.ElementList)
