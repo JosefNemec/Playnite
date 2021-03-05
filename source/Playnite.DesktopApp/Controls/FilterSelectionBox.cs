@@ -194,7 +194,8 @@ namespace Playnite.DesktopApp.Controls
                     this,
                     nameof(FullTextText),
                     delay: 200,
-                    trigger: System.Windows.Data.UpdateSourceTrigger.PropertyChanged);
+                    trigger: System.Windows.Data.UpdateSourceTrigger.PropertyChanged,
+                    mode: BindingMode.TwoWay);
                 BindingTools.SetBinding(
                     TextFilterInput,
                     TextBox.VisibilityProperty,
