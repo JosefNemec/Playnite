@@ -1063,21 +1063,6 @@ namespace Playnite
             }
         }
 
-        private bool showSteamFriendsButton = true;
-        public bool ShowSteamFriendsButton
-        {
-            get
-            {
-                return showSteamFriendsButton;
-            }
-
-            set
-            {
-                showSteamFriendsButton = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool startMinimized = false;
         public bool StartMinimized
         {

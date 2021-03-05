@@ -96,9 +96,6 @@
             </ComboBox>
         </controls:GridEx>
 
-        <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
-                  Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
-
         <CheckBox Content="{DynamicResource LOCSettingsHiddenInQuickLaunch}" Margin="0,15,0,0"
                   ToolTip="{DynamicResource LOCSettingsHiddenInQuickLaunchTooltip}"
                   IsChecked="{Binding Settings.ShowHiddenInQuickLaunch}"/>
