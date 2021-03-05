@@ -555,7 +555,7 @@ namespace Playnite
             }
         }
 
-        private ImageLoadScaling imageScalerMode = ImageLoadScaling.Custom;
+        private ImageLoadScaling imageScalerMode = ImageLoadScaling.BitmapDotNet;
         public ImageLoadScaling ImageScalerMode
         {
             get => imageScalerMode;

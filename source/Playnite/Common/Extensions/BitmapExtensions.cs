@@ -25,6 +25,10 @@ namespace System.Drawing.Imaging
         public DpiScale? DpiScale { get; set; }
         public int MaxDecodePixelWidth { get; set; } = 0;
         public int MaxDecodePixelHeight { get; set; } = 0;
+        public int DpiAwareMaxDecodePixelWidth =>
+            DpiScale == null ? MaxDecodePixelWidth : (int)Math.Round(MaxDecodePixelWidth * DpiScale.Value.DpiScaleX);
+        public int DpiAwareMaxDecodePixelHeight =>
+            DpiScale == null ? MaxDecodePixelHeight : (int)Math.Round(MaxDecodePixelHeight * DpiScale.Value.DpiScaleY);
         public string Source { get; set; }
 
         public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight)
@@ -208,26 +212,12 @@ namespace System.Drawing.Imaging
                     {
                         if (loadProperties?.MaxDecodePixelWidth > 0 && properties?.Width > loadProperties?.MaxDecodePixelWidth)
                         {
-                            if (loadProperties.DpiScale != null)
-                            {
-                                bitmap.DecodePixelWidth = (int)Math.Round(loadProperties.MaxDecodePixelWidth * loadProperties.DpiScale.Value.DpiScaleX);
-                            }
-                            else
-                            {
-                                bitmap.DecodePixelWidth = loadProperties.MaxDecodePixelWidth;
-                            }
+                            bitmap.DecodePixelWidth = loadProperties.DpiAwareMaxDecodePixelWidth;
                         }
 
                         if (loadProperties?.MaxDecodePixelHeight > 0 && properties?.Height > loadProperties?.MaxDecodePixelHeight)
                         {
-                            if (loadProperties.DpiScale != null)
-                            {
-                                bitmap.DecodePixelHeight = Convert.ToInt32(loadProperties.MaxDecodePixelHeight * loadProperties.DpiScale.Value.DpiScaleY);
-                            }
-                            else
-                            {
-                                bitmap.DecodePixelHeight = loadProperties.MaxDecodePixelHeight;
-                            }
+                            bitmap.DecodePixelHeight = loadProperties.DpiAwareMaxDecodePixelHeight;
                         }
 
                         if (bitmap.DecodePixelHeight != 0 && bitmap.DecodePixelWidth == 0)
@@ -249,12 +239,12 @@ namespace System.Drawing.Imaging
 
                         if (loadProperties.MaxDecodePixelWidth > 0 && properties?.Width > loadProperties?.MaxDecodePixelWidth)
                         {
-                            settings.Width = loadProperties.MaxDecodePixelWidth;
+                            settings.Width = loadProperties.DpiAwareMaxDecodePixelWidth;
                         }
 
                         if (loadProperties.MaxDecodePixelHeight > 0 && properties?.Height > loadProperties?.MaxDecodePixelHeight)
                         {
-                            settings.Height = loadProperties.MaxDecodePixelHeight;
+                            settings.Height = loadProperties.DpiAwareMaxDecodePixelHeight;
                         }
 
                         tempStream = new MemoryStream();
