@@ -107,6 +107,7 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Add(new Separator());
             AddMenuChild(Items, "LOCOpenPlaynite", mainModel.ShowWindowCommand);
+            AddMenuChild(Items, "LOCMenuOpenFullscreen", mainModel.OpenFullScreenCommand);
 
             var openClientItem = AddMenuChild(Items, "LOCMenuClients", null);
             foreach (var tool in mainModel.ThirdPartyTools)
