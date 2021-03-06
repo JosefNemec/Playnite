@@ -106,6 +106,18 @@ namespace Playnite.SDK
         void StartGame(Guid gameId);
 
         /// <summary>
+        /// Installs game.
+        /// </summary>
+        /// <param name="gameId">Game's database ID.</param>
+        void InstallGame(Guid gameId);
+
+        /// <summary>
+        /// Uninstalls game.
+        /// </summary>
+        /// <param name="gameId">Game's database ID.</param>
+        void UninstallGame(Guid gameId);
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="source"></param>

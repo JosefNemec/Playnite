@@ -28,5 +28,11 @@ namespace Playnite.SDK
         /// Switches Playnite to Library view.
         /// </summary>
         void SwitchToLibraryView();
+
+        /// <summary>
+        /// Selects game.
+        /// </summary>
+        /// <param name="gameId">Game's database ID.</param>
+        void SelectGame(Guid gameId);
     }
 }

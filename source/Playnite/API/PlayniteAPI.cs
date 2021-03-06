@@ -18,6 +18,7 @@ namespace Playnite.API
 {
     public class PlayniteAPI : IPlayniteAPI
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private readonly GamesEditor gameEditor;
         private readonly ExtensionFactory extensions;
 
@@ -101,11 +102,37 @@ namespace Playnite.API
             var game = Database.Games.Get(gameId);
             if (game == null)
             {
-                throw new Exception($"Can't start game, game ID {gameId} not found.");
+                logger.Error($"Can't start game, game ID {gameId} not found.");
             }
             else
             {
                 gameEditor.PlayGame(game);
+            }
+        }
+
+        public void InstallGame(Guid gameId)
+        {
+            var game = Database.Games.Get(gameId);
+            if (game == null)
+            {
+                logger.Error($"Can't install game, game ID {gameId} not found.");
+            }
+            else
+            {
+                gameEditor.InstallGame(game);
+            }
+        }
+
+        public void UninstallGame(Guid gameId)
+        {
+            var game = Database.Games.Get(gameId);
+            if (game == null)
+            {
+                logger.Error($"Can't uninstall game, game ID {gameId} not found.");
+            }
+            else
+            {
+                gameEditor.UnInstallGame(game);
             }
         }
 

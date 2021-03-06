@@ -12,6 +12,7 @@ namespace Playnite.FullscreenApp.API
 {
     public class MainViewAPI : IMainViewAPI
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private FullscreenAppViewModel mainModel;
 
         public IEnumerable<Game> SelectedGames
@@ -42,6 +43,19 @@ namespace Playnite.FullscreenApp.API
         public void SwitchToLibraryView()
         {
             throw new NotSupportedException("Not supported in Fullscreen mode.");
+        }
+
+        public void SelectGame(Guid gameId)
+        {
+            var game = mainModel.Database.Games.Get(gameId);
+            if (game == null)
+            {
+                logger.Error($"Can't select game, game ID {gameId} not found.");
+            }
+            else
+            {
+                mainModel.SelectGame(game.Id);
+            }
         }
     }
 }
