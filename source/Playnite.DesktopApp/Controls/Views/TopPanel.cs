@@ -29,7 +29,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonProgressCancel", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_PanelMainItems", Type = typeof(Panel))]
     [TemplatePart(Name = "PART_PanelMainPluginItems", Type = typeof(Panel))]
-    public class MainPanel : Control
+    public class TopPanel : Control
     {
         private readonly DesktopAppViewModel mainModel;
         private FrameworkElement ElemMainMenu;
@@ -54,16 +54,16 @@ namespace Playnite.DesktopApp.Controls.Views
         private Canvas LeftViewSeparator = new Canvas();
         private Canvas RightViewSeparator = new Canvas();
 
-        static MainPanel()
+        static TopPanel()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(MainPanel), new FrameworkPropertyMetadata(typeof(MainPanel)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(TopPanel), new FrameworkPropertyMetadata(typeof(TopPanel)));
         }
 
-        public MainPanel() : this(DesktopApplication.Current?.MainModel)
+        public TopPanel() : this(DesktopApplication.Current?.MainModel)
         {
         }
 
-        public MainPanel(DesktopAppViewModel mainModel)
+        public TopPanel(DesktopAppViewModel mainModel)
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
@@ -74,16 +74,16 @@ namespace Playnite.DesktopApp.Controls.Views
                 this.mainModel = mainModel;
             }
 
-            Loaded += MainPanel_Loaded;
-            Unloaded += MainPanel_Unloaded;
+            Loaded += TopPanel_Loaded;
+            Unloaded += TopPanel_Unloaded;
         }
 
-        private void MainPanel_Loaded(object sender, RoutedEventArgs e)
+        private void TopPanel_Loaded(object sender, RoutedEventArgs e)
         {
             mainModel.AppSettings.PropertyChanged += AppSettings_PropertyChanged;
         }
 
-        private void MainPanel_Unloaded(object sender, RoutedEventArgs e)
+        private void TopPanel_Unloaded(object sender, RoutedEventArgs e)
         {
             mainModel.AppSettings.PropertyChanged -= AppSettings_PropertyChanged;
         }
@@ -116,9 +116,9 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             var button = new Button();
             button.SetResourceReference(Button.ContentTemplateProperty, contentTemplate);
-            button.SetResourceReference(Button.StyleProperty, "MainPanelButton");
+            button.SetResourceReference(Button.StyleProperty, "TopPanelButton");
             LeftClickContextMenuBehavior.SetEnabled(button, true);
-            menu.SetResourceReference(ContextMenu.StyleProperty, "MainPanelMenu");
+            menu.SetResourceReference(ContextMenu.StyleProperty, "TopPanelMenu");
             button.ContextMenu = menu;
             button.ToolTip = ResourceProvider.GetString(tooltip);
             return button;
@@ -128,7 +128,7 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             var button = new Button();
             button.SetResourceReference(Button.ContentTemplateProperty, contentTemplate);
-            button.SetResourceReference(Button.StyleProperty, "MainPanelButton");
+            button.SetResourceReference(Button.StyleProperty, "TopPanelButton");
             button.Command = command;
             button.ToolTip = tooltip;
             return button;
@@ -137,7 +137,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private Button AssignPluginButton(TopPanelItem item)
         {
             var button = new Button();
-            button.SetResourceReference(Button.StyleProperty, "MainPanelButton");
+            button.SetResourceReference(Button.StyleProperty, "TopPanelButton");
             button.Content = item.Icon;
             button.Command = new RelayCommand<object>((_) => item.Action());
             button.ToolTip = item.ToolTip;
@@ -151,18 +151,18 @@ namespace Playnite.DesktopApp.Controls.Views
             PanelMainItems = Template.FindName("PART_PanelMainItems", this) as Panel;
             if (PanelMainItems != null)
             {
-                PanelMainItems.Children.Add(ButtonViewSettings = AssignPanelButton("GeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.TopPanelViewSettings));
-                PanelMainItems.Children.Add(ButtonFilterPresets = AssignPanelButton("FilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.TopPanelFilterPresets));
-                PanelMainItems.Children.Add(ButtonGroupSettings = AssignPanelButton("GroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings));
-                PanelMainItems.Children.Add(ButtonSortSettings = AssignPanelButton("SortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings));
+                PanelMainItems.Children.Add(ButtonViewSettings = AssignPanelButton("TopPanelGeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.TopPanelViewSettings));
+                PanelMainItems.Children.Add(ButtonFilterPresets = AssignPanelButton("TopPanelFilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.TopPanelFilterPresets));
+                PanelMainItems.Children.Add(ButtonGroupSettings = AssignPanelButton("TopPanelGroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings));
+                PanelMainItems.Children.Add(ButtonSortSettings = AssignPanelButton("TopPanelSortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings));
 
                 var separatorWidth = ResourceProvider.GetResource<double>("TopPanelSectionSeparatorWidth");
                 LeftViewSeparator.Width = separatorWidth;
                 RightViewSeparator.Width = separatorWidth;
                 PanelMainItems.Children.Add(LeftViewSeparator);
-                PanelMainItems.Children.Add(ButtonSwitchDetailsView = AssignPanelButton("SwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription()));
-                PanelMainItems.Children.Add(ButtonSwitchGridView = AssignPanelButton("SwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription()));
-                PanelMainItems.Children.Add(ButtonSwitchListView = AssignPanelButton("SwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription()));
+                PanelMainItems.Children.Add(ButtonSwitchDetailsView = AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription()));
+                PanelMainItems.Children.Add(ButtonSwitchGridView = AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription()));
+                PanelMainItems.Children.Add(ButtonSwitchListView = AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription()));
                 PanelMainItems.Children.Add(RightViewSeparator);
 
                 SetButtonVisibility();
@@ -189,7 +189,7 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 LeftClickContextMenuBehavior.SetEnabled(ElemMainMenu, true);
                 ElemMainMenu.ContextMenu = new MainMenu(mainModel);
-                ElemMainMenu.ContextMenu.SetResourceReference(ContextMenu.StyleProperty, "MainPanelMenu");
+                ElemMainMenu.ContextMenu.SetResourceReference(ContextMenu.StyleProperty, "TopPanelMenu");
 
                 BindingTools.SetBinding(ElemMainMenu,
                     FrameworkElement.VisibilityProperty,

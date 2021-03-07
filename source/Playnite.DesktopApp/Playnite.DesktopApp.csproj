@@ -253,7 +253,7 @@
     <Compile Include="Controls\Views\NotificationPanel.cs" />
     <Compile Include="Controls\Views\Sidebar.cs" />
     <Compile Include="Controls\Views\MainWindow.cs" />
-    <Compile Include="Controls\Views\MainPanel.cs" />
+    <Compile Include="Controls\Views\TopPanel.cs" />
     <Compile Include="Controls\SliderEx.cs" />
     <Compile Include="DesktopApplication.cs" />
     <Compile Include="DesktopCollectionView.cs" />
@@ -493,7 +493,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\Views\MainPanel.xaml">
+    <Content Include="Themes\Desktop\Default\Views\TopPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

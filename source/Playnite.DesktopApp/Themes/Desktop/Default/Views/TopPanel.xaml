@@ -5,49 +5,49 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
 
-    <DataTemplate x:Key="GeneralViewSettingsTemplate">
+    <DataTemplate x:Key="TopPanelGeneralViewSettingsTemplate">
         <TextBlock Text="⋯" FontSize="26" 
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="FilterPresetsSelectionTemplate">
+    <DataTemplate x:Key="TopPanelFilterPresetsSelectionTemplate">
         <TextBlock Text="&#xeec0;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="GroupSettingsTemplate">
+    <DataTemplate x:Key="TopPanelGroupSettingsTemplate">
         <TextBlock Text="&#xee03;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="SortSettingsTemplate">
+    <DataTemplate x:Key="TopPanelSortSettingsTemplate">
         <TextBlock Text="&#xefee;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="ViewSelectionTemplate">
+    <DataTemplate x:Key="TopPanelViewSelectionTemplate">
         <TextBlock Text="&#xeec0;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="SwitchDetailsViewTemplate">
+    <DataTemplate x:Key="TopPanelSwitchDetailsViewTemplate">
         <TextBlock Text="&#xE145;" FontFamily="Segoe UI Symbol" FontSize="20"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="SwitchGridViewTemplate">
+    <DataTemplate x:Key="TopPanelSwitchGridViewTemplate">
         <TextBlock Text="&#xE138;" FontFamily="Segoe UI Symbol" FontSize="20"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="SwitchListViewTemplate">
+    <DataTemplate x:Key="TopPanelSwitchListViewTemplate">
         <TextBlock Text="&#xE14C;" FontFamily="Segoe UI Symbol" FontSize="20"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -55,7 +55,7 @@
 
     <sys:Double x:Key="TopPanelSectionSeparatorWidth">10</sys:Double>
 
-    <Style x:Key="MainPanelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+    <Style x:Key="TopPanelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Width" Value="35" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="Margin" Value="8,0,0,0" />
@@ -65,7 +65,7 @@
         <Setter Property="Padding" Value="0" />
     </Style>
 
-    <Style x:Key="MainPanelMenu" TargetType="{x:Type ContextMenu}">
+    <Style x:Key="TopPanelMenu" TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
@@ -83,11 +83,11 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style TargetType="{x:Type MainPanel}">
+
+    <Style TargetType="{x:Type TopPanel}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MainPanel}">
+                <ControlTemplate TargetType="{x:Type TopPanel}">
                     <Border Height="50" BorderBrush="{DynamicResource PanelSeparatorBrush}"
                             Background="{TemplateBinding Background}"
                             d:DesignWidth="1280"
