@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.Toolbox", "Tools\Playnite.Toolbox\Playnite.Toolbox.csproj", "{9C73C47E-64C2-4691-A602-A8463185E232}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.Toolbox.Tests", "Tests\Playnite.Toolbox.Tests\Playnite.Toolbox.Tests.csproj", "{256026D4-A05D-438C-BD11-2D3FBADB2B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playnite.Utilities", "Tools\Playnite.Utilities\Playnite.Utilities.csproj", "{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +129,14 @@ Global
 		{256026D4-A05D-438C-BD11-2D3FBADB2B4C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{256026D4-A05D-438C-BD11-2D3FBADB2B4C}.Release|x86.ActiveCfg = Release|Any CPU
 		{256026D4-A05D-438C-BD11-2D3FBADB2B4C}.Release|x86.Build.0 = Release|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Debug|x86.Build.0 = Debug|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Release|x86.ActiveCfg = Release|Any CPU
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +150,7 @@ Global
 		{AEDEC1D7-8C49-4A54-B265-F595CFD89247} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 		{9C73C47E-64C2-4691-A602-A8463185E232} = {214A3A6E-C961-405E-8F5E-96314B672CF2}
 		{256026D4-A05D-438C-BD11-2D3FBADB2B4C} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
+		{BF51C274-61E9-4C47-94F4-1C2EF46EBB33} = {214A3A6E-C961-405E-8F5E-96314B672CF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}
