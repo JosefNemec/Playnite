@@ -194,17 +194,18 @@ namespace Playnite.Controllers
 
         private void CheckGameImagePath(Game game)
         {
-            if (!string.IsNullOrWhiteSpace(game.GameImagePath) && !File.Exists(game.GameImagePath))
-            {
-                var gameImagePath = FileSystem.LookupAlternativeFilePath(game.GameImagePath);
+            throw new NotImplementedException();
+            //if (!string.IsNullOrWhiteSpace(game.GameImagePath) && !File.Exists(game.GameImagePath))
+            //{
+            //    var gameImagePath = FileSystem.LookupAlternativeFilePath(game.GameImagePath);
 
-                if (!string.IsNullOrWhiteSpace(gameImagePath))
-                {
-                    logger.Warn($"ROM/Image \"{Game.GameImagePath}\" does not exist for game \"{Game.Name}\"" +
-                        $" and is temporarily changed to \"{gameImagePath}\"");
-                    game.GameImagePath = gameImagePath;
-                }
-            }
+            //    if (!string.IsNullOrWhiteSpace(gameImagePath))
+            //    {
+            //        logger.Warn($"ROM/Image \"{Game.GameImagePath}\" does not exist for game \"{Game.Name}\"" +
+            //            $" and is temporarily changed to \"{gameImagePath}\"");
+            //        game.GameImagePath = gameImagePath;
+            //    }
+            //}
         }
 
         private void CheckGameAction(GameAction gameAction)

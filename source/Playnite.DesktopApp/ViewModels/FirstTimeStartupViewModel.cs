@@ -75,21 +75,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool startEmulatorWizard = false;
-        public bool StartEmulatorWizard
-        {
-            get
-            {
-                return startEmulatorWizard;
-            }
-
-            set
-            {
-                startEmulatorWizard = value;
-                OnPropertyChanged();
-            }
-        }
-
         private UserControl selectedProviderSettingsView;
         public UserControl SelectedProviderSettingsView
         {

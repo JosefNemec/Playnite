@@ -1152,11 +1152,6 @@ namespace Playnite
             dbGame.IsInstalling = false;
             dbGame.IsInstalled = true;
             dbGame.InstallDirectory = args.InstalledInfo.InstallDirectory;
-            if (!args.InstalledInfo.GameImagePath.IsNullOrEmpty())
-            {
-                dbGame.GameImagePath = args.InstalledInfo.GameImagePath;
-            }
-
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Controller);
         }

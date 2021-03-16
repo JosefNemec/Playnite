@@ -52,6 +52,9 @@
     <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
       <HintPath>..\packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
     </Reference>
+    <Reference Include="Crc32.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc0b95cf99bf4e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crc32.NET.1.2.0\lib\net20\Crc32.NET.dll</HintPath>
+    </Reference>
     <Reference Include="DiscordRPC">
       <HintPath>..\..\references\DiscordRPC.dll</HintPath>
     </Reference>
@@ -142,6 +145,10 @@
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.26.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="SQLNado">
       <HintPath>..\..\references\SQLNado.dll</HintPath>
     </Reference>
@@ -224,6 +231,9 @@
     <Compile Include="ControlTemplateTools.cs" />
     <Compile Include="Converters\GenericTypeConverter.cs" />
     <Compile Include="Converters\ObjectEqualityToBoolConverter.cs" />
+    <Compile Include="Emulators\DatModels.cs" />
+    <Compile Include="Emulators\EmulationDatabase.cs" />
+    <Compile Include="Emulators\Scanner.cs" />
     <Compile Include="Extensions\Markup\PluginSettings.cs" />
     <Compile Include="Extensions\Markup\PluginStatus.cs" />
     <Compile Include="Extensions\Markup\ThemeFileBinding.cs" />
@@ -478,8 +488,11 @@
     <None Include="crash_reporter.cfg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Emulators\*.yaml">
+    <None Include="Emulation\Emulators\*.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Emulation\Platforms.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Localization\locstatus.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

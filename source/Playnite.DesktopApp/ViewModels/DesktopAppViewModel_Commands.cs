@@ -222,12 +222,12 @@ namespace Playnite.DesktopApp.ViewModels
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
             {
-                ImportEmulatedGames(
-                    new EmulatorImportViewModel(Database,
-                    EmulatorImportViewModel.DialogType.GameImport,
-                    new EmulatorImportWindowFactory(),
-                    Dialogs,
-                    Resources));
+                //ImportEmulatedGames(
+                //    new EmulatorImportViewModel(Database,
+                //    EmulatorImportViewModel.DialogType.GameImport,
+                //    new EmulatorImportWindowFactory(),
+                //    Dialogs,
+                //    Resources));
             }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.Q, ModifierKeys.Control));
 

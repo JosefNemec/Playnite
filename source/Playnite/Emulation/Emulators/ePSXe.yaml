@@ -3,6 +3,6 @@ Website: 'https://www.epsxe.com/'
 Profiles:
   - Name: Default
     DefaultArguments: '-nogui -slowboot -loadbin "{ImagePath}"'
-    Platforms: [Sony PlayStation]
-    ImageExtensions: [bin, iso, img, cue, pbp, zip]
+    Platforms: [playstation]
+    ImageExtensions: [bin, iso, img, pbp, zip, cue]
     ExecutableLookup: ^ePSXe\.exe$

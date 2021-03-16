@@ -379,6 +379,18 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            if (EditingGame.Roms != null)
+            {
+                EditingGame.Roms.CollectionChanged += Roms_CollectionChanged;
+                foreach (var rom in EditingGame.Roms)
+                {
+                    if (rom != null)
+                    {
+                        rom.PropertyChanged += Rom_PropertyChanged;
+                    }
+                }
+            }
+
             if (EditingGame.GameActions != null)
             {
                 EditingGame.GameActions.CollectionChanged += OtherActions_CollectionChanged;
@@ -608,11 +620,6 @@ namespace Playnite.DesktopApp.ViewModels
                     game.InstallDirectory = EditingGame.InstallDirectory;
                 }
 
-                if (UseIsoPathChanges)
-                {
-                    game.GameImagePath = EditingGame.GameImagePath;
-                }
-
                 if (UseInstallStateChanges)
                 {
                     game.IsInstalled = EditingGame.IsInstalled;
@@ -743,6 +750,11 @@ namespace Playnite.DesktopApp.ViewModels
                     game.Links = EditingGame.Links;
                 }
 
+                if (UseRomsChanges)
+                {
+                    game.Roms = EditingGame.Roms;
+                }
+
                 if (UseIconChanges)
                 {
                     if (EditingGame.Icon.IsNullOrEmpty())
@@ -800,6 +812,11 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
+                if (!Directory.Exists(PlaynitePaths.TempPath))
+                {
+                    return;
+                }
+
                 foreach (var icon in Directory.GetFiles(PlaynitePaths.TempPath, tempIconFileName + ".*"))
                 {
                     File.Delete(icon);
@@ -1122,6 +1139,53 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private void Rom_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            UseRomsChanges = true;
+        }
+
+        private void Roms_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            UseRomsChanges = true;
+        }
+
+        public void AddRom()
+        {
+            if (EditingGame.Roms == null)
+            {
+                EditingGame.Roms = new ObservableCollection<GameRom>();
+                EditingGame.Roms.CollectionChanged += Roms_CollectionChanged;
+            }
+
+            var newRom = new GameRom("NewRom", "NewPath");
+            newRom.PropertyChanged += Rom_PropertyChanged;
+            EditingGame.Roms.Add(newRom);
+        }
+
+        public void RemoveRom(GameRom rom)
+        {
+            rom.PropertyChanged -= Rom_PropertyChanged;
+            EditingGame.Roms.Remove(rom);
+        }
+
+        public void MoveRomUp(GameRom rom)
+        {
+            var index = EditingGame.Roms.IndexOf(rom);
+            if (index != 0)
+            {
+                EditingGame.Roms.Move(index, index - 1);
+            }
+        }
+
+        public void MoveRomDown(GameRom rom)
+        {
+            var index = EditingGame.Roms.IndexOf(rom);
+            if (index != EditingGame.Roms.Count - 1)
+            {
+                EditingGame.Roms.Move(index, index + 1);
+            }
+        }
+
         public void SelectInstallDir()
         {
             var path = dialogs.SelectFolder();
@@ -1131,13 +1195,15 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void SelectGameImage()
+        public string SelectGameImage()
         {
             var path = dialogs.SelectFile("*.*|*.*");
             if (!string.IsNullOrEmpty(path))
             {
-                EditingGame.GameImagePath = path;
+                return path;
             }
+
+            return null;
         }
 
         public void RemoveIcon()

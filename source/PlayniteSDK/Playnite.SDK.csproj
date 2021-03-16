@@ -73,6 +73,7 @@
     <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\AgeRatingOrg.cs" />
     <Compile Include="Models\AppSoftware.cs" />
+    <Compile Include="Models\GameRom.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\InstallationStatus.cs" />
     <Compile Include="Models\PastTimeSegment.cs" />

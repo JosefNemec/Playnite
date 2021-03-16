@@ -21,6 +21,7 @@ namespace Playnite.Tests
             var current = new Application();
             PlayniteTests.SetEntryAssembly(Assembly.GetExecutingAssembly());
             FileSystem.CreateDirectory(PlayniteTests.TempPath, true);
+            NLogLogger.IsTraceEnabled = true;
             PlayniteSettings.ConfigureLogger();
         }
 

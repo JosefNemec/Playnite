@@ -22,8 +22,8 @@
         <pcon:NegateConverter x:Key="NegateConverter" />
         <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
         <pcon:ListToStringConverter x:Key="ListToStringConverter" />
-        <pvm:SelectedPlatformsToStringConverter x:Key="SelectedPlatformsToStringConverter" />
-        <pvm:SelectedPlatformsToListConverter x:Key="SelectedPlatformsToListConverter" />
+        <!--<pvm:SelectedPlatformsToStringConverter x:Key="SelectedPlatformsToStringConverter" />
+        <pvm:SelectedPlatformsToListConverter x:Key="SelectedPlatformsToListConverter" />-->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" />
     </controls:WindowBase.Resources>
@@ -191,14 +191,14 @@
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="{Binding Name}" Grid.Column="0" />
                                                 <TextBlock Text=" | " Grid.Column="1" />
-                                                <TextBlock Grid.Column="2" TextWrapping="Wrap" MaxWidth="400">
+                                                <!--<TextBlock Grid.Column="2" TextWrapping="Wrap" MaxWidth="400">
                                                     <TextBlock.Text>
                                                         <MultiBinding Converter="{StaticResource SelectedPlatformsToStringConverter}" Mode="OneWay">
                                                             <Binding Path="Platforms" />
                                                             <Binding Path="Data.DatabasePlatforms" Source="{StaticResource Proxy}" />
                                                         </MultiBinding>
                                                     </TextBlock.Text>
-                                                </TextBlock>
+                                                </TextBlock>-->
                                             </Grid>
                                         </DataTemplate>
                                         <HierarchicalDataTemplate DataType="{x:Type pm:Emulator}" ItemsSource="{Binding Profiles}">
@@ -238,7 +238,7 @@
                                 <GridViewColumn Header="{DynamicResource LOCPlatformTitle}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox Padding="5" SelectedValuePath="Id"                                                      
+                                            <!--<ComboBox Padding="5" SelectedValuePath="Id"                                                      
                                                       SelectedValue="{Binding Game.PlatformId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       DisplayMemberPath="Name">
                                                 <ComboBox.ItemsSource>
@@ -247,7 +247,7 @@
                                                         <Binding Path="Data.DatabasePlatforms" Source="{StaticResource Proxy}" />
                                                     </MultiBinding>
                                                 </ComboBox.ItemsSource>
-                                            </ComboBox>
+                                            </ComboBox>-->
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

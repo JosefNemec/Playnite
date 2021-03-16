@@ -16,166 +16,169 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Specifies <see cref="Game"/> fields.
     /// </summary>
-    public enum GameField
+    public enum GameField : int
     {
         ///
-        BackgroundImage,
+        BackgroundImage = 0,
         ///
-        Description,
+        Description = 1,
         ///
-        GenreIds,
+        GenreIds = 2,
         ///
-        Hidden,
+        Hidden = 3,
         ///
-        Favorite,
+        Favorite = 4,
         ///
-        Icon,
+        Icon = 5,
         ///
-        CoverImage,
+        CoverImage = 6,
         ///
-        InstallDirectory,
+        InstallDirectory = 7,
         ///
-        GameImagePath,
+        //[Obsolete("Use new Roms field.")]
+        //GameImagePath = 8,
         ///
-        LastActivity,
+        LastActivity = 9,
         ///
-        SortingName,
+        SortingName = 10,
         ///
-        Gameid,
+        Gameid = 11,
         ///
-        PluginId,
-        ///
-        [Obsolete("Use new GameActions field.")]
-        OtherActions,
+        PluginId = 12,
         ///
         [Obsolete("Use new GameActions field.")]
-        PlayAction,
+        OtherActions = 13,
         ///
-        PlatformId,
+        [Obsolete("Use new GameActions field.")]
+        PlayAction = 14,
         ///
-        PublisherIds,
+        PlatformId = 15,
         ///
-        DeveloperIds,
+        PublisherIds = 16,
         ///
-        ReleaseDate,
+        DeveloperIds = 17,
         ///
-        CategoryIds,
+        ReleaseDate = 18,
         ///
-        TagIds,
+        CategoryIds = 19,
         ///
-        Links,
+        TagIds = 20,
         ///
-        IsInstalling,
+        Links = 21,
         ///
-        IsUninstalling,
+        IsInstalling = 22,
         ///
-        IsLaunching,
+        IsUninstalling = 23,
         ///
-        IsRunning,
+        IsLaunching = 24,
         ///
-        IsInstalled,
+        IsRunning = 25,
         ///
-        IsCustomGame,
+        IsInstalled = 26,
         ///
-        Playtime,
+        IsCustomGame = 27,
         ///
-        Added,
+        Playtime = 28,
         ///
-        Modified,
+        Added = 29,
         ///
-        PlayCount,
+        Modified = 30,
         ///
-        SeriesId,
+        PlayCount = 31,
         ///
-        Version,
+        SeriesId = 32,
         ///
-        AgeRatingId,
+        Version = 33,
         ///
-        RegionId,
+        AgeRatingId = 34,
         ///
-        SourceId,
+        RegionId = 35,
         ///
-        CompletionStatus,
+        SourceId = 36,
         ///
-        UserScore,
+        CompletionStatus = 37,
         ///
-        CriticScore,
+        UserScore = 38,
         ///
-        CommunityScore,
+        CriticScore = 39,
         ///
-        Genres,
+        CommunityScore = 40,
         ///
-        Developers,
+        Genres = 41,
         ///
-        Publishers,
+        Developers = 42,
         ///
-        Tags,
+        Publishers = 43,
         ///
-        Categories,
+        Tags = 44,
         ///
-        Platform,
+        Categories = 45,
         ///
-        Series,
+        Platform = 46,
         ///
-        AgeRating,
+        Series = 47,
         ///
-        Region,
+        AgeRating = 48,
         ///
-        Source,
+        Region = 49,
         ///
-        ReleaseYear,
+        Source = 50,
         ///
-        ActionsScriptLanguage,
+        ReleaseYear = 51,
         ///
-        PreScript,
+        ActionsScriptLanguage = 52,
         ///
-        PostScript,
+        PreScript = 53,
         ///
-        Name,
+        PostScript = 54,
         ///
-        Features,
+        Name = 55,
         ///
-        FeatureIds,
+        Features = 56,
         ///
-        UseGlobalPostScript,
+        FeatureIds = 57,
         ///
-        UseGlobalPreScript,
+        UseGlobalPostScript = 58,
         ///
-        UserScoreRating,
+        UseGlobalPreScript = 59,
         ///
-        CommunityScoreRating,
+        UserScoreRating = 60,
         ///
-        CriticScoreRating,
+        CommunityScoreRating = 61,
         ///
-        UserScoreGroup,
+        CriticScoreRating = 62,
         ///
-        CommunityScoreGroup,
+        UserScoreGroup = 63,
         ///
-        CriticScoreGroup,
+        CommunityScoreGroup = 64,
         ///
-        LastActivitySegment,
+        CriticScoreGroup = 65,
         ///
-        AddedSegment,
+        LastActivitySegment = 66,
         ///
-        ModifiedSegment,
+        AddedSegment = 67,
         ///
-        PlaytimeCategory,
+        ModifiedSegment = 68,
         ///
-        InstallationStatus,
+        PlaytimeCategory = 69,
         ///
-        None,
+        InstallationStatus = 70,
         ///
-        GameStartedScript,
+        None = 71,
         ///
-        UseGlobalGameStartedScript,
+        GameStartedScript = 72,
         ///
-        Notes,
+        UseGlobalGameStartedScript = 73,
         ///
-        Manual,
+        Notes = 74,
         ///
-        GameActions,
+        Manual = 75,
         ///
-        IncludeLibraryPluginAction
+        GameActions = 76,
+        ///
+        IncludeLibraryPluginAction = 77,
+        ///
+        Roms = 78
     }
 
     /// <summary>
@@ -348,23 +351,23 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private string gameImagePath;
-        /// <summary>
-        /// Gets or sets game's ISO, ROM or other type of executable image path.
-        /// </summary>
-        public string GameImagePath
-        {
-            get
-            {
-                return gameImagePath;
-            }
+        //private string gameImagePath;
+        ///// <summary>
+        ///// Gets or sets game's ISO, ROM or other type of executable image path.
+        ///// </summary>
+        //public string GameImagePath
+        //{
+        //    get
+        //    {
+        //        return gameImagePath;
+        //    }
 
-            set
-            {
-                gameImagePath = value;
-                OnPropertyChanged();
-            }
-        }
+        //    set
+        //    {
+        //        gameImagePath = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private DateTime? lastActivity;
         /// <summary>
@@ -660,6 +663,24 @@ namespace Playnite.SDK.Models
             set
             {
                 links = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<GameRom> roms;
+        /// <summary>
+        /// Gets or sets list of game ROM files.
+        /// </summary>
+        public ObservableCollection<GameRom> Roms
+        {
+            get
+            {
+                return roms;
+            }
+
+            set
+            {
+                roms = value;
                 OnPropertyChanged();
             }
         }
@@ -1621,10 +1642,10 @@ namespace Playnite.SDK.Models
                     tro.InstallDirectory = InstallDirectory;
                 }
 
-                if (!string.Equals(GameImagePath, tro.GameImagePath, StringComparison.Ordinal))
-                {
-                    tro.GameImagePath = GameImagePath;
-                }
+                //if (!string.Equals(GameImagePath, tro.GameImagePath, StringComparison.Ordinal))
+                //{
+                //    tro.GameImagePath = GameImagePath;
+                //}
 
                 if (LastActivity != tro.LastActivity)
                 {
@@ -1689,6 +1710,11 @@ namespace Playnite.SDK.Models
                 if (!Links.IsListEqualExact(tro.Links))
                 {
                     tro.Links = Links;
+                }
+
+                if (!Roms.IsListEqualExact(tro.Roms))
+                {
+                    tro.Roms = Roms;
                 }
 
                 if (IsInstalling != tro.IsInstalling)
@@ -1886,10 +1912,10 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.InstallDirectory);
             }
 
-            if (!string.Equals(GameImagePath, otherGame.GameImagePath, StringComparison.Ordinal))
-            {
-                changes.Add(GameField.GameImagePath);
-            }
+            //if (!string.Equals(GameImagePath, otherGame.GameImagePath, StringComparison.Ordinal))
+            //{
+            //    changes.Add(GameField.GameImagePath);
+            //}
 
             if (LastActivity != otherGame.LastActivity)
             {
@@ -1968,6 +1994,11 @@ namespace Playnite.SDK.Models
             if (!Links.IsListEqualExact(otherGame.Links))
             {
                 changes.Add(GameField.Links);
+            }
+
+            if (!Roms.IsListEqualExact(otherGame.Roms))
+            {
+                changes.Add(GameField.Roms);
             }
 
             if (IsInstalling != otherGame.IsInstalling)

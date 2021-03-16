@@ -148,13 +148,13 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var model = new EmulatorImportViewModel(
-                    database,
-                    EmulatorImportViewModel.DialogType.EmulatorImport,
-                    new EmulatorImportWindowFactory(),
-                    dialogs,
-                    resources);
-                ImportEmulators(model);
+                //var model = new EmulatorImportViewModel(
+                //    database,
+                //    EmulatorImportViewModel.DialogType.EmulatorImport,
+                //    new EmulatorImportWindowFactory(),
+                //    dialogs,
+                //    resources);
+                //ImportEmulators(model);
             });
         }
 
@@ -162,13 +162,13 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                var model = new EmulatorImportViewModel(
-                    database,
-                    EmulatorImportViewModel.DialogType.EmulatorDownload,
-                    new EmulatorImportWindowFactory(),
-                    dialogs,
-                    resources);
-                DownloadEmulators(model);
+                //var model = new EmulatorImportViewModel(
+                //    database,
+                //    EmulatorImportViewModel.DialogType.EmulatorDownload,
+                //    new EmulatorImportWindowFactory(),
+                //    dialogs,
+                //    resources);
+                //DownloadEmulators(model);
             });
         }
 
@@ -331,37 +331,37 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void DownloadEmulators(EmulatorImportViewModel model)
-        {
-            model.OpenView();
-        }
+        //public void DownloadEmulators(EmulatorImportViewModel model)
+        //{
+        //    model.OpenView();
+        //}
 
-        public void ImportEmulators(EmulatorImportViewModel model)
-        {
-            var dbEmulators = database.Emulators.GetClone();
-            if (EditingEmulators != null && !EditingEmulators.IsEqualJson(dbEmulators))
-            {
-                var askResult = dialogs.ShowMessage(
-                    resources.GetString("LOCConfirmUnsavedEmulatorsTitle"),
-                    resources.GetString("LOCSaveChangesAskTitle"),
-                    MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                if (askResult == MessageBoxResult.Yes)
-                {
-                    UpdateEmulatorsToDB();
-                }
-                else if (askResult == MessageBoxResult.Cancel)
-                {
-                    return;
-                }
-            }
+        //public void ImportEmulators(EmulatorImportViewModel model)
+        //{
+        //    var dbEmulators = database.Emulators.GetClone();
+        //    if (EditingEmulators != null && !EditingEmulators.IsEqualJson(dbEmulators))
+        //    {
+        //        var askResult = dialogs.ShowMessage(
+        //            resources.GetString("LOCConfirmUnsavedEmulatorsTitle"),
+        //            resources.GetString("LOCSaveChangesAskTitle"),
+        //            MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+        //        if (askResult == MessageBoxResult.Yes)
+        //        {
+        //            UpdateEmulatorsToDB();
+        //        }
+        //        else if (askResult == MessageBoxResult.Cancel)
+        //        {
+        //            return;
+        //        }
+        //    }
 
-            var result = model.OpenView();
-            if (result == true)
-            {
-                AvailablePlatforms = new SelectableDbItemList(database.Platforms);
-                ReloadEmulatorsFromDb();
-            }
-        }
+        //    var result = model.OpenView();
+        //    if (result == true)
+        //    {
+        //        AvailablePlatforms = new SelectableDbItemList(database.Platforms);
+        //        ReloadEmulatorsFromDb();
+        //    }
+        //}
 
         public void ReloadEmulatorsFromDb()
         {

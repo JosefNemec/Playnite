@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SharpCompress.Archives;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
@@ -11,10 +13,23 @@ namespace Playnite
     {
         public static List<string> GetArchiveFiles(string archivePath)
         {
-            using (var zip = ZipFile.OpenRead(archivePath))
+            using (var archive = ArchiveFactory.Open(archivePath))
             {
-                return zip.Entries.Select(a => a.FullName).ToList();
+                return archive.Entries.Where(a => !a.IsDirectory).Select(a => a.Key).ToList();
             }
+        }
+
+        public static Tuple<Stream, IDisposable> GetEntryStream(string archivePath, string entryName)
+        {
+            var archive = ArchiveFactory.Open(archivePath);
+            var entry = archive.Entries.FirstOrDefault(a => a.Key == entryName);
+            if (entry == null)
+            {
+                archive.Dispose();
+                return null;
+            }
+
+            return new Tuple<Stream, IDisposable>(entry.OpenEntryStream(), archive);
         }
     }
 }

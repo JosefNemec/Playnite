@@ -565,6 +565,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCUseExeIcon">From Play action</sys:String>
     <sys:String x:Key="LOCImageURL">Image URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Add Link</sys:String>
+    <sys:String x:Key="LOCAddRom">Add ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Save Changes</sys:String>
     <sys:String x:Key="LOCPlayAction">Play Action</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Add Play Action</sys:String>

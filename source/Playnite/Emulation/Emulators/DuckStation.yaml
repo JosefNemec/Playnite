@@ -3,6 +3,6 @@ Website: 'https://github.com/stenzek/duckstation'
 Profiles:
   - Name: Default
     DefaultArguments: '"{ImagePath}" -batch'
-    Platforms: [Sony PlayStation]
-    ImageExtensions: [bin, img, cue, exe, chd, psexe, m3u]
+    Platforms: [playstation]
+    ImageExtensions: [bin, img, exe, chd, psexe, m3u, cue]
     ExecutableLookup: ^duckstation-qt-x64-ReleaseLTCG\.exe$

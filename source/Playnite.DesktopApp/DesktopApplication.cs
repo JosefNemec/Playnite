@@ -269,17 +269,6 @@ namespace Playnite.DesktopApp
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
                 }
-
-                // Emulator wizard
-                if (wizardModel.StartEmulatorWizard)
-                {
-                    var model = new EmulatorImportViewModel(Database,
-                       EmulatorImportViewModel.DialogType.Wizard,
-                       new EmulatorImportWindowFactory(),
-                       Dialogs,
-                       new ResourceProvider());
-                    model.OpenView();
-                }
             }
             else
             {

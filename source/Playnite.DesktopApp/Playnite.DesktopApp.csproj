@@ -269,6 +269,7 @@
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel_Sidebar.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel_Commands.cs" />
+    <Compile Include="ViewModels\EmulationImportViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\EmulatorsViewModel.cs" />
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
@@ -292,6 +293,9 @@
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
     <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
       <DependentUpon>ActionSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmulationImportWindow.xaml.cs">
+      <DependentUpon>EmulationImportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LicenseAgreementWindow.xaml.cs">
       <DependentUpon>LicenseAgreementWindow.xaml</DependentUpon>
@@ -998,6 +1002,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ActionSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EmulationImportWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

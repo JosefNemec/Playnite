@@ -87,6 +87,27 @@ namespace Playnite.Common
             }
         }
 
+        public static string GetCRC32(Stream stream)
+        {
+            uint crc = 0;
+            var buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                crc = Force.Crc32.Crc32Algorithm.Append(crc, buffer, 0, bytesRead);
+            }
+
+            return string.Format("{0:X8}", crc);
+        }
+
+        public static string GetCRC32(string filePath)
+        {
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                return GetCRC32(stream);
+            }
+        }
+
         public static string GetMD5(Stream stream)
         {
             using (var md5 = MD5.Create())
@@ -123,30 +144,6 @@ namespace Playnite.Common
                 }
             }
         }
-
-        //public static void AddFolderToZip(ZipArchive archive, string zipRoot, string path, string filter, SearchOption searchOption)
-        //{
-        //    IEnumerable<string> files;
-
-        //    if (filter.Contains('|'))
-        //    {
-        //        var filters = filter.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-        //        files = Directory.EnumerateFiles(path, "*.*", searchOption).Where(a =>
-        //        {
-        //            return filters.Contains(Path.GetExtension(a));
-        //        });
-        //    }
-        //    else
-        //    {
-        //        files = Directory.EnumerateFiles(path, filter, searchOption);
-        //    }
-
-        //    foreach (var file in files)
-        //    {
-        //        var archiveName = zipRoot + file.Replace(path, "").Replace(@"\", @"/");
-        //        archive.CreateEntryFromFile(file, archiveName);
-        //    }
-        //}
 
         public static bool CanWriteToFolder(string folder)
         {

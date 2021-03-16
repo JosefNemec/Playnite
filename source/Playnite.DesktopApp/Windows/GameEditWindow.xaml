@@ -766,42 +766,40 @@
                     <CheckBox Name="CheckLinks" Content="{DynamicResource LOCSaveChanges}" Margin="10,5,5,0" DockPanel.Dock="Top"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseLinksChanges}" />
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,5,10,10" DockPanel.Dock="Top">
-                        <StackPanel>
-                            <ItemsControl IsTabStop="False" Name="ItemsLinks" Grid.IsSharedSizeScope="True"
-                                          ItemsSource="{Binding EditingGame.Links}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Margin="-5,0,-5,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="A" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,5,10,10" DockPanel.Dock="Top">                       
+                        <ItemsControl IsTabStop="False" Name="ItemsLinks" Grid.IsSharedSizeScope="True"
+                                        ItemsSource="{Binding EditingGame.Links}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="-5,0,-5,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="A" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
 
-                                            <TextBox Text="{Binding Name}" Grid.Column="0" Grid.Row="0" Margin="5"
-                                                     VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
-                                            <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="5"
-                                                     VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="5">
-                                                <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0"
-                                                        Command="{Binding Data.MoveUpLinkCommand, Source={StaticResource Proxy}}"
-                                                        CommandParameter="{Binding}"/>
-                                                <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
-                                                        Command="{Binding Data.MoveDownLinkCommand, Source={StaticResource Proxy}}"
-                                                        CommandParameter="{Binding}"/>
-                                                <Button Name="ButtonRemoveLink" FontFamily="Marlett" Content="r"
-                                                        Command="{Binding Data.RemoveLinkCommand, Source={StaticResource Proxy}}"
-                                                        CommandParameter="{Binding}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
+                                        <TextBox Text="{Binding Name}" Grid.Column="0" Grid.Row="0" Margin="5"
+                                                    VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                        <TextBox Text="{Binding Url}" Grid.Column="1" Grid.Row="0" Margin="5"
+                                                    VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="5">
+                                            <Button Name="ButtonMoveUpAction" FontFamily="Marlett" Content="5" Margin="0,0,5,0"
+                                                    Command="{Binding Data.MoveUpLinkCommand, Source={StaticResource Proxy}}"
+                                                    CommandParameter="{Binding}"/>
+                                            <Button Name="ButtonMoveDownAction" FontFamily="Marlett" Content="6" Margin="0,0,5,0"
+                                                    Command="{Binding Data.MoveDownLinkCommand, Source={StaticResource Proxy}}"
+                                                    CommandParameter="{Binding}"/>
+                                            <Button Name="ButtonRemoveLink" FontFamily="Marlett" Content="r"
+                                                    Command="{Binding Data.RemoveLinkCommand, Source={StaticResource Proxy}}"
+                                                    CommandParameter="{Binding}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
                 </DockPanel>
             </TabItem>
@@ -815,50 +813,83 @@
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <StackPanel>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <CheckBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"
+                        <CheckBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"
                               ToolTip="{DynamicResource LOCSaveChanges}"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseInstallDirChanges}"/>
-                    <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" Grid.Column="1" Margin="5" VerticalAlignment="Center" />
-                    <TextBox Grid.Column="2" Margin="5" Name="TextInstallDir" VerticalAlignment="Center"
+                        <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" Grid.Column="1" Margin="5" VerticalAlignment="Center" />
+                        <TextBox Grid.Column="2" Margin="5" Name="TextInstallDir" VerticalAlignment="Center"
                              Text="{Binding EditingGame.InstallDirectory, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="..." Grid.Column="3" Margin="5" Name="ButtonBrowseInstallDir"
+                        <Button Content="..." Grid.Column="3" Margin="5" Name="ButtonBrowseInstallDir"
                             Command="{Binding SelectInstallDirCommand}"/>
 
-                    <CheckBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"
-                              ToolTip="{DynamicResource LOCSaveChanges}"
-                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                              IsChecked="{Binding UseIsoPathChanges}"/>
-                    <TextBlock Text="{DynamicResource LOCGameROMTitle}" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" />
-                    <TextBox Grid.Row="1" Grid.Column="2" Margin="5" Name="TextIso" VerticalAlignment="Center"
-                             Text="{Binding EditingGame.GameImagePath, UpdateSourceTrigger=PropertyChanged}"  />
-                    <Button Content="..." Grid.Row="1" Grid.Column="3" Margin="5" Name="ButtonBrowseIso"
-                            Command="{Binding SelectGameImageCommand}"/>
-
-                    <CheckBox Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"
+                        <CheckBox Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"
                               ToolTip="{DynamicResource LOCSaveChanges}"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UseInstallStateChanges}"/>
-                    <TextBlock Text="{DynamicResource LOCGameIsGameInstalledTitle}"
+                        <TextBlock Text="{DynamicResource LOCGameIsGameInstalledTitle}"
                                VerticalAlignment="Center"
                                Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" />
-                    <CheckBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,5"
+                        <CheckBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,5"
                               VerticalAlignment="Center"
                               IsChecked="{Binding EditingGame.IsInstalled}"/>
-                </Grid>
+                    </Grid>
+
+                    <Button Content="{DynamicResource LOCAddRom}" HorizontalAlignment="Left" Margin="10,10,0,0"
+                            Command="{Binding AddRomCommand}" DockPanel.Dock="Top"/>
+                    <CheckBox Name="CheckSaveRoms" Content="{DynamicResource LOCSaveChanges}" Margin="10,5,5,0" DockPanel.Dock="Top"
+                              Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              IsChecked="{Binding UseRomsChanges}" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,5,10,10" DockPanel.Dock="Top">
+                        <ItemsControl IsTabStop="False" Grid.IsSharedSizeScope="True"
+                                        ItemsSource="{Binding EditingGame.Roms}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="-5,0,-5,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="A" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBox Text="{Binding Name}" Grid.Column="0" Grid.Row="0" Margin="5"
+                                                    VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                        <TextBox Text="{Binding Path}" Grid.Column="1" Grid.Row="0" Margin="5"
+                                                    VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="5">
+                                            <Button FontFamily="Marlett" Content="5" Margin="0,0,5,0"
+                                                    Command="{Binding Data.MoveUpRomCommand, Source={StaticResource Proxy}}"
+                                                    CommandParameter="{Binding}"/>
+                                            <Button FontFamily="Marlett" Content="6" Margin="0,0,5,0"
+                                                    Command="{Binding Data.MoveDownRomCommand, Source={StaticResource Proxy}}"
+                                                    CommandParameter="{Binding}"/>
+                                            <Button FontFamily="Marlett" Content="r"
+                                                    Command="{Binding Data.RemoveRomCommand, Source={StaticResource Proxy}}"
+                                                    CommandParameter="{Binding}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </StackPanel>                
             </TabItem>
 
             <TabItem>

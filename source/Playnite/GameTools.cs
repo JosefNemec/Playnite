@@ -187,12 +187,6 @@ namespace Playnite
                 dummyGame.InstallDirectory = firstInstallDir;
             }
 
-            var firstRomPath = firstGame.GameImagePath;
-            if (games.All(a => a.GameImagePath == firstRomPath) == true)
-            {
-                dummyGame.GameImagePath = firstRomPath;
-            }
-
             var firstFavorite = firstGame.Favorite;
             if (games.All(a => a.Favorite == firstFavorite) == true)
             {

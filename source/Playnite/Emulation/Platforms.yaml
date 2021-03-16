@@ -1,0 +1,30 @@
+- Name: Atari 2600
+  Id: atari_2600
+  Databases:
+    - Atari - 2600
+  Emulators:
+    - Stella
+
+- Name: Sony PlayStation 3
+  Id: playstation3
+  Databases:
+    - Sony - PlayStation 3
+    - Sony - PlayStation 3 (PSN)
+  Emulators:
+    - RPCS3
+
+- Name: Sony PlayStation
+  Id: playstation
+  Databases:
+    - Sony - PlayStation
+  Emulators:
+    - ePSXe
+    - DuckStation
+
+- Name: Super Nintendo Entertainment System
+  Id: super_nes
+  Databases:
+    - Nintendo - Super Nintendo Entertainment System
+  Emulators:
+    - bsnes
+    - Snes9X

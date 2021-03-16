@@ -3,6 +3,6 @@ Website: 'http://www.snes9x.com/'
 Profiles:
   - Name: Default
     DefaultArguments: '"{ImagePath}" -fullscreen'
-    Platforms: [Super Nintendo Entertainment System]
+    Platforms: [super_nes]
     ImageExtensions: [zip, gz, jma, sfc, smc]
     ExecutableLookup: ^snes9x.*\.exe$

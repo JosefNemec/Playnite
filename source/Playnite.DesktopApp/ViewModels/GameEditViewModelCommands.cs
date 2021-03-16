@@ -227,6 +227,38 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> AddRomCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddRom();
+            });
+        }
+
+        public RelayCommand<GameRom> RemoveRomCommand
+        {
+            get => new RelayCommand<GameRom>((rom) =>
+            {
+                RemoveRom(rom);
+            });
+        }
+
+        public RelayCommand<GameRom> MoveUpRomCommand
+        {
+            get => new RelayCommand<GameRom>((rom) =>
+            {
+                MoveRomUp(rom);
+            });
+        }
+
+        public RelayCommand<GameRom> MoveDownRomCommand
+        {
+            get => new RelayCommand<GameRom>((rom) =>
+            {
+                MoveRomDown(rom);
+            });
+        }
+
         public RelayCommand<object> SelectInstallDirCommand
         {
             get => new RelayCommand<object>((a) =>

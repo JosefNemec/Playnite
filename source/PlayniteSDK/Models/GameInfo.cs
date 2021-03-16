@@ -31,10 +31,11 @@ namespace Playnite.SDK.Models
         /// </summary>
         public string InstallDirectory { get; set; }
 
-        /// <summary>
-        /// Gets or sets game image (rom, iso) path.
-        /// </summary>
-        public string GameImagePath { get; set; }
+        ///// <summary>
+        ///// Gets or sets game image (rom, iso) path.
+        ///// </summary>
+        //[Obsolete("Use new Roms field.")]
+        //public string GameImagePath { get; set; }
 
         /// <summary>
         /// Gets or sets Sorting Name.
@@ -67,6 +68,11 @@ namespace Playnite.SDK.Models
         /// Gets or sets Links.
         /// </summary>
         public List<Link> Links { get; set; }
+
+        /// <summary>
+        /// Gets or sets Roms.
+        /// </summary>
+        public List<GameRom> Roms { get; set; }
 
         /// <summary>
         /// Gets or sets whether the game is installed.

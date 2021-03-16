@@ -250,22 +250,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool useIsoPathChanges;
-        public bool UseIsoPathChanges
-        {
-            get
-            {
-                return useIsoPathChanges;
-            }
-
-            set
-            {
-                useIsoPathChanges = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowInstallChangeNotif));
-            }
-        }
-
         private bool useInstallStateChanges;
         public bool UseInstallStateChanges
         {
@@ -295,6 +279,22 @@ namespace Playnite.DesktopApp.ViewModels
                 useLinksChanges = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowLinksChangeNotif));
+            }
+        }
+
+        private bool useRomsChanges;
+        public bool UseRomsChanges
+        {
+            get
+            {
+                return useRomsChanges;
+            }
+
+            set
+            {
+                useRomsChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -783,7 +783,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 return ShowCheckBoxes &&
                     (UseInstallDirChanges ||
-                    UseIsoPathChanges ||
+                    UseRomsChanges ||
                     UseInstallStateChanges);
             }
         }
@@ -897,6 +897,16 @@ namespace Playnite.DesktopApp.ViewModels
                         UseLinksChanges = true;
                     }
                     break;
+                case nameof(Game.Roms):
+                    if (IsSingleGameEdit)
+                    {
+                        UseRomsChanges = !Game.Roms.IsEqualJson(EditingGame.Roms);
+                    }
+                    else
+                    {
+                        UseRomsChanges = true;
+                    }
+                    break;
                 case nameof(Game.InstallDirectory):
                     if (IsSingleGameEdit)
                     {
@@ -905,16 +915,6 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseInstallDirChanges = true;
-                    }
-                    break;
-                case nameof(Game.GameImagePath):
-                    if (IsSingleGameEdit)
-                    {
-                        UseIsoPathChanges = Game.GameImagePath != EditingGame.GameImagePath;
-                    }
-                    else
-                    {
-                        UseIsoPathChanges = true;
                     }
                     break;
                 case nameof(Game.IsInstalled):

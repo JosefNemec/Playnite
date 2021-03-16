@@ -818,23 +818,23 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public async void ImportEmulatedGames(EmulatorImportViewModel model)
-        {
-            if (model.OpenView() == true && model.ImportedGames?.Any() == true)
-            {
-                if (AppSettings.DownloadMetadataOnImport)
-                {
-                    if (!GlobalTaskHandler.IsActive)
-                    {
-                        await DownloadMetadata(AppSettings.MetadataSettings, model.ImportedGames);
-                    }
-                    else
-                    {
-                        Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
-                    }
-                }
-            }
-        }
+        //public async void ImportEmulatedGames(EmulatorImportViewModel model)
+        //{
+        //    if (model.OpenView() == true && model.ImportedGames?.Any() == true)
+        //    {
+        //        if (AppSettings.DownloadMetadataOnImport)
+        //        {
+        //            if (!GlobalTaskHandler.IsActive)
+        //            {
+        //                await DownloadMetadata(AppSettings.MetadataSettings, model.ImportedGames);
+        //            }
+        //            else
+        //            {
+        //                Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
+        //            }
+        //        }
+        //    }
+        //}
 
         public void OpenAboutWindow(AboutViewModel model)
         {
