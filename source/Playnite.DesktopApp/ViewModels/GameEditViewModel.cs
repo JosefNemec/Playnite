@@ -27,6 +27,7 @@ using Playnite.Metadata.Providers;
 using System.Text.RegularExpressions;
 using Playnite.Common.Media.Icons;
 using System.Diagnostics;
+using Playnite.SDK.Exceptions;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -800,6 +801,11 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
+                if (!Directory.Exists(PlaynitePaths.TempPath))
+                {
+                    return;
+                }
+
                 foreach (var icon in Directory.GetFiles(PlaynitePaths.TempPath, tempIconFileName + ".*"))
                 {
                     File.Delete(icon);
