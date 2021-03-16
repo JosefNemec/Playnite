@@ -1462,5 +1462,28 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
         }
+
+        public void TestScript(string script)
+        {
+            try
+            {
+                var expanded = EditingGame.ExpandVariables(script);
+                GamesEditor.ExecuteScriptAction(EditingGame.ActionsScriptLanguage, expanded, EditingGame, playniteApi);
+            }
+            catch (Exception exc)
+            {
+                var message = exc.Message;
+                if (exc is ScriptRuntimeException err)
+                {
+                    message = err.Message + "\n\n" + err.ScriptStackTrace;
+                }
+
+                Dialogs.ShowMessage(
+                    message,
+                    resources.GetString("LOCScriptError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
     }
 }

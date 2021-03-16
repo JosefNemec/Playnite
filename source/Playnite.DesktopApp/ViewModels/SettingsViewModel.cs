@@ -21,6 +21,7 @@ using Playnite.DesktopApp.Markup;
 using System.Text.RegularExpressions;
 using Playnite.DesktopApp.Controls;
 using System.Diagnostics;
+using Playnite.SDK.Exceptions;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -166,6 +167,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 SetDefaults();
             });
+        }
+
+        public RelayCommand<string> TestScriptCommand
+        {
+            get => new RelayCommand<string>((a) =>
+            {
+                TestScript(a);
+            }, (a) => !a.IsNullOrEmpty());
         }
 
         #endregion Commands
@@ -368,6 +377,30 @@ namespace Playnite.DesktopApp.ViewModels
                     SkipLibUpdate = true,
                     ResetSettings = true
                 });
+            }
+        }
+
+        public void TestScript(string script)
+        {
+            try
+            {
+                var game = application.Api.MainView.SelectedGames.DefaultIfEmpty(new SDK.Models.Game("Test game")).FirstOrDefault();
+                var expanded = game.ExpandVariables(script);
+                GamesEditor.ExecuteScriptAction(Settings.ActionsScriptLanguage, expanded, game, application.Api);
+            }
+            catch (Exception exc)
+            {
+                var message = exc.Message;
+                if (exc is ScriptRuntimeException err)
+                {
+                    message = err.Message + "\n\n" + err.ScriptStackTrace;
+                }
+
+                Dialogs.ShowMessage(
+                    message,
+                    resources.GetString("LOCScriptError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
     }

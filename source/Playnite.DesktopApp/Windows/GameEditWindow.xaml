@@ -935,19 +935,8 @@
                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
                     </StackPanel>
                 </TabItem.Header>
-                <GridEx Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <DockPanel Grid.Row="1" Margin="0,0,0,5" LastChildFill="False">
+                <DockPanel Margin="10">
+                    <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5" LastChildFill="False">
                         <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" VerticalAlignment="Center"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseScriptRuntimeChanges}"/>
@@ -972,59 +961,91 @@
                                 CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-scripts" />
                     </DockPanel>
 
-                    <DockPanel Grid.Row="2" Margin="0,5,2,5" LastChildFill="False">
-                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Left"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UsePreScriptChanges}"/>
-                        <TextBlock Text="{DynamicResource LOCPreScriptDescription}"
-                                   DockPanel.Dock="Left" VerticalAlignment="Center" />
-                        <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}" DockPanel.Dock="Right"
-                                  IsChecked="{Binding EditingGame.UseGlobalPreScript}" />
-                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Right"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UsePreGlobalScriptChanges}" />
-                    </DockPanel>
-                    <TextBox AcceptsReturn="True" Grid.Row="3"
-                             HorizontalScrollBarVisibility="Auto"
-                             VerticalScrollBarVisibility="Visible"
-                             Text="{Binding EditingGame.PreScript}" />
+                    <Grid DockPanel.Dock="Top" Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="4" Margin="0,5,2,5" LastChildFill="False">
-                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Left"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UseGameStartedScriptChanges}"/>
-                        <TextBlock Text="{DynamicResource LOCGameStartedScriptDescription}"
-                                   DockPanel.Dock="Left" VerticalAlignment="Center" />
-                        <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}" DockPanel.Dock="Right"
-                                  IsChecked="{Binding EditingGame.UseGlobalGameStartedScript}" />
-                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Right"
+                        <TextBox AcceptsReturn="True" Grid.Column="1" Grid.Row="0"
+                                 HorizontalScrollBarVisibility="Auto"
+                                 VerticalScrollBarVisibility="Visible"
+                                 Text="{Binding EditingGame.PreScript, UpdateSourceTrigger=PropertyChanged}" />
+                        <StackPanel Grid.Column="0" Grid.Row="0">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox ToolTip="{DynamicResource LOCSaveChanges}"
+                                          Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                          IsChecked="{Binding UsePreScriptChanges}" />
+                                <TextBlock Text="{DynamicResource LOCPreScriptDescription}"
+                                           VerticalAlignment="Center" Margin="0,0,10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                                <CheckBox ToolTip="{DynamicResource LOCSaveChanges}"
+                                          Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                          IsChecked="{Binding UsePreGlobalScriptChanges}" />
+                                <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}"
+                                          IsChecked="{Binding EditingGame.UseGlobalPreScript}" />
+                            </StackPanel>
+                            <Button Content="{DynamicResource LOCTestScript}" HorizontalAlignment="Left"
+                                    Command="{Binding TestScriptCommand}"
+                                    CommandParameter="{Binding EditingGame.PreScript}"/>
+                        </StackPanel>
+
+                        <TextBox AcceptsReturn="True" Grid.Column="1" Grid.Row="1"
+                                 HorizontalScrollBarVisibility="Auto"
+                                 VerticalScrollBarVisibility="Visible"
+                                 Text="{Binding EditingGame.GameStartedScript, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,10,0,10"/>
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,10,10,10">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox ToolTip="{DynamicResource LOCSaveChanges}"
+                                      Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      IsChecked="{Binding UseGameStartedScriptChanges}" />
+                                <TextBlock Text="{DynamicResource LOCGameStartedScriptDescription}"
+                                           VerticalAlignment="Center" Margin="0,0,10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                                <CheckBox ToolTip="{DynamicResource LOCSaveChanges}"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseGameStartedGlobalScriptChanges}" />
-                    </DockPanel>
+                                <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}"
+                                  IsChecked="{Binding EditingGame.UseGlobalGameStartedScript}" />
+                            </StackPanel>
+                            <Button Content="{DynamicResource LOCTestScript}" HorizontalAlignment="Left"
+                                    Command="{Binding TestScriptCommand}"
+                                    CommandParameter="{Binding EditingGame.GameStartedScript}"/>
+                        </StackPanel>
 
-                    <TextBox AcceptsReturn="True" Grid.Row="5"
+                        <TextBox AcceptsReturn="True" Grid.Column="1" Grid.Row="2"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
-                             Text="{Binding EditingGame.GameStartedScript}"/>
-
-                    <DockPanel Grid.Row="6" Margin="0,5,2,5" LastChildFill="False">
-                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Left"
-                                  Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  IsChecked="{Binding UsePostScriptChanges}"/>
-                        <TextBlock Text="{DynamicResource LOCPostScriptDescription}"
-                                   DockPanel.Dock="Left" VerticalAlignment="Center" />
-                        <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}" DockPanel.Dock="Right"
-                                  IsChecked="{Binding EditingGame.UseGlobalPostScript}" />
-                        <CheckBox ToolTip="{DynamicResource LOCSaveChanges}" DockPanel.Dock="Right"
+                             Text="{Binding EditingGame.PostScript, UpdateSourceTrigger=PropertyChanged}"/>
+                        <StackPanel Grid.Column="0" Grid.Row="2">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox ToolTip="{DynamicResource LOCSaveChanges}"
+                                      Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      IsChecked="{Binding UsePostScriptChanges}" />
+                                <TextBlock Text="{DynamicResource LOCPostScriptDescription}"
+                                           VerticalAlignment="Center" Margin="0,0,10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                                <CheckBox ToolTip="{DynamicResource LOCSaveChanges}"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UsePostGlobalScriptChanges}" />
-                    </DockPanel>
-                    
-                    <TextBox AcceptsReturn="True" Grid.Row="7"
-                             HorizontalScrollBarVisibility="Auto"
-                             VerticalScrollBarVisibility="Visible"
-                             Text="{Binding EditingGame.PostScript}"/>
-                </GridEx>
+                                <CheckBox Content="{DynamicResource LOCExecuteGlobalScript}"
+                                  IsChecked="{Binding EditingGame.UseGlobalPostScript}" />
+                            </StackPanel>
+                            <Button Content="{DynamicResource LOCTestScript}" HorizontalAlignment="Left"
+                                    Command="{Binding TestScriptCommand}"
+                                    CommandParameter="{Binding EditingGame.PostScript}"/>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
             </TabItem>
         </TabControl>
 
