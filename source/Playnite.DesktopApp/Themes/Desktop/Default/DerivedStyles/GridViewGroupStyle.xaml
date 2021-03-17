@@ -9,7 +9,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GroupItem}">
                     <ExpanderEx BorderThickness="0" SaveGameGroupId="{Binding Name, Mode=OneWay}"
-                                IsExpanded="True">
+                                IsExpanded="True" Background="Transparent" Padding="10">
                         <ExpanderEx.Header>                            
                             <DockPanel Background="Transparent">
                                 <DockPanel.ContextMenu>
