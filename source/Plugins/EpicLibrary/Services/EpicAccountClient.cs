@@ -22,12 +22,18 @@ namespace EpicLibrary.Services
         }
     }
 
+    public class ApiRedirectResponse
+    {
+        public string redirectUrl { get; set; }
+        public string sid { get; set; }
+    }
+
     public class EpicAccountClient
     {
         private ILogger logger = LogManager.GetLogger();
         private IPlayniteAPI api;
         private string tokensPath;
-        private readonly string loginUrl = @"";
+        private readonly string loginUrl = "https://www.epicgames.com/id/login?redirectUrl=https://www.epicgames.com/id/api/redirect";
         private readonly string oauthUrl = @"";
         private readonly string accountUrl = @"";
         private readonly string assetsUrl = @"";
@@ -38,7 +44,6 @@ namespace EpicLibrary.Services
         {
             this.api = api;
             this.tokensPath = tokensPath;
-            var loginUrlMask = @"https://{0}/login?redirectUrl=https%3A%2F%2F{0}%2Flogin%2FshowPleaseWait%3Fclient_id%3D24a1bff3f90749efbfcbc576c626a282%26rememberEmail%3Dfalse&client_id=24a1bff3f90749efbfcbc576c626a282&isLauncher=true";
             var oauthUrlMask = @"https://{0}/account/api/oauth/token";
             var accountUrlMask = @"https://{0}/account/api/public/account/";
             var assetsUrlMask = @"https://{0}/launcher/api/public/assets/Windows?label=Live";
@@ -69,22 +74,20 @@ namespace EpicLibrary.Services
                 assetsUrl = string.Format(assetsUrlMask, "launcher-public-service-prod06.ol.epicgames.com");
                 catalogUrl = string.Format(catalogUrlMask, "catalog-public-service-prod06.ol.epicgames.com");
             }
-
-            loginUrl = string.Format(loginUrlMask, "accounts.launcher-website-prod07.ol.epicgames.com");
         }
 
         public void Login()
         {
             var loggedIn = false;
-            var loginPageSource = string.Empty;
+            var apiRedirectContent = string.Empty;
             using (var view = api.WebViews.CreateView(580, 700))
             {
                 view.LoadingChanged += async (s, e) =>
                 {
                     var address = view.GetCurrentAddress();
-                    if (address.StartsWith(@"https://accounts.launcher-website-prod07.ol.epicgames.com/login/showPleaseWait"))
+                    if (address.StartsWith(@"https://www.epicgames.com/id/api/redirect"))
                     {
-                        loginPageSource = await view.GetPageSourceAsync();
+                        apiRedirectContent = await view.GetPageTextAsync();
                         loggedIn = true;
                         view.Close();
                     }
@@ -100,8 +103,14 @@ namespace EpicLibrary.Services
                 return;
             }
 
+            if (apiRedirectContent.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            var sid = Serialization.FromJson<ApiRedirectResponse>(apiRedirectContent).sid;
             FileSystem.DeleteFile(tokensPath);
-            var exchangeKey = getExcahngeToken(loginPageSource);
+            var exchangeKey = getExcahngeToken(sid);
             if (string.IsNullOrEmpty(exchangeKey))
             {
                 logger.Error("Failed to get login exchange key for Epic account.");
@@ -250,15 +259,35 @@ namespace EpicLibrary.Services
             return Serialization.FromJson<OauthResponse>(File.ReadAllText(tokensPath));
         }
 
-        private string getExcahngeToken(string input)
+        private string getExcahngeToken(string sid)
         {
-            var match = Regex.Match(input, @"loginWithExchangeCode\(\'(.*?)\'");
-            if (match.Success)
+            using (var handler = new HttpClientHandler())
+            using (var httpClient = new HttpClient())
             {
-                return match.Groups[1].Value;
-            }
+                httpClient.DefaultRequestHeaders.Clear();
+                httpClient.DefaultRequestHeaders.Add("X-Epic-Event-Action", "login");
+                httpClient.DefaultRequestHeaders.Add("X-Epic-Event-Category", "login");
+                httpClient.DefaultRequestHeaders.Add("X-Epic-Strategy-Flags", "");
+                httpClient.DefaultRequestHeaders.Add("X-Requested-With", "XMLHttpRequest");
+                httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0");
 
-            return string.Empty;
+                httpClient.GetAsync(@"https://www.epicgames.com/id/api/set-sid?sid=" + sid).GetAwaiter().GetResult();
+                var resp = httpClient.GetAsync(@"https://www.epicgames.com/id/api/csrf").GetAwaiter().GetResult();
+                var cookies = resp.Headers.Single(header => header.Key == "Set-Cookie").Value;
+                if (cookies != null)
+                {
+                    var match = Regex.Match(cookies.First(), @"=(.+);");
+                    var xsrf = match.Groups[1].Value;
+                    httpClient.DefaultRequestHeaders.Add("X-XSRF-TOKEN", xsrf);
+                    resp = httpClient.PostAsync("https://www.epicgames.com/id/api/exchange/generate", null).GetAwaiter().GetResult();
+                    var respContent = resp.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    return Serialization.FromJson<Dictionary<string, string>>(respContent)["code"];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
 }
