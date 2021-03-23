@@ -48,7 +48,7 @@ namespace Playnite.ViewModels
 
         public ActionSelectionViewModel(
             ActionSelectionWindowFactory window,
-            List<PlayAction> pluginActions,
+            List<PlayController> pluginActions,
             List<GameAction> customActions)
         {
             this.window = window;
@@ -60,7 +60,17 @@ namespace Playnite.ViewModels
 
         public ActionSelectionViewModel(
             ActionSelectionWindowFactory window,
-            List<InstallAction> pluginActions)
+            List<InstallController> pluginActions)
+        {
+            this.window = window;
+            Actions = new List<SelectableItem<object>>();
+            pluginActions?.ForEach(a => Actions.Add(new SelectableItem<object>(a)));
+            Actions[0].Selected = true;
+        }
+
+        public ActionSelectionViewModel(
+            ActionSelectionWindowFactory window,
+            List<UninstallController> pluginActions)
         {
             this.window = window;
             Actions = new List<SelectableItem<object>>();

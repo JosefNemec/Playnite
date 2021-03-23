@@ -82,7 +82,7 @@ namespace Playnite.SDK
         /// <param name="game">Game to use dynamic variables from.</param>
         /// <param name="action">Game action to expand variables to.</param>
         /// <returns>Game action with expanded variables.</returns>
-        GameAction ExpandGameVariables(Game game, GameAction action);
+        Models.GameAction ExpandGameVariables(Game game, Models.GameAction action);
 
         /// <summary>
         /// Returns new instance of Playnite logger.

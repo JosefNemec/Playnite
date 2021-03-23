@@ -360,6 +360,19 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Gets items distinct to all collections.
+        /// </summary>
+        public static HashSet<T> GetDistinctItemsP<T>(params IEnumerable<T>[] lists)
+        {
+            if (lists?.Any() != true)
+            {
+                return new HashSet<T>();
+            }
+
+            return GetDistinctItems(lists.ToList());
+        }
+
+        /// <summary>
         /// Merge collection together.
         /// </summary>
         /// <typeparam name="T"></typeparam>

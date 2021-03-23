@@ -432,7 +432,7 @@ namespace Playnite.Plugins
 
         private void Controllers_Uninstalled(object sender, GameUninstalledEventArgs args)
         {
-            if (args.Controller?.Game == null)
+            if (args.Source?.Game == null)
             {
                 logger.Error("No game controller information found!");
                 return;
@@ -442,7 +442,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameUninstalled(args.Controller.Game);
+                    script.OnGameUninstalled(args.Source.Game);
                 }
                 catch (Exception e)
                 {
@@ -454,7 +454,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameUninstalled(args.Controller.Game);
+                    plugin.Plugin.OnGameUninstalled(args.Source.Game);
                 }
                 catch (Exception e)
                 {
@@ -465,13 +465,13 @@ namespace Playnite.Plugins
 
         private void Controllers_Stopped(object sender, GameStoppedEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
+            if (args.Source?.Game?.Id == null)
             {
                 logger.Error("No game controller information found!");
                 return;
             }
 
-            InvokeOnGameStopped(args.Controller.Game, args.SessionLength);
+            InvokeOnGameStopped(args.Source.Game, args.SessionLength);
         }
 
         public void InvokeOnGameStopped(Game game, long ellapsedTime)
@@ -503,7 +503,7 @@ namespace Playnite.Plugins
 
         private void Controllers_Starting(object sender, GameStartingEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
+            if (args.Source?.Game?.Id == null)
             {
                 logger.Error("No game controller information found!");
                 return;
@@ -513,7 +513,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameStarting(database.Games[args.Controller.Game.Id]);
+                    script.OnGameStarting(database.Games[args.Source.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -525,7 +525,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarting(database.Games[args.Controller.Game.Id]);
+                    plugin.Plugin.OnGameStarting(database.Games[args.Source.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -536,7 +536,7 @@ namespace Playnite.Plugins
 
         private void Controllers_Started(object sender, GameStartedEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
+            if (args.Source?.Game?.Id == null)
             {
                 logger.Error("No game controller information found!");
                 return;
@@ -546,7 +546,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameStarted(database.Games[args.Controller.Game.Id]);
+                    script.OnGameStarted(database.Games[args.Source.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -558,7 +558,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarted(database.Games[args.Controller.Game.Id]);
+                    plugin.Plugin.OnGameStarted(database.Games[args.Source.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -569,7 +569,7 @@ namespace Playnite.Plugins
 
         private void Controllers_Installed(object sender, GameInstalledEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
+            if (args.Source?.Game?.Id == null)
             {
                 logger.Error("No game controller information found!");
                 return;
@@ -579,7 +579,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    script.OnGameInstalled(database.Games[args.Controller.Game.Id]);
+                    script.OnGameInstalled(database.Games[args.Source.Game.Id]);
                 }
                 catch (Exception e)
                 {
@@ -591,7 +591,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameInstalled(database.Games[args.Controller.Game.Id]);
+                    plugin.Plugin.OnGameInstalled(database.Games[args.Source.Game.Id]);
                 }
                 catch (Exception e)
                 {

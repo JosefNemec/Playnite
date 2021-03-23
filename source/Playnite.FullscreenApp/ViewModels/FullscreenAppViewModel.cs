@@ -11,6 +11,7 @@ using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.ViewModels;
 using Playnite.Windows;
 using System;
@@ -445,12 +446,12 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             GameStatusVisible = true;
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Controller.Game.Name);
+            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Source.Game.Name);
         }
 
         private void Controllers_Started(object sender, GameStartedEventArgs e)
         {
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Controller.Game.Name);
+            GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Source.Game.Name);
         }
 
         private void ElementGotFocusHandler(object sender, RoutedEventArgs e)

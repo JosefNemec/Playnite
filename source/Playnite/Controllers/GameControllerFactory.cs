@@ -18,6 +18,7 @@ namespace Playnite.Controllers
 
         public List<PlayController> PlayControllers { get; } = new List<PlayController>();
         public List<InstallController> InstallControllers { get; } = new List<InstallController>();
+        public List<UninstallController> UninstallControllers { get; } = new List<UninstallController>();
 
         public event EventHandler<GameStartingEventArgs> Starting;
         public event EventHandler<GameStartedEventArgs> Started;
@@ -58,8 +59,13 @@ namespace Playnite.Controllers
         public void AddController(InstallController controller)
         {
             controller.Installed += Controller_Installed;
-            controller.Uninstalled += Controller_Uninstalled;
             InstallControllers.Add(controller);
+        }
+
+        public void AddController(UninstallController controller)
+        {
+            controller.Uninstalled += Controller_Uninstalled;
+            UninstallControllers.Add(controller);
         }
 
         public void RemovePlayController(Guid gameId)
@@ -74,6 +80,15 @@ namespace Playnite.Controllers
         public void RemoveInstallController(Guid gameId)
         {
             var controller = InstallControllers.FirstOrDefault(a => a.Game?.Id == gameId);
+            if (controller != null)
+            {
+                RemoveController(controller);
+            }
+        }
+
+        public void RemoveUninstallController(Guid gameId)
+        {
+            var controller = UninstallControllers.FirstOrDefault(a => a.Game?.Id == gameId);
             if (controller != null)
             {
                 RemoveController(controller);
@@ -100,7 +115,6 @@ namespace Playnite.Controllers
         public void RemoveController(InstallController controller)
         {
             controller.Installed -= Controller_Installed;
-            controller.Uninstalled -= Controller_Uninstalled;
             try
             {
                 controller.Dispose();
@@ -113,6 +127,21 @@ namespace Playnite.Controllers
             InstallControllers.Remove(controller);
         }
 
+        public void RemoveController(UninstallController controller)
+        {
+            controller.Uninstalled -= Controller_Uninstalled;
+            try
+            {
+                controller.Dispose();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to dispose game controller {controller.GetType()}");
+            }
+
+            UninstallControllers.Remove(controller);
+        }
+
         public PlayController GetPlayController(Guid gameId)
         {
             return PlayControllers.FirstOrDefault(a => a.Game.Id == gameId);
@@ -121,6 +150,11 @@ namespace Playnite.Controllers
         public InstallController GetInstallController(Guid gameId)
         {
             return InstallControllers.FirstOrDefault(a => a.Game.Id == gameId);
+        }
+
+        public UninstallController GetUninstallController(Guid gameId)
+        {
+            return UninstallControllers.FirstOrDefault(a => a.Game.Id == gameId);
         }
 
         private void Controller_Stopped(object sender, GameStoppedEventArgs e)
@@ -148,12 +182,12 @@ namespace Playnite.Controllers
             Installed?.Invoke(this, e);
         }
 
-        public Tuple<List<PlayAction>, List<GameAction>> GetPlayActions(Game game, ExtensionFactory extensions)
+        public Tuple<List<PlayController>, List<GameAction>> GetPlayActions(Game game, ExtensionFactory extensions)
         {
-            var plugActions = new List<PlayAction>();
+            var plugActions = new List<PlayController>();
             foreach (var plugin in extensions.Plugins.Values)
             {
-                List<PlayAction> actions = null;
+                List<PlayController> actions = null;
                 try
                 {
                     actions = plugin.Plugin.GetPlayActions(new GetPlayActionsArgs { Game = game });
@@ -171,21 +205,33 @@ namespace Playnite.Controllers
             }
 
             var customActions = game.GameActions?.Where(a => a.IsPlayAction).ToList();
-            return new Tuple<List<PlayAction>, List<GameAction>>(
-                plugActions ?? new List<PlayAction>(),
+            return new Tuple<List<PlayController>, List<GameAction>>(
+                plugActions ?? new List<PlayController>(),
                 customActions ?? new List<GameAction>());
         }
 
-        public List<InstallAction> GetInstallActions(Game game, ExtensionFactory extensions, bool isUninstall)
+        public List<InstallController> GetInstallActions(Game game, ExtensionFactory extensions, bool isUninstall)
         {
-            List<InstallAction> plugActions = null;
+            List<InstallController> plugActions = null;
             var plugin = extensions.GetLibraryPlugin(game.PluginId);
             if (plugin != null)
             {
-                plugActions = plugin.GetInstallActions(new GetInstallActionsArgs { Game = game, IsUninstall = isUninstall });
+                plugActions = plugin.GetInstallActions(new GetInstallActionsArgs { Game = game });
             }
 
-            return plugActions ?? new List<InstallAction>();
+            return plugActions ?? new List<InstallController>();
+        }
+
+        public List<UninstallController> GetUninstallActions(Game game, ExtensionFactory extensions, bool isUninstall)
+        {
+            List<UninstallController> plugActions = null;
+            var plugin = extensions.GetLibraryPlugin(game.PluginId);
+            if (plugin != null)
+            {
+                plugActions = plugin.GetUninstallActions(new GetUninstallActionsArgs { Game = game });
+            }
+
+            return plugActions ?? new List<UninstallController>();
         }
     }
 }

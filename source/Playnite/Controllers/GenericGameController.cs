@@ -24,18 +24,18 @@ namespace Playnite.Controllers
         private GameDatabase database;
         private static ILogger logger = LogManager.GetLogger();
 
-        public GenericPlayController(GameDatabase db, Game game)
+        public GenericPlayController(GameDatabase db, Game game) : base(game)
         {
             database = db;
             Game = game;
         }
 
-        public override void Play(PlayAction playAction)
+        public override void Play(PlayActionArgs playAction)
         {
             throw new NotSupportedException("This shouldn't be called.");
         }
 
-        public void PlayCustom(GenericPlayAction playAction)
+        public void PlayCustom(SDK.Plugins.GenericPlayController playAction)
         {
             PlayCustom(new GameAction
             {
@@ -72,7 +72,7 @@ namespace Playnite.Controllers
 
             Dispose();
 
-            InvokeOnStarting(this, new GameStartingEventArgs(this));
+            InvokeOnStarting(new GameStartingEventArgs());
             var proc = GameActionActivator.ActivateAction(action, profileClone);
             procMon = new ProcessMonitor();
             procMon.TreeStarted += ProcMon_TreeStarted;
@@ -107,19 +107,19 @@ namespace Playnite.Controllers
                         }
                         else
                         {
-                            InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                            InvokeOnStopped(new GameStoppedEventArgs());
                         }
                     }
                     else
                     {
                         if (proc != null)
                         {
-                            InvokeOnStarted(this, new GameStartedEventArgs(this));
+                            InvokeOnStarted(new GameStartedEventArgs());
                             procMon.WatchProcessTree(proc);
                         }
                         else
                         {
-                            InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                            InvokeOnStopped(new GameStoppedEventArgs());
                         }
                     }
                 }
@@ -127,13 +127,13 @@ namespace Playnite.Controllers
                 {
                     if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
                     {
-                        InvokeOnStarted(this, new GameStartedEventArgs(this));
+                        InvokeOnStarted(new GameStartedEventArgs());
                         stopWatch = Stopwatch.StartNew();
                         procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
                     }
                     else
                     {
-                        InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                        InvokeOnStopped(new GameStoppedEventArgs());
                     }
                 }
             }
@@ -141,13 +141,13 @@ namespace Playnite.Controllers
             {
                 if (proc != null)
                 {
-                    InvokeOnStarted(this, new GameStartedEventArgs(this));
+                    InvokeOnStarted(new GameStartedEventArgs());
                     stopWatch = Stopwatch.StartNew();
                     procMon.WatchProcessTree(proc);
                 }
                 else
                 {
-                    InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                    InvokeOnStopped(new GameStoppedEventArgs());
                 }
             }
             else if (action.TrackingMode == TrackingMode.Directory)
@@ -160,7 +160,7 @@ namespace Playnite.Controllers
                 }
                 else
                 {
-                    InvokeOnStopped(this, new GameStoppedEventArgs(this));
+                    InvokeOnStopped(new GameStoppedEventArgs());
                 }
             }
             else
@@ -183,13 +183,13 @@ namespace Playnite.Controllers
 
         private void ProcMon_TreeStarted(object sender, EventArgs e)
         {
-            InvokeOnStarted(this, new GameStartedEventArgs(this));
+            InvokeOnStarted( new GameStartedEventArgs());
         }
 
         private void Monitor_TreeDestroyed(object sender, EventArgs args)
         {
             stopWatch.Stop();
-            InvokeOnStopped(this, new GameStoppedEventArgs(this) { SessionLength = Convert.ToInt64(stopWatch.Elapsed.TotalSeconds) });
+            InvokeOnStopped(new GameStoppedEventArgs(Convert.ToInt64(stopWatch.Elapsed.TotalSeconds)));
         }
 
         private void CheckGameImagePath(Game game)

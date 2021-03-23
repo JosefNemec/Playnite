@@ -46,8 +46,7 @@ f.close()", executeScriptActionTestFileName));
                     InstallDirectory = tempDir.TempPath
                 };
 
-                var editor = new GamesEditor(null, new GameControllerFactory(null), new PlayniteSettings(), null, null, new TestPlayniteApplication());
-                editor.ExecuteScriptAction(language, script, game);
+                GamesEditor.ExecuteScriptAction(language, script, game, null);
                 var testPath = Path.Combine(tempDir.TempPath, executeScriptActionTestFileName);
                 var content = File.ReadAllText(testPath);
                 Assert.AreEqual(language.ToString(), content.Trim());

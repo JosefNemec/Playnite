@@ -13,6 +13,39 @@ using System.Windows.Controls;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
+    ///
+    /// </summary>
+    public class GetPlayActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetInstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetUninstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
     /// When used, specific plugin class will be loaded by Playnite.
     /// </summary>
     public class LoadPluginAttribute : Attribute
@@ -273,7 +306,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<PlayAction> GetPlayActions(GetPlayActionsArgs args)
+        public virtual List<PlayController> GetPlayActions(GetPlayActionsArgs args)
         {
             return null;
         }
@@ -283,7 +316,17 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<InstallAction> GetInstallActions(GetInstallActionsArgs args)
+        public virtual List<InstallController> GetInstallActions(GetInstallActionsArgs args)
+        {
+            return null;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual List<UninstallController> GetUninstallActions(GetUninstallActionsArgs args)
         {
             return null;
         }

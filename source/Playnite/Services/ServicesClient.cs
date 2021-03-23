@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Playnite.Common;
 using Playnite.SDK;
-using Playnite.Services.Models;
+using PlayniteServices.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

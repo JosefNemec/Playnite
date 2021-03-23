@@ -146,6 +146,12 @@ namespace Playnite.Tests
             Assert.AreEqual(3, distinct[0]);
             Assert.AreEqual(4, distinct[1]);
             Assert.AreEqual(5, distinct[2]);
+
+            ListExtensions.GetDistinctItemsP(list1, list2, list3).ToArray();
+            Assert.AreEqual(3, distinct.Count());
+            Assert.AreEqual(3, distinct[0]);
+            Assert.AreEqual(4, distinct[1]);
+            Assert.AreEqual(5, distinct[2]);
         }
 
         [Test]
