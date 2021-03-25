@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**Integration issues**
+If an issue is related to library integrations, use separate [extensions repository](https://github.com/JosefNemec/PlayniteExtensions) to file a report.
+
 **Check for existing issue**
 Please use issue search in the repository if the bug is something really obvious there's a high change it was already reported.
 
