@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**Integration features**
+If a feature request is related to library integrations, use separate [extensions repository](https://github.com/JosefNemec/PlayniteExtensions) to file a request.
+
 **Check for existing issue**
 Please use issue search in the repository if your feature request is something really obvious there's a high change it was already requested.
 
