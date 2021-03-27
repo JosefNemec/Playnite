@@ -122,7 +122,7 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<GameInstalledEventArgs> Installed;
+        internal event EventHandler<GameInstalledEventArgs> Installed;
 
         /// <summary>
         ///
@@ -156,7 +156,7 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<GameUninstalledEventArgs> Uninstalled;
+        internal event EventHandler<GameUninstalledEventArgs> Uninstalled;
 
         /// <summary>
         ///
@@ -190,15 +190,15 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<GameStartingEventArgs> Starting;
+        internal event EventHandler<GameStartingEventArgs> Starting;
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<GameStartedEventArgs> Started;
+        internal event EventHandler<GameStartedEventArgs> Started;
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<GameStoppedEventArgs> Stopped;
+        internal event EventHandler<GameStoppedEventArgs> Stopped;
 
         /// <summary>
         ///

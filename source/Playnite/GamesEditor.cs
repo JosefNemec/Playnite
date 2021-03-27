@@ -1145,10 +1145,13 @@ namespace Playnite
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsInstalling = false;
             dbGame.IsInstalled = true;
-            dbGame.InstallDirectory = args.InstalledInfo.InstallDirectory;
-            if (!args.InstalledInfo.GameImagePath.IsNullOrEmpty())
+            if (args.InstalledInfo != null)
             {
-                dbGame.GameImagePath = args.InstalledInfo.GameImagePath;
+                dbGame.InstallDirectory = args.InstalledInfo.InstallDirectory;
+                if (!args.InstalledInfo.GameImagePath.IsNullOrEmpty())
+                {
+                    dbGame.GameImagePath = args.InstalledInfo.GameImagePath;
+                }
             }
 
             Database.Games.Update(dbGame);

@@ -35,6 +35,21 @@ namespace Playnite.SDK.Data
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    public enum Format
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        Json,
+        /// <summary>
+        ///
+        /// </summary>
+        Yaml
+    }
+
+    /// <summary>
     /// Describes data serializer.
     /// </summary>
     public interface IDataSerializer
@@ -144,6 +159,69 @@ namespace Playnite.SDK.Data
         /// <param name="object2"></param>
         /// <returns></returns>
         bool AreObjectsEqual(object object1, object object2);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="stream"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        T FromStream<T>(Stream stream, Format dataFormat) where T : class;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        T FromFile<T>(string path, Format dataFormat) where T : class;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        T FromString<T>(string data, Format dataFormat) where T : class;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="path"></param>
+        /// <param name="dataFormat"></param>
+        void ToFile(object data, string path, Format dataFormat);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        string ToString(object data, Format dataFormat);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="dataFormat"></param>
+        /// <param name="deserialized"></param>
+        /// <returns></returns>
+        bool TryFromFile<T>(string path, Format dataFormat, out T deserialized) where T : class;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="dataFormat"></param>
+        /// <param name="deserialized"></param>
+        /// <returns></returns>
+        bool TryFromString<T>(string data, Format dataFormat, out T deserialized) where T : class;
     }
 
     /// <summary>
@@ -285,7 +363,7 @@ namespace Playnite.SDK.Data
         /// <typeparam name="U"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public U GetClone<T, U>(T source)
+        public static U GetClone<T, U>(T source)
             where T : class
             where U : class
         {
@@ -298,9 +376,93 @@ namespace Playnite.SDK.Data
         /// <param name="object1"></param>
         /// <param name="object2"></param>
         /// <returns></returns>
-        public bool AreObjectsEqual(object object1, object object2)
+        public static bool AreObjectsEqual(object object1, object object2)
         {
             return serializer.AreObjectsEqual(object1, object2);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="stream"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        public static T FromStream<T>(Stream stream, Format dataFormat) where T : class
+        {
+            return serializer.FromStream<T>(stream, dataFormat);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        public static T FromFile<T>(string path, Format dataFormat) where T : class
+        {
+            return serializer.FromFile<T>(path, dataFormat);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        public static T FromString<T>(string data, Format dataFormat) where T : class
+        {
+            return serializer.FromString<T>(data, dataFormat);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="path"></param>
+        /// <param name="dataFormat"></param>
+        public static void ToFile(object data, string path, Format dataFormat)
+        {
+            serializer.ToFile(data, path, dataFormat);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="dataFormat"></param>
+        /// <returns></returns>
+        public static string ToString(object data, Format dataFormat)
+        {
+            return serializer.ToString(data, dataFormat);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="dataFormat"></param>
+        /// <param name="deserialized"></param>
+        /// <returns></returns>
+        public static bool TryFromFile<T>(string path, Format dataFormat, out T deserialized) where T : class
+        {
+            return serializer.TryFromFile<T>(path, dataFormat, out deserialized);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="dataFormat"></param>
+        /// <param name="deserialized"></param>
+        /// <returns></returns>
+        public static bool TryFromString<T>(string data, Format dataFormat, out T deserialized) where T : class
+        {
+            return serializer.TryFromString<T>(data, dataFormat, out deserialized);
         }
     }
 }
