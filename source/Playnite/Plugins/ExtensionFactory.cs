@@ -333,7 +333,11 @@ namespace Playnite.Plugins
 
         public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
-            DisposePlugins();
+            if (Plugins.HasItems())
+            {
+                throw new Exception("Plugin can be loaded only once!");
+            }
+
             var manifests = GetInstalledManifests(externals).Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.Id) != true).ToList();
             foreach (var desc in manifests)
             {
@@ -362,8 +366,9 @@ namespace Playnite.Plugins
 
                         Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
                         logger.Info($"Loaded plugin: {desc.Name}, version {desc.Version}");
-                        Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                     }
+
+                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -378,7 +383,7 @@ namespace Playnite.Plugins
             }
         }
 
-        public IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
+        private IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
             var asmName = AssemblyName.GetAssemblyName(asmPath);

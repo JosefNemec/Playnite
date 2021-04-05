@@ -192,7 +192,11 @@ namespace Playnite.DesktopApp
 
         private async void OpenMainViewAsync(bool isFirstStart)
         {
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            if (!isFirstStart)
+            {
+                Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            }
+
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
 
             try
@@ -256,7 +260,8 @@ namespace Playnite.DesktopApp
                     Dialogs,
                     new ResourceProvider(),
                     Extensions,
-                    Api);
+                    Api,
+                    ServicesClient);
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
@@ -268,17 +273,6 @@ namespace Playnite.DesktopApp
                 {
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
-                }
-
-                // Emulator wizard
-                if (wizardModel.StartEmulatorWizard)
-                {
-                    var model = new EmulatorImportViewModel(Database,
-                       EmulatorImportViewModel.DialogType.Wizard,
-                       new EmulatorImportWindowFactory(),
-                       Dialogs,
-                       new ResourceProvider());
-                    model.OpenView();
                 }
             }
             else

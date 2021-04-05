@@ -28,15 +28,16 @@ namespace Playnite
     {
         public string AddonId { get; set; }
         public List<AddonInstallerPackage> Packages { get; set; }
+        public AddonType AddonType { get; set; }
 
-        public AddonInstallerPackage GetLatestCompatiblePackage(AddonType type)
+        public AddonInstallerPackage GetLatestCompatiblePackage()
         {
             if (!Packages.HasItems())
             {
                 return null;
             }
 
-            var apiVersion = GetApiVersion(type);
+            var apiVersion = GetApiVersion(AddonType);
             return GetLatestCompatiblePackage(apiVersion);
         }
 
@@ -108,6 +109,8 @@ namespace Playnite
                         logger.Error(exc, "Failed to get addon installer manifest data.");
                         installerManifest = new AddonInstallerManifest();
                     }
+
+                    installerManifest.AddonType = Type;
                 }
 
                 return installerManifest;

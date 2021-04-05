@@ -1074,10 +1074,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsDisableDpiAwareness = "LOCSettingsDisableDpiAwareness";
         /// <summary>
-        /// Show Steam friends button
-        /// </summary>
-        public const string SettingsShowSteamFriendsButton = "LOCSettingsShowSteamFriendsButton";
-        /// <summary>
         /// Show hidden games in quick launch lists
         /// </summary>
         public const string SettingsHiddenInQuickLaunch = "LOCSettingsHiddenInQuickLaunch";
@@ -1514,57 +1510,33 @@ namespace Playnite
         /// </summary>
         public const string FirstWindowTitle = "LOCFirstWindowTitle";
         /// <summary>
-        /// This wizard will guide you through the automatic import and configuration process of external game libraries. Playnite can automatically import games from multiple game services, such as Steam or GOG, and also keep your library up-to-date by updating it automatically when the application is started.
+        /// This process will guide you through an automatic import and configuration of external game libraries. Playnite can automatically import games from multiple game services, such as Steam or GOG.
         /// </summary>
         public const string FirstIntro = "LOCFirstIntro";
-        /// <summary>
-        /// Default program data location for all users
-        /// </summary>
-        public const string FirstDBLocDefault = "LOCFirstDBLocDefault";
-        /// <summary>
-        /// Custom location
-        /// </summary>
-        public const string FirstDBLocCustom = "LOCFirstDBLocCustom";
         /// <summary>
         /// Library Integration
         /// </summary>
         public const string FirstExternalTitle = "LOCFirstExternalTitle";
         /// <summary>
-        /// Automatically import games from the services listed below. Any later game changes (Installation Status) will be updated automatically on Playnite startup or when triggered manually. The selected settings will affect the initial and all subsequent imports.
+        /// Following is the list of some curated library integrations Playnite supports. Please select ones you want to install.
         /// </summary>
         public const string FirstImportIntroduction = "LOCFirstImportIntroduction";
-        /// <summary>
-        /// Other games
-        /// </summary>
-        public const string FirstOtherGamesTitle = "LOCFirstOtherGamesTitle";
-        /// <summary>
-        /// Click on the button below to import other installed games or browse for them manually (including Microsoft Store games).
-        /// </summary>
-        public const string FirstOtherGamesText = "LOCFirstOtherGamesText";
-        /// <summary>
-        /// Import Games
-        /// </summary>
-        public const string FirstOtherGamesImportButton = "LOCFirstOtherGamesImportButton";
         /// <summary>
         /// Configuration Finished
         /// </summary>
         public const string FirstConfigFinishedTitle = "LOCFirstConfigFinishedTitle";
         /// <summary>
-        /// The initial setup has been completed. Remember that you can change all settings later in the 'Settings' menu.
+        /// The initial setup has been completed. Remember that you can change all settings later as well as add additional integrations from main menu.
         /// </summary>
         public const string FirstConfigFinishedText = "LOCFirstConfigFinishedText";
         /// <summary>
-        /// Begin the Emulation Import Wizard
+        /// Failed to download one or more extensions.
         /// </summary>
-        public const string FirstConfigOpenEmuImport = "LOCFirstConfigOpenEmuImport";
+        public const string FirstPluginDownloadError = "LOCFirstPluginDownloadError";
         /// <summary>
-        /// Grid View Layout
+        /// Downloading {0} integration…
         /// </summary>
-        public const string FirstConfigGridViewLayout = "LOCFirstConfigGridViewLayout";
-        /// <summary>
-        /// Select preferred layout for Playnite's grid view. Image layout can be changed at any time in application settings, including image stretching options.
-        /// </summary>
-        public const string FirstConfigGridViewLayoutDesc = "LOCFirstConfigGridViewLayoutDesc";
+        public const string FirstDownloadingAddon = "LOCFirstDownloadingAddon";
         /// <summary>
         /// Configure Platforms and Emulators
         /// </summary>
@@ -2478,15 +2450,15 @@ namespace Playnite
         /// </summary>
         public const string ScriptRuntime = "LOCScriptRuntime";
         /// <summary>
-        /// Script to execute before starting a game
+        /// Execute before starting a game
         /// </summary>
         public const string PreScriptDescription = "LOCPreScriptDescription";
         /// <summary>
-        /// Script to execute after exiting a game
+        /// Execute after exiting a game
         /// </summary>
         public const string PostScriptDescription = "LOCPostScriptDescription";
         /// <summary>
-        /// Script to execute after a game is started
+        /// Execute after a game is started
         /// </summary>
         public const string GameStartedScriptDescription = "LOCGameStartedScriptDescription";
         /// <summary>
@@ -2509,6 +2481,10 @@ namespace Playnite
         /// New
         /// </summary>
         public const string MetadataDiffNew = "LOCMetadataDiffNew";
+        /// <summary>
+        /// Test script
+        /// </summary>
+        public const string TestScript = "LOCTestScript";
         /// <summary>
         /// Save as default
         /// </summary>
@@ -3378,7 +3354,7 @@ namespace Playnite
         /// </summary>
         public const string TextInputCapitalize = "LOCTextInputCapitalize";
         /// <summary>
-        /// Image scaler mode
+        /// Image rendering scaler
         /// </summary>
         public const string SettingsImageScalerMode = "LOCSettingsImageScalerMode";
         /// <summary>
@@ -3394,7 +3370,7 @@ namespace Playnite
         /// </summary>
         public const string SettingsImageScalingQuality = "LOCSettingsImageScalingQuality";
         /// <summary>
-        /// Image scaler mode
+        /// Quality:
         /// </summary>
         public const string SettingsImageScalerModeTooltip = "LOCSettingsImageScalerModeTooltip";
     }

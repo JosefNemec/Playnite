@@ -1031,7 +1031,7 @@ namespace Playnite
             try
             {
                 var addon = ServicesClient.GetAddon(addonId);
-                var package = addon.InstallerManifest.GetLatestCompatiblePackage(addon.Type);
+                var package = addon.InstallerManifest.GetLatestCompatiblePackage();
                 if (package == null)
                 {
                     Dialogs.ShowErrorMessage(LOC.AddonErrorNotCompatible, "");

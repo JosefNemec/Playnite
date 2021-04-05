@@ -422,23 +422,19 @@ You can also configure and import any custom emulator from the configuration men
     <sys:String x:Key="LOCEmuWizardScanning">Scanning…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">First Time Configuration</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">This wizard will guide you through the automatic import and configuration process of external game libraries. Playnite can automatically import games from multiple game services, such as Steam or GOG, and also keep your library up-to-date by updating it automatically when the application is started.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">This process will guide you through an automatic import and configuration of external game libraries. Playnite can automatically import games from multiple game services, such as Steam or GOG.
 
-Keep in mind that you can manually add any custom game for any platform later by clicking the 'Playnite' button in the main menu.</sys:String>
-    <sys:String x:Key="LOCFirstDBLocDefault">Default program data location for all users</sys:String>
-    <sys:String x:Key="LOCFirstDBLocCustom">Custom location</sys:String>
+Keep in mind that you can also manually add any custom or emulated game for any platform later from main menu.</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Library Integration</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Automatically import games from the services listed below. Any later game changes (Installation Status) will be updated automatically on Playnite startup or when triggered manually. The selected settings will affect the initial and all subsequent imports.</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesTitle">Other games</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Click on the button below to import other installed games or browse for them manually (including Microsoft Store games).</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesImportButton">Import Games</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration Finished</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">The initial setup has been completed. Remember that you can change all settings later in the 'Settings' menu.
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Following is the list of some curated library integrations Playnite supports. Please select ones you want to install.
 
-You can also add any other game later by clicking the Playnite logo menu.</sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport">Begin the Emulation Import Wizard</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout">Grid View Layout</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Select preferred layout for Playnite's grid view. Image layout can be changed at any time in application settings, including image stretching options.</sys:String>
+More integrations can be installed later from "Add-ons" menu.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuration Finished</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">The initial setup has been completed. Remember that you can change all settings later as well as add additional integrations from main menu.</sys:String>
+    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Failed to download one or more extensions.
+
+You can try to re-download integrations from add-ons menu after first run wizard finishes.</sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">Downloading {0} integration…</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configure Platforms and Emulators</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Configure Emulators</sys:String>

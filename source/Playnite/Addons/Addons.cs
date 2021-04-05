@@ -73,7 +73,7 @@ namespace Playnite
                     }
 
                     var installer = addonManifest.InstallerManifest;
-                    var package = installer.GetLatestCompatiblePackage(addonManifest.Type);
+                    var package = installer.GetLatestCompatiblePackage();
                     var currentVersion = Version.Parse(manifest.Version);
                     var changeLog = string.Empty;
                     if (package != null && package.Version > currentVersion)
