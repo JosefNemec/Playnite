@@ -150,8 +150,8 @@ namespace Playnite.DesktopApp.Controls
                 Template,
                 this,
                 ApplicationMode.Desktop,
-                this.DataContext,
-                nameof(GamesCollectionViewEntry.Game));
+                this,
+                $"DataContext.{nameof(GamesCollectionViewEntry.Game)}");
         }
     }
 }

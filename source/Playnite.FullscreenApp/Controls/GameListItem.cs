@@ -78,8 +78,8 @@ namespace Playnite.FullscreenApp.Controls
                 Template,
                 this,
                 ApplicationMode.Fullscreen,
-                this.DataContext,
-                nameof(GamesCollectionViewEntry.Game));
+                this,
+                $"DataContext.{nameof(GamesCollectionViewEntry.Game)}");
         }
     }
 }
