@@ -55,7 +55,7 @@ namespace Playnite
 
         public System.Version CurrentVersion
         {
-            get => Updater.GetCurrentVersion();
+            get => Updater.CurrentVersion;
         }
 
         public ApplicationMode Mode { get; }

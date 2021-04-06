@@ -71,7 +71,7 @@ namespace Playnite.ViewModels
 
             try
             {
-                ReleaseNotes = updater.DownloadReleaseNotes(Updater.GetCurrentVersion());
+                ReleaseNotes = updater.GetReleaseNotes();
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -119,8 +119,7 @@ namespace Playnite.ViewModels
             try
             {
                 ShowProgress = true;
-                var package = updater.GetUpdatePackage(Updater.GetCurrentVersion());
-                await updater.DownloadUpdate(package, (e) =>
+                await updater.DownloadUpdate((e) =>
                 {
                     context.Post((a) => UpdateProgress = e.ProgressPercentage, null);
                 });

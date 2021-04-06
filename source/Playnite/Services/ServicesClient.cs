@@ -22,7 +22,7 @@ namespace Playnite.Services
         {
         }
 
-        public ServicesClient(string endpoint) : base(endpoint, Updater.GetCurrentVersion())
+        public ServicesClient(string endpoint) : base(endpoint, Updater.CurrentVersion)
         {
         }
 
@@ -39,7 +39,7 @@ namespace Playnite.Services
             {
                 Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
-                PlayniteVersion = Updater.GetCurrentVersion().ToString(),
+                PlayniteVersion = Updater.CurrentVersion.ToString(),
                 Is64Bit = Environment.Is64BitOperatingSystem
             };
 

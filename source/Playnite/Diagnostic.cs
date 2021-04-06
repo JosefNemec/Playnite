@@ -165,7 +165,7 @@ namespace Playnite
                     var playnitePath = Path.Combine(diagTemp, "playniteInfo.txt");
                     var playniteInfo = new Dictionary<string, object>
                     {
-                        { "Version", Updater.GetCurrentVersion().ToString() },
+                        { "Version", Updater.CurrentVersion.ToString() },
                         { "Portable", PlayniteSettings.IsPortable },
                         { "Memory", (PlayniteProcess.WorkingSetMemory / 1024f) / 1024f },
                         { "Path", PlayniteProcess.Path },
