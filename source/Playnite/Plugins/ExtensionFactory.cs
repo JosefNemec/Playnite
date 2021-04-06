@@ -728,12 +728,9 @@ namespace Playnite.Plugins
                 return;
             }
 
-            foreach (var elem in args.ElementList)
-            {
-                var elemSupport = args.GetClone<AddCustomElementSupportArgs, PluginUiElementSupport>();
-                elemSupport.Source = source;
-                CustomElementList.Add(elemSupport);
-            }
+            var elemSupport = args.GetClone<AddCustomElementSupportArgs, PluginUiElementSupport>();
+            elemSupport.Source = source;
+            CustomElementList.Add(elemSupport);
         }
 
         public List<object> GetTopPanelPluginItems()
