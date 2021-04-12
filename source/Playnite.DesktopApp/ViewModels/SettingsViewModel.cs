@@ -117,17 +117,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<IList<object>> RemoveImmportExclusionItemCommand
-        {
-            get => new RelayCommand<IList<object>>((items) =>
-            {
-                foreach (ImportExclusionItem item in items.ToList())
-                {
-                    Settings.ImportExclusionList.Items.Remove(item);
-                }
-            }, (items) => items != null && items.Count > 0);
-        }
-
         public RelayCommand<object> AddDevelExtensionCommand
         {
             get => new RelayCommand<object>((a) =>

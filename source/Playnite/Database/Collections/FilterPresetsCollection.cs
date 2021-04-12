@@ -10,7 +10,7 @@ namespace Playnite.Database
 {
     public class FilterPresetsCollection : ItemCollection<FilterPreset>
     {
-        public FilterPresetsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.AgeRatings)
+        public FilterPresetsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.FilterPresets)
         {
         }
 

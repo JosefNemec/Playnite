@@ -1657,12 +1657,6 @@ namespace Playnite
             get; private set;
         } = new FullscreenSettings();
 
-        [JsonIgnore]
-        public ImportExclusionList ImportExclusionList
-        {
-            get; set;
-        } = new ImportExclusionList();
-
         private List<SelectableItem<string>> develExtenions = new List<SelectableItem<string>>();
         public List<SelectableItem<string>> DevelExtenions
         {
@@ -1821,7 +1815,6 @@ namespace Playnite
 
             settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);
             settings.Fullscreen = LoadExternalConfig<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath, PlaynitePaths.BackupFullscreenConfigFilePath);
-            settings.ImportExclusionList = LoadExternalConfig<ImportExclusionList>(PlaynitePaths.ExclusionListConfigFilePath, PlaynitePaths.BackupExclusionListConfigFilePath);
             settings.BackupSettings();
             return settings;
         }
@@ -1855,7 +1848,6 @@ namespace Playnite
                 SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
-                SaveSettingFile(ImportExclusionList, PlaynitePaths.ExclusionListConfigFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -1871,7 +1863,6 @@ namespace Playnite
                 SaveSettingFile(this, PlaynitePaths.BackupConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
-                SaveSettingFile(ImportExclusionList, PlaynitePaths.BackupExclusionListConfigFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {

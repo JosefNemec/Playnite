@@ -504,7 +504,11 @@ namespace Playnite
                 Database.Games.Remove(game);
                 if (addToExclusionList)
                 {
-                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    var exclusion = new ImportExclusionItem(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    if (Database.ImportExclusions[exclusion.Id] == null)
+                    {
+                        Database.ImportExclusions.Add(exclusion);
+                    }
                 }
             }
         }
@@ -566,7 +570,11 @@ namespace Playnite
 
                 if (addToExclusionList && !game.IsCustomGame)
                 {
-                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    var exclusion = new ImportExclusionItem(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    if (Database.ImportExclusions[exclusion.Id] == null)
+                    {
+                        Database.ImportExclusions.Add(exclusion);
+                    }
                 }
             }
 

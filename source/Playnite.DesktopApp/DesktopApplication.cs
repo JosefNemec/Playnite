@@ -150,7 +150,7 @@ namespace Playnite.DesktopApp
                 new NotificationsAPI(),
                 GamesEditor,
                 new PlayniteUriHandler(),
-                new PlayniteSettingsAPI(AppSettings),
+                new PlayniteSettingsAPI(AppSettings, Database),
                 new AddonsAPI(Extensions, AppSettings),
                 Extensions);
             Game.DatabaseReference = Database;

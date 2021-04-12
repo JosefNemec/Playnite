@@ -10,18 +10,18 @@
     <DockPanel Margin="5">
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
             <Button Content="{DynamicResource LOCRemoveTitle}" Margin="0,5,0,0"
-                    Command="{Binding RemoveImmportExclusionItemCommand}" 
+                    Command="{Binding RemoveImportExclusionItemCommand}" 
                     CommandParameter="{Binding SelectedItems, ElementName=ListImportExclusionList}"/>
         </StackPanel>
         <ListView DockPanel.Dock="Top" Name="ListImportExclusionList"
                   SelectionMode="Extended"
-                  ItemsSource="{Binding Settings.ImportExclusionList.Items}">
+                  ItemsSource="{Binding ImportExclusionList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="240" Header="{DynamicResource LOCNameLabel}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding GameName}" Padding="0,1,0,1"/>
+                                <TextBlock Text="{Binding Name}" Padding="0,1,0,1"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

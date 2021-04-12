@@ -7,6 +7,7 @@ using Playnite.SDK.Plugins;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -86,6 +87,21 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
+
+        private readonly List<ImportExclusionItem> removedExclusionItems = new List<ImportExclusionItem>();
+        public RelayCommand<IList<object>> RemoveImportExclusionItemCommand
+        {
+            get => new RelayCommand<IList<object>>((items) =>
+            {
+                foreach (ImportExclusionItem item in items.ToList())
+                {
+                    ImportExclusionList.Remove(item);
+                    removedExclusionItems.Add(item);
+                }
+            }, (items) => items != null && items.Count > 0);
+        }
+
         public SettingsViewModelBase(
             GameDatabase database,
             PlayniteSettings settings,
@@ -104,8 +120,8 @@ namespace Playnite.DesktopApp.ViewModels
             originalSettings = settings;
 
             Settings = settings.GetClone();
-            Settings.ImportExclusionList = settings.ImportExclusionList.GetClone();
             Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
+            ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
         }
 
         public bool? OpenView()
@@ -186,10 +202,7 @@ namespace Playnite.DesktopApp.ViewModels
                 nameof(PlayniteSettings.Fullscreen)
             }, true);
 
-            if (!originalSettings.ImportExclusionList.IsEqualJson(Settings.ImportExclusionList))
-            {
-                originalSettings.ImportExclusionList = Settings.ImportExclusionList;
-            }
+            database.ImportExclusions.Remove(removedExclusionItems);
         }
     }
 }

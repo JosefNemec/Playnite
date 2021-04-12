@@ -144,7 +144,6 @@ namespace Playnite
                 var settings = PlayniteSettings.GetDefaultSettings();
                 settings.FirstTimeWizardComplete = true;
                 settings.DatabasePath = AppSettings.DatabasePath;
-                settings.ImportExclusionList = AppSettings.ImportExclusionList;
                 settings.SaveSettings();
                 AppSettings = settings;
             }

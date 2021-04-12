@@ -44,6 +44,7 @@ namespace Playnite.Database
             { nameof(Features), typeof(FeaturesCollection) },
             { nameof(SoftwareApps), typeof(AppSoftwareCollection) },
             { nameof(FilterPresets), typeof(FilterPresetsCollection) },
+            { nameof(ImportExclusions), typeof(ImportExclusionsCollection) },
             { nameof(Games), typeof(GamesCollection) }
         };
 
@@ -76,6 +77,7 @@ namespace Playnite.Database
         private const string sourcesDirName = "sources";
         private const string toolsDirName = "tools";
         private const string filterPresetsDirName = "filterpresets";
+        private const string importExclusionsDirName = "importexclusions";
         private const string settingsFileName = "database.json";
 
         private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
@@ -94,6 +96,7 @@ namespace Playnite.Database
         private string FeaturesDirectoryPath { get => Path.Combine(DatabasePath, featuresDirName); }
         private string ToolsDirectoryPath { get => Path.Combine(DatabasePath, toolsDirName); }
         private string FilterPresetsDirectoryPath { get => Path.Combine(DatabasePath, filterPresetsDirName); }
+        private string ImportExclusionsDirectoryPath { get => Path.Combine(DatabasePath, importExclusionsDirName); }
 
         #endregion Paths
 
@@ -113,6 +116,7 @@ namespace Playnite.Database
         public IItemCollection<GameFeature> Features { get; private set; }
         public AppSoftwareCollection SoftwareApps { get; private set; }
         public FilterPresetsCollection FilterPresets { get; private set; }
+        public ImportExclusionsCollection ImportExclusions { get; private set; }
 
         public List<Guid> UsedPlatforms { get; } = new List<Guid>();
         public List<Guid> UsedGenres { get; } = new List<Guid>();
@@ -212,6 +216,7 @@ namespace Playnite.Database
                 (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
                 FilterPresets.InitializeCollection(FilterPresetsDirectoryPath);
+                ImportExclusions.InitializeCollection(ImportExclusionsDirectoryPath);
 
                 Games.ItemUpdated += Games_ItemUpdated;
                 Games.ItemCollectionChanged += Games_ItemCollectionChanged;
@@ -884,6 +889,7 @@ namespace Playnite.Database
             Games.BeginBufferUpdate();
             SoftwareApps.BeginBufferUpdate();
             FilterPresets.BeginBufferUpdate();
+            ImportExclusions.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
@@ -902,6 +908,7 @@ namespace Playnite.Database
             Games.EndBufferUpdate();
             SoftwareApps.EndBufferUpdate();
             FilterPresets.EndBufferUpdate();
+            ImportExclusions.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()
@@ -1123,7 +1130,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, IList<ImportExclusionItem> excludedItems)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
             if (library.Capabilities?.HasCustomizedGameImport == true)
             {
@@ -1134,7 +1141,7 @@ namespace Playnite.Database
                 var addedGames = new List<Game>();
                 foreach (var newGame in library.GetGames())
                 {
-                    if (excludedItems.Any(a => a.GameId == newGame.GameId && a.LibraryId == library.Id))
+                    if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
                     {
                         logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
                         continue;

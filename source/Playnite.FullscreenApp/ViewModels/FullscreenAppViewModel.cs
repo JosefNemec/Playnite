@@ -846,7 +846,7 @@ namespace Playnite.FullscreenApp.ViewModels
                         {
                             using (Database.BufferedUpdate())
                             {
-                                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, AppSettings.ImportExclusionList.Items));
+                                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync));
                             }
 
                             PlayniteApi.Notifications.Remove($"{plugin.Id} - download");
