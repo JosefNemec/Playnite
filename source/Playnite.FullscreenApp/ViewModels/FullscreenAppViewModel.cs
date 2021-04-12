@@ -454,6 +454,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void ElementGotFocusHandler(object sender, RoutedEventArgs e)
         {
+            // This prevents "double-click" sounds when using mouse to open child menus.
+            // There's probably a better way how to detect if focus was caused by mouse input, but I haven't found it.
+            var mouseInput = InputManager.Current?.PrimaryMouseDevice;
+            if (mouseInput != null && mouseInput.LeftButton == MouseButtonState.Pressed)
+            {
+                return;
+            }
+
             if (sender is UIElement elem && elem.IsVisible)
             {
                 switch (sender)
