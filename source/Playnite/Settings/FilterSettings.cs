@@ -12,19 +12,8 @@ using Playnite.SDK.Models;
 
 namespace Playnite
 {
-    public class FilterPreset : ObservableObject
+    public class FilterPreset : DatabaseObject
     {
-        private string name;
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged();
-            }
-        }
-
         private FilterSettings settings;
         public FilterSettings Settings
         {
@@ -854,7 +843,7 @@ namespace Playnite
         }
 
         [JsonIgnore]
-        public bool SuppressFilterChanges = false;
+        public bool SuppressFilterChanges { get; set; } = false;
         public event EventHandler<FilterChangedEventArgs> FilterChanged;
 
         public void OnFilterChanged(string field)

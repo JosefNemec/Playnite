@@ -1602,8 +1602,8 @@ namespace Playnite
             }
         }
 
-        private string selectedFilterPreset;
-        public string SelectedFilterPreset
+        private Guid selectedFilterPreset;
+        public Guid SelectedFilterPreset
         {
             get => selectedFilterPreset;
             set
@@ -1662,24 +1662,6 @@ namespace Playnite
         {
             get; set;
         } = new ImportExclusionList();
-
-        [JsonIgnore]
-        public List<FilterPreset> FilterPresets
-        {
-            get; private set;
-        } = new List<FilterPreset>();
-
-        [JsonIgnore]
-        public List<FilterPreset> SortedFilterPresets
-        {
-            get => FilterPresets.OrderBy(a => a.Name).ToList();
-        }
-
-        [JsonIgnore]
-        public List<FilterPreset> SortedFilterFullscreenPresets
-        {
-            get => FilterPresets.Where(a => a.ShowInFullscreeQuickSelection).OrderBy(a => a.Name).ToList();
-        }
 
         private List<SelectableItem<string>> develExtenions = new List<SelectableItem<string>>();
         public List<SelectableItem<string>> DevelExtenions
@@ -1840,50 +1822,6 @@ namespace Playnite
             settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);
             settings.Fullscreen = LoadExternalConfig<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath, PlaynitePaths.BackupFullscreenConfigFilePath);
             settings.ImportExclusionList = LoadExternalConfig<ImportExclusionList>(PlaynitePaths.ExclusionListConfigFilePath, PlaynitePaths.BackupExclusionListConfigFilePath);
-            settings.FilterPresets = LoadExternalConfig<List<FilterPreset>>(PlaynitePaths.FilterPresetsFilePath, PlaynitePaths.BackupFilterPresetsFilePath, false);
-            if (settings.FilterPresets == null)
-            {
-                settings.FilterPresets = new List<FilterPreset>
-                {
-                    new FilterPreset
-                    {
-                        Name  = "All",
-                        ShowInFullscreeQuickSelection = true,
-                        GroupingOrder = GroupableField.None,
-                        SortingOrder = SortOrder.Name,
-                        SortingOrderDirection = SortOrderDirection.Ascending,
-                        Settings = new FilterSettings()
-                    },
-                    new FilterPreset
-                    {
-                        Name  = "Recently Played",
-                        ShowInFullscreeQuickSelection = true,
-                        GroupingOrder = GroupableField.None,
-                        SortingOrder = SortOrder.LastActivity,
-                        SortingOrderDirection = SortOrderDirection.Descending,
-                        Settings = new FilterSettings { IsInstalled = true }
-                    },
-                    new FilterPreset
-                    {
-                        Name  = "Favorites",
-                        ShowInFullscreeQuickSelection = true,
-                        GroupingOrder = GroupableField.None,
-                        SortingOrder = SortOrder.Name,
-                        SortingOrderDirection = SortOrderDirection.Ascending,
-                        Settings = new FilterSettings { Favorite = true }
-                    },
-                    new FilterPreset
-                    {
-                        Name  = "Most Played",
-                        ShowInFullscreeQuickSelection = true,
-                        GroupingOrder = GroupableField.None,
-                        SortingOrder = SortOrder.Playtime,
-                        SortingOrderDirection = SortOrderDirection.Descending,
-                        Settings = new FilterSettings()
-                    }
-                };
-            }
-
             settings.BackupSettings();
             return settings;
         }
@@ -1918,7 +1856,6 @@ namespace Playnite
                 SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
                 SaveSettingFile(ImportExclusionList, PlaynitePaths.ExclusionListConfigFilePath);
-                SaveSettingFile(FilterPresets, PlaynitePaths.FilterPresetsFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -1935,7 +1872,6 @@ namespace Playnite
                 SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
                 SaveSettingFile(ImportExclusionList, PlaynitePaths.BackupExclusionListConfigFilePath);
-                SaveSettingFile(FilterPresets, PlaynitePaths.BackupFilterPresetsFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {

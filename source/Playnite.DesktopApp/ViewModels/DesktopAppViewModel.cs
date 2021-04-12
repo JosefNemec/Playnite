@@ -52,7 +52,6 @@ namespace Playnite.DesktopApp.ViewModels
         public IWindowFactory Window { get; }
         public IDialogsFactory Dialogs { get; }
         public IResourceProvider Resources { get; }
-        public GameDatabase Database { get; set; }
         public DesktopGamesEditor GamesEditor { get; }
 
         private Control activeView;
@@ -303,7 +302,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public DesktopAppViewModel() : base(ApplicationMode.Desktop)
+        public DesktopAppViewModel() : base(ApplicationMode.Desktop, null)
         {
         }
 
@@ -316,14 +315,13 @@ namespace Playnite.DesktopApp.ViewModels
             DesktopGamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(ApplicationMode.Desktop)
+            PlayniteApplication app) : base(ApplicationMode.Desktop, database)
         {
             context = SynchronizationContext.Current;
             application = app;
             Window = window;
             Dialogs = dialogs;
             Resources = resources;
-            Database = database;
             GamesEditor = gamesEditor;
             AppSettings = settings;
             PlayniteApi = playniteApi;
@@ -479,6 +477,12 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             LoadSoftwareToolsSidebarItems();
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            if (AppSettings.SelectedFilterPreset != Guid.Empty)
+            {
+                ActiveFilterPreset = Database.FilterPresets.FirstOrDefault(a => a.Id == AppSettings.SelectedFilterPreset);
+            }
         }
 
         public async Task UpdateDatabase(bool metaForNewGames)

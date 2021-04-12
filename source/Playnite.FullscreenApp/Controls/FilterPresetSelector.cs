@@ -57,8 +57,8 @@ namespace Playnite.FullscreenApp.Controls
                 ItemsFilterPresets.SetResourceReference(ListBox.ItemContainerStyleProperty, "ItemFilterQuickPreset");
                 BindingTools.SetBinding(ItemsFilterPresets,
                     ListBox.ItemsSourceProperty,
-                    mainModel.AppSettings,
-                    nameof(mainModel.AppSettings.SortedFilterFullscreenPresets));
+                    mainModel,
+                    nameof(mainModel.SortedFilterFullscreenPresets));
                 BindingTools.SetBinding(ItemsFilterPresets,
                     ListBox.SelectedItemProperty,
                     mainModel,

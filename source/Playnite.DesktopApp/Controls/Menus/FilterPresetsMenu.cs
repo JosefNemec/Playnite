@@ -44,7 +44,7 @@ namespace Playnite.DesktopApp.Controls
         private void FilterPresetsMenu_Opened(object sender, RoutedEventArgs e)
         {
             Items.Clear();
-            foreach (var preset in mainModel.AppSettings.SortedFilterPresets)
+            foreach (var preset in mainModel.SortedFilterPresets)
             {
                 var item = new MenuItem
                 {

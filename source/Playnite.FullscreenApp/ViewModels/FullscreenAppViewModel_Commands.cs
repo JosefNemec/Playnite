@@ -271,7 +271,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             NextFilterViewCommand = new RelayCommand<object>((a) =>
             {
-                var presets = AppSettings.SortedFilterFullscreenPresets;
+                var presets = SortedFilterFullscreenPresets;
                 if (!presets.HasItems())
                 {
                     return;
@@ -293,7 +293,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             PrevFilterViewCommand = new RelayCommand<object>((a) =>
             {
-                var presets = AppSettings.SortedFilterFullscreenPresets;
+                var presets = SortedFilterFullscreenPresets;
                 if (!presets.HasItems())
                 {
                     return;

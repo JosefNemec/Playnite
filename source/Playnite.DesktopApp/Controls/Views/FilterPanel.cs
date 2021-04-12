@@ -115,8 +115,8 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 BindingTools.SetBinding(ComboFilterPresets,
                     ComboBox.ItemsSourceProperty,
-                    mainModel.AppSettings,
-                    nameof(mainModel.AppSettings.SortedFilterPresets));
+                    mainModel,
+                    nameof(mainModel.SortedFilterPresets));
                 BindingTools.SetBinding(ComboFilterPresets,
                     ComboBox.SelectedItemProperty,
                     mainModel,

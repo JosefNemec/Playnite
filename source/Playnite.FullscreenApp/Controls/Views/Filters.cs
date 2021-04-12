@@ -125,8 +125,8 @@ namespace Playnite.FullscreenApp.Controls.Views
             ComboFilterPresets.SetResourceReference(ComboBoxEx.StyleProperty, "FilterPanelComboBoxEx");
             BindingTools.SetBinding(ComboFilterPresets,
                 ComboBox.ItemsSourceProperty,
-                mainModel.AppSettings,
-                nameof(mainModel.AppSettings.SortedFilterPresets));
+                mainModel,
+                nameof(mainModel.SortedFilterPresets));
             BindingTools.SetBinding(ComboFilterPresets,
                 ComboBox.SelectedItemProperty,
                 mainModel,

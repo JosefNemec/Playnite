@@ -29,7 +29,7 @@ namespace Playnite.Database
 
         private static ILogger logger = LogManager.GetLogger();
 
-        private static Dictionary<string, Type> collectionsSpec = new Dictionary<string, Type>
+        private static readonly Dictionary<string, Type> collectionsSpec = new Dictionary<string, Type>
         {
             { nameof(Platforms), typeof(PlatformsCollection) },
             { nameof(Emulators), typeof(EmulatorsCollection) },
@@ -43,6 +43,7 @@ namespace Playnite.Database
             { nameof(Sources), typeof(GamesSourcesCollection) },
             { nameof(Features), typeof(FeaturesCollection) },
             { nameof(SoftwareApps), typeof(AppSoftwareCollection) },
+            { nameof(FilterPresets), typeof(FilterPresetsCollection) },
             { nameof(Games), typeof(GamesCollection) }
         };
 
@@ -74,6 +75,7 @@ namespace Playnite.Database
         private const string regionsDirName = "regions";
         private const string sourcesDirName = "sources";
         private const string toolsDirName = "tools";
+        private const string filterPresetsDirName = "filterpresets";
         private const string settingsFileName = "database.json";
 
         private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
@@ -91,6 +93,7 @@ namespace Playnite.Database
         private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
         private string FeaturesDirectoryPath { get => Path.Combine(DatabasePath, featuresDirName); }
         private string ToolsDirectoryPath { get => Path.Combine(DatabasePath, toolsDirName); }
+        private string FilterPresetsDirectoryPath { get => Path.Combine(DatabasePath, filterPresetsDirName); }
 
         #endregion Paths
 
@@ -109,6 +112,7 @@ namespace Playnite.Database
         public IItemCollection<GameSource> Sources { get; private set; }
         public IItemCollection<GameFeature> Features { get; private set; }
         public AppSoftwareCollection SoftwareApps { get; private set; }
+        public FilterPresetsCollection FilterPresets { get; private set; }
 
         public List<Guid> UsedPlatforms { get; } = new List<Guid>();
         public List<Guid> UsedGenres { get; } = new List<Guid>();
@@ -207,6 +211,7 @@ namespace Playnite.Database
                 (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
                 (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
+                FilterPresets.InitializeCollection(FilterPresetsDirectoryPath);
 
                 Games.ItemUpdated += Games_ItemUpdated;
                 Games.ItemCollectionChanged += Games_ItemCollectionChanged;
@@ -330,19 +335,11 @@ namespace Playnite.Database
                 return;
             }
 
-            Platforms.Dispose();
-            Games.Dispose();
-            Emulators.Dispose();
-            Genres.Dispose();
-            Companies.Dispose();
-            Tags.Dispose();
-            Categories.Dispose();
-            AgeRatings.Dispose();
-            Series.Dispose();
-            Regions.Dispose();
-            Sources.Dispose();
-            Features.Dispose();
-            SoftwareApps.Dispose();
+            foreach (var col in collectionsSpec)
+            {
+                var prop = typeof(GameDatabase).GetProperty(col.Key);
+                typeof(IDisposable).GetMethod(nameof(IDisposable.Dispose)).Invoke(prop.GetValue(this), null);
+            }
         }
 
         public static string GetDefaultPath(bool portable)
@@ -475,6 +472,50 @@ namespace Playnite.Database
                     col.Add(platforms);
                     col.IsEventsEnabled = true;
                 }
+
+                // Generate default filter presets
+                FilterPresets.IsEventsEnabled = false;
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "All",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Name,
+                    SortingOrderDirection = SortOrderDirection.Ascending,
+                    Settings = new FilterSettings()
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Recently Played",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.LastActivity,
+                    SortingOrderDirection = SortOrderDirection.Descending,
+                    Settings = new FilterSettings { IsInstalled = true }
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Favorites",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Name,
+                    SortingOrderDirection = SortOrderDirection.Ascending,
+                    Settings = new FilterSettings { Favorite = true }
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Most Played",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Playtime,
+                    SortingOrderDirection = SortOrderDirection.Descending,
+                    Settings = new FilterSettings()
+                });
+
+                FilterPresets.IsEventsEnabled = true;
             }
 
             IsOpen = true;
@@ -842,6 +883,7 @@ namespace Playnite.Database
             Features.BeginBufferUpdate();
             Games.BeginBufferUpdate();
             SoftwareApps.BeginBufferUpdate();
+            FilterPresets.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
@@ -859,6 +901,7 @@ namespace Playnite.Database
             Features.EndBufferUpdate();
             Games.EndBufferUpdate();
             SoftwareApps.EndBufferUpdate();
+            FilterPresets.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()

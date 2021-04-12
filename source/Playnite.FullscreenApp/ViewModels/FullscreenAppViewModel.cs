@@ -44,7 +44,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public IWindowFactory Window { get; }
         public IDialogsFactory Dialogs { get; }
         public IResourceProvider Resources { get; }
-        public GameDatabase Database { get; }
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
         public ObservableTime CurrentTime { get; } = new ObservableTime();
@@ -373,7 +372,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public FullscreenAppViewModel() : base(ApplicationMode.Fullscreen)
+        public FullscreenAppViewModel() : base(ApplicationMode.Fullscreen, null)
         {
         }
 
@@ -386,14 +385,13 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(ApplicationMode.Fullscreen)
+            PlayniteApplication app) : base(ApplicationMode.Fullscreen, database)
         {
             context = SynchronizationContext.Current;
             Application = app;
             Window = window;
             Dialogs = dialogs;
             Resources = resources;
-            Database = database;
             GamesEditor = gamesEditor;
             AppSettings = settings;
             PlayniteApi = playniteApi;
@@ -763,7 +761,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 SelectedGame = null;
             }
 
-            ActiveFilterPreset = AppSettings.FilterPresets.FirstOrDefault(a => a.Name == AppSettings.Fullscreen.SelectedFilterPreset);
             GameListFocused = true;
             isInitialized = true;
             Extensions.NotifiyOnApplicationStarted();
@@ -775,6 +772,13 @@ namespace Playnite.FullscreenApp.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to initialize Discord manager.");
+            }
+
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            if (AppSettings.Fullscreen.SelectedFilterPreset != Guid.Empty)
+            {
+                ActiveFilterPreset = Database.FilterPresets.FirstOrDefault(a => a.Id == AppSettings.Fullscreen.SelectedFilterPreset);
             }
         }
 
