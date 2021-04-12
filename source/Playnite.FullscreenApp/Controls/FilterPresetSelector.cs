@@ -64,6 +64,24 @@ namespace Playnite.FullscreenApp.Controls
                     mainModel,
                     nameof(mainModel.ActiveFilterPreset),
                     mode: BindingMode.TwoWay);
+
+                ItemsFilterPresets.PreviewMouseLeftButtonUp += ItemsFilterPresets_PreviewMouseLeftButtonUp;
+            }
+        }
+
+        private void ItemsFilterPresets_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (!(sender is ListBox))
+            {
+                return;
+            }
+
+            if (ItemsControl.ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) is ListBoxItem item)
+            {
+                if (item.DataContext is FilterPreset preset)
+                {
+                    mainModel.ActiveFilterPreset = preset;
+                }
             }
         }
     }
