@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Playnite.Extensions.Markup
 {
     public class PluginSettings : BindingExtension
     {
         public string Plugin { get; set; }
-        public PluginUiElementSupport PluginSource { get; set; }
 
         public PluginSettings() : this(null)
         {
@@ -34,14 +34,14 @@ namespace Playnite.Extensions.Markup
                 return this;
             }
 
-            PluginSource = PlayniteApplication.Current?.Extensions.CustomElementList.FirstOrDefault(a => a.SourceName == Plugin);
-            if (PluginSource == null || PluginSource.SettingsRoot.IsNullOrEmpty())
+            var pSource = PlayniteApplication.Current?.Extensions.CustomElementList.FirstOrDefault(a => a.SourceName == Plugin);
+            if (pSource == null || pSource.SettingsRoot.IsNullOrEmpty())
             {
-                return null;
+                return DependencyProperty.UnsetValue;
             }
 
-            Source = PluginSource.Source;
-            PathRoot = PluginSource.SettingsRoot + '.';
+            Source = pSource.Source;
+            PathRoot = pSource.SettingsRoot + '.';
             return base.ProvideValue(serviceProvider);
         }
     }
