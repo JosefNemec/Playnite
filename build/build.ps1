@@ -134,7 +134,7 @@ if (!$SkipBuild)
     {
         $depArchive = Join-Path $env:TEMP "deps.zip"
         Invoke-WebRequest $LicensedDependenciesUrl -OutFile $depArchive
-        Expand-ZipToDirectory $depArchive "..\"
+        Expand-ZipToDirectory $depArchive (Resolve-Path "..").Path
     }
 
     $solutionDir = Join-Path $pwd "..\source"
