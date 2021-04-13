@@ -157,6 +157,17 @@ function global:New-ZipFromDirectory()
     [IO.Compression.ZipFile]::CreateFromDirectory($directory, $resultZipPath, "Optimal", $includeBaseDirectory) 
 }
 
+function global:Expand-ZipToDirectory()
+{
+    param(
+        [string]$zipPath,
+        [string]$directory
+    )
+
+    Add-Type -assembly "System.IO.Compression.Filesystem" | Out-Null
+    [IO.Compression.ZipFile]::ExtractToDirectory($zipPath, $directory, $true)
+}
+
 function global:Write-OperationLog()
 {
     param(

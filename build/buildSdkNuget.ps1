@@ -3,7 +3,6 @@
     [string]$Configuration = "Release",
     [string]$OutputPath = (Join-Path $PWD "$($Configuration)SDK"),
     [switch]$SkipBuild = $false,
-    [switch]$Sign = $false,
     [string]$LocalPublish
 )
 
@@ -23,13 +22,6 @@ if (!$SkipBuild)
     if ($compilerResult -ne 0)
     {
         throw "Build failed."
-    }
-    else
-    {
-        if ($Sign)
-        {
-            Join-Path $OutputPath "Playnite.SDK.dll" | SignFile
-        }
     }
 }
 
