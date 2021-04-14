@@ -69,9 +69,7 @@
                     <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="13" />
                 </TreeViewItem>
                 <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8" />
-                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10"
-                          DisplayMemberPath="Name"
-                          ItemsSource="{Binding Extensions.LibraryPlugins}" />
+                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10" />
                 <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="10"
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding Extensions.MetadataPlugins}"/>

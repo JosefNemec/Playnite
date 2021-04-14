@@ -851,6 +851,7 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCExtensionsUpdates">Updates</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">Updates ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">Management of installed extensions and themes has been moved to a new "Add-ons" menu.</sys:String>
+    <sys:String x:Key="LOCIntegrationsConfigMoveInfo">Library integration settings have been moved to "Library -> Configure Integrations" menu.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Themes Desktop</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">Themes Fullscren</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Searching…</sys:String>

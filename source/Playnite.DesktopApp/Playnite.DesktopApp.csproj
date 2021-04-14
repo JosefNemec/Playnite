@@ -165,6 +165,9 @@
     <Compile Include="Controls\NullableIntBox.cs" />
     <Compile Include="Controls\NumericDoubleBox.cs" />
     <Compile Include="Controls\NumericBox.cs" />
+    <Compile Include="Controls\SettingsSections\IntegrationsMoveInfo.xaml.cs">
+      <DependentUpon>IntegrationsMoveInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\AppearanceTopPanel.xaml.cs">
       <DependentUpon>AppearanceTopPanel.xaml</DependentUpon>
     </Compile>
@@ -545,6 +548,10 @@
     <Page Include="Controls\MetadataDownloadSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\IntegrationsMoveInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\AppearanceTopPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
