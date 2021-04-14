@@ -1636,6 +1636,17 @@ namespace Playnite
             }
         }
 
+        private bool useCompositionWebViewRenderer = false;
+        public bool UseCompositionWebViewRenderer
+        {
+            get => useCompositionWebViewRenderer;
+            set
+            {
+                useCompositionWebViewRenderer = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

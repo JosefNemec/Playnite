@@ -145,7 +145,7 @@ namespace Playnite.DesktopApp
                 null,
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
-                new WebViewFactory(),
+                new WebViewFactory(AppSettings),
                 new ResourceProvider(),
                 new NotificationsAPI(),
                 GamesEditor,
