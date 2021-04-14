@@ -9,6 +9,9 @@ namespace Playnite
     public class UpdateManifest
     {
         public Version Version { get; set; }
+        public Version SdkVersion { get; set; }
+        public Version FullscreenThemeVersion { get; set; }
+        public Version DesktopThemeVersion { get; set; }
         public string Checksum { get; set; }
         public List<string> PackageUrls { get; set; }
         public List<Version> VersionHistory { get; set; }
