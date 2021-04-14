@@ -123,5 +123,12 @@ namespace Playnite.SDK
         /// <param name="source"></param>
         /// <param name="args"></param>
         void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
     }
 }

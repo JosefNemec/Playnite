@@ -34,7 +34,7 @@ namespace Playnite.Extensions.Markup
                 return this;
             }
 
-            var pSource = PlayniteApplication.Current?.Extensions.CustomElementList.FirstOrDefault(a => a.SourceName == Plugin);
+            var pSource = PlayniteApplication.Current?.Extensions.SettingsSupportList.FirstOrDefault(a => a.SourceName == Plugin);
             if (pSource == null || pSource.SettingsRoot.IsNullOrEmpty())
             {
                 return DependencyProperty.UnsetValue;

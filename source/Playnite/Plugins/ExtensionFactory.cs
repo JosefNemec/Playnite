@@ -720,7 +720,6 @@ namespace Playnite.Plugins
         }
 
         public List<PluginUiElementSupport> CustomElementList = new List<PluginUiElementSupport>();
-
         public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
         {
             if (CustomElementList.Any(a => a.Source == source))
@@ -731,6 +730,19 @@ namespace Playnite.Plugins
             var elemSupport = args.GetClone<AddCustomElementSupportArgs, PluginUiElementSupport>();
             elemSupport.Source = source;
             CustomElementList.Add(elemSupport);
+        }
+
+        public List<PluginSettingsSupport> SettingsSupportList = new List<PluginSettingsSupport>();
+        public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
+        {
+            if (SettingsSupportList.Any(a => a.Source == source))
+            {
+                return;
+            }
+
+            var elemSupport = args.GetClone<AddSettingsSupportArgs, PluginSettingsSupport>();
+            elemSupport.Source = source;
+            SettingsSupportList.Add(elemSupport);
         }
 
         public List<object> GetTopPanelPluginItems()
@@ -763,6 +775,11 @@ namespace Playnite.Plugins
     }
 
     public class PluginUiElementSupport : AddCustomElementSupportArgs
+    {
+        public Plugin Source { get; set; }
+    }
+
+    public class PluginSettingsSupport : AddSettingsSupportArgs
     {
         public Plugin Source { get; set; }
     }

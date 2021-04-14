@@ -32,6 +32,11 @@ namespace TestPlugin
             {
                 ElementList = new List<string> { "TestUserControl" },
                 SourceName = "TestPlugin",
+            });
+
+            AddSettingsSupport(new AddSettingsSupportArgs
+            {
+                SourceName = "TestPlugin",
                 SettingsRoot = $"{nameof(Settings)}.{nameof(Settings.Settings)}"
             });
         }

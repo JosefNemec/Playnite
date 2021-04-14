@@ -353,6 +353,15 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         ///
         /// </summary>
+        /// <param name="args"></param>
+        public void AddSettingsSupport(AddSettingsSupportArgs args)
+        {
+            PlayniteApi.AddSettingsSupport(this, args);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <returns></returns>
         public virtual List<TopPanelItem> GetTopPanelItems()
         {
@@ -416,6 +425,17 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         public List<string> ElementList { get; set; }
 
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddSettingsSupportArgs
+    {
         /// <summary>
         ///
         /// </summary>
