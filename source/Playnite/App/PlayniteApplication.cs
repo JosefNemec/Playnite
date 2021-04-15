@@ -1025,6 +1025,18 @@ namespace Playnite
             }
         }
 
+        public void ShowAddonPerfNotice()
+        {
+            if (AppSettings.AddonsPerfNoticeShown)
+            {
+                return;
+            }
+
+            Dialogs.ShowMessage(LOC.AddonPerfNotice, "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            AppSettings.AddonsPerfNoticeShown = true;
+            AppSettings.SaveSettings();
+        }
+
         public void InstallOnlineAddon(string addonId)
         {
             try
@@ -1074,6 +1086,7 @@ namespace Playnite
                     return;
                 }
 
+                ShowAddonPerfNotice();
                 var locaPath = addon.GetTargetDownloadPath();
                 FileSystem.DeleteFile(locaPath);
                 var res = Dialogs.ActivateGlobalProgress((_) =>
@@ -1136,6 +1149,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    ShowAddonPerfNotice();
                     ExtensionInstaller.QueuePackageInstall(themeFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
@@ -1179,6 +1193,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    ShowAddonPerfNotice();
                     ExtensionInstaller.QueuePackageInstall(extensionFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),

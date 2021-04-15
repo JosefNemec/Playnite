@@ -1647,6 +1647,17 @@ namespace Playnite
             }
         }
 
+        private bool addonsPerfNoticeShown = false;
+        public bool AddonsPerfNoticeShown
+        {
+            get => addonsPerfNoticeShown;
+            set
+            {
+                addonsPerfNoticeShown = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

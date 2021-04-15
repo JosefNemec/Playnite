@@ -955,4 +955,7 @@ Good quality, fast, low memory usage.
     
 Alternative:
 Better quality, medium speed, low memory usage.</sys:String>
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">Please note that both extensions and themes can greatly affect Playnite's performance, stability and security.
+    
+If you start experiencing some issues after installing a theme or an extension, try disabling/uninstalling them first to see if they are root of the issue.</sys:String>
 </ResourceDictionary>

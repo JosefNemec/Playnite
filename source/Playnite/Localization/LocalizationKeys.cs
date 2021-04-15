@@ -1442,6 +1442,14 @@ namespace Playnite
         /// </summary>
         public const string LoginFailed = "LOCLoginFailed";
         /// <summary>
+        /// Alternative web view rendering mode
+        /// </summary>
+        public const string SettingsAltWebViewRendering = "LOCSettingsAltWebViewRendering";
+        /// <summary>
+        /// Use when experiencing issues with web views, for example integration authentication dialogs.
+        /// </summary>
+        public const string SettingsAltWebViewRenderingTooltip = "LOCSettingsAltWebViewRenderingTooltip";
+        /// <summary>
         /// Metadata Import
         /// </summary>
         public const string MetaImportWindowTitle = "LOCMetaImportWindowTitle";
@@ -3006,6 +3014,10 @@ namespace Playnite
         /// </summary>
         public const string AddonsConfigMoveInfo = "LOCAddonsConfigMoveInfo";
         /// <summary>
+        /// Library integration settings have been moved to "Library -&gt; Configure Integrations" menu.
+        /// </summary>
+        public const string IntegrationsConfigMoveInfo = "LOCIntegrationsConfigMoveInfo";
+        /// <summary>
         /// Themes Desktop
         /// </summary>
         public const string AddonsThemesDesktop = "LOCAddonsThemesDesktop";
@@ -3373,5 +3385,9 @@ namespace Playnite
         /// Quality:
         /// </summary>
         public const string SettingsImageScalerModeTooltip = "LOCSettingsImageScalerModeTooltip";
+        /// <summary>
+        /// Please note that both extensions and themes can greatly affect Playnite's performance, stability and security.
+        /// </summary>
+        public const string AddonPerfNotice = "LOCAddonPerfNotice";
     }
 }
