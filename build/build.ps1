@@ -239,6 +239,7 @@ if ($SdkNuget)
 # -------------------------------------------
 #            Merge online installer
 # -------------------------------------------
+Write-OperationLog "Merging online installer..."
 $ilMerge = (Get-ChildItem "..\source\packages" -Filter "ILMerge.exe" -Recurse | Select -First 1).FullName
 $installerOutPath = Join-Path $OutputDir "PlayniteInstaller.exe"
 $onlineInstallerDir = Join-Path $OutputDir "Installer"
