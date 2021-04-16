@@ -30,10 +30,7 @@
 
     [string]$LicensedDependenciesUrl,
 
-
     [switch]$SdkNuget,
-
-    [switch]$CIBuild,
 
     [string]$OnlineInstallerConfig
 )
@@ -237,10 +234,6 @@ New-Folder $InstallerDir
 if ($SdkNuget)
 {
     & .\buildSdkNuget.ps1 -SkipBuild -OutputPath $OutputDir
-    if ($CIBuild)
-    {
-        Push-AppveyorArtifact (Get-ChildItem -Filter "*.nupkg" | Select -First 1).FullName
-    }
 }
 
 # -------------------------------------------
@@ -265,11 +258,6 @@ if ($Package)
     Write-OperationLog "Building zip package..."
     $packageName = Join-Path $InstallerDir "Playnite.zip"
     New-ZipFromDirectory $OutputDir $packageName
-
-    if ($CIBuild)
-    {
-        Push-AppveyorArtifact $packageName
-    }
 }
 
 (Get-ChildItem (Join-Path $OutputDir "Playnite.dll")).VersionInfo.FileVersion | Write-Host -ForegroundColor Green

@@ -13,8 +13,11 @@ environment:
   PlayniteConfigUpdate: https://playnite.link/build/PlayniteProductionConfig.txt
   OnlineInstallerConfig: https://playnite.link/build/OnlineInstaller.json
 build_script:
-- pwsh: .\build\build.ps1 -Package -SdkNuget -LicensedDependenciesUrl $env:LicensedDependenciesUrl -PlayniteConfigUpdate $env:PlayniteConfigUpdate -OnlineInstallerConfig $env:OnlineInstallerConfig -CIBuild
+- pwsh: .\build\build.ps1 -Package -SdkNuget -LicensedDependenciesUrl $env:LicensedDependenciesUrl -PlayniteConfigUpdate $env:PlayniteConfigUpdate -OnlineInstallerConfig $env:OnlineInstallerConfig
 test: off
+artifacts:
+- path: 'build\Playnite.zip'
+- path: 'build\*.nupkg'
 deploy:
 - provider: Webhook
   url: https://app.signpath.io/API/v1/4028e7e6-f183-4bbf-9640-c4b4d9a6992d/Integrations/AppVeyor?ProjectSlug=Playnite&SigningPolicySlug=test-signing
