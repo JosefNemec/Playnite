@@ -20,5 +20,9 @@
             Projects="../source/PlayniteSDK/Playnite.SDK.csproj"
             Targets="Build"
             Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
+        <MSBuild
+            Projects="../source/Tools/PlayniteInstaller/PlayniteInstaller.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath)/Installer; Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />
     </Target>
 </Project>

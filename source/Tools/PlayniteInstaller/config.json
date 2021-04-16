@@ -1,0 +1,6 @@
+﻿{
+  "ServerMirrors": [
+    "https://localhost/installer/",
+    "https://localhost:8081/installer/"
+  ]
+}

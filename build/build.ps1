@@ -36,7 +36,9 @@
 
     [switch]$SdkNuget,
 
-    [switch]$CIBuild
+    [switch]$CIBuild,
+
+    [string]$OnlineInstallerConfig
 )
 
 $ErrorActionPreference = "Stop"
@@ -137,6 +139,21 @@ if (!$SkipBuild)
         Expand-ZipToDirectory $depArchive (Resolve-Path "..").Path
     }
 
+    if ($OnlineInstallerConfig)
+    {
+        Write-OperationLog "Updating online installer config..."
+        $locaConfigPath = "..\source\Tools\PlayniteInstaller\config.json"
+        if ($OnlineInstallerConfig.StartsWith("http"))
+        {
+            $configFile = Join-Path $env:TEMP "onlineconfig.json"
+            Invoke-WebRequest $OnlineInstallerConfig -OutFile $locaConfigPath
+        }
+        else
+        {
+            Copy-Item $OnlineInstallerConfig $locaConfigPath -Force
+        }
+    }
+
     $solutionDir = Join-Path $pwd "..\source"
     Invoke-Nuget "restore ..\source\Playnite.sln"
     $msbuildpath = Get-MsBuildPath
@@ -228,6 +245,20 @@ if ($SdkNuget)
         Push-AppveyorArtifact (Get-ChildItem -Filter "*.nupkg" | Select -First 1).FullName
     }
 }
+
+# -------------------------------------------
+#            Merge online installer
+# -------------------------------------------
+$ilMerge = (Get-ChildItem "..\source\packages" -Filter "ILMerge.exe" -Recurse | Select -First 1).FullName
+$installerOutPath = Join-Path $OutputDir "PlayniteInstaller.exe"
+$installerDir = Join-Path $OutputDir "Installer"
+$mergeRes = StartAndWait $ilMerge "PlayniteInstaller.exe *.dll /out:`"$installerOutPath`" /ndebug /wildcards" -WorkingDir $installerDir
+if ($mergeRes -ne 0)
+{        
+    throw "ILMerge of installer files failed."
+}
+
+Remove-Item $installerDir -Recurse
 
 # -------------------------------------------
 #            Build installer

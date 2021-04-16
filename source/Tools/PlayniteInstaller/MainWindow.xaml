@@ -1,11 +1,11 @@
-﻿<Window x:Class="Playnite.Installer.MainWindow"
+﻿<Window x:Class="PlayniteInstaller.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        Background="{DynamicResource WindowBackgourndBrush}"
+        Background="#252422"
         Title="Playnite Installer" Width="600" SizeToContent="Height">
     <Grid Margin="10">
         <Grid.Resources>
@@ -23,11 +23,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="15,10,10,10">
-            <Image Source="Resources\installer.ico" Height="32" RenderOptions.BitmapScalingMode="Fant" />
-            <TextBlock Text="Choose Install Location for Playnite" FontSize="20"                   
-                        VerticalAlignment="Center" Margin="10,0,0,0"/>
-        </StackPanel>
+        <TextBlock Text="Install Playnite" FontSize="20"                   
+                    VerticalAlignment="Center" Grid.Row="0" Margin="15,10,10,10"/>
+
 
         <DockPanel Grid.Row="1" Margin="5">
             <TextBlock Text="Destionation Folder" DockPanel.Dock="Left" Margin="10,5,10,5" />

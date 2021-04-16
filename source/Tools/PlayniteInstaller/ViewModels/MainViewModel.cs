@@ -1,7 +1,10 @@
-﻿using Playnite.SDK;
+﻿using Newtonsoft.Json;
+using Playnite.Common;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,11 +13,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
-namespace Playnite.Installer.ViewModels
+namespace PlayniteInstaller.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        private Window windowHost;
+        private static readonly ILogger logger = LogManager.GetLogger();
+        private readonly Window windowHost;
+        private readonly AppConfig appConfig;
 
         private string destinationFolder;
         public string DestionationFolder
@@ -66,16 +71,20 @@ namespace Playnite.Installer.ViewModels
         {
             DestionationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Playnite");
             windowHost = window;
+
+            var appConfigStr = Resources.ReadFileFromResource("PlayniteInstaller.config.json");
+            logger.Info(appConfigStr);
+            appConfig = JsonConvert.DeserializeObject<AppConfig>(appConfigStr);
         }
 
         public void Browse()
         {
             var dialog = new FolderBrowserDialog()
-            {                
+            {
                 Description = "Select Destination Folder...",
                 ShowNewFolderButton = true
-            };            
-            
+            };
+
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 DestionationFolder = dialog.SelectedPath;
@@ -84,8 +93,6 @@ namespace Playnite.Installer.ViewModels
 
         public void Install()
         {
-
-
             windowHost.Close();
         }
 

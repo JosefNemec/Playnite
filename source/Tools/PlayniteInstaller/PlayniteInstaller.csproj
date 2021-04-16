@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('..\..\packages\ILMerge.3.0.41\build\ILMerge.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,8 +42,16 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.7.6\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,14 +72,31 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="..\..\PlayniteSDK\Collections\ObservableObject.cs">
-      <Link>ObservableObject.cs</Link>
+      <Link>Shared\ObservableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\PlayniteSDK\ILogger.cs">
+      <Link>Shared\ILogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\PlayniteSDK\LogManager.cs">
+      <Link>Shared\LogManager.cs</Link>
     </Compile>
     <Compile Include="..\..\PlayniteSDK\RelayCommand.cs">
-      <Link>RelayCommand.cs</Link>
+      <Link>Shared\RelayCommand.cs</Link>
     </Compile>
-    <Compile Include="..\..\Playnite\App\UpdateManifest.cs">
-      <Link>UpdateManifest.cs</Link>
+    <Compile Include="..\..\Playnite\Common\FileSystem.cs">
+      <Link>Shared\FileSystem.cs</Link>
     </Compile>
+    <Compile Include="..\..\Playnite\Common\InteropMethods.cs">
+      <Link>Shared\InteropMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Common\Paths.cs">
+      <Link>Shared\Paths.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Common\Resources.cs">
+      <Link>Shared\Resources.cs</Link>
+    </Compile>
+    <Compile Include="Manifests.cs" />
+    <Compile Include="NLogLogger.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -114,9 +140,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <EmbeddedResource Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="config.json" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\installer.ico" />
   </ItemGroup>
