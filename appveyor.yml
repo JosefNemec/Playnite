@@ -17,7 +17,6 @@ build_script:
 test: off
 artifacts:
 - path: 'build\Playnite.zip'
-- path: 'build\*.nupkg'
 deploy:
 - provider: Webhook
   url: https://app.signpath.io/API/v1/4028e7e6-f183-4bbf-9640-c4b4d9a6992d/Integrations/AppVeyor?ProjectSlug=Playnite&SigningPolicySlug=test-signing
