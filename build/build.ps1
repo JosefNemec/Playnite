@@ -233,7 +233,7 @@ New-Folder $InstallerDir
 # -------------------------------------------
 if ($SdkNuget)
 {
-    & .\buildSdkNuget.ps1 -SkipBuild -OutputPath $OutputDir
+    & .\buildSdkNuget.ps1 -SkipBuild -OutputPath $OutputDir | Out-Null
 }
 
 # -------------------------------------------
