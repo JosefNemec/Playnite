@@ -8,19 +8,16 @@
     [string]$Platform = "x86",
 
     # File path with list of values for Common.config
-    [string]$ConfigUpdatePath,
+    [string]$PlayniteConfigUpdate,
 
     # Target directory for build files    
     [string]$OutputDir,
-
-    # Build installers
-    [switch]$Installer = $false,
 
     # Target directory for installer files
     [string]$InstallerDir,
 
     # Build portable package
-    [switch]$Portable = $false,
+    [switch]$Package = $false,
 
     # Skip build process
     [switch]$SkipBuild = $false,
@@ -186,19 +183,19 @@ if (!$SkipBuild)
 # -------------------------------------------
 #            Set config values
 # -------------------------------------------
-if ($ConfigUpdatePath)
+if ($PlayniteConfigUpdate)
 {
     Write-OperationLog "Updating config values..."
-    if ($ConfigUpdatePath.StartsWith("http"))
+    if ($PlayniteConfigUpdate.StartsWith("http"))
     {
         $configFile = Join-Path $env:TEMP "config.cfg"
-        Invoke-WebRequest $ConfigUpdatePath -OutFile $configFile
-        $ConfigUpdatePath = $configFile
+        Invoke-WebRequest $PlayniteConfigUpdate -OutFile $configFile
+        $PlayniteConfigUpdate = $configFile
     }
 
     $configPath = Join-Path $OutputDir "Common.config"
     [xml]$configXml = Get-Content $configPath
-    $customConfigContent = Get-Content $ConfigUpdatePath
+    $customConfigContent = Get-Content $PlayniteConfigUpdate
 
     foreach ($line in $customConfigContent)
     {
@@ -251,41 +248,22 @@ if ($SdkNuget)
 # -------------------------------------------
 $ilMerge = (Get-ChildItem "..\source\packages" -Filter "ILMerge.exe" -Recurse | Select -First 1).FullName
 $installerOutPath = Join-Path $OutputDir "PlayniteInstaller.exe"
-$installerDir = Join-Path $OutputDir "Installer"
-$mergeRes = StartAndWait $ilMerge "PlayniteInstaller.exe *.dll /out:`"$installerOutPath`" /ndebug /wildcards" -WorkingDir $installerDir
+$onlineInstallerDir = Join-Path $OutputDir "Installer"
+$mergeRes = StartAndWait $ilMerge "PlayniteInstaller.exe *.dll /out:`"$installerOutPath`" /ndebug /wildcards" -WorkingDir $onlineInstallerDir
 if ($mergeRes -ne 0)
 {        
     throw "ILMerge of installer files failed."
 }
 
-Remove-Item $installerDir -Recurse
+Remove-Item $onlineInstallerDir -Recurse
 
 # -------------------------------------------
-#            Build installer
+#            Build zip package
 # -------------------------------------------
-if ($Installer)
+if ($Package)
 {
-    $installerPath = Join-Path $InstallerDir "PlayniteSetup.exe"
-    BuildInnoInstaller $OutputDir $installerPath $buildNumber 
-
-    if ($Sign)
-    {
-        SignFile $installerPath
-    }
-
-    if ($CIBuild)
-    {
-        Push-AppveyorArtifact $installerPath
-    }
-}
-
-# -------------------------------------------
-#            Build portable package
-# -------------------------------------------
-if ($Portable)
-{
-    Write-OperationLog "Building portable package..."
-    $packageName = Join-Path $InstallerDir "PlaynitePortable.zip"
+    Write-OperationLog "Building zip package..."
+    $packageName = Join-Path $InstallerDir "Playnite.zip"
     New-ZipFromDirectory $OutputDir $packageName
 
     if ($CIBuild)
