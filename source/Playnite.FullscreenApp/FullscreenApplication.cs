@@ -25,7 +25,17 @@ namespace Playnite.FullscreenApp
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public FullscreenAppViewModel MainModel { get; set; }
+        private FullscreenAppViewModel mainModel;
+        public FullscreenAppViewModel MainModel
+        {
+            get => mainModel;
+            set
+            {
+                mainModel = value;
+                MainModelBase = value;
+            }
+        }
+
         public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
         public static AudioPlaybackEngine Audio;

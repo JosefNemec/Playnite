@@ -57,7 +57,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Close();
             mainModel.CloseView();
-            mainModel.Application.Quit();
+            mainModel.App.Quit();
         }
 
         public void SwitchToDesktopMode()

@@ -165,6 +165,17 @@ namespace Playnite.DesktopApp.Controls.Views
                 PanelMainItems.Children.Add(ButtonSwitchListView = AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription()));
                 PanelMainItems.Children.Add(RightViewSeparator);
 
+                var updatesButton = new Button();
+                updatesButton.SetResourceReference(Button.StyleProperty, "TopPanelUpdatesButton");
+                updatesButton.Command = mainModel.OpenUpdatesCommand;
+                updatesButton.ToolTip = ResourceProvider.GetString(LOC.UpdateIsAvailableNotificationBody);
+                BindingTools.SetBinding(updatesButton,
+                    Button.VisibilityProperty,
+                    mainModel,
+                    nameof(mainModel.UpdatesAvailable),
+                    converter: new BooleanToVisibilityConverter());
+                PanelMainItems.Children.Add(updatesButton);
+
                 SetButtonVisibility();
             }
 

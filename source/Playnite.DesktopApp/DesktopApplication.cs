@@ -40,7 +40,18 @@ namespace Playnite.DesktopApp
         private SplashScreen splashScreen;
 
         public List<ThirdPartyTool> ThirdPartyTools { get; private set; }
-        public DesktopAppViewModel MainModel { get; set; }
+
+        private DesktopAppViewModel mainModel;
+        public DesktopAppViewModel MainModel
+        {
+            get => mainModel;
+            set
+            {
+                mainModel = value;
+                MainModelBase = value;
+            }
+        }
+
         public new static DesktopApplication Current
         {
             get => PlayniteApplication.Current == null ? null : (DesktopApplication)PlayniteApplication.Current;

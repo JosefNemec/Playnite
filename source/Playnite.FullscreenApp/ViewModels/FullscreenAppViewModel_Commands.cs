@@ -46,7 +46,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 if (!ignoreCloseActions)
                 {
                     Dispose();
-                    Application.Quit();
+                    App.Quit();
                 }
             });
 

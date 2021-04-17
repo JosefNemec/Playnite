@@ -47,6 +47,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     [TemplatePart(Name = "PART_FilterPresetSelector", Type = typeof(FilterPresetSelector))]
     [TemplatePart(Name = "PART_ElemGameStatus", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ButtonProgramUpdate", Type = typeof(ButtonBase))]
     public class Main : Control
     {
         private FullscreenAppViewModel mainModel;
@@ -54,6 +55,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private FrameworkElement MainHost;
         private ButtonBase ButtonMainMenu;
         private ButtonBase ButtonNotifications;
+        private ButtonBase ButtonProgramUpdate;
         private TextBlock TextClock;
         private TextBlock TextBatteryPercentage;
         private FrameworkElement ElemBatteryStatus;
@@ -221,8 +223,18 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(MainHost, FrameworkElement.HeightProperty, mainModel, nameof(FullscreenAppViewModel.ViewportHeight));
                 }
 
+                AssignButtonWithCommand(ref ButtonProgramUpdate, "PART_ButtonProgramUpdate", mainModel.OpenUpdatesCommand);
                 AssignButtonWithCommand(ref ButtonMainMenu, "PART_ButtonMainMenu", mainModel.OpenMainMenuCommand);
                 AssignButtonWithCommand(ref ButtonNotifications, "PART_ButtonNotifications", mainModel.ToggleNotificationsCommand);
+
+                if (ButtonProgramUpdate != null)
+                {
+                    BindingTools.SetBinding(ButtonProgramUpdate,
+                         Button.VisibilityProperty,
+                         mainModel,
+                         nameof(mainModel.UpdatesAvailable),
+                         converter: new Converters.BooleanToVisibilityConverter());
+                }
 
                 ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
                 if (ImageBackground != null)

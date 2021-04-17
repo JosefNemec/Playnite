@@ -38,11 +38,9 @@ namespace Playnite.FullscreenApp.ViewModels
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
 
-        public PlayniteApplication Application;
         public PlayniteAPI PlayniteApi { get; set; }
         public ExtensionFactory Extensions { get; }
         public IWindowFactory Window { get; }
-        public IDialogsFactory Dialogs { get; }
         public IResourceProvider Resources { get; }
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
@@ -372,7 +370,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public FullscreenAppViewModel() : base(ApplicationMode.Fullscreen, null)
+        public FullscreenAppViewModel() : base(null, null, null)
         {
         }
 
@@ -385,12 +383,10 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(ApplicationMode.Fullscreen, database)
+            PlayniteApplication app) : base(database, app, dialogs)
         {
             context = SynchronizationContext.Current;
-            Application = app;
             Window = window;
-            Dialogs = dialogs;
             Resources = resources;
             GamesEditor = gamesEditor;
             AppSettings = settings;
@@ -520,7 +516,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.EnableXinputProcessing))
             {
-                Application.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+                App.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
@@ -568,7 +564,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             CloseView();
-            Application.QuitAndStart(
+            App.QuitAndStart(
                 PlaynitePaths.DesktopExecutablePath,
                 new CmdLineOptions()
                 {
@@ -666,7 +662,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Window.Show(this);
             SetViewSizeAndPosition(IsFullScreen);
-            Application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
             InitializeView();
         }
@@ -775,7 +771,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             try
             {
-                Application.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
+                App.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -912,7 +908,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 try
                 {
-                    var updates = Addons.CheckAddonUpdates(Application.ServicesClient);
+                    var updates = Addons.CheckAddonUpdates(App.ServicesClient);
                     if (updates.HasItems())
                     {
                         PlayniteApi.Notifications.Add(new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info,
@@ -923,10 +919,10 @@ namespace Playnite.FullscreenApp.ViewModels
                                      PlayniteApi,
                                      Dialogs,
                                      Resources,
-                                     Application.ServicesClient,
+                                     App.ServicesClient,
                                      Extensions,
                                      AppSettings,
-                                     Application,
+                                     App,
                                      updates).OpenView();
                             }));
                     }
@@ -959,11 +955,11 @@ namespace Playnite.FullscreenApp.ViewModels
                         var ext = Path.GetExtension(path).ToLower();
                         if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            Application.InstallThemeFile(path);
+                            App.InstallThemeFile(path);
                         }
                         else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            Application.InstallExtensionFile(path);
+                            App.InstallExtensionFile(path);
                         }
                     }
                 }
@@ -989,7 +985,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            Application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
         }
 
         internal void ProcessUriRequest(PlayniteUriEventArgs args)

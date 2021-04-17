@@ -184,7 +184,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             OpenAboutCommand = new RelayCommand<object>((a) =>
             {
-                OpenAboutWindow(new AboutViewModel(new AboutWindowFactory(), Dialogs, Resources, application.ServicesClient));
+                OpenAboutWindow(new AboutViewModel(new AboutWindowFactory(), Dialogs, Resources, App.ServicesClient));
             }, new KeyGesture(Key.F1));
 
             OpenEmulatorsCommand = new RelayCommand<object>((a) =>
@@ -298,7 +298,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Dialogs,
                     Resources,
                     Extensions,
-                    application));
+                    App));
             });
 
             UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>
@@ -330,7 +330,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             ReloadScriptsCommand = new RelayCommand<object>((f) =>
             {
-                Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins, application.CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+                Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins, App.CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             }, new KeyGesture(Key.F12));
 
             ShowGameSideBarCommand = new RelayCommand<GamesCollectionViewEntry>((f) =>
@@ -353,7 +353,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Dialogs,
                     Resources,
                     Extensions,
-                    application));
+                    App));
             }, new KeyGesture(Key.F4));
 
             OpenAddonsCommand = new RelayCommand<object>((a) =>
@@ -363,10 +363,10 @@ namespace Playnite.DesktopApp.ViewModels
                     PlayniteApi,
                     Dialogs,
                     Resources,
-                    application.ServicesClient,
+                    App.ServicesClient,
                     Extensions,
                     AppSettings,
-                    application).OpenView();
+                    App).OpenView();
             }, new KeyGesture(Key.F9));
 
             StartGameCommand = new RelayCommand<Game>((game) =>

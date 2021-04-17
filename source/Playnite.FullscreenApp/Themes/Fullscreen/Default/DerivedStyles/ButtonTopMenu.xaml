@@ -10,21 +10,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
+                            BorderBrush="Transparent" BorderThickness="3"
                             x:Name="MainBorder">                        
                             <ContentPresenter />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource GlyphBrush}" TargetName="MainBorder" />
-                            <Setter Property="Effect" TargetName="MainBorder">
-                                <Setter.Value>
-                                    <DropShadowEffect ShadowDepth="0"
-                                                      Color="White"
-                                                      Opacity="0.4"
-                                                      RenderingBias="Quality"
-                                                      BlurRadius="5"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="MainBorder" />   
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

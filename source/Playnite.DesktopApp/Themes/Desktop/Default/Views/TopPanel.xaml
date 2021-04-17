@@ -6,7 +6,7 @@
                     mc:Ignorable="d">
 
     <DataTemplate x:Key="TopPanelGeneralViewSettingsTemplate">
-        <TextBlock Text="⋯" FontSize="26" 
+        <TextBlock Text="&#xefe2;" FontFamily="{DynamicResource FontIcoFont}" FontSize="18"
                    Foreground="{DynamicResource TextBrush}"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
@@ -63,6 +63,26 @@
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style x:Key="TopPanelUpdatesButton" TargetType="{x:Type Button}" BasedOn="{StaticResource TopPanelButton}">
+        <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="6,0,6,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock Foreground="{TemplateBinding Foreground}"
+                               Text="&#xef08;" FontSize="24" FontFamily="{DynamicResource FontIcoFont}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="TopPanelMenu" TargetType="{x:Type ContextMenu}">

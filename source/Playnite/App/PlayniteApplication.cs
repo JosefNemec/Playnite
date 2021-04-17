@@ -76,6 +76,7 @@ namespace Playnite
         public static PlayniteApplication Current { get; private set; }
         public ServicesClient ServicesClient { get; private set; }
         public static bool SoundsEnabled { get; set; } = true;
+        public MainViewModelBase MainModelBase { get; set; }
 
         public PlayniteApplication()
         {
@@ -876,17 +877,7 @@ namespace Playnite
                         });
                     }
 
-                    Api.Notifications.Add(
-                        new NotificationMessage("UpdateAvailable",
-                        updateBody,
-                        NotificationType.Info, () =>
-                        {
-                            new UpdateViewModel(
-                                updater,
-                                new UpdateWindowFactory(),
-                                new ResourceProvider(),
-                                Dialogs).OpenView();
-                        }));
+                    MainModelBase.UpdatesAvailable = true;
                     updateCheckTimer.Dispose();
                 }
             }

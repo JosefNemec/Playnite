@@ -1,6 +1,7 @@
 ﻿using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,17 @@ namespace Playnite.ViewModels
             }
         }
 
+        private bool updatesAvailable = false;
+        public bool UpdatesAvailable
+        {
+            get => updatesAvailable;
+            set
+            {
+                updatesAvailable = value;
+                OnPropertyChanged();
+            }
+        }
+
         private BaseCollectionView gamesView;
         public BaseCollectionView GamesView
         {
@@ -95,13 +107,16 @@ namespace Playnite.ViewModels
         public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RemoveFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> ApplyFilterPresetCommand { get; private set; }
-        public ApplicationMode Mode { get; }
+        public RelayCommand<object> OpenUpdatesCommand { get; private set; }
         public GameDatabase Database { get; }
+        public PlayniteApplication App { get; }
+        public IDialogsFactory Dialogs { get; }
 
-        public MainViewModelBase(ApplicationMode mode, GameDatabase database)
+        public MainViewModelBase(GameDatabase database, PlayniteApplication app, IDialogsFactory dialogs)
         {
-            Mode = mode;
             Database = database;
+            App = app;
+            Dialogs = dialogs;
 
             ApplyFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
             {
@@ -121,6 +136,11 @@ namespace Playnite.ViewModels
             AddFilterPresetCommand = new RelayCommand<object>((a) =>
             {
                 AddFilterPreset();
+            });
+
+            OpenUpdatesCommand = new RelayCommand<object>((_) =>
+            {
+                OpenUpdates();
             });
         }
 
@@ -142,7 +162,7 @@ namespace Playnite.ViewModels
             set
             {
                 activeFilterPreset = value;
-                if (Mode == ApplicationMode.Desktop)
+                if (App.Mode == ApplicationMode.Desktop)
                 {
                     AppSettings.SelectedFilterPreset = value?.Id ?? Guid.Empty;
                 }
@@ -174,8 +194,8 @@ namespace Playnite.ViewModels
                 GamesView.IgnoreViewConfigChanges = true;
             }
 
-            var filter = Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
-            var view = Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
+            var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
+            var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
             filter.ApplyFilter(preset.Settings);
             if (preset.SortingOrder != null)
             {
@@ -187,7 +207,7 @@ namespace Playnite.ViewModels
                 view.SortingOrderDirection = preset.SortingOrderDirection.Value;
             }
 
-            if (Mode == ApplicationMode.Desktop && preset.GroupingOrder != null)
+            if (App.Mode == ApplicationMode.Desktop && preset.GroupingOrder != null)
             {
                 AppSettings.ViewSettings.GroupingOrder = preset.GroupingOrder.Value;
             }
@@ -254,7 +274,7 @@ namespace Playnite.ViewModels
             var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty, options);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
-                var filter = Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
+                var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
                 var preset = new FilterPreset
                 {
                     Name = res.SelectedString,
@@ -264,10 +284,10 @@ namespace Playnite.ViewModels
 
                 if (options[0].Selected)
                 {
-                    var view = Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
+                    var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
                     preset.SortingOrder = view.SortingOrder;
                     preset.SortingOrderDirection = view.SortingOrderDirection;
-                    if (Mode == ApplicationMode.Desktop)
+                    if (App.Mode == ApplicationMode.Desktop)
                     {
                         preset.GroupingOrder = AppSettings.ViewSettings.GroupingOrder;
                     }
@@ -278,6 +298,15 @@ namespace Playnite.ViewModels
                 OnPropertyChanged(nameof(SortedFilterPresets));
                 OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
+        }
+
+        private void OpenUpdates()
+        {
+            new UpdateViewModel(
+                new Updater(App),
+                new UpdateWindowFactory(),
+                new ResourceProvider(),
+                Dialogs).OpenView();
         }
     }
 }
