@@ -39,16 +39,16 @@
                                TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
                     <DockPanel LastChildFill="False">
                         <pctrls:ButtonEx Content="{DynamicResource LOCAboutSendDiagButton}"  
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding CreateDiagPackageCommand}"
                                 x:Name="ButtonGeneratePackage" />
                         <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartPlaynite}"                       
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding RestartCommand}"
                                 x:Name="ButtonRestart" />
                         <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartSafe}"  
                                 TooltipEx="{DynamicResource LOCCrashRestartSafeTooltip}"                     
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding RestartSafeCommand}"
                                 DockPanel.Dock="Right"/>
                     </DockPanel>
