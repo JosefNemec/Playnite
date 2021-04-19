@@ -213,7 +213,7 @@ namespace Playnite.FullscreenApp.Windows
                 var title = option.Title;
                 var button = new ButtonEx();
                 button.Content = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
-                button.Style = ResourceProvider.GetResource("ButtonMessageBox") as Style;
+                button.Style = ResourceProvider.GetResource("MessageBoxButton") as Style;
                 button.Tag = option;
                 button.Click += (s, __) =>
                 {
