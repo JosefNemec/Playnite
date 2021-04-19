@@ -873,7 +873,8 @@ namespace Playnite
                                 updater,
                                 new UpdateWindowFactory(),
                                 new ResourceProvider(),
-                                Dialogs).OpenView();
+                                Dialogs,
+                                Mode).OpenView();
                         });
                     }
 

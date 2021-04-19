@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using NLog;
 using System.Windows;
 using Flurl;
 using System.Net;
 using Playnite.Common;
 using Playnite.Common.Web;
 using Playnite.Settings;
+using Playnite.SDK;
 
 namespace Playnite
 {
@@ -27,7 +27,7 @@ namespace Playnite
             }
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static ILogger logger = LogManager.GetLogger();
         private UpdateManifest updateManifest;
         private IPlayniteApplication playniteApp;
         private IDownloader downloader;
@@ -151,13 +151,14 @@ namespace Playnite
             }
         }
 
-        public void InstallUpdate()
+        public void InstallUpdate(ApplicationMode mode)
         {
             var portable = PlayniteSettings.IsPortable ? "/PORTABLE" : "";
-            logger.Info("Installing new update to {0}, in {1} mode", PlaynitePaths.ProgramPath, portable);
+            var fullscreen = mode == ApplicationMode.Fullscreen ? "/FULLSCREEN" : "";
+            logger.Info("Installing new update to {0}, in {1} mode".Format(PlaynitePaths.ProgramPath, portable));
             playniteApp.QuitAndStart(
                 updaterPath,
-                string.Format(@"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1}", PlaynitePaths.ProgramPath, portable),
+                @"/SILENT /NOCANCEL /DIR=""{0}"" /UPDATE {1} {2}".Format(PlaynitePaths.ProgramPath, portable, fullscreen),
                 !FileSystem.CanWriteToFolder(PlaynitePaths.ProgramPath));
         }
 

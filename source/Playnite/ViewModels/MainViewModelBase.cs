@@ -306,7 +306,8 @@ namespace Playnite.ViewModels
                 new Updater(App),
                 new UpdateWindowFactory(),
                 new ResourceProvider(),
-                Dialogs).OpenView();
+                Dialogs,
+                App.Mode).OpenView();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Playnite.ViewModels
         private Updater updater;
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
+        private ApplicationMode mode;
         private readonly SynchronizationContext context;
 
         private int updateProgress;
@@ -61,13 +62,19 @@ namespace Playnite.ViewModels
             private set;
         }
 
-        public UpdateViewModel(Updater updater, IWindowFactory window, IResourceProvider resources, IDialogsFactory dialogs)
+        public UpdateViewModel(
+            Updater updater,
+            IWindowFactory window,
+            IResourceProvider resources,
+            IDialogsFactory dialogs,
+            ApplicationMode mode)
         {
             context = SynchronizationContext.Current;
             this.window = window;
             this.updater = updater;
             this.resources = resources;
             this.dialogs = dialogs;
+            this.mode = mode;
 
             try
             {
@@ -123,7 +130,7 @@ namespace Playnite.ViewModels
                 {
                     context.Post((a) => UpdateProgress = e.ProgressPercentage, null);
                 });
-                updater.InstallUpdate();
+                updater.InstallUpdate(mode);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

@@ -1006,7 +1006,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var updater = new Updater(App);
                 if (updater.IsUpdateAvailable)
                 {
-                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs);
+                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs, App.Mode);
                     model.OpenView();
                 }
                 else

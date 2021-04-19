@@ -218,3 +218,39 @@ function global:Write-DebugLog()
 
     Write-Host $Message -ForegroundColor DarkGray
 }
+
+function global:BuildInnoInstaller()
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$SourceDir,
+        [Parameter(Mandatory = $true)]
+        [string]$DestinationFile,
+        [Parameter(Mandatory = $true)]
+        [string]$Version
+    )
+
+    $innoCompiler = "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
+    $innoScript = "InnoSetup.iss"    
+    $innoTempScript = "InnoSetup.temp.iss"
+    $destinationExe = Split-Path $DestinationFile -Leaf
+    $destinationDir = Split-Path $DestinationFile -Parent
+        
+    Write-OperationLog "Building Inno Setup $destinationExe..."
+    New-Folder $destinationDir
+    $scriptContent = Get-Content $innoScript
+    $scriptContent = $scriptContent -replace "{source_path}", $SourceDir
+    $scriptContent = $scriptContent -replace "{version}", $Version
+    $scriptContent = $scriptContent -replace "{out_dir}", $destinationDir
+    $scriptContent = $scriptContent -replace "{out_file_name}", ($destinationExe -replace "\..+`$", "")
+    $scriptContent | Out-File $innoTempScript "utf8"
+   
+    $res = StartAndWait $innoCompiler "/Q $innoTempScript" -WorkingDir $PWD    
+    if ($res -ne 0)
+    {        
+        throw "Inno build failed."
+    }
+
+    (Get-FileHash $DestinationFile -Algorithm md5).Hash
+    Remove-Item $innoTempScript
+}

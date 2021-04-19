@@ -49,47 +49,6 @@ if (!$InstallerDir)
     $InstallerDir = $PWD
 }
 
-function BuildInnoInstaller()
-{
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$SourceDir,
-        [Parameter(Mandatory = $true)]
-        [string]$DestinationFile,
-        [Parameter(Mandatory = $true)]
-        [string]$Version,
-        [Parameter(Mandatory = $false)]
-        [switch]$Update = $false
-    )
-
-    $innoCompiler = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
-    $innoScript = "InnoSetup.iss"    
-    $innoTempScript = "InnoSetup.temp.iss"
-    $destinationExe = Split-Path $DestinationFile -Leaf
-    $destinationDir = Split-Path $DestinationFile -Parent
-    if ($Update)
-    {
-        $innoScript = "InnoSetupUpdate.iss"
-    }
-
-    Write-OperationLog "Building Inno Setup $destinationExe..."
-    New-Folder $destinationDir
-    $scriptContent = Get-Content $innoScript
-    $scriptContent = $scriptContent -replace "{source_path}", $SourceDir
-    $scriptContent = $scriptContent -replace "{version}", $Version
-    $scriptContent = $scriptContent -replace "{out_dir}", $destinationDir
-    $scriptContent = $scriptContent -replace "{out_file_name}", ($destinationExe -replace "\..+`$", "")
-    $scriptContent | Out-File $innoTempScript "utf8"
-   
-    $res = StartAndWait $innoCompiler "/Q $innoTempScript" -WorkingDir $PWD    
-    if ($res -ne 0)
-    {        
-        throw "Inno build failed."
-    }
-
-    Remove-Item $innoTempScript
-}
-
 function PackExtensionTemplate()
 {
     param(
