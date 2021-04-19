@@ -322,7 +322,7 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
-            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested; ;
+            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;

@@ -1,0 +1,73 @@
+﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.NotificationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+        xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
+        mc:Ignorable="d"
+        ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
+        ShowInTaskbar="False" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Style="{StaticResource ChildWindowStyle}"
+        d:DesignWidth="1920" d:DesignHeight="1080">
+
+    <c:WindowBase.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
+        <KeyBinding Key="Backspace" Command="{Binding CloseCommand}" />
+        <pin:XInputBinding Button="B" Command="{Binding CloseCommand}" />
+    </c:WindowBase.InputBindings>
+
+    <Viewbox>
+        <Grid Height="1080" Width="1920" Name="GridMain">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="1"
+                    KeyboardNavigation.TabNavigation="Cycle"
+                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                    Style="{DynamicResource NotificationsMenuBorder}">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30,30,40,30">
+                        <TextBlock Text="{DynamicResource LOCNotifications}"
+                                   Style="{DynamicResource NotificationsMenuHeaderText}" />
+                        <TextBlock Text="&#xeea3;" FontFamily="{StaticResource FontIcoFont}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" Margin="2"
+                                   Foreground="{DynamicResource TextBrush}" FontSize="30"/>
+                    </StackPanel>
+
+                    <pctrls:ButtonEx Content="{DynamicResource LOCDismissAll}"
+                                     Command="{Binding ClearNotificationsCommand}"
+                                     Style="{DynamicResource NotificationsMenuDismissButton}"
+                                     pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
+
+                    <ItemsControl Focusable="False"
+                                  ItemsSource="{Binding MainModel.PlayniteApi.Notifications.Messages}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <pctrls:ButtonEx Style="{DynamicResource NotificationsMenuItemButton}"
+                                                 Command="{Binding ActivateCommand}">
+                                    <Button.Content>
+                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap"
+                                                   Style="{DynamicResource TextBlockBaseStyle}" />
+                                    </Button.Content>
+                                </pctrls:ButtonEx>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Viewbox>
+</c:WindowBase>

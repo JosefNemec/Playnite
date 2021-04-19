@@ -224,9 +224,6 @@
 
                         <GameStatus x:Name="PART_ElemGameStatus" Grid.RowSpan="3"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-
-                        <Notifications x:Name="PART_ElemNotifications" Grid.RowSpan="3"
-                                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

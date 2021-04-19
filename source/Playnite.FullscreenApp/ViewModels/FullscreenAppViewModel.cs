@@ -301,17 +301,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        private bool notificationsVisible = false;
-        public bool NotificationsVisible
-        {
-            get => notificationsVisible;
-            set
-            {
-                notificationsVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool GenerateAudio { get; set; } = true;
 
         private bool childOpened = false;
@@ -392,7 +381,6 @@ namespace Playnite.FullscreenApp.ViewModels
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
-            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += FullscreenAppViewModel_ActivationRequested;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
@@ -492,14 +480,6 @@ namespace Playnite.FullscreenApp.ViewModels
             ChildOpened = true;
         }
 
-        private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
-        {
-            PlayniteApi.Notifications.Remove(e.Message.Id);
-            NotificationsVisible = false;
-            GameListFocused = true;
-            e.Message.ActivationAction();
-        }
-
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(FullscreenSettings.Monitor) || e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay))
@@ -546,6 +526,16 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             var vm = new MainMenuViewModel(new MainMenuWindowFactory(), this);
             vm.OpenView();
+            GameListFocused = false;
+            GameListFocused = true;
+        }
+
+        public void OpenNotificationsMenu()
+        {
+            var vm = new NotificationsViewModel(new NotificationsWindowFactory(), this);
+            vm.OpenView();
+            GameListFocused = false;
+            GameListFocused = true;
         }
 
         public void OpenGameMenu()
