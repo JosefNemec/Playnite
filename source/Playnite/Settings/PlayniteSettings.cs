@@ -873,7 +873,7 @@ namespace Playnite
             }
         }
 
-        private bool sidebarVisible = false;
+        private bool sidebarVisible = true;
         public bool SidebarVisible
         {
             get
