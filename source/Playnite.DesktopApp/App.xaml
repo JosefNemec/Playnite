@@ -66,6 +66,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterSelectionBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterStringSelectionBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SearchBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/TopPanelItem.xaml" />
 
                 <!--Derived Styles-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />

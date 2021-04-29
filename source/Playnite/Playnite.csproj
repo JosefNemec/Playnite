@@ -418,6 +418,7 @@
     <Compile Include="Scripting\PlayniteScript.cs" />
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
+    <Compile Include="SdkHelpers.cs" />
     <Compile Include="SelectableItem.cs" />
     <Compile Include="Services\BaseServicesClient.cs" />
     <Compile Include="Services\GenericResponse.cs" />

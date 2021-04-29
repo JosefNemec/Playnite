@@ -745,9 +745,9 @@ namespace Playnite.Plugins
             SettingsSupportList.Add(elemSupport);
         }
 
-        public List<object> GetTopPanelPluginItems()
+        public List<TopPanelItem> GetTopPanelPluginItems()
         {
-            var res = new List<object>();
+            var res = new List<TopPanelItem>();
             foreach (var plugin in Plugins.Values)
             {
                 try
@@ -756,12 +756,6 @@ namespace Playnite.Plugins
                     if (items != null)
                     {
                         res.AddRange(items);
-                    }
-
-                    var elemts = plugin.Plugin.GetTopPanelElements();
-                    if (elemts != null)
-                    {
-                        res.AddRange(elemts);
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

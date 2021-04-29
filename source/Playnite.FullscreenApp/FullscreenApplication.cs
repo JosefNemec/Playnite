@@ -92,6 +92,7 @@ namespace Playnite.FullscreenApp
         public override void InstantiateApp()
         {
             Database = new GameDatabase();
+            Database.SetAsSingletonInstance();
             Controllers = new GameControllerFactory(Database);
             Extensions = new ExtensionFactory(Database, Controllers);
             GamesEditor = new GamesEditor(

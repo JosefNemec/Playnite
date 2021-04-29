@@ -61,6 +61,20 @@ namespace Playnite.SDK.Plugins
             }
         }
 
+        private bool visible = true;
+        /// <summary>
+        /// Gets or sets item visibility.
+        /// </summary>
+        public bool Visible
+        {
+            get => visible;
+            set
+            {
+                visible = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double progressValue = 0;
         /// <summary>
         /// Gets or sets current progress value.
@@ -104,26 +118,19 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Called when Button item type is activated.
+        /// Called when item is activated.
         /// </summary>
-        public virtual void  Activated()
-        {
-        }
+        public Action Activated { get; set; }
 
         /// <summary>
-        /// Called when View item type is activated.
+        /// Called when view is to be opened.
         /// </summary>
         /// <returns>View control to be shown.</returns>
-        public virtual Control Opened()
-        {
-            return null;
-        }
+        public Func<Control> Opened { get; set; }
 
         /// <summary>
-        /// Called when View item type is closed.
+        /// Called when view is closed.
         /// </summary>
-        public virtual void Closed()
-        {
-        }
+        public Action Closed { get; set; }
     }
 }

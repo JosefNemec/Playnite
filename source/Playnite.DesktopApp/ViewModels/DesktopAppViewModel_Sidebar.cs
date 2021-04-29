@@ -21,6 +21,13 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class SidebarWrapperItem : ObservableObject
     {
+        public enum SourceType
+        {
+            Builtin,
+            Extension,
+            SoftwareTool
+        }
+
         private static ILogger logger = LogManager.GetLogger();
         private DesktopAppViewModel model;
         public RelayCommand<object> Command { get; set; }
@@ -32,7 +39,7 @@ namespace Playnite.DesktopApp.ViewModels
             get => SideItem.Type;
         }
 
-        public string Name
+        public string Title
         {
             get => SideItem.Title;
         }
@@ -40,89 +47,28 @@ namespace Playnite.DesktopApp.ViewModels
         public Thickness IconPadding
         {
             get => SideItem.IconPadding;
-            set
-            { }
+            set { }
         }
 
         public double ProgressValue
         {
             get => SideItem.ProgressValue;
-            set
-            { }
+            set { }
         }
 
         public double ProgressMaximum
         {
             get => SideItem.ProgressMaximum;
-            set
-            { }
+            set { }
         }
 
-        public object ImageObject
+        public bool Visible
         {
-            get
-            {
-                var icon = SideItem.Icon;
-                if (icon == null)
-                {
-                    return null;
-                }
-
-                if (icon is string stringIcon)
-                {
-                    var resource = ResourceProvider.GetResource(stringIcon);
-                    if (resource != null)
-                    {
-                        if (resource is BitmapImage bitmap)
-                        {
-                            var image = new System.Windows.Controls.Image() { Source = bitmap };
-                            RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(bitmap));
-                            return image;
-                        }
-                        else if (resource is TextBlock textIcon)
-                        {
-                            var text = new TextBlock
-                            {
-                                Text = textIcon.Text,
-                                FontFamily = textIcon.FontFamily,
-                                FontStyle = textIcon.FontStyle
-                            };
-
-                            if (textIcon.ReadLocalValue(TextBlock.ForegroundProperty) != DependencyProperty.UnsetValue)
-                            {
-                                text.Foreground = textIcon.Foreground;
-                            }
-
-                            return text;
-                        }
-                    }
-                    else if (System.IO.File.Exists(stringIcon))
-                    {
-                        return BitmapExtensions.BitmapFromFile(stringIcon)?.ToImage();
-                    }
-                    else
-                    {
-                        var themeFile = ThemeFile.GetFilePath(stringIcon);
-                        if (themeFile != null)
-                        {
-                            return Images.GetImageFromFile(themeFile, BitmapScalingMode.Fant, double.NaN, double.NaN);
-                        }
-
-                        var dbFile = model.Database.GetFileAsImage(stringIcon);
-                        if (dbFile != null)
-                        {
-                            return dbFile.ToImage();
-                        }
-                    }
-                }
-                else
-                {
-                    return icon;
-                }
-
-                return null;
-            }
+            get => SideItem.Visible;
+            set { }
         }
+
+        public object IconObject => SdkHelpers.ResolveUiItemIcon(SideItem.Icon);
 
         private bool selected;
         public bool Selected
@@ -137,7 +83,10 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (selected != value && value == false)
                 {
-                    SideItem.Closed();
+                    if (SideItem.Closed != null)
+                    {
+                        SideItem.Closed();
+                    }
                 }
 
                 selected = value;
@@ -178,10 +127,14 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                var view = SideItem.Opened();
-                if (view == null)
+                Control view = null;
+                if (SideItem.Opened != null)
                 {
-                    return;
+                    view = SideItem.Opened();
+                    if (view == null)
+                    {
+                        return;
+                    }
                 }
 
                 model.SidebarItems.ForEach(a =>
@@ -205,26 +158,21 @@ namespace Playnite.DesktopApp.ViewModels
 
         public ApplicationView AppView { get; }
 
-        public override Control Opened()
-        {
-            if (AppView == ApplicationView.Statistics)
-            {
-                model.LibraryStats.Calculate();
-            }
-
-            return view;
-        }
-
-        public override void Closed()
-        {
-        }
-
         public MainSidebarViewItem(Control view, DesktopAppViewModel model, ApplicationView appView)
         {
             this.view = view;
             this.AppView = appView;
             this.model = model;
             Type = SiderbarItemType.View;
+            Opened = () =>
+            {
+                if (AppView == ApplicationView.Statistics)
+                {
+                    model.LibraryStats.Calculate();
+                }
+
+                return view;
+            };
         }
     }
 
@@ -240,11 +188,7 @@ namespace Playnite.DesktopApp.ViewModels
             Type = SiderbarItemType.Button;
             Icon = app.Icon;
             Title = app.Name;
-        }
-
-        public override void Activated()
-        {
-            model.StartSoftwareToolCommand.Execute(app);
+            Activated = () => model.StartSoftwareToolCommand.Execute(app);
         }
     }
 

@@ -42,14 +42,14 @@ namespace Playnite.DesktopApp.Controls.Views
         private Panel PanelMainItems;
         private Panel PanelMainPluginItems;
 
-        private Button ButtonViewSettings;
-        private Button ButtonGroupSettings;
-        private Button ButtonSortSettings;
-        private Button ButtonFilterPresets;
+        private TopPanelWrapperItem ButtonViewSettings;
+        private TopPanelWrapperItem ButtonGroupSettings;
+        private TopPanelWrapperItem ButtonSortSettings;
+        private TopPanelWrapperItem ButtonFilterPresets;
 
-        private Button ButtonSwitchDetailsView;
-        private Button ButtonSwitchGridView;
-        private Button ButtonSwitchListView;
+        private TopPanelWrapperItem ButtonSwitchDetailsView;
+        private TopPanelWrapperItem ButtonSwitchGridView;
+        private TopPanelWrapperItem ButtonSwitchListView;
 
         private Canvas LeftViewSeparator = new Canvas();
         private Canvas RightViewSeparator = new Canvas();
@@ -98,49 +98,46 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetButtonVisibility()
         {
-            ButtonViewSettings.Visibility = mainModel.AppSettings.ShowTopPanelGeneralViewItem ? Visibility.Visible : Visibility.Collapsed;
-            ButtonGroupSettings.Visibility = mainModel.AppSettings.ShowTopPanelGroupingItem ? Visibility.Visible : Visibility.Collapsed;
-            ButtonSortSettings.Visibility = mainModel.AppSettings.ShowTopPanelSortingItem ? Visibility.Visible : Visibility.Collapsed;
-            ButtonFilterPresets.Visibility = mainModel.AppSettings.ShowTopPanelFilterPresetsItem ? Visibility.Visible : Visibility.Collapsed;
+            ButtonViewSettings.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGeneralViewItem;
+            ButtonGroupSettings.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGroupingItem;
+            ButtonSortSettings.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelSortingItem;
+            ButtonFilterPresets.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelFilterPresetsItem;
 
-            ButtonSwitchDetailsView.Visibility = mainModel.AppSettings.ShowTopPanelDetailsViewSwitch ? Visibility.Visible : Visibility.Collapsed;
-            ButtonSwitchGridView.Visibility = mainModel.AppSettings.ShowTopPanelGridViewSwitch ? Visibility.Visible : Visibility.Collapsed;
-            ButtonSwitchListView.Visibility = mainModel.AppSettings.ShowTopPanelListViewSwitch ? Visibility.Visible : Visibility.Collapsed;
+            ButtonSwitchDetailsView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelDetailsViewSwitch;
+            ButtonSwitchGridView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGridViewSwitch;
+            ButtonSwitchListView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelListViewSwitch;
 
-            var showSeparators = ButtonSwitchDetailsView.Visibility == Visibility.Visible || ButtonSwitchGridView.Visibility == Visibility.Visible || ButtonSwitchListView.Visibility == Visibility.Visible;
+            var showSeparators = ButtonSwitchDetailsView.Visible || ButtonSwitchGridView.Visible || ButtonSwitchListView.Visible;
             LeftViewSeparator.Visibility = showSeparators ? Visibility.Visible : Visibility.Collapsed;
             RightViewSeparator.Visibility = showSeparators ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private Button AssignPanelButton(string contentTemplate, ContextMenu menu, string tooltip)
+        private TopPanelItem AssignPanelButton(string contentTemplate, ContextMenu menu, string tooltip, out TopPanelWrapperItem panelItem)
         {
-            var button = new Button();
-            button.SetResourceReference(Button.ContentTemplateProperty, contentTemplate);
-            button.SetResourceReference(Button.StyleProperty, "TopPanelButton");
-            LeftClickContextMenuBehavior.SetEnabled(button, true);
+            panelItem = new TopPanelWrapperItem(new SDK.Plugins.TopPanelItem { Title = ResourceProvider.GetString(tooltip) }, mainModel);
+            var item = new TopPanelItem() { DataContext = panelItem };
+            item.SetResourceReference(TopPanelItem.ContentTemplateProperty, contentTemplate);
+            LeftClickContextMenuBehavior.SetEnabled(item, true);
             menu.SetResourceReference(ContextMenu.StyleProperty, "TopPanelMenu");
-            button.ContextMenu = menu;
-            button.ToolTip = ResourceProvider.GetString(tooltip);
-            return button;
+            item.ContextMenu = menu;
+            return item;
         }
 
-        private Button AssignPanelButton(string contentTemplate, ICommand command, string tooltip)
+        private TopPanelItem AssignPanelButton(string contentTemplate, RelayCommand<object> command, string tooltip, out TopPanelWrapperItem panelItem)
         {
-            var button = new Button();
-            button.SetResourceReference(Button.ContentTemplateProperty, contentTemplate);
-            button.SetResourceReference(Button.StyleProperty, "TopPanelButton");
-            button.Command = command;
-            button.ToolTip = tooltip;
-            return button;
+            panelItem = new TopPanelWrapperItem(new SDK.Plugins.TopPanelItem { Title = tooltip }, mainModel)
+            {
+                Command = command
+            };
+
+            var item = new TopPanelItem() { DataContext = panelItem };
+            item.SetResourceReference(TopPanelItem.ContentTemplateProperty, contentTemplate);
+            return item;
         }
 
-        private Button AssignPluginButton(TopPanelItem item)
+        private TopPanelItem AssignPluginButton(TopPanelWrapperItem item)
         {
-            var button = new Button();
-            button.SetResourceReference(Button.StyleProperty, "TopPanelButton");
-            button.Content = item.Icon;
-            button.Command = new RelayCommand<object>((_) => item.Action());
-            button.ToolTip = item.ToolTip;
+            var button = new TopPanelItem() { DataContext = item };
             return button;
         }
 
@@ -151,24 +148,21 @@ namespace Playnite.DesktopApp.Controls.Views
             PanelMainItems = Template.FindName("PART_PanelMainItems", this) as Panel;
             if (PanelMainItems != null)
             {
-                PanelMainItems.Children.Add(ButtonViewSettings = AssignPanelButton("TopPanelGeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.TopPanelViewSettings));
-                PanelMainItems.Children.Add(ButtonFilterPresets = AssignPanelButton("TopPanelFilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.TopPanelFilterPresets));
-                PanelMainItems.Children.Add(ButtonGroupSettings = AssignPanelButton("TopPanelGroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings));
-                PanelMainItems.Children.Add(ButtonSortSettings = AssignPanelButton("TopPanelSortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelGeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.TopPanelViewSettings, out ButtonViewSettings));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelFilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.TopPanelFilterPresets, out ButtonFilterPresets));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelGroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings, out ButtonGroupSettings));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings, out ButtonSortSettings));
 
                 var separatorWidth = ResourceProvider.GetResource<double>("TopPanelSectionSeparatorWidth");
                 LeftViewSeparator.Width = separatorWidth;
                 RightViewSeparator.Width = separatorWidth;
                 PanelMainItems.Children.Add(LeftViewSeparator);
-                PanelMainItems.Children.Add(ButtonSwitchDetailsView = AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription()));
-                PanelMainItems.Children.Add(ButtonSwitchGridView = AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription()));
-                PanelMainItems.Children.Add(ButtonSwitchListView = AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription()));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription(), out ButtonSwitchDetailsView));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription(), out ButtonSwitchGridView));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription(), out ButtonSwitchListView));
                 PanelMainItems.Children.Add(RightViewSeparator);
 
-                var updatesButton = new Button();
-                updatesButton.SetResourceReference(Button.StyleProperty, "TopPanelUpdatesButton");
-                updatesButton.Command = mainModel.OpenUpdatesCommand;
-                updatesButton.ToolTip = ResourceProvider.GetString(LOC.UpdateIsAvailableNotificationBody);
+                var updatesButton = AssignPanelButton("TopPanelUpdateButtonTemplate", mainModel.OpenUpdatesCommand, ResourceProvider.GetString(LOC.UpdateIsAvailableNotificationBody), out _);
                 BindingTools.SetBinding(updatesButton,
                     Button.VisibilityProperty,
                     mainModel,
@@ -182,16 +176,10 @@ namespace Playnite.DesktopApp.Controls.Views
             PanelMainPluginItems = Template.FindName("PART_PanelMainPluginItems", this) as Panel;
             if (PanelMainPluginItems != null)
             {
-                foreach (object item in mainModel.Extensions.GetTopPanelPluginItems())
+                PanelMainPluginItems.Children.Clear();
+                foreach (var item in mainModel.GetTopPanelPluginItems())
                 {
-                    if (item is TopPanelItem tpItem)
-                    {
-                        PanelMainPluginItems.Children.Add(AssignPluginButton(tpItem));
-                    }
-                    else if (item is FrameworkElement fElem)
-                    {
-                        PanelMainPluginItems.Children.Add(fElem);
-                    }
+                    PanelMainPluginItems.Children.Add(AssignPluginButton(item));
                 }
             }
 

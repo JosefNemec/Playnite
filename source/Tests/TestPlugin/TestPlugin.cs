@@ -143,11 +143,7 @@ namespace TestPlugin
                 };
                 ProgressValue = 40;
                 ProgressMaximum = 100;
-            }
-
-            public override void Activated()
-            {
-                Process.Start("calc");
+                Activated = () => Process.Start("calc");
             }
         }
 
@@ -162,11 +158,7 @@ namespace TestPlugin
                     Text = char.ConvertFromUtf32(0xeaf1),
                     FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                 };
-            }
-
-            public override Control Opened()
-            {
-                return new Button { Content = "test" };
+                Opened = () => new Button { Content = "test" }; ;
             }
         }
 
@@ -228,8 +220,8 @@ namespace TestPlugin
                         FontSize = 20,
                         FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                     },
-                    ToolTip = "Steam fields",
-                    Action = ()=> Process.Start(@"steam://open/friends")
+                    Title = "Steam fields",
+                    Activated = () => Process.Start(@"steam://open/friends")
                 }
             };
         }

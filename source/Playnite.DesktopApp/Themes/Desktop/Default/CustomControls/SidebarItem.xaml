@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="SideBarViewItem" TargetType="{x:Type SidebarItem}">
+    <Style TargetType="{x:Type SidebarItem}">
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -9,24 +9,21 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="BorderThickness" Value="3,0,0,0" />
+        <Setter Property="Width" Value="44" />
+        <Setter Property="Height" Value="44" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type SidebarItem}">
                     <Grid>
-                        <ProgressBar Value="{Binding ProgressValue}"
-                                     Maximum="{Binding ProgressMaximum}"
-                                     BorderThickness="0"
-                                     Background="Transparent"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch" />
+                        <ProgressBar x:Name="PART_ProgressStatus"
+                                     BorderThickness="0" Background="Transparent"
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         <Border Background="{TemplateBinding Background}"
-                            Padding="{Binding IconPadding}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            ToolTip="{Binding Name}">
+                                Padding="{Binding IconPadding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
                             <Viewbox>
-                                <ContentPresenter HorizontalAlignment="Stretch"
-                                              VerticalAlignment="Stretch" />
+                                <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             </Viewbox>
                         </Border>
                     </Grid>

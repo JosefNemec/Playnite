@@ -132,6 +132,8 @@ namespace Playnite.Database
 
         #endregion Lists
 
+        public static GameDatabase Instance { get; private set; }
+
         public bool IsOpen
         {
             get; private set;
@@ -1252,6 +1254,16 @@ namespace Playnite.Database
         private void ReleaseFileLock(string filePath)
         {
             fileLocks.TryRemove(filePath, out var removed);
+        }
+
+        public void SetAsSingletonInstance()
+        {
+            if (Instance != null)
+            {
+                throw new Exception("Database singleton intance already exists.");
+            }
+
+            Instance = this;
         }
     }
 }
