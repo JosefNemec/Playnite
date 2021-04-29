@@ -87,6 +87,39 @@ namespace Playnite.Common
             }
         }
 
+        public static void DeleteDirectory(string path, bool includeReadonly)
+        {
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+
+            if (includeReadonly)
+            {
+                foreach (var s in Directory.GetDirectories(path))
+                {
+                    DeleteDirectory(s, true);
+                }
+
+                foreach (var f in Directory.GetFiles(path))
+                {
+                    var attr = File.GetAttributes(f);
+                    if ((attr & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                    {
+                        File.SetAttributes(f, attr ^ FileAttributes.ReadOnly);
+                    }
+
+                    File.Delete(f);
+                }
+
+                Directory.Delete(path, false);
+            }
+            else
+            {
+                DeleteDirectory(path);
+            }
+        }
+
         public static string GetMD5(Stream stream)
         {
             using (var md5 = MD5.Create())
