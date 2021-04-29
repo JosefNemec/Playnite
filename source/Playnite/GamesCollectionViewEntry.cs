@@ -517,13 +517,14 @@ namespace Playnite
 
         private char GetNameGroup()
         {
-            if (Game.Name.IsNullOrEmpty())
+            var nameMatch = Game.SortingName.IsNullOrEmpty() ? Game.Name : Game.SortingName;
+            if (nameMatch.IsNullOrEmpty())
             {
                 return '#';
             }
             else
             {
-                var firstChar = char.ToUpper(Game.Name[0]);
+                var firstChar = char.ToUpper(nameMatch[0]);
                 return char.IsLetter(firstChar) ? firstChar : '#';
             }
         }

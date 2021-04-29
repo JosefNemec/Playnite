@@ -176,8 +176,8 @@ namespace Playnite.DesktopApp
                 case GroupableField.Added:
                 case GroupableField.Modified:
                 case GroupableField.PlayTime:
-                    case GroupableField.InstallationStatus:
-                    case GroupableField.Name:
+                case GroupableField.InstallationStatus:
+                case GroupableField.Name:
                     ViewType = GamesViewType.Standard;
                     break;
                 default:
@@ -463,7 +463,7 @@ namespace Playnite.DesktopApp
                 case GroupableField.InstallationStatus:
                     return oldData.IsInstalled != newData.IsInstalled;
                 case GroupableField.Name:
-                    return oldData.Name != newData.Name;
+                    return oldData.Name != newData.Name || oldData.SortingName != newData.SortingName;
                 default:
                     throw new Exception("Uknown GroupableField");
             }
@@ -488,7 +488,7 @@ namespace Playnite.DesktopApp
                         {
                             Items.OnItemMoved(existingItem, 0, 0);
                         }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        catch (Exception e)
                         {
                             // Another weird and rare "out of range" bug in System.Windows.Data.CollectionView.OnCollectionChanged.
                             // No idea why it's happening.
