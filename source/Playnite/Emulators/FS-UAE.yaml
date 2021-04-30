@@ -5,4 +5,4 @@ Profiles:
     DefaultArguments: '"{ImagePath}"'
     Platforms: [Commodore Amiga]
     ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha, lzx]
-    ExecutableLookup: ^Launcher\.exe$
+    ExecutableLookup: ^fs-uae\.exe$
