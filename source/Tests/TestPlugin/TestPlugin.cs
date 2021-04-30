@@ -119,12 +119,38 @@ namespace TestPlugin
                 },
                 new MainMenuItem
                 {
+                    Description = "-"
+                },
+                new MainMenuItem
+                {
                     Description = "serialization test",
                     Action = (_) =>
                     {
                         var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
                         PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
                     }
+                }
+            };
+        }
+
+        public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        {
+            return new List<GameMenuItem>
+            {
+                new GameMenuItem
+                {
+                    Description = "window test",
+                    MenuSection = "test plugin"
+                },
+                new GameMenuItem
+                {
+                    Description = "-",
+                    MenuSection = "test plugin"
+                },
+                new GameMenuItem
+                {
+                    Description = "serialization test",
+                    MenuSection = "test plugin"
                 }
             };
         }

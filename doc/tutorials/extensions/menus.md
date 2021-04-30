@@ -132,3 +132,12 @@ To add an icon to a menu item, assign a value to `Icon` property of menu item. C
 - Full path to an image file.
 - Theme relative file path to an image file.
 - Key of an application resource.
+
+Separators
+---------------------
+
+To add a separator, return new menu item with `Description` field se to `-`.
+
+```csharp
+new GameMenuItem { Description = "-" }
+```
