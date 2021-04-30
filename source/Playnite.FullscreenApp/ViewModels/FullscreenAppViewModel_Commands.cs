@@ -240,10 +240,16 @@ namespace Playnite.FullscreenApp.ViewModels
             OpenSearchCommand = new RelayCommand<object>((a) =>
             {
                 GameListFocused = false;
-                var test = new Windows.TextInputWindow();
-                test.PropertyChanged += SearchText_PropertyChanged;
-                test.ShowInput(WindowManager.CurrentWindow, "", "", AppSettings.Fullscreen.FilterSettings.Name);
-                test.PropertyChanged -= SearchText_PropertyChanged;
+                var oldSearch = AppSettings.Fullscreen.FilterSettings.Name;
+                var input = new Windows.TextInputWindow();
+                input.PropertyChanged += SearchText_PropertyChanged;
+                var res = input.ShowInput(WindowManager.CurrentWindow, "", "", AppSettings.Fullscreen.FilterSettings.Name);
+                input.PropertyChanged -= SearchText_PropertyChanged;
+                if (res.Result != true)
+                {
+                    AppSettings.Fullscreen.FilterSettings.Name = oldSearch;
+                }
+
                 GameListFocused = true;
             });
 
