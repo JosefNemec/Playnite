@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <Style TargetType="{x:Type FilterDbItemtSelection}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
@@ -9,13 +9,7 @@
                     <DockPanel Width="{DynamicResource FilterPanelWidth}"
                                Background="{DynamicResource OverlayMenuBackgroundBrush}"
                                x:Name="PART_MenuHost">
-                        <DockPanel.Resources>
-                            <Thickness x:Key="ItemMargin">15,5,15,5</Thickness>
-                        </DockPanel.Resources>
-
-                        <ButtonEx DockPanel.Dock="Top"
-                                  Margin="{StaticResource ItemMargin}"   
-                                  BorderThickness="2"                                                             
+                        <ButtonEx DockPanel.Dock="Top" Margin="15,5,15,5" BorderThickness="2"
                                   x:Name="PART_ButtonBack">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
@@ -30,36 +24,12 @@
                         </ButtonEx>
 
                         <ButtonEx Content="{DynamicResource LOCClearLabel}" DockPanel.Dock="Top"
-                                  Margin="{StaticResource ItemMargin}"
-                                  BorderThickness="2"
+                                  Margin="15,5,15,5" BorderThickness="2"
                                   x:Name="PART_ButtonClear"/>
 
-                        <ItemsControlEx DockPanel.Dock="Top" Focusable="False"
-                                      x:Name="PART_ItemsHost"
-                                      KeyboardNavigation.DirectionalNavigation="Once">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <CheckBoxEx Content="{Binding Item.Name}"                                               
-                                                IsChecked="{Binding Selected}"
-                                                Margin="{StaticResource ItemMargin}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.Template>
-                                <ControlTemplate>
-                                    <ScrollViewer Focusable="False"
-                                                  HorizontalScrollBarVisibility="Disabled"
-                                                  VerticalScrollBarVisibility="Auto"
-                                                  CanContentScroll="True">
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </ItemsControl.Template>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>                            
-                        </ItemsControlEx>                        
+                        <ItemsControlEx x:Name="PART_ItemsHost"
+                                        DockPanel.Dock="Top" Focusable="False"
+                                        KeyboardNavigation.DirectionalNavigation="Once" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

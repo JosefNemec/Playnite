@@ -186,6 +186,7 @@ namespace Playnite.FullscreenApp.Controls
                 ItemsHost = Template.FindName("PART_ItemsHost", this) as ItemsControl;
                 if (ItemsHost != null)
                 {
+                    FilterDbItemtSelection.AssignItemListPanel(ItemsHost);
                     BindingTools.SetBinding(
                         ItemsHost,
                         ItemsControl.ItemsSourceProperty,
@@ -197,14 +198,15 @@ namespace Playnite.FullscreenApp.Controls
 
         public void Dispose()
         {
-            BindingOperations.ClearBinding(this, ItemsListProperty);
-            BindingOperations.ClearBinding(this, FilterPropertiesProperty);
             if (ItemsList != null)
             {
                 ItemsList.SelectionChanged -= List_SelectionChanged;
-                ItemsList = null;
+                ItemsList.SetSelection(null);
             }
 
+            BindingOperations.ClearBinding(this, ItemsListProperty);
+            BindingOperations.ClearBinding(this, FilterPropertiesProperty);
+            ItemsList = null;
             FilterProperties = null;
         }
     }

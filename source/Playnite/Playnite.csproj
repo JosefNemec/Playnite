@@ -236,6 +236,7 @@
     <Compile Include="Converters\ObjectEqualityToBoolConverter.cs" />
     <Compile Include="Database\Collections\ImportExclusionsCollection.cs" />
     <Compile Include="Database\Collections\FilterPresetsCollection.cs" />
+    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\Markup\PluginSettings.cs" />
     <Compile Include="Extensions\Markup\PluginStatus.cs" />
     <Compile Include="Extensions\Markup\ThemeFileBinding.cs" />
