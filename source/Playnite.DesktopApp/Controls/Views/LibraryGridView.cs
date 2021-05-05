@@ -68,14 +68,19 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 ListGames.ItemsPanel = GetItemsPanelTemplateCache();
                 var scrollViewer = ElementTreeHelper.FindVisualChildren< ScrollViewer>(ListGames).FirstOrDefault();
-                scrollViewer.ScrollToTop();
+                scrollViewer?.ScrollToTop();
             }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
+            if (mainModel.AppSettings.ViewSettings.GamesViewType != viewType)
+            {
+                return;
+            }
+
             var scrollViewer = ElementTreeHelper.FindVisualChildren<ScrollViewer>(ListGames).FirstOrDefault();
-            scrollViewer.ScrollToTop();
+            scrollViewer?.ScrollToTop();
         }
 
         public override void OnApplyTemplate()
