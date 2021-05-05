@@ -60,11 +60,75 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    public class GetGameViewControlArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ApplicationMode Mode { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddCustomElementSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> ElementList { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddSettingsSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SettingsRoot { get; set; }
+    }
+
+    /// <summary>
+    /// Represents plugin properties.
+    /// </summary>
+    public class PluginProperties
+    {
+        /// <summary>
+        /// Gets or sets value indicating that the plugin provides user settings view.
+        /// </summary>
+        public bool HasSettings { get; set; } = true;
+    }
+
+    /// <summary>
     /// Represents base Playnite plugin.
     /// </summary>
     public abstract class Plugin : IDisposable, IIdentifiable
     {
         private const string pluginSettingFileName = "config.json";
+
+        /// <summary>
+        /// Gets plugin's properties.
+        /// </summary>
+        public virtual PluginProperties Properties { get; }
 
         /// <summary>
         /// Gets instance of runtime <see cref="IPlayniteAPI"/>.
@@ -367,53 +431,5 @@ namespace Playnite.SDK.Plugins
         {
             return null;
         }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetGameViewControlArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public ApplicationMode Mode { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class AddCustomElementSupportArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public List<string> ElementList { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public string SourceName { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class AddSettingsSupportArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public string SourceName { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public string SettingsRoot { get; set; }
     }
 }

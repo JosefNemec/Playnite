@@ -48,12 +48,12 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<LoadedPlugin> GenericPlugins
         {
-            get => Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin).ToList();
+            get; private set;
         }
 
         public bool AnyGenericPluginSettings
         {
-            get => Extensions?.GenericPlugins.HasItems() == true;
+            get; private set;
         }
 
         public List<ThemeManifest> AvailableThemes
@@ -202,7 +202,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
                 { 19, new Controls.SettingsSections.Development() { DataContext = this } },
-                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
+                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
+                { 21, new Controls.SettingsSections.EmptyParent() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -213,6 +214,9 @@ namespace Playnite.DesktopApp.ViewModels
                     Selected = settings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id)
                 });
             }
+
+            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && (a.Plugin.Properties == null || a.Plugin.Properties.HasSettings)).ToList();
+            AnyGenericPluginSettings = GenericPlugins.HasItems();
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)

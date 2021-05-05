@@ -25,6 +25,11 @@ namespace TestPlugin
 
         public override Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
 
+        public override PluginProperties Properties { get; } = new PluginProperties
+        {
+            HasSettings = true
+        };
+
         public TestPlugin(IPlayniteAPI api) : base(api)
         {
             Settings = new TestPluginSettingsViewModel(this, api);
