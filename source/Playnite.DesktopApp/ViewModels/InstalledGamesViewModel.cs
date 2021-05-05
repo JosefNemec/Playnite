@@ -360,7 +360,7 @@ namespace Playnite.DesktopApp.ViewModels
             };
 
             // Use shortcut name as game name for .lnk shortcuts
-            if (Path.GetExtension(path).EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
+            if (path.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
             {
                 var shortcutName = Path.GetFileNameWithoutExtension(path);
                 if (!shortcutName.IsNullOrEmpty())
