@@ -347,13 +347,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
             var program = Common.Programs.GetProgramData(path);
 
-            // Ignore all target files that are not bat or exe files
-            if (!program.Path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) &&
-                !program.Path.EndsWith(".bat", StringComparison.OrdinalIgnoreCase))
-            {
-                return;
-            }
-
             var import = new ImportableProgram(program, ProgramType.Win32)
             {
                 Selected = true
