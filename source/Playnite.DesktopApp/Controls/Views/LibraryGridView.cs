@@ -14,7 +14,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml.Linq;
-using WpfToolkit.Controls;
 using BooleanToVisibilityConverter = Playnite.Converters.BooleanToVisibilityConverter;
 
 namespace Playnite.DesktopApp.Controls.Views
@@ -23,6 +22,9 @@ namespace Playnite.DesktopApp.Controls.Views
     public class LibraryGridView : BaseGamesView
     {
         private SliderWithPopup SliderZoom;
+
+        private readonly ItemsPanelTemplate groupItemsPanel;
+        private readonly ItemsPanelTemplate standardItemsPanel;
 
         static LibraryGridView()
         {
@@ -33,6 +35,8 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             Loaded += LibraryGridView_Loaded;
             Unloaded += LibraryGridView_Unloaded;
+            groupItemsPanel = GetItemsPanelTemplate();
+            standardItemsPanel = GetItemsPanelTemplate();
         }
 
         public LibraryGridView(DesktopAppViewModel mainModel) : base(ViewType.Grid, mainModel)
@@ -43,20 +47,35 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void LibraryGridView_Loaded(object sender, RoutedEventArgs e)
         {
-            mainModel.AppSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            mainModel.AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            mainModel.AppSettings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
         }
 
         private void LibraryGridView_Unloaded(object sender, RoutedEventArgs e)
         {
-            mainModel.AppSettings.PropertyChanged -= ViewSettings_PropertyChanged;
+            mainModel.AppSettings.ViewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
+            mainModel.AppSettings.FilterSettings.FilterChanged -= FilterSettings_FilterChanged;
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.GridViewScrollModifier))
+            if (mainModel.AppSettings.ViewSettings.GamesViewType != viewType)
             {
-                ScrollViewerBehaviours.SetScrollAmount(ListGames, mainModel.AppSettings.GridViewScrollModifier);
+                return;
             }
+
+            if (e.PropertyName == nameof(ViewSettings.GroupingOrder))
+            {
+                ListGames.ItemsPanel = GetItemsPanelTemplateCache();
+                var scrollViewer = ElementTreeHelper.FindVisualChildren< ScrollViewer>(ListGames).FirstOrDefault();
+                scrollViewer.ScrollToTop();
+            }
+        }
+
+        private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
+        {
+            var scrollViewer = ElementTreeHelper.FindVisualChildren<ScrollViewer>(ListGames).FirstOrDefault();
+            scrollViewer.ScrollToTop();
         }
 
         public override void OnApplyTemplate()
@@ -65,8 +84,11 @@ namespace Playnite.DesktopApp.Controls.Views
 
             if (ListGames != null)
             {
-                ListGames.ItemsPanel = GetItemsPanelTemplate();
-                ScrollViewerBehaviours.SetScrollAmount(ListGames, mainModel.AppSettings.GridViewScrollModifier);
+                ListGames.ItemsPanel = GetItemsPanelTemplateCache();
+                BindingTools.SetBinding(ListGames,
+                    ScrollViewerBehaviours.ScrollAmountProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.GridViewScrollModifier));
             }
 
             if (ControlGameView != null)
@@ -97,17 +119,20 @@ namespace Playnite.DesktopApp.Controls.Views
             }
         }
 
+        private ItemsPanelTemplate GetItemsPanelTemplateCache()
+        {
+            // This fixes an issue where WPF incorrectly sets parent virtualizing panel
+            // when switching from standard to gourping views.
+            return mainModel.AppSettings.ViewSettings.GroupingOrder == GroupableField.None ? standardItemsPanel : groupItemsPanel;
+        }
+
         private ItemsPanelTemplate GetItemsPanelTemplate()
         {
             XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
-            XNamespace wpftk = "clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel";
+            XNamespace pctrls = "clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp";
             var templateDoc = new XDocument(
                 new XElement(pns + nameof(ItemsPanelTemplate),
-                    new XElement(wpftk + nameof(VirtualizingWrapPanel),
-                        new XAttribute(nameof(VirtualizingWrapPanel.Orientation), Orientation.Vertical),
-                        new XAttribute(nameof(VirtualizingWrapPanel.SpacingMode), (SpacingMode)mainModel.AppSettings.GridViewSpacingMode),
-                        new XAttribute(nameof(VirtualizingWrapPanel.StretchItems), false)))
-            );
+                    new XElement(pctrls + nameof(GridViewPanel))));
 
             return Xaml.FromString<ItemsPanelTemplate>(templateDoc.ToString());
         }

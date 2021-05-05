@@ -13,7 +13,7 @@ namespace Playnite.Behaviors
 {
     public class ScrollViewerBehaviours
     {
-        private static readonly DependencyProperty ScrollAmountProperty =
+        public static readonly DependencyProperty ScrollAmountProperty =
             DependencyProperty.RegisterAttached(
             "ScrollAmount",
             typeof(double),

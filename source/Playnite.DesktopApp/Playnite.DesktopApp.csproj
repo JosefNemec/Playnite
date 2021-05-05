@@ -114,9 +114,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="VirtualizingWrapPanel">
-      <HintPath>..\..\references\VirtualizingWrapPanel.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -259,6 +256,7 @@
     <Compile Include="Controls\Views\MainWindow.cs" />
     <Compile Include="Controls\Views\TopPanel.cs" />
     <Compile Include="Controls\SliderEx.cs" />
+    <Compile Include="Controls\GridViewPanel.cs" />
     <Compile Include="DesktopApplication.cs" />
     <Compile Include="DesktopCollectionView.cs" />
     <Compile Include="DesktopDialogs.cs" />

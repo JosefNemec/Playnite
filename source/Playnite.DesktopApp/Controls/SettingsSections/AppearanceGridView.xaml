@@ -55,13 +55,6 @@
                   Name="CheckDarkenUninstalledCovers" IsChecked="{Binding Settings.DarkenUninstalledGamesGrid}"/>
 
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-            <ContentControl Content="{DynamicResource LOCGridViewSpacingMode}" VerticalAlignment="Center" Margin="0,0,5,0"
-                            ContentStringFormat="{}{0} *"/>
-            <ComboBox SelectedValue="{Binding Settings.GridViewSpacingMode}"
-                      pbeh:SelectorBehaviors.EnumSource="{x:Type playnite:GridViewSpacingMode}" />
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCGridViewScrollAmountModifier}" VerticalAlignment="Center" Margin="0,0,5,0" />
             <pctrls:NumericDoubleBox MinValue="0" MaxValue="999" Width="40"
                                      Value="{Binding Settings.GridViewScrollModifier}"/>

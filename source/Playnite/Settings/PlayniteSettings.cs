@@ -26,18 +26,6 @@ using System.Collections.ObjectModel;
 
 namespace Playnite
 {
-    public enum GridViewSpacingMode
-    {
-        [Description(LOC.GridViewSpacingModeNone)]
-        None = 0,
-        [Description(LOC.GridViewSpacingModeUniform)]
-        Uniform = 1,
-        [Description(LOC.GridViewSpacingModeBetweenItemsOnly)]
-        BetweenItemsOnly = 2,
-        [Description(LOC.GridViewSpacingModeStartAndEndOnly)]
-        StartAndEndOnly = 3
-    }
-
     public enum AfterLaunchOptions
     {
         None,
@@ -1620,18 +1608,6 @@ namespace Playnite
             set
             {
                 imageScalerMode = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private GridViewSpacingMode gridViewSpacingMode = GridViewSpacingMode.StartAndEndOnly;
-        [RequiresRestart]
-        public GridViewSpacingMode GridViewSpacingMode
-        {
-            get => gridViewSpacingMode;
-            set
-            {
-                gridViewSpacingMode = value;
                 OnPropertyChanged();
             }
         }
