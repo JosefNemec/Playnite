@@ -244,6 +244,19 @@
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
+
+                                    <!--Exit-->
+                                    <Button x:Name="PART_ButtonExit" Focusable="False"
+                                        Style="{DynamicResource ButtonBottomMenu}">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <ContentControl Style="{DynamicResource ButtonPromptB}"
+                                                                Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{DynamicResource LOCExitAppLabel}" Style="{DynamicResource TextBlockBaseStyle}"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2" x:Name="PART_ElemSearchActive"
