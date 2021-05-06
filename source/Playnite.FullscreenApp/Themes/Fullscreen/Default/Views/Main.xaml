@@ -233,33 +233,33 @@
                                     </Button>
 
                                     <!--Filter-->
-									<Button x:Name="PART_ButtonFilter" Focusable="False"
+                                    <Button x:Name="PART_ButtonFilter" Focusable="False"
                                         Style="{DynamicResource ButtonBottomMenu}">
-										<Button.Content>
-											<StackPanel Orientation="Horizontal">
-												<ContentControl Style="{DynamicResource ButtonPromptRS}"
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <ContentControl Style="{DynamicResource ButtonPromptRS}"
                                                                 Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-												<TextBlock Text="{DynamicResource LOCFilter}" Style="{DynamicResource TextBlockBaseStyle}"
+                                                <TextBlock Text="{DynamicResource LOCFilter}" Style="{DynamicResource TextBlockBaseStyle}"
                                                        VerticalAlignment="Center"/>
-											</StackPanel>
-										</Button.Content>
-									</Button>
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
 
-									<!--Exit-->
-									<Button x:Name="PART_ButtonExit" Focusable="False"
+                                    <!--Exit-->
+                                    <Button x:Name="PART_ButtonExit" Focusable="False"
                                         Style="{DynamicResource ButtonBottomMenu}">
-									<Button.Content>
-										<StackPanel Orientation="Horizontal">
-											<ContentControl Style="{DynamicResource ButtonPromptB}"
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <ContentControl Style="{DynamicResource ButtonPromptB}"
                                                                 Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
-											<TextBlock Text="{DynamicResource LOCExitAppLabel}" Style="{DynamicResource TextBlockBaseStyle}"
+                                            <TextBlock Text="{DynamicResource LOCExitAppLabel}" Style="{DynamicResource TextBlockBaseStyle}"
                                                        VerticalAlignment="Center"/>
-										</StackPanel>
-									</Button.Content>
-								</Button>
-								</StackPanel>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                </StackPanel>
 
-								<StackPanel Grid.Column="2" x:Name="PART_ElemSearchActive"
+                                <StackPanel Grid.Column="2" x:Name="PART_ElemSearchActive"
                                             VerticalAlignment="Top" HorizontalAlignment="Stretch"
                                             Margin="0,15,0,0">
                                     <TextBlock  FontSize="18"                                                
