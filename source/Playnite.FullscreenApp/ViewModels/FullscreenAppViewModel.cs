@@ -415,6 +415,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<CancelEventArgs> WindowClosingCommand { get; private set; }
         public RelayCommand<EventArgs> WindowGotFocusCommand { get; private set; }
         public RelayCommand<object> ExitCommand { get; private set; }
+        public RelayCommand<object> ExitCommandConf { get; private set; }
         public RelayCommand<object> SwitchToDesktopCommand { get; private set; }
         public RelayCommand<object> ToggleFullscreenCommand { get; private set; }
         public RelayCommand<object> ToggleMainMenuCommand { get; private set; }
@@ -603,6 +604,19 @@ namespace Playnite.FullscreenApp.ViewModels
             ExitCommand = new RelayCommand<object>((a) =>
             {
                 Shutdown();
+            });
+
+            ExitCommandConf = new RelayCommand<object>((a) =>
+            {
+                if (Dialogs.ShowMessage("LOCConfirumationAskGeneric", "LOCExitPlaynite", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
+                if (!PlayniteEnvironment.IsDebuggerAttached)
+                {
+                    Shutdown();
+                }
             });
 
             ToggleFullscreenCommand = new RelayCommand<object>((a) =>
