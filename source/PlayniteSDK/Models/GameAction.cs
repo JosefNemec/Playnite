@@ -50,16 +50,23 @@ namespace Playnite.SDK.Models
         /// Game action starts an emulator.
         /// </summary>
         [Description("LOCGameActionTypeEmulator")]
-        Emulator = 2
+        Emulator = 2,
+        /// <summary>
+        /// Game action startup is handled by a script.
+        /// </summary>
+        [Description("LOCGameActionTypeScript")]
+        Script = 3
+    }
+
+    public class GameActionBase : ObservableObject
+    {
     }
 
     /// <summary>
     /// Represents executable game action.
     /// </summary>
-    public class GameAction : ObservableObject, IEquatable<GameAction>
+    public class GameAction : GameActionBase, IEquatable<GameAction>
     {
-        private readonly Guid id = Guid.NewGuid();
-
         private GameActionType type;
         /// <summary>
         /// Gets or sets task type.
@@ -173,21 +180,6 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private bool isHandledByPlugin;
-        /// <summary>
-        /// Gets or sets value indicating wheter a action's execution should be handled by a plugin.
-        /// </summary>
-        [Obsolete("No longer used since Playnite 9.")]
-        public bool IsHandledByPlugin
-        {
-            get => isHandledByPlugin;
-            set
-            {
-                isHandledByPlugin = value;
-                OnPropertyChanged();
-            }
-        }
-
         private Guid emulatorId;
         /// <summary>
         /// Gets or sets emulator id for Emulator action type execution.
@@ -202,11 +194,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Guid emulatorProfileId;
+        private string emulatorProfileId;
         /// <summary>
         /// Gets or sets emulator profile id for Emulator action type execution.
         /// </summary>
-        public Guid EmulatorProfileId
+        public string EmulatorProfileId
         {
             get => emulatorProfileId;
             set
@@ -240,6 +232,17 @@ namespace Playnite.SDK.Models
             set
             {
                 trackingPath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string script;
+        public string Script
+        {
+            get => script;
+            set
+            {
+                script = value;
                 OnPropertyChanged();
             }
         }
@@ -326,7 +329,7 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
-            if (EmulatorProfileId != other.EmulatorProfileId)
+            if (!string.Equals(EmulatorProfileId, other.EmulatorProfileId, StringComparison.Ordinal))
             {
                 return false;
             }
@@ -342,6 +345,11 @@ namespace Playnite.SDK.Models
             }
 
             if (TrackingMode != other.TrackingMode)
+            {
+                return false;
+            }
+
+            if (!string.Equals(Script, other.Script, StringComparison.Ordinal))
             {
                 return false;
             }

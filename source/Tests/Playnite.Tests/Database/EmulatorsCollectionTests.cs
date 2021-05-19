@@ -22,9 +22,9 @@ namespace Playnite.Tests.Database
                 db.OpenDatabase();
                 var emulator = new Emulator("test")
                 {
-                    Profiles = new System.Collections.ObjectModel.ObservableCollection<EmulatorProfile>()
+                    CustomProfiles = new System.Collections.ObjectModel.ObservableCollection<CustomEmulatorProfile>()
                         {
-                            new EmulatorProfile() { Name = "test profile" }
+                            new CustomEmulatorProfile() { Name = "test profile" }
                         }
                 };
 
@@ -37,7 +37,7 @@ namespace Playnite.Tests.Database
                         {
                             Type = GameActionType.Emulator,
                             EmulatorId = emulator.Id,
-                            EmulatorProfileId = emulator.Profiles[0].Id
+                            EmulatorProfileId = emulator.CustomProfiles[0].Id
                         }
                     }
                 };

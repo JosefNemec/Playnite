@@ -11,6 +11,12 @@ using System.Diagnostics;
 
 namespace Playnite.Common
 {
+    public enum FileSystemItem
+    {
+        File,
+        Directory
+    }
+
     public static class FileSystem
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -357,47 +363,51 @@ namespace Playnite.Common
             }
         }
 
-        public static string LookupAlternativeFilePath(string filePath)
+        public static bool FileExistsOnAnyDrive(string filePath, out string existringPath)
         {
-            return CheckDrivesForPath(filePath, path => File.Exists(path));
+            return PathExistsOnAnyDrive(filePath, path => File.Exists(path), out existringPath);
         }
 
-        public static string LookupAlternativeDirectoryPath(string directoryPath)
+        public static bool DirectoryExistsOnAnyDrive(string directoryPath, out string existringPath)
         {
-            return CheckDrivesForPath(directoryPath, path => Directory.Exists(path));
+            return PathExistsOnAnyDrive(directoryPath, path => Directory.Exists(path), out existringPath);
         }
 
-        private static string CheckDrivesForPath(string originalPath, Predicate<string> predicate)
+        private static bool PathExistsOnAnyDrive(string originalPath, Predicate<string> predicate, out string existringPath)
         {
+            existringPath = null;
             try
             {
+                if (predicate(originalPath))
+                {
+                    existringPath = originalPath;
+                    return true;
+                }
+
                 if (!Paths.IsFullPath(originalPath))
                 {
-                    return string.Empty;
+                    return false;
                 }
 
                 var rootPath = Path.GetPathRoot(originalPath);
-                var availableDrives = DriveInfo.GetDrives()
-                    .Where(d => d.IsReady && !d.Name.Equals(rootPath, StringComparison.OrdinalIgnoreCase));
-
+                var availableDrives = DriveInfo.GetDrives().Where(d => d.IsReady);
                 foreach (var drive in availableDrives)
                 {
                     var pathWithoutDrive = originalPath.Substring(drive.Name.Length);
-                    var newDirectoryPath = Path.Combine(drive.Name, pathWithoutDrive);
-                    if (predicate(newDirectoryPath))
+                    var newPath = Path.Combine(drive.Name, pathWithoutDrive);
+                    if (predicate(newPath))
                     {
-                        return newDirectoryPath;
+                        existringPath = newPath;
+                        return true;
                     }
                 }
-
-                return string.Empty;
             }
             catch (Exception ex) when (!Debugger.IsAttached)
             {
-                logger.Error(ex, $"Error looking for alternative path for original path \"{originalPath}\"");
+                logger.Error(ex, $"Error checking if path exists on different drive \"{originalPath}\"");
             }
 
-            return string.Empty;
+            return false;
         }
     }
 }

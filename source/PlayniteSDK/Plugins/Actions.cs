@@ -10,17 +10,19 @@ namespace Playnite.SDK.Plugins
     /// <summary>
     ///
     /// </summary>
-    public class PluginGameAction
+    public class PluginGameAction : GameActionBase
     {
         /// <summary>
         ///
         /// </summary>
         public string Name { get; set; }
+    }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetPlayControllerArgs
+    {
     }
 
     /// <summary>
@@ -37,6 +39,13 @@ namespace Playnite.SDK.Plugins
         {
             return null;
         }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetInstallControllerArgs
+    {
     }
 
     /// <summary>

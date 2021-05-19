@@ -15,7 +15,6 @@ namespace Playnite.DesktopApp.Controls
 {
     public class FilterEnumSelectionBox : FilterSelectionBoxBase
     {
-        public override string ItemStyleName => "FilterEnumSelectionBoxItemStyle";
         public List<SelectableItem<SelectionObject>> ItemsList { get; set; }
 
         public class SelectionObject
@@ -152,11 +151,6 @@ namespace Playnite.DesktopApp.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            if (ButtonClearFilter != null)
-            {
-                ButtonClearFilter.Click += ElemClearFilter_Click;
-            }
-
             UpdateTextStatus();
         }
 
@@ -175,7 +169,7 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        private void ElemClearFilter_Click(object sender, RoutedEventArgs e)
+        public override void ClearButtonAction(RoutedEventArgs e)
         {
             FilterProperties = null;
         }

@@ -37,5 +37,20 @@ namespace System.Collections.Generic
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
+
+        protected void SetValue<T>(ref T property, T value, [CallerMemberName]string propertyName = null)
+        {
+            property = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        protected void SetValue<T>(ref T property, T value, params string[] propertyNames)
+        {
+            property = value;
+            foreach (var pro in propertyNames)
+            {
+                OnPropertyChanged(pro);
+            }
+        }
     }
 }

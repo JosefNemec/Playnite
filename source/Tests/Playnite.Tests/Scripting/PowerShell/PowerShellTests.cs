@@ -113,5 +113,25 @@ function TestFunc()
                 Directory.SetCurrentDirectory("\\");
             }
         }
+
+        [Test]
+        public void ExecuteFileTest()
+        {
+            using (var tempDir = TempDirectory.Create())
+            using (var runtime = new PowerShellRuntime("ExecuteFileTest"))
+            {
+                var filePath = Path.Combine(tempDir.TempPath, "ExecuteFileTest.ps1");
+                File.WriteAllText(filePath, @"
+param($FileArgs)
+return $FileArgs.Arg1 + $FileArgs.Arg2
+");
+                var res = runtime.ExecuteFile(filePath, null, new Dictionary<string, object>
+                {
+                    { "Arg1", 2 },
+                    { "Arg2", 3 }
+                });
+                Assert.AreEqual(5, res);
+            }
+        }
     }
 }

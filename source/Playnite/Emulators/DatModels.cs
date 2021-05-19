@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
-namespace Playnite.Emulation
+namespace Playnite.Emulators
 {
     public class DatGame
     {
@@ -52,7 +52,7 @@ namespace Playnite.Emulation
 
         [YamlIgnore]
         [SQLiteColumn(Ignore = true)]
-        public string SanitizedName => Name.IsNullOrEmpty() ? string.Empty : Emulation.RomName.SanitizeName(Name);
+        public string SanitizedName => Name.IsNullOrEmpty() ? string.Empty : Emulators.RomName.SanitizeName(Name);
 
         public override string ToString()
         {

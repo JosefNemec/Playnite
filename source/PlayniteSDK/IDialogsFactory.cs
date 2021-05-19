@@ -97,7 +97,7 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets cancelation token source.
         /// </summary>
-        public CancellationTokenSource CancelToken { get; }
+        public CancellationToken CancelToken { get; }
 
         private double progressMaxValue = 0;
         /// <summary>
@@ -147,7 +147,7 @@ namespace Playnite.SDK
         /// <param name="mainContext"></param>
         /// <param name="mainDispatcher"></param>
         /// <param name="cancelToken"></param>
-        public GlobalProgressActionArgs(SynchronizationContext mainContext, Dispatcher mainDispatcher, CancellationTokenSource cancelToken)
+        public GlobalProgressActionArgs(SynchronizationContext mainContext, Dispatcher mainDispatcher, CancellationToken cancelToken)
         {
             MainContext = mainContext;
             MainDispatcher = mainDispatcher;

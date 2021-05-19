@@ -13,8 +13,6 @@ namespace Playnite.DesktopApp.Controls
 {
     public class FilterStringSelectionBox : FilterSelectionBoxBase
     {
-        public override string ItemStyleName => "FilterStringSelectionBoxItemStyle";
-
         public SelectableObjectList<NamedObject<string>> ItemsList
         {
             get
@@ -114,11 +112,6 @@ namespace Playnite.DesktopApp.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            if (ButtonClearFilter != null)
-            {
-                ButtonClearFilter.Click += ClearButton_Click;
-            }
-
             UpdateTextStatus();
         }
 
@@ -130,7 +123,7 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        public override void ClearButtonAction(RoutedEventArgs e)
         {
             FilterProperties = null;
         }

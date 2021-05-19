@@ -1,0 +1,84 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.EmulatorDownloadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pvm="clr-namespace:Playnite.DesktopApp.ViewModels"
+        xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"         
+        mc:Ignorable="d"
+        d:DesignStyle="{StaticResource WindowDesignStyle}"
+        Style="{DynamicResource StandardWindowStyle}"
+        Title="{DynamicResource LOCDownloadEmulatorsButton}" WindowStartupLocation="CenterOwner"
+        Height="600" Width="800" x:Name="WindowEmulatorImport"
+        AutomationProperties.AutomationId="WindowEmulatorImport">
+
+    <controls:WindowBase.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </controls:WindowBase.Resources>
+
+    <DockPanel>
+        <DockPanel.Resources>
+            <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        </DockPanel.Resources>
+
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+            <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
+                <Button Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right"
+                        Style="{StaticResource BottomButton}" IsCancel="True" />
+            </DockPanel>
+        </Border>
+
+        <DockPanel>
+            <TextBlock Text="{DynamicResource LOCEmuDownloadDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,10,5,10"/>
+            <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
+                      ItemsSource="{Binding EmulatorDefinitions}" DockPanel.Dock="Bottom">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                        <Setter Property="Focusable" Value="False"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{DynamicResource LOCNameLabel}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name, Mode=OneWay}" Padding="5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{DynamicResource LOCSupportedPlatformsTitle}" Width="400">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding AllPlatforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}"
+                                                       Padding="5" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{DynamicResource LOCWebsiteLabel}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="5">
+                                            <Hyperlink NavigateUri="{Binding Website, Mode=OneWay}"
+                                                       Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                                       CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                                <Hyperlink.Inlines>
+                                                    <Run Text="{Binding Website, Mode=OneWay}"/>
+                                                </Hyperlink.Inlines>
+                                            </Hyperlink>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </DockPanel>
+</controls:WindowBase>

@@ -51,29 +51,6 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        [Obsolete("Reference BuiltinExtensionIds instead.")]
-        public static string[] BuiltinExtensionFolders { get; } = new string[]
-        {
-            "AmazonGamesLibrary",
-            "BattleNetLibrary",
-            "BethesdaLibrary",
-            "EpicLibrary",
-            "GogLibrary",
-            "HumbleLibrary",
-            "IGDBMetadata",
-            "ItchioLibrary",
-            "LibraryExporter",
-            "OriginLibrary",
-            "SteamLibrary",
-            "TwitchLibrary",
-            "UplayLibrary",
-            "XboxLibrary",
-            "PSNLibrary"
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
         public static string[] BuiltinExtensionIds { get; } = new string[]
         {
             "AmazonLibrary_Builtin",
@@ -91,24 +68,6 @@ namespace Playnite.SDK
             "TwitchLibrary_Builtin",
             "UplayLibrary_Builtin",
             "XboxLibrary_Builtin"
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Obsolete("Reference BuiltinThemeIds instead.")]
-        public static string[] BuiltinDesktopThemeFolders { get; } = new string[]
-        {
-            "Default",
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        [Obsolete("Reference BuiltinThemeIds instead.")]
-        public static string[] BuiltinFullscreenThemeFolders { get; } = new string[]
-        {
-            "Default",
         };
 
         /// <summary>

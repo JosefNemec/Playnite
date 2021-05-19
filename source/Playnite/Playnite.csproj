@@ -227,11 +227,16 @@
     <Compile Include="Audio.cs" />
     <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
+    <Compile Include="Behaviors\TextBoxBehaviors.cs" />
+    <Compile Include="Common\CueSheet.cs" />
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
+    <Compile Include="Controls\ExtendedDataGrid.cs" />
     <Compile Include="ControlTemplateTools.cs" />
     <Compile Include="Converters\GenericTypeConverter.cs" />
     <Compile Include="Converters\ObjectEqualityToBoolConverter.cs" />
+    <Compile Include="Database\Collections\GameScannersCollection.cs" />
     <Compile Include="Emulators\DatModels.cs" />
+    <Compile Include="Emulators\Emulation.cs" />
     <Compile Include="Emulators\EmulationDatabase.cs" />
     <Compile Include="Emulators\Scanner.cs" />
     <Compile Include="Extensions\Markup\PluginSettings.cs" />
@@ -379,8 +384,6 @@
     <Compile Include="EasyAntiCheat.cs" />
     <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Exceptions.cs" />
-    <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
-    <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="Extensions\IProvideValueTarget.cs" />
     <Compile Include="Extensions\Markup\Api.cs" />
@@ -390,7 +393,6 @@
     <Compile Include="Extensions\Markup\ThemeFile.cs" />
     <Compile Include="Extensions\ServiceProvider.cs" />
     <Compile Include="FakePlayniteLibraryPlugin.cs" />
-    <Compile Include="GameActionActivator.cs" />
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
@@ -419,8 +421,6 @@
     <Compile Include="SelectableItem.cs" />
     <Compile Include="Services\BaseServicesClient.cs" />
     <Compile Include="Services\GenericResponse.cs" />
-    <Compile Include="Emulators\EmulatorDefinition.cs" />
-    <Compile Include="Emulators\EmulatorFinder.cs" />
     <Compile Include="GameTools.cs" />
     <Compile Include="Database\DatabaseStats.cs" />
     <Compile Include="Controllers\GameControllerFactory.cs" />
@@ -486,16 +486,13 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="crash_reporter.cfg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Emulation\Emulators\*.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Emulation\Platforms.yaml">
+    <None Include="Emulation\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Localization\locstatus.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -729,10 +726,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Safe Mode.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\playnite_extension.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

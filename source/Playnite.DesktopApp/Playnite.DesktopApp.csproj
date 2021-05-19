@@ -140,9 +140,10 @@
     <Compile Include="Controls\AddonsSections\InstalledExtensions.xaml.cs">
       <DependentUpon>InstalledExtensions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ComboBoxList.cs" />
     <Compile Include="Controls\ExpanderEx.cs" />
     <Compile Include="Controls\Menus\FilterPresetsMenu.cs" />
-    <Compile Include="Controls\FilterSelectionBoxBase.cs" />
+    <Compile Include="Controls\ComboBoxListBase.cs" />
     <Compile Include="Controls\Menus\GameGroupMenu.cs" />
     <Compile Include="Controls\Menus\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
@@ -269,7 +270,7 @@
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel_Sidebar.cs" />
     <Compile Include="ViewModels\DesktopAppViewModel_Commands.cs" />
-    <Compile Include="ViewModels\EmulationImportViewModel.cs" />
+    <Compile Include="ViewModels\EmulatedGamesImportViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\EmulatorsViewModel.cs" />
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
@@ -294,8 +295,11 @@
     <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
       <DependentUpon>ActionSelectionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\EmulationImportWindow.xaml.cs">
-      <DependentUpon>EmulationImportWindow.xaml</DependentUpon>
+    <Compile Include="Windows\EmulatedGameImportWindow.xaml.cs">
+      <DependentUpon>EmulatedGameImportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmulatorDownloadWindow.xaml.cs">
+      <DependentUpon>EmulatorDownloadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LicenseAgreementWindow.xaml.cs">
       <DependentUpon>LicenseAgreementWindow.xaml</DependentUpon>
@@ -977,12 +981,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\CustomControls\DdItemListSelectionBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Desktop\Default\CustomControls\FilterEnumSelectionBox.xaml">
+    <Content Include="Themes\Desktop\Default\CustomControls\ComboBoxList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -992,7 +991,12 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\CustomControls\FilterStringSelectionBox.xaml">
+    <Content Include="Themes\Desktop\Default\DefaultControls\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExtendedDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1005,7 +1009,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\EmulationImportWindow.xaml">
+    <Page Include="Windows\EmulatedGameImportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EmulatorDownloadWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

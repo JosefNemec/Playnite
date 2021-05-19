@@ -69,6 +69,11 @@ namespace Playnite.SDK
         IAddons Addons { get; }
 
         /// <summary>
+        /// Gets emulation API.
+        /// </summary>
+        IEmulationAPI Emulation { get; }
+
+        /// <summary>
         /// Expands dynamic game variables in specified string.
         /// </summary>
         /// <param name="game">Game to use dynamic variables from.</param>
@@ -83,21 +88,6 @@ namespace Playnite.SDK
         /// <param name="action">Game action to expand variables to.</param>
         /// <returns>Game action with expanded variables.</returns>
         GameAction ExpandGameVariables(Game game, GameAction action);
-
-        /// <summary>
-        /// Returns new instance of Playnite logger.
-        /// </summary>
-        /// <param name="name">Logger name.</param>
-        /// <returns>Logger object.</returns>
-        [Obsolete("Use LogManager class instead.")]
-        ILogger CreateLogger(string name);
-
-        /// <summary>
-        /// Creates new instance of Playnite logger with name of calling class.
-        /// </summary>
-        /// <returns>Logger object.</returns>
-        [Obsolete("Use LogManager class instead.")]
-        ILogger CreateLogger();
 
         /// <summary>
         /// Starts game.
@@ -123,5 +113,10 @@ namespace Playnite.SDK
         /// <param name="source"></param>
         /// <param name="args"></param>
         void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args);
+    }
+
+    public static class API
+    {
+        public static IPlayniteAPI Instance { get; internal set; }
     }
 }

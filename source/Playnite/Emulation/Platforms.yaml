@@ -3,7 +3,7 @@
   Databases:
     - Atari - 2600
   Emulators:
-    - Stella
+    - stella
 
 - Name: Sony PlayStation 3
   Id: playstation3
@@ -11,15 +11,15 @@
     - Sony - PlayStation 3
     - Sony - PlayStation 3 (PSN)
   Emulators:
-    - RPCS3
+    - rpcs3
 
 - Name: Sony PlayStation
   Id: playstation
   Databases:
     - Sony - PlayStation
   Emulators:
-    - ePSXe
-    - DuckStation
+    - epsxe
+    - duckstation
 
 - Name: Super Nintendo Entertainment System
   Id: super_nes
@@ -27,4 +27,11 @@
     - Nintendo - Super Nintendo Entertainment System
   Emulators:
     - bsnes
-    - Snes9X
+    - snes9x
+
+- Name: Sega Dreamcast
+  Id: dreamcast
+  Databases:
+    - Sega - Dreamcast
+  Emulators:
+    - redream

@@ -29,6 +29,7 @@ namespace Playnite.DesktopApp.Controls
         private MenuItem extensionsItem;
         private MenuItem toolsItem;
         private MenuItem viewItem;
+        private MenuItem emulationUpdateItem;
         private Separator extensionsEndItem;
         private static readonly ILogger logger = LogManager.GetLogger();
 
@@ -117,6 +118,7 @@ namespace Playnite.DesktopApp.Controls
             // Update Library
             var updateItem = AddMenuChild(Items, "LOCMenuReloadLibrary", null, null, "UpdateDbIcon");
             AddMenuChild(updateItem.Items, "LOCUpdateAll", mainModel.UpdateGamesCommand);
+            emulationUpdateItem = AddMenuChild(updateItem.Items, "LOCMenuUpdateEmulatedDirs", null);
             updateItem.Items.Add(new Separator());
             foreach (var plugin in mainModel.Extensions.LibraryPlugins)
             {
@@ -221,6 +223,25 @@ namespace Playnite.DesktopApp.Controls
             AddExtensionItems();
             AddToolsItems();
             AddSidebarViewItems();
+            AddEmulationUpdateItems();
+        }
+
+        private void AddEmulationUpdateItems()
+        {
+            emulationUpdateItem.Items.Clear();
+            AddMenuChild(emulationUpdateItem.Items, "LOCUpdateAll", mainModel.UpdateEmulationDirsCommand);
+            emulationUpdateItem.Items.Add(new Separator());
+            foreach (var config in mainModel.Database.GameScanners)
+            {
+                var item = new MenuItem
+                {
+                    Header = config.Name,
+                    Command = mainModel.UpdateEmulationDirCommand,
+                    CommandParameter = config
+                };
+
+                emulationUpdateItem.Items.Add(item);
+            }
         }
 
         private void AddSidebarViewItems()

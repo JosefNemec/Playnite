@@ -32,10 +32,10 @@
                                     <RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
+                                </Grid.RowDefinitions>                                
 
                                 <DockPanel Margin="0,20,0,15" MaxWidth="1024" Grid.Row="1"
-                                           Background="Transparent">
+                                           Background="Transparent">                                    
                                     <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right"
                                             Height="{Settings GameDetailsCoverHeight}"

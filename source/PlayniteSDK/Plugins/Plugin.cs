@@ -76,16 +76,6 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Returns list of plugin functions.
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("Use GetGameMenuItems and GetMainMenuItems methods.")]
-        public virtual IEnumerable<ExtensionFunction> GetFunctions()
-        {
-            return null;
-        }
-
-        /// <summary>
         /// Called before game is started.
         /// </summary>
         /// <param name="game">Game that will be started.</param>
@@ -382,5 +372,32 @@ namespace Playnite.SDK.Plugins
         ///
         /// </summary>
         public string SettingsRoot { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetPlayActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetInstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool IsUninstall { get; set; } = false;
     }
 }

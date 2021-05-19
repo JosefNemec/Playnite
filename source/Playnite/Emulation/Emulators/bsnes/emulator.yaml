@@ -1,8 +1,10 @@
+Id: bsnes
 Name: bsnes
 Website: 'https://byuu.org/bsnes/'
 Profiles:
   - Name: Default
-    DefaultArguments: '"{ImagePath}"'
     Platforms: [super_nes]
     ImageExtensions: [sfc, smc, zip, 7z]
-    ExecutableLookup: ^bsnes\.exe$
+    InstallationFile: ^bsnes\.exe$
+    StartupExecutable: ^bsnes\.exe$
+    StartupArguments: '"{ImagePath}"'

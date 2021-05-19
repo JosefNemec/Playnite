@@ -193,12 +193,6 @@ namespace Playnite
                 dummyGame.Favorite = firstFavorite;
             }
 
-            var firstScriptLanuage = firstGame.ActionsScriptLanguage;
-            if (games.All(a => a.ActionsScriptLanguage == firstScriptLanuage) == true)
-            {
-                dummyGame.ActionsScriptLanguage = firstScriptLanuage;
-            }
-
             var firstPreScript = firstGame.PreScript;
             if (games.All(a => string.Equals(a.PreScript, firstPreScript, StringComparison.Ordinal)))
             {

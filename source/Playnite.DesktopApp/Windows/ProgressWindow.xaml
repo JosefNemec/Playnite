@@ -21,8 +21,8 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
-                   Grid.Row="0" TextTrimming="CharacterEllipsis" Margin="0,10,0,5"
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" 
+                   Grid.Row="0" TextWrapping="Wrap" Margin="0,10,0,5"
                    Style="{DynamicResource BaseTextBlockStyle}"                   
                    Text="{Binding ProgressArgs.Text}"/>
         <ProgressBar Height="25" IsIndeterminate="{Binding Indeterminate}" Grid.Row="1"

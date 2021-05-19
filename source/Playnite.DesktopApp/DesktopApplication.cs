@@ -152,6 +152,7 @@ namespace Playnite.DesktopApp
                 new PlayniteUriHandler(),
                 new PlayniteSettingsAPI(AppSettings),
                 new AddonsAPI(Extensions, AppSettings),
+                new Emulators.Emulation(),
                 Extensions);
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
@@ -209,14 +210,14 @@ namespace Playnite.DesktopApp
 
             if (isFirstStart)
             {
-                await MainModel.UpdateDatabase(false);
+                await MainModel.UpdateLibrary(false);
                 await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
                 if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
                 {
-                    await MainModel.UpdateDatabase(AppSettings.DownloadMetadataOnImport);
+                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
                 }
             }
 

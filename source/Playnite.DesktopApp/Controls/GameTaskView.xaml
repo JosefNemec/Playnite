@@ -39,7 +39,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="{Binding ShowTrackingModeRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             </Grid.RowDefinitions>
 
             <TextBlock Text="{DynamicResource LOCNameLabel}" Grid.Column="0" Grid.Row="0"/>
@@ -48,7 +48,8 @@
 
             <TextBlock Text="{DynamicResource LOCIsPlayAction}" Grid.Column="0" Grid.Row="1" />
             <CheckBox Grid.Column="1" Grid.Row="1" Margin="3,5,3,5"
-                  IsChecked="{Binding IsPlayAction}" />
+                      Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"
+                      IsChecked="{Binding IsPlayAction}" />
 
             <TextBlock Text="{DynamicResource LOCTypeLabel}" Grid.Column="0" Grid.Row="2"/>
             <ComboBox Name="ComboType" Grid.Column="1" Grid.Row="2"                      
@@ -62,7 +63,14 @@
                       pbeh:SelectorBehaviors.EnumSource="{x:Type mods:TrackingMode}"
                       SelectionChanged="ComboTrackingMode_SelectionChanged"/>
         </Grid>
-        <Grid Grid.Column="1">
+
+        <TextBox Grid.Column="1" AcceptsReturn="True" AcceptsTab="True" MaxHeight="200"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 Text="{Binding Script}"
+                 Visibility="{Binding ShowScriptInput, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <Grid Grid.Column="1"
+              Visibility="{Binding ShowScriptInput, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -75,6 +83,7 @@
                 <RowDefinition Name="RowOverrideArgs" Height="{Binding ShowOverrideArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>                
                 <RowDefinition Name="RowDefaultArguments" Height="{Binding ShowDefaultArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
                 <RowDefinition Name="RowAdditionalArgs" Height="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+                <RowDefinition Name="RowCustomEmulatorArgs" Height="{Binding ShowCustomEmulatorArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
                 <RowDefinition Name="RowTrackingPath" Height="{Binding ShowTrackingPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>                
             </Grid.RowDefinitions>
 
@@ -93,21 +102,20 @@
             <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" Grid.Column="0" Grid.Row="2" />
             <TextBox IsEnabled="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
                      Name="TextWorkDir" Grid.Column="1" Grid.Row="2" Text="{Binding WorkingDir}" />
-
-
-            <TextBlock Text="{DynamicResource LOCEmulatorTitle}" Grid.Column="0" Grid.Row="3" />
+            
             <StackPanel Orientation="Horizontal"
                     IsEnabled="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-                    Grid.Column="1" Grid.Row="3" Margin="3,5,3,5">
+                    Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5,0,5">
+                <TextBlock Text="{DynamicResource LOCEmulatorTitle}" />
                 <ComboBox Name="ComboEmulator" SelectionChanged="ComboEmulator_SelectionChanged"
-                      Margin="0,0,10,0"
+                      Margin="5,0,10,0"
                       ItemsSource="{Binding Emulators, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                      SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}"/>
+                      SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}" DisplayMemberPath="Name" />
                 <Label Content="{DynamicResource LOCProfileLabel}" />
                 <ComboBox Name="ComboEmulatorConfig" SelectionChanged="ComboEmulatorConfig_SelectionChanged"
                       Margin="5,0,5,0"
-                      ItemsSource="{Binding SelectedItem.SortedProfiles, ElementName=ComboEmulator}"
-                      SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId}"/>
+                      ItemsSource="{Binding SelectedItem.SelectableProfiles, ElementName=ComboEmulator}"
+                      SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId}" DisplayMemberPath="Name" />
             </StackPanel>
 
             <TextBlock Text="{DynamicResource LOCOverrideEmulatorArguments}" Grid.Column="0" Grid.Row="4"  />
@@ -118,14 +126,18 @@
 
             <TextBlock Text="{DynamicResource LOCEmulatorArguments}" Grid.Column="0" Grid.Row="5" />
             <TextBox Name="TextEmulatorArguments" Grid.Column="1" Grid.Row="5" 
-                 Text="{Binding SelectedEmulatorArguments, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
+                     Text="{Binding SelectedEmulatorArguments, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+                     IsEnabled="False" />
 
             <TextBlock Text="{DynamicResource LOCAdditionalEmulatorArguments}" Grid.Column="0" Grid.Row="6" />
-            <TextBox IsEnabled="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-                     Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="6" Text="{Binding AdditionalArguments}" />
+            <TextBox Name="TextAdditionalArguments" Grid.Column="1" Grid.Row="6"
+                     Text="{Binding AdditionalArguments}" />
 
-            <TextBlock Text="Tracking path" Grid.Column="0" Grid.Row="7" />
-            <TextBox Grid.Column="1" Grid.Row="7"
+            <TextBlock Text="{DynamicResource LOCEmulatorArguments}" Grid.Column="0" Grid.Row="7" />
+            <TextBox Name="EmulatorArguments" Grid.Column="1" Grid.Row="7" Text="{Binding Arguments}" />
+
+            <TextBlock Text="Tracking path" Grid.Column="0" Grid.Row="8" />
+            <TextBox Grid.Column="1" Grid.Row="8"
                      Text="{Binding TrackingPath}"/>
         </Grid>
     </Grid>

@@ -35,6 +35,7 @@ namespace Playnite.API
             IUriHandlerAPI uriHandler,
             IPlayniteSettingsAPI settingsApi,
             IAddons addonsApi,
+            IEmulationAPI emulation,
             ExtensionFactory extensions)
         {
             WebViews = webViewFactory;
@@ -49,7 +50,9 @@ namespace Playnite.API
             UriHandler = uriHandler;
             ApplicationSettings = settingsApi;
             Addons = addonsApi;
+            Emulation = emulation;
             this.extensions = extensions;
+            SDK.API.Instance = this;
         }
 
         public IDialogsFactory Dialogs { get; }
@@ -74,6 +77,8 @@ namespace Playnite.API
 
         public IAddons Addons { get; }
 
+        public IEmulationAPI Emulation { get; }
+
         public string ExpandGameVariables(Game game, string inputString)
         {
             return game?.ExpandVariables(inputString);
@@ -82,19 +87,6 @@ namespace Playnite.API
         public GameAction ExpandGameVariables(Game game, GameAction action)
         {
             return action?.ExpandVariables(game);
-        }
-
-        [Obsolete("Use LogManager class instead.")]
-        public ILogger CreateLogger(string name)
-        {
-            return LogManager.GetLogger(name);
-        }
-
-        [Obsolete("Use LogManager class instead.")]
-        public ILogger CreateLogger()
-        {
-            var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;
-            return CreateLogger(className);
         }
 
         public void StartGame(Guid gameId)

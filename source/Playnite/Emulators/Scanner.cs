@@ -1,142 +1,351 @@
 ﻿using Playnite.Common;
+using Playnite.Database;
+using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
-namespace Playnite.Emulation
+namespace Playnite.Emulators
 {
-    public class PlatformDefinition2
+    public class ScannedEmulator : ObservableObject
     {
-        private static readonly ILogger logger = LogManager.GetLogger();
-        private static string platformsFile => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Platforms.yaml");
+        public class ScannedEmulatorProfile : ObservableObject
+        {
+            private bool import = true;
+            public bool Import
+            {
+                get => import;
+                set
+                {
+                    import = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            public string Name { get; set; }
+            public string ProfileName { get; set; }
+        }
+
+        private bool import = true;
+        public bool Import
+        {
+            get => import;
+            set
+            {
+                import = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Name { get; set; }
         public string Id { get; set; }
-        public List<string> Databases { get; set; }
-        public List<string> Emulators { get; set; }
-
-        public static List<PlatformDefinition2> GetDefinitions()
-        {
-            if (File.Exists(platformsFile))
-            {
-                return Serialization.FromYamlFile<List<PlatformDefinition2>>(platformsFile);
-            }
-            else
-            {
-                return new List<PlatformDefinition2>();
-            }
-        }
+        public string InstallDir { get; set; }
+        public List<ScannedEmulatorProfile> Profiles { get; set; }
     }
 
-    public class EmulatorDefinition2Profile
-    {
-        public string Name { get; set; }
-        public string DefaultArguments { get; set; }
-        public List<string> Platforms { get; set; }
-        public List<string> ImageExtensions { get; set; }
-        public string ExecutableLookup { get; set; }
-    }
-
-    public class EmulatorDefinition2
+    public class EmulatorScanner
     {
         private static readonly ILogger logger = LogManager.GetLogger();
-        private static string emulatorDefDir => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Emulators");
 
-        public string Name { get; set; }
-        public string Website { get; set; }
-        public List<EmulatorDefinition2Profile> Profiles { get; set; }
-
-        [YamlIgnore]
-        public string FileName { get; set; }
-
-        public static List<EmulatorDefinition2> GetDefinitions()
+        public static List<ScannedEmulator> SearchForEmulators(string path, IList<EmulatorDefinition> definitions, CancellationToken cancelToken)
         {
-            var platforms = new List<EmulatorDefinition2>();
-            if (!Directory.Exists(emulatorDefDir))
+            logger.Info($"Looking for emulators in {path}, using {definitions.Count} definitions.");
+            var imported = new Dictionary<string, ScannedEmulator>();
+            foreach (var file in new SafeFileEnumerator(path, "*", SearchOption.AllDirectories))
             {
-                return platforms;
+                if (cancelToken.IsCancellationRequested)
+                {
+                    return new List<ScannedEmulator>();
+                }
+
+                if (file.Attributes.HasFlag(FileAttributes.Directory))
+                {
+                    continue;
+                }
+
+                foreach (var definition in definitions)
+                {
+                    var currentDir = Path.GetDirectoryName(file.FullName);
+                    var importId = definition.Id + currentDir;
+                    foreach (var defProfile in definition.Profiles)
+                    {
+                        if (defProfile.InstallationFile.IsNullOrEmpty())
+                        {
+                            continue;
+                        }
+
+                        var reqMet = true;
+                        var regex = new Regex(defProfile.InstallationFile, RegexOptions.IgnoreCase);
+                        if (regex.IsMatch(file.Name))
+                        {
+                            if (defProfile.ProfileFiles?.Any() == true)
+                            {
+                                foreach (var reqFile in defProfile.ProfileFiles)
+                                {
+                                    if (!File.Exists(Path.Combine(currentDir, reqFile)))
+                                    {
+                                        reqMet = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            reqMet = false;
+                        }
+
+                        if (reqMet)
+                        {
+                            imported.TryGetValue(importId, out var currentEmulator);
+                            if (currentEmulator == null)
+                            {
+                                currentEmulator = new ScannedEmulator()
+                                {
+                                    Name = definition.Name,
+                                    InstallDir = currentDir,
+                                    Id = definition.Id,
+                                    Profiles = new List<ScannedEmulator.ScannedEmulatorProfile>()
+                                };
+
+                                imported.Add(importId, currentEmulator);
+                            }
+
+                            currentEmulator.Profiles.Add(new ScannedEmulator.ScannedEmulatorProfile
+                            {
+                                ProfileName = defProfile.Name,
+                                Name = defProfile.Name
+                            });
+                        }
+                    }
+                }
             }
 
-            foreach (var file in Directory.GetFiles(emulatorDefDir, "*.yaml"))
-            {
-                try
-                {
-                    var data = Serialization.FromYamlFile<EmulatorDefinition2>(file);
-                    data.FileName = Path.GetFileNameWithoutExtension(file);
-                    platforms.Add(data);
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to load emulator definition file {file}");
-                }
-            }
-
-            return platforms;
+            return imported.Values.ToList();
         }
     }
 
-    public class Scanner
+    public class GameScanner
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static readonly string[] supportedArchiveExt = new string[] { "rar", "7z", "zip", "tar", "bzip2", "gzip", "lzip" };
-
-        private static List<PlatformDefinition2> platforms;
-        public static List<PlatformDefinition2> Platforms
-        {
-            get
-            {
-                if (platforms == null)
-                {
-                    platforms = PlatformDefinition2.GetDefinitions();
-                }
-
-                return platforms;
-            }
-        }
-
-        private static List<EmulatorDefinition2> emulators;
-        public static List<EmulatorDefinition2> Emulators
-        {
-            get
-            {
-                if (emulators == null)
-                {
-                    emulators = EmulatorDefinition2.GetDefinitions();
-                }
-
-                return emulators;
-            }
-        }
 
         private static bool IsSupportedArchiveExtension(string extension)
         {
             return supportedArchiveExt.ContainsString(extension, StringComparison.OrdinalIgnoreCase);
         }
 
-        public static List<ScannedGame> ScanDirectory(string directory, EmulatorDefinition2Profile emuProfile, string databaseDir)
+        public static List<ScannedGame> Scan(
+            IEnumerable<GameScannerConfig> configs,
+            GameDatabase database,
+            CancellationToken cancelToken)
+        {
+            var allGames = new List<ScannedGame>();
+            foreach (var config in configs)
+            {
+                allGames.AddRange(Scan(config, database, database.GetImportedRomFiles(), cancelToken));
+            }
+
+            return allGames;
+        }
+
+        public static List<ScannedGame> Scan(
+            GameScannerConfig scanner,
+            GameDatabase database,
+            List<string> importedFiles,
+            CancellationToken cancelToken)
+        {
+            List<ScannedGame> games;
+            var emulator = database.Emulators[scanner.EmulatorId];
+            if (emulator == null)
+            {
+                throw new Exception("Emulator not found.");
+            }
+
+            if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
+            {
+                games = ScanDirectory(
+                    scanner.Directory,
+                    emulator,
+                    emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId),
+                    database,
+                    importedFiles,
+                    cancelToken);
+            }
+            else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
+            {
+                games = ScanDirectory(
+                    scanner.Directory,
+                    emulator,
+                    emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId),
+                    importedFiles,
+                    cancelToken);
+            }
+            else
+            {
+                throw new Exception("Emulator profile format not supported.");
+            }
+
+            games?.ForEach(a => a.SourceConfig = scanner);
+            return games;
+        }
+
+        private static List<ScannedGame> ScanDirectory(
+            string directory,
+            Emulator emulator,
+            BuiltInEmulatorProfile profile,
+            List<string> importedFiles,
+            CancellationToken cancelToken)
+        {
+            var emuProf = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
+            if (emuProf == null)
+            {
+                throw new Exception($"Emulator {emulator.BuiltInConfigId} and profile {profile.BuiltInProfileName} not found.");
+            }
+
+            if (emuProf.ScriptGameImport)
+            {
+                object scannedGames = null;
+                Exception failExc = null;
+                var importRuntime = new PowerShellRuntime("Emu game import");
+                var scriptTask = Task.Run(() =>
+                {
+                    try
+                    {
+                        scannedGames = importRuntime.ExecuteFile(
+                            EmulatorDefinition.GetDefition(emulator.BuiltInConfigId).GameImportScriptPath,
+                            emulator.InstallDir,
+                            new Dictionary<string, object>
+                            {
+                                { "CancelToken", cancelToken },
+                                { "Emulator", emulator },
+                                { "EmulatorProfile", emuProf },
+                                { "ScanDirectory", directory },
+                                { "PlayniteApi", SDK.API.Instance },
+                                { "ImportedFiles", importedFiles }
+                            });
+                    }
+                    catch (Exception e)
+                    {
+                        failExc = e;
+                        logger.Error(e, "Failed to scan directory using emulator.");
+                    }
+                    finally
+                    {
+                        importRuntime.Dispose();
+                    }
+                });
+
+                while (true)
+                {
+                    Thread.Sleep(200);
+                    if (cancelToken.IsCancellationRequested)
+                    {
+                        scriptTask.Wait(5000);
+                        if (!importRuntime.IsDisposed)
+                        {
+                            importRuntime.Dispose();
+                        }
+
+                        return new List<ScannedGame>();
+                    }
+
+                    if (failExc != null)
+                    {
+                        throw failExc;
+                    }
+
+                    if (scriptTask.IsCompleted)
+                    {
+                        if (scannedGames is ScannedGame game)
+                        {
+                            return new List<ScannedGame> { game };
+                        }
+                        else if (scannedGames is List<ScannedGame> games)
+                        {
+                            return games;
+                        }
+                        else if (scannedGames == null)
+                        {
+                            return new List<ScannedGame>();
+                        }
+                        else
+                        {
+                            logger.Error($"Scanning script returned unknown data type {scannedGames.GetType()}");
+                            return new List<ScannedGame>();
+                        }
+                    }
+
+                    if (scriptTask.IsCanceled || scriptTask.IsFaulted)
+                    {
+                        return new List<ScannedGame>();
+                    }
+                }
+            }
+            else
+            {
+                return ScanDirectory(
+                    directory,
+                    emuProf.ImageExtensions,
+                    emuProf.Platforms,
+                    PlaynitePaths.EmulationDatabasePath,
+                    importedFiles,
+                    cancelToken);
+            }
+        }
+
+        private static List<ScannedGame> ScanDirectory(
+            string directory,
+            Emulator emulator,
+            CustomEmulatorProfile profile,
+            GameDatabase database,
+            List<string> importedFiles,
+            CancellationToken cancelToken)
+        {
+            if (profile == null)
+            {
+                throw new Exception($"No profile provided.");
+            }
+
+            if (!profile.ImageExtensions.HasItems())
+            {
+                return new List<ScannedGame>();
+            }
+
+            var platforms = profile.Platforms?.Select(a => database.Platforms[a].PlatformId).Where(a => !a.IsNullOrEmpty()).ToList();
+            return ScanDirectory(
+                directory,
+                profile.ImageExtensions,
+                platforms,
+                PlaynitePaths.EmulationDatabasePath,
+                importedFiles,
+                cancelToken);
+        }
+
+        public static List<ScannedGame> ScanDirectory(
+            string directory,
+            List<string> supportedExtensions,
+            List<string> scanPlatforms,
+            string databaseDir,
+            List<string> importedFiles,
+            CancellationToken cancelToken)
         {
             logger.Info($"Scanning emulated directory {directory}.");
-
             if (!Directory.Exists(directory))
             {
-                logger.Error($"Can't scan emulation directory, {directory} doesn't exist.");
-                return null;
+                throw new Exception($"Can't scan emulation directory, {directory} doesn't exist.");
             }
 
-            if (!emuProfile.ImageExtensions.HasItems())
-            {
-                logger.Error($"Can't scan emulation directory, {emuProfile} doesn't have image extensions specified.");
-                return null;
-            }
-
-            var roms = new Dictionary<string, List<ScannedRom>>();
-            var supportedPlatforms = Platforms.Where(a => emuProfile.Platforms.Contains(a.Id)).ToList();
+            var supportedPlatforms = Emulation.Platforms.Where(a => scanPlatforms?.Contains(a.Id) == true).ToList();
             var supportedDatabases = supportedPlatforms.SelectMany(a => a.Databases).Distinct().ToList();
             var emuDbs = new List<EmulationDatabase.EmulationDatabaseReader>();
             foreach (var supDb in supportedDatabases)
@@ -148,114 +357,310 @@ namespace Playnite.Emulation
                 }
             }
 
+            var resultRoms = new Dictionary<string, List<ScannedRom>>();
+
+            try
+            {
+                ScanDirectoryBase(
+                    directory,
+                    supportedExtensions,
+                    emuDbs,
+                    importedFiles,
+                    resultRoms,
+                    cancelToken);
+            }
+            finally
+            {
+                emuDbs.ForEach(a => a.Dispose());
+            }
+
+            return resultRoms.Select(a => new ScannedGame { Name = a.Key, Roms = a.Value?.ToObservable() }).ToList();
+        }
+
+        private static void ScanDirectoryBase(
+            string directory,
+            List<string> supportedExtensions,
+            List<EmulationDatabase.EmulationDatabaseReader> databases,
+            List<string> importedFiles,
+            Dictionary<string, List<ScannedRom>> resultRoms,
+            CancellationToken cancelToken)
+        {
             void addRom(ScannedRom rom)
             {
-                if (roms.TryGetValue(rom.Name.SanitizedName, out var addedRoms))
+                if (resultRoms.TryGetValue(rom.Name.SanitizedName, out var addedRoms))
                 {
                     addedRoms.Add(rom);
                 }
                 else
                 {
-                    roms.Add(rom.Name.SanitizedName, new List<ScannedRom> { rom });
+                    resultRoms.Add(rom.Name.SanitizedName, new List<ScannedRom> { rom });
                 }
             }
 
-            var files = new SafeFileEnumerator(directory, "*.*", SearchOption.AllDirectories).ToList();
+            List<string> files;
+            string[] dirs;
+            try
+            {
+                files = Directory.GetFiles(directory).ToList();
+                dirs = Directory.GetDirectories(directory);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to enumarete directory entires.");
+                return;
+            }
+
+            // Cue files have priority since they will potentionaliy remove additional .bin files to match
+            if (supportedExtensions.ContainsString("cue", StringComparison.OrdinalIgnoreCase))
+            {
+                var cueFiles = files.Where(a => a.EndsWith(".cue", StringComparison.OrdinalIgnoreCase)).ToArray();
+                foreach (var cueFile in cueFiles)
+                {
+                    try
+                    {
+                        files.Remove(cueFile);
+                        var bins = CueSheet.GetFileEntries(cueFile).Select(a => Path.Combine(directory, a.Path)).ToList();
+                        if (bins.HasItems())
+                        {
+                            bins.ForEach(a => files.Remove(a));
+                        }
+
+                        if (importedFiles.ContainsString(cueFile, StringComparison.OrdinalIgnoreCase))
+                        {
+                            continue;
+                        }
+
+                        Tuple<DatGame, string> romData = null;
+                        foreach (var bin in bins)
+                        {
+                            if (cancelToken.IsCancellationRequested)
+                            {
+                                return;
+                            }
+
+                            romData = LookupGameInDb(
+                                bin,
+                                Path.GetExtension(bin).TrimStart('.'),
+                                supportedExtensions,
+                                databases);
+                            if (romData != null)
+                            {
+                                break;
+                            }
+                        }
+
+                        if (romData != null)
+                        {
+                            logger.Trace($"Detected rom with db info:{cueFile}\n{romData.Item1}");
+                            addRom(new ScannedRom(cueFile, romData.Item1, romData.Item2));
+                        }
+                        else
+                        {
+                            logger.Trace($"Detected rom: {cueFile}");
+                            addRom(new ScannedRom(cueFile));
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to process cue file {cueFile}");
+                    }
+                }
+            }
+
             foreach (var file in files)
             {
-                if (file.Attributes.HasFlag(FileAttributes.Directory))
+                if (cancelToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                var ext = Path.GetExtension(file).TrimStart('.');
+                if (!supportedExtensions.ContainsString(ext, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
 
-                var ext = file.Extension.TrimStart('.');
-                if (!emuProfile.ImageExtensions.ContainsString(ext, StringComparison.OrdinalIgnoreCase))
+                if (importedFiles.ContainsString(file, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
 
                 try
                 {
-                    if (emuDbs.HasItems())
+                    var romData = LookupGameInDb(
+                        file,
+                        ext,
+                        supportedExtensions,
+                        databases);
+                    if (romData != null)
                     {
-                        DatGame datRec = null;
-                        string datRecSource = null;
-                        string crc = null;
-
-                        if (IsSupportedArchiveExtension(ext))
-                        {
-                            var archFiles = Archive.GetArchiveFiles(file.FullName);
-                            var supportedFile = archFiles.FirstOrDefault(a =>
-                                emuProfile.ImageExtensions.ContainsString(Path.GetExtension(a).TrimStart('.')));
-                            if (supportedFile != null)
-                            {
-                                logger.Trace($"Getting rom crc from archive file '{supportedFile}'\r\n {file.FullName}");
-                                var streams = Archive.GetEntryStream(file.FullName, supportedFile);
-                                if (streams != null)
-                                {
-                                    using (streams.Item2)
-                                    using (streams.Item1)
-                                    {
-                                        crc = FileSystem.GetCRC32(streams.Item1);
-                                    }
-                                }
-                            }
-
-                            if (crc == null)
-                            {
-                                logger.Trace($"Failed to get crc info from archive: {file.FullName}");
-                                crc = FileSystem.GetCRC32(file.FullName);
-                            }
-                        }
-                        else
-                        {
-                            logger.Trace($"Getting rom crc from file: {file.FullName}");
-                            crc = FileSystem.GetCRC32(file.FullName);
-                        }
-
-                        foreach (var db in emuDbs)
-                        {
-                            datRec = db.GetByCrc(crc).FirstOrDefault();
-                            if (datRec != null)
-                            {
-                                datRecSource = db.DatabaseName;
-                                break;
-                            }
-                        }
-
-                        logger.Trace($"Detected rom with db info: {file.FullName}\r\n {datRec}");
-                        addRom(new ScannedRom(file.FullName, datRec, datRecSource));
+                        logger.Trace($"Detected rom with db info:{file}\n{romData.Item1}");
+                        addRom(new ScannedRom(file, romData.Item1, romData.Item2));
                     }
                     else
                     {
-                        logger.Trace($"Detected rom: {file.FullName}");
-                        addRom(new ScannedRom(file.FullName));
+                        logger.Trace($"Detected rom: {file}");
+                        addRom(new ScannedRom(file));
                     }
                 }
-                catch (Exception e) when(!PlayniteEnvironment.ThrowAllErrors)
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e, $"Failed scan rom file {file.FullName}");
+                    logger.Error(e, $"Failed scan rom file {file}");
                 }
             }
 
-            emuDbs.ForEach(a => a.Dispose());
-            return roms.Select(a => new ScannedGame { Name = a.Key, Roms = a.Value }).ToList();
+            foreach (var dir in dirs)
+            {
+                if (cancelToken.IsCancellationRequested)
+                {
+                    break;
+                }
+
+                ScanDirectoryBase(
+                    dir,
+                    supportedExtensions,
+                    databases,
+                    importedFiles,
+                    resultRoms,
+                    cancelToken);
+            }
         }
 
-        public static void CleanupScanResult(List<ScannedGame> scanList, EmulatorDefinition2Profile emuProfile)
+        private static Tuple<DatGame, string> LookupGameInDb(
+            string file,
+            string fileExt,
+            List<string> supportedExtensions,
+            List<EmulationDatabase.EmulationDatabaseReader> databases)
         {
+            if (databases.HasItems())
+            {
+                DatGame datRec = null;
+                string datRecSource = null;
+                string crc = null;
+
+                if (IsSupportedArchiveExtension(fileExt))
+                {
+                    var archFiles = Archive.GetArchiveFiles(file);
+                    var supportedFile = archFiles.FirstOrDefault(a =>
+                        supportedExtensions.ContainsString(Path.GetExtension(a).TrimStart('.')));
+                    if (supportedFile != null)
+                    {
+                        logger.Trace($"Getting rom crc from archive file '{supportedFile}'\r\n {file}");
+                        var streams = Archive.GetEntryStream(file, supportedFile);
+                        if (streams != null)
+                        {
+                            using (streams.Item2)
+                            using (streams.Item1)
+                            {
+                                crc = FileSystem.GetCRC32(streams.Item1);
+                            }
+                        }
+                    }
+
+                    if (crc == null)
+                    {
+                        logger.Trace($"Failed to get crc info from archive: {file}");
+                        crc = FileSystem.GetCRC32(file);
+                    }
+                }
+                else
+                {
+                    logger.Trace($"Getting rom crc from file: {file}");
+                    crc = FileSystem.GetCRC32(file);
+                }
+
+                if (crc.IsNullOrEmpty())
+                {
+                    return null;
+                }
+
+                foreach (var db in databases)
+                {
+                    datRec = db.GetByCrc(crc).FirstOrDefault();
+                    if (datRec != null)
+                    {
+                        datRecSource = db.DatabaseName;
+                        break;
+                    }
+                }
+
+                if (datRec == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return new Tuple<DatGame, string>(datRec, datRecSource);
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
-    public class ScannedGame
+    public class ScannedGame : ObservableObject
     {
-        public List<ScannedRom> Roms { get; set; }
-        public string Name { get; set; }
-        public string PlatformId { get; set; }
+        #region backing fields
+        private bool import = true;
+        private ObservableCollection<ScannedRom> roms;
+        private List<Platform> platforms;
+        private List<Region> regions;
+        private string name;
+        private GameScannerConfig sourceConfig;
+        #endregion backing fields
+
+        public bool Import                              { get => import; set => SetValue(ref import, value); }
+        public ObservableCollection<ScannedRom> Roms    { get => roms; set => SetValue(ref roms, value); }
+        public List<Platform> Platforms                 { get => platforms; set => SetValue(ref platforms, value); }
+        public List<Region> Regions                     { get => regions; set => SetValue(ref regions, value); }
+        public string Name                              { get => name; set => SetValue(ref name, value); }
+        public GameScannerConfig SourceConfig           { get => sourceConfig; set => SetValue(ref sourceConfig, value); }
+
+        public Game ToGame()
+        {
+            var game = new Game(Name) { IsInstalled = true };
+            if (Platforms.HasItems())
+            {
+                game.PlatformId = Platforms[0].Id;
+            }
+
+            if (Regions.HasItems())
+            {
+                game.RegionId = Regions[0].Id;
+            }
+
+            game.GameActions = new ObservableCollection<GameAction>
+            {
+                new GameAction
+                {
+                    Type = GameActionType.Emulator,
+                    EmulatorId = SourceConfig.EmulatorId,
+                    EmulatorProfileId = SourceConfig.EmulatorProfileId,
+                    IsPlayAction = true,
+                    Name = Name
+                }
+            };
+
+            var roms = Roms.Where(a => a.Import).ToList();
+            game.InstallDirectory = Paths.GetCommonDirectory(roms.Select(a => a.Path).ToArray());
+            game.Roms = new ObservableCollection<GameRom>();
+            foreach (var rom in roms)
+            {
+                var romPath = game.InstallDirectory.IsNullOrEmpty()
+                    ? rom.Path
+                    : rom.Path.Replace(game.InstallDirectory, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar);
+                game.Roms.Add(new GameRom(rom.Name.DiscName ?? rom.Name.SanitizedName, romPath));
+            }
+
+            return game;
+        }
     }
 
     public class ScannedRom
     {
+        public bool Import { get; set; } = true;
         public DatGame DbData { get; set; }
         public RomName Name { get; set; }
         public string Path { get; set; }
@@ -272,6 +677,10 @@ namespace Playnite.Emulation
             DbData = dbData;
             DbDataSource = dbDataSource;
         }
+
+        public ScannedRom()
+        {
+        }
     }
 
     public class RomName
@@ -282,6 +691,10 @@ namespace Playnite.Emulation
         public string SanitizedName { get; set; }
         public string DiscName { get; set; }
         public List<string> Properties { get; set; } = new List<string>();
+
+        public RomName()
+        {
+        }
 
         public RomName(string originalName)
         {

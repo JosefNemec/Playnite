@@ -147,45 +147,5 @@ namespace Playnite.Controllers
         {
             Installed?.Invoke(this, e);
         }
-
-        public Tuple<List<PlayAction>, List<GameAction>> GetPlayActions(Game game, ExtensionFactory extensions)
-        {
-            var plugActions = new List<PlayAction>();
-            foreach (var plugin in extensions.Plugins.Values)
-            {
-                List<PlayAction> actions = null;
-                try
-                {
-                    actions = plugin.Plugin.GetPlayActions(new GetPlayActionsArgs { Game = game });
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to get play actions from {plugin.Description.Name}");
-                    continue;
-                }
-
-                if (actions.HasItems())
-                {
-                    plugActions.AddRange(actions);
-                }
-            }
-
-            var customActions = game.GameActions?.Where(a => a.IsPlayAction).ToList();
-            return new Tuple<List<PlayAction>, List<GameAction>>(
-                plugActions ?? new List<PlayAction>(),
-                customActions ?? new List<GameAction>());
-        }
-
-        public List<InstallAction> GetInstallActions(Game game, ExtensionFactory extensions, bool isUninstall)
-        {
-            List<InstallAction> plugActions = null;
-            var plugin = extensions.GetLibraryPlugin(game.PluginId);
-            if (plugin != null)
-            {
-                plugActions = plugin.GetInstallActions(new GetInstallActionsArgs { Game = game, IsUninstall = isUninstall });
-            }
-
-            return plugActions ?? new List<InstallAction>();
-        }
     }
 }

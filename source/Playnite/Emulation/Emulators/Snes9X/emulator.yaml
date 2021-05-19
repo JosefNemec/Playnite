@@ -1,8 +1,10 @@
+Id: snes9x
 Name: Snes9X
 Website: 'http://www.snes9x.com/'
 Profiles:
   - Name: Default
-    DefaultArguments: '"{ImagePath}" -fullscreen'
     Platforms: [super_nes]
     ImageExtensions: [zip, gz, jma, sfc, smc]
-    ExecutableLookup: ^snes9x.*\.exe$
+    InstallationFile: ^snes9x.*\.exe$
+    StartupExecutable: ^snes9x.*\.exe$
+    StartupArguments: '"{ImagePath}" -fullscreen'

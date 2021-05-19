@@ -21,7 +21,12 @@ namespace Playnite.Database
         {
             mapper.Entity<Emulator>().
                 Id(a => a.Id, false).
-                Ignore(a => a.SortedProfiles);
+                Ignore(a => a.SelectableProfiles).
+                Ignore(a => a.AllProfiles);
+            mapper.Entity<BuiltInEmulatorProfile>().
+                Ignore(a => a.Type);
+            mapper.Entity<CustomEmulatorProfile>().
+                Ignore(a => a.Type);
         }
 
         private void RemoveUsage(Guid id)
@@ -35,7 +40,7 @@ namespace Playnite.Database
                         if (action?.Type == GameActionType.Emulator && action?.EmulatorId == id)
                         {
                             action.EmulatorId = Guid.Empty;
-                            action.EmulatorProfileId = Guid.Empty;
+                            action.EmulatorProfileId = null;
                             db.Games.Update(game);
                         }
                     }

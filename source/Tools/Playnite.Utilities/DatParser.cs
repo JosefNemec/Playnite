@@ -1,5 +1,5 @@
 ﻿using Playnite.Common;
-using Playnite.Emulation;
+using Playnite.Emulators;
 using SqlNado;
 using System;
 using System.Collections.Generic;

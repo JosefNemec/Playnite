@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Emulation
+namespace Playnite.Emulators
 {
     public class EmulationDatabase
     {

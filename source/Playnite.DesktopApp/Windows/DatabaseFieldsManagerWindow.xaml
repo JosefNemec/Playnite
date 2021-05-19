@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
         xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
@@ -21,7 +22,7 @@
             <!--Platform-->
             <TabItem Header="{DynamicResource LOCPlatformsTitle}">
                 <DockPanel>
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddPlatformCommand}"/>
                         <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
@@ -32,7 +33,7 @@
                                 CommandParameter="{Binding SelectedItems, ElementName=ListPlatforms}"/>
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedPlatformsCommand}"/>
-                    </StackPanel>
+                    </DockPanel>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -44,11 +45,19 @@
 
                         <Grid Grid.Column="1" Grid.Row="0">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="2*"/>
                                 <RowDefinition Height="3*"/>
                                 <RowDefinition Height="3*"/>
                             </Grid.RowDefinitions>
-                            <GroupBox Header="{DynamicResource LOCGameIconTitle}" Margin="5" Grid.Row="0">
+                            <DockPanel Grid.Row="0" Margin="5">
+                                <TextBlock Text="Platform specification" VerticalAlignment="Center" />
+                                <ComboBox Margin="5,0,0,0"
+                                          ItemsSource="{Binding PlatformsSpecifications}"
+                                          SelectedValue="{Binding SelectedItem.PlatformId, ElementName=ListPlatforms}"
+                                          SelectedValuePath="Id"/>
+                            </DockPanel>                            
+                            <GroupBox Header="{DynamicResource LOCGameIconTitle}" Margin="5" Grid.Row="1">
                                 <DockPanel>
                                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                         <Button Content="{DynamicResource LOCSelectIconTitle}"
@@ -63,7 +72,7 @@
                                            Source="{Binding SelectedItem.Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}, ElementName=ListPlatforms}" />
                                 </DockPanel>
                             </GroupBox>
-                            <GroupBox Header="{DynamicResource LOCGameCoverImageTitle}" Margin="5" Grid.Row="1">
+                            <GroupBox Header="{DynamicResource LOCGameCoverImageTitle}" Margin="5" Grid.Row="2">
                                 <DockPanel>
                                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                         <Button Content="{DynamicResource LOCSelectCoverTitle}"
@@ -78,7 +87,7 @@
                                            Source="{Binding SelectedItem.Cover, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}, ElementName=ListPlatforms}"/>
                                 </DockPanel>
                             </GroupBox>
-                            <GroupBox Header="{DynamicResource LOCGameBackgroundTitle}" Margin="5" Grid.Row="2">
+                            <GroupBox Header="{DynamicResource LOCGameBackgroundTitle}" Margin="5" Grid.Row="3">
                                 <DockPanel>
                                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                         <Button Content="{DynamicResource LOCSelectBackgroundTitle}"
@@ -293,6 +302,10 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
             <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
+                <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Left"
+                        Style="{StaticResource BottomButton}"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Adding-new-emulator" />
                 <Button TabIndex="3" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CancelCommand}"/>

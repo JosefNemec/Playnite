@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Playnite.Emulation;
 using Playnite.Emulators;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Playnite.Emulation.EmulationDatabase;
+using static Playnite.Emulators.EmulationDatabase;
 
 namespace Playnite.Tests.Emulators
 {
@@ -26,12 +25,17 @@ namespace Playnite.Tests.Emulators
             Assert.AreEqual("SCES-00867", romName.Properties[2]);
         }
 
-        [Test]
-        public void TempTest()
-        {
-            var emu = Scanner.Emulators.First(a => a.Name == "DuckStation").Profiles[0];
-            var roms = Scanner.ScanDirectory(@"d:\EmulatedGames\PSX\", emu, @"d:\Downloads\dats\");
-            Scanner.CleanupScanResult(roms, emu);
-        }
+        //[Test]
+        //public void TempTest()
+        //{
+        //    var emu = EmulatorDefinition.Definitions.First(a => a.Name == "DuckStation").Profiles[0];
+        //    var roms = GameScanner.ScanDirectory(
+        //        @"",
+        //        emu.ImageExtensions,
+        //        emu.Platforms,
+        //        @"",
+        //        new List<string>(),
+        //        new System.Threading.CancellationTokenSource().Token);
+        //}
     }
 }

@@ -95,7 +95,7 @@ namespace Playnite.Common
             };
 
             config.AddTarget("console", consoleTarget);
-            var rule1 = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
+            var rule1 = new LoggingRule("*", NLog.LogLevel.Trace, consoleTarget);
             config.LoggingRules.Add(rule1);
 #endif
 
@@ -113,7 +113,7 @@ namespace Playnite.Common
             };
 
             config.AddTarget("file", fileTarget);
-            var rule2 = new LoggingRule("*", NLog.LogLevel.Debug, fileTarget);
+            var rule2 = new LoggingRule("*", NLog.LogLevel.Trace, fileTarget);
             config.LoggingRules.Add(rule2);
             NLog.LogManager.Configuration = config;
         }

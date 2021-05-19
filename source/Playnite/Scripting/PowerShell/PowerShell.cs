@@ -21,6 +21,7 @@ namespace Playnite.Scripting.PowerShell
         private Runspace runspace;
         private PSModuleInfo module;
         private InitialSessionState initialSessionState;
+        public bool IsDisposed { get; private set; }
 
         public static bool IsInstalled
         {
@@ -44,6 +45,7 @@ namespace Playnite.Scripting.PowerShell
 
         public void Dispose()
         {
+            IsDisposed = true;
             runspace.Close();
             runspace.Dispose();
         }
@@ -62,7 +64,7 @@ namespace Playnite.Scripting.PowerShell
 
         public object Execute(string script, string workDir = null, Dictionary<string, object> variables = null)
         {
-            if (!workDir.IsNullOrEmpty())
+            if (!workDir.IsNullOrEmpty() && Directory.Exists(workDir))
             {
                 runspace.SessionStateProxy.Path.PushCurrentLocation("main");
                 runspace.SessionStateProxy.Path.SetLocation(WildcardPattern.Escape(workDir));
@@ -99,7 +101,7 @@ namespace Playnite.Scripting.PowerShell
                     {
                         if (result.Count == 1)
                         {
-                            return result[0].BaseObject;
+                            return result[0]?.BaseObject;
                         }
                         else
                         {
@@ -110,7 +112,7 @@ namespace Playnite.Scripting.PowerShell
             }
             finally
             {
-                if (!workDir.IsNullOrEmpty())
+                if (!workDir.IsNullOrEmpty() && Directory.Exists(workDir) && runspace.RunspaceStateInfo.State == RunspaceState.Opened)
                 {
                     runspace.SessionStateProxy.Path.PopLocation("main");
                 }
@@ -119,8 +121,13 @@ namespace Playnite.Scripting.PowerShell
 
         public object ExecuteFile(string path, string workDir = null)
         {
-            var content = File.ReadAllText(path);
-            return Execute(content, workDir, null);
+            return ExecuteFile(path, workDir);
+        }
+
+        public object ExecuteFile(string path, string workDir = null, Dictionary<string, object> variables = null)
+        {
+            var cmd = "& '{0}' $__FileArg".Format(Path.GetFullPath(path));
+            return Execute(cmd, workDir, variables != null ? new Dictionary<string, object> { { "__FileArg", variables } } : null);
         }
 
         public void SetVariable(string name, object value)

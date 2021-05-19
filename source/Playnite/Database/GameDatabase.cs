@@ -43,7 +43,8 @@ namespace Playnite.Database
             { nameof(Sources), typeof(GamesSourcesCollection) },
             { nameof(Features), typeof(FeaturesCollection) },
             { nameof(SoftwareApps), typeof(AppSoftwareCollection) },
-            { nameof(Games), typeof(GamesCollection) }
+            { nameof(Games), typeof(GamesCollection) },
+            { nameof(GameScanners), typeof(GameScannersCollection) }
         };
 
         #region Locks
@@ -60,6 +61,7 @@ namespace Playnite.Database
             get; private set;
         }
 
+        private const string settingsFileName = "database.json";
         private const string gamesDirName = "games";
         private const string platformsDirName = "platforms";
         private const string emulatorsDirName = "emulators";
@@ -74,7 +76,7 @@ namespace Playnite.Database
         private const string regionsDirName = "regions";
         private const string sourcesDirName = "sources";
         private const string toolsDirName = "tools";
-        private const string settingsFileName = "database.json";
+        private const string gameScannersDirName = "scanners";
 
         private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
         private string PlatformsDirectoryPath { get => Path.Combine(DatabasePath, platformsDirName); }
@@ -91,6 +93,7 @@ namespace Playnite.Database
         private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
         private string FeaturesDirectoryPath { get => Path.Combine(DatabasePath, featuresDirName); }
         private string ToolsDirectoryPath { get => Path.Combine(DatabasePath, toolsDirName); }
+        private string GameScannersDirectoryPath { get => Path.Combine(DatabasePath, gameScannersDirName); }
 
         #endregion Paths
 
@@ -109,6 +112,7 @@ namespace Playnite.Database
         public IItemCollection<GameSource> Sources { get; private set; }
         public IItemCollection<GameFeature> Features { get; private set; }
         public AppSoftwareCollection SoftwareApps { get; private set; }
+        public IItemCollection<GameScannerConfig> GameScanners { get; private set; }
 
         public List<Guid> UsedPlatforms { get; } = new List<Guid>();
         public List<Guid> UsedGenres { get; } = new List<Guid>();
@@ -207,6 +211,7 @@ namespace Playnite.Database
                 (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
                 (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
+                (GameScanners as GameScannersCollection).InitializeCollection(GameScannersDirectoryPath);
 
                 Games.ItemUpdated += Games_ItemUpdated;
                 Games.ItemCollectionChanged += Games_ItemCollectionChanged;
@@ -343,6 +348,7 @@ namespace Playnite.Database
             Sources.Dispose();
             Features.Dispose();
             SoftwareApps.Dispose();
+            GameScanners.Dispose();
         }
 
         public static string GetDefaultPath(bool portable)
@@ -465,9 +471,7 @@ namespace Playnite.Database
             if (!dbExists)
             {
                 // Generate default platforms
-                var platforms = EmulatorDefinition.GetDefinitions()
-                    .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
-                    .Select(a => new Platform(a)).ToList();
+                var platforms = Emulation.Platforms.Select(a => new Platform(a.Name) { PlatformId = a.Id }).ToList();
                 if (platforms.HasItems())
                 {
                     var col = Platforms as ItemCollection<Platform>;
@@ -842,6 +846,7 @@ namespace Playnite.Database
             Features.BeginBufferUpdate();
             Games.BeginBufferUpdate();
             SoftwareApps.BeginBufferUpdate();
+            GameScanners.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
@@ -859,6 +864,7 @@ namespace Playnite.Database
             Features.EndBufferUpdate();
             Games.EndBufferUpdate();
             SoftwareApps.EndBufferUpdate();
+            GameScanners.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()
@@ -1202,6 +1208,21 @@ namespace Playnite.Database
         private void ReleaseFileLock(string filePath)
         {
             fileLocks.TryRemove(filePath, out var removed);
+        }
+
+        public List<string> GetImportedRomFiles()
+        {
+            var importedRoms = new List<string>();
+            foreach (var game in Games.Where(a => a.Roms.HasItems()))
+            {
+                foreach (var rom in game.Roms)
+                {
+                    var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
+                    importedRoms.AddMissing(Path.GetFullPath(path));
+                }
+            }
+
+            return importedRoms;
         }
     }
 }

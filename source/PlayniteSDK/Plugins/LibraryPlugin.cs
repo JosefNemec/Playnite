@@ -84,17 +84,6 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Gets controller responsible for handling of library game or null if no specific controller is available.
-        /// </summary>
-        /// <param name="game">Game to be handled.</param>
-        /// <returns>Game controller.</returns>
-        [Obsolete("Use GetGameController instead.")]
-        public virtual IGameController GetGameController(Game game)
-        {
-            return null;
-        }
-
-        /// <summary>
         /// Gets library metadata downloader or null if no metadata provider is available.
         /// </summary>
         /// <returns>Metadata downloader.</returns>
@@ -108,46 +97,5 @@ namespace Playnite.SDK.Plugins
         {
             return Name;
         }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetPlayActionsArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetInstallActionsArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool IsUninstall { get; set; } = false;
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetPlayControllerArgs
-    {
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetInstallControllerArgs
-    {
     }
 }

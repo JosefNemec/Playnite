@@ -46,33 +46,42 @@ namespace Playnite.ViewModels
             });
         }
 
-        public ActionSelectionViewModel(
-            ActionSelectionWindowFactory window,
-            List<PlayAction> pluginActions,
-            List<GameAction> customActions)
+        public ActionSelectionViewModel(ActionSelectionWindowFactory window)
         {
             this.window = window;
-            Actions = new List<SelectableItem<object>>();
-            pluginActions?.ForEach(a => Actions.Add(new SelectableItem<object>(a)));
-            customActions?.ForEach(a => Actions.Add(new SelectableItem<object>(a)));
-            Actions[0].Selected = true;
         }
 
-        public ActionSelectionViewModel(
-            ActionSelectionWindowFactory window,
-            List<InstallAction> pluginActions)
+        public GameActionBase SelectPlayAction(List<GameActionBase> actions)
         {
-            this.window = window;
-            Actions = new List<SelectableItem<object>>();
-            pluginActions?.ForEach(a => Actions.Add(new SelectableItem<object>(a)));
-            Actions[0].Selected = true;
-        }
+            if (!actions.HasItems())
+            {
+                throw new ArgumentNullException("Not play action provided!");
+            }
 
-        public object SelectAction()
-        {
+            Actions = actions.Select(a => new SelectableItem<object>(a)).ToList();
+            Actions[0].Selected = true;
             if (window.CreateAndOpenDialog(this) == true)
             {
-                return SelectedAction;
+                return (GameActionBase)SelectedAction;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public InstallAction SelectInstallAction(List<InstallAction> pluginActions)
+        {
+            if (!pluginActions.HasItems())
+            {
+                throw new ArgumentNullException("Not install action provided!");
+            }
+
+            Actions = pluginActions.Select(a => new SelectableItem<object>(a)).ToList();
+            Actions[0].Selected = true;
+            if (window.CreateAndOpenDialog(this) == true)
+            {
+                return (InstallAction)SelectedAction;
             }
             else
             {

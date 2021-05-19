@@ -705,11 +705,6 @@ namespace Playnite.DesktopApp.ViewModels
                     game.Hidden = EditingGame.Hidden;
                 }
 
-                if (UseScriptRuntimeChanges)
-                {
-                    game.ActionsScriptLanguage = EditingGame.ActionsScriptLanguage;
-                }
-
                 if (UsePreScriptChanges)
                 {
                     game.PreScript = EditingGame.PreScript;

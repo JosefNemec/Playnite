@@ -49,6 +49,8 @@ namespace Playnite.SDK.Models
         /// <returns></returns>
         public int CompareTo(object obj)
         {
+            // This is implemented for CollectionViewSource to do sorting properly.
+            // That's also the reason why this is not virtual for inherited classes to do comparsion of other fields.
             var objName = (obj as DatabaseObject).Name;
             if (string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(objName))
             {
@@ -75,6 +77,8 @@ namespace Playnite.SDK.Models
         /// <returns></returns>
         public override bool Equals(object obj)
         {
+            // This is implemented for CollectionViewSource to do grouping/sorting properly.
+            // That's also the reason why this is not virtual for inherited classes to do comparsion of other fields.
             if (obj is DatabaseObject dbObj)
             {
                 return dbObj.Id == Id;

@@ -14,14 +14,24 @@ namespace Playnite.DesktopApp.Controls
     [TemplatePart(Name = "PART_ItemsPanel", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ButtonClearFilter", Type = typeof(Button))]
     [TemplatePart(Name = "PART_TextFilterString", Type = typeof(TextBlock))]
-    public abstract class FilterSelectionBoxBase : Control
+    public abstract class ComboBoxListBase : Control
     {
         internal ItemsControl ItemsPanel;
         internal Button ButtonClearFilter;
         internal TextBlock TextFilterString;
 
         internal bool IgnoreChanges { get; set; }
-        public abstract string ItemStyleName { get; }
+
+        public bool IsThreeState
+        {
+            get => (bool)GetValue(IsThreeStateProperty);
+            set => SetValue(IsThreeStateProperty, value);
+        }
+
+        public static readonly DependencyProperty IsThreeStateProperty = DependencyProperty.Register(
+            nameof(IsThreeState),
+            typeof(bool),
+            typeof(ComboBoxListBase));
 
         public override void OnApplyTemplate()
         {
@@ -30,6 +40,11 @@ namespace Playnite.DesktopApp.Controls
             ButtonClearFilter = Template.FindName("PART_ButtonClearFilter", this) as Button;
             TextFilterString = Template.FindName("PART_TextFilterString", this) as TextBlock;
             ItemsPanel = Template.FindName("PART_ItemsPanel", this) as ItemsControl;
+
+            if (ButtonClearFilter != null)
+            {
+                ButtonClearFilter.Click += (_, e) => ClearButtonAction(e);
+            }
 
             if (ItemsPanel != null)
             {
@@ -58,7 +73,7 @@ namespace Playnite.DesktopApp.Controls
                         new XElement(pns + nameof(CheckBox),
                             new XAttribute(nameof(CheckBox.IsChecked), "{Binding Selected}"),
                             new XAttribute(nameof(CheckBox.Content), "{Binding Item}"),
-                            new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource {ItemStyleName}}}")))
+                            new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource ComboBoxListItemStyle}}")))
                 ).ToString());
 
                 ScrollViewer.SetCanContentScroll(ItemsPanel, true);
@@ -66,6 +81,10 @@ namespace Playnite.DesktopApp.Controls
                 VirtualizingPanel.SetIsVirtualizing(ItemsPanel, true);
                 VirtualizingPanel.SetVirtualizationMode(ItemsPanel, VirtualizationMode.Recycling);
             }
+        }
+
+        public virtual void ClearButtonAction(RoutedEventArgs e)
+        {
         }
     }
 }

@@ -148,13 +148,44 @@ namespace Playnite.Common
 
         public static bool IsFullPath(string path)
         {
-            try
-            {
-                return Path.GetFullPath(path) == path;
-            }
-            catch
+            if (path.IsNullOrWhiteSpace())
             {
                 return false;
+            }
+
+            // Don't use Path.IsPathRooted because it fails on paths starting with one backslash.
+            return Regex.IsMatch(path, @"^([a-zA-Z]:\\|\\\\)");
+        }
+
+        public static string GetCommonDirectory(string[] paths)
+        {
+            int k = paths[0].Length;
+            for (int i = 1; i < paths.Length; i++)
+            {
+                k = Math.Min(k, paths[i].Length);
+                for (int j = 0; j < k; j++)
+                {
+                    if (paths[i][j] != paths[0][j])
+                    {
+                        k = j;
+                        break;
+                    }
+                }
+            }
+
+            var common = paths[0].Substring(0, k);
+            if (common.Length == 0)
+            {
+                return string.Empty;
+            }
+
+            if (common[common.Length -1] == Path.DirectorySeparatorChar)
+            {
+                return common;
+            }
+            else
+            {
+                return common.Substring(0, common.LastIndexOf(Path.DirectorySeparatorChar) + 1);
             }
         }
     }

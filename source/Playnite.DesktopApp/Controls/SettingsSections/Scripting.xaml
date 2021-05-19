@@ -27,30 +27,14 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
-                       Grid.Row="0" TextWrapping="Wrap" Margin="0,0,0,10" />
-
-            <DockPanel Grid.Row="1" Margin="0,5,0,5" LastChildFill="False">
-                <TextBlock Text="{DynamicResource LOCScriptRuntime}" VerticalAlignment="Center" />
-                <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
-                                  SelectedValue="{Binding Settings.ActionsScriptLanguage}">
-                    <ComboBox.ItemsSource>
-                        <x:Array Type="{x:Type sys:Enum}">
-                            <psdk:ScriptLanguage>Batch</psdk:ScriptLanguage>
-                            <psdk:ScriptLanguage>PowerShell</psdk:ScriptLanguage>
-                            <psdk:ScriptLanguage>IronPython</psdk:ScriptLanguage>
-                        </x:Array>
-                    </ComboBox.ItemsSource>
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+            <DockPanel Grid.Row="0" Margin="0,0,0,10">
                 <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Right"
+                        VerticalAlignment="Center"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                         CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-scripts" />
-            </DockPanel>
+                <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
+                           TextWrapping="Wrap" DockPanel.Dock="Left" />
+            </DockPanel>          
 
             <TextBlock Text="{DynamicResource LOCPreScriptDescription}" Grid.Row="2" Margin="0,5,0,5" />
             <TextBox AcceptsReturn="True" Grid.Row="3"

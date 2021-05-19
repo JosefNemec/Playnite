@@ -28,7 +28,7 @@ namespace Playnite.Tests.Models
             {
                 Name = "test game",
                 InstallDirectory = dir,
-                GameImagePath = Path.Combine(dir, "test.iso"),
+                Roms = new ObservableCollection<GameRom> { new GameRom("test", Path.Combine(dir, "test.iso")) },
                 PlatformId = database.Platforms.First().Id,
                 Version = "1.0",
                 PluginId = Guid.NewGuid(),
@@ -40,7 +40,6 @@ namespace Playnite.Tests.Models
             Assert.AreEqual("teststring", game.ExpandVariables("teststring"));
             Assert.AreEqual(dir + "teststring", game.ExpandVariables("{InstallDir}teststring"));
             Assert.AreEqual(game.InstallDirectory, game.ExpandVariables("{InstallDir}"));
-            Assert.AreEqual(game.GameImagePath, game.ExpandVariables("{ImagePath}"));
             Assert.AreEqual("test", game.ExpandVariables("{ImageNameNoExt}"));
             Assert.AreEqual("test.iso", game.ExpandVariables("{ImageName}"));
             Assert.AreEqual(PlaynitePaths.ProgramPath, game.ExpandVariables("{PlayniteDir}"));
@@ -51,6 +50,7 @@ namespace Playnite.Tests.Models
             Assert.AreEqual(game.GameId, game.ExpandVariables("{GameId}"));
             Assert.AreEqual(game.Id.ToString(), game.ExpandVariables("{DatabaseId}"));
             Assert.AreEqual(game.Version, game.ExpandVariables("{Version}"));
+            Assert.AreEqual(Path.Combine(dir, "test.iso"), game.ExpandVariables("{ImagePath}"));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace Playnite.Tests.Models
             {
                 Name = "test game",
                 InstallDirectory = @"{PlayniteDir}\test\test2\",
-                GameImagePath = @"{InstallDir}\test.iso"
+                Roms = new ObservableCollection<GameRom> { new GameRom("test", @"{InstallDir}\test.iso") }
             };
 
             var expanded = game.ExpandVariables("{ImagePath}");
@@ -96,7 +96,6 @@ namespace Playnite.Tests.Models
             {
                 Name = "Name",
                 InstallDirectory = "InstallDirectory",
-                GameImagePath = "GameImagePath",
                 PlatformId = new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
                 Version = "Version",
                 PluginId = new Guid(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),

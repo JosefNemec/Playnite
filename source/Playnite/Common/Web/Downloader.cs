@@ -131,7 +131,7 @@ namespace Playnite.Common.Web
             }
         }
 
-        public void DownloadFile(string url, string path, CancellationTokenSource cancelToken)
+        public void DownloadFile(string url, string path, CancellationToken cancelToken)
         {
             logger.Debug($"Downloading data from {url} to {path}.");
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
@@ -139,7 +139,7 @@ namespace Playnite.Common.Web
             try
             {
                 using (var webClient = new WebClient())
-                using (var registration = cancelToken.Token.Register(() => webClient.CancelAsync()))
+                using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
                     webClient.DownloadFileTaskAsync(new Uri(url), path).GetAwaiter().GetResult();
                 }

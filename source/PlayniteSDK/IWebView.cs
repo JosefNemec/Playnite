@@ -151,12 +151,6 @@ namespace Playnite.SDK
         void Close();
 
         /// <summary>
-        /// Occurs when web view navigatates to a new page.
-        /// </summary>
-        [Obsolete("Use LoadingChanged event instead.")]
-        event EventHandler NavigationChanged;
-
-        /// <summary>
         /// Occurs when web view loading changes, for example when page is loaded.
         /// </summary>
         event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;

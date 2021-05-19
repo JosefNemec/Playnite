@@ -1,0 +1,10 @@
+Id: duckstation
+Name: DuckStation
+Website: 'https://github.com/stenzek/duckstation'
+Profiles:
+  - Name: Default
+    Platforms: [playstation]
+    ImageExtensions: [bin, img, exe, chd, psexe, m3u, cue]
+    InstallationFile: ^duckstation-qt-x64-ReleaseLTCG\.exe$
+    StartupExecutable: ^duckstation-qt-x64-ReleaseLTCG\.exe$
+    StartupArguments: '"{ImagePath}" -batch -fullscreen'

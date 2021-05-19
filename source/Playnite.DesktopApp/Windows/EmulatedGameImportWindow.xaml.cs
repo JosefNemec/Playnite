@@ -3,20 +3,20 @@ using Playnite.Windows;
 
 namespace Playnite.DesktopApp.Windows
 {
-    public class EmulationImportWindowFactory : WindowFactory
+    public class EmulatedGameImportWindowFactory : WindowFactory
     {
         public override WindowBase CreateNewWindowInstance()
         {
-            return new EmulationImportWindow();
+            return new EmulatedGameImportWindow();
         }
     }
 
     /// <summary>
     /// Interaction logic for EmulatorImportWindow.xaml
     /// </summary>
-    public partial class EmulationImportWindow : WindowBase
+    public partial class EmulatedGameImportWindow : WindowBase
     {
-        public EmulationImportWindow() : base()
+        public EmulatedGameImportWindow() : base(nameof(EmulatedGameImportWindow))
         {
             InitializeComponent();
         }

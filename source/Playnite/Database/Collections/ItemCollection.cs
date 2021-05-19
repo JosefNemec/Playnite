@@ -43,7 +43,7 @@ namespace Playnite.Database
             get => Get(id);
             set
             {
-                new NotImplementedException();
+                new NotSupportedException();
             }
         }
 
@@ -251,12 +251,12 @@ namespace Playnite.Database
                         throw new Exception($"Item {item.Id} already exists.");
                     }
 
-                    Items.TryAdd(item.Id, item);
-                }
+                    if (isPersistent)
+                    {
+                        SaveItemData(item);
+                    }
 
-                if (isPersistent)
-                {
-                    SaveItemData(itemsToAdd);
+                    Items.TryAdd(item.Id, item);
                 }
             }
 
@@ -406,6 +406,11 @@ namespace Playnite.Database
                         throw new Exception($"Item {oldData.Id} doesn't exists.");
                     }
 
+                    if (isPersistent)
+                    {
+                        SaveItemData(item);
+                    }
+
                     var loadedItem = Get(item.Id);
                     if (!ReferenceEquals(loadedItem, item))
                     {
@@ -414,11 +419,6 @@ namespace Playnite.Database
 
                     updates.Add(new ItemUpdateEvent<TItem>(oldData, loadedItem));
                 }
-
-                if (isPersistent)
-                {
-                    SaveItemData(itemsToUpdate);
-                }
             }
 
             OnItemUpdated(updates);
@@ -426,7 +426,7 @@ namespace Playnite.Database
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public bool Contains(TItem item)

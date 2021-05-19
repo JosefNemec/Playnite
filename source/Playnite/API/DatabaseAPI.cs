@@ -32,6 +32,7 @@ namespace Playnite.API
         public IItemCollection<Region> Regions => database.Regions;
         public IItemCollection<GameSource> Sources => database.Sources;
         public IItemCollection<GameFeature> Features => database.Features;
+        public IItemCollection<GameScannerConfig> GameScanners => database.GameScanners;
 
         public string DatabasePath
         {

@@ -104,6 +104,7 @@ namespace Playnite.FullscreenApp
                 new PlayniteUriHandler(),
                 new PlayniteSettingsAPI(AppSettings),
                 new AddonsAPI(Extensions, AppSettings),
+                new Emulators.Emulation(),
                 Extensions);
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);

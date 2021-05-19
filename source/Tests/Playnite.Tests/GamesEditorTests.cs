@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Playnite.Common;
 using Playnite.Controllers;
+using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -20,24 +21,11 @@ namespace Playnite.Tests
         [Test]
         public void ExecuteScriptActionPowerShellTest()
         {
-            ExecuteScriptActionTest(ScriptLanguage.PowerShell, $"'PowerShell' | Out-File {executeScriptActionTestFileName}");
+            using (var runtime = new PowerShellRuntime("test"))
+            ExecuteScriptActionTest(runtime, $"'PowerShell' | Out-File {executeScriptActionTestFileName}");
         }
 
-        [Test]
-        public void ExecuteScriptActionIronPythonTest()
-        {
-            ExecuteScriptActionTest(ScriptLanguage.IronPython, string.Format(@"f = open('{0}', 'w')
-f.write('IronPython')
-f.close()", executeScriptActionTestFileName));
-        }
-
-        [Test]
-        public void ExecuteScriptActionBatchTest()
-        {
-            ExecuteScriptActionTest(ScriptLanguage.Batch, $"echo Batch> {executeScriptActionTestFileName}");
-        }
-
-        public void ExecuteScriptActionTest(ScriptLanguage language, string script)
+        public void ExecuteScriptActionTest(PowerShellRuntime runtime, string script)
         {
             using (var tempDir = TempDirectory.Create())
             {
@@ -47,10 +35,10 @@ f.close()", executeScriptActionTestFileName));
                 };
 
                 var editor = new GamesEditor(null, new GameControllerFactory(null), new PlayniteSettings(), null, null, new TestPlayniteApplication());
-                editor.ExecuteScriptAction(language, script, game);
+                editor.ExecuteScriptAction(runtime, script, game, true, false);
                 var testPath = Path.Combine(tempDir.TempPath, executeScriptActionTestFileName);
                 var content = File.ReadAllText(testPath);
-                Assert.AreEqual(language.ToString(), content.Trim());
+                Assert.AreEqual("PowerShell", content.Trim());
             }
         }
     }

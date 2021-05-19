@@ -55,11 +55,6 @@ namespace Playnite.Scripting
         public List<ApplicationEvent> SupportedEvents { get; internal set; }
         public List<SupportedMenuMethods> SupportedMenus { get; internal set; }
 
-        public List<ScriptFunctionExport> FunctionExports
-        {
-            get; set;
-        }
-
         public string Path
         {
             get; private set;
@@ -95,7 +90,6 @@ namespace Playnite.Scripting
             // ps1 and dll PowerShell modules are not supported
             else if (extension == ".psm1" || extension == ".psd1")
             {
-                
                 if (PowerShellRuntime.IsInstalled)
                 {
                     return new PowerShellScript(path);

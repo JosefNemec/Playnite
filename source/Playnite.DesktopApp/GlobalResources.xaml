@@ -48,4 +48,10 @@
     <pcon:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
     <pcon:ValueConverterGroup x:Key="ValueConverterGroup" />
     <pcon:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+    <pcon:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+    <pcon:InvertedIntToVisibilityConverter x:Key="InvertedIntToVisibilityConverter" />
+    <pcon:ObjectEqualityToBoolConverter x:Key="ObjectEqualityToBoolConverter" />
+    <pcon:ObjectEqualityToVisibilityConverter x:Key="ObjectEqualityToVisibilityConverter" />
+    <pcon:InvertedObjectEqualityToBoolConverter x:Key="InvertedObjectEqualityToBoolConverter" />
+    <pcon:InvertedObjectEqualityToVisibilityConverter x:Key="InvertedObjectEqualityToVisibilityConverter" />
 </ResourceDictionary>

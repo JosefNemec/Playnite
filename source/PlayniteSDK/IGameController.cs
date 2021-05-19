@@ -10,66 +10,6 @@ using System.Threading.Tasks;
 namespace Playnite.SDK
 {
     /// <summary>
-    /// Describes game controller.
-    /// </summary>
-    [Obsolete("Not used anymore in Playnite 9.")]
-    public interface IGameController : IDisposable
-    {
-        /// <summary>
-        /// Gets value indicating wheter the game is running.
-        /// </summary>
-        bool IsGameRunning { get; }
-
-        /// <summary>
-        /// Gets game being handled.
-        /// </summary>
-        Game Game
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Installs game.
-        /// </summary>
-        void Install();
-
-        /// <summary>
-        /// Uninstalls game.
-        /// </summary>
-        void Uninstall();
-
-        /// <summary>
-        /// Starts game.
-        /// </summary>
-        void Play();
-
-        /// <summary>
-        /// Occurs when game is being started.
-        /// </summary>
-        event EventHandler<Events.GameControllerEventArgs> Starting;
-
-        /// <summary>
-        /// Occurs when game is started.
-        /// </summary>
-        event EventHandler<Events.GameControllerEventArgs> Started;
-
-        /// <summary>
-        /// Occurs when game stops running.
-        /// </summary>
-        event EventHandler<Events.GameControllerEventArgs> Stopped;
-
-        /// <summary>
-        /// Occurs when game is finished uninstalling.
-        /// </summary>
-        event EventHandler<Events.GameControllerEventArgs> Uninstalled;
-
-        /// <summary>
-        /// Occurs when game is finished installing.
-        /// </summary>
-        event EventHandler<Events.GameInstalledEventArgs> Installed;
-    }
-
-    /// <summary>
     ///
     /// </summary>
     public abstract class InstallController : IDisposable
@@ -80,25 +20,24 @@ namespace Playnite.SDK
         ///
         /// </summary>
         public event EventHandler<GameUninstalledEventArgs> Uninstalled;
-        /// <summary>
-        ///
-        /// </summary>
-        public event EventHandler<GameInstalledEventArgs> Installed;
-        /// <summary>
-        ///
-        /// </summary>
-        public bool IsRunning { get; set; }
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        public InstallController()
+        public event EventHandler<GameInstalledEventArgs> Installed;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public InstallController(Game game)
         {
             execContext = SynchronizationContext.Current;
+            Game = game;
         }
 
         /// <summary>
@@ -113,21 +52,21 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="args"></param>
-        protected void InvokeOnUninstalled(object sender, GameUninstalledEventArgs args)
+        protected void InvokeOnUninstalled(GameUninstalledEventArgs args)
         {
-            execContext.Send((a) => Uninstalled?.Invoke(sender, args), null);
+            args.Controller = this;
+            execContext.Send((a) => Uninstalled?.Invoke(this, args), null);
         }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="args"></param>
-        protected void InvokeOnInstalled(object sender, GameInstalledEventArgs args)
+        protected void InvokeOnInstalled(GameInstalledEventArgs args)
         {
-            execContext.Send((a) => Installed?.Invoke(sender, args), null);
+            args.Controller = this;
+            execContext.Send((a) => Installed?.Invoke(this, args), null);
         }
 
         /// <summary>
@@ -161,18 +100,15 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        public bool IsRunning { get; set; }
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
+        public Game Game { get; }
 
         /// <summary>
         ///
         /// </summary>
-        public PlayController()
+        public PlayController(Game game)
         {
             execContext = SynchronizationContext.Current;
+            Game = game;
         }
 
         /// <summary>
@@ -184,31 +120,31 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="args"></param>
-        protected void InvokeOnStarting(object sender, GameStartingEventArgs args)
+        protected void InvokeOnStarting(GameStartingEventArgs args)
         {
-            execContext.Send((a) => Starting?.Invoke(sender, args), null);
+            args.Controller = this;
+            execContext.Send((a) => Starting?.Invoke(this, args), null);
         }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="args"></param>
-        protected void InvokeOnStarted(object sender, GameStartedEventArgs args)
+        protected void InvokeOnStarted(GameStartedEventArgs args)
         {
-            execContext.Send((a) => Started?.Invoke(sender, args), null);
+            args.Controller = this;
+            execContext.Send((a) => Started?.Invoke(this, args), null);
         }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="args"></param>
-        protected void InvokeOnStopped(object sender, GameStoppedEventArgs args)
+        protected void InvokeOnStopped(GameStoppedEventArgs args)
         {
-            execContext.Send((a) => Stopped?.Invoke(sender, args), null);
+            args.Controller = this;
+            execContext.Send((a) => Stopped?.Invoke(this, args), null);
         }
 
         /// <summary>
@@ -227,15 +163,13 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        public InstallController Controller { get; set; }
+        internal InstallController Controller { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controller"></param>
-        public InstallEventArgs(InstallController controller)
+        public InstallEventArgs()
         {
-            Controller = controller;
         }
     }
 
@@ -247,15 +181,13 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        public PlayController Controller { get; set; }
+        internal PlayController Controller { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controller"></param>
-        public PlayEventArgs(PlayController controller)
+        public PlayEventArgs()
         {
-            Controller = controller;
         }
     }
 
@@ -267,8 +199,7 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controller"></param>
-        public GameStartingEventArgs(PlayController controller) : base(controller)
+        public GameStartingEventArgs() : base()
         {
         }
     }
@@ -281,8 +212,7 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controller"></param>
-        public GameStartedEventArgs(PlayController controller) : base(controller)
+        public GameStartedEventArgs() : base()
         {
         }
     }
@@ -300,8 +230,7 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controller"></param>
-        public GameStoppedEventArgs(PlayController controller) : base(controller)
+        public GameStoppedEventArgs() : base()
         {
         }
     }
@@ -314,8 +243,7 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controller"></param>
-        public GameUninstalledEventArgs(InstallController controller) : base(controller)
+        public GameUninstalledEventArgs() : base()
         {
         }
     }
@@ -333,8 +261,7 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        /// <param name="controller"></param>
-        public GameInstalledEventArgs(InstallController controller) : base(controller)
+        public GameInstalledEventArgs() : base()
         {
         }
     }

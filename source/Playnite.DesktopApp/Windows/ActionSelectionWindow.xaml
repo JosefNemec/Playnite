@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCSelectActionTitle}"
-        WindowStartupLocation="CenterOwner" SizeToContent="Height"
+        WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
         d:DesignHeight="400" Width="350"
         ShowMinimizeButton="False" ShowMaximizeButton="False"
         AutomationProperties.AutomationId="WindowActionSelection">
@@ -23,7 +23,7 @@
             <Button Content="{DynamicResource LOCCancelLabel}" Margin="5" MinWidth="100"
                     Command="{Binding CancelCommand}" IsCancel="True" />
         </StackPanel>
-        <ItemsControl ItemsSource="{Binding Actions}"
+        <ItemsControl ItemsSource="{Binding Actions}"                      
                       Margin="10,10,10,5" DockPanel.Dock="Top">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

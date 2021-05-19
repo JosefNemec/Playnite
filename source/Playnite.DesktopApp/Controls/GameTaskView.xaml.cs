@@ -24,6 +24,21 @@ namespace Playnite.DesktopApp.Controls
     /// </summary>
     public partial class GameTaskView : UserControl, INotifyPropertyChanged
     {
+        public bool IsCurrentEmulatorProfileCustom => GameTask.EmulatorProfileId?.StartsWith(CustomEmulatorProfile.ProfilePrefix) == true;
+
+        public bool ShowCustomEmulatorArgsRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return GameTask.Type == GameActionType.Emulator && GameTask.OverrideDefaultArgs && IsCurrentEmulatorProfileCustom;
+            }
+        }
+
         public bool ShowArgumentsRow
         {
             get
@@ -33,16 +48,7 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                if (GameTask.Type == GameActionType.URL)
-                {
-                    return false;
-                }
-                else if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
-                {
-                    return false;
-                }
-
-                return true;
+                return GameTask.Type == GameActionType.File;
             }
         }
 
@@ -54,8 +60,11 @@ namespace Playnite.DesktopApp.Controls
                 {
                     return false;
                 }
-
-                if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
+                else if (GameTask.Type == GameActionType.Emulator && !IsCurrentEmulatorProfileCustom)
+                {
+                    return false;
+                }
+                else if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
                 {
                     return true;
                 }
@@ -73,7 +82,11 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
+                if (GameTask.Type == GameActionType.Emulator && !IsCurrentEmulatorProfileCustom)
+                {
+                    return false;
+                }
+                else if (GameTask.Type == GameActionType.Emulator && !GameTask.OverrideDefaultArgs)
                 {
                     return true;
                 }
@@ -130,6 +143,11 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
+                if (GameTask.Type == GameActionType.Emulator && !IsCurrentEmulatorProfileCustom)
+                {
+                    return false;
+                }
+
                 return GameTask.Type == GameActionType.Emulator;
             }
         }
@@ -143,7 +161,28 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                return GameTask.TrackingMode == TrackingMode.Directory;
+                return GameTask.TrackingMode == TrackingMode.Directory && GameTask.Type != GameActionType.Emulator;
+            }
+        }
+
+        public bool ShowTrackingModeRow
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return (GameTask.Type == GameActionType.File || GameTask.Type == GameActionType.URL) && GameTask.IsPlayAction;
+            }
+        }
+
+        public bool ShowScriptInput
+        {
+            get
+            {
+                return GameTask?.Type == GameActionType.Script;
             }
         }
 
@@ -263,6 +302,9 @@ namespace Playnite.DesktopApp.Controls
             OnPropertyChanged(nameof(ShowWorkingDirRow));
             OnPropertyChanged(nameof(ShowEmulatorRow));
             OnPropertyChanged(nameof(ShowOverrideArgsRow));
+            OnPropertyChanged(nameof(ShowCustomEmulatorArgsRow));
+            OnPropertyChanged(nameof(ShowTrackingModeRow));
+            OnPropertyChanged(nameof(ShowScriptInput));
         }
 
         private void CheckOverrideArgs_Checked(object sender, RoutedEventArgs e)
@@ -294,7 +336,7 @@ namespace Playnite.DesktopApp.Controls
 
             if (GameTask?.EmulatorId != Guid.Empty && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
-                ComboEmulatorConfig.SelectedItem = Emulators.First(a => a.Id == GameTask.EmulatorId).Profiles?.FirstOrDefault();
+                ComboEmulatorConfig.SelectedItem = Emulators.First(a => a.Id == GameTask.EmulatorId).CustomProfiles?.FirstOrDefault();
             }
         }
 
@@ -314,20 +356,27 @@ namespace Playnite.DesktopApp.Controls
             if (GameTask?.EmulatorId != Guid.Empty && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
                 var emulator = Emulators.First(a => a.Id == GameTask.EmulatorId);
-                var emulatorProfile = emulator.Profiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
+                var emulatorProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
                 if (emulatorProfile != null)
                 {
                     SelectedEmulatorArguments = emulatorProfile.Arguments;
                 }
                 else
                 {
-                    SelectedEmulatorArguments = emulator.Profiles?.FirstOrDefault()?.Arguments;
+                    SelectedEmulatorArguments = emulator.CustomProfiles?.FirstOrDefault()?.Arguments;
                 }
             }
             else
             {
                 SelectedEmulatorArguments = string.Empty;
             }
+
+            NotifyRowChange();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            NotifyRowChange();
         }
     }
 }

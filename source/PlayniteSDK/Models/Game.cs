@@ -35,9 +35,6 @@ namespace Playnite.SDK.Models
         ///
         InstallDirectory = 7,
         ///
-        //[Obsolete("Use new Roms field.")]
-        //GameImagePath = 8,
-        ///
         LastActivity = 9,
         ///
         SortingName = 10,
@@ -45,12 +42,6 @@ namespace Playnite.SDK.Models
         Gameid = 11,
         ///
         PluginId = 12,
-        ///
-        [Obsolete("Use new GameActions field.")]
-        OtherActions = 13,
-        ///
-        [Obsolete("Use new GameActions field.")]
-        PlayAction = 14,
         ///
         PlatformId = 15,
         ///
@@ -125,8 +116,6 @@ namespace Playnite.SDK.Models
         Source = 50,
         ///
         ReleaseYear = 51,
-        ///
-        ActionsScriptLanguage = 52,
         ///
         PreScript = 53,
         ///
@@ -351,24 +340,6 @@ namespace Playnite.SDK.Models
             }
         }
 
-        //private string gameImagePath;
-        ///// <summary>
-        ///// Gets or sets game's ISO, ROM or other type of executable image path.
-        ///// </summary>
-        //public string GameImagePath
-        //{
-        //    get
-        //    {
-        //        return gameImagePath;
-        //    }
-
-        //    set
-        //    {
-        //        gameImagePath = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         private DateTime? lastActivity;
         /// <summary>
         /// Gets or sets last played date.
@@ -474,44 +445,6 @@ namespace Playnite.SDK.Models
             set
             {
                 gameActions = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<GameAction> otherActions;
-        /// <summary>
-        /// Gets or sets list of additional game actions.
-        /// </summary>
-        [Obsolete("Use new GameActions field.")]
-        public ObservableCollection<GameAction> OtherActions
-        {
-            get
-            {
-                return otherActions;
-            }
-
-            set
-            {
-                otherActions = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private GameAction playAction;
-        /// <summary>
-        /// Gets or sets game action used to starting the game.
-        /// </summary>
-        [Obsolete("Use new GameActions field.")]
-        public GameAction PlayAction
-        {
-            get
-            {
-                return playAction;
-            }
-
-            set
-            {
-                playAction = value;
                 OnPropertyChanged();
             }
         }
@@ -1000,20 +933,6 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CommunityScoreGroup));
                 OnPropertyChanged(nameof(CommunityScoreRating));
-            }
-        }
-
-        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.PowerShell;
-        /// <summary>
-        /// Gets or sets scripting language for <see cref="PreScript"/> and <see cref="PostScript"/> scripts.
-        /// </summary>
-        public ScriptLanguage ActionsScriptLanguage
-        {
-            get => actionsScriptLanguage;
-            set
-            {
-                actionsScriptLanguage = value;
-                OnPropertyChanged();
             }
         }
 
@@ -1642,11 +1561,6 @@ namespace Playnite.SDK.Models
                     tro.InstallDirectory = InstallDirectory;
                 }
 
-                //if (!string.Equals(GameImagePath, tro.GameImagePath, StringComparison.Ordinal))
-                //{
-                //    tro.GameImagePath = GameImagePath;
-                //}
-
                 if (LastActivity != tro.LastActivity)
                 {
                     tro.LastActivity = LastActivity;
@@ -1822,11 +1736,6 @@ namespace Playnite.SDK.Models
                     tro.GameStartedScript = GameStartedScript;
                 }
 
-                if (ActionsScriptLanguage != tro.ActionsScriptLanguage)
-                {
-                    tro.ActionsScriptLanguage = ActionsScriptLanguage;
-                }
-
                 if (UseGlobalPostScript != tro.UseGlobalPostScript)
                 {
                     tro.UseGlobalPostScript = UseGlobalPostScript;
@@ -1911,11 +1820,6 @@ namespace Playnite.SDK.Models
             {
                 changes.Add(GameField.InstallDirectory);
             }
-
-            //if (!string.Equals(GameImagePath, otherGame.GameImagePath, StringComparison.Ordinal))
-            //{
-            //    changes.Add(GameField.GameImagePath);
-            //}
 
             if (LastActivity != otherGame.LastActivity)
             {
@@ -2148,11 +2052,6 @@ namespace Playnite.SDK.Models
             if (!string.Equals(GameStartedScript, otherGame.GameStartedScript, StringComparison.Ordinal))
             {
                 changes.Add(GameField.GameStartedScript);
-            }
-
-            if (ActionsScriptLanguage != otherGame.ActionsScriptLanguage)
-            {
-                changes.Add(GameField.ActionsScriptLanguage);
             }
 
             if (UseGlobalPostScript != otherGame.UseGlobalPostScript)

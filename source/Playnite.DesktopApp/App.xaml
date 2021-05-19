@@ -46,10 +46,12 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ToggleButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ToolTip.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TreeView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/DataGrid.xaml" />
 
                 <!--Custom Controls-->
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedDataGrid.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/GameMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/GameGroupMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/HtmlTextView.xaml" />
@@ -61,10 +63,8 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExpanderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SidebarItem.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/DdItemListSelectionBox.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterEnumSelectionBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ComboBoxList.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterSelectionBox.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterStringSelectionBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SearchBox.xaml" />
 
                 <!--Derived Styles-->

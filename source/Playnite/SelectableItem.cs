@@ -130,13 +130,20 @@ namespace System
             IEnumerable<TItem> collection,
             IEnumerable<TItem> selected = null)
         {
-            Items = new List<SelectableItem<TItem>>(collection.Select(a =>
+            if (collection.HasItems())
             {
-                var newItem = new SelectableItem<TItem>(a);
-                newItem.Selected = selected?.Contains(a) == true;
-                newItem.PropertyChanged += NewItem_PropertyChanged;
-                return newItem;
-            }));
+                Items = new List<SelectableItem<TItem>>(collection.Select(a =>
+                {
+                    var newItem = new SelectableItem<TItem>(a);
+                    newItem.Selected = selected?.Contains(a) == true;
+                    newItem.PropertyChanged += NewItem_PropertyChanged;
+                    return newItem;
+                }));
+            }
+            else
+            {
+                Items = new List<SelectableItem<TItem>>();
+            }
         }
 
         internal virtual void OnSelectionChanged()
@@ -215,15 +222,18 @@ namespace System
             }
 
             Items.Clear();
-            foreach (var item in items)
+            if (items.HasItems())
             {
-                var newItem = new SelectableItem<TItem>(item)
+                foreach (var item in items)
                 {
-                    Selected = selected?.Contains(item) == true
-                };
+                    var newItem = new SelectableItem<TItem>(item)
+                    {
+                        Selected = selected?.Contains(item) == true
+                    };
 
-                newItem.PropertyChanged += NewItem_PropertyChanged;
-                Items.Add(newItem);
+                    newItem.PropertyChanged += NewItem_PropertyChanged;
+                    Items.Add(newItem);
+                }
             }
 
             SuppressNotifications = false;

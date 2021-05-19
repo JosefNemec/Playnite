@@ -45,6 +45,7 @@ namespace Playnite.Controls
     [TemplatePart(Name = "PART_TextTitle", Type = typeof(TextBlock))]
     public class WindowBase : Window, INotifyPropertyChanged
     {
+        private WindowPositionHandler positionHandler;
         private readonly EmptyWindowAutomationPeer automationPeer;
 
         private Button MinimizeButton;
@@ -208,6 +209,14 @@ namespace Playnite.Controls
                     e.Handled = true;
                 }
             };
+        }
+
+        public WindowBase(string savePositionName) : this()
+        {
+            if (PlayniteApplication.Current.AppSettings != null)
+            {
+                positionHandler = new WindowPositionHandler(this, savePositionName, PlayniteApplication.Current.AppSettings.WindowPositions);
+            }
         }
 
         public static void SetTextRenderingOptions(TextFormattingModeOptions formatting, TextRenderingModeOptions rendering)

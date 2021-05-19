@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Playnite.Windows;
 using System.Windows;
 using Playnite.Common.Media.Icons;
+using Playnite.Emulators;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -25,6 +26,8 @@ namespace Playnite.DesktopApp.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
+
+        public List<EmulatedPlatform> PlatformsSpecifications { get; set; }
 
         #region Genres
 
@@ -530,6 +533,12 @@ namespace Playnite.DesktopApp.ViewModels
             EditingSources = database.Sources.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
+            PlatformsSpecifications = Emulation.Platforms.ToList();
+            PlatformsSpecifications.Insert(0, new EmulatedPlatform
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = null
+            });
         }
 
         public void OpenView()
@@ -744,7 +753,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             foreach (var emulator in database.Emulators)
             {
-                foreach (var profile in emulator.Profiles)
+                foreach (var profile in emulator.CustomProfiles)
                 {
                     var usedIds = profile.Platforms ?? new List<Guid>();
                     foreach (var item in unused.Intersect(usedIds).ToList())

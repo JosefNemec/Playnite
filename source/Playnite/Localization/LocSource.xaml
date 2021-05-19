@@ -86,9 +86,12 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">The library plugin responsible for this game is disabled or not installed.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Official metadata download is not available.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No game is selected.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction">Game's script action execution failed.</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction">Global script action execution failed.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Game's script execution failed.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Global script execution failed.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorScriptAction">Emulator script execution failed.</sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">Play script action execution failed.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 or newer is not installed.</sys:String>
+    <sys:String x:Key="LOCErrorStartupNoController">Couldn't determine how to start the game.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Enabled</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remove</sys:String>
@@ -117,6 +120,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCLastPlayedLabel">Last Played</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Most Played</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Play Count</sys:String>
+    <sys:String x:Key="LOCFolderLabel">Folder</sys:String>
     <sys:String x:Key="LOCNotesLabel">Notes</sys:String>
     <sys:String x:Key="LOCAddedLabel">Added</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Date Added</sys:String>
@@ -206,6 +210,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCProgressMetadata">Downloading metadata…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importing installed games…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">Importing {0} games…</sys:String>
+    <sys:String x:Key="LOCProgressImportinEmulatedGames">Importing emulated games from {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Downloading library updates…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Library update finished</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Releasing resources…</sys:String>
@@ -222,6 +227,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Open 3rd Party Client</sys:String>
     <sys:String x:Key="LOCMenuClients">3rd Party Clients</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Update Game Library</sys:String>
+    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">Update Emulated Folders</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Add Game</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manually…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatically…</sys:String>
@@ -283,13 +289,13 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Account name cannot be empty.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Download 3rd party library updates on startup</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Update library on startup</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup">Scan emulated folders</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Download metadata after importing games</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Launch Playnite minimized</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Launch Playnite when you start your computer</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Failed to register Playnite to launch when computer starts.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Launch in Fullscreen Mode</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Includes Steam, Origin and others.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchronous image loading</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Can improve scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Show game name if cover art is missing</sys:String>
@@ -408,9 +414,7 @@ Can also be changed in application settings.</sys:String>
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulation Import Wizard</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">This wizard will guide you through the process of downloading and importing console emulators and importing emulated games.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">Keep in mind that you can always add additional emulators and/or games later via main menu (under "Library" menu for Emulator settings and "Add Games" menu for emulated games).</sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve">Below is a list of emulators that Playnite can recognize and configure automatically. You can download the installers from their websites. Once you have the emulators installed, proceed to the next screen to import them to Playnite.
-
-You can also configure and import any custom emulator from the configuration menu later. </sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Below is a list of emulators that Playnite can recognize and configure automatically. You can download  emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">You can import any emulators that are installed on your PC by clicking the 'Autodetect From Folder…' button. Playnite will search the selected folder for any known emulators and provide the option to import them. You can use this button multiple times to import emulators from different folders. Emulators will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">You can import games by clicking the 'Scan Folder Using Emulator' button. Selecting the appropriate emulator will tell Playnite which file types should be scanned and imported. You can use this button multiple times to import games from different folders. Games will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">There are no emulators selected for import. You won't be able to automatically import any emulated games without configuring emulators first. Are you sure you want to continue and exit import process?</sys:String>
@@ -420,6 +424,7 @@ You can also configure and import any custom emulator from the configuration men
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Autodetect From Folder…</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Configure Emulators…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Scanning…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">Scanning {0}…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">First Time Configuration</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">This wizard will guide you through the automatic import and configuration process of external game libraries. Playnite can automatically import games from multiple game services, such as Steam or GOG, and also keep your library up-to-date by updating it automatically when the application is started.
@@ -544,6 +549,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
 Please attach the following ID to your issue report:</sys:String>
 
     <sys:String x:Key="LOCLibraryImportError">Failed to import games from {0}.</sys:String>
+    <sys:String x:Key="LOCLibraryImportEmulatedError">Failed to import emulated games from {0}.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Cannot search for games by selected emulator profile. Profile doesn't contain any file extensions or platforms.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite failed to start. Please close all other instances and try again.</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Failed to apply theme "{0}", color profile "{1}"
@@ -570,7 +576,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCPlayAction">Play Action</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Add Play Action</sys:String>
     <sys:String x:Key="LOCAddAction">Add Action</sys:String>
-    <sys:String x:Key="LOCDeleteAction">Delete Action</sys:String>
+    <sys:String x:Key="LOCDeleteAction">Remove</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Remove Play Action</sys:String>
     <sys:String x:Key="LOCOtherActions">Other Actions</sys:String>
     <sys:String x:Key="LOCAddGames">Add Games</sys:String>
@@ -649,6 +655,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCDefault">Default</sys:String>
     <sys:String x:Key="LOCSelect">Select</sys:String>
     <sys:String x:Key="LOCSelectAll">Select All</sys:String>
+    <sys:String x:Key="LOCDeselectAll">Deselect All</sys:String>
     <sys:String x:Key="LOCFirst">First</sys:String>
     <sys:String x:Key="LOCRandom">Random</sys:String>
     <sys:String x:Key="LOCUserSelect">User select</sys:String>
@@ -885,6 +892,7 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">File</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
+    <sys:String x:Key="LOCGameActionTypeScript">Script</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDefault">Default</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">Process</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Directory</sys:String>
@@ -956,4 +964,36 @@ Good quality, fast, low memory usage.
     
 Alternative:
 Better quality, medium speed, low memory usage.</sys:String>
+    <sys:String x:Key="LOCSelectFileTooltip">Select file…</sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip">Select directory…</sys:String>
+    <sys:String x:Key="LOCStartupScript">Startup script</sys:String>
+    <sys:String x:Key="LOCGameActionSelectOnStart">Choose on startup</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfiles">Built-in profiles</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfile">Built-in profile</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfiles">Custom profiles</sys:String>
+    <sys:String x:Key="LOCEmulatorSpec">Emulator specification</sys:String>
+    <sys:String x:Key="LOCEmulatorPreScriptDescription">Execute before starting emulator</sys:String>
+    <sys:String x:Key="LOCEmulatorPostScriptDescription">Execute after emulator is started</sys:String>
+    <sys:String x:Key="LOCEmulatorStartedScriptDescription">Execute after exiting emulator</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound">Emulator executable not found.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound">Emulator specification not found.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound">Emulator executable not found.</sys:String>
+    <sys:String x:Key="LOCSplitEmuImportSplitGames">Split as separate games</sys:String>
+    <sys:String x:Key="LOCSplitEmuImportMergeGames">Merge into one game</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignPlatform">Set platform</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignRegion">Set region</sys:String>
+    <sys:String x:Key="LOCEmuScanDirectory">Scan folder</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Scan with emulator</sys:String>
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Include in bulk scan auto-scan</sys:String>
+    <sys:String x:Key="LOCEmuNoValidConfigSet">No valid scan configuration set. Make sure that all fields are set properly.</sys:String>
+    <sys:String x:Key="LOCEmulatorScanFailed">Failed to scan folder for emulators.</sys:String>
+    <sys:String x:Key="LOCEmulatedGameScanFailed">Failed to scan folder(s) for emulated games.</sys:String>
+    <sys:String x:Key="LOCEmuScanHideImported">Hide imported</sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Profiles to import:</sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations">Auto-scan configurations</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">Save as auto-scan confguration</sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">Add scanner</sys:String>
+    <sys:String x:Key="LOCEmuAddSavedScanner">Add saved scanner</sys:String>
+    <sys:String x:Key="LOCStartScan">Start scan</sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Add scan configuration(s) with emulators to scan specific folders.</sys:String>
 </ResourceDictionary>

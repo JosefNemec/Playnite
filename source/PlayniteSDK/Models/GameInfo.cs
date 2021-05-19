@@ -31,12 +31,6 @@ namespace Playnite.SDK.Models
         /// </summary>
         public string InstallDirectory { get; set; }
 
-        ///// <summary>
-        ///// Gets or sets game image (rom, iso) path.
-        ///// </summary>
-        //[Obsolete("Use new Roms field.")]
-        //public string GameImagePath { get; set; }
-
         /// <summary>
         /// Gets or sets Sorting Name.
         /// </summary>
@@ -46,18 +40,6 @@ namespace Playnite.SDK.Models
         /// Gets or sets Other Actions.
         /// </summary>
         public List<GameAction> GameActions { get; set; }
-
-        /// <summary>
-        /// Gets or sets Other Actions.
-        /// </summary>
-        [Obsolete("Use new GameActions field.")]
-        public List<GameAction> OtherActions { get; set; }
-
-        /// <summary>
-        /// Gets or sets PlayAction.
-        /// </summary>
-        [Obsolete("Use new GameActions field.")]
-        public GameAction PlayAction { get; set; }
 
         /// <summary>
         /// Gets or sets ReleaseDate.

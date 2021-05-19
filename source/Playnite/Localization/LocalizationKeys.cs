@@ -270,17 +270,29 @@ namespace Playnite
         /// </summary>
         public const string ErrorNoGameSelected = "LOCErrorNoGameSelected";
         /// <summary>
-        /// Game's script action execution failed.
+        /// Game's script execution failed.
         /// </summary>
         public const string ErrorGameScriptAction = "LOCErrorGameScriptAction";
         /// <summary>
-        /// Global script action execution failed.
+        /// Global script execution failed.
         /// </summary>
         public const string ErrorGlobalScriptAction = "LOCErrorGlobalScriptAction";
+        /// <summary>
+        /// Emulator script execution failed.
+        /// </summary>
+        public const string ErrorEmulatorScriptAction = "LOCErrorEmulatorScriptAction";
+        /// <summary>
+        /// Play script action execution failed.
+        /// </summary>
+        public const string ErrorPlayScriptAction = "LOCErrorPlayScriptAction";
         /// <summary>
         /// PowerShell 3.0 or newer is not installed.
         /// </summary>
         public const string ErrorPowerShellNotInstalled = "LOCErrorPowerShellNotInstalled";
+        /// <summary>
+        /// Couldn't determine how to start the game.
+        /// </summary>
+        public const string ErrorStartupNoController = "LOCErrorStartupNoController";
         /// <summary>
         /// Enabled
         /// </summary>
@@ -389,6 +401,10 @@ namespace Playnite
         /// Play Count
         /// </summary>
         public const string PlayCountLabel = "LOCPlayCountLabel";
+        /// <summary>
+        /// Folder
+        /// </summary>
+        public const string FolderLabel = "LOCFolderLabel";
         /// <summary>
         /// Notes
         /// </summary>
@@ -702,6 +718,10 @@ namespace Playnite
         /// </summary>
         public const string ProgressImportinGames = "LOCProgressImportinGames";
         /// <summary>
+        /// Importing emulated games: {0}…
+        /// </summary>
+        public const string ProgressImportinEmulatedGames = "LOCProgressImportinEmulatedGames";
+        /// <summary>
         /// Downloading library updates…
         /// </summary>
         public const string ProgressLibraryGames = "LOCProgressLibraryGames";
@@ -761,6 +781,10 @@ namespace Playnite
         /// Update Game Library
         /// </summary>
         public const string MenuReloadLibrary = "LOCMenuReloadLibrary";
+        /// <summary>
+        /// Update Emulated Folders
+        /// </summary>
+        public const string MenuUpdateEmulatedDirs = "LOCMenuUpdateEmulatedDirs";
         /// <summary>
         /// Add Game
         /// </summary>
@@ -1002,9 +1026,13 @@ namespace Playnite
         /// </summary>
         public const string SettingsInvalidAccountName = "LOCSettingsInvalidAccountName";
         /// <summary>
-        /// Download 3rd party library updates on startup
+        /// Update library on startup
         /// </summary>
         public const string SettingsUpdateLibStartup = "LOCSettingsUpdateLibStartup";
+        /// <summary>
+        /// Scan emulated folders
+        /// </summary>
+        public const string SettingsUpdateEmulatedLibStartup = "LOCSettingsUpdateEmulatedLibStartup";
         /// <summary>
         /// Download metadata after importing games
         /// </summary>
@@ -1025,10 +1053,6 @@ namespace Playnite
         /// Launch in Fullscreen Mode
         /// </summary>
         public const string SettingsStartInFullscreen = "LOCSettingsStartInFullscreen";
-        /// <summary>
-        /// Includes Steam, Origin and others.
-        /// </summary>
-        public const string SettingsUpdateLibStartupTooltip = "LOCSettingsUpdateLibStartupTooltip";
         /// <summary>
         /// Asynchronous image loading
         /// </summary>
@@ -1073,10 +1097,6 @@ namespace Playnite
         /// Disable DPI Scaling
         /// </summary>
         public const string SettingsDisableDpiAwareness = "LOCSettingsDisableDpiAwareness";
-        /// <summary>
-        /// Show Steam friends button
-        /// </summary>
-        public const string SettingsShowSteamFriendsButton = "LOCSettingsShowSteamFriendsButton";
         /// <summary>
         /// Show hidden games in quick launch lists
         /// </summary>
@@ -1470,9 +1490,9 @@ namespace Playnite
         /// </summary>
         public const string EmuWizardNotice = "LOCEmuWizardNotice";
         /// <summary>
-        /// Below is a list of emulators that Playnite can recognize and configure automatically. You can download the installers from their websites. Once you have the emulators installed, proceed to the next screen to import them to Playnite.
+        /// Below is a list of emulators that Playnite can recognize and configure automatically. You can download  emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.
         /// </summary>
-        public const string EmuWizardDownloadListIntro = "LOCEmuWizardDownloadListIntro";
+        public const string EmuDownloadDescription = "LOCEmuDownloadDescription";
         /// <summary>
         /// You can import any emulators that are installed on your PC by clicking the 'Autodetect From Folder…' button. Playnite will search the selected folder for any known emulators and provide the option to import them. You can use this button multiple times to import emulators from different folders. Emulators will be added to the bottom of the current list.
         /// </summary>
@@ -1509,6 +1529,10 @@ namespace Playnite
         /// Scanning…
         /// </summary>
         public const string EmuWizardScanning = "LOCEmuWizardScanning";
+        /// <summary>
+        /// Scanning {0}…
+        /// </summary>
+        public const string EmuWizardScanningSpecific = "LOCEmuWizardScanningSpecific";
         /// <summary>
         /// First Time Configuration
         /// </summary>
@@ -1958,6 +1982,10 @@ namespace Playnite
         /// </summary>
         public const string LibraryImportError = "LOCLibraryImportError";
         /// <summary>
+        /// Failed to import emulated games from {0}.
+        /// </summary>
+        public const string LibraryImportEmulatedError = "LOCLibraryImportEmulatedError";
+        /// <summary>
         /// Cannot search for games by selected emulator profile. Profile doesn't contain any file extensions or platforms.
         /// </summary>
         public const string ScanEmulatorGamesEmptyProfileError = "LOCScanEmulatorGamesEmptyProfileError";
@@ -2010,6 +2038,10 @@ namespace Playnite
         /// </summary>
         public const string AddLinkButton = "LOCAddLinkButton";
         /// <summary>
+        /// Add ROM
+        /// </summary>
+        public const string AddRom = "LOCAddRom";
+        /// <summary>
         /// Save Changes
         /// </summary>
         public const string SaveChanges = "LOCSaveChanges";
@@ -2026,7 +2058,7 @@ namespace Playnite
         /// </summary>
         public const string AddAction = "LOCAddAction";
         /// <summary>
-        /// Delete Action
+        /// Remove
         /// </summary>
         public const string DeleteAction = "LOCDeleteAction";
         /// <summary>
@@ -2341,6 +2373,10 @@ namespace Playnite
         /// Select All
         /// </summary>
         public const string SelectAll = "LOCSelectAll";
+        /// <summary>
+        /// Deselect All
+        /// </summary>
+        public const string DeselectAll = "LOCDeselectAll";
         /// <summary>
         /// First
         /// </summary>
@@ -3158,6 +3194,10 @@ namespace Playnite
         /// </summary>
         public const string GameActionTypeEmulator = "LOCGameActionTypeEmulator";
         /// <summary>
+        /// Script
+        /// </summary>
+        public const string GameActionTypeScript = "LOCGameActionTypeScript";
+        /// <summary>
         /// Default
         /// </summary>
         public const string ActionTrackingModeDefault = "LOCActionTrackingModeDefault";
@@ -3378,7 +3418,7 @@ namespace Playnite
         /// </summary>
         public const string TextInputCapitalize = "LOCTextInputCapitalize";
         /// <summary>
-        /// Image scaler mode
+        /// Image rendering scaler
         /// </summary>
         public const string SettingsImageScalerMode = "LOCSettingsImageScalerMode";
         /// <summary>
@@ -3394,8 +3434,136 @@ namespace Playnite
         /// </summary>
         public const string SettingsImageScalingQuality = "LOCSettingsImageScalingQuality";
         /// <summary>
-        /// Image scaler mode
+        /// Quality:
         /// </summary>
         public const string SettingsImageScalerModeTooltip = "LOCSettingsImageScalerModeTooltip";
+        /// <summary>
+        /// Select file…
+        /// </summary>
+        public const string SelectFileTooltip = "LOCSelectFileTooltip";
+        /// <summary>
+        /// Select directory…
+        /// </summary>
+        public const string SelectDirectoryTooltip = "LOCSelectDirectoryTooltip";
+        /// <summary>
+        /// Startup script
+        /// </summary>
+        public const string StartupScript = "LOCStartupScript";
+        /// <summary>
+        /// Choose on startup
+        /// </summary>
+        public const string GameActionSelectOnStart = "LOCGameActionSelectOnStart";
+        /// <summary>
+        /// Built-in profiles
+        /// </summary>
+        public const string EmulatorBuiltInProfiles = "LOCEmulatorBuiltInProfiles";
+        /// <summary>
+        /// Built-in profile
+        /// </summary>
+        public const string EmulatorBuiltInProfile = "LOCEmulatorBuiltInProfile";
+        /// <summary>
+        /// Custom profiles
+        /// </summary>
+        public const string EmulatorCustomProfiles = "LOCEmulatorCustomProfiles";
+        /// <summary>
+        /// Emulator specification
+        /// </summary>
+        public const string EmulatorSpec = "LOCEmulatorSpec";
+        /// <summary>
+        /// Execute before starting emulator
+        /// </summary>
+        public const string EmulatorPreScriptDescription = "LOCEmulatorPreScriptDescription";
+        /// <summary>
+        /// Execute after emulator is started
+        /// </summary>
+        public const string EmulatorPostScriptDescription = "LOCEmulatorPostScriptDescription";
+        /// <summary>
+        /// Execute after exiting emulator
+        /// </summary>
+        public const string EmulatorStartedScriptDescription = "LOCEmulatorStartedScriptDescription";
+        /// <summary>
+        /// Emulator executable not found.
+        /// </summary>
+        public const string ErrorEmulatorExecutableNotFound = "LOCErrorEmulatorExecutableNotFound";
+        /// <summary>
+        /// Emulator specification not found.
+        /// </summary>
+        public const string ErrorEmulatorSpecificationNotFound = "LOCErrorEmulatorSpecificationNotFound";
+        /// <summary>
+        /// Emulator executable not found.
+        /// </summary>
+        public const string ErrorEmulatorStartupScriptNotFound = "LOCErrorEmulatorStartupScriptNotFound";
+        /// <summary>
+        /// Split as separate games
+        /// </summary>
+        public const string SplitEmuImportSplitGames = "LOCSplitEmuImportSplitGames";
+        /// <summary>
+        /// Merge into one game
+        /// </summary>
+        public const string SplitEmuImportMergeGames = "LOCSplitEmuImportMergeGames";
+        /// <summary>
+        /// Set platform
+        /// </summary>
+        public const string EmuImportAssignPlatform = "LOCEmuImportAssignPlatform";
+        /// <summary>
+        /// Set region
+        /// </summary>
+        public const string EmuImportAssignRegion = "LOCEmuImportAssignRegion";
+        /// <summary>
+        /// Scan folder
+        /// </summary>
+        public const string EmuScanDirectory = "LOCEmuScanDirectory";
+        /// <summary>
+        /// Scan with emulator
+        /// </summary>
+        public const string EmuScanEmulator = "LOCEmuScanEmulator";
+        /// <summary>
+        /// Include in bulk scan auto-scan
+        /// </summary>
+        public const string EmuScanIncludeGlobalUpdate = "LOCEmuScanIncludeGlobalUpdate";
+        /// <summary>
+        /// No valid scan configuration set. Make sure that all fields are set properly.
+        /// </summary>
+        public const string EmuNoValidConfigSet = "LOCEmuNoValidConfigSet";
+        /// <summary>
+        /// Failed to scan folder for emulators.
+        /// </summary>
+        public const string EmulatorScanFailed = "LOCEmulatorScanFailed";
+        /// <summary>
+        /// Failed to scan folder(s) for emulated games.
+        /// </summary>
+        public const string EmulatedGameScanFailed = "LOCEmulatedGameScanFailed";
+        /// <summary>
+        /// Hide imported
+        /// </summary>
+        public const string EmuScanHideImported = "LOCEmuScanHideImported";
+        /// <summary>
+        /// Profiles to import:
+        /// </summary>
+        public const string EmuImportProfilesToImportHeader = "LOCEmuImportProfilesToImportHeader";
+        /// <summary>
+        /// Auto-scan configurations
+        /// </summary>
+        public const string EmuAutoScanConfigurations = "LOCEmuAutoScanConfigurations";
+        /// <summary>
+        /// Save as auto-scan confguration
+        /// </summary>
+        public const string EmuSaveScanConfig = "LOCEmuSaveScanConfig";
+        /// <summary>
+        /// Add scanner
+        /// </summary>
+        public const string EmuAddScanner = "LOCEmuAddScanner";
+        /// <summary>
+        /// Add saved scanner
+        /// </summary>
+        public const string EmuAddSavedScanner = "LOCEmuAddSavedScanner";
+        /// <summary>
+        /// Start scan
+        /// </summary>
+        public const string StartScan = "LOCStartScan";
+        /// <summary>
+        /// Add scan configuration(s) with emulators to scan specific folders.
+        /// </summary>
+        public const string EmuImportDirectoryConfigDesc = "LOCEmuImportDirectoryConfigDesc";
     }
 }

@@ -27,6 +27,11 @@ namespace System
             }
         }
 
+        public static object CrateInstance(this Type type)
+        {
+            return Activator.CreateInstance(type);
+        }
+
         public static T CrateInstance<T>(this Type type)
         {
             return (T)Activator.CreateInstance(type);
@@ -62,9 +67,19 @@ namespace System
             }
         }
 
-        public static bool InheritsFrom<T>(this object obj)
+        public static bool IsGenericList(this Type type, out Type itemType)
         {
-            return typeof(T).IsAssignableFrom(obj.GetType());
+            var isGeneric = type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>));
+            if (isGeneric)
+            {
+                itemType = type.GenericTypeArguments.First();
+                return true;
+            }
+            else
+            {
+                itemType = null;
+                return false;
+            }
         }
     }
 }

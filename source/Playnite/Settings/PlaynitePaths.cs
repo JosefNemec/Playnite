@@ -53,6 +53,7 @@ namespace Playnite
         public static string IconsCachePath => Path.Combine(DataCachePath, "icons");
         public static string UserProgramDataPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
         public static string JitProfilesPath => Path.Combine(ConfigRootPath, "JITProfiles");
+        public static string EmulationDatabasePath => Path.Combine(ProgramPath, "Emulation", "Database");
         public static string ConfigRootPath
         {
             get

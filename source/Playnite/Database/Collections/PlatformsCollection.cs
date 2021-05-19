@@ -32,13 +32,13 @@ namespace Playnite.Database
 
             foreach (var emulator in db.Emulators)
             {
-                if (!emulator.Profiles.HasItems())
+                if (!emulator.CustomProfiles.HasItems())
                 {
                     continue;
                 }
 
                 var updated = false;
-                foreach (var profile in emulator.Profiles.Where(a => a.Platforms?.Contains(platformId) == true))
+                foreach (var profile in emulator.CustomProfiles.Where(a => a.Platforms?.Contains(platformId) == true))
                 {
                     profile.Platforms.Remove(platformId);
                     updated = true;

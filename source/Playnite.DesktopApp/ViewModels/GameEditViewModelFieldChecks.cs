@@ -538,22 +538,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool useScriptRuntimeChanges;
-        public bool UseScriptRuntimeChanges
-        {
-            get
-            {
-                return useScriptRuntimeChanges;
-            }
-
-            set
-            {
-                useScriptRuntimeChanges = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowScriptsChangeNotif));
-            }
-        }
-
         private bool usePreScriptChanges;
         public bool UsePreScriptChanges
         {
@@ -793,8 +777,7 @@ namespace Playnite.DesktopApp.ViewModels
             get
             {
                 return ShowCheckBoxes &&
-                    (UseScriptRuntimeChanges ||
-                    UsePreScriptChanges ||
+                    (UsePreScriptChanges ||
                     UsePostScriptChanges ||
                     UsePreGlobalScriptChanges ||
                     UsePostGlobalScriptChanges ||
@@ -1205,16 +1188,6 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseGameStartedScriptChanges = true;
-                    }
-                    break;
-                case nameof(Game.ActionsScriptLanguage):
-                    if (IsSingleGameEdit)
-                    {
-                        UseScriptRuntimeChanges = Game.ActionsScriptLanguage != EditingGame.ActionsScriptLanguage;
-                    }
-                    else
-                    {
-                        UseScriptRuntimeChanges = true;
                     }
                     break;
                 case nameof(Game.UseGlobalPostScript):

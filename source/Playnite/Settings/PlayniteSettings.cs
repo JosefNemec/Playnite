@@ -980,6 +980,21 @@ namespace Playnite
             }
         }
 
+        private bool updateEmulatedLibStartup = true;
+        public bool UpdateEmulatedLibStartup
+        {
+            get
+            {
+                return updateEmulatedLibStartup;
+            }
+
+            set
+            {
+                updateEmulatedLibStartup = value;
+                OnPropertyChanged();
+            }
+        }
+
         private AfterLaunchOptions afterLaunch = AfterLaunchOptions.Minimize;
         public AfterLaunchOptions AfterLaunch
         {
@@ -1323,17 +1338,6 @@ namespace Playnite
             set
             {
                 metadataSettings = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.PowerShell;
-        public ScriptLanguage ActionsScriptLanguage
-        {
-            get => actionsScriptLanguage;
-            set
-            {
-                actionsScriptLanguage = value;
                 OnPropertyChanged();
             }
         }
@@ -1961,7 +1965,7 @@ namespace Playnite
 
             config.AddTarget("console", consoleTarget);
 
-            var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
+            var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
             config.LoggingRules.Add(rule1);
 #endif
             var coreFileTarget = new FileTarget()

@@ -9,11 +9,173 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    public class EmulatedRegion
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public List<string> Codes { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public class EmulatedPlatform
+    {
+        public ulong IgdbId { get; set; }
+        public string Name { get; set; }
+        public string Id { get; set; }
+        public List<string> Databases { get; set; }
+        public List<string> Emulators { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public abstract class EmulatorProfile : ObservableObject
+    {
+        private string id;
+        public string Id
+        {
+            get => id;
+            set
+            {
+                id = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string name;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string preScript;
+        public string PreScript
+        {
+            get => preScript;
+            set
+            {
+                preScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string postScript;
+        public string PostScript
+        {
+            get => postScript;
+            set
+            {
+                postScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string exitScript;
+        public string ExitScript
+        {
+            get => exitScript;
+            set
+            {
+                exitScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [DontSerialize]
+        public Type Type => GetType();
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public class BuiltInEmulatorProfile : EmulatorProfile, IEquatable<BuiltInEmulatorProfile>
+    {
+        public static readonly string ProfilePrefix = "#builtin_";
+
+        private string builtInProfileName;
+        public string BuiltInProfileName
+        {
+            get => builtInProfileName;
+            set
+            {
+                builtInProfileName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public BuiltInEmulatorProfile() : base()
+        {
+            Id = ProfilePrefix + Guid.NewGuid();
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(BuiltInEmulatorProfile other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            if (!string.Equals(BuiltInProfileName, other.BuiltInProfileName, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(Name, other.Name, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(ExitScript, other.ExitScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(PostScript, other.PostScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(PreScript, other.PreScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+
     /// <summary>
     /// Represents emulator profile.
     /// </summary>
-    public class EmulatorProfile : DatabaseObject, IEquatable<EmulatorProfile>
+    public class CustomEmulatorProfile : EmulatorProfile, IEquatable<CustomEmulatorProfile>
     {
+        public static readonly string ProfilePrefix = "#custom_";
+
+        private string startupScript;
+        public string StartupScript
+        {
+            get => startupScript;
+            set
+            {
+                startupScript = value;
+                OnPropertyChanged();
+            }
+        }
+
         private List<Guid> platforms;
         /// <summary>
         /// Gets or sets platforms supported by profile.
@@ -96,14 +258,25 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Creates new instance of EmulatorProfile.
         /// </summary>
-        public EmulatorProfile() : base()
+        public CustomEmulatorProfile() : base()
         {
+            Id = ProfilePrefix + Guid.NewGuid();
         }
 
         /// <inheritdoc/>
-        public bool Equals(EmulatorProfile other)
+        public bool Equals(CustomEmulatorProfile other)
         {
             if (other is null)
+            {
+                return false;
+            }
+
+            if (!string.Equals(Id, other.Id, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(Name, other.Name, StringComparison.Ordinal))
             {
                 return false;
             }
@@ -138,6 +311,26 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
+            if (!string.Equals(ExitScript, other.ExitScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(PostScript, other.PostScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(PreScript, other.PreScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(StartupScript, other.StartupScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
             return true;
         }
     }
@@ -147,27 +340,125 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class Emulator : DatabaseObject
     {
-        private ObservableCollection<EmulatorProfile> profile;
-        /// <summary>
-        /// Gets or sets list of emulator profiles.
-        /// </summary>
-        public ObservableCollection<EmulatorProfile> Profiles
+        private string builtInConfigId;
+        public string BuiltInConfigId
         {
-            get => profile;
+            get => builtInConfigId;
             set
             {
-                profile = value;
+                builtInConfigId = value;
                 OnPropertyChanged();
             }
         }
 
-        /// <summary>
-        /// Gets list of emulator profiles sorted by name.
-        /// </summary>
-        [DontSerialize]
-        public List<EmulatorProfile> SortedProfiles
+        private string installDir;
+        public string InstallDir
         {
-            get => Profiles.OrderBy(a => a.Name).ToList();
+            get => installDir;
+            set
+            {
+                installDir = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<BuiltInEmulatorProfile> builtinProfiles;
+        /// <summary>
+        /// Gets or sets list of emulator profiles.
+        /// </summary>
+        public ObservableCollection<BuiltInEmulatorProfile> BuiltinProfiles
+        {
+            get => builtinProfiles;
+            set
+            {
+                if (builtinProfiles != null)
+                {
+                    builtinProfiles.CollectionChanged -= Profiles_CollectionChanged;
+                }
+
+                builtinProfiles = value;
+                if (builtinProfiles != null)
+                {
+                    builtinProfiles.CollectionChanged += Profiles_CollectionChanged;
+                }
+
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(AllProfiles));
+                OnPropertyChanged(nameof(SelectableProfiles));
+            }
+        }
+
+        private ObservableCollection<CustomEmulatorProfile> customProfiles;
+        /// <summary>
+        /// Gets or sets list of emulator profiles.
+        /// </summary>
+        public ObservableCollection<CustomEmulatorProfile> CustomProfiles
+        {
+            get => customProfiles;
+            set
+            {
+                if (customProfiles != null)
+                {
+                    customProfiles.CollectionChanged -= Profiles_CollectionChanged;
+                }
+
+                customProfiles = value;
+                if (customProfiles != null)
+                {
+                    customProfiles.CollectionChanged += Profiles_CollectionChanged;
+                }
+
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(AllProfiles));
+                OnPropertyChanged(nameof(SelectableProfiles));
+            }
+        }
+
+        private void Profiles_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(AllProfiles));
+            OnPropertyChanged(nameof(SelectableProfiles));
+        }
+
+        [DontSerialize]
+        public List<EmulatorProfile> SelectableProfiles
+        {
+            get
+            {
+                var selProfiles = new List<EmulatorProfile>();
+                if (BuiltinProfiles.HasItems())
+                {
+                    selProfiles.AddRange(BuiltinProfiles.OrderBy(a => a.Name));
+                }
+
+                if (CustomProfiles.HasItems())
+                {
+                    selProfiles.AddRange(CustomProfiles.OrderBy(a => a.Name));
+                }
+
+                selProfiles.Insert(0, new CustomEmulatorProfile { Id = null, Name = ResourceProvider.GetString("LOCGameActionSelectOnStart") });
+                return selProfiles;
+            }
+        }
+
+        [DontSerialize]
+        public List<EmulatorProfile> AllProfiles
+        {
+            get
+            {
+                var selProfiles = new List<EmulatorProfile>();
+                if (BuiltinProfiles.HasItems())
+                {
+                    selProfiles.AddRange(BuiltinProfiles.OrderBy(a => a.Name));
+                }
+
+                if (CustomProfiles.HasItems())
+                {
+                    selProfiles.AddRange(CustomProfiles.OrderBy(a => a.Name));
+                }
+
+                return selProfiles;
+            }
         }
 
         /// <summary>
@@ -195,6 +486,17 @@ namespace Playnite.SDK.Models
             return Name;
         }
 
+        public EmulatorProfile GetProfile(string profileId)
+        {
+            var cus = CustomProfiles?.FirstOrDefault(a => a.Id == profileId);
+            if (cus != null)
+            {
+                return cus;
+            }
+
+            return BuiltinProfiles?.FirstOrDefault(a => a.Id == profileId);
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -202,9 +504,24 @@ namespace Playnite.SDK.Models
 
             if (target is Emulator tro)
             {
-                if (!Profiles.IsListEqualExact(tro.Profiles))
+                if (!CustomProfiles.IsListEqualExact(tro.CustomProfiles))
                 {
-                    tro.Profiles = Profiles;
+                    tro.CustomProfiles = CustomProfiles;
+                }
+
+                if (!BuiltinProfiles.IsListEqualExact(tro.BuiltinProfiles))
+                {
+                    tro.BuiltinProfiles = BuiltinProfiles;
+                }
+
+                if (!string.Equals(BuiltInConfigId, tro.BuiltInConfigId, StringComparison.Ordinal))
+                {
+                    tro.BuiltInConfigId = BuiltInConfigId;
+                }
+
+                if (!string.Equals(InstallDir, tro.InstallDir, StringComparison.Ordinal))
+                {
+                    tro.InstallDir = InstallDir;
                 }
             }
             else

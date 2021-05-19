@@ -1,8 +1,10 @@
+Id: stella
 Name: Stella
 Website: 'https://stella-emu.github.io/'
 Profiles:
   - Name: Default
-    DefaultArguments: '-fullscreen 1 "{ImagePath}"'
     Platforms: [atari_2600]
     ImageExtensions: [bin, a26, zip]
-    ExecutableLookup: ^Stella\.exe$
+    InstallationFile: ^Stella\.exe$
+    StartupExecutable: ^Stella\.exe$
+    StartupArguments: '-fullscreen 1 "{ImagePath}"'

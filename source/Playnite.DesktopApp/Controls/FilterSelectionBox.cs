@@ -9,34 +9,69 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
 {
     [TemplatePart(Name = "PART_TextFilterInput", Type = typeof(TextBox))]
-    public class FilterSelectionBox : FilterSelectionBoxBase
+    public abstract class FilterSelectionBoxBase : ComboBoxListBase
     {
-        private BindingExpressionBase textInputBinding;
         internal TextBox TextFilterInput;
-        public override string ItemStyleName => "FilterSelectionBoxItemStyle";
 
         public bool IsFullTextEnabled
         {
-            get
-            {
-                return (bool)GetValue(IsFullTextEnabledProperty);
-            }
-
-            set
-            {
-                SetValue(IsFullTextEnabledProperty, value);
-            }
+            get => (bool)GetValue(IsFullTextEnabledProperty);
+            set => SetValue(IsFullTextEnabledProperty, value);
         }
 
         public static readonly DependencyProperty IsFullTextEnabledProperty = DependencyProperty.Register(
             nameof(IsFullTextEnabled),
             typeof(bool),
-            typeof(FilterSelectionBox),
-            new PropertyMetadata(true));
+            typeof(FilterSelectionBoxBase),
+            new PropertyMetadata(false));
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            TextFilterInput = Template.FindName("PART_TextFilterInput", this) as TextBox;
+
+            if (ItemsPanel != null)
+            {
+                XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+                ItemsPanel.ItemTemplate = Xaml.FromString<DataTemplate>(new XDocument(
+                    new XElement(pns + nameof(DataTemplate),
+                        new XElement(pns + nameof(CheckBox),
+                            new XAttribute(nameof(CheckBox.IsChecked), "{Binding Selected}"),
+                            new XAttribute(nameof(CheckBox.Content), "{Binding Item}"),
+                            new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource FilterSelectionBoxItemStyle}}")))
+                ).ToString());
+            }
+
+            if (TextFilterInput != null)
+            {
+                BindingTools.SetBinding(
+                    TextFilterInput,
+                    TextBox.VisibilityProperty,
+                    this,
+                    nameof(IsFullTextEnabled),
+                    converter: new Converters.BooleanToVisibilityConverter());
+            }
+
+            if (TextFilterString != null)
+            {
+                BindingTools.SetBinding(
+                    TextFilterString,
+                    TextBox.VisibilityProperty,
+                    this,
+                    nameof(IsFullTextEnabled),
+                    converter: new InvertedBooleanToVisibilityConverter());
+            }
+        }
+    }
+
+    public class FilterSelectionBox : FilterSelectionBoxBase
+    {
+        private BindingExpressionBase textInputBinding;
 
         public SelectableIdItemList ItemsList
         {
@@ -180,12 +215,6 @@ namespace Playnite.DesktopApp.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            TextFilterInput = Template.FindName("PART_TextFilterInput", this) as TextBox;
-            if (ButtonClearFilter != null)
-            {
-                ButtonClearFilter.Click += ClearButton_Click;
-            }
-
             if (TextFilterInput != null)
             {
                 textInputBinding = BindingTools.SetBinding(
@@ -196,28 +225,12 @@ namespace Playnite.DesktopApp.Controls
                     delay: 200,
                     trigger: System.Windows.Data.UpdateSourceTrigger.PropertyChanged,
                     mode: BindingMode.TwoWay);
-                BindingTools.SetBinding(
-                    TextFilterInput,
-                    TextBox.VisibilityProperty,
-                    this,
-                    nameof(IsFullTextEnabled),
-                    converter: new Converters.BooleanToVisibilityConverter());
-            }
-
-            if (TextFilterString != null)
-            {
-                BindingTools.SetBinding(
-                    TextFilterString,
-                    TextBox.VisibilityProperty,
-                    this,
-                    nameof(IsFullTextEnabled),
-                    converter: new InvertedBooleanToVisibilityConverter());
             }
 
             UpdateTextStatus();
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        public override void ClearButtonAction(RoutedEventArgs e)
         {
             FilterProperties = null;
             IgnoreChanges = true;

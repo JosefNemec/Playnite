@@ -12,6 +12,20 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class Platform : DatabaseObject
     {
+        private string platformId;
+        /// <summary>
+        /// Gets or sets platform identifier.
+        /// </summary>
+        public string PlatformId
+        {
+            get => platformId;
+            set
+            {
+                platformId = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string icon;
         /// <summary>
         /// Gets or sets platform icon.
@@ -72,7 +86,7 @@ namespace Playnite.SDK.Models
 
         /// <inheritdoc/>
         public override string ToString()
-        {            
+        {
             return Name;
         }
 
@@ -101,6 +115,11 @@ namespace Playnite.SDK.Models
                 if (!string.Equals(Background, tro.Background, StringComparison.Ordinal))
                 {
                     tro.Background = Background;
+                }
+
+                if (!string.Equals(PlatformId, tro.PlatformId, StringComparison.Ordinal))
+                {
+                    tro.PlatformId = PlatformId;
                 }
             }
             else

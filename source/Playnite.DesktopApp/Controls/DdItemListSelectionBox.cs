@@ -11,10 +11,8 @@ using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
 {
-    public class DdItemListSelectionBox : FilterSelectionBoxBase
+    public class DdItemListSelectionBox : ComboBoxListBase
     {
-        public override string ItemStyleName => "DdItemListSelectionBoxItemStyle";
-
         public SelectableDbItemList ItemsList
         {
             get
@@ -78,24 +76,6 @@ namespace Playnite.DesktopApp.Controls
             typeof(DdItemListSelectionBox),
             new PropertyMetadata(null, BoundIdsPropertyChangedCallback));
 
-        public bool IsThreeState
-        {
-            get
-            {
-                return (bool)GetValue(IsThreeStateProperty);
-            }
-
-            set
-            {
-                SetValue(IsThreeStateProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty IsThreeStateProperty = DependencyProperty.Register(
-            nameof(IsThreeState),
-            typeof(bool),
-            typeof(DdItemListSelectionBox));
-
         private static void BoundIdsPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var obj = sender as DdItemListSelectionBox;
@@ -118,12 +98,6 @@ namespace Playnite.DesktopApp.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
-            if (ButtonClearFilter != null)
-            {
-                ButtonClearFilter.Click += ClearButton_Click;
-            }
-
             if (ItemsPanel != null)
             {
                 XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
@@ -133,14 +107,14 @@ namespace Playnite.DesktopApp.Controls
                             new XAttribute(nameof(CheckBox.IsChecked), "{Binding Selected}"),
                             new XAttribute(nameof(CheckBox.Content), "{Binding Item.Name}"),
                             new XAttribute(nameof(CheckBox.IsThreeState), "{Binding IsThreeState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=DdItemListSelectionBox}}"),
-                            new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource {ItemStyleName}}}")))
+                            new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource ComboBoxListItemStyle}}")))
                 ).ToString());
             }
 
             UpdateTextStatus();
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        public override void ClearButtonAction(RoutedEventArgs e)
         {
             ItemsList.SetSelection(null);
             BoundIds = null;

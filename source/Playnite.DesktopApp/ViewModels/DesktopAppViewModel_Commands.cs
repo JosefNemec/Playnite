@@ -55,6 +55,8 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenLibraryIntegrationsConfigCommand { get; private set; }
         public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
         public RelayCommand<object> RestartInSafeMode { get; private set; }
+        public SimpleCommand UpdateEmulationDirsCommand { get; private set; }
+        public RelayCommand<GameScannerConfig> UpdateEmulationDirCommand { get; private set; }
 
         public RelayCommand<Game> StartGameCommand { get; private set; }
         public RelayCommand<AppSoftware> StartSoftwareToolCommand { get; private set; }
@@ -135,7 +137,7 @@ namespace Playnite.DesktopApp.ViewModels
             UpdateGamesCommand = new RelayCommand<object>((a) =>
             {
 #pragma warning disable CS4014
-                UpdateDatabase(AppSettings.DownloadMetadataOnImport);
+                UpdateLibrary(AppSettings.DownloadMetadataOnImport);
 #pragma warning restore CS4014
             }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.F5));
@@ -222,12 +224,12 @@ namespace Playnite.DesktopApp.ViewModels
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
             {
-                //ImportEmulatedGames(
-                //    new EmulatorImportViewModel(Database,
-                //    EmulatorImportViewModel.DialogType.GameImport,
-                //    new EmulatorImportWindowFactory(),
-                //    Dialogs,
-                //    Resources));
+                ImportEmulatedGames(
+                    new EmulatedGamesImportViewModel(
+                        Database,
+                        new EmulatedGameImportWindowFactory(),
+                        Dialogs,
+                        Resources));
             }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.Q, ModifierKeys.Control));
 
@@ -315,14 +317,8 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (!Extensions.InvokeExtension(f, out var error))
                 {
-                    var message = error.Message;
-                    if (error is ScriptRuntimeException err)
-                    {
-                        message = err.Message + "\n\n" + err.ScriptStackTrace;
-                    }
-
                     Dialogs.ShowMessage(
-                         message,
+                         error.Message,
                          Resources.GetString("LOCScriptError"),
                          MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -578,6 +574,16 @@ namespace Playnite.DesktopApp.ViewModels
             SwitchDetailsViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.Details);
             SwitchGridViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.Grid);
             SwitchListViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.List);
+
+            UpdateEmulationDirCommand = new RelayCommand<GameScannerConfig>((a) =>
+            {
+                UpdateEmulationLibrary(a);
+            }, (a) => GameAdditionAllowed);
+
+            UpdateEmulationDirsCommand = new SimpleCommand(() =>
+            {
+                UpdateEmulationLibrary();
+            }, () => GameAdditionAllowed);
         }
     }
 }
