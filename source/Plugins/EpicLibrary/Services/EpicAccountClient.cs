@@ -38,6 +38,7 @@ namespace EpicLibrary.Services
         private readonly string accountUrl = @"";
         private readonly string assetsUrl = @"";
         private readonly string catalogUrl = @"";
+        private readonly string playtimeUrl = @"";
         private const string authEcodedString = "MzRhMDJjZjhmNDQxNGUyOWIxNTkyMTg3NmRhMzZmOWE6ZGFhZmJjY2M3Mzc3NDUwMzlkZmZlNTNkOTRmYzc2Y2Y=";
 
         public EpicAccountClient(IPlayniteAPI api, string tokensPath)
@@ -48,6 +49,7 @@ namespace EpicLibrary.Services
             var accountUrlMask = @"https://{0}/account/api/public/account/";
             var assetsUrlMask = @"https://{0}/launcher/api/public/assets/Windows?label=Live";
             var catalogUrlMask = @"https://{0}/catalog/api/shared/namespace/";
+            var playtimeUrlMask = @"https://{0}/library/api/public/playtime/account/{0}/all";
 
             var loadedFromConfig = false;
             if (!string.IsNullOrEmpty(EpicLauncher.PortalConfigPath) && File.Exists(EpicLauncher.PortalConfigPath))
@@ -59,6 +61,7 @@ namespace EpicLibrary.Services
                     accountUrl = string.Format(accountUrlMask, config["Portal.OnlineSubsystemMcp.OnlineIdentityMcp Prod"]["Domain"].TrimEnd('/'));
                     assetsUrl = string.Format(assetsUrlMask, config["Portal.OnlineSubsystemMcp.BaseServiceMcp Prod"]["Domain"].TrimEnd('/'));
                     catalogUrl = string.Format(catalogUrlMask, config["Portal.OnlineSubsystemMcp.OnlineCatalogServiceMcp Prod"]["Domain"].TrimEnd('/'));
+                    playtimeUrl = string.Format(playtimeUrlMask, config["Portal.OnlineSubsystemMcp.OnlineLibraryServiceMcp Prod"]["Domain"].TrimEnd('/'));
                     loadedFromConfig = true;
                 }
                 catch (Exception e) when (!Debugger.IsAttached)
@@ -73,6 +76,7 @@ namespace EpicLibrary.Services
                 accountUrl = string.Format(accountUrlMask, "account-public-service-prod03.ol.epicgames.com");
                 assetsUrl = string.Format(assetsUrlMask, "launcher-public-service-prod06.ol.epicgames.com");
                 catalogUrl = string.Format(catalogUrlMask, "catalog-public-service-prod06.ol.epicgames.com");
+                playtimeUrl = string.Format(playtimeUrlMask, "library-service.live.use1a.on.epicgames.com");
             }
         }
 
@@ -171,6 +175,16 @@ namespace EpicLibrary.Services
             }
 
             return InvokeRequest<List<Asset>>(assetsUrl, loadTokens()).GetAwaiter().GetResult().Item2;
+        }
+
+        public List<PlaytimeItem> GetPlaytimeItems()
+        {
+            if (!GetIsUserLoggedIn())
+            {
+                throw new Exception("User is not authenticated.");
+            }
+
+            return InvokeRequest<List<PlaytimeItem>>(playtimeUrl, loadTokens()).GetAwaiter().GetResult().Item2;
         }
 
         public CatalogItem GetCatalogItem(string nameSpace, string id, string cachePath)

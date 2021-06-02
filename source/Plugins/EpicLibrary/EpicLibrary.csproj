@@ -79,6 +79,7 @@
     <Compile Include="Models\AccountResponse.cs" />
     <Compile Include="Models\AssetsResponse.cs" />
     <Compile Include="Models\CatalogResponse.cs" />
+    <Compile Include="Models\PlaytimesResponse.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\LauncherInstalled.cs" />
     <Compile Include="Models\OauthResponse.cs" />

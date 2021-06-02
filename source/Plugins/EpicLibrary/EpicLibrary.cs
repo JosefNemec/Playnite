@@ -90,6 +90,7 @@ namespace EpicLibrary
             {
                 logger.Warn("Found no assets on Epic accounts.");
             }
+            var playtimeItems = accountApi.GetPlaytimeItems();
 
             foreach (var gameAsset in assets.Where(a => a.@namespace != "ue"))
             {
@@ -111,7 +112,8 @@ namespace EpicLibrary
                     Source = "Epic",
                     GameId = gameAsset.appName,
                     Name = catalogItem.title.RemoveTrademarks(),
-                    Platform = "PC"
+                    Platform = "PC",
+                    Playtime = playtimeItems.Where(x => x.artifactId == gameAsset.appName).Select(x => x.totalTime).FirstOrDefault()
                 });
             }
 
