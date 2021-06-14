@@ -39,7 +39,17 @@ namespace GogLibrary
                 return new Tuple<GameAction, List<GameAction>>(null, null);
             }
 
-            var gameTaskData = JsonConvert.DeserializeObject<GogGameActionInfo>(File.ReadAllText(gameInfoPath));
+            GogGameActionInfo gameTaskData = null;
+            try
+            {
+                gameTaskData = JsonConvert.DeserializeObject<GogGameActionInfo>(File.ReadAllText(gameInfoPath));
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to read install gog game manifest: {gameInfoPath}.");
+                return new Tuple<GameAction, List<GameAction>>(null, null);
+            }
+
             var playTask = gameTaskData.playTasks.FirstOrDefault(a => a.isPrimary)?.ConvertToGenericTask(installDir);
             if (playTask != null)
             {

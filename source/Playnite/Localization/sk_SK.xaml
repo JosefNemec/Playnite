@@ -736,7 +736,7 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCPostScriptDescription">Skript, ktorý sa má vykonať po ukončení hry</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skript, ktorý sa má vykonať po spustení hry</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Spustiť globálny skript</sys:String>
-    <sys:String x:Key="LOCStatsGlobal"></sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Globálne</sys:String>
     <sys:String x:Key="LOCStatsFiltered"></sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
     <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
@@ -814,22 +814,17 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motív vzhľadu/rozširenie používa nepodporovanu verziu API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Inštalácia bola úspešná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainštalovať rozšírenie?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Obecné</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Inštalácia rozšírenia zlyhala.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Chcete nainštalovať nové rozšírenie? Existujúca verzia sa prepíše.
-
-{0}
-Vytvoril(a) {1}
-Verzia {2}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Inštalácia motívu zlyhala.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Chcete nainštalovať nový motív vzhľadu? Predchádzajúca inštalácia sa prepíše.
-
-{0}
-Od {1}
-Verzia {2}</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Chystáte sa opustiť Playnite a otvoriť nasledujúcu web stránku vo vašom predvolenom webovom prehliadači.
 Chcete pokračovať?
  

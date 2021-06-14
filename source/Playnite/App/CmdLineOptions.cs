@@ -45,6 +45,9 @@ namespace Playnite
         [Option("safestartup")]
         public bool SafeStartup { get; set; }
 
+        [Option("masterinstance")]
+        public bool MasterInstance { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

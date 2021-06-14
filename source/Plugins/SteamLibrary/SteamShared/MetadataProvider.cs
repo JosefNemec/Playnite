@@ -312,7 +312,7 @@ namespace Steam
                 var cultInfo = new CultureInfo("en-US", false).TextInfo;
                 gameInfo.ReleaseDate = downloadedMetadata.StoreDetails.release_date.date;
                 gameInfo.CriticScore = downloadedMetadata.StoreDetails.metacritic?.score;
-                if (downloadedMetadata.UserReviewDetails != null)
+                if (downloadedMetadata.UserReviewDetails?.total_reviews > 0)
                 {
                     gameInfo.CommunityScore = CalculateUserScore(downloadedMetadata.UserReviewDetails);
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.Common;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -130,11 +131,18 @@ namespace System.Diagnostics
                 return false;
             }
 
-            var fileNameBuilder = new StringBuilder(buffer);
-            uint bufferLength = (uint)fileNameBuilder.Capacity + 1;
-            var result = QueryFullProcessImageName(handle, 0, fileNameBuilder, ref bufferLength);
-            fileName = result ? fileNameBuilder.ToString() : null;
-            return result;
+            try
+            {
+                var fileNameBuilder = new StringBuilder(buffer);
+                uint bufferLength = (uint)fileNameBuilder.Capacity + 1;
+                var result = QueryFullProcessImageName(handle, 0, fileNameBuilder, ref bufferLength);
+                fileName = result ? fileNameBuilder.ToString() : null;
+                return result;
+            }
+            finally
+            {
+                Interop.CloseHandle(handle);
+            }
         }
 
         public static bool TryGetParentId(this Process process, out int processId)
@@ -146,15 +154,22 @@ namespace System.Diagnostics
                 return false;
             }
 
-            var info = new PROCESS_BASIC_INFORMATION();
-            int status = NtQueryInformationProcess(handle, 0, ref info, Marshal.SizeOf(info), out var returnLength);
-            if (status != 0)
+            try
             {
-                return false;
-            }
+                var info = new PROCESS_BASIC_INFORMATION();
+                int status = NtQueryInformationProcess(handle, 0, ref info, Marshal.SizeOf(info), out var returnLength);
+                if (status != 0)
+                {
+                    return false;
+                }
 
-            processId = info.InheritedFromUniqueProcessId.ToInt32();
-            return true;
+                processId = info.InheritedFromUniqueProcessId.ToInt32();
+                return true;
+            }
+            finally
+            {
+                Interop.CloseHandle(handle);
+            }
         }
 
         public static bool IsRunning(string processPattern)

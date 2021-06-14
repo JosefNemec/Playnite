@@ -158,6 +158,7 @@ namespace PlayniteServices.Controllers.IGDB
             var copyGame = game.GetClone();
             copyGame.Name = StringExtensions.NormalizeGameName(game.Name);
             copyGame.Name = FixNointroNaming(copyGame.Name);
+            copyGame.Name = copyGame.Name.Replace(@"\", string.Empty);
             var name = copyGame.Name;
             name = Regex.Replace(name, @"\s+RHCP$", "", RegexOptions.IgnoreCase);
             name = Regex.Replace(name, @"\s+RU$", "", RegexOptions.IgnoreCase);
@@ -299,7 +300,14 @@ namespace PlayniteServices.Controllers.IGDB
 
         private string ReplaceNumsForRomans(Match m)
         {
-            return Roman.To(int.Parse(m.Value));
+            if (int.TryParse(m.Value, out var intVal))
+            {
+                return Roman.To(intVal);
+            }
+            else
+            {
+                return m.Value;
+            }
         }
     }
 }

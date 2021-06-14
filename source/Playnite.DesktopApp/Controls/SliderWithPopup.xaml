@@ -4,22 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ctrls="clr-namespace:Playnite.DesktopApp.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="SliderGrid">
-        <ctrls:SliderEx x:Name="Slider" SmallChange="1" LargeChange="10"
-                        FinalValue="{Binding SliderValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
-                        Maximum="{Binding SliderMaximumValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneTime}"
-                        Minimum="{Binding SliderMinimumValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneTime}"
-                        IsSnapToTickEnabled="True" Width="150" DockPanel.Dock="Right" VerticalAlignment="Center"
-                        MouseMove="Slider_MouseMove" MouseLeave="Slider_MouseLeave">
-        </ctrls:SliderEx>
-        <!--<Popup Name="Popup">
-            <Grid Name="PopupGrid" Background="{DynamicResource TooltipBackgroundBrush}">
-                <Border BorderBrush="{DynamicResource PopupBorderBrush}" BorderThickness="{DynamicResource PopupBorderThickness}">
-                    <Label Foreground="{DynamicResource TextBrush}" Margin="4" Content="{Binding PopupLabel, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
-                </Border>
-            </Grid>
-        </Popup>-->
-    </Grid>
+             mc:Ignorable="d" MinWidth="150"
+             d:DesignHeight="100" d:DesignWidth="150"> 
+
+    <ctrls:SliderEx x:Name="Slider" SmallChange="1" LargeChange="10"
+                FinalValue="{Binding SliderValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
+                Maximum="{Binding SliderMaximumValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneTime}"
+                Minimum="{Binding SliderMinimumValue, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneTime}"
+                IsSnapToTickEnabled="True" DockPanel.Dock="Right" VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                MouseMove="Slider_MouseMove" MouseLeave="Slider_MouseLeave">
+    </ctrls:SliderEx>
 </UserControl>

@@ -25,7 +25,7 @@ Extensions fall under several categories of extended functionality that are avai
 Creating Extensions
 ---------------------
 
-It's highly recommended to use [Toolbox](toolbox.md) utility to create new extensions. It will generate base directory structure and all files needed for you.
+It's highly recommended to use [Toolbox](../toolbox.md) utility to create new extensions. It will generate base directory structure and all files needed for you.
 
 ### 1. Directory structure and location
 
@@ -35,11 +35,11 @@ First create new extension folder inside of Playnite's `Extensions` directory. L
 - Installed version: `%AppData%\Playnite\Extensions` folder.
 
 > [!WARNING] 
-> Automatic installations and updates via `.pext` and `.pthm` files always replace the extension/theme directory completely. Meaning that any files that are not part of the installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See [Data directories](extensions/dataDirectory.md) page to learn more about extension data folders.
+> Automatic installations and updates via `.pext` and `.pthm` files always replace the extension/theme directory completely. Meaning that any files that are not part of the installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See [Data directories](dataDirectory.md) page to learn more about extension directories.
 
 ### 2. Manifest file
 
-Every extension must provide valid [manifest file](extensions/extensionsManifest.md) in order to be recognized and loaded by Playnite. Manifest is YAML formatted file called `extension.yaml` that must be stored inside of extension directory.
+Every extension must provide valid [manifest file](extensionsManifest.md) in order to be recognized and loaded by Playnite. Manifest is YAML formatted file called `extension.yaml` that must be stored inside of extension directory.
 
 Resulting folder structure should look something like this:
 ```
@@ -50,13 +50,13 @@ Resulting folder structure should look something like this:
 │          └── scriptFileName.py or pluginFileName.dll
 ```
 
-See manifest file [documentation page](extensions/extensionsManifest.md) for more information about manifest contents.
+See manifest file [documentation page](extensionsManifest.md) for more information about manifest contents.
 
 ### 3. Implementing extension
 
-For scripts see [scripting introduction page](extensions/scripting.md).
+For scripts see [scripting introduction page](scripting.md).
 
-For plugins see [plugins introduction page](extensions/plugins.md).
+For plugins see [plugins introduction page](plugins.md).
 
 Loading extensions
 ---------------------
@@ -66,6 +66,6 @@ Extensions are loaded automatically by Playnite at every startup (unless extensi
 Distribution
 ---------------------
 
-Use [Toolbox](toolbox.md#packing-extensions) utility to package an extension or a theme and distribute `.pext` or `.pthm` file to users.
+Use [Toolbox](../toolbox.md#packing-extensions) utility to package an extension or a theme and distribute `.pext` or `.pthm` file to users.
 
 The best place to share extensions is official Playnite forum, specifically [extension database](https://playnite.link/forum/forum-3.html) sub-forum.

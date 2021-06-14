@@ -148,7 +148,8 @@ namespace Playnite.Common
             var executables = Directory.GetFiles(directory, "*.exe", SearchOption.AllDirectories);
             if (executables.Count() == 0)
             {
-                throw new Exception($"Cannot watch directory processes {directory}, no executables found.");
+                logger.Error($"Cannot watch directory processes {directory}, no executables found.");
+                OnTreeDestroyed();
             }
 
             var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
@@ -218,7 +219,7 @@ namespace Playnite.Common
                 throw new DirectoryNotFoundException($"Cannot watch directory processes, {directory} not found.");
             }
 
-            watcherToken = new CancellationTokenSource();      
+            watcherToken = new CancellationTokenSource();
             var startedCalled = false;
             var processStarted = false;
             var failCount = 0;
@@ -246,7 +247,7 @@ namespace Playnite.Common
                             }
                         }
                     }
-                }                
+                }
                 catch (Exception e) when (failCount < 5)
                 {
                     // This shouldn't happen, but there were some crash reports from Process.GetProcesses
@@ -268,11 +269,11 @@ namespace Playnite.Common
 
                 await Task.Delay(2000);
             }
-        }            
+        }
 
         private async Task WatchProcess(Process process)
         {
-            watcherToken = new CancellationTokenSource();            
+            watcherToken = new CancellationTokenSource();
             var ids = new List<int>() { process.Id };
             var failCount = 0;
 

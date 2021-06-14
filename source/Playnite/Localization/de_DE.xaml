@@ -678,7 +678,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCReloadScripts">Skripte neu laden</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Alle Skripte erfolgreich neu geladen.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Für die angegebenen Such-/Filterkriterien wurden keine Spiele gefunden</sys:String>
-    <sys:String x:Key="LOCNoItemsFound">Keine Elemente gefunden</sys:String>
+    <sys:String x:Key="LOCNoItemsFound">Keine Inhalte gefunden</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Zu Desktopmodus wechseln</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite beenden</sys:String>
     <sys:String x:Key="LOCLibraries">Bibliotheken</sys:String>
@@ -817,22 +817,31 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Design/Erweiterung verwendet eine nicht unterstützte API-Version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation war erfolgreich.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Erweiterung installieren?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Allgemein</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Erweiterung konnte nicht installiert werden.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Möchtest du eine neue Erweiterung installieren? Die bestehende Installation wird überschrieben.
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Möchtest du eine neue Erweiterung installieren?
 
 {0}
 Von {1}
 Version {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Möchtest du die Erweiterung »{0}« aktualisieren?
+
+Installierte Version: {1}
+Neue Version: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Design konnte nicht installiert werden.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Möchtest du ein neues Design installieren? Die vorherige Installation wird überschrieben.
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Möchtest du ein neues Design installieren?
 
 {0}
 Von {1}
 Version {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Möchtest du das Design »{0}« aktualisieren?
+
+Installierte Version: {1}
+Neue Version: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Du bist im Begriff, Playnite zu verlassen und mit deinem Standard-Webbrowser die folgende Webseite zu öffnen. Möchtest du fortfahren?
 
 {0}</sys:String>

@@ -738,10 +738,10 @@ Du kan prøve disse for å løse problemet:
     <sys:String x:Key="LOCPostScriptDescription">Skript som skal utføres etter du avslutter et spill</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skript som skal utføres etter at et spill er startet</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Utfør globalt skript</sys:String>
-    <sys:String x:Key="LOCStatsGlobal"></sys:String>
-    <sys:String x:Key="LOCStatsFiltered"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Globalt</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Filtrert</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Gjeldende</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Ny</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Lagre som standard</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Legg til i favoritter</sys:String>
@@ -810,29 +810,38 @@ Du kan prøve disse for å løse problemet:
 Playnite må startes på nytt for å fullføre installasjonen. Vil du starte på nytt nå?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Utvidelse er ikke pakket ordentlig.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Tema er ikke pakket ordentlig.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Utvidelsen &quot;{0}&quot; lastet ikke inn riktig.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Temaet &quot;{0}&quot; lastet ikke inn riktig.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Utvidelsen lastet ikke inn riktig.</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Temaet lastet ikke inn riktig.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme / Extension bruker ikke-støttet API-versjon.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installasjonen var vellykket.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installér utvidelsen?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Generelt</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Kunne ikke installere utvidelsen.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vil du installere ny utvidelse? Eksisterende installasjon blir overskrevet.
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Vil du installere en ny utvidelse?
 
 {0}
-Av{1}
+Av {1}
 Versjon {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Vil du oppdatere utvidelsen &quot;{0}&quot;?
+
+Nåværende versjon: {1}
+Ny versjon: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Kunne ikke installere tema.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vil du installere ny tema? Eksisterende installasjon blir overskrevet.
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Vil du installere et nytt tema?
 
 {0}
-Av{1}
+Av {1}
 Versjon {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Vil du oppdatere temaet &quot;{0}&quot;?
+
+Nåværende versjon: {1}
+Ny versjon: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Du er i ferd med å forlate Playnite og navigere til følgende webside ved å bruke din standard nettleser. Vil du fortsette?
 
 {0}</sys:String>

@@ -248,6 +248,16 @@ namespace BattleNetLibrary
                 {
                     new Link("Homepage", "https://www.callofduty.com/mw2campaignremastered")
                 }
+            },
+            new BNetApp()
+            {
+                ApiId = 1514493267,
+                ProductId = "ZEUS",
+                InternalId = "zeus",
+                BackgroundUrl = @"https://bnetproduct-a.akamaihd.net//60/d4b6308a9c0ffb51f723462ef1bb73b9-CODBO_CW-Bnet_Product_Desktop-Background-2280x910-UPDATE-For_20200826.jpg",
+                CoverUrl = "https://bnetproduct-a.akamaihd.net//ffd/a8bbbeddae915be62457bc2799f602d0-CODCW-Bnet_Shop_Prod_Card_Vert-700x850-For_20200826.jpg",
+                Name = "Call of Duty: Black Ops Cold War",
+                Type = BNetAppType.Default
             }
         };
 

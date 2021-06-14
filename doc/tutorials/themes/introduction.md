@@ -26,6 +26,9 @@ Creating Playnite themes
 > [!WARNING] 
 > Do not edit built-in default themes. Always create new copy of theme files are edit those. Broken edits to default theme files could to Playnite not being able to start anymore.
 
+> [!WARNING] 
+> Please read the documentation carefully, especially section about [distribution and theme updates](distributionAndUpdates.md). Not updating your theme regularly could cause issues to theme users, for example they might not be able to use newly added features. Or they might not be able to load the theme at all in newer version of Playnite, in the worst case scenario.
+
 There are generally two approaches to theme creation in Playnite.
 
 1. **[Manually editing](manualEditing.md)** XAML files using any text editor.

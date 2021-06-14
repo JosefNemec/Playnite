@@ -22,7 +22,7 @@ namespace UplayLibrary
             get
             {
                 var path = InstallationPath;
-                return string.IsNullOrEmpty(path) ? string.Empty : Path.Combine(path, "Uplay.exe");
+                return string.IsNullOrEmpty(path) ? string.Empty : Path.Combine(path, "UbisoftConnect.exe");
             }
         }
 
@@ -30,7 +30,7 @@ namespace UplayLibrary
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Uplay");
+                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Ubisoft Connect");
                 if (progs == null)
                 {
                     return string.Empty;
@@ -62,7 +62,7 @@ namespace UplayLibrary
         {
             get
             {
-                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Uplay");
+                var progs = Programs.GetUnistallProgramsList().FirstOrDefault(a => a.DisplayName == "Ubisoft Connect");
                 if (progs == null)
                 {
                     return false;
@@ -85,6 +85,11 @@ namespace UplayLibrary
 
             var fileEnumerator = new SafeFileEnumerator(game.InstallDirectory, "uplay_*_loader*", SearchOption.AllDirectories);
             return fileEnumerator.Any() == true;
+        }
+
+        public static string GetLaunchString(string gameId)
+        {
+            return $"uplay://launch/{gameId}";
         }
 
         public static List<ProductInformation> GetLocalProductCache()

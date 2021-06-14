@@ -57,6 +57,7 @@ namespace Playnite
     public class PipeServer
     {
         private string endpoint;
+        ServiceHost serviceHost;
 
         public PipeServer(string endpoint)
         {
@@ -65,9 +66,14 @@ namespace Playnite
 
         public void StartServer(IPipeService service)
         {
-            var serviceHost = new ServiceHost(service, new Uri[] { new Uri(endpoint) });
+            serviceHost = new ServiceHost(service, new Uri[] { new Uri(endpoint) });
             serviceHost.AddServiceEndpoint(typeof(IPipeService), new NetNamedPipeBinding(), "PlayniteService");
             serviceHost.Open();
+        }
+
+        public void StopServer()
+        {
+            serviceHost.Close();
         }
     }
 

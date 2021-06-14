@@ -778,18 +778,17 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/proširenje koristi nepodržanu API verziju.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalacija je uspješna.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instaliraj proširenje?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Neuspjela instalacija proširenja.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Hoćete li da instalirate novo proširenje? Trenutna instalacija će biti nadglašena.
-
-{0}
-Od {1}
-Verzija {2}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Instalacija teme nije uspjela.
 
 {0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Upozorenje za performanse</sys:String>

@@ -31,6 +31,7 @@ namespace Playnite.Windows
 
     public abstract class WindowFactory : IWindowFactory
     {
+        private static ILogger logger = LogManager.GetLogger();
         private readonly SynchronizationContext context;
         private bool asDialog = false;
         public bool IsClosed { get; private set; } = true;
@@ -50,6 +51,7 @@ namespace Playnite.Windows
 
         public bool? CreateAndOpenDialog(object dataContext)
         {
+            logger.Debug($"Show dialog window {GetType()}");
             bool? result = null;
             context.Send((a) =>
             {
@@ -81,11 +83,13 @@ namespace Playnite.Windows
 
         public void Show(object dataContext)
         {
+            logger.Debug($"Show window {GetType()}");
             context.Send((a) =>
             {
                 asDialog = false;
                 if (IsClosed)
                 {
+                    logger.Debug($"Opening window that was closed previously {GetType()}");
                     Window = CreateNewWindowInstance();
                     Window.Closed += Window_Closed;
                 }
@@ -116,11 +120,21 @@ namespace Playnite.Windows
 
         public void Close(bool? result)
         {
+            logger.Debug($"Closing window {GetType()}, {result}.");
             context.Send((a) =>
             {
                 if (asDialog)
                 {
-                    Window.DialogResult = result;
+                    try
+                    {
+                        // This sometimes fails on error that dialog was not created before closing, which makes no sense.
+                        Window.DialogResult = result;
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"DialogResult fail {GetType()}, {result}");
+                        throw;
+                    }
                 }
 
                 Window.Close();

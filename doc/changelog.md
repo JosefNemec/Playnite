@@ -18,19 +18,19 @@
 #### 5.3.0
 
 * **Breaking Changes**:
-  * Playnite will no longer load plugins that reference non-SDK Playnite assemblies. See [this page](tutorials/plugins/plugins.md#referencing-playnite-assemblies) for more information.
+  * Playnite will no longer load plugins that reference non-SDK Playnite assemblies. See [this page](tutorials/extensions/plugins.md#referencing-playnite-assemblies) for more information.
   * Playnite will no longer install extensions and themes that don't have proper version specified. The version string must a valid [.NET version string](https://docs.microsoft.com/en-us/dotnet/api/system.version)!
 
 * **Now obsolete**:
 
   * These changes do not break compatibility in current version (mentioned methods are still available in SDK), but they will be made breaking in future major Playnite updates.
-  * Added `Id` to extension and theme [manifests](tutorials/extensionsManifest.md). This field is currently not mandatory for existing extensions (Playnite 8 will load installed extensions without an ID, but will not install new ones without an ID), but should be provided for better extension installation and update support. Toolbox will not pack new extensions unless `Id` is present.
-  * The way custom menu items are implemented (for main menu and game menu) has been completely changed (the old system still works temporarily). See [related documentation page](tutorials/menus.md) for more information.
+  * Added `Id` to extension and theme [manifests](tutorials/extensions/extensionsManifest.md). This field is currently not mandatory for existing extensions (Playnite 8 will load installed extensions without an ID, but will not install new ones without an ID), but should be provided for better extension installation and update support. Toolbox will not pack new extensions unless `Id` is present.
+  * The way custom menu items are implemented (for main menu and game menu) has been completely changed (the old system still works temporarily). See [related documentation page](tutorials/extensions/menus.md) for more information.
   * [NavigationChanged](xref:Playnite.SDK.IWebView) from IWebView is now obsolete, use new `LoadingChanged` instead.
 
 * New
   * Metadata plugins can now provide `Features`, `AgeRating`, `Series`, `Region` and `Platform` data.
-  * Extensions can now provide [custom menu items](tutorials/menus.md) for game menus, including nested entries.
+  * Extensions can now provide [custom menu items](tutorials/extensions/menus.md) for game menus, including nested entries.
   * Most useful Playnite settings are now exposed in [IPlayniteSettingsAPI](xref:Playnite.SDK.IPlayniteSettingsAPI).
   * [ActivateGlobalProgress](xref:Playnite.SDK.IDialogsFactory) method to show blocking progress dialog.
   * [LoadingChanged](xref:Playnite.SDK.IWebView) event for WebViews.
@@ -44,11 +44,11 @@
   * [Toolbox](tutorials/toolbox.md) utility has been reworked and accepts different arguments then previously.
 
 * New
-  * Library plugins can now support extra [capabilities](tutorials/plugins/libraryPlugins.md#capabilities).
+  * Library plugins can now support extra [capabilities](tutorials/extensions/libraryPlugins.md#capabilities).
   * Added [ImportGame](xref:Playnite.SDK.IGameDatabase.ImportGame(Playnite.SDK.Models.GameInfo)) methods to more easily add new games to the library.
   * Added [OpenPluginSettings](xref:Playnite.SDK.IMainViewAPI.OpenPluginSettings(System.Guid)) method to open view with extension settings (also accessible via `OpenSettingsView` method inherited from `Plugin` class).
   * Added [StartGame](xref:Playnite.SDK.IPlayniteAPI.StartGame(System.Guid)).
-  * Added [UriHandler](xref:Playnite.SDK.IPlayniteAPI.UriHandler) for registering of custom [URI method actions](tutorials/plugins/uriSupport.md).
+  * Added [UriHandler](xref:Playnite.SDK.IPlayniteAPI.UriHandler) for registering of custom [URI method actions](tutorials/extensions/uriSupport.md).
   * Added option settings when creating offscreen web view (currently only option to disable JavaScript execution).
   * Added `OnGameSelected`, `OnApplicationStopped` and `OnLibraryUpdated` events.
   * Added `Features` game field and appropriate support for it in metadata plugins.
@@ -58,7 +58,7 @@
 #### 5.1.0
 
 * New
-  * Added support for creating metadata providers via [plugins](tutorials/plugins/metadataPlugins.md).
+  * Added support for creating metadata providers via [plugins](tutorials/extensions/metadataPlugins.md).
   * [ChooseImageFile](xref:Playnite.SDK.IDialogsFactory) method for dialogs API. **Only available in Desktop mode.**
   * [ChooseItemWithSearch](xref:Playnite.SDK.IDialogsFactory) method for dialogs API. **Only available in Desktop mode.**
 
@@ -87,14 +87,14 @@
 
 * **Breaking Changes**:
   * In order to unify terminology used in Playnite's UI and that in SDK, some classes and class members were renamed.
-  * Extensions (both plugins and scripts) have to provide [extension manifest](tutorials/extensionsManifest.md) otherwise they won't be loaded.
+  * Extensions (both plugins and scripts) have to provide [extension manifest](tutorials/extensions/extensionsManifest.md) otherwise they won't be loaded.
     * Various information about extension (author, version etc.) must be now stored in manifest file.
   * Both plugins and scripts have to be stored in the same folder called `Extensions` (rather then in separate `Plugins` or `Scripts` folders).
   * Signature for default C# plugins has changed and they now have to implement `IGenericPlugin` interface to be loaded.
 
 * New Plugin types. There are now two types of plugins that can be implemented:
   * Generic Plugin: Same as the old plugins.
-  * [Library Plugin](tutorials/plugins/libraryPlugins.md): Used to add new library providers responsible for automatic game import from various sources.
+  * [Library Plugin](tutorials/extensions/libraryPlugins.md): Used to add new library providers responsible for automatic game import from various sources.
     * All existing supported library importers (Steam, GOG etc.) are now distributed as [library plugins](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins).
 
 * New APIs:
@@ -115,5 +115,5 @@
 #### 1.1.0
 
 * **Breaking Change**: Scripts and Plugins must be place in subfolders rather then directly inside of `Scripts` or `Plugins` folders.
-* New: `OnGameStarting` event that will execute before game is started. See [events](tutorials/scripts/scriptingEvents.md) for use from scripts.
+* New: `OnGameStarting` event that will execute before game is started. See [events](tutorials/extensions/events.md) for use from scripts.
 * New: [ShowErrorMessage](xref:Playnite.SDK.IDialogsFactory.ShowErrorMessage(System.String,System.String)) method in `IDialogsFactory`

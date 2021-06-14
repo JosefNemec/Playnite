@@ -675,7 +675,7 @@
                                     </TextBlock.Style>
                                 </TextBlock>
                                 <Image Source="{Binding CoverImageObject, Mode=OneWay}"
-                                       Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
+                                       Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant" Name="ImageImage"
                                        DockPanel.Dock="Top"/>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Drop" >
@@ -735,7 +735,7 @@
                                     </TextBlock.Style>
                                 </TextBlock>
                                 <Image Source="{Binding BackgroundImageObject, Mode=OneWay}"
-                                   Stretch="Uniform" StretchDirection="Both" RenderOptions.BitmapScalingMode="Fant"
+                                   Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                    DockPanel.Dock="Top"/>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Drop" >

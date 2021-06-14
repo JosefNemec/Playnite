@@ -414,7 +414,7 @@ Si cette option est désactivée, les images de fond ne seront téléchargées q
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Ne pas fermer après une session de jeu plus courte que :</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fermer automatiquement les clients suivants :</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Fermeture auto.</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">Liste d'exclusion :</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Liste d'exclusion</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Avertissement lorsqu'une image dépasse la taille recommandée</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Lancer les jeux sans passer par le client officiel</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Ouverture des répertoires par invite de commande</sys:String>
@@ -813,22 +813,31 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thème/Extension utilise une version d'API non supportée.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Générique</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">L'installation de l'extension a échoué.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Voulez-vous installer une nouvelle extension ? L'installation existante sera supprimée.
-    
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Souhaitez-vous installer une nouvelle extension ?
+
 {0}
 Par {1}
 Version {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Souhaitez-vous mettre à jour l'extension &quot;{0}&quot; ?
+
+Version actuelle : {1}
+Nouvelle version : {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">L'installation du thème a échoué.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Voulez-vous installer un nouveau thème? L'installation existante sera supprimée.
-    
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Souhaitez-vous installer un nouveau thème ?
+
 {0}
 Par {1}
 Version {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Souhaitez-vous mettre à jour le thème &quot;{0}&quot; ?
+
+Version actuelle : {1}
+Nouvelle version : {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Vous êtes sur le point de quitter Playnite pour ouvrir la page web suivante à l'aide de votre navigateur par défaut. Voulez-vous continuer ?
     
 {0}</sys:String>

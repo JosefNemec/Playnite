@@ -299,4 +299,6 @@ if ($Sign)
     Stop-SigningWatcher
 }
 
+(Get-ChildItem (Join-Path $OutputDir "Playnite.dll")).VersionInfo.FileVersion | Write-Host -ForegroundColor Green
+
 return $true

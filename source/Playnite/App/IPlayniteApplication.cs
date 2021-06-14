@@ -10,5 +10,6 @@ namespace Playnite
     {
         void Quit();
         void Restart();
+        void QuitAndStart(string path, string arguments, bool asAdmin = false);
     }
 }

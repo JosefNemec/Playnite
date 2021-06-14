@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Bahasa Indonesia</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Bahasa Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Keluar</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filter aktif</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filter dinonaktifkan</sys:String>
@@ -27,28 +27,34 @@ Tidak dicek - Hilangkan kategori
 Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCNoCategory">Tidak ada kategori</sys:String>
     <sys:String x:Key="LOCNoPlatform">Tidak ada Platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ups! ada kesalahan...</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kesalahan permanen telah terjadi.
+
+Jika butuh bantuan kami, mohon deskripsikan tindakan sebelum kegagalan, lalu kirim informasi diagnostik. Jika online, paket akan di unggah ke server Playnite untuk di analisa.
+
+Alternatifnya, anda bisa ketuk tombol 'Lapor Kegagalan' untuk membuat isu GitHub baru dan melaporkan kegagalan secara manual.
+
+Terimakasih atas bantuannya.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Terjadi kesalahan yang tidak dapat dipulihkan.
 
 Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagnostik. Terima kasih.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Simpan berkas catatan</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Kirim info diag.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Laporkan Masalah</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Muat Ulang Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Mulai ulang dalam Mode Aman</sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Keluar Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Aksi yang dilakukan sebelum terjadi kesalahan (dalam bahasa Inggris):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Pengelola Pustaka</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Hapus Game yang dipilih?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Tidak bisa mencopot - Game sedang berjalan.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Anda yakin ingin membuang game ini?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Anda yakin ingin membuang {0} game?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Kamu yakin ingin menghapus {0} entri yang saat ini sedang tidak digunakan?</sys:String>
@@ -65,7 +71,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCGameStartActionError">Gagal memulai aksi: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Gagal membuka lokasi game: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Gagal membuat shortcut: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">Gagal untuk membuka manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Gagal menginstal game: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Gagal menguninstall game: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
@@ -103,7 +109,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCLastPlayedLabel">Terakhir dimainkan</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Paling sering dimainkan</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Jumlah Main</sys:String>
-    <sys:String x:Key="LOCNotesLabel"></sys:String>
+    <sys:String x:Key="LOCNotesLabel">Catatan</sys:String>
     <sys:String x:Key="LOCAddedLabel">Ditambahkan</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Tanggal Ditambahkan</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Dimodifikasi</sys:String>
@@ -125,7 +131,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCInstallationLabel">Instalasi</sys:String>
     <sys:String x:Key="LOCActionsLabel">Aksi</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">Mengunduh…</sys:String>
-    <sys:String x:Key="LOCDownloadingMediaLabel"></sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel">Mengunduh media...</sys:String>
     <sys:String x:Key="LOCLoadingLabel">Memuat...</sys:String>
     <sys:String x:Key="LOCTypeLabel">Tipe</sys:String>
     <sys:String x:Key="LOCProfileLabel">Profil</sys:String>
@@ -199,10 +205,10 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Pengelola Pustaka…</sys:String>
     <sys:String x:Key="LOCMenuTools">Alat</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Mendownload metadata...</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
-    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">Alat Perangkat Halus...</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Konfigurasi Integrasi...</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Buka Client Pihak Ketiga</sys:String>
-    <sys:String x:Key="LOCMenuClients"></sys:String>
+    <sys:String x:Key="LOCMenuClients">Klien Pihak Ketiga</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Muat Ulang List Game</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Tambah Game</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Cari...</sys:String>
@@ -264,7 +270,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsImportLabel">Import perubahan library secara otomatis</sys:String>
     <sys:String x:Key="LOCSettingsImportInstalledLabel">Import game yang sudah terinstal</sys:String>
     <sys:String x:Key="LOCSettingsConnectAccount">Hubungkan akun</sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsImportUninstalledLabel">Impor game yang belum terpasang</sys:String>
     <sys:String x:Key="LOCSettingsImportLibraryLabel">Import semua game</sys:String>
     <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Impor semua game (Akun publik atau kunci API diperlukan)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Lokasi file database invalid, silahkan set path yang benar.</sys:String>
@@ -273,16 +279,16 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport">Tidak ada akun Steam dipilih untuk import kategori.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Download library pihak ketiga saat memulai program.</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Download metadata setelah mengimpor game</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Luncurkan Playnite diperkecil.</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">Luncurkan Playnite ketika menyala.</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Gagal menambahkan Playnite ke daftar start up</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Luncurkan dalam Mode Layar Penuh</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Muat Steam, Origin dan lainnya.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Muat gambar secara Asinkron</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Menambah kehalusan scroll list game. Lebih lambat memuat gambar.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Tampilkan nama gim jika sampul tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Perlihatkan nama game di Grid View</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Gelapkan game yang belum terpasang</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Tampilkan ikon game di Tampilan List</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Perlihatkan jumlah  dalam deskripsi group</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
@@ -292,7 +298,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsShowSteamFriendsButton">Perlihatkan tombol Steam Friends</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">Jumlah objek mulai cepat</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Gunakan gambar background terpilih sebagai background window</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Blurkan background</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">Kualitas Tinggi</sys:String>
@@ -312,11 +318,11 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsClearWebCache">Bersihkan cache web</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Memungkinkan solusi untuk masalah yang berkaitan dengan akun.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Perkecil Playnite ke system tray</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Ketika game dimulai:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Setelah gim ditutup:</sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
+    <sys:String x:Key="LOCSettingsGOGUseGalaxy">Luncurkan game dengan klien GOG Galaxy</sys:String>
     <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
     <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Import Kategori?</sys:String>
@@ -325,7 +331,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsSteamCatImportError">Gagal mengimport kategori dari Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
     <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
+    <sys:String x:Key="LOCSettingsSteamLastActivityImportError">Gagal mengimpor informasi terakhir kali dimainkan Steam: {0}</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Semua akun akan dilogout. Aplikasi harus dimuat ulang. Lanjutkan?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Bersihkan Cache?</sys:String>
     <sys:String x:Key="LOCSettingsApiKeyTooltip">Kunci API dibutuhkan untuk akun Steam denga status private.</sys:String>
@@ -335,7 +341,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsCreateThemes">Buat tema baru</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Dapatkan ekstensi lain...</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Buat ekstensi baru</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Bantu kami menerjemahkan Playnite</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Mulai Ulang Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
@@ -343,14 +349,14 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsFullscreenRows">Jumlah baris</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Jumlah kolom</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Tampilkan Gambar Background di Layar Utama</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSource">Sumber gambar background</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceImage">Gambar Game</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceScreenshot">Simpan Screenshot</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceStore">Simpan Background</sys:String>
     <sys:String x:Key="LOCSteamBackgroundSourceBanner">Banner</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Prioritaskan waktu bermain untuk koleksi yang di dukung.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Selalu mengunduh waktu main yang tercatat di pustaka luar selama sinkronisasi pustaka, mengabaikan waktu yang tercatat oleh Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
@@ -364,9 +370,9 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Tipe Tombol Kontroler</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Tata letak</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Scrollbar Horizontal</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Pilih salah satu sub-bagian</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Tidak ada setelan tersedia</sys:String>
-    <sys:String x:Key="LOCSettingsErrorLoadingSettings"></sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings">Gagal memuat pengaturan</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Ukuran font</sys:String>
@@ -376,7 +382,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ideal</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Monitor</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Mode pemformatan teks</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mode render teks</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
@@ -405,7 +411,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCLoginFailed">Login gagal</sys:String>
     <sys:String x:Key="LOCLoggedIn">Pengguna terautentifikasi</sys:String>
     <sys:String x:Key="LOCNotLoggedIn">Memerlukan autentifikasi</sys:String>
-    <sys:String x:Key="LOCNotLoggedInError"></sys:String>
+    <sys:String x:Key="LOCNotLoggedInError">Otentikasi pengguna gagal.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Import Metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Download Metadata</sys:String>
@@ -421,7 +427,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Cari folder menggunakan Emulator</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Pilih file</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Deteksi Automatis dari Berkas...</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Memindai…</sys:String>
     <!--FirstTime Wizard-->
@@ -449,7 +455,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigurasi Platform dan Emulator</sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Setel Emulator</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Platform</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emulator</sys:String>
@@ -485,7 +491,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCMenuGroupCategory">Grup berdasarkan Kategori</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Grup berdasarkan Platform</sys:String>
     <sys:String x:Key="LOCViewType"></sys:String>
-    <sys:String x:Key="LOCMenuView"></sys:String>
+    <sys:String x:Key="LOCMenuView">Tampil</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Panel Filter</sys:String>
     <!--Game fields-->
@@ -494,7 +500,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCGameBackgroundTitle">Gambar Background</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Nama Sortir</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Provider</sys:String>
-    <sys:String x:Key="LOCGameManualTitle"></sys:String>
+    <sys:String x:Key="LOCGameManualTitle">Petunjuk</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nama</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nama Akun</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
@@ -508,7 +514,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCGameInstallationStatus">Status Instalasi</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Terinstal</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Terinstal</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Belum terpasang</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Tersembunyi</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Aktivitas terakhir</sys:String>
@@ -583,7 +589,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCAddGames">Tambah Game</sys:String>
     <sys:String x:Key="LOCScanFolder">Pindai Folder...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Deteksi yang Terinstal</sys:String>
-    <sys:String x:Key="LOCBrowse"></sys:String>
+    <sys:String x:Key="LOCBrowse">Telusuri...</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Buka Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Setting Profil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Nama game tidak boleh kosong.</sys:String>
@@ -607,7 +613,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCInvalidURL">URL invalid</sys:String>
     <sys:String x:Key="LOCDoNothing">Diamkan aplikasi</sys:String>
     <sys:String x:Key="LOCMinimize">Minimalkan</sys:String>
-    <sys:String x:Key="LOCRestoreWindow"></sys:String>
+    <sys:String x:Key="LOCRestoreWindow">Kembalikan jendela ini</sys:String>
     <sys:String x:Key="LOCClose">Tutup aplikasi</sys:String>
     <sys:String x:Key="LOCChange">Ubah</sys:String>
     <sys:String x:Key="LOCAdvanced">Opsi Lanjut</sys:String>
@@ -628,23 +634,23 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCPlugins">Plugin</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Sumber Metadata</sys:String>
     <sys:String x:Key="LOCExtensions">Ekstensi</sys:String>
-    <sys:String x:Key="LOCExtensionID"></sys:String>
-    <sys:String x:Key="LOCReloadScripts"></sys:String>
+    <sys:String x:Key="LOCExtensionID">ID Ekstensi</sys:String>
+    <sys:String x:Key="LOCReloadScripts">Muat Ulang Skrip</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCNoItemsFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Beralih ke Mode Desktop</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Keluar dari Playnite</sys:String>
-    <sys:String x:Key="LOCLibraries"></sys:String>
-    <sys:String x:Key="LOCUpdateAll"></sys:String>
+    <sys:String x:Key="LOCLibraries">Koleksi</sys:String>
+    <sys:String x:Key="LOCUpdateAll">Perbarui Semua</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Dibuat Oleh:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versi:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCStatistics"></sys:String>
+    <sys:String x:Key="LOCLibrary">Koleksi</sys:String>
+    <sys:String x:Key="LOCStatistics">Statistik</sys:String>
     <sys:String x:Key="LOCAll">Semua</sys:String>
     <sys:String x:Key="LOCNone">Tidak ada</sys:String>
-    <sys:String x:Key="LOCNotifications"></sys:String>
+    <sys:String x:Key="LOCNotifications">Notifikasi</sys:String>
     <sys:String x:Key="LOCWidth">Lebar</sys:String>
     <sys:String x:Key="LOCHeight">Panjang</sys:String>
     <sys:String x:Key="LOCSize">Ukuran</sys:String>
@@ -655,22 +661,22 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCFontLargest">Paling Besar</sys:String>
     <sys:String x:Key="LOCDefault">Bawaan</sys:String>
     <sys:String x:Key="LOCSelect">Pilih</sys:String>
-    <sys:String x:Key="LOCSelectAll"></sys:String>
+    <sys:String x:Key="LOCSelectAll">Pilih Semua</sys:String>
     <sys:String x:Key="LOCFirst">Pertama</sys:String>
     <sys:String x:Key="LOCRandom">Acak</sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
+    <sys:String x:Key="LOCUserSelect">Pilih Pengguna</sys:String>
     <sys:String x:Key="LOCLoadMore">Muat lebih banyak</sys:String>
     <sys:String x:Key="LOCTransparent">Transparan</sys:String>
-    <sys:String x:Key="LOCCollapse"></sys:String>
-    <sys:String x:Key="LOCExpand"></sys:String>
-    <sys:String x:Key="LOCCollapseAll"></sys:String>
-    <sys:String x:Key="LOCExpandAll"></sys:String>
-    <sys:String x:Key="LOCOther"></sys:String>
-    <sys:String x:Key="LOCThemes"></sys:String>
+    <sys:String x:Key="LOCCollapse">Runtuhkan</sys:String>
+    <sys:String x:Key="LOCExpand">Perluas</sys:String>
+    <sys:String x:Key="LOCCollapseAll">Runtuhkan Semua</sys:String>
+    <sys:String x:Key="LOCExpandAll">Perluas Semua</sys:String>
+    <sys:String x:Key="LOCOther">Lainnya</sys:String>
+    <sys:String x:Key="LOCThemes">Tema</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argumen untuk Emulator</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumen tambahan untuk Emulator</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Tindih argumen Emulator dengan...</sys:String>
-    <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
+    <sys:String x:Key="LOCMedataDiffWindowTitle">Pilih metadata untuk dimuat</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Pilih game untuk diimport</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Cari metadata</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Update Tersedia</sys:String>
@@ -679,11 +685,11 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCCheckForUpdates">Periksa Pembaruan</sys:String>
     <sys:String x:Key="LOCUpdateError">Update Error</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Gagal memeriksa pembaruan.</sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Versi baru tidak ditemukan</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Update untuk Playnite tidak tersedia</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Muat ulang list tema</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Gunakan tema yang dipilih</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Saksikan perubahan file</sys:String>
@@ -692,19 +698,19 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
-    <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
-    <sys:String x:Key="LOCStatsGlobal"></sys:String>
-    <sys:String x:Key="LOCStatsFiltered"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
+    <sys:String x:Key="LOCExecuteGlobalScript">Eksekusi Skrip Global</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Disaring</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Saat ini</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Baru</sys:String>
     <!--Game actions-->
-    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
+    <sys:String x:Key="LOCSaveAsDefault">Simpan sebagai standar</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Tambah ke Favorit</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Hapus dari Favorit</sys:String>
-    <sys:String x:Key="LOCHideGame"></sys:String>
-    <sys:String x:Key="LOCUnHideGame"></sys:String>
+    <sys:String x:Key="LOCHideGame">Sembunyikan game</sys:String>
+    <sys:String x:Key="LOCUnHideGame">Hapus dari Sembunyi</sys:String>
     <sys:String x:Key="LOCEditGame">Edit</sys:String>
-    <sys:String x:Key="LOCSetGameCategory"></sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Tentukan Kategori...</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Hapus</sys:String>
     <sys:String x:Key="LOCPlayGame">Mainkan</sys:String>
@@ -714,7 +720,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCUninstallGame">Uninstal</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Buka folder game</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Buat Shortcut di Desktop</sys:String>
-    <sys:String x:Key="LOCOpenGameManual"></sys:String>
+    <sys:String x:Key="LOCOpenGameManual">Buka Manual</sys:String>
     <sys:String x:Key="LOCMoreAction">Lainnya...</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
@@ -722,45 +728,45 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCMetadownloadSingleGameTip">Tip: Kamu bisa menggunakan metadata editor yang lebih lengkap di menu &quot;Edit&quot; per game.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Tidak tersedia. Ada yang masih diproses.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Teks deskripsi ini menggunakan format HTML.</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">waktu bermain di rekam dalam detik.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">Nilai dari 0 sampai 100 atau kosong untuk tidak menilai.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Pengembangan Playnite ini didukung oleh para patron berikut:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kode, lokalisasi, dan kontribusi lainnya, tanpa urut:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
-    <sys:String x:Key="LOCTimePlayed"></sys:String>
+    <sys:String x:Key="LOCTimePlayed">Waktu Dimainkan</sys:String>
     <sys:String x:Key="LOCLastPlayed"></sys:String>
-    <sys:String x:Key="LOCPlayedHours"></sys:String>
-    <sys:String x:Key="LOCPlayedMinutes"></sys:String>
-    <sys:String x:Key="LOCPlayedSeconds"></sys:String>
-    <sys:String x:Key="LOCPlayedNone"></sys:String>
-    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}j {1}m</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} menit</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">{0} detik</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Belum Dimainkan</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Buka dalam mode Desktop...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Buka koleksi permainan...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Modul berhasil diinstall</sys:String>
     <sys:String x:Key="LOCInstallScript">Pasang Skrip</sys:String>
-    <sys:String x:Key="LOCScriptError"></sys:String>
+    <sys:String x:Key="LOCScriptError">Modul gagal</sys:String>
     <sys:String x:Key="LOCScriptExecutionError"></sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} klien belum terpasang.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCRenameItem">Ganti nama </sys:String>
+    <sys:String x:Key="LOCAddNewItem">Tambah</sys:String>
+    <sys:String x:Key="LOCEnterName">Beri nama</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Beri nama baru</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">Kurang dari satu jam</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 sampai 10 jam</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 sampai 100 jam</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 sampai 500 jam</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 sampai 1000 jam</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
@@ -771,14 +777,19 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Gagal memasang tema.
+
+{0}</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle"></sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">Jangan Tampilkan Lagi</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
@@ -790,19 +801,19 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCExtensionDataDir"></sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
-    <sys:String x:Key="LOCAddFromExe"></sys:String>
-    <sys:String x:Key="LOCWhatIsThis"></sys:String>
-    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
-    <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
-    <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
+    <sys:String x:Key="LOCAddFromExe">Muat berkas...</sys:String>
+    <sys:String x:Key="LOCWhatIsThis">Apa ini?</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">Apakah Anda yakin ingin melakukan ini?</sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime">Total waktu bermain</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">Rata-rata waktu bermain</sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime">Waktu bermain teratas</sys:String>
     <sys:String x:Key="LOCOverviewLabel"></sys:String>
     <sys:String x:Key="LOCSidebar"></sys:String>
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">Berita</sys:String>
-    <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">Laman Toko</sys:String>
     <!--itch.io-->
     <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
     <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
@@ -822,15 +833,15 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
     <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
     <sys:String x:Key="LOCFullscreenFirstTimeError"></sys:String>
-    <sys:String x:Key="LOCQuickFilterRecentlyPlayed"></sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites"></sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Terakhir Dimainkan</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">Favorit</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed"></sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Semua</sys:String>
     <sys:String x:Key="LOCGameListFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Hasil pencarian :</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Pilih lain</sys:String>
     <!--IGDB-->
     <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary"></sys:String>
     <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle"></sys:String>

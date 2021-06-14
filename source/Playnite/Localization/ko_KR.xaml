@@ -778,14 +778,13 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">테마/확장 기능이 지원하지 않는 API 버전을 사용중입니다.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">설치 성공.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">확장기능을 설치하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">확장 설치에 실패했습니다.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">정말로 새 확장 프로그램을 설치하시겠어요? 이미 설치되어 있는 걸 덮어씌웁니다.
-
-{0}
-{1} 제공
-버전 {2}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">테마 설치에 실패했습니다.</sys:String>
     <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">퍼포먼스 주의</sys:String>

@@ -39,6 +39,7 @@ namespace Playnite
         private PipeServer pipeServer;
         private XInputDevice xdevice;
         private System.Threading.Timer updateCheckTimer;
+        private bool installingAddon = false;
 
         private bool isActive;
         public bool IsActive
@@ -104,11 +105,28 @@ namespace Playnite
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
 
-            if (CheckOtherInstances() || CmdLine.Shutdown)
+            if (!CmdLine.MasterInstance)
             {
-                resourcesReleased = true;
-                CurrentNative.Shutdown(0);
-                return;
+                if (CheckOtherInstances() || CmdLine.Shutdown)
+                {
+                    resourcesReleased = true;
+                    CurrentNative.Shutdown(0);
+                    return;
+                }
+            }
+
+            appMutex = new Mutex(true, instanceMuxet);
+
+            try
+            {
+                pipeService = new PipeService();
+                pipeService.CommandExecuted += PipeService_CommandExecuted;
+                pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
+                pipeServer.StartServer(pipeService);
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to start pipe service.");
             }
 
             PlayniteSettings.MigrateSettingsConfig();
@@ -312,7 +330,6 @@ namespace Playnite
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             ReleaseResources();
-            appMutex?.ReleaseMutex();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -346,7 +363,7 @@ namespace Playnite
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}', with '{string.Join(",", e.Args)}' arguments.");
+            logger.Info($"Application started from '{PlaynitePaths.ProgramPath}'");
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
             Startup();
@@ -395,6 +412,11 @@ namespace Playnite
                     break;
 
                 case CmdlineCommand.ExtensionInstall:
+                    if (installingAddon)
+                    {
+                        return;
+                    }
+
                     var extPath = args.Args;
                     if (!File.Exists(extPath))
                     {
@@ -402,6 +424,7 @@ namespace Playnite
                         return;
                     }
 
+                    installingAddon = true;
                     var ext = Path.GetExtension(extPath).ToLower();
                     if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                     {
@@ -412,6 +435,7 @@ namespace Playnite
                         InstallExtensionFile(extPath);
                     }
 
+                    installingAddon = false;
                     break;
 
                 case CmdlineCommand.SwitchMode:
@@ -522,20 +546,6 @@ namespace Playnite
                     resourcesReleased = true;
                     CurrentNative.Shutdown(0);
                     return true;
-                }
-
-                appMutex = new Mutex(true, instanceMuxet);
-
-                try
-                {
-                    pipeService = new PipeService();
-                    pipeService.CommandExecuted += PipeService_CommandExecuted;
-                    pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
-                    pipeServer.StartServer(pipeService);
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, "Failed to start pipe service.");
                 }
             }
 
@@ -716,6 +726,14 @@ namespace Playnite
             CurrentNative.Shutdown(0);
         }
 
+        public void QuitAndStart(string path, string arguments, bool asAdmin = false)
+        {
+            logger.Info("Shutting down Playnite and starting an app.");
+            ReleaseResources();
+            ProcessStarter.StartProcess(path, arguments, asAdmin);
+            CurrentNative.Shutdown(0);
+        }
+
         public abstract void Restart();
 
         public abstract void Restart(CmdLineOptions options);
@@ -728,6 +746,21 @@ namespace Playnite
             }
 
             logger.Debug("Releasing Playnite resources...");
+            CurrentNative.Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    appMutex?.ReleaseMutex();
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    // Only happens when trying to release mutext created by a different process.
+                    // This shouldn't normally happen since the mutex is released here before starting another instance.
+                    logger.Error(e, "Failed to release app mutext.");
+                }
+            });
+
+            pipeServer?.StopServer();
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();

@@ -7,8 +7,13 @@ assignees: ''
 
 ---
 
-**Check for existing issue**
-Please use issue search in the repository if the bug is something really obvious there's a high change it was already reported.
+**Before creating bug report**
+- Please use issue search in the repository first. If the bug is something really obvious there's a high change it was already reported.
+- Make sure that the issue is not caused by custom theme or extension. You can restart Playnite in "safe mode" from help menu to quickly test it.
+- Check list of known issues https://github.com/JosefNemec/Playnite/wiki/Known-Issues
+
+**Integration issues**
+If an issue is related to library integrations, use separate [extensions repository](https://github.com/JosefNemec/PlayniteExtensions) to file a report.
 
 **Describe the bug**
 A clear and concise description of what the bug is.

@@ -30,6 +30,15 @@ namespace Playnite.DesktopApp
                     MessageBoxImage.Error);
                 return;
             }
+            else if (PlaynitePaths.ProgramPath.Contains("#"))
+            {
+                MessageBox.Show(
+                    "Playnite is unable to run from current directory due to illegal character '#' in the path. Please use different directory.",
+                    "Startup Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
 
             var cmdLine = new CmdLineOptions();
             var parsed = Parser.Default.ParseArguments<CmdLineOptions>(Environment.GetCommandLineArgs());
@@ -47,6 +56,7 @@ namespace Playnite.DesktopApp
             }
 
             PlayniteSettings.ConfigureLogger();
+            LogManager.GetLogger().Info($"App arguments: '{string.Join(",", args)}'");
             var app = new DesktopApplication(new App(), splash, cmdLine);
             app.Run();
         }
