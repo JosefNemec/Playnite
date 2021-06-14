@@ -28,7 +28,7 @@ namespace SteamLibrary
 {
     public class SteamLibrary : LibraryPlugin
     {
-        private ILogger logger = LogManager.GetLogger();
+        private static readonly ILogger logger = LogManager.GetLogger();
         private readonly Configuration config;
         private const string dbImportMessageId = "steamlibImportError";
 
@@ -285,7 +285,32 @@ namespace SteamLibrary
             return games;
         }
 
-        internal List<string> GetLibraryFolders()
+        internal static List<string> GetLibraryFolders(KeyValue foldersData)
+        {
+            var dbs = new List<string>();
+            foreach (var child in foldersData.Children)
+            {
+                if (int.TryParse(child.Name, out int _))
+                {
+                    if (!child.Value.IsNullOrEmpty())
+                    {
+                        dbs.Add(child.Value);
+                    }
+                    else if (child.Children.HasItems())
+                    {
+                        var path = child.Children.FirstOrDefault(a => a.Name?.Equals("path", StringComparison.OrdinalIgnoreCase) == true);
+                        if (!path.Value.IsNullOrEmpty())
+                        {
+                            dbs.Add(path.Value);
+                        }
+                    }
+                }
+            }
+
+            return dbs;
+        }
+
+        internal static List<string> GetLibraryFolders()
         {
             var dbs = new List<string>() { Steam.InstallationPath };
             var configPath = Path.Combine(Steam.InstallationPath, "steamapps", "libraryfolders.vdf");
@@ -296,19 +321,19 @@ namespace SteamLibrary
 
             try
             {
-                var kv = new KeyValue();
                 using (var fs = new FileStream(configPath, FileMode.Open, FileAccess.Read))
                 {
+                    var kv = new KeyValue();
                     kv.ReadAsText(fs);
-                }
-
-                foreach (var child in kv.Children)
-                {
-                    if (int.TryParse(child.Name, out int test))
+                    foreach (var dir in GetLibraryFolders(kv))
                     {
-                        if (!string.IsNullOrEmpty(child.Value) && Directory.Exists(child.Value))
+                        if (Directory.Exists(dir))
                         {
-                            dbs.Add(child.Value);
+                            dbs.Add(dir);
+                        }
+                        else
+                        {
+                            logger.Warn($"Found external Steam directory, but path doesn't exists: {dir}");
                         }
                     }
                 }

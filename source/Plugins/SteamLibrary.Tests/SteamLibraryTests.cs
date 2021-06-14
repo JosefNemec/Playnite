@@ -84,5 +84,45 @@ namespace SteamLibrary.Tests
             var state = Steam.GetAppState(games.Values.First().ToSteamGameID());
             Assert.IsTrue(state.Installed);
         }
+
+        [Test]
+        public void GetLibraryFoldersFormatTest()
+        {
+            var format1 = @"
+""LibraryFolders""
+{
+    ""TimeNextStatsReport""       ""1623148229""
+    ""ContentStatsID""        ""-4352270281465506412""
+    ""1""     ""D:\\Steam1""
+}";
+
+            var format2 = @"
+""libraryfolders""
+{
+    ""contentstatsid"" ""-4352270281465506412""
+    ""1""
+    {
+        ""path"" ""D:\\Steam2""
+        ""label"" """"
+        ""mounted"" ""1""
+        ""contentid"" ""5925747603517172""
+    }
+}";
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(format1)))
+            {
+                var kv = new KeyValue();
+                kv.ReadAsText(stream);
+                var dirs = SteamLibrary.GetLibraryFolders(kv);
+                Assert.AreEqual(@"D:\Steam1", dirs[0]);
+            }
+
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(format2)))
+            {
+                var kv = new KeyValue();
+                kv.ReadAsText(stream);
+                var dirs = SteamLibrary.GetLibraryFolders(kv);
+                Assert.AreEqual(@"D:\Steam2", dirs[0]);
+            }
+        }
     }
 }
