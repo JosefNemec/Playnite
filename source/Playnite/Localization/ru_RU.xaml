@@ -417,7 +417,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Не закрывать после игровой сессии короче чем (в секундах)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Автоматически закрывать следующие клиенты:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Авто Закрытие Клиентов</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">Импорт списка Исключений</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Список Исключений</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Предупреждать при назначении слишком большого медиа игры</sys:String>
     <sys:String x:Key="LOCSettingsStartGameDirectly">Запускать игры напрямую, без запуска официального клиента</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Команда открытия директории</sys:String>

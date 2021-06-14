@@ -807,10 +807,10 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Na dokončenie inštalácie je potrebné Playnite reštartovať. Chcete teraz reštartovať?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšírenie nie je správne zabalené.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Motív vzhľadu nie je správne zabalený.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Rozšírenie &quot;{0}&quot; sa nepodarilo správne načítať</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Motív vzhľadu &quot;{0}&quot; sa nepodarilo správne načítať.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšítenie sa nepodarilo správne načítať</sys:String>
+    <sys:String x:Key="LOCGeneralThemeLoadError">Motív vzhľadu sa nepodarilo správne načítať.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motív vzhľadu/rozširenie používa nepodporovanu verziu API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Inštalácia bola úspešná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainštalovať rozšírenie?</sys:String>
@@ -818,13 +818,27 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Inštalácia rozšírenia zlyhala.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Chcete nainštalovať nové rozšírenie?
+
+{0}
+Vytvoril {1}
+Verzia {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Chcete aktualizovať rozšírenie &quot;{0}&quot;?
+
+Aktuálna verzia: {1}
+Nová verzia: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Inštalácia motívu zlyhala.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Chcete nainštalovať nový motív vzhľadu?
+
+{0}
+Vytvoril {1}
+Verzia {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Chcete aktualizovať motív vzhľadu &quot;{0}&quot;?
+
+Aktuálna verzia: {1}
+Nová verzia: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Chystáte sa opustiť Playnite a otvoriť nasledujúcu web stránku vo vašom predvolenom webovom prehliadači.
 Chcete pokračovať?
  
