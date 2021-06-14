@@ -26,6 +26,13 @@ namespace OriginLibrary
 {
     public class OriginLibrary : LibraryPlugin
     {
+        public class InstallPackage
+        {
+            public string OriginalId { get; set; }
+            public string ConvertedId { get; set; }
+            public string Source { get; set; }
+        }
+
         public class PlatformPath
         {
             public string CompletePath { get; set; }
@@ -288,11 +295,10 @@ namespace OriginLibrary
             }
         }
 
-        public Dictionary<string, GameInfo> GetInstalledGames()
+        public static List<InstallPackage> GetInstallPackages()
         {
+            var detectedPackages = new List<InstallPackage>();
             var contentPath = Path.Combine(Origin.DataPath, "LocalContent");
-            var games = new Dictionary<string, GameInfo>();
-
             if (Directory.Exists(contentPath))
             {
                 var packages = Directory.GetFiles(contentPath, "*.mfst", SearchOption.AllDirectories);
@@ -300,7 +306,11 @@ namespace OriginLibrary
                 {
                     try
                     {
+                        var installPackage = new InstallPackage();
                         var gameId = Path.GetFileNameWithoutExtension(package);
+                        installPackage.OriginalId = gameId;
+                        installPackage.ConvertedId = gameId;
+
                         if (!gameId.StartsWith("Origin"))
                         {
                             // Get game id by fixing file via adding : before integer part of the name
@@ -315,57 +325,83 @@ namespace OriginLibrary
                             gameId = match.Groups[1].Value + ":" + match.Groups[2].Value;
                         }
 
-                        var newGame = new GameInfo()
+                        var subTypeIndex = gameId.IndexOf('@');
+                        if (subTypeIndex >= 0)
                         {
-                            Source = "Origin",
-                            GameId = gameId,
-                            IsInstalled = true,
-                            Platform = "PC"
-                        };
-
-                        GameLocalDataResponse localData = null;
-
-                        try
-                        {
-                            localData = GetLocalManifest(gameId);
-                        }
-                        catch (Exception e) when (!Environment.IsDebugBuild)
-                        {
-                            logger.Error(e, $"Failed to get Origin manifest for a {gameId}, {package}");
-                            continue;
+                            installPackage.Source = gameId.Substring(subTypeIndex);
+                            gameId = gameId.Substring(0, subTypeIndex);
                         }
 
-                        if (localData == null)
-                        {
-                            continue;
-                        }
-
-                        if (localData.offerType != "Base Game" && localData.offerType != "DEMO")
-                        {
-                            continue;
-                        }
-
-                        newGame.Name = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
-                        var installDir = GetInstallDirectory(localData);
-                        if (installDir.IsNullOrEmpty())
-                        {
-                            continue;
-                        }
-
-                        newGame.InstallDirectory = installDir;
-                        newGame.PlayAction = new GameAction
-                        {
-                            IsHandledByPlugin = true,
-                            Type = GameActionType.URL,
-                            Path = Origin.GetLaunchString(gameId)
-                        };
-
-                        games.Add(newGame.GameId, newGame);
+                        installPackage.ConvertedId = gameId;
+                        detectedPackages.Add(installPackage);
                     }
                     catch (Exception e) when (!Environment.IsDebugBuild)
                     {
-                        logger.Error(e, $"Failed to import installed Origin game {package}.");
+                        logger.Error(e, $"Failed to parse Origin install pacakge {package}.");
                     }
+                }
+            }
+
+            return detectedPackages;
+        }
+
+        public Dictionary<string, GameInfo> GetInstalledGames()
+        {
+            var games = new Dictionary<string, GameInfo>();
+            foreach (var package in GetInstallPackages())
+            {
+                try
+                {
+                    var newGame = new GameInfo()
+                    {
+                        Source = "Origin",
+                        GameId = package.ConvertedId,
+                        IsInstalled = true,
+                        Platform = "PC"
+                    };
+
+                    GameLocalDataResponse localData = null;
+
+                    try
+                    {
+                        localData = GetLocalManifest(package.ConvertedId);
+                    }
+                    catch (Exception e) when (!Environment.IsDebugBuild)
+                    {
+                        logger.Error(e, $"Failed to get Origin manifest for a {package.ConvertedId}, {package}");
+                        continue;
+                    }
+
+                    if (localData == null)
+                    {
+                        continue;
+                    }
+
+                    if (localData.offerType != "Base Game" && localData.offerType != "DEMO")
+                    {
+                        continue;
+                    }
+
+                    newGame.Name = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
+                    var installDir = GetInstallDirectory(localData);
+                    if (installDir.IsNullOrEmpty())
+                    {
+                        continue;
+                    }
+
+                    newGame.InstallDirectory = installDir;
+                    newGame.PlayAction = new GameAction
+                    {
+                        IsHandledByPlugin = true,
+                        Type = GameActionType.URL,
+                        Path = Origin.GetLaunchString(package.ConvertedId + package.Source)
+                    };
+
+                    games.Add(newGame.GameId, newGame);
+                }
+                catch (Exception e) when (!Environment.IsDebugBuild)
+                {
+                    logger.Error(e, $"Failed to import installed Origin game {package}.");
                 }
             }
 

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
 using Playnite.Common;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,6 +15,7 @@ namespace OriginLibrary
 {
     public class Origin
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         public const string DataPath = @"c:\ProgramData\Origin\";
 
         public static bool IsRunning
@@ -104,6 +107,27 @@ namespace OriginLibrary
         public static string GetLaunchString(string offerId)
         {
             return $"origin2://game/launch?offerIds={offerId}";
+        }
+
+        public static string GetLaunchString(Game game)
+        {
+            try
+            {
+                var package = OriginLibrary.GetInstallPackages().FirstOrDefault(a => a.ConvertedId == game.GameId || a.OriginalId == game.GameId);
+                if (package == null)
+                {
+                    return GetLaunchString(game.GameId);
+                }
+                else
+                {
+                    return GetLaunchString(game.GameId + package.Source);
+                }
+            }
+            catch (Exception e) when (!Debugger.IsAttached)
+            {
+                logger.Error(e, $"Failed to get Origin game start link {game.GameId}.");
+                return GetLaunchString(game.GameId);
+            }
         }
     }
 }
