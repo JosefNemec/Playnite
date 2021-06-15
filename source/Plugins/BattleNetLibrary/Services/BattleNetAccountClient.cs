@@ -13,9 +13,9 @@ namespace BattleNetLibrary.Services
 {
     public class BattleNetAccountClient
     {
-        private const string apiStatusUrl = @"https://account.blizzard.com/api/";
-        private const string gamesUrl = @"https://account.blizzard.com/api/games-and-subs";
-        private const string classicGamesUrl = @"https://account.blizzard.com/api/classic-games";
+        private const string apiStatusUrl = @"https://account.battle.net/api/";
+        private const string gamesUrl = @"https://account.battle.net/api/games-and-subs";
+        private const string classicGamesUrl = @"https://account.battle.net/api/classic-games";
         private static ILogger logger = LogManager.GetLogger();
         private IWebView webView;
 
@@ -46,7 +46,7 @@ namespace BattleNetLibrary.Services
             webView.LoadingChanged += (s, e) =>
             {
                 var address = webView.GetCurrentAddress();
-                if (address.Equals(@"https://account.blizzard.com/overview", StringComparison.OrdinalIgnoreCase))
+                if (address == "https://account.battle.net/overview" || address == "https://account.battle.net/")
                 {
                     webView.Close();
                 }
@@ -58,7 +58,14 @@ namespace BattleNetLibrary.Services
 
         public bool GetIsUserLoggedIn()
         {
-            return GetApiStatus().authenticated;
+            var status = GetApiStatus();
+            if (status == null) // This sometimes fails due to some timeout reasons...
+            {
+                Task.Delay(5000).ConfigureAwait(false).GetAwaiter().GetResult();
+                status = GetApiStatus();
+            }
+
+            return status?.authenticated == true;
         }
 
         public static BattleNetApiStatus GetDefaultApiStatus()
@@ -92,7 +99,7 @@ namespace BattleNetLibrary.Services
         public BattleNetApiStatus GetApiStatus()
         {
             // This refreshes authentication cookie
-            webView.NavigateAndWait("https://account.blizzard.com:443/oauth2/authorization/account-settings");
+            webView.NavigateAndWait("https://account.battle.net:443/oauth2/authorization/account-settings");
             webView.NavigateAndWait(apiStatusUrl);
             var textStatus = webView.GetPageText();
             return Serialization.FromJson<BattleNetApiStatus>(textStatus);
