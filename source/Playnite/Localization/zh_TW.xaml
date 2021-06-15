@@ -119,9 +119,9 @@
     <sys:String x:Key="LOCPlayCountLabel">遊玩次數</sys:String>
     <sys:String x:Key="LOCNotesLabel">備註</sys:String>
     <sys:String x:Key="LOCAddedLabel">已新增</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel">日期已新增</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">新增日期</sys:String>
     <sys:String x:Key="LOCModifiedLabel">已修改</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">日期已修改</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">修改日期 </sys:String>
     <sys:String x:Key="LOCWebsiteLabel">網站</sys:String>
     <sys:String x:Key="LOCPathLabel">路徑</sys:String>
     <sys:String x:Key="LOCOKLabel">確定</sys:String>
@@ -253,7 +253,7 @@
     <sys:String x:Key="LOCSettingsDefaulIconSource">缺少遊戲圖示時從此處抓取</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">找不到遊戲封面時從此處抓取</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">找不到遊戲背景圖片時從此處抓取</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">到遊戲詳細信息的垂直間距</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">到遊戲詳細資訊的垂直間距</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">網格檢視詳細資訊位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">列表檢視遊戲列表位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">在面板間繪製分隔線</sys:String>
@@ -277,7 +277,7 @@
     <sys:String x:Key="LOCSettingsLabel">設定</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">一般</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">外觀</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel">遊戲詳細信息</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">遊戲詳細資訊</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">版面配置</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">進階設定</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">全螢幕</sys:String>
@@ -395,7 +395,7 @@
     <sys:String x:Key="LOCSettingsSelectChildSection">選擇一個子選項</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">無可用的設定值</sys:String>
     <sys:String x:Key="LOCSettingsErrorLoadingSettings">讀取設定失敗</sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice">這些腳本將供媒體庫中的所有遊戲運行。編輯遊戲詳細信息時可針對不同遊戲各自分配獨立的腳本。</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">這些腳本將供媒體庫中的所有遊戲運行。編輯遊戲詳細資訊時可針對不同遊戲各自分配獨立的腳本。</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">增加背景圖片動態轉場效果</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">字型大小</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">自動</sys:String>
@@ -529,7 +529,7 @@
     <sys:String x:Key="LOCGameIconTitle">圖示</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">封面圖片</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">背景圖片</sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle">排序名稱</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">排序用名稱</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">資料庫</sys:String>
     <sys:String x:Key="LOCGameManualTitle">說明書</sys:String>
     <sys:String x:Key="LOCGameNameTitle">名稱</sys:String>
@@ -542,7 +542,7 @@
     <sys:String x:Key="LOCGameDevelopersTitle">開發團隊</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">標籤</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">發行商</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus">安裝進度</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">安裝狀態</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
@@ -614,7 +614,7 @@
     <sys:String x:Key="LOCXInputInitErrorMessage">Xinput介面啓用失敗</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">無法執行選單動作</sys:String>
     <!--GameEdit-->
-    <sys:String x:Key="LOCGameEditWindowTitle">編輯遊戲詳細信息</sys:String>
+    <sys:String x:Key="LOCGameEditWindowTitle">編輯遊戲詳細資訊</sys:String>
     <sys:String x:Key="LOCUseExeIcon">來自啟動動作</sys:String>
     <sys:String x:Key="LOCImageURL">圖片網址</sys:String>
     <sys:String x:Key="LOCAddLinkButton">新增連結</sys:String>
@@ -755,7 +755,7 @@
     <sys:String x:Key="LOCPlayGame">啟動</sys:String>
     <sys:String x:Key="LOCInstallGame">安裝</sys:String>
     <sys:String x:Key="LOCGameOptions">遊戲選項</sys:String>
-    <sys:String x:Key="LOCGameDetails">詳細信息</sys:String>
+    <sys:String x:Key="LOCGameDetails">詳細資訊</sys:String>
     <sys:String x:Key="LOCUninstallGame">移除</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">打開安裝位置</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">建立桌面捷徑</sys:String>

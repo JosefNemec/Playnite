@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">英語</sys:String>
+    <sys:String x:Key="LanguageName">日本語</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">言語</sys:String>
     <sys:String x:Key="LOCExitAppLabel">終了</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">フィルターを有効にする</sys:String>
