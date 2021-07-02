@@ -99,26 +99,36 @@ namespace AmazonGamesLibrary.Services
                 throw new Exception("User is not authenticated.");
             }
 
+            var entitlements = new List<Entitlement>();
             var token = LoadToken();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("User-Agent", "com.amazon.agslauncher.win/1.1.133.2-9e2c3a3");
                 client.DefaultRequestHeaders.Add("X-Amz-Target", "com.amazonaws.gearbox.softwaredistribution.service.model.SoftwareDistributionService.GetEntitlements");
                 client.DefaultRequestHeaders.Add("x-amzn-token", token.access_token);
-                var reqData = new EntitlementsRequest();
 
-                var reqPostContent = Serialization.ToJson(reqData, true);
-                var strCont = new StringContent(reqPostContent, Encoding.UTF8, "application/json");
-                strCont.Headers.TryAddWithoutValidation("Expect", "100-continue");
-                strCont.Headers.TryAddWithoutValidation("Content-Encoding", "amz-1.0");
+                string nextToken = null;
+                do
+                {
+                    var reqData = new EntitlementsRequest() { nextToken = nextToken };
+                    var strCont = new StringContent(Serialization.ToJson(reqData, true), Encoding.UTF8, "application/json");
+                    strCont.Headers.TryAddWithoutValidation("Expect", "100-continue");
+                    strCont.Headers.TryAddWithoutValidation("Content-Encoding", "amz-1.0");
 
-                var entlsResponse = await client.PostAsync(
-                    @"https://sds.amazon.com/amazon/",
-                    strCont);
+                    var entlsResponse = await client.PostAsync(
+                        @"https://sds.amazon.com/amazon/",
+                        strCont);
 
-                var entlsResponseContent = await entlsResponse.Content.ReadAsStringAsync();
-                var entlsData = Serialization.FromJson<EntitlementsResponse>(entlsResponseContent);
-                return entlsData.entitlements;
+                    var entlsResponseContent = await entlsResponse.Content.ReadAsStringAsync();
+                    var entlsData = Serialization.FromJson<EntitlementsResponse>(entlsResponseContent);
+                    nextToken = entlsData?.nextToken;
+                    if (entlsData?.entitlements.HasItems() == true)
+                    {
+                        entitlements.AddRange(entlsData.entitlements);
+                    }
+                } while (!nextToken.IsNullOrEmpty());
+
+                return entitlements;
             }
         }
 
