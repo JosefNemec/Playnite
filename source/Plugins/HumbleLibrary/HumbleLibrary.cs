@@ -139,9 +139,9 @@ namespace HumbleLibrary
                                     var exst = allTpks.FirstOrDefault(a =>
                                     !a.human_name.IsNullOrEmpty() &&
                                     (a.human_name.Equals(product.human_name, StringComparison.OrdinalIgnoreCase) ||
-                                    Regex.IsMatch(a.human_name, product.human_name + @".+\sKey$", RegexOptions.IgnoreCase) ||
-                                    Regex.IsMatch(a.human_name, product.human_name + @".*\s\(?Steam\)?$", RegexOptions.IgnoreCase) ||
-                                    Regex.IsMatch(a.human_name + @"\s*+$", product.human_name, RegexOptions.IgnoreCase)));
+                                    Regex.IsMatch(a.human_name, Regex.Escape(product.human_name) + @".+\sKey$", RegexOptions.IgnoreCase) ||
+                                    Regex.IsMatch(a.human_name, Regex.Escape(product.human_name) + @".*\s\(?Steam\)?$", RegexOptions.IgnoreCase) ||
+                                    Regex.IsMatch(a.human_name + @"\s*+$", Regex.Escape(product.human_name), RegexOptions.IgnoreCase)));
 
                                     if (exst != null && !Settings.ImportThirdPartyDrmFree)
                                     {
