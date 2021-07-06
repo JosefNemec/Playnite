@@ -283,5 +283,80 @@
         <Setter Property="FontSize" Value="14" />
         <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource PopupBorderThickness}" />
-    </Style>    
+    </Style>
+
+    <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="4" x:Name="CollapsedIcon" FontFamily="Marlett"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Style="{DynamicResource BaseTextBlockStyle}"
+                                       Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="0,0,5,0"
+                                       Grid.Column="0" TextAlignment="Center" />
+                            <TextBlock Text="6" x:Name="ExpandedIcon" FontFamily="Marlett"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Style="{DynamicResource BaseTextBlockStyle}"
+                                       Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="0,0,5,0"
+                                       Visibility="Collapsed"
+                                       Grid.Column="0" TextAlignment="Center"/>
+                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center"
+                                              SnapsToDevicePixels="True" HorizontalAlignment="Stretch" RecognizesAccessKey="True"  />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Visibility" TargetName="ExpandedIcon" Value="Visible" />
+                            <Setter Property="Visibility" TargetName="CollapsedIcon" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.75" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Expander}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                    <DockPanel>
+                        <ToggleButton BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                      Style="{DynamicResource ExpanderDownHeaderStyle}"
+                                      Padding="{TemplateBinding Padding}"
+                                      MinHeight="25" DockPanel.Dock="Top"
+                                      Background="{TemplateBinding Background}"
+                                      Content="{TemplateBinding Header}"
+                                      IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <Border x:Name="Border" DockPanel.Dock="Top" Visibility="Collapsed"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />
+                        </Border>
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="true">
+                            <Setter Property="Visibility" TargetName="Border" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

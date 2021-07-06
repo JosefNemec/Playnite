@@ -1,8 +1,9 @@
 ﻿<Application x:Class="PlayniteInstaller.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
-             Startup="Application_Startup">
+             Startup="Application_Startup"
+             Exit="Application_Exit">
     <Application.Resources>
-        <ResourceDictionary Source="Theme/Classic.xaml"/>
+        <ResourceDictionary Source="Classic.xaml"/>
     </Application.Resources>
 </Application>

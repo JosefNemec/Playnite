@@ -1,5 +1,5 @@
-﻿using Playnite.SDK;
-using PlayniteInstaller.ViewModels;
+﻿using Playnite.Common;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,6 +19,7 @@ namespace PlayniteInstaller
         private static ILogger logger;
 
         public static string TempDir => Path.Combine(Path.GetTempPath(), "PlayniteInstaller");
+        public static string InstallerDownloadPath => Path.Combine(Path.GetTempPath(), "PlayniteInstaller", "installer.exe");
 
         private static Version currentVersion;
         public static Version CurrentVersion
@@ -37,10 +38,11 @@ namespace PlayniteInstaller
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            NLogLogger.ConfigureLogger();
-            LogManager.Init(new NLogLogProvider());
+            FileSystem.CreateDirectory(App.TempDir);
+            LogManager.Initialize(Path.Combine(App.TempDir, "installer.log"));
             logger = LogManager.GetLogger();
             logger.Debug($"Installer started {CurrentVersion}");
+
             var window = new MainWindow();
             window.DataContext = new MainViewModel(window);
             window.ShowDialog();
@@ -49,6 +51,16 @@ namespace PlayniteInstaller
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            logger.Error((Exception)e.ExceptionObject, "Unhandled exception occured.");
+            MessageBox.Show(
+               "Unrecoverable error occured and installer will now close.",
+               "Critical error",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            LogManager.Dispose();
         }
     }
 }

@@ -95,10 +95,10 @@ if (!$SkipBuild)
     if ($OnlineInstallerConfig)
     {
         Write-OperationLog "Updating online installer config..."
-        $locaConfigPath = "..\source\Tools\PlayniteInstaller\config.json"
+        $locaConfigPath = "..\source\Tools\PlayniteInstaller\installer_mirrors.txt"
         if ($OnlineInstallerConfig.StartsWith("http"))
         {
-            $configFile = Join-Path $env:TEMP "onlineconfig.json"
+            $configFile = Join-Path $env:TEMP "installer_mirrors.txt"
             Invoke-WebRequest $OnlineInstallerConfig -OutFile $locaConfigPath
         }
         else
@@ -194,21 +194,6 @@ if ($SdkNuget)
 {
     & .\buildSdkNuget.ps1 -SkipBuild -OutputPath $OutputDir | Out-Null
 }
-
-# -------------------------------------------
-#            Merge online installer
-# -------------------------------------------
-Write-OperationLog "Merging online installer..."
-$ilMerge = (Get-ChildItem "..\source\packages" -Filter "ILMerge.exe" -Recurse | Select -First 1).FullName
-$installerOutPath = Join-Path $OutputDir "PlayniteInstaller.exe"
-$onlineInstallerDir = Join-Path $OutputDir "Installer"
-$mergeRes = StartAndWait $ilMerge "PlayniteInstaller.exe *.dll /out:`"$installerOutPath`" /ndebug /wildcards" -WorkingDir $onlineInstallerDir
-if ($mergeRes -ne 0)
-{        
-    throw "ILMerge of installer files failed."
-}
-
-Remove-Item $onlineInstallerDir -Recurse
 
 # -------------------------------------------
 #            Build zip package

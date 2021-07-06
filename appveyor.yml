@@ -11,7 +11,7 @@ environment:
   LicensedDependenciesUrl:
     secure: ZTSg1DK6QAtwZoCBUDQ94cIaMCKWgSeJMI0dCpVJBPE40+UqG9MNu+UJjjGWjvVa
   PlayniteConfigUpdate: https://playnite.link/build/PlayniteProductionConfig.txt
-  OnlineInstallerConfig: https://playnite.link/build/OnlineInstaller.json
+  OnlineInstallerConfig: https://playnite.link/build/installer_mirrors.txt
 build_script:
 - pwsh: .\build\build.ps1 -Package -SdkNuget -LicensedDependenciesUrl $env:LicensedDependenciesUrl -PlayniteConfigUpdate $env:PlayniteConfigUpdate -OnlineInstallerConfig $env:OnlineInstallerConfig
 test: off
