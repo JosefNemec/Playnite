@@ -10,6 +10,6 @@ namespace EpicLibrary.Models
     {
         public string accountId;
         public string artifactId;
-        public int totalTime;
+        public long totalTime;
     }
 }

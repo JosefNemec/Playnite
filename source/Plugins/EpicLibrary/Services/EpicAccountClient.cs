@@ -49,7 +49,7 @@ namespace EpicLibrary.Services
             var accountUrlMask = @"https://{0}/account/api/public/account/";
             var assetsUrlMask = @"https://{0}/launcher/api/public/assets/Windows?label=Live";
             var catalogUrlMask = @"https://{0}/catalog/api/shared/namespace/";
-            var playtimeUrlMask = @"https://{0}/library/api/public/playtime/account/{0}/all";
+            var playtimeUrlMask = @"https://{0}/library/api/public/playtime/account/{1}/all";
 
             var loadedFromConfig = false;
             if (!string.IsNullOrEmpty(EpicLauncher.PortalConfigPath) && File.Exists(EpicLauncher.PortalConfigPath))
@@ -61,7 +61,7 @@ namespace EpicLibrary.Services
                     accountUrl = string.Format(accountUrlMask, config["Portal.OnlineSubsystemMcp.OnlineIdentityMcp Prod"]["Domain"].TrimEnd('/'));
                     assetsUrl = string.Format(assetsUrlMask, config["Portal.OnlineSubsystemMcp.BaseServiceMcp Prod"]["Domain"].TrimEnd('/'));
                     catalogUrl = string.Format(catalogUrlMask, config["Portal.OnlineSubsystemMcp.OnlineCatalogServiceMcp Prod"]["Domain"].TrimEnd('/'));
-                    playtimeUrl = string.Format(playtimeUrlMask, config["Portal.OnlineSubsystemMcp.OnlineLibraryServiceMcp Prod"]["Domain"].TrimEnd('/'));
+                    playtimeUrl = string.Format(playtimeUrlMask, config["Portal.OnlineSubsystemMcp.OnlineLibraryServiceMcp Prod"]["Domain"].TrimEnd('/'), "{0}");
                     loadedFromConfig = true;
                 }
                 catch (Exception e) when (!Debugger.IsAttached)
@@ -76,7 +76,7 @@ namespace EpicLibrary.Services
                 accountUrl = string.Format(accountUrlMask, "account-public-service-prod03.ol.epicgames.com");
                 assetsUrl = string.Format(assetsUrlMask, "launcher-public-service-prod06.ol.epicgames.com");
                 catalogUrl = string.Format(catalogUrlMask, "catalog-public-service-prod06.ol.epicgames.com");
-                playtimeUrl = string.Format(playtimeUrlMask, "library-service.live.use1a.on.epicgames.com");
+                playtimeUrl = string.Format(playtimeUrlMask, "library-service.live.use1a.on.epicgames.com", "{0}");
             }
         }
 
@@ -247,6 +247,12 @@ namespace EpicLibrary.Services
         {
             using (var httpClient = new HttpClient())
             {
+                if (url.Contains("/library/api/public/playtime/account/"))
+                {
+                    url = string.Format(url, tokens.account_id);
+                }
+                var type = tokens.token_type;
+                var access = tokens.access_token;
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Add("Authorization", tokens.token_type + " " + tokens.access_token);
                 var response = await httpClient.GetAsync(url);
