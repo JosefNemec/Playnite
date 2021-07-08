@@ -107,14 +107,21 @@ namespace EpicLibrary
                     continue;
                 }
 
-                games.Add(new GameInfo()
+                var game = new GameInfo()
                 {
                     Source = "Epic",
                     GameId = gameAsset.appName,
                     Name = catalogItem.title.RemoveTrademarks(),
-                    Platform = "PC",
-                    Playtime = playtimeItems.Where(x => x.artifactId == gameAsset.appName).Select(x => x.totalTime).FirstOrDefault()
-                });
+                    Platform = "PC"
+                };
+
+                var playtimeItem = playtimeItems?.FirstOrDefault(x => x.artifactId == gameAsset.appName);
+                if (playtimeItem != null)
+                {
+                    game.Playtime = playtimeItem.totalTime;
+                }
+
+                games.Add(game);
             }
 
             return games;
