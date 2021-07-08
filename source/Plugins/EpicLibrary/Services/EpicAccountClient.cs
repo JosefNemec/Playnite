@@ -251,8 +251,7 @@ namespace EpicLibrary.Services
                 {
                     url = string.Format(url, tokens.account_id);
                 }
-                var type = tokens.token_type;
-                var access = tokens.access_token;
+
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Add("Authorization", tokens.token_type + " " + tokens.access_token);
                 var response = await httpClient.GetAsync(url);
