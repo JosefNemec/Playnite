@@ -134,7 +134,7 @@ namespace GogLibrary
                 }
 
                 var libGamesStats = api.GetOwnedGames(api.GetAccountInfo());
-                if (libGames == null)
+                if (libGamesStats == null)
                 {
                     throw new Exception("Failed to obtain library stats data.");
                 }
