@@ -1090,7 +1090,6 @@ namespace Playnite.Database
                                 existingGameUpdated = true;
                             }
 
-                            
                             if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
                             {
                                 existingGame.CompletionStatus = CompletionStatus.Played;
