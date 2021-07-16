@@ -1059,34 +1059,61 @@ namespace Playnite.Database
                     }
                     else
                     {
-                        existingGame.IsInstalled = newGame.IsInstalled;
-                        existingGame.InstallDirectory = newGame.InstallDirectory;
+                        var existingGameUpdated = false;
+                        if (existingGame.IsInstalled != newGame.IsInstalled)
+                        {
+                            existingGame.IsInstalled = newGame.IsInstalled;
+                            existingGameUpdated = true;
+                        }
+                        
+                        if (existingGame.InstallDirectory.Equals(newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
+                        {
+                            existingGame.InstallDirectory = newGame.InstallDirectory;
+                            existingGameUpdated = true;
+                        }
+                        
                         if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
                         {
-                            existingGame.PlayAction = newGame.PlayAction;
+                            if (existingGame.PlayAction != newGame.PlayAction)
+                            {
+                                existingGame.PlayAction = newGame.PlayAction;
+                                existingGameUpdated = true;
+                            }
                         }
 
                         if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
                            (newGame.Playtime > 0 && forcePlayTimeSync))
                         {
-                            existingGame.Playtime = newGame.Playtime;
+                            if (existingGame.Playtime != newGame.Playtime)
+                            {
+                                existingGame.Playtime = newGame.Playtime;
+                                existingGameUpdated = true;
+                            }
+
+                            
                             if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
                             {
                                 existingGame.CompletionStatus = CompletionStatus.Played;
+                                existingGameUpdated = true;
                             }
 
                             if (existingGame.LastActivity == null && newGame.LastActivity != null)
                             {
                                 existingGame.LastActivity = newGame.LastActivity;
+                                existingGameUpdated = true;
                             }
                         }
 
                         if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
                         {
                             existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
+                            existingGameUpdated = true;
                         }
 
-                        Games.Update(existingGame);
+                        if (existingGameUpdated == true)
+                        {
+                            Games.Update(existingGame);
+                        }
                     }
                 }
 
