@@ -36,7 +36,7 @@
                   Visibility="{Binding Status, Converter={StaticResource InstallStatusToVisibilityConverter}, ConverterParameter={x:Static local:InstallStatus.Idle}}">
         <StackPanel>
                 <DockPanel Margin="5">
-                    <TextBlock Text="Destionation Folder" DockPanel.Dock="Left" Margin="10,5,10,5" />
+                    <TextBlock Text="Destination Folder" DockPanel.Dock="Left" Margin="10,5,10,5" />
                     <Button Content="Browse..." DockPanel.Dock="Right"
                     Command="{Binding BrowseCommand}"
                     Padding="10,0,10,0" Margin="10,0,10,0"/>

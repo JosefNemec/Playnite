@@ -19,6 +19,6 @@ artifacts:
 - path: 'build\Playnite.zip'
 deploy:
 - provider: Webhook
-  url: https://app.signpath.io/API/v1/4028e7e6-f183-4bbf-9640-c4b4d9a6992d/Integrations/AppVeyor?ProjectSlug=Playnite&SigningPolicySlug=test-signing
+  url: https://app.signpath.io/API/v1/4028e7e6-f183-4bbf-9640-c4b4d9a6992d/Integrations/AppVeyor?ProjectSlug=Playnite&SigningPolicySlug=release-signing
   authorization:
     secure: ZXw8Ro7eQ0opsdjLpNH7ZgTgS8ycnud7ag2qNOMRvqdxBmvegj+7QHrsh4pSgTSINhB5tbTZwgiMKFDjJV9QHg==

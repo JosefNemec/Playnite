@@ -175,12 +175,18 @@ namespace PlayniteInstaller
                 var args = string.Format(@"/VERYSILENT /NOCANCEL /DIR=""{0}"" ", DestionationFolder);
                 args += Portable ? "/PORTABLE" : "";
                 logger.Info($"Starting:\n{App.InstallerDownloadPath}\n{args}");
+
+                var installed = false;
                 await Task.Run(() =>
                 {
                     using (var process = Process.Start(App.InstallerDownloadPath, args))
                     {
                         process.WaitForExit();
-                        if (process.ExitCode != 0)
+                        if (process.ExitCode == 0)
+                        {
+                            installed = true;
+                        }
+                        else
                         {
                             logger.Error($"Installer failed {process.ExitCode}");
                             System.Windows.MessageBox.Show(
@@ -188,18 +194,15 @@ namespace PlayniteInstaller
                                 "Installation error",
                                 MessageBoxButton.OK, MessageBoxImage.Error);
                             Status = InstallStatus.Idle;
-                            return;
                         }
                     }
                 });
 
-                var playnitePath = Path.Combine(DestionationFolder, "Playnite.DesktopApp.exe");
-                if (File.Exists(playnitePath))
+                FileSystem.DeleteFileSafe(App.InstallerDownloadPath);
+                if (installed)
                 {
-                    Process.Start(playnitePath);
+                    windowHost.Close();
                 }
-
-                windowHost.Close();
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {

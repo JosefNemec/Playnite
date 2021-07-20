@@ -16,14 +16,11 @@
     # Target directory for installer files
     [string]$InstallerDir,
 
-    # Build portable package
+    # Package build output into zip file
     [switch]$Package = $false,
 
     # Skip build process
     [switch]$SkipBuild = $false,
-
-    # Sign binary files
-    [string]$Sign,
 
     # Temp directory for build process
     [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild"),
@@ -115,17 +112,6 @@ if (!$SkipBuild)
     if ($compilerResult -ne 0)
     {
         throw "Build failed."
-    }
-    else
-    {
-        if ($Sign)
-        {
-            Join-Path $OutputDir "Playnite.dll" | SignFile
-            Join-Path $OutputDir "Playnite.Common.dll" | SignFile
-            Join-Path $OutputDir "Playnite.SDK.dll" | SignFile
-            Join-Path $OutputDir "Playnite.DesktopApp.exe" | SignFile
-            Join-Path $OutputDir "Playnite.FullscreenApp.exe" | SignFile
-        }
     }
 
     # Copy extension templates

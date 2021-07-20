@@ -267,6 +267,7 @@ build/TestPackage/*
 build/PlayniteServices/*
 build/ReleaseSDK/*
 build/DebugSDK/*
+build/Playnite.zip
 
 tests/TestConfig.yaml
 
