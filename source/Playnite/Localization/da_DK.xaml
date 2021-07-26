@@ -4,10 +4,10 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Engelsk</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite sprog</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Afslut</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel"></sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel"></sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">Filter aktivt</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">Filter inaktivt</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Yderligere filtrer</sys:String>
     <sys:String x:Key="LOCFilters">Filtre</sys:String>
     <sys:String x:Key="LOCFilter">Filter</sys:String>
@@ -22,36 +22,50 @@
     <sys:String x:Key="LOCCategoryWindowTitle">Tildel kategori</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Sæt kategorier</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Tilføj kategori</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Afkrydset - Sæt kategori
+Uden afkrydsning - Fjern kategori
+Ubestemt - Ingen ændring (flere spil under redigering)</sys:String>
     <sys:String x:Key="LOCNoCategory">Ingen kategori</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
-    <sys:String x:Key="LOCCrashSaveLog"></sys:String>
-    <sys:String x:Key="LOCCrashSendDiag"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Hovsa! Noget gik galt.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">En uoprettelig fejl er opstået.
+
+Hvis du vil hjælpe os med at ordne problemet, så beskriv venligst de handlinger du udførte før nedbruddet og send så så diagnostisk information. Hvis du er online, vil data blive uploadet til Playnite serveren til analyse. 
+
+Alternativt, kan du klikke på 'Rapportér nedbrud' knappe for at oprette et nyt GitHub issue og rapportere nedbruddet manuelt. 
+
+Tak for din hjælp.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Udvidelse &quot;{0}&quot; har forårsaget en uoprettelig fejl. 
+
+Vi anbefaler at du gemmer log filen og rapporterer problemet til udvidelsens udvikler. Hvis problemet fortsætter med at opstå, deaktiver da udvidelsen.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Udvidelse &quot;{0}&quot; har forårsaget en uoprettelig fejl. 
+
+Vi anbefaler at du rapporterer problemet til udvidelsens udvikler. Hvis problemet fortsætter med at opstå, deaktiver da udvidelsen.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Uoprettelig fejl opstod.
+
+Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk information. Tak.</sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Deaktiver udvidelse</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Gem log fil</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">Send diagnostisk info</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Anmeld crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Genstart Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Genstart i sikker tilstand</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Deaktiverer alle 3'de-parts udvidelser og anvender standard tema.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Luk Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Handlinger udført før nedbruddet (på Engelsk):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Administrer bibliotek</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern spil?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError"></sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Kan ikke fjerne - Spil eller installation kører.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Kan ikke afinstallere - Spillet kører.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne dette spil?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne {0} spil?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Ingen ubrugte felter fundet.</sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (Tilføj til undtagelsesliste)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steamvenner</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Der er ændringer i denne sektion, som ikke er gemt.</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Opdaterer spilbibliotekets format…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Database-opdatering fejlede.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Spilbiblioteket kunne ikke opdateret. Der kræves {0} MBs fri plads, for at kunne gennemføre dette.</sys:String>
@@ -61,7 +75,7 @@
     <sys:String x:Key="LOCGameStartActionError">Kan ikke gennemføre handling: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan ikke åbne spil-placering: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Fejl ved oprettelse af genvej: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">Kunne ikke åbne manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan ikke installere spil: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan ikke afinstallere spil: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
@@ -176,11 +190,11 @@
     <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressMetadata"></sys:String>
+    <sys:String x:Key="LOCProgressSteamLibImport">Henter Steam bibliotek-opdateringer...</sys:String>
+    <sys:String x:Key="LOCProgressGOGLibImport">Henter GOG bibliotek-opdateringer...</sys:String>
+    <sys:String x:Key="LOCProgressOriginLibImport">Henter Origin bibliotek-opdateringer...</sys:String>
+    <sys:String x:Key="LOCProgressBattleNetLibImport">Henter Battle.net bibliotek-opdateringer...</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">Henter metadata...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
     <sys:String x:Key="LOCProgressImportinGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames"></sys:String>

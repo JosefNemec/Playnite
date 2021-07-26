@@ -95,6 +95,9 @@
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectIgdb}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="3:4"/>
+                            <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSquare}"
+                                    Command="{Binding SetCoverArtAspectRatioCommand}"
+                                    CommandParameter="1:1"/>
                             <MenuItem Header="{DynamicResource LOCSettingsCovertAspectSteam}"
                                     Command="{Binding SetCoverArtAspectRatioCommand}"
                                     CommandParameter="92:43"/>

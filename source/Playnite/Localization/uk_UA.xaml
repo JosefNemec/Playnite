@@ -422,9 +422,9 @@
     <sys:String x:Key="LOCOpenDirectoryCommand">Команда відкриття каталогу</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Бажана організація, що визначає віковий рейтинг</sys:String>
     <sys:String x:Key="LOCStrechNone">Нічого</sys:String>
-    <sys:String x:Key="LOCStrechFill">Заповнення</sys:String>
-    <sys:String x:Key="LOCStrechUniform">Заповнити</sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill">Заповнити зберігаючи співвідношення сторін</sys:String>
+    <sys:String x:Key="LOCStrechFill">Залити</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Вписати</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Вписати зберігаючи співвідношення сторін</sys:String>
     <sys:String x:Key="LOCDockLeft">Зліва</sys:String>
     <sys:String x:Key="LOCDockRight">Зправа</sys:String>
     <sys:String x:Key="LOCDockTop">Зверху</sys:String>

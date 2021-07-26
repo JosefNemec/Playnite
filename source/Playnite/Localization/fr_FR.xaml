@@ -850,10 +850,10 @@ Images de fond : {2} px (hauteur)</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Avertissement de performances</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Ne plus afficher</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">L'image sélectionnée pourrait être trop lourde pour des performances optimales.</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion">Voulez-vous désinstaller le thème sélectionné ? La désinstallation sera planifiée pour le prochainement lancement de l'application.</sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">Voulez-vous désinstaller le thème sélectionné ? La désinstallation sera planifiée au prochain lancement de l'application.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Les thèmes par défaut ne peuvent être désinstallés.</sys:String>
     <sys:String x:Key="LOCThemeUnsupported">Le thème sélectionné est incompatible avec la version actuelle de Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion">Voulez-vous désinstaller l'extension sélectionnée ? La désinstallation sera planifiée pour le prochainement lancement de l'application.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">Voulez-vous désinstaller l'extension sélectionnée ? La désinstallation sera planifiée au prochain lancement de l'application.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Les extensions par défaut ne peuvent être désinstallées.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">L'extension sélectionnée est incompatible avec la version actuelle de Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionInstallDir">Emplacement d'installation</sys:String>
