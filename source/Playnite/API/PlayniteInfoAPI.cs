@@ -9,7 +9,7 @@ namespace Playnite.API
 {
     public class PlayniteInfoAPI : IPlayniteInfoAPI
     {
-        public System.Version ApplicationVersion { get => Updater.GetCurrentVersion(); }
+        public System.Version ApplicationVersion { get => Updater.CurrentVersion; }
 
         public ApplicationMode Mode => PlayniteApplication.Current.Mode;
 

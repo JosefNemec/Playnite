@@ -44,16 +44,13 @@ namespace Playnite.DesktopApp.ViewModels
         protected bool ignoreCloseActions = false;
         protected bool ignoreSelectionChanges = false;
         private readonly SynchronizationContext context;
-        private PlayniteApplication application;
         private Controls.LibraryStatistics statsView;
         private Controls.Views.Library libraryView;
 
         public PlayniteAPI PlayniteApi { get; set;  }
         public ExtensionFactory Extensions { get; set; }
         public IWindowFactory Window { get; }
-        public IDialogsFactory Dialogs { get; }
         public IResourceProvider Resources { get; }
-        public GameDatabase Database { get; set; }
         public DesktopGamesEditor GamesEditor { get; }
 
         private Control activeView;
@@ -304,7 +301,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public DesktopAppViewModel() : base(ApplicationMode.Desktop)
+        public DesktopAppViewModel() : base(null, null, null)
         {
         }
 
@@ -317,19 +314,16 @@ namespace Playnite.DesktopApp.ViewModels
             DesktopGamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(ApplicationMode.Desktop)
+            PlayniteApplication app) : base(database, app, dialogs)
         {
             context = SynchronizationContext.Current;
-            application = app;
             Window = window;
-            Dialogs = dialogs;
             Resources = resources;
-            Database = database;
             GamesEditor = gamesEditor;
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
-            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested; ;
+            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
@@ -408,13 +402,13 @@ namespace Playnite.DesktopApp.ViewModels
         public void ShutdownApp()
         {
             Dispose();
-            application.Quit();
+            App.Quit();
         }
 
         public void RestartAppSafe()
         {
             CloseView();
-            application.Restart(new CmdLineOptions { SafeStartup = true });
+            App.Restart(new CmdLineOptions { SafeStartup = true });
         }
 
         protected void InitializeView()
@@ -472,7 +466,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             try
             {
-                application.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
+                App.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -480,6 +474,12 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             LoadSoftwareToolsSidebarItems();
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            if (AppSettings.SelectedFilterPreset != Guid.Empty)
+            {
+                ActiveFilterPreset = Database.FilterPresets.FirstOrDefault(a => a.Id == AppSettings.SelectedFilterPreset);
+            }
         }
 
         private List<Game> ImportLibraryGames(LibraryPlugin plugin, CancellationToken token)
@@ -495,7 +495,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             try
             {
-                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, AppSettings.ImportExclusionList.Items));
+                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync));
                 RemoveMessage($"{plugin.Id} - download");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -681,7 +681,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 try
                 {
-                    var updates = Addons.CheckAddonUpdates(application.ServicesClient);
+                    var updates = Addons.CheckAddonUpdates(App.ServicesClient);
                     if (updates.HasItems())
                     {
                         AddMessage(new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info,
@@ -691,10 +691,10 @@ namespace Playnite.DesktopApp.ViewModels
                                      PlayniteApi,
                                      Dialogs,
                                      Resources,
-                                     application.ServicesClient,
+                                     App.ServicesClient,
                                      Extensions,
                                      AppSettings,
-                                     application,
+                                     App,
                                      updates).OpenView();
                             }));
                     }
@@ -953,11 +953,11 @@ namespace Playnite.DesktopApp.ViewModels
                         var ext = Path.GetExtension(path).ToLower();
                         if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            application.InstallThemeFile(path);
+                            App.InstallThemeFile(path);
                         }
                         else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            application.InstallExtensionFile(path);
+                            App.InstallExtensionFile(path);
                         }
                         else
                         {
@@ -1038,10 +1038,10 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var updater = new Updater(application);
+                var updater = new Updater(App);
                 if (updater.IsUpdateAvailable)
                 {
-                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs);
+                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs, App.Mode);
                     model.OpenView();
                 }
                 else
@@ -1066,7 +1066,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             CloseView();
-            application.QuitAndStart(
+            App.QuitAndStart(
                 PlaynitePaths.FullscreenExecutablePath,
                 new CmdLineOptions()
                 {
@@ -1097,7 +1097,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
-            application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
 
             if (AppSettings.StartMinimized)
@@ -1142,7 +1142,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
         }
 
         public bool OpenPluginSettings(Guid pluginId)

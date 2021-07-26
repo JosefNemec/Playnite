@@ -61,6 +61,10 @@
         </Setter>
     </Style>
 
+    <Style x:Key="FilterItemtSelectionStyle" TargetType="CheckBoxEx" BasedOn="{StaticResource {x:Type CheckBoxEx}}">
+        <Setter Property="Margin" Value="15,5,15,5" />
+    </Style>
+
     <Style x:Key="FilterPanelCheckBoxEx" TargetType="CheckBoxEx" BasedOn="{StaticResource {x:Type CheckBoxEx}}">
         <Setter Property="Margin" Value="15,5,15,5" />
     </Style>

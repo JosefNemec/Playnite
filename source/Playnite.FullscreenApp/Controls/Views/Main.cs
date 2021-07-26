@@ -39,7 +39,6 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ButtonFilter", Type = typeof(ButtonEx))]
     [TemplatePart(Name = "PART_ButtonDetails", Type = typeof(ButtonEx))]
     [TemplatePart(Name = "PART_ButtonGameOptions", Type = typeof(ButtonEx))]
-    [TemplatePart(Name = "PART_ElemNotifications", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemFilters", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemFiltersAdditional", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ContentFilterItems", Type = typeof(ContentControl))]
@@ -47,6 +46,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     [TemplatePart(Name = "PART_FilterPresetSelector", Type = typeof(FilterPresetSelector))]
     [TemplatePart(Name = "PART_ElemGameStatus", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ButtonProgramUpdate", Type = typeof(ButtonBase))]
     public class Main : Control
     {
         private FullscreenAppViewModel mainModel;
@@ -54,6 +54,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private FrameworkElement MainHost;
         private ButtonBase ButtonMainMenu;
         private ButtonBase ButtonNotifications;
+        private ButtonBase ButtonProgramUpdate;
         private TextBlock TextClock;
         private TextBlock TextBatteryPercentage;
         private FrameworkElement ElemBatteryStatus;
@@ -68,7 +69,6 @@ namespace Playnite.FullscreenApp.Controls.Views
         private ButtonEx ButtonFilter;
         private ButtonEx ButtonDetails;
         private ButtonEx ButtonGameOptions;
-        private FrameworkElement ElemNotifications;
         private FrameworkElement ElemFilters;
         private FrameworkElement ElemFiltersAdditional;
         private ContentControl ContentFilterItems;
@@ -221,8 +221,18 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(MainHost, FrameworkElement.HeightProperty, mainModel, nameof(FullscreenAppViewModel.ViewportHeight));
                 }
 
+                AssignButtonWithCommand(ref ButtonProgramUpdate, "PART_ButtonProgramUpdate", mainModel.OpenUpdatesCommand);
                 AssignButtonWithCommand(ref ButtonMainMenu, "PART_ButtonMainMenu", mainModel.OpenMainMenuCommand);
-                AssignButtonWithCommand(ref ButtonNotifications, "PART_ButtonNotifications", mainModel.ToggleNotificationsCommand);
+                AssignButtonWithCommand(ref ButtonNotifications, "PART_ButtonNotifications", mainModel.OpenNotificationsMenuCommand);
+
+                if (ButtonProgramUpdate != null)
+                {
+                    BindingTools.SetBinding(ButtonProgramUpdate,
+                         Button.VisibilityProperty,
+                         mainModel,
+                         nameof(mainModel.UpdatesAvailable),
+                         converter: new Converters.BooleanToVisibilityConverter());
+                }
 
                 ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
                 if (ImageBackground != null)
@@ -404,16 +414,6 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ButtonSearch?.SetResourceReference(ButtonEx.InputHintProperty, "ButtonPromptY");
                 AssignButtonWithCommand(ref ButtonFilter, "PART_ButtonFilter", mainModel.ToggleFiltersCommand);
                 ButtonFilter?.SetResourceReference(ButtonEx.InputHintProperty, "ButtonPromptRS");
-
-                ElemNotifications = Template.FindName("PART_ElemNotifications", this) as FrameworkElement;
-                if (ElemNotifications != null)
-                {
-                    BindingTools.SetBinding(ElemNotifications,
-                        FrameworkElement.VisibilityProperty,
-                        mainModel,
-                        nameof(FullscreenAppViewModel.NotificationsVisible),
-                        converter: new Converters.BooleanToVisibilityConverter());
-                }
 
                 ElemFilters = Template.FindName("PART_ElemFilters", this) as FrameworkElement;
                 if (ElemFilters != null)

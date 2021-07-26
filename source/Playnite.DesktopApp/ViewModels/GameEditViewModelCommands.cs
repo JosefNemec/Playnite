@@ -362,5 +362,13 @@ namespace Playnite.DesktopApp.ViewModels
                 SelectGoogleBackground();
             });
         }
+
+        public RelayCommand<string> TestScriptCommand
+        {
+            get => new RelayCommand<string>((a) =>
+            {
+                TestScript(a);
+            }, (a) => !a.IsNullOrEmpty());
+        }
     }
 }

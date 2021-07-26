@@ -55,7 +55,7 @@ namespace Playnite.Controllers
             this.playniteApi = playniteApi;
         }
 
-        public override void Play(PlayAction playAction)
+        public override void Play(PlayActionArgs args)
         {
             throw new NotSupportedException("This shouldn't be called.");
         }
@@ -330,16 +330,16 @@ namespace Playnite.Controllers
             RunScript(runtimeName, r => r.Execute(script, workDir, variables), variables, asyncExec);
         }
 
-        public void Start(GenericPlayAction playAction)
+        public void Start(AutomaticPlayController controller)
         {
             Start(new GameAction
             {
-                Type = playAction.Type == GenericPlayActionType.Url ? GameActionType.URL : GameActionType.File,
-                Arguments = playAction.Arguments,
-                Path = playAction.Path,
-                WorkingDir = playAction.WorkingDir,
-                TrackingMode = playAction.TrackingMode,
-                TrackingPath = playAction.TrackingPath
+                Type = controller.Type == GenericPlayActionType.Url ? GameActionType.URL : GameActionType.File,
+                Arguments = controller.Arguments,
+                Path = controller.Path,
+                WorkingDir = controller.WorkingDir,
+                TrackingMode = controller.TrackingMode,
+                TrackingPath = controller.TrackingPath
             });
         }
 

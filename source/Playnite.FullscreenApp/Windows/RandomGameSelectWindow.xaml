@@ -55,10 +55,10 @@
                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
                         <pctrls:ButtonEx Content="{DynamicResource LOCPlayGame}"
                                          x:Name="ButtonPlay"
-                                  Style="{StaticResource ButtonMessageBox}"
+                                  Style="{StaticResource MessageBoxButton}"
                                   Command="{Binding PlayGameCommand}" MinWidth="200" />
                         <pctrls:ButtonEx Content="{DynamicResource LOCRandomGamePickAnother}" MinWidth="200"
-                                  Style="{StaticResource ButtonMessageBox}"
+                                  Style="{StaticResource MessageBoxButton}"
                                   Command="{Binding PickAnotherCommand}" />
                     </StackPanel>
                 </StackPanel>

@@ -21,6 +21,8 @@ using Playnite.DesktopApp.Markup;
 using System.Text.RegularExpressions;
 using Playnite.DesktopApp.Controls;
 using System.Diagnostics;
+using Playnite.SDK.Exceptions;
+using Playnite.Scripting.PowerShell;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -47,12 +49,12 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<LoadedPlugin> GenericPlugins
         {
-            get => Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin).ToList();
+            get; private set;
         }
 
         public bool AnyGenericPluginSettings
         {
-            get => Extensions?.GenericPlugins.HasItems() == true;
+            get; private set;
         }
 
         public List<ThemeManifest> AvailableThemes
@@ -116,17 +118,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<IList<object>> RemoveImmportExclusionItemCommand
-        {
-            get => new RelayCommand<IList<object>>((items) =>
-            {
-                foreach (ImportExclusionItem item in items.ToList())
-                {
-                    Settings.ImportExclusionList.Items.Remove(item);
-                }
-            }, (items) => items != null && items.Count > 0);
-        }
-
         public RelayCommand<object> AddDevelExtensionCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -168,6 +159,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<string> TestScriptCommand
+        {
+            get => new RelayCommand<string>((a) =>
+            {
+                TestScript(a);
+            }, (a) => !a.IsNullOrEmpty());
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -198,13 +197,14 @@ namespace Playnite.DesktopApp.ViewModels
                 { 7, new Controls.SettingsSections.Input() { DataContext = this } },
                 { 8, new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this } },
                 { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
-                { 10, new Controls.SettingsSections.EmptyParent() { DataContext = this } },
+                { 10, new Controls.SettingsSections.IntegrationsMoveInfo() { DataContext = this } },
                 { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
                 { 19, new Controls.SettingsSections.Development() { DataContext = this } },
-                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
+                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
+                { 21, new Controls.SettingsSections.EmptyParent() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -215,6 +215,9 @@ namespace Playnite.DesktopApp.ViewModels
                     Selected = settings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id)
                 });
             }
+
+            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && (a.Plugin.Properties == null || a.Plugin.Properties.HasSettings)).ToList();
+            AnyGenericPluginSettings = GenericPlugins.HasItems();
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
@@ -368,6 +371,33 @@ namespace Playnite.DesktopApp.ViewModels
                     SkipLibUpdate = true,
                     ResetSettings = true
                 });
+            }
+        }
+
+        public void TestScript(string script)
+        {
+            try
+            {
+                var game = application.Api.MainView.SelectedGames.DefaultIfEmpty(new SDK.Models.Game("Test game")).FirstOrDefault();
+                var expanded = game.ExpandVariables(script);
+                using (var runtime = new PowerShellRuntime($"test script runtime"))
+                {
+                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true);
+                }
+            }
+            catch (Exception exc)
+            {
+                var message = exc.Message;
+                if (exc is ScriptRuntimeException err)
+                {
+                    message = err.Message + "\n\n" + err.ScriptStackTrace;
+                }
+
+                Dialogs.ShowMessage(
+                    message,
+                    resources.GetString("LOCScriptError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
     }

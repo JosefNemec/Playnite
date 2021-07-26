@@ -26,7 +26,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return "Playnite " + Updater.GetCurrentVersion().ToString(2);
+                return "Playnite " + Updater.CurrentVersion.ToString(2);
             }
         }
 

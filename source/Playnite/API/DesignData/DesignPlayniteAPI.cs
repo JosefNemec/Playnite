@@ -74,5 +74,10 @@ namespace Playnite.API.DesignData
         {
             throw new NotImplementedException();
         }
+
+        public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

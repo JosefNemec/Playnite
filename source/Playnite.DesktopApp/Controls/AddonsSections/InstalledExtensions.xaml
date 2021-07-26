@@ -111,13 +111,6 @@
                                FontWeight="Bold"
                                Visibility="{Binding Description.IsCompatible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />-->
 
-            <TextBlock Margin="5,0,0,10"  DockPanel.Dock="Bottom">
-                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://playnite.link/forum/forum-3.html">
-                    <Run Text="{DynamicResource LOCSettingsGetExtensions}" />
-                </Hyperlink>
-            </TextBlock>
-
             <TextBlock Margin="5,10,0,10"  DockPanel.Dock="Bottom">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                             CommandParameter="https://playnite.link/docs/tutorials/intro.html">

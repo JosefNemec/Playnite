@@ -58,14 +58,10 @@ namespace Playnite.SDK.Models
         Script = 3
     }
 
-    public class GameActionBase : ObservableObject
-    {
-    }
-
     /// <summary>
     /// Represents executable game action.
     /// </summary>
-    public class GameAction : GameActionBase, IEquatable<GameAction>
+    public class GameAction : ObservableObject, IEquatable<GameAction>
     {
         private GameActionType type;
         /// <summary>

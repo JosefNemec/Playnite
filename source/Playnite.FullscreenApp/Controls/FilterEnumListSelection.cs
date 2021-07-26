@@ -203,6 +203,7 @@ namespace Playnite.FullscreenApp.Controls
                 ItemsHost = Template.FindName("PART_ItemsHost", this) as ItemsControl;
                 if (ItemsHost != null)
                 {
+                    FilterDbItemtSelection.AssignItemListPanel(ItemsHost);
                     BindingTools.SetBinding(
                         ItemsHost,
                         ItemsControl.ItemsSourceProperty,

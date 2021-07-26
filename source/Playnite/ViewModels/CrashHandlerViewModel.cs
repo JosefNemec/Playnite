@@ -51,7 +51,7 @@ namespace Playnite.ViewModels
                 CreateDiagPackage(new DiagnosticPackageInfo
                 {
                     IsCrashPackage = true,
-                    PlayniteVersion = Updater.GetCurrentVersion().ToString(4)
+                    PlayniteVersion = Updater.CurrentVersion.ToString(4)
                 });
             });
         }
@@ -207,7 +207,7 @@ namespace Playnite.ViewModels
                 packageInfo = new DiagnosticPackageInfo
                 {
                     IsCrashPackage = false,
-                    PlayniteVersion = Updater.GetCurrentVersion().ToString(4)
+                    PlayniteVersion = Updater.CurrentVersion.ToString(4)
                 };
             }
 

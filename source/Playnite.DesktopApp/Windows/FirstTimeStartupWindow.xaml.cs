@@ -28,13 +28,5 @@ namespace Playnite.DesktopApp.Windows
                 ButtonFinish.Focus();
             }
         }
-
-        private void ButtonBack_IsEnabledChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-            if (!ButtonBack.IsEnabled)
-            {
-                ButtonNext.Focus();
-            }
-        }
     }
 }

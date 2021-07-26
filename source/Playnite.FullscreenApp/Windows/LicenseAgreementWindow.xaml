@@ -55,10 +55,10 @@
                 <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                     <pctrls:ButtonEx x:Name="ButtonAccept" Content="{DynamicResource LOCLicenseAccept}" DockPanel.Dock="Right"
                             pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                            Style="{StaticResource ButtonMessageBox}"
+                            Style="{StaticResource MessageBoxButton}"
                             Command="{Binding AcceptCommnad}"/>
                     <pctrls:ButtonEx x:Name="ButtonDecline" Content="{DynamicResource LOCLicenseDecline}" DockPanel.Dock="Right" IsCancel="True"
-                            Style="{StaticResource ButtonMessageBox}"
+                            Style="{StaticResource MessageBoxButton}"
                             Command="{Binding DeclineCommand}" />
                 </StackPanel>
             </Border>

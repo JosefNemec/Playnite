@@ -8,61 +8,13 @@ namespace Playnite
 {
     public class UpdateManifest
     {
-        public class ReleaseNote
-        {
-            public Version Version
-            {
-                get; set;
-            }
-
-            public string FileName
-            {
-                get; set;
-            }
-        }
-
-        public class Package
-        {
-            public Version BaseVersion
-            {
-                get; set;
-            }
-
-            public string FileName
-            {
-                get; set;
-            }
-
-            public string Checksum
-            {
-                get; set;
-            }
-        }
-
-        public Version LatestVersion
-        {
-            get; set;
-        }
-
-        public List<string> DownloadServers
-        {
-            get; set;
-        }
-
-        public List<string> ReleaseNotesUrlRoots
-        {
-            get; set;
-        }
-
-        public List<Package> Packages
-        {
-            get; set;
-        }
-
-        public List<ReleaseNote> ReleaseNotes
-        {
-            get; set;
-        }
+        public Version Version { get; set; }
+        public Version SdkVersion { get; set; }
+        public Version FullscreenThemeVersion { get; set; }
+        public Version DesktopThemeVersion { get; set; }
+        public string Checksum { get; set; }
+        public List<string> PackageUrls { get; set; }
+        public List<Version> VersionHistory { get; set; }
     }
 
     public class ReleaseNoteData

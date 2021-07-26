@@ -87,12 +87,12 @@
     <Compile Include="Plugins\MenuEntry.cs" />
     <Compile Include="Plugins\MetadataPlugin.cs" />
     <Compile Include="Plugins\SidebarItem.cs" />
+    <Compile Include="Plugins\TopPanelItem.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="ExpandableVariables.cs" />
     <Compile Include="IDialogsFactory.cs" />
     <Compile Include="ExtensionFunction.cs" />
-    <Compile Include="IGameController.cs" />
     <Compile Include="Database\IGameDatabaseAPI.cs" />
     <Compile Include="LibraryClient.cs" />
     <Compile Include="ILogger.cs" />

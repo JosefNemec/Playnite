@@ -72,7 +72,15 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        GameScanners
+        GameScanners,
+        /// <summary>
+        ///
+        /// </summary>
+        FilterPresets,
+        /// <summary>
+        ///
+        /// </summary>
+        ImportExclusions
     }
 
     /// <summary>

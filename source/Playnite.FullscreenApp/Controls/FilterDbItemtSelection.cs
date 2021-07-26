@@ -16,6 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace Playnite.FullscreenApp.Controls
 {
@@ -200,6 +201,7 @@ namespace Playnite.FullscreenApp.Controls
                 ItemsHost = Template.FindName("PART_ItemsHost", this) as ItemsControl;
                 if (ItemsHost != null)
                 {
+                    AssignItemListPanel(ItemsHost);
                     BindingTools.SetBinding(
                         ItemsHost,
                         ItemsControl.ItemsSourceProperty,
@@ -211,15 +213,43 @@ namespace Playnite.FullscreenApp.Controls
 
         public void Dispose()
         {
-            BindingOperations.ClearBinding(this, ItemsListProperty);
-            BindingOperations.ClearBinding(this, FilterPropertiesProperty);
             if (ItemsList != null)
             {
                 ItemsList.SelectionChanged -= List_SelectionChanged;
-                ItemsList = null;
+                ItemsList.SetSelection(null);
             }
-            
+
+            BindingOperations.ClearBinding(this, ItemsListProperty);
+            BindingOperations.ClearBinding(this, FilterPropertiesProperty);
+            ItemsList = null;
             FilterProperties = null;
+        }
+
+        public static void AssignItemListPanel(ItemsControl itemsHost)
+        {
+            XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+            itemsHost.ItemsPanel = Xaml.FromString<ItemsPanelTemplate>(new XDocument(
+                new XElement(pns + nameof(ItemsPanelTemplate),
+                    new XElement(pns + nameof(VirtualizingStackPanel)))
+            ).ToString());
+
+            itemsHost.Template = Xaml.FromString<ControlTemplate>(new XDocument(
+                 new XElement(pns + nameof(ControlTemplate),
+                    new XElement(pns + nameof(ScrollViewer),
+                        new XAttribute(nameof(ScrollViewer.Focusable), false),
+                        new XAttribute(nameof(ScrollViewer.HorizontalScrollBarVisibility), ScrollBarVisibility.Disabled),
+                        new XAttribute(nameof(ScrollViewer.VerticalScrollBarVisibility), ScrollBarVisibility.Auto),
+                        new XAttribute(nameof(ScrollViewer.CanContentScroll), true),
+                        new XElement(pns + nameof(ItemsPresenter))))
+            ).ToString());
+
+            itemsHost.ItemTemplate = Xaml.FromString<DataTemplate>(new XDocument(
+                new XElement(pns + nameof(DataTemplate),
+                    new XElement(pns + nameof(CheckBoxEx),
+                        new XAttribute(nameof(CheckBoxEx.IsChecked), "{Binding Selected}"),
+                        new XAttribute(nameof(CheckBoxEx.Content), "{Binding Item.Name}"),
+                        new XAttribute(nameof(CheckBoxEx.Style), $"{{DynamicResource FilterItemtSelectionStyle}}")))
+            ).ToString());
         }
     }
 }

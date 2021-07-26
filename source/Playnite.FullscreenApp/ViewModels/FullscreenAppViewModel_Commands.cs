@@ -19,11 +19,10 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<EventArgs> WindowGotFocusCommand { get; private set; }
         public RelayCommand<object> ToggleFullscreenCommand { get; private set; }
         public RelayCommand<object> OpenMainMenuCommand { get; private set; }
+        public RelayCommand<object> OpenNotificationsMenuCommand { get; private set; }
         public RelayCommand<object> OpenGameMenuCommand { get; private set; }
         public RelayCommand<object> ToggleGameDetailsCommand { get; private set; }
         public RelayCommand<object> ToggleFiltersCommand { get; private set; }
-        public RelayCommand<object> ToggleNotificationsCommand { get; private set; }
-        public RelayCommand<object> ClearNotificationsCommand { get; private set; }
         public RelayCommand<GameField> LoadSubFilterCommand { get; private set; }
         public RelayCommand<object> CloseSubFilterCommand { get; private set; }
         public RelayCommand<object> CloseAdditionalFilterCommand { get; private set; }
@@ -46,7 +45,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 if (!ignoreCloseActions)
                 {
                     Dispose();
-                    Application.Quit();
+                    App.Quit();
                 }
             });
 
@@ -93,20 +92,6 @@ namespace Playnite.FullscreenApp.ViewModels
                     GameListFocused = false;
                 }
             }, (a) => SelectedGame != null);
-
-            ToggleNotificationsCommand = new RelayCommand<object>((a) =>
-            {
-                if (NotificationsVisible)
-                {
-                    GameListFocused = true;
-                }
-                else
-                {
-                    GameListFocused = false;
-                }
-
-                NotificationsVisible = !NotificationsVisible;
-            });
 
             LoadSubFilterCommand = new RelayCommand<GameField>((gameField) =>
             {
@@ -240,13 +225,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 ActiveFilterPreset = null;
             });
 
-            ClearNotificationsCommand = new RelayCommand<object>((a) =>
-            {
-                PlayniteApi.Notifications.RemoveAll();
-                NotificationsVisible = false;
-                GameListFocused = true;
-            });
-
             ActivateSelectedCommand = new RelayCommand<object>((a) =>
             {
                 if (SelectedGame?.IsInstalled == true)
@@ -262,16 +240,22 @@ namespace Playnite.FullscreenApp.ViewModels
             OpenSearchCommand = new RelayCommand<object>((a) =>
             {
                 GameListFocused = false;
-                var test = new Windows.TextInputWindow();
-                test.PropertyChanged += SearchText_PropertyChanged;
-                test.ShowInput(WindowManager.CurrentWindow, "", "", AppSettings.Fullscreen.FilterSettings.Name);
-                test.PropertyChanged -= SearchText_PropertyChanged;
+                var oldSearch = AppSettings.Fullscreen.FilterSettings.Name;
+                var input = new Windows.TextInputWindow();
+                input.PropertyChanged += SearchText_PropertyChanged;
+                var res = input.ShowInput(WindowManager.CurrentWindow, "", "", AppSettings.Fullscreen.FilterSettings.Name);
+                input.PropertyChanged -= SearchText_PropertyChanged;
+                if (res.Result != true)
+                {
+                    AppSettings.Fullscreen.FilterSettings.Name = oldSearch;
+                }
+
                 GameListFocused = true;
             });
 
             NextFilterViewCommand = new RelayCommand<object>((a) =>
             {
-                var presets = AppSettings.SortedFilterFullscreenPresets;
+                var presets = SortedFilterFullscreenPresets;
                 if (!presets.HasItems())
                 {
                     return;
@@ -293,7 +277,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             PrevFilterViewCommand = new RelayCommand<object>((a) =>
             {
-                var presets = AppSettings.SortedFilterFullscreenPresets;
+                var presets = SortedFilterFullscreenPresets;
                 if (!presets.HasItems())
                 {
                     return;
@@ -339,6 +323,7 @@ namespace Playnite.FullscreenApp.ViewModels
             });
 
             OpenMainMenuCommand = new RelayCommand<object>((_) => OpenMainMenu());
+            OpenNotificationsMenuCommand = new RelayCommand<object>((_) => OpenNotificationsMenu());
 
             CloseGameStatusCommand = new RelayCommand<object>((_) =>
             {

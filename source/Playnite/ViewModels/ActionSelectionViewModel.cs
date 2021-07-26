@@ -51,7 +51,7 @@ namespace Playnite.ViewModels
             this.window = window;
         }
 
-        public GameActionBase SelectPlayAction(List<GameActionBase> actions)
+        public object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions)
         {
             if (!actions.HasItems())
             {
@@ -62,7 +62,7 @@ namespace Playnite.ViewModels
             Actions[0].Selected = true;
             if (window.CreateAndOpenDialog(this) == true)
             {
-                return (GameActionBase)SelectedAction;
+                return SelectedAction;
             }
             else
             {
@@ -70,7 +70,7 @@ namespace Playnite.ViewModels
             }
         }
 
-        public InstallAction SelectInstallAction(List<InstallAction> pluginActions)
+        public InstallController SelectInstallAction(List<InstallController> pluginActions)
         {
             if (!pluginActions.HasItems())
             {
@@ -81,7 +81,26 @@ namespace Playnite.ViewModels
             Actions[0].Selected = true;
             if (window.CreateAndOpenDialog(this) == true)
             {
-                return (InstallAction)SelectedAction;
+                return (InstallController)SelectedAction;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public UninstallController SelectUninstallAction(List<UninstallController> pluginActions)
+        {
+            if (!pluginActions.HasItems())
+            {
+                throw new ArgumentNullException("Not uninstall action provided!");
+            }
+
+            Actions = pluginActions.Select(a => new SelectableItem<object>(a)).ToList();
+            Actions[0].Selected = true;
+            if (window.CreateAndOpenDialog(this) == true)
+            {
+                return (UninstallController)SelectedAction;
             }
             else
             {

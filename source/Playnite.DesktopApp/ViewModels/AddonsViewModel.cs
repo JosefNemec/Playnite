@@ -261,26 +261,31 @@ namespace Playnite.DesktopApp.ViewModels
             switch (view)
             {
                 case View.BrowseLibraries:
+                    application.ShowAddonPerfNotice();
                     activeAddonSearchMode = AddonType.GameLibrary;
                     AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseMetadata:
+                    application.ShowAddonPerfNotice();
                     activeAddonSearchMode = AddonType.MetadataProvider;
                     AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseGeneric:
+                    application.ShowAddonPerfNotice();
                     activeAddonSearchMode = AddonType.Generic;
                     AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseThemesDesktop:
+                    application.ShowAddonPerfNotice();
                     activeAddonSearchMode = AddonType.ThemeDesktop;
                     AddonSearchText = string.Empty;
                     SearchAddon();
                     break;
                 case View.BrowseThemesFullscreen:
+                    application.ShowAddonPerfNotice();
                     activeAddonSearchMode = AddonType.ThemeFullscreen;
                     AddonSearchText = string.Empty;
                     SearchAddon();
@@ -324,7 +329,7 @@ namespace Playnite.DesktopApp.ViewModels
         private void UninstallTheme(ThemeManifest a)
         {
             if (dialogs.ShowMessage(
-               "LOCThemeUninstallQuestion",
+               LOC.ThemeUninstallQuestion,
                string.Empty,
                MessageBoxButton.YesNo,
                MessageBoxImage.Question) == MessageBoxResult.Yes)

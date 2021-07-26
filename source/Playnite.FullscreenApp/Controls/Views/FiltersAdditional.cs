@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace Playnite.FullscreenApp.Controls.Views
 {
@@ -80,6 +81,21 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ItemsHost = Template.FindName("PART_ItemsHost", this) as ItemsControl;
                 if (ItemsHost != null)
                 {
+                    XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+                    ItemsHost.ItemsPanel = Xaml.FromString<ItemsPanelTemplate>(new XDocument(
+                        new XElement(pns + nameof(ItemsPanelTemplate),
+                            new XElement(pns + nameof(VirtualizingStackPanel)))
+                    ).ToString());
+                    ItemsHost.Template = Xaml.FromString<ControlTemplate>(new XDocument(
+                         new XElement(pns + nameof(ControlTemplate),
+                            new XElement(pns + nameof(ScrollViewer),
+                                new XAttribute(nameof(ScrollViewer.Focusable), false),
+                                new XAttribute(nameof(ScrollViewer.HorizontalScrollBarVisibility), ScrollBarVisibility.Disabled),
+                                new XAttribute(nameof(ScrollViewer.VerticalScrollBarVisibility), ScrollBarVisibility.Auto),
+                                new XAttribute(nameof(ScrollViewer.CanContentScroll), true),
+                                new XElement(pns + nameof(ItemsPresenter))))
+                    ).ToString());
+
                     AssignFilter("LOCGenreLabel", "PART_ButtonGenre", GameField.Genres, nameof(FilterSettings.Genre));
                     AssignFilter("LOCGameReleaseYearTitle", "PART_ButtonReleaseYear", GameField.ReleaseYear, nameof(FilterSettings.ReleaseYear));
                     AssignFilter("LOCDeveloperLabel", "PART_ButtonDeveloper", GameField.Developers, nameof(FilterSettings.Developer));

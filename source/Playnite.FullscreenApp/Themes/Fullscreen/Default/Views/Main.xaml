@@ -32,6 +32,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
 
@@ -73,9 +74,20 @@
                                        VerticalAlignment="Center" Margin="20,0,20,0"
                                        Grid.Column="4"/>
 
-                                <ButtonEx x:Name="PART_ButtonNotifications" VerticalAlignment="Center"
-                                          Margin="10,0,10,0" Height="48" Width="48"
+                                <ButtonEx x:Name="PART_ButtonProgramUpdate" VerticalAlignment="Center"
+                                          Margin="10,0,10,0" Height="48" MinWidth="48"
+                                          Style="{DynamicResource ButtonTopMenu}"                                          
                                           Grid.Column="5">
+                                    <ButtonEx.Content>
+                                        <TextBlock Text="&#xef08;" FontFamily="{StaticResource FontIcoFont}"                                                   
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2"
+                                                   Foreground="{DynamicResource GlyphLightBrush}" FontSize="30" />
+                                    </ButtonEx.Content>
+                                </ButtonEx>
+
+                                <ButtonEx x:Name="PART_ButtonNotifications" VerticalAlignment="Center"
+                                          Margin="10,0,10,0" Height="48" MinWidth="48"
+                                          Grid.Column="6">
                                     <Button.Content>
                                         <Grid>
                                             <TextBlock Text="&#xeea3;" FontFamily="{StaticResource FontIcoFont}"
@@ -90,7 +102,7 @@
                                         <Style TargetType="Button" BasedOn="{StaticResource ButtonTopMenu}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Api Notifications.Count}" Value="0">
-                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -99,8 +111,8 @@
 
                                 <ButtonEx x:Name="PART_ButtonMainMenu" VerticalAlignment="Center"
                                           Style="{DynamicResource ButtonTopMenu}"
-                                          Margin="10,0,10,0" Height="48"
-                                          Grid.Column="6">
+                                          Margin="10,0,10,0" Height="48" MinWidth="48"
+                                          Grid.Column="7">
                                     <Button.Content>
                                         <Image RenderOptions.BitmapScalingMode="Fant" Margin="2"
                                            Source="{ThemeFile 'Images/applogo_clean.png'}" />
@@ -212,9 +224,6 @@
 
                         <GameStatus x:Name="PART_ElemGameStatus" Grid.RowSpan="3"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-
-                        <Notifications x:Name="PART_ElemNotifications" Grid.RowSpan="3"
-                                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

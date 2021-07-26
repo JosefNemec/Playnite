@@ -18,6 +18,7 @@ namespace Playnite.Controllers
 
         public List<PlayController> PlayControllers { get; } = new List<PlayController>();
         public List<InstallController> InstallControllers { get; } = new List<InstallController>();
+        public List<UninstallController> UninstallControllers { get; } = new List<UninstallController>();
 
         public event EventHandler<GameStartingEventArgs> Starting;
         public event EventHandler<GameStartedEventArgs> Started;
@@ -45,6 +46,11 @@ namespace Playnite.Controllers
             {
                 RemoveController(controller);
             }
+
+            foreach (var controller in UninstallControllers.ToList())
+            {
+                RemoveController(controller);
+            }
         }
 
         public void AddController(PlayController controller)
@@ -58,8 +64,13 @@ namespace Playnite.Controllers
         public void AddController(InstallController controller)
         {
             controller.Installed += Controller_Installed;
-            controller.Uninstalled += Controller_Uninstalled;
             InstallControllers.Add(controller);
+        }
+
+        public void AddController(UninstallController controller)
+        {
+            controller.Uninstalled += Controller_Uninstalled;
+            UninstallControllers.Add(controller);
         }
 
         public void RemovePlayController(Guid gameId)
@@ -74,6 +85,15 @@ namespace Playnite.Controllers
         public void RemoveInstallController(Guid gameId)
         {
             var controller = InstallControllers.FirstOrDefault(a => a.Game?.Id == gameId);
+            if (controller != null)
+            {
+                RemoveController(controller);
+            }
+        }
+
+        public void RemoveUninstallController(Guid gameId)
+        {
+            var controller = UninstallControllers.FirstOrDefault(a => a.Game?.Id == gameId);
             if (controller != null)
             {
                 RemoveController(controller);
@@ -100,7 +120,7 @@ namespace Playnite.Controllers
         public void RemoveController(InstallController controller)
         {
             controller.Installed -= Controller_Installed;
-            controller.Uninstalled -= Controller_Uninstalled;
+
             try
             {
                 controller.Dispose();
@@ -113,6 +133,21 @@ namespace Playnite.Controllers
             InstallControllers.Remove(controller);
         }
 
+        public void RemoveController(UninstallController controller)
+        {
+            controller.Uninstalled -= Controller_Uninstalled;
+            try
+            {
+                controller.Dispose();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to dispose game controller {controller.GetType()}");
+            }
+
+            UninstallControllers.Remove(controller);
+        }
+
         public PlayController GetPlayController(Guid gameId)
         {
             return PlayControllers.FirstOrDefault(a => a.Game.Id == gameId);
@@ -121,6 +156,11 @@ namespace Playnite.Controllers
         public InstallController GetInstallController(Guid gameId)
         {
             return InstallControllers.FirstOrDefault(a => a.Game.Id == gameId);
+        }
+
+        public UninstallController GetUninstallController(Guid gameId)
+        {
+            return UninstallControllers.FirstOrDefault(a => a.Game.Id == gameId);
         }
 
         private void Controller_Stopped(object sender, GameStoppedEventArgs e)

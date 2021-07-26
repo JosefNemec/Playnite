@@ -148,7 +148,7 @@ namespace Playnite.Common
 
         public static bool IsFullPath(string path)
         {
-            if (path.IsNullOrWhiteSpace())
+            if (string.IsNullOrWhiteSpace(path))
             {
                 return false;
             }

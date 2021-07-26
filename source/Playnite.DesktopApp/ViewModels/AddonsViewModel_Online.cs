@@ -132,7 +132,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var latestPackage = manifest.GetLatestCompatiblePackage(addon.Type);
+            var latestPackage = manifest.GetLatestCompatiblePackage();
             if (latestPackage == null || latestPackage.PackageUrl.IsNullOrEmpty())
             {
                 dialogs.ShowErrorMessage(LOC.AddonErrorNotCompatible, string.Empty);

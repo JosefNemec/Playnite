@@ -261,12 +261,13 @@ paket-files/
 .vscode/
 
 build/nuget.exe
-build/PlayniteInstaller.exe
+build/PlayniteSetup.exe
 build/PlaynitePortable.zip
 build/TestPackage/*
 build/PlayniteServices/*
 build/ReleaseSDK/*
 build/DebugSDK/*
+build/Playnite.zip
 
 tests/TestConfig.yaml
 
@@ -278,5 +279,4 @@ source/PlayniteServices/twitchTokens.json
 # Not redistributable
 XBOXONE.ttf
 PlayStation4.ttf
-Attribution
 source/Playnite.FullscreenApp/Themes/Fullscreen/Default/audio/*

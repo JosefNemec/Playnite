@@ -22,26 +22,9 @@
                                 </StackPanel>
                             </Button.Content>
                         </ButtonEx>
-
-                        <ItemsControlEx DockPanel.Dock="Top" Focusable="False"
-                                        x:Name="PART_ItemsHost"
-                                        KeyboardNavigation.DirectionalNavigation="Once">
-                            <ItemsControl.Template>
-                                <ControlTemplate>
-                                    <ScrollViewer Focusable="False"
-                                                  HorizontalScrollBarVisibility="Disabled"
-                                                  VerticalScrollBarVisibility="Auto"
-                                                  CanContentScroll="True">
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </ItemsControl.Template>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControlEx>
+                        <ItemsControlEx x:Name="PART_ItemsHost"
+                                        DockPanel.Dock="Top" Focusable="False"
+                                        KeyboardNavigation.DirectionalNavigation="Once" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

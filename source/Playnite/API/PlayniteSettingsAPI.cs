@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Database;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Playnite.API
     public class PlayniteSettingsAPI : IPlayniteSettingsAPI
     {
         private readonly PlayniteSettings settings;
+        private readonly GameDatabase db;
 
         public int Version => settings.Version;
         public int GridItemWidthRatio => settings.GridItemWidthRatio;
@@ -38,14 +40,20 @@ namespace Playnite.API
         public bool SidebarVisible => settings.SidebarVisible;
         public Dock SidebarPosition => settings.SidebarPosition;
 
-        public PlayniteSettingsAPI(PlayniteSettings settings)
+        public PlayniteSettingsAPI(PlayniteSettings settings, GameDatabase db)
         {
             this.settings = settings;
+            this.db = db;
         }
 
         public bool GetGameExcludedFromImport(string gameId, Guid libraryId)
         {
-            return settings.ImportExclusionList.Items.Any(a => a.GameId == gameId && a.LibraryId == libraryId);
+            if (gameId.IsNullOrEmpty() || libraryId == Guid.Empty)
+            {
+                throw new ArgumentNullException("gameId and libraryId must be specified.");
+            }
+
+            return db.ImportExclusions.Get(ImportExclusionItem.GetId(gameId, libraryId)) != null;
         }
     }
 }

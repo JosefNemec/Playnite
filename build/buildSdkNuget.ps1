@@ -3,7 +3,6 @@
     [string]$Configuration = "Release",
     [string]$OutputPath = (Join-Path $PWD "$($Configuration)SDK"),
     [switch]$SkipBuild = $false,
-    [switch]$Sign = $false,
     [string]$LocalPublish
 )
 
@@ -24,13 +23,6 @@ if (!$SkipBuild)
     {
         throw "Build failed."
     }
-    else
-    {
-        if ($Sign)
-        {
-            Join-Path $OutputPath "Playnite.SDK.dll" | SignFile
-        }
-    }
 }
 
 # -------------------------------------------
@@ -46,7 +38,7 @@ $specFile = "nuget.nuspec"
 try
 {
     $spec | Out-File $specFile
-    $packageRes = Invoke-Nuget "pack $specFile"
+    $packageRes = Invoke-Nuget "pack $specFile -OutputDirectory $OutputPath"
     if ($packageRes -ne 0)
     {
         throw "Nuget packing failed."

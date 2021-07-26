@@ -19,15 +19,15 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="+" x:Name="UpArrow"
+                            <TextBlock Text="&#xeaa1;" x:Name="CollapsedIcon" FontFamily="{StaticResource FontIcoFont}"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Style="{DynamicResource BaseTextBlockStyle}"
-                                       Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" FontWeight="Bold" Margin="5,0,5,0"
+                                       Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="5,0,5,0"
                                        Grid.Column="0" TextAlignment="Center" />
-                            <TextBlock Text="-" x:Name="DownArrow"
+                            <TextBlock Text="&#xea99;" x:Name="ExpandedIcon" FontFamily="{StaticResource FontIcoFont}"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Style="{DynamicResource BaseTextBlockStyle}"
-                                       Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" FontWeight="Bold" Margin="5,0,5,0"
+                                       Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="5,0,5,0"
                                        Visibility="Collapsed"
                                        Grid.Column="0" TextAlignment="Center"/>
                             <ContentPresenter Grid.Column="1" VerticalAlignment="Center"
@@ -36,8 +36,8 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Visibility" TargetName="DownArrow" Value="Visible" />
-                            <Setter Property="Visibility" TargetName="UpArrow" Value="Collapsed" />
+                            <Setter Property="Visibility" TargetName="ExpandedIcon" Value="Visible" />
+                            <Setter Property="Visibility" TargetName="CollapsedIcon" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Opacity" Value="0.75" />

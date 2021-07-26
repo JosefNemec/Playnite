@@ -27,6 +27,8 @@ using Playnite.Metadata.Providers;
 using System.Text.RegularExpressions;
 using Playnite.Common.Media.Icons;
 using System.Diagnostics;
+using Playnite.SDK.Exceptions;
+using Playnite.Scripting.PowerShell;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -1521,6 +1523,32 @@ namespace Playnite.DesktopApp.ViewModels
                         appSettings.ShowImagePerformanceWarning = false;
                     }
                 }
+            }
+        }
+
+        public void TestScript(string script)
+        {
+            try
+            {
+                var expanded = EditingGame.ExpandVariables(script);
+                using (var runtime = new PowerShellRuntime($"test script runtime"))
+                {
+                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expanded, EditingGame, true, false);
+                }
+            }
+            catch (Exception exc)
+            {
+                var message = exc.Message;
+                if (exc is ScriptRuntimeException err)
+                {
+                    message = err.Message + "\n\n" + err.ScriptStackTrace;
+                }
+
+                Dialogs.ShowMessage(
+                    message,
+                    resources.GetString("LOCScriptError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
     }

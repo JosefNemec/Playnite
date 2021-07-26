@@ -17,7 +17,7 @@ namespace Playnite.Common
         Directory
     }
 
-    public static class FileSystem
+    public static partial class FileSystem
     {
         private static ILogger logger = LogManager.GetLogger();
 
@@ -93,61 +93,36 @@ namespace Playnite.Common
             }
         }
 
-        public static string GetCRC32(Stream stream)
+        public static void DeleteDirectory(string path, bool includeReadonly)
         {
-            uint crc = 0;
-            var buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+            if (!Directory.Exists(path))
             {
-                crc = Force.Crc32.Crc32Algorithm.Append(crc, buffer, 0, bytesRead);
+                return;
             }
 
-            return string.Format("{0:X8}", crc);
-        }
-
-        public static string GetCRC32(string filePath)
-        {
-            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            if (includeReadonly)
             {
-                return GetCRC32(stream);
-            }
-        }
+                foreach (var s in Directory.GetDirectories(path))
+                {
+                    DeleteDirectory(s, true);
+                }
 
-        public static string GetMD5(Stream stream)
-        {
-            using (var md5 = MD5.Create())
-            {
-                return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
-            }
-        }
+                foreach (var f in Directory.GetFiles(path))
+                {
+                    var attr = File.GetAttributes(f);
+                    if ((attr & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                    {
+                        File.SetAttributes(f, attr ^ FileAttributes.ReadOnly);
+                    }
 
-        public static string GetMD5(string filePath)
-        {
-            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            {
-                return GetMD5(stream);
-            }
-        }
+                    File.Delete(f);
+                }
 
-        public static bool AreFileContentsEqual(string path1, string path2)
-        {
-            var info1 = new FileInfo(path1);
-            var info2 = new FileInfo(path2);
-            if (info1.Length != info2.Length)
-            {
-                return false;
+                Directory.Delete(path, false);
             }
             else
             {
-                if (GetMD5(path1) == GetMD5(path2))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                DeleteDirectory(path);
             }
         }
 

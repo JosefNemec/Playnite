@@ -25,7 +25,17 @@ namespace Playnite.FullscreenApp
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public FullscreenAppViewModel MainModel { get; set; }
+        private FullscreenAppViewModel mainModel;
+        public FullscreenAppViewModel MainModel
+        {
+            get => mainModel;
+            set
+            {
+                mainModel = value;
+                MainModelBase = value;
+            }
+        }
+
         public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
         public static AudioPlaybackEngine Audio;
@@ -82,6 +92,7 @@ namespace Playnite.FullscreenApp
         public override void InstantiateApp()
         {
             Database = new GameDatabase();
+            Database.SetAsSingletonInstance();
             Controllers = new GameControllerFactory(Database);
             Extensions = new ExtensionFactory(Database, Controllers);
             GamesEditor = new GamesEditor(
@@ -97,12 +108,12 @@ namespace Playnite.FullscreenApp
                 null,
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
-                new WebViewFactory(),
+                new WebViewFactory(AppSettings),
                 new ResourceProvider(),
                 new NotificationsAPI(),
                 GamesEditor,
                 new PlayniteUriHandler(),
-                new PlayniteSettingsAPI(AppSettings),
+                new PlayniteSettingsAPI(AppSettings, Database),
                 new AddonsAPI(Extensions, AppSettings),
                 new Emulators.Emulation(),
                 Extensions);

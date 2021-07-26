@@ -1,5 +1,7 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Database;
+using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +68,17 @@ namespace Playnite.ViewModels
             }
         }
 
+        private bool updatesAvailable = false;
+        public bool UpdatesAvailable
+        {
+            get => updatesAvailable;
+            set
+            {
+                updatesAvailable = value;
+                OnPropertyChanged();
+            }
+        }
+
         private BaseCollectionView gamesView;
         public BaseCollectionView GamesView
         {
@@ -77,6 +90,16 @@ namespace Playnite.ViewModels
             }
         }
 
+        public List<FilterPreset> SortedFilterPresets
+        {
+            get => Database.FilterPresets.OrderBy(a => a.Name).ToList();
+        }
+
+        public List<FilterPreset> SortedFilterFullscreenPresets
+        {
+            get => Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection).OrderBy(a => a.Name).ToList();
+        }
+
         public bool IsDisposing { get; set; } = false;
         public GamesCollectionViewEntry SelectedGame { get; set; }
         public IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
@@ -84,11 +107,17 @@ namespace Playnite.ViewModels
         public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RemoveFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> ApplyFilterPresetCommand { get; private set; }
-        public ApplicationMode Mode { get; }
+        public RelayCommand<object> OpenUpdatesCommand { get; private set; }
+        public GameDatabase Database { get; }
+        public PlayniteApplication App { get; }
+        public IDialogsFactory Dialogs { get; }
 
-        public MainViewModelBase(ApplicationMode mode)
+        public MainViewModelBase(GameDatabase database, PlayniteApplication app, IDialogsFactory dialogs)
         {
-            Mode = mode;
+            Database = database;
+            App = app;
+            Dialogs = dialogs;
+
             ApplyFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
             {
                 ApplyFilterPreset(a);
@@ -107,6 +136,11 @@ namespace Playnite.ViewModels
             AddFilterPresetCommand = new RelayCommand<object>((a) =>
             {
                 AddFilterPreset();
+            });
+
+            OpenUpdatesCommand = new RelayCommand<object>((_) =>
+            {
+                OpenUpdates();
             });
         }
 
@@ -128,13 +162,13 @@ namespace Playnite.ViewModels
             set
             {
                 activeFilterPreset = value;
-                if (Mode == ApplicationMode.Desktop)
+                if (App.Mode == ApplicationMode.Desktop)
                 {
-                    AppSettings.SelectedFilterPreset = value?.Name;
+                    AppSettings.SelectedFilterPreset = value?.Id ?? Guid.Empty;
                 }
                 else
                 {
-                    AppSettings.Fullscreen.SelectedFilterPreset = value?.Name;
+                    AppSettings.Fullscreen.SelectedFilterPreset = value?.Id ?? Guid.Empty;
                 }
 
                 ApplyFilterPreset(value);
@@ -160,8 +194,8 @@ namespace Playnite.ViewModels
                 GamesView.IgnoreViewConfigChanges = true;
             }
 
-            var filter = Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
-            var view = Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
+            var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
+            var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
             filter.ApplyFilter(preset.Settings);
             if (preset.SortingOrder != null)
             {
@@ -173,7 +207,7 @@ namespace Playnite.ViewModels
                 view.SortingOrderDirection = preset.SortingOrderDirection.Value;
             }
 
-            if (Mode == ApplicationMode.Desktop && preset.GroupingOrder != null)
+            if (App.Mode == ApplicationMode.Desktop && preset.GroupingOrder != null)
             {
                 AppSettings.ViewSettings.GroupingOrder = preset.GroupingOrder.Value;
             }
@@ -202,10 +236,11 @@ namespace Playnite.ViewModels
             {
                 preset.Name = res.SelectedString;
                 preset.ShowInFullscreeQuickSelection = options[0].Selected;
+                Database.FilterPresets.Update(preset);
             }
 
-            AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterPresets));
-            AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterFullscreenPresets));
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
         }
 
         private void RemoveFilterPreset(FilterPreset preset)
@@ -217,14 +252,14 @@ namespace Playnite.ViewModels
 
             if (Dialogs.ShowMessage(LOC.AskRemoveItemMessage, LOC.AskRemoveItemTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                AppSettings.FilterPresets.Remove(preset);
+                Database.FilterPresets.Remove(preset);
                 if (ActiveFilterPreset == preset)
                 {
                     ActiveFilterPreset = null;
                 }
 
-                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterPresets));
-                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterFullscreenPresets));
+                OnPropertyChanged(nameof(SortedFilterPresets));
+                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
         }
 
@@ -239,7 +274,7 @@ namespace Playnite.ViewModels
             var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty, options);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
-                var filter = Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
+                var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
                 var preset = new FilterPreset
                 {
                     Name = res.SelectedString,
@@ -249,20 +284,30 @@ namespace Playnite.ViewModels
 
                 if (options[0].Selected)
                 {
-                    var view = Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
+                    var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
                     preset.SortingOrder = view.SortingOrder;
                     preset.SortingOrderDirection = view.SortingOrderDirection;
-                    if (Mode == ApplicationMode.Desktop)
+                    if (App.Mode == ApplicationMode.Desktop)
                     {
                         preset.GroupingOrder = AppSettings.ViewSettings.GroupingOrder;
                     }
                 }
 
-                AppSettings.FilterPresets.Add(preset);
+                Database.FilterPresets.Add(preset);
                 ActiveFilterPreset = preset;
-                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterPresets));
-                AppSettings.OnPropertyChanged(nameof(PlayniteSettings.SortedFilterFullscreenPresets));
+                OnPropertyChanged(nameof(SortedFilterPresets));
+                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
+        }
+
+        private void OpenUpdates()
+        {
+            new UpdateViewModel(
+                new Updater(App),
+                new UpdateWindowFactory(),
+                new ResourceProvider(),
+                Dialogs,
+                App.Mode).OpenView();
         }
     }
 }

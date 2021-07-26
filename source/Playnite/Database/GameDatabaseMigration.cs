@@ -303,6 +303,7 @@ namespace Playnite.Database
                 throw new NotImplementedException();
                 //dbSettings.Version = 4;
                 //SaveSettingsToDbPath(dbSettings, databasePath);
+                //migrate exclusions
             }
         }
 

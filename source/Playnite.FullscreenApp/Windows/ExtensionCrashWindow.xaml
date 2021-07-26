@@ -39,7 +39,7 @@
                                TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartPlaynite}"                       
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding RestartCommand}"
                                 x:Name="ButtonRestart" />
                         <pctrls:CheckBoxEx Content="{DynamicResource LOCCrashDisableExtension}"

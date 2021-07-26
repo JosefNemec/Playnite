@@ -25,12 +25,22 @@ namespace TestPlugin
 
         public override Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
 
+        public override PluginProperties Properties { get; } = new PluginProperties
+        {
+            HasSettings = true
+        };
+
         public TestPlugin(IPlayniteAPI api) : base(api)
         {
             Settings = new TestPluginSettingsViewModel(this, api);
             AddCustomElementSupport(new AddCustomElementSupportArgs
             {
                 ElementList = new List<string> { "TestUserControl" },
+                SourceName = "TestPlugin",
+            });
+
+            AddSettingsSupport(new AddSettingsSupportArgs
+            {
                 SourceName = "TestPlugin",
                 SettingsRoot = $"{nameof(Settings)}.{nameof(Settings.Settings)}"
             });
@@ -114,12 +124,38 @@ namespace TestPlugin
                 },
                 new MainMenuItem
                 {
+                    Description = "-"
+                },
+                new MainMenuItem
+                {
                     Description = "serialization test",
                     Action = (_) =>
                     {
                         var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
                         PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
                     }
+                }
+            };
+        }
+
+        public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        {
+            return new List<GameMenuItem>
+            {
+                new GameMenuItem
+                {
+                    Description = "window test",
+                    MenuSection = "test plugin"
+                },
+                new GameMenuItem
+                {
+                    Description = "-",
+                    MenuSection = "test plugin"
+                },
+                new GameMenuItem
+                {
+                    Description = "serialization test",
+                    MenuSection = "test plugin"
                 }
             };
         }
@@ -138,11 +174,7 @@ namespace TestPlugin
                 };
                 ProgressValue = 40;
                 ProgressMaximum = 100;
-            }
-
-            public override void Activated()
-            {
-                Process.Start("calc");
+                Activated = () => Process.Start("calc");
             }
         }
 
@@ -157,11 +189,7 @@ namespace TestPlugin
                     Text = char.ConvertFromUtf32(0xeaf1),
                     FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                 };
-            }
-
-            public override Control Opened()
-            {
-                return new Button { Content = "test" };
+                Opened = () => new Button { Content = "test" }; ;
             }
         }
 
@@ -188,18 +216,18 @@ namespace TestPlugin
             return items;
         }
 
-        //public override List<PlayAction> GetPlayActions(GetPlayActionsArgs args)
-        //{
-        //    return new List<PlayAction>
-        //    {
-        //        new GenericPlayAction
-        //        {
-        //            Name = "Test Action",
-        //            Path = "calc",
-        //            Type = GenericPlayActionType.File
-        //        }
-        //    };
-        //}
+        public override List<PlayController> GetPlayActions(GetPlayActionsArgs args)
+        {
+            return new List<PlayController>
+            {
+                new AutomaticPlayController(args.Game)
+                {
+                    Name = "Test Action",
+                    Path = "calc",
+                    Type = GenericPlayActionType.File
+                }
+            };
+        }
 
         public override Control GetGameViewControl(GetGameViewControlArgs args)
         {
@@ -223,8 +251,8 @@ namespace TestPlugin
                         FontSize = 20,
                         FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                     },
-                    ToolTip = "Steam fields",
-                    Action = ()=> Process.Start(@"steam://open/friends")
+                    Title = "Steam fields",
+                    Activated = () => Process.Start(@"steam://open/friends")
                 }
             };
         }

@@ -13,13 +13,12 @@ using System.Windows.Controls.Primitives;
 
 namespace Playnite.DesktopApp.Controls.Views
 {
-    [TemplatePart(Name = "PART_ListSideBarItems", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ElemMainMenu", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_PanelSideBarItems", Type = typeof(Panel))]
     public class Sidebar : Control
     {
         private readonly DesktopAppViewModel mainModel;
-
-        private ItemsControl ListSideBarItems;
+        private Panel PanelSideBarItems;
         private FrameworkElement ElemMainMenu;
 
         static Sidebar()
@@ -43,19 +42,47 @@ namespace Playnite.DesktopApp.Controls.Views
             }
 
             DataContext = this.mainModel;
+            Loaded += Sidebar_Loaded;
+            Unloaded += Sidebar_Unloaded;
+        }
+
+        private void Sidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.SidebarItems.CollectionChanged += SidebarItems_CollectionChanged;
+        }
+
+        private void Sidebar_Unloaded(object sender, RoutedEventArgs e)
+        {
+            mainModel.SidebarItems.CollectionChanged -= SidebarItems_CollectionChanged;
+        }
+
+        private void SidebarItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            LoadSidebarItems();
+        }
+
+        public void LoadSidebarItems()
+        {
+            if (PanelSideBarItems == null)
+            {
+                return;
+            }
+
+            PanelSideBarItems.Children.Clear();
+            foreach (var sideItem in mainModel.SidebarItems)
+            {
+                PanelSideBarItems.Children.Add(new SidebarItem { DataContext = sideItem });
+            }
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            ListSideBarItems = Template.FindName("PART_ListSideBarItems", this) as ItemsControl;
-            if (ListSideBarItems != null)
+            PanelSideBarItems = Template.FindName("PART_PanelSideBarItems", this) as Panel;
+            if (PanelSideBarItems != null)
             {
-                BindingTools.SetBinding(ListSideBarItems,
-                    ItemsControl.ItemsSourceProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SidebarItems));
+                LoadSidebarItems();
             }
 
             ElemMainMenu = Template.FindName("PART_ElemMainMenu", this) as FrameworkElement;

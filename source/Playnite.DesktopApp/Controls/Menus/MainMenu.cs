@@ -365,29 +365,37 @@ namespace Playnite.DesktopApp.Controls
                 var menuExtensionItems = new Dictionary<string, MenuItem>();
                 foreach (var item in toAdd)
                 {
-                    var newItem = new MenuItem()
+                    object newItem = null;
+                    if (item.Description == "-")
                     {
-                        Header = item.Description,
-                        Icon = MenuHelpers.GetIcon(item.Icon)
-                    };
-
-                    if (item.Action != null)
+                        newItem = new Separator();
+                    }
+                    else
                     {
-                        newItem.Click += (_, __) =>
+                        newItem = new MenuItem()
                         {
-                            try
-                            {
-                                item.Action(new MainMenuItemActionArgs());
-                            }
-                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                            {
-                                logger.Error(e, "Main menu extension action failed.");
-                                Dialogs.ShowErrorMessage(
-                                    ResourceProvider.GetString("LOCMenuActionExecError") +
-                                    Environment.NewLine + Environment.NewLine +
-                                    e.Message, "");
-                            }
+                            Header = item.Description,
+                            Icon = MenuHelpers.GetIcon(item.Icon)
                         };
+
+                        if (item.Action != null)
+                        {
+                            ((MenuItem)newItem).Click += (_, __) =>
+                            {
+                                try
+                                {
+                                    item.Action(new MainMenuItemActionArgs());
+                                }
+                                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                                {
+                                    logger.Error(e, "Main menu extension action failed.");
+                                    Dialogs.ShowErrorMessage(
+                                        ResourceProvider.GetString("LOCMenuActionExecError") +
+                                        Environment.NewLine + Environment.NewLine +
+                                        e.Message, "");
+                                }
+                            };
+                        }
                     }
 
                     var startIndex = Items.IndexOf(extensionsItem) + 1;

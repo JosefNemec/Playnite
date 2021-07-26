@@ -29,7 +29,7 @@ namespace Playnite.Database
 
         private static ILogger logger = LogManager.GetLogger();
 
-        private static Dictionary<string, Type> collectionsSpec = new Dictionary<string, Type>
+        private static readonly Dictionary<string, Type> collectionsSpec = new Dictionary<string, Type>
         {
             { nameof(Platforms), typeof(PlatformsCollection) },
             { nameof(Emulators), typeof(EmulatorsCollection) },
@@ -44,7 +44,9 @@ namespace Playnite.Database
             { nameof(Features), typeof(FeaturesCollection) },
             { nameof(SoftwareApps), typeof(AppSoftwareCollection) },
             { nameof(Games), typeof(GamesCollection) },
-            { nameof(GameScanners), typeof(GameScannersCollection) }
+            { nameof(GameScanners), typeof(GameScannersCollection) },
+            { nameof(FilterPresets), typeof(FilterPresetsCollection) },
+            { nameof(ImportExclusions), typeof(ImportExclusionsCollection) }
         };
 
         #region Locks
@@ -77,6 +79,8 @@ namespace Playnite.Database
         private const string sourcesDirName = "sources";
         private const string toolsDirName = "tools";
         private const string gameScannersDirName = "scanners";
+        private const string filterPresetsDirName = "filterpresets";
+        private const string importExclusionsDirName = "importexclusions";
 
         private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
         private string PlatformsDirectoryPath { get => Path.Combine(DatabasePath, platformsDirName); }
@@ -94,6 +98,8 @@ namespace Playnite.Database
         private string FeaturesDirectoryPath { get => Path.Combine(DatabasePath, featuresDirName); }
         private string ToolsDirectoryPath { get => Path.Combine(DatabasePath, toolsDirName); }
         private string GameScannersDirectoryPath { get => Path.Combine(DatabasePath, gameScannersDirName); }
+        private string FilterPresetsDirectoryPath { get => Path.Combine(DatabasePath, filterPresetsDirName); }
+        private string ImportExclusionsDirectoryPath { get => Path.Combine(DatabasePath, importExclusionsDirName); }
 
         #endregion Paths
 
@@ -113,6 +119,8 @@ namespace Playnite.Database
         public IItemCollection<GameFeature> Features { get; private set; }
         public AppSoftwareCollection SoftwareApps { get; private set; }
         public IItemCollection<GameScannerConfig> GameScanners { get; private set; }
+        public FilterPresetsCollection FilterPresets { get; private set; }
+        public ImportExclusionsCollection ImportExclusions { get; private set; }
 
         public List<Guid> UsedPlatforms { get; } = new List<Guid>();
         public List<Guid> UsedGenres { get; } = new List<Guid>();
@@ -127,6 +135,8 @@ namespace Playnite.Database
         public List<Guid> UsedFeastures { get; } = new List<Guid>();
 
         #endregion Lists
+
+        public static GameDatabase Instance { get; private set; }
 
         public bool IsOpen
         {
@@ -212,6 +222,8 @@ namespace Playnite.Database
                 (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
                 (GameScanners as GameScannersCollection).InitializeCollection(GameScannersDirectoryPath);
+                FilterPresets.InitializeCollection(FilterPresetsDirectoryPath);
+                ImportExclusions.InitializeCollection(ImportExclusionsDirectoryPath);
 
                 Games.ItemUpdated += Games_ItemUpdated;
                 Games.ItemCollectionChanged += Games_ItemCollectionChanged;
@@ -335,19 +347,11 @@ namespace Playnite.Database
                 return;
             }
 
-            Platforms.Dispose();
-            Games.Dispose();
-            Emulators.Dispose();
-            Genres.Dispose();
-            Companies.Dispose();
-            Tags.Dispose();
-            Categories.Dispose();
-            AgeRatings.Dispose();
-            Series.Dispose();
-            Regions.Dispose();
-            Sources.Dispose();
-            Features.Dispose();
-            SoftwareApps.Dispose();
+            foreach (var col in collectionsSpec)
+            {
+                var prop = typeof(GameDatabase).GetProperty(col.Key);
+                typeof(IDisposable).GetMethod(nameof(IDisposable.Dispose)).Invoke(prop.GetValue(this), null);
+            }
             GameScanners.Dispose();
         }
 
@@ -479,6 +483,50 @@ namespace Playnite.Database
                     col.Add(platforms);
                     col.IsEventsEnabled = true;
                 }
+
+                // Generate default filter presets
+                FilterPresets.IsEventsEnabled = false;
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "All",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Name,
+                    SortingOrderDirection = SortOrderDirection.Ascending,
+                    Settings = new FilterSettings()
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Recently Played",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.LastActivity,
+                    SortingOrderDirection = SortOrderDirection.Descending,
+                    Settings = new FilterSettings { IsInstalled = true }
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Favorites",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Name,
+                    SortingOrderDirection = SortOrderDirection.Ascending,
+                    Settings = new FilterSettings { Favorite = true }
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Most Played",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Playtime,
+                    SortingOrderDirection = SortOrderDirection.Descending,
+                    Settings = new FilterSettings()
+                });
+
+                FilterPresets.IsEventsEnabled = true;
             }
 
             IsOpen = true;
@@ -847,6 +895,8 @@ namespace Playnite.Database
             Games.BeginBufferUpdate();
             SoftwareApps.BeginBufferUpdate();
             GameScanners.BeginBufferUpdate();
+            FilterPresets.BeginBufferUpdate();
+            ImportExclusions.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
@@ -865,6 +915,8 @@ namespace Playnite.Database
             Games.EndBufferUpdate();
             SoftwareApps.EndBufferUpdate();
             GameScanners.EndBufferUpdate();
+            FilterPresets.EndBufferUpdate();
+            ImportExclusions.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()
@@ -1086,7 +1138,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, IList<ImportExclusionItem> excludedItems)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
         {
             if (library.Capabilities?.HasCustomizedGameImport == true)
             {
@@ -1097,7 +1149,7 @@ namespace Playnite.Database
                 var addedGames = new List<Game>();
                 foreach (var newGame in library.GetGames())
                 {
-                    if (excludedItems.Any(a => a.GameId == newGame.GameId && a.LibraryId == library.Id))
+                    if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
                     {
                         logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
                         continue;
@@ -1223,6 +1275,16 @@ namespace Playnite.Database
             }
 
             return importedRoms;
+        }
+
+        public void SetAsSingletonInstance()
+        {
+            if (Instance != null)
+            {
+                throw new Exception("Database singleton intance already exists.");
+            }
+
+            Instance = this;
         }
     }
 }

@@ -57,13 +57,31 @@ namespace Playnite.FullscreenApp.Controls
                 ItemsFilterPresets.SetResourceReference(ListBox.ItemContainerStyleProperty, "ItemFilterQuickPreset");
                 BindingTools.SetBinding(ItemsFilterPresets,
                     ListBox.ItemsSourceProperty,
-                    mainModel.AppSettings,
-                    nameof(mainModel.AppSettings.SortedFilterFullscreenPresets));
+                    mainModel,
+                    nameof(mainModel.SortedFilterFullscreenPresets));
                 BindingTools.SetBinding(ItemsFilterPresets,
                     ListBox.SelectedItemProperty,
                     mainModel,
                     nameof(mainModel.ActiveFilterPreset),
                     mode: BindingMode.TwoWay);
+
+                ItemsFilterPresets.PreviewMouseLeftButtonUp += ItemsFilterPresets_PreviewMouseLeftButtonUp;
+            }
+        }
+
+        private void ItemsFilterPresets_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (!(sender is ListBox))
+            {
+                return;
+            }
+
+            if (ItemsControl.ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) is ListBoxItem item)
+            {
+                if (item.DataContext is FilterPreset preset)
+                {
+                    mainModel.ActiveFilterPreset = preset;
+                }
             }
         }
     }

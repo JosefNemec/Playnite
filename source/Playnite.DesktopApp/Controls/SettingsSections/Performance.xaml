@@ -36,6 +36,10 @@
                   ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
                   Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
                   Margin="0,15,0,0"/>
+        <CheckBox Content="{DynamicResource LOCSettingsAltWebViewRendering}"
+                  ToolTip="{DynamicResource LOCSettingsAltWebViewRenderingTooltip}"
+                  IsChecked="{Binding Settings.UseCompositionWebViewRenderer}"
+                  Margin="0,15,0,0"/>
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0"
                     ToolTip="{DynamicResource LOCSettingsImageScalerModeTooltip}"
                     ToolTipService.InitialShowDelay="0">

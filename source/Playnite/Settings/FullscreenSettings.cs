@@ -323,8 +323,8 @@ namespace Playnite
             }
         }
 
-        private string selectedFilterPreset;
-        public string SelectedFilterPreset
+        private Guid selectedFilterPreset;
+        public Guid SelectedFilterPreset
         {
             get => selectedFilterPreset;
             set

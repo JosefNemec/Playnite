@@ -13,6 +13,39 @@ using System.Windows.Controls;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
+    ///
+    /// </summary>
+    public class GetPlayActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetInstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetUninstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
     /// When used, specific plugin class will be loaded by Playnite.
     /// </summary>
     public class LoadPluginAttribute : Attribute
@@ -27,11 +60,75 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    public class GetGameViewControlArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ApplicationMode Mode { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddCustomElementSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> ElementList { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddSettingsSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SettingsRoot { get; set; }
+    }
+
+    /// <summary>
+    /// Represents plugin properties.
+    /// </summary>
+    public class PluginProperties
+    {
+        /// <summary>
+        /// Gets or sets value indicating that the plugin provides user settings view.
+        /// </summary>
+        public bool HasSettings { get; set; } = true;
+    }
+
+    /// <summary>
     /// Represents base Playnite plugin.
     /// </summary>
     public abstract class Plugin : IDisposable, IIdentifiable
     {
         private const string pluginSettingFileName = "config.json";
+
+        /// <summary>
+        /// Gets plugin's properties.
+        /// </summary>
+        public virtual PluginProperties Properties { get; }
 
         /// <summary>
         /// Gets instance of runtime <see cref="IPlayniteAPI"/>.
@@ -250,10 +347,11 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Gets sidebar items provided by this plugin.
+        ///
         /// </summary>
+        /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<SidebarItem> GetSidebarItems()
+        public virtual List<PlayController> GetPlayActions(GetPlayActionsArgs args)
         {
             return null;
         }
@@ -263,7 +361,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<PlayAction> GetPlayActions(GetPlayActionsArgs args)
+        public virtual List<InstallController> GetInstallActions(GetInstallActionsArgs args)
         {
             return null;
         }
@@ -273,7 +371,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<InstallAction> GetInstallActions(GetInstallActionsArgs args)
+        public virtual List<UninstallController> GetUninstallActions(GetUninstallActionsArgs args)
         {
             return null;
         }
@@ -300,104 +398,28 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         ///
         /// </summary>
+        /// <param name="args"></param>
+        public void AddSettingsSupport(AddSettingsSupportArgs args)
+        {
+            PlayniteApi.AddSettingsSupport(this, args);
+        }
+
+        /// <summary>
+        /// Gets sidebar items provided by this plugin.
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<SidebarItem> GetSidebarItems()
+        {
+            return null;
+        }
+
+        /// <summary>
+        ///Gets top panel items provided by this plugin.
+        /// </summary>
         /// <returns></returns>
         public virtual List<TopPanelItem> GetTopPanelItems()
         {
             return null;
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public virtual List<FrameworkElement> GetTopPanelElements()
-        {
-            return null;
-        }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class TopPanelItem
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public object Icon { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public string ToolTip { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public Action Action { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetGameViewControlArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public ApplicationMode Mode { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class AddCustomElementSupportArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public List<string> ElementList { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public string SourceName { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public string SettingsRoot { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetPlayActionsArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public class GetInstallActionsArgs
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        public Game Game { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool IsUninstall { get; set; } = false;
     }
 }

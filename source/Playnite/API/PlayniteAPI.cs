@@ -132,5 +132,10 @@ namespace Playnite.API
         {
             extensions.AddCustomElementSupport(source, args);
         }
+
+        public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
+        {
+            extensions.AddSettingsSupport(source, args);
+        }
     }
 }

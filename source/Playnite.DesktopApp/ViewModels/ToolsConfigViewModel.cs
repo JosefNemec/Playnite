@@ -107,6 +107,7 @@ namespace Playnite.DesktopApp.ViewModels
             this.resources = resources;
 
             EditingApps = database.SoftwareApps.GetClone().OrderBy(a => a.Name).ToObservable();
+            SelectedApp = EditingApps.FirstOrDefault();
         }
 
         public bool? OpenView()

@@ -11,6 +11,7 @@ using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.ViewModels;
 using Playnite.Windows;
 using System;
@@ -37,13 +38,10 @@ namespace Playnite.FullscreenApp.ViewModels
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
 
-        public PlayniteApplication Application;
         public PlayniteAPI PlayniteApi { get; set; }
         public ExtensionFactory Extensions { get; }
         public IWindowFactory Window { get; }
-        public IDialogsFactory Dialogs { get; }
         public IResourceProvider Resources { get; }
-        public GameDatabase Database { get; }
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
         public ObservableTime CurrentTime { get; } = new ObservableTime();
@@ -303,17 +301,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        private bool notificationsVisible = false;
-        public bool NotificationsVisible
-        {
-            get => notificationsVisible;
-            set
-            {
-                notificationsVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool GenerateAudio { get; set; } = true;
 
         private bool childOpened = false;
@@ -372,7 +359,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public FullscreenAppViewModel() : base(ApplicationMode.Fullscreen)
+        public FullscreenAppViewModel() : base(null, null, null)
         {
         }
 
@@ -385,19 +372,15 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(ApplicationMode.Fullscreen)
+            PlayniteApplication app) : base(database, app, dialogs)
         {
             context = SynchronizationContext.Current;
-            Application = app;
             Window = window;
-            Dialogs = dialogs;
             Resources = resources;
-            Database = database;
             GamesEditor = gamesEditor;
             AppSettings = settings;
             PlayniteApi = playniteApi;
             Extensions = extensions;
-            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += FullscreenAppViewModel_ActivationRequested;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
@@ -445,16 +428,24 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             GameStatusVisible = true;
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Controller.Game.Name);
+            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Source.Game.Name);
         }
 
         private void Controllers_Started(object sender, GameStartedEventArgs e)
         {
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Controller.Game.Name);
+            GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Source.Game.Name);
         }
 
         private void ElementGotFocusHandler(object sender, RoutedEventArgs e)
         {
+            // This prevents "double-click" sounds when using mouse to open child menus.
+            // There's probably a better way how to detect if focus was caused by mouse input, but I haven't found it.
+            var mouseInput = InputManager.Current?.PrimaryMouseDevice;
+            if (mouseInput != null && mouseInput.LeftButton == MouseButtonState.Pressed)
+            {
+                return;
+            }
+
             if (sender is UIElement elem && elem.IsVisible)
             {
                 switch (sender)
@@ -489,14 +480,6 @@ namespace Playnite.FullscreenApp.ViewModels
             ChildOpened = true;
         }
 
-        private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
-        {
-            PlayniteApi.Notifications.Remove(e.Message.Id);
-            NotificationsVisible = false;
-            GameListFocused = true;
-            e.Message.ActivationAction();
-        }
-
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(FullscreenSettings.Monitor) || e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay))
@@ -513,7 +496,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.EnableXinputProcessing))
             {
-                Application.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+                App.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
@@ -543,6 +526,16 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             var vm = new MainMenuViewModel(new MainMenuWindowFactory(), this);
             vm.OpenView();
+            GameListFocused = false;
+            GameListFocused = true;
+        }
+
+        public void OpenNotificationsMenu()
+        {
+            var vm = new NotificationsViewModel(new NotificationsWindowFactory(), this);
+            vm.OpenView();
+            GameListFocused = false;
+            GameListFocused = true;
         }
 
         public void OpenGameMenu()
@@ -561,7 +554,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             CloseView();
-            Application.QuitAndStart(
+            App.QuitAndStart(
                 PlaynitePaths.DesktopExecutablePath,
                 new CmdLineOptions()
                 {
@@ -659,7 +652,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Window.Show(this);
             SetViewSizeAndPosition(IsFullScreen);
-            Application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
             InitializeView();
         }
@@ -762,18 +755,24 @@ namespace Playnite.FullscreenApp.ViewModels
                 SelectedGame = null;
             }
 
-            ActiveFilterPreset = AppSettings.FilterPresets.FirstOrDefault(a => a.Name == AppSettings.Fullscreen.SelectedFilterPreset);
             GameListFocused = true;
             isInitialized = true;
             Extensions.NotifiyOnApplicationStarted();
 
             try
             {
-                Application.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
+                App.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to initialize Discord manager.");
+            }
+
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            if (AppSettings.Fullscreen.SelectedFilterPreset != Guid.Empty)
+            {
+                ActiveFilterPreset = Database.FilterPresets.FirstOrDefault(a => a.Id == AppSettings.Fullscreen.SelectedFilterPreset);
             }
         }
 
@@ -833,7 +832,7 @@ namespace Playnite.FullscreenApp.ViewModels
                         {
                             using (Database.BufferedUpdate())
                             {
-                                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, AppSettings.ImportExclusionList.Items));
+                                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync));
                             }
 
                             PlayniteApi.Notifications.Remove($"{plugin.Id} - download");
@@ -899,7 +898,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
                 try
                 {
-                    var updates = Addons.CheckAddonUpdates(Application.ServicesClient);
+                    var updates = Addons.CheckAddonUpdates(App.ServicesClient);
                     if (updates.HasItems())
                     {
                         PlayniteApi.Notifications.Add(new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info,
@@ -910,10 +909,10 @@ namespace Playnite.FullscreenApp.ViewModels
                                      PlayniteApi,
                                      Dialogs,
                                      Resources,
-                                     Application.ServicesClient,
+                                     App.ServicesClient,
                                      Extensions,
                                      AppSettings,
-                                     Application,
+                                     App,
                                      updates).OpenView();
                             }));
                     }
@@ -946,11 +945,11 @@ namespace Playnite.FullscreenApp.ViewModels
                         var ext = Path.GetExtension(path).ToLower();
                         if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            Application.InstallThemeFile(path);
+                            App.InstallThemeFile(path);
                         }
                         else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            Application.InstallExtensionFile(path);
+                            App.InstallExtensionFile(path);
                         }
                     }
                 }
@@ -976,7 +975,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            Application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
         }
 
         internal void ProcessUriRequest(PlayniteUriEventArgs args)

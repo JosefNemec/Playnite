@@ -55,7 +55,7 @@ namespace Playnite
 
         public System.Version CurrentVersion
         {
-            get => Updater.GetCurrentVersion();
+            get => Updater.CurrentVersion;
         }
 
         public ApplicationMode Mode { get; }
@@ -76,6 +76,7 @@ namespace Playnite
         public static PlayniteApplication Current { get; private set; }
         public ServicesClient ServicesClient { get; private set; }
         public static bool SoundsEnabled { get; set; } = true;
+        public MainViewModelBase MainModelBase { get; set; }
 
         public PlayniteApplication()
         {
@@ -144,7 +145,6 @@ namespace Playnite
                 var settings = PlayniteSettings.GetDefaultSettings();
                 settings.FirstTimeWizardComplete = true;
                 settings.DatabasePath = AppSettings.DatabasePath;
-                settings.ImportExclusionList = AppSettings.ImportExclusionList;
                 settings.SaveSettings();
                 AppSettings = settings;
             }
@@ -873,21 +873,12 @@ namespace Playnite
                                 updater,
                                 new UpdateWindowFactory(),
                                 new ResourceProvider(),
-                                Dialogs).OpenView();
+                                Dialogs,
+                                Mode).OpenView();
                         });
                     }
 
-                    Api.Notifications.Add(
-                        new NotificationMessage("UpdateAvailable",
-                        updateBody,
-                        NotificationType.Info, () =>
-                        {
-                            new UpdateViewModel(
-                                updater,
-                                new UpdateWindowFactory(),
-                                new ResourceProvider(),
-                                Dialogs).OpenView();
-                        }));
+                    MainModelBase.UpdatesAvailable = true;
                     updateCheckTimer.Dispose();
                 }
             }
@@ -1026,12 +1017,24 @@ namespace Playnite
             }
         }
 
+        public void ShowAddonPerfNotice()
+        {
+            if (AppSettings.AddonsPerfNoticeShown)
+            {
+                return;
+            }
+
+            Dialogs.ShowMessage(LOC.AddonPerfNotice, "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            AppSettings.AddonsPerfNoticeShown = true;
+            AppSettings.SaveSettings();
+        }
+
         public void InstallOnlineAddon(string addonId)
         {
             try
             {
                 var addon = ServicesClient.GetAddon(addonId);
-                var package = addon.InstallerManifest.GetLatestCompatiblePackage(addon.Type);
+                var package = addon.InstallerManifest.GetLatestCompatiblePackage();
                 if (package == null)
                 {
                     Dialogs.ShowErrorMessage(LOC.AddonErrorNotCompatible, "");
@@ -1075,6 +1078,7 @@ namespace Playnite
                     return;
                 }
 
+                ShowAddonPerfNotice();
                 var locaPath = addon.GetTargetDownloadPath();
                 FileSystem.DeleteFile(locaPath);
                 var res = Dialogs.ActivateGlobalProgress((_) =>
@@ -1137,6 +1141,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    ShowAddonPerfNotice();
                     ExtensionInstaller.QueuePackageInstall(themeFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
@@ -1180,6 +1185,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    ShowAddonPerfNotice();
                     ExtensionInstaller.QueuePackageInstall(extensionFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),

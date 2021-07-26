@@ -116,6 +116,119 @@ namespace Playnite.Common
         {
             return object1.IsEqualJson(object2);
         }
+
+        public T FromStream<T>(Stream stream, Format dataFormat) where T : class
+        {
+            switch (dataFormat)
+            {
+                case Format.Json:
+                    return Serialization.FromJsonStream<T>(stream);
+                case Format.Yaml:
+                    return Serialization.FromYamlStream<T>(stream);
+                default:
+                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
+            }
+        }
+
+        public T FromFile<T>(string path, Format dataFormat) where T : class
+        {
+            switch (dataFormat)
+            {
+                case Format.Json:
+                    return Serialization.FromJsonFile<T>(path);
+                case Format.Yaml:
+                    return Serialization.FromYamlFile<T>(path);
+                default:
+                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
+            }
+        }
+
+        public T FromString<T>(string data, Format dataFormat) where T : class
+        {
+            switch (dataFormat)
+            {
+                case Format.Json:
+                    return Serialization.FromJson<T>(data);
+                case Format.Yaml:
+                    return Serialization.FromYaml<T>(data);
+                default:
+                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
+            }
+        }
+
+        public void ToFile(object data, string path, Format dataFormat)
+        {
+            switch (dataFormat)
+            {
+                case Format.Json:
+                    File.WriteAllText(path, Serialization.ToJson(data), Encoding.UTF8);
+                    break;
+                case Format.Yaml:
+                    File.WriteAllText(path, Serialization.ToYaml(data), Encoding.UTF8);
+                    break;
+                default:
+                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
+            }
+        }
+
+        public string ToString(object data, Format dataFormat)
+        {
+            switch (dataFormat)
+            {
+                case Format.Json:
+                    return Serialization.ToJson(data);
+                case Format.Yaml:
+                    return Serialization.ToYaml(data);
+                default:
+                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
+            }
+        }
+
+        public bool TryFromFile<T>(string path, Format dataFormat, out T deserialized) where T : class
+        {
+            try
+            {
+                switch (dataFormat)
+                {
+                    case Format.Json:
+                        deserialized = Serialization.FromJsonFile<T>(path);
+                        return true;
+                    case Format.Yaml:
+                        deserialized = Serialization.FromYamlFile<T>(path);
+                        return true;
+                    default:
+                        throw new NotSupportedException($"Uknown data format {dataFormat}.");
+                }
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
+        }
+
+        public bool TryFromString<T>(string data, Format dataFormat, out T deserialized) where T : class
+        {
+            try
+            {
+                switch (dataFormat)
+                {
+                    case Format.Json:
+                        deserialized = Serialization.FromJson<T>(data);
+                        return true;
+                    case Format.Yaml:
+                        deserialized = Serialization.FromYaml<T>(data);
+                        return true;
+                    default:
+                        throw new NotSupportedException($"Uknown data format {dataFormat}.");
+                }
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
+        }
     }
 
     public static class Serialization

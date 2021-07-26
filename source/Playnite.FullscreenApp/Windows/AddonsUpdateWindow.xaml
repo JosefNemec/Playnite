@@ -108,11 +108,11 @@
                     Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3">
                 <DockPanel LastChildFill="False" Margin="20">
                     <pctrls:ButtonEx x:Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
-                            Style="{StaticResource ButtonMessageBox}"
+                            Style="{StaticResource MessageBoxButton}"
                             Command="{Binding ConfirmCommand}" />
                     <pctrls:ButtonEx x:Name="ButtonInstall" Content="{DynamicResource LOCAddonUpdateAddons}" DockPanel.Dock="Right"
                             pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                            Style="{StaticResource ButtonMessageBox}"
+                            Style="{StaticResource MessageBoxButton}"
                             Command="{Binding UpdateAddonsCommand}"/>
                 </DockPanel>
             </Border>

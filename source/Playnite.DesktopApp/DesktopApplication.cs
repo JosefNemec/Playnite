@@ -40,7 +40,18 @@ namespace Playnite.DesktopApp
         private SplashScreen splashScreen;
 
         public List<ThirdPartyTool> ThirdPartyTools { get; private set; }
-        public DesktopAppViewModel MainModel { get; set; }
+
+        private DesktopAppViewModel mainModel;
+        public DesktopAppViewModel MainModel
+        {
+            get => mainModel;
+            set
+            {
+                mainModel = value;
+                MainModelBase = value;
+            }
+        }
+
         public new static DesktopApplication Current
         {
             get => PlayniteApplication.Current == null ? null : (DesktopApplication)PlayniteApplication.Current;
@@ -130,6 +141,7 @@ namespace Playnite.DesktopApp
         public override void InstantiateApp()
         {
             Database = new GameDatabase();
+            Database.SetAsSingletonInstance();
             Controllers = new GameControllerFactory(Database);
             Extensions = new ExtensionFactory(Database, Controllers);
             GamesEditor = new DesktopGamesEditor(
@@ -145,12 +157,12 @@ namespace Playnite.DesktopApp
                 null,
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
-                new WebViewFactory(),
+                new WebViewFactory(AppSettings),
                 new ResourceProvider(),
                 new NotificationsAPI(),
                 GamesEditor,
                 new PlayniteUriHandler(),
-                new PlayniteSettingsAPI(AppSettings),
+                new PlayniteSettingsAPI(AppSettings, Database),
                 new AddonsAPI(Extensions, AppSettings),
                 new Emulators.Emulation(),
                 Extensions);
@@ -193,7 +205,11 @@ namespace Playnite.DesktopApp
 
         private async void OpenMainViewAsync(bool isFirstStart)
         {
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            if (!isFirstStart)
+            {
+                Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            }
+
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
 
             try
@@ -257,7 +273,8 @@ namespace Playnite.DesktopApp
                     Dialogs,
                     new ResourceProvider(),
                     Extensions,
-                    Api);
+                    Api,
+                    ServicesClient);
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
