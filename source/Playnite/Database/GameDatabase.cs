@@ -1065,8 +1065,8 @@ namespace Playnite.Database
                             existingGame.IsInstalled = newGame.IsInstalled;
                             existingGameUpdated = true;
                         }
-                        
-                        if (existingGame.InstallDirectory.Equals(newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
+
+                        if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
                         {
                             existingGame.InstallDirectory = newGame.InstallDirectory;
                             existingGameUpdated = true;
