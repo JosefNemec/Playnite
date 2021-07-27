@@ -1,0 +1,12 @@
+- Id: japan
+  Name: Japan
+  Codes: [J, JP, Japan]
+- Id: usa
+  Name: USA
+  Codes: [U, NA, USA, US]
+- Id: europe
+  Name: Europe
+  Codes: [E, EU, Europe]
+- Id: world
+  Name: World
+  Codes: [World]

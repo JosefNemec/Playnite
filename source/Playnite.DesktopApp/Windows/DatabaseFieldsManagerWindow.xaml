@@ -50,11 +50,11 @@
                                 <RowDefinition Height="3*"/>
                                 <RowDefinition Height="3*"/>
                             </Grid.RowDefinitions>
-                            <DockPanel Grid.Row="0" Margin="5">
-                                <TextBlock Text="Platform specification" VerticalAlignment="Center" />
-                                <ComboBox Margin="5,0,0,0"
+                            <DockPanel Grid.Row="0" Margin="5,10,5,10">
+                                <TextBlock Text="{DynamicResource LOCPlatformSpec}" VerticalAlignment="Center" DockPanel.Dock="Left" />
+                                <ComboBox Margin="5,0,0,0" DockPanel.Dock="Left"
                                           ItemsSource="{Binding PlatformsSpecifications}"
-                                          SelectedValue="{Binding SelectedItem.PlatformId, ElementName=ListPlatforms}"
+                                          SelectedValue="{Binding SelectedItem.SpecificationId, ElementName=ListPlatforms}"
                                           SelectedValuePath="Id"/>
                             </DockPanel>                            
                             <GroupBox Header="{DynamicResource LOCGameIconTitle}" Margin="5" Grid.Row="1">
@@ -272,9 +272,35 @@
                         <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
                                 Command="{Binding RemoveUnusedRegionsCommand}"/>
                     </StackPanel>
-                    <ListBox Name="ListRegions"
-                             DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
-                             ItemsSource="{Binding EditingRegions}" DisplayMemberPath="Name" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+                            <DockPanel Grid.Row="0" Margin="5,10,5,10">
+                                <TextBlock Text="{DynamicResource LOCRegionSpec}" VerticalAlignment="Center" DockPanel.Dock="Left" />
+                                <ComboBox Margin="5,0,0,0" DockPanel.Dock="Left"
+                                          ItemsSource="{Binding RegionsSpecifications}"
+                                          SelectedValue="{Binding SelectedItem.SpecificationId, ElementName=ListRegions}"
+                                          SelectedValuePath="Id"/>
+                            </DockPanel>
+                        </Grid>
+
+                        <ListBox Name="ListRegions" Grid.Column="0"
+                                 Margin="5" SelectionMode="Extended"
+                                 ItemsSource="{Binding EditingRegions}" DisplayMemberPath="Name" />
+                    </Grid>
                 </DockPanel>
             </TabItem>
 

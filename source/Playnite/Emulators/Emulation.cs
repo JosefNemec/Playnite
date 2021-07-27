@@ -15,13 +15,20 @@ namespace Playnite.Emulators
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static string platformsFile => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Platforms.yaml");
+        private static string regionsFile => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Regions.yaml");
 
         #region IEmulationAPI
         IList<EmulatedPlatform> IEmulationAPI.Platforms => Platforms;
+        IList<EmulatedRegion> IEmulationAPI.Regions => Regions;
 
         EmulatedPlatform IEmulationAPI.GetPlatform(string platformsId)
         {
             return GetPlatform(platformsId);
+        }
+
+        EmulatedRegion IEmulationAPI.GetRegion(string regionId)
+        {
+            return GetRegion(regionId);
         }
         #endregion IEmulationAPI
 
@@ -60,6 +67,43 @@ namespace Playnite.Emulators
         public static EmulatedPlatform GetPlatform(string platformsId)
         {
             return Platforms.FirstOrDefault(a => a.Id == platformsId);
+        }
+
+        private static List<EmulatedRegion> regions;
+        public static IList<EmulatedRegion> Regions
+        {
+            get
+            {
+                if (regions != null)
+                {
+                    return regions;
+                }
+
+                if (File.Exists(regionsFile))
+                {
+                    try
+                    {
+                        regions = Serialization.FromYamlFile<List<EmulatedRegion>>(regionsFile);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        regions = new List<EmulatedRegion>();
+                        logger.Error(e, $"Failed to emulated regions list.");
+                    }
+                }
+                else
+                {
+                    logger.Error("Emulation regions file not found!");
+                    regions = new List<EmulatedRegion>();
+                }
+
+                return regions.AsReadOnly();
+            }
+        }
+
+        public static EmulatedRegion GetRegion(string regionsId)
+        {
+            return Regions.FirstOrDefault(a => a.Id == regionsId);
         }
     }
 

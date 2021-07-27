@@ -12,16 +12,16 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class Platform : DatabaseObject
     {
-        private string platformId;
+        private string specificationId;
         /// <summary>
-        /// Gets or sets platform identifier.
+        /// Gets or sets specification identifier.
         /// </summary>
-        public string PlatformId
+        public string SpecificationId
         {
-            get => platformId;
+            get => specificationId;
             set
             {
-                platformId = value;
+                specificationId = value;
                 OnPropertyChanged();
             }
         }
@@ -117,9 +117,9 @@ namespace Playnite.SDK.Models
                     tro.Background = Background;
                 }
 
-                if (!string.Equals(PlatformId, tro.PlatformId, StringComparison.Ordinal))
+                if (!string.Equals(SpecificationId, tro.SpecificationId, StringComparison.Ordinal))
                 {
-                    tro.PlatformId = PlatformId;
+                    tro.SpecificationId = SpecificationId;
                 }
             }
             else

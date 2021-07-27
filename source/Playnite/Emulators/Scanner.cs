@@ -321,7 +321,7 @@ namespace Playnite.Emulators
                 return new List<ScannedGame>();
             }
 
-            var platforms = profile.Platforms?.Select(a => database.Platforms[a].PlatformId).Where(a => !a.IsNullOrEmpty()).ToList();
+            var platforms = profile.Platforms?.Select(a => database.Platforms[a].SpecificationId).Where(a => !a.IsNullOrEmpty()).ToList();
             return ScanDirectory(
                 directory,
                 profile.ImageExtensions,

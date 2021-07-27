@@ -28,6 +28,7 @@ namespace Playnite.DesktopApp.ViewModels
         private GameDatabase database;
 
         public List<EmulatedPlatform> PlatformsSpecifications { get; set; }
+        public List<EmulatedRegion> RegionsSpecifications { get; set; }
 
         #region Genres
 
@@ -535,6 +536,13 @@ namespace Playnite.DesktopApp.ViewModels
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
             PlatformsSpecifications = Emulation.Platforms.ToList();
             PlatformsSpecifications.Insert(0, new EmulatedPlatform
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = null
+            });
+
+            RegionsSpecifications = Emulation.Regions.ToList();
+            RegionsSpecifications.Insert(0, new EmulatedRegion
             {
                 Name = ResourceProvider.GetString(LOC.None),
                 Id = null

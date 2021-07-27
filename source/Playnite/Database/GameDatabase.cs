@@ -475,12 +475,22 @@ namespace Playnite.Database
             if (!dbExists)
             {
                 // Generate default platforms
-                var platforms = Emulation.Platforms.Select(a => new Platform(a.Name) { PlatformId = a.Id }).ToList();
+                var platforms = Emulation.Platforms.Select(a => new Platform(a.Name) { SpecificationId = a.Id }).ToList();
                 if (platforms.HasItems())
                 {
                     var col = Platforms as ItemCollection<Platform>;
                     col.IsEventsEnabled = false;
                     col.Add(platforms);
+                    col.IsEventsEnabled = true;
+                }
+
+                // Generate default regions
+                var regions = Emulation.Regions.Select(a => new Region(a.Name) { SpecificationId = a.Id }).ToList();
+                if (regions.HasItems())
+                {
+                    var col = Regions as ItemCollection<Region>;
+                    col.IsEventsEnabled = false;
+                    col.Add(regions);
                     col.IsEventsEnabled = true;
                 }
 

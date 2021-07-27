@@ -10,6 +10,8 @@ namespace Playnite.SDK
     public interface IEmulationAPI
     {
         IList<EmulatedPlatform> Platforms { get; }
+        IList<EmulatedRegion> Regions { get; }
         EmulatedPlatform GetPlatform(string platformId);
+        EmulatedRegion GetRegion(string regionId);
     }
 }
