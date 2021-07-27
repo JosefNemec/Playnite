@@ -53,12 +53,22 @@ namespace Playnite.ViewModels
 
         public object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions)
         {
-            if (!actions.HasItems())
+            if (!actions.HasItems() && !controllers.HasItems())
             {
-                throw new ArgumentNullException("Not play action provided!");
+                throw new ArgumentNullException("Not actions provided!");
             }
 
-            Actions = actions.Select(a => new SelectableItem<object>(a)).ToList();
+            Actions = new List<SelectableItem<object>>();
+            if (actions.HasItems())
+            {
+                Actions.AddRange(actions.Select(a => new SelectableItem<object>(a)));
+            }
+
+            if (controllers.HasItems())
+            {
+                Actions.AddRange(controllers.Select(a => new SelectableItem<object>(a)));
+            }
+
             Actions[0].Selected = true;
             if (window.CreateAndOpenDialog(this) == true)
             {
