@@ -73,9 +73,9 @@ namespace Playnite
             {
                 return plugin.LibraryIcon;
             }
-            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform && game.Platform?.Icon.IsNullOrEmpty() == false)
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform && game.Platforms?[0].Icon.IsNullOrEmpty() == false)
             {
-                return database.GetFullFilePath(game.Platform.Icon);
+                return database.GetFullFilePath(game.Platforms[0].Icon);
             }
 
             return null;
@@ -218,7 +218,7 @@ namespace Playnite
 
             result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             result = result.Replace(ExpandableVariables.Name, game.Name);
-            result = result.Replace(ExpandableVariables.Platform, game.Platform?.Name);
+            result = result.Replace(ExpandableVariables.Platform, game.Platforms?[0].Name);
             result = result.Replace(ExpandableVariables.PluginId, game.PluginId.ToString());
             result = result.Replace(ExpandableVariables.GameId, game.GameId);
             result = result.Replace(ExpandableVariables.DatabaseId, game.Id.ToString());
@@ -260,7 +260,7 @@ namespace Playnite
 
             result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             result = result.Replace(ExpandableVariables.Name, game.Name);
-            result = result.Replace(ExpandableVariables.Platform, game.Platform);
+            result = result.Replace(ExpandableVariables.Platform, game.Platforms?[0]);
             result = result.Replace(ExpandableVariables.GameId, game.GameId);
             result = result.Replace(ExpandableVariables.Version, game.Version);
             return fixSeparators ? Paths.FixSeparators(result) : result;

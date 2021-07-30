@@ -33,10 +33,10 @@ namespace Playnite.Database
                 Ignore(a => a.Tags).
                 Ignore(a => a.Features).
                 Ignore(a => a.Categories).
-                Ignore(a => a.Platform).
+                Ignore(a => a.Platforms).
                 Ignore(a => a.Series).
-                Ignore(a => a.AgeRating).
-                Ignore(a => a.Region).
+                Ignore(a => a.AgeRatings).
+                Ignore(a => a.Regions).
                 Ignore(a => a.Source).
                 Ignore(a => a.ReleaseYear).
                 Ignore(a => a.UserScoreRating).

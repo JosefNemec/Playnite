@@ -37,6 +37,10 @@ namespace Playnite
         public ComparableDbItemList<Company> Developers => new ComparableDbItemList<Company>(Game.Developers);
         public ComparableDbItemList<Company> Publishers => new ComparableDbItemList<Company>(Game.Publishers);
         public ComparableDbItemList<Category> Categories => new ComparableDbItemList<Category>(Game.Categories);
+        public ComparableDbItemList<AgeRating> AgeRatings => new ComparableDbItemList<AgeRating>(Game.AgeRatings);
+        public ComparableDbItemList<Series> Series => new ComparableDbItemList<Series>(Game.Series);
+        public ComparableDbItemList<Region> Regions => new ComparableDbItemList<Region>(Game.Regions);
+        public ComparableDbItemList<Platform> Platforms => new ComparableDbItemList<Platform>(Game.Platforms);
         public DateTime? ReleaseDate => Game.ReleaseDate;
         public int? ReleaseYear => Game.ReleaseYear;
         public DateTime? LastActivity => Game.LastActivity;
@@ -84,11 +88,11 @@ namespace Playnite
         public List<Guid> DeveloperIds => Game.DeveloperIds;
         public List<Guid> PublisherIds => Game.PublisherIds;
         public List<Guid> TagIds => Game.TagIds;
-        public Guid SeriesId => Game.SeriesId;
-        public Guid AgeRatingId => Game.AgeRatingId;
-        public Guid RegionId => Game.RegionId;
+        public List<Guid> SeriesIds => Game.SeriesIds;
+        public List<Guid> AgeRatingIds => Game.AgeRatingIds;
+        public List<Guid> RegionIds => Game.RegionIds;
         public Guid SourceId => Game.SourceId;
-        public Guid PlatformId => Game.PlatformId;
+        public List<Guid> PlatformIds => Game.PlatformIds;
         public List<Guid> FeatureIds => Game.FeatureIds;
 
         public object IconObject => GetImageObject(Game.Icon, false);
@@ -115,20 +119,20 @@ namespace Playnite
             fullscreenListCoverProperties);
         public object DefaultFullscreenListItemCoverObject => GetDefaultCoverImage(true, fullscreenListCoverProperties);
 
-        public Series Series
+        public Series Serie
         {
-            get => Game.Series ?? Series.Empty;
-        }
+            get; private set;
+        } = Playnite.SDK.Models.Series.Empty;
 
         public Platform Platform
         {
-            get => Game.Platform ?? Platform.Empty;
-        }
+            get; private set;
+        } = Platform.Empty;
 
         public Region Region
         {
-            get => Game.Region ?? Region.Empty;
-        }
+            get; private set;
+        } = Region.Empty;
 
         public GameSource Source
         {
@@ -137,8 +141,8 @@ namespace Playnite
 
         public AgeRating AgeRating
         {
-            get => Game.AgeRating ?? AgeRating.Empty;
-        }
+            get; private set;
+        } = AgeRating.Empty;
 
         public Category Category
         {
@@ -365,6 +369,38 @@ namespace Playnite
                 if (obj != null)
                 {
                     return new GamesCollectionViewEntry(game, plugin, settings) { Category = obj };
+                }
+            }
+            else if (colGroupType == typeof(Platform))
+            {
+                var obj = database.Platforms.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Platform = obj };
+                }
+            }
+            else if (colGroupType == typeof(AgeRating))
+            {
+                var obj = database.AgeRatings.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { AgeRating = obj };
+                }
+            }
+            else if (colGroupType == typeof(Series))
+            {
+                var obj = database.Series.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Serie = obj };
+                }
+            }
+            else if (colGroupType == typeof(Region))
+            {
+                var obj = database.Regions.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Region = obj };
                 }
             }
 

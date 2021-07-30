@@ -109,14 +109,14 @@ namespace Playnite.DesktopApp.ViewModels
             new FilterSection(GameField.Genres, LOC.GenresLabel),
             new FilterSection(GameField.Features, LOC.FeaturesLabel),
             new FilterSection(GameField.Tags, LOC.TagsLabel),
-            new FilterSection(GameField.Platform, LOC.PlatformsTitle),
+            new FilterSection(GameField.Platforms, LOC.PlatformsTitle),
             new FilterSection(GameField.Developers, LOC.DevelopersLabel),
             new FilterSection(GameField.Publishers, LOC.PublishersLabel),
             new FilterSection(GameField.Categories, LOC.CategoriesLabel),
             new FilterSection(GameField.ReleaseYear, LOC.GameReleaseYearTitle),
             new FilterSection(GameField.Series, LOC.SeriesLabel),
-            new FilterSection(GameField.AgeRating, LOC.AgeRatingsLabel),
-            new FilterSection(GameField.Region, LOC.RegionsLabel),
+            new FilterSection(GameField.AgeRatings, LOC.AgeRatingsLabel),
+            new FilterSection(GameField.Regions, LOC.RegionsLabel),
             new FilterSection(GameField.Source, LOC.SourcesLabel),
         };
 
@@ -259,7 +259,7 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.Tags:
                     FilterObjects = new List<FilterObject>(database.UsedTags.Select(a => database.Tags[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
                     break;
-                case GameField.Platform:
+                case GameField.Platforms:
                     FilterObjects = new List<FilterObject>(database.UsedPlatforms.Select(a => database.Platforms[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
                     break;
                 case GameField.Developers:
@@ -278,10 +278,10 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.Series:
                     FilterObjects = new List<FilterObject>(database.UsedSeries.Select(a => database.Series[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
                     break;
-                case GameField.AgeRating:
+                case GameField.AgeRatings:
                     FilterObjects = new List<FilterObject>(database.UsedAgeRatings.Select(a => database.AgeRatings[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
                     break;
-                case GameField.Region:
+                case GameField.Regions:
                     FilterObjects = new List<FilterObject>(database.UsedRegions.Select(a => database.Regions[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
                     break;
                 case GameField.Source:
@@ -385,8 +385,8 @@ namespace Playnite.DesktopApp.ViewModels
                     return game.FeatureIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
                 case GameField.Tags:
                     return game.TagIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
-                case GameField.Platform:
-                    return game.PlatformId == ((DatabaseObject)SelectedFilterObject.Value).Id;
+                case GameField.Platforms:
+                    return game.PlatformIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
                 case GameField.Developers:
                     return game.DeveloperIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
                 case GameField.Publishers:
@@ -396,11 +396,11 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.ReleaseYear:
                     return game.ReleaseDate?.Year == (int?)SelectedFilterObject.Value;
                 case GameField.Series:
-                    return game.SeriesId == ((DatabaseObject)SelectedFilterObject.Value).Id;
-                case GameField.AgeRating:
-                    return game.AgeRatingId == ((DatabaseObject)SelectedFilterObject.Value).Id;
-                case GameField.Region:
-                    return game.RegionId == ((DatabaseObject)SelectedFilterObject.Value).Id;
+                    return game.SeriesIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
+                case GameField.AgeRatings:
+                    return game.AgeRatingIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
+                case GameField.Regions:
+                    return game.RegionIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
                 case GameField.Source:
                     return game.SourceId == ((DatabaseObject)SelectedFilterObject.Value).Id;
                 default:

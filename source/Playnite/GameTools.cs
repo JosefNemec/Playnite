@@ -17,6 +17,10 @@ namespace Playnite
         public List<Guid> DistinctCategoryIds { get; set; }
         public List<Guid> DistinctTagIds { get; set; }
         public List<Guid> DistinctFeatureIds { get; set; }
+        public List<Guid> DistinctPlatformIds { get; set; }
+        public List<Guid> DistinctRegionIds { get; set; }
+        public List<Guid> DistinctAgeRatingIds { get; set; }
+        public List<Guid> DistinctSeriesIds { get; set; }
     }
 
     public class GameTools
@@ -61,6 +65,18 @@ namespace Playnite
             dummyGame.FeatureIds = ListExtensions.GetCommonItems(games.Select(a => a.FeatureIds)).ToList();
             dummyGame.DistinctFeatureIds = ListExtensions.GetDistinctItems(games.Select(a => a.FeatureIds)).ToList();
 
+            dummyGame.PlatformIds = ListExtensions.GetCommonItems(games.Select(a => a.PlatformIds)).ToList();
+            dummyGame.DistinctPlatformIds = ListExtensions.GetDistinctItems(games.Select(a => a.PlatformIds)).ToList();
+
+            dummyGame.SeriesIds = ListExtensions.GetCommonItems(games.Select(a => a.SeriesIds)).ToList();
+            dummyGame.DistinctSeriesIds = ListExtensions.GetDistinctItems(games.Select(a => a.SeriesIds)).ToList();
+
+            dummyGame.AgeRatingIds = ListExtensions.GetCommonItems(games.Select(a => a.AgeRatingIds)).ToList();
+            dummyGame.DistinctAgeRatingIds = ListExtensions.GetDistinctItems(games.Select(a => a.AgeRatingIds)).ToList();
+
+            dummyGame.RegionIds = ListExtensions.GetCommonItems(games.Select(a => a.RegionIds)).ToList();
+            dummyGame.DistinctRegionIds = ListExtensions.GetDistinctItems(games.Select(a => a.RegionIds)).ToList();
+
             var firstReleaseDate = firstGame.ReleaseDate;
             if (games.All(a => a.ReleaseDate == firstReleaseDate) == true)
             {
@@ -83,12 +99,6 @@ namespace Playnite
             if (games.All(a => a.Manual == firstManual) == true)
             {
                 dummyGame.Manual = firstManual;
-            }
-
-            var firstPlatform = firstGame.PlatformId;
-            if (games.All(a => a.PlatformId == firstPlatform) == true)
-            {
-                dummyGame.PlatformId = firstPlatform;
             }
 
             var firstLastActivity = firstGame.LastActivity;
@@ -115,28 +125,10 @@ namespace Playnite
                 dummyGame.PlayCount = firstPlayCount;
             }
 
-            var firstSeries = firstGame.SeriesId;
-            if (games.All(a => a.SeriesId == firstSeries) == true)
-            {
-                dummyGame.SeriesId = firstSeries;
-            }
-
             var firstVersion = firstGame.Version;
             if (games.All(a => a.Version == firstVersion) == true)
             {
                 dummyGame.Version = firstVersion;
-            }
-
-            var firstAgeRating = firstGame.AgeRatingId;
-            if (games.All(a => a.AgeRatingId == firstAgeRating) == true)
-            {
-                dummyGame.AgeRatingId = firstAgeRating;
-            }
-
-            var firstRegion = firstGame.RegionId;
-            if (games.All(a => a.RegionId == firstRegion) == true)
-            {
-                dummyGame.RegionId = firstRegion;
             }
 
             var firstSource = firstGame.SourceId;

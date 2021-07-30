@@ -129,17 +129,17 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Series.
         /// </summary>
-        public string Series { get; set; }
+        public List<string> Series { get; set; }
 
         /// <summary>
         /// Gets or sets AgeRating.
         /// </summary>
-        public string AgeRating { get; set; }
+        public List<string> AgeRatings { get; set; }
 
         /// <summary>
         /// Gets or sets Region.
         /// </summary>
-        public string Region { get; set; }
+        public List<string> Regions { get; set; }
 
         /// <summary>
         /// Gets or sets Source.
@@ -149,7 +149,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Platform.
         /// </summary>
-        public string Platform { get; set; }
+        public List<string> Platforms { get; set; }
 
         /// <summary>
         /// Gets or sets Developers.

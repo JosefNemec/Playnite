@@ -133,10 +133,9 @@
                                     VerticalContentAlignment="Center"
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddPlatformCommand}" />
-                            <ComboBox  Name="ComboPlatforms" DockPanel.Dock="Left"
-                                  ItemsSource="{Binding Platforms}"
-                                  SelectedValuePath="Id" DisplayMemberPath="Name"
-                                  SelectedValue="{Binding EditingGame.PlatformId, UpdateSourceTrigger=PropertyChanged}" />
+                            <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
+                                                           IsThreeState="{Binding IsMultiGameEdit}"
+                                                           ItemsList="{Binding Platforms}" />
                         </DockPanel>
 
                         <!-- Genres -->
@@ -262,10 +261,9 @@
                                     VerticalContentAlignment="Center"
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddSeriesCommand}" />
-                            <ComboBox DockPanel.Dock="Left"
-                                  ItemsSource="{Binding Series}"
-                                  SelectedValuePath="Id" DisplayMemberPath="Name"
-                                  SelectedValue="{Binding EditingGame.SeriesId, UpdateSourceTrigger=PropertyChanged}" />
+                            <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
+                                                           IsThreeState="{Binding IsMultiGameEdit}"
+                                                           ItemsList="{Binding Series}" />
                         </DockPanel>
 
                         <!-- AgeRating -->
@@ -278,10 +276,9 @@
                                     VerticalContentAlignment="Center"
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddAgeRatingCommand}" />
-                            <ComboBox DockPanel.Dock="Left"
-                                  ItemsSource="{Binding AgeRatings}"
-                                  SelectedValuePath="Id" DisplayMemberPath="Name"
-                                  SelectedValue="{Binding EditingGame.AgeRatingId, UpdateSourceTrigger=PropertyChanged}" />
+                            <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
+                                                           IsThreeState="{Binding IsMultiGameEdit}"
+                                                           ItemsList="{Binding AgeRatings}" />
                         </DockPanel>
 
                         <!-- Region -->
@@ -294,10 +291,9 @@
                                     VerticalContentAlignment="Center"
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddRegionCommand}" />
-                            <ComboBox DockPanel.Dock="Left"
-                                  ItemsSource="{Binding Regions}"
-                                  SelectedValuePath="Id" DisplayMemberPath="Name"
-                                  SelectedValue="{Binding EditingGame.RegionId, UpdateSourceTrigger=PropertyChanged}" />
+                            <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
+                                                           IsThreeState="{Binding IsMultiGameEdit}"
+                                                           ItemsList="{Binding Regions}" />
                         </DockPanel>
 
                         <!-- Source -->

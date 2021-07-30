@@ -68,11 +68,10 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            checkItemChanged(testGame.AgeRating, newInfo.AgeRating, GameField.AgeRating);
-            checkItemChanged(testGame.Region, newInfo.Region, GameField.Region);
-            checkItemChanged(testGame.Series, newInfo.Series, GameField.Series);
-            checkItemChanged(testGame.Platform, newInfo.Platform, GameField.Platform);
-
+            checkListChanged(testGame.AgeRatings, newInfo.AgeRatings, GameField.AgeRatings);
+            checkListChanged(testGame.Regions, newInfo.Regions, GameField.Regions);
+            checkListChanged(testGame.Series, newInfo.Series, GameField.Series);
+            checkListChanged(testGame.Platforms, newInfo.Platforms, GameField.Platforms);
             checkListChanged(testGame.Developers, newInfo.Developers, GameField.Developers);
             checkListChanged(testGame.Publishers, newInfo.Publishers, GameField.Publishers);
             checkListChanged(testGame.Genres, newInfo.Genres, GameField.Genres);
@@ -245,24 +244,24 @@ namespace Playnite.DesktopApp.ViewModels
                 AddNewFeatures(metadata.GameInfo.Features);
             }
 
-            if (!metadata.GameInfo.AgeRating.IsNullOrEmpty())
+            if (!metadata.GameInfo.AgeRatings?.HasNonEmptyItems() == true)
             {
-                AddNewAreRating(metadata.GameInfo.AgeRating);
+                AddNewAgeRatings(metadata.GameInfo.AgeRatings);
             }
 
-            if (!metadata.GameInfo.Region.IsNullOrEmpty())
+            if (!metadata.GameInfo.Regions?.HasNonEmptyItems() == true)
             {
-                AddNewRegion(metadata.GameInfo.Region);
+                AddNewRegions(metadata.GameInfo.Regions);
             }
 
-            if (!metadata.GameInfo.Series.IsNullOrEmpty())
+            if (!metadata.GameInfo.Series?.HasNonEmptyItems() == true)
             {
                 AddNewSeries(metadata.GameInfo.Series);
             }
 
-            if (!metadata.GameInfo.Platform.IsNullOrEmpty())
+            if (!metadata.GameInfo.Platforms?.HasNonEmptyItems() == true)
             {
-                AddNewPlatform(metadata.GameInfo.Platform);
+                AddNewPlatforms(metadata.GameInfo.Platforms);
             }
 
             if (metadata.GameInfo.ReleaseDate != null)
@@ -386,10 +385,10 @@ namespace Playnite.DesktopApp.ViewModels
                                 Links = provider.GetLinks(),
                                 CriticScore = provider.GetCriticScore(),
                                 CommunityScore = provider.GetCommunityScore(),
-                                AgeRating = provider.GetAgeRating(),
+                                AgeRatings = provider.GetAgeRatings(),
                                 Series = provider.GetSeries(),
-                                Region = provider.GetRegion(),
-                                Platform = provider.GetPlatform()
+                                Regions = provider.GetRegions(),
+                                Platforms = provider.GetPlatforms()
                             };
 
                             var metadata = new GameMetadata

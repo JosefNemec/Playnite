@@ -623,12 +623,12 @@ namespace Playnite.Emulators
             var game = new Game(Name) { IsInstalled = true };
             if (Platforms.HasItems())
             {
-                game.PlatformId = Platforms[0].Id;
+                game.PlatformIds = Platforms.Select(a => a.Id).ToList();
             }
 
             if (Regions.HasItems())
             {
-                game.RegionId = Regions[0].Id;
+                game.RegionIds = Regions.Select(a => a.Id).ToList();
             }
 
             game.GameActions = new ObservableCollection<GameAction>

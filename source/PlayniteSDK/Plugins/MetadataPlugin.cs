@@ -265,7 +265,7 @@ namespace Playnite.SDK.Plugins
         /// Gets age rating.
         /// </summary>
         /// <returns></returns>
-        public virtual string GetAgeRating()
+        public virtual List<string> GetAgeRatings()
         {
             return null;
         }
@@ -274,7 +274,7 @@ namespace Playnite.SDK.Plugins
         /// Gets series.
         /// </summary>
         /// <returns></returns>
-        public virtual string GetSeries()
+        public virtual List<string> GetSeries()
         {
             return null;
         }
@@ -283,7 +283,7 @@ namespace Playnite.SDK.Plugins
         /// Gets region.
         /// </summary>
         /// <returns></returns>
-        public virtual string GetRegion()
+        public virtual List<string> GetRegions()
         {
             return null;
         }
@@ -292,7 +292,7 @@ namespace Playnite.SDK.Plugins
         /// Gets platform.
         /// </summary>
         /// <returns></returns>
-        public virtual string GetPlatform()
+        public virtual List<string> GetPlatforms()
         {
             return null;
         }

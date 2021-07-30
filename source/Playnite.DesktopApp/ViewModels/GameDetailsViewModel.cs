@@ -20,28 +20,6 @@ namespace Playnite.DesktopApp.ViewModels
         private DesktopGamesEditor editor;
         private PlayniteSettings settings;
 
-        public bool ShowInfoPanel
-        {
-            get
-            {
-                if (game == null)
-                {
-                    return false;
-                }
-
-                return
-                    (game.GenreIds?.Any() == true) ||
-                    (game.PublisherIds?.Any() == true) ||
-                    (game.DeveloperIds?.Any() == true) ||
-                    (game.CategoryIds?.Any() == true) ||
-                    (game.TagIds?.Any() == true) ||
-                    (game.FeatureIds?.Any() == true) ||
-                    game.ReleaseDate != null ||
-                    (game.Links?.Any() == true) ||
-                    game.PlatformId != Guid.Empty;
-            }
-        }
-
         public bool IsRunning
         {
             get
@@ -161,7 +139,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Visibility PlatformVisibility
         {
-            get => (settings.DetailsVisibility.Platform && game.Platform.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Platform && game.Platforms.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility GenreVisibility
@@ -231,12 +209,12 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Visibility AgeRatingVisibility
         {
-            get => (settings.DetailsVisibility.AgeRating && game.AgeRating.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.AgeRating && game.AgeRatings.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility SeriesVisibility
         {
-            get => (settings.DetailsVisibility.Series && game.Series.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Series && game.Series.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility SourceVisibility
@@ -246,7 +224,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Visibility RegionVisibility
         {
-            get => (settings.DetailsVisibility.Region && game.Region.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.Region && game.Regions.HasItems()) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility VersionVisibility
@@ -289,7 +267,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<DatabaseObject> SetCategoryFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetTagFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetFeatureFilterCommand { get; }
-        public RelayCommand<DatabaseObject> SetAgeRatingCommand { get; }
+        public RelayCommand<DatabaseObject> SetAgeRatingFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetSeriesFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetSourceFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetRegionFilterCommand { get; }
@@ -312,7 +290,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             OpenLinkCommand = new RelayCommand<Link>((a) => GlobalCommands.NavigateUrl(Game.Game.ExpandVariables(a.Url)));
             SetLibraryFilterCommand = new RelayCommand<Guid>((a) => SetLibraryFilter(a));
-            SetPlatformFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Platform));
+            SetPlatformFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Platforms));
             SetPublisherFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Publishers));
             SetDeveloperFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Developers));
             SetGenreFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Genres));
@@ -320,10 +298,10 @@ namespace Playnite.DesktopApp.ViewModels
             SetCategoryFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Categories));
             SetTagFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Tags));
             SetFeatureFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Features));
-            SetAgeRatingCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.AgeRating));
+            SetAgeRatingFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.AgeRatings));
             SetSeriesFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Series));
             SetSourceFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Source));
-            SetRegionFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Region));
+            SetRegionFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Regions));
             SetVersionFilterCommand = new RelayCommand<string>((filter) => SetVersionFilter(filter));
             PlayCommand = new RelayCommand<DatabaseObject>((a) => Play());
             InstallCommand = new RelayCommand<object>((a) => Install());
@@ -380,7 +358,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            OnPropertyChanged(nameof(ShowInfoPanel));
             OnPropertyChanged(nameof(IsRunning));
             OnPropertyChanged(nameof(IsInstalling));
             OnPropertyChanged(nameof(IsUninstalling));
@@ -405,7 +382,7 @@ namespace Playnite.DesktopApp.ViewModels
             var filter = new FilterItemProperites() { Ids = new List<Guid> { value.Id } };
             switch (filterField)
             {
-                case GameField.Platform:
+                case GameField.Platforms:
                     settings.FilterSettings.Platform = filter;
                     break;
                 case GameField.Genres:
@@ -423,13 +400,13 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.Tags:
                     settings.FilterSettings.Tag = filter;
                     break;
-                case GameField.AgeRating:
+                case GameField.AgeRatings:
                     settings.FilterSettings.AgeRating = filter;
                     break;
                 case GameField.Series:
                     settings.FilterSettings.Series = filter;
                     break;
-                case GameField.Region:
+                case GameField.Regions:
                     settings.FilterSettings.Region = filter;
                     break;
                 case GameField.Source:

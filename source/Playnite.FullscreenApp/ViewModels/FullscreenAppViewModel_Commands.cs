@@ -103,7 +103,7 @@ namespace Playnite.FullscreenApp.ViewModels
                     case GameField.Categories:
                         OpenSubFilter("LOCCategoryLabel", nameof(DatabaseFilter.Categories), nameof(FilterSettings.Category), true);
                         break;
-                    case GameField.Platform:
+                    case GameField.Platforms:
                         OpenSubFilter("LOCPlatformTitle", nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform), true);
                         break;
                     case GameField.CompletionStatus:
@@ -133,13 +133,13 @@ namespace Playnite.FullscreenApp.ViewModels
                     case GameField.Series:
                         OpenSubFilter("LOCSeriesLabel", nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));
                         break;
-                    case GameField.Region:
+                    case GameField.Regions:
                         OpenSubFilter("LOCRegionLabel", nameof(DatabaseFilter.Regions), nameof(FilterSettings.Region));
                         break;
                     case GameField.Source:
                         OpenSubFilter("LOCSourceLabel", nameof(DatabaseFilter.Sources), nameof(FilterSettings.Source));
                         break;
-                    case GameField.AgeRating:
+                    case GameField.AgeRatings:
                         OpenSubFilter("LOCAgeRatingLabel", nameof(DatabaseFilter.AgeRatings), nameof(FilterSettings.AgeRating));
                         break;
                     case GameField.UserScore:

@@ -45,7 +45,7 @@ namespace Playnite.Tests.Database
                 db.Games.Add(game);
                 db.Emulators.Remove(emulator);
                 Assert.AreEqual(Guid.Empty, game.GameActions[0].EmulatorId);
-                Assert.AreEqual(Guid.Empty, game.GameActions[0].EmulatorProfileId);
+                Assert.AreEqual(null, game.GameActions[0].EmulatorProfileId);
             }
         }
     }

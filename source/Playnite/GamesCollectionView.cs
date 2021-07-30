@@ -332,7 +332,7 @@ namespace Playnite
             // ------------------ Series filter
             if (filterSettings.Series?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.Series, game.SeriesId, game.Series))
+                if (!IsFilterMatching(filterSettings.Series, game.SeriesIds, game.Series))
                 {
                     return false;
                 }
@@ -341,7 +341,7 @@ namespace Playnite
             // ------------------ Region filter
             if (filterSettings.Region?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.Region, game.RegionId, game.Region))
+                if (!IsFilterMatching(filterSettings.Region, game.RegionIds, game.Regions))
                 {
                     return false;
                 }
@@ -359,7 +359,7 @@ namespace Playnite
             // ------------------ AgeRating filter
             if (filterSettings.AgeRating?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.AgeRating, game.AgeRatingId, game.AgeRating))
+                if (!IsFilterMatching(filterSettings.AgeRating, game.AgeRatingIds, game.AgeRatings))
                 {
                     return false;
                 }
@@ -377,7 +377,7 @@ namespace Playnite
             // ------------------ Platform
             if (filterSettings.Platform?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.Platform, game.PlatformId, game.Platform))
+                if (!IsFilterMatching(filterSettings.Platform, game.PlatformIds, game.Platforms))
                 {
                     return false;
                 }

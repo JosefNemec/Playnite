@@ -332,7 +332,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                RemoveUnusedItems(EditingSeries, g => g.SeriesId);
+                RemoveUnusedItems(EditingSeries, g => g.SeriesIds);
             }, (a) => EditingSeries.Count > 0);
         }
 
@@ -373,7 +373,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                RemoveUnusedItems(EditingAgeRatings, g => g.AgeRatingId);
+                RemoveUnusedItems(EditingAgeRatings, g => g.AgeRatingIds);
             }, (a) => EditingAgeRatings.Count > 0);
         }
 
@@ -414,7 +414,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                RemoveUnusedItems(EditingRegions, g => g.RegionId);
+                RemoveUnusedItems(EditingRegions, g => g.RegionIds);
             }, (a) => EditingRegions.Count > 0);
         }
 
@@ -681,11 +681,7 @@ namespace Playnite.DesktopApp.ViewModels
             var unused = new List<Guid>(sourceCollection.Select(a => a.Id));
             foreach (var game in database.Games)
             {
-                var usedId = fieldSelector(game);
-                if (unused.Contains(usedId))
-                {
-                    unused.Remove(usedId);
-                }
+                unused.Remove(fieldSelector(game));
             }
 
             if (unused.Count > 0)
@@ -717,11 +713,7 @@ namespace Playnite.DesktopApp.ViewModels
             var unused = new List<Guid>(sourceCollection.Select(a => a.Id));
             foreach (var game in database.Games)
             {
-                var usedIds = fieldSelector(game) ?? new List<Guid>();
-                foreach (var item in unused.Intersect(usedIds).ToList())
-                {
-                    unused.Remove(item);
-                }
+                fieldSelector(game)?.ForEach(a => unused.Remove(a));
             }
 
             if (unused.Count > 0)
@@ -753,10 +745,7 @@ namespace Playnite.DesktopApp.ViewModels
             var unused = new List<Guid>(EditingPlatforms.Select(a => a.Id));
             foreach (var game in database.Games)
             {
-                if (unused.Contains(game.PlatformId))
-                {
-                    unused.Remove(game.PlatformId);
-                }
+                game.PlatformIds?.ForEach(a => unused.Remove(a));
             }
 
             foreach (var emulator in database.Emulators)

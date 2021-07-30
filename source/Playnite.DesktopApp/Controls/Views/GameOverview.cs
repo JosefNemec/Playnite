@@ -53,13 +53,13 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_TextCriticScore", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextUserScore", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_ButtonLibrary", Type = typeof(Button))]
-    [TemplatePart(Name = "PART_ButtonPlatform", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonReleaseDate", Type = typeof(Button))]
-    [TemplatePart(Name = "PART_ButtonAgeRating", Type = typeof(Button))]
-    [TemplatePart(Name = "PART_ButtonSeries", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonSource", Type = typeof(Button))]
-    [TemplatePart(Name = "PART_ButtonRegion", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ButtonVersion", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ItemsPlatforms", Type = typeof(ItemsControl))]
+    [TemplatePart(Name = "PART_ItemsAgeRatings", Type = typeof(ItemsControl))]
+    [TemplatePart(Name = "PART_ItemsSeries", Type = typeof(ItemsControl))]
+    [TemplatePart(Name = "PART_ItemsRegions", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsGenres", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsDevelopers", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ItemsPublishers", Type = typeof(ItemsControl))]
@@ -112,12 +112,8 @@ namespace Playnite.DesktopApp.Controls.Views
         private TextBlock TextUserScore;
         private TextBox TextNotes;
         private Button ButtonLibrary;
-        private Button ButtonPlatform;
         private Button ButtonReleaseDate;
         private Button ButtonVersion;
-        private Button ButtonAgeRating;
-        private Button ButtonSeries;
-        private Button ButtonRegion;
         private Button ButtonSource;
         private ItemsControl ItemsGenres;
         private ItemsControl ItemsDevelopers;
@@ -126,6 +122,10 @@ namespace Playnite.DesktopApp.Controls.Views
         private ItemsControl ItemsTags;
         private ItemsControl ItemsFeatures;
         private ItemsControl ItemsLinks;
+        private ItemsControl ItemsAgeRatings;
+        private ItemsControl ItemsSeries;
+        private ItemsControl ItemsRegions;
+        private ItemsControl ItemsPlatforms;
 
         private Button ButtonPlayAction;
         private Button ButtonContextAction;
@@ -363,12 +363,6 @@ namespace Playnite.DesktopApp.Controls.Views
                 GetGameBindingPath($"{nameof(GamesCollectionViewEntry.LibraryPlugin)}.{nameof(GamesCollectionViewEntry.LibraryPlugin.Name)}"),
                 nameof(GameDetailsViewModel.SourceLibraryVisibility));
 
-            SetGameItemButtonBinding(ref ButtonPlatform, "PART_ButtonPlatform",
-                nameof(GameDetailsViewModel.SetPlatformFilterCommand),
-                GetGameBindingPath(nameof(GamesCollectionViewEntry.Platform)),
-                GetGameBindingPath($"{nameof(GamesCollectionViewEntry.Platform)}.{nameof(GamesCollectionViewEntry.Platform.Name)}"),
-                nameof(GameDetailsViewModel.PlatformVisibility));
-
             SetGameItemButtonBinding(ref ButtonReleaseDate, "PART_ButtonReleaseDate",
                 nameof(GameDetailsViewModel.SetReleaseDateFilterCommand),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
@@ -382,29 +376,11 @@ namespace Playnite.DesktopApp.Controls.Views
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.Version)),
                 nameof(GameDetailsViewModel.VersionVisibility));
 
-            SetGameItemButtonBinding(ref ButtonAgeRating, "PART_ButtonAgeRating",
-                nameof(GameDetailsViewModel.SetAgeRatingCommand),
-                GetGameBindingPath(nameof(GamesCollectionViewEntry.AgeRating)),
-                GetGameBindingPath($"{nameof(GamesCollectionViewEntry.AgeRating)}.{nameof(GamesCollectionViewEntry.AgeRating.Name)}"),
-                nameof(GameDetailsViewModel.AgeRatingVisibility));
-
-            SetGameItemButtonBinding(ref ButtonSeries, "PART_ButtonSeries",
-                nameof(GameDetailsViewModel.SetSeriesFilterCommand),
-                GetGameBindingPath(nameof(GamesCollectionViewEntry.Series)),
-                GetGameBindingPath($"{nameof(GamesCollectionViewEntry.Series)}.{nameof(GamesCollectionViewEntry.Series.Name)}"),
-                nameof(GameDetailsViewModel.SeriesVisibility));
-
             SetGameItemButtonBinding(ref ButtonSource, "PART_ButtonSource",
                 nameof(GameDetailsViewModel.SetSourceFilterCommand),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.Source)),
                 GetGameBindingPath($"{nameof(GamesCollectionViewEntry.Source)}.{nameof(GamesCollectionViewEntry.Source.Name)}"),
                 nameof(GameDetailsViewModel.SourceVisibility));
-
-            SetGameItemButtonBinding(ref ButtonRegion, "PART_ButtonRegion",
-                nameof(GameDetailsViewModel.SetRegionFilterCommand),
-                GetGameBindingPath(nameof(GamesCollectionViewEntry.Region)),
-                GetGameBindingPath($"{nameof(GamesCollectionViewEntry.Region)}.{nameof(GamesCollectionViewEntry.Region.Name)}"),
-                nameof(GameDetailsViewModel.RegionVisibility));
 
             SetGameItemTextBinding(ref TextPlayTime, "PART_TextPlayTime",
                 nameof(GameDetailsViewModel.Game.Playtime),
@@ -486,6 +462,26 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GamesCollectionViewEntry.Links),
                 nameof(GameDetailsViewModel.LinkVisibility),
                 nameof(Link.Url));
+
+            SetItemsControlBinding(ref ItemsPlatforms, "PART_ItemsPlatforms",
+                nameof(GameDetailsViewModel.SetPlatformFilterCommand),
+                nameof(GamesCollectionViewEntry.Platforms),
+                nameof(GameDetailsViewModel.PlatformVisibility));
+
+            SetItemsControlBinding(ref ItemsAgeRatings, "PART_ItemsAgeRatings",
+                nameof(GameDetailsViewModel.SetAgeRatingFilterCommand),
+                nameof(GamesCollectionViewEntry.AgeRatings),
+                nameof(GameDetailsViewModel.AgeRatingVisibility));
+
+            SetItemsControlBinding(ref ItemsSeries, "PART_ItemsSeries",
+                nameof(GameDetailsViewModel.SetSeriesFilterCommand),
+                nameof(GamesCollectionViewEntry.Series),
+                nameof(GameDetailsViewModel.SeriesVisibility));
+
+            SetItemsControlBinding(ref ItemsRegions, "PART_ItemsRegions",
+                nameof(GameDetailsViewModel.SetRegionFilterCommand),
+                nameof(GamesCollectionViewEntry.Regions),
+                nameof(GameDetailsViewModel.RegionVisibility));
 
             ControlTemplateTools.InitializePluginControls(
                 mainModel.Extensions,

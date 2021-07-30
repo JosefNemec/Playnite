@@ -110,7 +110,7 @@
                                                Text="{DynamicResource LOCGamePlatformTitle}"
                                                Margin="0,0,0,10" />
                                     <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                               Text="{Binding Platform}" />
+                                               Text="{Binding Platforms, Converter={StaticResource ListToStringConverter}}" />
                                 </StackPanel>
                             </StackPanel>
                             

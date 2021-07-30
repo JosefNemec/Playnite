@@ -105,9 +105,9 @@ namespace Playnite.FullscreenApp.Controls.Views
                     AssignFilter("LOCTimePlayed", "PART_ButtonPlayTime", GameField.Playtime, nameof(FilterSettings.PlayTime));
                     AssignFilter("LOCCompletionStatus", "PART_ButtonCompletionStatus", GameField.CompletionStatus, nameof(FilterSettings.CompletionStatus));
                     AssignFilter("LOCSeriesLabel", "PART_ButtonSeries", GameField.Series, nameof(FilterSettings.Series));
-                    AssignFilter("LOCRegionLabel", "PART_ButtonRegion", GameField.Region, nameof(FilterSettings.Region));
+                    AssignFilter("LOCRegionLabel", "PART_ButtonRegion", GameField.Regions, nameof(FilterSettings.Region));
                     AssignFilter("LOCSourceLabel", "PART_ButtonSource", GameField.Source, nameof(FilterSettings.Source));
-                    AssignFilter("LOCAgeRatingLabel", "PART_ButtonAgeRating", GameField.AgeRating, nameof(FilterSettings.AgeRating));
+                    AssignFilter("LOCAgeRatingLabel", "PART_ButtonAgeRating", GameField.AgeRatings, nameof(FilterSettings.AgeRating));
                     AssignFilter("LOCUserScore", "PART_ButtonUserScore", GameField.UserScore, nameof(FilterSettings.UserScore));
                     AssignFilter("LOCCommunityScore", "PART_ButtonCommunityScore", GameField.CommunityScore, nameof(FilterSettings.CommunityScore));
                     AssignFilter("LOCCriticScore", "PART_ButtonCriticScore", GameField.CriticScore, nameof(FilterSettings.CriticScore));

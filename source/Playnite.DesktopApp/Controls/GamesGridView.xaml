@@ -85,7 +85,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplatePlatform">
-            <TextBlock Text="{Binding Platform, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
+            <TextBlock Text="{Binding Platforms, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateLibrary">
@@ -289,7 +289,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateAgeRating">
-            <TextBlock Text="{Binding AgeRating, Mode=OneWay}" />
+            <TextBlock Text="{Binding AgeRatings, Mode=OneWay}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateRegion">
@@ -301,7 +301,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateRegion">
-            <TextBlock Text="{Binding Region, Mode=OneWay}" />
+            <TextBlock Text="{Binding Regions, Mode=OneWay}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateSource">

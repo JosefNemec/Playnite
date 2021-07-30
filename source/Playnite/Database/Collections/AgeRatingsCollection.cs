@@ -24,9 +24,9 @@ namespace Playnite.Database
 
         private void RemoveUsage(Guid ageRatingId)
         {
-            foreach (var game in db.Games.Where(a => a.AgeRatingId == ageRatingId))
+            foreach (var game in db.Games.Where(a => a.AgeRatingIds?.Contains(ageRatingId) == true))
             {
-                game.AgeRatingId = Guid.Empty;
+                game.AgeRatingIds.Remove(ageRatingId);
                 db.Games.Update(game);
             }
         }

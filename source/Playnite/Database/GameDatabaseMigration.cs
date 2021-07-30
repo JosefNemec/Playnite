@@ -23,136 +23,136 @@ namespace Playnite.Database
             // 1 to 2
             if (dbSettings.Version == 1 && NewFormatVersion > 1)
             {
-                void convetList<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
-                {
-                    if (game.TryGetValue(origKey, out var storedObj))
-                    {
-                        if (storedObj == null)
-                        {
-                            return;
-                        }
+                //void convetList<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
+                //{
+                //    if (game.TryGetValue(origKey, out var storedObj))
+                //    {
+                //        if (storedObj == null)
+                //        {
+                //            return;
+                //        }
 
-                        var gameObjs = new List<Guid>();
-                        var oldLIst = (storedObj as JArray).ToObject<List<string>>();
-                        foreach (var oldObj in oldLIst)
-                        {
-                            if (string.IsNullOrEmpty(oldObj))
-                            {
-                                continue;
-                            }
+                //        var gameObjs = new List<Guid>();
+                //        var oldLIst = (storedObj as JArray).ToObject<List<string>>();
+                //        foreach (var oldObj in oldLIst)
+                //        {
+                //            if (string.IsNullOrEmpty(oldObj))
+                //            {
+                //                continue;
+                //            }
 
-                            if (convertedList.TryGetValue(oldObj, out var curObj))
-                            {
-                                if (!gameObjs.Contains(curObj.Id))
-                                {
-                                    gameObjs.Add(curObj.Id);
-                                }
-                            }
-                            else
-                            {
-                                var newObj = typeof(T).CrateInstance<T>(oldObj);
-                                gameObjs.Add(newObj.Id);
-                                convertedList.Add(oldObj, newObj);
-                            }
-                        }
+                //            if (convertedList.TryGetValue(oldObj, out var curObj))
+                //            {
+                //                if (!gameObjs.Contains(curObj.Id))
+                //                {
+                //                    gameObjs.Add(curObj.Id);
+                //                }
+                //            }
+                //            else
+                //            {
+                //                var newObj = typeof(T).CrateInstance<T>(oldObj);
+                //                gameObjs.Add(newObj.Id);
+                //                convertedList.Add(oldObj, newObj);
+                //            }
+                //        }
 
-                        game.Remove(origKey);
-                        game[newKey] = gameObjs;
-                    }
-                }
+                //        game.Remove(origKey);
+                //        game[newKey] = gameObjs;
+                //    }
+                //}
 
-                void covertObject<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
-                {
-                    if (game.TryGetValue(origKey, out var storedObj))
-                    {
-                        var oldObj = storedObj as string;
-                        if (!string.IsNullOrEmpty(oldObj))
-                        {
-                            if (convertedList.TryGetValue(oldObj, out var curObj))
-                            {
-                                game[newKey] = curObj.Id;
-                            }
-                            else
-                            {
-                                var newObj = typeof(T).CrateInstance<T>(oldObj);
-                                game[newKey] = newObj.Id;
-                                convertedList.Add(oldObj, newObj);
-                            }
-                        }
+                //void covertObject<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
+                //{
+                //    if (game.TryGetValue(origKey, out var storedObj))
+                //    {
+                //        var oldObj = storedObj as string;
+                //        if (!string.IsNullOrEmpty(oldObj))
+                //        {
+                //            if (convertedList.TryGetValue(oldObj, out var curObj))
+                //            {
+                //                game[newKey] = curObj.Id;
+                //            }
+                //            else
+                //            {
+                //                var newObj = typeof(T).CrateInstance<T>(oldObj);
+                //                game[newKey] = newObj.Id;
+                //                convertedList.Add(oldObj, newObj);
+                //            }
+                //        }
 
-                        game.Remove(origKey);
-                    }
-                }
+                //        game.Remove(origKey);
+                //    }
+                //}
 
-                void saveCollection<T>(Dictionary<string, T> collection, string collPath) where T : DatabaseObject
-                {
-                    if (collection.Any())
-                    {
-                        foreach (var item in collection.Values)
-                        {
-                            FileSystem.WriteStringToFileSafe(Path.Combine(collPath, item.Id + ".json"), Serialization.ToJson(item));
-                        }
-                    }
-                }
+                //void saveCollection<T>(Dictionary<string, T> collection, string collPath) where T : DatabaseObject
+                //{
+                //    if (collection.Any())
+                //    {
+                //        foreach (var item in collection.Values)
+                //        {
+                //            FileSystem.WriteStringToFileSafe(Path.Combine(collPath, item.Id + ".json"), Serialization.ToJson(item));
+                //        }
+                //    }
+                //}
 
-                var allGenres = new Dictionary<string, Genre>(StringComparer.CurrentCultureIgnoreCase);
-                var allCompanies = new Dictionary<string, Company>(StringComparer.CurrentCultureIgnoreCase);
-                var allTags = new Dictionary<string, Tag>(StringComparer.CurrentCultureIgnoreCase);
-                var allCategories = new Dictionary<string, Category>(StringComparer.CurrentCultureIgnoreCase);
-                var allSeries = new Dictionary<string, Series>(StringComparer.CurrentCultureIgnoreCase);
-                var allRatings = new Dictionary<string, AgeRating>(StringComparer.CurrentCultureIgnoreCase);
-                var allRegions = new Dictionary<string, Region>(StringComparer.CurrentCultureIgnoreCase);
-                var allSources = new Dictionary<string, GameSource>(StringComparer.CurrentCultureIgnoreCase);
+                //var allGenres = new Dictionary<string, Genre>(StringComparer.CurrentCultureIgnoreCase);
+                //var allCompanies = new Dictionary<string, Company>(StringComparer.CurrentCultureIgnoreCase);
+                //var allTags = new Dictionary<string, Tag>(StringComparer.CurrentCultureIgnoreCase);
+                //var allCategories = new Dictionary<string, Category>(StringComparer.CurrentCultureIgnoreCase);
+                //var allSeries = new Dictionary<string, Series>(StringComparer.CurrentCultureIgnoreCase);
+                //var allRatings = new Dictionary<string, AgeRating>(StringComparer.CurrentCultureIgnoreCase);
+                //var allRegions = new Dictionary<string, Region>(StringComparer.CurrentCultureIgnoreCase);
+                //var allSources = new Dictionary<string, GameSource>(StringComparer.CurrentCultureIgnoreCase);
 
-                // Convert following object to Id representations and store them in separete lists:
-                foreach (var file in Directory.EnumerateFiles(gamesDir, "*.json"))
-                {
-                    var game = Serialization.FromJson<Dictionary<string, object>>(FileSystem.ReadFileAsStringSafe(file));
-                    if (game == null)
-                    {
-                        // Some users have 0 sized game files for uknown reason.
-                        File.Delete(file);
-                        continue;
-                    }
+                //// Convert following object to Id representations and store them in separete lists:
+                //foreach (var file in Directory.EnumerateFiles(gamesDir, "*.json"))
+                //{
+                //    var game = Serialization.FromJson<Dictionary<string, object>>(FileSystem.ReadFileAsStringSafe(file));
+                //    if (game == null)
+                //    {
+                //        // Some users have 0 sized game files for uknown reason.
+                //        File.Delete(file);
+                //        continue;
+                //    }
 
-                    // Genres
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Genres), nameof(Game.GenreIds), allGenres);
+                //    // Genres
+                //    convetList(game, nameof(OldModels.NewVer1.OldGame.Genres), nameof(Game.GenreIds), allGenres);
 
-                    // Developers
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Developers), nameof(Game.DeveloperIds), allCompanies);
+                //    // Developers
+                //    convetList(game, nameof(OldModels.NewVer1.OldGame.Developers), nameof(Game.DeveloperIds), allCompanies);
 
-                    // Publishers
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Publishers), nameof(Game.PublisherIds), allCompanies);
+                //    // Publishers
+                //    convetList(game, nameof(OldModels.NewVer1.OldGame.Publishers), nameof(Game.PublisherIds), allCompanies);
 
-                    // Tags
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Tags), nameof(Game.TagIds), allTags);
+                //    // Tags
+                //    convetList(game, nameof(OldModels.NewVer1.OldGame.Tags), nameof(Game.TagIds), allTags);
 
-                    // Categories
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Categories), nameof(Game.CategoryIds), allCategories);
+                //    // Categories
+                //    convetList(game, nameof(OldModels.NewVer1.OldGame.Categories), nameof(Game.CategoryIds), allCategories);
 
-                    // Series
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Series), nameof(Game.SeriesId), allSeries);
+                //    // Series
+                //    covertObject(game, nameof(OldModels.NewVer1.OldGame.Series), nameof(Game.SeriesId), allSeries);
 
-                    // AgeRating
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.AgeRating), nameof(Game.AgeRatingId), allRatings);
+                //    // AgeRating
+                //    covertObject(game, nameof(OldModels.NewVer1.OldGame.AgeRating), nameof(Game.AgeRatingId), allRatings);
 
-                    // Region
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Region), nameof(Game.RegionId), allRegions);
+                //    // Region
+                //    covertObject(game, nameof(OldModels.NewVer1.OldGame.Region), nameof(Game.RegionId), allRegions);
 
-                    // Source
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Source), nameof(Game.SourceId), allSources);
+                //    // Source
+                //    covertObject(game, nameof(OldModels.NewVer1.OldGame.Source), nameof(Game.SourceId), allSources);
 
-                    FileSystem.WriteStringToFileSafe(file, Serialization.ToJson(game));
-                }
+                //    FileSystem.WriteStringToFileSafe(file, Serialization.ToJson(game));
+                //}
 
-                saveCollection(allGenres, Path.Combine(databasePath, genresDirName));
-                saveCollection(allCompanies, Path.Combine(databasePath, companiesDirName));
-                saveCollection(allTags, Path.Combine(databasePath, tagsDirName));
-                saveCollection(allCategories, Path.Combine(databasePath, categoriesDirName));
-                saveCollection(allSeries, Path.Combine(databasePath, seriesDirName));
-                saveCollection(allRatings, Path.Combine(databasePath, ageRatingsDirName));
-                saveCollection(allRegions, Path.Combine(databasePath, regionsDirName));
-                saveCollection(allSources, Path.Combine(databasePath, sourcesDirName));
+                //saveCollection(allGenres, Path.Combine(databasePath, genresDirName));
+                //saveCollection(allCompanies, Path.Combine(databasePath, companiesDirName));
+                //saveCollection(allTags, Path.Combine(databasePath, tagsDirName));
+                //saveCollection(allCategories, Path.Combine(databasePath, categoriesDirName));
+                //saveCollection(allSeries, Path.Combine(databasePath, seriesDirName));
+                //saveCollection(allRatings, Path.Combine(databasePath, ageRatingsDirName));
+                //saveCollection(allRegions, Path.Combine(databasePath, regionsDirName));
+                //saveCollection(allSources, Path.Combine(databasePath, sourcesDirName));
 
                 dbSettings.Version = 2;
                 SaveSettingsToDbPath(dbSettings, databasePath);
@@ -207,6 +207,7 @@ namespace Playnite.Database
                         continue;
                     }
 
+                    // TODO use mapper from actuall collection
                     switch (Path.GetFileName(dir))
                     {
                         case gamesDirName:
@@ -217,10 +218,10 @@ namespace Playnite.Database
                                 Ignore(a => a.Tags).
                                 Ignore(a => a.Features).
                                 Ignore(a => a.Categories).
-                                Ignore(a => a.Platform).
+                                Ignore(a => a.Platforms).
                                 Ignore(a => a.Series).
-                                Ignore(a => a.AgeRating).
-                                Ignore(a => a.Region).
+                                Ignore(a => a.AgeRatings).
+                                Ignore(a => a.Regions).
                                 Ignore(a => a.Source).
                                 Ignore(a => a.ReleaseYear).
                                 Ignore(a => a.UserScoreRating).

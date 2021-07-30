@@ -344,16 +344,16 @@ namespace Playnite.Database
                     relevantFieldChanged = IsExplorableDbObjectLoaded(game.TagIds);
                     break;
                 case GroupableField.Platform:
-                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.PlatformId);
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.PlatformIds);
                     break;
                 case GroupableField.Series:
-                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.SeriesId);
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.SeriesIds);
                     break;
                 case GroupableField.AgeRating:
-                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.AgeRatingId);
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.AgeRatingIds);
                     break;
                 case GroupableField.Region:
-                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.RegionId);
+                    relevantFieldChanged = IsExplorableDbObjectLoaded(game.RegionIds);
                     break;
                 case GroupableField.Source:
                     relevantFieldChanged = IsExplorableDbObjectLoaded(game.SourceId);
@@ -367,79 +367,6 @@ namespace Playnite.Database
             }
 
             return relevantFieldChanged;
-        }
-
-        private GameField GetRelevantGameFielToFilter()
-        {
-            var relevantField = GameField.None;
-            switch (SelectedField.Field)
-            {
-                case GroupableField.Category:
-                    relevantField = GameField.CategoryIds;
-                    break;
-                case GroupableField.Genre:
-                    relevantField = GameField.GenreIds;
-                    break;
-                case GroupableField.Developer:
-                    relevantField = GameField.DeveloperIds;
-                    break;
-                case GroupableField.Publisher:
-                    relevantField = GameField.PublisherIds;
-                    break;
-                case GroupableField.Tag:
-                    relevantField = GameField.TagIds;
-                    break;
-                case GroupableField.Platform:
-                    relevantField = GameField.PlatformId;
-                    break;
-                case GroupableField.Series:
-                    relevantField = GameField.SeriesId;
-                    break;
-                case GroupableField.AgeRating:
-                    relevantField = GameField.AgeRatingId;
-                    break;
-                case GroupableField.Region:
-                    relevantField = GameField.RegionId;
-                    break;
-                case GroupableField.Source:
-                    relevantField = GameField.SourceId;
-                    break;
-                case GroupableField.ReleaseYear:
-                    relevantField = GameField.ReleaseYear;
-                    break;
-                case GroupableField.CompletionStatus:
-                    relevantField = GameField.CompletionStatus;
-                    break;
-                case GroupableField.UserScore:
-                    relevantField = GameField.UserScoreGroup;
-                    break;
-                case GroupableField.CriticScore:
-                    relevantField = GameField.CriticScoreGroup;
-                    break;
-                case GroupableField.CommunityScore:
-                    relevantField = GameField.CommunityScoreGroup;
-                    break;
-                case GroupableField.LastActivity:
-                    relevantField = GameField.LastActivitySegment;
-                    break;
-                case GroupableField.Added:
-                    relevantField = GameField.AddedSegment;
-                    break;
-                case GroupableField.Modified:
-                    relevantField = GameField.ModifiedSegment;
-                    break;
-                case GroupableField.Feature:
-                    relevantField = GameField.FeatureIds;
-                    break;
-                case GroupableField.PlayTime:
-                    relevantField = GameField.PlaytimeCategory;
-                    break;
-                default:
-                    relevantField = GameField.None;
-                    break;
-            }
-
-            return relevantField;
         }
 
         private bool IsExplorableDbObjectLoaded(Guid id)

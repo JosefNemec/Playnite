@@ -43,8 +43,6 @@ namespace Playnite.SDK.Models
         ///
         PluginId = 12,
         ///
-        PlatformId = 15,
-        ///
         PublisherIds = 16,
         ///
         DeveloperIds = 17,
@@ -77,13 +75,7 @@ namespace Playnite.SDK.Models
         ///
         PlayCount = 31,
         ///
-        SeriesId = 32,
-        ///
         Version = 33,
-        ///
-        AgeRatingId = 34,
-        ///
-        RegionId = 35,
         ///
         SourceId = 36,
         ///
@@ -104,14 +96,6 @@ namespace Playnite.SDK.Models
         Tags = 44,
         ///
         Categories = 45,
-        ///
-        Platform = 46,
-        ///
-        Series = 47,
-        ///
-        AgeRating = 48,
-        ///
-        Region = 49,
         ///
         Source = 50,
         ///
@@ -167,7 +151,23 @@ namespace Playnite.SDK.Models
         ///
         IncludeLibraryPluginAction = 77,
         ///
-        Roms = 78
+        Roms = 78,
+        ///
+        AgeRatingIds = 79,
+        ///
+        AgeRatings = 80,
+        ///
+        SeriesIds = 81,
+        ///
+        Series = 82,
+        ///
+        RegionIds = 83,
+        ///
+        Regions = 84,
+        ///
+        PlatformIds = 85,
+        ///
+        Platforms = 86
     }
 
     /// <summary>
@@ -449,22 +449,22 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Guid platformId;
+        private List<Guid> platformIds;
         /// <summary>
         /// Gets or sets platform id.
         /// </summary>
-        public Guid PlatformId
+        public List<Guid> PlatformIds
         {
             get
             {
-                return platformId;
+                return platformIds;
             }
 
             set
             {
-                platformId = value;
+                platformIds = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Platform));
+                OnPropertyChanged(nameof(Platforms));
             }
         }
 
@@ -764,20 +764,20 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Guid seriesId;
+        private List<Guid> seriesIds;
         /// <summary>
         /// Gets or sets game series.
         /// </summary>
-        public Guid SeriesId
+        public List<Guid> SeriesIds
         {
             get
             {
-                return seriesId;
+                return seriesIds;
             }
 
             set
             {
-                seriesId = value;
+                seriesIds = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Series));
             }
@@ -801,41 +801,41 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Guid ageRatingId;
+        private List<Guid> ageRatingIds;
         /// <summary>
         /// Gets or sets age rating for a game.
         /// </summary>
-        public Guid AgeRatingId
+        public List<Guid> AgeRatingIds
         {
             get
             {
-                return ageRatingId;
+                return ageRatingIds;
             }
 
             set
             {
-                ageRatingId = value;
+                ageRatingIds = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(AgeRating));
+                OnPropertyChanged(nameof(AgeRatings));
             }
         }
 
-        private Guid regionId;
+        private List<Guid> regionIds;
         /// <summary>
         /// Gets or sets game region.
         /// </summary>
-        public Guid RegionId
+        public List<Guid> RegionIds
         {
             get
             {
-                return regionId;
+                return regionIds;
             }
 
             set
             {
-                regionId = value;
+                regionIds = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Region));
+                OnPropertyChanged(nameof(Regions));
             }
         }
 
@@ -1153,36 +1153,68 @@ namespace Playnite.SDK.Models
         /// Gets game's platform.
         /// </summary>
         [DontSerialize]
-        public Platform Platform
+        public List<Platform> Platforms
         {
-            get => DatabaseReference?.Platforms[platformId];
+            get
+            {
+                if (platformIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Platform>(DatabaseReference?.Platforms.Get(platformIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
         /// Gets game's series.
         /// </summary>
         [DontSerialize]
-        public Series Series
+        public List<Series> Series
         {
-            get => DatabaseReference?.Series[seriesId];
+            get
+            {
+                if (seriesIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Series>(DatabaseReference?.Series.Get(seriesIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
         /// Get game's age rating.
         /// </summary>
         [DontSerialize]
-        public AgeRating AgeRating
+        public List<AgeRating> AgeRatings
         {
-            get => DatabaseReference?.AgeRatings[ageRatingId];
+            get
+            {
+                if (ageRatingIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<AgeRating>(DatabaseReference?.AgeRatings.Get(ageRatingIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
         /// Gets game's region.
         /// </summary>
         [DontSerialize]
-        public Region Region
+        public List<Region> Regions
         {
-            get => DatabaseReference?.Regions[regionId];
+            get
+            {
+                if (regionIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Region>(DatabaseReference?.Regions.Get(regionIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
@@ -1586,9 +1618,9 @@ namespace Playnite.SDK.Models
                     tro.GameActions = GameActions;
                 }
 
-                if (PlatformId != tro.PlatformId)
+                if (!PlatformIds.IsListEqual(tro.PlatformIds))
                 {
-                    tro.PlatformId = PlatformId;
+                    tro.PlatformIds = PlatformIds;
                 }
 
                 if (!PublisherIds.IsListEqual(tro.PublisherIds))
@@ -1676,9 +1708,9 @@ namespace Playnite.SDK.Models
                     tro.PlayCount = PlayCount;
                 }
 
-                if (SeriesId != tro.SeriesId)
+                if (!SeriesIds.IsListEqual(tro.SeriesIds))
                 {
-                    tro.SeriesId = SeriesId;
+                    tro.SeriesIds = SeriesIds;
                 }
 
                 if (Version != tro.Version)
@@ -1686,14 +1718,14 @@ namespace Playnite.SDK.Models
                     tro.Version = Version;
                 }
 
-                if (AgeRatingId != tro.AgeRatingId)
+                if (!AgeRatingIds.IsListEqual(tro.AgeRatingIds))
                 {
-                    tro.AgeRatingId = AgeRatingId;
+                    tro.AgeRatingIds = AgeRatingIds;
                 }
 
-                if (RegionId != tro.RegionId)
+                if (!RegionIds.IsListEqual(tro.RegionIds))
                 {
-                    tro.RegionId = RegionId;
+                    tro.RegionIds = RegionIds;
                 }
 
                 if (SourceId != tro.SourceId)
@@ -1850,10 +1882,10 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.GameActions);
             }
 
-            if (PlatformId != otherGame.PlatformId)
+            if (!PlatformIds.IsListEqual(otherGame.PlatformIds))
             {
-                changes.Add(GameField.PlatformId);
-                changes.Add(GameField.Platform);
+                changes.Add(GameField.PlatformIds);
+                changes.Add(GameField.Platforms);
             }
 
             if (!PublisherIds.IsListEqual(otherGame.PublisherIds))
@@ -1963,9 +1995,9 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.PlayCount);
             }
 
-            if (SeriesId != otherGame.SeriesId)
+            if (!SeriesIds.IsListEqual(otherGame.SeriesIds))
             {
-                changes.Add(GameField.SeriesId);
+                changes.Add(GameField.SeriesIds);
                 changes.Add(GameField.Series);
             }
 
@@ -1974,16 +2006,16 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.Version);
             }
 
-            if (AgeRatingId != otherGame.AgeRatingId)
+            if (!AgeRatingIds.IsListEqual(otherGame.AgeRatingIds))
             {
-                changes.Add(GameField.AgeRatingId);
-                changes.Add(GameField.AgeRating);
+                changes.Add(GameField.AgeRatingIds);
+                changes.Add(GameField.AgeRatings);
             }
 
-            if (RegionId != otherGame.RegionId)
+            if (!RegionIds.IsListEqual(otherGame.RegionIds))
             {
-                changes.Add(GameField.RegionId);
-                changes.Add(GameField.Region);
+                changes.Add(GameField.RegionIds);
+                changes.Add(GameField.Regions);
             }
 
             if (SourceId != otherGame.SourceId)

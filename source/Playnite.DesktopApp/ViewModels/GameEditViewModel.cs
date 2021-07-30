@@ -158,13 +158,13 @@ namespace Playnite.DesktopApp.ViewModels
 
         public ObservableCollection<GameSource> Sources { get; set; }
 
-        public ObservableCollection<Region> Regions { get; set; }
+        public SelectableDbItemList Regions { get; set; }
 
-        public ObservableCollection<Series> Series { get; set; }
+        public SelectableDbItemList Series { get; set; }
 
-        public ObservableCollection<AgeRating> AgeRatings { get; set; }
+        public SelectableDbItemList AgeRatings { get; set; }
 
-        public ObservableCollection<Platform> Platforms { get; set; }
+        public SelectableDbItemList Platforms { get; set; }
 
         public List<Emulator> Emulators { get; set; }
 
@@ -352,20 +352,20 @@ namespace Playnite.DesktopApp.ViewModels
             Features = new SelectableDbItemList(database.Features, EditingGame.FeatureIds, multiEditData?.DistinctFeatureIds);
             Features.SelectionChanged += (s, e) => { EditingGame.FeatureIds = ((SelectableDbItemList)s).GetSelectedIds(); };
 
+            Platforms = new SelectableDbItemList(database.Platforms, EditingGame.PlatformIds, multiEditData?.DistinctPlatformIds);
+            Platforms.SelectionChanged += (s, e) => { EditingGame.PlatformIds = ((SelectableDbItemList)s).GetSelectedIds(); };
+
+            Series = new SelectableDbItemList(database.Series, EditingGame.SeriesIds, multiEditData?.DistinctSeriesIds);
+            Series.SelectionChanged += (s, e) => { EditingGame.SeriesIds = ((SelectableDbItemList)s).GetSelectedIds(); };
+
+            AgeRatings = new SelectableDbItemList(database.AgeRatings, EditingGame.AgeRatingIds, multiEditData?.DistinctAgeRatingIds);
+            AgeRatings.SelectionChanged += (s, e) => { EditingGame.AgeRatingIds = ((SelectableDbItemList)s).GetSelectedIds(); };
+
+            Regions = new SelectableDbItemList(database.Regions, EditingGame.RegionIds, multiEditData?.DistinctRegionIds);
+            Regions.SelectionChanged += (s, e) => { EditingGame.RegionIds = ((SelectableDbItemList)s).GetSelectedIds(); };
+
             Sources = database.Sources.OrderBy(a => a.Name).ToObservable();
             Sources.Insert(0, new GameSource() { Id = Guid.Empty, Name = string.Empty });
-
-            Regions = database.Regions.OrderBy(a => a.Name).ToObservable();
-            Regions.Insert(0, new Region() { Id = Guid.Empty, Name = string.Empty });
-
-            Series = database.Series.OrderBy(a => a.Name).ToObservable();
-            Series.Insert(0, new Series() { Id = Guid.Empty, Name = string.Empty });
-
-            AgeRatings = database.AgeRatings.OrderBy(a => a.Name).ToObservable();
-            AgeRatings.Insert(0, new AgeRating() { Id = Guid.Empty, Name = string.Empty });
-
-            Platforms = database.Platforms.OrderBy(a => a.Name).ToObservable();
-            Platforms.Insert(0, new Platform() { Id = Guid.Empty, Name = string.Empty });
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
 
@@ -529,22 +529,22 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (UsePlatformChanges)
             {
-                AddNewItemToDb(Platforms, EditingGame.PlatformId, database.Platforms);
+                AddNewItemsToDb(Platforms, EditingGame.PlatformIds, database.Platforms);
             }
 
             if (UseSeriesChanges)
             {
-                AddNewItemToDb(Series, EditingGame.SeriesId, database.Series);
+                AddNewItemsToDb(Series, EditingGame.SeriesIds, database.Series);
             }
 
             if (UseAgeRatingChanges)
             {
-                AddNewItemToDb(AgeRatings, EditingGame.AgeRatingId, database.AgeRatings);
+                AddNewItemsToDb(AgeRatings, EditingGame.AgeRatingIds, database.AgeRatings);
             }
 
             if (UseRegionChanges)
             {
-                AddNewItemToDb(Regions, EditingGame.RegionId, database.Regions);
+                AddNewItemsToDb(Regions, EditingGame.RegionIds, database.Regions);
             }
 
             if (UseSourceChanges)
@@ -629,7 +629,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UsePlatformChanges)
                 {
-                    game.PlatformId = EditingGame.PlatformId;
+                    game.PlatformIds = consolidateIds(Platforms, game.PlatformIds);
                 }
 
                 if (UseLastActivityChanges)
@@ -654,7 +654,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UseSeriesChanges)
                 {
-                    game.SeriesId = EditingGame.SeriesId;
+                    game.SeriesIds = consolidateIds(Series, game.SeriesIds);
                 }
 
                 if (UseVersionChanges)
@@ -664,12 +664,12 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UseAgeRatingChanges)
                 {
-                    game.AgeRatingId = EditingGame.AgeRatingId;
+                    game.AgeRatingIds = consolidateIds(AgeRatings, game.AgeRatingIds);
                 }
 
                 if (UseRegionChanges)
                 {
-                    game.RegionId = EditingGame.RegionId;
+                    game.RegionIds = consolidateIds(Regions, game.RegionIds);
                 }
 
                 if (UseSourceChanges)
@@ -1344,24 +1344,64 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void AddNewPlatform(string platform = null)
+        public Platform AddNewPlatform(string item = null)
         {
-            EditingGame.PlatformId = CreateNewItemInCollection(Platforms, platform)?.Id ?? EditingGame.PlatformId;
+            return CreateNewItemInCollection<Platform>(Platforms, item, LooseDbNameComparer);
         }
 
-        public void AddNewSeries(string series = null)
+        public void AddNewPlatforms(List<string> items)
         {
-            EditingGame.SeriesId = CreateNewItemInCollection(Series, series)?.Id ?? EditingGame.SeriesId;
+            var added = new List<Platform>();
+            items?.ForEach(a => added.Add(AddNewPlatform(a)));
+            if (added.Any())
+            {
+                Platforms.SetSelection(added.Select(a => a.Id).ToList());
+            }
         }
 
-        public void AddNewAreRating(string ageRating = null)
+        public Series AddNewSeries(string item = null)
         {
-            EditingGame.AgeRatingId = CreateNewItemInCollection(AgeRatings, ageRating)?.Id ?? EditingGame.AgeRatingId;
+            return CreateNewItemInCollection<Series>(Series, item, LooseDbNameComparer);
         }
 
-        public void AddNewRegion(string region = null)
+        public void AddNewSeries(List<string> items)
         {
-            EditingGame.RegionId = CreateNewItemInCollection(Regions, region)?.Id ?? EditingGame.RegionId;
+            var added = new List<Series>();
+            items?.ForEach(a => added.Add(AddNewSeries(a)));
+            if (added.Any())
+            {
+                Series.SetSelection(added.Select(a => a.Id).ToList());
+            }
+        }
+
+        public AgeRating AddNewAgeRating(string item = null)
+        {
+            return CreateNewItemInCollection<AgeRating>(AgeRatings, item, LooseDbNameComparer);
+        }
+
+        public void AddNewAgeRatings(List<string> items)
+        {
+            var added = new List<AgeRating>();
+            items?.ForEach(a => added.Add(AddNewAgeRating(a)));
+            if (added.Any())
+            {
+                AgeRatings.SetSelection(added.Select(a => a.Id).ToList());
+            }
+        }
+
+        public Region AddNewRegion(string item = null)
+        {
+            return CreateNewItemInCollection<Region>(Regions, item, LooseDbNameComparer);
+        }
+
+        public void AddNewRegions(List<string> items)
+        {
+            var added = new List<Region>();
+            items?.ForEach(a => added.Add(AddNewRegion(a)));
+            if (added.Any())
+            {
+                Regions.SetSelection(added.Select(a => a.Id).ToList());
+            }
         }
 
         public void AddNewSource(string source = null)
@@ -1422,15 +1462,15 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public Genre AddNewGenre(string genre = null)
+        public Genre AddNewGenre(string item = null)
         {
-            return CreateNewItemInCollection<Genre>(Genres, genre, LooseDbNameComparer);
+            return CreateNewItemInCollection<Genre>(Genres, item, LooseDbNameComparer);
         }
 
-        public void AddNewGenres(List<string> genres)
+        public void AddNewGenres(List<string> items)
         {
             var added = new List<Genre>();
-            genres?.ForEach(a => added.Add(AddNewGenre(a)));
+            items?.ForEach(a => added.Add(AddNewGenre(a)));
             if (added.Any())
             {
                 Genres.SetSelection(added.Select(a => a.Id).ToList());

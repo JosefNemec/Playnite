@@ -31,7 +31,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                AddNewAreRating();
+                AddNewAgeRating();
             });
         }
 

@@ -213,14 +213,12 @@ namespace System.Collections.Generic
                 return false;
             }
 
-            var firstNotSecond = source.Except(target).ToList();
-            if (firstNotSecond.Count != 0)
+            if (source.Except(target).Any())
             {
                 return false;
             }
 
-            var secondNotFirst = target.Except(source).ToList();
-            if (secondNotFirst.Count != 0)
+            if (target.Except(source).Any())
             {
                 return false;
             }
@@ -248,14 +246,12 @@ namespace System.Collections.Generic
                 return false;
             }
 
-            var firstNotSecond = source.Except(target, comparer).ToList();
-            if (firstNotSecond.Count != 0)
+            if (source.Except(target, comparer).Any())
             {
                 return false;
             }
 
-            var secondNotFirst = target.Except(source, comparer).ToList();
-            if (secondNotFirst.Count != 0)
+            if (target.Except(source, comparer).Any())
             {
                 return false;
             }

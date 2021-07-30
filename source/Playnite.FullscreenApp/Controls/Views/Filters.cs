@@ -69,7 +69,7 @@ namespace Playnite.FullscreenApp.Controls.Views
             AssignBoolFilter(nameof(FilterSettings.Favorite), LOC.GameHiddenTitle);
             AssignBoolFilter(nameof(FilterSettings.Hidden), LOC.GameFavoriteTitle);
             AssignFilter(GameField.PluginId, nameof(FilterSettings.Library), LOC.Library);
-            AssignFilter(GameField.Platform, nameof(FilterSettings.Platform), LOC.PlatformTitle);
+            AssignFilter(GameField.Platforms, nameof(FilterSettings.Platform), LOC.PlatformTitle);
             AssignFilter(GameField.Categories, nameof(FilterSettings.Category), LOC.CategoryLabel);
 
             var ButtonAdditional = new ButtonEx();

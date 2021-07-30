@@ -996,7 +996,6 @@ namespace Playnite.DesktopApp.ViewModels
                             }
 
                             Database.Games.Add(game);
-                            Database.AssignPcPlatform(game);
                             if (GamesEditor.EditGame(game) == true)
                             {
                                 SelectGame(game.Id);

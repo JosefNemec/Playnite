@@ -819,10 +819,10 @@ namespace Playnite.DesktopApp.ViewModels
                         UseSortingNameChanges = true;
                     }
                     break;
-                case nameof(Game.PlatformId):
+                case nameof(Game.PlatformIds):
                     if (IsSingleGameEdit)
                     {
-                        UsePlatformChanges = Game.PlatformId != EditingGame.PlatformId;
+                        UsePlatformChanges = !Game.PlatformIds.IsListEqual(EditingGame.PlatformIds);
                     }
                     else
                     {
@@ -1050,10 +1050,10 @@ namespace Playnite.DesktopApp.ViewModels
                         UsePlayCountChanges = true;
                     }
                     break;
-                case nameof(Game.SeriesId):
+                case nameof(Game.SeriesIds):
                     if (IsSingleGameEdit)
                     {
-                        UseSeriesChanges = Game.SeriesId != EditingGame.SeriesId;
+                        UseSeriesChanges = !Game.SeriesIds.IsListEqual(EditingGame.SeriesIds);
                     }
                     else
                     {
@@ -1070,20 +1070,20 @@ namespace Playnite.DesktopApp.ViewModels
                         UseVersionChanges = true;
                     }
                     break;
-                case nameof(Game.AgeRatingId):
+                case nameof(Game.AgeRatingIds):
                     if (IsSingleGameEdit)
                     {
-                        UseAgeRatingChanges = Game.AgeRatingId != EditingGame.AgeRatingId;
+                        UseAgeRatingChanges = !Game.AgeRatingIds.IsListEqual(EditingGame.AgeRatingIds);
                     }
                     else
                     {
                         UseAgeRatingChanges = true;
                     }
                     break;
-                case nameof(Game.RegionId):
+                case nameof(Game.RegionIds):
                     if (IsSingleGameEdit)
                     {
-                        UseRegionChanges = Game.RegionId != EditingGame.RegionId;
+                        UseRegionChanges = !Game.RegionIds.IsListEqual(EditingGame.RegionIds);
                     }
                     else
                     {

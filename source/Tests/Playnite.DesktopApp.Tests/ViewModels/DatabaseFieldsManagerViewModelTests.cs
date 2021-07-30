@@ -23,8 +23,8 @@ namespace Playnite.DesktopApp.Tests.ViewModels
         public void StandardListUpdateTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 var cats = new List<Category>
                 {
@@ -53,8 +53,8 @@ namespace Playnite.DesktopApp.Tests.ViewModels
         public void PlatformsUpdateTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 db.Platforms.Remove(db.Platforms);
 
@@ -87,8 +87,8 @@ namespace Playnite.DesktopApp.Tests.ViewModels
         public void RemoveUnsusedTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 db.Platforms.Remove(db.Platforms);
 
@@ -121,7 +121,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 db.Companies.Add(companies);
                 db.Games.Add(new Game("game1")
                 {
-                    PlatformId = plats[1].Id,
+                    PlatformIds = new List<Guid> { plats[1].Id },
                     FeatureIds = new List<Guid> { features[0].Id, features[3].Id },
                     PublisherIds = new List<Guid> { companies[3].Id }
                 });

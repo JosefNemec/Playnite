@@ -21,8 +21,8 @@ namespace Playnite.DesktopApp.Tests.ViewModels
         public void ImageReplaceTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 var game = new Game()
                 {
@@ -57,7 +57,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 Assert.AreNotEqual(game.BackgroundImage, origBackground);
 
                 var dbFiles = Directory.GetFiles(db.GetFileStoragePath(game.Id));
-                Assert.AreEqual(3, dbFiles.Count());      
+                Assert.AreEqual(3, dbFiles.Count());
                 CollectionAssert.AreEqual(newIcon.Content, File.ReadAllBytes(db.GetFullFilePath(game.Icon)));
                 CollectionAssert.AreEqual(newImage.Content, File.ReadAllBytes(db.GetFullFilePath(game.CoverImage)));
                 CollectionAssert.AreEqual(newBackground.Content, File.ReadAllBytes(db.GetFullFilePath(game.BackgroundImage)));
@@ -68,8 +68,8 @@ namespace Playnite.DesktopApp.Tests.ViewModels
         public void ImageReplaceMultiTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
 
                 var game = new Game()

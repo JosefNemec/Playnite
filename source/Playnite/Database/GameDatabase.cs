@@ -244,9 +244,9 @@ namespace Playnite.Database
         {
             foreach (var game in Games)
             {
-                if (game.PlatformId != Guid.Empty && Platforms.ContainsItem(game.PlatformId))
+                if (game.PlatformIds.HasItems())
                 {
-                    UsedPlatforms.AddMissing(game.PlatformId);
+                    UsedPlatforms.AddMissing(game.PlatformIds.Where(a => Platforms.ContainsItem(a)));
                 }
 
                 if (game.GenreIds.HasItems())
@@ -274,19 +274,19 @@ namespace Playnite.Database
                     UsedCategories.AddMissing(game.CategoryIds.Where(a => Categories.ContainsItem(a)));
                 }
 
-                if (game.SeriesId != Guid.Empty && Series.ContainsItem(game.SeriesId))
+                if (game.SeriesIds.HasItems())
                 {
-                    UsedSeries.AddMissing(game.SeriesId);
+                    UsedSeries.AddMissing(game.SeriesIds.Where(a => Series.ContainsItem(a)));
                 }
 
-                if (game.AgeRatingId != Guid.Empty && AgeRatings.ContainsItem(game.AgeRatingId))
+                if (game.AgeRatingIds.HasItems())
                 {
-                    UsedAgeRatings.AddMissing(game.AgeRatingId);
+                    UsedAgeRatings.AddMissing(game.AgeRatingIds.Where(a => AgeRatings.ContainsItem(a)));
                 }
 
-                if (game.RegionId != Guid.Empty && Regions.ContainsItem(game.RegionId))
+                if (game.RegionIds.HasItems())
                 {
-                    UsedRegions.AddMissing(game.RegionId);
+                    UsedRegions.AddMissing(game.RegionIds.Where(a => Regions.ContainsItem(a)));
                 }
 
                 if (game.SourceId != Guid.Empty && Sources.ContainsItem(game.SourceId))
@@ -549,15 +549,15 @@ namespace Playnite.Database
             {
                 foreach (var game in e.AddedItems)
                 {
-                    UpdateFieldsInUse(game.PlatformId, UsedPlatforms, PlatformsInUseUpdated, Platforms);
+                    UpdateFieldsInUse(game.PlatformIds, UsedPlatforms, PlatformsInUseUpdated, Platforms);
                     UpdateFieldsInUse(game.GenreIds, UsedGenres, GenresInUseUpdated, Genres);
                     UpdateFieldsInUse(game.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated, Companies);
                     UpdateFieldsInUse(game.PublisherIds, UsedPublishers, PublishersInUseUpdated, Companies);
                     UpdateFieldsInUse(game.TagIds, UsedTags, TagsInUseUpdated, Tags);
                     UpdateFieldsInUse(game.CategoryIds, UsedCategories, CategoriesInUseUpdated, Categories);
-                    UpdateFieldsInUse(game.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
-                    UpdateFieldsInUse(game.SeriesId, UsedSeries, SeriesInUseUpdated, Series);
-                    UpdateFieldsInUse(game.RegionId, UsedRegions, RegionsInUseUpdated, Regions);
+                    UpdateFieldsInUse(game.AgeRatingIds, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
+                    UpdateFieldsInUse(game.SeriesIds, UsedSeries, SeriesInUseUpdated, Series);
+                    UpdateFieldsInUse(game.RegionIds, UsedRegions, RegionsInUseUpdated, Regions);
                     UpdateFieldsInUse(game.SourceId, UsedSources, SourcesInUseUpdated, Sources);
                     UpdateFieldsInUse(game.FeatureIds, UsedFeastures, FeaturesInUseUpdated, Features);
                 }
@@ -568,15 +568,15 @@ namespace Playnite.Database
         {
             foreach (var upd in e.UpdatedItems)
             {
-                UpdateFieldsInUse(upd.NewData.PlatformId, UsedPlatforms, PlatformsInUseUpdated, Platforms);
+                UpdateFieldsInUse(upd.NewData.PlatformIds, UsedPlatforms, PlatformsInUseUpdated, Platforms);
                 UpdateFieldsInUse(upd.NewData.GenreIds, UsedGenres, GenresInUseUpdated, Genres);
                 UpdateFieldsInUse(upd.NewData.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated, Companies);
                 UpdateFieldsInUse(upd.NewData.PublisherIds, UsedPublishers, PublishersInUseUpdated, Companies);
                 UpdateFieldsInUse(upd.NewData.TagIds, UsedTags, TagsInUseUpdated, Tags);
                 UpdateFieldsInUse(upd.NewData.CategoryIds, UsedCategories, CategoriesInUseUpdated, Categories);
-                UpdateFieldsInUse(upd.NewData.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
-                UpdateFieldsInUse(upd.NewData.SeriesId, UsedSeries, SeriesInUseUpdated, Series);
-                UpdateFieldsInUse(upd.NewData.RegionId, UsedRegions, RegionsInUseUpdated, Regions);
+                UpdateFieldsInUse(upd.NewData.AgeRatingIds, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
+                UpdateFieldsInUse(upd.NewData.SeriesIds, UsedSeries, SeriesInUseUpdated, Series);
+                UpdateFieldsInUse(upd.NewData.RegionIds, UsedRegions, RegionsInUseUpdated, Regions);
                 UpdateFieldsInUse(upd.NewData.SourceId, UsedSources, SourcesInUseUpdated, Sources);
                 UpdateFieldsInUse(upd.NewData.FeatureIds, UsedFeastures, FeaturesInUseUpdated, Features);
             }
@@ -862,33 +862,6 @@ namespace Playnite.Database
 
         #endregion Files
 
-        public void AssignPcPlatform(Game game)
-        {
-            var platform = Platforms.FirstOrDefault(a => a.Name == "PC");
-            if (platform == null)
-            {
-                platform = new Platform("PC");
-                Platforms.Add(platform);
-            }
-
-            game.PlatformId = platform.Id;
-        }
-
-        public void AssignPcPlatform(List<Game> games)
-        {
-            var platform = Platforms.FirstOrDefault(a => a.Name == "PC");
-            if (platform == null)
-            {
-                platform = new Platform("PC");
-                Platforms.Add(platform);
-            }
-
-            foreach (var game in games)
-            {
-                game.PlatformId = platform.Id;
-            }
-        }
-
         public void BeginBufferUpdate()
         {
             Platforms.BeginBufferUpdate();
@@ -1040,9 +1013,9 @@ namespace Playnite.Database
                 Favorite = game.Favorite
             };
 
-            if (!game.Platform.IsNullOrEmpty())
+            if (game.Platforms?.Any() == true)
             {
-                toAdd.PlatformId = Platforms.Add(game.Platform).Id;
+                toAdd.PlatformIds = Platforms.Add(game.Platforms).Select(a => a.Id).ToList();
             }
 
             if (game.Developers?.Any() == true)
@@ -1075,19 +1048,19 @@ namespace Playnite.Database
                 toAdd.FeatureIds = Features.Add(game.Features).Select(a => a.Id).ToList();
             }
 
-            if (!string.IsNullOrEmpty(game.AgeRating))
+            if (game.AgeRatings?.Any() == true)
             {
-                toAdd.AgeRatingId = AgeRatings.Add(game.AgeRating).Id;
+                toAdd.AgeRatingIds = AgeRatings.Add(game.AgeRatings).Select(a => a.Id).ToList();
             }
 
-            if (!string.IsNullOrEmpty(game.Series))
+            if (game.Series?.Any() == true)
             {
-                toAdd.SeriesId = Series.Add(game.Series).Id;
+                toAdd.SeriesIds = Series.Add(game.Series).Select(a => a.Id).ToList();
             }
 
-            if (!string.IsNullOrEmpty(game.Region))
+            if (game.Regions?.Any() == true)
             {
-                toAdd.RegionId = Regions.Add(game.Region).Id;
+                toAdd.RegionIds = Regions.Add(game.Regions).Select(a => a.Id).ToList();
             }
 
             if (!string.IsNullOrEmpty(game.Source))
@@ -1227,18 +1200,18 @@ namespace Playnite.Database
             var designGame = new Game($"Star Wars: Knights of the Old Republic")
             {
                 ReleaseDate = new DateTime(2009, 9, 5),
-                PlatformId = database.Platforms.First().Id,
+                PlatformIds = new List<Guid> { database.Platforms.First().Id },
                 PlayCount = 20,
                 Playtime = 115200,
                 LastActivity = DateTime.Today,
                 IsInstalled = true,
-                AgeRatingId = database.AgeRatings.First().Id,
+                AgeRatingIds =  new List<Guid> { database.AgeRatings.First().Id },
                 CategoryIds = new List<Guid> { database.Categories.First().Id },
                 DeveloperIds = new List<Guid> { database.Companies.First().Id },
                 PublisherIds = new List<Guid> { database.Companies.Last().Id },
                 GenreIds = new List<Guid> { database.Genres.First().Id },
-                RegionId = database.Regions.First().Id,
-                SeriesId = database.Series.First().Id,
+                RegionIds =  new List<Guid> { database.Regions.First().Id },
+                SeriesIds = new List<Guid> { database.Series.First().Id },
                 SourceId = database.Sources.First().Id,
                 TagIds = new List<Guid> { database.Tags.First().Id },
                 FeatureIds = new List<Guid> { database.Features.First().Id },

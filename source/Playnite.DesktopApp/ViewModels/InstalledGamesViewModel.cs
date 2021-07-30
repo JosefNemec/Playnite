@@ -302,8 +302,7 @@ namespace Playnite.DesktopApp.ViewModels
                     GameId = program.Item.AppId,
                     InstallDirectory = program.Item.WorkDir,
                     Source = program.Type == ProgramType.UWP ? "Microsoft Store" : string.Empty,
-                    IsInstalled = true,
-                    Platform = "PC"
+                    IsInstalled = true
                 };
 
                 var newMeta = new GameMetadata()
@@ -463,7 +462,6 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     var added = database.ImportGame(game);
                     addedGames.Add(added);
-                    database.AssignPcPlatform(added);
                 }
 
                 return addedGames;

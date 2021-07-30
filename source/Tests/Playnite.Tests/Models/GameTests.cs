@@ -29,7 +29,7 @@ namespace Playnite.Tests.Models
                 Name = "test game",
                 InstallDirectory = dir,
                 Roms = new ObservableCollection<GameRom> { new GameRom("test", Path.Combine(dir, "test.iso")) },
-                PlatformId = database.Platforms.First().Id,
+                PlatformIds = new List<Guid> { database.Platforms.First().Id },
                 Version = "1.0",
                 PluginId = Guid.NewGuid(),
                 GameId = "game_id",
@@ -45,7 +45,7 @@ namespace Playnite.Tests.Models
             Assert.AreEqual(PlaynitePaths.ProgramPath, game.ExpandVariables("{PlayniteDir}"));
             Assert.AreEqual("test game", game.ExpandVariables("{Name}"));
             Assert.AreEqual("test2", game.ExpandVariables("{InstallDirName}"));
-            Assert.AreEqual(game.Platform.Name, game.ExpandVariables("{Platform}"));
+            Assert.AreEqual(game.Platforms[0].Name, game.ExpandVariables("{Platform}"));
             Assert.AreEqual(game.PluginId.ToString(), game.ExpandVariables("{PluginId}"));
             Assert.AreEqual(game.GameId, game.ExpandVariables("{GameId}"));
             Assert.AreEqual(game.Id.ToString(), game.ExpandVariables("{DatabaseId}"));
@@ -96,13 +96,13 @@ namespace Playnite.Tests.Models
             {
                 Name = "Name",
                 InstallDirectory = "InstallDirectory",
-                PlatformId = new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+                PlatformIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
                 Version = "Version",
                 PluginId = new Guid(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
                 GameId = "GameId",
                 Id = new Guid(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
                 Added = new DateTime(10),
-                AgeRatingId = new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4),
+                AgeRatingIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
                 BackgroundImage = "BackgroundImage",
                 CategoryIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
                 CommunityScore = 10,
@@ -126,9 +126,9 @@ namespace Playnite.Tests.Models
                 PlayCount = 1,
                 Playtime = 10,
                 PublisherIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
-                RegionId = new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
+                RegionIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
                 ReleaseDate = new DateTime(40),
-                SeriesId = new Guid(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6),
+                SeriesIds = new List<Guid> { new Guid(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6) },
                 SortingName = "SortingName",
                 SourceId = new Guid(7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7),
                 TagIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
