@@ -252,12 +252,12 @@ namespace Playnite.Common
 
         public static bool Sleep()
         {
-            return Interop.SetSuspendState(false, true, true);
+            return Interop.SetSuspendState(false, true, false);
         }
 
         public static bool Hibernate()
         {
-            return Interop.SetSuspendState(true, true, true);
+            return Interop.SetSuspendState(true, true, false);
         }
 
         public static ComputerScreen ToComputerScreen(this Screen screen)
