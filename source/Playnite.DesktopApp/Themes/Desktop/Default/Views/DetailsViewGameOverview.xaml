@@ -118,7 +118,7 @@
                                             <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center" />
 
                                             <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
-                                            <TextBlock Name="PART_TextCompletionStatus" VerticalAlignment="Center" />
+                                            <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" />
 
                                             <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                             <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />

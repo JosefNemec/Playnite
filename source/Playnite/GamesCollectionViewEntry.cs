@@ -66,7 +66,6 @@ namespace Playnite
         public DateTime? Modified => Game.Modified;
         public long PlayCount => Game.PlayCount;
         public string Version => Game.Version;
-        public CompletionStatus CompletionStatus => Game.CompletionStatus;
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
@@ -94,6 +93,7 @@ namespace Playnite
         public Guid SourceId => Game.SourceId;
         public List<Guid> PlatformIds => Game.PlatformIds;
         public List<Guid> FeatureIds => Game.FeatureIds;
+        public Guid CompletionStatusId => Game.CompletionStatusId;
 
         public object IconObject => GetImageObject(Game.Icon, false);
         public object CoverImageObject => GetImageObject(Game.CoverImage, false);
@@ -137,6 +137,11 @@ namespace Playnite
         public GameSource Source
         {
             get => Game.Source ?? GameSource.Empty;
+        }
+
+        public CompletionStatus CompletionStatus
+        {
+            get => Game.CompletionStatus ?? CompletionStatus.Empty;
         }
 
         public AgeRating AgeRating

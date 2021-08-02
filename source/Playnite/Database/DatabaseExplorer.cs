@@ -555,7 +555,7 @@ namespace Playnite.Database
                     filters.ReleaseYear = GetStringListFilter(filter);
                     break;
                 case GroupableField.CompletionStatus:
-                    filters.CompletionStatus = GetEnumFilter(filter);
+                    filters.CompletionStatuses = GetIdFilter(filter);
                     break;
                 case GroupableField.UserScore:
                     filters.UserScore = GetEnumFilter(filter);
@@ -737,7 +737,15 @@ namespace Playnite.Database
                     values.AddRange(years.Select(a => new SelectionObject(a)));
                     break;
                 case GroupableField.CompletionStatus:
-                    values.AddRange(GenerateEnumValues(typeof(CompletionStatus)));
+                    values.Add(noneDbObject);
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        values.AddRange(database.UsedCompletionStatuses.Select(a => database.CompletionStatuses[a]).OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
+                    else
+                    {
+                        values.AddRange(database.CompletionStatuses.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    }
                     break;
                 case GroupableField.UserScore:
                 case GroupableField.CriticScore:

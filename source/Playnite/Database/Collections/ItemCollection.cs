@@ -26,7 +26,7 @@ namespace Playnite.Database
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
         private Dictionary<Guid, ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new Dictionary<Guid, ItemUpdateEvent<TItem>>();
         private readonly bool isPersistent = true;
-        private LiteDatabase liteDb;
+        internal LiteDatabase liteDb { get; private set; }
         private LiteCollection<TItem> liteCollection;
         private BsonMapper mapper;
 

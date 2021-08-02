@@ -80,7 +80,11 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        ImportExclusions
+        ImportExclusions,
+        /// <summary>
+        ///
+        /// </summary>
+        CompletionStatuses
     }
 
     /// <summary>
@@ -152,6 +156,11 @@ namespace Playnite.SDK
         /// Gets collection of game features.
         /// </summary>
         IItemCollection<GameScannerConfig> GameScanners { get; }
+
+        /// <summary>
+        /// Gets collection of game statuses.
+        /// </summary>
+        IItemCollection<CompletionStatus> CompletionStatuses { get; }
 
         /// <summary>
         /// Gets value indicating whether database is opened.

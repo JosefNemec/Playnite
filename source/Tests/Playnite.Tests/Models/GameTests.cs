@@ -106,7 +106,6 @@ namespace Playnite.Tests.Models
                 BackgroundImage = "BackgroundImage",
                 CategoryIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
                 CommunityScore = 10,
-                CompletionStatus = CompletionStatus.Beaten,
                 CoverImage = "CoverImage",
                 CriticScore = 20,
                 Description = "Description",

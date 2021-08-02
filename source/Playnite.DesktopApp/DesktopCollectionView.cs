@@ -94,6 +94,7 @@ namespace Playnite.DesktopApp
             Database.Sources.ItemUpdated += Sources_ItemUpdated;
             Database.Tags.ItemUpdated += Tags_ItemUpdated;
             Database.Features.ItemUpdated += Features_ItemUpdated;
+            Database.CompletionStatuses.ItemUpdated += CompletionStatuses_ItemUpdated;
             viewSettings = settings.ViewSettings;
             viewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             using (CollectionView.DeferRefresh())
@@ -117,6 +118,7 @@ namespace Playnite.DesktopApp
             Database.Sources.ItemUpdated -= Sources_ItemUpdated;
             Database.Tags.ItemUpdated -= Tags_ItemUpdated;
             Database.Features.ItemUpdated -= Features_ItemUpdated;
+            Database.CompletionStatuses.ItemUpdated -= CompletionStatuses_ItemUpdated;
             viewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
             ClearItems();
             base.Dispose();
@@ -221,6 +223,8 @@ namespace Playnite.DesktopApp
             {
                 case GroupableField.Source:
                     return sourceGame.SourceId;
+                case GroupableField.CompletionStatus:
+                    return sourceGame.CompletionStatusId;
                 case GroupableField.None:
                     return Guid.Empty;
                 default:
@@ -405,6 +409,13 @@ namespace Playnite.DesktopApp
                 nameof(Game.Features));
         }
 
+        private void CompletionStatuses_ItemUpdated(object sender, ItemUpdatedEventArgs<CompletionStatus> e)
+        {
+            DoGroupDbObjectsUpdate(
+               GroupableField.CompletionStatus, e,
+               (a, b) => a.CompletionStatusId != Guid.Empty && b.Contains(a.CompletionStatusId));
+        }
+
         private void DoGroupDbObjectsUpdate<TItem>(
             GroupableField order,
             ItemUpdatedEventArgs<TItem> updatedItems,
@@ -453,7 +464,7 @@ namespace Playnite.DesktopApp
                 case GroupableField.ReleaseYear:
                     return oldData.ReleaseYear != newData.ReleaseYear;
                 case GroupableField.CompletionStatus:
-                    return oldData.CompletionStatus != newData.CompletionStatus;
+                    return ViewType == GamesViewType.Standard && !GetGroupingId(viewSettings.GroupingOrder, oldData).Equals(GetGroupingId(viewSettings.GroupingOrder, newData));
                 case GroupableField.UserScore:
                     return oldData.UserScore != newData.UserScore;
                 case GroupableField.CriticScore:

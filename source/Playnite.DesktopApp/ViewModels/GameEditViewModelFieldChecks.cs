@@ -454,7 +454,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useCompletionStatusChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -1100,10 +1100,10 @@ namespace Playnite.DesktopApp.ViewModels
                         UseSourceChanges = true;
                     }
                     break;
-                case nameof(Game.CompletionStatus):
+                case nameof(Game.CompletionStatusId):
                     if (IsSingleGameEdit)
                     {
-                        UseCompletionStatusChanges = Game.CompletionStatus != EditingGame.CompletionStatus;
+                        UseCompletionStatusChanges = Game.CompletionStatusId != EditingGame.CompletionStatusId;
                     }
                     else
                     {

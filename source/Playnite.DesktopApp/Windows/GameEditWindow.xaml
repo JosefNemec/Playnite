@@ -389,22 +389,7 @@
                         </Style>
                         <Style TargetType="DatePicker" BasedOn="{StaticResource {x:Type DatePicker}}" >
                             <Setter Property="Margin" Value="3" />
-                        </Style>
-                        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                                            x:Key="CompletionStatusEnumValues">
-                            <ObjectDataProvider.MethodParameters>
-                                <x:Type TypeName="pm:CompletionStatus" />
-                            </ObjectDataProvider.MethodParameters>
-                        </ObjectDataProvider>
-                        <ComboBox x:Key="ComboCompletionStatusOptions" x:Shared="False"
-                                  SelectedValue="{Binding CompletionStatus}"
-                                  ItemsSource="{Binding Source={StaticResource CompletionStatusEnumValues}}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                        </Style>    
                     </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -465,10 +450,11 @@
                     <CheckBox Grid.Column="0" Grid.Row="3"
                                 Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 IsChecked="{Binding UseCompletionStatusChanges}"/>
-                    <ContentControl IsTabStop="False" Grid.Column="2" Grid.Row="3"
-                                    DataContext="{Binding EditingGame}"
-                                    Content="{StaticResource ComboCompletionStatusOptions}" />
-                    
+                    <ComboBox IsTabStop="False" Grid.Column="2" Grid.Row="3"
+                              ItemsSource="{Binding CompletionStatuses}"
+                              SelectedValuePath="Id" DisplayMemberPath="Name"
+                              SelectedValue="{Binding EditingGame.CompletionStatusId, UpdateSourceTrigger=PropertyChanged}" />
+
                     <!--Manual-->
                     <CheckBox Grid.Column="0" Grid.Row="4"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"

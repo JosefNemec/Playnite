@@ -163,8 +163,8 @@ namespace Playnite.DesktopApp.Controls.Views
             SetLabelTag(nameof(FilterSettings.PlayTime), LOC.TimePlayed);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.PlayTime), typeof(PlaytimeCategory));
 
-            SetLabelTag(nameof(FilterSettings.CompletionStatus), LOC.CompletionStatus);
-            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.CompletionStatus), typeof(CompletionStatus));
+            SetLabelTag(nameof(FilterSettings.CompletionStatuses), LOC.CompletionStatus);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.CompletionStatuses), nameof(FilterSettings.CompletionStatuses));
 
             SetLabelTag(nameof(FilterSettings.Series), LOC.SeriesLabel);
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));

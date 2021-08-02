@@ -103,7 +103,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     AssignFilter("LOCFeatureLabel", "PART_ButtonFeature", GameField.Features, nameof(FilterSettings.Feature));
                     AssignFilter("LOCTagLabel", "PART_ButtonTag", GameField.Tags, nameof(FilterSettings.Tag));
                     AssignFilter("LOCTimePlayed", "PART_ButtonPlayTime", GameField.Playtime, nameof(FilterSettings.PlayTime));
-                    AssignFilter("LOCCompletionStatus", "PART_ButtonCompletionStatus", GameField.CompletionStatus, nameof(FilterSettings.CompletionStatus));
+                    AssignFilter("LOCCompletionStatus", "PART_ButtonCompletionStatus", GameField.CompletionStatus, nameof(FilterSettings.CompletionStatuses));
                     AssignFilter("LOCSeriesLabel", "PART_ButtonSeries", GameField.Series, nameof(FilterSettings.Series));
                     AssignFilter("LOCRegionLabel", "PART_ButtonRegion", GameField.Regions, nameof(FilterSettings.Region));
                     AssignFilter("LOCSourceLabel", "PART_ButtonSource", GameField.Source, nameof(FilterSettings.Source));

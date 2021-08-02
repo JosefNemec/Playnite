@@ -47,7 +47,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ElemUserScore", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_TextPlayTime", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextLastActivity", Type = typeof(TextBlock))]
-    [TemplatePart(Name = "PART_TextCompletionStatus", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "PART_ButtonCompletionStatus", Type = typeof(Button))]
     [TemplatePart(Name = "PART_TextNotes", Type = typeof(TextBox))]
     [TemplatePart(Name = "PART_TextCommunityScore", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextCriticScore", Type = typeof(TextBlock))]
@@ -106,7 +106,6 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private TextBlock TextPlayTime;
         private TextBlock TextLastActivity;
-        private TextBlock TextCompletionStatus;
         private TextBlock TextCommunityScore;
         private TextBlock TextCriticScore;
         private TextBlock TextUserScore;
@@ -115,6 +114,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private Button ButtonReleaseDate;
         private Button ButtonVersion;
         private Button ButtonSource;
+        private Button ButtonCompletionStatus;
         private ItemsControl ItemsGenres;
         private ItemsControl ItemsDevelopers;
         private ItemsControl ItemsPublishers;
@@ -392,10 +392,11 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GameDetailsViewModel.LastPlayedVisibility),
                 new DateTimeToLastPlayedConverter());
 
-            SetGameItemTextBinding(ref TextCompletionStatus, "PART_TextCompletionStatus",
-                nameof(GameDetailsViewModel.Game.CompletionStatus),
-                nameof(GameDetailsViewModel.CompletionStatusVisibility),
-                new ObjectToStringConverter());
+            SetGameItemButtonBinding(ref ButtonCompletionStatus, "PART_ButtonCompletionStatus",
+                nameof(GameDetailsViewModel.SetCompletionStatusFilterCommand),
+                GetGameBindingPath(nameof(GamesCollectionViewEntry.CompletionStatus)),
+                GetGameBindingPath($"{nameof(GamesCollectionViewEntry.CompletionStatus)}.{nameof(GamesCollectionViewEntry.CompletionStatus.Name)}"),
+                nameof(GameDetailsViewModel.CompletionStatusVisibility));
 
             SetGameItemTextBinding(ref TextCommunityScore, "PART_TextCommunityScore",
                 nameof(GameDetailsViewModel.Game.CommunityScore),

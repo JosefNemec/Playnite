@@ -610,15 +610,8 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCChange">Change</sys:String>
     <sys:String x:Key="LOCAdvanced">Advanced</sys:String>
     <sys:String x:Key="LOCNever">Never</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed">Not Played</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed">Played</sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten">Beaten</sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted">Completed</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying">Playing</sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned">Abandoned</sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold">On Hold</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay">Plan to Play</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Completion Status</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">Completion Statuses</sys:String>
     <sys:String x:Key="LOCUserScore">User Score</sys:String>
     <sys:String x:Key="LOCCriticScore">Critic Score</sys:String>
     <sys:String x:Key="LOCCommunityScore">Community Score</sys:String>
@@ -1001,4 +994,6 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuAddSavedScanner">Add saved scanner</sys:String>
     <sys:String x:Key="LOCStartScan">Start scan</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Add scan configuration(s) with emulators to scan specific folders.</sys:String>
+    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Default status assigned to newly added games</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
 </ResourceDictionary>

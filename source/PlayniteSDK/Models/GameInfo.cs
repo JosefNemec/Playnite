@@ -79,7 +79,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets CompletionStatus.
         /// </summary>
-        public CompletionStatus CompletionStatus { get; set; }
+        public string CompletionStatus { get; set; }
 
         /// <summary>
         /// Gets or sets UserScore.

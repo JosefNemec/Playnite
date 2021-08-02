@@ -279,9 +279,12 @@ namespace Playnite
             }
 
             // ------------------ Completion Status
-            if (filterSettings.CompletionStatus?.IsSet == true && !filterSettings.CompletionStatus.Values.Contains((int)game.CompletionStatus))
+            if (filterSettings.CompletionStatuses?.IsSet == true)
             {
-                return false;
+                if (!IsFilterMatchingSingle(filterSettings.CompletionStatuses, game.CompletionStatusId, game.CompletionStatus))
+                {
+                    return false;
+                }
             }
 
             // ------------------ Last Activity

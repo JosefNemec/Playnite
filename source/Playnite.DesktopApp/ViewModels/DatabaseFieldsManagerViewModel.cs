@@ -502,6 +502,52 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion Categories
 
+        #region CompletionStatuses
+
+        public CompletionStatusSettings CompletionStatusSettings
+        {
+            get;
+        }
+
+        public ObservableCollection<CompletionStatus> EditingCompletionStatuses
+        {
+            get;
+        }
+
+        public RelayCommand<object> AddCompletionStatusCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddItem(EditingCompletionStatuses);
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveCompletionStatusCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingCompletionStatuses, a.Cast<CompletionStatus>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameCompletionStatusCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(EditingCompletionStatuses, a.First() as CompletionStatus);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<object> RemoveUnusedCompletionStatusesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingCompletionStatuses, g => g.CompletionStatusId);
+            }, (a) => EditingCompletionStatuses.Count > 0);
+        }
+
+        #endregion CompletionStatuses
+
         public RelayCommand<object> SaveCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -534,6 +580,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingSources = database.Sources.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingCompletionStatuses = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
             PlatformsSpecifications = Emulation.Platforms.ToList();
             PlatformsSpecifications.Insert(0, new EmulatedPlatform
             {
@@ -547,6 +594,8 @@ namespace Playnite.DesktopApp.ViewModels
                 Name = ResourceProvider.GetString(LOC.None),
                 Id = null
             });
+
+            CompletionStatusSettings = database.GetCompletionStatusSettings();
         }
 
         public void OpenView()
@@ -572,7 +621,9 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateDbCollection(database.Sources, EditingSources);
                 UpdateDbCollection(database.Tags, EditingTags);
                 UpdateDbCollection(database.Features, EditingFeatures);
+                UpdateDbCollection(database.CompletionStatuses, EditingCompletionStatuses);
                 UpdatePlatformsCollection();
+                UpdateCompletionStatusSettings();
             }
 
             window.Close(true);
@@ -880,6 +931,15 @@ namespace Playnite.DesktopApp.ViewModels
         public void RemovePlatformBackground(Platform platform)
         {
             platform.Background = null;
+        }
+
+        private void UpdateCompletionStatusSettings()
+        {
+            var dbSet = database.GetCompletionStatusSettings();
+            if (!CompletionStatusSettings.IsEqualJson(dbSet))
+            {
+                database.SetCompletionStatusSettings(CompletionStatusSettings);
+            }
         }
     }
 }

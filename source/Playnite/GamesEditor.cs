@@ -431,9 +431,9 @@ namespace Playnite
 
         public void SetCompletionStatus(Game game, CompletionStatus status)
         {
-            if (game.CompletionStatus != status)
+            if (game.CompletionStatusId != status.Id)
             {
-                game.CompletionStatus = status;
+                game.CompletionStatusId = status.Id;
                 Database.Games.Update(game);
             }
         }
@@ -895,9 +895,10 @@ namespace Playnite
             {
                 game.LastActivity = DateTime.Now;
                 game.PlayCount += 1;
-                if (game.CompletionStatus == CompletionStatus.NotPlayed)
+                var comSettings = Database.GetCompletionStatusSettings();
+                if (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == comSettings.DefaultStatus)
                 {
-                    game.CompletionStatus = CompletionStatus.Played;
+                    game.CompletionStatusId = comSettings.PlayedStatus;
                 }
             }
 

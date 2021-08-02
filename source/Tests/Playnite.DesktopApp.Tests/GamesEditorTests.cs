@@ -65,6 +65,11 @@ namespace Playnite.DesktopApp.Tests
                 Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
             };
 
+            var completionStatuses = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
             // All common
             var gamesCommon = new List<Game>()
             {
@@ -89,7 +94,7 @@ namespace Playnite.DesktopApp.Tests
                     AgeRatingIds = new List<Guid>{ ratings[0] },
                     RegionIds = new List<Guid>{ regions[0] },
                     SourceId = sources[0],
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 2,
                     CommunityScore = 99,
@@ -117,7 +122,7 @@ namespace Playnite.DesktopApp.Tests
                     Playtime = 3,
                     PlayCount = 3,
                     Version = "Version 3",
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 2,
                     CommunityScore = 99,
@@ -145,7 +150,7 @@ namespace Playnite.DesktopApp.Tests
                     AgeRatingIds = new List<Guid>{ ratings[0] },
                     RegionIds = new List<Guid>{ regions[0] },
                     SourceId = sources[0],
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 2,
                     CommunityScore = 99,
@@ -175,7 +180,7 @@ namespace Playnite.DesktopApp.Tests
             CollectionAssert.AreEqual(firstGame.AgeRatingIds, gameCommon.AgeRatingIds);
             CollectionAssert.AreEqual(firstGame.RegionIds, gameCommon.RegionIds);
             Assert.AreEqual(firstGame.SourceId, gameCommon.SourceId);
-            Assert.AreEqual(firstGame.CompletionStatus, gameCommon.CompletionStatus);
+            Assert.AreEqual(firstGame.CompletionStatusId, gameCommon.CompletionStatusId);
             Assert.AreEqual(firstGame.UserScore, gameCommon.UserScore);
             Assert.AreEqual(firstGame.CriticScore, gameCommon.CriticScore);
             Assert.AreEqual(firstGame.CommunityScore, gameCommon.CommunityScore);
@@ -206,7 +211,7 @@ namespace Playnite.DesktopApp.Tests
                     Playtime = 1,
                     PlayCount = 1,
                     Version = "Version 1",
-                    CompletionStatus = CompletionStatus.Beaten,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 1,
                     CommunityScore = 1,
@@ -234,7 +239,7 @@ namespace Playnite.DesktopApp.Tests
                     Playtime = 2,
                     PlayCount = 2,
                     Version = "Version 2",
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[1],
                     UserScore = 2,
                     CriticScore = 2,
                     CommunityScore = 2,
@@ -262,7 +267,7 @@ namespace Playnite.DesktopApp.Tests
                     Playtime = 3,
                     PlayCount = 3,
                     Version = "Version 3",
-                    CompletionStatus = CompletionStatus.NotPlayed,
+                    CompletionStatusId = completionStatuses[2],
                     UserScore = 3,
                     CriticScore = 3,
                     CommunityScore = 3,
@@ -291,7 +296,7 @@ namespace Playnite.DesktopApp.Tests
             CollectionAssert.IsEmpty(gameNoCommon.AgeRatingIds);
             CollectionAssert.IsEmpty(gameNoCommon.RegionIds);
             Assert.AreEqual(Guid.Empty, gameNoCommon.SourceId);
-            Assert.AreEqual(gameNoCommon.CompletionStatus, CompletionStatus.NotPlayed);
+            Assert.AreEqual(Guid.Empty, gameNoCommon.CompletionStatusId);
             Assert.IsNull(gameNoCommon.UserScore);
             Assert.IsNull(gameNoCommon.CriticScore);
             Assert.IsNull(gameNoCommon.CommunityScore);

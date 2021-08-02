@@ -107,7 +107,7 @@ namespace Playnite.FullscreenApp.ViewModels
                         OpenSubFilter("LOCPlatformTitle", nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform), true);
                         break;
                     case GameField.CompletionStatus:
-                        OpenSubEnumFilter("LOCCompletionStatus", typeof(CompletionStatus), nameof(FilterSettings.CompletionStatus));
+                        OpenSubFilter("LOCCompletionStatus", nameof(DatabaseFilter.CompletionStatuses), nameof(FilterSettings.CompletionStatuses));
                         break;
                     case GameField.ReleaseYear:
                         OpenSubStringFilter("LOCGameReleaseYearTitle", nameof(DatabaseFilter.ReleaseYears), nameof(FilterSettings.ReleaseYear));

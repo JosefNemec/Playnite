@@ -27,6 +27,7 @@ namespace Playnite.Database
         private static object syncLockSources = new object();
         private static object syncLockTags = new object();
         private static object syncLockFeatures = new object();
+        private static object syncLockCompletionStatuses = new object();
         private readonly SynchronizationContext context;
         private readonly GameDatabase database;
         private readonly FilterSettings filter;
@@ -187,6 +188,17 @@ namespace Playnite.Database
             }
         }
 
+        private SelectableDbItemList completionStatuses;
+        public SelectableDbItemList CompletionStatuses
+        {
+            get => completionStatuses;
+            private set
+            {
+                completionStatuses = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Filter lists
 
         public DatabaseFilter(GameDatabase database, ExtensionFactory extensions, PlayniteSettings settings, FilterSettings filter)
@@ -236,6 +248,7 @@ namespace Playnite.Database
                 FullUpdateAvailableFilterList(Publishers, args, database.Companies, filter.Publisher);
                 FullUpdateAvailableFilterList(Developers, args, database.Companies, filter.Developer);
             };
+            database.CompletionStatuses.ItemCollectionChanged += (_, args) => FullUpdateAvailableFilterList(CompletionStatuses, args, database.CompletionStatuses, filter.CompletionStatuses);
 
             database.AgeRatingsInUseUpdated += (_, __) => InUseOnlyUpdateAvailableFilterList(AgeRatings, database.AgeRatings, database.UsedAgeRatings, filter.AgeRating);
             database.CategoriesInUseUpdated += (_, __) => InUseOnlyUpdateAvailableFilterList(Categories, database.Categories, database.UsedCategories, filter.Category);
@@ -248,6 +261,7 @@ namespace Playnite.Database
             database.SeriesInUseUpdated += (_, __) => InUseOnlyUpdateAvailableFilterList(Series, database.Series, database.UsedSeries, filter.Series);
             database.SourcesInUseUpdated += (_, __) => InUseOnlyUpdateAvailableFilterList(Sources, database.Sources, database.UsedSources, filter.Source);
             database.TagsInUseUpdated += (_, __) => InUseOnlyUpdateAvailableFilterList(Tags, database.Tags, database.UsedTags, filter.Tag);
+            database.CompletionStatusesInUseUpdated += (_, __) => InUseOnlyUpdateAvailableFilterList(CompletionStatuses, database.CompletionStatuses, database.UsedCompletionStatuses, filter.CompletionStatuses);
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -278,6 +292,7 @@ namespace Playnite.Database
                 Sources = new SelectableDbItemList(database.Sources.Get(database.UsedSources), null, null, true);
                 Tags = new SelectableDbItemList(database.Tags.Get(database.UsedTags), null, null, true);
                 Features = new SelectableDbItemList(database.Features.Get(database.UsedFeastures), null, null, true);
+                CompletionStatuses = new SelectableDbItemList(database.CompletionStatuses.Get(database.UsedCompletionStatuses), null, null, true);
             }
             else
             {
@@ -292,6 +307,7 @@ namespace Playnite.Database
                 Sources = new SelectableDbItemList(database.Sources, null, null, true);
                 Tags = new SelectableDbItemList(database.Tags, null, null, true);
                 Features = new SelectableDbItemList(database.Features, null, null, true);
+                CompletionStatuses = new SelectableDbItemList(database.CompletionStatuses, null, null, true);
             }
 
             context.Send((a) =>
@@ -308,6 +324,7 @@ namespace Playnite.Database
                 BindingOperations.EnableCollectionSynchronization(Sources, syncLockSources);
                 BindingOperations.EnableCollectionSynchronization(Tags, syncLockTags);
                 BindingOperations.EnableCollectionSynchronization(Features, syncLockFeatures);
+                BindingOperations.EnableCollectionSynchronization(CompletionStatuses, syncLockCompletionStatuses);
             }, null);
         }
 
@@ -467,6 +484,16 @@ namespace Playnite.Database
                         Features.SetItems(database.Features, filter.Feature?.Ids);
                     }
                     break;
+                case GameDatabaseCollection.CompletionStatuses:
+                    if (settings.UsedFieldsOnlyOnFilterLists)
+                    {
+                        CompletionStatuses.SetItems(database.CompletionStatuses.Get(database.UsedCompletionStatuses), filter.CompletionStatuses?.Ids);
+                    }
+                    else
+                    {
+                        CompletionStatuses.SetItems(database.CompletionStatuses, filter.CompletionStatuses?.Ids);
+                    }
+                    break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -492,6 +519,7 @@ namespace Playnite.Database
             UpdateAllCollections(GameDatabaseCollection.Regions);
             UpdateAllCollections(GameDatabaseCollection.Sources);
             UpdateAllCollections(GameDatabaseCollection.Features);
+            UpdateAllCollections(GameDatabaseCollection.CompletionStatuses);
         }
 
         private void InUseOnlyUpdateAvailableFilterList<T>(

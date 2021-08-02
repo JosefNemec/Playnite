@@ -118,6 +118,7 @@ namespace Playnite.DesktopApp.ViewModels
             new FilterSection(GameField.AgeRatings, LOC.AgeRatingsLabel),
             new FilterSection(GameField.Regions, LOC.RegionsLabel),
             new FilterSection(GameField.Source, LOC.SourcesLabel),
+            new FilterSection(GameField.CompletionStatus, LOC.CompletionStatus),
         };
 
         private FilterSection selectedFilter;
@@ -287,6 +288,9 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.Source:
                     FilterObjects = new List<FilterObject>(database.UsedSources.Select(a => database.Sources[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
                     break;
+                case GameField.CompletionStatus:
+                    FilterObjects = new List<FilterObject>(database.UsedCompletionStatuses.Select(a => database.CompletionStatuses[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
+                    break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -305,12 +309,7 @@ namespace Playnite.DesktopApp.ViewModels
             var favorite = 0;
             long totalPlaytime = 0;
 
-            var playStates = new Dictionary<CompletionStatus, long>();
-            foreach (CompletionStatus enm in Enum.GetValues(typeof(CompletionStatus)))
-            {
-                playStates.Add(enm, 0);
-            }
-
+            var compStats = new Dictionary<Guid, int>();
             foreach (var game in database.Games)
             {
                 if (filtered && !PassesFilter(game))
@@ -320,7 +319,6 @@ namespace Playnite.DesktopApp.ViewModels
 
                 total++;
                 totalPlaytime += game.Playtime;
-
                 if (game.IsInstalled)
                 {
                     installed++;
@@ -341,14 +339,24 @@ namespace Playnite.DesktopApp.ViewModels
                     favorite++;
                 }
 
-                playStates[game.CompletionStatus]++;
+                if (database.CompletionStatuses[game.CompletionStatusId] != null)
+                {
+                    if (compStats.TryGetValue(game.CompletionStatusId, out var currentCount))
+                    {
+                        compStats[game.CompletionStatusId] = currentCount + 1;
+                    }
+                    else
+                    {
+                        compStats.Add(game.CompletionStatusId, 1);
+                    }
+                }
             }
 
             return new GameStats
             {
-                CompletionStates = playStates.
+                CompletionStates = compStats.
                     OrderByDescending(a => a.Value).
-                    Select(a => new BaseStatInfo(a.Key.GetDescription(), a.Value, total)).
+                    Select(a => new BaseStatInfo(database.CompletionStatuses[a.Key].Name, a.Value, total)).
                     ToList(),
                 Favorite = new BaseStatInfo("", favorite, total),
                 Hidden = new BaseStatInfo("", hidden, total),
@@ -403,6 +411,8 @@ namespace Playnite.DesktopApp.ViewModels
                     return game.RegionIds?.Contains(((DatabaseObject)SelectedFilterObject.Value).Id) == true;
                 case GameField.Source:
                     return game.SourceId == ((DatabaseObject)SelectedFilterObject.Value).Id;
+                case GameField.CompletionStatus:
+                    return game.CompletionStatusId == ((DatabaseObject)SelectedFilterObject.Value).Id;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {

@@ -248,6 +248,7 @@
     <Compile Include="Database\Collections\GameScannersCollection.cs" />
     <Compile Include="Database\Collections\ImportExclusionsCollection.cs" />
     <Compile Include="Database\Collections\FilterPresetsCollection.cs" />
+    <Compile Include="Database\Collections\CompletionStatusesCollection.cs" />
     <Compile Include="Emulators\DatModels.cs" />
     <Compile Include="Emulators\Emulation.cs" />
     <Compile Include="Emulators\EmulationDatabase.cs" />

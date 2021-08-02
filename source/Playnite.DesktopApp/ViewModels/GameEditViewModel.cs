@@ -168,6 +168,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<Emulator> Emulators { get; set; }
 
+        public ObservableCollection<CompletionStatus> CompletionStatuses { get; set; }
+
         #endregion Database fields
 
         private Game editingGame;
@@ -366,6 +368,9 @@ namespace Playnite.DesktopApp.ViewModels
 
             Sources = database.Sources.OrderBy(a => a.Name).ToObservable();
             Sources.Insert(0, new GameSource() { Id = Guid.Empty, Name = string.Empty });
+
+            CompletionStatuses = database.CompletionStatuses.OrderBy(a => a.Name).ToObservable();
+            CompletionStatuses.Insert(0, new CompletionStatus() { Id = Guid.Empty, Name = string.Empty });
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
 
@@ -679,7 +684,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UseCompletionStatusChanges)
                 {
-                    game.CompletionStatus = EditingGame.CompletionStatus;
+                    game.CompletionStatusId = EditingGame.CompletionStatusId;
                 }
 
                 if (UseUserScoreChanges)

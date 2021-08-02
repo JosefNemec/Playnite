@@ -314,7 +314,7 @@ namespace Playnite
                     Tag?.IsSet == true ||
                     Platform?.IsSet == true ||
                     Library?.IsSet == true ||
-                    CompletionStatus?.IsSet == true ||
+                    CompletionStatuses?.IsSet == true ||
                     UserScore?.IsSet == true ||
                     CriticScore?.IsSet == true ||
                     CommunityScore?.IsSet == true ||
@@ -671,8 +671,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites completionStatus;
-        public EnumFilterItemProperites CompletionStatus
+        private FilterItemProperites completionStatus;
+        public FilterItemProperites CompletionStatuses
         {
             get
             {
@@ -685,7 +685,7 @@ namespace Playnite
                 {
                     completionStatus = value;
                     OnPropertyChanged();
-                    OnFilterChanged(nameof(CompletionStatus));
+                    OnFilterChanged(nameof(CompletionStatuses));
                 }
             }
         }
@@ -979,10 +979,10 @@ namespace Playnite
                 filterChanges.Add(nameof(Library));
             }
 
-            if (CompletionStatus != null)
+            if (CompletionStatuses != null)
             {
-                CompletionStatus = null;
-                filterChanges.Add(nameof(CompletionStatus));
+                CompletionStatuses = null;
+                filterChanges.Add(nameof(CompletionStatuses));
             }
 
             if (UserScore != null)
@@ -1153,10 +1153,10 @@ namespace Playnite
                 filterChanges.Add(nameof(Library));
             }
 
-            if (CompletionStatus?.Equals(settings.CompletionStatus) != true)
+            if (CompletionStatuses?.Equals(settings.CompletionStatuses) != true)
             {
-                CompletionStatus = settings.CompletionStatus;
-                filterChanges.Add(nameof(CompletionStatus));
+                CompletionStatuses = settings.CompletionStatuses;
+                filterChanges.Add(nameof(CompletionStatuses));
             }
 
             if (UserScore?.Equals(settings.UserScore) != true)
@@ -1283,9 +1283,9 @@ namespace Playnite
             return Library?.IsSet == true;
         }
 
-        public bool ShouldSerializeCompletionStatus()
+        public bool ShouldSerializeCompletionStatuses()
         {
-            return CompletionStatus?.IsSet == true;
+            return CompletionStatuses?.IsSet == true;
         }
 
         public bool ShouldSerializeUserScore()

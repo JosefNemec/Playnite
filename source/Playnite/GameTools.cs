@@ -137,10 +137,10 @@ namespace Playnite
                 dummyGame.SourceId = firstSource;
             }
 
-            var firstCompletionStatus = firstGame.CompletionStatus;
-            if (games.All(a => a.CompletionStatus == firstCompletionStatus) == true)
+            var firstCompletionStatus = firstGame.CompletionStatusId;
+            if (games.All(a => a.CompletionStatusId == firstCompletionStatus) == true)
             {
-                dummyGame.CompletionStatus = firstCompletionStatus;
+                dummyGame.CompletionStatusId = firstCompletionStatus;
             }
 
             var firstUserScore = firstGame.UserScore;

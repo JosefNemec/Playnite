@@ -324,6 +324,51 @@
                              ItemsSource="{Binding EditingSources}" DisplayMemberPath="Name" />
                 </DockPanel>
             </TabItem>
+
+            <!--Completion Statuses-->
+            <TabItem Header="{DynamicResource LOCCompletionStatuses}">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
+                                Command="{Binding AddCompletionStatusCommand}"/>
+                        <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
+                                Command="{Binding RenameCompletionStatusCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListCompletionStatuses}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="25,5,5,5"
+                                Command="{Binding RemoveCompletionStatusCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListCompletionStatuses}"/>
+                        <Button Content="{DynamicResource LOCRemoveUnusedTitle}" Margin="5"
+                                Command="{Binding RemoveUnusedCompletionStatusesCommand}"/>
+                    </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
+                            <TextBlock Text="{DynamicResource LOCCompletionStatusDefaultStatusDesc}" TextWrapping="Wrap" Margin="5" />
+                            <ComboBox Margin="5"
+                                      ItemsSource="{Binding EditingCompletionStatuses}"
+                                      SelectedValue="{Binding CompletionStatusSettings.DefaultStatus}"
+                                      SelectedValuePath="Id" />
+                            <TextBlock Text="{DynamicResource LOCCompletionStatusPlayedStatusDesc}" TextWrapping="Wrap" Margin="5" />
+                            <ComboBox Margin="5"
+                                      ItemsSource="{Binding EditingCompletionStatuses}"
+                                      SelectedValue="{Binding CompletionStatusSettings.PlayedStatus}"
+                                      SelectedValuePath="Id" />
+                        </StackPanel>
+
+                        <ListBox Name="ListCompletionStatuses" Grid.Column="0"
+                                 Margin="5" SelectionMode="Extended"
+                                 ItemsSource="{Binding EditingCompletionStatuses}" DisplayMemberPath="Name" />
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+
         </TabControl>
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">

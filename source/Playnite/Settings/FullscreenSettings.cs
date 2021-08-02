@@ -52,7 +52,7 @@ namespace Playnite
                     Developer?.IsSet == true ||
                     Tag?.IsSet == true ||
                     Feature?.IsSet == true ||
-                    CompletionStatus?.IsSet == true ||
+                    CompletionStatuses?.IsSet == true ||
                     UserScore?.IsSet == true ||
                     CriticScore?.IsSet == true ||
                     CommunityScore?.IsSet == true ||

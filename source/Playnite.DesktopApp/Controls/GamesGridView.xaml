@@ -253,7 +253,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateCompletionStatus">
-            <TextBlock Text="{Binding CompletionStatus, Mode=OneWay, Converter={StaticResource ObjectToStringConverter}}" />
+            <TextBlock Text="{Binding CompletionStatus, Mode=OneWay}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateSeries">

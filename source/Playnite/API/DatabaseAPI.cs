@@ -33,6 +33,7 @@ namespace Playnite.API
         public IItemCollection<GameSource> Sources => database.Sources;
         public IItemCollection<GameFeature> Features => database.Features;
         public IItemCollection<GameScannerConfig> GameScanners => database.GameScanners;
+        public IItemCollection<CompletionStatus> CompletionStatuses => database.CompletionStatuses;
 
         public string DatabasePath
         {

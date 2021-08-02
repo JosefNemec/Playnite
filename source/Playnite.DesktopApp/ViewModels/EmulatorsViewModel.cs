@@ -62,7 +62,10 @@ namespace Playnite.DesktopApp.ViewModels
                 selectedEmulator = value;
                 OnPropertyChanged();
                 SelectedProfile = SelectedEmulator?.CustomProfiles?.FirstOrDefault();
-                selectedEmulator.PropertyChanged += SelectedEmulator_PropertyChanged;
+                if (selectedEmulator != null)
+                {
+                    selectedEmulator.PropertyChanged += SelectedEmulator_PropertyChanged;
+                }
                 UpdateSelectedEmulatorBuiltInProfiles();
             }
         }

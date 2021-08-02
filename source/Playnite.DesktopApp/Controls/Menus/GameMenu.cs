@@ -503,13 +503,13 @@ namespace Playnite.DesktopApp.Controls
                 Header = resources.GetString("LOCSetCompletionStatus")
             };
 
-            foreach (CompletionStatus status in Enum.GetValues(typeof(CompletionStatus)))
+            foreach (var status in model.Database.CompletionStatuses.OrderBy(a => a.Name))
             {
                 if (Games != null)
                 {
                     completionItem.Items.Add(new MenuItem
                     {
-                        Header = status.GetDescription(),
+                        Header = status.Name,
                         Command = model.SetGamesCompletionStatusCommand,
                         CommandParameter = new Tuple<IEnumerable<Game>, CompletionStatus>(Games, status)
                     });
@@ -518,7 +518,7 @@ namespace Playnite.DesktopApp.Controls
                 {
                     completionItem.Items.Add(new MenuItem
                     {
-                        Header = status.GetDescription(),
+                        Header = status.Name,
                         Command = model.SetGameCompletionStatusCommand,
                         CommandParameter = new Tuple<Game, CompletionStatus>(Game, status)
                     });

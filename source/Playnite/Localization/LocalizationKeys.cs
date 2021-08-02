@@ -950,6 +950,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsCovertAspectIgdb = "LOCSettingsCovertAspectIgdb";
         /// <summary>
+        /// Square
+        /// </summary>
+        public const string SettingsCovertAspectSquare = "LOCSettingsCovertAspectSquare";
+        /// <summary>
         /// Steam Banner
         /// </summary>
         public const string SettingsCovertAspectSteam = "LOCSettingsCovertAspectSteam";
@@ -2182,41 +2186,13 @@ namespace Playnite
         /// </summary>
         public const string Never = "LOCNever";
         /// <summary>
-        /// Not Played
-        /// </summary>
-        public const string CompletionStatusNotPlayed = "LOCCompletionStatusNotPlayed";
-        /// <summary>
-        /// Played
-        /// </summary>
-        public const string CompletionStatusPlayed = "LOCCompletionStatusPlayed";
-        /// <summary>
-        /// Beaten
-        /// </summary>
-        public const string CompletionStatusBeaten = "LOCCompletionStatusBeaten";
-        /// <summary>
-        /// Completed
-        /// </summary>
-        public const string CompletionStatusCompleted = "LOCCompletionStatusCompleted";
-        /// <summary>
-        /// Playing
-        /// </summary>
-        public const string CompletionStatusPlaying = "LOCCompletionStatusPlaying";
-        /// <summary>
-        /// Abandoned
-        /// </summary>
-        public const string CompletionStatusAbandoned = "LOCCompletionStatusAbandoned";
-        /// <summary>
-        /// On Hold
-        /// </summary>
-        public const string CompletionStatusOnHold = "LOCCompletionStatusOnHold";
-        /// <summary>
-        /// Plan to Play
-        /// </summary>
-        public const string CompletionStatusPlanToPlay = "LOCCompletionStatusPlanToPlay";
-        /// <summary>
         /// Completion Status
         /// </summary>
         public const string CompletionStatus = "LOCCompletionStatus";
+        /// <summary>
+        /// Completion Statuses
+        /// </summary>
+        public const string CompletionStatuses = "LOCCompletionStatuses";
         /// <summary>
         /// User Score
         /// </summary>
@@ -3462,6 +3438,14 @@ namespace Playnite
         /// </summary>
         public const string EmulatorSpec = "LOCEmulatorSpec";
         /// <summary>
+        /// Platform specification
+        /// </summary>
+        public const string PlatformSpec = "LOCPlatformSpec";
+        /// <summary>
+        /// Region specification
+        /// </summary>
+        public const string RegionSpec = "LOCRegionSpec";
+        /// <summary>
         /// Execute before starting emulator
         /// </summary>
         public const string EmulatorPreScriptDescription = "LOCEmulatorPreScriptDescription";
@@ -3557,5 +3541,13 @@ namespace Playnite
         /// Add scan configuration(s) with emulators to scan specific folders.
         /// </summary>
         public const string EmuImportDirectoryConfigDesc = "LOCEmuImportDirectoryConfigDesc";
+        /// <summary>
+        /// Default status assigned to newly added games
+        /// </summary>
+        public const string CompletionStatusDefaultStatusDesc = "LOCCompletionStatusDefaultStatusDesc";
+        /// <summary>
+        /// Status assigned to games played for the first time
+        /// </summary>
+        public const string CompletionStatusPlayedStatusDesc = "LOCCompletionStatusPlayedStatusDesc";
     }
 }

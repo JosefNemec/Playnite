@@ -134,7 +134,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Visibility CompletionStatusVisibility
         {
-            get => (settings.DetailsVisibility.CompletionStatus) ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.CompletionStatus && game.CompletionStatus.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility PlatformVisibility
@@ -271,6 +271,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<DatabaseObject> SetSeriesFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetSourceFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetRegionFilterCommand { get; }
+        public RelayCommand<DatabaseObject> SetCompletionStatusFilterCommand { get; }
         public RelayCommand<string> SetVersionFilterCommand { get; }
         public RelayCommand<Link> OpenLinkCommand { get; }
         public RelayCommand<DatabaseObject> PlayCommand { get; }
@@ -303,6 +304,7 @@ namespace Playnite.DesktopApp.ViewModels
             SetSourceFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Source));
             SetRegionFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Regions));
             SetVersionFilterCommand = new RelayCommand<string>((filter) => SetVersionFilter(filter));
+            SetCompletionStatusFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.CompletionStatus));
             PlayCommand = new RelayCommand<DatabaseObject>((a) => Play());
             InstallCommand = new RelayCommand<object>((a) => Install());
             CheckSetupCommand = new RelayCommand<object>((a) => CheckSetup());
@@ -414,6 +416,9 @@ namespace Playnite.DesktopApp.ViewModels
                     break;
                 case GameField.Features:
                     settings.FilterSettings.Feature = filter;
+                    break;
+                case GameField.CompletionStatus:
+                    settings.FilterSettings.CompletionStatuses = filter;
                     break;
                 default:
                     break;

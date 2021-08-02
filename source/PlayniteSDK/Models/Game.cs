@@ -167,7 +167,9 @@ namespace Playnite.SDK.Models
         ///
         PlatformIds = 85,
         ///
-        Platforms = 86
+        Platforms = 86,
+        ///
+        CompletionStatusId = 87
     }
 
     /// <summary>
@@ -858,21 +860,22 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private CompletionStatus completionStatus = CompletionStatus.NotPlayed;
+        private Guid completionStatusId;
         /// <summary>
         /// Gets or sets game completion status.
         /// </summary>
-        public CompletionStatus CompletionStatus
+        public Guid CompletionStatusId
         {
             get
             {
-                return completionStatus;
+                return completionStatusId;
             }
 
             set
             {
-                completionStatus = value;
+                completionStatusId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CompletionStatus));
             }
         }
 
@@ -1224,6 +1227,15 @@ namespace Playnite.SDK.Models
         public GameSource Source
         {
             get => DatabaseReference?.Sources[sourceId];
+        }
+
+        /// <summary>
+        /// Gets game's completion status.
+        /// </summary>
+        [DontSerialize]
+        public CompletionStatus CompletionStatus
+        {
+            get => DatabaseReference?.CompletionStatuses[completionStatusId];
         }
 
         /// <summary>
@@ -1733,9 +1745,9 @@ namespace Playnite.SDK.Models
                     tro.SourceId = SourceId;
                 }
 
-                if (CompletionStatus != tro.CompletionStatus)
+                if (CompletionStatusId != tro.CompletionStatusId)
                 {
-                    tro.CompletionStatus = CompletionStatus;
+                    tro.CompletionStatusId = CompletionStatusId;
                 }
 
                 if (UserScore != tro.UserScore)
@@ -2024,8 +2036,9 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.Source);
             }
 
-            if (CompletionStatus != otherGame.CompletionStatus)
+            if (CompletionStatusId != otherGame.CompletionStatusId)
             {
+                changes.Add(GameField.CompletionStatusId);
                 changes.Add(GameField.CompletionStatus);
             }
 
