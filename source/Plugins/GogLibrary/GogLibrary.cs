@@ -130,7 +130,18 @@ namespace GogLibrary
                 var libGames = api.GetOwnedGames();
                 if (libGames == null)
                 {
-                    throw new Exception("Failed to obtain libary data.");
+                    throw new Exception("Failed to obtain library data.");
+                }
+
+                var libGamesStats = api.GetOwnedGames(api.GetAccountInfo());
+                if (libGamesStats == null)
+                {
+                    throw new Exception("Failed to obtain library stats data.");
+                }
+
+                foreach (LibraryGameResponse libGame in libGames)
+                {
+                    libGame.stats = libGamesStats?.FirstOrDefault(x => x.game.id.Equals(libGame.game.id))?.stats ?? null;
                 }
 
                 return LibraryGamesToGames(libGames).ToList();
@@ -144,7 +155,7 @@ namespace GogLibrary
             var libGames = api.GetOwnedGamesFromPublicAccount(accountName);
             if (libGames == null)
             {
-                throw new Exception("Failed to obtain libary data.");
+                throw new Exception("Failed to obtain library data.");
             }
 
             return LibraryGamesToGames(libGames).ToList();
@@ -170,7 +181,7 @@ namespace GogLibrary
                 {
                     var acc = game.stats.Keys.First();
                     newGame.Playtime = game.stats[acc].playtime * 60;
-                    newGame.LastActivity = game.stats[acc].lastSession;
+                    //newGame.LastActivity = game.stats[acc].lastSession;
                 }
 
                 yield return newGame;
