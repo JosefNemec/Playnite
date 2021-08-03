@@ -229,9 +229,9 @@
 
                 <!--Age rating-->
                 <Separator Grid.ColumnSpan="3"
-                           Visibility="{Binding AgeRating.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCAgeRatingLabel}"
-                           Visibility="{Binding AgeRating.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <ItemsControl ItemsSource="{Binding AgeRatings.Current}"
                               Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
@@ -251,9 +251,9 @@
 
                 <!--Region-->
                 <Separator Grid.ColumnSpan="3"
-                           Visibility="{Binding Region.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCRegionLabel}"
-                           Visibility="{Binding Region.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <ItemsControl ItemsSource="{Binding Regions.Current}"
                               Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
@@ -295,9 +295,9 @@
 
                 <!--Platform-->
                 <Separator Grid.ColumnSpan="3"
-                           Visibility="{Binding Platform.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCGamePlatformTitle}"
-                           Visibility="{Binding Platform.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <ItemsControl ItemsSource="{Binding Platforms.Current}"
                               Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
