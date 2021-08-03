@@ -1167,16 +1167,23 @@ namespace Playnite.Database
         public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken)
         {
             var statusSettings = GetCompletionStatusSettings();
-            void updateCompletionStatus(Game game, CompletionStatusSettings settings)
+            bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
             {
-                if (game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus))
+                var updated = false;
+                if ((game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus)) &&
+                    game.CompletionStatusId != statusSettings.PlayedStatus)
                 {
                     game.CompletionStatusId = statusSettings.PlayedStatus;
+                    updated = true;
                 }
-                else if (game.Playtime == 0 && game.CompletionStatusId == Guid.Empty)
+                else if ((game.Playtime == 0 && game.CompletionStatusId == Guid.Empty) &&
+                    game.CompletionStatusId != statusSettings.DefaultStatus)
                 {
                     game.CompletionStatusId = statusSettings.DefaultStatus;
+                    updated = true;
                 }
+
+                return updated;
             }
 
             if (library.Capabilities?.HasCustomizedGameImport == true)
@@ -1207,8 +1214,11 @@ namespace Playnite.Database
                         try
                         {
                             var importedGame = ImportGame(newGame, library.Id);
-                            updateCompletionStatus(importedGame, statusSettings);
                             addedGames.Add(importedGame);
+                            if (updateCompletionStatus(importedGame, statusSettings))
+                            {
+                                Games.Update(importedGame);
+                            }
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
@@ -1217,21 +1227,50 @@ namespace Playnite.Database
                     }
                     else
                     {
-                        existingGame.IsInstalled = newGame.IsInstalled;
-                        existingGame.InstallDirectory = newGame.InstallDirectory;
+                        var existingGameUpdated = false;
+                        if (existingGame.IsInstalled != newGame.IsInstalled)
+                        {
+                            existingGame.IsInstalled = newGame.IsInstalled;
+                            existingGameUpdated = true;
+                        }
+
+                        if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
+                        {
+                            existingGame.InstallDirectory = newGame.InstallDirectory;
+                            existingGameUpdated = true;
+                        }
+
                         if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
                            (newGame.Playtime > 0 && forcePlayTimeSync))
                         {
-                            existingGame.Playtime = newGame.Playtime;
-                            updateCompletionStatus(existingGame, statusSettings);
+                            if (existingGame.Playtime != newGame.Playtime)
+                            {
+                                existingGame.Playtime = newGame.Playtime;
+                                existingGameUpdated = true;
+                            }
+
+                            if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                            {
+                                existingGame.LastActivity = newGame.LastActivity;
+                                existingGameUpdated = true;
+                            }
+
+                            if (updateCompletionStatus(existingGame, statusSettings))
+                            {
+                                existingGameUpdated = true;
+                            }
                         }
 
                         if (!existingGame.GameActions.HasItems() && newGame.GameActions.HasItems())
                         {
                             existingGame.GameActions = new ObservableCollection<GameAction>(newGame.GameActions);
+                            existingGameUpdated = true;
                         }
 
-                        Games.Update(existingGame);
+                        if (existingGameUpdated)
+                        {
+                            Games.Update(existingGame);
+                        }
                     }
                 }
 
