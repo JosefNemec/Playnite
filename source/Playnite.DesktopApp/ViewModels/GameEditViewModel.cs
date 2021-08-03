@@ -197,17 +197,6 @@ namespace Playnite.DesktopApp.ViewModels
             get; set;
         }
 
-        private bool progressVisible = false;
-        public bool ProgressVisible
-        {
-            get => progressVisible;
-            set
-            {
-                progressVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
         public bool ShowBackgroundUrl
         {
             get

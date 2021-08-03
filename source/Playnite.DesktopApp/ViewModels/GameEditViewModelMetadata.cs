@@ -359,114 +359,107 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public async void DownloadPluginData(MetadataPlugin plugin)
+        public void DownloadPluginData(MetadataPlugin plugin)
         {
-            ProgressVisible = true;
-
-            await Task.Run(() =>
+            var res = dialogs.ActivateGlobalProgress((args) =>
             {
-                try
+                var provider = plugin.GetMetadataProvider(new MetadataRequestOptions(EditingGame, false));
+                if (provider != null)
                 {
-                    var provider = plugin.GetMetadataProvider(new MetadataRequestOptions(EditingGame, false));
-                    if (provider != null)
+                    try
                     {
-                        try
+                        var fieldArgs = new GetMetadataFieldArgs { CancelToken = args.CancelToken };
+                        var gameInfo = new GameInfo
                         {
-                            var gameInfo = new GameInfo
-                            {
-                                Name = provider.GetName(),
-                                Genres = provider.GetGenres(),
-                                ReleaseDate = provider.GetReleaseDate(),
-                                Developers = provider.GetDevelopers(),
-                                Publishers = provider.GetPublishers(),
-                                Tags = provider.GetTags(),
-                                Features = provider.GetFeatures(),
-                                Description = provider.GetDescription(),
-                                Links = provider.GetLinks(),
-                                CriticScore = provider.GetCriticScore(),
-                                CommunityScore = provider.GetCommunityScore(),
-                                AgeRatings = provider.GetAgeRatings(),
-                                Series = provider.GetSeries(),
-                                Regions = provider.GetRegions(),
-                                Platforms = provider.GetPlatforms()
-                            };
+                            Name = provider.GetName(fieldArgs),
+                            Genres = provider.GetGenres(fieldArgs),
+                            ReleaseDate = provider.GetReleaseDate(fieldArgs),
+                            Developers = provider.GetDevelopers(fieldArgs),
+                            Publishers = provider.GetPublishers(fieldArgs),
+                            Tags = provider.GetTags(fieldArgs),
+                            Features = provider.GetFeatures(fieldArgs),
+                            Description = provider.GetDescription(fieldArgs),
+                            Links = provider.GetLinks(fieldArgs),
+                            CriticScore = provider.GetCriticScore(fieldArgs),
+                            CommunityScore = provider.GetCommunityScore(fieldArgs),
+                            AgeRatings = provider.GetAgeRatings(fieldArgs),
+                            Series = provider.GetSeries(fieldArgs),
+                            Regions = provider.GetRegions(fieldArgs),
+                            Platforms = provider.GetPlatforms(fieldArgs)
+                        };
 
-                            var metadata = new GameMetadata
-                            {
-                                GameInfo = gameInfo,
-                                Icon = provider.GetIcon(),
-                                CoverImage = provider.GetCoverImage(),
-                                BackgroundImage = provider.GetBackgroundImage()
-                            };
-
-                            Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
-                        }
-                        finally
+                        var metadata = new GameMetadata
                         {
-                            provider.Dispose();
-                        }
+                            GameInfo = gameInfo,
+                            Icon = provider.GetIcon(fieldArgs),
+                            CoverImage = provider.GetCoverImage(fieldArgs),
+                            BackgroundImage = provider.GetBackgroundImage(fieldArgs)
+                        };
+
+                        Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
+                    }
+                    finally
+                    {
+                        provider.Dispose();
                     }
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
-                    dialogs.ShowMessage(
-                        string.Format(resources.GetString("LOCMetadataDownloadError"), exc.Message),
-                        resources.GetString("LOCDownloadError"),
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                finally
-                {
-                    ProgressVisible = false;
-                }
+            }, new GlobalProgressOptions(LOC.DownloadingLabel)
+            {
+                IsIndeterminate = true,
+                Cancelable = true
             });
+
+            if (res.Error != null)
+            {
+                logger.Error(res.Error, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
+                dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCMetadataDownloadError"), res.Error.Message),
+                    resources.GetString("LOCDownloadError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        public async void DownloadStoreData()
+        public void DownloadStoreData()
         {
-            ProgressVisible = true;
-
-            await Task.Run(() =>
+            var res = dialogs.ActivateGlobalProgress((args) =>
             {
-                try
+                if (extensions.Plugins.TryGetValue(Game.PluginId, out var plugin))
                 {
-                    if (extensions.Plugins.TryGetValue(Game.PluginId, out var plugin))
-                    {
-                        if (LibraryPluginMetadataDownloader == null)
-                        {
-                            dialogs.ShowErrorMessage(
-                                resources.GetString("LOCErrorNoMetadataDownloader"),
-                                resources.GetString("LOCGameError"));
-                            return;
-                        }
-
-                        var metadata = LibraryPluginMetadataDownloader.GetMetadata(EditingGame);
-                        if (metadata != null)
-                        {
-                            Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
-                        }
-                    }
-                    else
+                    if (LibraryPluginMetadataDownloader == null)
                     {
                         dialogs.ShowErrorMessage(
-                            resources.GetString("LOCErrorLibraryPluginNotFound"),
+                            resources.GetString("LOCErrorNoMetadataDownloader"),
                             resources.GetString("LOCGameError"));
                         return;
                     }
+
+                    var metadata = LibraryPluginMetadataDownloader.GetMetadata(EditingGame);
+                    if (metadata != null)
+                    {
+                        Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
+                    }
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                else
                 {
-                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
-                    dialogs.ShowMessage(
-                        string.Format(resources.GetString("LOCMetadataDownloadError"), exc.Message),
-                        resources.GetString("LOCDownloadError"),
-                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    dialogs.ShowErrorMessage(
+                        resources.GetString("LOCErrorLibraryPluginNotFound"),
+                        resources.GetString("LOCGameError"));
+                    return;
                 }
-                finally
-                {
-                    ProgressVisible = false;
-                }
+            }, new GlobalProgressOptions(LOC.DownloadingLabel)
+            {
+                IsIndeterminate = true,
+                Cancelable = true
             });
+
+            if (res.Error != null)
+            {
+                logger.Error(res.Error, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
+                dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCMetadataDownloadError"), res.Error.Message),
+                    resources.GetString("LOCDownloadError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void SelectGoogleIcon()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -23,6 +24,16 @@ namespace Playnite.SDK.Plugins
         /// Gets or sets value indicated whether plugin uses customized mechanism for game import.
         /// </summary>
         public bool HasCustomizedGameImport { get; set; } = false;
+    }
+
+    public class LibraryGetGamesArgs
+    {
+        public CancellationToken CancelToken { get; internal set; }
+    }
+
+    public class LibraryImportGamesArgs
+    {
+        public CancellationToken CancelToken { get; internal set; }
     }
 
     /// <summary>
@@ -69,7 +80,7 @@ namespace Playnite.SDK.Plugins
         /// Gets library games.
         /// </summary>
         /// <returns>List of library games.</returns>
-        public virtual IEnumerable<GameInfo> GetGames()
+        public virtual IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
         {
             return new List<GameInfo>();
         }
@@ -78,7 +89,7 @@ namespace Playnite.SDK.Plugins
         /// Initiates game import if "HasCustomizedGameImport" capability is enabled.
         /// </summary>
         /// <returns>List of newly imported games.</returns>
-        public virtual IEnumerable<Game> ImportGames()
+        public virtual IEnumerable<Game> ImportGames(LibraryImportGamesArgs args)
         {
             return new List<Game>();
         }

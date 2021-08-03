@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.Tests.Database
@@ -22,7 +23,7 @@ namespace Playnite.Tests.Database
             var libPlugin = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
             var timeToImport = 500;
             libPlugin.Setup(a => a.Id).Returns(Guid.NewGuid());
-            libPlugin.Setup(a => a.GetGames()).Returns(() => new List<GameInfo>
+            libPlugin.Setup(a => a.GetGames(It.IsAny<LibraryGetGamesArgs>())).Returns(() => new List<GameInfo>
             {
                 new GameInfo()
                 {
@@ -33,22 +34,23 @@ namespace Playnite.Tests.Database
 
             using (var temp = TempDirectory.Create())
             using (var db = new GameDatabase(temp.TempPath))
+            using (var token = new CancellationTokenSource())
             {
                 db.OpenDatabase();
-                db.ImportGames(libPlugin.Object, true);
+                db.ImportGames(libPlugin.Object, true, token.Token);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
 
                 timeToImport = 600;
-                db.ImportGames(libPlugin.Object, false);
+                db.ImportGames(libPlugin.Object, false, token.Token);
                 Assert.AreEqual(500, db.Games.First().Playtime);
-                db.ImportGames(libPlugin.Object, true);
+                db.ImportGames(libPlugin.Object, true, token.Token);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
 
                 var g = db.Games.First();
                 g.Playtime = 0;
                 db.Games.Update(g);
                 Assert.AreEqual(0, db.Games.First().Playtime);
-                db.ImportGames(libPlugin.Object, false);
+                db.ImportGames(libPlugin.Object, false, token.Token);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
             }
         }

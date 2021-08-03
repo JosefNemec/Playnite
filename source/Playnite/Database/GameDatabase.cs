@@ -1164,7 +1164,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken)
         {
             var statusSettings = GetCompletionStatusSettings();
             void updateCompletionStatus(Game game, CompletionStatusSettings settings)
@@ -1181,7 +1181,7 @@ namespace Playnite.Database
 
             if (library.Capabilities?.HasCustomizedGameImport == true)
             {
-                var importedGames = library.ImportGames()?.ToList() ?? new List<Game>();
+                var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
                 foreach (var game in importedGames)
                 {
                     updateCompletionStatus(game, statusSettings);
@@ -1192,7 +1192,7 @@ namespace Playnite.Database
             else
             {
                 var addedGames = new List<Game>();
-                foreach (var newGame in library.GetGames())
+                foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
                 {
                     if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
                     {

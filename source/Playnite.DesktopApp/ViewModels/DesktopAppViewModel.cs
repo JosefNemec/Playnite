@@ -495,7 +495,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             try
             {
-                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync));
+                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, token));
                 RemoveMessage($"{plugin.Id} - download");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -647,7 +647,7 @@ namespace Playnite.DesktopApp.ViewModels
                                     ProgressValue = i + 1;
                                     ProgressStatus = Resources.GetString(LOC.ProgressMetadata) + $" [{ProgressValue}/{ProgressTotal}]";
                                 },
-                                GlobalTaskHandler.CancelToken).Wait();
+                                GlobalTaskHandler.CancelToken.Token).Wait();
                         }
                     }
                 });
@@ -740,7 +740,7 @@ namespace Playnite.DesktopApp.ViewModels
                                 ProgressValue = i + 1;
                                 ProgressStatus = Resources.GetString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
                             },
-                            GlobalTaskHandler.CancelToken);
+                            GlobalTaskHandler.CancelToken.Token);
                     await GlobalTaskHandler.ProgressTask;
                 }
             }

@@ -38,7 +38,7 @@ namespace TestGameLibrary
             return null;
         }
 
-        public override IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
         {
             return new List<GameInfo>()
             {
