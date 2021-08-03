@@ -39,13 +39,13 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public SimpleCommand CloseCommand => new SimpleCommand(() => Close());
-        public SimpleCommand StartGameCommand => new SimpleCommand(() => StartGame());
-        public SimpleCommand InstallGameCommand => new SimpleCommand(() => InstallGame());
-        public SimpleCommand UninstallGameCommand => new SimpleCommand(() => UninstallGame());
-        public SimpleCommand ToggleFavoritesCommand => new SimpleCommand(() => ToggleFavorites());
-        public SimpleCommand ToggleVisibilityCommand => new SimpleCommand(() => ToggleVisibility());
-        public SimpleCommand RemoveGameCommand => new SimpleCommand(() => RemoveGame());
+        public RelayCommand CloseCommand => new RelayCommand(() => Close());
+        public RelayCommand StartGameCommand => new RelayCommand(() => StartGame());
+        public RelayCommand InstallGameCommand => new RelayCommand(() => InstallGame());
+        public RelayCommand UninstallGameCommand => new RelayCommand(() => UninstallGame());
+        public RelayCommand ToggleFavoritesCommand => new RelayCommand(() => ToggleFavorites());
+        public RelayCommand ToggleVisibilityCommand => new RelayCommand(() => ToggleVisibility());
+        public RelayCommand RemoveGameCommand => new RelayCommand(() => RemoveGame());
         public RelayCommand<GameAction> ActivateActionCommand => new RelayCommand<GameAction>((a) => ActivateAction(a));
 
         public GameMenuViewModel(

@@ -14,17 +14,17 @@ namespace Playnite.FullscreenApp.ViewModels
     {
         public class GameActionItem
         {
-            public RelayCommand Command { get; set; }
+            public RelayCommandBase Command { get; set; }
             public object CommandParameter { get; set; }
             public string Title { get; set; }
 
-            public GameActionItem(RelayCommand command, string title)
+            public GameActionItem(RelayCommandBase command, string title)
             {
                 Command = command;
                 Title = title;
             }
 
-            public GameActionItem(RelayCommand command, object commandParameter, string title)
+            public GameActionItem(RelayCommandBase command, object commandParameter, string title)
             {
                 Command = command;
                 CommandParameter = commandParameter;

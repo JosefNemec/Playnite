@@ -123,27 +123,27 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public SimpleCommand SelectAllCommmand =>
-            new SimpleCommand(
+        public RelayCommand SelectAllCommmand =>
+            new RelayCommand(
                 () => GameList.ForEach(e => e.Import = true),
                 () => GameList.HasItems());
 
-        public SimpleCommand DeselectAllCommmand =>
-            new SimpleCommand(
+        public RelayCommand DeselectAllCommmand =>
+            new RelayCommand(
                 () => GameList.ForEach(e => e.Import = false),
                 () => GameList.HasItems());
 
-        public SimpleCommand CancelCommand =>
-            new SimpleCommand(() => CloseView(false));
+        public RelayCommand CancelCommand =>
+            new RelayCommand(() => CloseView(false));
 
-        public SimpleCommand ScanCommmand =>
-            new SimpleCommand(() => StartScan());
+        public RelayCommand ScanCommmand =>
+            new RelayCommand(() => StartScan());
 
-        public SimpleCommand ImportCommand =>
-            new SimpleCommand(() => ImportGames());
+        public RelayCommand ImportCommand =>
+            new RelayCommand(() => ImportGames());
 
-        public SimpleCommand AddScanConfigCommand =>
-            new SimpleCommand(() => ScannerConfigs.Add(new ImportGameScannerConfig()));
+        public RelayCommand AddScanConfigCommand =>
+            new RelayCommand(() => ScannerConfigs.Add(new ImportGameScannerConfig()));
 
         public RelayCommand<ImportGameScannerConfig> RemoveScanConfigCommand =>
             new RelayCommand<ImportGameScannerConfig>((a) => ScannerConfigs.Remove(a));

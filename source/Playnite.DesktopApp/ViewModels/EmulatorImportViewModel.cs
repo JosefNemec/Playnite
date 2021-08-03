@@ -67,22 +67,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public SimpleCommand CancelCommand =>
-            new SimpleCommand(() => CloseView(false));
+        public RelayCommand CancelCommand =>
+            new RelayCommand(() => CloseView(false));
 
-        public SimpleCommand ScanCommmand =>
-            new SimpleCommand(() => ScanEmulators());
+        public RelayCommand ScanCommmand =>
+            new RelayCommand(() => ScanEmulators());
 
-        public SimpleCommand ImportCommand =>
-            new SimpleCommand(() => ImportEmulators());
+        public RelayCommand ImportCommand =>
+            new RelayCommand(() => ImportEmulators());
 
-        public SimpleCommand SelectAllCommmand =>
-            new SimpleCommand(
+        public RelayCommand SelectAllCommmand =>
+            new RelayCommand(
                 () => EmulatorList.ForEach(e => e.Import = true),
                 () => EmulatorList.HasItems());
 
-        public SimpleCommand DeselectAllCommmand =>
-            new SimpleCommand(
+        public RelayCommand DeselectAllCommmand =>
+            new RelayCommand(
                 () => EmulatorList.ForEach(e => e.Import = false),
                 () => EmulatorList.HasItems());
 

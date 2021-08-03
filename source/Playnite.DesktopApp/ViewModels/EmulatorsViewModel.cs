@@ -155,19 +155,19 @@ namespace Playnite.DesktopApp.ViewModels
         public List<EmulatorDefinition> SelectableEmulatorDefinitions { get; set; }
         public IList<EmulatorDefinition> EmulatorDefinitions { get; set; }
 
-        public SimpleCommand CloseCommand =>
-            new SimpleCommand(() => CloseView(false));
+        public RelayCommand CloseCommand =>
+            new RelayCommand(() => CloseView(false));
 
-        public SimpleCommand ConfirmCommand =>
-            new SimpleCommand(() => ConfirmDialog());
+        public RelayCommand ConfirmCommand =>
+            new RelayCommand(() => ConfirmDialog());
 
         public RelayCommand<CustomEmulatorProfile> SelectEmulatorExecutableCommand =>
             new RelayCommand<CustomEmulatorProfile>(
                 (a) => SelectEmulatorExecutable(a),
                 (a) => a != null);
 
-        public SimpleCommand AddEmulatorCommand =>
-            new SimpleCommand(() => AddEmulator());
+        public RelayCommand AddEmulatorCommand =>
+            new RelayCommand(() => AddEmulator());
 
         public RelayCommand<Emulator> RemoveEmulatorCommand =>
             new RelayCommand<Emulator>(
@@ -229,14 +229,14 @@ namespace Playnite.DesktopApp.ViewModels
                 (a) => CopyEmulatorProfile(SelectedEmulator, (CustomEmulatorProfile)a),
                 (a) => a is CustomEmulatorProfile);
 
-        public SimpleCommand ImportEmulatorsCommand =>
-            new SimpleCommand(() => ImportEmulators());
+        public RelayCommand ImportEmulatorsCommand =>
+            new RelayCommand(() => ImportEmulators());
 
-        public SimpleCommand DownloadEmulatorsCommand =>
-            new SimpleCommand(() => DownloadEmulators());
+        public RelayCommand DownloadEmulatorsCommand =>
+            new RelayCommand(() => DownloadEmulators());
 
-        public SimpleCommand AddScanConfigCommand =>
-            new SimpleCommand(() => EditingScanners.Add(new GameScannerConfig { Name = "Config" }));
+        public RelayCommand AddScanConfigCommand =>
+            new RelayCommand(() => EditingScanners.Add(new GameScannerConfig { Name = "Config" }));
 
         public RelayCommand<GameScannerConfig> RemoveScanConfigCommand =>
             new RelayCommand<GameScannerConfig>(

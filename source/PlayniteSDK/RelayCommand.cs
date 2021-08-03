@@ -11,7 +11,7 @@ namespace Playnite.SDK
     /// <summary>
     ///
     /// </summary>
-    public abstract class RelayCommand : ICommand
+    public abstract class RelayCommandBase : ICommand
     {
         /// <summary>
         ///
@@ -52,7 +52,7 @@ namespace Playnite.SDK
     /// <summary>
     ///
     /// </summary>
-    public class SimpleCommand : RelayCommand
+    public class RelayCommand : RelayCommandBase
     {
         private readonly Func<bool> canExecute;
         private readonly Action execute;
@@ -61,7 +61,7 @@ namespace Playnite.SDK
         ///
         /// </summary>
         /// <param name="execute"></param>
-        public SimpleCommand(Action execute)
+        public RelayCommand(Action execute)
             : this(execute, null, null)
         {
         }
@@ -71,7 +71,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="execute"></param>
         /// <param name="gesture"></param>
-        public SimpleCommand(Action execute, KeyGesture gesture)
+        public RelayCommand(Action execute, KeyGesture gesture)
             : this(execute, null, gesture)
         {
         }
@@ -81,7 +81,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="execute"></param>
         /// <param name="canExecute"></param>
-        public SimpleCommand(Action execute, Func<bool> canExecute)
+        public RelayCommand(Action execute, Func<bool> canExecute)
             : this(execute, canExecute, null)
         {
         }
@@ -92,7 +92,7 @@ namespace Playnite.SDK
         /// <param name="execute"></param>
         /// <param name="canExecute"></param>
         /// <param name="gesture"></param>
-        public SimpleCommand(Action execute, Func<bool> canExecute, KeyGesture gesture)
+        public RelayCommand(Action execute, Func<bool> canExecute, KeyGesture gesture)
         {
             this.execute = execute;
             this.canExecute = canExecute;
@@ -128,7 +128,7 @@ namespace Playnite.SDK
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class RelayCommand<T> : RelayCommand
+    public class RelayCommand<T> : RelayCommandBase
     {
         private readonly Predicate<T> canExecute;
         private readonly Action<T> execute;

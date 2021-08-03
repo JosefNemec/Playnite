@@ -46,7 +46,7 @@ namespace Playnite.DesktopApp.Controls
         private MenuItem AddMenuChild(
             ItemCollection parent,
             string locString,
-            RelayCommand command,
+            RelayCommandBase command,
             object commandParameter = null,
             object icon = null)
         {

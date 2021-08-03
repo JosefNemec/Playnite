@@ -55,7 +55,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenLibraryIntegrationsConfigCommand { get; private set; }
         public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
         public RelayCommand<object> RestartInSafeMode { get; private set; }
-        public SimpleCommand UpdateEmulationDirsCommand { get; private set; }
+        public RelayCommand UpdateEmulationDirsCommand { get; private set; }
         public RelayCommand<GameScannerConfig> UpdateEmulationDirCommand { get; private set; }
 
         public RelayCommand<Game> StartGameCommand { get; private set; }
@@ -580,7 +580,7 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateEmulationLibrary(a);
             }, (a) => GameAdditionAllowed);
 
-            UpdateEmulationDirsCommand = new SimpleCommand(() =>
+            UpdateEmulationDirsCommand = new RelayCommand(() =>
             {
                 UpdateEmulationLibrary();
             }, () => GameAdditionAllowed);

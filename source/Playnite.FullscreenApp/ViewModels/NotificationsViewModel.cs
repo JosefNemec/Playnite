@@ -19,8 +19,8 @@ namespace Playnite.FullscreenApp.ViewModels
         private readonly IWindowFactory window;
         public FullscreenAppViewModel MainModel { get; set; }
 
-        public SimpleCommand CloseCommand => new SimpleCommand(() => Close());
-        public SimpleCommand ClearNotificationsCommand => new SimpleCommand(() =>
+        public RelayCommand CloseCommand => new RelayCommand(() => Close());
+        public RelayCommand ClearNotificationsCommand => new RelayCommand(() =>
         {
             MainModel.PlayniteApi.Notifications.RemoveAll();
             Close();

@@ -18,18 +18,18 @@ namespace Playnite.FullscreenApp.ViewModels
         private readonly IWindowFactory window;
         private readonly FullscreenAppViewModel mainModel;
 
-        public SimpleCommand CloseCommand => new SimpleCommand(() => Close());
-        public SimpleCommand ExitCommand => new SimpleCommand(() => Shutdown());
-        public SimpleCommand SwitchToDesktopCommand => new SimpleCommand(() => SwitchToDesktopMode());
-        public SimpleCommand OpenSettingsCommand => new SimpleCommand(() => OpenSettings());
-        public SimpleCommand SelectRandomGameCommand => new SimpleCommand(() => PlayRandomGame(), () => mainModel.Database?.IsOpen == true);
-        public SimpleCommand OpenPatreonCommand => new SimpleCommand(() => OpenPatreon());
-        public SimpleCommand SendFeedbackCommand => new SimpleCommand(() => SendFeedback());
-        public SimpleCommand ShutdownSystemCommand => new SimpleCommand(() => ShutdownSystem());
-        public SimpleCommand HibernateSystemCommand => new SimpleCommand(() => HibernateSystem());
-        public SimpleCommand SleepSystemCommand => new SimpleCommand(() => SleepSystem());
-        public SimpleCommand RestartSystemCommand => new SimpleCommand(() => RestartSystem());
-        public SimpleCommand UpdateGamesCommand => new SimpleCommand(async () =>
+        public RelayCommand CloseCommand => new RelayCommand(() => Close());
+        public RelayCommand ExitCommand => new RelayCommand(() => Shutdown());
+        public RelayCommand SwitchToDesktopCommand => new RelayCommand(() => SwitchToDesktopMode());
+        public RelayCommand OpenSettingsCommand => new RelayCommand(() => OpenSettings());
+        public RelayCommand SelectRandomGameCommand => new RelayCommand(() => PlayRandomGame(), () => mainModel.Database?.IsOpen == true);
+        public RelayCommand OpenPatreonCommand => new RelayCommand(() => OpenPatreon());
+        public RelayCommand SendFeedbackCommand => new RelayCommand(() => SendFeedback());
+        public RelayCommand ShutdownSystemCommand => new RelayCommand(() => ShutdownSystem());
+        public RelayCommand HibernateSystemCommand => new RelayCommand(() => HibernateSystem());
+        public RelayCommand SleepSystemCommand => new RelayCommand(() => SleepSystem());
+        public RelayCommand RestartSystemCommand => new RelayCommand(() => RestartSystem());
+        public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
             await mainModel.UpdateDatabase(mainModel.AppSettings.DownloadMetadataOnImport);
