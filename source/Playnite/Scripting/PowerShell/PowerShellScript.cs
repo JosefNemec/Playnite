@@ -182,7 +182,7 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public override void OnGameSelected(GameSelectionEventArgs args)
+        public override void OnGameSelected(OnGameSelectedEventArgs args)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameSelected))
             {

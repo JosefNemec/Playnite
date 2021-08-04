@@ -175,70 +175,63 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         /// Called before game is started.
         /// </summary>
-        /// <param name="game">Game that will be started.</param>
-        public virtual void OnGameStarting(Game game)
+        public virtual void OnGameStarting(OnGameStartingEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game has started.
         /// </summary>
-        /// <param name="game">Game that started.</param>
-        public virtual void OnGameStarted(Game game)
+        public virtual void OnGameStarted(OnGameStartedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game stopped running.
         /// </summary>
-        /// <param name="game">Game that stopped running.</param>
-        /// <param name="ellapsedSeconds">Time in seconds of how long the game was running.</param>
-        public virtual void OnGameStopped(Game game, long ellapsedSeconds)
+        public virtual void OnGameStopped(OnGameStoppedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game has been installed.
         /// </summary>
-        /// <param name="game">Game that's been installed.</param>
-        public virtual void OnGameInstalled(Game game)
+        public virtual void OnGameInstalled(OnGameInstalledEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game has been uninstalled.
         /// </summary>
-        /// <param name="game">Game that's been uninstalled.</param>
-        public virtual void OnGameUninstalled(Game game)
+        public virtual void OnGameUninstalled(OnGameUninstalledEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game selection changed.
         /// </summary>
-        /// <param name="args"></param>
-        public virtual void OnGameSelected(GameSelectionEventArgs args)
+        public virtual void OnGameSelected(OnGameSelectedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when appliaction is started and initialized.
         /// </summary>
-        public virtual void OnApplicationStarted()
+        public virtual void OnApplicationStarted(OnApplicationStartedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when appliaction is stutting down.
         /// </summary>
-        public virtual void OnApplicationStopped()
+        public virtual void OnApplicationStopped(OnApplicationStoppedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called library update has been finished.
         /// </summary>
-        public virtual void OnLibraryUpdated()
+        public virtual void OnLibraryUpdated(OnLibraryUpdatedEventArgs args)
         {
         }
 

@@ -81,7 +81,6 @@
     <Compile Include="Models\PastTimeSegment.cs" />
     <Compile Include="Models\PlaytimeCategory.cs" />
     <Compile Include="Models\ScoreGroup.cs" />
-    <Compile Include="Events\GameSelectionEvent.cs" />
     <Compile Include="Models\GameFeature.cs" />
     <Compile Include="Plugins\Actions.cs" />
     <Compile Include="Plugins\MenuEntry.cs" />

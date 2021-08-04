@@ -56,38 +56,38 @@ namespace TestPlugin
             return new TestPluginSettingsView();
         }
 
-        public override void OnGameInstalled(Game game)
+        public override void OnGameInstalled(OnGameInstalledEventArgs args)
         {
-            logger.Info($"TestPluginDev OnGameInstalled {game.Name}");
+            logger.Info($"TestPluginDev OnGameInstalled {args.Game.Name}");
         }
 
-        public override void OnGameStarted(Game game)
+        public override void OnGameStarted(OnGameStartedEventArgs args)
         {
-            logger.Info($"TestPluginDev OnGameStarted {game.Name}");
+            logger.Info($"TestPluginDev OnGameStarted {args.Game.Name}");
         }
 
-        public override void OnGameStarting(Game game)
+        public override void OnGameStarting(OnGameStartingEventArgs args)
         {
-            logger.Info($"TestPluginDev OnGameStarting {game.Name}");
+            logger.Info($"TestPluginDev OnGameStarting {args.Game.Name}");
         }
 
-        public override void OnGameStopped(Game game, long ellapsedSeconds)
+        public override void OnGameStopped(OnGameStoppedEventArgs args)
         {
-            logger.Info($"TestPluginDev OnGameStopped {game.Name}");
+            logger.Info($"TestPluginDev OnGameStopped {args.Game.Name}");
         }
 
-        public override void OnGameUninstalled(Game game)
+        public override void OnGameUninstalled(OnGameUninstalledEventArgs args)
         {
-            logger.Info($"TestPluginDev OnGameUninstalled {game.Name}");
+            logger.Info($"TestPluginDev OnGameUninstalled {args.Game.Name}");
         }
 
-        public override void OnApplicationStarted()
+        public override void OnApplicationStarted(OnApplicationStartedEventArgs args)
         {
             logger.Info("TestPluginDev OnApplicationStarted");
             //CrashTest();
         }
 
-        public override void OnGameSelected(GameSelectionEventArgs args)
+        public override void OnGameSelected(OnGameSelectedEventArgs args)
         {
             //logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?[0].Name}");
         }
