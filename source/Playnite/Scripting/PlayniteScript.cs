@@ -1,5 +1,4 @@
-﻿using Playnite.Scripting.IronPython;
-using Playnite.Scripting.PowerShell;
+﻿using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -83,12 +82,7 @@ namespace Playnite.Scripting
         public static PlayniteScript FromFile(string path)
         {
             var extension = System.IO.Path.GetExtension(path).ToLower();
-            if (extension == ".py")
-            {
-                return new IronPythonScript(path);
-            }
-            // ps1 and dll PowerShell modules are not supported
-            else if (extension == ".psm1" || extension == ".psd1")
+            if (extension == ".psm1" || extension == ".psd1")
             {
                 if (PowerShellRuntime.IsInstalled)
                 {

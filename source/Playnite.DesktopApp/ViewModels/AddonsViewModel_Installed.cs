@@ -46,10 +46,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 PluginIcon = ResourceProvider.GetResource("PowerShellIcon");
             }
-            else if (description.Type == ExtensionType.Script && description.Module.EndsWith("py", StringComparison.OrdinalIgnoreCase))
-            {
-                PluginIcon = ResourceProvider.GetResource("PythonIcon");
-            }
             else
             {
                 PluginIcon = ResourceProvider.GetResource("CsharpIcon");
