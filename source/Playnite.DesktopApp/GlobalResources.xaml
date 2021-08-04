@@ -33,7 +33,7 @@
     <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
     <pcon:InvertedBoolenConverter x:Key="InvertedBoolenConverter" />
     <pcon:ListToStringConverter x:Key="ListToStringConverter" />
-    <pcon:LongToTimePlayedConverter x:Key="LongToTimePlayedConverter" />
+    <pcon:PlayTimeToStringConverter x:Key="PlayTimeToStringConverter" />
     <pcon:NegateConverter x:Key="NegateConverter" />
     <pcon:NotificationIconConverter x:Key="NotificationIconConverter" />
     <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />

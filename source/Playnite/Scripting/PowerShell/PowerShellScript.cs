@@ -158,7 +158,7 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public override void OnGameStopped(Game game, long ellapsedSeconds)
+        public override void OnGameStopped(Game game, ulong ellapsedSeconds)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStopped))
             {

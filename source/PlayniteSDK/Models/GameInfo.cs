@@ -64,12 +64,12 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Playtime.
         /// </summary>
-        public long Playtime { get; set; }
+        public ulong Playtime { get; set; }
 
         /// <summary>
         /// Gets or sets PlayCount.
         /// </summary>
-        public long PlayCount { get; set; }
+        public ulong PlayCount { get; set; }
 
         /// <summary>
         /// Gets or sets LastActivity.

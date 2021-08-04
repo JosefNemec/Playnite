@@ -479,7 +479,7 @@ namespace Playnite.Plugins
             InvokeOnGameStopped(args.Source.Game, args.SessionLength);
         }
 
-        public void InvokeOnGameStopped(Game game, long ellapsedTime)
+        public void InvokeOnGameStopped(Game game, ulong ellapsedTime)
         {
             foreach (var script in Scripts)
             {

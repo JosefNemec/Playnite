@@ -385,7 +385,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetGameItemTextBinding(ref TextPlayTime, "PART_TextPlayTime",
                 nameof(GameDetailsViewModel.Game.Playtime),
                 nameof(GameDetailsViewModel.PlayTimeVisibility),
-                new LongToTimePlayedConverter());
+                new PlayTimeToStringConverter());
 
             SetGameItemTextBinding(ref TextLastActivity, "PART_TextLastActivity",
                 nameof(GameDetailsViewModel.Game.LastActivity),

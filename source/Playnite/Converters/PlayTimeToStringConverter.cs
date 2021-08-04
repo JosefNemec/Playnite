@@ -10,7 +10,7 @@ using System.Windows.Markup;
 
 namespace Playnite.Converters
 {
-    public class LongToTimePlayedConverter : MarkupExtension, IValueConverter
+    public class PlayTimeToStringConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -19,7 +19,7 @@ namespace Playnite.Converters
                 return ResourceProvider.GetString("LOCPlayedNone");
             }
 
-            var seconds = (long)value;
+            var seconds = (ulong)value;
             if (seconds == 0)
             {
                 return ResourceProvider.GetString("LOCPlayedNone");

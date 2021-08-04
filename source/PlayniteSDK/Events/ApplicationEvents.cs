@@ -90,7 +90,7 @@ namespace Playnite.SDK.Events
     public class OnGameStoppedEventArgs
     {
         public Game Game { get; internal set; }
-        public long EllapsedSeconds { get; internal set; }
+        public ulong EllapsedSeconds { get; internal set; }
     }
 
     public class OnGameInstalledEventArgs

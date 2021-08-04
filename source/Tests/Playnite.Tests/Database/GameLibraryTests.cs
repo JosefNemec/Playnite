@@ -21,7 +21,7 @@ namespace Playnite.Tests.Database
         {
             var gameId = "tesId";
             var libPlugin = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
-            var timeToImport = 500;
+            ulong timeToImport = 500;
             libPlugin.Setup(a => a.Id).Returns(Guid.NewGuid());
             libPlugin.Setup(a => a.GetGames(It.IsAny<LibraryGetGamesArgs>())).Returns(() => new List<GameInfo>
             {

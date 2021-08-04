@@ -339,7 +339,7 @@
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Converters\LongToTimePlayedConverter.cs" />
+    <Compile Include="Converters\PlayTimeToStringConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NullableDateToStringConverter.cs" />

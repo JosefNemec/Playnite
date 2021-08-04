@@ -264,7 +264,7 @@ namespace Playnite.Controllers
 
                         if (!isDisposed) // Should not be called when we reached this from cancel state.
                         {
-                            execContext.Post((_) => InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToInt64(stopWatch.Elapsed.TotalSeconds) }), null);
+                            execContext.Post((_) => InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) }), null);
                         }
                     }
                     catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -272,7 +272,7 @@ namespace Playnite.Controllers
                         logger.Error(exc, "Play script failed.");
                         execContext.Post((_) =>
                         {
-                            InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToInt64(stopWatch.Elapsed.TotalSeconds) });
+                            InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
                             Dialogs.ShowMessage(
                                 exc.Message,
                                 LOC.ErrorPlayScriptAction,
@@ -300,7 +300,7 @@ namespace Playnite.Controllers
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(exc, "Play script failed.");
-                    InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToInt64(stopWatch.Elapsed.TotalSeconds) });
+                    InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
                     Dialogs.ShowMessage(
                         exc.Message,
                         LOC.ErrorPlayScriptAction,
@@ -523,7 +523,7 @@ namespace Playnite.Controllers
         {
             stopWatch.Stop();
             ExecuteEmulatorScript(currentEmuProfile?.ExitScript);
-            InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToInt64(stopWatch.Elapsed.TotalSeconds) });
+            InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
         }
 
         private string CheckPath(string sourcePath, string changeProp, FileSystemItem pathType)

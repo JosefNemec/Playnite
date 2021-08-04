@@ -8,8 +8,8 @@ namespace Playnite
 {
     public class AutoClientShutdownSettings : ObservableObject
     {
-        private int graceTimeout = 60;
-        public int GraceTimeout
+        private uint graceTimeout = 60;
+        public uint GraceTimeout
         {
             get => graceTimeout;
             set
@@ -19,8 +19,8 @@ namespace Playnite
             }
         }
 
-        private int minimalSessionTime = 120;
-        public int MinimalSessionTime
+        private uint minimalSessionTime = 120;
+        public uint MinimalSessionTime
         {
             get => minimalSessionTime;
             set

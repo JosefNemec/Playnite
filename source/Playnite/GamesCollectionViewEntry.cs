@@ -61,10 +61,10 @@ namespace Playnite
         public bool IsLaunching => Game.IsLaunching;
         public bool IsRunning => Game.IsRunning;
         public bool IsCustomGame => Game.IsCustomGame;
-        public long Playtime => Game.Playtime;
+        public ulong Playtime => Game.Playtime;
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
-        public long PlayCount => Game.PlayCount;
+        public ulong PlayCount => Game.PlayCount;
         public string Version => Game.Version;
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;

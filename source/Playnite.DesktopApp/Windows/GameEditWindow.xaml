@@ -62,10 +62,10 @@
                             <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
                                 <Setter Property="Margin" Value="3" />
                             </Style>
-                            <Style TargetType="pctrls:NumericBox" BasedOn="{StaticResource {x:Type pctrls:NumericBox}}" >
+                            <Style TargetType="pctrls:LongNumericBox" BasedOn="{StaticResource {x:Type pctrls:LongNumericBox}}" >
                                 <Setter Property="Margin" Value="3" />
                             </Style>
-                            <Style TargetType="pctrls:NullableIntBox" BasedOn="{StaticResource {x:Type pctrls:NullableIntBox}}" >
+                            <Style TargetType="pctrls:NullIntNumericBox" BasedOn="{StaticResource {x:Type pctrls:NullIntNumericBox}}" >
                                 <Setter Property="Margin" Value="3" />
                             </Style>
                             <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
@@ -325,7 +325,7 @@
                         <CheckBox Grid.Column="4" Grid.Row="6"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseUserScoreChanges}"/>
-                        <pctrls:NullableIntBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
+                        <pctrls:NullIntNumericBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
                                                  MinValue="0" MaxValue="100"
                                                  Value="{Binding EditingGame.UserScore}"
                                                  ToolTip="{DynamicResource LOCDescriptionScoreValues}"
@@ -336,7 +336,7 @@
                         <CheckBox Grid.Column="4" Grid.Row="7"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseCriticScoreChanges}"/>
-                        <pctrls:NullableIntBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
+                        <pctrls:NullIntNumericBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
                                                  MinValue="0" MaxValue="100"
                                                  Value="{Binding EditingGame.CriticScore}"
                                                  ToolTip="{DynamicResource LOCDescriptionScoreValues}"
@@ -347,7 +347,7 @@
                         <CheckBox Grid.Column="4" Grid.Row="8"
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseCommunityScoreChanges}"/>
-                        <pctrls:NullableIntBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
+                        <pctrls:NullIntNumericBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
                                                  MinValue="0" MaxValue="100"
                                                  Value="{Binding EditingGame.CommunityScore}"
                                                  ToolTip="{DynamicResource LOCDescriptionScoreValues}"
@@ -370,10 +370,13 @@
                         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
                             <Setter Property="Margin" Value="3" />
                         </Style>
-                        <Style TargetType="pctrls:NumericBox" BasedOn="{StaticResource {x:Type pctrls:NumericBox}}" >
+                        <Style TargetType="pctrls:LongNumericBox" BasedOn="{StaticResource {x:Type pctrls:LongNumericBox}}" >
                             <Setter Property="Margin" Value="3" />
                         </Style>
-                        <Style TargetType="pctrls:NullableIntBox" BasedOn="{StaticResource {x:Type pctrls:NullableIntBox}}" >
+                        <Style TargetType="pctrls:UlongNumericBox" BasedOn="{StaticResource {x:Type pctrls:UlongNumericBox}}" >
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style TargetType="pctrls:NullIntNumericBox" BasedOn="{StaticResource {x:Type pctrls:NullIntNumericBox}}" >
                             <Setter Property="Margin" Value="3" />
                         </Style>
                         <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
@@ -428,13 +431,12 @@
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlaytimeChanges}"/>
                     <DockPanel Grid.Column="2" Grid.Row="1">
-                        <TextBlock Text="{Binding EditingGame.Playtime, Converter={pcon:LongToTimePlayedConverter}}"
+                        <TextBlock Text="{Binding EditingGame.Playtime, Converter={pcon:PlayTimeToStringConverter}}"
                                    DockPanel.Dock="Right" />
-                        <pctrls:NumericBox LongValue="{Binding EditingGame.Playtime}"
-                                             MaxLongValue="9999999999"
-                                             ToolTip="{DynamicResource LOCDescriptionPlaytimeSeconds}"
-                                             ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
-                                             DockPanel.Dock="Left" />
+                        <pctrls:UlongNumericBox UlongValue="{Binding EditingGame.Playtime}"
+                                                ToolTip="{DynamicResource LOCDescriptionPlaytimeSeconds}"
+                                                ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
+                                                DockPanel.Dock="Left" />
                     </DockPanel>
 
                     <!-- PlayCount -->
@@ -442,8 +444,8 @@
                     <CheckBox Grid.Column="0" Grid.Row="2"
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlayCountChanges}"/>
-                    <pctrls:NumericBox Grid.Column="2" Grid.Row="2"
-                                         LongValue="{Binding EditingGame.PlayCount}" />
+                    <pctrls:UlongNumericBox Grid.Column="2" Grid.Row="2"
+                                            UlongValue="{Binding EditingGame.PlayCount}" />
 
                     <!-- CompletionStatus -->
                     <TextBlock Grid.Column="1" Grid.Row="3" Text="{DynamicResource LOCCompletionStatus}"/>

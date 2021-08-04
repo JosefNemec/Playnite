@@ -691,11 +691,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private long playtime = 0;
+        private ulong playtime = 0;
         /// <summary>
         /// Gets or sets played time in seconds.
         /// </summary>
-        public long Playtime
+        public ulong Playtime
         {
             get
             {
@@ -748,11 +748,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private long playCount = 0;
+        private ulong playCount = 0;
         /// <summary>
         /// Gets or sets a number indicating how many times the game has been played.
         /// </summary>
-        public long PlayCount
+        public ulong PlayCount
         {
             get
             {
@@ -1362,7 +1362,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         /// <param name="seconds">Play time in seconds.</param>
         /// <returns></returns>
-        private PlaytimeCategory GetPlayTimeCategory(long seconds)
+        private PlaytimeCategory GetPlayTimeCategory(ulong seconds)
         {
             if (seconds == 0)
             {

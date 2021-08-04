@@ -118,7 +118,7 @@ namespace Playnite.Scripting
         public abstract void OnLibraryUpdated();
         public abstract void OnGameStarting(Game game);
         public abstract void OnGameStarted(Game game);
-        public abstract void OnGameStopped(Game game, long ellapsedSeconds);
+        public abstract void OnGameStopped(Game game, ulong ellapsedSeconds);
         public abstract void OnGameInstalled(Game game);
         public abstract void OnGameUninstalled(Game game);
         public abstract void OnGameSelected(OnGameSelectedEventArgs args);

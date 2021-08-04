@@ -839,10 +839,10 @@ namespace Playnite
             dbGame.IsLaunching = false;
             dbGame.IsInstalling = false;
             dbGame.IsUninstalling = false;
-            long ellapsedTime = 0;
+            ulong ellapsedTime = 0;
             if (gameStartups.TryRemove(game.Id, out var startupTime))
             {
-                ellapsedTime = Convert.ToInt64((DateTime.Now - startupTime).TotalSeconds);
+                ellapsedTime = Convert.ToUInt64((DateTime.Now - startupTime).TotalSeconds);
                 dbGame.Playtime += ellapsedTime;
             }
 

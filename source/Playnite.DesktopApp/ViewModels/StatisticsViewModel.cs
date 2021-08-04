@@ -83,17 +83,17 @@ namespace Playnite.DesktopApp.ViewModels
         public class BaseStatInfo
         {
             public string Name { get; set; }
-            public long Value { get; set; }
+            public ulong Value { get; set; }
             public int Percentage { get; set; }
             public Game Game { get; set; }
 
-            public BaseStatInfo(string name, long value)
+            public BaseStatInfo(string name, ulong value)
             {
                 Name = name;
                 Value = value;
             }
 
-            public BaseStatInfo(string name, long value, long total) : this(name, value)
+            public BaseStatInfo(string name, ulong value, ulong total) : this(name, value)
             {
                 if (total != 0)
                 {
@@ -162,13 +162,13 @@ namespace Playnite.DesktopApp.ViewModels
             public List<BaseStatInfo> TopPlayed { get; set; }
             public List<BaseStatInfo> CompletionStates { get; set; }
 
-            public long TotalCount { get; set; }
+            public ulong TotalCount { get; set; }
             public BaseStatInfo Installed { get; set; }
             public BaseStatInfo NotInstalled { get; set; }
             public BaseStatInfo Hidden { get; set; }
             public BaseStatInfo Favorite { get; set; }
-            public long TotalPlayTime { get; set; }
-            public long AvaragePlayTime { get; set; }
+            public ulong TotalPlayTime { get; set; }
+            public ulong AvaragePlayTime { get; set; }
         }
 
         private GameDatabase database;
@@ -302,14 +302,14 @@ namespace Playnite.DesktopApp.ViewModels
 
         private GameStats FillData(bool filtered)
         {
-            var total = 0;
-            var installed = 0;
-            var notinstalled = 0;
-            var hidden = 0;
-            var favorite = 0;
-            long totalPlaytime = 0;
+            ulong total = 0;
+            ulong installed = 0;
+            ulong notinstalled = 0;
+            ulong hidden = 0;
+            ulong favorite = 0;
+            ulong totalPlaytime = 0;
 
-            var compStats = new Dictionary<Guid, int>();
+            var compStats = new Dictionary<Guid, ulong>();
             foreach (var game in database.Games)
             {
                 if (filtered && !PassesFilter(game))

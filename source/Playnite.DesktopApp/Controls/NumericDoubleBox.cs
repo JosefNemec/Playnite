@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace Playnite.DesktopApp.Controls
 {
-    public class NumericDoubleBox : TextBox
+    public class DoubleNumericBox : TextBox
     {
         public double MinValue
         {
@@ -60,7 +60,7 @@ namespace Playnite.DesktopApp.Controls
         }
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(double), typeof(NumericDoubleBox),
+            DependencyProperty.Register(nameof(Value), typeof(double), typeof(DoubleNumericBox),
                 new FrameworkPropertyMetadata(
                     (double)0,
                     FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
@@ -70,19 +70,19 @@ namespace Playnite.DesktopApp.Controls
                     UpdateSourceTrigger.PropertyChanged));
 
         public static readonly DependencyProperty MinValueProperty =
-            DependencyProperty.Register(nameof(MinValue), typeof(double), typeof(NumericDoubleBox),
+            DependencyProperty.Register(nameof(MinValue), typeof(double), typeof(DoubleNumericBox),
                 new PropertyMetadata((double)0, MinDoubleValuePropertyChanged));
 
         public static readonly DependencyProperty MaxValueProperty =
-            DependencyProperty.Register(nameof(MaxValue), typeof(double), typeof(NumericDoubleBox),
+            DependencyProperty.Register(nameof(MaxValue), typeof(double), typeof(DoubleNumericBox),
                 new PropertyMetadata(double.MaxValue, MaxDoubleValuePropertyChanged));
 
-        static NumericDoubleBox()
+        static DoubleNumericBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericDoubleBox), new FrameworkPropertyMetadata(typeof(NumericDoubleBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(DoubleNumericBox), new FrameworkPropertyMetadata(typeof(DoubleNumericBox)));
         }
 
-        public NumericDoubleBox()
+        public DoubleNumericBox()
         {
             Text = Value.ToString();
             LostFocus += NumericDoubleBox_LostFocus;
@@ -143,7 +143,7 @@ namespace Playnite.DesktopApp.Controls
 
         private static object CoerceDoubleValue(DependencyObject element, object baseValue)
         {
-            var box = (NumericDoubleBox)element;
+            var box = (DoubleNumericBox)element;
             var current = (double)baseValue;
             if (current < box.MinValue)
             {
@@ -160,7 +160,7 @@ namespace Playnite.DesktopApp.Controls
 
         private static void DoubleValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var obj = (NumericDoubleBox)sender;
+            var obj = (DoubleNumericBox)sender;
             if (obj.Text.IsNullOrEmpty())
             {
                 obj.Text = e.NewValue.ToString();

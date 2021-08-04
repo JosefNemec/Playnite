@@ -318,7 +318,7 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         ///
         /// </summary>
-        public long SessionLength { get; set; }
+        public ulong SessionLength { get; set; }
 
         /// <summary>
         ///
@@ -331,7 +331,7 @@ namespace Playnite.SDK.Plugins
         ///
         /// </summary>
         /// <param name="sessionLength"></param>
-        public GameStoppedEventArgs(long sessionLength)
+        public GameStoppedEventArgs(ulong sessionLength)
         {
             SessionLength = sessionLength;
         }
