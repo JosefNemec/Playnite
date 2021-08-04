@@ -184,7 +184,10 @@ namespace EpicLibrary.Services
                 throw new Exception("User is not authenticated.");
             }
 
-            return InvokeRequest<List<PlaytimeItem>>(playtimeUrl, loadTokens()).GetAwaiter().GetResult().Item2;
+            var tokens = loadTokens();
+            var formattedPlaytimeUrl = string.Format(playtimeUrl, tokens.account_id);
+            
+            return InvokeRequest<List<PlaytimeItem>>(formattedPlaytimeUrl, loadTokens()).GetAwaiter().GetResult().Item2;
         }
 
         public CatalogItem GetCatalogItem(string nameSpace, string id, string cachePath)
@@ -247,11 +250,6 @@ namespace EpicLibrary.Services
         {
             using (var httpClient = new HttpClient())
             {
-                if (url.Contains("/library/api/public/playtime/account/"))
-                {
-                    url = string.Format(url, tokens.account_id);
-                }
-
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Add("Authorization", tokens.token_type + " " + tokens.access_token);
                 var response = await httpClient.GetAsync(url);
