@@ -186,8 +186,7 @@ namespace EpicLibrary.Services
 
             var tokens = loadTokens();
             var formattedPlaytimeUrl = string.Format(playtimeUrl, tokens.account_id);
-            
-            return InvokeRequest<List<PlaytimeItem>>(formattedPlaytimeUrl, loadTokens()).GetAwaiter().GetResult().Item2;
+            return InvokeRequest<List<PlaytimeItem>>(formattedPlaytimeUrl, tokens).GetAwaiter().GetResult().Item2;
         }
 
         public CatalogItem GetCatalogItem(string nameSpace, string id, string cachePath)
