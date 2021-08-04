@@ -42,7 +42,7 @@ namespace Playnite.WebView
             window.Owner = WindowManager.CurrentWindow;
             window.Width = width;
             window.Height = height;
-            window.Background = new SolidColorBrush(background);
+            window.PanelContent.Background = new SolidColorBrush(background);
         }
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)

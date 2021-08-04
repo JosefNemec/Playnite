@@ -1,4 +1,4 @@
-﻿<Window x:Class="Playnite.Windows.WebViewWindow"
+﻿<controls:WindowBase x:Class="Playnite.Windows.WebViewWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,9 +7,13 @@
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="" Height="450" Width="800"
+        xmlns:controls="clr-namespace:Playnite.Controls"
+        Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner">
-    <DockPanel>
-        <TextBox Text="{Binding Address, ElementName=Browser}" DockPanel.Dock="Top" IsReadOnly="True" />
+    <DockPanel Name="PanelContent">
+        <TextBox Text="{Binding Address, ElementName=Browser}"
+                 Background="{DynamicResource NormalBrushDark}"
+                 DockPanel.Dock="Top" IsReadOnly="True" BorderThickness="0"/>
         <cefSharp:ChromiumWebBrowser Name="Browser" DockPanel.Dock="Bottom" />
     </DockPanel>
-</Window>
+</controls:WindowBase>
