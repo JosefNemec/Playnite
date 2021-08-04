@@ -8,7 +8,8 @@
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="" Height="450" Width="800"
         WindowStartupLocation="CenterOwner">
-    <Grid>
-        <cefSharp:ChromiumWebBrowser Name="Browser"/>        
-    </Grid>
+    <DockPanel>
+        <TextBox Text="{Binding Address, ElementName=Browser}" DockPanel.Dock="Top" IsReadOnly="True" />
+        <cefSharp:ChromiumWebBrowser Name="Browser" DockPanel.Dock="Bottom" />
+    </DockPanel>
 </Window>
