@@ -443,11 +443,12 @@ namespace Playnite.Plugins
                 return;
             }
 
+            var callbackArgs = new SDK.Events.OnGameUninstalledEventArgs { Game = args.Source.Game };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameUninstalled(args.Source.Game);
+                    script.OnGameUninstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -459,7 +460,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameUninstalled(new SDK.Events.OnGameUninstalledEventArgs { Game = args.Source.Game });
+                    plugin.Plugin.OnGameUninstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -481,11 +482,17 @@ namespace Playnite.Plugins
 
         public void InvokeOnGameStopped(Game game, ulong ellapsedTime)
         {
+            var callbackArgs = new SDK.Events.OnGameStoppedEventArgs
+            {
+                Game = database.Games[game.Id],
+                EllapsedSeconds = ellapsedTime
+            };
+
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStopped(database.Games[game.Id], ellapsedTime);
+                    script.OnGameStopped(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -497,11 +504,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStopped(new SDK.Events.OnGameStoppedEventArgs
-                    {
-                        Game = database.Games[game.Id],
-                        EllapsedSeconds = ellapsedTime
-                    });
+                    plugin.Plugin.OnGameStopped(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -518,11 +521,12 @@ namespace Playnite.Plugins
                 return;
             }
 
+            var callbackArgs = new SDK.Events.OnGameStartingEventArgs { Game = database.Games[args.Source.Game.Id] };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStarting(database.Games[args.Source.Game.Id]);
+                    script.OnGameStarting(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -534,7 +538,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarting(new SDK.Events.OnGameStartingEventArgs { Game = database.Games[args.Source.Game.Id] });
+                    plugin.Plugin.OnGameStarting(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -551,11 +555,12 @@ namespace Playnite.Plugins
                 return;
             }
 
+            var callbackArgs = new SDK.Events.OnGameStartedEventArgs { Game = database.Games[args.Source.Game.Id] };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStarted(database.Games[args.Source.Game.Id]);
+                    script.OnGameStarted(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -567,7 +572,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarted(new SDK.Events.OnGameStartedEventArgs { Game = database.Games[args.Source.Game.Id] });
+                    plugin.Plugin.OnGameStarted(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -584,11 +589,12 @@ namespace Playnite.Plugins
                 return;
             }
 
+            var callbackArgs = new SDK.Events.OnGameInstalledEventArgs { Game = database.Games[args.Source.Game.Id] };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameInstalled(database.Games[args.Source.Game.Id]);
+                    script.OnGameInstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -600,7 +606,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameInstalled(new SDK.Events.OnGameInstalledEventArgs { Game = database.Games[args.Source.Game.Id] });
+                    plugin.Plugin.OnGameInstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {

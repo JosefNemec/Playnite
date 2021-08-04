@@ -142,43 +142,43 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public override void OnGameStarting(Game game)
+        public override void OnGameStarting(OnGameStartingEventArgs args)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStarting))
             {
-                InvokeFunction(ApplicationEvent.OnGameStarting.ToString(), new List<object> { game });
+                InvokeFunction(ApplicationEvent.OnGameStarting.ToString(), new List<object> { args });
             }
         }
 
-        public override void OnGameStarted(Game game)
+        public override void OnGameStarted(OnGameStartedEventArgs args)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStarted))
             {
-                InvokeFunction(ApplicationEvent.OnGameStarted.ToString(), new List<object> { game });
+                InvokeFunction(ApplicationEvent.OnGameStarted.ToString(), new List<object> { args });
             }
         }
 
-        public override void OnGameStopped(Game game, ulong ellapsedSeconds)
+        public override void OnGameStopped(OnGameStoppedEventArgs args)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameStopped))
             {
-                InvokeFunction(ApplicationEvent.OnGameStopped.ToString(), new List<object> { game, ellapsedSeconds });
+                InvokeFunction(ApplicationEvent.OnGameStopped.ToString(), new List<object> { args });
             }
         }
 
-        public override void OnGameInstalled(Game game)
+        public override void OnGameInstalled(OnGameInstalledEventArgs args)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameInstalled))
             {
-                InvokeFunction(ApplicationEvent.OnGameInstalled.ToString(), new List<object> { game });
+                InvokeFunction(ApplicationEvent.OnGameInstalled.ToString(), new List<object> { args });
             }
         }
 
-        public override void OnGameUninstalled(Game game)
+        public override void OnGameUninstalled(OnGameUninstalledEventArgs args)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameUninstalled))
             {
-                InvokeFunction(ApplicationEvent.OnGameUninstalled.ToString(), new List<object> { game });
+                InvokeFunction(ApplicationEvent.OnGameUninstalled.ToString(), new List<object> { args });
             }
         }
 
