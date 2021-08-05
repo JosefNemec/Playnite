@@ -240,7 +240,7 @@ namespace Playnite.DesktopApp.Controls.Views
                     ButtonMoreActions.ContextMenu = new GameMenu(mainModel)
                     {
                         ShowStartSection = false,
-                        Placement = PlacementMode.Bottom
+                        Placement = PlacementMode.Relative
                     };
                     BindingTools.SetBinding(ButtonMoreActions.ContextMenu,
                         Button.DataContextProperty,
