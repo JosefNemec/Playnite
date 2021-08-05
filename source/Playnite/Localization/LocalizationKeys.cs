@@ -654,10 +654,6 @@ namespace Playnite
         /// </summary>
         public const string Rows = "LOCRows";
         /// <summary>
-        /// Special variables can be used to add a dynamic string:
-        /// </summary>
-        public const string GameVariablesTooltip = "LOCGameVariablesTooltip";
-        /// <summary>
         /// Cannot get icon if Play action is missing or is set to URL.
         /// </summary>
         public const string ExecIconMissingPlayAction = "LOCExecIconMissingPlayAction";
@@ -909,6 +905,10 @@ namespace Playnite
         /// Application font
         /// </summary>
         public const string SettingsInterfaceFont = "LOCSettingsInterfaceFont";
+        /// <summary>
+        /// Monospaced font
+        /// </summary>
+        public const string SettingsInterfaceMonoFont = "LOCSettingsInterfaceMonoFont";
         /// <summary>
         /// Filter panel position
         /// </summary>
@@ -1418,7 +1418,7 @@ namespace Playnite
         /// </summary>
         public const string SettingsShowMediaSizeWarning = "LOCSettingsShowMediaSizeWarning";
         /// <summary>
-        /// Directory open command
+        /// Folder open command
         /// </summary>
         public const string OpenDirectoryCommand = "LOCOpenDirectoryCommand";
         /// <summary>
@@ -1838,7 +1838,7 @@ namespace Playnite
         /// </summary>
         public const string GameDescriptionTitle = "LOCGameDescriptionTitle";
         /// <summary>
-        /// Installation Directory
+        /// Installation Folder
         /// </summary>
         public const string GameInstallDirTitle = "LOCGameInstallDirTitle";
         /// <summary>
@@ -2706,7 +2706,7 @@ namespace Playnite
         /// </summary>
         public const string SignInExternalWaitMessage = "LOCSignInExternalWaitMessage";
         /// <summary>
-        /// Game's installation directory not found.
+        /// Game's installation folder not found.
         /// </summary>
         public const string InstallDirNotFoundError = "LOCInstallDirNotFoundError";
         /// <summary>
@@ -2874,11 +2874,11 @@ namespace Playnite
         /// </summary>
         public const string ExtensionUnsupported = "LOCExtensionUnsupported";
         /// <summary>
-        /// Installation directory
+        /// Installation folder
         /// </summary>
         public const string ExtensionInstallDir = "LOCExtensionInstallDir";
         /// <summary>
-        /// Data directory
+        /// Data folder
         /// </summary>
         public const string ExtensionDataDir = "LOCExtensionDataDir";
         /// <summary>
@@ -2942,7 +2942,7 @@ namespace Playnite
         /// </summary>
         public const string SettingsExternalExtensions = "LOCSettingsExternalExtensions";
         /// <summary>
-        /// Enter full directory path.
+        /// Enter full folder path.
         /// </summary>
         public const string SettingsNewExternalExtensionBox = "LOCSettingsNewExternalExtensionBox";
         /// <summary>
@@ -3174,7 +3174,7 @@ namespace Playnite
         /// </summary>
         public const string ActionTrackingModeProcess = "LOCActionTrackingModeProcess";
         /// <summary>
-        /// Directory
+        /// Folder
         /// </summary>
         public const string ActionTrackingModeDirectory = "LOCActionTrackingModeDirectory";
         /// <summary>
@@ -3406,7 +3406,7 @@ namespace Playnite
         /// </summary>
         public const string SelectFileTooltip = "LOCSelectFileTooltip";
         /// <summary>
-        /// Select directory…
+        /// Select folder…
         /// </summary>
         public const string SelectDirectoryTooltip = "LOCSelectDirectoryTooltip";
         /// <summary>

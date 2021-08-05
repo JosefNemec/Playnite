@@ -183,17 +183,6 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCColumns">Columns</sys:String>
     <sys:String x:Key="LOCRow">Row</sys:String>
     <sys:String x:Key="LOCRows">Rows</sys:String>
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve">Special variables can be used to add a dynamic string:
-{InstallDir} - Game installation directory
-{InstallDirName} - Installation folder name
-{ImagePath} - Game ISO/ROM path if set
-{ImageName} - Game ISO/ROM file name
-{ImageNameNoExt} - Game ISO/ROM file name without extension
-{PlayniteDir} - Playnite installation directory
-{Name} - Game name
-
-Example: -image "{ImagePath}" -fullscreen
-Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Only download missing metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip downloading metadata for data fields that already contain information.</sys:String>
@@ -394,7 +383,7 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCSettingsAutoCloseSection">Auto Close Clients</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">Import Exclusion List</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand">Directory open command</sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Folder open command</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Preferred age rating organization</sys:String>
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
@@ -513,7 +502,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Last Played</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Category</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Description</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle">Installation Directory</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Installation Folder</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Cover Image</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image, ROM or ISO Path</sys:String>
@@ -561,7 +550,7 @@ Please attach the following ID to your issue report:</sys:String>
 
 You can try to resolve the issue:
   • Check that all files are installed correctly. The re-installation could help
-  • Make sure your antivirus doesn't block any files in the Playnite directory
+  • Make sure your antivirus doesn't block any files in the Playnite folder
   • Choose a different installation location</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Cannot import emulators due to missing or corrupted definition file.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Failed to initialize XInput interface.</sys:String>
@@ -742,7 +731,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCClientNotInstalledError">{0} client is not installed.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} client will now open. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Waiting for user to sign in, please close this when you're done…</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError">Game's installation directory not found.</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Game's installation folder not found.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Invalid game action configuration.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Troubleshooting account sync issues</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Troubleshooting issues</sys:String>
@@ -809,8 +798,8 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">Are you sure you want to uninstall selected extension? Uninstallation will be queued to next application start.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Built-in extensions can't be uninstalled.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">This extension doesn't support this version of Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir">Installation directory</sys:String>
-    <sys:String x:Key="LOCExtensionDataDir">Data directory</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Installation folder</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Data folder</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Generating diagnostics package…</sys:String>
     <sys:String x:Key="LOCDiagUploading">Uploading diagnostics package…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Import file…</sys:String>
@@ -831,7 +820,7 @@ Backgrounds: {2} mega pixels</sys:String>
 Application restart is requred to finish the process. Do you want to reset settings?</sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">For developers</sys:String>
     <sys:String x:Key="LOCSettingsExternalExtensions">External extensions</sys:String>
-    <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Enter full directory path.</sys:String>    
+    <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Enter full folder path.</sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Achievements</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
@@ -890,7 +879,7 @@ Application restart is requred to finish the process. Do you want to reset setti
     <sys:String x:Key="LOCGameActionTypeScript">Script</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDefault">Default</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">Process</sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDirectory">Directory</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDirectory">Folder</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log trace messages</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Following changes overwrite data for all currently selected game!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">None</sys:String>
@@ -959,7 +948,7 @@ Good quality, fast, low memory usage.
 Alternative:
 Better quality, medium speed, low memory usage.</sys:String>
     <sys:String x:Key="LOCSelectFileTooltip">Select file…</sys:String>
-    <sys:String x:Key="LOCSelectDirectoryTooltip">Select directory…</sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip">Select folder…</sys:String>
     <sys:String x:Key="LOCStartupScript">Startup script</sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">Please note that both extensions and themes can greatly affect Playnite's performance, stability and security.
     
