@@ -283,12 +283,10 @@ namespace Playnite
             {
                 switch (action.Type)
                 {
-                    case GameActionType.File:
-                        ProcessStarter.StartProcess(action.Path, action.Arguments, action.WorkingDir);
-                        break;
                     case GameActionType.URL:
                         ProcessStarter.StartUrl(action.Path);
                         break;
+                    case GameActionType.File:
                     case GameActionType.Emulator:
                     case GameActionType.Script:
                         using (var scriptRuntime = new PowerShellRuntime("Custom action runtime"))
@@ -647,7 +645,7 @@ namespace Playnite
 
             try
             {
-                var manualPath = game.Manual;
+                var manualPath = game.ExpandVariables(game.Manual, fixSeparators: true);
                 if (!manualPath.IsUri() && !File.Exists(manualPath))
                 {
                     manualPath = Path.Combine(Database.GetFileStoragePath(game.Id), manualPath);
