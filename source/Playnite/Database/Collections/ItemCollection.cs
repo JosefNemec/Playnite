@@ -95,7 +95,7 @@ namespace Playnite.Database
                 File.Delete(storagePath);
             }
 
-            var dpPath = path + ".litedb";
+            var dpPath = path + ".db";
             liteDb = new LiteDatabase($"Filename={dpPath};Mode=Exclusive;Cache Size=0", mapper);
             liteCollection = liteDb.GetCollection<TItem>();
             liteCollection.EnsureIndex(a => a.Id, true);

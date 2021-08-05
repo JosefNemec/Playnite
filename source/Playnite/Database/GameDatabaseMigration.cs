@@ -173,7 +173,7 @@ namespace Playnite.Database
                 void convertList<T>(string dir) where T : DatabaseObject
                 {
                     mapper.Entity<T>().Id(a => a.Id, false);
-                    using (var db = new LiteDatabase($"Filename={dir}.litedb;Mode=Exclusive;Journal=false", mapper))
+                    using (var db = new LiteDatabase($"Filename={dir}.db;Mode=Exclusive;Journal=false", mapper))
                     {
                         var col = db.GetCollection<T>();
                         col.EnsureIndex(a => a.Id, true);
