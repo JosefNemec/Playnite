@@ -216,13 +216,13 @@ namespace Playnite.Metadata
                                 gameInfo.CommunityScore = provider.GetCommunityScore(getFieldArgs);
                                 break;
                             case MetadataField.Icon:
-                                metadata.Icon = provider.GetIcon(getFieldArgs);
+                                gameInfo.Icon = provider.GetIcon(getFieldArgs);
                                 break;
                             case MetadataField.CoverImage:
-                                metadata.CoverImage = provider.GetCoverImage(getFieldArgs);
+                                gameInfo.CoverImage = provider.GetCoverImage(getFieldArgs);
                                 break;
                             case MetadataField.BackgroundImage:
-                                metadata.BackgroundImage = provider.GetBackgroundImage(getFieldArgs);
+                                gameInfo.BackgroundImage = provider.GetBackgroundImage(getFieldArgs);
                                 break;
                             case MetadataField.Features:
                                 gameInfo.Features = provider.GetFeatures(getFieldArgs);
@@ -498,21 +498,21 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.BackgroundImage)))
                             {
-                                gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.BackgroundImage, existingStoreData, existingPluginData, cancelToken);
-                                if (gameData?.BackgroundImage != null)
+                                gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.GameInfo.BackgroundImage, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.BackgroundImage != null)
                                 {
-                                    if (playniteSettings.DownloadBackgroundsImmediately && gameData.BackgroundImage.HasImageData)
+                                    if (playniteSettings.DownloadBackgroundsImmediately && gameData.GameInfo.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
+                                        game.BackgroundImage = database.AddFile(gameData.GameInfo.BackgroundImage, game.Id);
                                     }
                                     else if (!playniteSettings.DownloadBackgroundsImmediately &&
-                                             !gameData.BackgroundImage.OriginalUrl.IsNullOrEmpty())
+                                             !gameData.GameInfo.BackgroundImage.Path.IsNullOrEmpty())
                                     {
-                                        game.BackgroundImage = gameData.BackgroundImage.OriginalUrl;
+                                        game.BackgroundImage = gameData.GameInfo.BackgroundImage.Path;
                                     }
-                                    else if (gameData.BackgroundImage.HasImageData)
+                                    else if (gameData.GameInfo.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
+                                        game.BackgroundImage = database.AddFile(gameData.GameInfo.BackgroundImage, game.Id);
                                     }
                                 }
                             }
@@ -523,10 +523,10 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.CoverImage)))
                             {
-                                gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.CoverImage, existingStoreData, existingPluginData, cancelToken);
-                                if (gameData?.CoverImage != null)
+                                gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.GameInfo.CoverImage, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.CoverImage != null)
                                 {
-                                    game.CoverImage = database.AddFile(gameData.CoverImage, game.Id);
+                                    game.CoverImage = database.AddFile(gameData.GameInfo.CoverImage, game.Id);
                                 }
                             }
                         }
@@ -536,10 +536,10 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Icon)))
                             {
-                                gameData = ProcessField(game, settings.Icon, MetadataField.Icon, (a) => a.Icon, existingStoreData, existingPluginData, cancelToken);
-                                if (gameData?.Icon != null)
+                                gameData = ProcessField(game, settings.Icon, MetadataField.Icon, (a) => a.GameInfo.Icon, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.Icon != null)
                                 {
-                                    game.Icon = database.AddFile(gameData.Icon, game.Id);
+                                    game.Icon = database.AddFile(gameData.GameInfo.Icon, game.Id);
                                 }
                             }
                         }

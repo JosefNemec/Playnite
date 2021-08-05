@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -99,17 +100,17 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Icon.
         /// </summary>
-        public string Icon { get; set; }
+        public MetadataFile Icon { get; set; }
 
         /// <summary>
         /// Gets or sets CoverImage.
         /// </summary>
-        public string CoverImage { get; set; }
+        public MetadataFile CoverImage { get; set; }
 
         /// <summary>
         /// Gets or sets BackgroundImage.
         /// </summary>
-        public string BackgroundImage { get; set; }
+        public MetadataFile BackgroundImage { get; set; }
 
         /// <summary>
         /// Gets or sets Hidden.

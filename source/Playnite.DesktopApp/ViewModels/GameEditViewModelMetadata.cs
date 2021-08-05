@@ -110,9 +110,9 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (metadata.Icon != null && !testGame.Icon.IsNullOrEmpty())
+            if (newInfo.Icon != null && !testGame.Icon.IsNullOrEmpty())
             {
-                var newIcon = ProcessMetadataFile(metadata.Icon, tempIconFileName);
+                var newIcon = ProcessMetadataFile(newInfo.Icon, tempIconFileName);
                 if (newIcon != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.Icon);
@@ -120,23 +120,23 @@ namespace Playnite.DesktopApp.ViewModels
                         !File.Exists(currentPath) ||
                         !FileSystem.AreFileContentsEqual(newIcon, currentPath))
                     {
-                        metadata.Icon = new MetadataFile(newIcon);
+                        newInfo.Icon = new MetadataFile(newIcon);
                         diffFields.Add(GameField.Icon);
                     }
                     else
                     {
-                        metadata.Icon = null;
+                        newInfo.Icon = null;
                     }
                 }
                 else
                 {
-                    metadata.Icon = null;
+                    newInfo.Icon = null;
                 }
             }
 
-            if (metadata.CoverImage != null && !testGame.CoverImage.IsNullOrEmpty())
+            if (newInfo.CoverImage != null && !testGame.CoverImage.IsNullOrEmpty())
             {
-                var newCover = ProcessMetadataFile(metadata.CoverImage, tempCoverFileName);
+                var newCover = ProcessMetadataFile(newInfo.CoverImage, tempCoverFileName);
                 if (newCover != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.CoverImage);
@@ -144,23 +144,23 @@ namespace Playnite.DesktopApp.ViewModels
                         !File.Exists(currentPath) ||
                         !FileSystem.AreFileContentsEqual(newCover, currentPath))
                     {
-                        metadata.CoverImage = new MetadataFile(newCover);
+                        newInfo.CoverImage = new MetadataFile(newCover);
                         diffFields.Add(GameField.CoverImage);
                     }
                     else
                     {
-                        metadata.CoverImage = null;
+                        newInfo.CoverImage = null;
                     }
                 }
                 else
                 {
-                    metadata.CoverImage = null;
+                    newInfo.CoverImage = null;
                 }
             }
 
-            if (metadata.BackgroundImage != null && !testGame.BackgroundImage.IsNullOrEmpty())
+            if (newInfo.BackgroundImage != null && !testGame.BackgroundImage.IsNullOrEmpty())
             {
-                var newBack = ProcessMetadataFile(metadata.BackgroundImage, tempBackgroundFileName);
+                var newBack = ProcessMetadataFile(newInfo.BackgroundImage, tempBackgroundFileName);
                 if (newBack != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.BackgroundImage);
@@ -168,17 +168,17 @@ namespace Playnite.DesktopApp.ViewModels
                         !File.Exists(currentPath) ||
                         !FileSystem.AreFileContentsEqual(newBack, currentPath))
                     {
-                        metadata.BackgroundImage = new MetadataFile(newBack);
+                        newInfo.BackgroundImage = new MetadataFile(newBack);
                         diffFields.Add(GameField.BackgroundImage);
                     }
                     else
                     {
-                        metadata.BackgroundImage = null;
+                        newInfo.BackgroundImage = null;
                     }
                 }
                 else
                 {
-                    metadata.BackgroundImage = null;
+                    newInfo.BackgroundImage = null;
                 }
             }
 
@@ -289,27 +289,27 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.CommunityScore = metadata.GameInfo.CommunityScore;
             }
 
-            if (metadata.CoverImage != null)
+            if (metadata.GameInfo.CoverImage != null)
             {
-                var newCover = ProcessMetadataFile(metadata.CoverImage, tempCoverFileName);
+                var newCover = ProcessMetadataFile(metadata.GameInfo.CoverImage, tempCoverFileName);
                 if (newCover != null)
                 {
                     EditingGame.CoverImage = newCover;
                 }
             }
 
-            if (metadata.Icon != null)
+            if (metadata.GameInfo.Icon != null)
             {
-                var newIcon = ProcessMetadataFile(metadata.Icon, tempIconFileName);
+                var newIcon = ProcessMetadataFile(metadata.GameInfo.Icon, tempIconFileName);
                 if (newIcon != null)
                 {
                     EditingGame.Icon = newIcon;
                 }
             }
 
-            if (metadata.BackgroundImage != null)
+            if (metadata.GameInfo.BackgroundImage != null)
             {
-                var newBackground = ProcessMetadataFile(metadata.BackgroundImage, tempBackgroundFileName);
+                var newBackground = ProcessMetadataFile(metadata.GameInfo.BackgroundImage, tempBackgroundFileName);
                 if (newBackground != null)
                 {
                     EditingGame.BackgroundImage = newBackground;
@@ -328,15 +328,15 @@ namespace Playnite.DesktopApp.ViewModels
                 File.WriteAllBytes(targetPath, file.Content);
                 return targetPath;
             }
-            else if (!file.OriginalUrl.IsNullOrEmpty())
+            else if (!file.Path.IsNullOrEmpty())
             {
-                if (file.OriginalUrl.IsHttpUrl())
+                if (file.Path.IsHttpUrl())
                 {
-                    var extension = Path.GetExtension(new Uri(file.OriginalUrl).AbsolutePath);
+                    var extension = Path.GetExtension(new Uri(file.Path).AbsolutePath);
                     var fileName = tempFileName + extension;
                     var targetPath = Path.Combine(PlaynitePaths.TempPath, fileName);
                     var progRes = dialogs.ActivateGlobalProgress((a) =>
-                        HttpDownloader.DownloadFile(file.OriginalUrl, targetPath, a.CancelToken),
+                        HttpDownloader.DownloadFile(file.Path, targetPath, a.CancelToken),
                         new GlobalProgressOptions("LOCDownloadingMediaLabel", true));
                     if (progRes.Result == true && !progRes.Canceled)
                     {
@@ -344,13 +344,13 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else
                     {
-                        logger.Error(progRes.Error, $"Failed to download {file.OriginalUrl}.");
+                        logger.Error(progRes.Error, $"Failed to download {file.Path}.");
                         return null;
                     }
                 }
                 else
                 {
-                    return file.OriginalUrl;
+                    return file.Path;
                 }
             }
             else
@@ -385,17 +385,13 @@ namespace Playnite.DesktopApp.ViewModels
                             AgeRatings = provider.GetAgeRatings(fieldArgs),
                             Series = provider.GetSeries(fieldArgs),
                             Regions = provider.GetRegions(fieldArgs),
-                            Platforms = provider.GetPlatforms(fieldArgs)
-                        };
-
-                        var metadata = new GameMetadata
-                        {
-                            GameInfo = gameInfo,
+                            Platforms = provider.GetPlatforms(fieldArgs),
                             Icon = provider.GetIcon(fieldArgs),
                             CoverImage = provider.GetCoverImage(fieldArgs),
                             BackgroundImage = provider.GetBackgroundImage(fieldArgs)
                         };
 
+                        var metadata = new GameMetadata(gameInfo);
                         Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
                     }
                     finally

@@ -219,21 +219,21 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Icon.Enabled = true;
                 CurrentIcon = ImageSourceManager.GetImage(CurrentGame.Icon, false, new BitmapLoadProperties(256, 256));
-                NewIcon = ImageSourceManager.GetImage(newData.Icon.OriginalUrl, false, new BitmapLoadProperties(256, 256));
+                NewIcon = ImageSourceManager.GetImage(newData.GameInfo.Icon.Path, false, new BitmapLoadProperties(256, 256));
             }
 
             if (diffFields.Contains(GameField.CoverImage))
             {
                 Cover.Enabled = true;
                 CurrentCover = ImageSourceManager.GetImage(CurrentGame.CoverImage, false, new BitmapLoadProperties(900, 900));
-                NewCover = ImageSourceManager.GetImage(newData.CoverImage.OriginalUrl, false, new BitmapLoadProperties(900, 900));
+                NewCover = ImageSourceManager.GetImage(newData.GameInfo.CoverImage.Path, false, new BitmapLoadProperties(900, 900));
             }
 
             if (diffFields.Contains(GameField.BackgroundImage))
             {
                 Background.Enabled = true;
                 CurrentBackground = ImageSourceManager.GetImage(CurrentGame.BackgroundImage, false, new BitmapLoadProperties(1920, 1080));
-                NewBackground = ImageSourceManager.GetImage(newData.BackgroundImage.OriginalUrl, false, new BitmapLoadProperties(1920, 1080));
+                NewBackground = ImageSourceManager.GetImage(newData.GameInfo.BackgroundImage.Path, false, new BitmapLoadProperties(1920, 1080));
             }
         }
 
@@ -328,17 +328,17 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (diffFields.Contains(GameField.Icon) && Icon.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.Icon = null;
+                ResultMetadata.GameInfo.Icon = null;
             }
 
             if (diffFields.Contains(GameField.CoverImage) && Cover.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.CoverImage = null;
+                ResultMetadata.GameInfo.CoverImage = null;
             }
 
             if (diffFields.Contains(GameField.BackgroundImage) && Background.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.BackgroundImage = null;
+                ResultMetadata.GameInfo.BackgroundImage = null;
             }
 
             window.Close(true);

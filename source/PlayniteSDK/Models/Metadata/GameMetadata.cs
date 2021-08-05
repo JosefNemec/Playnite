@@ -29,30 +29,6 @@ namespace Playnite.SDK.Metadata
         }
 
         /// <summary>
-        /// Gets or sets game icon.
-        /// </summary>
-        public MetadataFile Icon
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// Gets or sets game cover image.
-        /// </summary>
-        public MetadataFile CoverImage
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// Gets or sets game background image.
-        /// </summary>
-        public MetadataFile BackgroundImage
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// Creates new instance of <see cref="GameMetadata"/>.
         /// </summary>
         public GameMetadata()
@@ -63,15 +39,9 @@ namespace Playnite.SDK.Metadata
         /// Creates new instance of <see cref="GameMetadata"/>.
         /// </summary>
         /// <param name="gameInfo">Game metadata.</param>
-        /// <param name="icon">Game icon.</param>
-        /// <param name="coverImage">Game cover image.</param>
-        /// <param name="background">Game background image.</param>
-        public GameMetadata(GameInfo gameInfo, MetadataFile icon, MetadataFile coverImage, MetadataFile background)
+        public GameMetadata(GameInfo gameInfo)
         {
             GameInfo = gameInfo;
-            Icon = icon;
-            CoverImage = coverImage;
-            BackgroundImage = background;
         }
 
         /// <summary>

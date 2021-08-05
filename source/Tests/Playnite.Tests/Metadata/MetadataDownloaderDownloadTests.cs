@@ -37,7 +37,7 @@ namespace Playnite.Tests.Metadata
 
             public override MetadataFile GetBackgroundImage(GetMetadataFieldArgs args)
             {
-                return metadata.BackgroundImage;
+                return metadata.GameInfo?.BackgroundImage;
             }
 
             public override int? GetCommunityScore(GetMetadataFieldArgs args)
@@ -47,7 +47,7 @@ namespace Playnite.Tests.Metadata
 
             public override MetadataFile GetCoverImage(GetMetadataFieldArgs args)
             {
-                return metadata.CoverImage;
+                return metadata.GameInfo?.CoverImage;
             }
 
             public override int? GetCriticScore(GetMetadataFieldArgs args)
@@ -72,7 +72,7 @@ namespace Playnite.Tests.Metadata
 
             public override MetadataFile GetIcon(GetMetadataFieldArgs args)
             {
-                return metadata.Icon;
+                return metadata.GameInfo?.Icon;
             }
 
             public override List<Link> GetLinks(GetMetadataFieldArgs args)
@@ -446,8 +446,11 @@ namespace Playnite.Tests.Metadata
                 Publishers = new List<string>() { $"IGDB publisher {gameId}" },
                 ReleaseDate = new DateTime(2012, 6, 6),
                 Tags = new List<string>() { $"IGDB Tag {gameId}" },
-                Features = new List<string>() { $"IGDB Feature {gameId}" }
-            }, icon, image, background);
+                Features = new List<string>() { $"IGDB Feature {gameId}" },
+                Icon = icon,
+                BackgroundImage = background,
+                CoverImage = image
+            });
 
             List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
             {

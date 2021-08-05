@@ -332,7 +332,7 @@ namespace Playnite.DesktopApp.ViewModels
                 if (program.IconSource != null &&  program.IconSource != ImportableProgram.EmptyImage)
                 {
                     var bitmap = (BitmapSource)program.IconSource;
-                    newMeta.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
+                    newMeta.GameInfo.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
                 }
 
                 SelectedGames.Add(newMeta);

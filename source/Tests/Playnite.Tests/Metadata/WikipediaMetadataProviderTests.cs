@@ -23,7 +23,7 @@ namespace Playnite.Tests.Metadata
 
         private void ValidateBoxArt(GameMetadata game)
         {
-            Assert.IsTrue(game.CoverImage?.OriginalUrl.IsNullOrEmpty() == false);
+            Assert.IsTrue(game.GameInfo.CoverImage?.Path.IsNullOrEmpty() == false);
         }
 
         [Test]

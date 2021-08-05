@@ -732,9 +732,9 @@ namespace Playnite.Database
             {
                 return AddFile(file.FileName, file.Content, parentId);
             }
-            else if (!file.OriginalUrl.IsNullOrEmpty())
+            else if (!file.Path.IsNullOrEmpty())
             {
-                return AddFile(file.OriginalUrl, parentId);
+                return AddFile(file.Path, parentId);
             }
             else
             {
@@ -1127,9 +1127,9 @@ namespace Playnite.Database
         public Game ImportGame(GameInfo game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
-            toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
-            toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
-            toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
+            toAdd.Icon = AddNewGameFile(game.Icon?.Path, toAdd.Id);
+            toAdd.CoverImage = AddNewGameFile(game.CoverImage?.Path, toAdd.Id);
+            toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage?.Path, toAdd.Id);
             toAdd.IncludeLibraryPluginAction = true;
             Games.Add(toAdd);
             return toAdd;
@@ -1138,25 +1138,25 @@ namespace Playnite.Database
         public Game ImportGame(GameMetadata metadata)
         {
             var toAdd = GameInfoToGame(metadata.GameInfo, Guid.Empty);
-            if (metadata.Icon != null)
+            if (metadata.GameInfo.Icon != null)
             {
-                toAdd.Icon = AddFile(metadata.Icon, toAdd.Id);
+                toAdd.Icon = AddFile(metadata.GameInfo.Icon, toAdd.Id);
             }
 
-            if (metadata.CoverImage != null)
+            if (metadata.GameInfo.CoverImage != null)
             {
-                toAdd.CoverImage = AddFile(metadata.CoverImage, toAdd.Id);
+                toAdd.CoverImage = AddFile(metadata.GameInfo.CoverImage, toAdd.Id);
             }
 
-            if (metadata.BackgroundImage != null)
+            if (metadata.GameInfo.BackgroundImage != null)
             {
-                if (metadata.BackgroundImage.Content == null)
+                if (metadata.GameInfo.BackgroundImage.Content == null)
                 {
-                    toAdd.BackgroundImage = metadata.BackgroundImage.OriginalUrl;
+                    toAdd.BackgroundImage = metadata.GameInfo.BackgroundImage.Path;
                 }
                 else
                 {
-                    toAdd.BackgroundImage = AddFile(metadata.BackgroundImage, toAdd.Id);
+                    toAdd.BackgroundImage = AddFile(metadata.GameInfo.BackgroundImage, toAdd.Id);
                 }
             }
 

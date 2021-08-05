@@ -82,7 +82,7 @@ namespace Playnite.Metadata.Providers
         {
             if (AvailableFields.Contains(MetadataField.ReleaseDate))
             {
-                return gameData.CoverImage;
+                return gameData.GameInfo.CoverImage;
             }
 
             return base.GetCoverImage(args);
@@ -124,7 +124,7 @@ namespace Playnite.Metadata.Providers
                     fields.Add(MetadataField.ReleaseDate);
                 }
 
-                if (gameData.CoverImage != null)
+                if (gameData.GameInfo.CoverImage != null)
                 {
                     fields.Add(MetadataField.CoverImage);
                 }
@@ -378,7 +378,7 @@ namespace Playnite.Metadata.Providers
 
             if (!image.IsNullOrEmpty())
             {
-                metadata.CoverImage = new MetadataFile(image);
+                metadata.GameInfo.CoverImage = new MetadataFile(image);
             }
 
             // Other fields

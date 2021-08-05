@@ -47,29 +47,29 @@ namespace TestGameLibrary
                     Name = "Notepad",
                     GameId = "notepad",
                     IsInstalled = true,
-                    Icon = @"c:\Windows\notepad.exe"
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(@"c:\Windows\notepad.exe")
                 },
                 new GameInfo()
                 {
                     Name = "Calculator",
                     GameId = "calc",
                     IsInstalled = true,
-                    Icon = @"https://playnite.link/applogo.png",
-                    BackgroundImage =  @"https://playnite.link/applogo.png"
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(@"https://playnite.link/applogo.png"),
+                    BackgroundImage =  new Playnite.SDK.Metadata.MetadataFile(@"https://playnite.link/applogo.png")
                 },
                 new GameInfo()
                 {
                     Name = "Paint",
                     GameId = "mspaint",
                     IsInstalled = true,
-                    Icon = LibraryIcon
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(LibraryIcon)
                 },
                 new GameInfo()
                 {
                     Name = "WordPad",
                     GameId = "write",
                     IsInstalled = true,
-                    Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga")
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga"))
                 }
             };
         }

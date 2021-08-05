@@ -25,7 +25,7 @@ namespace Playnite.SDK.Metadata
         /// </summary>
         public bool HasImageData
         {
-            get => HasContent || !string.IsNullOrEmpty(OriginalUrl);
+            get => HasContent || !string.IsNullOrEmpty(Path);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Playnite.SDK.Metadata
         /// <summary>
         /// Gets or sets original source url.
         /// </summary>
-        public string OriginalUrl
+        public string Path
         {
             get; set;
         }
@@ -62,11 +62,11 @@ namespace Playnite.SDK.Metadata
         /// <summary>
         /// Creates new instance of <see cref="MetadataFile"/>.
         /// </summary>
-        /// <param name="url">Source URL.</param>
-        public MetadataFile(string url)
+        /// <param name="path">Source path (URL, URI, system path).</param>
+        public MetadataFile(string path)
         {
-            FileName = Path.GetFileName(url);
-            OriginalUrl = url;
+            FileName = System.IO.Path.GetFileName(path);
+            Path = path;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Playnite.SDK.Metadata
         /// <param name="name">File name.</param>
         /// <param name="data">File content.</param>
         public MetadataFile(string name, byte[] data) : this(name, data, null)
-        {            
+        {
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Playnite.SDK.Metadata
         {
             FileName = name;
             Content = data;
-            OriginalUrl = originalUrl;
+            Path = originalUrl;
         }
     }
 }
