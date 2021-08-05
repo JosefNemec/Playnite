@@ -260,6 +260,7 @@ Results in: -image "c:\folder\image.iso" -fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Game cover image height</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Game list icon height</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Application font</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont">Monospaced font</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filter panel position</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Explorer panel position</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Cover art rendering</sys:String>

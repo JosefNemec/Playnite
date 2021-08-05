@@ -66,6 +66,7 @@
 
         <TextBox Grid.Column="1" AcceptsReturn="True" AcceptsTab="True" MaxHeight="200"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 FontFamily="{DynamicResource MonospaceFontFamily}"
                  Text="{Binding Script}"
                  Visibility="{Binding ShowScriptInput, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 

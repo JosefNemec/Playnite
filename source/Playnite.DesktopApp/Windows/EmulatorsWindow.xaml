@@ -277,16 +277,20 @@
                                                 </Grid.RowDefinitions>
 
                                                 <TextBlock Grid.Row="0" Text="{DynamicResource LOCEmulatorPreScriptDescription}" />
-                                                <TextBox Grid.Row="1" Text="{Binding PreScript}" AcceptsReturn="True" AcceptsTab="True" />
+                                                <TextBox Grid.Row="1" Text="{Binding PreScript}" AcceptsReturn="True" AcceptsTab="True"
+                                                         FontFamily="{DynamicResource MonospaceFontFamily}"/>
                                                 <TextBlock Grid.Row="2" Text="{DynamicResource LOCEmulatorPostScriptDescription}" />
-                                                <TextBox Grid.Row="3" Text="{Binding PostScript}" AcceptsReturn="True" AcceptsTab="True" />
+                                                <TextBox Grid.Row="3" Text="{Binding PostScript}" AcceptsReturn="True" AcceptsTab="True"
+                                                         FontFamily="{DynamicResource MonospaceFontFamily}"/>
                                                 <TextBlock Grid.Row="4" Text="{DynamicResource LOCEmulatorStartedScriptDescription}" />
-                                                <TextBox Grid.Row="5" Text="{Binding ExitScript}" AcceptsReturn="True" AcceptsTab="True" />
+                                                <TextBox Grid.Row="5" Text="{Binding ExitScript}" AcceptsReturn="True" AcceptsTab="True"
+                                                         FontFamily="{DynamicResource MonospaceFontFamily}"/>
                                             </Grid>
                                         </TabItem>
                                         <TabItem Header="{DynamicResource LOCStartupScript}">
                                             <TextBox VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True"
                                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"
+                                                     FontFamily="{DynamicResource MonospaceFontFamily}"
                                                      Text="{Binding StartupScript}" />
                                         </TabItem>
                                     </TabControl>

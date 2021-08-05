@@ -281,6 +281,16 @@ namespace Playnite
                         logger.Error($"Cannot set font {AppSettings.FontFamilyName}, font not found.");
                     }
 
+                    if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.MonospaceFontFamilyName))
+                    {
+                        CurrentNative.Resources.Add(
+                            "MonospaceFontFamily", new FontFamily(AppSettings.MonospaceFontFamilyName));
+                    }
+                    else
+                    {
+                        logger.Error($"Cannot set monospace font {AppSettings.MonospaceFontFamilyName}, font not found.");
+                    }
+
                     if (AppSettings.FontSize > 0)
                     {
                         CurrentNative.Resources.Add(

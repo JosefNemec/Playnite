@@ -55,6 +55,13 @@
                       SelectedValue="{Binding Settings.FontFamilyName}" />
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+            <ContentControl Content="{DynamicResource LOCSettingsInterfaceMonoFont}" VerticalAlignment="Center"
+                            ContentStringFormat="{}{0} *" />
+            <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
+                      SelectedValue="{Binding Settings.MonospaceFontFamilyName}" />
+        </StackPanel>
+
         <StackPanel Orientation="Horizontal" Margin="0,20,0,0" >
             <CheckBox Name="CheckEnableTray" VerticalAlignment="Center"
                     IsChecked="{Binding Settings.EnableTray}"

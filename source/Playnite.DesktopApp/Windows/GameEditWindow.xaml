@@ -236,6 +236,7 @@
                                     Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding UseDescriptionChanges}"/>
                         <TextBox Grid.Column="2" Grid.Row="9" Grid.RowSpan="13" Grid.ColumnSpan="6"
+                                 FontFamily="{DynamicResource MonospaceFontFamily}"
                                  VerticalAlignment="Stretch" Margin="3,5,3,3"
                                  TextWrapping="Wrap" AcceptsReturn="True" Name="TextDescription"
                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -970,6 +971,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBox AcceptsReturn="True" Grid.Column="1" Grid.Row="0"
+                                 FontFamily="{DynamicResource MonospaceFontFamily}"
                                  HorizontalScrollBarVisibility="Auto"
                                  VerticalScrollBarVisibility="Visible"
                                  Text="{Binding EditingGame.PreScript, UpdateSourceTrigger=PropertyChanged}" />
@@ -994,6 +996,7 @@
                         </StackPanel>
 
                         <TextBox AcceptsReturn="True" Grid.Column="1" Grid.Row="1"
+                                 FontFamily="{DynamicResource MonospaceFontFamily}"
                                  HorizontalScrollBarVisibility="Auto"
                                  VerticalScrollBarVisibility="Visible"
                                  Text="{Binding EditingGame.GameStartedScript, UpdateSourceTrigger=PropertyChanged}"
@@ -1019,6 +1022,7 @@
                         </StackPanel>
 
                         <TextBox AcceptsReturn="True" Grid.Column="1" Grid.Row="2"
+                                 FontFamily="{DynamicResource MonospaceFontFamily}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding EditingGame.PostScript, UpdateSourceTrigger=PropertyChanged}"/>

@@ -1188,6 +1188,22 @@ namespace Playnite
             }
         }
 
+        private string monospaceFontFamilyName = "Consolas";
+        [RequiresRestart]
+        public string MonospaceFontFamilyName
+        {
+            get
+            {
+                return monospaceFontFamilyName;
+            }
+
+            set
+            {
+                monospaceFontFamilyName = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double fontSize = 14;
         [RequiresRestart]
         public double FontSize

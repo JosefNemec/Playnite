@@ -43,6 +43,7 @@
                         CommandParameter="{Binding Settings.PreScript}"/>
             </DockPanel>
             <TextBox AcceptsReturn="True" Grid.Row="3"
+                     FontFamily="{DynamicResource MonospaceFontFamily}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding Settings.PreScript, UpdateSourceTrigger=PropertyChanged}" />
@@ -54,6 +55,7 @@
                         CommandParameter="{Binding Settings.GameStartedScript}"/>
             </DockPanel>
             <TextBox AcceptsReturn="True" Grid.Row="5"
+                     FontFamily="{DynamicResource MonospaceFontFamily}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding Settings.GameStartedScript, UpdateSourceTrigger=PropertyChanged}"/>
@@ -65,6 +67,7 @@
                         CommandParameter="{Binding Settings.PostScript}"/>
             </DockPanel>
             <TextBox AcceptsReturn="True" Grid.Row="7"
+                     FontFamily="{DynamicResource MonospaceFontFamily}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              Text="{Binding Settings.PostScript, UpdateSourceTrigger=PropertyChanged}"/>
