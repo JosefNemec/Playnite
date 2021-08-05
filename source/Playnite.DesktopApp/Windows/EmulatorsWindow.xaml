@@ -243,12 +243,11 @@
                                                 <!--Arguments-->
                                                 <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
                                                 <TextBox Name="TextArguments" Text="{Binding Arguments,UpdateSourceTrigger=PropertyChanged}"
-                                                         DockPanel.Dock="Left" ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
+                                                         DockPanel.Dock="Left" />
 
                                                 <!--WorkingDir-->
                                                 <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" />
-                                                <TextBox Name="TextWorkdir" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"
-                                                         ToolTip="{DynamicResource LOCGameVariablesTooltip}"
+                                                <TextBox Name="TextWorkdir" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"                                                         
                                                          pbeh:TextBoxBehavior.AttachDirectoryBrowser="True"/>
 
                                                 <!--FileTypes-->
