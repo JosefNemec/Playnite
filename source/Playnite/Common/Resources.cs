@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Playnite.Native;
 
 namespace Playnite.Common
 {
@@ -14,10 +15,10 @@ namespace Playnite.Common
     {
         public static void ExtractResource(string path, string name, string type, string destination)
         {
-            IntPtr hMod = Interop.LoadLibraryEx(path, IntPtr.Zero, 0x00000002);
-            IntPtr hRes = Interop.FindResource(hMod, name, type);
-            uint size = Interop.SizeofResource(hMod, hRes);
-            IntPtr pt = Interop.LoadResource(hMod, hRes);
+            IntPtr hMod = Kernel32.LoadLibraryEx(path, IntPtr.Zero, 0x00000002);
+            IntPtr hRes = Kernel32.FindResource(hMod, name, type);
+            uint size = Kernel32.SizeofResource(hMod, hRes);
+            IntPtr pt = Kernel32.LoadResource(hMod, hRes);
 
             byte[] bPtr = new byte[size];
             Marshal.Copy(pt, bPtr, 0, (int)size);
@@ -63,14 +64,14 @@ namespace Playnite.Common
             }
 
             var sb = new StringBuilder(1024);
-            var result = Interop.SHLoadIndirectString(resourceString, sb, sb.Capacity, IntPtr.Zero);
+            var result = Shlwapi.SHLoadIndirectString(resourceString, sb, sb.Capacity, IntPtr.Zero);
             if (result == 0)
             {
                 return sb.ToString();
             }
 
             resourceString = $"@{{{fullName}? ms-resource://{packageName}/{resUri.Segments.Last()}}}";
-            result = Interop.SHLoadIndirectString(resourceString, sb, sb.Capacity, IntPtr.Zero);
+            result = Shlwapi.SHLoadIndirectString(resourceString, sb, sb.Capacity, IntPtr.Zero);
             if (result == 0)
             {
                 return sb.ToString();

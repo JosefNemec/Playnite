@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Playnite.Common;
+using Playnite.Native;
 
 namespace System.Drawing
 {
@@ -40,7 +40,7 @@ namespace System.Drawing
                     Int32Rect.Empty,
                     BitmapSizeOptions.FromEmptyOptions());
 
-                if (!Interop.DeleteObject(hBitmap))
+                if (!Gdi32.DeleteObject(hBitmap))
                 {
                     throw new Win32Exception();
                 }

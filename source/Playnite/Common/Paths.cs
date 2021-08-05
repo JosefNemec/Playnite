@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Playnite.Native;
 
 namespace Playnite.Common
 {
@@ -13,12 +14,12 @@ namespace Playnite.Common
     {
         public static string GetFinalPathName(string path)
         {
-            var h = Interop.CreateFile(path,
-                Interop.FILE_READ_EA,
+            var h = Kernel32.CreateFile(path,
+                Winnt.FILE_READ_EA,
                 FileShare.ReadWrite | FileShare.Delete,
                 IntPtr.Zero,
                 FileMode.Open,
-                Interop.FILE_FLAG_BACKUP_SEMANTICS,
+                Fileapi.FILE_FLAG_BACKUP_SEMANTICS,
                 IntPtr.Zero);
 
             if (path.StartsWith(@"\\"))
@@ -26,7 +27,7 @@ namespace Playnite.Common
                 return path;
             }
 
-            if (h == Interop.INVALID_HANDLE_VALUE)
+            if (h == Winuser.INVALID_HANDLE_VALUE)
             {
                 throw new Win32Exception();
             }
@@ -34,7 +35,7 @@ namespace Playnite.Common
             try
             {
                 var sb = new StringBuilder(1024);
-                var res = Interop.GetFinalPathNameByHandle(h, sb, 1024, 0);
+                var res = Kernel32.GetFinalPathNameByHandle(h, sb, 1024, 0);
                 if (res == 0)
                 {
                     throw new Win32Exception();
@@ -52,7 +53,7 @@ namespace Playnite.Common
             }
             finally
             {
-                Interop.CloseHandle(h);
+                Kernel32.CloseHandle(h);
             }
         }
 

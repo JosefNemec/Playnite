@@ -282,7 +282,7 @@
     <Compile Include="Common\GlobalRandom.cs" />
     <Compile Include="Common\Images.cs" />
     <Compile Include="Common\IniParser.cs" />
-    <Compile Include="Common\InteropMethods.cs" />
+    <Compile Include="Native\Gdi32.cs" />
     <Compile Include="Common\ItemsSource.cs" />
     <Compile Include="Common\JsonRpcClient.cs" />
     <Compile Include="Common\MarkupConverter.cs" />
@@ -409,6 +409,21 @@
     <Compile Include="Manifests\AddonManifests.cs" />
     <Compile Include="Manifests\ThemeManifest.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
+    <Compile Include="Native\Kernel32.cs" />
+    <Compile Include="Native\Ntdll.cs" />
+    <Compile Include="Native\Powrprof.cs" />
+    <Compile Include="Native\Processthreadsapi.cs" />
+    <Compile Include="Native\Psapi.cs" />
+    <Compile Include="Native\Shell32.cs" />
+    <Compile Include="Native\Shlwapi.cs" />
+    <Compile Include="Native\User32.cs" />
+    <Compile Include="Native\Winbase.cs" />
+    <Compile Include="Native\Windef.cs" />
+    <Compile Include="Native\WinError.cs" />
+    <Compile Include="Native\Wingdi.cs" />
+    <Compile Include="Native\Winnt.cs" />
+    <Compile Include="Native\Wintrust.cs" />
+    <Compile Include="Native\Winuser.cs" />
     <Compile Include="ObservablePowerStatus.cs" />
     <Compile Include="PlayniteProcess.cs" />
     <Compile Include="PlayniteUriHandler.cs" />
@@ -496,6 +511,7 @@
     <None Include="Localization\locstatus.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Native\Fileapi.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

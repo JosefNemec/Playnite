@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Playnite.SDK;
+using Playnite.Native;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Playnite.Common.Interop;
 
 namespace Playnite.Common
 {
@@ -228,13 +228,13 @@ namespace Playnite.Common
         {
             if (show)
             {
-                while (ShowCursor(true) < 0)
+                while (User32.ShowCursor(true) < 0)
                 {
                 }
             }
             else
             {
-                while (ShowCursor(false) >= 0)
+                while (User32.ShowCursor(false) >= 0)
                 {
                 }
             }
@@ -252,12 +252,12 @@ namespace Playnite.Common
 
         public static bool Sleep()
         {
-            return Interop.SetSuspendState(false, true, false);
+            return Powrprof.SetSuspendState(false, true, false);
         }
 
         public static bool Hibernate()
         {
-            return Interop.SetSuspendState(true, true, false);
+            return Powrprof.SetSuspendState(true, true, false);
         }
 
         public static ComputerScreen ToComputerScreen(this Screen screen)
@@ -335,8 +335,8 @@ namespace Playnite.Common
                     type = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME
                 }
             };
-            var error = DisplayConfigGetDeviceInfo(ref deviceName);
-            if (error != ERROR_SUCCESS)
+            var error = User32.DisplayConfigGetDeviceInfo(ref deviceName);
+            if (error != WinError.ERROR_SUCCESS)
             {
                 throw new Win32Exception(error);
             }
@@ -346,25 +346,25 @@ namespace Playnite.Common
 
         private static IEnumerable<string> GetAllMonitorsFriendlyNames()
         {
-            var error = GetDisplayConfigBufferSizes(
+            var error = User32.GetDisplayConfigBufferSizes(
                 QUERY_DEVICE_CONFIG_FLAGS.QDC_ONLY_ACTIVE_PATHS,
                 out uint pathCount,
                 out uint modeCount);
-            if (error != ERROR_SUCCESS)
+            if (error != WinError.ERROR_SUCCESS)
             {
                 throw new Win32Exception(error);
             }
 
             var displayPaths = new DISPLAYCONFIG_PATH_INFO[pathCount];
             var displayModes = new DISPLAYCONFIG_MODE_INFO[modeCount];
-            error = QueryDisplayConfig(
+            error = User32.QueryDisplayConfig(
                 QUERY_DEVICE_CONFIG_FLAGS.QDC_ONLY_ACTIVE_PATHS,
                 ref pathCount,
                 displayPaths,
                 ref modeCount,
                 displayModes,
                 IntPtr.Zero);
-            if (error != ERROR_SUCCESS)
+            if (error != WinError.ERROR_SUCCESS)
             {
                 throw new Win32Exception(error);
             }

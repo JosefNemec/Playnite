@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK;
+using Playnite.Native;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,16 +25,16 @@ namespace Playnite.Common
         public static int ShellExecute(string cmdLine)
         {
             logger.Debug($"Executing shell command: {cmdLine}");
-            var startInfo = new Interop.STARTUPINFO();
-            var procInfo = new Interop.PROCESS_INFORMATION();
-            var procAtt = new Interop.SECURITY_ATTRIBUTES();
-            var threadAtt = new Interop.SECURITY_ATTRIBUTES();
+            var startInfo = new STARTUPINFO();
+            var procInfo = new PROCESS_INFORMATION();
+            var procAtt = new SECURITY_ATTRIBUTES();
+            var threadAtt = new SECURITY_ATTRIBUTES();
             procAtt.nLength = Marshal.SizeOf(procAtt);
             threadAtt.nLength = Marshal.SizeOf(threadAtt);
 
             try
             {
-                if (Interop.CreateProcess(
+                if (Kernel32.CreateProcess(
                     null,
                     cmdLine,
                     ref procAtt,
@@ -56,12 +57,12 @@ namespace Playnite.Common
             {
                 if (procInfo.hProcess != IntPtr.Zero)
                 {
-                    Interop.CloseHandle(procInfo.hProcess);
+                    Kernel32.CloseHandle(procInfo.hProcess);
                 }
 
                 if (procInfo.hThread != IntPtr.Zero)
                 {
-                    Interop.CloseHandle(procInfo.hThread);
+                    Kernel32.CloseHandle(procInfo.hThread);
                 }
             }
         }

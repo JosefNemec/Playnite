@@ -82,14 +82,38 @@
     <Compile Include="..\..\Playnite\Common\FileSystem.cs">
       <Link>Shared\FileSystem.cs</Link>
     </Compile>
-    <Compile Include="..\..\Playnite\Common\InteropMethods.cs">
-      <Link>Shared\InteropMethods.cs</Link>
-    </Compile>
     <Compile Include="..\..\Playnite\Common\Paths.cs">
       <Link>Shared\Paths.cs</Link>
     </Compile>
     <Compile Include="..\..\Playnite\Common\Resources.cs">
       <Link>Shared\Resources.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Fileapi.cs">
+      <Link>Shared\Native\Fileapi.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Kernel32.cs">
+      <Link>Shared\Native\Kernel32.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Ntdll.cs">
+      <Link>Shared\Native\Ntdll.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Processthreadsapi.cs">
+      <Link>Shared\Native\Processthreadsapi.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Shlwapi.cs">
+      <Link>Shared\Native\Shlwapi.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Winbase.cs">
+      <Link>Shared\Native\Winbase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Windef.cs">
+      <Link>Shared\Native\Windef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Winnt.cs">
+      <Link>Shared\Native\Winnt.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\winuser.cs">
+      <Link>Shared\Native\winuser.cs</Link>
     </Compile>
     <Compile Include="Converters.cs" />
     <Compile Include="Logger.cs" />
