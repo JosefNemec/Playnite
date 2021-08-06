@@ -116,9 +116,12 @@ namespace Playnite.DesktopApp.Controls
                 using (ItemContainerGenerator.StartAt(startPosition, GeneratorDirection.Forward, true))
                 {
                     var child = (UIElement)ItemContainerGenerator.GenerateNext();
-                    AddInternalChild(child);
-                    ItemContainerGenerator.PrepareItemContainer(child);
-                    child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                    if (child != null)
+                    {
+                        AddInternalChild(child);
+                        ItemContainerGenerator.PrepareItemContainer(child);
+                        child.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                    }
                 }
             }
 
