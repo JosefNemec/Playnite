@@ -223,7 +223,7 @@ namespace TestPlugin
                 new AutomaticPlayController(args.Game)
                 {
                     Name = "Test Action",
-                    Path = "calc",
+                    Path = "cmd.exe",
                     Type = GenericPlayActionType.File
                 }
             };

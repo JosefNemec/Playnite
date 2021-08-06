@@ -183,7 +183,7 @@ namespace Playnite
                     logger.Debug("Using automatic plugin controller to start a game.");
                     controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
                 }
-                if (playAction is PlayController plugAction)
+                else if (playAction is PlayController plugAction)
                 {
                     logger.Debug("Using plugin to start a game.");
                     controller = plugAction;
@@ -201,6 +201,14 @@ namespace Playnite
                 else
                 {
                     logger.Error($"Uknown controller found to start a game: {controller.GetType()}");
+                }
+
+                foreach (var item in gameActions.Item1)
+                {
+                    if (item != controller)
+                    {
+                        item.Dispose();
+                    }
                 }
 
                 if (controller == null)
