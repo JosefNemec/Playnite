@@ -1013,7 +1013,7 @@ namespace Playnite
             }
         }
 
-        private string theme = "Default";
+        private string theme = ThemeManager.DefaultDesktopThemeId;
         [RequiresRestart]
         public string Theme
         {

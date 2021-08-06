@@ -25,6 +25,8 @@ namespace Playnite
         public static System.Version FullscreenApiVersion => new System.Version("1.9.0");
         public static ThemeManifest CurrentTheme { get; private set; }
         public static ThemeManifest DefaultTheme { get; private set; }
+        public const string DefaultDesktopThemeId = "Playnite_builtin_DefaultDesktop";
+        public const string DefaultFullscreenThemeId = "Playnite_builtin_DefaultFullscreen";
 
         public static System.Version GetApiVersion(ApplicationMode mode)
         {
@@ -110,7 +112,7 @@ namespace Playnite
             var defaultRoot = $"Themes/{mode.GetDescription()}/{DefaultTheme.DirectoryName}/";
             foreach (var dict in app.Resources.MergedDictionaries)
             {
-                if (dict.Source.OriginalString.StartsWith("Themes") && dict.Source.OriginalString.EndsWith("xaml"))
+                if (dict.Source.OriginalString.StartsWith(defaultRoot))
                 {
                     acceptableXamls.Add(dict.Source.OriginalString.Replace(defaultRoot, "").Replace('/', '\\'));
                 }
@@ -165,7 +167,45 @@ namespace Playnite
 
             if (allLoaded)
             {
-                loadedXamls.ForEach(a => app.Resources.MergedDictionaries.Add(a));
+                var themeRoot = $"Themes\\{mode.GetDescription()}\\{theme.DirectoryName}\\";
+                // This is sad that we have to do this, but it fixes issues like #2328
+                // We need to remove all loaded theme resources and reload them in specific order:
+                //      default/1.xaml -> theme/1.xaml -> default/2.xaml -> theme/2.xaml etc.
+                //
+                // We can't just load custom theme files at the end or insert them in already loaded pool of resources
+                // because styling with static references won't reload data from custom theme files.
+                // That's why we also have to create new instances of default styles.
+                foreach (var defaultRes in app.Resources.MergedDictionaries.ToList())
+                {
+                    if (defaultRes.Source.OriginalString.StartsWith(defaultRoot))
+                    {
+                        app.Resources.MergedDictionaries.Remove(defaultRes);
+                    }
+                }
+
+                foreach (var themeXamlFile in acceptableXamls)
+                {
+                    var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), "Default", themeXamlFile);
+                    var defaultXaml = Xaml.FromFile(defaultPath);
+                    if (defaultXaml is ResourceDictionary xamlDir)
+                    {
+                        xamlDir.Source = new Uri(defaultPath, UriKind.Absolute);
+                        app.Resources.MergedDictionaries.Add(xamlDir);
+                    }
+
+                    var loaded = loadedXamls.FirstOrDefault(a =>
+                    {
+                        var cust = a.Source.OriginalString.Substring(a.Source.OriginalString.IndexOf(themeRoot) + themeRoot.Length);
+                        var def = themeXamlFile;
+                        return cust == def;
+                    });
+
+                    if (loaded != null)
+                    {
+                        app.Resources.MergedDictionaries.Add(loaded);
+                    }
+                }
+
                 return true;
             }
 

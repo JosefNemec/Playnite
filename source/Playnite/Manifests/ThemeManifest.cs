@@ -35,7 +35,7 @@ namespace Playnite
             thm.CopyProperties(this, false);
             DescriptionPath = manifestPath;
             DirectoryPath = Path.GetDirectoryName(manifestPath);
-            DirectoryName = Path.GetFileNameWithoutExtension(DirectoryPath);
+            DirectoryName = Path.GetFileName(DirectoryPath);
             if (Mode == ApplicationMode.Desktop)
             {
                 IsBuiltInTheme = BuiltinExtensions.BuiltinThemeIds.Contains(thm.Id);

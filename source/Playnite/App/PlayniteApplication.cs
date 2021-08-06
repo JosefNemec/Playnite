@@ -197,11 +197,11 @@ namespace Playnite
                     {
                         if (theme.Mode == ApplicationMode.Desktop)
                         {
-                            AppSettings.Theme = theme.DirectoryName;
+                            AppSettings.Theme = theme.Id;
                         }
                         else
                         {
-                            AppSettings.Fullscreen.Theme = theme.DirectoryName;
+                            AppSettings.Fullscreen.Theme = theme.Id;
                         }
                     }
                 }
@@ -224,17 +224,17 @@ namespace Playnite
                 var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
                 if (theme != ThemeManager.DefaultTheme.Name)
                 {
-                    customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == theme);
+                    customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.Id == theme);
                     if (customTheme == null)
                     {
                         logger.Error($"Failed to apply theme {theme}, theme not found.");
                         if (mode == ApplicationMode.Desktop)
                         {
-                            AppSettings.Theme = "Default";
+                            AppSettings.Theme = ThemeManager.DefaultDesktopThemeId;
                         }
                         else
                         {
-                            AppSettings.Fullscreen.Theme = "Default";
+                            AppSettings.Fullscreen.Theme = ThemeManager.DefaultFullscreenThemeId;
                         }
 
                         ThemeManager.SetCurrentTheme(defaultTheme);

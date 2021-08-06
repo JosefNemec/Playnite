@@ -73,7 +73,7 @@ namespace Playnite
             var description = deserializer.Deserialize<ExtensionManifest>(File.ReadAllText(descriptorPath));
             description.DescriptionPath = descriptorPath;
             description.DirectoryPath = Path.GetDirectoryName(descriptorPath);
-            description.DirectoryName = Path.GetFileNameWithoutExtension(description.DirectoryPath);
+            description.DirectoryName = Path.GetFileName(description.DirectoryPath);
             return description;
         }
     }

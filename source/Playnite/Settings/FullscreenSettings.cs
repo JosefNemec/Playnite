@@ -91,7 +91,7 @@ namespace Playnite
             }
         }
 
-        private string theme = "Default";
+        private string theme = ThemeManager.DefaultFullscreenThemeId;
         public string Theme
         {
             get

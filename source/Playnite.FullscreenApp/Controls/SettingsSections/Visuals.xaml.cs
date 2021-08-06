@@ -34,7 +34,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
 
             SelectTheme.ItemsSource = mainModel.AppSettings.Fullscreen.AvailableThemes;
             SelectTheme.DisplayMemberPath = nameof(ThemeManifest.Name);
-            SelectTheme.SelectedValuePath = nameof(ThemeManifest.DirectoryName);
+            SelectTheme.SelectedValuePath = nameof(ThemeManifest.Id);
             BindingTools.SetBinding(
                 SelectTheme,
                 Selector.SelectedValueProperty,

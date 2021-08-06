@@ -31,7 +31,7 @@
             <ComboBox Margin="10,0,0,0" MinWidth="150"
                     ItemsSource="{Binding AvailableThemes}"
                     SelectedValue="{Binding Settings.Theme}"
-                    SelectedValuePath="DirectoryName"
+                    SelectedValuePath="Id"
                     DisplayMemberPath="Name" />
             <!--TODO update links -->
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
