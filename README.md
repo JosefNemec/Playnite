@@ -91,3 +91,15 @@ Development
 ---------
 
 See the [wiki](https://github.com/JosefNemec/Playnite/wiki/Building) for info about building and setting up the development environment.
+
+Others
+---------
+
+.NET development tools courtesy of [JetBrains](https://www.jetbrains.com/?from=Playnite)
+
+[![jetbrains](https://user-images.githubusercontent.com/3874087/128503701-884cdae4-3283-4d67-8ad1-6103e777a660.png)](https://www.jetbrains.com/?from=Playnite)
+
+Code signing courtesy of [SignPath](https://about.signpath.io)
+
+[![Capture](https://user-images.githubusercontent.com/3874087/128503363-9c39f8cd-9900-4a8b-83f2-81359d4fc731.PNG)](https://about.signpath.io)
+
