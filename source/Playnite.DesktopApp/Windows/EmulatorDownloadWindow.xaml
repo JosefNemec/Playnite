@@ -37,48 +37,51 @@
 
         <DockPanel>
             <TextBlock Text="{DynamicResource LOCEmuDownloadDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,10,5,10"/>
-            <ListView SelectionMode="Single" Margin="5" BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
+
+            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeRows="False"
+                      GridLinesVisibility="None" IsReadOnly="True" RowHeaderWidth="0"
+                      SelectionMode="Single" Margin="5"
+                      BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
                       ItemsSource="{Binding EmulatorDefinitions}" DockPanel.Dock="Bottom">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
                         <Setter Property="Focusable" Value="False"/>
                     </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="{DynamicResource LOCNameLabel}">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name, Mode=OneWay}" Padding="5" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="{DynamicResource LOCSupportedPlatformsTitle}" Width="400">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding AllPlatforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}"
-                                                       Padding="5" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="{DynamicResource LOCWebsiteLabel}">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Padding="5">
-                                            <Hyperlink NavigateUri="{Binding Website, Mode=OneWay}"
-                                                       Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                                                       CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                                                <Hyperlink.Inlines>
-                                                    <Run Text="{Binding Website, Mode=OneWay}"/>
-                                                </Hyperlink.Inlines>
-                                            </Hyperlink>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="{DynamicResource LOCNameLabel}" SortMemberPath="Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name, Mode=OneWay}" Padding="5" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="{DynamicResource LOCSupportedPlatformsTitle}" SortMemberPath="SortedPlatformsString" Width="400">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding SortedPlatformsString}"
+                                           Padding="5" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="{DynamicResource LOCWebsiteLabel}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Padding="5">
+                                    <Hyperlink NavigateUri="{Binding Website, Mode=OneWay}"
+                                               Foreground="{DynamicResource TextBrush}"
+                                               Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                                               CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                                        <Hyperlink.Inlines>
+                                            <Run Text="{Binding Website, Mode=OneWay}"/>
+                                        </Hyperlink.Inlines>
+                                    </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </DockPanel>
     </DockPanel>
 </controls:WindowBase>

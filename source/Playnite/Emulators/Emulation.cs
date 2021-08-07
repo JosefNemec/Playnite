@@ -134,6 +134,8 @@ namespace Playnite.Emulators
         public string DirectoryName { get; set; }
 
         public List<string> AllPlatforms => Profiles.SelectMany(a => a.Platforms).Distinct().ToList();
+        public List<string> SortedPlatforms => Profiles.SelectMany(a => a.Platforms).Distinct().Select(a => Emulation.GetPlatform(a).Name).OrderBy(a => a).ToList();
+        public string SortedPlatformsString => Converters.ListToStringConverter.MakeString(SortedPlatforms);
 
         private static readonly ILogger logger = LogManager.GetLogger();
         private static string emulatorDefDir => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Emulators");
