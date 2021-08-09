@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite.DesktopApp.ViewModels
@@ -55,6 +56,28 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 searchTerm = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string searchWidth;
+        public string SearchWidth
+        {
+            get => searchWidth;
+            set
+            {
+                searchWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string searchHeight;
+        public string SearchHeight
+        {
+            get => searchHeight;
+            set
+            {
+                searchHeight = value;
                 OnPropertyChanged();
             }
         }
@@ -138,6 +161,22 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => !string.IsNullOrEmpty(SearchTerm));
         }
 
+        public RelayCommand<string> SetSearchResolutionCommand
+        {
+            get => new RelayCommand<string>((resolution) =>
+            {
+                SetSearchResolution(resolution);
+            });
+        }
+
+        public RelayCommand<string> ClearSearchResolutionCommand
+        {
+            get => new RelayCommand<string>((a) =>
+            {
+                ClearSearchResolution();
+            });
+        }
+
         public GoogleImageDownloadViewModel(
             IWindowFactory window,
             IResourceProvider resources,
@@ -187,9 +226,14 @@ namespace Playnite.DesktopApp.ViewModels
         public void Search()
         {
             AvailableImages = new List<GoogleImage>();
+            var searchTerm = SearchTerm;
+            if (!string.IsNullOrEmpty(SearchWidth) && !string.IsNullOrEmpty(SearchWidth))
+            {
+                searchTerm = $"{searchTerm} imagesize:{SearchWidth}x{SearchHeight}";
+            }
             if (GlobalProgress.ActivateProgress((_) =>
             {
-                AvailableImages = downloader.GetImages(SearchTerm, Transparent).GetAwaiter().GetResult();
+                AvailableImages = downloader.GetImages(searchTerm, Transparent).GetAwaiter().GetResult();
             }, new GlobalProgressOptions("LOCDownloadingLabel")).Result == true)
             {
                 if (!AvailableImages.HasItems())
@@ -211,6 +255,22 @@ namespace Playnite.DesktopApp.ViewModels
                     ShowLoadMore = false;
                 }
             }
+        }
+
+        public void SetSearchResolution(string resolution)
+        {
+            var regex = Regex.Match(resolution, @"(\d+)x(\d+)");
+            if (regex.Success)
+            {
+                SearchWidth = regex.Groups[1].Value;
+                SearchHeight = regex.Groups[2].Value;
+            }
+        }
+
+        public void ClearSearchResolution()
+        {
+            SearchWidth = string.Empty;
+            SearchHeight = string.Empty;
         }
 
         public void LoadMore()
