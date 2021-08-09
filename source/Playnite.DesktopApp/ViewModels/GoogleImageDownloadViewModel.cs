@@ -227,7 +227,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             AvailableImages = new List<GoogleImage>();
             var searchTerm = SearchTerm;
-            if (!string.IsNullOrEmpty(SearchWidth) && !string.IsNullOrEmpty(SearchWidth))
+            if (!string.IsNullOrEmpty(SearchWidth) && !string.IsNullOrEmpty(SearchHeight))
             {
                 searchTerm = $"{searchTerm} imagesize:{SearchWidth}x{SearchHeight}";
             }
