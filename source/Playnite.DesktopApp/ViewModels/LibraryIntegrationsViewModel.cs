@@ -14,9 +14,15 @@ using System.Windows.Controls;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public class LibraryIntegrationsViewModel : SettingsViewModelBase
+    public class LibraryIntegrationsViewModel : ObservableObject
     {
-        private UserControl pluginListView;
+        private static ILogger logger = LogManager.GetLogger();
+        private IWindowFactory window;
+        private IDialogsFactory dialogs;
+        private IResourceProvider resources;
+        private bool closingHanled = false;
+
+        private Dictionary<Guid, PluginSettingsItem> loadedPluginSettings = new Dictionary<Guid, PluginSettingsItem>();
 
         public RelayCommand<SelectionChangedEventArgs> LibraryItemChangedCommand
         {
@@ -26,26 +32,54 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public List<object> OptionsList { get; set; }
+        public ExtensionFactory Extensions { get; set; }
+
+        private UserControl selectedSectionView;
+        public UserControl SelectedSectionView
+        {
+            get => selectedSectionView;
+            set
+            {
+                selectedSectionView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RelayCommand<object> CancelCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CloseView();
+            });
+        }
+
+        public RelayCommand<object> ConfirmCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ConfirmDialog();
+            });
+        }
+
+        public RelayCommand<object> WindowClosingCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                WindowClosing();
+            });
+        }
 
         public LibraryIntegrationsViewModel(
-            GameDatabase database,
-            PlayniteSettings settings,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, settings, window, dialogs, resources, extensions, app)
+            ExtensionFactory extensions)
         {
-            OptionsList = new List<object>()
-            {
-                new DatabaseObject { Name = ResourceProvider.GetString(LOC.Libraries) },
-                new Separator()
-            };
-            OptionsList.AddRange(Extensions.LibraryPlugins);
-
-            pluginListView = new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this };
-            SelectedSectionView = pluginListView;
+            this.window = window;
+            this.dialogs = dialogs;
+            this.resources = resources;
+            Extensions = extensions;
+            SelectedSectionView = new Controls.SettingsSections.LibrariesConfigWindowInfo() { DataContext = this }; ;
         }
 
         private void LibraryItemChanged(SelectionChangedEventArgs args)
@@ -56,17 +90,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             var item = args.AddedItems[0];
-            if (item is DatabaseObject)
+            if (item is Plugin plugin)
             {
-                SelectedSectionView = pluginListView;
+                SelectedSectionView = PluginSettingsHelper.GetPluginSettingsView(plugin.Id, Extensions, loadedPluginSettings);
             }
-            else if (item is Plugin plugin)
+            else
             {
-                SelectedSectionView = GetPluginSettingsView(plugin.Id);
+                throw new NotSupportedException();
             }
         }
 
-        public override void CloseView()
+        public bool? OpenView()
+        {
+            return window.CreateAndOpenDialog(this);
+        }
+
+        public void CloseView()
         {
             foreach (var plugin in loadedPluginSettings.Values)
             {
@@ -77,7 +116,7 @@ namespace Playnite.DesktopApp.ViewModels
             window.Close(false);
         }
 
-        public override void WindowClosing()
+        public void WindowClosing()
         {
             if (!closingHanled)
             {
@@ -88,10 +127,12 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public override void ConfirmDialog()
+        public void ConfirmDialog()
         {
-            if (!VerifyPluginSettings())
+            var verResult = PluginSettingsHelper.VerifyPluginSettings(loadedPluginSettings);
+            if (!verResult.Item1)
             {
+                dialogs.ShowErrorMessage(string.Join(Environment.NewLine, verResult.Item2), "");
                 return;
             }
 

@@ -23,6 +23,7 @@ using Playnite.DesktopApp.Controls;
 using System.Diagnostics;
 using Playnite.SDK.Exceptions;
 using Playnite.Scripting.PowerShell;
+using System.Collections.ObjectModel;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -38,9 +39,43 @@ namespace Playnite.DesktopApp.ViewModels
         }
     }
 
-    public class SettingsViewModel : SettingsViewModelBase
+    public class SettingsViewModel : ObservableObject
     {
+        internal static ILogger logger = LogManager.GetLogger();
+        internal IWindowFactory window;
+        internal IResourceProvider resources;
+        internal IDialogsFactory dialogs;
+        internal GameDatabase database;
+        internal PlayniteSettings originalSettings;
+        internal PlayniteApplication application;
+        internal List<string> editedFields = new List<string>();
+        internal bool closingHanled = false;
+
         public List<SelectableItem<LibraryPlugin>> AutoCloseClientsList { get; } = new List<SelectableItem<LibraryPlugin>>();
+
+        private UserControl selectedSectionView;
+        public UserControl SelectedSectionView
+        {
+            get => selectedSectionView;
+            set
+            {
+                selectedSectionView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlayniteSettings settings;
+        public PlayniteSettings Settings
+        {
+            get => settings;
+            set
+            {
+                settings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
 
         public bool ShowDpiSettings
         {
@@ -48,11 +83,6 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public List<LoadedPlugin> GenericPlugins
-        {
-            get; private set;
-        }
-
-        public bool AnyGenericPluginSettings
         {
             get; private set;
         }
@@ -167,6 +197,42 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => !a.IsNullOrEmpty());
         }
 
+        private readonly List<ImportExclusionItem> removedExclusionItems = new List<ImportExclusionItem>();
+        public RelayCommand<IList<object>> RemoveImportExclusionItemCommand
+        {
+            get => new RelayCommand<IList<object>>((items) =>
+            {
+                foreach (ImportExclusionItem item in items.ToList())
+                {
+                    ImportExclusionList.Remove(item);
+                    removedExclusionItems.Add(item);
+                }
+            }, (items) => items != null && items.Count > 0);
+        }
+
+        public RelayCommand<object> CancelCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CloseView();
+            });
+        }
+
+        public RelayCommand<object> ConfirmCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ConfirmDialog();
+            });
+        }
+
+        public RelayCommand<object> WindowClosingCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -176,8 +242,18 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, settings, window, dialogs, resources, extensions, app)
+            PlayniteApplication app)
         {
+            this.database = database;
+            this.window = window;
+            this.dialogs = dialogs;
+            this.resources = resources;
+            this.application = app;
+            originalSettings = settings;
+
+            Settings = settings.GetClone();
+            Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
+
             AvailableTrayIcons = new List<SelectableTrayIcon>
             {
                 new SelectableTrayIcon(TrayIconType.Default),
@@ -197,14 +273,12 @@ namespace Playnite.DesktopApp.ViewModels
                 { 7, new Controls.SettingsSections.Input() { DataContext = this } },
                 { 8, new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this } },
                 { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
-                { 10, new Controls.SettingsSections.IntegrationsMoveInfo() { DataContext = this } },
                 { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
                 { 19, new Controls.SettingsSections.Development() { DataContext = this } },
-                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
-                { 21, new Controls.SettingsSections.EmptyParent() { DataContext = this } }
+                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -216,8 +290,7 @@ namespace Playnite.DesktopApp.ViewModels
                 });
             }
 
-            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && (a.Plugin.Properties == null || a.Plugin.Properties.HasSettings)).ToList();
-            AnyGenericPluginSettings = GenericPlugins.HasItems();
+            ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
@@ -234,45 +307,25 @@ namespace Playnite.DesktopApp.ViewModels
                     SelectedSectionView = null;
                 }
             }
-            else if (selectedItem.NewValue is Plugin plugin)
+            else
             {
-                SelectedSectionView = GetPluginSettingsView(plugin.Id);
-            }
-            else if (selectedItem.NewValue is LoadedPlugin ldPlugin)
-            {
-                SelectedSectionView = GetPluginSettingsView(ldPlugin.Plugin.Id);
+                SelectedSectionView = null;
             }
         }
 
-        public override void CloseView()
+        public bool? OpenView()
         {
-            foreach (var plugin in loadedPluginSettings.Values)
-            {
-                plugin.Settings.CancelEdit();
-            }
+            return window.CreateAndOpenDialog(this);
+        }
 
+        public void CloseView()
+        {
             closingHanled = true;
             window.Close(false);
         }
 
-        public override void WindowClosing()
+        public void ConfirmDialog()
         {
-            if (!closingHanled)
-            {
-                foreach (var plugin in loadedPluginSettings.Values)
-                {
-                    plugin.Settings.CancelEdit();
-                }
-            }
-        }
-
-        public override void ConfirmDialog()
-        {
-            if (!VerifyPluginSettings())
-            {
-                return;
-            }
-
             if (editedFields.Contains(nameof(Settings.StartOnBoot)))
             {
                 try
@@ -293,11 +346,6 @@ namespace Playnite.DesktopApp.ViewModels
 
             EndEdit();
             originalSettings.SaveSettings();
-            foreach (var plugin in loadedPluginSettings.Values)
-            {
-                plugin.Settings.EndEdit();
-            }
-
             if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true ||
                 develExtListUpdated)
             {
@@ -372,6 +420,21 @@ namespace Playnite.DesktopApp.ViewModels
                     ResetSettings = true
                 });
             }
+        }
+
+        public void EndEdit()
+        {
+            Settings.CopyProperties(originalSettings, true, new List<string>()
+            {
+                nameof(PlayniteSettings.FilterSettings),
+                nameof(PlayniteSettings.ViewSettings),
+                nameof(PlayniteSettings.InstallInstanceId),
+                nameof(PlayniteSettings.GridItemHeight),
+                nameof(PlayniteSettings.WindowPositions),
+                nameof(PlayniteSettings.Fullscreen)
+            }, true);
+
+            database.ImportExclusions.Remove(removedExclusionItems);
         }
 
         public void TestScript(string script)

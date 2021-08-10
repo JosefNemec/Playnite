@@ -294,13 +294,11 @@ namespace Playnite.DesktopApp.ViewModels
             OpenLibraryIntegrationsConfigCommand = new RelayCommand<object>((a) =>
             {
                 OpenIntegrationSettings(
-                    new LibraryIntegrationsViewModel(Database,
-                    AppSettings,
-                    new LibraryIntegrationsWindowFactory(),
-                    Dialogs,
-                    Resources,
-                    Extensions,
-                    App));
+                    new LibraryIntegrationsViewModel(
+                        new LibraryIntegrationsWindowFactory(),
+                        Dialogs,
+                        Resources,
+                        Extensions));
             });
 
             UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>

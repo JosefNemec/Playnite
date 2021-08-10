@@ -163,8 +163,8 @@
     <Compile Include="Controls\NullableIntBox.cs" />
     <Compile Include="Controls\NumericDoubleBox.cs" />
     <Compile Include="Controls\LongNumericBox.cs" />
-    <Compile Include="Controls\SettingsSections\IntegrationsMoveInfo.xaml.cs">
-      <DependentUpon>IntegrationsMoveInfo.xaml</DependentUpon>
+    <Compile Include="Controls\SettingsSections\LibrariesConfigWindowInfo.xaml.cs">
+      <DependentUpon>LibrariesConfigWindowInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\AppearanceTopPanel.xaml.cs">
       <DependentUpon>AppearanceTopPanel.xaml</DependentUpon>
@@ -292,7 +292,7 @@
     <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\MetadataComparisonViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModelBase.cs" />
+    <Compile Include="PluginSettingsHelper.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
     <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
@@ -557,7 +557,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\SettingsSections\IntegrationsMoveInfo.xaml">
+    <Page Include="Controls\SettingsSections\LibrariesConfigWindowInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

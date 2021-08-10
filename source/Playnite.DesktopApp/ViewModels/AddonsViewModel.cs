@@ -30,7 +30,8 @@ namespace Playnite.DesktopApp.ViewModels
             BrowseGeneric = 7,
             BrowseThemesDesktop = 8,
             BrowseThemesFullscreen = 9,
-            Updates = 10
+            Updates = 10,
+            None = 99
         }
 
         private static ILogger logger = LogManager.GetLogger();
@@ -40,6 +41,8 @@ namespace Playnite.DesktopApp.ViewModels
         private PlayniteSettings settings;
         private Dictionary<View, UserControl> sectionViews;
         private PlayniteApplication application;
+        private bool closingHanled = false;
+        private Dictionary<Guid, PluginSettingsItem> loadedPluginSettings = new Dictionary<Guid, PluginSettingsItem>();
 
         public ExtensionFactory Extensions { get; set; }
 
@@ -52,6 +55,16 @@ namespace Playnite.DesktopApp.ViewModels
                 selectedSectionView = value;
                 OnPropertyChanged();
             }
+        }
+
+        public List<LoadedPlugin> GenericPlugins
+        {
+            get; private set;
+        }
+
+        public bool AnyGenericPluginSettings
+        {
+            get; private set;
         }
 
         public RelayCommand<InstalledPlugin> UninstallExtensionCommand
@@ -104,6 +117,22 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<RoutedPropertyChangedEventArgs<object>> SectionChangedChangedCommand
+        {
+            get => new RelayCommand<RoutedPropertyChangedEventArgs<object>>((a) =>
+            {
+                SectionChanged(a);
+            });
+        }
+
+        public RelayCommand<object> CancelCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CancelClose();
+            });
+        }
+
         public RelayCommand<object> ConfirmCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -112,11 +141,11 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<RoutedPropertyChangedEventArgs<object>> SectionChangedChangedCommand
+        public RelayCommand<object> WindowClosingCommand
         {
-            get => new RelayCommand<RoutedPropertyChangedEventArgs<object>>((a) =>
+            get => new RelayCommand<object>((a) =>
             {
-                SectionChanged(a);
+                WindowClosing();
             });
         }
 
@@ -198,6 +227,7 @@ namespace Playnite.DesktopApp.ViewModels
                 { View.BrowseThemesDesktop, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
                 { View.BrowseThemesFullscreen, new Controls.AddonsSections.BrowseAddons() { DataContext = this } },
                 { View.Updates, new Controls.AddonsSections.AddonUpdates() { DataContext = this } },
+                { View.None, null },
             };
 
             var descriptions = ExtensionFactory.GetInstalledManifests(settings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
@@ -233,6 +263,8 @@ namespace Playnite.DesktopApp.ViewModels
 
             DesktopThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
             FullscreenThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
+            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && a.Plugin.Properties?.HasSettings == true).ToList();
+            AnyGenericPluginSettings = GenericPlugins.HasItems();
         }
 
         public bool? OpenView()
@@ -243,6 +275,18 @@ namespace Playnite.DesktopApp.ViewModels
         private void SectionChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
         {
             int viewIndex = -1;
+
+            if (selectedItem.NewValue is Plugin plugin)
+            {
+                SelectedSectionView = PluginSettingsHelper.GetPluginSettingsView(plugin.Id, Extensions, loadedPluginSettings);
+                return;
+            }
+            else if (selectedItem.NewValue is LoadedPlugin ldPlugin)
+            {
+                SelectedSectionView = PluginSettingsHelper.GetPluginSettingsView(ldPlugin.Plugin.Id, Extensions, loadedPluginSettings);
+                return;
+            }
+
             if (selectedItem.NewValue is TreeViewItem treeItem)
             {
                 if (treeItem.Tag != null)
@@ -253,6 +297,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (viewIndex == -1)
             {
+                SelectedSectionView = null;
                 return;
             }
 
@@ -353,6 +398,18 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ConfirmDialog()
         {
+            var verResult = PluginSettingsHelper.VerifyPluginSettings(loadedPluginSettings);
+            if (!verResult.Item1)
+            {
+                dialogs.ShowErrorMessage(string.Join(Environment.NewLine, verResult.Item2), "");
+                return;
+            }
+
+            foreach (var plugin in loadedPluginSettings.Values)
+            {
+                plugin.Settings.EndEdit();
+            }
+
             UpdateDisabledExtensions();
             if (IsRestartRequired)
             {
@@ -365,7 +422,30 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            closingHanled = true;
             window.Close(true);
+        }
+
+        public void CancelClose()
+        {
+            foreach (var plugin in loadedPluginSettings.Values)
+            {
+                plugin.Settings.CancelEdit();
+            }
+
+            closingHanled = true;
+            window.Close(false);
+        }
+
+        public void WindowClosing()
+        {
+            if (!closingHanled)
+            {
+                foreach (var plugin in loadedPluginSettings.Values)
+                {
+                    plugin.Settings.CancelEdit();
+                }
+            }
         }
     }
 }

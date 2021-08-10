@@ -14,11 +14,23 @@
         Title="{DynamicResource LOCMenuAddons}" Height="600" Width="900"
         AutomationProperties.AutomationId="WindowExtensions">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <controls:WindowBase.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </controls:WindowBase.Resources>
 
     <DockPanel Margin="0,5,0,0">
         <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
             <DockPanel LastChildFill="False" Margin="5">
-                <Button Content="{DynamicResource LOCClose}" DockPanel.Dock="Right"
+                <Button Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                        Command="{Binding CancelCommand}"
+                        Style="{StaticResource BottomButton}" />
+                <Button Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right"
                         Command="{Binding ConfirmCommand}"
                         Style="{StaticResource BottomButton}" />
                 <TextBlock Text="{DynamicResource LOCAddonChangesRestart}" DockPanel.Dock="Left" Margin="5,0,0,0"
@@ -30,7 +42,7 @@
 
         <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                 DockPanel.Dock="Left">
-            <TreeView MinWidth="160" BorderThickness="0">
+            <TreeView Width="230" BorderThickness="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectedItemChanged" >
                         <prism:InvokeCommandAction Command="{Binding SectionChangedChangedCommand}" />
@@ -42,6 +54,15 @@
                     <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="2" />
                     <TreeViewItem Header="{DynamicResource LOCAddonsThemesDesktop}" Tag="3" />
                     <TreeViewItem Header="{DynamicResource LOCAddonsThemesFullscren}" Tag="4" />
+                </TreeViewItem>
+                <TreeViewItem Header="{DynamicResource LOCExtensionsSettings}" IsExpanded="True">
+                    <TreeViewItem Header="{DynamicResource LOCLibraries}" ItemsSource="{Binding Extensions.LibraryPlugins}"
+                                  DisplayMemberPath="Name" />
+                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" ItemsSource="{Binding Extensions.MetadataPlugins}"
+                                  DisplayMemberPath="Name" />
+                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" ItemsSource="{Binding GenericPlugins}"
+                                  DisplayMemberPath="Description.Name"
+                                  Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </TreeViewItem>
                 <TreeViewItem Header="{DynamicResource LOCExtensionsBrowse}" IsExpanded="True">
                     <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="5" />

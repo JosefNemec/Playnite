@@ -18,9 +18,9 @@ namespace Playnite.DesktopApp.Controls.SettingsSections
     /// <summary>
     /// Interaction logic for EmptyParent.xaml
     /// </summary>
-    public partial class IntegrationsMoveInfo : UserControl
+    public partial class LibrariesConfigWindowInfo : UserControl
     {
-        public IntegrationsMoveInfo()
+        public LibrariesConfigWindowInfo()
         {
             InitializeComponent();
         }
