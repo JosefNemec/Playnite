@@ -56,7 +56,7 @@ namespace Playnite.Emulators
 
         public override string ToString()
         {
-            return Name ?? base.ToString();
+            return $"{Serial} {RomCrc} {Name}";
         }
 
         public void CopyTo(DatGame target)

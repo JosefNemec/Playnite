@@ -9,11 +9,35 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
-    public class EmulatedRegion
+    public class EmulatedRegion : IEquatable<EmulatedRegion>
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public bool DefaultImport { get; set; }
+        public ulong IgdbId { get; set; }
         public List<string> Codes { get; set; }
+
+        public override int GetHashCode()
+        {
+            return Id?.GetHashCode() ?? 0;
+        }
+
+        public bool Equals(EmulatedRegion other)
+        {
+            return other.Id == Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is EmulatedRegion region)
+            {
+                return Equals(region);
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public override string ToString()
         {
@@ -21,13 +45,35 @@ namespace Playnite.SDK.Models
         }
     }
 
-    public class EmulatedPlatform
+    public class EmulatedPlatform : IEquatable<EmulatedPlatform>
     {
         public ulong IgdbId { get; set; }
         public string Name { get; set; }
         public string Id { get; set; }
         public List<string> Databases { get; set; }
         public List<string> Emulators { get; set; }
+
+        public override int GetHashCode()
+        {
+            return Id?.GetHashCode() ?? 0;
+        }
+
+        public bool Equals(EmulatedPlatform other)
+        {
+            return other.Id == Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is EmulatedPlatform platform)
+            {
+                return Equals(platform);
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public override string ToString()
         {

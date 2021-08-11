@@ -561,9 +561,27 @@ namespace Playnite.DesktopApp.ViewModels
 
             try
             {
-                var scanned = GameScanner.Scan(scanConfig, Database, importedFiles, token).Select(a => a.ToGame()).ToList();
+                var newPlatforms = new List<SDK.Models.Platform>();
+                var newRegions = new List<SDK.Models.Region>();
+                var scanned = GameScanner.Scan(
+                    scanConfig,
+                    Database,
+                    importedFiles,
+                    token,
+                    newPlatforms,
+                    newRegions).Select(a => a.ToGame()).ToList();
                 if (scanned.HasItems())
                 {
+                    if (newPlatforms.HasItems())
+                    {
+                        Database.Platforms.Add(newPlatforms);
+                    }
+
+                    if (newRegions.HasItems())
+                    {
+                        Database.Regions.Add(newRegions);
+                    }
+
                     addedGames.AddRange(scanned);
                     Database.Games.Add(scanned);
                 }

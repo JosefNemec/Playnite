@@ -117,10 +117,18 @@
                                 </GridViewColumn>
                                 <GridViewColumn Header="{DynamicResource LOCNameLabel}" Width="Auto" DisplayMemberBinding="{Binding Name.Name}" />
                                 <GridViewColumn Header="{DynamicResource LOCPathLabel}" Width="Auto" DisplayMemberBinding="{Binding Path}" />
+                                <GridViewColumn Header="db" 
+                                                Width="{Binding Path=(p:PlayniteEnvironment.IsDebugBuild), Converter={StaticResource BoolToAutoWidthConverter}}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox IsReadOnly="True" Text="{Binding DbData, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
-            </DataTemplate>
+                </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </controls:ExtendedDataGrid>
 

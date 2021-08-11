@@ -50,10 +50,17 @@ namespace Playnite.DesktopApp.ViewModels
         private readonly MenuItem menuMergeItem;
         private readonly MenuItem menuPlatformsItem;
         private readonly MenuItem menuRegionsItem;
+        private List<Platform> newPlatforms;
+        private List<Region> newRegions;
+
+        #region backing fields
+        private List<Platform> platforms;
+        private List<Region> regions;
+        #endregion backing fields
 
         public List<Emulator> Emulators { get; set; }
-        public List<Platform> Platforms { get; set; }
-        public List<Region> Regions { get; set; }
+        public List<Platform> Platforms { get => platforms; set => SetValue(ref platforms, value); }
+        public List<Region> Regions     { get => regions; set => SetValue(ref regions, value); }
         public List<GameScannerConfig> SavedConfigs { get; set; }
         public List<Game> ImportedGames { get; } = new List<Game>();
 
@@ -340,6 +347,8 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            newPlatforms = new List<Platform>();
+            newRegions = new List<Region>();
             GameList.Clear();
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
@@ -347,7 +356,13 @@ namespace Playnite.DesktopApp.ViewModels
                 foreach (GameScannerConfig config in validConfigs)
                 {
                     args.Text = resources.GetString(LOC.EmuWizardScanningSpecific).Format(config.Directory);
-                    GameList.AddRange(GameScanner.Scan(config, database, existingGame, args.CancelToken));
+                    GameList.AddRange(GameScanner.Scan(
+                        config,
+                        database,
+                        existingGame,
+                        args.CancelToken,
+                        newPlatforms,
+                        newRegions));
                 }
             },
             new GlobalProgressOptions(LOC.EmuWizardScanning)
@@ -363,6 +378,50 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
+                if (newPlatforms.HasItems())
+                {
+                    // Control we use to bind this information doesn't support observable collections...
+                    var pt = Platforms.GetClone();
+                    newPlatforms.ForEach(platform =>
+                    {
+                        pt.Insert(0, platform);
+                        menuPlatformsItem.Items.Insert(0, new MenuItem
+                        {
+                            Title = platform.Name,
+                            Command = new RelayCommand<object>((_) =>
+                            {
+                                foreach (ScannedGame game in SelectedGames)
+                                {
+                                    game.Platforms = new List<Platform> { platform };
+                                }
+                            })
+                        });
+                    });
+                    Platforms = pt;
+                }
+
+                if (newRegions.HasItems())
+                {
+                    // Control we use to bind this information doesn't support observable collections...
+                    var rg = Regions.GetClone();
+                    newRegions.ForEach(region =>
+                    {
+                        rg.Insert(0, region);
+                        menuRegionsItem.Items.Insert(0, new MenuItem
+                        {
+                            Title = region.Name,
+                            Command = new RelayCommand<object>((_) =>
+                            {
+                                foreach (ScannedGame game in SelectedGames)
+                                {
+                                    game.Regions = new List<Region> { region };
+                                }
+                            })
+                        });
+                    });
+                    Regions = rg;
+                }
+
                 IsScanSetup = false;
             }
         }
@@ -371,6 +430,22 @@ namespace Playnite.DesktopApp.ViewModels
         {
             using (database.BufferedUpdate())
             {
+                foreach (var newPlat in newPlatforms)
+                {
+                    if (GameList.Any(a => a.Platforms?.FirstOrDefault(p => p.Id == newPlat.Id) != null))
+                    {
+                        database.Platforms.Add(newPlat);
+                    }
+                }
+
+                foreach (var newReg in newRegions)
+                {
+                    if (GameList.Any(a => a.Regions?.FirstOrDefault(p => p.Id == newReg.Id) != null))
+                    {
+                        database.Regions.Add(newReg);
+                    }
+                }
+
                 foreach (var scannedGame in GameList.Where(a => a.Import && a.Roms?.Any(r => r.Import) == true))
                 {
                     var game = scannedGame.ToGame();

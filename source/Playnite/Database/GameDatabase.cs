@@ -497,7 +497,7 @@ namespace Playnite.Database
                 }
 
                 // Generate default regions
-                var regions = Emulation.Regions.Select(a => new Region(a.Name) { SpecificationId = a.Id }).ToList();
+                var regions = Emulation.Regions.Where(a => a.DefaultImport).Select(a => new Region(a.Name) { SpecificationId = a.Id }).ToList();
                 if (regions.HasItems())
                 {
                     var col = Regions as ItemCollection<Region>;

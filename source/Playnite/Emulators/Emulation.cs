@@ -69,6 +69,11 @@ namespace Playnite.Emulators
             return Platforms.FirstOrDefault(a => a.Id == platformsId);
         }
 
+        public static EmulatedPlatform GetPlatformByDatabase(string databaseName)
+        {
+            return Platforms.FirstOrDefault(a => a.Databases?.ContainsString(databaseName, StringComparison.OrdinalIgnoreCase) == true);
+        }
+
         private static List<EmulatedRegion> regions;
         public static IList<EmulatedRegion> Regions
         {
@@ -104,6 +109,11 @@ namespace Playnite.Emulators
         public static EmulatedRegion GetRegion(string regionsId)
         {
             return Regions.FirstOrDefault(a => a.Id == regionsId);
+        }
+
+        public static EmulatedRegion GetRegionByCode(string code)
+        {
+            return Regions.FirstOrDefault(a => a.Codes.ContainsString(code, StringComparison.OrdinalIgnoreCase));
         }
     }
 

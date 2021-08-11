@@ -145,24 +145,12 @@ namespace Playnite.Emulators
         }
 
         public static List<ScannedGame> Scan(
-            IEnumerable<GameScannerConfig> configs,
-            GameDatabase database,
-            CancellationToken cancelToken)
-        {
-            var allGames = new List<ScannedGame>();
-            foreach (var config in configs)
-            {
-                allGames.AddRange(Scan(config, database, database.GetImportedRomFiles(), cancelToken));
-            }
-
-            return allGames;
-        }
-
-        public static List<ScannedGame> Scan(
             GameScannerConfig scanner,
             GameDatabase database,
             List<string> importedFiles,
-            CancellationToken cancelToken)
+            CancellationToken cancelToken,
+            List<Platform> newPlatforms,
+            List<Region> newRegions)
         {
             List<ScannedGame> games;
             var emulator = database.Emulators[scanner.EmulatorId];
@@ -171,12 +159,15 @@ namespace Playnite.Emulators
                 throw new Exception("Emulator not found.");
             }
 
+            var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
+            var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
+            var builtinProfileDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtinProfile.BuiltInProfileName);
             if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
                     scanner.Directory,
                     emulator,
-                    emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId),
+                    customProfile,
                     database,
                     importedFiles,
                     cancelToken);
@@ -186,7 +177,7 @@ namespace Playnite.Emulators
                 games = ScanDirectory(
                     scanner.Directory,
                     emulator,
-                    emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId),
+                    builtinProfile,
                     importedFiles,
                     cancelToken);
             }
@@ -195,7 +186,113 @@ namespace Playnite.Emulators
                 throw new Exception("Emulator profile format not supported.");
             }
 
-            games?.ForEach(a => a.SourceConfig = scanner);
+            foreach (var game in games)
+            {
+                game.SourceConfig = scanner;
+                var assignedRegions = new List<EmulatedRegion>();
+                var assignedPlatforms = new List<EmulatedPlatform>();
+                foreach (var rom in game.Roms)
+                {
+                    // REGIONS
+                    if (rom.DbData?.Region.IsNullOrEmpty() == false)
+                    {
+                        var region = Emulation.GetRegionByCode(rom.DbData.Region);
+                        if (region != null)
+                        {
+                            assignedRegions.AddMissing(region);
+                        }
+                    }
+                    else if (rom.Name.Properties.HasItems())
+                    {
+                        foreach (var prop in rom.Name.Properties)
+                        {
+                            var region = Emulation.GetRegionByCode(prop);
+                            if (region != null)
+                            {
+                                assignedRegions.AddMissing(region);
+                                break;
+                            }
+                        }
+                    }
+
+                    // PLATFORMS
+                    if (rom.DbData != null)
+                    {
+                        var platform = Emulation.GetPlatformByDatabase(rom.DbDataSource);
+                        if (platform != null)
+                        {
+                            assignedPlatforms.AddMissing(platform);
+                        }
+                    }
+                    else if (builtinProfile != null)
+                    {
+                        assignedPlatforms.AddMissing(Emulation.GetPlatform(builtinProfileDef.Platforms.First()));
+                    }
+                }
+
+                game.Regions = new List<Region>();
+                foreach (var asRegion in assignedRegions)
+                {
+                    var dbRegion = database.Regions.FirstOrDefault(a => a.SpecificationId == asRegion.Id);
+                    if (dbRegion != null)
+                    {
+                        game.Regions.Add(dbRegion);
+                    }
+                    else
+                    {
+                        var generatedReg = newRegions.FirstOrDefault(a => a.SpecificationId == asRegion.Id);
+                        if (generatedReg == null)
+                        {
+                            var newReg = new Region(asRegion.Name) { SpecificationId = asRegion.Id };
+                            newRegions.Add(newReg);
+                            game.Regions.Add(newReg);
+                        }
+                        else
+                        {
+                            game.Regions.Add(generatedReg);
+                        }
+                    }
+                }
+
+                game.Platforms = new List<Platform>();
+                if (builtinProfile != null)
+                {
+                    foreach (var asPlatform in assignedPlatforms)
+                    {
+                        var dbPlatform = database.Platforms.FirstOrDefault(a => a.SpecificationId == asPlatform.Id);
+                        if (dbPlatform != null)
+                        {
+                            game.Platforms.Add(dbPlatform);
+                        }
+                        else
+                        {
+                            var generatedPlat = newPlatforms.FirstOrDefault(a => a.SpecificationId == asPlatform.Id);
+                            if (generatedPlat == null)
+                            {
+                                var newPlat = new Platform(asPlatform.Name) { SpecificationId = asPlatform.Id };
+                                newPlatforms.Add(newPlat);
+                                game.Platforms.Add(newPlat);
+                            }
+                            else
+                            {
+                                game.Platforms.Add(generatedPlat);
+                            }
+                        }
+                    }
+                }
+                else if (customProfile.Platforms.HasItems())
+                {
+                    foreach (var asPlatform in customProfile.Platforms)
+                    {
+                        var dbPlatform = database.Platforms[asPlatform];
+                        if (dbPlatform != null)
+                        {
+                            game.Platforms.Add(dbPlatform);
+                        }
+                    }
+                }
+            }
+
             return games;
         }
 
