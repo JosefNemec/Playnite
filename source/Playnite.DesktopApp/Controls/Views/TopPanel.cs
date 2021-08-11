@@ -251,7 +251,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ProgressGlobal,
                     ProgressBar.VisibilityProperty,
                     mainModel,
-                    nameof(mainModel.ProgressVisible),
+                    nameof(mainModel.ProgressActive),
                     converter: new BooleanToVisibilityConverter());
             }
 
@@ -265,7 +265,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(TextProgressText,
                     TextBlock.VisibilityProperty,
                     mainModel,
-                    nameof(mainModel.ProgressVisible),
+                    nameof(mainModel.ProgressActive),
                     converter: new BooleanToVisibilityConverter());
             }
 
@@ -276,7 +276,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ButtonProgressCancel,
                     ButtonBase.VisibilityProperty,
                     mainModel,
-                    nameof(mainModel.ProgressVisible),
+                    nameof(mainModel.ProgressActive),
                     converter: new BooleanToVisibilityConverter());
             }
         }

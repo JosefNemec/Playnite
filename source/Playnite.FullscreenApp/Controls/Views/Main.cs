@@ -286,7 +286,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(TextProgressTooltip,
                         TextBlock.VisibilityProperty,
                         mainModel,
-                        nameof(FullscreenAppViewModel.ProgressVisible),
+                        nameof(FullscreenAppViewModel.ProgressActive),
                         converter: new Converters.BooleanToVisibilityConverter());
                 }
 
@@ -296,7 +296,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(ElemProgressIndicator,
                         ToggleButton.VisibilityProperty,
                         mainModel,
-                        nameof(FullscreenAppViewModel.ProgressVisible),
+                        nameof(FullscreenAppViewModel.ProgressActive),
                         converter: new Converters.BooleanToVisibilityConverter());
                 }
 

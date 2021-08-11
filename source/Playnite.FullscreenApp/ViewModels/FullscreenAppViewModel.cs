@@ -32,31 +32,16 @@ namespace Playnite.FullscreenApp.ViewModels
 {
     public partial class FullscreenAppViewModel : MainViewModelBase, IDisposable
     {
-        public static ILogger Logger = LogManager.GetLogger();
         private static object gamesLock = new object();
         private readonly SynchronizationContext context;
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
 
-        public PlayniteAPI PlayniteApi { get; set; }
-        public ExtensionFactory Extensions { get; }
         public IWindowFactory Window { get; }
-        public IResourceProvider Resources { get; }
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
         public ObservableTime CurrentTime { get; } = new ObservableTime();
         public ObservablePowerStatus PowerStatus { get; } = new ObservablePowerStatus();
-
-        private bool databaseUpdateRunning = false;
-        public bool DatabaseUpdateRunning
-        {
-            get => databaseUpdateRunning;
-            set
-            {
-                databaseUpdateRunning = value;
-                OnPropertyChanged();
-            }
-        }
 
         private double windowLeft = 0;
         public double WindowLeft
@@ -240,17 +225,6 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public bool GameDetailsButtonVisible => GameDetailsVisible == false && SelectedGame != null;
 
-        private DatabaseFilter databaseFilters;
-        public DatabaseFilter DatabaseFilters
-        {
-            get => databaseFilters;
-            private set
-            {
-                databaseFilters = value;
-                OnPropertyChanged();
-            }
-        }
-
         private DatabaseExplorer databaseExplorer;
         public DatabaseExplorer DatabaseExplorer
         {
@@ -359,7 +333,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public FullscreenAppViewModel() : base(null, null, null)
+        public FullscreenAppViewModel() : base(null, null, null, null, null, null)
         {
         }
 
@@ -372,15 +346,12 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, app, dialogs)
+            PlayniteApplication app) : base(database, app, dialogs, playniteApi, resources, extensions)
         {
             context = SynchronizationContext.Current;
             Window = window;
-            Resources = resources;
             GamesEditor = gamesEditor;
             AppSettings = settings;
-            PlayniteApi = playniteApi;
-            Extensions = extensions;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
@@ -796,138 +767,21 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public async Task UpdateDatabase(bool metaForNewGames)
+        public override NotificationMessage GetAddonUpdatesFoundMessage(List<AddonUpdate> updates)
         {
-            if (!Database.IsOpen)
+            return new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info, () =>
             {
-                Logger.Error("Cannot load new games, database is not loaded.");
-                Dialogs.ShowErrorMessage(Resources.GetString("LOCDatabaseNotOpenedError"), Resources.GetString("LOCDatabaseErroTitle"));
-                return;
-            }
-
-            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
-            {
-                GlobalTaskHandler.CancelToken.Cancel();
-                await GlobalTaskHandler.ProgressTask;
-            }
-
-            try
-            {
-                DatabaseUpdateRunning = true;
-                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(async () =>
-                {
-                    DatabaseFilters.IgnoreDatabaseUpdates = true;
-                    var addedGames = new List<Game>();
-                    ProgressVisible = true;
-                    ProgressValue = 0;
-                    ProgressTotal = 1;
-
-                    foreach (var plugin in Extensions.LibraryPlugins)
-                    {
-                        Logger.Info($"Importing games from {plugin.Name} plugin.");
-                        ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), plugin.Name);
-
-                        try
-                        {
-                            using (Database.BufferedUpdate())
-                            {
-                                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, GlobalTaskHandler.CancelToken.Token));
-                            }
-
-                            PlayniteApi.Notifications.Remove($"{plugin.Id} - download");
-                        }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            Logger.Error(e, $"Failed to import games from plugin: {plugin.Name}");
-                            PlayniteApi.Notifications.Add(new NotificationMessage(
-                                $"{plugin.Id} - download",
-                                string.Format(Resources.GetString("LOCLibraryImportError"), plugin.Name) + $"\n{e.Message}",
-                                NotificationType.Error));
-                        }
-                    }
-
-                    ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    await Task.Delay(500);
-
-                    if (addedGames.Any() && metaForNewGames)
-                    {
-                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
-                        ProgressValue = 0;
-                        ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
-                        {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
-                                (g, i, t) =>
-                                {
-                                    ProgressValue = i + 1;
-                                    ProgressStatus = Resources.GetString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
-                                },
-                                GlobalTaskHandler.CancelToken.Token).Wait();
-                        }
-                    }
-                });
-
-                await GlobalTaskHandler.ProgressTask;
-                Extensions.NotifiyOnLibraryUpdated();
-            }
-            finally
-            {
-                DatabaseUpdateRunning = false;
-                ProgressVisible = false;
-                DatabaseFilters.IgnoreDatabaseUpdates = false;
-            }
-        }
-
-        public async Task CheckForAddonUpdates()
-        {
-            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
-            {
-                GlobalTaskHandler.CancelToken.Cancel();
-                await GlobalTaskHandler.ProgressTask;
-            }
-
-            GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-            GlobalTaskHandler.ProgressTask = Task.Run(() =>
-            {
-                ProgressVisible = true;
-                ProgressValue = 0;
-                ProgressTotal = 1;
-                ProgressStatus = Resources.GetString(LOC.AddonLookingForUpdates);
-
-                try
-                {
-                    var updates = Addons.CheckAddonUpdates(App.ServicesClient);
-                    if (updates.HasItems())
-                    {
-                        PlayniteApi.Notifications.Add(new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info,
-                            () =>
-                            {
-                                new AddonsViewModel(
-                                     new AddonsUpdateWindowFactory(),
-                                     PlayniteApi,
-                                     Dialogs,
-                                     Resources,
-                                     App.ServicesClient,
-                                     Extensions,
-                                     AppSettings,
-                                     App,
-                                     updates).OpenView();
-                            }));
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    Logger.Error(e, "Failed to check for addon updates.");
-                }
-                finally
-                {
-                    ProgressVisible = false;
-                }
+                new AddonsViewModel(
+                        new AddonsUpdateWindowFactory(),
+                        PlayniteApi,
+                        Dialogs,
+                        Resources,
+                        App.ServicesClient,
+                        Extensions,
+                        AppSettings,
+                        App,
+                        updates).OpenView();
             });
-
-            await GlobalTaskHandler.ProgressTask;
         }
 
         private void OnFileDropped(DragEventArgs args)

@@ -157,7 +157,7 @@ namespace Playnite.FullscreenApp
 
             if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
             {
-                await MainModel.UpdateDatabase(AppSettings.DownloadMetadataOnImport);
+                await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
             }
 
             if (!PlayniteEnvironment.InOfflineMode)

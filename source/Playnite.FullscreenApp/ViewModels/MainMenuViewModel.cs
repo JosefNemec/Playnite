@@ -32,8 +32,8 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
-            await mainModel.UpdateDatabase(mainModel.AppSettings.DownloadMetadataOnImport);
-        }, () => !mainModel.DatabaseUpdateRunning);
+            await mainModel.UpdateLibrary(mainModel.AppSettings.DownloadMetadataOnImport);
+        }, () => !mainModel.ProgressActive);
 
         public MainMenuViewModel(
             IWindowFactory window,

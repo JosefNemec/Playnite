@@ -68,7 +68,7 @@ namespace Playnite.DesktopApp.ViewModels
             ProgressStatus = "Status example in progress...";
             ProgressValue = 50;
             ProgressTotal = 100;
-            ProgressVisible = true;
+            ProgressActive = true;
 
             var database = new InMemoryGameDatabase();
             Game.DatabaseReference = database;

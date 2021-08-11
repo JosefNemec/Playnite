@@ -1,11 +1,17 @@
-﻿using Playnite.Database;
+﻿using Playnite.API;
+using Playnite.Database;
+using Playnite.Emulators;
+using Playnite.Metadata;
+using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,14 +22,38 @@ namespace Playnite.ViewModels
         string ProgressStatus { get; set; }
         double ProgressValue { get; set; }
         double ProgressTotal { get; set; }
-        bool ProgressVisible { get; set; }
+        bool ProgressActive { get; set; }
         BaseCollectionView GamesView { get; set; }
         GamesCollectionViewEntry SelectedGame { get; set; }
         IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
     }
 
-    public class MainViewModelBase : ObservableObject, IMainViewModelBase
+    public abstract class MainViewModelBase : ObservableObject, IMainViewModelBase
     {
+        public static ILogger Logger = LogManager.GetLogger();
+
+        private DatabaseFilter databaseFilters;
+        public DatabaseFilter DatabaseFilters
+        {
+            get => databaseFilters;
+            set
+            {
+                databaseFilters = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool gameAdditionAllowed = true;
+        public bool GameAdditionAllowed
+        {
+            get => gameAdditionAllowed;
+            set
+            {
+                gameAdditionAllowed = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string progressStatus;
         public string ProgressStatus
         {
@@ -57,13 +87,13 @@ namespace Playnite.ViewModels
             }
         }
 
-        private bool progressVisible;
-        public bool ProgressVisible
+        private bool progressActive;
+        public bool ProgressActive
         {
-            get => progressVisible;
+            get => progressActive;
             set
             {
-                progressVisible = value;
+                progressActive = value;
                 OnPropertyChanged();
             }
         }
@@ -111,12 +141,24 @@ namespace Playnite.ViewModels
         public GameDatabase Database { get; }
         public PlayniteApplication App { get; }
         public IDialogsFactory Dialogs { get; }
+        public PlayniteAPI PlayniteApi { get; set; }
+        public IResourceProvider Resources { get; }
+        public ExtensionFactory Extensions { get; set; }
 
-        public MainViewModelBase(GameDatabase database, PlayniteApplication app, IDialogsFactory dialogs)
+        public MainViewModelBase(
+            GameDatabase database,
+            PlayniteApplication app,
+            IDialogsFactory dialogs,
+            PlayniteAPI playniteApi,
+            IResourceProvider resources,
+            ExtensionFactory extensions)
         {
             Database = database;
             App = app;
             Dialogs = dialogs;
+            PlayniteApi = playniteApi;
+            Resources = resources;
+            Extensions = extensions;
 
             ApplyFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
             {
@@ -308,6 +350,244 @@ namespace Playnite.ViewModels
                 new ResourceProvider(),
                 Dialogs,
                 App.Mode).OpenView();
+        }
+
+        public abstract NotificationMessage GetAddonUpdatesFoundMessage(List<AddonUpdate> updates);
+
+        public async Task CheckForAddonUpdates()
+        {
+            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
+            {
+                GlobalTaskHandler.CancelToken.Cancel();
+                await GlobalTaskHandler.ProgressTask;
+            }
+
+            GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+            GlobalTaskHandler.ProgressTask = Task.Run(() =>
+            {
+                ProgressActive = true;
+                ProgressValue = 0;
+                ProgressTotal = 1;
+                ProgressStatus = Resources.GetString(LOC.AddonLookingForUpdates);
+
+                try
+                {
+                    var updates = Addons.CheckAddonUpdates(App.ServicesClient);
+                    if (updates.HasItems())
+                    {
+                        PlayniteApi.Notifications.Add(GetAddonUpdatesFoundMessage(updates));
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    Logger.Error(e, "Failed to check for addon updates.");
+                }
+                finally
+                {
+                    ProgressActive = false;
+                }
+            });
+
+            await GlobalTaskHandler.ProgressTask;
+        }
+
+        private List<Game> ImportLibraryGames(LibraryPlugin plugin, CancellationToken token)
+        {
+            var addedGames = new List<Game>();
+            if (token.IsCancellationRequested)
+            {
+                return addedGames;
+            }
+
+            Logger.Info($"Importing games from {plugin.Name} plugin.");
+            ProgressStatus = Resources.GetString(LOC.ProgressImportinGames).Format(plugin.Name);
+
+            try
+            {
+                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, token));
+                PlayniteApi.Notifications.Remove($"{plugin.Id} - download");
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, $"Failed to import games from plugin: {plugin.Name}");
+                PlayniteApi.Notifications.Add(new NotificationMessage(
+                    $"{plugin.Id} - download",
+                    Resources.GetString(LOC.LibraryImportError).Format(plugin.Name) + $"\n{e.Message}",
+                    NotificationType.Error));
+            }
+
+            return addedGames;
+        }
+
+        public async Task UpdateLibrary(bool metaForNewGames)
+        {
+            await UpdateLibraryData((token) =>
+            {
+                var addedGames = new List<Game>();
+                foreach (var plugin in Extensions.LibraryPlugins)
+                {
+                    if (token.IsCancellationRequested)
+                    {
+                        return addedGames;
+                    }
+
+                    addedGames.AddRange(ImportLibraryGames(plugin, token));
+                }
+
+                var importedRoms = Database.GetImportedRomFiles();
+                foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate).ToList())
+                {
+                    if (token.IsCancellationRequested)
+                    {
+                        return addedGames;
+                    }
+
+                    addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                }
+
+                return addedGames;
+            }, AppSettings.DownloadMetadataOnImport);
+        }
+
+        public async Task UpdateLibrary(LibraryPlugin plugin)
+        {
+            await UpdateLibraryData((token) =>
+            {
+                return ImportLibraryGames(plugin, token);
+            }, AppSettings.DownloadMetadataOnImport);
+        }
+
+        private List<Game> ImportEmulatedGames(GameScannerConfig scanConfig, List<string> importedFiles, CancellationToken token)
+        {
+            var addedGames = new List<Game>();
+            if (token.IsCancellationRequested)
+            {
+                return addedGames;
+            }
+
+            Logger.Info($"Importing emulated games from {scanConfig.Name} config.");
+            ProgressStatus = Resources.GetString(LOC.ProgressImportinEmulatedGames).Format(scanConfig.Directory);
+
+            try
+            {
+                var newPlatforms = new List<SDK.Models.Platform>();
+                var newRegions = new List<SDK.Models.Region>();
+                var scanned = GameScanner.Scan(
+                    scanConfig,
+                    Database,
+                    importedFiles,
+                    token,
+                    newPlatforms,
+                    newRegions).Select(a => a.ToGame()).ToList();
+                if (scanned.HasItems())
+                {
+                    if (newPlatforms.HasItems())
+                    {
+                        Database.Platforms.Add(newPlatforms);
+                    }
+
+                    if (newRegions.HasItems())
+                    {
+                        Database.Regions.Add(newRegions);
+                    }
+
+                    addedGames.AddRange(scanned);
+                    Database.Games.Add(scanned);
+                }
+
+                PlayniteApi.Notifications.Remove($"{scanConfig.Id} - import");
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, $"Failed to import emulated games from config:\n{scanConfig.Directory}\n{scanConfig.EmulatorId}\n{scanConfig.EmulatorProfileId}");
+                PlayniteApi.Notifications.Add(new NotificationMessage(
+                    $"{scanConfig.Id} - import",
+                    Resources.GetString(LOC.LibraryImportEmulatedError).Format(scanConfig.Name) + $"\n{e.Message}",
+                    NotificationType.Error));
+            }
+
+            return addedGames;
+        }
+
+        public async Task UpdateEmulationLibrary(GameScannerConfig config)
+        {
+            await UpdateLibraryData((token) =>
+            {
+                return ImportEmulatedGames(config, Database.GetImportedRomFiles(), token);
+            }, AppSettings.DownloadMetadataOnImport);
+        }
+
+        public async Task UpdateEmulationLibrary()
+        {
+            await UpdateLibraryData((token) =>
+            {
+                var addedGames = new List<Game>();
+                var importedRoms = Database.GetImportedRomFiles();
+                foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate))
+                {
+                    addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                }
+
+                return addedGames;
+            }, AppSettings.DownloadMetadataOnImport);
+        }
+
+        private async Task UpdateLibraryData(Func<CancellationToken, List<Game>> updateAction, bool downloadMetadata)
+        {
+            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
+            {
+                GlobalTaskHandler.CancelToken.Cancel();
+                await GlobalTaskHandler.ProgressTask;
+            }
+
+            GameAdditionAllowed = false;
+
+            try
+            {
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.ProgressTask = Task.Run(() =>
+                {
+                    DatabaseFilters.IgnoreDatabaseUpdates = true;
+                    ProgressActive = true;
+                    ProgressValue = 0;
+                    ProgressTotal = 1;
+
+                    var addedGames = updateAction(GlobalTaskHandler.CancelToken.Token);
+                    if (GlobalTaskHandler.CancelToken.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    ProgressStatus = Resources.GetString(LOC.ProgressLibImportFinish);
+                    Thread.Sleep(1000);
+                    if (addedGames.Any() && downloadMetadata)
+                    {
+                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
+                        ProgressValue = 0;
+                        ProgressTotal = addedGames.Count;
+                        ProgressStatus = Resources.GetString(LOC.ProgressMetadata);
+                        using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
+                        {
+                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
+                                (g, i, t) =>
+                                {
+                                    ProgressValue = i + 1;
+                                    ProgressStatus = Resources.GetString(LOC.ProgressMetadata) + $" [{ProgressValue}/{ProgressTotal}]";
+                                },
+                                GlobalTaskHandler.CancelToken.Token).Wait();
+                        }
+                    }
+                });
+
+                await GlobalTaskHandler.ProgressTask;
+                Extensions.NotifiyOnLibraryUpdated();
+            }
+            finally
+            {
+                GameAdditionAllowed = true;
+                ProgressActive = false;
+                DatabaseFilters.IgnoreDatabaseUpdates = false;
+            }
         }
     }
 }
