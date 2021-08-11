@@ -52,7 +52,12 @@
                                      pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
                     <pctrls:ButtonEx x:Name="PART_ButtonUpdateLibrary"
                                      Command="{Binding UpdateGamesCommand}"
-                                     Content="{DynamicResource LOCMenuReloadLibrary}" />
+                                     Content="{DynamicResource LOCMenuReloadLibrary}"
+                                     Visibility="{Binding MainModel.ProgressActive, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonCancelLibraryUpdate"
+                                     Command="{Binding CancelProgressCommand}"
+                                     Content="{DynamicResource LOCMenuCancelLibraryUpdate}"
+                                     Visibility="{Binding MainModel.ProgressActive, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <pctrls:ButtonEx x:Name="PART_ButtonExitPlaynite"
                                      Command="{Binding ExitCommand}"
                                      Content="{DynamicResource LOCExitPlaynite}" />

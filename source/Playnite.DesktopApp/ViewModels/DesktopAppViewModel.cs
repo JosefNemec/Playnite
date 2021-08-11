@@ -823,11 +823,6 @@ namespace Playnite.DesktopApp.ViewModels
             Dispose();
         }
 
-        public async void CancelProgress()
-        {
-            await GlobalTaskHandler.CancelAndWaitAsync();
-        }
-
         public virtual void ClearFilters()
         {
             AppSettings.FilterSettings.ClearFilters();

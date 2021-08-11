@@ -16,13 +16,13 @@ namespace Playnite.FullscreenApp.ViewModels
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly IWindowFactory window;
-        private readonly FullscreenAppViewModel mainModel;
+        public FullscreenAppViewModel MainModel { get; }
 
         public RelayCommand CloseCommand => new RelayCommand(() => Close());
         public RelayCommand ExitCommand => new RelayCommand(() => Shutdown());
         public RelayCommand SwitchToDesktopCommand => new RelayCommand(() => SwitchToDesktopMode());
         public RelayCommand OpenSettingsCommand => new RelayCommand(() => OpenSettings());
-        public RelayCommand SelectRandomGameCommand => new RelayCommand(() => PlayRandomGame(), () => mainModel.Database?.IsOpen == true);
+        public RelayCommand SelectRandomGameCommand => new RelayCommand(() => PlayRandomGame(), () => MainModel.Database?.IsOpen == true);
         public RelayCommand OpenPatreonCommand => new RelayCommand(() => OpenPatreon());
         public RelayCommand SendFeedbackCommand => new RelayCommand(() => SendFeedback());
         public RelayCommand ShutdownSystemCommand => new RelayCommand(() => ShutdownSystem());
@@ -32,15 +32,16 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
-            await mainModel.UpdateLibrary(mainModel.AppSettings.DownloadMetadataOnImport);
-        }, () => !mainModel.ProgressActive);
+            await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport);
+        }, () => !MainModel.ProgressActive);
+        public RelayCommand CancelProgressCommand => new RelayCommand(() => CancelProgress(), () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
 
         public MainMenuViewModel(
             IWindowFactory window,
             FullscreenAppViewModel mainModel)
         {
             this.window = window;
-            this.mainModel = mainModel;
+            this.MainModel = mainModel;
         }
 
         public bool? OpenView()
@@ -56,30 +57,36 @@ namespace Playnite.FullscreenApp.ViewModels
         public void Shutdown()
         {
             Close();
-            mainModel.CloseView();
-            mainModel.App.Quit();
+            MainModel.CloseView();
+            MainModel.App.Quit();
         }
 
         public void SwitchToDesktopMode()
         {
             Close();
-            mainModel.SwitchToDesktopMode();
+            MainModel.SwitchToDesktopMode();
+        }
+
+        public void CancelProgress()
+        {
+            Close();
+            MainModel.CancelProgress();
         }
 
         public void PlayRandomGame()
         {
             Close();
             var model = new RandomGameSelectViewModel(
-                mainModel.Database,
-                mainModel.GamesView,
+                MainModel.Database,
+                MainModel.GamesView,
                 new RandomGameSelectWindowFactory(),
-                mainModel.Resources);
+                MainModel.Resources);
             if (model.OpenView() == true && model.SelectedGame != null)
             {
-                var selection = mainModel.GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
+                var selection = MainModel.GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
                 if (selection != null)
                 {
-                    mainModel.GamesEditor.PlayGame(selection.Game);
+                    MainModel.GamesEditor.PlayGame(selection.Game);
                 }
             }
         }
@@ -87,7 +94,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public void OpenSettings()
         {
             Close();
-            var vm = new SettingsViewModel(new SettingsWindowFactory(), mainModel);
+            var vm = new SettingsViewModel(new SettingsWindowFactory(), MainModel);
             vm.OpenView();
         }
 
@@ -156,6 +163,11 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 Computer.Restart();
             }
+        }
+
+        public async void CancelLibraryUpdate()
+        {
+            await GlobalTaskHandler.CancelAndWaitAsync();
         }
     }
 }

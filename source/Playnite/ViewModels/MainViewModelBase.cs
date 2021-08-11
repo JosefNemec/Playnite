@@ -137,6 +137,7 @@ namespace Playnite.ViewModels
         public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RemoveFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> ApplyFilterPresetCommand { get; private set; }
+        public RelayCommand CancelProgressCommand { get; private set; }
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
         public GameDatabase Database { get; }
         public PlayniteApplication App { get; }
@@ -184,6 +185,11 @@ namespace Playnite.ViewModels
             {
                 OpenUpdates();
             });
+
+            CancelProgressCommand = new RelayCommand(() =>
+            {
+                CancelProgress();
+            }, () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
         }
 
         private PlayniteSettings appSettings;
@@ -588,6 +594,11 @@ namespace Playnite.ViewModels
                 ProgressActive = false;
                 DatabaseFilters.IgnoreDatabaseUpdates = false;
             }
+        }
+
+        public async void CancelProgress()
+        {
+            await GlobalTaskHandler.CancelAndWaitAsync();
         }
     }
 }
