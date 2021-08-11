@@ -46,6 +46,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TopPanelWrapperItem ButtonGroupSettings;
         private TopPanelWrapperItem ButtonSortSettings;
         private TopPanelWrapperItem ButtonFilterPresets;
+        private TopPanelWrapperItem ButtonExplorerSwitch;
 
         private TopPanelWrapperItem ButtonSwitchDetailsView;
         private TopPanelWrapperItem ButtonSwitchGridView;
@@ -102,6 +103,7 @@ namespace Playnite.DesktopApp.Controls.Views
             ButtonGroupSettings.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGroupingItem;
             ButtonSortSettings.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelSortingItem;
             ButtonFilterPresets.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelFilterPresetsItem;
+            ButtonExplorerSwitch.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelExplorerSwitch;
 
             ButtonSwitchDetailsView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelDetailsViewSwitch;
             ButtonSwitchGridView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGridViewSwitch;
@@ -169,7 +171,7 @@ namespace Playnite.DesktopApp.Controls.Views
                     nameof(mainModel.UpdatesAvailable),
                     converter: new BooleanToVisibilityConverter());
                 PanelMainItems.Children.Add(updatesButton);
-
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelExplorerSwitchTemplate", mainModel.ToggleExplorerPanelCommand, ResourceProvider.GetString(LOC.TopPanelExplorerSwitch), out ButtonExplorerSwitch));
                 SetButtonVisibility();
             }
 

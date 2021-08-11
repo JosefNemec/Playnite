@@ -903,6 +903,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCTopPanelSortSettings">Sort settings</sys:String>
     <sys:String x:Key="LOCTopPanelFilterPresets">Filter presets</sys:String>
     <sys:String x:Key="LOCTopPanelPluginPanelPosition">Plugin items position</sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch">Explorer panel</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Save grouping and sorting settings</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Show as quick filter in Fullscreen mode</sys:String>
     <sys:String x:Key="LOCInPast7Days">In past 7 days</sys:String>

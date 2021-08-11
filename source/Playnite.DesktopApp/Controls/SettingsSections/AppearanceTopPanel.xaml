@@ -36,6 +36,8 @@
                   Content="{DynamicResource LOCGridViewLabel}" Margin="0,15,0,0" />
         <CheckBox IsChecked="{Binding Settings.ShowTopPanelListViewSwitch}"
                   Content="{DynamicResource LOCListViewLabel}" Margin="0,15,0,0" />
+        <CheckBox IsChecked="{Binding Settings.ShowTopPanelExplorerSwitch}"
+                  Content="{DynamicResource LOCTopPanelExplorerSwitch}" Margin="0,15,0,0" />
 
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCTopPanelPluginPanelPosition}"

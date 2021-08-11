@@ -778,6 +778,10 @@ namespace Playnite
         /// </summary>
         public const string MenuReloadLibrary = "LOCMenuReloadLibrary";
         /// <summary>
+        /// Cancel Library Update
+        /// </summary>
+        public const string MenuCancelLibraryUpdate = "LOCMenuCancelLibraryUpdate";
+        /// <summary>
         /// Update Emulated Folders
         /// </summary>
         public const string MenuUpdateEmulatedDirs = "LOCMenuUpdateEmulatedDirs";
@@ -3014,6 +3018,10 @@ namespace Playnite
         /// </summary>
         public const string ExtensionsInstalled = "LOCExtensionsInstalled";
         /// <summary>
+        /// Extensions settings
+        /// </summary>
+        public const string ExtensionsSettings = "LOCExtensionsSettings";
+        /// <summary>
         /// Browse
         /// </summary>
         public const string ExtensionsBrowse = "LOCExtensionsBrowse";
@@ -3026,13 +3034,13 @@ namespace Playnite
         /// </summary>
         public const string ExtensionsUpdatesCount = "LOCExtensionsUpdatesCount";
         /// <summary>
-        /// Management of installed extensions and themes has been moved to a new "Add-ons" menu.
+        /// Management of installed extensions and themes, including their settings, has been moved to a new "Add-ons" menu.
         /// </summary>
         public const string AddonsConfigMoveInfo = "LOCAddonsConfigMoveInfo";
         /// <summary>
-        /// Library integration settings have been moved to "Library -&gt; Configure Integrations" menu.
+        /// All currently installed library integration extensions can be configured here.
         /// </summary>
-        public const string IntegrationsConfigMoveInfo = "LOCIntegrationsConfigMoveInfo";
+        public const string LibrariesConfigWindowDescription = "LOCLibrariesConfigWindowDescription";
         /// <summary>
         /// Themes Desktop
         /// </summary>
@@ -3253,6 +3261,10 @@ namespace Playnite
         /// Plugin items position
         /// </summary>
         public const string TopPanelPluginPanelPosition = "LOCTopPanelPluginPanelPosition";
+        /// <summary>
+        /// Explorer panel
+        /// </summary>
+        public const string TopPanelExplorerSwitch = "LOCTopPanelExplorerSwitch";
         /// <summary>
         /// Save grouping and sorting settings
         /// </summary>

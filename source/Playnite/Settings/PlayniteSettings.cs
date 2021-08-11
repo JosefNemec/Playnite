@@ -1599,6 +1599,17 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelExplorerSwitch = false;
+        public bool ShowTopPanelExplorerSwitch
+        {
+            get => showTopPanelExplorerSwitch;
+            set
+            {
+                showTopPanelExplorerSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Dock pluginTopPanelAlignment = Dock.Right;
         public Dock PluginTopPanelAlignment
         {
