@@ -100,6 +100,46 @@ namespace Playnite.Common
             return Serialization.FromTomlFile<T>(filePath);
         }
 
+        public bool TryFromYaml<T>(string yaml, out T content) where T : class
+        {
+            return Serialization.TryFromYaml(yaml, out content);
+        }
+
+        public bool TryFromYamlFile<T>(string filePath, out T content) where T : class
+        {
+            return Serialization.TryFromYamlFile(filePath, out content);
+        }
+
+        public bool TryFromJson<T>(string json, out T content) where T : class
+        {
+            return Serialization.TryFromJson(json, out content);
+        }
+
+        public bool TryFromJsonStream<T>(Stream stream, out T content) where T : class
+        {
+            return Serialization.TryFromJsonStream(stream, out content);
+        }
+
+        public bool TryFromJsonFile<T>(string filePath, out T content) where T : class
+        {
+            return Serialization.TryFromJsonFile(filePath, out content);
+        }
+
+        public bool TryFromToml<T>(string toml, out T content) where T : class
+        {
+            return Serialization.TryFromToml(toml, out content);
+        }
+
+        public bool TryFromTomlFile<T>(string filePath, out T content) where T : class
+        {
+            return Serialization.TryFromTomlFile(filePath, out content);
+        }
+
+        public bool AreObjectsEqual(object object1, object object2)
+        {
+            return object1.IsEqualJson(object2);
+        }
+
         public T GetClone<T>(T source) where T : class
         {
             return source.GetClone<T>();
@@ -110,124 +150,6 @@ namespace Playnite.Common
             where U : class
         {
             return source.GetClone<T, U>();
-        }
-
-        public bool AreObjectsEqual(object object1, object object2)
-        {
-            return object1.IsEqualJson(object2);
-        }
-
-        public T FromStream<T>(Stream stream, Format dataFormat) where T : class
-        {
-            switch (dataFormat)
-            {
-                case Format.Json:
-                    return Serialization.FromJsonStream<T>(stream);
-                case Format.Yaml:
-                    return Serialization.FromYamlStream<T>(stream);
-                default:
-                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
-            }
-        }
-
-        public T FromFile<T>(string path, Format dataFormat) where T : class
-        {
-            switch (dataFormat)
-            {
-                case Format.Json:
-                    return Serialization.FromJsonFile<T>(path);
-                case Format.Yaml:
-                    return Serialization.FromYamlFile<T>(path);
-                default:
-                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
-            }
-        }
-
-        public T FromString<T>(string data, Format dataFormat) where T : class
-        {
-            switch (dataFormat)
-            {
-                case Format.Json:
-                    return Serialization.FromJson<T>(data);
-                case Format.Yaml:
-                    return Serialization.FromYaml<T>(data);
-                default:
-                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
-            }
-        }
-
-        public void ToFile(object data, string path, Format dataFormat)
-        {
-            switch (dataFormat)
-            {
-                case Format.Json:
-                    File.WriteAllText(path, Serialization.ToJson(data), Encoding.UTF8);
-                    break;
-                case Format.Yaml:
-                    File.WriteAllText(path, Serialization.ToYaml(data), Encoding.UTF8);
-                    break;
-                default:
-                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
-            }
-        }
-
-        public string ToString(object data, Format dataFormat)
-        {
-            switch (dataFormat)
-            {
-                case Format.Json:
-                    return Serialization.ToJson(data);
-                case Format.Yaml:
-                    return Serialization.ToYaml(data);
-                default:
-                    throw new NotSupportedException($"Uknown data format {dataFormat}.");
-            }
-        }
-
-        public bool TryFromFile<T>(string path, Format dataFormat, out T deserialized) where T : class
-        {
-            try
-            {
-                switch (dataFormat)
-                {
-                    case Format.Json:
-                        deserialized = Serialization.FromJsonFile<T>(path);
-                        return true;
-                    case Format.Yaml:
-                        deserialized = Serialization.FromYamlFile<T>(path);
-                        return true;
-                    default:
-                        throw new NotSupportedException($"Uknown data format {dataFormat}.");
-                }
-            }
-            catch
-            {
-                deserialized = null;
-                return false;
-            }
-        }
-
-        public bool TryFromString<T>(string data, Format dataFormat, out T deserialized) where T : class
-        {
-            try
-            {
-                switch (dataFormat)
-                {
-                    case Format.Json:
-                        deserialized = Serialization.FromJson<T>(data);
-                        return true;
-                    case Format.Yaml:
-                        deserialized = Serialization.FromYaml<T>(data);
-                        return true;
-                    default:
-                        throw new NotSupportedException($"Uknown data format {dataFormat}.");
-                }
-            }
-            catch
-            {
-                deserialized = null;
-                return false;
-            }
         }
     }
 
@@ -260,9 +182,38 @@ namespace Playnite.Common
             }
         }
 
+        public static bool TryFromYaml<T>(string yaml, out T deserialized) where T : class
+        {
+            try
+            {
+                var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
+                deserialized = deserializer.Deserialize<T>(yaml);
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
+        }
+
         public static T FromYamlFile<T>(string filePath) where T : class
         {
             return FromYaml<T>(File.ReadAllText(filePath));
+        }
+
+        public static bool TryFromYamlFile<T>(string filePath, out T deserialized) where T : class
+        {
+            try
+            {
+                deserialized = FromYaml<T>(File.ReadAllText(filePath));
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
         }
 
         public static T FromYamlStream<T>(Stream stream) where T : class
@@ -323,11 +274,48 @@ namespace Playnite.Common
             }
         }
 
+        public static bool TryFromJsonStream<T>(Stream stream, out T deserialized) where T : class
+        {
+            try
+            {
+                using (var sr = new StreamReader(stream))
+                using (var reader = new JsonTextReader(sr))
+                {
+                    deserialized = JsonSerializer.Create(jsonDesSettings).Deserialize<T>(reader);
+                }
+
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
+}
+
         public static T FromJsonFile<T>(string filePath) where T : class
         {
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 return FromJsonStream<T>(fs);
+            }
+        }
+
+        public static bool TryFromJsonFile<T>(string filePath, out T deserialized) where T : class
+        {
+            try
+            {
+                using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    deserialized = FromJsonStream<T>(fs);
+                }
+
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
             }
         }
 
@@ -359,9 +347,37 @@ namespace Playnite.Common
             }
         }
 
+        public static bool TryFromToml<T>(string toml, out T deserialized) where T : class
+        {
+            try
+            {
+                deserialized = Toml.ReadString<T>(toml);
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
+        }
+
         public static T FromTomlFile<T>(string filePath) where T : class
         {
             return FromToml<T>(File.ReadAllText(filePath));
+        }
+
+        public static bool TryFromTomlFile<T>(string filePath, out T deserialized) where T : class
+        {
+            try
+            {
+                deserialized = FromToml<T>(File.ReadAllText(filePath));
+                return true;
+            }
+            catch
+            {
+                deserialized = null;
+                return false;
+            }
         }
     }
 }

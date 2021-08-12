@@ -35,21 +35,6 @@ namespace Playnite.SDK.Data
     }
 
     /// <summary>
-    ///
-    /// </summary>
-    public enum Format
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        Json,
-        /// <summary>
-        ///
-        /// </summary>
-        Yaml
-    }
-
-    /// <summary>
     /// Describes data serializer.
     /// </summary>
     public interface IDataSerializer
@@ -69,6 +54,8 @@ namespace Playnite.SDK.Data
         /// <returns></returns>
         T FromYaml<T>(string yaml) where T : class;
 
+        bool TryFromYaml<T>(string yaml, out T content) where T : class;
+
         /// <summary>
         /// Deserialize an object from a file containing YAML string.
         /// </summary>
@@ -76,6 +63,8 @@ namespace Playnite.SDK.Data
         /// <param name="filePath"></param>
         /// <returns></returns>
         T FromYamlFile<T>(string filePath) where T : class;
+
+        bool TryFromYamlFile<T>(string filePath, out T content) where T : class;
 
         /// <summary>
         /// Serailize an object to JSON string.
@@ -101,6 +90,8 @@ namespace Playnite.SDK.Data
         /// <returns></returns>
         T FromJson<T>(string json) where T : class;
 
+        bool TryFromJson<T>(string json, out T content) where T : class;
+
         /// <summary>
         /// Deserialize an object from JSON data stream.
         /// </summary>
@@ -108,6 +99,8 @@ namespace Playnite.SDK.Data
         /// <param name="stream"></param>
         /// <returns></returns>
         T FromJsonStream<T>(Stream stream) where T : class;
+
+        bool TryFromJsonStream<T>(Stream stream, out T content) where T : class;
 
         /// <summary>
         /// Deserialize an object from a file containing JSON string.
@@ -117,6 +110,8 @@ namespace Playnite.SDK.Data
         /// <returns></returns>
         T FromJsonFile<T>(string filePath) where T : class;
 
+        bool TryFromJsonFile<T>(string filePath, out T content) where T : class;
+
         /// <summary>
         /// Deserialize an object from TOML string.
         /// </summary>
@@ -125,6 +120,8 @@ namespace Playnite.SDK.Data
         /// <returns></returns>
         T FromToml<T>(string toml) where T : class;
 
+        bool TryFromToml<T>(string toml, out T content) where T : class;
+
         /// <summary>
         /// Deserialize an object from a file containing TOML string.
         /// </summary>
@@ -132,6 +129,8 @@ namespace Playnite.SDK.Data
         /// <param name="filePath"></param>
         /// <returns></returns>
         T FromTomlFile<T>(string filePath) where T : class;
+
+        bool TryFromTomlFile<T>(string filePath, out T content) where T : class;
 
         /// <summary>
         /// Creates clone of an object using json serialization.
@@ -159,69 +158,6 @@ namespace Playnite.SDK.Data
         /// <param name="object2"></param>
         /// <returns></returns>
         bool AreObjectsEqual(object object1, object object2);
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="stream"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        T FromStream<T>(Stream stream, Format dataFormat) where T : class;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="path"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        T FromFile<T>(string path, Format dataFormat) where T : class;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="data"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        T FromString<T>(string data, Format dataFormat) where T : class;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="path"></param>
-        /// <param name="dataFormat"></param>
-        void ToFile(object data, string path, Format dataFormat);
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        string ToString(object data, Format dataFormat);
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="path"></param>
-        /// <param name="dataFormat"></param>
-        /// <param name="deserialized"></param>
-        /// <returns></returns>
-        bool TryFromFile<T>(string path, Format dataFormat, out T deserialized) where T : class;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="data"></param>
-        /// <param name="dataFormat"></param>
-        /// <param name="deserialized"></param>
-        /// <returns></returns>
-        bool TryFromString<T>(string data, Format dataFormat, out T deserialized) where T : class;
     }
 
     /// <summary>
@@ -257,6 +193,11 @@ namespace Playnite.SDK.Data
             return serializer.FromYaml<T>(yaml);
         }
 
+        public static bool TryFromYaml<T>(string yaml, out T content) where T : class
+        {
+            return serializer.TryFromYaml<T>(yaml, out content);
+        }
+
         /// <summary>
         /// Deserialize an object from a file containing YAML string.
         /// </summary>
@@ -266,6 +207,11 @@ namespace Playnite.SDK.Data
         public static T FromYamlFile<T>(string filePath) where T : class
         {
             return serializer.FromYamlFile<T>(filePath);
+        }
+
+        public static bool TryFromYamlFile<T>(string filePath, out T content) where T : class
+        {
+            return serializer.TryFromYamlFile<T>(filePath, out content);
         }
 
         /// <summary>
@@ -301,6 +247,11 @@ namespace Playnite.SDK.Data
             return serializer.FromJson<T>(json);
         }
 
+        public static bool TryFromJson<T>(string json, out T content) where T : class
+        {
+            return serializer.TryFromJson<T>(json, out content);
+        }
+
         /// <summary>
         /// Deserialize an object from JSON data stream.
         /// </summary>
@@ -310,6 +261,11 @@ namespace Playnite.SDK.Data
         public static T FromJsonStream<T>(Stream stream) where T : class
         {
             return serializer.FromJsonStream<T>(stream);
+        }
+
+        public static bool TryFromJsonStream<T>(Stream stream, out T content) where T : class
+        {
+            return serializer.TryFromJsonStream<T>(stream, out content);
         }
 
         /// <summary>
@@ -323,6 +279,11 @@ namespace Playnite.SDK.Data
             return serializer.FromJsonFile<T>(filePath);
         }
 
+        public static bool TryFromJsonFile<T>(string filePath, out T content) where T : class
+        {
+            return serializer.TryFromJsonFile<T>(filePath, out content);
+        }
+
         /// <summary>
         /// Deserialize an object from TOML string.
         /// </summary>
@@ -334,6 +295,11 @@ namespace Playnite.SDK.Data
             return serializer.FromToml<T>(toml);
         }
 
+        public static bool TryFromToml<T>(string toml, out T content) where T : class
+        {
+            return serializer.TryFromToml<T>(toml, out content);
+        }
+
         /// <summary>
         /// Deserialize an object from a file containing TOML string.
         /// </summary>
@@ -343,6 +309,11 @@ namespace Playnite.SDK.Data
         public static T FromTomlFile<T>(string filePath) where T : class
         {
             return serializer.FromTomlFile<T>(filePath);
+        }
+
+        public static bool TryFromTomlFile<T>(string filePath, out T content) where T : class
+        {
+            return serializer.TryFromTomlFile<T>(filePath, out content);
         }
 
         /// <summary>
@@ -379,90 +350,6 @@ namespace Playnite.SDK.Data
         public static bool AreObjectsEqual(object object1, object object2)
         {
             return serializer.AreObjectsEqual(object1, object2);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="stream"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        public static T FromStream<T>(Stream stream, Format dataFormat) where T : class
-        {
-            return serializer.FromStream<T>(stream, dataFormat);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="path"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        public static T FromFile<T>(string path, Format dataFormat) where T : class
-        {
-            return serializer.FromFile<T>(path, dataFormat);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="data"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        public static T FromString<T>(string data, Format dataFormat) where T : class
-        {
-            return serializer.FromString<T>(data, dataFormat);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="path"></param>
-        /// <param name="dataFormat"></param>
-        public static void ToFile(object data, string path, Format dataFormat)
-        {
-            serializer.ToFile(data, path, dataFormat);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="dataFormat"></param>
-        /// <returns></returns>
-        public static string ToString(object data, Format dataFormat)
-        {
-            return serializer.ToString(data, dataFormat);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="path"></param>
-        /// <param name="dataFormat"></param>
-        /// <param name="deserialized"></param>
-        /// <returns></returns>
-        public static bool TryFromFile<T>(string path, Format dataFormat, out T deserialized) where T : class
-        {
-            return serializer.TryFromFile<T>(path, dataFormat, out deserialized);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="data"></param>
-        /// <param name="dataFormat"></param>
-        /// <param name="deserialized"></param>
-        /// <returns></returns>
-        public static bool TryFromString<T>(string data, Format dataFormat, out T deserialized) where T : class
-        {
-            return serializer.TryFromString<T>(data, dataFormat, out deserialized);
         }
     }
 }
