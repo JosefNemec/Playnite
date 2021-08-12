@@ -3262,6 +3262,10 @@ namespace Playnite
         /// </summary>
         public const string TopPanelPluginPanelPosition = "LOCTopPanelPluginPanelPosition";
         /// <summary>
+        /// Section separator width
+        /// </summary>
+        public const string TopPanelSeparatorWidth = "LOCTopPanelSeparatorWidth";
+        /// <summary>
         /// Explorer panel
         /// </summary>
         public const string TopPanelExplorerSwitch = "LOCTopPanelExplorerSwitch";

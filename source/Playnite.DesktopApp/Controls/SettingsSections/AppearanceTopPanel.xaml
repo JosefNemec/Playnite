@@ -7,6 +7,7 @@
              xmlns:sysCtrls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -46,6 +47,14 @@
                   ItemsSource="{StaticResource LeftRightDockOptions}"
                   SelectedValue="{Binding Settings.PluginTopPanelAlignment}"
                   HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+            <TextBlock Text="{DynamicResource LOCTopPanelSeparatorWidth}"
+                       Margin="0,0,5,0" Style="{StaticResource BaseTextBlockStyle}" VerticalAlignment="Center"  />
+            <pctrls:DoubleNumericBox MinValue="0" MaxValue="9999" 
+                                     Value="{Binding Settings.TopPanelSectionSeparatorWidth}"
+                                     VerticalAlignment="Center" Width="50"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

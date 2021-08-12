@@ -1610,6 +1610,21 @@ namespace Playnite
             }
         }
 
+        private double topPanelSectionSeparatorWidth = 15;
+        public double TopPanelSectionSeparatorWidth
+        {
+            get
+            {
+                return topPanelSectionSeparatorWidth;
+            }
+
+            set
+            {
+                topPanelSectionSeparatorWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Dock pluginTopPanelAlignment = Dock.Right;
         public Dock PluginTopPanelAlignment
         {

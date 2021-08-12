@@ -56,8 +56,6 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <sys:Double x:Key="TopPanelSectionSeparatorWidth">15</sys:Double>
-
     <Style x:Key="TopPanelMenu" TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />

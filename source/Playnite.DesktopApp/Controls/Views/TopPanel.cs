@@ -95,6 +95,11 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 SetButtonVisibility();
             }
+            else if (e.PropertyName == nameof(PlayniteSettings.TopPanelSectionSeparatorWidth))
+            {
+                LeftViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
+                RightViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
+            }
         }
 
         private void SetButtonVisibility()
@@ -155,9 +160,8 @@ namespace Playnite.DesktopApp.Controls.Views
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelGroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings, out ButtonGroupSettings));
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelSortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings, out ButtonSortSettings));
 
-                var separatorWidth = ResourceProvider.GetResource<double>("TopPanelSectionSeparatorWidth");
-                LeftViewSeparator.Width = separatorWidth;
-                RightViewSeparator.Width = separatorWidth;
+                LeftViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
+                RightViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
                 PanelMainItems.Children.Add(LeftViewSeparator);
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription(), out ButtonSwitchDetailsView));
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription(), out ButtonSwitchGridView));
