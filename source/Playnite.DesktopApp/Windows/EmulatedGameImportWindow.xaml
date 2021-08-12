@@ -43,7 +43,7 @@
 
         <controls:ExtendedDataGrid Grid.Row="1" Margin="10,5,10,0"
                   Visibility="{Binding IsScanSetup, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                  CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" GridLinesVisibility="None"                  
+                  CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" GridLinesVisibility="None"
                   ItemsSource="{Binding CollectionView}" SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="ContextMenuOpening" >
@@ -91,6 +91,14 @@
                             <dctrls:ComboBoxList Background="{StaticResource NormalBrushDark}"
                                                  SelectedItems="{Binding Regions, UpdateSourceTrigger=PropertyChanged}"
                                                  ItemsSource="{Binding Data.Regions, Source={StaticResource BindingProxy}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Hack to make the last empty column being able to slect a row-->
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
