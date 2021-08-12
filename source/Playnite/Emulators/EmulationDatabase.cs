@@ -23,14 +23,52 @@ namespace Playnite.Emulators
                 db = new SQLiteDatabase(dbPath, SQLiteOpenOptions.SQLITE_OPEN_READONLY);
             }
 
-            public List<DatGame> GetByCrc(string checksum)
+            public IEnumerable<DatGame> GetByCrc(string checksum)
             {
-                return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.RomCrc)}) = '{checksum.ToUpper()}'").ToList();
+                if (db.TableExists("DatGame"))
+                {
+                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.RomCrc)}) = '{checksum.ToUpper()}'");
+                }
+                else
+                {
+                    return new List<DatGame>();
+                }
             }
 
-            public List<DatGame> GetBySerial(string serial)
+            public IEnumerable<DatGame> GetBySerial(string serial)
             {
-                return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.Serial)}) = '{serial.ToUpper()}'").ToList();
+                if (db.TableExists("DatGame"))
+                {
+                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.Serial)}) = '{serial.ToUpper()}'");
+                }
+                else
+                {
+                    return new List<DatGame>();
+                }
+            }
+
+            public IEnumerable<DatGame> GetByRomName(string romName)
+            {
+                if (db.TableExists("DatGame"))
+                {
+                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.RomName)}) = '{romName.ToUpper()}'");
+                }
+                else
+                {
+                    return new List<DatGame>();
+                }
+            }
+
+            public IEnumerable<DatGame> GetByRomNamePartial(string romNamePart)
+            {
+                if (db.TableExists("DatGame"))
+                {
+                    return db.Load<DatGame>($"WHERE INSTR(UPPER({nameof(DatGame.RomName)}), '{romNamePart.ToUpper()}') > 0");
+                }
+                else
+                {
+                    return new List<DatGame>();
+                }
             }
 
             public void Dispose()

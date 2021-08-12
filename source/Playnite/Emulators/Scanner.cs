@@ -572,6 +572,11 @@ namespace Playnite.Emulators
                 }
 
                 var ext = Path.GetExtension(file).TrimStart('.');
+                if (ext.IsNullOrEmpty())
+                {
+                    ext = "<none>";
+                }
+
                 if (!supportedExtensions.ContainsString(ext, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
@@ -679,6 +684,22 @@ namespace Playnite.Emulators
                         datRecSource = db.DatabaseName;
                         break;
                     }
+
+                    var fileName = Path.GetFileName(file);
+                    datRec = db.GetByRomName(fileName).FirstOrDefault();
+                    if (datRec != null)
+                    {
+                        datRecSource = db.DatabaseName;
+                        break;
+                    }
+
+                    // This is mainly for XBLA games that have those weird file names
+                    datRec = db.GetByRomNamePartial(fileName).FirstOrDefault();
+                    if (datRec != null)
+                    {
+                        datRecSource = db.DatabaseName;
+                        break;
+                    }
                 }
 
                 if (datRec == null)
@@ -769,10 +790,23 @@ namespace Playnite.Emulators
             Name = new RomName(System.IO.Path.GetFileNameWithoutExtension(path));
         }
 
-        public ScannedRom(string path, DatGame dbData, string dbDataSource) : this(path)
+        public ScannedRom(string path, DatGame dbData, string dbDataSource)
         {
+            Path = path;
             DbData = dbData;
             DbDataSource = dbDataSource;
+            if (!dbData.Name.IsNullOrEmpty())
+            {
+                Name = new RomName(dbData.Name);
+            }
+            else if (!dbData.RomName.IsNullOrEmpty())
+            {
+                Name = new RomName(dbData.RomName);
+            }
+            else
+            {
+                Name = new RomName(System.IO.Path.GetFileNameWithoutExtension(path));
+            }
         }
 
         public ScannedRom()
@@ -787,7 +821,6 @@ namespace Playnite.Emulators
         public string Name { get; set; }
         public string SanitizedName { get; set; }
         public string DiscName { get; set; }
-        public string SubName { get; set; }
         public List<string> Properties { get; set; } = new List<string>();
 
         public RomName()

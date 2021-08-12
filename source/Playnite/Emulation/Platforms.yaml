@@ -1,37 +1,29 @@
 - Name: Atari 2600
   Id: atari_2600
-  Databases:
-    - Atari - 2600
-  Emulators:
-    - stella
+  Databases: [Atari - 2600]
+  Emulators: [stella]
 
 - Name: Sony PlayStation 3
   Id: playstation3
-  Databases:
-    - Sony - PlayStation 3
-    - Sony - PlayStation 3 (PSN)
-  Emulators:
-    - rpcs3
+  Databases: [Sony - PlayStation 3, Sony - PlayStation 3 (PSN)]
+  Emulators: [rpcs3]
 
 - Name: Sony PlayStation
   Id: playstation
-  Databases:
-    - Sony - PlayStation
-  Emulators:
-    - epsxe
-    - duckstation
+  Databases: [Sony - PlayStation]
+  Emulators: [epsxe, duckstation]
 
 - Name: Super Nintendo Entertainment System
   Id: super_nes
-  Databases:
-    - Nintendo - Super Nintendo Entertainment System
-  Emulators:
-    - bsnes
-    - snes9x
+  Databases: [Nintendo - Super Nintendo Entertainment System]
+  Emulators: [bsnes, snes9x]
 
 - Name: Sega Dreamcast
   Id: dreamcast
-  Databases:
-    - Sega - Dreamcast
-  Emulators:
-    - redream
+  Databases: [Sega - Dreamcast]
+  Emulators: [redream]
+
+- Name: Microsoft Xbox 360
+  Id: xbox360
+  Databases: [Microsoft - Xbox 360, Microsoft - XBOX 360 (Digital), Microsoft - XBOX 360 (Games on Demand)]
+  Emulators: [xenia]
