@@ -115,7 +115,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{DynamicResource LOCNameLabel}" Width="Auto" DisplayMemberBinding="{Binding Name.Name}" />
+                                <GridViewColumn Header="{DynamicResource LOCNameLabel}" Width="Auto" DisplayMemberBinding="{Binding Name.DiscName}" />
                                 <GridViewColumn Header="{DynamicResource LOCPathLabel}" Width="Auto" DisplayMemberBinding="{Binding Path}" />
                                 <GridViewColumn Header="db" 
                                                 Width="{Binding Path=(p:PlayniteEnvironment.IsDebugBuild), Converter={StaticResource BoolToAutoWidthConverter}}">

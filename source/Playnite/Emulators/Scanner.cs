@@ -782,11 +782,12 @@ namespace Playnite.Emulators
 
     public class RomName
     {
-        private static readonly string propsMatchStr = @"\[(.*?)\]|\((.*?)\)";
+        private static readonly Regex propsRegex = new Regex(@"\[(.*?)\]|\((.*?)\)", RegexOptions.Compiled);
 
         public string Name { get; set; }
         public string SanitizedName { get; set; }
         public string DiscName { get; set; }
+        public string SubName { get; set; }
         public List<string> Properties { get; set; } = new List<string>();
 
         public RomName()
@@ -800,8 +801,9 @@ namespace Playnite.Emulators
                 throw new ArgumentNullException(nameof(originalName));
             }
 
+            SanitizedName = SanitizeName(originalName);
             Name = originalName;
-            var matches = Regex.Matches(originalName, propsMatchStr);
+            var matches = propsRegex.Matches(originalName);
             if (matches.Count > 0)
             {
                 foreach (Match match in matches)
@@ -817,12 +819,15 @@ namespace Playnite.Emulators
             }
 
             DiscName = Properties.FirstOrDefault(a => a.StartsWith("disc", StringComparison.InvariantCultureIgnoreCase));
-            SanitizedName = SanitizeName(originalName);
+            if (DiscName == null)
+            {
+                DiscName = SanitizedName;
+            }
         }
 
         public static string SanitizeName(string name)
         {
-            var newName = Regex.Replace(name, propsMatchStr, string.Empty);
+            var newName = propsRegex.Replace(name, string.Empty);
             return newName.Replace('’', '\'').Trim();
         }
     }
