@@ -209,6 +209,16 @@ namespace Playnite.Controls
                     e.Handled = true;
                 }
             };
+
+            // This fixes an issue if SizeToContent is used on windows with custom WindowChrome (all Playnite windows)
+            // https://stackoverflow.com/questions/29207331/wpf-window-with-custom-chrome-has-unwanted-outline-on-right-and-bottom
+            SourceInitialized += (_, e) =>
+            {
+                if (SizeToContent == SizeToContent.WidthAndHeight)
+                {
+                    InvalidateMeasure();
+                }
+            };
         }
 
         public WindowBase(string savePositionName) : this()

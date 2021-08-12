@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCSelectActionTitle}"
         WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
-        d:DesignHeight="400" Width="350"
+        d:DesignHeight="200" d:DesignWidth="350"
         ShowMinimizeButton="False" ShowMaximizeButton="False"
         AutomationProperties.AutomationId="WindowActionSelection">
 
@@ -24,7 +24,7 @@
                     Command="{Binding CancelCommand}" IsCancel="True" />
         </StackPanel>
         <ItemsControl ItemsSource="{Binding Actions}"                      
-                      Margin="10,10,10,5" DockPanel.Dock="Top">
+                      Margin="20,15,25,15" DockPanel.Dock="Top">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <RadioButton GroupName="A" Margin="10,10,10,5"
