@@ -26,6 +26,7 @@ namespace Playnite.DesktopApp.ViewModels
         public class ImportGameScannerConfig : GameScannerConfig
         {
             public bool Save { get; set; }
+            public bool SavedConfig { get; set; }
         }
 
         public class MenuItem
@@ -160,7 +161,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 var config = a.GetClone<GameScannerConfig, ImportGameScannerConfig>();
                 config.Save = false;
-                config.Id = Guid.Empty;
+                config.SavedConfig = true;
                 ScannerConfigs.Add(config);
             });
 

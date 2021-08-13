@@ -129,7 +129,7 @@
                                                 Width="{Binding Path=(p:PlayniteEnvironment.IsDebugBuild), Converter={StaticResource BoolToAutoWidthConverter}}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox IsReadOnly="True" Text="{Binding DbData, Mode=OneWay}" />
+                                            <TextBox IsReadOnly="True" Text="{Binding DbData, Mode=OneWay, Converter={StaticResource ObjectToStringConverter}}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -169,7 +169,7 @@
                                 </DockPanel>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
                                           IsChecked="{Binding Save}"
-                                          Visibility="{Binding Id, Converter={StaticResource InvertedObjectEqualityToVisibilityConverter}, ConverterParameter={x:Static sys:Guid.Empty}}"/>
+                                          Visibility="{Binding SavedConfig, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                                 <Button Content="{DynamicResource LOCRemoveLabel}" Margin="0,10,0,0" HorizontalAlignment="Left"
                                         Command="{Binding Data.RemoveScanConfigCommand, Source={StaticResource BindingProxy}}"
                                         CommandParameter="{Binding}" />
