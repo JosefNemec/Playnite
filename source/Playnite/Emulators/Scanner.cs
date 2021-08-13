@@ -363,23 +363,8 @@ namespace Playnite.Emulators
 
                     if (scriptTask.IsCompleted)
                     {
-                        if (scannedGames is ScannedGame game)
-                        {
-                            return new List<ScannedGame> { game };
-                        }
-                        else if (scannedGames is List<ScannedGame> games)
-                        {
-                            return games;
-                        }
-                        else if (scannedGames == null)
-                        {
-                            return new List<ScannedGame>();
-                        }
-                        else
-                        {
-                            logger.Error($"Scanning script returned unknown data type {scannedGames.GetType()}");
-                            return new List<ScannedGame>();
-                        }
+                        return ParseScriptScanResult(
+                            scannedGames, emuProf);
                     }
 
                     if (scriptTask.IsCanceled || scriptTask.IsFaulted)
@@ -394,7 +379,6 @@ namespace Playnite.Emulators
                     directory,
                     emuProf.ImageExtensions,
                     emuProf.Platforms,
-                    PlaynitePaths.EmulationDatabasePath,
                     importedFiles,
                     cancelToken);
             }
@@ -423,16 +407,14 @@ namespace Playnite.Emulators
                 directory,
                 profile.ImageExtensions,
                 platforms,
-                PlaynitePaths.EmulationDatabasePath,
                 importedFiles,
                 cancelToken);
         }
 
-        public static List<ScannedGame> ScanDirectory(
+        private static List<ScannedGame> ScanDirectory(
             string directory,
             List<string> supportedExtensions,
             List<string> scanPlatforms,
-            string databaseDir,
             List<string> importedFiles,
             CancellationToken cancelToken)
         {
@@ -442,18 +424,7 @@ namespace Playnite.Emulators
                 throw new Exception($"Can't scan emulation directory, {directory} doesn't exist.");
             }
 
-            var supportedPlatforms = Emulation.Platforms.Where(a => scanPlatforms?.Contains(a.Id) == true).ToList();
-            var supportedDatabases = supportedPlatforms.SelectMany(a => a.Databases).Distinct().ToList();
-            var emuDbs = new List<EmulationDatabase.EmulationDatabaseReader>();
-            foreach (var supDb in supportedDatabases)
-            {
-                var db = EmulationDatabase.GetDatabase(supDb, databaseDir);
-                if (db != null)
-                {
-                    emuDbs.Add(db);
-                }
-            }
-
+            var emuDbs = GetEmulationDbs(scanPlatforms);
             var resultRoms = new Dictionary<string, List<ScannedRom>>();
 
             try
@@ -716,6 +687,119 @@ namespace Playnite.Emulators
                 return null;
             }
         }
+
+        private static List<EmulationDatabase.EmulationDatabaseReader> GetEmulationDbs(List<string> platformIds)
+        {
+            var supportedPlatforms = Emulation.Platforms.Where(a => platformIds?.Contains(a.Id) == true).ToList();
+            var supportedDatabases = supportedPlatforms.SelectMany(a => a.Databases).Distinct().ToList();
+            var emuDbs = new List<EmulationDatabase.EmulationDatabaseReader>();
+            foreach (var supDb in supportedDatabases)
+            {
+                var db = EmulationDatabase.GetDatabase(supDb, PlaynitePaths.EmulationDatabasePath);
+                if (db != null)
+                {
+                    emuDbs.Add(db);
+                }
+            }
+
+            return emuDbs;
+        }
+
+        private static ScannedGame ParseScripScannedGame(
+            ScriptScannedGame scriptGame,
+            List<EmulationDatabase.EmulationDatabaseReader> emuDbs)
+        {
+            var game = new ScannedGame();
+            game.Name = scriptGame.Name ?? scriptGame.Serial;
+            game.Roms = new ObservableCollection<ScannedRom>();
+
+            if (scriptGame.Serial.IsNullOrEmpty())
+            {
+                game.Roms.Add(new ScannedRom(scriptGame.Path));
+            }
+            else
+            {
+                DatGame datRec = null;
+                string datRecSource = null;
+                foreach (var db in emuDbs)
+                {
+                    datRec = db.GetBySerial(scriptGame.Serial).FirstOrDefault();
+                    if (datRec != null)
+                    {
+                        datRecSource = db.DatabaseName;
+                        break;
+                    }
+                }
+
+                if (datRec == null)
+                {
+                    game.Roms.Add(new ScannedRom(scriptGame.Path));
+                }
+                else
+                {
+                    var romData = new ScannedRom(scriptGame.Path, datRec, datRecSource);
+                    game.Roms.Add(romData);
+                    game.Name = romData.Name.SanitizedName;
+                }
+            }
+
+            return game;
+        }
+
+        private static List<ScannedGame> ParseScriptScanResult(
+            object scanResult,
+            EmulatorDefinitionProfile emuProf)
+        {
+            if (scanResult == null)
+            {
+                return new List<ScannedGame>();
+            }
+
+            if (!(scanResult is ScriptScannedGame) && !(scanResult is List<object>))
+            {
+                if (PlayniteEnvironment.ThrowAllErrors)
+                {
+                    throw new Exception($"Scanning script returned unknown data type {scanResult.GetType()}");
+                }
+                else
+                {
+                    logger.Error($"Scanning script returned unknown data type {scanResult.GetType()}");
+                    return new List<ScannedGame>();
+                }
+            }
+
+            var emuDbs = GetEmulationDbs(emuProf.Platforms);
+            try
+            {
+                if (scanResult is ScriptScannedGame game)
+                {
+                    return new List<ScannedGame>() { ParseScripScannedGame(game, emuDbs) };
+                }
+                else if (scanResult is List<object> games)
+                {
+                    var result = new List<ScannedGame>();
+                    foreach (ScriptScannedGame scannedGame in games)
+                    {
+                        result.Add(ParseScripScannedGame(scannedGame, emuDbs));
+                    }
+
+                    return result;
+                }
+            }
+            finally
+            {
+                emuDbs.ForEach(a => a.Dispose());
+            }
+
+            return new List<ScannedGame>();
+        }
+    }
+
+    public class ScriptScannedGame
+    {
+        public string Path { get; set; }
+        public string Serial { get; set; }
+        public string Name { get; set; }
     }
 
     public class ScannedGame : ObservableObject
