@@ -1,0 +1,10 @@
+Id: 4do
+Name: 4DO
+Website: 'https://sourceforge.net/projects/fourdo/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-StartLoadFile "{ImagePath}" --StartFullScreen'  
+    Platforms: [3do]
+    ImageExtensions: [cue, bin, iso]
+    InstallationFile: ^4do\.exe$
+    StartupExecutable: ^4do\.exe$

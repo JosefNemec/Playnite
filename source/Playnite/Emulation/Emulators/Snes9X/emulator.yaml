@@ -3,8 +3,7 @@ Name: Snes9X
 Website: 'http://www.snes9x.com/'
 Profiles:
   - Name: Default
-    Platforms: [super_nes]
-    ImageExtensions: [zip, gz, jma, sfc, smc]
-    InstallationFile: ^snes9x.*\.exe$
-    StartupExecutable: ^snes9x.*\.exe$
     StartupArguments: '"{ImagePath}" -fullscreen'
+    Platforms: [nintento_super_nes]
+    ImageExtensions: [zip, gz, jma, sfc, smc]
+    StartupExecutable: ^snes9x.*\.exe$

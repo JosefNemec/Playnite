@@ -5,7 +5,6 @@ Profiles:
   - Name: Default
     Platforms: [playstation3]
     ProfileFiles: ['qt\plugins\platforms\qwindows.dll']
-    InstallationFile: ^rpcs3.*\.exe$
     StartupExecutable: ^rpcs3.*\.exe$
     StartupArguments: '"{ImagePath}"'
     ScriptGameImport: true

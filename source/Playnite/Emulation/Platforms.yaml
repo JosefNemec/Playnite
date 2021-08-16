@@ -1,29 +1,195 @@
+- Name: 3DO Interactive Multiplayer
+  Id: 3do
+  IgdbId: 50
+  Databases: [The 3DO Company - 3DO]
+  Emulators: [4do]
+
+- Name: Apple II
+  Id: apple_2
+  IgdbId: 75
+  Emulators: [bizhawk]
+
 - Name: Atari 2600
   Id: atari_2600
+  IgdbId: 59
   Databases: [Atari - 2600]
-  Emulators: [stella]
+  Emulators: [stella, bizhawk]
 
-- Name: Sony PlayStation 3
-  Id: playstation3
-  Databases: [Sony - PlayStation 3, Sony - PlayStation 3 (PSN)]
-  Emulators: [rpcs3]
+- Name: Atari 8-bit
+  Id: atari_8bit
+  IgdbId: 65
+  Emulators: [altirra, atari800]
 
-- Name: Sony PlayStation
-  Id: playstation
-  Databases: [Sony - PlayStation]
-  Emulators: [epsxe, duckstation]
+- Name: Atari 5200
+  Id: atari_5200
+  IgdbId: 66
+  Databases: [Atari - 5200]
+  Emulators: [altirra, atari800]
 
-- Name: Super Nintendo Entertainment System
-  Id: super_nes
-  Databases: [Nintendo - Super Nintendo Entertainment System]
-  Emulators: [bsnes, snes9x]
+- Name: Atari 7800
+  Id: atari_7800
+  IgdbId: 60
+  Databases: [Atari - 7800]
+  Emulators: [bizhawk]
+
+- Name: Atari Lynx
+  Id: atari_lynx
+  IgdbId: 61
+  Databases: [Atari - Lynx]
+  Emulators: [bizhawk]
+
+- Name: Bandai WonderSwan
+  Id: bandai_wonderswan
+  IgdbId: 57
+  Databases: [Bandai - WonderSwan]
+  Emulators: [bizhawk]
+
+- Name: Bandai WonderSwan Color
+  Id: bandai_wonderswan_color
+  IgdbId: 123
+  Databases: [Bandai - WonderSwan Color]
+  Emulators: [bizhawk]
+
+- Name: Coleco ColecoVision
+  Id: coleco_vision
+  IgdbId: 68
+  Databases: [Coleco - ColecoVision]
+  Emulators: [bizhawk]
+
+- Name: Commodore 64
+  Id: commodore_64
+  IgdbId: 15
+  Databases: [Commodore - 64, Commodore - 64 (PP), Commodore - 64 (Tapes)]
+  Emulators: [bizhawk]
+
+- Name: Mattel Intellivision
+  Id: mattel_intellivision
+  IgdbId: 67
+  Databases: [Mattel - Intellivision]
+  Emulators: [bizhawk]
+
+- Name: NEC TurboGrafx-CD
+  Id: nec_turbografx_cd
+  IgdbId: 150
+  Databases: [NEC - PC Engine CD - TurboGrafx-CD]
+  Emulators: [bizhawk]
+
+- Name: NEC TurboGrafx 16
+  Id: nec_turbografx_16
+  IgdbId: 86
+  Databases: [NEC - PC Engine - TurboGrafx 16]
+  Emulators: [bizhawk]
+
+- Name: NEC SuperGrafx
+  Id: nec_supergrafx
+  IgdbId: 128
+  Databases: [NEC - PC Engine SuperGrafx]
+  Emulators: [bizhawk]
+
+- Name: Nintendo Entertainment System
+  Id: nintendo_nes
+  IgdbId: 18
+  Databases: [Nintendo - Nintendo Entertainment System]
+  Emulators: [bizhawk]
+
+- Name: Nintendo Game Boy
+  Id: nintendo_gameboy
+  IgdbId: 33
+  Databases: [Nintendo - Game Boy]
+  Emulators: [bizhawk]
+
+- Name: Nintendo Game Boy Color
+  Id: nintendo_gameboycolor
+  IgdbId: 22
+  Databases: [Nintendo - Game Boy Color]
+  Emulators: [bizhawk]
+
+- Name: Nintendo Game Boy Advance
+  Id: nintendo_gameboyadvance
+  IgdbId: 24
+  Databases: [Nintendo - Game Boy Advance]
+  Emulators: [bizhawk]
+
+- Name: Nintendo Virtual Boy
+  Id: nintendo_virtualboy
+  IgdbId: 87
+  Databases: [Nintendo - Virtual Boy]
+  Emulators: [bizhawk]
+
+- Name: Nintendo 64
+  Id: nintendo_64
+  IgdbId: 4
+  Databases: [Nintendo - Nintendo 64]
+  Emulators: [bizhawk]
 
 - Name: Sega Dreamcast
   Id: dreamcast
+  IgdbId: 23
   Databases: [Sega - Dreamcast]
   Emulators: [redream]
 
+- Name: Sega Game Gear
+  Id: sega_gamegear
+  IgdbId: 35
+  Databases: [Sega - Game Gear]
+  Emulators: [bizhawk]
+
+- Name: Sega Genesis
+  Id: sega_genesis
+  IgdbId: 29
+  Databases: [Sega - Mega Drive - Genesis]
+  Emulators: [bizhawk, blastem]
+
+- Name: Sega Master System
+  Id: sega_mastersystem
+  IgdbId: 64
+  Databases: [Sega - Master System - Mark III]
+  Emulators: [bizhawk]
+
+- Name: Sega Saturn
+  Id: sega_saturn
+  IgdbId: 32
+  Databases: [Sega - Saturn]
+  Emulators: [bizhawk]
+
+- Name: Sinclair ZX Spectrum
+  Id: sinclair_zxspectrum
+  IgdbId: 26
+  Databases: [Sinclair - ZX Spectrum]
+  Emulators: [bizhawk]
+
+- Name: SNK Neo Geo Pocket
+  Id: snk_neogeopocket
+  IgdbId: 119
+  Databases: [SNK - Neo Geo Pocket]
+  Emulators: [bizhawk]
+
+- Name: SNK Neo Geo Pocket Color
+  Id: snk_neogeopocket_color
+  IgdbId: 120
+  Databases: [SNK - Neo Geo Pocket Color]
+  Emulators: [bizhawk]
+
+- Name: Sony PlayStation
+  Id: sony_playstation
+  IgdbId: 7
+  Databases: [Sony - PlayStation]
+  Emulators: [epsxe, duckstation, bizhawk]
+
+- Name: Sony PlayStation 3
+  Id: playstation3
+  IgdbId: 9
+  Databases: [Sony - PlayStation 3, Sony - PlayStation 3 (PSN)]
+  Emulators: [rpcs3]
+
+- Name: Super Nintendo Entertainment System
+  Id: nintento_super_nes
+  IgdbId: 19
+  Databases: [Nintendo - Super Nintendo Entertainment System]
+  Emulators: [bsnes, snes9x, bizhawk, bsnes-hd, bsnes-mt]
+
 - Name: Microsoft Xbox 360
   Id: xbox360
+  IgdbId: 12
   Databases: [Microsoft - Xbox 360, Microsoft - XBOX 360 (Digital), Microsoft - XBOX 360 (Games on Demand)]
   Emulators: [xenia]

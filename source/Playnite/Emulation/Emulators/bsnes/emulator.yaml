@@ -1,10 +1,9 @@
 Id: bsnes
 Name: bsnes
-Website: 'https://byuu.org/bsnes/'
+Website: 'https://bsnes.dev/'
 Profiles:
   - Name: Default
-    Platforms: [super_nes]
+    StartupArguments: '--fullscreen "{ImagePath}"'
+    Platforms: [nintento_super_nes]
     ImageExtensions: [sfc, smc, zip, 7z]
-    InstallationFile: ^bsnes\.exe$
     StartupExecutable: ^bsnes\.exe$
-    StartupArguments: '"{ImagePath}"'

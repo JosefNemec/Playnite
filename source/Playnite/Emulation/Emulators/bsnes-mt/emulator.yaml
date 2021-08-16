@@ -1,8 +1,9 @@
+Id: bsnes-mt
 Name: bsnes-mt
 Website: 'https://tanalin.com/en/projects/bsnes-mt/'
 Profiles:
   - Name: Default
-    DefaultArguments: '"{ImagePath}"'
-    Platforms: [Super Nintendo Entertainment System]
+    StartupArguments: '--fullscreen "{ImagePath}"'
+    Platforms: [nintento_super_nes]
     ImageExtensions: [sfc, smc, zip, 7z]
-    ExecutableLookup: ^bsnes-mt\.exe$
+    StartupExecutable: ^bsnes-mt\.exe$

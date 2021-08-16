@@ -6,11 +6,9 @@ Profiles:
     StartupArguments: '"{ImagePath}"'
     Platforms: [xbox360]
     ImageExtensions: [iso, xex, cci, cxi, elf, <none>]
-    InstallationFile: ^xenia\.exe$
     StartupExecutable: ^xenia\.exe$
   - Name: Canary
     StartupArguments: '"{ImagePath}"'
     Platforms: [xbox360]
     ImageExtensions: [iso, xex, cci, cxi, elf, <none>]
-    InstallationFile: ^xenia_canary\.exe$
     StartupExecutable: ^xenia_canary\.exe$

@@ -3,9 +3,8 @@ Name: redream
 Website: 'https://redream.io/'
 Profiles:
   - Name: Default
+    StartupArguments: '"{ImagePath}"'
     Platforms: [dreamcast]
     ImageExtensions: [cdi, gdi, chd, cue]
     ProfileFiles: [flash.bin]
-    InstallationFile: ^redream\.exe$
     StartupExecutable: ^redream\.exe$
-    StartupArguments: '"{ImagePath}"'
