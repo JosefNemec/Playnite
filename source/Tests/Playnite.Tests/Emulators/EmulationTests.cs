@@ -23,6 +23,11 @@ namespace Playnite.Tests.Emulators
             Assert.AreEqual("Europe", romName.Properties[0]);
             Assert.AreEqual("Disc 1", romName.Properties[1]);
             Assert.AreEqual("SCES-00867", romName.Properties[2]);
+
+            romName = new RomName("Battlezone 2000(USA, Europe)");
+            Assert.AreEqual("Battlezone 2000", romName.SanitizedName);
+            Assert.AreEqual("USA", romName.Properties[0]);
+            Assert.AreEqual("Europe", romName.Properties[1]);
         }
 
         //[Test]

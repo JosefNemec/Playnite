@@ -27,7 +27,7 @@ namespace Playnite.Emulators
             {
                 if (db.TableExists("DatGame"))
                 {
-                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.RomCrc)}) = '{checksum.ToUpper()}'");
+                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.RomCrc)}) = '{checksum.ToUpper().Replace("'", "''")}'");
                 }
                 else
                 {
@@ -39,7 +39,7 @@ namespace Playnite.Emulators
             {
                 if (db.TableExists("DatGame"))
                 {
-                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.Serial)}) = '{serial.ToUpper()}'");
+                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.Serial)}) = '{serial.ToUpper().Replace("'", "''")}'");
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace Playnite.Emulators
             {
                 if (db.TableExists("DatGame"))
                 {
-                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.RomName)}) = '{romName.ToUpper()}'");
+                    return db.Load<DatGame>($"WHERE UPPER({nameof(DatGame.RomName)}) = '{romName.ToUpper().Replace("'", "''")}'");
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace Playnite.Emulators
             {
                 if (db.TableExists("DatGame"))
                 {
-                    return db.Load<DatGame>($"WHERE INSTR(UPPER({nameof(DatGame.RomName)}), '{romNamePart.ToUpper()}') > 0");
+                    return db.Load<DatGame>($"WHERE INSTR(UPPER({nameof(DatGame.RomName)}), '{romNamePart.ToUpper().Replace("'", "''")}') > 0");
                 }
                 else
                 {

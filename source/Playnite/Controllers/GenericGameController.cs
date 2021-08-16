@@ -38,7 +38,6 @@ namespace Playnite.Controllers
         private readonly IPlayniteAPI playniteApi;
         private PowerShellRuntime scriptRuntime;
         private PowerShellRuntime playRuntime;
-        private SynchronizationContext execContext;
         private Task playTask;
         private bool isDisposed = false;
         private EmulatorProfile currentEmuProfile;
@@ -170,7 +169,7 @@ namespace Playnite.Controllers
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound));
                     }
 
-                    startupArgs = Game.ExpandVariables(profileDef.StartupArguments, true, null, romPath);
+                    startupArgs = Game.ExpandVariables(profileDef.StartupArguments, false, null, romPath);
                     StartEmulatorProcess(startupPath, startupArgs, startupDir, asyncExec);
                 }
             }

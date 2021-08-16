@@ -78,13 +78,19 @@ namespace Playnite.Emulators
                     var importId = definition.Id + currentDir;
                     foreach (var defProfile in definition.Profiles)
                     {
-                        if (defProfile.InstallationFile.IsNullOrEmpty())
+                        var detectionStr = defProfile.InstallationFile;
+                        if (detectionStr.IsNullOrEmpty())
+                        {
+                            detectionStr = defProfile.StartupExecutable;
+                        }
+
+                        if (detectionStr.IsNullOrEmpty() && !PlayniteEnvironment.ThrowAllErrors)
                         {
                             continue;
                         }
 
                         var reqMet = true;
-                        var regex = new Regex(defProfile.InstallationFile, RegexOptions.IgnoreCase);
+                        var regex = new Regex(detectionStr, RegexOptions.IgnoreCase);
                         if (regex.IsMatch(file.Name))
                         {
                             if (defProfile.ProfileFiles?.Any() == true)
@@ -609,14 +615,14 @@ namespace Playnite.Emulators
             {
                 DatGame datRec = null;
                 string datRecSource = null;
-                string crc = null;
+                List<string> crcs = new List<string>();
 
                 if (IsSupportedArchiveExtension(fileExt))
                 {
                     var archFiles = Archive.GetArchiveFiles(file);
-                    var supportedFile = archFiles.FirstOrDefault(a =>
+                    var supportedFiles = archFiles.Where(a =>
                         supportedExtensions.ContainsString(Path.GetExtension(a).TrimStart('.')));
-                    if (supportedFile != null)
+                    foreach (var supportedFile in supportedFiles)
                     {
                         logger.Trace($"Getting rom crc from archive file '{supportedFile}'\r\n {file}");
                         var streams = Archive.GetEntryStream(file, supportedFile);
@@ -625,34 +631,42 @@ namespace Playnite.Emulators
                             using (streams.Item2)
                             using (streams.Item1)
                             {
-                                crc = FileSystem.GetCRC32(streams.Item1);
+                                crcs.AddMissing(FileSystem.GetCRC32(streams.Item1));
                             }
                         }
                     }
 
-                    if (crc == null)
+                    if (!crcs.HasItems())
                     {
                         logger.Trace($"Failed to get crc info from archive: {file}");
-                        crc = FileSystem.GetCRC32(file);
+                        crcs.Add(FileSystem.GetCRC32(file));
                     }
                 }
                 else
                 {
                     logger.Trace($"Getting rom crc from file: {file}");
-                    crc = FileSystem.GetCRC32(file);
+                    crcs.Add(FileSystem.GetCRC32(file));
                 }
 
-                if (crc.IsNullOrEmpty())
+                if (!crcs.HasItems())
                 {
                     return null;
                 }
 
                 foreach (var db in databases)
                 {
-                    datRec = db.GetByCrc(crc).FirstOrDefault();
-                    if (datRec != null)
+                    foreach (var crc in crcs)
                     {
-                        datRecSource = db.DatabaseName;
+                        datRec = db.GetByCrc(crc).FirstOrDefault();
+                        if (datRec != null)
+                        {
+                            datRecSource = db.DatabaseName;
+                            break;
+                        }
+                    }
+
+                    if (datRecSource != null)
+                    {
                         break;
                     }
 
@@ -691,7 +705,7 @@ namespace Playnite.Emulators
         private static List<EmulationDatabase.EmulationDatabaseReader> GetEmulationDbs(List<string> platformIds)
         {
             var supportedPlatforms = Emulation.Platforms.Where(a => platformIds?.Contains(a.Id) == true).ToList();
-            var supportedDatabases = supportedPlatforms.SelectMany(a => a.Databases).Distinct().ToList();
+            var supportedDatabases = supportedPlatforms.Where(a => a.Databases.HasItems()).SelectMany(a => a.Databases).Distinct().ToList();
             var emuDbs = new List<EmulationDatabase.EmulationDatabaseReader>();
             foreach (var supDb in supportedDatabases)
             {
@@ -901,6 +915,7 @@ namespace Playnite.Emulators
     public class RomName
     {
         private static readonly Regex propsRegex = new Regex(@"\[(.*?)\]|\((.*?)\)", RegexOptions.Compiled);
+        private static readonly char[] propertySplitter = new char[] { ',' };
 
         public string Name { get; set; }
         public string SanitizedName { get; set; }
@@ -929,23 +944,30 @@ namespace Playnite.Emulators
                     {
                         if (!match.Groups[i].Value.IsNullOrEmpty())
                         {
-                            Properties.Add(match.Groups[i].Value);
+                            Properties.AddRange(match.Groups[i].Value.Split(propertySplitter, StringSplitOptions.RemoveEmptyEntries).Select(a => a.Trim()));
                         }
                     }
                 }
             }
 
-            DiscName = Properties.FirstOrDefault(a => a.StartsWith("disc", StringComparison.InvariantCultureIgnoreCase));
+            DiscName = Properties.FirstOrDefault(a =>
+                a.StartsWith("disc", StringComparison.InvariantCultureIgnoreCase) ||
+                a.StartsWith("disk", StringComparison.InvariantCultureIgnoreCase) ||
+                a.StartsWith("side", StringComparison.InvariantCultureIgnoreCase));
             if (DiscName == null)
             {
-                DiscName = SanitizedName;
+                DiscName = originalName;
             }
         }
 
         public static string SanitizeName(string name)
         {
             var newName = propsRegex.Replace(name, string.Empty);
-            return newName.Replace('’', '\'').Trim();
+            return newName.
+                Replace('’', '\'').
+                RemoveTrademarks().
+                Replace("_", " ").
+                Trim();
         }
     }
 }
