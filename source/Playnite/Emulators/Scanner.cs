@@ -297,6 +297,15 @@ namespace Playnite.Emulators
                         }
                     }
                 }
+
+                var releaseYear = game.Roms.FirstOrDefault(a => a.DbData?.ReleaseYear.IsNullOrEmpty() == false)?.DbData.ReleaseYear;
+                if (!releaseYear.IsNullOrEmpty())
+                {
+                    if (ReleaseDate.TryDeserialize(releaseYear, out var releaseDate))
+                    {
+                        game.ReleaseDate = releaseDate;
+                    }
+                }
             }
 
             return games;
@@ -825,6 +834,7 @@ namespace Playnite.Emulators
         private List<Region> regions;
         private string name;
         private GameScannerConfig sourceConfig;
+        private ReleaseDate? releaseDate;
         #endregion backing fields
 
         public bool Import                              { get => import; set => SetValue(ref import, value); }
@@ -833,10 +843,16 @@ namespace Playnite.Emulators
         public List<Region> Regions                     { get => regions; set => SetValue(ref regions, value); }
         public string Name                              { get => name; set => SetValue(ref name, value); }
         public GameScannerConfig SourceConfig           { get => sourceConfig; set => SetValue(ref sourceConfig, value); }
+        public ReleaseDate? ReleaseDate                 { get => releaseDate; set => SetValue(ref releaseDate, value); }
 
         public Game ToGame()
         {
-            var game = new Game(Name) { IsInstalled = true };
+            var game = new Game(Name)
+            {
+                IsInstalled = true,
+                ReleaseDate = ReleaseDate
+            };
+
             if (Platforms.HasItems())
             {
                 game.PlatformIds = Platforms.Select(a => a.Id).ToList();
