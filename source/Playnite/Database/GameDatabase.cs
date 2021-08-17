@@ -1304,7 +1304,7 @@ namespace Playnite.Database
 
             var designGame = new Game($"Star Wars: Knights of the Old Republic")
             {
-                ReleaseDate = new DateTime(2009, 9, 5),
+                ReleaseDate = new ReleaseDate(2009, 9, 5),
                 PlatformIds = new List<Guid> { database.Platforms.First().Id },
                 PlayCount = 20,
                 Playtime = 115200,

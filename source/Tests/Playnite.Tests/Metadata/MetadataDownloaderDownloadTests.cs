@@ -90,7 +90,7 @@ namespace Playnite.Tests.Metadata
                 return metadata.GameInfo?.Publishers;
             }
 
-            public override DateTime? GetReleaseDate(GetMetadataFieldArgs args)
+            public override ReleaseDate? GetReleaseDate(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.ReleaseDate;
             }
@@ -368,7 +368,7 @@ namespace Playnite.Tests.Metadata
                     Name = "Game",
                     GameId = "storeId",
                     Genres = new List<string>() { "Genre" },
-                    ReleaseDate = new DateTime(2012, 6, 6),
+                    ReleaseDate = new ReleaseDate(2012, 6, 6),
                     Developers = new List<string>() { "Developer" },
                     Publishers = new List<string>() { "Publisher" },
                     Tags = new List<string>() { "Tag" },
@@ -444,7 +444,7 @@ namespace Playnite.Tests.Metadata
                 Genres = new List<string>() { $"IGDB Genre {gameId}" },
                 Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
                 Publishers = new List<string>() { $"IGDB publisher {gameId}" },
-                ReleaseDate = new DateTime(2012, 6, 6),
+                ReleaseDate = new ReleaseDate(2012, 6, 6),
                 Tags = new List<string>() { $"IGDB Tag {gameId}" },
                 Features = new List<string>() { $"IGDB Feature {gameId}" },
                 Icon = icon,
@@ -471,7 +471,7 @@ namespace Playnite.Tests.Metadata
                     Genres = new List<string>() { "Genres" },
                     Links = new List<Link>() { new Link("Link", "URL") },
                     Publishers = new List<string>() { "Publishers" },
-                    ReleaseDate = new DateTime(2012, 6, 6),
+                    ReleaseDate = new ReleaseDate(2012, 6, 6),
                     Tags = new List<string>() { "Tags" },
                     Features = new List<string>() { "Features" },
                     UserScore = 1,

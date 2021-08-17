@@ -508,11 +508,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private DateTime? releaseDate;
+        private ReleaseDate? releaseDate;
         /// <summary>
         /// Gets or set game's release date.
         /// </summary>
-        public DateTime? ReleaseDate
+        public ReleaseDate? ReleaseDate
         {
             get
             {

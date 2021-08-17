@@ -25,6 +25,12 @@ namespace Playnite.Database
 
         public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
         {
+            mapper.RegisterType<ReleaseDate>
+            (
+                (date) => date.Serialize(),
+                (bson) => ReleaseDate.Deserialize(bson.AsString)
+            );
+
             mapper.Entity<Game>().
                 Id(a => a.Id, false).
                 Ignore(a => a.Genres).

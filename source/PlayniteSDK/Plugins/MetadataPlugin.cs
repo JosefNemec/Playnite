@@ -163,7 +163,7 @@ namespace Playnite.SDK.Plugins
         /// Gets relese date.
         /// </summary>
         /// <returns></returns>
-        public virtual DateTime? GetReleaseDate(GetMetadataFieldArgs args)
+        public virtual ReleaseDate? GetReleaseDate(GetMetadataFieldArgs args)
         {
             return null;
         }

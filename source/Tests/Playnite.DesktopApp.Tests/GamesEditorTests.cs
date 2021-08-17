@@ -77,7 +77,7 @@ namespace Playnite.DesktopApp.Tests
                 {
                     Name = "Game",
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
@@ -104,7 +104,7 @@ namespace Playnite.DesktopApp.Tests
                 new Game()
                 {
                     Name = "Game",
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
@@ -133,7 +133,7 @@ namespace Playnite.DesktopApp.Tests
                 {
                     Name = "Game",
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
@@ -193,7 +193,7 @@ namespace Playnite.DesktopApp.Tests
                 new Game()
                 {
                     Name = "Game 1",
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
@@ -231,7 +231,7 @@ namespace Playnite.DesktopApp.Tests
                     AgeRatingIds = new List<Guid>{ ratings[1] },
                     RegionIds = new List<Guid>{ regions[1] },
                     SourceId = sources[1],
-                    ReleaseDate = new DateTime(2012,6,20),
+                    ReleaseDate = new ReleaseDate(2012,6,20),
                     Description = "Description 2",
                     PlatformIds = new List<Guid>{ Guid.NewGuid() },
                     LastActivity = new DateTime(2012,1,2),
@@ -259,7 +259,7 @@ namespace Playnite.DesktopApp.Tests
                     AgeRatingIds = new List<Guid>{ ratings[2] },
                     RegionIds = new List<Guid>{ regions[2] },
                     SourceId = sources[2],
-                    ReleaseDate = new DateTime(2013,6,20),
+                    ReleaseDate = new ReleaseDate(2013,6,20),
                     Description = "Description 3",
                     PlatformIds = new List<Guid>{ Guid.NewGuid() },
                     LastActivity = new DateTime(2012,1,3),

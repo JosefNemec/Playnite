@@ -41,7 +41,7 @@ namespace Playnite
         public ComparableDbItemList<Series> Series => new ComparableDbItemList<Series>(Game.Series);
         public ComparableDbItemList<Region> Regions => new ComparableDbItemList<Region>(Game.Regions);
         public ComparableDbItemList<Platform> Platforms => new ComparableDbItemList<Platform>(Game.Platforms);
-        public DateTime? ReleaseDate => Game.ReleaseDate;
+        public ReleaseDate? ReleaseDate => Game.ReleaseDate;
         public int? ReleaseYear => Game.ReleaseYear;
         public DateTime? LastActivity => Game.LastActivity;
         public ObservableCollection<Link> Links => Game.Links;

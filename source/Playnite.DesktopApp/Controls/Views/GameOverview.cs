@@ -367,8 +367,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GameDetailsViewModel.SetReleaseDateFilterCommand),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
-                nameof(GameDetailsViewModel.ReleaseDateVisibility),
-                new NullableDateToStringConverter());
+                nameof(GameDetailsViewModel.ReleaseDateVisibility));
 
             SetGameItemButtonBinding(ref ButtonVersion, "PART_ButtonVersion",
                 nameof(GameDetailsViewModel.SetVersionFilterCommand),

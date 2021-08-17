@@ -133,7 +133,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateReleaseDate">
-            <TextBlock Text="{Binding ReleaseDate, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
+            <TextBlock Text="{Binding ReleaseDate, Mode=OneWay}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateGenres">

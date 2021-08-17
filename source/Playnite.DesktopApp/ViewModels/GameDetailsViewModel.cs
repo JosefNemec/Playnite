@@ -263,7 +263,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<DatabaseObject> SetPublisherFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetDeveloperFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetGenreFilterCommand { get; }
-        public RelayCommand<DateTime?> SetReleaseDateFilterCommand { get; }
+        public RelayCommand<ReleaseDate?> SetReleaseDateFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetCategoryFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetTagFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetFeatureFilterCommand { get; }
@@ -295,7 +295,7 @@ namespace Playnite.DesktopApp.ViewModels
             SetPublisherFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Publishers));
             SetDeveloperFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Developers));
             SetGenreFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Genres));
-            SetReleaseDateFilterCommand = new RelayCommand<DateTime?>((a) => SetReleaseDateFilter(a));
+            SetReleaseDateFilterCommand = new RelayCommand<ReleaseDate?>((a) => SetReleaseDateFilter(a));
             SetCategoryFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Categories));
             SetTagFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Tags));
             SetFeatureFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Features));
@@ -427,7 +427,7 @@ namespace Playnite.DesktopApp.ViewModels
             settings.FilterPanelVisible = true;
         }
 
-        public void SetReleaseDateFilter(DateTime? date)
+        public void SetReleaseDateFilter(ReleaseDate? date)
         {
             if (date != null)
             {

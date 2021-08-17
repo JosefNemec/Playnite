@@ -2614,6 +2614,10 @@ namespace Playnite
         /// </summary>
         public const string DescriptionPlaytimeSeconds = "LOCDescriptionPlaytimeSeconds";
         /// <summary>
+        /// Release date must be set in 'year-month-day' format. Month and Day values can be omitted.
+        /// </summary>
+        public const string ReleaseDateTooltip = "LOCReleaseDateTooltip";
+        /// <summary>
         /// Values from 0 to 100 or empty for no score.
         /// </summary>
         public const string DescriptionScoreValues = "LOCDescriptionScoreValues";

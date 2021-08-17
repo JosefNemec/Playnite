@@ -126,7 +126,7 @@ namespace Playnite.Tests.Models
                 Playtime = 10,
                 PublisherIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
                 RegionIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
-                ReleaseDate = new DateTime(40),
+                ReleaseDate = new ReleaseDate(2000),
                 SeriesIds = new List<Guid> { new Guid(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6) },
                 SortingName = "SortingName",
                 SourceId = new Guid(7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7),

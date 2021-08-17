@@ -24,6 +24,7 @@
         AutomationProperties.AutomationId="WindowGameEdit">
 
     <controls:WindowBase.Resources>
+        <pcon:ReleaseDateToStringConverter x:Key="ReleaseDateToStringConverter" />
         <pcon:ListToStringConverter x:Key="ListToStringConverter" />
         <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -249,8 +250,21 @@
                         <CheckBox Grid.Column="4" Grid.Row="0" Name="CheckReleaseDate"
                                     Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding UseReleaseDateChanges}"/>
-                        <DatePicker Grid.Column="5" Grid.Row="0"
-                                    SelectedDate="{Binding EditingGame.ReleaseDate}"/>
+                        <TextBox Grid.Column="5" Grid.Row="0"
+                                 ToolTip="{DynamicResource LOCReleaseDateTooltip}"
+                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
+                            <TextBox.Text>
+                                <Binding Path="EditingGame.ReleaseDate"
+                                         UpdateSourceTrigger="PropertyChanged" 
+                                         ValidatesOnDataErrors="True"
+                                         NotifyOnValidationError="True"
+                                         Converter="{StaticResource ReleaseDateToStringConverter}">
+                                    <Binding.ValidationRules>
+                                        <pcon:ReleaseDateFieldValidation />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
 
                         <!-- Series -->
                         <TextBlock Grid.Column="3" Grid.Row="1" Text="{DynamicResource LOCSeriesLabel}"/>

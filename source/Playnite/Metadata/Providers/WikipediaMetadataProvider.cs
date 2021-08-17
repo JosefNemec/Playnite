@@ -48,7 +48,7 @@ namespace Playnite.Metadata.Providers
             this.plugin = plugin;
         }
 
-        public override DateTime? GetReleaseDate(GetMetadataFieldArgs args)
+        public override ReleaseDate? GetReleaseDate(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.ReleaseDate))
             {
@@ -471,7 +471,7 @@ namespace Playnite.Metadata.Providers
 
                         if (validDate)
                         {
-                            gameInfo.ReleaseDate = dateTime;
+                            gameInfo.ReleaseDate = new ReleaseDate(dateTime);
                             break;
                         }
                     }

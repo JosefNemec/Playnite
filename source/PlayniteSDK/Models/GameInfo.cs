@@ -45,7 +45,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets ReleaseDate.
         /// </summary>
-        public DateTime? ReleaseDate { get; set; }
+        public ReleaseDate? ReleaseDate { get; set; }
 
         /// <summary>
         /// Gets or sets Links.
