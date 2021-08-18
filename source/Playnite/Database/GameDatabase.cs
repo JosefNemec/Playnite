@@ -487,7 +487,7 @@ namespace Playnite.Database
             if (!dbExists)
             {
                 // Generate default platforms
-                var platforms = Emulation.Platforms.Select(a => new Platform(a.Name) { SpecificationId = a.Id }).ToList();
+                var platforms = Emulation.Platforms.Where(a => a.IgdbId != 0).Select(a => new Platform(a.Name) { SpecificationId = a.Id }).ToList();
                 if (platforms.HasItems())
                 {
                     var col = Platforms as ItemCollection<Platform>;

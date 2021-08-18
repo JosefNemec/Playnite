@@ -253,7 +253,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public RelayCommand<GameScannerConfig> RemoveScanConfigCommand =>
             new RelayCommand<GameScannerConfig>(
-                (a) => EditingScanners.Remove(a),
+                (a) => RemoveScanConfig(a),
                 (a) => a != null);
 
         public RelayCommand<GameScannerConfig> CopyScanConfigCommand =>
@@ -558,6 +558,19 @@ namespace Playnite.DesktopApp.ViewModels
             copy.Name += " Copy";
             EditingScanners.Add(copy);
             SelectedScanner = copy;
+        }
+
+        private void RemoveScanConfig(GameScannerConfig config)
+        {
+            EditingScanners.Remove(config);
+            if (EditingScanners.Count > 0)
+            {
+                SelectedScanner = EditingScanners[0];
+            }
+            else
+            {
+                EditingScanners = null;
+            }
         }
     }
 }

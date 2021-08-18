@@ -581,14 +581,14 @@ namespace Playnite.DesktopApp.ViewModels
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingCompletionStatuses = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
-            PlatformsSpecifications = Emulation.Platforms.ToList();
+            PlatformsSpecifications = Emulation.Platforms.OrderBy(a => a.Name).ToList();
             PlatformsSpecifications.Insert(0, new EmulatedPlatform
             {
                 Name = ResourceProvider.GetString(LOC.None),
                 Id = null
             });
 
-            RegionsSpecifications = Emulation.Regions.ToList();
+            RegionsSpecifications = Emulation.Regions.OrderBy(a => a.Name).ToList();
             RegionsSpecifications.Insert(0, new EmulatedRegion
             {
                 Name = ResourceProvider.GetString(LOC.None),
