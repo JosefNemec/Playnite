@@ -498,7 +498,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.BackgroundImage)))
                             {
-                                gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.GameInfo.BackgroundImage, existingStoreData, existingPluginData, cancelToken);
+                                gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.GameInfo?.BackgroundImage, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.BackgroundImage != null)
                                 {
                                     if (playniteSettings.DownloadBackgroundsImmediately && gameData.GameInfo.BackgroundImage.HasImageData)
@@ -523,7 +523,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.CoverImage)))
                             {
-                                gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.GameInfo.CoverImage, existingStoreData, existingPluginData, cancelToken);
+                                gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.GameInfo?.CoverImage, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.CoverImage != null)
                                 {
                                     game.CoverImage = database.AddFile(gameData.GameInfo.CoverImage, game.Id);
@@ -536,7 +536,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Icon)))
                             {
-                                gameData = ProcessField(game, settings.Icon, MetadataField.Icon, (a) => a.GameInfo.Icon, existingStoreData, existingPluginData, cancelToken);
+                                gameData = ProcessField(game, settings.Icon, MetadataField.Icon, (a) => a.GameInfo?.Icon, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.Icon != null)
                                 {
                                     game.Icon = database.AddFile(gameData.GameInfo.Icon, game.Id);
