@@ -142,7 +142,7 @@ Profiles:
 
   - Name: Super Nintendo Entertainment System
     StartupArguments: '"{ImagePath}" --fullscreen'
-    Platforms: [nintento_super_nes]
+    Platforms: [nintendo_super_nes]
     ImageExtensions: [smc, sfc, xml, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
 

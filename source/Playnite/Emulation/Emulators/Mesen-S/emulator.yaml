@@ -4,6 +4,6 @@ Website: 'https://github.com/SourMesen/Mesen-S'
 Profiles:
   - Name: Default
     StartupArguments: '"{ImagePath}"'
-    Platforms: [nintento_super_nes]
+    Platforms: [nintendo_super_nes]
     ImageExtensions: [sfc, smc, zip, 7z]
     StartupExecutable: ^Mesen-S\.exe$

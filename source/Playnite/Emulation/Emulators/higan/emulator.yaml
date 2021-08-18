@@ -10,7 +10,7 @@ Profiles:
 
   - Name: Nintendo - SNES
     StartupArguments: '"{ImagePath}"'
-    Platforms: [nintento_super_nes]
+    Platforms: [nintendo_super_nes]
     ImageExtensions: [sfc, smc, bs, zip]
     StartupExecutable: ^higan.*\.exe$
 

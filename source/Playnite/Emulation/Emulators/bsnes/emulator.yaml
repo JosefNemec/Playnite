@@ -4,6 +4,6 @@ Website: 'https://bsnes.dev/'
 Profiles:
   - Name: Default
     StartupArguments: '--fullscreen "{ImagePath}"'
-    Platforms: [nintento_super_nes]
+    Platforms: [nintendo_super_nes]
     ImageExtensions: [sfc, smc, zip, 7z]
     StartupExecutable: ^bsnes\.exe$
