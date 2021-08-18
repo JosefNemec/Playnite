@@ -128,6 +128,12 @@
   Databases: [Nintendo - Nintendo Entertainment System]
   Emulators: [bizhawk, fceux, higan, mednafen, mesen, nestopia, punes]
 
+- Name: Nintendo SNES
+  Id: nintento_super_nes
+  IgdbId: 19
+  Databases: [Nintendo - Super Nintendo Entertainment System]
+  Emulators: [bsnes, snes9x, bizhawk, bsnes-hd, bsnes-mt, higan, mednafen, mesen-s, zsnes]
+
 - Name: Nintendo Game Boy
   Id: nintendo_gameboy
   IgdbId: 33
@@ -288,12 +294,6 @@
   IgdbId: 46
   Databases: [Sony - PlayStation Vita, Sony - PlayStation Vita (PSN)]
   Emulators: [vita3k]
-
-- Name: Super Nintendo Entertainment System
-  Id: nintento_super_nes
-  IgdbId: 19
-  Databases: [Nintendo - Super Nintendo Entertainment System]
-  Emulators: [bsnes, snes9x, bizhawk, bsnes-hd, bsnes-mt, higan, mednafen, mesen-s, zsnes]
 
 - Name: Microsoft Xbox
   Id: xbox
