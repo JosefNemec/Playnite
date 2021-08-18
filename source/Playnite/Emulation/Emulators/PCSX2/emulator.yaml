@@ -1,0 +1,9 @@
+Id: pcsx2
+Name: PCSX2
+Website: 'https://pcsx2.net/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso]
+    StartupExecutable: ^pcsx2\.exe$

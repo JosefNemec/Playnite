@@ -1,0 +1,14 @@
+Id: ppsspp
+Name: PPSSPP
+Website: 'https://www.ppsspp.org/'
+Profiles:
+  - Name: 64bit
+    StartupArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
+    Platforms: [sony_psp]
+    ImageExtensions: [iso, cso, pbp]
+    StartupExecutable: ^PPSSPPWindows64\.exe$
+  - Name: 32bit
+    StartupArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
+    Platforms: [sony_psp]
+    ImageExtensions: [iso, cso, pbp]
+    StartupExecutable: ^PPSSPPWindows\.exe$

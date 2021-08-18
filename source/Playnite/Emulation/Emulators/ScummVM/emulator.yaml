@@ -1,0 +1,8 @@
+Id: scummvm
+Name: ScummVM
+Website: 'https://www.scummvm.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-f'
+    Platforms: [pc_dos, pc_windows]
+    StartupExecutable: ^scummvm\.exe$

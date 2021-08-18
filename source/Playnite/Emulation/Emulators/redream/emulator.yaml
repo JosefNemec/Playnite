@@ -4,7 +4,7 @@ Website: 'https://redream.io/'
 Profiles:
   - Name: Default
     StartupArguments: '"{ImagePath}"'
-    Platforms: [dreamcast]
+    Platforms: [sega_dreamcast]
     ImageExtensions: [cdi, gdi, chd, cue]
     ProfileFiles: [flash.bin]
     StartupExecutable: ^redream\.exe$

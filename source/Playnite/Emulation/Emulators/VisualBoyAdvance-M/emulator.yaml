@@ -1,0 +1,9 @@
+Id: visualboyadvance-m
+Name: VisualBoyAdvance-M
+Website: 'https://vba-m.com/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor, nintendo_gameboyadvance]
+    ImageExtensions: [zip, 7z, rar, bin, elf, mb, gba, agb, dmg, gb, gbc, cgb, sgb]
+    StartupExecutable: ^visualboyadvance-m\.exe$

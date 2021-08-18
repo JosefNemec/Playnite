@@ -1,0 +1,9 @@
+Id: mesen
+Name: Mesen
+Website: 'https://www.mesen.ca/'
+Profiles:
+  - Name: Default
+    StartupArguments: '/fullscreen "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [nes, unf, fds, nsf, nsfe, zip, 7z, ips, bps, ups]
+    StartupExecutable: ^Mesen\.exe$

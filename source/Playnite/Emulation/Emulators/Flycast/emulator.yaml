@@ -1,0 +1,9 @@
+Id: flycast
+Name: Flycast
+Website: 'https://github.com/flyinghead/flycast'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [sega_dreamcast]
+    ImageExtensions: [gdi, cdi, chd, zip]
+    StartupExecutable: ^flycast\.exe$

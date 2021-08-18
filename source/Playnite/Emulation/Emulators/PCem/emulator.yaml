@@ -1,0 +1,9 @@
+Id: pcem
+Name: PCem
+Website: 'https://pcem-emulator.co.uk/'
+Profiles:
+  - Name: Default
+    StartupArguments: '--config "{ImagePath}"'
+    Platforms: [pc_windows, pc_dos]
+    ImageExtensions: [cfg]  
+    StartupExecutable: ^pcem\.exe$

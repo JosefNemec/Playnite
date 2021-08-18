@@ -1,0 +1,9 @@
+Id: yabuse
+Name: Yabause
+Website: 'https://yabause.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '--iso="{ImagePath}"'
+    Platforms: [sega_saturn]
+    ImageExtensions: [iso, cue, bin, mds]
+    StartupExecutable: ^yabause.*\.exe$

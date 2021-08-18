@@ -1,0 +1,9 @@
+Id: ryujinx
+Name: Ryujinx
+Website: 'https://ryujinx.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_switch]
+    ImageExtensions: [xci, nsp]
+    StartupExecutable: ^ryujinx\.exe$
