@@ -168,8 +168,12 @@
                                                 Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
-                                          IsChecked="{Binding Save}"
+                                          IsChecked="{Binding Save}" Name="CheckSaveConfig"
                                           Visibility="{Binding SavedConfig, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                                <DockPanel Margin="0,10,0,10" Visibility="{Binding IsChecked, ElementName=CheckSaveConfig, Converter={pcon:BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="{DynamicResource LOCNameLabel}" VerticalAlignment="Center" />
+                                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"/>
+                                </DockPanel>
                                 <Button Content="{DynamicResource LOCRemoveLabel}" Margin="0,10,0,0" HorizontalAlignment="Left"
                                         Command="{Binding Data.RemoveScanConfigCommand, Source={StaticResource BindingProxy}}"
                                         CommandParameter="{Binding}" />

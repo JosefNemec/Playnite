@@ -343,7 +343,11 @@ namespace Playnite.DesktopApp.ViewModels
                 if (!exists)
                 {
                     var emulator = database.Emulators[config.EmulatorId];
-                    config.Name = config.Directory + ": " + emulator.Name + ": " + emulator.GetProfile(config.EmulatorProfileId).Name;
+                    if (config.Name.IsNullOrEmpty())
+                    {
+                        config.Name = config.Directory + ": " + emulator.Name + ": " + emulator.GetProfile(config.EmulatorProfileId).Name;
+                    }
+
                     database.GameScanners.Add(config.GetClone<GameScannerConfig>());
                 }
             }

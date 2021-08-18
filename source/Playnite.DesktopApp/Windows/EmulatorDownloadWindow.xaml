@@ -12,11 +12,12 @@
         xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"         
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCDownloadEmulatorsButton}" WindowStartupLocation="CenterOwner"
-        Height="600" Width="800" x:Name="WindowEmulatorImport"
+        Height="768" Width="900" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
     <controls:WindowBase.Resources>
@@ -36,38 +37,51 @@
         </Border>
 
         <DockPanel>
+            <DockPanel.Resources>
+                <CollectionViewSource x:Key="EmulatorSources" Source="{Binding DownloadEmulatorsList}">
+                    <CollectionViewSource.GroupDescriptions>
+                        <PropertyGroupDescription PropertyName="Platform" />
+                    </CollectionViewSource.GroupDescriptions>
+                    <CollectionViewSource.SortDescriptions>
+                        <scm:SortDescription PropertyName="Platform.Name"/>
+                    </CollectionViewSource.SortDescriptions>
+                </CollectionViewSource>
+            </DockPanel.Resources>
+            
             <TextBlock Text="{DynamicResource LOCEmuDownloadDescription}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="5,10,5,10"/>
 
             <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeRows="False"
                       GridLinesVisibility="None" IsReadOnly="True" RowHeaderWidth="0"
                       SelectionMode="Single" Margin="5"
-                      BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
-                      ItemsSource="{Binding EmulatorDefinitions}" DockPanel.Dock="Bottom">
+                      BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"                      
+                      ItemsSource="{Binding Source={StaticResource EmulatorSources}}" DockPanel.Dock="Bottom">
                 <DataGrid.RowStyle>
                     <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
                         <Setter Property="Focusable" Value="False"/>
                     </Style>
                 </DataGrid.RowStyle>
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="{DynamicResource LOCNameLabel}" SortMemberPath="Name">
-                        <DataGridTemplateColumn.CellTemplate>
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Name, Mode=OneWay}" Padding="5" />
+                                <TextBlock Margin="5,4,5,4" Text="{Binding Name}" FontWeight="Bold" />
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="{DynamicResource LOCSupportedPlatformsTitle}" SortMemberPath="SortedPlatformsString" Width="400">
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="{DynamicResource LOCNameLabel}" Width="250">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding SortedPlatformsString}"
-                                           Padding="5" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding Name, Mode=OneWay}" VerticalAlignment="Center"
+                                           Margin="20,0,0,0"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="{DynamicResource LOCWebsiteLabel}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Padding="5">
+                                <TextBlock>
                                     <Hyperlink NavigateUri="{Binding Website, Mode=OneWay}"
                                                Foreground="{DynamicResource TextBrush}"
                                                Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"

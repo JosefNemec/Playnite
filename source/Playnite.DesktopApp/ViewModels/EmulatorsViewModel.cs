@@ -26,6 +26,19 @@ namespace Playnite.DesktopApp.ViewModels
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
+        class DownloadPlatform : EmulatedPlatform
+        {
+            public new List<EmulatorDefinition> Emulators { get; set; }
+        }
+
+        public class DownloadEmu
+        {
+            public string Name { get; set; }
+            public string Website { get; set; }
+            public EmulatedPlatform Platform { get; set; }
+        }
+        public List<DownloadEmu> DownloadEmulatorsList { get; set; }
+
         private SelectableDbItemList availablePlatforms;
         public SelectableDbItemList AvailablePlatforms
         {
@@ -236,11 +249,16 @@ namespace Playnite.DesktopApp.ViewModels
             new RelayCommand(() => DownloadEmulators());
 
         public RelayCommand AddScanConfigCommand =>
-            new RelayCommand(() => EditingScanners.Add(new GameScannerConfig { Name = "Config" }));
+            new RelayCommand(() => AddNewScannerConfig());
 
         public RelayCommand<GameScannerConfig> RemoveScanConfigCommand =>
             new RelayCommand<GameScannerConfig>(
                 (a) => EditingScanners.Remove(a),
+                (a) => a != null);
+
+        public RelayCommand<GameScannerConfig> CopyScanConfigCommand =>
+            new RelayCommand<GameScannerConfig>(
+                (a) => CopyScanConfig(a),
                 (a) => a != null);
 
         private GameDatabase database;
@@ -448,6 +466,19 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DownloadEmulators()
         {
+            // TODO rewrite to something more sane
+            var plats = Emulation.Platforms.Where(a => a.Emulators.HasItems()).Select(a => new DownloadPlatform
+            {
+                Id = a.Id,
+                Name = a.Name,
+                Emulators = a.Emulators.Select(p => EmulatorDefinition.GetDefition(p)).ToList()
+            });
+            DownloadEmulatorsList = plats.SelectMany(a => a.Emulators.Where(e => e != null).Select(b => new DownloadEmu
+            {
+                Name = b.Name,
+                Website = b.Website,
+                Platform = a
+            })).ToList();
             new EmulatorDownloadWindowFactory().CreateAndOpenDialog(this);
         }
 
@@ -511,6 +542,22 @@ namespace Playnite.DesktopApp.ViewModels
 
             SelectedEmulatorBuiltInProfiles =
                 EmulatorDefinition.GetDefition(SelectedEmulator.BuiltInConfigId)?.Profiles.Select(a => a.Name).ToList();
+        }
+
+        private void AddNewScannerConfig()
+        {
+            var newConfig = new GameScannerConfig { Name = "Config" };
+            EditingScanners.Add(newConfig);
+            SelectedScanner = newConfig;
+        }
+
+        private void CopyScanConfig(GameScannerConfig config)
+        {
+            var copy = config.GetClone();
+            copy.Id = Guid.NewGuid();
+            copy.Name += " Copy";
+            EditingScanners.Add(copy);
+            SelectedScanner = copy;
         }
     }
 }

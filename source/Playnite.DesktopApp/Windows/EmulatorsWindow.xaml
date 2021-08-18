@@ -303,8 +303,9 @@
             <TabItem Header="{DynamicResource LOCEmuAutoScanConfigurations}">
                 <Grid Margin="5,5,5,5" DockPanel.Dock="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="250"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -312,13 +313,15 @@
                     </Grid.RowDefinitions>
 
                     <ListBox Grid.Row="0" Grid.Column="0" Name="ListScannerConfigs"
-                             Margin="5,0,5,5"
+                             Margin="5,0,0,5"
                              ItemsSource="{Binding EditingScanners}"
                              SelectedItem="{Binding SelectedScanner, Mode=TwoWay}"
                              DisplayMemberPath="Name"                     
                              pbeh:ScrollToSelectedBehavior.Enabled="True" />
 
-                    <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="1" Margin="5,5,5,0"
+                    <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
+                    
+                    <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,5,5,0"
                                      AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="4" StarRows="4"
                                      IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
                                      DataContext="{Binding SelectedScanner}">
@@ -339,7 +342,7 @@
                         <!--Directory-->
                         <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
                         <TextBox pbeh:TextBoxBehavior.AttachDirectoryBrowser="True"
-                                 Text="{Binding Directory}"/>
+                                 Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!--Emulator-->
                         <TextBlock Text="{DynamicResource LOCEmuScanEmulator}" VerticalAlignment="Center" />
@@ -362,6 +365,9 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
                         <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddScanConfigCommand}" />
+                        <Button Content="{DynamicResource LOCCopyTitle}" Margin="5"
+                                Command="{Binding CopyScanConfigCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=ListScannerConfigs}"/>
                         <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5"
                                 Command="{Binding RemoveScanConfigCommand}"
                                 CommandParameter="{Binding SelectedItem, ElementName=ListScannerConfigs}"/>
