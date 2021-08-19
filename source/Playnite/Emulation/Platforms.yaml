@@ -48,7 +48,7 @@
   Id: atari_jaguar
   IgdbId: 62
   Databases: [Atari - Jaguar]
-  Emulators: [virtualjaguar]
+  Emulators: [virtualjaguar, retroarch]
 
 - Name: Atari ST/STE
   Id: atari_st
