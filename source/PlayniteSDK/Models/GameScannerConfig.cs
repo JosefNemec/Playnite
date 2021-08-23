@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Represents emulated game scanner configuration.
+    /// </summary>
     public class GameScannerConfig : DatabaseObject
     {
         private Guid emulatorId;
+        /// <summary>
+        /// Gets or sets assigned emulator id.
+        /// </summary>
         public Guid EmulatorId
         {
             get => emulatorId;
@@ -20,6 +26,9 @@ namespace Playnite.SDK.Models
         }
 
         private string emulatorProfileId;
+        /// <summary>
+        /// Gets or sets assigned emulator profile id.
+        /// </summary>
         public string EmulatorProfileId
         {
             get => emulatorProfileId;
@@ -31,6 +40,9 @@ namespace Playnite.SDK.Models
         }
 
         private string directory;
+        /// <summary>
+        /// Gets or sets directory to scan.
+        /// </summary>
         public string Directory
         {
             get => directory;
@@ -42,6 +54,9 @@ namespace Playnite.SDK.Models
         }
 
         private bool inGlobalUpdate = true;
+        /// <summary>
+        /// Gets or sets value indicating whether this configu should be included in global library update.
+        /// </summary>
         public bool InGlobalUpdate
         {
             get => inGlobalUpdate;
@@ -52,6 +67,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
             base.CopyDiffTo(target);

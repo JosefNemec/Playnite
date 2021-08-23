@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Represents game completion status.
+    /// </summary>
     public class CompletionStatus : DatabaseObject
     {
         /// <summary>

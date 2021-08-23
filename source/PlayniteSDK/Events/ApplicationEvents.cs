@@ -77,40 +77,83 @@ namespace Playnite.SDK.Events
         }
     }
 
+    /// <summary>
+    /// Represents arguments for the event when a game is starting.
+    /// </summary>
     public class OnGameStartingEventArgs
     {
+        /// <summary>
+        /// Gets or sets game object initiating the event.
+        /// </summary>
         public Game Game { get; internal set; }
     }
 
+    /// <summary>
+    /// Represents arguments for the event a game starts running.
+    /// </summary>
     public class OnGameStartedEventArgs
     {
+        /// <summary>
+        /// Gets or sets game object initiating the event.
+        /// </summary>
         public Game Game { get; internal set; }
     }
 
+    /// <summary>
+    /// Reperesents arguments for the event when a game stops running.
+    /// </summary>
     public class OnGameStoppedEventArgs
     {
+        /// <summary>
+        /// Gets or sets game object initiating the event.
+        /// </summary>
         public Game Game { get; internal set; }
-        public ulong EllapsedSeconds { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets length of the game session in seconds.
+        /// </summary>
+        public ulong ElapsedSeconds { get; internal set; }
     }
 
+    /// <summary>
+    /// Represents arguments for the event when a game is installed.
+    /// </summary>
     public class OnGameInstalledEventArgs
     {
+        /// <summary>
+        /// Gets or sets game object initiating the event.
+        /// </summary>
         public Game Game { get; internal set; }
     }
 
+    /// <summary>
+    /// Represents arguments for the event when a game is uninstalled.
+    /// </summary>
     public class OnGameUninstalledEventArgs
     {
+        /// <summary>
+        /// Gets or sets game object initiating the event.
+        /// </summary>
         public Game Game { get; internal set; }
     }
 
+    /// <summary>
+    /// Represents arguments for the event when Playnite is started.
+    /// </summary>
     public class OnApplicationStartedEventArgs
     {
     }
 
+    /// <summary>
+    /// Represents arguments for the event when Playnite is closing down.
+    /// </summary>
     public class OnApplicationStoppedEventArgs
     {
     }
 
+    /// <summary>
+    /// Represents arguments for the event when the game library is updated.
+    /// </summary>
     public class OnLibraryUpdatedEventArgs
     {
     }

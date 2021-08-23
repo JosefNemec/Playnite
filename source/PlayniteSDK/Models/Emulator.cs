@@ -9,24 +9,45 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Represents built-in region defition.
+    /// </summary>
     public class EmulatedRegion : IEquatable<EmulatedRegion>
     {
+        /// <summary>
+        /// Gets region id.
+        /// </summary>
         public string Id { get; set; }
+        /// <summary>
+        /// Gets region name.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets value indicating whether the region should be imported into new libraries.
+        /// </summary>
         public bool DefaultImport { get; set; }
+        /// <summary>
+        /// Gets ID of the region on IGDB database.
+        /// </summary>
         public ulong IgdbId { get; set; }
+        /// <summary>
+        /// Gets region codes.
+        /// </summary>
         public List<string> Codes { get; set; }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             return Id?.GetHashCode() ?? 0;
         }
 
+        /// <inheritdoc/>
         public bool Equals(EmulatedRegion other)
         {
             return other.Id == Id;
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (obj is EmulatedRegion region)
@@ -39,30 +60,52 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Name;
         }
     }
 
+    /// <summary>
+    /// Represents built-in platform definition.
+    /// </summary>
     public class EmulatedPlatform : IEquatable<EmulatedPlatform>
     {
+        /// <summary>
+        /// Gets ID of the platform on IGDB database.
+        /// </summary>
         public ulong IgdbId { get; set; }
+        /// <summary>
+        /// Gets platform name.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets platform id.
+        /// </summary>
         public string Id { get; set; }
+        /// <summary>
+        /// Gets list of platform ROM database ids.
+        /// </summary>
         public List<string> Databases { get; set; }
+        /// <summary>
+        /// Gets liust of emulator IDs supporting this platform.
+        /// </summary>
         public List<string> Emulators { get; set; }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             return Id?.GetHashCode() ?? 0;
         }
 
+        /// <inheritdoc/>
         public bool Equals(EmulatedPlatform other)
         {
             return other.Id == Id;
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (obj is EmulatedPlatform platform)
@@ -75,15 +118,22 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Name;
         }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public abstract class EmulatorProfile : ObservableObject
     {
         private string id;
+        /// <summary>
+        /// Gets emulator profile ID.
+        /// </summary>
         public string Id
         {
             get => id;
@@ -95,6 +145,9 @@ namespace Playnite.SDK.Models
         }
 
         private string name;
+        /// <summary>
+        /// Gets profile name.
+        /// </summary>
         public string Name
         {
             get => name;
@@ -106,6 +159,9 @@ namespace Playnite.SDK.Models
         }
 
         private string preScript;
+        /// <summary>
+        /// Gets pre-execution script.
+        /// </summary>
         public string PreScript
         {
             get => preScript;
@@ -117,6 +173,9 @@ namespace Playnite.SDK.Models
         }
 
         private string postScript;
+        /// <summary>
+        /// Gets post-execution script.
+        /// </summary>
         public string PostScript
         {
             get => postScript;
@@ -128,6 +187,9 @@ namespace Playnite.SDK.Models
         }
 
         private string exitScript;
+        /// <summary>
+        /// Gets exit-execution script.
+        /// </summary>
         public string ExitScript
         {
             get => exitScript;
@@ -138,20 +200,30 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets emulator profile object type.
+        /// </summary>
         [DontSerialize]
         public Type Type => GetType();
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Name;
         }
     }
 
+    /// <summary>
+    /// Represents built-in emulator profile.
+    /// </summary>
     public class BuiltInEmulatorProfile : EmulatorProfile, IEquatable<BuiltInEmulatorProfile>
     {
-        public static readonly string ProfilePrefix = "#builtin_";
+        internal static readonly string ProfilePrefix = "#builtin_";
 
         private string builtInProfileName;
+        /// <summary>
+        /// Gets name of built-in profile represented by this definition.
+        /// </summary>
         public string BuiltInProfileName
         {
             get => builtInProfileName;
@@ -162,6 +234,9 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="BuiltInEmulatorProfile"/>.
+        /// </summary>
         public BuiltInEmulatorProfile() : base()
         {
             Id = ProfilePrefix + Guid.NewGuid();
@@ -209,9 +284,12 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class CustomEmulatorProfile : EmulatorProfile, IEquatable<CustomEmulatorProfile>
     {
-        public static readonly string ProfilePrefix = "#custom_";
+        internal static readonly string ProfilePrefix = "#custom_";
 
         private string startupScript;
+        /// <summary>
+        /// Gets startup script.
+        /// </summary>
         public string StartupScript
         {
             get => startupScript;
@@ -387,6 +465,9 @@ namespace Playnite.SDK.Models
     public class Emulator : DatabaseObject
     {
         private string builtInConfigId;
+        /// <summary>
+        /// Gets id of built-in emulator profile.
+        /// </summary>
         public string BuiltInConfigId
         {
             get => builtInConfigId;
@@ -398,6 +479,9 @@ namespace Playnite.SDK.Models
         }
 
         private string installDir;
+        /// <summary>
+        /// Gets emulator installation directory.
+        /// </summary>
         public string InstallDir
         {
             get => installDir;
@@ -466,6 +550,9 @@ namespace Playnite.SDK.Models
             OnPropertyChanged(nameof(SelectableProfiles));
         }
 
+        /// <summary>
+        /// Gets list of all profiles including option for profile auto-select.
+        /// </summary>
         [DontSerialize]
         public List<EmulatorProfile> SelectableProfiles
         {
@@ -487,6 +574,9 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Gets list of all profiles.
+        /// </summary>
         [DontSerialize]
         public List<EmulatorProfile> AllProfiles
         {
@@ -532,6 +622,11 @@ namespace Playnite.SDK.Models
             return Name;
         }
 
+        /// <summary>
+        /// Gets profile by id.
+        /// </summary>
+        /// <param name="profileId"></param>
+        /// <returns></returns>
         public EmulatorProfile GetProfile(string profileId)
         {
             var cus = CustomProfiles?.FirstOrDefault(a => a.Id == profileId);

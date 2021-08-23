@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    /// Represents game disk image.
+    /// </summary>
     public class GameRom : ObservableObject, IEquatable<GameRom>
     {
         private string name;
+        /// <summary>
+        /// Gets ROM name.
+        /// </summary>
         public string Name
         {
             get
@@ -24,6 +30,9 @@ namespace Playnite.SDK.Models
         }
 
         private string path;
+        /// <summary>
+        /// Gets rom path.
+        /// </summary>
         public string Path
         {
             get
@@ -38,16 +47,25 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="GameRom"/>.
+        /// </summary>
         public GameRom()
         {
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="GameRom"/>.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="path"></param>
         public GameRom(string name, string path)
         {
             Name = name;
             Path = path;
         }
 
+        /// <inheritdoc/>
         public bool Equals(GameRom other)
         {
             if (other is null)

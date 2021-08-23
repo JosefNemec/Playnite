@@ -11,9 +11,31 @@ using System.Windows.Controls;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
-    /// Represents capabilities of a library plugin.
+    /// Represents arguments for <see cref="LibraryPlugin.GetGames(LibraryGetGamesArgs)"/> method.
     /// </summary>
-    public class LibraryPluginCapabilities
+    public class LibraryGetGamesArgs
+    {
+        /// <summary>
+        /// Gets cancellataion token.
+        /// </summary>
+        public CancellationToken CancelToken { get; internal set; }
+    }
+
+    /// <summary>
+    /// Represents arguments for <see cref="LibraryPlugin.ImportGames(LibraryImportGamesArgs)"/> method.
+    /// </summary>
+    public class LibraryImportGamesArgs
+    {
+        /// <summary>
+        /// Gets cancellataion token.
+        /// </summary>
+        public CancellationToken CancelToken { get; internal set; }
+    }
+
+    /// <summary>
+    /// Represents <see cref="LibraryPlugin"/> plugin properties.
+    /// </summary>
+    public class LibraryPluginProperties : PluginProperties
     {
         /// <summary>
         /// Gets or sets value indicating whether plugin is capable of closing down original game client.
@@ -26,21 +48,16 @@ namespace Playnite.SDK.Plugins
         public bool HasCustomizedGameImport { get; set; } = false;
     }
 
-    public class LibraryGetGamesArgs
-    {
-        public CancellationToken CancelToken { get; internal set; }
-    }
-
-    public class LibraryImportGamesArgs
-    {
-        public CancellationToken CancelToken { get; internal set; }
-    }
-
     /// <summary>
     /// Represents base game library plugin.
     /// </summary>
     public abstract class LibraryPlugin : Plugin
     {
+        /// <summary>
+        /// Gets plugin's properties.
+        /// </summary>
+        public LibraryPluginProperties Properties { get; protected set; }
+
         /// <summary>
         /// Creates new instance of <see cref="LibraryPlugin"/>.
         /// </summary>
@@ -70,11 +87,6 @@ namespace Playnite.SDK.Plugins
         /// Gets library client application or null of no client is associated with this library.
         /// </summary>
         public virtual LibraryClient Client { get; }
-
-        /// <summary>
-        /// Gets plugin's library capabilities.
-        /// </summary>
-        public virtual LibraryPluginCapabilities Capabilities { get; }
 
         /// <summary>
         /// Gets library games.

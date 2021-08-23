@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
-    ///
+    /// Type of automatic play action
     /// </summary>
-    public enum GenericPlayActionType
+    public enum AutomaticPlayActionType
     {
         /// <summary>
         ///
@@ -24,14 +24,14 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Repsents controller for automatic handling of game startup.
     /// </summary>
     public sealed class AutomaticPlayController : PlayController
     {
         /// <summary>
         /// Gets or sets task type.
         /// </summary>
-        public GenericPlayActionType Type { get; set; }
+        public AutomaticPlayActionType Type { get; set; }
 
         /// <summary>
         ///
@@ -83,12 +83,12 @@ namespace Playnite.SDK.Plugins
         internal SynchronizationContext execContext;
 
         /// <summary>
-        ///
+        /// Gets or sets controller name.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        ///
+        /// Gets or sets game attrached to a specific controller operation.
         /// </summary>
         public Game Game { get; set; }
 
@@ -101,26 +101,21 @@ namespace Playnite.SDK.Plugins
             Game = game;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
+        /// <inheritdoc/>
         public virtual void Dispose()
         {
         }
     }
 
     /// <summary>
-    ///
+    /// Represents installation controller.
     /// </summary>
     public abstract class InstallController : ControllerBase
     {
-        /// <summary>
-        ///
-        /// </summary>
         internal event EventHandler<GameInstalledEventArgs> Installed;
 
         /// <summary>
-        ///
+        /// Creantes new instance of <see cref="InstallController"/>.
         /// </summary>
         /// <param name="game"></param>
         public InstallController(Game game) : base(game)
@@ -128,12 +123,12 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Start installation.
         /// </summary>
         public abstract void Install(InstallActionArgs args);
 
         /// <summary>
-        ///
+        /// Invoke to signal that installation completed.
         /// </summary>
         /// <param name="args"></param>
         protected void InvokeOnInstalled(GameInstalledEventArgs args)
@@ -144,17 +139,14 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Represents uninstallation controller.
     /// </summary>
     public abstract class UninstallController : ControllerBase
     {
-        /// <summary>
-        ///
-        /// </summary>
         internal event EventHandler<GameUninstalledEventArgs> Uninstalled;
 
         /// <summary>
-        ///
+        /// Creates new instance of <see cref="UninstallController"/>.
         /// </summary>
         /// <param name="game"></param>
         public UninstallController(Game game) : base(game)
@@ -162,12 +154,12 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Start uninstallation.
         /// </summary>
         public abstract void Uninstall(UninstallActionArgs args);
 
         /// <summary>
-        ///
+        /// Invoke to signal that uninstallation completed.
         /// </summary>
         /// <param name="args"></param>
         protected void InvokeOnUninstalled(GameUninstalledEventArgs args)
@@ -178,25 +170,15 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Represents play controller.
     /// </summary>
     public abstract class PlayController : ControllerBase
     {
-        /// <summary>
-        ///
-        /// </summary>
-        internal event EventHandler<GameStartingEventArgs> Starting;
-        /// <summary>
-        ///
-        /// </summary>
         internal event EventHandler<GameStartedEventArgs> Started;
-        /// <summary>
-        ///
-        /// </summary>
         internal event EventHandler<GameStoppedEventArgs> Stopped;
 
         /// <summary>
-        ///
+        /// Creates new instance of <see cref="PlayController"/>.
         /// </summary>
         /// <param name="game"></param>
         public PlayController(Game game) : base(game)
@@ -204,22 +186,12 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Play game.
         /// </summary>
         public abstract void Play(PlayActionArgs args);
 
         /// <summary>
-        ///
-        /// </summary>
-        /// <param name="args"></param>
-        protected void InvokeOnStarting(GameStartingEventArgs args)
-        {
-            args.Source = this;
-            execContext.Send((a) => Starting?.Invoke(this, args), null);
-        }
-
-        /// <summary>
-        ///
+        /// Invoke to signal that game started running.
         /// </summary>
         /// <param name="args"></param>
         protected void InvokeOnStarted(GameStartedEventArgs args)
@@ -229,7 +201,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///
+        /// Invoke to signal that game stopped running.
         /// </summary>
         /// <param name="args"></param>
         protected void InvokeOnStopped(GameStoppedEventArgs args)
@@ -240,7 +212,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Represents arguments for installation action.
     /// </summary>
     public class InstallActionArgs
     {
@@ -253,7 +225,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Represents arguments for uninstallation actions.
     /// </summary>
     public class UninstallActionArgs
     {
@@ -266,7 +238,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    ///  Represents arguments for play action.
     /// </summary>
     public class PlayActionArgs
     {
@@ -279,22 +251,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
-    /// </summary>
-    public class GameStartingEventArgs
-    {
-        internal PlayController Source { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public GameStartingEventArgs()
-        {
-        }
-    }
-
-    /// <summary>
-    ///
+    /// Represents arguments for game started event.
     /// </summary>
     public class GameStartedEventArgs
     {
@@ -309,7 +266,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Represents arguments for game stopped event.
     /// </summary>
     public class GameStoppedEventArgs
     {
@@ -338,7 +295,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Represents arguments for game uninstalled event.
     /// </summary>
     public class GameUninstalledEventArgs
     {
@@ -353,16 +310,32 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///
+    /// Represents data for game installation.
+    /// </summary>
+    public class GameInstallationData
+    {
+        /// <summary>
+        /// Gets or sets installation directory.
+        /// </summary>
+        public string InstallDirectory { get; set; }
+
+        /// <summary>
+        /// Gets or sets Roms.
+        /// </summary>
+        public List<GameRom> Roms { get; set; }
+    }
+
+    /// <summary>
+    /// Represents arguments for game installed event.
     /// </summary>
     public class GameInstalledEventArgs
     {
         internal InstallController Source { get; set; }
 
         /// <summary>
-        ///
+        /// Gets or sets data for newly installed game.
         /// </summary>
-        public GameInfo InstalledInfo { get; set; }
+        public GameInstallationData InstalledInfo { get; set; }
 
         /// <summary>
         ///
@@ -374,10 +347,10 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         ///
         /// </summary>
-        /// <param name="installedInfo"></param>
-        public GameInstalledEventArgs(GameInfo installedInfo)
+        /// <param name="installData"></param>
+        public GameInstalledEventArgs(GameInstallationData installData)
         {
-            InstalledInfo = installedInfo;
+            InstalledInfo = installData;
         }
     }
 }

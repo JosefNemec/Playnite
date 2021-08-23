@@ -122,8 +122,14 @@ namespace Playnite.SDK
         void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
     }
 
+    /// <summary>
+    /// Represents access class to API instances.
+    /// </summary>
     public static class API
     {
+        /// <summary>
+        /// Gets Playnite API.
+        /// </summary>
         public static IPlayniteAPI Instance { get; internal set; }
     }
 }

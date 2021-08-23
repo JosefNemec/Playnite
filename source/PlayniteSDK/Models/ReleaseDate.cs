@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
-    ///
+    /// Represents game release date.
     /// </summary>
     [Serializable]
     public struct ReleaseDate : IComparable, IComparable<ReleaseDate>, IEquatable<ReleaseDate>, ISerializable
@@ -17,12 +17,27 @@ namespace Playnite.SDK.Models
         private static readonly char[] serSplitter = new char[] { '-' };
         private readonly DateTime date;
 
+        /// <summary>
+        /// Gets empty representation of release date.
+        /// </summary>
         public static readonly ReleaseDate Empty = new ReleaseDate(0);
-
+        /// <summary>
+        /// Gets release day.
+        /// </summary>
         public int? Day { get; private set; }
+        /// <summary>
+        /// Gets release month.
+        /// </summary>
         public int? Month { get; private set; }
+        /// <summary>
+        /// Gets release year.
+        /// </summary>
         public int Year { get; private set; }
 
+        /// <summary>
+        /// Creates new instance of <see cref="ReleaseDate"/>.
+        /// </summary>
+        /// <param name="year"></param>
         public ReleaseDate(int year)
         {
             if (year == default(int))
@@ -41,6 +56,11 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="ReleaseDate"/>.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
         public ReleaseDate(int year, int month)
         {
             Year = year;
@@ -49,6 +69,12 @@ namespace Playnite.SDK.Models
             date = new DateTime(year, month, 1);
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="ReleaseDate"/>.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
         public ReleaseDate(int year, int month, int day)
         {
             Year = year;
@@ -57,10 +83,19 @@ namespace Playnite.SDK.Models
             date = new DateTime(year, month, day);
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="ReleaseDate"/>.
+        /// </summary>
+        /// <param name="dateTime"></param>
         public ReleaseDate(DateTime dateTime) : this(dateTime.Year, dateTime.Month, dateTime.Day)
         {
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="ReleaseDate"/>.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public ReleaseDate(SerializationInfo info, StreamingContext context)
         {
             var serDate = Deserialize(info.GetString(nameof(ReleaseDate)));
@@ -77,6 +112,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public int CompareTo(object obj)
         {
             if (obj is ReleaseDate date)
@@ -89,11 +125,13 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public int CompareTo(ReleaseDate other)
         {
             return date.CompareTo(other.date);
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (obj is ReleaseDate date)
@@ -106,6 +144,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public bool Equals(ReleaseDate other)
         {
             return Day == other.Day &&
@@ -113,16 +152,19 @@ namespace Playnite.SDK.Models
                 Year == other.Year;
         }
 
+        /// <inheritdoc/>
         public static bool operator ==(ReleaseDate obj1, ReleaseDate obj2)
         {
             return obj1.Equals(obj2);
         }
 
+        /// <inheritdoc/>
         public static bool operator !=(ReleaseDate obj1, ReleaseDate obj2)
         {
             return !obj1.Equals(obj2);
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             return Year.GetHashCode() ^
@@ -130,6 +172,10 @@ namespace Playnite.SDK.Models
                 (Day ?? 0).GetHashCode();
         }
 
+        /// <summary>
+        /// Get release date serialized to a string.
+        /// </summary>
+        /// <returns></returns>
         public string Serialize()
         {
             if (Day != null)
@@ -146,6 +192,12 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <summary>
+        /// Try to deserialize string to a release date.
+        /// </summary>
+        /// <param name="stringDate"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static bool TryDeserialize(string stringDate, out ReleaseDate date)
         {
             if (string.IsNullOrEmpty(stringDate))
@@ -184,6 +236,11 @@ namespace Playnite.SDK.Models
             return false;
         }
 
+        /// <summary>
+        /// Deserialize string to release date.
+        /// </summary>
+        /// <param name="stringDate"></param>
+        /// <returns></returns>
         public static ReleaseDate Deserialize(string stringDate)
         {
             if (string.IsNullOrEmpty(stringDate))
@@ -210,6 +267,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             if (Day != null)
@@ -226,6 +284,7 @@ namespace Playnite.SDK.Models
             }
         }
 
+        /// <inheritdoc/>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(ReleaseDate), Serialize());

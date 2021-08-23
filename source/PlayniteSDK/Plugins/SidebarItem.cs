@@ -16,17 +16,17 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         /// Button item style.
         /// </summary>
-        Button,
+        Button = 0,
         /// <summary>
         /// View item style.
         /// </summary>
-        View
+        View = 1
     }
 
     /// <summary>
     /// Represents sidebar API object.
     /// </summary>
-    public abstract class SidebarItem : ObservableObject
+    public class SidebarItem : ObservableObject
     {
         /// <summary>
         /// Gets or sets item type.

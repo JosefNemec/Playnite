@@ -110,12 +110,38 @@ namespace Playnite.SDK.Plugins
     /// <summary>
     /// Represents plugin properties.
     /// </summary>
-    public class PluginProperties
+    public abstract class PluginProperties
     {
         /// <summary>
         /// Gets or sets value indicating that the plugin provides user settings view.
         /// </summary>
-        public bool HasSettings { get; set; } = true;
+        public bool HasSettings { get; set; }
+    }
+
+    /// <summary>
+    /// Represents <see cref="GenericPlugin"/> plugin properties.
+    /// </summary>
+    public class GenericPluginProperties : PluginProperties
+    {
+    }
+
+    /// <summary>
+    /// Represents generic plugin.
+    /// </summary>
+    public abstract class GenericPlugin : Plugin
+    {
+        /// <summary>
+        /// Gets plugin's properties.
+        /// </summary>
+        public GenericPluginProperties Properties { get; protected set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="playniteAPI"></param>
+        public GenericPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
+        {
+        }
     }
 
     /// <summary>
@@ -124,11 +150,6 @@ namespace Playnite.SDK.Plugins
     public abstract class Plugin : IDisposable, IIdentifiable
     {
         private const string pluginSettingFileName = "config.json";
-
-        /// <summary>
-        /// Gets plugin's properties.
-        /// </summary>
-        public virtual PluginProperties Properties { get; }
 
         /// <summary>
         /// Gets instance of runtime <see cref="IPlayniteAPI"/>.
@@ -240,7 +261,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args">Contextual arguments.</param>
         /// <returns>List of menu items to be displayed in game menu.</returns>
-        public virtual List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        public virtual IEnumerable<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
         {
             return null;
         }
@@ -250,7 +271,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args">Contextual arguments.</param>
         /// <returns>List of menu items to be displayed in Playnite's main menu.</returns>
-        public virtual List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        public virtual IEnumerable<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
         {
             return null;
         }
@@ -344,9 +365,9 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<PlayController> GetPlayActions(GetPlayActionsArgs args)
+        public virtual IEnumerable<PlayController> GetPlayActions(GetPlayActionsArgs args)
         {
-            return null;
+            yield break;
         }
 
         /// <summary>
@@ -354,9 +375,9 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<InstallController> GetInstallActions(GetInstallActionsArgs args)
+        public virtual IEnumerable<InstallController> GetInstallActions(GetInstallActionsArgs args)
         {
-            return null;
+            yield break;
         }
 
         /// <summary>
@@ -364,9 +385,9 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public virtual List<UninstallController> GetUninstallActions(GetUninstallActionsArgs args)
+        public virtual IEnumerable<UninstallController> GetUninstallActions(GetUninstallActionsArgs args)
         {
-            return null;
+            yield break;
         }
 
         /// <summary>
@@ -401,18 +422,18 @@ namespace Playnite.SDK.Plugins
         /// Gets sidebar items provided by this plugin.
         /// </summary>
         /// <returns></returns>
-        public virtual List<SidebarItem> GetSidebarItems()
+        public virtual IEnumerable<SidebarItem> GetSidebarItems()
         {
-            return null;
+            yield break;
         }
 
         /// <summary>
         ///Gets top panel items provided by this plugin.
         /// </summary>
         /// <returns></returns>
-        public virtual List<TopPanelItem> GetTopPanelItems()
+        public virtual IEnumerable<TopPanelItem> GetTopPanelItems()
         {
-            return null;
+            yield break;
         }
     }
 }

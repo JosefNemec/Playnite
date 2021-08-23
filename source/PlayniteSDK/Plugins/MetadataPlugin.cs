@@ -121,8 +121,14 @@ namespace Playnite.SDK.Plugins
         }
     }
 
+    /// <summary>
+    /// Represents arguments for metadata field getters.
+    /// </summary>
     public class GetMetadataFieldArgs
     {
+        /// <summary>
+        /// Gets cancellation token.
+        /// </summary>
         public CancellationToken CancelToken { get; internal set; }
     }
 
@@ -305,10 +311,22 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
+    /// Represents <see cref="MetadataPlugin"/> plugin properties.
+    /// </summary>
+    public class MetadataPluginProperties : PluginProperties
+    {
+    }
+
+    /// <summary>
     /// Represents plugin providing game metadata.
     /// </summary>
     public abstract class MetadataPlugin : Plugin
     {
+        /// <summary>
+        /// Gets plugin's properties.
+        /// </summary>
+        public MetadataPluginProperties Properties { get; protected set; }
+
         /// <summary>
         /// Gets metadata source name.
         /// </summary>

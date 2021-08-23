@@ -38,12 +38,26 @@ namespace System.Collections.Generic
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="property"></param>
+        /// <param name="value"></param>
+        /// <param name="propertyName"></param>
         protected void SetValue<T>(ref T property, T value, [CallerMemberName]string propertyName = null)
         {
             property = value;
             OnPropertyChanged(propertyName);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="property"></param>
+        /// <param name="value"></param>
+        /// <param name="propertyNames"></param>
         protected void SetValue<T>(ref T property, T value, params string[] propertyNames)
         {
             property = value;

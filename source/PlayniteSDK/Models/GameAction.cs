@@ -233,6 +233,9 @@ namespace Playnite.SDK.Models
         }
 
         private string script;
+        /// <summary>
+        /// Gets or sets startup script.
+        /// </summary>
         public string Script
         {
             get => script;
