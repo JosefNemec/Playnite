@@ -30,9 +30,9 @@ You can implement additional functionality by overriding virtual methods from [L
 Capabilities
 ---------------------
 
-If you want to provide extra features for specific library integration, like ability to close third party client after the game is close, then implemented `Capabilities` property that represents [LibraryPluginCapabilities](xref:Playnite.SDK.Plugins.LibraryPluginCapabilities).
+If you want to provide extra features for specific library integration, like ability to close third party client after the game is close, then implement `Properties` property on your plugin class that represents [LibraryPluginProperties](xref:Playnite.SDK.Plugins.LibraryPluginProperties).
 
-### Supported capabilities
+### Supported properties
 
 | Capability | Description |
 | -- | -- |
@@ -51,6 +51,11 @@ public class LibraryPlugin : LibraryPlugin
 
     public TestGameLibrary(IPlayniteAPI api) : base (api)
     {
+        Properties = new LibraryPluginProperties
+        {
+            CanShutdownClient = true,
+            HasSettings = true
+        };
     }
 
     public override IEnumerable<GameInfo> GetGames()

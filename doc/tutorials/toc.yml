@@ -15,15 +15,19 @@
     - name: Logging
       href: extensions/logging.md
     - name: Plugin settings
-      href: extensions/pluginSettings.md
+      href: extensions/pluginSettings.md      
     - name: Working with game library
       href: extensions/library.md
     - name: Events
       href: extensions/events.md
-    - name: Menu items
-      href: extensions/menus.md
     - name: UI Interaction
       href: extensions/ui.md
+    - name: Custom UI Integration
+      href: extensions/customUiIntegration.md
+    - name: Menu items
+      href: extensions/menus.md
+    - name: Game actions
+      href: extensions/gameActions.md
     - name: Custom windows
       href: extensions/windows.md
     - name: Game variables
@@ -34,8 +38,6 @@
       href: extensions/scriptingDebugging.md
     - name: String localizations
       href: extensions/localizations.md
-    - name: UI Integration
-      href: extensions/customUiIntegration.md
     - name: Manifest file
       href: extensions/extensionsManifest.md
 
@@ -55,6 +57,8 @@
       href: themes/installing.md
     - name: Manifest file
       href: themes/manifestFile.md
+    - name: Extension integrations
+      href: themes/extensionIntegration.md
 
 - name: Toolbox utility
   href: toolbox.md

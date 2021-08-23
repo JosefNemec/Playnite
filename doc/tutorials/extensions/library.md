@@ -30,14 +30,6 @@ $games = $PlayniteApi.Database.Games
 # Get a game with known Id
 $game = $PlayniteApi.Database.Games[$SomeGuidId]
 ```
-
-# [IronPython](#tab/tabpython)
-```python
-# Get all games
-games = PlayniteApi.Database.Games
-# Get a game with known Id
-game = PlayniteApi.Database.Games[SomeGuidId]
-```
 ***
 
 ### Adding New Game
@@ -55,13 +47,6 @@ PlayniteApi.Database.Games.Add(newGame);
 $newGame = New-Object "Playnite.SDK.Models.Game"
 $newGame.Name = "New Game"
 $PlayniteApi.Database.Games.Add($newGame)
-```
-
-# [IronPython](#tab/tabpython)
-```python
-new_game = Game()
-new_game.Name = "New Game"
-PlayniteApi.Database.Games.Add(new_game)
 ```
 ***
 
@@ -82,13 +67,6 @@ $game = $PlayniteApi.Database.Games[$SomeId]
 $game.Name = "Changed Name"
 $PlayniteApi.Database.Games.Update($game)
 ```
-
-# [IronPython](#tab/tabpython)
-```python
-game = PlayniteApi.Database.Games[SomeId]
-game.Name = "Changed Name"
-PlayniteApi.Database.Games.Update(game)
-```
 ***
 
 ### Removing Games
@@ -103,11 +81,6 @@ PlayniteApi.Database.Games.Remove(SomeId);
 # [PowerShell](#tab/tabpowershell)
 ```powershell
 $PlayniteApi.Database.Games.Remove($SomeId)
-```
-
-# [IronPython](#tab/tabpython)
-```python
-PlayniteApi.Database.Games.Remove(SomeId)
 ```
 ***
 
@@ -152,12 +125,6 @@ var coverPath = PlayniteApi.Database.GetFullFilePath(game.CoverImage);
 $game = $PlayniteApi.Database.Games[$SomeId]
 $coverPath = $PlayniteApi.Database.GetFullFilePath($game.CoverImage)
 ```
-
-# [IronPython](#tab/tabpython)
-```python
-game = PlayniteApi.Database.Games[SomeId]
-coverPath = PlayniteApi.Database.GetFullFilePath(game.CoverImage)
-```
 ***
 
 ### Changing Cover Image
@@ -180,13 +147,5 @@ $game = $PlayniteApi.Database.Games[SomeId]
 $PlayniteApi.Database.RemoveFile($game.CoverImage)
 $game.CoverImage = $PlayniteApi.Database.AddFile("c:\file.png", $game.Id)
 $PlayniteApi.Database.Games.Update($game)
-```
-
-# [IronPython](#tab/tabpython)
-```python
-game = PlayniteApi.Database.Games[SomeId]
-PlayniteApi.Database.RemoveFile(game.CoverImage)
-game.CoverImage = PlayniteApi.Database.AddFile("c:\\file.png", game.Id)
-PlayniteApi.Database.Games.Update(game)
 ```
 ***

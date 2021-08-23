@@ -44,6 +44,11 @@ Option #2 requires installation of [Visual Studio IDE](https://visualstudio.micr
 
 **Using Blend editor is recommended option.**
 
+Integrating with plugins
+---------------------
+
+Plugins can provide custom UI elements that can be integration into a theme. See [extension integration page](extensionIntegration.md) for more details.
+
 Theme files and directories
 ---------------------
 

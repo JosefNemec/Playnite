@@ -3,3 +3,15 @@
 
 - name: Game variables
   href: gameVariables.md
+
+- name: Game scripts
+  href: gameScripts.md
+
+- name: Emulator support
+  href: emulators.md
+
+- name: Game actions
+  href: gameActions.md
+
+- name: Library manager
+  href: libraryManager.md

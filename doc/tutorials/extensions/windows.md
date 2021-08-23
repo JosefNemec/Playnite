@@ -4,7 +4,7 @@ Creating custom windows
 Intro
 ---------------------
 
-Manually created windows will not inherit Playnite theme, you need to use [CreateWindow](xref:Playnite.SDK.IDialogsFactory.CreateWindow(Playnite.SDK.WindowCreationOptions)) to create new window instance. `CreateWindow` returns new instance of WPF Window class.
+Manually created windows will not inherit Playnite's theme, you need to use [CreateWindow](xref:Playnite.SDK.IDialogsFactory.CreateWindow(Playnite.SDK.WindowCreationOptions)) to create a new window instance. `CreateWindow` returns new instance of WPF Window class.
 
 Examples
 ---------------------
@@ -94,3 +94,4 @@ $window.WindowStartupLocation = "CenterOwner";
 # Use Show or ShowDialog to show the window
 $window.ShowDialog();
 ```
+***

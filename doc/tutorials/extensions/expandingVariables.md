@@ -13,16 +13,9 @@ Example
 
 Lets say we have a game which has Play action with `Path` set to `{InstallDir}\app.exe` and `InstallDirectory` to `c:\appdir\`. To get full path `c:\appdir\app.exe` use [ExpandGameVariables](xref:Playnite.SDK.IPlayniteAPI.ExpandGameVariables(Playnite.SDK.Models.Game,System.String)) method.
 
-# [PowerShell](#tab/tabpowershell)
 ```powershell
 $PlayniteApi.ExpandGameVariables($game, $game.PlayTask.Path)
 ```
-
-# [IronPython](#tab/tabpython)
-```python
-PlayniteApi.ExpandGameVariables(game, game.PlayTask.Path)
-```
-***
 
 > [!NOTE] 
 > You don't have to check if the string contains any dynamic variables to know whether to use `ExpandGameVariables` or not. If input string doesn't contain any dynamic variables it won't be modified in any way and `ExpandGameVariables` just returns it untouched.

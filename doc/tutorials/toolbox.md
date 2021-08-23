@@ -1,5 +1,9 @@
 # Extension Toolbox utility
 
+Introduction
+---------------------
+
+Toolbox is Playnite utility that can be used for various tasks, mainly for creating extensions and themes. Toolbox is distributed with every Playnite installation and can be found in Playnite's installation directory.
 
 Creating new extensions
 ---------------------
@@ -29,7 +33,6 @@ Toolbox.exe new <scripttype> <scriptname> <targetfolder>
 ```
 
 `<scripttype>` available options:
-- **IronPythonScript**
 - **PowerShellScript**
 
 `<scriptname>` - name of the new script extension.
@@ -39,7 +42,7 @@ Toolbox.exe new <scripttype> <scriptname> <targetfolder>
 #### Example
 
 ```cmd
-Toolbox.exe new IronPythonScript "Testing Script" "d:\somefolder"
+Toolbox.exe new PowerShellScript "Testing Script" "d:\somefolder"
 ```
 
 ### Plugins

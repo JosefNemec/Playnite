@@ -1,11 +1,19 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
-#### TODO: 5.x.x
+#### 6.0.0
 
-PowerShell extensions are now imported as [PowerShell modules](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module?view=powershell-5.1). The extension of the file must be `.psm1` (or `.psd1` if you use a [PowerShell module manifest](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-module-manifest?view=powershell-5.1)). Any exported functions from your extension must be exported from the module. In a `.psm1` file all functions in the module scope are exported by default, but functions in the global scope (defined like `function global:OnGameStarted()`) will _not_ be correctly exported. Exported functions must accept the _exact_ number of arguments that Playnite passes to them.
+* **Breaking Changes**
+  * **Many** breaking changes to entire SDK. All extensions have to updated to work with Playnite 9. See [Playnite 9 migration guide](tutorials/playnite9migration.md) for more details.
+  * Removed IronPython support.
+  * Extensions no longer log into main `playnite.log` log file, but instead log into separate `extensions.log` file.
 
-**Breaking Changes**  
-Importing PowerShell extensions as modules is a breaking change as of Playnite 9. Existing extensions will be need to be updated. For many extensions this will be as simple as renaming the file from `.ps1` to `.psm1`, updating the manifest and removing `global:` from any exported functions. A `params()` section may need to be added to exported functions that were not explicitly accepting the correct number of arguments.
+* New
+  * PowerShell extensions are no implemented as proper PowerShell modules.
+  * Ability to inject elements into Sidebar, Top panel, game views and to any custom theme that supports specific extension element explicitly.
+  * Ability to dynamically inject play, install and uninstall actions.
+  * You can now load extensions from custom directories via `For developers` settings menu.
+  * Added `Trace` severity log messages. These are not written into log files unless enabled in `For developers` settings menu.
+
 
 #### 5.5.0
 

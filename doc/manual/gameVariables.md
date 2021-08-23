@@ -7,7 +7,7 @@ Following is the list of game variables that can be used in various places, spec
 - emulator configuration fields
 - game action fields
 
-To use a variable, encapsulate it with curly brackets in the string:
+To use a variable, encapsulate it with curly brackets in a string, for example:
 
 `some string {GameId} test`
 
@@ -25,3 +25,4 @@ To use a variable, encapsulate it with curly brackets in the string:
 |DatabaseId|Game's database ID |
 |PluginId|Game's library plugin ID |
 |Version|Game version|
+|EmulatorDir|Emulator's installation directory|

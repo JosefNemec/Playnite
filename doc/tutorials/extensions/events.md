@@ -1,40 +1,28 @@
 Reacting to events
 =====================
 
-Basics
+Introduction
 ---------------------
 
-Playnite's API allows extensions to react to various events like when game is started or installed.
+Playnite's API allows extensions to react to various events, like when a game is started or installed.
 
 Available Events
 ---------------------
 
-|PowerShell Name / Plugin name | Python Name | Event | Passed Arguments |
-| - | - | - | - |
-| OnGameStarting | on_game_starting | Before game is started. | [Game](xref:Playnite.SDK.Models.Game) |
-| OnGameStarted | on_game_started | Game started running. | [Game](xref:Playnite.SDK.Models.Game) |
-| OnGameStopped | on_game_stopped | Game stopped running.  | [Game](xref:Playnite.SDK.Models.Game) and session length in seconds |
-| OnGameInstalled | on_game_installed | Game is installed. | [Game](xref:Playnite.SDK.Models.Game) |
-| OnGameUninstalled | on_game_uninstalled | Game is uninstalled. | [Game](xref:Playnite.SDK.Models.Game) |
-| OnGameSelected | on_game_selected | Game selection changed. | [GameSelectionEventArgs](xref:Playnite.SDK.Events.GameSelectionEventArgs) |
-| OnApplicationStarted | on_application_started | Playnite was started. | None |
-| OnApplicationStopped | on_application_stopped | Playnite is shutting down. | None |
-| OnLibraryUpdated | on_library_updated | Library was updated. | None |
-
-
-Scripts
----------------------
-
-
-
-Plugins
----------------------
-
+| Name | Event | Passed Arguments |
+| --- | --- | --- |
+| OnGameStarting | Before game is started. | [OnGameStartingEventArgs](xref:Playnite.SDK.Events.OnGameStartingEventArgs) |
+| OnGameStarted | Game started running. | [OnGameStartedEventArgs](xref:Playnite.SDK.Events.OnGameStartedEventArgs) |
+| OnGameStopped | Game stopped running.  | [OnGameStoppedEventArgs](xref:Playnite.SDK.Events.OnGameStoppedEventArgs) |
+| OnGameInstalled | Game is installed. | [OnGameInstalledEventArgs](xref:Playnite.SDK.Events.OnGameInstalledEventArgs) |
+| OnGameUninstalled | Game is uninstalled. | [OnGameUninstalledEventArgs](xref:Playnite.SDK.Events.OnGameUninstalledEventArgs) |
+| OnGameSelected | Game selection changed. | [OnGameSelectedEventArgs](xref:Playnite.SDK.Events.OnGameSelectedEventArgs) |
+| OnApplicationStarted | Playnite was started. | [OnApplicationStartedEventArgs](xref:Playnite.SDK.Events.OnApplicationStartedEventArgs) |
+| OnApplicationStopped | Playnite is shutting down. | [OnApplicationStoppedEventArgs](xref:Playnite.SDK.Events.OnApplicationStoppedEventArgs) |
+| OnLibraryUpdated | Library was updated. | [OnLibraryUpdatedEventArgs](xref:Playnite.SDK.Events.OnLibraryUpdatedEventArgs) |
 
 Example - Handling start/stop events
 ---------------------
-
-To have a code executed on selected event define function with specific name in your script.
 
 ### Game Starting
 
@@ -42,29 +30,21 @@ Following example writes name of currently playing game into a text file.
 
 # [C#](#tab/csharp)
 ```csharp
-public override void OnGameStarted(Game game)
+# To have a code executed on a specific event, override selected event method in your plugin.
+public override void OnGameStarted(OnGameStartedEventArgs args)
 {
-    logger.Info($"Game started: {game.Name}");
+    logger.Info($"Game started: {args.Game.Name}");
 }
 ```
 
 # [PowerShell](#tab/tabpowershell)
 ```powershell
+# To have a code executed on a specific event, define script function with selected name and export it from your PowerShell extension module.
 function OnGameStarted()
 {
-    param(
-        $game
-    )
-
-    $game.Name | Out-File "RunningGame.txt"
+    param($args)
+    $ags.Game.Name | Out-File "RunningGame.txt"
 }
-```
-
-# [IronPython](#tab/tabpython)
-```python
-def on_game_started(game):
-    with open("RunningGame.txt", "w") as text_file:
-        text_file.write(game.Name)
 ```
 ***
 
@@ -74,9 +54,9 @@ This example writes name of game that stopped running and the time game was runn
 
 # [C#](#tab/csharp)
 ```csharp
-public override void OnGameStopped(Game game, double elapsedSeconds)
+public override void OnGameStopped(OnGameStoppedEventArgs args)
 {
-    logger.Info($"{game.Name} was running for {elapsedSeconds} seconds");
+    logger.Info($"{args.Game.Name} was running for {args.ElapsedSeconds} seconds");
 }
 ```
 
@@ -84,18 +64,8 @@ public override void OnGameStopped(Game game, double elapsedSeconds)
 ```powershell
 function OnGameStopped()
 {
-    param(
-        $game,
-        $elapsedSeconds
-    )
-
-    "$($game.Name) was running for $elapsedSeconds seconds" | Out-File "StoppedGame.txt"
+    param($args)
+    "$($args.Game.Name) was running for $($args.ElapsedSeconds) seconds" | Out-File "StoppedGame.txt"
 }
 ```
-
-# [IronPython](#tab/tabpython)
-```python
-def on_game_stopped(game, elapsed_seconds):
-    with open("StoppedGame.txt", "w") as text_file:
-        text_file.write("{0} was running for {1} seconds".format(game.Name, elapsed_seconds))
-```
+***

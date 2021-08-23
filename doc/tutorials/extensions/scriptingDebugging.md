@@ -25,8 +25,3 @@ When the breakpoint is reached, hover over any variable names to see their curre
 Typing into the PowerShell ISE console will evaluate statements in the current context. For example, you can use the `$PlayniteAPI` variable to interactively develop and test code. You may also interactively inspect local variables and their properties.
 
 The Playnite interface will appear frozen while the debugger is paused on a breakpoint.
-
-Debugging IronPython Scripts
----------------------
-
-It is currently not possible to debug IronPython extensions without building Playnite from source and debugging with Visual Studio.

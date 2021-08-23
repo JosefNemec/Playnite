@@ -1,9 +1,10 @@
-UI Integration
+Custom UI Integration
 =====================
 
 Introduction
 ---------------------
 
+Extensions can expose custom UI elements for themes to integrate, this requires support by both an extension and a theme. For theme implementation part, see [this page](../themes/extensionIntegration.md).
 
 Implementation
 ---------------------
@@ -38,13 +39,12 @@ public partial class TestPluginUserControl : PluginUserControl
 
 For new control to be recognized by Playnite API and themes call [AddCustomElementSupport](xref:Playnite.SDK.Plugins.Plugin.AddCustomElementSupport(Playnite.SDK.Plugins.AddCustomElementSupportArgs)) method in plugin's constructor.
 
-AddCustomElementSupportArgs contains several arguments:
+`AddCustomElementSupportArgs` contains several arguments:
 
 |Property|Description|
 |:---|:---|
 |ElementList| List of element names supported by the plugin. |
 |SourceName| Plugin source name for element name references and settings bindings. |
-|SettingsRoot| Binding root path if you want to allow themes to reference [plugin settings](#plugin-settings). |
 
 Following example will allow themes to reference plugin controls by `TestPlugin_TestUserControl1` and `TestPlugin_TestUserControl2` names:
 
@@ -75,41 +75,39 @@ public override Control GetGameViewControl(GetGameViewControlArgs args)
 
 Data of currently bound game object can be accessed via PluginUserControl's `GameContext` property. If you want to react to data context changes, you can override [GameContextChanged](xref:Playnite.SDK.Controls.PluginUserControl.GameContextChanged(Playnite.SDK.Models.Game,Playnite.SDK.Models.Game)) method.
 
+Exposing extension settings
+---------------------
+
+You can provide easy way for themes to reference extension settings by calling [AddSettingsSupport](xref:Playnite.SDK.Plugins.Plugin.AddSettingsSupport(Playnite.SDK.Plugins.AddSettingsSupportArgs)) method in plugin's constructor, similarly to how custom element support is done.
+
+`AddSettingsSupport` contains several arguments:
+
+|Property|Description|
+|:---|:---|
+|SourceName| Plugin source name for element name references and settings bindings. |
+|SettingsRoot| Binding root path relative to a plugin object instance. |
+
+`SettingsRoot` must be relative binding path to the plugin class. For example, if your plugin class stores settings in `Settings` property, then SettingsRoot should be set to just "Settings". If you want themes to dynamically react to settings changes, then you need to implement `INotifyPropertyChanged` on your settings object.
+
+Example:
+```csharp
+AddSettingsSupport(new AddSettingsSupportArgs
+{
+    SourceName = "TestPlugin",
+    SettingsRoot = $"binding.path.relative.to.plugin.object"
+});
+```
+
+Themes can then reference settings via `PluginSettings` markup. See [theme integration page](../themes/extensionIntegration.md#extension-settings) for more details.
+
 Theme integration
 ---------------------
 
-To actually use plugin control in a view, add `ContentControl` with its name set in `<SourceName>_<ElementName>` format.
+See [theme integration page](../themes/extensionIntegration.md) for more details.
 
-For example, to include `TestPlugin_TestUserControl1` from above example, add this to a view:
+As an extension developer you should provide following information to theme developer:
 
-```xml
-<ContentControl x:Name="TestPlugin_TestUserControl1" />
-```
-
-Plugin controls can be currently used in following views:
-
-|Desktop mode | Fullscreen mode |
-|:---|:---|
-|DetailsViewGameOverview|GameDetails|
-|GridViewGameOverview|ListGameItemTemplate|
-|GridViewItemTemplate||
-|DetailsViewItemTemplate||
-
-### Checking if plugin is installed
-
-You can use `PluginStatus` markup to add conditions based on if a plugin is installed or not.
-
-```xml
-{PluginStatus Plugin=AddonId, Status=Installed}
-```
-
-Plugin settings
----------------------
-
-If a plugin specifies `SettingsRoot` property when calling `AddCustomElementSupport`, themes can reference plugin's settings via `PluginSettings` markup.
-
-```xml
-<TextBlock Text="{PluginSettings Plugin=<SourceName>, Path=CustomOption}" />
-```
-
-`SettingsRoot` must be relative binding path to the plugin class. For example, if your plugin class stores settings in "Settings" property, then SettingsRoot should be set to just "Settings". If you want themes to react to settings changes, then you need to implement `INotifyPropertyChanged`.
+`Source name`: For both general UI integration and settings integration.
+`Element list`: List of element names that you extension exposes and themes can integrate.
+`Settings list`: If your extension exposes settings that can be used by themes.
+`Addon id`: Addon id used in extension manifest, for theme developers to be able to [detect](../themes/extensionIntegration.md#detecting-if-an-extension-is-installed) if your extension is installed or not.

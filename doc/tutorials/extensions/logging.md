@@ -1,6 +1,14 @@
 Writing to Log Files
 =====================
 
+Introduction
+---------------------
+
+Playnite provides built-in API for message logging. Messages from extensions are logged into `extensions.log` file that can be found in `%AppData%\Playnite` (for installed version) or in Playnite's installation directory (for portable versions).
+
+> [!NOTE]
+> Messages with `Trace` severity are not written into log files unless enabled in `For developers` settings menu.
+
 Scripts
 ---------------------
 
@@ -23,11 +31,6 @@ logger.Info("This is message with Info severity");
 # [PowerShell](#tab/tabpowershell)
 ```powershell
 $__logger.Info("This is message with Info severity")
-```
-
-# [IronPython](#tab/tabpython)
-```python
-__logger.Info('This is message with Info severity')
 ```
 ***
 

@@ -86,31 +86,6 @@ function InvokeMainMenuFunction()
     param($scriptMainMenuItemActionArgs)
 }
 ```
-
-# [IronPython](#tab/tabpython)
-```python
-from Playnite.SDK.Plugins import ScriptGameMenuItem
-from Playnite.SDK.Plugins import ScriptMainMenuItem
-
-def get_gamemenu_items(menu_args):
-    menu_item2 = ScriptGameMenuItem()
-    menu_item2.Description = "IronPython game menu item"
-    menu_item2.FunctionName = "game_menu_function"
-    yield menu_item2
-
-def get_mainmenu_items(menu_args):
-    menu_item = ScriptMainMenuItem()
-    menu_item.Description = "IronPython"
-    menu_item.FunctionName = "main_menu_function"
-    yield menu_item
-
-def game_menu_function(menu_args):
-    # use menu_args.Games to get list of games attached to the menu source
-    pass
-
-def main_menu_function(menu_args):
-    pass
-```
 ***
 
 Sub sections

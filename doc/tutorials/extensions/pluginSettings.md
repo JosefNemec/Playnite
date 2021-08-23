@@ -6,6 +6,8 @@ Basics
 
 Plugins can provide configuration view that end users can use to change plugin's behavior. This includes UI component to display settings objects and input verification methods.
 
+Plugins providing settings have to `HasSettings` plugin property set to `true`.
+
 Implementation
 ---------------------
 
