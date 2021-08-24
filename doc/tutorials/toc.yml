@@ -1,6 +1,3 @@
-- name: Introduction
-  href: intro.md
-
 - name: Extensions
   items:
     - name: Introduction
@@ -18,21 +15,31 @@
     - name: Logging
       href: extensions/logging.md
     - name: Plugin settings
-      href: extensions/pluginSettings.md
+      href: extensions/pluginSettings.md      
     - name: Working with game library
       href: extensions/library.md
     - name: Events
       href: extensions/events.md
-    - name: Menu items
-      href: extensions/menus.md
     - name: UI Interaction
       href: extensions/ui.md
+    - name: Custom UI Integration
+      href: extensions/customUiIntegration.md
+    - name: Menu items
+      href: extensions/menus.md
+    - name: Game actions
+      href: extensions/gameActions.md
     - name: Custom windows
       href: extensions/windows.md
     - name: Game variables
       href: extensions/expandingVariables.md
     - name: Playnite URI support
       href: extensions/uriSupport.md
+    - name: Debugging scripts
+      href: extensions/scriptingDebugging.md
+    - name: String localizations
+      href: extensions/localizations.md
+    - name: Manifest file
+      href: extensions/extensionsManifest.md
 
 - name: Themes
   items:
@@ -50,6 +57,8 @@
       href: themes/installing.md
     - name: Manifest file
       href: themes/manifestFile.md
+    - name: Extension integrations
+      href: themes/extensionIntegration.md
 
 - name: Toolbox utility
   href: toolbox.md

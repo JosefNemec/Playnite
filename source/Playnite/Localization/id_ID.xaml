@@ -35,33 +35,41 @@ Jika butuh bantuan kami, mohon deskripsikan tindakan sebelum kegagalan, lalu kir
 Alternatifnya, anda bisa ketuk tombol 'Lapor Kegagalan' untuk membuat isu GitHub baru dan melaporkan kegagalan secara manual.
 
 Terimakasih atas bantuannya.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Ekstensi &quot;{0}&quot; menyebabkan masalah yang tidak dapat dipulihkan.
+
+Sebaiknya simpan file log dan laporkan masalah tersebut ke pengembang ekstensi. Jika masalah terus berulang, nonaktifkan ekstensi.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Ekstensi &quot;{0}&quot; menyebabkan masalah yang tidak dapat dipulihkan.
+
+Sebaiknya laporkan masalah ini ke pengembang ekstensi. Jika masalah terus berulang, nonaktifkan ekstensi.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Terjadi kesalahan yang tidak dapat dipulihkan.
 
 Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagnostik. Terima kasih.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Nonaktifkan ekstensi</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Simpan berkas catatan</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Kirim info diag.</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Laporkan Masalah</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Muat Ulang Playnite</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">Mulai ulang dalam Mode Aman</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Menonaktifkan semua ekstensi pihak ke-3 dan menggunakan tema default.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Keluar Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Aksi yang dilakukan sebelum terjadi kesalahan (dalam bahasa Inggris):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Pengelola Pustaka</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Hapus Game yang dipilih?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Tidak dapat menghapus - Game atau penginstal sedang berjalan. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Tidak bisa mencopot - Game sedang berjalan.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Anda yakin ingin membuang game ini?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Anda yakin ingin membuang {0} game?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Kamu yakin ingin untuk menghapus game ini?
+
+Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimpor lagi saat perpustakaan diperbarui.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Kamu yakin ingin menghapus game {0}?
+
+Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimpor lagi saat perpustakaan diperbarui.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Kamu yakin ingin menghapus {0} entri yang saat ini sedang tidak digunakan?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Tidak ada field yang sedang tidak digunakan</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ya (tambahkan ke daftar pengecualian)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Teman di Steam</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Ada perubahan yang belum disimpan di bagian ini</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Memperbarui format pustaka gim…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Update database gagal, gagal membuka file database.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Tidak dapat memperbaharui pustaka gim. {0} MB ruang bebas diperlukan.</sys:String>
@@ -75,7 +83,7 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCGameInstallError">Gagal menginstal game: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Gagal menguninstall game: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Plugin yang diperlukan untuk game ini tidak terpasang atau diaktifkan.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Unduhan metadata resmi tidak tersedia.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Tidak ada permainan yang terpilih.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>

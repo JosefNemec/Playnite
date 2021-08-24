@@ -1,13 +1,14 @@
-﻿using System.Windows;
+﻿using Playnite.Controls;
+using System.Windows;
 
 namespace Playnite.Windows
 {
     /// <summary>
     /// Interaction logic for WebViewWindow.xaml
     /// </summary>
-    public partial class WebViewWindow : Window
+    public partial class WebViewWindow :  WindowBase
     {
-        public WebViewWindow()
+        public WebViewWindow() : base()
         {
             InitializeComponent();
         }

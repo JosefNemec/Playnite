@@ -68,7 +68,23 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        AppSoftware
+        AppSoftware,
+        /// <summary>
+        ///
+        /// </summary>
+        GameScanners,
+        /// <summary>
+        ///
+        /// </summary>
+        FilterPresets,
+        /// <summary>
+        ///
+        /// </summary>
+        ImportExclusions,
+        /// <summary>
+        ///
+        /// </summary>
+        CompletionStatuses
     }
 
     /// <summary>
@@ -135,6 +151,16 @@ namespace Playnite.SDK
         /// Gets collection of game features.
         /// </summary>
         IItemCollection<GameFeature> Features { get; }
+
+        /// <summary>
+        /// Gets collection of game features.
+        /// </summary>
+        IItemCollection<GameScannerConfig> GameScanners { get; }
+
+        /// <summary>
+        /// Gets collection of game statuses.
+        /// </summary>
+        IItemCollection<CompletionStatus> CompletionStatuses { get; }
 
         /// <summary>
         /// Gets value indicating whether database is opened.

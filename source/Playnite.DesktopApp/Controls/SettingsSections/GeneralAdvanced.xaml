@@ -26,22 +26,11 @@
     <StackPanel Margin="20">
         <CheckBox Content="Discord Rich Presence"
                   IsChecked="{Binding Settings.DiscordPresenceEnabled}" />
-        <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
-                ContentStringFormat="{}{0} *"
-                ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
-                Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
-                Margin="0,15,0,0"/>
         <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
                   Visibility="{Binding ShowDpiSettings, Converter={StaticResource BooleanToVisibilityConverter}}"
-                ContentStringFormat="{}{0} *"
-                Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
-                Margin="0,15,0,0"/>
-        <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}"
-                ContentStringFormat="{}{0} *"
-                ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
-                Margin="0,15,0,0"
-                Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
-        
+                  ContentStringFormat="{}{0} *"
+                  Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
+                  Margin="0,15,0,0"/>        
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCOpenDirectoryCommand}" VerticalAlignment="Center"/>
             <TextBox Text="{Binding Settings.DirectoryOpenCommand}"
@@ -59,6 +48,10 @@
                 HorizontalAlignment="Left" Margin="0,45,0,0"
                 ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"
                 Command="{Binding ClearWebCacheCommand}"/>
+
+        <Button Content="{DynamicResource LOCSettingsReset}" Margin="0,10,0,0"
+                HorizontalAlignment="Left" Command="{Binding SetDefaultsCommand}"/>
+        
         <DockPanel Margin="0,20,0,0">
             <ContentControl Content="{DynamicResource LOCSettingsDBLocation}"
                             ContentStringFormat="{}{0} *" 

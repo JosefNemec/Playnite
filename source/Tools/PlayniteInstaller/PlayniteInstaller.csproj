@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,14 +38,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\installer.ico</ApplicationIcon>
+    <ApplicationIcon>playnite-logo-default.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,15 +71,53 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="..\..\PlayniteSDK\Collections\ObservableObject.cs">
-      <Link>ObservableObject.cs</Link>
+      <Link>Shared\ObservableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\PlayniteSDK\ILogger.cs">
+      <Link>Shared\ILogger.cs</Link>
     </Compile>
     <Compile Include="..\..\PlayniteSDK\RelayCommand.cs">
-      <Link>RelayCommand.cs</Link>
+      <Link>Shared\RelayCommand.cs</Link>
     </Compile>
-    <Compile Include="..\..\Playnite\App\UpdateManifest.cs">
-      <Link>UpdateManifest.cs</Link>
+    <Compile Include="..\..\Playnite\Common\FileSystem.cs">
+      <Link>Shared\FileSystem.cs</Link>
     </Compile>
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="..\..\Playnite\Common\Paths.cs">
+      <Link>Shared\Paths.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Common\Resources.cs">
+      <Link>Shared\Resources.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Fileapi.cs">
+      <Link>Shared\Native\Fileapi.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Kernel32.cs">
+      <Link>Shared\Native\Kernel32.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Ntdll.cs">
+      <Link>Shared\Native\Ntdll.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Processthreadsapi.cs">
+      <Link>Shared\Native\Processthreadsapi.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Shlwapi.cs">
+      <Link>Shared\Native\Shlwapi.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Winbase.cs">
+      <Link>Shared\Native\Winbase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Windef.cs">
+      <Link>Shared\Native\Windef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\Winnt.cs">
+      <Link>Shared\Native\Winnt.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Native\winuser.cs">
+      <Link>Shared\Native\winuser.cs</Link>
+    </Compile>
+    <Compile Include="Converters.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,7 +130,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Theme\Classic.xaml">
+    <Page Include="Classic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -107,18 +153,24 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\installer.ico" />
+    <EmbeddedResource Include="installer_mirrors.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="playnite-logo-default.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

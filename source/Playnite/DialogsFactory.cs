@@ -28,7 +28,7 @@ namespace Playnite
         public static MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
         {
             return DialogsHandler.ShowMessage(messageBoxText, caption, button, icon);
-        }    
+        }
 
         public static MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button)
         {
@@ -83,6 +83,11 @@ namespace Playnite
         public static StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
         {
             return DialogsHandler.SelectString(messageBoxText, caption, defaultInput);
+        }
+
+        public static StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput, List<MessageBoxToggle> options)
+        {
+            return DialogsHandler.SelectString(messageBoxText, caption, defaultInput, options);
         }
 
         public static void ShowSelectableString(string messageBoxText, string caption, string defaultInput)

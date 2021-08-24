@@ -36,6 +36,8 @@ namespace Playnite
             }
         }
 
+        public static string AppBranch => PlayniteSettings.GetAppConfigValue("AppBranch");
+
         public static bool ThrowAllErrors => PlayniteSettings.GetAppConfigBoolValue("ThrowAllErrors") && Debugger.IsAttached;
 
         public static bool InOfflineMode => PlayniteSettings.GetAppConfigBoolValue("OfflineMode");

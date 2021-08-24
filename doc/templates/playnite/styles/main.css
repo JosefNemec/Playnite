@@ -17,3 +17,9 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+.alert-info {
+    color: #333;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}

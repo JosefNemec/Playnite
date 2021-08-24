@@ -1,0 +1,9 @@
+Id: cxbx-reloaded
+Name: Cxbx-Reloaded
+Website: 'https://cxbx-reloaded.co.uk'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [xbox]
+    ImageExtensions: [xbe]
+    StartupExecutable: ^cxbx\.exe$

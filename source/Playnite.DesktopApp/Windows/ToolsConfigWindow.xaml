@@ -74,6 +74,9 @@
                 <TextBox Margin="5"
                          Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"/>
 
+                <CheckBox Content="{DynamicResource LOCToolsShowOnSidebar}" Margin="5"
+                          IsChecked="{Binding ShowOnSidebar}" />
+
                 <TextBlock Text="{DynamicResource LOCGameIconTitle}" Margin="5,5,5,0" />    
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <Button Content="{DynamicResource LOCSelectIconTitle}"

@@ -6,6 +6,8 @@ Basics
 
 Plugins can provide configuration view that end users can use to change plugin's behavior. This includes UI component to display settings objects and input verification methods.
 
+Plugins providing settings have to `HasSettings` plugin property set to `true`.
+
 Implementation
 ---------------------
 
@@ -116,8 +118,8 @@ public class TestPluginSettings : ISettings
     public bool Option2 { get; set; } = false;
 
     // Playnite serializes settings object to a JSON object and saves it as text file.
-    // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
-    [JsonIgnore]
+    // If you want to exclude some property from being saved then use `JsonDontSerialize` ignore attribute.
+    [JsonDontSerialize]
     public bool OptionThatWontBeSaved { get; set; } = false;
 
     // Parameterless constructor must exist if you want to use LoadPluginSettings method.

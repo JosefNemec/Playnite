@@ -6,14 +6,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type FiltersAdditional}">
                     <DockPanel Background="{DynamicResource OverlayMenuBackgroundBrush}"
-                                Width="{StaticResource FilterPanelWidth}"
+                                Width="{DynamicResource FilterPanelWidth}"
                                 x:Name="PART_MenuHost">
-                        <DockPanel.Resources>
-                            <Thickness x:Key="ItemMargin">15,5,15,5</Thickness>
-                        </DockPanel.Resources>
-
-                        <ButtonEx Margin="{StaticResource ItemMargin}"   
-                                  BorderThickness="2" DockPanel.Dock="Top"
+                        <ButtonEx BorderThickness="2" DockPanel.Dock="Top"
+                                  Margin="15,5,15,5"
                                   x:Name="PART_ButtonBack">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
@@ -26,26 +22,9 @@
                                 </StackPanel>
                             </Button.Content>
                         </ButtonEx>
-
-                        <ItemsControlEx DockPanel.Dock="Top" Focusable="False"
-                                        x:Name="PART_ItemsHost"
-                                        KeyboardNavigation.DirectionalNavigation="Once">
-                            <ItemsControl.Template>
-                                <ControlTemplate>
-                                    <ScrollViewer Focusable="False"
-                                                  HorizontalScrollBarVisibility="Disabled"
-                                                  VerticalScrollBarVisibility="Auto"
-                                                  CanContentScroll="True">
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </ItemsControl.Template>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControlEx>
+                        <ItemsControlEx x:Name="PART_ItemsHost"
+                                        DockPanel.Dock="Top" Focusable="False"
+                                        KeyboardNavigation.DirectionalNavigation="Once" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>

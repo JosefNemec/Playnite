@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.Controls;
+using Playnite.Native;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -167,20 +168,20 @@ namespace Playnite.Windows
 
                 //Get the process ID for this window's thread
                 var interopHelper = new WindowInteropHelper(window);
-                var thisWindowThreadId = Interop.GetWindowThreadProcessId(interopHelper.Handle, IntPtr.Zero);
+                var thisWindowThreadId = User32.GetWindowThreadProcessId(interopHelper.Handle, IntPtr.Zero);
 
                 //Get the process ID for the foreground window's thread
-                var currentForegroundWindow = Interop.GetForegroundWindow();
-                var currentForegroundWindowThreadId = Interop.GetWindowThreadProcessId(currentForegroundWindow, IntPtr.Zero);
+                var currentForegroundWindow = User32.GetForegroundWindow();
+                var currentForegroundWindowThreadId = User32.GetWindowThreadProcessId(currentForegroundWindow, IntPtr.Zero);
 
                 //Attach this window's thread to the current window's thread
-                Interop.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, true);
+                User32.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, true);
 
                 //Set the window position
-                Interop.SetWindowPos(interopHelper.Handle, new IntPtr(0), 0, 0, 0, 0, Interop.SWP_NOSIZE | Interop.SWP_NOMOVE | Interop.SWP_SHOWWINDOW);
+                User32.SetWindowPos(interopHelper.Handle, new IntPtr(0), 0, 0, 0, 0, SWP.NOSIZE | SWP.NOMOVE | SWP.SHOWWINDOW);
 
                 //Detach this window's thread from the current window's thread
-                Interop.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, false);
+                User32.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, false);
             }
             catch (Exception e)
             {

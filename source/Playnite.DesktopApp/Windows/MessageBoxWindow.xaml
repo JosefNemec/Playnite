@@ -26,17 +26,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Viewbox Grid.Column="0" Grid.Row="0"
+        <Viewbox Grid.Column="0" Grid.Row="0" Name="ViewIcon" Visibility="Collapsed"
                  Margin="10,10,0,10" MaxWidth="32" MaxHeight="32">
             <TextBlock>
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="FontFamily" Value="{DynamicResource FontIcoFont}" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.None}">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
                             <DataTrigger Binding="{Binding DisplayIcon, ElementName=WindowMessageBox}" Value="{x:Static MessageBoxImage.Error}">
                                 <Setter Property="Text" Value="&#xef16;" />
                                 <Setter Property="Foreground" Value="OrangeRed" />
@@ -64,7 +62,20 @@
                  IsReadOnly="{Binding IsTextReadOnly, ElementName=WindowMessageBox}"
                  Text="{Binding InputText, ElementName=WindowMessageBox}"
                  Visibility="{Binding ShowInputField, ElementName=WindowMessageBox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal"
+
+        <ItemsControl Grid.Row="2" Grid.ColumnSpan="2"
+                      Name="ItemsToggleOptions" Visibility="Collapsed"
+                      ItemsSource="{Binding ToggleOptions, ElementName=WindowMessageBox}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Title}"
+                              IsChecked="{Binding Selected}"
+                              Margin="10,5,0,5"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5"
                     Name="StackButtons">
             <StackPanel.Style>
                 <Style TargetType="StackPanel">

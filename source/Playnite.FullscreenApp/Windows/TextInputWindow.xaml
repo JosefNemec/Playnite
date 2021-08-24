@@ -12,7 +12,7 @@
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
-        Style="{StaticResource MessageBoxWindowStyle}"
+        Style="{StaticResource ChildWindowStyle}"
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>
@@ -20,8 +20,8 @@
         <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
         <pin:XInputBinding Button="RightShoulder" Command="{Binding ConfirmCommand}" />
         <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
+        <pin:XInputBinding Button="RightStick" Command="{Binding ToggleCapsCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
-        <KeyBinding Key="Backspace" Command="{Binding BackSpaceCommand}" />
     </c:WindowBase.InputBindings>
     
     <c:WindowBase.Resources>
@@ -29,28 +29,45 @@
     </c:WindowBase.Resources>
 
     <Viewbox>
-        <Grid Height="1080">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>                
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox Margin="0,140,0,0" Name="TextInputText"
-                     Grid.Row="0" Grid.Column="1" FontSize="26"
-                     Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+            <TextBox Name="TextInputText" Grid.Row="1" Grid.Column="1"
+                     Style="{DynamicResource TextInputTextbox}"                     
+                     PreviewKeyDown="TextInputText_PreviewKeyDown"
+                     Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Border Grid.Row="2" Grid.Column="1"
-                    Background="{StaticResource ControlBackgroundDarkBrush}" CornerRadius="3"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,60">
+            <Border Style="{DynamicResource TextInputOptionsBorder}"
+                    Grid.Row="2" Grid.Column="1" Margin="0,0,0,20">
+                <ItemsControl Focusable="False" Margin="10"
+                              Name="ItemsToggleOptions" Visibility="Collapsed"
+                              ItemsSource="{Binding ToggleOptions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <pctrls:CheckBoxEx Content="{Binding Title}"
+                                               Style="{DynamicResource TextInputCheckbox}"
+                                               IsChecked="{Binding Selected}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="1"
+                    Style="{DynamicResource TextInputKeysBorder}"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel>
-                    <Grid HorizontalAlignment="Center"
-                          KeyboardNavigation.DirectionalNavigation="Cycle">
+                    <Grid HorizontalAlignment="Center" Name="GridInput">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -72,7 +89,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.Resources>
-                            <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource ButtonVirtualKeyboard}">                                
+                            <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource TextInputButton}">
                                 <EventSetter Event="Click" Handler="Button_Click" />
                             </Style>
                         </Grid.Resources>
@@ -90,8 +107,8 @@
                         <pctrls:ButtonEx Grid.Row="0" Grid.Column="10" Command="{Binding BackSpaceCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentControl Style="{DynamicResource ButtonPromptX}"
-                                           Height="22" Margin="0,0,5,0"/>
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptX}"
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="⌫"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
@@ -111,8 +128,8 @@
                         <pctrls:ButtonEx Grid.Row="1" Grid.Column="10" Grid.RowSpan="2" Command="{Binding ConfirmCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel>
-                                    <ContentControl Style="{DynamicResource ButtonPromptStart}"
-                                           Height="22" Margin="0,0,0,5"/>
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptStart}"
+                                                    Focusable="False" Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCDoneCapLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
@@ -143,8 +160,8 @@
                         <pctrls:ButtonEx Grid.Row="3" Grid.Column="10" Grid.RowSpan="2" Command="{Binding CancelCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel>
-                                    <ContentControl Style="{DynamicResource ButtonPromptB}"
-                                           Height="22" Margin="0,0,0,5"/>
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptB}"
+                                                    Focusable="False" Height="22" Margin="0,0,0,5"/>
                                     <TextBlock Text="{DynamicResource LOCCancelLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
@@ -154,15 +171,26 @@
                         <pctrls:ButtonEx Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" Command="{Binding ClearTextCommand}">
                             <pctrls:ButtonEx.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentControl Style="{DynamicResource ButtonPromptLB}"
-                                           Height="22" Margin="0,0,5,0"/>
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptLB}"
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
                                     <TextBlock Text="{DynamicResource LOCClearLabel}"
                                                Style="{StaticResource TextBlockBaseStyle}" />
                                 </StackPanel>
                             </pctrls:ButtonEx.Content>
                         </pctrls:ButtonEx>
                         
-                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="0" Content=" " Grid.ColumnSpan="8" />
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="2" Content=" " Grid.ColumnSpan="6" />
+
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding ToggleCapsCommand}">
+                            <pctrls:ButtonEx.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptRS}"
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{DynamicResource LOCTextInputCapitalize}"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
                     </Grid>
                 </StackPanel>
             </Border>

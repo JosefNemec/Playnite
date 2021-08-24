@@ -17,33 +17,35 @@ namespace Playnite.Tests.Database
         public void UsageRemovalTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
-
                 var emulator = new Emulator("test")
                 {
-                    Profiles = new System.Collections.ObjectModel.ObservableCollection<EmulatorProfile>()
-                    {
-                        new EmulatorProfile() { Name = "test profile" }
-                    }
+                    CustomProfiles = new System.Collections.ObjectModel.ObservableCollection<CustomEmulatorProfile>()
+                        {
+                            new CustomEmulatorProfile() { Name = "test profile" }
+                        }
                 };
 
                 db.Emulators.Add(emulator);
                 var game = new Game("test")
                 {
-                    PlayAction = new GameAction()
+                    GameActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>
                     {
-                        Type = GameActionType.Emulator,
-                        EmulatorId = emulator.Id,
-                        EmulatorProfileId = emulator.Profiles[0].Id
+                        new GameAction()
+                        {
+                            Type = GameActionType.Emulator,
+                            EmulatorId = emulator.Id,
+                            EmulatorProfileId = emulator.CustomProfiles[0].Id
+                        }
                     }
                 };
 
                 db.Games.Add(game);
                 db.Emulators.Remove(emulator);
-                Assert.AreEqual(Guid.Empty, game.PlayAction.EmulatorId);
-                Assert.AreEqual(Guid.Empty, game.PlayAction.EmulatorProfileId);
+                Assert.AreEqual(Guid.Empty, game.GameActions[0].EmulatorId);
+                Assert.AreEqual(null, game.GameActions[0].EmulatorProfileId);
             }
         }
     }

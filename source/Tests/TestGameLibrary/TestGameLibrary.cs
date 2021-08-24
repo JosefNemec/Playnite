@@ -38,7 +38,7 @@ namespace TestGameLibrary
             return null;
         }
 
-        public override IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
         {
             return new List<GameInfo>()
             {
@@ -46,50 +46,30 @@ namespace TestGameLibrary
                 {
                     Name = "Notepad",
                     GameId = "notepad",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "notepad.exe"
-                    },
                     IsInstalled = true,
-                    Icon = @"c:\Windows\notepad.exe"
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(@"c:\Windows\notepad.exe")
                 },
                 new GameInfo()
                 {
                     Name = "Calculator",
                     GameId = "calc",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "calc.exe"
-                    },
                     IsInstalled = true,
-                    Icon = @"https://playnite.link/applogo.png",
-                    BackgroundImage =  @"https://playnite.link/applogo.png"
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(@"https://playnite.link/applogo.png"),
+                    BackgroundImage =  new Playnite.SDK.Metadata.MetadataFile(@"https://playnite.link/applogo.png")
                 },
                 new GameInfo()
                 {
                     Name = "Paint",
                     GameId = "mspaint",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "mspaint.exe"
-                    },
                     IsInstalled = true,
-                    Icon = LibraryIcon
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(LibraryIcon)
                 },
                 new GameInfo()
                 {
                     Name = "WordPad",
                     GameId = "write",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "write.exe"
-                    },
                     IsInstalled = true,
-                    Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga")
+                    Icon = new Playnite.SDK.Metadata.MetadataFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga"))
                 }
             };
         }

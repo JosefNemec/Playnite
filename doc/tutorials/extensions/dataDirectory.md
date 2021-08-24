@@ -8,7 +8,7 @@ Scripts
 
 To get script data directory, use `CurrentExtensionDataPath` global variable.
 
-To get installation directory of currently running script, use `CurrentExtensionInstallPath` global variable.
+To get installation directory of currently running script, use `CurrentExtensionInstallPath` global variable. In PowerShell scripts you may also use the standard `$PSScriptRoot` variable.
 
 Plugins
 ---------------------

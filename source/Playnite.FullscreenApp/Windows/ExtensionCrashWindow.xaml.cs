@@ -23,14 +23,7 @@ namespace Playnite.FullscreenApp.Windows
         public ExtensionCrashWindow() : base()
         {
             InitializeComponent();
-
-            var model = FullscreenApplication.Current?.MainModel;
-            if (model != null)
-            {
-                Width = model.WindowWidth;
-                Height = model.WindowHeight;
-            }
-
+            WindowTools.ConfigureChildWindow(this);
             Loaded += CrashWindow_Loaded;
         }
 

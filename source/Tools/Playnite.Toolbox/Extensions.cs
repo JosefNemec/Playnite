@@ -21,7 +21,7 @@ namespace Playnite.Toolbox
         private const string libraryCsproj = "CustomLibraryPlugin.csproj";
         private const string metadataCsproj = "CustomMetadataPlugin.csproj";
 
-        public static string GenerateScriptExtension(ScriptLanguage language, string name, string directory)
+        public static string GenerateScriptExtension(string name, string directory)
         {
             var extDirName = Common.Paths.GetSafePathName(name).Replace(" ", string.Empty);
             var outDir = Path.Combine(directory, extDirName);
@@ -30,7 +30,7 @@ namespace Playnite.Toolbox
                 throw new Exception($"Extension already exists: {outDir}");
             }
 
-            var templateArchive = Paths.GetScriptTemplateArchivePath(language);
+            var templateArchive = Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions", "PowerShellScript.zip"); ;
             ZipFile.ExtractToDirectory(templateArchive, outDir);
             return outDir;
         }
@@ -108,7 +108,7 @@ namespace Playnite.Toolbox
 
             extInfo.VerifyManifest();
 
-            var packedPath = Path.Combine(targetPath, $"{Common.Paths.GetSafePathName(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
+            var packedPath = Path.Combine(targetPath, $"{Common.Paths.GetSafePathName(extInfo.Id).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
             FileSystem.PrepareSaveFile(packedPath);
             var ignoreFiles = File.ReadAllLines(Paths.ExtFileIgnoreListPath);
 

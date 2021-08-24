@@ -217,7 +217,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 newColumn = CreateColumn(field, SortOrder.Name, "CellTemplateName", "HeaderTemplateName");
             }
-            else if (field == GameField.Platform)
+            else if (field == GameField.Platforms)
             {
                 newColumn = CreateColumn(field, SortOrder.Platform, "CellTemplatePlatform", "HeaderTemplatePlatform");
             }
@@ -285,11 +285,11 @@ namespace Playnite.DesktopApp.Controls
             {
                 newColumn = CreateColumn(field, SortOrder.Version, "CellTemplateVersion", "HeaderTemplateVersion");
             }
-            else if (field == GameField.AgeRating)
+            else if (field == GameField.AgeRatings)
             {
                 newColumn = CreateColumn(field, SortOrder.AgeRating, "CellTemplateAgeRating", "HeaderTemplateAgeRating");
             }
-            else if (field == GameField.Region)
+            else if (field == GameField.Regions)
             {
                 newColumn = CreateColumn(field, SortOrder.Region, "CellTemplateRegion", "HeaderTemplateRegion");
             }

@@ -41,16 +41,16 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
-            {
-                if (!other.IsNullOrEmpty())
-                {
-                    if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
-                    {
-                        diffFields.Add(field);
-                    }
-                }
-            }
+            //void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
+            //{
+            //    if (!other.IsNullOrEmpty())
+            //    {
+            //        if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
+            //        {
+            //            diffFields.Add(field);
+            //        }
+            //    }
+            //}
 
             if (!newInfo.Name.IsNullOrEmpty())
             {
@@ -68,11 +68,10 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            checkItemChanged(testGame.AgeRating, newInfo.AgeRating, GameField.AgeRating);
-            checkItemChanged(testGame.Region, newInfo.Region, GameField.Region);
-            checkItemChanged(testGame.Series, newInfo.Series, GameField.Series);
-            checkItemChanged(testGame.Platform, newInfo.Platform, GameField.Platform);
-
+            checkListChanged(testGame.AgeRatings, newInfo.AgeRatings, GameField.AgeRatings);
+            checkListChanged(testGame.Regions, newInfo.Regions, GameField.Regions);
+            checkListChanged(testGame.Series, newInfo.Series, GameField.Series);
+            checkListChanged(testGame.Platforms, newInfo.Platforms, GameField.Platforms);
             checkListChanged(testGame.Developers, newInfo.Developers, GameField.Developers);
             checkListChanged(testGame.Publishers, newInfo.Publishers, GameField.Publishers);
             checkListChanged(testGame.Genres, newInfo.Genres, GameField.Genres);
@@ -111,9 +110,9 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (metadata.Icon != null && !testGame.Icon.IsNullOrEmpty())
+            if (newInfo.Icon != null && !testGame.Icon.IsNullOrEmpty())
             {
-                var newIcon = ProcessMetadataFile(metadata.Icon, tempIconFileName);
+                var newIcon = ProcessMetadataFile(newInfo.Icon, tempIconFileName);
                 if (newIcon != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.Icon);
@@ -121,23 +120,23 @@ namespace Playnite.DesktopApp.ViewModels
                         !File.Exists(currentPath) ||
                         !FileSystem.AreFileContentsEqual(newIcon, currentPath))
                     {
-                        metadata.Icon = new MetadataFile(newIcon);
+                        newInfo.Icon = new MetadataFile(newIcon);
                         diffFields.Add(GameField.Icon);
                     }
                     else
                     {
-                        metadata.Icon = null;
+                        newInfo.Icon = null;
                     }
                 }
                 else
                 {
-                    metadata.Icon = null;
+                    newInfo.Icon = null;
                 }
             }
 
-            if (metadata.CoverImage != null && !testGame.CoverImage.IsNullOrEmpty())
+            if (newInfo.CoverImage != null && !testGame.CoverImage.IsNullOrEmpty())
             {
-                var newCover = ProcessMetadataFile(metadata.CoverImage, tempCoverFileName);
+                var newCover = ProcessMetadataFile(newInfo.CoverImage, tempCoverFileName);
                 if (newCover != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.CoverImage);
@@ -145,23 +144,23 @@ namespace Playnite.DesktopApp.ViewModels
                         !File.Exists(currentPath) ||
                         !FileSystem.AreFileContentsEqual(newCover, currentPath))
                     {
-                        metadata.CoverImage = new MetadataFile(newCover);
+                        newInfo.CoverImage = new MetadataFile(newCover);
                         diffFields.Add(GameField.CoverImage);
                     }
                     else
                     {
-                        metadata.CoverImage = null;
+                        newInfo.CoverImage = null;
                     }
                 }
                 else
                 {
-                    metadata.CoverImage = null;
+                    newInfo.CoverImage = null;
                 }
             }
 
-            if (metadata.BackgroundImage != null && !testGame.BackgroundImage.IsNullOrEmpty())
+            if (newInfo.BackgroundImage != null && !testGame.BackgroundImage.IsNullOrEmpty())
             {
-                var newBack = ProcessMetadataFile(metadata.BackgroundImage, tempBackgroundFileName);
+                var newBack = ProcessMetadataFile(newInfo.BackgroundImage, tempBackgroundFileName);
                 if (newBack != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.BackgroundImage);
@@ -169,17 +168,17 @@ namespace Playnite.DesktopApp.ViewModels
                         !File.Exists(currentPath) ||
                         !FileSystem.AreFileContentsEqual(newBack, currentPath))
                     {
-                        metadata.BackgroundImage = new MetadataFile(newBack);
+                        newInfo.BackgroundImage = new MetadataFile(newBack);
                         diffFields.Add(GameField.BackgroundImage);
                     }
                     else
                     {
-                        metadata.BackgroundImage = null;
+                        newInfo.BackgroundImage = null;
                     }
                 }
                 else
                 {
-                    metadata.BackgroundImage = null;
+                    newInfo.BackgroundImage = null;
                 }
             }
 
@@ -245,24 +244,24 @@ namespace Playnite.DesktopApp.ViewModels
                 AddNewFeatures(metadata.GameInfo.Features);
             }
 
-            if (!metadata.GameInfo.AgeRating.IsNullOrEmpty())
+            if (!metadata.GameInfo.AgeRatings?.HasNonEmptyItems() == true)
             {
-                AddNewAreRating(metadata.GameInfo.AgeRating);
+                AddNewAgeRatings(metadata.GameInfo.AgeRatings);
             }
 
-            if (!metadata.GameInfo.Region.IsNullOrEmpty())
+            if (!metadata.GameInfo.Regions?.HasNonEmptyItems() == true)
             {
-                AddNewRegion(metadata.GameInfo.Region);
+                AddNewRegions(metadata.GameInfo.Regions);
             }
 
-            if (!metadata.GameInfo.Series.IsNullOrEmpty())
+            if (!metadata.GameInfo.Series?.HasNonEmptyItems() == true)
             {
                 AddNewSeries(metadata.GameInfo.Series);
             }
 
-            if (!metadata.GameInfo.Platform.IsNullOrEmpty())
+            if (!metadata.GameInfo.Platforms?.HasNonEmptyItems() == true)
             {
-                AddNewPlatform(metadata.GameInfo.Platform);
+                AddNewPlatforms(metadata.GameInfo.Platforms);
             }
 
             if (metadata.GameInfo.ReleaseDate != null)
@@ -290,27 +289,27 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.CommunityScore = metadata.GameInfo.CommunityScore;
             }
 
-            if (metadata.CoverImage != null)
+            if (metadata.GameInfo.CoverImage != null)
             {
-                var newCover = ProcessMetadataFile(metadata.CoverImage, tempCoverFileName);
+                var newCover = ProcessMetadataFile(metadata.GameInfo.CoverImage, tempCoverFileName);
                 if (newCover != null)
                 {
                     EditingGame.CoverImage = newCover;
                 }
             }
 
-            if (metadata.Icon != null)
+            if (metadata.GameInfo.Icon != null)
             {
-                var newIcon = ProcessMetadataFile(metadata.Icon, tempIconFileName);
+                var newIcon = ProcessMetadataFile(metadata.GameInfo.Icon, tempIconFileName);
                 if (newIcon != null)
                 {
                     EditingGame.Icon = newIcon;
                 }
             }
 
-            if (metadata.BackgroundImage != null)
+            if (metadata.GameInfo.BackgroundImage != null)
             {
-                var newBackground = ProcessMetadataFile(metadata.BackgroundImage, tempBackgroundFileName);
+                var newBackground = ProcessMetadataFile(metadata.GameInfo.BackgroundImage, tempBackgroundFileName);
                 if (newBackground != null)
                 {
                     EditingGame.BackgroundImage = newBackground;
@@ -329,15 +328,15 @@ namespace Playnite.DesktopApp.ViewModels
                 File.WriteAllBytes(targetPath, file.Content);
                 return targetPath;
             }
-            else if (!file.OriginalUrl.IsNullOrEmpty())
+            else if (!file.Path.IsNullOrEmpty())
             {
-                if (file.OriginalUrl.IsHttpUrl())
+                if (file.Path.IsHttpUrl())
                 {
-                    var extension = Path.GetExtension(new Uri(file.OriginalUrl).AbsolutePath);
+                    var extension = Path.GetExtension(new Uri(file.Path).AbsolutePath);
                     var fileName = tempFileName + extension;
                     var targetPath = Path.Combine(PlaynitePaths.TempPath, fileName);
                     var progRes = dialogs.ActivateGlobalProgress((a) =>
-                        HttpDownloader.DownloadFile(file.OriginalUrl, targetPath, a.CancelToken),
+                        HttpDownloader.DownloadFile(file.Path, targetPath, a.CancelToken),
                         new GlobalProgressOptions("LOCDownloadingMediaLabel", true));
                     if (progRes.Result == true && !progRes.Canceled)
                     {
@@ -345,13 +344,13 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else
                     {
-                        logger.Error(progRes.Error, $"Failed to download {file.OriginalUrl}.");
+                        logger.Error(progRes.Error, $"Failed to download {file.Path}.");
                         return null;
                     }
                 }
                 else
                 {
-                    return file.OriginalUrl;
+                    return file.Path;
                 }
             }
             else
@@ -360,114 +359,103 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public async void DownloadPluginData(MetadataPlugin plugin)
+        public void DownloadPluginData(MetadataPlugin plugin)
         {
-            ProgressVisible = true;
-
-            await Task.Run(() =>
+            var res = dialogs.ActivateGlobalProgress((args) =>
             {
-                try
+                var provider = plugin.GetMetadataProvider(new MetadataRequestOptions(EditingGame, false));
+                if (provider != null)
                 {
-                    var provider = plugin.GetMetadataProvider(new MetadataRequestOptions(EditingGame, false));
-                    if (provider != null)
+                    try
                     {
-                        try
+                        var fieldArgs = new GetMetadataFieldArgs { CancelToken = args.CancelToken };
+                        var gameInfo = new GameInfo
                         {
-                            var gameInfo = new GameInfo
-                            {
-                                Name = provider.GetName(),
-                                Genres = provider.GetGenres(),
-                                ReleaseDate = provider.GetReleaseDate(),
-                                Developers = provider.GetDevelopers(),
-                                Publishers = provider.GetPublishers(),
-                                Tags = provider.GetTags(),
-                                Features = provider.GetFeatures(),
-                                Description = provider.GetDescription(),
-                                Links = provider.GetLinks(),
-                                CriticScore = provider.GetCriticScore(),
-                                CommunityScore = provider.GetCommunityScore(),
-                                AgeRating = provider.GetAgeRating(),
-                                Series = provider.GetSeries(),
-                                Region = provider.GetRegion(),
-                                Platform = provider.GetPlatform()
-                            };
+                            Name = provider.GetName(fieldArgs),
+                            Genres = provider.GetGenres(fieldArgs)?.Where(a => a != null).ToList(),
+                            ReleaseDate = provider.GetReleaseDate(fieldArgs),
+                            Developers = provider.GetDevelopers(fieldArgs)?.Where(a => a != null).ToList(),
+                            Publishers = provider.GetPublishers(fieldArgs)?.Where(a => a != null).ToList(),
+                            Tags = provider.GetTags(fieldArgs)?.Where(a => a != null).ToList(),
+                            Features = provider.GetFeatures(fieldArgs)?.Where(a => a != null).ToList(),
+                            Description = provider.GetDescription(fieldArgs),
+                            Links = provider.GetLinks(fieldArgs)?.Where(a => a != null).ToList(),
+                            CriticScore = provider.GetCriticScore(fieldArgs),
+                            CommunityScore = provider.GetCommunityScore(fieldArgs),
+                            AgeRatings = provider.GetAgeRatings(fieldArgs)?.Where(a => a != null).ToList(),
+                            Series = provider.GetSeries(fieldArgs)?.Where(a => a != null).ToList(),
+                            Regions = provider.GetRegions(fieldArgs)?.Where(a => a != null).ToList(),
+                            Platforms = provider.GetPlatforms(fieldArgs)?.Where(a => a != null).ToList(),
+                            Icon = provider.GetIcon(fieldArgs),
+                            CoverImage = provider.GetCoverImage(fieldArgs),
+                            BackgroundImage = provider.GetBackgroundImage(fieldArgs)
+                        };
 
-                            var metadata = new GameMetadata
-                            {
-                                GameInfo = gameInfo,
-                                Icon = provider.GetIcon(),
-                                CoverImage = provider.GetCoverImage(),
-                                BackgroundImage = provider.GetBackgroundImage()
-                            };
-
-                            Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
-                        }
-                        finally
-                        {
-                            provider.Dispose();
-                        }
+                        var metadata = new GameMetadata(gameInfo);
+                        Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
+                    }
+                    finally
+                    {
+                        provider.Dispose();
                     }
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
-                    dialogs.ShowMessage(
-                        string.Format(resources.GetString("LOCMetadataDownloadError"), exc.Message),
-                        resources.GetString("LOCDownloadError"),
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                finally
-                {
-                    ProgressVisible = false;
-                }
+            }, new GlobalProgressOptions(LOC.DownloadingLabel)
+            {
+                IsIndeterminate = true,
+                Cancelable = true
             });
+
+            if (res.Error != null)
+            {
+                logger.Error(res.Error, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
+                dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCMetadataDownloadError"), res.Error.Message),
+                    resources.GetString("LOCDownloadError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        public async void DownloadStoreData()
+        public void DownloadStoreData()
         {
-            ProgressVisible = true;
-
-            await Task.Run(() =>
+            var res = dialogs.ActivateGlobalProgress((args) =>
             {
-                try
+                if (extensions.Plugins.TryGetValue(Game.PluginId, out var plugin))
                 {
-                    if (extensions.Plugins.TryGetValue(Game.PluginId, out var plugin))
-                    {
-                        if (LibraryPluginMetadataDownloader == null)
-                        {
-                            dialogs.ShowErrorMessage(
-                                resources.GetString("LOCErrorNoMetadataDownloader"),
-                                resources.GetString("LOCGameError"));
-                            return;
-                        }
-
-                        var metadata = LibraryPluginMetadataDownloader.GetMetadata(EditingGame);
-                        if (metadata != null)
-                        {
-                            Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
-                        }
-                    }
-                    else
+                    if (LibraryPluginMetadataDownloader == null)
                     {
                         dialogs.ShowErrorMessage(
-                            resources.GetString("LOCErrorLibraryPluginNotFound"),
+                            resources.GetString("LOCErrorNoMetadataDownloader"),
                             resources.GetString("LOCGameError"));
                         return;
                     }
+
+                    var metadata = LibraryPluginMetadataDownloader.GetMetadata(EditingGame);
+                    if (metadata != null)
+                    {
+                        Application.Current.Dispatcher.Invoke(() => PreviewGameData(metadata));
+                    }
                 }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                else
                 {
-                    logger.Error(exc, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
-                    dialogs.ShowMessage(
-                        string.Format(resources.GetString("LOCMetadataDownloadError"), exc.Message),
-                        resources.GetString("LOCDownloadError"),
-                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    dialogs.ShowErrorMessage(
+                        resources.GetString("LOCErrorLibraryPluginNotFound"),
+                        resources.GetString("LOCGameError"));
+                    return;
                 }
-                finally
-                {
-                    ProgressVisible = false;
-                }
+            }, new GlobalProgressOptions(LOC.DownloadingLabel)
+            {
+                IsIndeterminate = true,
+                Cancelable = true
             });
+
+            if (res.Error != null)
+            {
+                logger.Error(res.Error, string.Format("Failed to download metadata, {0}, {1}", Game.PluginId, Game.GameId));
+                dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCMetadataDownloadError"), res.Error.Message),
+                    resources.GetString("LOCDownloadError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void SelectGoogleIcon()

@@ -49,6 +49,11 @@ namespace Playnite.FullscreenApp.Controls
                         break;
                 }
             }
+            else if (e.Key == Key.Enter)
+            {
+                IsDropDownOpen = !IsDropDownOpen;
+                e.Handled = true;
+            }
         }
 
         private void ComboBoxEx_PreviewKeyDown(object sender, KeyEventArgs e)

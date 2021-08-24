@@ -26,16 +26,6 @@ namespace Playnite.Tests.Database
         }
 
         [Test]
-        public void GetMigratedDbPathTest()
-        {
-            Assert.AreEqual(@"{PlayniteDir}\games", GameDatabase.GetMigratedDbPath(@"games.db"));
-            Assert.AreEqual(@"c:\games", GameDatabase.GetMigratedDbPath(@"c:\games.db"));
-            Assert.AreEqual(@"c:\test\games", GameDatabase.GetMigratedDbPath(@"c:\test\games.db"));
-            var appData = Environment.ExpandEnvironmentVariables("%AppData%");
-            Assert.AreEqual(@"%AppData%\playnite\games", GameDatabase.GetMigratedDbPath(Path.Combine(appData, "playnite", "games.db")));
-        }
-
-        [Test]
         public void GetFullDbPathTest()
         {
             var appData = Environment.ExpandEnvironmentVariables("%AppData%");
@@ -50,8 +40,8 @@ namespace Playnite.Tests.Database
         public void ListUpdateTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 db.Games.Add(new Game()
                 {
@@ -83,8 +73,8 @@ namespace Playnite.Tests.Database
         public void DeleteGameImageCleanupTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 var game = new Game("Test");
                 db.Games.Add(game);
@@ -109,8 +99,8 @@ namespace Playnite.Tests.Database
         public void FieldsInUseTests()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 GameDatabase.GenerateSampleData(db);
 

@@ -33,7 +33,7 @@ namespace Playnite.DesktopApp
             { GroupableField.Publisher, nameof(GamesCollectionViewEntry.Publisher) },
             { GroupableField.Tag, nameof(GamesCollectionViewEntry.Tag) },
             { GroupableField.Platform, nameof(GamesCollectionViewEntry.Platform) },
-            { GroupableField.Series, nameof(GamesCollectionViewEntry.Series) },
+            { GroupableField.Series, nameof(GamesCollectionViewEntry.Serie) },
             { GroupableField.AgeRating, nameof(GamesCollectionViewEntry.AgeRating) },
             { GroupableField.Region, nameof(GamesCollectionViewEntry.Region) },
             { GroupableField.Source, nameof(GamesCollectionViewEntry.Source) },
@@ -58,7 +58,11 @@ namespace Playnite.DesktopApp
             { GroupableField.Developer, typeof(Developer) },
             { GroupableField.Publisher, typeof(Publisher) },
             { GroupableField.Tag, typeof(Tag) },
-            { GroupableField.Feature, typeof(GameFeature) }
+            { GroupableField.Feature, typeof(GameFeature) },
+            { GroupableField.AgeRating, typeof(AgeRating) },
+            { GroupableField.Region, typeof(Region) },
+            { GroupableField.Platform, typeof(Platform) },
+            { GroupableField.Series, typeof(Series) }
         };
 
         private GamesViewType? viewType = null;
@@ -90,6 +94,7 @@ namespace Playnite.DesktopApp
             Database.Sources.ItemUpdated += Sources_ItemUpdated;
             Database.Tags.ItemUpdated += Tags_ItemUpdated;
             Database.Features.ItemUpdated += Features_ItemUpdated;
+            Database.CompletionStatuses.ItemUpdated += CompletionStatuses_ItemUpdated;
             viewSettings = settings.ViewSettings;
             viewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             using (CollectionView.DeferRefresh())
@@ -113,6 +118,7 @@ namespace Playnite.DesktopApp
             Database.Sources.ItemUpdated -= Sources_ItemUpdated;
             Database.Tags.ItemUpdated -= Tags_ItemUpdated;
             Database.Features.ItemUpdated -= Features_ItemUpdated;
+            Database.CompletionStatuses.ItemUpdated -= CompletionStatuses_ItemUpdated;
             viewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
             ClearItems();
             base.Dispose();
@@ -127,13 +133,23 @@ namespace Playnite.DesktopApp
                 nameof(ViewSettings.SortingOrderDirection)
             }).Contains(e.PropertyName))
             {
-                Logger.Debug("Updating collection view settings.");
-                using (CollectionView.DeferRefresh())
-                {
-                    CollectionView.SortDescriptions.Clear();
-                    CollectionView.GroupDescriptions.Clear();
-                    SetViewDescriptions();
-                }
+                RefreshView();
+            }
+        }
+
+        public override void RefreshView()
+        {
+            if (IgnoreViewConfigChanges)
+            {
+                return;
+            }
+
+            Logger.Debug("Updating collection view settings.");
+            using (CollectionView.DeferRefresh())
+            {
+                CollectionView.SortDescriptions.Clear();
+                CollectionView.GroupDescriptions.Clear();
+                SetViewDescriptions();
             }
         }
 
@@ -148,14 +164,14 @@ namespace Playnite.DesktopApp
                 case GroupableField.Publisher:
                 case GroupableField.Tag:
                 case GroupableField.Feature:
-                    ViewType = GamesViewType.ListGrouped;
-                    break;
-                case GroupableField.None:
-                case GroupableField.Library:
                 case GroupableField.Platform:
                 case GroupableField.Series:
                 case GroupableField.AgeRating:
                 case GroupableField.Region:
+                    ViewType = GamesViewType.ListGrouped;
+                    break;
+                case GroupableField.None:
+                case GroupableField.Library:
                 case GroupableField.Source:
                 case GroupableField.ReleaseYear:
                 case GroupableField.CompletionStatus:
@@ -166,8 +182,8 @@ namespace Playnite.DesktopApp
                 case GroupableField.Added:
                 case GroupableField.Modified:
                 case GroupableField.PlayTime:
-                    case GroupableField.InstallationStatus:
-                    case GroupableField.Name:
+                case GroupableField.InstallationStatus:
+                case GroupableField.Name:
                     ViewType = GamesViewType.Standard;
                     break;
                 default:
@@ -190,7 +206,8 @@ namespace Playnite.DesktopApp
                     if (viewSettings.GroupingOrder == GroupableField.PlayTime ||
                         viewSettings.GroupingOrder == GroupableField.CommunityScore ||
                         viewSettings.GroupingOrder == GroupableField.CriticScore ||
-                        viewSettings.GroupingOrder == GroupableField.UserScore)
+                        viewSettings.GroupingOrder == GroupableField.UserScore ||
+                        viewSettings.GroupingOrder == GroupableField.ReleaseYear)
                     {
                         order = ListSortDirection.Descending;
                     }
@@ -204,16 +221,10 @@ namespace Playnite.DesktopApp
         {
             switch (orderField)
             {
-                case GroupableField.AgeRating:
-                    return sourceGame.AgeRatingId;
-                case GroupableField.Platform:
-                    return sourceGame.PlatformId;
-                case GroupableField.Region:
-                    return sourceGame.RegionId;
-                case GroupableField.Series:
-                    return sourceGame.SeriesId;
                 case GroupableField.Source:
                     return sourceGame.SourceId;
+                case GroupableField.CompletionStatus:
+                    return sourceGame.CompletionStatusId;
                 case GroupableField.None:
                     return Guid.Empty;
                 default:
@@ -237,6 +248,14 @@ namespace Playnite.DesktopApp
                     return sourceGame.TagIds;
                 case GroupableField.Feature:
                     return sourceGame.FeatureIds;
+                case GroupableField.AgeRating:
+                    return sourceGame.AgeRatingIds;
+                case GroupableField.Platform:
+                    return sourceGame.PlatformIds;
+                case GroupableField.Region:
+                    return sourceGame.RegionIds;
+                case GroupableField.Series:
+                    return sourceGame.SeriesIds;
                 case GroupableField.None:
                     return null;
                 default:
@@ -309,8 +328,9 @@ namespace Playnite.DesktopApp
         private void Database_PlatformUpdated(object sender, ItemUpdatedEventArgs<Platform> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupableField.Platform, e,
-               (a, b) => a.PlatformId != Guid.Empty && b.Contains(a.PlatformId));
+                GroupableField.Platform, e,
+                (a, b) => a.PlatformIds?.Any() == true && b.Intersect(a.PlatformIds).Any(),
+                nameof(Game.Platforms));
         }
 
         private void Genres_ItemUpdated(object sender, ItemUpdatedEventArgs<Genre> e)
@@ -339,15 +359,17 @@ namespace Playnite.DesktopApp
         private void Series_ItemUpdated(object sender, ItemUpdatedEventArgs<Series> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupableField.Series, e,
-               (a, b) => a.SeriesId != Guid.Empty && b.Contains(a.SeriesId));
+                GroupableField.Series, e,
+                (a, b) => a.SeriesIds?.Any() == true && b.Intersect(a.SeriesIds).Any(),
+                nameof(Game.Series));
         }
 
         private void Regions_ItemUpdated(object sender, ItemUpdatedEventArgs<Region> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupableField.Region, e,
-               (a, b) => a.RegionId != Guid.Empty && b.Contains(a.RegionId));
+                GroupableField.Region, e,
+                (a, b) => a.RegionIds?.Any() == true && b.Intersect(a.RegionIds).Any(),
+                nameof(Game.Regions));
         }
 
         private void Companies_ItemUpdated(object sender, ItemUpdatedEventArgs<Company> e)
@@ -366,8 +388,9 @@ namespace Playnite.DesktopApp
         private void AgeRatings_ItemUpdated(object sender, ItemUpdatedEventArgs<AgeRating> e)
         {
             DoGroupDbObjectsUpdate(
-               GroupableField.AgeRating, e,
-               (a, b) => a.AgeRatingId != Guid.Empty && b.Contains(a.AgeRatingId));
+                GroupableField.AgeRating, e,
+                (a, b) => a.AgeRatingIds?.Any() == true && b.Intersect(a.AgeRatingIds).Any(),
+                nameof(Game.AgeRatings));
         }
 
         private void Categories_ItemUpdated(object sender, ItemUpdatedEventArgs<Category> e)
@@ -384,6 +407,13 @@ namespace Playnite.DesktopApp
                 GroupableField.Feature, e,
                 (a, b) => a.FeatureIds?.Any() == true && b.Intersect(a.FeatureIds).Any(),
                 nameof(Game.Features));
+        }
+
+        private void CompletionStatuses_ItemUpdated(object sender, ItemUpdatedEventArgs<CompletionStatus> e)
+        {
+            DoGroupDbObjectsUpdate(
+               GroupableField.CompletionStatus, e,
+               (a, b) => a.CompletionStatusId != Guid.Empty && b.Contains(a.CompletionStatusId));
         }
 
         private void DoGroupDbObjectsUpdate<TItem>(
@@ -424,17 +454,17 @@ namespace Playnite.DesktopApp
                 case GroupableField.Publisher:
                 case GroupableField.Tag:
                 case GroupableField.Feature:
-                    return ViewType == GamesViewType.ListGrouped && !GetGroupingIds(viewSettings.GroupingOrder, oldData).IsListEqual(GetGroupingIds(viewSettings.GroupingOrder, newData));
                 case GroupableField.Platform:
                 case GroupableField.Series:
                 case GroupableField.AgeRating:
                 case GroupableField.Region:
+                    return ViewType == GamesViewType.ListGrouped && !GetGroupingIds(viewSettings.GroupingOrder, oldData).IsListEqual(GetGroupingIds(viewSettings.GroupingOrder, newData));
                 case GroupableField.Source:
                     return ViewType == GamesViewType.Standard && !GetGroupingId(viewSettings.GroupingOrder, oldData).Equals(GetGroupingId(viewSettings.GroupingOrder, newData));
                 case GroupableField.ReleaseYear:
                     return oldData.ReleaseYear != newData.ReleaseYear;
                 case GroupableField.CompletionStatus:
-                    return oldData.CompletionStatus != newData.CompletionStatus;
+                    return ViewType == GamesViewType.Standard && !GetGroupingId(viewSettings.GroupingOrder, oldData).Equals(GetGroupingId(viewSettings.GroupingOrder, newData));
                 case GroupableField.UserScore:
                     return oldData.UserScore != newData.UserScore;
                 case GroupableField.CriticScore:
@@ -452,7 +482,7 @@ namespace Playnite.DesktopApp
                 case GroupableField.InstallationStatus:
                     return oldData.IsInstalled != newData.IsInstalled;
                 case GroupableField.Name:
-                    return oldData.Name != newData.Name;
+                    return oldData.Name != newData.Name || oldData.SortingName != newData.SortingName;
                 default:
                     throw new Exception("Uknown GroupableField");
             }
@@ -477,7 +507,7 @@ namespace Playnite.DesktopApp
                         {
                             Items.OnItemMoved(existingItem, 0, 0);
                         }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        catch (Exception e)
                         {
                             // Another weird and rare "out of range" bug in System.Windows.Data.CollectionView.OnCollectionChanged.
                             // No idea why it's happening.

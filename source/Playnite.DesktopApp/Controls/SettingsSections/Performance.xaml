@@ -2,8 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+             xmlns:playnite="clr-namespace:Playnite;assembly=Playnite"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
@@ -25,5 +26,27 @@
     <StackPanel Margin="15">
         <CheckBox IsChecked="{Binding Settings.ShowImagePerformanceWarning}"
                   Content="{DynamicResource LOCSettingsShowMediaSizeWarning}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsAsyncImageLoading}"
+                  ContentStringFormat="{}{0} *"
+                  ToolTip="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"
+                  Margin="0,15,0,0"
+                  Name="CheckAsyncImages" IsChecked="{Binding Settings.AsyncImageLoading}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsDisableAcceleration}"
+                  ContentStringFormat="{}{0} *"
+                  ToolTip="{DynamicResource LOCSettingsDisableAccelerationTooltip}"
+                  Name="CheckDisableAcceleration" IsChecked="{Binding Settings.DisableHwAcceleration}"
+                  Margin="0,15,0,0"/>
+        <CheckBox Content="{DynamicResource LOCSettingsAltWebViewRendering}"
+                  ToolTip="{DynamicResource LOCSettingsAltWebViewRenderingTooltip}"
+                  IsChecked="{Binding Settings.UseCompositionWebViewRenderer}"
+                  Margin="0,15,0,0"/>
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0"
+                    ToolTip="{DynamicResource LOCSettingsImageScalerModeTooltip}"
+                    ToolTipService.InitialShowDelay="0">
+            <TextBlock VerticalAlignment="Center" Text="{DynamicResource LOCSettingsImageScalerMode}" />
+            <ComboBox Margin="10,0,0,0" MinWidth="100"
+                      SelectedValue="{Binding Settings.ImageScalerMode}"
+                      pbeh:SelectorBehaviors.EnumSource="{x:Type playnite:ImageLoadScaling}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

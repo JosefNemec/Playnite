@@ -1,5 +1,4 @@
-﻿using Playnite.Scripting.IronPython;
-using Playnite.Scripting.PowerShell;
+﻿using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
@@ -55,11 +54,6 @@ namespace Playnite.Scripting
         public List<ApplicationEvent> SupportedEvents { get; internal set; }
         public List<SupportedMenuMethods> SupportedMenus { get; internal set; }
 
-        public List<ScriptFunctionExport> FunctionExports
-        {
-            get; set;
-        }
-
         public string Path
         {
             get; private set;
@@ -88,11 +82,7 @@ namespace Playnite.Scripting
         public static PlayniteScript FromFile(string path)
         {
             var extension = System.IO.Path.GetExtension(path).ToLower();
-            if (extension == ".py")
-            {
-                return new IronPythonScript(path);
-            }
-            else if (extension == ".ps1")
+            if (extension == ".psm1" || extension == ".psd1")
             {
                 if (PowerShellRuntime.IsInstalled)
                 {
@@ -126,11 +116,11 @@ namespace Playnite.Scripting
         public abstract void OnApplicationStarted();
         public abstract void OnApplicationStopped();
         public abstract void OnLibraryUpdated();
-        public abstract void OnGameStarting(Game game);
-        public abstract void OnGameStarted(Game game);
-        public abstract void OnGameStopped(Game game, long ellapsedSeconds);
-        public abstract void OnGameInstalled(Game game);
-        public abstract void OnGameUninstalled(Game game);
-        public abstract void OnGameSelected(GameSelectionEventArgs args);
+        public abstract void OnGameStarting(OnGameStartingEventArgs args);
+        public abstract void OnGameStarted(OnGameStartedEventArgs args);
+        public abstract void OnGameStopped(OnGameStoppedEventArgs args);
+        public abstract void OnGameInstalled(OnGameInstalledEventArgs args);
+        public abstract void OnGameUninstalled(OnGameUninstalledEventArgs args);
+        public abstract void OnGameSelected(OnGameSelectedEventArgs args);
     }
 }

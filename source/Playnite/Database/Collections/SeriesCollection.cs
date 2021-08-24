@@ -12,16 +12,21 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public SeriesCollection(GameDatabase database) : base(type: GameDatabaseCollection.Series)
+        public SeriesCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.Series)
         {
             db = database;
         }
 
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
+            mapper.Entity<Series>().Id(a => a.Id, false);
+        }
+
         private void RemoveUsage(Guid id)
         {
-            foreach (var game in db.Games.Where(a => a.SeriesId == id))
+            foreach (var game in db.Games.Where(a => a.SeriesIds?.Contains(id) == true))
             {
-                game.SeriesId = Guid.Empty;
+                game.SeriesIds.Remove(id);
                 db.Games.Update(game);
             }
         }

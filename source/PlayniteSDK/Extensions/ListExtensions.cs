@@ -213,14 +213,12 @@ namespace System.Collections.Generic
                 return false;
             }
 
-            var firstNotSecond = source.Except(target).ToList();
-            if (firstNotSecond.Count != 0)
+            if (source.Except(target).Any())
             {
                 return false;
             }
 
-            var secondNotFirst = target.Except(source).ToList();
-            if (secondNotFirst.Count != 0)
+            if (target.Except(source).Any())
             {
                 return false;
             }
@@ -248,14 +246,12 @@ namespace System.Collections.Generic
                 return false;
             }
 
-            var firstNotSecond = source.Except(target, comparer).ToList();
-            if (firstNotSecond.Count != 0)
+            if (source.Except(target, comparer).Any())
             {
                 return false;
             }
 
-            var secondNotFirst = target.Except(source, comparer).ToList();
-            if (secondNotFirst.Count != 0)
+            if (target.Except(source, comparer).Any())
             {
                 return false;
             }
@@ -360,6 +356,19 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Gets items distinct to all collections.
+        /// </summary>
+        public static HashSet<T> GetDistinctItemsP<T>(params IEnumerable<T>[] lists)
+        {
+            if (lists?.Any() != true)
+            {
+                return new HashSet<T>();
+            }
+
+            return GetDistinctItems(lists.ToList());
+        }
+
+        /// <summary>
         /// Merge collection together.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -413,6 +422,25 @@ namespace System.Collections.Generic
         /// <param name="source"></param>
         /// <param name="action"></param>
         public static void ForEach<T>(this ObservableCollection<T> source, Action<T> action)
+        {
+            if (source.HasItems() != true)
+            {
+                return;
+            }
+
+            foreach (var item in source)
+            {
+                action(item);
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (source.HasItems() != true)
             {

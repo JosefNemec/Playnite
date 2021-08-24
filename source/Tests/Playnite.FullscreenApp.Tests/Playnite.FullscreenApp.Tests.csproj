@@ -66,16 +66,12 @@
   <ItemGroup>
     <Compile Include="Controls\FullscreenTilePanelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\FullscreenAppViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Playnite.FullscreenApp\Playnite.FullscreenApp.csproj">
       <Project>{df38bfd7-c6b8-4cf7-942f-378548ed76b6}</Project>
       <Name>Playnite.FullscreenApp</Name>
@@ -84,6 +80,9 @@
       <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>
       <Name>Playnite</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -82,6 +82,11 @@ namespace Playnite.FullscreenApp
             return Invoke(() => new TextInputWindow().ShowInput(WindowManager.CurrentWindow, messageBoxText, caption, defaultInput));
         }
 
+        public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput, List<MessageBoxToggle> options)
+        {
+            return Invoke(() => new TextInputWindow().ShowInput(WindowManager.CurrentWindow, messageBoxText, caption, defaultInput, options));
+        }
+
         public MessageBoxResult ShowMessage(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon, MessageBoxResult defaultResult, MessageBoxOptions options)
         {
             return Invoke(() => new MessageBoxWindow().Show(WindowManager.CurrentWindow, messageBoxText, caption, button, icon, defaultResult, options));

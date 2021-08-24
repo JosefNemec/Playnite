@@ -1,0 +1,9 @@
+Id: fs-uae
+Name: FS-UAE
+Website: 'https://fs-uae.net/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [commodore_amiga, commodore_amiga_cd32]
+    ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha, lzx]
+    StartupExecutable: ^fs-uae\.exe$

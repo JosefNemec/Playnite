@@ -23,7 +23,12 @@ namespace Playnite.WebView
                     Domain = cookie.Domain,
                     Path = cookie.Path,
                     Expires = cookie.Expires,
-                    Creation = cookie.Creation
+                    Creation = cookie.Creation,
+                    HttpOnly = cookie.HttpOnly,
+                    LastAccess = cookie.LastAccess,
+                    Priority = (CookiePriority)(int)cookie.Priority,
+                    SameSite = (CookieSameSite)(int)cookie.SameSite,
+                    Secure = cookie.Secure
                 }));
             }
 
@@ -64,6 +69,27 @@ namespace Playnite.WebView
                     LastAccess = DateTime.Now,
                     Secure = false,
                     Path = path
+                });
+            }
+        }
+
+        public void SetCookies(string url, HttpCookie cookie)
+        {
+            using (var manager = Cef.GetGlobalCookieManager())
+            {
+                manager.SetCookie(url, new Cookie()
+                {
+                    Creation = cookie.Creation,
+                    Domain = cookie.Domain,
+                    Expires = cookie.Expires,
+                    HttpOnly = cookie.HttpOnly,
+                    Secure = cookie.Secure,
+                    SameSite = (CefSharp.Enums.CookieSameSite)(int)cookie.SameSite,
+                    Priority = (CefSharp.Enums.CookiePriority)(int)cookie.Priority,
+                    LastAccess = cookie.LastAccess,
+                    Name = cookie.Name,
+                    Path = cookie.Path,
+                    Value = cookie.Value
                 });
             }
         }

@@ -218,7 +218,7 @@ namespace Playnite
             }
         }
 
-        private ListViewColumnProperty platform = new ListViewColumnProperty(GameField.Platform);
+        private ListViewColumnProperty platform = new ListViewColumnProperty(GameField.Platforms);
         public ListViewColumnProperty Platform
         {
             get
@@ -443,7 +443,7 @@ namespace Playnite
             }
         }
 
-        private ListViewColumnProperty ageRating = new ListViewColumnProperty(GameField.AgeRating);
+        private ListViewColumnProperty ageRating = new ListViewColumnProperty(GameField.AgeRatings);
         public ListViewColumnProperty AgeRating
         {
             get
@@ -458,7 +458,7 @@ namespace Playnite
             }
         }
 
-        private ListViewColumnProperty region = new ListViewColumnProperty(GameField.Region);
+        private ListViewColumnProperty region = new ListViewColumnProperty(GameField.Regions);
         public ListViewColumnProperty Region
         {
             get
@@ -594,12 +594,8 @@ namespace Playnite
         }
     }
 
-    public class ViewSettings : ObservableObject
+    public class ViewSettingsBase : ObservableObject
     {
-        public const double MinGridItemWidth = 60;
-        public const double DefaultGridItemWidth = 200;
-        public const double MaxGridItemWidth = 700;
-
         private SortOrder sortingOrder = SortOrder.Name;
         public SortOrder SortingOrder
         {
@@ -629,6 +625,13 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+    }
+
+    public class ViewSettings : ViewSettingsBase
+    {
+        public const double MinGridItemWidth = 60;
+        public const double DefaultGridItemWidth = 200;
+        public const double MaxGridItemWidth = 700;
 
         private GroupableField groupingOrder = GroupableField.None;
         public GroupableField GroupingOrder

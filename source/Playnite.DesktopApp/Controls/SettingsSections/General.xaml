@@ -97,8 +97,13 @@
         </StackPanel>
 
         <CheckBox Name="CheckUpdateLibStartup" Margin="5,25,5,5"
-                Content="{DynamicResource LOCSettingsUpdateLibStartup}" ToolTip="{DynamicResource LOCSettingsUpdateLibStartupTooltip}" 
+                Content="{DynamicResource LOCSettingsUpdateLibStartup}"
                 IsChecked="{Binding Settings.UpdateLibStartup}"/>
+
+        <CheckBox Margin="35,10,5,5"
+                  Content="{DynamicResource LOCSettingsUpdateEmulatedLibStartup}"
+                  IsChecked="{Binding Settings.UpdateEmulatedLibStartup}"
+                  IsEnabled="{Binding IsChecked, ElementName=CheckUpdateLibStartup}"/>
 
         <CheckBox Name="CheckDownloadMetadataOnImport" Margin="5,15,5,5"
                 Content="{DynamicResource LOCSettingsDownloadMetadataOnImport}" 

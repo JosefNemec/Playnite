@@ -1,0 +1,9 @@
+Id: pcsxr-pgxp
+Name: PCSXR-PGXP
+Website: 'https://github.com/iCatButler/pcsxr/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-cdfile "{ImagePath}" -nogui -slowboot'
+    Platforms: [sony_playstation]
+    ImageExtensions: [bin, iso, img, cue]
+    StartupExecutable: ^pcsxr-pgxp\.exe$

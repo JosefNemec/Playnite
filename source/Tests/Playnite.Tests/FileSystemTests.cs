@@ -60,5 +60,13 @@ namespace Playnite.Tests
             await task;
             Assert.AreEqual("test", File.ReadAllText(testPath));
         }
+
+        [Test]
+        public void CheckSumTests()
+        {
+            var testFile = Path.Combine(PlayniteTests.ResourcesPath, "TestIni.ini");
+            StringAssert.AreEqualIgnoringCase("46fcb37aa8e69b4ead0d702fd459299d", FileSystem.GetMD5(testFile));
+            StringAssert.AreEqualIgnoringCase("D8B22F5D", FileSystem.GetCRC32(testFile));
+        }
     }
 }

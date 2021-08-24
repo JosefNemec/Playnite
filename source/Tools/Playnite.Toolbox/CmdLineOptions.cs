@@ -13,36 +13,35 @@ namespace Playnite.Toolbox
         DesktopTheme,
         FullscreenTheme,
         PowerShellScript,
-        IronPythonScript,
         GenericPlugin,
         MetadataPlugin,
         LibraryPlugin
     }
 
-    [Verb("new")]
+    [Verb("new", HelpText = "Generate new add-on from template.")]
     public class NewCmdLineOptions
     {
-        [Value(0, Required = true)]
+        [Value(0, Required = true, HelpText = "Add-on type.")]
         public ItemType Type { get; set; }
-        [Value(1, Required = true)]
+        [Value(1, Required = true, HelpText = "Add-on name.")]
         public string Name { get; set; }
-        [Value(2, Required = false)]
+        [Value(2, Required = false, HelpText = "Output directory (for extensions only).")]
         public string OutDirectory { get; set; }
     }
 
-    [Verb("pack")]
+    [Verb("pack", HelpText = "Pack existing add-on.")]
     public class PackCmdLineOptions
     {
-        [Value(0, Required = true)]
+        [Value(0, Required = true, HelpText = "Add-on directory to pack.")]
         public string Directory { get; set; }
-        [Value(1, Required = true)]
+        [Value(1, Required = true, HelpText = "Destination directory for packaged file to be saved to.")]
         public string Destination { get; set; }
     }
 
-    [Verb("update")]
+    [Verb("update", HelpText = "Update theme to newer version.")]
     public class UpdateCmdLineOptions
     {
-        [Value(0, Required = true)]
+        [Value(0, Required = true, HelpText = "Theme directory to update.")]
         public string Directory { get; set; }
     }
 }

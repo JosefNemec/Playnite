@@ -31,21 +31,6 @@ namespace Playnite.Toolbox
             return Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Themes", fileName);
         }
 
-        public static string GetScriptTemplateArchivePath(ScriptLanguage language)
-        {
-            var root = Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions");
-            switch (language)
-            {
-                case ScriptLanguage.PowerShell:
-                    return Path.Combine(root, "PowerShellScript.zip");
-                case ScriptLanguage.IronPython:
-                    return Path.Combine(root, "IronPythonScript.zip");
-                case ScriptLanguage.Batch:
-                default:
-                    throw new NotSupportedException();
-            }
-        }
-
         public static string GetPluginTemplateArchivePath(ExtensionType type)
         {
             var root = Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions");

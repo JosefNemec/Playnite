@@ -12,9 +12,14 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public CategoriesCollection(GameDatabase database) : base(type: GameDatabaseCollection.Categories)
+        public CategoriesCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.Categories)
         {
             db = database;
+        }
+
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
+            mapper.Entity<Category>().Id(a => a.Id, false);
         }
 
         private void RemoveUsage(Guid categoryId)

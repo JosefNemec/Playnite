@@ -111,45 +111,13 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="TabStripPlacement" Value="Left">
-                            <Setter Property="LayoutTransform" TargetName="TextContent">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="90" />
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="LayoutTransform" TargetName="TabGrid">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="270"/>
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="BorderThickness" Value="0,0,2,0" TargetName="SelectedBorder" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Right">
-                            <Setter Property="LayoutTransform" TargetName="TabGrid">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="0" />
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="BorderThickness" Value="2,0,0,0" TargetName="SelectedBorder" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Bottom">
-                            <Setter Property="LayoutTransform" TargetName="TextContent">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="180" />
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="LayoutTransform" TargetName="TabGrid">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="180"/>
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="BorderThickness" Value="0,2,0,0" TargetName="SelectedBorder" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" TargetName="TextContent"/>
@@ -160,7 +128,7 @@
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedBorder" />
-                            <Setter Property="BorderThickness" Value="1,1,1,2" TargetName="SelectedBorder" />
+                            <Setter Property="BorderThickness" Value="1,1,1,1" TargetName="SelectedBorder" />
                             <Setter Property="Opacity" Value="1" TargetName="TextContent"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">

@@ -1,0 +1,101 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="SettingsMenuBorder" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource OverlayMenuBackgroundBrush}" />
+    </Style>
+    
+    <Style x:Key="SettingsSectionBorder" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource OverlayMenuBackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Margin" Value="0,0,20,0" />
+    </Style>
+
+    <Style x:Key="SettingsMenuButton" BasedOn="{StaticResource {x:Type ButtonEx}}" TargetType="ButtonEx">
+        <Setter Property="Margin" Value="0,5,0,5" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+    </Style>
+
+    <Style x:Key="SettingsMenuHeaderText" BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock" >
+        <Setter Property="FontFamily" Value="{DynamicResource FontTitilliumWebBold}" />
+        <Setter Property="FontSize" Value="36" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Margin" Value="30,30,60,30" />
+    </Style>
+
+    <Thickness x:Key="SettingsSectionItemSpacing">0,10,10,10</Thickness>
+    
+    <Style x:Key="SettingsSectionSlider" TargetType="SliderEx" BasedOn="{StaticResource {x:Type SliderEx}}">
+        <Setter Property="Width" Value="300" />
+        <Setter Property="Margin" Value="{DynamicResource SettingsSectionItemSpacing}" />
+    </Style>
+
+    <Style x:Key="SettingsSectionCheckbox" TargetType="CheckBoxEx">
+        <Setter Property="Margin" Value="{DynamicResource SettingsSectionItemSpacing}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                        FontFamily="{DynamicResource FontTitilliumWeb}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Grid.Column="0" TextTrimming="WordEllipsis">
+                                <ContentPresenter RecognizesAccessKey="True" />
+                            </TextBlock>
+                            <Border Background="{DynamicResource ControlBackgroundDarkBrush}"
+                                    VerticalAlignment="Center"
+                                    BorderThickness="2" BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                                    Grid.Column="1" Width="26" Height="26">
+                                <Viewbox x:Name="CheckIcon" Visibility="Collapsed">
+                                    <TextBlock Text="b" FontFamily="Marlett" Foreground="White"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Viewbox>
+                            </Border>
+                            <Border x:Name="BorderFocus"
+                                    Grid.Column="1" Width="26" Height="26"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    BorderBrush="{DynamicResource SelectionBrush}"
+                                    BorderThickness="3" Visibility="Hidden" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource GlyphLightBrush}" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource GlyphLightBrush}" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SettingsSectionCombobox" TargetType="ComboBoxEx" BasedOn="{StaticResource {x:Type ComboBoxEx}}">
+        <Setter Property="MinWidth" Value="200" />        
+        <Setter Property="Margin" Value="{DynamicResource SettingsSectionItemSpacing}" />
+    </Style>
+
+    <Style x:Key="SettingsSectionText" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+</ResourceDictionary>

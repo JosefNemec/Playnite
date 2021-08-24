@@ -14,13 +14,13 @@ Packaging themes
 
 To package theme, run [Toolbox](../toolbox.md) utility with following arguments:
 
-```
+```cmd
 Toolbox.exe pack <ThemeDirectoryPath> <TargetFolder>
 ```
 
 For example...
 
-```
+```cmd
 Toolbox.exe pack "c:\playnite\Themes\Desktop\Default\TestingTheme" "c:\somedir"
 ```
 
@@ -31,7 +31,9 @@ Toolbox.exe pack "c:\playnite\Themes\Desktop\Default\TestingTheme" "c:\somedir"
 Uploading themes
 ---------------------
 
-The best place to share themes is official Playnite forum, specifically [extension database](https://playnite.link/forum/forum-3.html) sub-forum.
+The best place to share themes is via [Playnite add-on database](https://github.com/JosefNemec/PlayniteAddonDatabase), submitting a theme there will make it available in Playnite's built-in add-on browser and will also enable easy theme installation and updates.
+
+It's also recommended to submit theme entry to official Playnite forum, specifically [add-on database](https://playnite.link/forum/forum-3.html) sub-forum.
 
 Updating themes
 ---------------------
@@ -59,7 +61,7 @@ Blend made themes
 
 To update existing theme run Toolbox with following arguments:
 
-```
+```cmd
 Toolbox.exe update "<ThemeDirectoryPath>"
 ```
 

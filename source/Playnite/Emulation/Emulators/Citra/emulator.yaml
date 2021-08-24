@@ -1,0 +1,9 @@
+Id: citra
+Name: Citra
+Website: 'https://citra-emu.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, cci, cxi, elf, cia]
+    StartupExecutable: ^citra-qt\.exe$

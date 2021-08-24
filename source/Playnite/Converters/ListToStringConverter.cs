@@ -11,6 +11,11 @@ namespace Playnite.Converters
 {
     public class ListToStringConverter : MarkupExtension, IValueConverter
     {
+        public static string MakeString(IEnumerable<string> source)
+        {
+            return string.Join(",", source);
+        }
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
@@ -18,7 +23,7 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            return string.Join(",", ((IEnumerable<object>)value).ToArray());
+            return string.Join(",", (IEnumerable<object>)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -30,7 +35,7 @@ namespace Playnite.Converters
                 return null;
             }
             else
-            {                
+            {
                 var converted = stringVal.Split(new char[] { ',' });
                 if (targetType == typeof(ComparableList<string>))
                 {

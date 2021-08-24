@@ -64,6 +64,16 @@ namespace Playnite.SDK
         IPlayniteSettingsAPI ApplicationSettings { get; }
 
         /// <summary>
+        /// Gets addons API.
+        /// </summary>
+        IAddons Addons { get; }
+
+        /// <summary>
+        /// Gets emulation API.
+        /// </summary>
+        IEmulationAPI Emulation { get; }
+
+        /// <summary>
         /// Expands dynamic game variables in specified string.
         /// </summary>
         /// <param name="game">Game to use dynamic variables from.</param>
@@ -77,25 +87,49 @@ namespace Playnite.SDK
         /// <param name="game">Game to use dynamic variables from.</param>
         /// <param name="action">Game action to expand variables to.</param>
         /// <returns>Game action with expanded variables.</returns>
-        GameAction ExpandGameVariables(Game game, GameAction action);
-
-        /// <summary>
-        /// Returns new instance of Playnite logger.
-        /// </summary>
-        /// <param name="name">Logger name.</param>
-        /// <returns>Logger object.</returns>
-        ILogger CreateLogger(string name);
-
-        /// <summary>
-        /// Creates new instance of Playnite logger with name of calling class.
-        /// </summary>
-        /// <returns>Logger object.</returns>
-        ILogger CreateLogger();
+        Models.GameAction ExpandGameVariables(Game game, Models.GameAction action);
 
         /// <summary>
         /// Starts game.
         /// </summary>
         /// <param name="gameId">Game's database ID.</param>
         void StartGame(Guid gameId);
+
+        /// <summary>
+        /// Installs game.
+        /// </summary>
+        /// <param name="gameId">Game's database ID.</param>
+        void InstallGame(Guid gameId);
+
+        /// <summary>
+        /// Uninstalls game.
+        /// </summary>
+        /// <param name="gameId">Game's database ID.</param>
+        void UninstallGame(Guid gameId);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
+    }
+
+    /// <summary>
+    /// Represents access class to API instances.
+    /// </summary>
+    public static class API
+    {
+        /// <summary>
+        /// Gets Playnite API.
+        /// </summary>
+        public static IPlayniteAPI Instance { get; internal set; }
     }
 }

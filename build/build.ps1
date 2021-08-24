@@ -8,120 +8,42 @@
     [string]$Platform = "x86",
 
     # File path with list of values for Common.config
-    [string]$ConfigUpdatePath,
+    [string]$PlayniteConfigUpdate,
 
     # Target directory for build files    
-    [string]$OutputDir = (Join-Path $PWD $Configuration),
-
-    # Build installers
-    [switch]$Installers = $false,
+    [string]$OutputDir,
 
     # Target directory for installer files
-    [string]$InstallerDir = $PWD,
+    [string]$InstallerDir,
 
-    # Playnite version dirs used for diff installers
-    [array]$UpdateDiffs,
-
-    # Directory containing build files for $UpdateDiffs
-    [string]$BuildsStorageDir = ".\",
-
-    # Build portable package
-    [switch]$Portable = $false,
+    # Package build output into zip file
+    [switch]$Package = $false,
 
     # Skip build process
     [switch]$SkipBuild = $false,
 
-    # Sign binary files
-    [string]$Sign,
-
     # Temp directory for build process
-    [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild")
+    [string]$TempDir = (Join-Path $env:TEMP "PlayniteBuild"),
+
+    [string]$LicensedDependenciesUrl,
+
+    [switch]$SdkNuget,
+
+    [string]$OnlineInstallerConfig
 )
 
 $ErrorActionPreference = "Stop"
+Set-Location $PSScriptRoot
 & .\common.ps1
 
-function BuildInnoInstaller()
+if (!$OutputDir)
 {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$SourceDir,
-        [Parameter(Mandatory = $true)]
-        [string]$DestinationFile,
-        [Parameter(Mandatory = $true)]
-        [string]$Version,
-        [Parameter(Mandatory = $false)]
-        [switch]$Update = $false
-    )
-
-    $innoCompiler = "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
-    $innoScript = "InnoSetup.iss"    
-    $innoTempScript = "InnoSetup.temp.iss"
-    $destinationExe = Split-Path $DestinationFile -Leaf
-    $destinationDir = Split-Path $DestinationFile -Parent
-    if ($Update)
-    {
-        $innoScript = "InnoSetupUpdate.iss"
-    }
-
-    Write-OperationLog "Building Inno Setup $destinationExe..."
-    New-Folder $destinationDir
-    $scriptContent = Get-Content $innoScript
-    $scriptContent = $scriptContent -replace "{source_path}", $SourceDir
-    $scriptContent = $scriptContent -replace "{version}", $Version
-    $scriptContent = $scriptContent -replace "{out_dir}", $destinationDir
-    $scriptContent = $scriptContent -replace "{out_file_name}", ($destinationExe -replace "\..+`$", "")
-    $scriptContent | Out-File $innoTempScript "utf8"
-   
-    $res = StartAndWait $innoCompiler "/Q $innoTempScript" -WorkingDir $PWD    
-    if ($res -ne 0)
-    {        
-        throw "Inno build failed."
-    }
-
-    Remove-Item $innoTempScript
+    $OutputDir = Join-Path $PWD $Configuration
 }
 
-function CreateDirectoryDiff()
+if (!$InstallerDir)
 {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$BaseDir,
-        [Parameter(Mandatory = $true)]
-        [string]$TargetDir,
-        [Parameter(Mandatory = $true)]
-        [string]$OutPath
-    )
-    
-    $baseDirFiles = Get-ChildItem $BaseDir -Recurse -File | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
-    $targetDirFiles = Get-ChildItem $TargetDir -Recurse -File | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
-    $diffs = Compare-Object -ReferenceObject $baseDirFiles -DifferenceObject $targetDirFiles -Property Hash -PassThru | Where { $_.SideIndicator -eq "=>" } | Select-Object Path        
-    New-EmptyFolder $OutPath
-
-    foreach ($file in $diffs)
-    {
-        $target = [Regex]::Replace($file.Path, [Regex]::Escape($TargetDir), $OutPath, "IgnoreCase")
-        $targetFileDir = (Split-Path $target -Parent)
-        New-Folder $targetFileDir    
-        Copy-Item $file.Path $target
-    }
-
-    $tempPath = Join-Path $TempDir (Split-Path $OutPath -Leaf)
-    New-EmptyFolder $tempPath
-    Copy-Item (Join-Path $BaseDir "*") $tempPath -Recurse -Force
-    Copy-Item (Join-Path $OutPath "*")  $tempPath -Recurse -Force
-    $tempPathFiles = Get-ChildItem $tempPath -Recurse -File | ForEach { Get-FileHash -Path $_.FullName -Algorithm MD5 }
-    $tempDiff = Compare-Object -ReferenceObject $targetDirFiles -DifferenceObject $tempPathFiles -Property Hash -PassThru
-    
-    # Ignore removed files
-    $tempDiff = $tempDiff | Where { Test-Path ([Regex]::Replace($_.Path, [Regex]::Escape($tempPath), $TargetDir, "IgnoreCase")) }
-    if ($tempDiff -ne $null)
-    {
-        $tempDiff | ForEach { Write-ErrorLog "Diff fail: $($_.Path)" }
-        throw "Diff build failed, some files are not included (or different) in diff package."
-    }    
-
-    Remove-Item $tempPath -Recurse -Force
+    $InstallerDir = $PWD
 }
 
 function PackExtensionTemplate()
@@ -150,11 +72,6 @@ function PackExtensionTemplate()
 
 .\VerifyLanguageFiles.ps1
 
-if ($Sign)
-{
-    Start-SigningWatcher $Sign
-}
-
 # -------------------------------------------
 #            Compile application 
 # -------------------------------------------
@@ -165,6 +82,28 @@ if (!$SkipBuild)
         Remove-Item $OutputDir -Recurse -Force
     }
     
+    if ($LicensedDependenciesUrl)
+    {
+        $depArchive = Join-Path $env:TEMP "deps.zip"
+        Invoke-WebRequest $LicensedDependenciesUrl -OutFile $depArchive
+        Expand-ZipToDirectory $depArchive (Resolve-Path "..").Path
+    }
+
+    if ($OnlineInstallerConfig)
+    {
+        Write-OperationLog "Updating online installer config..."
+        $locaConfigPath = "..\source\Tools\PlayniteInstaller\installer_mirrors.txt"
+        if ($OnlineInstallerConfig.StartsWith("http"))
+        {
+            $configFile = Join-Path $env:TEMP "installer_mirrors.txt"
+            Invoke-WebRequest $OnlineInstallerConfig -OutFile $locaConfigPath
+        }
+        else
+        {
+            Copy-Item $OnlineInstallerConfig $locaConfigPath -Force
+        }
+    }
+
     $solutionDir = Join-Path $pwd "..\source"
     Invoke-Nuget "restore ..\source\Playnite.sln"
     $msbuildpath = Get-MsBuildPath
@@ -174,35 +113,30 @@ if (!$SkipBuild)
     {
         throw "Build failed."
     }
-    else
-    {
-        if ($Sign)
-        {
-            Join-Path $OutputDir "Playnite.dll" | SignFile
-            Join-Path $OutputDir "Playnite.Common.dll" | SignFile
-            Join-Path $OutputDir "Playnite.SDK.dll" | SignFile
-            Join-Path $OutputDir "Playnite.DesktopApp.exe" | SignFile
-            Join-Path $OutputDir "Playnite.FullscreenApp.exe" | SignFile
-        }
-    }
 
     # Copy extension templates
     PackExtensionTemplate "CustomLibraryPlugin" $OutputDir
     PackExtensionTemplate "CustomMetadataPlugin" $OutputDir
     PackExtensionTemplate "GenericPlugin" $OutputDir
-    PackExtensionTemplate "IronPythonScript" $OutputDir
     PackExtensionTemplate "PowerShellScript" $OutputDir
 }
 
 # -------------------------------------------
 #            Set config values
 # -------------------------------------------
-if ($ConfigUpdatePath)
+if ($PlayniteConfigUpdate)
 {
     Write-OperationLog "Updating config values..."
+    if ($PlayniteConfigUpdate.StartsWith("http"))
+    {
+        $configFile = Join-Path $env:TEMP "config.cfg"
+        Invoke-WebRequest $PlayniteConfigUpdate -OutFile $configFile
+        $PlayniteConfigUpdate = $configFile
+    }
+
     $configPath = Join-Path $OutputDir "Common.config"
     [xml]$configXml = Get-Content $configPath
-    $customConfigContent = Get-Content $ConfigUpdatePath
+    $customConfigContent = Get-Content $PlayniteConfigUpdate
 
     foreach ($line in $customConfigContent)
     {
@@ -239,66 +173,22 @@ $buildNumberPlain = $buildNumber.Replace(".", "")
 New-Folder $InstallerDir
 
 # -------------------------------------------
-#            Build installer
+#            SDK nuget
 # -------------------------------------------
-if ($Installers)
+if ($SdkNuget)
 {
-    $installerPath = Join-Path $InstallerDir "Playnite$buildNumberPlain.exe"          
-    BuildInnoInstaller $OutputDir $installerPath $buildNumber   
-
-    if ($Sign)
-    {
-        SignFile $installerPath
-    }
-            
-    $infoFile = Join-Path $InstallerDir "Playnite$buildNumberPlain.exe.info"
-    $buildNumber | Out-File $infoFile
-    (Get-FileHash $installerPath -Algorithm MD5).Hash | Out-File $infoFile -Append
+    & .\buildSdkNuget.ps1 -SkipBuild -OutputPath $OutputDir | Out-Null
 }
 
 # -------------------------------------------
-#            Build update installers
+#            Build zip package
 # -------------------------------------------
-if ($UpdateDiffs)
+if ($Package)
 {
-    foreach ($diffVersion in $UpdateDiffs)
-    {
-        Write-OperationLog "Building diff package from version $diffVersion..."
-
-        $diffString = "{0}to{1}" -f $diffVersion.Replace(".", ""), $buildNumberPlain.Replace(".", "")
-        $diffDir = Join-Path $InstallerDir $diffString
-        CreateDirectoryDiff (Join-Path $BuildsStorageDir $diffVersion) $OutputDir $diffDir
-
-        $installerPath = Join-Path $InstallerDir "$diffString.exe"
-        BuildInnoInstaller $diffDir $installerPath $buildNumber -Update
-        Remove-Item $diffDir -Recurse -Force
-        
-        if ($Sign)
-        {
-            SignFile $installerPath
-        }        
-        
-        $infoFile = Join-Path $InstallerDir "$diffString.exe.info"
-        $diffVersion | Out-File $infoFile
-        (Get-FileHash $installerPath -Algorithm MD5).Hash | Out-File $infoFile -Append
-    }
-}
-
-# -------------------------------------------
-#            Build portable package
-# -------------------------------------------
-if ($Portable)
-{
-    Write-OperationLog "Building portable package..."
-    $packageName = Join-Path $BuildsStorageDir "Playnite$buildNumberPlain.zip"
+    Write-OperationLog "Building zip package..."
+    $packageName = Join-Path $InstallerDir "Playnite.zip"
     New-ZipFromDirectory $OutputDir $packageName
 }
 
-if ($Sign)
-{
-    Stop-SigningWatcher
-}
-
 (Get-ChildItem (Join-Path $OutputDir "Playnite.dll")).VersionInfo.FileVersion | Write-Host -ForegroundColor Green
-
 return $true

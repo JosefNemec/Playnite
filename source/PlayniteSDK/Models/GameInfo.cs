@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,11 +33,6 @@ namespace Playnite.SDK.Models
         public string InstallDirectory { get; set; }
 
         /// <summary>
-        /// Gets or sets game image (rom, iso) path.
-        /// </summary>
-        public string GameImagePath { get; set; }
-
-        /// <summary>
         /// Gets or sets Sorting Name.
         /// </summary>
         public string SortingName { get; set; }
@@ -44,22 +40,22 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Other Actions.
         /// </summary>
-        public List<GameAction> OtherActions { get; set; }
-
-        /// <summary>
-        /// Gets or sets PlayAction.
-        /// </summary>
-        public GameAction PlayAction { get; set; }
+        public List<GameAction> GameActions { get; set; }
 
         /// <summary>
         /// Gets or sets ReleaseDate.
         /// </summary>
-        public DateTime? ReleaseDate { get; set; }
+        public ReleaseDate? ReleaseDate { get; set; }
 
         /// <summary>
         /// Gets or sets Links.
         /// </summary>
         public List<Link> Links { get; set; }
+
+        /// <summary>
+        /// Gets or sets Roms.
+        /// </summary>
+        public List<GameRom> Roms { get; set; }
 
         /// <summary>
         /// Gets or sets whether the game is installed.
@@ -69,12 +65,12 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Playtime.
         /// </summary>
-        public long Playtime { get; set; }
+        public ulong Playtime { get; set; }
 
         /// <summary>
         /// Gets or sets PlayCount.
         /// </summary>
-        public long PlayCount { get; set; }
+        public ulong PlayCount { get; set; }
 
         /// <summary>
         /// Gets or sets LastActivity.
@@ -84,7 +80,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets CompletionStatus.
         /// </summary>
-        public CompletionStatus CompletionStatus { get; set; }
+        public string CompletionStatus { get; set; }
 
         /// <summary>
         /// Gets or sets UserScore.
@@ -104,17 +100,17 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Icon.
         /// </summary>
-        public string Icon { get; set; }
+        public MetadataFile Icon { get; set; }
 
         /// <summary>
         /// Gets or sets CoverImage.
         /// </summary>
-        public string CoverImage { get; set; }
+        public MetadataFile CoverImage { get; set; }
 
         /// <summary>
         /// Gets or sets BackgroundImage.
         /// </summary>
-        public string BackgroundImage { get; set; }
+        public MetadataFile BackgroundImage { get; set; }
 
         /// <summary>
         /// Gets or sets Hidden.
@@ -134,17 +130,17 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Series.
         /// </summary>
-        public string Series { get; set; }
+        public List<string> Series { get; set; }
 
         /// <summary>
         /// Gets or sets AgeRating.
         /// </summary>
-        public string AgeRating { get; set; }
+        public List<string> AgeRatings { get; set; }
 
         /// <summary>
         /// Gets or sets Region.
         /// </summary>
-        public string Region { get; set; }
+        public List<string> Regions { get; set; }
 
         /// <summary>
         /// Gets or sets Source.
@@ -154,7 +150,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Platform.
         /// </summary>
-        public string Platform { get; set; }
+        public List<string> Platforms { get; set; }
 
         /// <summary>
         /// Gets or sets Developers.

@@ -296,7 +296,10 @@ namespace Playnite.Metadata
         {
             var igdbPluginId = BuiltinExtensions.GetIdFromExtension(BuiltinExtension.IgdbMetadata);
             var settings = new MetadataDownloaderSettings();
-            settings.ConfigureFields(new List<Guid> { Guid.Empty, igdbPluginId }, true);
+            settings.ConfigureFields(new List<Guid> { igdbPluginId }, true);
+            settings.Description.Sources = new List<Guid> { Guid.Empty, igdbPluginId };
+            settings.Icon.Sources = new List<Guid> { Guid.Empty, igdbPluginId };
+            settings.BackgroundImage.Sources = new List<Guid> { Guid.Empty, igdbPluginId };
             settings.CoverImage.Sources = new List<Guid> { igdbPluginId, Guid.Empty };
             settings.Name.Import = false;
             return settings;

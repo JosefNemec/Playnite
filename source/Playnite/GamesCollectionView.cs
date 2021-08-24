@@ -24,6 +24,7 @@ namespace Playnite
 
         public IGameDatabase Database { get; private set; }
         public RangeObservableCollection<GamesCollectionViewEntry> Items { get; private set; }
+        public bool IgnoreViewConfigChanges { get; set; } = false;
 
         private ListCollectionView collectionView;
         public ListCollectionView CollectionView
@@ -278,9 +279,12 @@ namespace Playnite
             }
 
             // ------------------ Completion Status
-            if (filterSettings.CompletionStatus?.IsSet == true && !filterSettings.CompletionStatus.Values.Contains((int)game.CompletionStatus))
+            if (filterSettings.CompletionStatuses?.IsSet == true)
             {
-                return false;
+                if (!IsFilterMatchingSingle(filterSettings.CompletionStatuses, game.CompletionStatusId, game.CompletionStatus))
+                {
+                    return false;
+                }
             }
 
             // ------------------ Last Activity
@@ -331,7 +335,7 @@ namespace Playnite
             // ------------------ Series filter
             if (filterSettings.Series?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.Series, game.SeriesId, game.Series))
+                if (!IsFilterMatching(filterSettings.Series, game.SeriesIds, game.Series))
                 {
                     return false;
                 }
@@ -340,7 +344,7 @@ namespace Playnite
             // ------------------ Region filter
             if (filterSettings.Region?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.Region, game.RegionId, game.Region))
+                if (!IsFilterMatching(filterSettings.Region, game.RegionIds, game.Regions))
                 {
                     return false;
                 }
@@ -358,7 +362,7 @@ namespace Playnite
             // ------------------ AgeRating filter
             if (filterSettings.AgeRating?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.AgeRating, game.AgeRatingId, game.AgeRating))
+                if (!IsFilterMatching(filterSettings.AgeRating, game.AgeRatingIds, game.AgeRatings))
                 {
                     return false;
                 }
@@ -376,7 +380,7 @@ namespace Playnite
             // ------------------ Platform
             if (filterSettings.Platform?.IsSet == true)
             {
-                if (!IsFilterMatchingSingle(filterSettings.Platform, game.PlatformId, game.Platform))
+                if (!IsFilterMatching(filterSettings.Platform, game.PlatformIds, game.Platforms))
                 {
                     return false;
                 }
@@ -432,6 +436,11 @@ namespace Playnite
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
+            if (IgnoreViewConfigChanges)
+            {
+                return;
+            }
+
             Logger.Debug("Refreshing collection view filter.");
             CollectionView.Refresh();
         }
@@ -445,5 +454,7 @@ namespace Playnite
 
             return null;
         }
+
+        public abstract void RefreshView();
     }
 }

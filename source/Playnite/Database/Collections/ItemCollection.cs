@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
-using Playnite.Common;
+﻿using LiteDB;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using SqlNado;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,9 @@ namespace Playnite.Database
         private List<TItem> RemovedItemsEventBuffer = new List<TItem>();
         private Dictionary<Guid, ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new Dictionary<Guid, ItemUpdateEvent<TItem>>();
         private readonly bool isPersistent = true;
+        internal LiteDatabase liteDb { get; private set; }
+        private LiteCollection<TItem> liteCollection;
+        private BsonMapper mapper;
 
         public ConcurrentDictionary<Guid, TItem> Items { get; }
 
@@ -39,7 +43,7 @@ namespace Playnite.Database
             get => Get(id);
             set
             {
-                new NotImplementedException();
+                new NotSupportedException();
             }
         }
 
@@ -49,29 +53,31 @@ namespace Playnite.Database
 
         internal bool IsEventsEnabled { get; set; } = true;
 
-        public ItemCollection(bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
+        public ItemCollection(BsonMapper mapper, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = isPersistent;
+            this.mapper = mapper;
             Items = new ConcurrentDictionary<Guid, TItem>();
             CollectionType = type;
         }
 
-        public ItemCollection(Action<TItem> initMethod, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(isPersistent, type)
+        public ItemCollection(Action<TItem> initMethod, BsonMapper mapper, bool isPersistent = true, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(mapper, isPersistent, type)
         {
             this.initMethod = initMethod;
         }
 
-        public ItemCollection(string path, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
+        public ItemCollection(string path, BsonMapper mapper, GameDatabaseCollection type = GameDatabaseCollection.Uknown)
         {
             this.isPersistent = true;
+            this.mapper = mapper;
             Items = new ConcurrentDictionary<Guid, TItem>();
             InitializeCollection(path);
             CollectionType = type;
         }
 
-        public ItemCollection(string path, Action<TItem> initMethod, GameDatabaseCollection type = GameDatabaseCollection.Uknown) : this(path, type)
+        public void Dispose()
         {
-            this.initMethod = initMethod;
+            liteDb?.Dispose();
         }
 
         public void InitializeCollection(string path)
@@ -89,43 +95,22 @@ namespace Playnite.Database
                 File.Delete(storagePath);
             }
 
-            if (Directory.Exists(storagePath))
-            {
-                Parallel.ForEach(
-                    Directory.EnumerateFiles(storagePath, "*.json"),
-                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
-                    (objectFile) =>
+            var dpPath = path + ".db";
+            liteDb = new LiteDatabase($"Filename={dpPath};Mode=Exclusive;Cache Size=0", mapper);
+            liteCollection = liteDb.GetCollection<TItem>();
+            liteCollection.EnsureIndex(a => a.Id, true);
+
+            Parallel.ForEach(
+                liteCollection.FindAll(),
+                new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                (objectFile) =>
+                {
+                    if (objectFile != null)
                     {
-                        if (Guid.TryParse(Path.GetFileNameWithoutExtension(objectFile), out var _))
-                        {
-                            try
-                            {
-                                var obj = Serialization.FromJsonFile<TItem>(objectFile);
-                                if (obj != null)
-                                {
-                                    initMethod?.Invoke(obj);
-                                    Items.TryAdd(obj.Id, obj);
-                                }
-                                else
-                                {
-                                    logger.Warn($"Failed to deserialize collection item {objectFile}");
-                                }
-                            }
-                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                            {
-                                logger.Error(e, $"Failed to load item from {objectFile}");
-                            }
-                        }
-                        else
-                        {
-                            logger.Warn($"Skipping non-id collection item {objectFile}");
-                        }
-                    });
-            }
-            else
-            {
-                FileSystem.CreateDirectory(storagePath);
-            }
+                        initMethod?.Invoke(objectFile);
+                        Items.TryAdd(objectFile.Id, objectFile);
+                    }
+                });
         }
 
         internal string GetItemFilePath(Guid id)
@@ -135,27 +120,17 @@ namespace Playnite.Database
 
         internal void SaveItemData(TItem item)
         {
-            using (var fs = FileSystem.CreateWriteFileStreamSafe(GetItemFilePath(item.Id)))
-            using (var sw = new StreamWriter(fs))
-            using (var writer = new JsonTextWriter(sw))
-            {
-                var ser = JsonSerializer.Create(new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.None,
-                    NullValueHandling = NullValueHandling.Ignore,
-                    DefaultValueHandling = DefaultValueHandling.Ignore
-                });
+            liteCollection.Upsert(item);
+        }
 
-                ser.Serialize(writer, item);
-            }
+        internal void SaveItemData(IEnumerable<TItem> items)
+        {
+            liteCollection.Upsert(items);
         }
 
         internal TItem GetItemData(Guid id)
         {
-            using (var fs = FileSystem.OpenReadFileStreamSafe(GetItemFilePath(id)))
-            {
-                return Serialization.FromJsonStream<TItem>(fs);
-            }
+            return liteCollection.FindById(id);
         }
 
         public TItem Get(Guid id)
@@ -300,7 +275,7 @@ namespace Playnite.Database
             {
                 if (isPersistent)
                 {
-                    FileSystem.DeleteFile(GetItemFilePath(id));
+                    liteCollection.Delete(id);
                 }
 
                 Items.TryRemove(id, out var removed);
@@ -334,7 +309,7 @@ namespace Playnite.Database
 
                     if (isPersistent)
                     {
-                        FileSystem.DeleteFile(GetItemFilePath(item.Id));
+                        liteCollection.Delete(item.Id);
                     }
 
                     Items.TryRemove(item.Id, out var removed);
@@ -451,7 +426,7 @@ namespace Playnite.Database
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public bool Contains(TItem item)

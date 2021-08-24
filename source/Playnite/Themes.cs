@@ -11,64 +11,13 @@ using System.Text.RegularExpressions;
 using Playnite.Settings;
 using Playnite.Common;
 using Playnite.SDK;
-using System.IO.Compression;
 using YamlDotNet.Serialization;
 using Playnite.API;
+using Playnite.Extensions.Markup;
+using System.Windows.Input;
 
 namespace Playnite
 {
-    public class ThemeManifest : BaseExtensionManifest
-    {
-        public string ThemeApiVersion { get; set; }
-
-        public ApplicationMode Mode { get; set; }
-
-        [YamlIgnore]
-        public bool IsBuiltInTheme { get; }
-
-        [YamlIgnore]
-        public bool IsCustomTheme => !IsBuiltInTheme;
-
-        [YamlIgnore]
-        public bool IsCompatible { get; } = false;
-
-        public ThemeManifest()
-        {
-        }
-
-        public ThemeManifest(string manifestPath)
-        {
-            var thm = Serialization.FromYaml<ThemeManifest>(File.ReadAllText(manifestPath));
-            thm.CopyProperties(this, false);
-            DescriptionPath = manifestPath;
-            DirectoryPath = Path.GetDirectoryName(manifestPath);
-            DirectoryName = Path.GetFileNameWithoutExtension(DirectoryPath);
-            if (Mode == ApplicationMode.Desktop)
-            {
-                IsBuiltInTheme = BuiltinExtensions.BuiltinDesktopThemeFolders.Contains(DirectoryName);
-            }
-            else
-            {
-                IsBuiltInTheme = BuiltinExtensions.BuiltinFullscreenThemeFolders.Contains(DirectoryName);
-            }
-
-            var apiVesion = Mode == ApplicationMode.Desktop ? ThemeManager.DesktopApiVersion : ThemeManager.FullscreenApiVersion;
-            if (!ThemeApiVersion.IsNullOrEmpty())
-            {
-                var themeVersion = new Version(ThemeApiVersion);
-                if (themeVersion.Major == apiVesion.Major && themeVersion <= apiVesion)
-                {
-                    IsCompatible = true;
-                }
-            }
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
     public class ThemeManager
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -76,6 +25,8 @@ namespace Playnite
         public static System.Version FullscreenApiVersion => new System.Version("1.9.0");
         public static ThemeManifest CurrentTheme { get; private set; }
         public static ThemeManifest DefaultTheme { get; private set; }
+        public const string DefaultDesktopThemeId = "Playnite_builtin_DefaultDesktop";
+        public const string DefaultFullscreenThemeId = "Playnite_builtin_DefaultFullscreen";
 
         public static System.Version GetApiVersion(ApplicationMode mode)
         {
@@ -138,6 +89,12 @@ namespace Playnite
 
         public static bool ApplyTheme(Application app, ThemeManifest theme, ApplicationMode mode)
         {
+            if (theme.Id.IsNullOrEmpty())
+            {
+                logger.Error($"Theme {theme.Name}, doesn't have ID.");
+                return false;
+            }
+
             var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
             if (!theme.ThemeApiVersion.IsNullOrEmpty())
             {
@@ -155,7 +112,7 @@ namespace Playnite
             var defaultRoot = $"Themes/{mode.GetDescription()}/{DefaultTheme.DirectoryName}/";
             foreach (var dict in app.Resources.MergedDictionaries)
             {
-                if (dict.Source.OriginalString.StartsWith("Themes") && dict.Source.OriginalString.EndsWith("xaml"))
+                if (dict.Source.OriginalString.StartsWith(defaultRoot))
                 {
                     acceptableXamls.Add(dict.Source.OriginalString.Replace(defaultRoot, "").Replace('/', '\\'));
                 }
@@ -190,13 +147,82 @@ namespace Playnite
                 }
             }
 
+            try
+            {
+                var cursorFile = ThemeFile.GetFilePath("cursor.cur");
+                if (cursorFile.IsNullOrEmpty())
+                {
+                    cursorFile = ThemeFile.GetFilePath("cursor.ani");
+                }
+
+                if (!cursorFile.IsNullOrEmpty())
+                {
+                    Mouse.OverrideCursor = new Cursor(cursorFile, true);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to set custom mouse cursor.");
+            }
+
             if (allLoaded)
             {
-                loadedXamls.ForEach(a => app.Resources.MergedDictionaries.Add(a));
+                var themeRoot = $"Themes\\{mode.GetDescription()}\\{theme.DirectoryName}\\";
+                // This is sad that we have to do this, but it fixes issues like #2328
+                // We need to remove all loaded theme resources and reload them in specific order:
+                //      default/1.xaml -> theme/1.xaml -> default/2.xaml -> theme/2.xaml etc.
+                //
+                // We can't just load custom theme files at the end or insert them in already loaded pool of resources
+                // because styling with static references won't reload data from custom theme files.
+                // That's why we also have to create new instances of default styles.
+                foreach (var defaultRes in app.Resources.MergedDictionaries.ToList())
+                {
+                    if (defaultRes.Source.OriginalString.StartsWith(defaultRoot))
+                    {
+                        app.Resources.MergedDictionaries.Remove(defaultRes);
+                    }
+                }
+
+                foreach (var themeXamlFile in acceptableXamls)
+                {
+                    var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), "Default", themeXamlFile);
+                    var defaultXaml = Xaml.FromFile(defaultPath);
+                    if (defaultXaml is ResourceDictionary xamlDir)
+                    {
+                        xamlDir.Source = new Uri(defaultPath, UriKind.Absolute);
+                        app.Resources.MergedDictionaries.Add(xamlDir);
+                    }
+
+                    var loaded = loadedXamls.FirstOrDefault(a =>
+                    {
+                        var cust = a.Source.OriginalString.Substring(a.Source.OriginalString.IndexOf(themeRoot) + themeRoot.Length);
+                        var def = themeXamlFile;
+                        return cust == def;
+                    });
+
+                    if (loaded != null)
+                    {
+                        app.Resources.MergedDictionaries.Add(loaded);
+                    }
+                }
+
                 return true;
             }
 
             return false;
+        }
+
+        public static IEnumerable<ThemeManifest> GetAvailableThemes()
+        {
+            foreach (var theme in GetAvailableThemes(ApplicationMode.Desktop))
+            {
+                yield return theme;
+            }
+
+            foreach (var theme in GetAvailableThemes(ApplicationMode.Fullscreen))
+            {
+                yield return theme;
+            }
         }
 
         public static List<ThemeManifest> GetAvailableThemes(ApplicationMode mode)
@@ -217,7 +243,11 @@ namespace Playnite
                         {
                             var info = new FileInfo(descriptorPath);
                             added.Add(info.Directory.Name);
-                            themes.Add(new ThemeManifest(descriptorPath));
+                            var man = new ThemeManifest(descriptorPath);
+                            if (!man.Id.IsNullOrEmpty())
+                            {
+                                themes.Add(man);
+                            }
                         }
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -240,7 +270,11 @@ namespace Playnite
                             var info = new FileInfo(descriptorPath);
                             if (!added.Contains(info.Directory.Name))
                             {
-                                themes.Add(new ThemeManifest(descriptorPath));
+                                var man = new ThemeManifest(descriptorPath);
+                                if (!man.Id.IsNullOrEmpty())
+                                {
+                                    themes.Add(man);
+                                }
                             }
                         }
                     }

@@ -1,0 +1,24 @@
+version: '{branch}_{build}'
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - devel9_2
+skip_non_tags: true
+image: Visual Studio 2019
+shallow_clone: true
+environment:
+  LicensedDependenciesUrl:
+    secure: ZTSg1DK6QAtwZoCBUDQ94cIaMCKWgSeJMI0dCpVJBPE40+UqG9MNu+UJjjGWjvVa
+  PlayniteConfigUpdate: https://playnite.link/build/PlayniteProductionConfig.txt
+  OnlineInstallerConfig: https://playnite.link/build/installer_mirrors.txt
+build_script:
+- pwsh: .\build\build.ps1 -Package -SdkNuget -LicensedDependenciesUrl $env:LicensedDependenciesUrl -PlayniteConfigUpdate $env:PlayniteConfigUpdate -OnlineInstallerConfig $env:OnlineInstallerConfig
+test: off
+artifacts:
+- path: 'build\Playnite.zip'
+deploy:
+- provider: Webhook
+  url: https://app.signpath.io/API/v1/4028e7e6-f183-4bbf-9640-c4b4d9a6992d/Integrations/AppVeyor?ProjectSlug=Playnite&SigningPolicySlug=release-signing
+  authorization:
+    secure: ZXw8Ro7eQ0opsdjLpNH7ZgTgS8ycnud7ag2qNOMRvqdxBmvegj+7QHrsh4pSgTSINhB5tbTZwgiMKFDjJV9QHg==

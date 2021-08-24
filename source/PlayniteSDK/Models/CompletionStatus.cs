@@ -10,47 +10,27 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents game completion status.
     /// </summary>
-    public enum CompletionStatus : int
+    public class CompletionStatus : DatabaseObject
     {
         /// <summary>
-        /// Represents "Not Played" completion status.
+        /// Creates new instance of <see cref="CompletionStatus"/>.
         /// </summary>
-        [Description("LOCCompletionStatusNotPlayed")]
-        NotPlayed = 0,
+        public CompletionStatus() : base()
+        {
+        }
+
         /// <summary>
-        /// Represents Played completion status.
+        /// Creates new instance of <see cref="CompletionStatus"/>.
         /// </summary>
-        [Description("LOCCompletionStatusPlayed")]
-        Played = 1,
+        /// <param name="name"></param>
+        public CompletionStatus(string name) : base()
+        {
+            Name = name;
+        }
+
         /// <summary>
-        /// Represents Beaten completion status.
+        /// Gets empty CompletionStatus.
         /// </summary>
-        [Description("LOCCompletionStatusBeaten")]
-        Beaten = 2,
-        /// <summary>
-        /// Represents Completed completion status.
-        /// </summary>
-        [Description("LOCCompletionStatusCompleted")]
-        Completed = 3,
-        /// <summary>
-        /// Represents Playing completion status.
-        /// </summary>
-        [Description("LOCCompletionStatusPlaying")]
-        Playing = 4,
-        /// <summary>
-        /// Represents Abandoned completion status.
-        /// </summary>
-        [Description("LOCCompletionStatusAbandoned")]
-        Abandoned = 5,
-        /// <summary>
-        /// Represents "On hold" completion status.
-        /// </summary>
-        [Description("LOCCompletionStatusOnHold")]
-        OnHold = 6,
-        /// <summary>
-        /// Represents "Plan to Play" completion status.
-        /// </summary>
-        [Description("LOCCompletionStatusPlanToPlay")]
-        PlanToPlay = 7
+        public static readonly CompletionStatus Empty = new CompletionStatus { Id = Guid.Empty, Name = string.Empty };
     }
 }

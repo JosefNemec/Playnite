@@ -114,7 +114,7 @@ namespace Playnite.DesktopApp.Windows
             }
         }
 
-        private MessageBoxImage displayIcon;
+        private MessageBoxImage displayIcon = MessageBoxImage.None;
         public MessageBoxImage DisplayIcon
         {
             get => displayIcon;
@@ -133,6 +133,17 @@ namespace Playnite.DesktopApp.Windows
             {
                 isTextReadOnly = value;
                 OnPropertyChanged(nameof(IsTextReadOnly));
+            }
+        }
+
+        private List<MessageBoxToggle> toggleOptions;
+        public List<MessageBoxToggle> ToggleOptions
+        {
+            get => toggleOptions;
+            set
+            {
+                toggleOptions = value;
+                OnPropertyChanged(nameof(ToggleOptions));
             }
         }
 
@@ -172,7 +183,8 @@ namespace Playnite.DesktopApp.Windows
             Window owner,
             string messageBoxText,
             string caption,
-            string defaultInput)
+            string defaultInput,
+            List<MessageBoxToggle> options = null)
         {
             if (owner == null || owner == this)
             {
@@ -192,6 +204,12 @@ namespace Playnite.DesktopApp.Windows
             ShowCancelButton = true;
             ButtonCancel.IsCancel = true;
             InputText = defaultInput ?? string.Empty;
+            ToggleOptions = options;
+            if (options.HasItems())
+            {
+                ItemsToggleOptions.Visibility = Visibility.Visible;
+            }
+
             ShowDialog();
 
             if (result == MessageBoxResult.Cancel)
@@ -263,6 +281,11 @@ namespace Playnite.DesktopApp.Windows
                     break;
             }
 
+            if (icon != MessageBoxImage.None)
+            {
+                ViewIcon.Visibility = Visibility.Visible;
+            }
+
             ShowDialog();
             return result;
         }
@@ -313,6 +336,11 @@ namespace Playnite.DesktopApp.Windows
                 {
                     button.Focus();
                 }
+            }
+
+            if (icon != MessageBoxImage.None)
+            {
+                ViewIcon.Visibility = Visibility.Visible;
             }
 
             ShowDialog();

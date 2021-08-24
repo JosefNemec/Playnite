@@ -53,7 +53,8 @@ Name: "{userappdata}\Microsoft\Windows\Start Menu\Programs\Playnite\Uninstall"; 
 Name: "{commondesktop}\Playnite"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; Check: GetCreateIcons
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "Launch Playnite"; Flags: nowait postinstall shellexec
+Filename: "{app}\{#MyAppExeName}"; Description: "Launch Playnite"; Flags: nowait postinstall shellexec; Check: GetPostLaunchDesktopApp
+Filename: "{app}\Playnite.FullscreenApp.exe"; Description: "Launch Fullscreen Playnite"; Flags: nowait shellexec; Check: GetPostLaunchFullscreenApp
 
 [Code]
 var
@@ -147,4 +148,20 @@ begin
             RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, UninstallRegKey);
         end;
     end;
+end;
+
+function GetPostLaunchDesktopApp(): Boolean;
+begin
+    if (CmdLineParamExists('/FULLSCREEN') = true) then
+        Result := False
+    else
+        Result := True;
+end;
+
+function GetPostLaunchFullscreenApp(): Boolean;
+begin
+    if (CmdLineParamExists('/FULLSCREEN') = true) then
+        Result := True
+    else
+        Result := False;
 end;

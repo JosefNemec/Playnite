@@ -66,6 +66,7 @@ namespace Playnite.Tests
         public void IsUriTest()
         {
             Assert.IsTrue(@"http://www.playnite.link".IsUri());
+            Assert.IsFalse(@"www.playnite.link".IsUri());
             Assert.IsTrue(@"mailto:someadress@test.cz".IsUri());
             Assert.IsTrue(@"playnite://test/test".IsUri());
             Assert.IsFalse(@"testsstring".IsUri());

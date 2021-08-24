@@ -2,6 +2,7 @@
 using Playnite.Converters;
 using Playnite.Database;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -14,126 +15,27 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ButtonClear", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_ButtonClose", Type = typeof(ButtonBase))]
-    [TemplatePart(Name = "PART_ToggleInstalled", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ToggleUnInstalled", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ToggleHidden", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ToggleFavorite", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_ContentInstalledCount", Type = typeof(ContentControl))]
-    [TemplatePart(Name = "PART_ContentUnInstalledCount", Type = typeof(ContentControl))]
-    [TemplatePart(Name = "PART_ContentHiddenCount", Type = typeof(ContentControl))]
-    [TemplatePart(Name = "PART_ContentFavoriteCount", Type = typeof(ContentControl))]
-    [TemplatePart(Name = "PART_ElemPlatformLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemLibraryLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemNameLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemVersionLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemGenreLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemReleaseYearLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemDeveloperLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemPublisherLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemCategoryLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemTagLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemFeatureLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemPlayTimeLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemCompletionStatusLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemSeriesLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemRegionLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemSourceLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemAgeRatingLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemUserScoreLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemCommunityScoreLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemCriticScoreLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemLastActivityLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemAddedLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_ElemModifiedLabel", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_FilterPlatform", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterLibrary", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterName", Type = typeof(SearchBox))]
-    [TemplatePart(Name = "PART_FilterVersion", Type = typeof(SearchBox))]
-    [TemplatePart(Name = "PART_FilterGenre", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterReleaseYear", Type = typeof(FilterStringSelectionBox))]
-    [TemplatePart(Name = "PART_FilterDeveloper", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterPublisher", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterCategory", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterTag", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterFeature", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterPlayTime", Type = typeof(FilterEnumSelectionBox))]
-    [TemplatePart(Name = "PART_FilterCompletionStatus", Type = typeof(FilterEnumSelectionBox))]
-    [TemplatePart(Name = "PART_FilterSeries", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterRegion", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterSource", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterAgeRating", Type = typeof(FilterSelectionBox))]
-    [TemplatePart(Name = "PART_FilterUserScore", Type = typeof(FilterEnumSelectionBox))]
-    [TemplatePart(Name = "PART_FilterCommunityScore", Type = typeof(FilterEnumSelectionBox))]
-    [TemplatePart(Name = "PART_FilterCriticScore", Type = typeof(FilterEnumSelectionBox))]
-    [TemplatePart(Name = "PART_FilterLastActivity", Type = typeof(FilterEnumSelectionBox))]
-    [TemplatePart(Name = "PART_FilterAdded", Type = typeof(FilterEnumSelectionBox))]
-    [TemplatePart(Name = "PART_FilterModified", Type = typeof(FilterEnumSelectionBox))]
+    [TemplatePart(Name = "PART_PanelItemsHost", Type = typeof(Panel))]
+    [TemplatePart(Name = "PART_ButtonDeleteFilter", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtonRenameFilter", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ButtonSaveFilter", Type = typeof(ButtonBase))]
+    [TemplatePart(Name = "PART_ComboFilterPresets", Type = typeof(ComboBox))]
     public class FilterPanel : Control
     {
         private readonly DesktopAppViewModel mainModel;
         private ButtonBase ButtonClear;
         private ButtonBase ButtonClose;
-        private ToggleButton ToggleInstalled;
-        private ToggleButton ToggleUnInstalled;
-        private ToggleButton ToggleHidden;
-        private ToggleButton ToggleFavorite;
-        private ContentControl ContentInstalledCount;
-        private ContentControl ContentUnInstalledCount;
-        private ContentControl ContentHiddenCount;
-        private ContentControl ContentFavoriteCount;
-
-        private FrameworkElement ElemPlatformLabel;
-        private FrameworkElement ElemLibraryLabel;
-        private FrameworkElement ElemNameLabel;
-        private FrameworkElement ElemVersionLabel;
-        private FrameworkElement ElemGenreLabel;
-        private FrameworkElement ElemReleaseYearLabel;
-        private FrameworkElement ElemDeveloperLabel;
-        private FrameworkElement ElemPublisherLabel;
-        private FrameworkElement ElemCategoryLabel;
-        private FrameworkElement ElemTagLabel;
-        private FrameworkElement ElemFeatureLabel;
-        private FrameworkElement ElemPlayTimeLabel;
-        private FrameworkElement ElemCompletionStatusLabel;
-        private FrameworkElement ElemSeriesLabel;
-        private FrameworkElement ElemRegionLabel;
-        private FrameworkElement ElemSourceLabel;
-        private FrameworkElement ElemAgeRatingLabel;
-        private FrameworkElement ElemUserScoreLabel;
-        private FrameworkElement ElemCommunityScoreLabel;
-        private FrameworkElement ElemCriticScoreLabel;
-        private FrameworkElement ElemLastActivityLabel;
-        private FrameworkElement ElemAddedLabel;
-        private FrameworkElement ElemModifiedLabel;
-
-        private FilterSelectionBox FilterPlatform;
-        private FilterSelectionBox FilterLibrary;
-        private SearchBox FilterName;
-        private SearchBox FilterVersion;
-        private FilterSelectionBox FilterGenre;
-        private FilterStringSelectionBox FilterReleaseYear;
-        private FilterSelectionBox FilterDeveloper;
-        private FilterSelectionBox FilterPublisher;
-        private FilterSelectionBox FilterCategory;
-        private FilterSelectionBox FilterTag;
-        private FilterSelectionBox FilterFeature;
-        private FilterEnumSelectionBox FilterPlayTime;
-        private FilterEnumSelectionBox FilterCompletionStatus;
-        private FilterSelectionBox FilterSeries;
-        private FilterSelectionBox FilterRegion;
-        private FilterSelectionBox FilterSource;
-        private FilterSelectionBox FilterAgeRating;
-        private FilterEnumSelectionBox FilterUserScore;
-        private FilterEnumSelectionBox FilterCommunityScore;
-        private FilterEnumSelectionBox FilterCriticScore;
-        private FilterEnumSelectionBox FilterLastActivity;
-        private FilterEnumSelectionBox FilterAdded;
-        private FilterEnumSelectionBox FilterModified;
+        private Panel PanelItemsHost;
+        private ButtonBase ButtonDeleteFilter;
+        private ButtonBase ButtonRenameFilter;
+        private ButtonBase ButtonSaveFilter;
+        private ComboBox ComboFilterPresets;
 
         static FilterPanel()
         {
@@ -160,6 +62,7 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             base.OnApplyTemplate();
 
+            PanelItemsHost = Template.FindName("PART_PanelItemsHost", this) as Panel;
             ButtonClear = Template.FindName("PART_ButtonClear", this) as ButtonBase;
             if (ButtonClear != null)
             {
@@ -172,191 +75,244 @@ namespace Playnite.DesktopApp.Controls.Views
                 ButtonClose.Command = mainModel.CloseFilterPanelCommand;
             }
 
-            SetToggleFilter(ref ToggleInstalled, "PART_ToggleInstalled", nameof(FilterSettings.IsInstalled));
-            SetToggleFilter(ref ToggleUnInstalled, "PART_ToggleUnInstalled", nameof(FilterSettings.IsUnInstalled));
-            SetToggleFilter(ref ToggleHidden, "PART_ToggleHidden", nameof(FilterSettings.Hidden));
-            SetToggleFilter(ref ToggleFavorite, "PART_ToggleFavorite", nameof(FilterSettings.Favorite));
-
-            SetToggleCount(ref ContentInstalledCount, "PART_ContentInstalledCount", nameof(DatabaseStats.Installed));
-            SetToggleCount(ref ContentUnInstalledCount, "PART_ContentUnInstalledCount", nameof(DatabaseStats.UnInstalled));
-            SetToggleCount(ref ContentHiddenCount, "PART_ContentHiddenCount", nameof(DatabaseStats.Hidden));
-            SetToggleCount(ref ContentFavoriteCount, "PART_ContentFavoriteCount", nameof(DatabaseStats.Favorite));
-
-            SetLabelTag(ref ElemPlatformLabel, "PART_ElemPlatformLabel", nameof(FilterSettings.Platform));
-            SetLabelTag(ref ElemLibraryLabel, "PART_ElemLibraryLabel", nameof(FilterSettings.Library));
-            SetLabelTag(ref ElemGenreLabel, "PART_ElemGenreLabel", nameof(FilterSettings.Genre));
-            SetLabelTag(ref ElemReleaseYearLabel, "PART_ElemReleaseYearLabel", nameof(FilterSettings.ReleaseYear));
-            SetLabelTag(ref ElemDeveloperLabel, "PART_ElemDeveloperLabel", nameof(FilterSettings.Developer));
-            SetLabelTag(ref ElemPublisherLabel, "PART_ElemPublisherLabel", nameof(FilterSettings.Publisher));
-            SetLabelTag(ref ElemCategoryLabel, "PART_ElemCategoryLabel", nameof(FilterSettings.Category));
-            SetLabelTag(ref ElemTagLabel, "PART_ElemTagLabel", nameof(FilterSettings.Tag));
-            SetLabelTag(ref ElemFeatureLabel, "PART_ElemFeatureLabel", nameof(FilterSettings.Feature));
-            SetLabelTag(ref ElemPlayTimeLabel, "PART_ElemPlayTimeLabel", nameof(FilterSettings.PlayTime));
-            SetLabelTag(ref ElemCompletionStatusLabel, "PART_ElemCompletionStatusLabel", nameof(FilterSettings.CompletionStatus));
-            SetLabelTag(ref ElemSeriesLabel, "PART_ElemSeriesLabel", nameof(FilterSettings.Series));
-            SetLabelTag(ref ElemRegionLabel, "PART_ElemRegionLabel", nameof(FilterSettings.Region));
-            SetLabelTag(ref ElemSourceLabel, "PART_ElemSourceLabel", nameof(FilterSettings.Source));
-            SetLabelTag(ref ElemAgeRatingLabel, "PART_ElemAgeRatingLabel", nameof(FilterSettings.AgeRating));
-            SetLabelTag(ref ElemUserScoreLabel, "PART_ElemUserScoreLabel", nameof(FilterSettings.UserScore));
-            SetLabelTag(ref ElemCommunityScoreLabel, "PART_ElemCommunityScoreLabel", nameof(FilterSettings.CommunityScore));
-            SetLabelTag(ref ElemCriticScoreLabel, "PART_ElemCriticScoreLabel", nameof(FilterSettings.CriticScore));
-            SetLabelTag(ref ElemLastActivityLabel, "PART_ElemLastActivityLabel", nameof(FilterSettings.LastActivity));
-            SetLabelTag(ref ElemAddedLabel, "PART_ElemAddedLabel", nameof(FilterSettings.Added));
-            SetLabelTag(ref ElemModifiedLabel, "PART_ElemModifiedLabel", nameof(FilterSettings.Modified));
-
-            SetFilterSelectionBoxFilter(ref FilterPlatform, "PART_FilterPlatform", nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform));
-            SetFilterSelectionBoxFilter(ref FilterLibrary, "PART_FilterLibrary", nameof(DatabaseFilter.Libraries), nameof(FilterSettings.Library));
-            SetFilterSelectionBoxFilter(ref FilterGenre, "PART_FilterGenre", nameof(DatabaseFilter.Genres), nameof(FilterSettings.Genre));
-            SetFilterStringSelectionBoxFilter(ref FilterReleaseYear, "PART_FilterReleaseYear", nameof(DatabaseFilter.ReleaseYears), nameof(FilterSettings.ReleaseYear));
-            SetFilterSelectionBoxFilter(ref FilterDeveloper, "PART_FilterDeveloper", nameof(DatabaseFilter.Developers), nameof(FilterSettings.Developer));
-            SetFilterSelectionBoxFilter(ref FilterPublisher, "PART_FilterPublisher", nameof(DatabaseFilter.Publishers), nameof(FilterSettings.Publisher));
-            SetFilterSelectionBoxFilter(ref FilterCategory, "PART_FilterCategory", nameof(DatabaseFilter.Categories), nameof(FilterSettings.Category));
-            SetFilterSelectionBoxFilter(ref FilterTag, "PART_FilterTag", nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
-            SetFilterSelectionBoxFilter(ref FilterFeature, "PART_FilterFeature", nameof(DatabaseFilter.Features), nameof(FilterSettings.Feature));
-            SetFilterEnumSelectionBoxFilter(ref FilterPlayTime, "PART_FilterPlayTime", nameof(FilterSettings.PlayTime), typeof(PlaytimeCategory));
-            SetFilterEnumSelectionBoxFilter(ref FilterCompletionStatus, "PART_FilterCompletionStatus", nameof(FilterSettings.CompletionStatus), typeof(CompletionStatus));
-            SetFilterSelectionBoxFilter(ref FilterSeries, "PART_FilterSeries", nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));
-            SetFilterSelectionBoxFilter(ref FilterRegion, "PART_FilterRegion", nameof(DatabaseFilter.Regions), nameof(FilterSettings.Region));
-            SetFilterSelectionBoxFilter(ref FilterSource, "PART_FilterSource", nameof(DatabaseFilter.Sources), nameof(FilterSettings.Source));
-            SetFilterSelectionBoxFilter(ref FilterAgeRating, "PART_FilterAgeRating", nameof(DatabaseFilter.AgeRatings), nameof(FilterSettings.AgeRating));
-            SetFilterEnumSelectionBoxFilter(ref FilterUserScore, "PART_FilterUserScore", nameof(FilterSettings.UserScore), typeof(ScoreGroup));
-            SetFilterEnumSelectionBoxFilter(ref FilterCommunityScore, "PART_FilterCommunityScore", nameof(FilterSettings.CommunityScore), typeof(ScoreGroup));
-            SetFilterEnumSelectionBoxFilter(ref FilterCriticScore, "PART_FilterCriticScore", nameof(FilterSettings.CriticScore), typeof(ScoreGroup));
-            SetFilterEnumSelectionBoxFilter(ref FilterLastActivity, "PART_FilterLastActivity", nameof(FilterSettings.LastActivity), typeof(PastTimeSegment));
-            SetFilterEnumSelectionBoxFilter(ref FilterAdded, "PART_FilterAdded", nameof(FilterSettings.Added), typeof(PastTimeSegment));
-            SetFilterEnumSelectionBoxFilter(ref FilterModified, "PART_FilterModified", nameof(FilterSettings.Modified), typeof(PastTimeSegment));
-
-            ElemNameLabel = Template.FindName("PART_ElemNameLabel", this) as FrameworkElement;
-            if (ElemNameLabel != null)
+            ButtonDeleteFilter = Template.FindName("PART_ButtonDeleteFilter", this) as ButtonBase;
+            if (ButtonDeleteFilter != null)
             {
-                BindingTools.SetBinding(ElemNameLabel,
-                    FrameworkElement.TagProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    nameof(FilterSettings.Name),
-                    converter: new StringNullOrEmptyToBoolConverter(),
-                    fallBackValue: false);
+                BindingTools.SetBinding(ButtonDeleteFilter,
+                    ButtonBase.CommandProperty,
+                    mainModel,
+                    nameof(mainModel.RemoveFilterPresetCommand));
+                BindingTools.SetBinding(ButtonDeleteFilter,
+                    ButtonBase.CommandParameterProperty,
+                    mainModel,
+                    nameof(mainModel.ActiveFilterPreset));
             }
 
-            ElemVersionLabel = Template.FindName("PART_ElemVersionLabel", this) as FrameworkElement;
-            if (ElemVersionLabel != null)
+            ButtonRenameFilter = Template.FindName("PART_ButtonRenameFilter", this) as ButtonBase;
+            if (ButtonRenameFilter != null)
             {
-                BindingTools.SetBinding(ElemVersionLabel,
-                    FrameworkElement.TagProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    nameof(FilterSettings.Version),
-                    converter: new StringNullOrEmptyToBoolConverter(),
-                    fallBackValue: false);
+                BindingTools.SetBinding(ButtonRenameFilter,
+                    ButtonBase.CommandProperty,
+                    mainModel,
+                    nameof(mainModel.RenameFilterPresetCommand));
+                BindingTools.SetBinding(ButtonRenameFilter,
+                    ButtonBase.CommandParameterProperty,
+                    mainModel,
+                    nameof(mainModel.ActiveFilterPreset));
             }
 
-            FilterName = Template.FindName("PART_FilterName", this) as SearchBox;
-            if (FilterName != null)
+            ButtonSaveFilter = Template.FindName("PART_ButtonSaveFilter", this) as ButtonBase;
+            if (ButtonSaveFilter != null)
             {
-                BindingTools.SetBinding(FilterName,
-                    SearchBox.TextProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    nameof(FilterSettings.Name),
-                    BindingMode.TwoWay,
-                    delay: 100);
+                BindingTools.SetBinding(ButtonSaveFilter,
+                    ButtonBase.CommandProperty,
+                    mainModel,
+                    nameof(mainModel.AddFilterPresetCommand));
             }
 
-            FilterVersion = Template.FindName("PART_FilterVersion", this) as SearchBox;
-            if (FilterVersion != null)
+            ComboFilterPresets = Template.FindName("PART_ComboFilterPresets", this) as ComboBox;
+            if (ComboFilterPresets != null)
             {
-                BindingTools.SetBinding(FilterVersion,
-                    SearchBox.TextProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    nameof(FilterSettings.Version),
-                    BindingMode.TwoWay,
-                    delay: 100);
+                BindingTools.SetBinding(ComboFilterPresets,
+                    ComboBox.ItemsSourceProperty,
+                    mainModel,
+                    nameof(mainModel.SortedFilterPresets));
+                BindingTools.SetBinding(ComboFilterPresets,
+                    ComboBox.SelectedItemProperty,
+                    mainModel,
+                    nameof(mainModel.ActiveFilterPreset),
+                    mode: BindingMode.TwoWay);
+                ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
             }
 
-            FilterLibrary.IsFullTextEnabled = false;
+            SetToggleFilter(nameof(FilterSettings.IsInstalled), nameof(DatabaseStats.Installed), LOC.GameIsInstalledTitle);
+            SetToggleFilter(nameof(FilterSettings.IsUnInstalled), nameof(DatabaseStats.UnInstalled), LOC.GameIsUnInstalledTitle);
+            SetToggleFilter(nameof(FilterSettings.Hidden), nameof(DatabaseStats.Hidden), LOC.GameHiddenTitle);
+            SetToggleFilter(nameof(FilterSettings.Favorite), nameof(DatabaseStats.Favorite), LOC.GameFavoriteTitle);
+
+            SetLabelTag(nameof(FilterSettings.Platform), LOC.PlatformTitle);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform));
+
+            SetLabelTag(nameof(FilterSettings.Library), LOC.Library);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Libraries), nameof(FilterSettings.Library), false);
+
+            SetLabelTag(nameof(FilterSettings.Name), LOC.NameLabel, new StringNullOrEmptyToBoolConverter(), nameof(FilterSettings.Name));
+            SetFilterSearchBoxFilter(nameof(FilterSettings.Name));
+
+            SetLabelTag(nameof(FilterSettings.Genre), LOC.GenreLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Genres), nameof(FilterSettings.Genre));
+
+            SetLabelTag(nameof(FilterSettings.ReleaseYear), LOC.GameReleaseYearTitle);
+            SetFilterStringSelectionBoxFilter(nameof(DatabaseFilter.ReleaseYears), nameof(FilterSettings.ReleaseYear));
+
+            SetLabelTag(nameof(FilterSettings.Developer), LOC.DeveloperLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Developers), nameof(FilterSettings.Developer));
+
+            SetLabelTag(nameof(FilterSettings.Publisher), LOC.PublisherLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Publishers), nameof(FilterSettings.Publisher));
+
+            SetLabelTag(nameof(FilterSettings.Category), LOC.CategoryLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Categories), nameof(FilterSettings.Category));
+
+            SetLabelTag(nameof(FilterSettings.Tag), LOC.TagLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Tags), nameof(FilterSettings.Tag));
+
+            SetLabelTag(nameof(FilterSettings.Feature), LOC.FeatureLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Features), nameof(FilterSettings.Feature));
+
+            SetLabelTag(nameof(FilterSettings.PlayTime), LOC.TimePlayed);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.PlayTime), typeof(PlaytimeCategory));
+
+            SetLabelTag(nameof(FilterSettings.CompletionStatuses), LOC.CompletionStatus);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.CompletionStatuses), nameof(FilterSettings.CompletionStatuses));
+
+            SetLabelTag(nameof(FilterSettings.Series), LOC.SeriesLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));
+
+            SetLabelTag(nameof(FilterSettings.Region), LOC.RegionLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Regions), nameof(FilterSettings.Region));
+
+            SetLabelTag(nameof(FilterSettings.Source), LOC.SourceLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Sources), nameof(FilterSettings.Source));
+
+            SetLabelTag(nameof(FilterSettings.AgeRating), LOC.AgeRatingLabel);
+            SetFilterSelectionBoxFilter(nameof(DatabaseFilter.AgeRatings), nameof(FilterSettings.AgeRating));
+
+            SetLabelTag(nameof(FilterSettings.Version), LOC.VersionLabel, new StringNullOrEmptyToBoolConverter(), nameof(FilterSettings.Version));
+            SetFilterSearchBoxFilter(nameof(FilterSettings.Version));
+
+            SetLabelTag(nameof(FilterSettings.UserScore), LOC.UserScore);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.UserScore), typeof(ScoreGroup));
+
+            SetLabelTag(nameof(FilterSettings.CommunityScore), LOC.CommunityScore);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.CommunityScore), typeof(ScoreGroup));
+
+            SetLabelTag(nameof(FilterSettings.CriticScore), LOC.CriticScore);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.CriticScore), typeof(ScoreGroup));
+
+            SetLabelTag(nameof(FilterSettings.LastActivity), LOC.GameLastActivityTitle);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.LastActivity), typeof(PastTimeSegment));
+
+            SetLabelTag(nameof(FilterSettings.Added), LOC.DateAddedLabel);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.Added), typeof(PastTimeSegment));
+
+            SetLabelTag(nameof(FilterSettings.Modified), LOC.DateModifiedLabel);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.Modified), typeof(PastTimeSegment));
         }
 
-        private void SetToggleFilter(ref ToggleButton button, string partId, string binding)
+        private void SetToggleFilter(string binding, string countBinding, string text)
         {
-            button = Template.FindName(partId, this) as ToggleButton;
-            if (button != null)
-            {
-                BindingTools.SetBinding(button,
-                    ToggleButton.IsCheckedProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    binding,
-                    BindingMode.TwoWay);
-            }
+            var elem = new CheckBox();
+            elem.SetResourceReference(CheckBox.StyleProperty, "FilterPanelCheckBox");
+            BindingTools.SetBinding(elem,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.FilterSettings,
+                binding,
+                BindingMode.TwoWay);
+            BindingTools.SetBinding(elem,
+                ContentControl.ContentProperty,
+                mainModel.GamesStats,
+                countBinding);
+            elem.ContentStringFormat = ResourceProvider.GetString(text) + " ({0})";
+            PanelItemsHost.Children.Add(elem);
         }
 
-        private void SetToggleCount(ref ContentControl content, string partId, string binding)
+        private void SetLabelTag(string binding, string text, IValueConverter converter = null, string bindingName = null)
         {
-            content = Template.FindName(partId, this) as ContentControl;
-            if (content != null)
+            if (PanelItemsHost == null)
             {
-                BindingTools.SetBinding(content,
-                    ContentControl.ContentProperty,
-                    mainModel.GamesStats,
-                    binding);
+                return;
             }
+
+            var elem = new Label();
+            elem.SetResourceReference(Label.StyleProperty, "FilterPanelLabel");
+            BindingTools.SetBinding(elem,
+                FrameworkElement.TagProperty,
+                mainModel.AppSettings.FilterSettings,
+                bindingName ?? $"{binding}.{nameof(FilterItemProperites.IsSet)}",
+                fallBackValue: false,
+                converter: converter);
+            elem.Content = ResourceProvider.GetString(text);
+            PanelItemsHost.Children.Add(elem);
         }
 
-        private void SetLabelTag(ref FrameworkElement elem, string partId, string binding)
+        private void SetFilterSearchBoxFilter(string filterBinding)
         {
-            elem = Template.FindName(partId, this) as FrameworkElement;
-            if (elem != null)
+            if (PanelItemsHost == null)
             {
-                BindingTools.SetBinding(elem,
-                    FrameworkElement.TagProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    $"{binding}.{nameof(FilterItemProperites.IsSet)}",
-                    fallBackValue: false);
+                return;
             }
+
+            var elem = new SearchBox();
+            elem.SetResourceReference(SearchBox.StyleProperty, "FilterPanelFilterSearchBox");
+            BindingTools.SetBinding(elem,
+                SearchBox.TextProperty,
+                mainModel.AppSettings.FilterSettings,
+                filterBinding,
+                BindingMode.TwoWay,
+                delay: 100);
+            PanelItemsHost.Children.Add(elem);
         }
 
-        private void SetFilterSelectionBoxFilter(ref FilterSelectionBox elem, string partId, string listBinding, string filterBinding)
+        private void SetFilterSelectionBoxFilter(string listBinding, string filterBinding, bool isFullext = true)
         {
-            elem = Template.FindName(partId, this) as FilterSelectionBox;
-            if (elem != null)
+            if (PanelItemsHost == null)
             {
-                BindingTools.SetBinding(elem,
-                    FilterSelectionBox.ItemsListProperty,
-                    mainModel.DatabaseFilters,
-                    listBinding);
-                BindingTools.SetBinding(elem,
-                    FilterSelectionBox.FilterPropertiesProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    filterBinding,
-                    BindingMode.TwoWay);
+                return;
             }
+
+            var elem = new FilterSelectionBox();
+            elem.SetResourceReference(FilterSelectionBox.StyleProperty, "FilterPanelFilterSelectionBox");
+            BindingTools.SetBinding(elem,
+                FilterSelectionBox.ItemsListProperty,
+                mainModel.DatabaseFilters,
+                listBinding);
+            BindingTools.SetBinding(elem,
+                FilterSelectionBox.FilterPropertiesProperty,
+                mainModel.AppSettings.FilterSettings,
+                filterBinding,
+                BindingMode.TwoWay);
+            elem.IsFullTextEnabled = isFullext;
+            PanelItemsHost.Children.Add(elem);
         }
 
-        private void SetFilterEnumSelectionBoxFilter(ref FilterEnumSelectionBox elem, string partId, string filterBinding, Type enumType)
+        private void SetFilterEnumSelectionBoxFilter(string filterBinding, Type enumType)
         {
-            elem = Template.FindName(partId, this) as FilterEnumSelectionBox;
-            if (elem != null)
+            if (PanelItemsHost == null)
             {
-                elem.EnumType = enumType;
-                BindingTools.SetBinding(elem,
-                    FilterEnumSelectionBox.FilterPropertiesProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    filterBinding,
-                    BindingMode.TwoWay);
+                return;
             }
+
+            var elem = new FilterEnumSelectionBox();
+            elem.SetResourceReference(FilterEnumSelectionBox.StyleProperty, "FilterPanelFilterEnumSelectionBox");
+            elem.EnumType = enumType;
+            BindingTools.SetBinding(elem,
+                FilterEnumSelectionBox.FilterPropertiesProperty,
+                mainModel.AppSettings.FilterSettings,
+                filterBinding,
+                BindingMode.TwoWay);
+            PanelItemsHost.Children.Add(elem);
         }
 
-        private void SetFilterStringSelectionBoxFilter(ref FilterStringSelectionBox elem, string partId, string listBinding, string filterBinding)
+        private void SetFilterStringSelectionBoxFilter(string listBinding, string filterBinding)
         {
-            elem = Template.FindName(partId, this) as FilterStringSelectionBox;
-            if (elem != null)
+            if (PanelItemsHost == null)
             {
-                BindingTools.SetBinding(elem,
-                    FilterStringSelectionBox.ItemsListProperty,
-                    mainModel.DatabaseFilters,
-                    listBinding);
-                BindingTools.SetBinding(elem,
-                    FilterStringSelectionBox.FilterPropertiesProperty,
-                    mainModel.AppSettings.FilterSettings,
-                    filterBinding,
-                    BindingMode.TwoWay);
+                return;
             }
+
+            var elem = new FilterStringSelectionBox();
+            elem.SetResourceReference(FilterStringSelectionBox.StyleProperty, "FilterPanelFilterStringSelectionBox");
+            BindingTools.SetBinding(elem,
+                FilterStringSelectionBox.ItemsListProperty,
+                mainModel.DatabaseFilters,
+                listBinding);
+            BindingTools.SetBinding(elem,
+                FilterStringSelectionBox.FilterPropertiesProperty,
+                mainModel.AppSettings.FilterSettings,
+                filterBinding,
+                BindingMode.TwoWay);
+            PanelItemsHost.Children.Add(elem);
         }
     }
 }

@@ -12,28 +12,33 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public PlatformsCollection(GameDatabase database) : base(type: GameDatabaseCollection.Platforms)
+        public PlatformsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.Platforms)
         {
             db = database;
         }
 
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
+            mapper.Entity<Platform>().Id(a => a.Id, false);
+        }
+
         private void RemoveUsage(Guid platformId)
         {
-            foreach (var game in db.Games.Where(a => a.PlatformId == platformId))
+            foreach (var game in db.Games.Where(a => a.PlatformIds?.Contains(platformId) == true))
             {
-                game.PlatformId = Guid.Empty;
+                game.PlatformIds.Remove(platformId);
                 db.Games.Update(game);
             }
 
             foreach (var emulator in db.Emulators)
             {
-                if (!emulator.Profiles.HasItems())
+                if (!emulator.CustomProfiles.HasItems())
                 {
                     continue;
                 }
 
                 var updated = false;
-                foreach (var profile in emulator.Profiles.Where(a => a.Platforms?.Contains(platformId) == true))
+                foreach (var profile in emulator.CustomProfiles.Where(a => a.Platforms?.Contains(platformId) == true))
                 {
                     profile.Platforms.Remove(platformId);
                     updated = true;

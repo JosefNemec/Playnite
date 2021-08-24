@@ -17,7 +17,6 @@ using Playnite.SDK.Plugins;
 
 namespace Playnite.Metadata.Providers
 {
-
     public class WikipediaSearchItem : GenericItemOption
     {
         public string Title { get; set; }
@@ -49,54 +48,54 @@ namespace Playnite.Metadata.Providers
             this.plugin = plugin;
         }
 
-        public override DateTime? GetReleaseDate()
+        public override ReleaseDate? GetReleaseDate(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.ReleaseDate))
             {
                 return gameData.GameInfo.ReleaseDate;
             }
 
-            return base.GetReleaseDate();
+            return base.GetReleaseDate(args);
         }
 
-        public override List<string> GetDevelopers()
+        public override List<string> GetDevelopers(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.Developers))
             {
                 return gameData.GameInfo.Developers;
             }
 
-            return base.GetDevelopers();
+            return base.GetDevelopers(args);
         }
 
-        public override List<string> GetPublishers()
+        public override List<string> GetPublishers(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.Publishers))
             {
                 return gameData.GameInfo.Publishers;
             }
 
-            return base.GetPublishers();
+            return base.GetPublishers(args);
         }
 
-        public override MetadataFile GetCoverImage()
+        public override MetadataFile GetCoverImage(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.ReleaseDate))
             {
-                return gameData.CoverImage;
+                return gameData.GameInfo.CoverImage;
             }
 
-            return base.GetCoverImage();
+            return base.GetCoverImage(args);
         }
 
-        public override string GetName()
+        public override string GetName(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.Name))
             {
                 return gameData.GameInfo.Name;
             }
 
-            return base.GetName();
+            return base.GetName(args);
         }
 
         private List<MetadataField> GetAvailableFields()
@@ -125,7 +124,7 @@ namespace Playnite.Metadata.Providers
                     fields.Add(MetadataField.ReleaseDate);
                 }
 
-                if (gameData.CoverImage != null)
+                if (gameData.GameInfo.CoverImage != null)
                 {
                     fields.Add(MetadataField.CoverImage);
                 }
@@ -133,7 +132,6 @@ namespace Playnite.Metadata.Providers
 
             return fields;
         }
-
 
         private void GetData()
         {
@@ -297,7 +295,7 @@ namespace Playnite.Metadata.Providers
 
         public GameMetadata ParseGamePage(WikiPage page, string gameName = "")
         {
-            logger.Info("Parsing wiki page " + page.title);            
+            logger.Info("Parsing wiki page " + page.title);
             var gameInfo = new GameInfo();
             var metadata = new GameMetadata() { GameInfo = gameInfo };
             var parser = new HtmlParser();
@@ -380,7 +378,7 @@ namespace Playnite.Metadata.Providers
 
             if (!image.IsNullOrEmpty())
             {
-                metadata.CoverImage = new MetadataFile(image);
+                metadata.GameInfo.CoverImage = new MetadataFile(image);
             }
 
             // Other fields
@@ -397,7 +395,7 @@ namespace Playnite.Metadata.Providers
                 {
                     gameInfo.Developers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()).ToList();
-                    
+
                     continue;
                 }
 
@@ -473,7 +471,7 @@ namespace Playnite.Metadata.Providers
 
                         if (validDate)
                         {
-                            gameInfo.ReleaseDate = dateTime;
+                            gameInfo.ReleaseDate = new ReleaseDate(dateTime);
                             break;
                         }
                     }

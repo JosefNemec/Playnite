@@ -5,22 +5,29 @@ Basics
 
 Playnite can be extended via extensions implemented via scripts and plugins:
 
-- Scripts: [PowerShell](https://docs.microsoft.com/en-us/powershell/) and [IronPython](http://ironpython.net/) scripts are supported.
+- Scripts: [PowerShell](https://docs.microsoft.com/en-us/powershell/) scripts are supported.
 - Plugins: Any .NET Framework compatible language can be used (`C#`, `VB.NET`, `F#` and others).
 
 Extensions fall under several categories of extended functionality that are available based on selected implementation:
 
-| Extension | Scripts | Plugins |
+| Functionality | Scripts | Plugins |
 | -- | :--: | :--: |
-| Executable menu entry | • | • |
+| Adding game and main menu entries | • | • |
 | Reacting to game events | • | • |
+| Adding new UI elements |  | • |
+| Injecting game actions |  | • |
 | Library importer |  | • |
 | Metadata provider |  | • |
 
-- `Executable menu entry` - adds new executable menu entry under main menu's `Scripts` sub sections.
-- `Reacting to game events` - executes code when various game events occurs, like when game is started or stopped for example.
+- `Adding game and main menu entries` - ability to add new executable [menu entries](menus.md) to main menu and game menu.
+- `Reacting to game events` - ability to execute code when various [game events](events.md) occur, like when game is started or stopped for example.
+- `Adding new UI elements` - ability to add new [UI elements](ui.md) to various views and panels.
+- `Injecting game actions` - gives ability to "inject" new Play, Install and Uninstall [game actions](gameActions.md) in real-time.
 - `Library importer` - provides automatic import of games from various sources. For example all currently supported external clients (Steam, GOG, Origin etc.) [are implemented](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins) via this extension type.
 - `Metadata provider` - provides metadata for games in Playnite. Our default metadata provider, IGDB.com, is also [implemented as a metadata plugin](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins/IGDBMetadata).
+
+> [!WARNING] 
+> Automatic installations and updates via `.pext` and `.pthm` files (and via built-in add-on browser/updater) always replace the entire add-on directory completely. Meaning that any files that are not part of the installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See [Data directories](dataDirectory.md) page to learn more about extension directories.
 
 Creating Extensions
 ---------------------
@@ -34,8 +41,8 @@ First create new extension folder inside of Playnite's `Extensions` directory. L
 - Portable version: `Extensions` folder directly inside of Playnite's installation location.
 - Installed version: `%AppData%\Playnite\Extensions` folder.
 
-> [!WARNING] 
-> Automatic installations and updates via `.pext` and `.pthm` files always replace the extension/theme directory completely. Meaning that any files that are not part of the installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See [Data directories](dataDirectory.md) page to learn more about extension directories.
+> [!NOTE]
+> You can load extensions from custom directories by adding them as developer plugins in Playnite's `For developers` settings menu.
 
 ### 2. Manifest file
 
@@ -45,9 +52,9 @@ Resulting folder structure should look something like this:
 ```
 ├──Install directory or %AppData%\Playnite
 │  └── Extensions
-│      └── PluginFolder
+│      └── ExtensionFolder
 │          ├── extension.yaml
-│          └── scriptFileName.py or pluginFileName.dll
+│          └── scriptFileName.psm1 or pluginFileName.dll
 ```
 
 See manifest file [documentation page](extensionsManifest.md) for more information about manifest contents.
@@ -68,4 +75,6 @@ Distribution
 
 Use [Toolbox](../toolbox.md#packing-extensions) utility to package an extension or a theme and distribute `.pext` or `.pthm` file to users.
 
-The best place to share extensions is official Playnite forum, specifically [extension database](https://playnite.link/forum/forum-3.html) sub-forum.
+The best place to share extensions is via [Playnite add-on database](https://github.com/JosefNemec/PlayniteAddonDatabase), submitting an add-on there will make it available in Playnite's built-in add-on browser and will also enable easy add-on installation and updates.
+
+It's also recommended to submit add-on entry to official Playnite forum, specifically [add-on database](https://playnite.link/forum/forum-3.html) sub-forum.

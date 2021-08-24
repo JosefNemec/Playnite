@@ -51,6 +51,9 @@
     <Compile Include="TestPluginSettingsView.xaml.cs">
       <DependentUpon>TestPluginSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestPluginUserControl.xaml.cs">
+      <DependentUpon>TestPluginUserControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj">
@@ -68,6 +71,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TestPluginUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,15 @@
+Id: gambatte
+Name: Gambatte
+Website: 'https://github.com/sinamas/gambatte'
+Profiles:
+  - Name: Game Boy
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_gameboy]
+    ImageExtensions: [gb, dmg, zip, gz]
+    StartupExecutable: ^gambatte\.exe$
+    
+  - Name: Game Boy Color
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_gameboycolor]
+    ImageExtensions: [gbc, sgb, zip, gz]
+    StartupExecutable: ^gambatte\.exe$

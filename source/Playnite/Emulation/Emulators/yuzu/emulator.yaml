@@ -1,0 +1,9 @@
+Id: yuzu
+Name: yuzu
+Website: 'https://yuzu-emu.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_switch]
+    ImageExtensions: [nso, nro, nca, xci, nsp]
+    StartupExecutable: ^yuzu\.exe$

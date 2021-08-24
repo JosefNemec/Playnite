@@ -32,14 +32,8 @@ namespace Playnite.FullscreenApp.Windows
         public RandomGameSelectWindow()
         {
             InitializeComponent();
-            this.Loaded += RandomGameSelectWindow_Loaded;
-
-            var model = FullscreenApplication.Current?.MainModel;
-            if (model != null)
-            {
-                Width = model.WindowWidth;
-                Height = model.WindowHeight;
-            }
+            WindowTools.ConfigureChildWindow(this);
+            Loaded += RandomGameSelectWindow_Loaded;
         }
 
         private void RandomGameSelectWindow_Loaded(object sender, RoutedEventArgs e)

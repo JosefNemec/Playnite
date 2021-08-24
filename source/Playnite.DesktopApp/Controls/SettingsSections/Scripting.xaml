@@ -27,48 +27,50 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
-                       Grid.Row="0" TextWrapping="Wrap" Margin="0,0,0,10" />
-
-            <DockPanel Grid.Row="1" Margin="0,5,0,5" LastChildFill="False">
-                <TextBlock Text="{DynamicResource LOCScriptRuntime}" VerticalAlignment="Center" />
-                <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
-                                  SelectedValue="{Binding Settings.ActionsScriptLanguage}">
-                    <ComboBox.ItemsSource>
-                        <x:Array Type="{x:Type sys:Enum}">
-                            <psdk:ScriptLanguage>Batch</psdk:ScriptLanguage>
-                            <psdk:ScriptLanguage>PowerShell</psdk:ScriptLanguage>
-                            <psdk:ScriptLanguage>IronPython</psdk:ScriptLanguage>
-                        </x:Array>
-                    </ComboBox.ItemsSource>
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+            <DockPanel Grid.Row="0" Margin="0,0,0,10">
                 <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Right"
+                        VerticalAlignment="Center"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                         CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-scripts" />
+                <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
+                           TextWrapping="Wrap" DockPanel.Dock="Left" />
+            </DockPanel>          
+
+            <DockPanel Grid.Row="2" Margin="0,5,0,5" LastChildFill="False">
+                <TextBlock Text="{DynamicResource LOCPreScriptDescription}" VerticalAlignment="Center" />
+                <Button Content="{DynamicResource LOCTestScript}" DockPanel.Dock="Right"
+                        Command="{Binding TestScriptCommand}"
+                        CommandParameter="{Binding Settings.PreScript}"/>
             </DockPanel>
-
-            <TextBlock Text="{DynamicResource LOCPreScriptDescription}" Grid.Row="2" Margin="0,5,0,5" />
             <TextBox AcceptsReturn="True" Grid.Row="3"
+                     FontFamily="{DynamicResource MonospaceFontFamily}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
-                             Text="{Binding Settings.PreScript}" />
+                             Text="{Binding Settings.PreScript, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBlock Text="{DynamicResource LOCGameStartedScriptDescription}" Grid.Row="4" Margin="0,5,0,5" />
+            <DockPanel Grid.Row="4" Margin="0,5,0,5" LastChildFill="False">
+                <TextBlock Text="{DynamicResource LOCGameStartedScriptDescription}" VerticalAlignment="Center" />
+                <Button Content="{DynamicResource LOCTestScript}" DockPanel.Dock="Right"
+                        Command="{Binding TestScriptCommand}"
+                        CommandParameter="{Binding Settings.GameStartedScript}"/>
+            </DockPanel>
             <TextBox AcceptsReturn="True" Grid.Row="5"
+                     FontFamily="{DynamicResource MonospaceFontFamily}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
-                             Text="{Binding Settings.GameStartedScript}"/>
+                             Text="{Binding Settings.GameStartedScript, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Text="{DynamicResource LOCPostScriptDescription}" Grid.Row="6" Margin="0,5,0,5" />
+            <DockPanel Grid.Row="6" Margin="0,5,0,5" LastChildFill="False">
+                <TextBlock Text="{DynamicResource LOCPostScriptDescription}" VerticalAlignment="Center" />
+                <Button Content="{DynamicResource LOCTestScript}" DockPanel.Dock="Right"
+                        Command="{Binding TestScriptCommand}"
+                        CommandParameter="{Binding Settings.PostScript}"/>
+            </DockPanel>
             <TextBox AcceptsReturn="True" Grid.Row="7"
+                     FontFamily="{DynamicResource MonospaceFontFamily}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
-                             Text="{Binding Settings.PostScript}"/>
+                             Text="{Binding Settings.PostScript, UpdateSourceTrigger=PropertyChanged}"/>
         </GridEx>
     </DockPanel>
 </UserControl>

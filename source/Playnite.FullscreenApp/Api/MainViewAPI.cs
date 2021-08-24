@@ -12,6 +12,7 @@ namespace Playnite.FullscreenApp.API
 {
     public class MainViewAPI : IMainViewAPI
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private FullscreenAppViewModel mainModel;
 
         public IEnumerable<Game> SelectedGames
@@ -25,7 +26,7 @@ namespace Playnite.FullscreenApp.API
                 else
                 {
                     return mainModel.SelectedGames?.Select(a => a.Game).ToList();
-                }                
+                }
             }
         }
 
@@ -37,6 +38,24 @@ namespace Playnite.FullscreenApp.API
         public bool OpenPluginSettings(Guid pluginId)
         {
             throw new NotSupportedException("Cannot open plugin settings in Fullscreen mode.");
+        }
+
+        public void SwitchToLibraryView()
+        {
+            throw new NotSupportedException("Not supported in Fullscreen mode.");
+        }
+
+        public void SelectGame(Guid gameId)
+        {
+            var game = mainModel.Database.Games.Get(gameId);
+            if (game == null)
+            {
+                logger.Error($"Can't select game, game ID {gameId} not found.");
+            }
+            else
+            {
+                mainModel.SelectGame(game.Id);
+            }
         }
     }
 }

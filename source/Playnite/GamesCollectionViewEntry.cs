@@ -17,11 +17,15 @@ namespace Playnite
 {
     public class GamesCollectionViewEntry : INotifyPropertyChanged, IDisposable
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private PlayniteSettings settings;
         private PlayniteApplication application;
+
+        // TODO: make these static and update them outside of this class only once.
         private BitmapLoadProperties detailsListIconProperties;
         private BitmapLoadProperties gridViewCoverProperties;
         private BitmapLoadProperties backgroundImageProperties;
+        private BitmapLoadProperties fullscreenListCoverProperties;
 
         public LibraryPlugin LibraryPlugin { get; }
         public Guid Id => Game.Id;
@@ -33,7 +37,11 @@ namespace Playnite
         public ComparableDbItemList<Company> Developers => new ComparableDbItemList<Company>(Game.Developers);
         public ComparableDbItemList<Company> Publishers => new ComparableDbItemList<Company>(Game.Publishers);
         public ComparableDbItemList<Category> Categories => new ComparableDbItemList<Category>(Game.Categories);
-        public DateTime? ReleaseDate => Game.ReleaseDate;
+        public ComparableDbItemList<AgeRating> AgeRatings => new ComparableDbItemList<AgeRating>(Game.AgeRatings);
+        public ComparableDbItemList<Series> Series => new ComparableDbItemList<Series>(Game.Series);
+        public ComparableDbItemList<Region> Regions => new ComparableDbItemList<Region>(Game.Regions);
+        public ComparableDbItemList<Platform> Platforms => new ComparableDbItemList<Platform>(Game.Platforms);
+        public ReleaseDate? ReleaseDate => Game.ReleaseDate;
         public int? ReleaseYear => Game.ReleaseYear;
         public DateTime? LastActivity => Game.LastActivity;
         public ObservableCollection<Link> Links => Game.Links;
@@ -43,8 +51,7 @@ namespace Playnite
         public bool Hidden => Game.Hidden;
         public bool Favorite => Game.Favorite;
         public string InstallDirectory => Game.InstallDirectory;
-        public ObservableCollection<GameAction> OtherActions => Game.OtherActions;
-        public GameAction PlayAction => Game.PlayAction;
+        public ObservableCollection<GameAction> GameActions => Game.GameActions;
         public string DisplayName => Game.Name;
         public string Description => Game.Description;
         public string Notes => Game.Notes;
@@ -54,12 +61,11 @@ namespace Playnite
         public bool IsLaunching => Game.IsLaunching;
         public bool IsRunning => Game.IsRunning;
         public bool IsCustomGame => Game.IsCustomGame;
-        public long Playtime => Game.Playtime;
+        public ulong Playtime => Game.Playtime;
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
-        public long PlayCount => Game.PlayCount;
+        public ulong PlayCount => Game.PlayCount;
         public string Version => Game.Version;
-        public CompletionStatus CompletionStatus => Game.CompletionStatus;
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
         public int? CommunityScore => Game.CommunityScore;
@@ -81,12 +87,13 @@ namespace Playnite
         public List<Guid> DeveloperIds => Game.DeveloperIds;
         public List<Guid> PublisherIds => Game.PublisherIds;
         public List<Guid> TagIds => Game.TagIds;
-        public Guid SeriesId => Game.SeriesId;
-        public Guid AgeRatingId => Game.AgeRatingId;
-        public Guid RegionId => Game.RegionId;
+        public List<Guid> SeriesIds => Game.SeriesIds;
+        public List<Guid> AgeRatingIds => Game.AgeRatingIds;
+        public List<Guid> RegionIds => Game.RegionIds;
         public Guid SourceId => Game.SourceId;
-        public Guid PlatformId => Game.PlatformId;
+        public List<Guid> PlatformIds => Game.PlatformIds;
         public List<Guid> FeatureIds => Game.FeatureIds;
+        public Guid CompletionStatusId => Game.CompletionStatusId;
 
         public object IconObject => GetImageObject(Game.Icon, false);
         public object CoverImageObject => GetImageObject(Game.CoverImage, false);
@@ -106,30 +113,41 @@ namespace Playnite
         public object DefaultDetailsListIconObjectCached => GetDefaultIcon(true, detailsListIconProperties);
         public object DefaultGridViewCoverObjectCached => GetDefaultCoverImage(true, gridViewCoverProperties);
 
-        public Series Series
+        public object FullscreenListItemCoverObject => GetImageObject(
+            Game.CoverImage,
+            settings.Fullscreen.ImageScalerMode != ImageLoadScaling.None,
+            fullscreenListCoverProperties);
+        public object DefaultFullscreenListItemCoverObject => GetDefaultCoverImage(true, fullscreenListCoverProperties);
+
+        public Series Serie
         {
-            get => Game.Series ?? Series.Empty;
-        }
+            get; private set;
+        } = Playnite.SDK.Models.Series.Empty;
 
         public Platform Platform
         {
-            get => Game.Platform ?? Platform.Empty;
-        }
+            get; private set;
+        } = Platform.Empty;
 
         public Region Region
         {
-            get => Game.Region ?? Region.Empty;
-        }
+            get; private set;
+        } = Region.Empty;
 
         public GameSource Source
         {
             get => Game.Source ?? GameSource.Empty;
         }
 
+        public CompletionStatus CompletionStatus
+        {
+            get => Game.CompletionStatus ?? CompletionStatus.Empty;
+        }
+
         public AgeRating AgeRating
         {
-            get => Game.AgeRating ?? AgeRating.Empty;
-        }
+            get; private set;
+        } = AgeRating.Empty;
 
         public Category Category
         {
@@ -183,29 +201,36 @@ namespace Playnite
 
         public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings)
         {
+            application = PlayniteApplication.Current;
             this.settings = settings;
             settings.PropertyChanged += Settings_PropertyChanged;
+            settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
 
-            // Use optimized rendering only for Desktop mode where we know pixel perfect data
-            application = PlayniteApplication.Current;
-            if (application?.Mode == ApplicationMode.Desktop)
+            if (application != null) // Null happens when running in XAML design view
             {
-                detailsListIconProperties = new BitmapLoadProperties(
-                    0,
-                    Convert.ToInt32(settings.DetailsViewListIconSize),
-                    application.DpiScale);
-                gridViewCoverProperties = new BitmapLoadProperties(
-                    Convert.ToInt32(settings.GridItemWidth),
-                    0,
-                    application.DpiScale);
-            }
+                // Use optimized rendering only for Desktop mode where we know pixel perfect data
+                if (application.Mode == ApplicationMode.Desktop)
+                {
+                    detailsListIconProperties = new BitmapLoadProperties(
+                        0,
+                        Convert.ToInt32(settings.DetailsViewListIconSize),
+                        application.DpiScale);
+                    gridViewCoverProperties = new BitmapLoadProperties(
+                        Convert.ToInt32(settings.GridItemWidth),
+                        0,
+                        application.DpiScale,
+                        settings.ImageScalerMode);
+                }
+                else
+                {
+                    fullscreenListCoverProperties = GetFullscreenItemRenderSettings();
+                }
 
-            if (application != null)
-            {
                 backgroundImageProperties = new BitmapLoadProperties(
                     application.CurrentScreen.WorkingArea.Width,
                     0,
-                    application.DpiScale);
+                    application.DpiScale,
+                    settings.ImageScalerMode);
             }
 
             LibraryPlugin = plugin;
@@ -214,30 +239,83 @@ namespace Playnite
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
         }
 
+        private BitmapLoadProperties GetFullscreenItemRenderSettings()
+        {
+            if (application == null)
+            {
+                return null;
+            }
+
+            var dpi = application.DpiScale;
+            var properties = new BitmapLoadProperties(0, 0, null, settings.Fullscreen.ImageScalerMode);
+            if (settings.Fullscreen.HorizontalLayout)
+            {
+                properties.MaxDecodePixelWidth = application.CurrentScreen.Bounds.Width / settings.Fullscreen.Columns;
+                properties.MaxDecodePixelWidth = (int)Math.Round(properties.MaxDecodePixelWidth / dpi.DpiScaleX);
+            }
+            else
+            {
+                properties.MaxDecodePixelHeight = application.CurrentScreen.Bounds.Height / settings.Fullscreen.Rows;
+                properties.MaxDecodePixelHeight = (int)Math.Round(properties.MaxDecodePixelHeight / dpi.DpiScaleY);
+            }
+
+            return properties;
+        }
+
+        private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(FullscreenSettings.HorizontalLayout) ||
+                e.PropertyName == nameof(FullscreenSettings.Columns) ||
+                e.PropertyName == nameof(FullscreenSettings.Rows) ||
+                e.PropertyName == nameof(FullscreenSettings.ImageScalerMode) ||
+                e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay) ||
+                e.PropertyName == nameof(FullscreenSettings.Monitor))
+            {
+                var oldSettings = fullscreenListCoverProperties;
+                fullscreenListCoverProperties = GetFullscreenItemRenderSettings();
+                if (oldSettings != fullscreenListCoverProperties)
+                {
+                    OnPropertyChanged(nameof(FullscreenListItemCoverObject));
+                    OnPropertyChanged(nameof(DefaultFullscreenListItemCoverObject));
+                }
+            }
+        }
+
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (PlayniteApplication.Current?.Mode == ApplicationMode.Desktop)
+            if (application.Mode == ApplicationMode.Desktop)
             {
                 if (e.PropertyName == nameof(PlayniteSettings.DetailsViewListIconSize))
                 {
                     detailsListIconProperties = new BitmapLoadProperties(
                         0,
                         Convert.ToInt32(settings.DetailsViewListIconSize),
-                        PlayniteApplication.Current.DpiScale);
+                        application.DpiScale);
                     OnPropertyChanged(nameof(DetailsListIconObjectCached));
                     OnPropertyChanged(nameof(DefaultDetailsListIconObjectCached));
                 }
 
                 if (e.PropertyName == nameof(PlayniteSettings.GridItemWidth) ||
                     e.PropertyName == nameof(PlayniteSettings.CoverAspectRatio) ||
-                    e.PropertyName == nameof(PlayniteSettings.CoverArtStretch))
+                    e.PropertyName == nameof(PlayniteSettings.CoverArtStretch) ||
+                    e.PropertyName == nameof(PlayniteSettings.ImageScalerMode))
                 {
                     gridViewCoverProperties = new BitmapLoadProperties(
                         Convert.ToInt32(settings.GridItemWidth),
                         0,
-                        PlayniteApplication.Current.DpiScale);
+                        application.DpiScale,
+                        settings.ImageScalerMode);
                     OnPropertyChanged(nameof(GridViewCoverObjectCached));
                     OnPropertyChanged(nameof(DefaultGridViewCoverObjectCached));
+                }
+
+                if (e.PropertyName == nameof(PlayniteSettings.ImageScalerMode))
+                {
+                    backgroundImageProperties = new BitmapLoadProperties(
+                        application.CurrentScreen.WorkingArea.Width,
+                        0,
+                        application.DpiScale,
+                        settings.ImageScalerMode);
                 }
             }
         }
@@ -298,6 +376,38 @@ namespace Playnite
                     return new GamesCollectionViewEntry(game, plugin, settings) { Category = obj };
                 }
             }
+            else if (colGroupType == typeof(Platform))
+            {
+                var obj = database.Platforms.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Platform = obj };
+                }
+            }
+            else if (colGroupType == typeof(AgeRating))
+            {
+                var obj = database.AgeRatings.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { AgeRating = obj };
+                }
+            }
+            else if (colGroupType == typeof(Series))
+            {
+                var obj = database.Series.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Serie = obj };
+                }
+            }
+            else if (colGroupType == typeof(Region))
+            {
+                var obj = database.Regions.Get(groupObjId);
+                if (obj != null)
+                {
+                    return new GamesCollectionViewEntry(game, plugin, settings) { Region = obj };
+                }
+            }
 
             return null;
         }
@@ -306,6 +416,7 @@ namespace Playnite
         {
             Game.PropertyChanged -= Game_PropertyChanged;
             settings.PropertyChanged -= Settings_PropertyChanged;
+            settings.Fullscreen.PropertyChanged -= Fullscreen_PropertyChanged;
         }
 
         private void Game_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -378,7 +489,7 @@ namespace Playnite
             }
             else if (settings.DefaultCoverSource == DefaultCoverSourceOptions.Platform && Platform?.Cover.IsNullOrEmpty() == false)
             {
-                return ImageSourceManager.GetImage(Platform.Cover, cached);
+                return ImageSourceManager.GetImage(Platform.Cover, cached, loadProperties);
             }
             else
             {
@@ -427,7 +538,7 @@ namespace Playnite
                 }
                 else
                 {
-                    return new BitmapLoadProperties(loadProperties.MaxDecodePixelWidth, 0, loadProperties.DpiScale)
+                    return new BitmapLoadProperties(loadProperties.MaxDecodePixelWidth, 0, loadProperties.DpiScale, loadProperties.Scaling)
                     {
                         Source = imagePath
                     };
@@ -447,13 +558,14 @@ namespace Playnite
 
         private char GetNameGroup()
         {
-            if (Game.Name.IsNullOrEmpty())
+            var nameMatch = Game.SortingName.IsNullOrEmpty() ? Game.Name : Game.SortingName;
+            if (nameMatch.IsNullOrEmpty())
             {
                 return '#';
             }
             else
             {
-                var firstChar = char.ToUpper(Game.Name[0]);
+                var firstChar = char.ToUpper(nameMatch[0]);
                 return char.IsLetter(firstChar) ? firstChar : '#';
             }
         }

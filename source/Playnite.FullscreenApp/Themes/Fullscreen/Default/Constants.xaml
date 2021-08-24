@@ -28,7 +28,7 @@
     <SolidColorBrush x:Key="SelectionLightBrush" Color="{DynamicResource SelectionLightColor}" />
     <SolidColorBrush x:Key="OverlayBrush" Color="{DynamicResource OverlayColor}" />
 
-    <sys:Double x:Key="FontSizeSmall">20</sys:Double>
+    <sys:Double x:Key="FontSizeSmall">18</sys:Double>
     <sys:Double x:Key="FontSize">22</sys:Double>
 
     <sys:Double x:Key="FilterPanelWidth">300</sys:Double>
@@ -56,9 +56,9 @@
         <GradientStop Color="#AA0B1027" Offset="1.0"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="OverlayMenuBackgroundBrush" StartPoint="0.5,-0.5" EndPoint="1,1.5" >
+    <LinearGradientBrush x:Key="OverlayMenuBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5,1.5" >
         <GradientStop Color="#FF091F51" Offset="0"/>
-        <GradientStop Color="#FF0B1027" Offset="1.0"/>
+        <GradientStop Color="#FF000623" Offset="1.0"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="SelectionBrush" StartPoint="0.5,-0.5" EndPoint="1,1.5" >
@@ -70,4 +70,6 @@
         <GradientStop Color="#00091F51" Offset="0.0"/>
         <GradientStop Color="#EE0B1027" Offset="0.8"/>
     </LinearGradientBrush>
+    
+    <SolidColorBrush x:Key="WarningBrush" Color="#ff6b6b" />
 </ResourceDictionary>

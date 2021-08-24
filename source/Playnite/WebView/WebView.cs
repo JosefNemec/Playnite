@@ -10,35 +10,39 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
 using Playnite.SDK.Events;
+using CefSharp.Wpf.Rendering.Experimental;
 
 namespace Playnite.WebView
 {
     public class WebView : WebViewBase, IWebView
     {
         private readonly SynchronizationContext context;
-
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
-
         private WebViewWindow window;
 
         public bool CanExecuteJavascriptInMainFrame => window.Browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 
-        public WebView(int width, int height) : this(width, height, Colors.Transparent)
+        public WebView(int width, int height, bool useCompositionRenderer = false) : this(width, height, Colors.Transparent, useCompositionRenderer)
         {
         }
 
-        public WebView(int width, int height, Color background)
+        public WebView(int width, int height, Color background, bool useCompositionRenderer = false)
         {
             context = SynchronizationContext.Current;
             window = new WebViewWindow();
             window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;
             window.Browser.TitleChanged += Browser_TitleChanged;
+            if (useCompositionRenderer)
+            {
+                window.Browser.RenderHandler = new CompositionTargetRenderHandler(window.Browser, window.Browser.DpiScaleFactor, window.Browser.DpiScaleFactor);
+            }
+
             window.Owner = WindowManager.CurrentWindow;
             window.Width = width;
             window.Height = height;
-            window.Background = new SolidColorBrush(background);
+            window.PanelContent.Background = new SolidColorBrush(background);
         }
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)

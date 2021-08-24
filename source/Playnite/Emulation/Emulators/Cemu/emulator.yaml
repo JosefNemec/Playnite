@@ -1,0 +1,9 @@
+Id: cemu
+Name: Cemu
+Website: 'https://cemu.info/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-g "{ImagePath}" -f'
+    Platforms: [nintendo_wiiu]
+    ImageExtensions: [wud, wux, rpx]
+    StartupExecutable: ^cemu.*\.exe$

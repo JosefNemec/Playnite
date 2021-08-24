@@ -1,0 +1,14 @@
+Id: fceux
+Name: FCEUX
+Website: 'http://www.fceux.com'
+Profiles:
+  - Name: NES 32bit
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, zip, rar, tar, nes, fds, nsf, unf, nez, unif]
+    StartupExecutable: ^fceux\.exe$
+  - Name: NES 64bit
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, zip, rar, tar, nes, fds, nsf, unf, nez, unif]
+    StartupExecutable: ^fceux64\.exe$

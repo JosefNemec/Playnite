@@ -1,0 +1,33 @@
+Id: winvice
+Name: WinVice
+Website: 'https://vice-emu.sourceforge.io/'
+Profiles:      
+  - Name: Commodore 128
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, d1m, d2m, d4m, p64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+    StartupExecutable: ^x128\.exe$
+
+  - Name: Commodore 64
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, d1m, d2m, d4m, p64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+    StartupExecutable: ^x64\.exe$
+
+  - Name: Commodore 64 (accurate)
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, d1m, d2m, d4m, p64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+    StartupExecutable: ^x64sc\.exe$
+
+  - Name: Commodore PLUS4
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [commodore_plus4]
+    ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64,  d1m, d2m, d4m, p64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+    StartupExecutable: ^xplus4\.exe$
+
+  - Name: Commodore VIC20
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [commodore_vci20]
+    ImageExtensions: [d64, d71, d80, d81, d82, g64, g41, x64, d1m, d2m, d4m, p64, t64, tap, prg, p00, crt, bin, zip, gz, d6z, d7z, d8z, g6z, g4z, x6z]
+    StartupExecutable: ^xvic\.exe$

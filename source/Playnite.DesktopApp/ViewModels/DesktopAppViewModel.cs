@@ -32,60 +32,21 @@ using System.Windows.Media;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Controls;
 using System.Diagnostics;
+using Playnite.SDK.Events;
+using Playnite.Emulators;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public class SideBarItem : ObservableObject
+    public partial class DesktopAppViewModel : MainViewModelBase, IDisposable
     {
-        public ApplicationView ViewSource { get; set; }
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public RelayCommand<SideBarItem> Command { get; set; }
-        public object CommandParameter { get; set; }
-        public object ImageObject
-        {
-            get
-            {
-                if (Image.IsNullOrEmpty())
-                {
-                    return null;
-                }
-                else
-                {
-                    return MenuHelpers.GetIcon(Image, default, default);
-                }
-            }
-        }
-
-        private bool selected;
-        public bool Selected
-        {
-            get => selected;
-            set
-            {
-                selected = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    public class DesktopAppViewModel : MainViewModelBase, IDisposable
-    {
-        public static ILogger Logger = LogManager.GetLogger();
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
         protected bool ignoreSelectionChanges = false;
         private readonly SynchronizationContext context;
-        private PlayniteApplication application;
         private Controls.LibraryStatistics statsView;
         private Controls.Views.Library libraryView;
 
-        public PlayniteAPI PlayniteApi { get; set;  }
-        public ExtensionFactory Extensions { get; set; }
         public IWindowFactory Window { get; }
-        public IDialogsFactory Dialogs { get; }
-        public IResourceProvider Resources { get; }
-        public GameDatabase Database { get; set; }
         public DesktopGamesEditor GamesEditor { get; }
 
         private Control activeView;
@@ -95,17 +56,6 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 activeView = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<SideBarItem> appViewItems;
-        public ObservableCollection<SideBarItem> AppViewItems
-        {
-            get => appViewItems;
-            set
-            {
-                appViewItems = value;
                 OnPropertyChanged();
             }
         }
@@ -209,17 +159,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private DesktopCollectionView gamesView;
-        public new DesktopCollectionView GamesView
-        {
-            get => gamesView;
-            set
-            {
-                gamesView = value;
-                OnPropertyChanged();
-            }
-        }
-
         private List<ThirdPartyTool> thirdPartyTools = new List<ThirdPartyTool>();
         public List<ThirdPartyTool> ThirdPartyTools
         {
@@ -227,61 +166,6 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 thirdPartyTools = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool gameAdditionAllowed = true;
-        public bool GameAdditionAllowed
-        {
-            get => gameAdditionAllowed;
-            set
-            {
-                gameAdditionAllowed = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string progressStatus;
-        public new string ProgressStatus
-        {
-            get => progressStatus;
-            set
-            {
-                progressStatus = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double progressValue;
-        public new double ProgressValue
-        {
-            get => progressValue;
-            set
-            {
-                progressValue = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double progressTotal;
-        public new double ProgressTotal
-        {
-            get => progressTotal;
-            set
-            {
-                progressTotal = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool progressVisible = false;
-        public new bool ProgressVisible
-        {
-            get => progressVisible;
-            set
-            {
-                progressVisible = value;
                 OnPropertyChanged();
             }
         }
@@ -325,17 +209,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private PlayniteSettings appSettings;
-        public PlayniteSettings AppSettings
-        {
-            get => appSettings;
-            set
-            {
-                appSettings = value;
-                OnPropertyChanged();
-            }
-        }
-
         private DatabaseStats gamesStats;
         public DatabaseStats GamesStats
         {
@@ -343,17 +216,6 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 gamesStats = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private DatabaseFilter databaseFilters;
-        public DatabaseFilter DatabaseFilters
-        {
-            get => databaseFilters;
-            set
-            {
-                databaseFilters = value;
                 OnPropertyChanged();
             }
         }
@@ -369,80 +231,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        #region General Commands
-        public RelayCommand<object> ToggleExplorerPanelCommand { get; private set; }
-        public RelayCommand<object> ToggleFilterPanelCommand { get; private set; }
-        public RelayCommand<object> OpenFilterPanelCommand { get; private set; }
-        public RelayCommand<object> CloseFilterPanelCommand { get; private set; }
-        public RelayCommand<object> CloseNotificationPanelCommand { get; private set; }
-        public RelayCommand<ThirdPartyTool> ThirdPartyToolOpenCommand { get; private set; }
-        public RelayCommand<object> UpdateGamesCommand { get; private set; }
-        public RelayCommand<object> OpenSteamFriendsCommand { get; private set; }
-        public RelayCommand<object> ReportIssueCommand { get; private set; }
-        public RelayCommand<object> ShutdownCommand { get; private set; }
-        public RelayCommand<object> ShowWindowCommand { get; private set; }
-        public RelayCommand<CancelEventArgs> WindowClosingCommand { get; private set; }
-        public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
-        public RelayCommand<object> OpenAboutCommand { get; private set; }
-        public RelayCommand<object> OpenEmulatorsCommand { get; private set; }
-        public RelayCommand<object> OpenSettingsCommand { get; private set; }
-        public RelayCommand<object> AddCustomGameCommand { get; private set; }
-        public RelayCommand<object> AddInstalledGamesCommand { get; private set; }
-        public RelayCommand<object> AddEmulatedGamesCommand { get; private set; }
-        public RelayCommand<object> AddWindowsStoreGamesCommand { get; private set; }
-        public RelayCommand<object> OpenFullScreenCommand { get; private set; }
-        public RelayCommand<object> OpenFullScreenFromControllerCommand { get; private set; }
-        public RelayCommand<object> CancelProgressCommand { get; private set; }
-        public RelayCommand<object> ClearMessagesCommand { get; private set; }
-        public RelayCommand<object> DownloadMetadataCommand { get; private set; }
-        public RelayCommand<object> OpenSoftwareToolsCommand { get; private set; }
-        public RelayCommand<object> ClearFiltersCommand { get; private set; }
-        public RelayCommand<object> RemoveGameSelectionCommand { get; private set; }
-        public RelayCommand<ExtensionFunction> InvokeExtensionFunctionCommand { get; private set; }
-        public RelayCommand<object> ReloadScriptsCommand { get; private set; }
-        public RelayCommand<GamesCollectionViewEntry> ShowGameSideBarCommand { get; private set; }
-        public RelayCommand<object> CloseGameSideBarCommand { get; private set; }
-        public RelayCommand<object> OpenSearchCommand { get; private set; }
-        public RelayCommand<object> CheckForUpdateCommand { get; private set; }
-        public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
-        public RelayCommand<object> OpenLibraryIntegrationsConfigCommand { get; private set; }
-        public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
-        public RelayCommand<SideBarItem> ChangeAppViewCommand { get; private set; }
-        public RelayCommand<object> RestartInSafeMode { get; private set; }
-        #endregion
-
-        #region Game Commands
-        public RelayCommand<Game> StartGameCommand { get; private set; }
-        public RelayCommand<AppSoftware> StartSoftwareToolCommand { get; private set; }
-        public RelayCommand<Game> InstallGameCommand { get; private set; }
-        public RelayCommand<Game> UninstallGameCommand { get; private set; }
-        public RelayCommand<object> StartSelectedGameCommand { get; private set; }
-        public RelayCommand<object> EditSelectedGamesCommand { get; private set; }
-        public RelayCommand<object> RemoveSelectedGamesCommand { get; private set; }
-        public RelayCommand<Game> EditGameCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> EditGamesCommand { get; private set; }
-        public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
-        public RelayCommand<Game> CreateDesktopShortcutCommand { get; private set; }
-        public RelayCommand<List<Game>> CreateDesktopShortcutsCommand { get; private set; }
-        public RelayCommand<Game> OpenManualCommand { get; private set; }
-        public RelayCommand<Game> ToggleFavoritesCommand { get; private set; }
-        public RelayCommand<Game> ToggleVisibilityCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> RemoveAsFavoritesCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
-        public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
-        public RelayCommand<Tuple<Game, CompletionStatus>> SetGameCompletionStatusCommand { get; private set; }
-        public RelayCommand<Tuple<IEnumerable<Game>, CompletionStatus>> SetGamesCompletionStatusCommand { get; private set; }
-        public RelayCommand<Game> RemoveGameCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
-        public RelayCommand<object> SelectRandomGameCommand { get; private set; }
-        #endregion
-
-        public DesktopAppViewModel()
+        public DesktopAppViewModel() : base(null, null, null, null, null, null)
         {
-            InitializeCommands();
         }
 
         public DesktopAppViewModel(
@@ -454,499 +244,18 @@ namespace Playnite.DesktopApp.ViewModels
             DesktopGamesEditor gamesEditor,
             PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app)
+            PlayniteApplication app) : base(database, app, dialogs, playniteApi, resources, extensions)
         {
             context = SynchronizationContext.Current;
-            application = app;
             Window = window;
-            Dialogs = dialogs;
-            Resources = resources;
-            Database = database;
             GamesEditor = gamesEditor;
             AppSettings = settings;
-            PlayniteApi = playniteApi;
-            Extensions = extensions;
-            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested; ;
+            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
-        }
-
-        private void InitializeCommands()
-        {
-            OpenSearchCommand = new RelayCommand<object>((game) =>
-            {
-                if (SearchOpened)
-                {
-                    // The binding sometimes breaks when main window is restored from minimized state.
-                    // This fixes it.
-                    SearchOpened = false;
-                }
-
-                SearchOpened = true;
-            }, new KeyGesture(Key.F, ModifierKeys.Control));
-
-            ToggleExplorerPanelCommand = new RelayCommand<object>((game) =>
-            {
-                AppSettings.ExplorerPanelVisible = !AppSettings.ExplorerPanelVisible;
-            }, new KeyGesture(Key.E, ModifierKeys.Control));
-
-            ToggleFilterPanelCommand = new RelayCommand<object>((game) =>
-            {
-                AppSettings.FilterPanelVisible = !AppSettings.FilterPanelVisible;
-            }, new KeyGesture(Key.G, ModifierKeys.Control));
-
-            OpenFilterPanelCommand = new RelayCommand<object>((game) =>
-            {
-                AppSettings.FilterPanelVisible = true;
-            });
-
-            CloseFilterPanelCommand = new RelayCommand<object>((game) =>
-            {
-                AppSettings.FilterPanelVisible = false;
-            });
-
-            CloseNotificationPanelCommand = new RelayCommand<object>((game) =>
-            {
-                AppSettings.NotificationPanelVisible = false;
-            });
-
-            ThirdPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
-            {
-                StartThirdPartyTool(tool);
-            });
-
-            UpdateGamesCommand = new RelayCommand<object>((a) =>
-            {
-#pragma warning disable CS4014
-                UpdateDatabase(AppSettings.DownloadMetadataOnImport);
-#pragma warning restore CS4014
-            }, (a) => GameAdditionAllowed,
-            new KeyGesture(Key.F5));
-
-            OpenSteamFriendsCommand = new RelayCommand<object>((a) =>
-            {
-                OpenSteamFriends();
-            });
-
-            ReportIssueCommand = new RelayCommand<object>((a) =>
-            {
-                ReportIssue();
-            });
-
-            ShutdownCommand = new RelayCommand<object>((a) =>
-            {
-                if (GlobalTaskHandler.IsActive)
-                {
-                    if (Dialogs.ShowMessage(
-                        Resources.GetString("LOCBackgroundProgressCancelAskExit"),
-                        Resources.GetString("LOCCrashClosePlaynite"),
-                        MessageBoxButton.YesNo) != MessageBoxResult.Yes)
-                    {
-                        return;
-                    }
-                }
-
-                ignoreCloseActions = true;
-                ShutdownApp();
-            }, new KeyGesture(Key.Q, ModifierKeys.Alt));
-
-            ShowWindowCommand = new RelayCommand<object>((a) =>
-            {
-                RestoreWindow();
-            });
-
-            WindowClosingCommand = new RelayCommand<CancelEventArgs>((args) =>
-            {
-                OnClosing(args);
-            });
-
-            FileDroppedCommand = new RelayCommand<DragEventArgs>((args) =>
-            {
-                OnFileDropped(args);
-            });
-
-            OpenAboutCommand = new RelayCommand<object>((a) =>
-            {
-                OpenAboutWindow(new AboutViewModel(new AboutWindowFactory(), Dialogs, Resources));
-            }, new KeyGesture(Key.F1));
-
-            OpenEmulatorsCommand = new RelayCommand<object>((a) =>
-            {
-                ConfigureEmulators(
-                    new EmulatorsViewModel(Database,
-                    new EmulatorsWindowFactory(),
-                    Dialogs,
-                    Resources));
-            }, (a) => Database?.IsOpen == true,
-            new KeyGesture(Key.T, ModifierKeys.Control));
-
-            OpenSoftwareToolsCommand = new RelayCommand<object>((a) =>
-            {
-                ConfigureSoftwareTools(new ToolsConfigViewModel(
-                    Database,
-                    new ToolsConfigWindowFactory(),
-                    Dialogs,
-                    Resources));
-            }, (a) => Database?.IsOpen == true);
-
-            AddCustomGameCommand = new RelayCommand<object>((a) =>
-            {
-                AddCustomGame(new GameEditWindowFactory());
-            }, (a) => Database?.IsOpen == true,
-            new KeyGesture(Key.Insert));
-
-            AddInstalledGamesCommand = new RelayCommand<object>((a) =>
-            {
-                ImportInstalledGames(
-                    new InstalledGamesViewModel(
-                    new InstalledGamesWindowFactory(),
-                    Dialogs), null);
-            }, (a) => Database?.IsOpen == true);
-
-            AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
-            {
-                ImportEmulatedGames(
-                    new EmulatorImportViewModel(Database,
-                    EmulatorImportViewModel.DialogType.GameImport,
-                    new EmulatorImportWindowFactory(),
-                    Dialogs,
-                    Resources));
-            }, (a) => Database?.IsOpen == true,
-            new KeyGesture(Key.Q, ModifierKeys.Control));
-
-            AddWindowsStoreGamesCommand = new RelayCommand<object>((a) =>
-            {
-                ImportWindowsStoreGames(
-                    new InstalledGamesViewModel(
-                    new InstalledGamesWindowFactory(),
-                    Dialogs));
-            }, (a) => Database?.IsOpen == true);
-
-            OpenFullScreenCommand = new RelayCommand<object>((a) =>
-            {
-                SwitchToFullscreenMode();
-            }, new KeyGesture(Key.F11));
-
-            OpenFullScreenFromControllerCommand = new RelayCommand<object>((a) =>
-            {
-                if (AppSettings.GuideButtonOpensFullscreen)
-                {
-                    SwitchToFullscreenMode();
-                }
-            }, new KeyGesture(Key.F11));
-
-            CancelProgressCommand = new RelayCommand<object>((a) =>
-            {
-                CancelProgress();
-            }, (a) => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
-
-            ClearMessagesCommand = new RelayCommand<object>((a) =>
-            {
-                ClearMessages();
-            }, (a) => PlayniteApi?.Notifications?.Count > 0);
-
-            DownloadMetadataCommand = new RelayCommand<object>((a) =>
-            {
-                DownloadMetadata(new MetadataDownloadViewModel(new MetadataDownloadWindowFactory()));
-            }, (a) => GameAdditionAllowed,
-            new KeyGesture(Key.D, ModifierKeys.Control));
-
-            ClearFiltersCommand = new RelayCommand<object>((a) =>
-            {
-                ClearFilters();
-            });
-
-            CheckForUpdateCommand = new RelayCommand<object>((a) =>
-            {
-                CheckForUpdate();
-            });
-
-            OpenDbFieldsManagerCommand = new RelayCommand<object>((a) =>
-            {
-                ConfigureDatabaseFields(
-                        new DatabaseFieldsManagerViewModel(
-                            Database,
-                            new DatabaseFieldsManagerWindowFactory(),
-                            Dialogs,
-                            Resources));
-            }, (a) => GameAdditionAllowed,
-            new KeyGesture(Key.W, ModifierKeys.Control));
-
-            OpenLibraryIntegrationsConfigCommand = new RelayCommand<object>((a) =>
-            {
-                OpenIntegrationSettings(
-                    new LibraryIntegrationsViewModel(Database,
-                    AppSettings,
-                    new LibraryIntegrationsWindowFactory(),
-                    Dialogs,
-                    Resources,
-                    Extensions,
-                    application));
-            });
-
-            UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>
-            {
-                UpdateLibrary(a);
-            }, (a) => GameAdditionAllowed);
-
-            RemoveGameSelectionCommand = new RelayCommand<object>((a) =>
-            {
-                RemoveGameSelection();
-            });
-
-            InvokeExtensionFunctionCommand = new RelayCommand<ExtensionFunction>((f) =>
-            {
-                if (!Extensions.InvokeExtension(f, out var error))
-                {
-                    var message = error.Message;
-                    if (error is ScriptRuntimeException err)
-                    {
-                        message = err.Message + "\n\n" + err.ScriptStackTrace;
-                    }
-
-                    Dialogs.ShowMessage(
-                         message,
-                         Resources.GetString("LOCScriptError"),
-                         MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            });
-
-            ReloadScriptsCommand = new RelayCommand<object>((f) =>
-            {
-                Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins, application.CmdLine.SafeStartup);
-            }, new KeyGesture(Key.F12));
-
-            ShowGameSideBarCommand = new RelayCommand<GamesCollectionViewEntry>((f) =>
-            {
-                AppSettings.GridViewSideBarVisible = true;
-                SelectedGame = f;
-            });
-
-            CloseGameSideBarCommand = new RelayCommand<object>((f) =>
-            {
-                AppSettings.GridViewSideBarVisible = false;
-            });
-
-            OpenSettingsCommand = new RelayCommand<object>((a) =>
-            {
-                OpenSettings(
-                    new SettingsViewModel(Database,
-                    AppSettings,
-                    new SettingsWindowFactory(),
-                    Dialogs,
-                    Resources,
-                    Extensions,
-                    application));
-            }, new KeyGesture(Key.F4));
-
-            StartGameCommand = new RelayCommand<Game>((game) =>
-            {
-                if (game != null)
-                {
-                    GamesEditor.PlayGame(game);
-                }
-                else if (SelectedGame != null)
-                {
-                    GamesEditor.PlayGame(SelectedGame.Game);
-                }
-            });
-
-            StartSoftwareToolCommand = new RelayCommand<AppSoftware>((app) =>
-            {
-                StartSoftwareTool(app);
-            });
-
-            InstallGameCommand = new RelayCommand<Game>((game) =>
-            {
-                if (game != null)
-                {
-                    GamesEditor.InstallGame(game);
-                }
-                else if (SelectedGame != null)
-                {
-                    GamesEditor.InstallGame(SelectedGame.Game);
-                }
-            });
-
-            UninstallGameCommand = new RelayCommand<Game>((game) =>
-            {
-                if (game != null)
-                {
-                    GamesEditor.UnInstallGame(game);
-                }
-                else if (SelectedGame != null)
-                {
-                    GamesEditor.UnInstallGame(SelectedGame.Game);
-                }
-            });
-
-            EditSelectedGamesCommand = new RelayCommand<object>((a) =>
-            {
-                if (SelectedGames?.Count() > 1)
-                {
-                    ignoreSelectionChanges = true;
-                    try
-                    {
-                        GamesEditor.EditGames(SelectedGames.Select(g => g.Game).ToList());
-                    }
-                    finally
-                    {
-                        ignoreSelectionChanges = false;
-                    }
-                }
-                else
-                {
-                    GamesEditor.EditGame(SelectedGame.Game);
-                }
-            },
-            (a) => SelectedGame != null,
-            new KeyGesture(Key.F3));
-
-            StartSelectedGameCommand = new RelayCommand<object>((a) =>
-            {
-                GamesEditor.PlayGame(SelectedGame.Game);
-            },
-            (a) => SelectedGames?.Count() == 1,
-            new KeyGesture(Key.Enter));
-
-            RemoveSelectedGamesCommand = new RelayCommand<object>((a) =>
-            {
-                if (SelectedGames?.Count() > 1)
-                {
-                    GamesEditor.RemoveGames(SelectedGames.Select(g => g.Game).ToList());
-                }
-                else
-                {
-                    GamesEditor.RemoveGame(SelectedGame.Game);
-                }
-            },
-            (a) => SelectedGame != null,
-            new KeyGesture(Key.Delete));
-
-            EditGameCommand = new RelayCommand<Game>((a) =>
-            {
-                if (GamesEditor.EditGame(a) == true)
-                {
-                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
-                }
-            });
-
-            EditGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
-            {
-                ignoreSelectionChanges = true;
-                try
-                {
-                    GamesEditor.EditGames(a.ToList());
-                }
-                finally
-                {
-                    ignoreSelectionChanges = false;
-                }
-            });
-
-            OpenGameLocationCommand = new RelayCommand<Game>((a) =>
-            {
-                GamesEditor.OpenGameLocation(a);
-            });
-
-            CreateDesktopShortcutCommand = new RelayCommand<Game>((a) =>
-            {
-                GamesEditor.CreateDesktopShortcut(a);
-            });
-
-            CreateDesktopShortcutsCommand = new RelayCommand<List<Game>>((a) =>
-            {
-                GamesEditor.CreateDesktopShortcut(a);
-            });
-
-            OpenManualCommand = new RelayCommand<Game>((a) =>
-            {
-                GamesEditor.OpenManual(a);
-            });
-
-            ToggleFavoritesCommand = new RelayCommand<Game>((a) =>
-            {
-                GamesEditor.ToggleFavoriteGame(a);
-            });
-
-            ToggleVisibilityCommand = new RelayCommand<Game>((a) =>
-            {
-                GamesEditor.ToggleHideGame(a);
-            });
-
-            AssignGameCategoryCommand = new RelayCommand<Game>((a) =>
-            {
-                if (GamesEditor.SetGameCategories(a) == true)
-                {
-                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
-                }
-            });
-
-            AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
-            {
-                GamesEditor.SetGamesCategories(a.ToList());
-            });
-
-            SetGameCompletionStatusCommand = new RelayCommand<Tuple<Game, CompletionStatus>>((a) =>
-            {
-                GamesEditor.SetCompletionStatus(a.Item1, a.Item2);
-            });
-
-            SetGamesCompletionStatusCommand = new RelayCommand<Tuple<IEnumerable<Game>, CompletionStatus>>((a) =>
-            {
-                GamesEditor.SetCompletionStatus(a.Item1.ToList(), a.Item2);
-            });
-
-            RemoveGameCommand = new RelayCommand<Game>((a) =>
-            {
-                GamesEditor.RemoveGame(a);
-            },
-            new KeyGesture(Key.Delete));
-
-            RemoveGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
-            {
-                GamesEditor.RemoveGames(a.ToList());
-            },
-            new KeyGesture(Key.Delete));
-
-            SetAsFavoritesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
-            {
-                GamesEditor.SetFavoriteGames(a.ToList(), true);
-            });
-
-            RemoveAsFavoritesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
-            {
-                GamesEditor.SetFavoriteGames(a.ToList(), false);
-            });
-
-            SetAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>
-            {
-                GamesEditor.SetHideGames(a.ToList(), true);
-            });
-
-            RemoveAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>
-            {
-                GamesEditor.SetHideGames(a.ToList(), false);
-            });
-
-            SelectRandomGameCommand = new RelayCommand<object>((a) =>
-            {
-                PlayRandomGame();
-            }, (a) => Database?.IsOpen == true,
-            new KeyGesture(Key.F6));
-
-            ChangeAppViewCommand = new RelayCommand<SideBarItem>((item) =>
-            {
-                AppSettings.CurrentApplicationView = item.ViewSource;
-            });
-
-            RestartInSafeMode = new RelayCommand<object>((a) =>
-            {
-                RestartAppSafe();
-            });
         }
 
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
@@ -975,22 +284,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.CurrentApplicationView))
-            {
-                AppViewItems.ForEach(a => a.Selected = false);
-
-                if (AppSettings.CurrentApplicationView == ApplicationView.Statistics)
-                {
-                    AppViewItems[1].Selected = true;
-                    ActiveView = statsView;
-                    LibraryStats.Calculate();
-                }
-                else if (AppSettings.CurrentApplicationView == ApplicationView.Library)
-                {
-                    AppViewItems[0].Selected = true;
-                    ActiveView = libraryView;
-                }
-            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -1036,51 +329,24 @@ namespace Playnite.DesktopApp.ViewModels
         public void ShutdownApp()
         {
             Dispose();
-            application.Quit();
+            App.Quit();
         }
 
         public void RestartAppSafe()
         {
             CloseView();
-            application.Restart(new CmdLineOptions { SafeStartup = true });
+            App.Restart(new CmdLineOptions { SafeStartup = true });
         }
 
         protected void InitializeView()
         {
-            LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, (g) =>
+            LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, PlayniteApi, (g) =>
             {
-                appSettings.CurrentApplicationView = ApplicationView.Library;
+                SwitchToLibraryView();
                 SelectedGame = GamesView.Items.FirstOrDefault(a => g.Id == a.Id);
             });
 
-            libraryView = new Controls.Views.Library(this);
-            statsView = new Controls.LibraryStatistics(LibraryStats);
-
-            AppViewItems = new ObservableCollection<SideBarItem>()
-            {
-                new SideBarItem
-                {
-                    Image = "SidebarLibraryIcon",
-                    Name = Resources.GetString(LOC.Library),
-                    Selected = true,
-                    ViewSource = ApplicationView.Library
-                },
-                new SideBarItem
-                {
-                    Image = "SidebarStatisticsIcon",
-                    Name = Resources.GetString(LOC.Statistics),
-                    Selected = false,
-                    ViewSource = ApplicationView.Statistics
-                }
-            };
-
-            AppViewItems.ForEach(a =>
-            {
-                a.CommandParameter = a;
-                a.Command = ChangeAppViewCommand;
-            });
-
-            AppSettings.CurrentApplicationView = ApplicationView.Library;
+            LoadSideBarItems();
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
 
@@ -1127,160 +393,37 @@ namespace Playnite.DesktopApp.ViewModels
 
             try
             {
-                application.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
+                App.Discord = new DiscordManager(AppSettings.DiscordPresenceEnabled);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to initialize Discord manager.");
             }
-        }
 
-        public async Task UpdateDatabase(bool metaForNewGames)
-        {
-            if (!Database.IsOpen)
+            LoadSoftwareToolsSidebarItems();
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            if (AppSettings.SelectedFilterPreset != Guid.Empty)
             {
-                Logger.Error("Cannot load new games, database is not loaded.");
-                Dialogs.ShowErrorMessage(Resources.GetString("LOCDatabaseNotOpenedError"), Resources.GetString("LOCDatabaseErroTitle"));
-                return;
-            }
-
-            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
-            {
-                GlobalTaskHandler.CancelToken.Cancel();
-                await GlobalTaskHandler.ProgressTask;
-            }
-
-            GameAdditionAllowed = false;
-
-            try
-            {
-                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(() =>
-                {
-                    DatabaseFilters.IgnoreDatabaseUpdates = true;
-                    var addedGames = new List<Game>();
-                    ProgressVisible = true;
-                    ProgressValue = 0;
-                    ProgressTotal = 1;
-
-                    foreach (var plugin in Extensions.LibraryPlugins)
-                    {
-                        if (GlobalTaskHandler.CancelToken.IsCancellationRequested)
-                        {
-                            return;
-                        }
-
-                        Logger.Info($"Importing games from {plugin.Name} plugin.");
-                        ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), plugin.Name);
-
-                        try
-                        {
-                            addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, AppSettings.ImportExclusionList.Items));
-                            RemoveMessage($"{plugin.Id} - download");
-                        }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            Logger.Error(e, $"Failed to import games from plugin: {plugin.Name}");
-                            AddMessage(new NotificationMessage(
-                                $"{plugin.Id} - download",
-                                string.Format(Resources.GetString("LOCLibraryImportError"), plugin.Name) + $"\n{e.Message}",
-                                NotificationType.Error));
-                        }
-                    }
-
-                    ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    Thread.Sleep(500);
-
-                    if (addedGames.Any() && metaForNewGames)
-                    {
-                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
-                        ProgressValue = 0;
-                        ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
-                        {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
-                                (g, i, t) =>
-                                {
-                                    ProgressValue = i + 1;
-                                    ProgressStatus = Resources.GetString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
-                                },
-                                GlobalTaskHandler.CancelToken).Wait();
-                        }
-                    }
-                });
-
-                await GlobalTaskHandler.ProgressTask;
-                Extensions.NotifiyOnLibraryUpdated();
-            }
-            finally
-            {
-                GameAdditionAllowed = true;
-                ProgressVisible = false;
-                DatabaseFilters.IgnoreDatabaseUpdates = false;
+                ActiveFilterPreset = Database.FilterPresets.FirstOrDefault(a => a.Id == AppSettings.SelectedFilterPreset);
             }
         }
 
-        public async void UpdateLibrary(LibraryPlugin library)
+        public override NotificationMessage GetAddonUpdatesFoundMessage(List<AddonUpdate> updates)
         {
-            GameAdditionAllowed = false;
-
-            try
+            return new NotificationMessage("AddonUpdateAvailable", Resources.GetString(LOC.AddonUpdatesAvailable), NotificationType.Info, () =>
             {
-                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                GlobalTaskHandler.ProgressTask = Task.Run(() =>
-                {
-                    DatabaseFilters.IgnoreDatabaseUpdates = true;
-                    var addedGames = new List<Game>();
-                    ProgressVisible = true;
-                    ProgressValue = 0;
-                    ProgressTotal = 1;
-                    ProgressStatus = string.Format(Resources.GetString("LOCProgressImportinGames"), library.Name);
-
-                    try
-                    {
-                        addedGames.AddRange(Database.ImportGames(library, AppSettings.ForcePlayTimeSync, AppSettings.ImportExclusionList.Items));
-                        RemoveMessage($"{library.Id} - download");
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        Logger.Error(e, $"Failed to import games from plugin: {library.Name}");
-                        AddMessage(new NotificationMessage(
-                            $"{library.Id} - download",
-                            string.Format(Resources.GetString("LOCLibraryImportError"), library.Name) + $"\n{e.Message}",
-                            NotificationType.Error));
-                    }
-
-                    ProgressStatus = Resources.GetString("LOCProgressLibImportFinish");
-                    Thread.Sleep(500);
-
-                    if (addedGames.Any() && AppSettings.DownloadMetadataOnImport)
-                    {
-                        Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
-                        ProgressValue = 0;
-                        ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.GetString("LOCProgressMetadata");
-                        using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
-                        {
-                            downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
-                                (g, i, t) =>
-                                {
-                                    ProgressValue = i + 1;
-                                    ProgressStatus = Resources.GetString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
-                                },
-                                GlobalTaskHandler.CancelToken).Wait();
-                        }
-                    }
-                });
-
-                await GlobalTaskHandler.ProgressTask;
-            }
-            finally
-            {
-                GameAdditionAllowed = true;
-                ProgressVisible = false;
-                DatabaseFilters.IgnoreDatabaseUpdates = false;
-            }
+                new AddonsViewModel(
+                     new AddonsWindowFactory(),
+                     PlayniteApi,
+                     Dialogs,
+                     Resources,
+                     App.ServicesClient,
+                     Extensions,
+                     AppSettings,
+                     App,
+                     updates).OpenView();
+            });
         }
 
         public async Task DownloadMetadata(MetadataDownloaderSettings settings, List<Game> games)
@@ -1297,7 +440,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 DatabaseFilters.IgnoreDatabaseUpdates = true;
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-                ProgressVisible = true;
+                ProgressActive = true;
                 ProgressValue = 0;
                 ProgressTotal = games.Count;
                 ProgressStatus = Resources.GetString("LOCProgressMetadata");
@@ -1311,13 +454,13 @@ namespace Playnite.DesktopApp.ViewModels
                                 ProgressValue = i + 1;
                                 ProgressStatus = Resources.GetString("LOCProgressMetadata") + $" [{ProgressValue}/{ProgressTotal}]";
                             },
-                            GlobalTaskHandler.CancelToken);
+                            GlobalTaskHandler.CancelToken.Token);
                     await GlobalTaskHandler.ProgressTask;
                 }
             }
             finally
             {
-                ProgressVisible = false;
+                ProgressActive = false;
                 GameAdditionAllowed = true;
                 DatabaseFilters.IgnoreDatabaseUpdates = false;
             }
@@ -1369,7 +512,8 @@ namespace Playnite.DesktopApp.ViewModels
             var newGame = new Game()
             {
                 Name = "New Game",
-                IsInstalled = true
+                IsInstalled = true,
+                CompletionStatusId = Database.GetCompletionStatusSettings().DefaultStatus
             };
 
             Database.Games.Add(newGame);
@@ -1422,20 +566,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public async void ImportEmulatedGames(EmulatorImportViewModel model)
+        public async void ImportEmulatedGames(EmulatedGamesImportViewModel model)
         {
-            if (model.OpenView() == true && model.ImportedGames?.Any() == true)
+            if (model.OpenView() != true || !model.ImportedGames.HasItems())
             {
-                if (AppSettings.DownloadMetadataOnImport)
+                return;
+            }
+
+            if (AppSettings.DownloadMetadataOnImport)
+            {
+                if (!GlobalTaskHandler.IsActive)
                 {
-                    if (!GlobalTaskHandler.IsActive)
-                    {
-                        await DownloadMetadata(AppSettings.MetadataSettings, model.ImportedGames);
-                    }
-                    else
-                    {
-                        Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
-                    }
+                    await DownloadMetadata(AppSettings.MetadataSettings, model.ImportedGames);
+                }
+                else
+                {
+                    Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
             }
         }
@@ -1522,11 +668,11 @@ namespace Playnite.DesktopApp.ViewModels
                         var ext = Path.GetExtension(path).ToLower();
                         if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            application.InstallThemeFile(path);
+                            App.InstallThemeFile(path);
                         }
                         else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
                         {
-                            application.InstallExtensionFile(path);
+                            App.InstallExtensionFile(path);
                         }
                         else
                         {
@@ -1565,7 +711,6 @@ namespace Playnite.DesktopApp.ViewModels
                             }
 
                             Database.Games.Add(game);
-                            Database.AssignPcPlatform(game);
                             if (GamesEditor.EditGame(game) == true)
                             {
                                 SelectGame(game.Id);
@@ -1587,16 +732,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void AddMessage(NotificationMessage message)
-        {
-            PlayniteApi.Notifications.Add(message);
-        }
-
-        public void RemoveMessage(string id)
-        {
-            PlayniteApi.Notifications.Remove(id);
-        }
-
         public void ClearMessages()
         {
             PlayniteApi.Notifications.RemoveAll();
@@ -1607,10 +742,10 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var updater = new Updater(application);
+                var updater = new Updater(App);
                 if (updater.IsUpdateAvailable)
                 {
-                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs);
+                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs, App.Mode);
                     model.OpenView();
                 }
                 else
@@ -1635,7 +770,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             CloseView();
-            application.QuitAndStart(
+            App.QuitAndStart(
                 PlaynitePaths.FullscreenExecutablePath,
                 new CmdLineOptions()
                 {
@@ -1666,7 +801,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
-            application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
 
             if (AppSettings.StartMinimized)
@@ -1689,14 +824,10 @@ namespace Playnite.DesktopApp.ViewModels
             Dispose();
         }
 
-        public async void CancelProgress()
-        {
-            await GlobalTaskHandler.CancelAndWaitAsync();
-        }
-
         public virtual void ClearFilters()
         {
             AppSettings.FilterSettings.ClearFilters();
+            ActiveFilterPreset = null;
         }
 
         public void Dispose()
@@ -1710,7 +841,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            application.UpdateScreenInformation(Window.Window);
+            App.UpdateScreenInformation(Window.Window);
         }
 
         public bool OpenPluginSettings(Guid pluginId)
@@ -1743,6 +874,50 @@ namespace Playnite.DesktopApp.ViewModels
                     Resources.GetString("LOCAppStartupError") + "\n\n" +
                     e.Message,
                     "LOCStartupError");
+            }
+        }
+
+        public void SwitchToLibraryView()
+        {
+            SidebarItems.First(a => a.SideItem is MainSidebarViewItem item && item.AppView == ApplicationView.Library).Command.Execute(null);
+        }
+
+        internal void ProcessUriRequest(PlayniteUriEventArgs args)
+        {
+            var arguments = args.Arguments;
+            if (args.Arguments.Count() == 0)
+            {
+                return;
+            }
+
+            var command = arguments[0];
+            switch (command)
+            {
+                case UriCommands.ShowGame:
+                    if (Guid.TryParse(arguments[1], out var gameId))
+                    {
+                        var game = Database.Games[gameId];
+                        if (game == null)
+                        {
+                            Logger.Error($"Cannot display game, game {arguments[1]} not found.");
+                        }
+                        else
+                        {
+                            RestoreWindow();
+                            SwitchToLibraryView();
+                            SelectedGame = GamesView.Items.FirstOrDefault(a => game.Id == a.Id);
+                        }
+                    }
+                    else
+                    {
+                        Logger.Error($"Can't display game, failed to parse game id: {arguments[1]}");
+                    }
+
+                    break;
+
+                default:
+                    Logger.Warn($"Uknown URI command {command}");
+                    break;
             }
         }
     }

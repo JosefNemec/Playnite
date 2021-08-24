@@ -94,15 +94,22 @@ namespace Playnite.Metadata
             MetadataField gameField,
             Func<GameMetadata, object> propertySelector,
             Dictionary<Guid, GameMetadata> existingStoreData,
-            Dictionary<Guid, OnDemandMetadataProvider> existingPluginData)
+            Dictionary<Guid, OnDemandMetadataProvider> existingPluginData,
+            CancellationToken cancelToken)
         {
             if (fieldSettings.Sources.Any() == false)
             {
                 return null;
             }
 
+            var getFieldArgs = new GetMetadataFieldArgs { CancelToken = cancelToken };
             foreach (var source in fieldSettings.Sources)
             {
+                if (cancelToken.IsCancellationRequested)
+                {
+                    return null;
+                }
+
                 try
                 {
                     // Skip Store source for manually added games.
@@ -179,58 +186,58 @@ namespace Playnite.Metadata
                         switch (gameField)
                         {
                             case MetadataField.Name:
-                                gameInfo.Name = provider.GetName();
+                                gameInfo.Name = provider.GetName(getFieldArgs);
                                 break;
                             case MetadataField.Genres:
-                                gameInfo.Genres = provider.GetGenres();
+                                gameInfo.Genres = provider.GetGenres(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.ReleaseDate:
-                                gameInfo.ReleaseDate = provider.GetReleaseDate();
+                                gameInfo.ReleaseDate = provider.GetReleaseDate(getFieldArgs);
                                 break;
                             case MetadataField.Developers:
-                                gameInfo.Developers = provider.GetDevelopers();
+                                gameInfo.Developers = provider.GetDevelopers(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Publishers:
-                                gameInfo.Publishers = provider.GetPublishers();
+                                gameInfo.Publishers = provider.GetPublishers(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Tags:
-                                gameInfo.Tags = provider.GetTags();
+                                gameInfo.Tags = provider.GetTags(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Description:
-                                gameInfo.Description = provider.GetDescription();
+                                gameInfo.Description = provider.GetDescription(getFieldArgs);
                                 break;
                             case MetadataField.Links:
-                                gameInfo.Links = provider.GetLinks();
+                                gameInfo.Links = provider.GetLinks(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.CriticScore:
-                                gameInfo.CriticScore = provider.GetCriticScore();
+                                gameInfo.CriticScore = provider.GetCriticScore(getFieldArgs);
                                 break;
                             case MetadataField.CommunityScore:
-                                gameInfo.CommunityScore = provider.GetCommunityScore();
+                                gameInfo.CommunityScore = provider.GetCommunityScore(getFieldArgs);
                                 break;
                             case MetadataField.Icon:
-                                metadata.Icon = provider.GetIcon();
+                                gameInfo.Icon = provider.GetIcon(getFieldArgs);
                                 break;
                             case MetadataField.CoverImage:
-                                metadata.CoverImage = provider.GetCoverImage();
+                                gameInfo.CoverImage = provider.GetCoverImage(getFieldArgs);
                                 break;
                             case MetadataField.BackgroundImage:
-                                metadata.BackgroundImage = provider.GetBackgroundImage();
+                                gameInfo.BackgroundImage = provider.GetBackgroundImage(getFieldArgs);
                                 break;
                             case MetadataField.Features:
-                                gameInfo.Features = provider.GetFeatures();
+                                gameInfo.Features = provider.GetFeatures(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.AgeRating:
-                                gameInfo.AgeRating = provider.GetAgeRating();
+                                gameInfo.AgeRatings = provider.GetAgeRatings(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Region:
-                                gameInfo.Region = provider.GetRegion();
+                                gameInfo.Regions = provider.GetRegions(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Series:
-                                gameInfo.Series = provider.GetSeries();
+                                gameInfo.Series = provider.GetSeries(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Platform:
-                                gameInfo.Platform = provider.GetPlatform();
+                                gameInfo.Platforms = provider.GetPlatforms(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             default:
                                 throw new NotImplementedException();
@@ -260,7 +267,7 @@ namespace Playnite.Metadata
             MetadataDownloaderSettings settings,
             PlayniteSettings playniteSettings,
             Action<Game, int, int> progressCallback,
-            CancellationTokenSource cancelToken)
+            CancellationToken cancelToken)
         {
             return Task.Run(() =>
             {
@@ -277,7 +284,7 @@ namespace Playnite.Metadata
 
                     try
                     {
-                        if (cancelToken?.IsCancellationRequested == true)
+                        if (cancelToken.IsCancellationRequested == true)
                         {
                             return;
                         }
@@ -304,7 +311,7 @@ namespace Playnite.Metadata
                         // Name
                         if (!game.IsCustomGame && settings.Name.Import)
                         {
-                            gameData = ProcessField(game, settings.Name, MetadataField.Name, (a) => a.GameInfo?.Name, existingStoreData, existingPluginData);
+                            gameData = ProcessField(game, settings.Name, MetadataField.Name, (a) => a.GameInfo?.Name, existingStoreData, existingPluginData, cancelToken);
                             if (!string.IsNullOrEmpty(gameData?.GameInfo?.Name))
                             {
                                 game.Name = StringExtensions.RemoveTrademarks(gameData.GameInfo.Name);
@@ -321,7 +328,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.GenreIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Genre, MetadataField.Genres, (a) => a.GameInfo?.Genres, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.Genre, MetadataField.Genres, (a) => a.GameInfo?.Genres, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.Genres.HasNonEmptyItems() == true)
                                 {
                                     game.GenreIds = database.Genres.Add(gameData.GameInfo.Genres, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
@@ -334,7 +341,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.ReleaseDate == null))
                             {
-                                gameData = ProcessField(game, settings.ReleaseDate, MetadataField.ReleaseDate, (a) => a.GameInfo?.ReleaseDate, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.ReleaseDate, MetadataField.ReleaseDate, (a) => a.GameInfo?.ReleaseDate, existingStoreData, existingPluginData, cancelToken);
                                 game.ReleaseDate = gameData?.GameInfo?.ReleaseDate ?? game.ReleaseDate;
                             }
                         }
@@ -344,7 +351,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.DeveloperIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Developer, MetadataField.Developers, (a) => a.GameInfo?.Developers, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.Developer, MetadataField.Developers, (a) => a.GameInfo?.Developers, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.Developers.HasNonEmptyItems() == true)
                                 {
                                     game.DeveloperIds = database.Companies.Add(gameData.GameInfo.Developers, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
@@ -357,7 +364,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.PublisherIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Publisher, MetadataField.Publishers, (a) => a.GameInfo?.Publishers, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.Publisher, MetadataField.Publishers, (a) => a.GameInfo?.Publishers, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.Publishers.HasNonEmptyItems() == true)
                                 {
                                     game.PublisherIds = database.Companies.Add(gameData.GameInfo.Publishers, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
@@ -370,7 +377,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.TagIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Tag, MetadataField.Tags, (a) => a.GameInfo?.Tags, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.Tag, MetadataField.Tags, (a) => a.GameInfo?.Tags, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.Tags.HasNonEmptyItems() == true)
                                 {
                                     game.TagIds = database.Tags.Add(gameData.GameInfo.Tags, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
@@ -383,7 +390,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.FeatureIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Feature, MetadataField.Features, (a) => a.GameInfo?.Features, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.Feature, MetadataField.Features, (a) => a.GameInfo?.Features, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.Features.HasNonEmptyItems() == true)
                                 {
                                     game.FeatureIds = database.Features.Add(gameData.GameInfo.Features, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
@@ -396,7 +403,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Description)))
                             {
-                                gameData = ProcessField(game, settings.Description, MetadataField.Description, (a) => a.GameInfo?.Description, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.Description, MetadataField.Description, (a) => a.GameInfo?.Description, existingStoreData, existingPluginData, cancelToken);
                                 game.Description = string.IsNullOrEmpty(gameData?.GameInfo?.Description) == true ? game.Description : gameData.GameInfo.Description;
                             }
                         }
@@ -406,7 +413,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.Links.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Links, MetadataField.Links, (a) => a.GameInfo?.Links, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.Links, MetadataField.Links, (a) => a.GameInfo?.Links, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.GameInfo?.Links.HasItems() == true)
                                 {
                                     game.Links = gameData.GameInfo.Links.ToObservable();
@@ -417,12 +424,12 @@ namespace Playnite.Metadata
                         // Age rating
                         if (settings.AgeRating.Import)
                         {
-                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.AgeRating == null))
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.AgeRatingIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.AgeRating, MetadataField.AgeRating, (a) => a.GameInfo?.AgeRating, existingStoreData, existingPluginData);
-                                if (gameData?.GameInfo?.AgeRating.IsNullOrEmpty() == false)
+                                gameData = ProcessField(game, settings.AgeRating, MetadataField.AgeRating, (a) => a.GameInfo?.AgeRatings, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.AgeRatings.HasNonEmptyItems() == true)
                                 {
-                                    game.AgeRatingId = database.AgeRatings.Add(gameData.GameInfo.AgeRating, GameFieldComparer.FieldEquals).Id;
+                                    game.AgeRatingIds = database.Companies.Add(gameData.GameInfo.AgeRatings, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -430,12 +437,12 @@ namespace Playnite.Metadata
                         // Region
                         if (settings.Region.Import)
                         {
-                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.Region == null))
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.RegionIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Region, MetadataField.Region, (a) => a.GameInfo?.Region, existingStoreData, existingPluginData);
-                                if (gameData?.GameInfo?.Region.IsNullOrEmpty() == false)
+                                gameData = ProcessField(game, settings.Region, MetadataField.Region, (a) => a.GameInfo?.Regions, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.Regions.HasNonEmptyItems() == true)
                                 {
-                                    game.RegionId = database.Regions.Add(gameData.GameInfo.Region, GameFieldComparer.FieldEquals).Id;
+                                    game.RegionIds = database.Companies.Add(gameData.GameInfo.Regions, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -443,12 +450,12 @@ namespace Playnite.Metadata
                         // Series
                         if (settings.Series.Import)
                         {
-                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.Series == null))
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.SeriesIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Series, MetadataField.Series, (a) => a.GameInfo?.Series, existingStoreData, existingPluginData);
-                                if (gameData?.GameInfo?.Series.IsNullOrEmpty() == false)
+                                gameData = ProcessField(game, settings.Series, MetadataField.Series, (a) => a.GameInfo?.Series, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.Series.HasNonEmptyItems() == true)
                                 {
-                                    game.SeriesId = database.Series.Add(gameData.GameInfo.Series, GameFieldComparer.FieldEquals).Id;
+                                    game.SeriesIds = database.Companies.Add(gameData.GameInfo.Series, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -456,12 +463,12 @@ namespace Playnite.Metadata
                         // Platform
                         if (settings.Platform.Import)
                         {
-                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.Platform == null))
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && !game.PlatformIds.HasItems()))
                             {
-                                gameData = ProcessField(game, settings.Platform, MetadataField.Platform, (a) => a.GameInfo?.Platform, existingStoreData, existingPluginData);
-                                if (gameData?.GameInfo?.Platform.IsNullOrEmpty() == false)
+                                gameData = ProcessField(game, settings.Platform, MetadataField.Platform, (a) => a.GameInfo?.Platforms, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.Platforms.HasNonEmptyItems() == true)
                                 {
-                                    game.PlatformId = database.Platforms.Add(gameData.GameInfo.Platform, GameFieldComparer.FieldEquals).Id;
+                                    game.PlatformIds = database.Companies.Add(gameData.GameInfo.Platforms, GameFieldComparer.FieldEquals).Select(a => a.Id).ToList();
                                 }
                             }
                         }
@@ -471,7 +478,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.CriticScore == null))
                             {
-                                gameData = ProcessField(game, settings.CriticScore, MetadataField.CriticScore, (a) => a.GameInfo?.CriticScore, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.CriticScore, MetadataField.CriticScore, (a) => a.GameInfo?.CriticScore, existingStoreData, existingPluginData, cancelToken);
                                 game.CriticScore = gameData?.GameInfo?.CriticScore == null ? game.CriticScore : gameData.GameInfo.CriticScore;
                             }
                         }
@@ -481,7 +488,7 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.CommunityScore == null))
                             {
-                                gameData = ProcessField(game, settings.CommunityScore, MetadataField.CommunityScore, (a) => a.GameInfo?.CommunityScore, existingStoreData, existingPluginData);
+                                gameData = ProcessField(game, settings.CommunityScore, MetadataField.CommunityScore, (a) => a.GameInfo?.CommunityScore, existingStoreData, existingPluginData, cancelToken);
                                 game.CommunityScore = gameData?.GameInfo?.CommunityScore == null ? game.CommunityScore : gameData.GameInfo.CommunityScore;
                             }
                         }
@@ -491,21 +498,21 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.BackgroundImage)))
                             {
-                                gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.BackgroundImage, existingStoreData, existingPluginData);
-                                if (gameData?.BackgroundImage != null)
+                                gameData = ProcessField(game, settings.BackgroundImage, MetadataField.BackgroundImage, (a) => a.GameInfo?.BackgroundImage, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.BackgroundImage != null)
                                 {
-                                    if (playniteSettings.DownloadBackgroundsImmediately && gameData.BackgroundImage.HasImageData)
+                                    if (playniteSettings.DownloadBackgroundsImmediately && gameData.GameInfo.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
+                                        game.BackgroundImage = database.AddFile(gameData.GameInfo.BackgroundImage, game.Id);
                                     }
                                     else if (!playniteSettings.DownloadBackgroundsImmediately &&
-                                             !gameData.BackgroundImage.OriginalUrl.IsNullOrEmpty())
+                                             !gameData.GameInfo.BackgroundImage.Path.IsNullOrEmpty())
                                     {
-                                        game.BackgroundImage = gameData.BackgroundImage.OriginalUrl;
+                                        game.BackgroundImage = gameData.GameInfo.BackgroundImage.Path;
                                     }
-                                    else if (gameData.BackgroundImage.HasImageData)
+                                    else if (gameData.GameInfo.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
+                                        game.BackgroundImage = database.AddFile(gameData.GameInfo.BackgroundImage, game.Id);
                                     }
                                 }
                             }
@@ -516,10 +523,10 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.CoverImage)))
                             {
-                                gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.CoverImage, existingStoreData, existingPluginData);
-                                if (gameData?.CoverImage != null)
+                                gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.GameInfo?.CoverImage, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.CoverImage != null)
                                 {
-                                    game.CoverImage = database.AddFile(gameData.CoverImage, game.Id);
+                                    game.CoverImage = database.AddFile(gameData.GameInfo.CoverImage, game.Id);
                                 }
                             }
                         }
@@ -529,10 +536,10 @@ namespace Playnite.Metadata
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Icon)))
                             {
-                                gameData = ProcessField(game, settings.Icon, MetadataField.Icon, (a) => a.Icon, existingStoreData, existingPluginData);
-                                if (gameData?.Icon != null)
+                                gameData = ProcessField(game, settings.Icon, MetadataField.Icon, (a) => a.GameInfo?.Icon, existingStoreData, existingPluginData, cancelToken);
+                                if (gameData?.GameInfo?.Icon != null)
                                 {
-                                    game.Icon = database.AddFile(gameData.Icon, game.Id);
+                                    game.Icon = database.AddFile(gameData.GameInfo.Icon, game.Id);
                                 }
                             }
                         }

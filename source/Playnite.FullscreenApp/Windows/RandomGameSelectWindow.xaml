@@ -10,7 +10,7 @@
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
-        Style="{StaticResource MessageBoxWindowStyle}"
+        Style="{StaticResource ChildWindowStyle}"
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>
@@ -20,10 +20,10 @@
     </c:WindowBase.InputBindings>
 
     <Viewbox>
-        <Grid Height="1080">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -55,10 +55,10 @@
                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
                         <pctrls:ButtonEx Content="{DynamicResource LOCPlayGame}"
                                          x:Name="ButtonPlay"
-                                  Style="{StaticResource ButtonMessageBox}"
+                                  Style="{StaticResource MessageBoxButton}"
                                   Command="{Binding PlayGameCommand}" MinWidth="200" />
                         <pctrls:ButtonEx Content="{DynamicResource LOCRandomGamePickAnother}" MinWidth="200"
-                                  Style="{StaticResource ButtonMessageBox}"
+                                  Style="{StaticResource MessageBoxButton}"
                                   Command="{Binding PickAnotherCommand}" />
                     </StackPanel>
                 </StackPanel>

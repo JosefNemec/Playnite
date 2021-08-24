@@ -1,0 +1,50 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate x:Key="NumericBoxTemplate" TargetType="{x:Type TextBox}">
+        <Border x:Name="Border" Padding="3"
+                Background="{TemplateBinding Background}"
+                Style="{DynamicResource HighlightBorder}">
+            <ScrollViewer x:Name="PART_ContentHost"
+                          VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                          HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource GlyphBrush}" TargetName="Border" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type LongNumericBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+        <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+    </Style>
+
+    <Style TargetType="{x:Type UlongNumericBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+        <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+    </Style>
+
+    <Style TargetType="{x:Type NullIntNumericBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+        <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+    </Style>
+
+    <Style TargetType="{x:Type DoubleNumericBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}"/>
+        <Setter Property="Template" Value="{DynamicResource NumericBoxTemplate}" />
+    </Style>
+</ResourceDictionary>

@@ -250,22 +250,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool useIsoPathChanges;
-        public bool UseIsoPathChanges
-        {
-            get
-            {
-                return useIsoPathChanges;
-            }
-
-            set
-            {
-                useIsoPathChanges = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowInstallChangeNotif));
-            }
-        }
-
         private bool useInstallStateChanges;
         public bool UseInstallStateChanges
         {
@@ -295,6 +279,22 @@ namespace Playnite.DesktopApp.ViewModels
                 useLinksChanges = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowLinksChangeNotif));
+            }
+        }
+
+        private bool useRomsChanges;
+        public bool UseRomsChanges
+        {
+            get
+            {
+                return useRomsChanges;
+            }
+
+            set
+            {
+                useRomsChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -454,7 +454,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useCompletionStatusChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
         }
 
@@ -535,22 +535,6 @@ namespace Playnite.DesktopApp.ViewModels
                 useFavoriteChanges = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
-            }
-        }
-
-        private bool useScriptRuntimeChanges;
-        public bool UseScriptRuntimeChanges
-        {
-            get
-            {
-                return useScriptRuntimeChanges;
-            }
-
-            set
-            {
-                useScriptRuntimeChanges = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowScriptsChangeNotif));
             }
         }
 
@@ -650,33 +634,33 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool usePlayActionChanges;
-        public bool UsePlayActionChanges
+        private bool useGameActionsChanges;
+        public bool UseGameActionsChanges
         {
             get
             {
-                return usePlayActionChanges;
+                return useGameActionsChanges;
             }
 
             set
             {
-                usePlayActionChanges = value;
+                useGameActionsChanges = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowActionsChangeNotif));
             }
         }
 
-        private bool useOtherActionsChanges;
-        public bool UseOtherActionsChanges
+        private bool useIncludeLibraryPluginAction;
+        public bool UseIncludeLibraryPluginAction
         {
             get
             {
-                return useOtherActionsChanges;
+                return useIncludeLibraryPluginAction;
             }
 
             set
             {
-                useOtherActionsChanges = value;
+                useIncludeLibraryPluginAction = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowActionsChangeNotif));
             }
@@ -783,7 +767,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 return ShowCheckBoxes &&
                     (UseInstallDirChanges ||
-                    UseIsoPathChanges ||
+                    UseRomsChanges ||
                     UseInstallStateChanges);
             }
         }
@@ -793,8 +777,7 @@ namespace Playnite.DesktopApp.ViewModels
             get
             {
                 return ShowCheckBoxes &&
-                    (UseScriptRuntimeChanges ||
-                    UsePreScriptChanges ||
+                    (UsePreScriptChanges ||
                     UsePostScriptChanges ||
                     UsePreGlobalScriptChanges ||
                     UsePostGlobalScriptChanges ||
@@ -808,8 +791,7 @@ namespace Playnite.DesktopApp.ViewModels
             get
             {
                 return ShowCheckBoxes &&
-                    (UseOtherActionsChanges ||
-                    UsePlayActionChanges);
+                    (UseGameActionsChanges || UseIncludeLibraryPluginAction);
             }
         }
 
@@ -837,10 +819,10 @@ namespace Playnite.DesktopApp.ViewModels
                         UseSortingNameChanges = true;
                     }
                     break;
-                case nameof(Game.PlatformId):
+                case nameof(Game.PlatformIds):
                     if (IsSingleGameEdit)
                     {
-                        UsePlatformChanges = Game.PlatformId != EditingGame.PlatformId;
+                        UsePlatformChanges = !Game.PlatformIds.IsListEqual(EditingGame.PlatformIds);
                     }
                     else
                     {
@@ -898,6 +880,16 @@ namespace Playnite.DesktopApp.ViewModels
                         UseLinksChanges = true;
                     }
                     break;
+                case nameof(Game.Roms):
+                    if (IsSingleGameEdit)
+                    {
+                        UseRomsChanges = !Game.Roms.IsEqualJson(EditingGame.Roms);
+                    }
+                    else
+                    {
+                        UseRomsChanges = true;
+                    }
+                    break;
                 case nameof(Game.InstallDirectory):
                     if (IsSingleGameEdit)
                     {
@@ -906,16 +898,6 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseInstallDirChanges = true;
-                    }
-                    break;
-                case nameof(Game.GameImagePath):
-                    if (IsSingleGameEdit)
-                    {
-                        UseIsoPathChanges = Game.GameImagePath != EditingGame.GameImagePath;
-                    }
-                    else
-                    {
-                        UseIsoPathChanges = true;
                     }
                     break;
                 case nameof(Game.IsInstalled):
@@ -1068,10 +1050,10 @@ namespace Playnite.DesktopApp.ViewModels
                         UsePlayCountChanges = true;
                     }
                     break;
-                case nameof(Game.SeriesId):
+                case nameof(Game.SeriesIds):
                     if (IsSingleGameEdit)
                     {
-                        UseSeriesChanges = Game.SeriesId != EditingGame.SeriesId;
+                        UseSeriesChanges = !Game.SeriesIds.IsListEqual(EditingGame.SeriesIds);
                     }
                     else
                     {
@@ -1088,20 +1070,20 @@ namespace Playnite.DesktopApp.ViewModels
                         UseVersionChanges = true;
                     }
                     break;
-                case nameof(Game.AgeRatingId):
+                case nameof(Game.AgeRatingIds):
                     if (IsSingleGameEdit)
                     {
-                        UseAgeRatingChanges = Game.AgeRatingId != EditingGame.AgeRatingId;
+                        UseAgeRatingChanges = !Game.AgeRatingIds.IsListEqual(EditingGame.AgeRatingIds);
                     }
                     else
                     {
                         UseAgeRatingChanges = true;
                     }
                     break;
-                case nameof(Game.RegionId):
+                case nameof(Game.RegionIds):
                     if (IsSingleGameEdit)
                     {
-                        UseRegionChanges = Game.RegionId != EditingGame.RegionId;
+                        UseRegionChanges = !Game.RegionIds.IsListEqual(EditingGame.RegionIds);
                     }
                     else
                     {
@@ -1118,10 +1100,10 @@ namespace Playnite.DesktopApp.ViewModels
                         UseSourceChanges = true;
                     }
                     break;
-                case nameof(Game.CompletionStatus):
+                case nameof(Game.CompletionStatusId):
                     if (IsSingleGameEdit)
                     {
-                        UseCompletionStatusChanges = Game.CompletionStatus != EditingGame.CompletionStatus;
+                        UseCompletionStatusChanges = Game.CompletionStatusId != EditingGame.CompletionStatusId;
                     }
                     else
                     {
@@ -1208,16 +1190,6 @@ namespace Playnite.DesktopApp.ViewModels
                         UseGameStartedScriptChanges = true;
                     }
                     break;
-                case nameof(Game.ActionsScriptLanguage):
-                    if (IsSingleGameEdit)
-                    {
-                        UseScriptRuntimeChanges = Game.ActionsScriptLanguage != EditingGame.ActionsScriptLanguage;
-                    }
-                    else
-                    {
-                        UseScriptRuntimeChanges = true;
-                    }
-                    break;
                 case nameof(Game.UseGlobalPostScript):
                     if (IsSingleGameEdit)
                     {
@@ -1248,28 +1220,23 @@ namespace Playnite.DesktopApp.ViewModels
                         UseGameStartedGlobalScriptChanges = true;
                     }
                     break;
-                case nameof(Game.PlayAction):
-                    UsePlayActionChanges = true;
+                case nameof(Game.IncludeLibraryPluginAction):
+                    UseIncludeLibraryPluginAction = true;
                     break;
-                case nameof(Game.OtherActions):
-                    UseOtherActionsChanges = true;
+                case nameof(Game.GameActions):
+                    UseGameActionsChanges = true;
                     break;
             }
         }
 
         private void OtherActions_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            UseOtherActionsChanges = true;
+            UseGameActionsChanges = true;
         }
 
-        private void OtherAction_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void GameAction_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            UseOtherActionsChanges = true;
-        }
-
-        private void PlayAction_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            UsePlayActionChanges = true;
+            UseGameActionsChanges = true;
         }
     }
 }

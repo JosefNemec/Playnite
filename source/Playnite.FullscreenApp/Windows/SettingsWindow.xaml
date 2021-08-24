@@ -1,0 +1,105 @@
+﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
+        mc:Ignorable="d"
+        ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
+        ShowInTaskbar="False" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Style="{StaticResource ChildWindowStyle}"     
+        d:DesignWidth="1920" d:DesignHeight="1080">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="PreviewGotKeyboardFocus" >
+            <prism:InvokeCommandAction Command="{Binding PreviewGotKeyboardFocusCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <c:WindowBase.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
+        <pin:XInputBinding Button="B" Command="{Binding CloseCommand}" />
+    </c:WindowBase.InputBindings>
+    
+    <Viewbox>
+        <Grid Name="GridMain" Height="1080" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="150" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="2" Grid.RowSpan="3"
+                    VerticalAlignment="Stretch"
+                    KeyboardNavigation.TabNavigation="Cycle"
+                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                    IsEnabled="{Binding IsMenuEnabled}"
+                    Style="{DynamicResource SettingsMenuBorder}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource SettingsMenuButton}">
+                            <Setter Property="Command" Value="{Binding OpenSectionCommand}" />
+                        </Style>
+                    </StackPanel.Resources>
+                    
+                    <TextBlock Text="{DynamicResource LOCSettingsLabel}"
+                               Style="{DynamicResource SettingsMenuHeaderText}" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionGeneral}" CommandParameter="0"
+                                     pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionVisuals}" CommandParameter="1" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionAudio}" CommandParameter="5" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionLayout}" CommandParameter="2" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionMenus}" CommandParameter="3" />
+                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSection}" CommandParameter="4" />
+
+                    <TextBlock Style="{StaticResource TextBlockBaseStyle}"
+                           Text="{DynamicResource LOCSettingsRestartNotification}"
+                           HorizontalAlignment="Right"
+                           Margin="10,20,10,0"/>
+
+                    <TextBlock Text="{Binding OptionDescription}"
+                               Margin="20,50,20,10" TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+                                <Setter Property="Visibility" Value="Visible" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding OptionDescription}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="1" Focusable="False">
+                <Border.Style>
+                    <Style TargetType="Border" BasedOn="{StaticResource SettingsSectionBorder}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Content, ElementName=ContentSettings}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <ContentControl Name="ContentSettings" Content="{Binding SelectedSectionView}"
+                                Margin="20" Focusable="False"/>
+            </Border>
+        </Grid>
+    </Viewbox>
+</c:WindowBase>

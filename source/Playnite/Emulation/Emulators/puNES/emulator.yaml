@@ -1,0 +1,9 @@
+Id: punes
+Name: puNES
+Website: 'https://github.com/punesemu/puNES'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    ImageExtensions: [7zip, rar, nes, unf, unif, fds, nsf, nfse, fm2, zip]
+    Platforms: [nintendo_nes]
+    StartupExecutable: ^punes64\.exe$

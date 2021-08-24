@@ -70,5 +70,10 @@ namespace Playnite.SDK
         /// Gets variable for game's version.
         /// </summary>
         public const string Version = "{Version}";
+
+        /// <summary>
+        /// Gets durectory path of parent emulator object.
+        /// </summary>
+        public const string EmulatorDirectory = "{EmulatorDir}";
     }
 }

@@ -10,17 +10,17 @@
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         mc:Ignorable="d"
+        Style="{StaticResource ChildWindowStyle}"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
-        Style="{StaticResource MessageBoxWindowStyle}"
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <Viewbox>
-        <Grid Height="1080">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -39,16 +39,16 @@
                                TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
                     <DockPanel LastChildFill="False">
                         <pctrls:ButtonEx Content="{DynamicResource LOCAboutSendDiagButton}"  
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding CreateDiagPackageCommand}"
                                 x:Name="ButtonGeneratePackage" />
                         <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartPlaynite}"                       
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding RestartCommand}"
                                 x:Name="ButtonRestart" />
                         <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartSafe}"  
                                 TooltipEx="{DynamicResource LOCCrashRestartSafeTooltip}"                     
-                                Style="{StaticResource ButtonMessageBox}"
+                                Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding RestartSafeCommand}"
                                 DockPanel.Dock="Right"/>
                     </DockPanel>

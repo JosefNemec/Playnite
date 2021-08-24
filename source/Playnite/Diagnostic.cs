@@ -165,7 +165,7 @@ namespace Playnite
                     var playnitePath = Path.Combine(diagTemp, "playniteInfo.txt");
                     var playniteInfo = new Dictionary<string, object>
                     {
-                        { "Version", Updater.GetCurrentVersion().ToString() },
+                        { "Version", Updater.CurrentVersion.ToString() },
                         { "Portable", PlayniteSettings.IsPortable },
                         { "Memory", (PlayniteProcess.WorkingSetMemory / 1024f) / 1024f },
                         { "Path", PlayniteProcess.Path },
@@ -173,7 +173,6 @@ namespace Playnite
                         { "Playnite.DesktopApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.DesktopExecutablePath) },
                         { "Playnite.FullscreenApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.FullscreenExecutablePath) },
                         { "Playnite.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteAssemblyPath) },
-                        { "Playnite.Common.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteCommonAssemblyPath) },
                         { "Playnite.SDK.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteSDKAssemblyPath) }
                     };
 
@@ -226,6 +225,26 @@ namespace Playnite
             }
 
             FileSystem.DeleteDirectory(diagTemp);
+        }
+
+        public static void CreateLogPackage(string path)
+        {
+            FileSystem.DeleteFile(path);
+            using (FileStream zipToOpen = new FileStream(path, FileMode.Create))
+            using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
+            {
+                foreach (var logFile in Directory.GetFiles(PlaynitePaths.ConfigRootPath, "*.log", SearchOption.TopDirectoryOnly))
+                {
+                    if (Path.GetFileName(logFile) == "cef.log" || Path.GetFileName(logFile) == "debug.log")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        archive.CreateEntryFromFile(logFile, Path.GetFileName(logFile));
+                    }
+                }
+            }
         }
     }
 }

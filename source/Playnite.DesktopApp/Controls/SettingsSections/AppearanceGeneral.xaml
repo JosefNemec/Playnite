@@ -31,7 +31,7 @@
             <ComboBox Margin="10,0,0,0" MinWidth="150"
                     ItemsSource="{Binding AvailableThemes}"
                     SelectedValue="{Binding Settings.Theme}"
-                    SelectedValuePath="DirectoryName"
+                    SelectedValuePath="Id"
                     DisplayMemberPath="Name" />
             <!--TODO update links -->
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
@@ -53,6 +53,13 @@
                             ContentStringFormat="{}{0} *" />
             <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
                       SelectedValue="{Binding Settings.FontFamilyName}" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+            <ContentControl Content="{DynamicResource LOCSettingsInterfaceMonoFont}" VerticalAlignment="Center"
+                            ContentStringFormat="{}{0} *" />
+            <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
+                      SelectedValue="{Binding Settings.MonospaceFontFamilyName}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,20,0,0" >

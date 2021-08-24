@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="TestPluginSettings HERE" />
+        <TextBox Text="{Binding Settings.Option1, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

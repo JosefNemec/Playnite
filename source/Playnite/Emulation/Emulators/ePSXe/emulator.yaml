@@ -1,0 +1,10 @@
+Id: epsxe
+Name: ePSXe
+Website: 'https://www.epsxe.com/'
+Profiles:
+  - Name: Default
+    Platforms: [sony_playstation]
+    ImageExtensions: [bin, iso, img, pbp, zip, cue]
+    InstallationFile: ^ePSXe\.exe$
+    StartupExecutable: ^ePSXe\.exe$
+    StartupArguments: '-nogui -slowboot -loadbin "{ImagePath}"'

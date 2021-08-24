@@ -9,7 +9,6 @@ using NUnit.Framework;
 using Playnite;
 using Playnite.Common;
 using Playnite.Database;
-using Playnite.Models;
 using Playnite.SDK.Models;
 
 namespace Playnite.Tests
@@ -21,8 +20,8 @@ namespace Playnite.Tests
         public void BasicTest()
         {
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 db.Games.Add(new List<Game>
                 {

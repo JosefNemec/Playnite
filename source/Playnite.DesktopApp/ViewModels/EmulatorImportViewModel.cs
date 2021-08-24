@@ -1,6 +1,5 @@
 ﻿using Playnite;
 using Playnite.Database;
-using Playnite.Emulators;
 using Playnite.SDK.Models;
 using Playnite.SDK;
 using Playnite.Commands;
@@ -18,164 +17,24 @@ using Playnite.Common;
 using Playnite.Windows;
 using Playnite.DesktopApp.Windows;
 using Playnite.ViewModels;
+using Playnite.Emulators;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public class SelectedPlatformsToStringConverter : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            var platforms = (IEnumerable<Guid>)values[0];
-            var allPlatforms = (IEnumerable<Platform>)values[1];
-            return string.Join(", ", allPlatforms.Where(a => platforms?.Contains(a.Id) == true)?.Select(a => a.Name));
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
-    }
-
-    public class SelectedPlatformsToListConverter : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            var platforms = (IEnumerable<Guid>)values[0];
-            var allPlatforms = (IEnumerable<Platform>)values[1];
-            return allPlatforms.Where(a => platforms?.Contains(a.Id) == true);
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
-    }
-
     public class EmulatorImportViewModel : ObservableObject
     {
-        public enum DialogType
-        {
-            EmulatorImport,
-            EmulatorDownload,
-            GameImport,
-            Wizard
-        }
+        private readonly object listSyncLock = new object();
+        private static readonly ILogger logger = LogManager.GetLogger();
+        private readonly IWindowFactory window;
+        private readonly IDialogsFactory dialogs;
+        private readonly IResourceProvider resources;
+        private readonly GameDatabase database;
+        private readonly List<string> importedDirs;
 
-        public class ImportableEmulator : ScannedEmulator
-        {
-            private bool import = true;
-            public bool Import
-            {
-                get => import;
-                set
-                {
-                    import = value;
-                    OnPropertyChanged();
-                }
-            }
+        public List<ScannedEmulator> SelectedEmulators;
 
-            public ImportableEmulator(ScannedEmulator emulator) : base(emulator.Name, emulator.Profiles)
-            {
-            }
-        }
-
-        public class ImportableGame : ObservableObject
-        {
-            private bool import = true;
-            public bool Import
-            {
-                get => import;
-                set
-                {
-                    import = value;
-                    OnPropertyChanged();
-                }
-            }
-
-            public Game Game
-            {
-                get; set;
-            }
-
-            public Emulator Emulator
-            {
-                get; set;
-            }
-
-            public EmulatorProfile EmulatorProfile
-            {
-                get; set;
-            }
-
-            public ImportableGame(Game game, Emulator emulator, EmulatorProfile emulatorProfile)
-            {
-                Game = game;
-                Emulator = emulator;
-                EmulatorProfile = emulatorProfile;
-            }
-        }
-
-        public bool ShowCloseButton
-        {
-            get => Type != DialogType.Wizard;
-        }
-
-        public bool ShowNextButton
-        {
-            get => Type == DialogType.Wizard && ViewTabIndex != 3;
-        }
-
-        public bool ShowBackButton
-        {
-            get => Type == DialogType.Wizard;
-        }
-
-        public bool ShowFinishButton
-        {
-            get => Type == DialogType.Wizard;
-        }
-
-        public bool ShowImportButton
-        {
-            get => Type != DialogType.Wizard && Type != DialogType.EmulatorDownload;
-        }
-
-        public bool ShowConfigEmulatorButton
-        {
-            get => Type == DialogType.GameImport;
-        }
-
-        private int viewTabIndex = 0;
-        public int ViewTabIndex
-        {
-            get
-            {
-                switch (Type)
-                {
-                    case DialogType.Wizard:
-                        return viewTabIndex;
-                    case DialogType.EmulatorDownload:
-                        return 1;
-                    case DialogType.EmulatorImport:
-                        return 2;
-                    case DialogType.GameImport:
-                        return 3;
-                }
-
-                return 0;
-            }
-
-            set
-            {
-                viewTabIndex = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowNextButton));
-                OnPropertyChanged(nameof(ShowBackButton));
-            }
-        }
-
-        private RangeObservableCollection<ImportableEmulator> emulatorList;
-        public RangeObservableCollection<ImportableEmulator> EmulatorList
+        private ObservableCollection<ScannedEmulator> emulatorList = new ObservableCollection<ScannedEmulator>();
+        public ObservableCollection<ScannedEmulator> EmulatorList
         {
             get => emulatorList;
             set
@@ -185,219 +44,62 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private RangeObservableCollection<ImportableGame> gamesList;
-        public RangeObservableCollection<ImportableGame> GamesList
+        private ListCollectionView collectionView;
+        public ListCollectionView CollectionView
         {
-            get => gamesList;
-            set
-            {
-                gamesList = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public List<Game> ImportedGames
-        {
-            get; private set;
-        }
-
-        public List<Emulator> AvailableEmulators
-        {
-            get
-            {
-                var platforms = DatabasePlatforms;
-                return database.Emulators
-                    .Where(a => a.Profiles != null && a.Profiles.Any(b => b.ImageExtensions != null && b.ImageExtensions.Count > 0))
-                    .OrderBy(a => a.Name).ToList();
-            }
-        }
-
-        public List<Platform> DatabasePlatforms
-        {
-            get
-            {
-                return database.Platforms.ToList();
-            }
-        }
-
-        public List<EmulatorDefinition> EmulatorDefinitions { get; set; }
-
-        private DialogType type;
-        public DialogType Type
-        {
-            get => type;
+            get => collectionView;
             private set
             {
-                type = value;
+                collectionView = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool isLoading;
-        public bool IsLoading
+        private bool hideImported = true;
+        public bool HideImported
         {
-            get => isLoading;
+            get => hideImported;
             set
             {
-                isLoading = value;
+                hideImported = value;
                 OnPropertyChanged();
+                CollectionView.Refresh();
             }
         }
 
-        private bool markImportAllEmulators;
-        public bool MarkImportAllEmulators
-        {
-            get => markImportAllEmulators;
-            set
-            {
-                markImportAllEmulators = value;
-                OnPropertyChanged();
-                EmulatorList.ForEach(a => a.Import = markImportAllEmulators);
-            }
-        }
+        public RelayCommand CancelCommand =>
+            new RelayCommand(() => CloseView(false));
 
-        private bool markImportAllGames;
-        public bool MarkImportAllGames
-        {
-            get => markImportAllGames;
-            set
-            {
-                markImportAllGames = value;
-                OnPropertyChanged();
-                GamesList.ForEach(a => a.Import = markImportAllGames);
-            }
-        }
+        public RelayCommand ScanCommmand =>
+            new RelayCommand(() => ScanEmulators());
 
-        private static ILogger logger = LogManager.GetLogger();
-        private IWindowFactory window;
-        private IDialogsFactory dialogs;
-        private IResourceProvider resources;
-        private GameDatabase database;
-        private CancellationTokenSource cancelToken;
+        public RelayCommand ImportCommand =>
+            new RelayCommand(() => ImportEmulators());
 
-        public RelayCommand<object> CloseCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                CloseView(false);
-            });
-        }
+        public RelayCommand SelectAllCommmand =>
+            new RelayCommand(
+                () => EmulatorList.ForEach(e => e.Import = true),
+                () => EmulatorList.HasItems());
 
-        public RelayCommand<object> ScanEmulatorsCommmand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                if (EmulatorDefinitions.Count == 0)
-                {
-                    dialogs.ShowErrorMessage("LOCEmulatorImportNoDefinitionsError", "");
-                    return;
-                }
+        public RelayCommand DeselectAllCommmand =>
+            new RelayCommand(
+                () => EmulatorList.ForEach(e => e.Import = false),
+                () => EmulatorList.HasItems());
 
-                var path = dialogs.SelectFolder();
-                if (!string.IsNullOrEmpty(path))
-                {
-                    SearchEmulators(path);
-                }
-            });
-        }
-
-        public RelayCommand<EmulatorProfile> ScanGamesCommand
-        {
-            get => new RelayCommand<EmulatorProfile>((profile) =>
-            {
-                if (profile.ImageExtensions?.Any() != true)
-                {
-                    dialogs.ShowMessage(
-                        resources.GetString("LOCScanEmulatorGamesEmptyProfileError"),
-                        "", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                var path = dialogs.SelectFolder();
-                if (!string.IsNullOrEmpty(path))
-                {
-                    SearchGames(path, profile);
-                }
-            });
-        }
-
-        public RelayCommand<object> ScanGamesOpeningCommand
-        {
-            get => new RelayCommand<object>((args) =>
-            {
-                VerifyAvailableEmulators(new EmulatorsViewModel(database, new EmulatorsWindowFactory(), dialogs, resources));
-            });
-        }
-
-        public RelayCommand<object> FinishCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                AddSelectedGamesToDB();
-                CloseView(true);
-            });
-        }
-
-        public RelayCommand<object> ImportCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                if (Type == DialogType.GameImport)
-                {
-                    AddSelectedGamesToDB();
-                }
-                else if (Type == DialogType.EmulatorImport)
-                {
-                    AddSelectedEmulatorsToDB();
-                }
-
-                CloseView(true);
-            });
-        }
-
-        public RelayCommand<object> NextCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                GoNextScreen();
-            });
-        }
-
-        public RelayCommand<object> BackCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                GoPreviousScreen();
-            });
-        }
-
-        public RelayCommand<object> NavigateUrlCommand => GlobalCommands.NavigateUrlCommand;
-
-        public RelayCommand<object> CancelProgressCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                CancelProgress();
-            });
-        }
-
-        public EmulatorImportViewModel(GameDatabase database, DialogType type, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public EmulatorImportViewModel(
+            GameDatabase database,
+            IWindowFactory window,
+            IDialogsFactory dialogs,
+            IResourceProvider resources)
         {
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
             this.database = database;
-            Type = type;
-
-            try
-            {
-                EmulatorDefinitions = EmulatorDefinition.GetDefinitions();
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                EmulatorDefinitions = new List<EmulatorDefinition>();
-                logger.Error(e, "Failed to load emulator definitions.");
-            }
+            importedDirs = database.Emulators.Select(a => a.InstallDir).ToList();
+            CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(EmulatorList);
+            CollectionView.Filter = ListFilter;
+            BindingOperations.EnableCollectionSynchronization(EmulatorList, listSyncLock);
         }
 
         public bool? OpenView()
@@ -410,212 +112,46 @@ namespace Playnite.DesktopApp.ViewModels
             window.Close(result);
         }
 
-        public async void SearchEmulators(string path)
+        private bool ListFilter(object item)
         {
-            logger.Info($"Scanning {path} for emulators.");
-
-            try
+            var emulator = (ScannedEmulator)item;
+            if (HideImported)
             {
-                IsLoading = true;
-                cancelToken = new CancellationTokenSource();
-                try
-                {
-                    var emulators = await EmulatorFinder.SearchForEmulators(path, EmulatorDefinitions, cancelToken);
-                    if (emulators != null)
-                    {
-                        if (EmulatorList == null)
-                        {
-                            EmulatorList = new RangeObservableCollection<ImportableEmulator>();
-                        }
+                return !importedDirs.ContainsString(emulator.InstallDir, StringComparison.OrdinalIgnoreCase);
+            }
 
-                        EmulatorList.AddRange(emulators.Select(a => new ImportableEmulator(a)));
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to search for emulators in {path}.");
-                    dialogs.ShowErrorMessage(e.Message, "");
-                }
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            return true;
         }
 
-        public async void SearchGames(string path, EmulatorProfile profile)
+        public void ScanEmulators()
         {
-            logger.Info($"Scanning {path} for emulated games using {profile} profile.");
-
-            try
-            {
-                IsLoading = true;
-                cancelToken = new CancellationTokenSource();
-                try
-                {
-                    var games = await EmulatorFinder.SearchForGames(path, profile, cancelToken);
-                    if (games?.Any() == true)
-                    {
-                        if (GamesList == null)
-                        {
-                            GamesList = new RangeObservableCollection<ImportableGame>();
-                        }
-
-                        var emulator = AvailableEmulators.First(a => a.Profiles.Any(b => b.Id == profile.Id));
-                        var importedRoms = database.Games.Where(a => !a.GameImagePath.IsNullOrEmpty()).Select(a => a.GameImagePath).ToList();
-                        GamesList.AddRange(games
-                            .Where(a =>
-                            {
-                                return !importedRoms.ContainsString(a.GameImagePath, StringComparison.OrdinalIgnoreCase);
-                            })
-                            .Select(a =>
-                            {
-                                a.PlatformId = profile.Platforms?.FirstOrDefault() ?? Guid.Empty;
-                                return new ImportableGame(a, emulator, profile);
-                            }));
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, $"Failed to search for emulated games in {path}.");
-                    dialogs.ShowErrorMessage(e.Message, "");
-                }
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
-
-        private void AddSelectedGamesToDB()
-        {
-            if (GamesList == null || GamesList.Count == 0)
+            var dirToScan = dialogs.SelectFolder();
+            if (dirToScan.IsNullOrEmpty())
             {
                 return;
             }
 
-            logger.Info($"Adding {GamesList.Count} new emulated games to DB.");
-            foreach (var game in GamesList)
+            var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
-                if (!game.Import)
-                {
-                    continue;
-                }
-
-                game.Game.PlayAction = new GameAction()
-                {
-                    EmulatorId = game.Emulator.Id,
-                    EmulatorProfileId = game.EmulatorProfile.Id,
-                    Type = GameActionType.Emulator
-                };
-
-                game.Game.IsInstalled = true;
-            }
-
-            ImportedGames = GamesList.Where(a => a.Import)?.Select(a => a.Game).ToList();
-            GlobalProgress.ActivateProgress(
-                (_) => database.Games.Add(ImportedGames),
-                new GlobalProgressOptions(string.Format(resources.GetString("LOCProgressImportinGames"), ImportedGames.Count)));
-        }
-
-        private void AddSelectedEmulatorsToDB()
-        {
-            if (EmulatorList == null || EmulatorList.Count == 0)
+                var emulators = EmulatorScanner.SearchForEmulators(dirToScan, EmulatorDefinition.Definitions, args.CancelToken);
+                window.Window.Dispatcher.Invoke(() => EmulatorList.AddRange(emulators));
+            },
+            new GlobalProgressOptions(LOC.EmuWizardScanning)
             {
-                return;
-            }
+                Cancelable = true,
+                IsIndeterminate = true
+            });
 
-            logger.Info($"Adding {EmulatorList.Count} new emulators to DB.");
-            foreach (var emulator in EmulatorList)
+            if (scanRes.Error != null)
             {
-                if (emulator.Import)
-                {
-                    var platforms = DatabasePlatforms;
-                    foreach (var profile in emulator.Profiles)
-                    {
-                        foreach (var platform in profile.ProfileDefinition.Platforms)
-                        {
-                            var existing = platforms.FirstOrDefault(a => string.Equals(a.Name, platform, StringComparison.InvariantCultureIgnoreCase));
-                            if (existing == null)
-                            {
-                                var newPlatform = new Platform(platform);
-                                database.Platforms.Add(newPlatform);
-                                platforms = DatabasePlatforms;
-                                existing = newPlatform;
-                            }
-
-                            if (profile.Platforms == null)
-                            {
-                                profile.Platforms = new List<Guid>();
-                            }
-
-                            profile.Platforms.Add(existing.Id);
-                        }
-                    }
-
-                    database.Emulators.Add(new Emulator(emulator.Name)
-                    {
-                        Profiles = new ObservableCollection<EmulatorProfile>(emulator.Profiles.Select(a => (EmulatorProfile)a))
-                    });
-                }
-            }
-
-            OnPropertyChanged(nameof(DatabasePlatforms));
-            OnPropertyChanged(nameof(AvailableEmulators));
-        }
-
-        public void GoNextScreen()
-        {
-            if (ViewTabIndex == 2)
-            {
-                if (EmulatorList == null || EmulatorList.Count == 0 || EmulatorList.Where(a => a.Import).Count() == 0)
-                {
-                    if (dialogs.ShowMessage(resources.GetString("LOCEmuWizardNoEmulatorWarning"),
-                        "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                    {
-                        CloseView(false);
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-            }
-
-            ViewTabIndex++;
-
-            if (ViewTabIndex == 3)
-            {
-                AddSelectedEmulatorsToDB();
+                dialogs.ShowErrorMessage(LOC.EmulatorScanFailed + "\n" + scanRes.Error.Message, "");
             }
         }
 
-        public void GoPreviousScreen()
+        public void ImportEmulators()
         {
-            ViewTabIndex--;
-        }
-
-        public void VerifyAvailableEmulators(EmulatorsViewModel platforms)
-        {
-            if (AvailableEmulators == null || AvailableEmulators.Count == 0)
-            {
-                if (EmulatorList == null || EmulatorList.Count == 0 || EmulatorList.Where(a => a.Import).Count() == 0)
-                {
-                    if (dialogs.ShowMessage(resources.GetString("LOCEmuWizardNoEmulatorForGamesWarning")
-                        , "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        if (platforms.OpenView() == true)
-                        {
-                            OnPropertyChanged(nameof(AvailableEmulators));
-                        }
-                    }
-                }
-            }
-        }
-
-        public void CancelProgress()
-        {
-            cancelToken?.Cancel();
+            SelectedEmulators = CollectionView.Cast<ScannedEmulator>().Where(a => a.Import).ToList();
+            CloseView(true);
         }
     }
 }

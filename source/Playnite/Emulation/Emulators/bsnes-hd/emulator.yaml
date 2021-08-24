@@ -1,0 +1,9 @@
+Id: bsnes-hd
+Name: bsnes-hd
+Website: 'https://github.com/DerKoun/bsnes-hd'
+Profiles:
+  - Name: Default
+    StartupArguments: '--fullscreen "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [sfc, smc, zip]
+    StartupExecutable: ^bsnes_hd\.exe$

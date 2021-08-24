@@ -1,8 +1,0 @@
-Name: Mesen-S
-Website: 'https://github.com/SourMesen/Mesen-S'
-Profiles:
-  - Name: Default
-    DefaultArguments: '"{ImagePath}"'
-    Platforms: [Super Nintendo Entertainment System]
-    ImageExtensions: [sfc, smc, zip, 7z]
-    ExecutableLookup: ^Mesen-S\.exe$

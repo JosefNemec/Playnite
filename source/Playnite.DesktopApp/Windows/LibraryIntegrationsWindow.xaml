@@ -10,6 +10,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
+        Title="{DynamicResource LOCMenuConfigureIntegrations}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Width="800" Height="620"                     
         AutomationProperties.AutomationId="WindowLibraryIntegrations">
@@ -22,10 +23,6 @@
 
     <controls:WindowBase.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-        <x:Array Type="{x:Type sys:String}" x:Key="DummyArray">
-            <sys:String>Dummy</sys:String>
-        </x:Array>
-        <CollectionViewSource x:Key="LibraryItemCollection" Source="{Binding LibraryPluginList}"/>
     </controls:WindowBase.Resources>
 
     <DockPanel Margin="0,5,0,0">
@@ -46,8 +43,13 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
                 DockPanel.Dock="Left">
             <ListBox MinWidth="160" BorderThickness="0" ScrollViewer.CanContentScroll="False"
-                     ItemsSource="{Binding OptionsList}" SelectedIndex="0"
+                     ItemsSource="{Binding Extensions.LibraryPlugins}"
                      DisplayMemberPath="Name">
+                <ListBox.Resources>
+                    <DataTemplate DataType="{x:Type Separator}">
+                        <Rectangle Width="50" Height="25" Fill="Red" />
+                    </DataTemplate>
+                </ListBox.Resources>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged" >
                         <prism:InvokeCommandAction Command="{Binding LibraryItemChangedCommand}" />

@@ -40,5 +40,11 @@ namespace Playnite.SDK.Exceptions
         {
             ScriptStackTrace = stackTrace;
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return base.ToString() + "\n--- script trace ---\n" + ScriptStackTrace;
+        }
     }
 }

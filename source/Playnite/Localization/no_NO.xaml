@@ -480,8 +480,8 @@ Husk at du alltid kan legge til et hvilket som helst spill fra en hvilken som he
 
 Du kan også legge til et hvilket som helst annet spill senere ved å klikke på Playnite-logo-menyen.</sys:String>
     <sys:String x:Key="LOCFirstConfigOpenEmuImport">Start Emulerings-importering</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout">Rutenett visning</sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Velg foretrukket layout for Playnites rutenettvisning. Bildelayout kan endres når som helst i applikasjonsinnstillinger, inkludert alternativer for strekk for bilder.</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayout">Rutenettvisning</sys:String>
+    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc">Velg foretrukket layout for Playnites rutenettvisning. Bilde-layout kan endres når som helst i applikasjonsinnstillingene, inkludert alternativer for strekking.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigurer plattformer og emulatorer</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Konfigurer emulatorer</sys:String>
@@ -490,7 +490,7 @@ Du kan også legge til et hvilket som helst annet spill senere ved å klikke på
     <sys:String x:Key="LOCEmulatorsTitle">Emulatorer</sys:String>
     <sys:String x:Key="LOCEmulatorTitle">Emulator</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Legg til plattform</sys:String>
-    <sys:String x:Key="LOCSelectIconTitle">Velg Ikon</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Velg ikon</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Velg omslag</sys:String>
     <sys:String x:Key="LOCSelectImageTitle">Velg bilde</sys:String>
     <sys:String x:Key="LOCSelectItemTitle">Velg gjenstand</sys:String>
@@ -501,7 +501,7 @@ Du kan også legge til et hvilket som helst annet spill senere ved å klikke på
     <sys:String x:Key="LOCSupportedPlatformsTitle">Støttede plattform(er)</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Vil du lagre plattformendringer?</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Vil du lagre emulatorendringer?</sys:String>
-    <sys:String x:Key="LOCExecutableTitle">Utførbar</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">Kjørbar fil</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">Argumenter</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Arbeidsmappe</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Filtyper som støttes</sys:String>

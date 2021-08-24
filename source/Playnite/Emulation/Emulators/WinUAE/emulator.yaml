@@ -1,0 +1,27 @@
+Id: winuae
+Name: WinUAE
+Website: 'http://www.winuae.net/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -0 "{ImagePath}"'
+    Platforms: [commodore_amiga]
+    ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha]
+    StartupExecutable: ^winuae.*\.exe$
+
+  - Name: Amiga CD32
+    StartupArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -s quickstart=cd32,0 -cdimage="{ImagePath}"'
+    Platforms: [commodore_amiga_cd32]
+    ImageExtensions: [cue, chd, iso, ccd, mds, nrg]
+    StartupExecutable: ^winuae.*\.exe$
+
+  - Name: Amiga 500
+    StartupArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -s quickstart=a500,0 -0 "{ImagePath}"'
+    Platforms: [commodore_amiga]
+    ImageExtensions: [adf, adz, gz, dms, ipf, scp, fdi, lha]
+    StartupExecutable: ^winuae.*\.exe$
+
+  - Name: Amiga 1200
+    StartupArguments: '-s use_gui=no -s gfx_fullscreen_amiga=true -s quickstart=a1200,0 -0 "{ImagePath}"'
+    Platforms: [commodore_amiga]
+    ImageExtensions: [iso, ccd, cue, chd, mds, nrg, adf, adz, gz, dms, ipf, scp, fdi, lha]
+    StartupExecutable: ^winuae.*\.exe$

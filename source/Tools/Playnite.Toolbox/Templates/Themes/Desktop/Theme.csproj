@@ -38,9 +38,6 @@
     <Reference Include="Playnite">
       <HintPath>..\..\..\Playnite.dll</HintPath>
     </Reference>
-    <Reference Include="Playnite.Common">
-      <HintPath>..\..\..\Playnite.Common.dll</HintPath>
-    </Reference>
     <Reference Include="Playnite.SDK">
       <HintPath>..\..\..\Playnite.SDK.dll</HintPath>
     </Reference>

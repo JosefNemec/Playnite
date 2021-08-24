@@ -12,9 +12,14 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public CompaniesCollection(GameDatabase database) : base(type: GameDatabaseCollection.Companies)
+        public CompaniesCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.Companies)
         {
             db = database;
+        }
+
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
+            mapper.Entity<Company>().Id(a => a.Id, false);
         }
 
         private void RemoveUsage(Guid companyId)

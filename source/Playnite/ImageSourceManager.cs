@@ -99,7 +99,6 @@ namespace Playnite
             try
             {
                 return database.GetFullFilePath(source);
-
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -134,7 +133,7 @@ namespace Playnite
                 resource = resource.GetClone(loadProperties);
             }
 
-            if (cached)
+            if (cached && resource != null)
             {
                 Cache.TryAdd(resourceKey, resource, resource.GetSizeInMemory(),
                     new Dictionary<string, object>
@@ -287,7 +286,6 @@ namespace Playnite
 
                         return imageData;
                     }
-
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

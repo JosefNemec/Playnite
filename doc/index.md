@@ -2,7 +2,7 @@
 
 ### Extensions
 
-To get documentation and tutorials on how to extend Playnite's functionality with scripts and plugins see [extension tutorials](tutorials/intro.md) page.
+To get documentation and tutorials on how to extend Playnite's functionality with scripts and plugins see [extension tutorials](tutorials/extensions/intro.md) page.
 
 ### Themes
 

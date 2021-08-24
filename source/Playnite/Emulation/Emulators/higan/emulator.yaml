@@ -1,0 +1,75 @@
+Id: higan
+Name: higan
+Website: 'https://higan.dev/'
+Profiles:
+  - Name: Nintendo - NES
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [zip, nes]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Nintendo - SNES
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [sfc, smc, bs, zip]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Nintendo - Game Boy
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_gameboy]
+    ImageExtensions: [zip, gb]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Nintendo - Game Boy Color
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_gameboycolor]
+    ImageExtensions: [zip, gbc]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Nintendo - Game Boy Advance
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [zip, gba]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Sega - Master System
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [sega_mastersystem]
+    ImageExtensions: [zip, sms]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Sega - Mega Drive
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [sega_genesis]
+    ImageExtensions: [zip, bin, smd, md] 
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Sega - Game Gear
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [sega_gamegear]
+    ImageExtensions: [zip, gg]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: NEC - PC Engine
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nec_turbografx_16, nec_turbografx_cd]
+    ImageExtensions: [zip, pce, cue, ccd, chd]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: PC Engine SuperGrafx
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nec_supergrafx]
+    ImageExtensions: [zip, pce]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Bandai - WonderSwan
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [bandai_wonderswan]
+    ImageExtensions: [zip, ws]
+    StartupExecutable: ^higan.*\.exe$
+
+  - Name: Bandai - WonderSwan Color
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [bandai_wonderswan_color]
+    ImageExtensions: [zip, wsc]
+    StartupExecutable: ^higan.*\.exe$

@@ -1,0 +1,9 @@
+Id: decaf-emu
+Name: decaf-emu
+Website: 'https://github.com/decaf-emu/decaf-emu'
+Profiles:       
+  - Name: Default 
+    StartupArguments: 'play "{ImagePath}"'
+    Platforms: [nintendo_wiiu]
+    ImageExtensions: [wud, rpx]
+    StartupExecutable: ^decaf-sdl\.exe$

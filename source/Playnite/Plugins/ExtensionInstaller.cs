@@ -43,18 +43,63 @@ namespace Playnite.Plugins
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static List<ExtensionInstallQueueItem> currentQueue = new List<ExtensionInstallQueueItem>();
+        private static Dictionary<string, DateTime> agreedLicenses;
+
+        static ExtensionInstaller()
+        {
+            if (File.Exists(PlaynitePaths.AddonLicenseAgreementsFilePath))
+            {
+                agreedLicenses = Serialization.FromJsonFile<Dictionary<string, DateTime>>(PlaynitePaths.AddonLicenseAgreementsFilePath);
+            }
+            else
+            {
+                agreedLicenses = new Dictionary<string, DateTime>();
+            }
+        }
+
+        public static void AgreeAddonLicense(string addonId)
+        {
+            agreedLicenses[addonId] = DateTime.Today;
+            File.WriteAllText(PlaynitePaths.AddonLicenseAgreementsFilePath, Serialization.ToJson(agreedLicenses, true));
+        }
+
+        public static void RemoveAddonLicenseAgreement(string addonId)
+        {
+            if (agreedLicenses.ContainsKey(addonId))
+            {
+                agreedLicenses.Remove(addonId);
+                File.WriteAllText(PlaynitePaths.AddonLicenseAgreementsFilePath, Serialization.ToJson(agreedLicenses, true));
+            }
+        }
+
+        public static DateTime? GetAddonLicenseAgreed(string addonId)
+        {
+            if (agreedLicenses.ContainsKey(addonId))
+            {
+                return agreedLicenses[addonId];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static List<ExtensionInstallQueueItem> GetQueuedItems()
+        {
+            if (!File.Exists(PlaynitePaths.ExtensionQueueFilePath))
+            {
+                return new List<ExtensionInstallQueueItem>();
+            }
+
+            return Serialization.FromJsonFile<List<ExtensionInstallQueueItem>>(PlaynitePaths.ExtensionQueueFilePath);
+        }
 
         public static List<BaseExtensionManifest> InstallExtensionQueue()
         {
             var anyFailed = false;
             var installedExts = new List<BaseExtensionManifest>();
-            if (!File.Exists(PlaynitePaths.ExtensionQueueFilePath))
-            {
-                return installedExts;
-            }
 
-            var queue = Serialization.FromJsonFile<List<ExtensionInstallQueueItem>>(PlaynitePaths.ExtensionQueueFilePath);
-            foreach (var queueItem in queue)
+            foreach (var queueItem in GetQueuedItems())
             {
                 if (queueItem.InstallType == ExtInstallType.Install)
                 {
@@ -121,13 +166,20 @@ namespace Playnite.Plugins
             return installedExts;
         }
 
-        public static T InstallPackedFile<T>(string path, string nanifestFileName, string rootDir, Func<string, T> newMan) where T : BaseExtensionManifest
+        public static T InstallPackedFile<T>(string packagePath, string nanifestFileName, string rootDir, Func<string, T> newMan) where T : BaseExtensionManifest
         {
-            logger.Info($"Installing extenstion/theme {path}");
-            var manifest = GetPackedManifest<T>(path, nanifestFileName);
+            logger.Info($"Installing extenstion/theme {packagePath}");
+            var manifest = GetPackedManifest<T>(packagePath, nanifestFileName);
             if (manifest == null)
             {
                 throw new FileNotFoundException("Extenstion/theme manifest not found.");
+            }
+
+            var entries = Archive.GetArchiveFiles(packagePath);
+            if (entries.Any(a => a.EndsWith(".sln", StringComparison.OrdinalIgnoreCase)))
+            {
+                // Check for themes that are not packaged via Toolbox.
+                throw new Exception("Package content invalid.");
             }
 
             if (manifest is ThemeManifest themeMan)
@@ -135,52 +187,17 @@ namespace Playnite.Plugins
                 rootDir = Path.Combine(rootDir, themeMan.Mode.ToString());
             }
 
-            var legacyInstallDir = Path.Combine(rootDir, manifest.LegacyDirId);
-            var installDir = string.Empty;
-            if (manifest.Id.IsNullOrEmpty())
-            {
-                installDir = legacyInstallDir;
-            }
-            else
-            {
-                installDir = Path.Combine(rootDir, Paths.GetSafePathName(manifest.Id));
-
-                // Delete installation in legacy path
-                if (Directory.Exists(legacyInstallDir))
-                {
-                    Directory.Delete(legacyInstallDir, true);
-                }
-
-                // Also delete manually installed instance
-                if (Directory.Exists(rootDir))
-                {
-                    foreach (var extDir in Directory.GetDirectories(rootDir))
-                    {
-                        var man = GetManifestFromDir(extDir);
-                        if (man != null)
-                        {
-                            if (manifest.LegacyDirId == man.LegacyDirId)
-                            {
-                                Directory.Delete(extDir, true);
-                            }
-                        }
-                    }
-                }
-            }
-
-            var oldBackPath = installDir + "_old";
+            var installDir = Path.Combine(rootDir, Paths.GetSafePathName(manifest.Id));
             if (Directory.Exists(installDir))
             {
                 logger.Debug($"Replacing existing extenstion/theme installation: {installDir}.");
-                Directory.Move(installDir, oldBackPath);
             }
 
             FileSystem.CreateDirectory(installDir, true);
-            ZipFile.ExtractToDirectory(path, installDir);
-
-            if (Directory.Exists(oldBackPath))
+            ZipFile.ExtractToDirectory(packagePath, installDir);
+            if (Paths.AreEqual(PlaynitePaths.TempPath, Path.GetDirectoryName(packagePath)))
             {
-                Directory.Delete(oldBackPath, true);
+                File.Delete(packagePath);
             }
 
             return newMan(Path.Combine(installDir, nanifestFileName));

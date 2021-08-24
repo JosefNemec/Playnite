@@ -5,7 +5,6 @@ using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.Controllers;
 using Playnite.SDK;
-using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using Playnite.ViewModels;
@@ -23,6 +22,9 @@ using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using Playnite.SDK.Exceptions;
 using System.Drawing.Imaging;
+using Playnite.SDK.Plugins;
+using System.Collections.ObjectModel;
+using Playnite.Scripting.PowerShell;
 
 namespace Playnite
 {
@@ -40,6 +42,7 @@ namespace Playnite
         private GameControllerFactory controllers;
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
         private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
+        private readonly ConcurrentDictionary<Guid, PowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, PowerShellRuntime>();
 
         public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
@@ -99,7 +102,12 @@ namespace Playnite
 
         public void Dispose()
         {
-            foreach (var controller in controllers.Controllers)
+            foreach (var controller in controllers.PlayControllers)
+            {
+                UpdateGameState(controller.Game.Id, null, false, false, false, false);
+            }
+
+            foreach (var controller in controllers.InstallControllers)
             {
                 UpdateGameState(controller.Game.Id, null, false, false, false, false);
             }
@@ -130,7 +138,7 @@ namespace Playnite
                 return;
             }
 
-            IGameController controller = null;
+            PlayController controller = null;
 
             try
             {
@@ -140,36 +148,80 @@ namespace Playnite
                     return;
                 }
 
-                if (game.PlayAction == null)
+                var gameActions = GetPlayActions(game);
+                if (!gameActions.Item1.HasItems() && !gameActions.Item2.HasItems())
                 {
-                    Dialogs.ShowErrorMessage(
-                        resources.GetString("LOCErrorNoPlayAction"),
-                        resources.GetString("LOCGameError"));
+                    Dialogs.ShowErrorMessage(LOC.ErrorNoPlayAction, LOC.GameError);
                     return;
                 }
 
-                if (game.PlayAction.IsHandledByPlugin)
+                object playAction = null;
+                if ((gameActions.Item1.Count + gameActions.Item2.Count) > 1)
                 {
-                    logger.Info("Using library plugin to start the game.");
-                    controller = controllers.GetGameBasedController(game, Extensions);
+                    playAction = SelectPlayAction(gameActions.Item1, gameActions.Item2);
                 }
                 else
                 {
-                    logger.Info("Using generic controller start the game.");
-                    controller = controllers.GetGenericGameController(game);
+                    if (gameActions.Item1.Count > 0)
+                    {
+                        playAction = gameActions.Item1[0];
+                    }
+                    else
+                    {
+                        playAction = gameActions.Item2[0];
+                    }
+                }
+
+                if (playAction == null)
+                {
+                    return;
+                }
+
+                scriptRuntimes.TryAdd(game.Id, new PowerShellRuntime($"{game.Name} {game.Id} runtime"));
+                if (playAction is AutomaticPlayController)
+                {
+                    logger.Debug("Using automatic plugin controller to start a game.");
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                }
+                else if (playAction is PlayController plugAction)
+                {
+                    logger.Debug("Using plugin to start a game.");
+                    controller = plugAction;
+                }
+                else if (playAction is EmulationPlayAction)
+                {
+                    logger.Debug("Using generic controller to start emulated game.");
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                }
+                else if (playAction is GameAction gameAction)
+                {
+                    logger.Debug("Using generic controller start a game.");
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                }
+                else
+                {
+                    logger.Error($"Uknown controller found to start a game: {controller.GetType()}");
+                }
+
+                foreach (var item in gameActions.Item1)
+                {
+                    if (item != controller)
+                    {
+                        item.Dispose();
+                    }
                 }
 
                 if (controller == null)
                 {
-                    Dialogs.ShowErrorMessage(
-                        resources.GetString("LOCErrorLibraryPluginNotFound"),
-                        resources.GetString("LOCGameError"));
+                    scriptRuntimes.TryRemove(game.Id, out _);
+                    Dialogs.ShowErrorMessage(LOC.ErrorStartupNoController, LOC.StartupError);
                     return;
                 }
 
-                controllers.RemoveController(game.Id);
+                controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
+                controllers.InvokeOnStarting(this, new SDK.Events.OnGameStartingEventArgs { Game = game.GetClone() });
 
                 if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
                 {
@@ -178,75 +230,53 @@ namespace Playnite
                     shutdownJobs.TryRemove(game.PluginId, out var _);
                 }
 
-                if (!AppSettings.PreScript.IsNullOrWhiteSpace() && game.UseGlobalPreScript)
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true))
                 {
-                    try
-                    {
-                        var expanded = game.ExpandVariables(AppSettings.PreScript);
-                        ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
-                    }
-                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        var message = exc.Message;
-                        if (exc is ScriptRuntimeException err)
-                        {
-                            message = err.Message + "\n\n" + err.ScriptStackTrace;
-                        }
-
-                        logger.Error(exc, "Failed to execute global pre-script action.");
-                        logger.Error(AppSettings.PreScript);
-                        Dialogs.ShowMessage(
-                            message,
-                            resources.GetString("LOCErrorGlobalScriptAction"),
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
-                        controllers.RemoveController(game.Id);
-                        UpdateGameState(game.Id, null, null, null, null, false);
-                        return;
-                    }
+                    controllers.RemovePlayController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, null, false);
+                    return;
                 }
 
-                if (!game.PreScript.IsNullOrWhiteSpace())
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false))
                 {
-                    try
-                    {
-                        var expanded = game.ExpandVariables(game.PreScript);
-                        ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
-                    }
-                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        var message = exc.Message;
-                        if (exc is ScriptRuntimeException err)
-                        {
-                            message = err.Message + "\n\n" + err.ScriptStackTrace;
-                        }
-
-                        logger.Error(exc, "Failed to execute game's pre-script action.");
-                        logger.Error(game.PreScript);
-                        Dialogs.ShowMessage(
-                            message,
-                            resources.GetString("LOCErrorGameScriptAction"),
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
-                        controllers.RemoveController(game.Id);
-                        UpdateGameState(game.Id, null, null, null, null, false);
-                        return;
-                    }
+                    controllers.RemovePlayController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, null, false);
+                    return;
                 }
 
-                controller.Play();
+                if (controller is GenericPlayController genCtrl)
+                {
+                    if (playAction is EmulationPlayAction emuAct)
+                    {
+                        genCtrl.Start(emuAct);
+                    }
+                    else if (playAction is AutomaticPlayController autoAction)
+                    {
+                        genCtrl.Start(autoAction);
+                    }
+                    else if (playAction is GameAction act)
+                    {
+                        genCtrl.Start(act);
+                    }
+                    else
+                    {
+                        throw new NotSupportedException("Uknown play action type.");
+                    }
+                }
+                else
+                {
+                    controller.Play(new PlayActionArgs());
+                }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot start game: ");
                 Dialogs.ShowMessage(
-                    string.Format(resources.GetString("LOCGameStartError"), exc.Message),
-                    resources.GetString("LOCGameError"),
+                    resources.GetString(LOC.GameStartError).Format(exc.Message), LOC.GameError,
                     MessageBoxButton.OK, MessageBoxImage.Error);
-
                 if (controller != null)
                 {
-                    controllers.RemoveController(game.Id);
+                    controllers.RemoveController(controller);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
 
@@ -260,9 +290,40 @@ namespace Playnite
         {
             try
             {
-                var emulators = Database.Emulators.ToList();
-                var profile = GameActionActivator.GetGameActionEmulatorConfig(action, emulators)?.ExpandVariables(game);
-                GameActionActivator.ActivateAction(action.ExpandVariables(game), profile);
+                switch (action.Type)
+                {
+                    case GameActionType.URL:
+                        ProcessStarter.StartUrl(action.Path);
+                        break;
+                    case GameActionType.File:
+                    case GameActionType.Emulator:
+                    case GameActionType.Script:
+                        using (var scriptRuntime = new PowerShellRuntime("Custom action runtime"))
+                        using (var controller = new GenericPlayController(Database, game, scriptRuntime, Application.Api))
+                        {
+                            if (action.Type == GameActionType.Emulator)
+                            {
+                                var emulator = Database.Emulators[action.EmulatorId];
+                                if (emulator == null)
+                                {
+                                    throw new Exception($"Emulator not found.");
+                                }
+
+                                var prof = emulator.AllProfiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
+                                var newAction = action.GetClone<GameAction, EmulationPlayAction>();
+                                newAction.SelectedEmulatorProfile = prof ?? throw new Exception("Specified emulator config does't exists.");
+                                newAction.SelectedRomPath = game.Roms.HasItems() ? game.Roms[0].Path : string.Empty;
+                                controller.Start(newAction, false);
+                            }
+                            else
+                            {
+                                controller.Start(action, false);
+                            }
+                        }
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -284,15 +345,11 @@ namespace Playnite
             try
             {
                 var installDirectory = game.InstallDirectory;
-                if (!Directory.Exists(installDirectory))
+                if (FileSystem.DirectoryExistsOnAnyDrive(installDirectory, out var newPath) &&
+                    !string.Equals(newPath, installDirectory, StringComparison.OrdinalIgnoreCase))
                 {
-                    var newInstallDirectory = FileSystem.LookupAlternativeDirectoryPath(installDirectory);
-                    if (!string.IsNullOrWhiteSpace(newInstallDirectory))
-                    {
-                        logger.Warn($"InstallDirectory \"{installDirectory}\" does not exist for game \"{game.Name}\"" +
-                        $" and is temporarily changed to {newInstallDirectory}");
-                        installDirectory = newInstallDirectory;
-                    }
+                    logger.Warn("Replaced missing game dir with new one:\n{0}\n{1}".Format(installDirectory, newPath));
+                    installDirectory = newPath;
                 }
 
                 installDirectory = game.ExpandVariables(installDirectory);
@@ -381,9 +438,9 @@ namespace Playnite
 
         public void SetCompletionStatus(Game game, CompletionStatus status)
         {
-            if (game.CompletionStatus != status)
+            if (game.CompletionStatusId != status.Id)
             {
-                game.CompletionStatus = status;
+                game.CompletionStatusId = status.Id;
                 Database.Games.Update(game);
             }
         }
@@ -452,7 +509,11 @@ namespace Playnite
                 Database.Games.Remove(game);
                 if (addToExclusionList)
                 {
-                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    var exclusion = new ImportExclusionItem(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    if (Database.ImportExclusions[exclusion.Id] == null)
+                    {
+                        Database.ImportExclusions.Add(exclusion);
+                    }
                 }
             }
         }
@@ -514,7 +575,11 @@ namespace Playnite
 
                 if (addToExclusionList && !game.IsCustomGame)
                 {
-                    AppSettings.ImportExclusionList.Add(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    var exclusion = new ImportExclusionItem(game.GameId, game.Name, game.PluginId, Extensions.GetLibraryPlugin(game.PluginId)?.Name);
+                    if (Database.ImportExclusions[exclusion.Id] == null)
+                    {
+                        Database.ImportExclusions.Add(exclusion);
+                    }
                 }
             }
 
@@ -589,7 +654,7 @@ namespace Playnite
 
             try
             {
-                var manualPath = game.Manual;
+                var manualPath = game.ExpandVariables(game.Manual, fixSeparators: true);
                 if (!manualPath.IsUri() && !File.Exists(manualPath))
                 {
                     manualPath = Path.Combine(Database.GetFileStoragePath(game.Id), manualPath);
@@ -625,41 +690,44 @@ namespace Playnite
         public void InstallGame(Game game)
         {
             logger.Info($"Installing {game.GetIdentifierInfo()}");
-            IGameController controller = null;
+            InstallController controller = null;
             try
             {
-                controller = controllers.GetGameBasedController(game, Extensions);
+                var installControllers = GetInstallActions(game);
+                if (!installControllers.HasItems())
+                {
+                    Dialogs.ShowErrorMessage(LOC.ErrorNoInstallAction, LOC.GameError);
+                    return;
+                }
+
+                if (installControllers.Count > 1)
+                {
+                    controller = SelectInstallAction(installControllers);
+                }
+                else
+                {
+                    controller = installControllers[0];
+                }
+
                 if (controller == null)
                 {
-                    logger.Error("Game installation failed, library plugin not found.");
-                    Dialogs.ShowErrorMessage(
-                        resources.GetString("LOCErrorLibraryPluginNotFound"),
-                        resources.GetString("LOCGameError"));
                     return;
                 }
 
-                if (controller is GenericGameController)
-                {
-                    logger.Error("Game installation failed, library plugin doesn't provide game controller.");
-                    return;
-                }
-
-                controllers.RemoveController(game.Id);
+                controllers.RemoveInstallController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, true, null, null);
-                controller.Install();
+                controller.Install(new InstallActionArgs());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot install game: ");
                 Dialogs.ShowMessage(
-                    string.Format(resources.GetString("LOCGameInstallError"), exc.Message),
-                    resources.GetString("LOCGameError"),
+                    resources.GetString(LOC.GameInstallError).Format(exc.Message), LOC.GameError,
                     MessageBoxButton.OK, MessageBoxImage.Error);
-
                 if (controller != null)
                 {
-                    controllers.RemoveController(game.Id);
+                    controllers.RemoveController(controller);
                     UpdateGameState(game.Id, null, null, false, null, null);
                 }
             }
@@ -669,51 +737,51 @@ namespace Playnite
         {
             if (game.IsRunning || game.IsLaunching)
             {
-                Dialogs.ShowMessage(
-                    resources.GetString("LOCGameUninstallRunningError"),
-                    resources.GetString("LOCGameError"),
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                Dialogs.ShowMessage(LOC.GameUninstallRunningError, LOC.GameError,
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             logger.Info($"Uninstalling {game.GetIdentifierInfo()}");
-            IGameController controller = null;
+            UninstallController controller = null;
 
             try
             {
-                controller = controllers.GetGameBasedController(game, Extensions);
+                var uninstallControllers = GetUninstallActions(game);
+                if (!uninstallControllers.HasItems())
+                {
+                    Dialogs.ShowErrorMessage(LOC.ErrorNoInstallAction, LOC.GameError);
+                    return;
+                }
+
+                if (uninstallControllers.Count > 1)
+                {
+                    controller = SelectUninstallAction(uninstallControllers);
+                }
+                else
+                {
+                    controller = uninstallControllers[0];
+                }
+
                 if (controller == null)
                 {
-                    logger.Error("Game uninstallation failed, library plugin not found.");
-                    Dialogs.ShowErrorMessage(
-                        resources.GetString("LOCErrorLibraryPluginNotFound"),
-                        resources.GetString("LOCGameError"));
                     return;
                 }
 
-                if (controller is GenericGameController)
-                {
-                    logger.Error("Game uninstallation failed, library plugin doesn't provide game controller.");
-                    return;
-                }
-
-                controllers.RemoveController(game.Id);
+                controllers.RemoveInstallController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, true, null);
-                controller.Uninstall();
+                controller.Uninstall(new UninstallActionArgs());
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Cannot un-install game: ");
                 Dialogs.ShowMessage(
-                    string.Format(resources.GetString("LOCGameUninstallError"), exc.Message),
-                    resources.GetString("LOCGameError"),
+                    resources.GetString(LOC.GameUninstallError).Format(exc.Message), LOC.GameError,
                     MessageBoxButton.OK, MessageBoxImage.Error);
-
                 if (controller != null)
                 {
-                    controllers.RemoveController(game.Id);
+                    controllers.RemoveController(controller);
                     UpdateGameState(game.Id, null, null, null, false, null);
                 }
             }
@@ -745,7 +813,7 @@ namespace Playnite
                         {
                             task.IconResourcePath = Database.GetFullFilePath(lastGame.Icon);
                         }
-                        else if (lastGame.PlayAction?.Type == GameActionType.File)
+                        else
                         {
                             task.IconResourcePath = lastGame.GetRawExecutablePath();
                         }
@@ -770,18 +838,31 @@ namespace Playnite
 
         public void CancelGameMonitoring(Game game)
         {
-            controllers.RemoveController(game.Id);
+            var wasRunning = game.IsRunning;
+            controllers.RemoveInstallController(game.Id);
+            controllers.RemovePlayController(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
             dbGame.IsLaunching = false;
             dbGame.IsInstalling = false;
             dbGame.IsUninstalling = false;
+            ulong ellapsedTime = 0;
             if (gameStartups.TryRemove(game.Id, out var startupTime))
             {
-                dbGame.Playtime += Convert.ToInt64((DateTime.Now - startupTime).TotalSeconds);
+                ellapsedTime = Convert.ToUInt64((DateTime.Now - startupTime).TotalSeconds);
+                dbGame.Playtime += ellapsedTime;
+            }
+
+            if (scriptRuntimes.TryRemove(game.Id, out var runtime))
+            {
+                runtime.Dispose();
             }
 
             Database.Games.Update(dbGame);
+            if (wasRunning)
+            {
+                Extensions.InvokeOnGameStopped(game, ellapsedTime);
+            }
 
             if (AppSettings.DiscordPresenceEnabled)
             {
@@ -821,71 +902,25 @@ namespace Playnite
             {
                 game.LastActivity = DateTime.Now;
                 game.PlayCount += 1;
-                if (game.CompletionStatus == CompletionStatus.NotPlayed)
+                var comSettings = Database.GetCompletionStatusSettings();
+                if (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == comSettings.DefaultStatus)
                 {
-                    game.CompletionStatus = CompletionStatus.Played;
+                    game.CompletionStatusId = comSettings.PlayedStatus;
                 }
             }
 
             Database.Games.Update(game);
         }
 
-        private void Controllers_Started(object sender, GameControllerEventArgs args)
+        private void Controllers_Started(object sender, GameStartedEventArgs args)
         {
-            var game = args.Controller.Game;
+            var game = args.Source.Game;
             logger.Info($"Started {game.Name} game.");
             UpdateGameState(game.Id, null, true, null, null, false);
             gameStartups.TryAdd(game.Id, DateTime.Now);
 
-            if (!AppSettings.GameStartedScript.IsNullOrWhiteSpace() && game.UseGlobalGameStartedScript)
-            {
-                try
-                {
-                    var expanded = game.ExpandVariables(AppSettings.GameStartedScript);
-                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    var message = exc.Message;
-                    if (exc is ScriptRuntimeException err)
-                    {
-                        message = err.Message + "\n\n" + err.ScriptStackTrace;
-                    }
-
-                    logger.Error(exc, "Failed to execute global game-started action.");
-                    logger.Error(AppSettings.GameStartedScript);
-                    Dialogs.ShowMessage(
-                        message,
-                        resources.GetString("LOCErrorGlobalScriptAction"),
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-
-            if (!game.GameStartedScript.IsNullOrWhiteSpace())
-            {
-                try
-                {
-                    var expanded = game.ExpandVariables(game.GameStartedScript);
-                    ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    var message = exc.Message;
-                    if (exc is ScriptRuntimeException err)
-                    {
-                        message = err.Message + "\n\n" + err.ScriptStackTrace;
-                    }
-
-                    logger.Error(exc, "Failed to execute game's game-started action.");
-                    logger.Error(game.GameStartedScript);
-                    Dialogs.ShowMessage(
-                        message,
-                        resources.GetString("LOCErrorGameScriptAction"),
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.GameStartedScript, game, game.UseGlobalGameStartedScript, true);
 
             if (Application.Mode == ApplicationMode.Desktop)
             {
@@ -900,13 +935,13 @@ namespace Playnite
             }
             else
             {
-                if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
-                {
-                    Application.Quit();
-                }
-                else
+                if (AppSettings.Fullscreen.MinimizeAfterGameStartup)
                 {
                     Application.Minimize();
+                }
+                else if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    Application.Quit();
                 }
             }
 
@@ -916,17 +951,17 @@ namespace Playnite
             }
         }
 
-        private void Controllers_Stopped(object sender, GameControllerEventArgs args)
+        private void Controllers_Stopped(object sender, GameStoppedEventArgs args)
         {
-            var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} stopped after {args.EllapsedTime} seconds.");
+            var game = args.Source.Game;
+            logger.Info($"Game {game.Name} stopped after {args.SessionLength} seconds.");
 
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
             dbGame.IsLaunching = false;
-            dbGame.Playtime += args.EllapsedTime;
+            dbGame.Playtime += args.SessionLength;
             Database.Games.Update(dbGame);
-            controllers.RemoveController(args.Controller);
+            controllers.RemoveController(args.Source);
             gameStartups.TryRemove(game.Id, out _);
             if (Application.Mode == ApplicationMode.Desktop)
             {
@@ -945,66 +980,23 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
-            if (!game.PostScript.IsNullOrWhiteSpace())
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true);
+            if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
-                try
-                {
-                    var expanded = game.ExpandVariables(game.PostScript);
-                    ExecuteScriptAction(game.ActionsScriptLanguage, expanded, game);
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    var message = exc.Message;
-                    if (exc is ScriptRuntimeException err)
-                    {
-                        message = err.Message + "\n\n" + err.ScriptStackTrace;
-                    }
-
-                    logger.Error(exc, "Failed to execute game's post-script action.");
-                    logger.Error(game.PostScript);
-                    Dialogs.ShowMessage(
-                        message,
-                        resources.GetString("LOCErrorGameScriptAction"),
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-
-            if (!AppSettings.PostScript.IsNullOrWhiteSpace() && game.UseGlobalPostScript)
-            {
-                try
-                {
-                    var expanded = game.ExpandVariables(AppSettings.PostScript);
-                    ExecuteScriptAction(AppSettings.ActionsScriptLanguage, expanded, game);
-                }
-                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    var message = exc.Message;
-                    if (exc is ScriptRuntimeException err)
-                    {
-                        message = err.Message + "\n\n" + err.ScriptStackTrace;
-                    }
-
-                    logger.Error(exc, "Failed to execute global post-script action.");
-                    logger.Error(AppSettings.PostScript);
-                    Dialogs.ShowMessage(
-                        message,
-                        resources.GetString("LOCErrorGlobalScriptAction"),
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
+                runtime.Dispose();
             }
 
             if (AppSettings.ClientAutoShutdown.ShutdownClients && !game.IsCustomGame)
             {
-                if (args.EllapsedTime <= AppSettings.ClientAutoShutdown.MinimalSessionTime)
+                if (args.SessionLength <= AppSettings.ClientAutoShutdown.MinimalSessionTime)
                 {
                     logger.Debug("Game session was too short for client to be shutdown.");
                 }
                 else
                 {
                     var plugin = Extensions.GetLibraryPlugin(game.PluginId);
-                    if (plugin?.Capabilities?.CanShutdownClient == true &&
+                    if (plugin?.Properties?.CanShutdownClient == true &&
                         AppSettings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id))
                     {
                         if (shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
@@ -1063,80 +1055,238 @@ namespace Playnite
 
         private void Controllers_Installed(object sender, GameInstalledEventArgs args)
         {
-            var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} installed after {args.EllapsedTime} seconds.");
+            var game = args.Source.Game;
+            logger.Info($"Game {game.Name} installed.");
 
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsInstalling = false;
             dbGame.IsInstalled = true;
-            dbGame.InstallDirectory = args.InstalledInfo.InstallDirectory;
-
-            if (args.InstalledInfo.PlayAction != null)
+            if (args.InstalledInfo != null)
             {
-                dbGame.PlayAction = args.InstalledInfo.PlayAction;
-            }
-
-            if (args.InstalledInfo.OtherActions != null)
-            {
-                dbGame.OtherActions = args.InstalledInfo.OtherActions.ToObservable();
-            }
-
-            if (!args.InstalledInfo.GameImagePath.IsNullOrEmpty())
-            {
-                dbGame.GameImagePath = args.InstalledInfo.GameImagePath;
+                dbGame.InstallDirectory = args.InstalledInfo.InstallDirectory;
+                if (args.InstalledInfo.Roms.HasItems())
+                {
+                    dbGame.Roms = args.InstalledInfo.Roms.ToObservable();
+                }
             }
 
             Database.Games.Update(dbGame);
-            controllers.RemoveController(args.Controller);
+            controllers.RemoveController(args.Source);
         }
 
-        private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
+        private void Controllers_Uninstalled(object sender, GameUninstalledEventArgs args)
         {
-            var game = args.Controller.Game;
-            logger.Info($"Game {game.Name} uninstalled after {args.EllapsedTime} seconds.");
+            var game = args.Source.Game;
+            logger.Info($"Game {game.Name} uninstalled.");
 
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsUninstalling = false;
             dbGame.IsInstalled = false;
             dbGame.InstallDirectory = string.Empty;
             Database.Games.Update(dbGame);
-            controllers.RemoveController(args.Controller);
+            controllers.RemoveController(args.Source);
         }
 
-        internal void ExecuteScriptAction(ScriptLanguage language, string script, Game game)
+        public bool ExecuteScriptAction(PowerShellRuntime runtime, string script, Game game, bool execute, bool global)
         {
-            if (language == ScriptLanguage.PowerShell && !Scripting.PowerShell.PowerShellRuntime.IsInstalled)
+            if (!execute || script.IsNullOrWhiteSpace())
             {
-                throw new Exception(resources.GetString("LOCErrorPowerShellNotInstalled"));
+                return true;
             }
 
-            logger.Info($"Executing script action in {language} runtime.");
-            IScriptRuntime runtime = null;
-            switch (language)
+            try
             {
-                case ScriptLanguage.PowerShell:
-                    runtime = new Scripting.PowerShell.PowerShellRuntime($"PS script: {game.Name}");
-                    break;
-                case ScriptLanguage.IronPython:
-                    runtime = new Scripting.IronPython.IronPythonRuntime($"IP script: {game.Name}");
-                    break;
-                case ScriptLanguage.Batch:
-                    runtime = new Scripting.Batch.BatchRuntime();
-                    break;
-            }
+                if (runtime == null)
+                {
+                    throw new Exception("Cannot execute script, no runtime given.");
+                }
 
-            using (runtime)
-            {
+                if (!PowerShellRuntime.IsInstalled)
+                {
+                    throw new Exception(resources.GetString("LOCErrorPowerShellNotInstalled"));
+                }
+
+                var scriptVars = new Dictionary<string, object>
+                {
+                    {  "PlayniteApi", Application.Api },
+                    {  "Game", game.GetClone() }
+                };
+
+                var expandedScript = game.ExpandVariables(script);
                 var dir = game.ExpandVariables(game.InstallDirectory, true);
                 if (!dir.IsNullOrEmpty() && Directory.Exists(dir))
                 {
-                    runtime.Execute(script, dir);
+                    runtime.Execute(expandedScript, dir, scriptVars);
                 }
                 else
                 {
-                    runtime.Execute(script);
+                    runtime.Execute(expandedScript, variables: scriptVars);
+                }
+
+                return true;
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, global ? "Failed to execute global script." : "Failed to execute game script.");
+                logger.Debug(script);
+                Dialogs.ShowMessage(
+                    exc.Message,
+                    resources.GetString(global ? LOC.ErrorGlobalScriptAction : LOC.ErrorGameScriptAction),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+        public Tuple<List<PlayController>, List<GameAction>> GetPlayActions(Game game)
+        {
+            var controllers = new List<PlayController>();
+            var actions = new List<GameAction>();
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                if (!game.IncludeLibraryPluginAction && plugin.Plugin.Id == game.PluginId)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    var ctrls = plugin.Plugin.GetPlayActions(new GetPlayActionsArgs { Game = game });
+                    if (ctrls.HasItems())
+                    {
+                        controllers.AddRange(ctrls);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get play actions from {plugin.Description.Name}");
+                    continue;
                 }
             }
+
+            if (game.GameActions.HasItems())
+            {
+                foreach (var action in game.GameActions.Where(a => a.IsPlayAction))
+                {
+                    if (action.Type == GameActionType.Emulator)
+                    {
+                        if (action.EmulatorId == Guid.Empty)
+                        {
+                            continue;
+                        }
+
+                        var emulator = Database.Emulators[action.EmulatorId];
+                        if (emulator == null)
+                        {
+                            continue;
+                        }
+
+                        var multipleRoms = game.Roms?.Count > 1;
+                        var romList = game.Roms.HasItems() ? game.Roms : new ObservableCollection<GameRom> { new GameRom() };
+                        void addAction(string name, EmulatorProfile profile)
+                        {
+                            foreach (var rom in romList)
+                            {
+                                var newAction = action.GetClone<GameAction, EmulationPlayAction>();
+                                newAction.Name = multipleRoms ? $"{name}: {rom.Name}" : name;
+                                newAction.SelectedEmulatorProfile = profile;
+                                newAction.SelectedRomPath = rom.Path;
+                                actions.Add(newAction);
+                            }
+                        }
+
+                        if (action.EmulatorProfileId == null)
+                        {
+                            foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
+                            {
+                                addAction($"{emulator.Name}: {profile.Name}", profile);
+                            }
+
+                            foreach (var profile in emulator.CustomProfiles ?? new ObservableCollection<CustomEmulatorProfile>())
+                            {
+                                addAction($"{emulator.Name}: {profile.Name}", profile);
+                            }
+                        }
+                        else
+                        {
+                            var prof = emulator.AllProfiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
+                            if (prof == null)
+                            {
+                                logger.Error($"Specified emulator config does't exists {action.EmulatorProfileId}");
+                            }
+                            else
+                            {
+                                addAction(emulator.Name, prof);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        actions.Add(action);
+                    }
+                }
+            }
+
+            return new Tuple<List<PlayController>, List<GameAction>>(controllers, actions);
+        }
+
+        public object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions)
+        {
+            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectPlayAction(controllers, actions);
+        }
+
+        public List<InstallController> GetInstallActions(Game game)
+        {
+            var allActions = new List<InstallController>();
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    var actions = plugin.Plugin.GetInstallActions(new GetInstallActionsArgs { Game = game });
+                    if (actions.HasItems())
+                    {
+                        allActions.AddRange(actions);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get install actions from {plugin.Description.Name}");
+                }
+            }
+
+            return allActions;
+        }
+
+        public InstallController SelectInstallAction(List<InstallController> actions)
+        {
+            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectInstallAction(actions);
+        }
+
+        public List<UninstallController> GetUninstallActions(Game game)
+        {
+            var allActions = new List<UninstallController>();
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    var actions = plugin.Plugin.GetUninstallActions(new GetUninstallActionsArgs { Game = game });
+                    if (actions.HasItems())
+                    {
+                        allActions.AddRange(actions);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get install actions from {plugin.Description.Name}");
+                }
+            }
+
+            return allActions;
+        }
+
+        public UninstallController SelectUninstallAction(List<UninstallController> actions)
+        {
+            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectUninstallAction(actions);
         }
     }
 }

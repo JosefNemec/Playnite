@@ -4,7 +4,6 @@ using Playnite;
 using Playnite.Common;
 using Playnite.Database;
 using Playnite.Metadata;
-using Playnite.Models;
 using Playnite.SDK;
 using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
@@ -15,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.Tests.Metadata
@@ -35,72 +35,72 @@ namespace Playnite.Tests.Metadata
                 this.availableFields = availableFields;
             }
 
-            public override MetadataFile GetBackgroundImage()
+            public override MetadataFile GetBackgroundImage(GetMetadataFieldArgs args)
             {
-                return metadata.BackgroundImage;
+                return metadata.GameInfo?.BackgroundImage;
             }
 
-            public override int? GetCommunityScore()
+            public override int? GetCommunityScore(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo.CommunityScore;
             }
 
-            public override MetadataFile GetCoverImage()
+            public override MetadataFile GetCoverImage(GetMetadataFieldArgs args)
             {
-                return metadata.CoverImage;
+                return metadata.GameInfo?.CoverImage;
             }
 
-            public override int? GetCriticScore()
+            public override int? GetCriticScore(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.CriticScore;
             }
 
-            public override string GetDescription()
+            public override string GetDescription(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Description;
             }
 
-            public override List<string> GetDevelopers()
+            public override List<string> GetDevelopers(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Developers;
             }
 
-            public override List<string> GetGenres()
+            public override List<string> GetGenres(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Genres;
             }
 
-            public override MetadataFile GetIcon()
+            public override MetadataFile GetIcon(GetMetadataFieldArgs args)
             {
-                return metadata.Icon;
+                return metadata.GameInfo?.Icon;
             }
 
-            public override List<Link> GetLinks()
+            public override List<Link> GetLinks(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Links;
             }
 
-            public override string GetName()
+            public override string GetName(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Name;
             }
 
-            public override List<string> GetPublishers()
+            public override List<string> GetPublishers(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Publishers;
             }
 
-            public override DateTime? GetReleaseDate()
+            public override ReleaseDate? GetReleaseDate(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.ReleaseDate;
             }
 
-            public override List<string> GetTags()
+            public override List<string> GetTags(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Tags;
             }
 
-            public override List<string> GetFeatures()
+            public override List<string> GetFeatures(GetMetadataFieldArgs args)
             {
                 return metadata.GameInfo?.Features;
             }
@@ -200,6 +200,7 @@ namespace Playnite.Tests.Metadata
             var fieldSettings = new MetadataFieldSettings();
             var downloader = new MetadataDownloader(null, metadataDownloaders, libraryDownloaders);
             var game = new Game();
+            var cancelToken = new CancellationTokenSource();
 
             // Store is not called if custom game
             var downloadedMetadata = downloader.ProcessField(
@@ -208,7 +209,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.IsNull(downloadedMetadata);
             Assert.AreEqual(0, storeDownloader.CallCount);
@@ -223,7 +225,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
             Assert.AreEqual(1, storeDownloader.CallCount);
@@ -237,7 +240,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.IsNotNull(downloadedMetadata);
             Assert.AreEqual(1, storeDownloader.CallCount);
@@ -251,7 +255,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
             Assert.IsNotNull(downloadedMetadata);
@@ -266,7 +271,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
             Assert.IsNotNull(downloadedMetadata);
@@ -282,7 +288,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.AreEqual(TestMetadataPlugin.DataString, downloadedMetadata.GameInfo.Description);
             Assert.IsNotNull(downloadedMetadata);
@@ -298,7 +305,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.IsNull(downloadedMetadata);
 
@@ -309,7 +317,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Description,
                 (a) => a.GameInfo?.Description,
                 existingMetadata,
-                existingPluginData);
+                existingPluginData,
+                cancelToken.Token);
 
             Assert.AreEqual(TestLibraryMetadataProvider.DataString, downloadedMetadata.GameInfo.Description);
         }
@@ -349,8 +358,8 @@ namespace Playnite.Tests.Metadata
             };
 
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 Game.DatabaseReference = db;
 
@@ -359,7 +368,7 @@ namespace Playnite.Tests.Metadata
                     Name = "Game",
                     GameId = "storeId",
                     Genres = new List<string>() { "Genre" },
-                    ReleaseDate = new DateTime(2012, 6, 6),
+                    ReleaseDate = new ReleaseDate(2012, 6, 6),
                     Developers = new List<string>() { "Developer" },
                     Publishers = new List<string>() { "Publisher" },
                     Tags = new List<string>() { "Tag" },
@@ -383,7 +392,7 @@ namespace Playnite.Tests.Metadata
 
                 settings.ConfigureFields(new List<Guid> { testPlugin.Id, Guid.Empty }, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, new CancellationTokenSource().Token);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, testPlugin.CallCount);
@@ -435,10 +444,13 @@ namespace Playnite.Tests.Metadata
                 Genres = new List<string>() { $"IGDB Genre {gameId}" },
                 Links = new List<Link>() { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
                 Publishers = new List<string>() { $"IGDB publisher {gameId}" },
-                ReleaseDate = new DateTime(2012, 6, 6),
+                ReleaseDate = new ReleaseDate(2012, 6, 6),
                 Tags = new List<string>() { $"IGDB Tag {gameId}" },
-                Features = new List<string>() { $"IGDB Feature {gameId}" }
-            }, icon, image, background);
+                Features = new List<string>() { $"IGDB Feature {gameId}" },
+                Icon = icon,
+                BackgroundImage = background,
+                CoverImage = image
+            });
 
             List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
             {
@@ -446,8 +458,9 @@ namespace Playnite.Tests.Metadata
             };
 
             using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
+            using (var token = new CancellationTokenSource())
             {
-                var db = new GameDatabase(temp.TempPath);
                 db.OpenDatabase();
                 Game.DatabaseReference = db;
                 var addedGame = db.ImportGame(new GameInfo()
@@ -458,7 +471,7 @@ namespace Playnite.Tests.Metadata
                     Genres = new List<string>() { "Genres" },
                     Links = new List<Link>() { new Link("Link", "URL") },
                     Publishers = new List<string>() { "Publishers" },
-                    ReleaseDate = new DateTime(2012, 6, 6),
+                    ReleaseDate = new ReleaseDate(2012, 6, 6),
                     Tags = new List<string>() { "Tags" },
                     Features = new List<string>() { "Features" },
                     UserScore = 1,
@@ -476,7 +489,7 @@ namespace Playnite.Tests.Metadata
                 // No download - all values are kept
                 settings.ConfigureFields(new List<Guid> { testPlugin.Id }, true);
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, token.Token);
 
                 var dbGames = db.Games.ToList();
                 Assert.AreEqual(0, testPlugin.CallCount);
@@ -498,7 +511,7 @@ namespace Playnite.Tests.Metadata
                 // Single download - values are changed even when present
                 settings.SkipExistingValues = false;
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, token.Token);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, testPlugin.CallCount);
@@ -524,7 +537,7 @@ namespace Playnite.Tests.Metadata
                 db.Games.Add(new Game("Game1"));
 
                 await downloader.DownloadMetadataAsync(
-                    db.Games.ToList(), settings, new PlayniteSettings(), null, null);
+                    db.Games.ToList(), settings, new PlayniteSettings(), null, token.Token);
 
                 dbGames = db.Games.ToList();
                 Assert.AreEqual(1, testPlugin.CallCount);

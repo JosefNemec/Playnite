@@ -6,7 +6,7 @@ Metadata Plugins
 
 To implement metadata plugin:
 
-* Read the introduction to [extensions](../intro.md) and [plugins](plugins.md).
+* Read the introduction to [extensions](intro.md) and [plugins](plugins.md).
 * Create new public class inheriting from [MetadataPlugin](xref:Playnite.SDK.Plugins.MetadataPlugin) abstract class.
 * Add implementation for mandatory abstract members.
 

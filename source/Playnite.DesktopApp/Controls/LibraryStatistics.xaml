@@ -40,11 +40,11 @@
                     <TextBlock Text="{Binding Favorite.Percentage, StringFormat='{}{0}%'}" Margin="15,3,0,3" TextAlignment="Right" />
 
                     <TextBlock Text="{DynamicResource LOCStatsTotalPlayTime}" Margin="0,15,15,3"/>
-                    <TextBlock Text="{Binding TotalPlayTime, Converter={StaticResource LongToTimePlayedConverter}}"
+                    <TextBlock Text="{Binding TotalPlayTime, Converter={StaticResource PlayTimeToStringConverter}}"
                                        Grid.ColumnSpan="2" Margin="0,15,0,3" />
 
                     <TextBlock Text="{DynamicResource LOCStatsAvaragePlayTime}" Margin="0,3,15,3" />
-                    <TextBlock Text="{Binding AvaragePlayTime, Converter={StaticResource LongToTimePlayedConverter}}"
+                    <TextBlock Text="{Binding AvaragePlayTime, Converter={StaticResource PlayTimeToStringConverter}}"
                                        Grid.ColumnSpan="2" Margin="0,3,0,3"/>
                 </GridEx>
             </GroupBox>
@@ -63,7 +63,7 @@
                                             Style="{DynamicResource BaseTextBlockStyle}" Width="30"
                                             DockPanel.Dock="Right" Margin="10,3,0,3"
                                             TextAlignment="Right"/>
-                                <TextBlock Text="{Binding Value, Converter={StaticResource LongToTimePlayedConverter}}"
+                                <TextBlock Text="{Binding Value, Converter={StaticResource PlayTimeToStringConverter}}"
                                             Style="{DynamicResource BaseTextBlockStyle}"
                                             DockPanel.Dock="Right" Margin="0,3,0,3"/>
                                 <TextBlock Margin="0,3,0,3" ToolTip="{Binding Name}">

@@ -51,7 +51,7 @@ namespace Playnite.ViewModels
                 CreateDiagPackage(new DiagnosticPackageInfo
                 {
                     IsCrashPackage = true,
-                    PlayniteVersion = Updater.GetCurrentVersion().ToString(4)
+                    PlayniteVersion = Updater.CurrentVersion.ToString(4)
                 });
             });
         }
@@ -160,7 +160,7 @@ namespace Playnite.ViewModels
         {
             if (exInfo?.IsExtensionCrash == true && DisableExtension)
             {
-                settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.DirectoryName);
+                settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.Id);
                 settings.SaveSettings();
             }
 
@@ -207,7 +207,7 @@ namespace Playnite.ViewModels
                 packageInfo = new DiagnosticPackageInfo
                 {
                     IsCrashPackage = false,
-                    PlayniteVersion = Updater.GetCurrentVersion().ToString(4)
+                    PlayniteVersion = Updater.CurrentVersion.ToString(4)
                 };
             }
 
@@ -256,10 +256,10 @@ namespace Playnite.ViewModels
 
         private void SaveLog()
         {
-            var targetPath = dialogs.SaveFile("Log file|*.log", true);
+            var targetPath = dialogs.SaveFile("zip file|*.zip", true);
             if (!targetPath.IsNullOrEmpty())
             {
-                File.Copy(PlaynitePaths.LogPath, targetPath, true);
+                Diagnostic.CreateLogPackage(targetPath);
             }
         }
     }

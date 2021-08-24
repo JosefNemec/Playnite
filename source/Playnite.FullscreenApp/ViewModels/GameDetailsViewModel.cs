@@ -14,17 +14,17 @@ namespace Playnite.FullscreenApp.ViewModels
     {
         public class GameActionItem
         {
-            public RelayCommand Command { get; set; }
+            public RelayCommandBase Command { get; set; }
             public object CommandParameter { get; set; }
             public string Title { get; set; }
 
-            public GameActionItem(RelayCommand command, string title)
+            public GameActionItem(RelayCommandBase command, string title)
             {
                 Command = command;
                 Title = title;
             }
 
-            public GameActionItem(RelayCommand command, object commandParameter, string title)
+            public GameActionItem(RelayCommandBase command, object commandParameter, string title)
             {
                 Command = command;
                 CommandParameter = commandParameter;
@@ -38,17 +38,6 @@ namespace Playnite.FullscreenApp.ViewModels
         private IDialogsFactory dialogs;
 
         public GamesCollectionViewEntry Game { get; set; }
-
-        private List<GameActionItem> gameItems;
-        public List<GameActionItem> GameItems
-        {
-            get => gameItems;
-            set
-            {
-                gameItems = value;
-                OnPropertyChanged();
-            }
-        }
 
         public string ContextActionDescription
         {
@@ -84,14 +73,8 @@ namespace Playnite.FullscreenApp.ViewModels
         }
 
         #region Game Commands
-        public RelayCommand<object> StartGameCommand { get; private set; }
-        public RelayCommand<object> InstallGameCommand { get; private set; }
-        public RelayCommand<object> UninstallGameCommand { get; private set; }
-        public RelayCommand<object> ToggleFavoritesCommand { get; private set; }
-        public RelayCommand<object> ToggleVisibilityCommand { get; private set; }
-        public RelayCommand<object> RemoveGameCommand { get; private set; }
+
         public RelayCommand<object> ContextActionCommand { get; private set; }
-        public RelayCommand<GameAction> ActivateActionCommand { get; private set; }
         #endregion
 
         public GameDetailsViewModel(
@@ -132,48 +115,6 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void InitializeCommands()
         {
-            ActivateActionCommand = new RelayCommand<GameAction>((a) =>
-            {
-                gamesEditor.ActivateAction(Game.Game, a);
-                mainModel.ToggleGameOptionsCommand.Execute(null);
-            }, (a) => a != null);
-
-            StartGameCommand = new RelayCommand<object>((a) =>
-            {
-                gamesEditor.PlayGame(Game.Game);
-                mainModel.ToggleGameOptionsCommand.Execute(null);
-            });
-
-            InstallGameCommand = new RelayCommand<object>((a) =>
-            {
-                gamesEditor.InstallGame(Game.Game);
-                mainModel.ToggleGameOptionsCommand.Execute(null);
-            });
-
-            UninstallGameCommand = new RelayCommand<object>((a) =>
-            {
-                gamesEditor.UnInstallGame(Game.Game);
-                mainModel.ToggleGameOptionsCommand.Execute(null);
-            });
-
-            ToggleFavoritesCommand = new RelayCommand<object>((a) =>
-            {
-                gamesEditor.ToggleFavoriteGame(Game.Game);
-                mainModel.ToggleGameOptionsCommand.Execute(null);
-            });
-
-            ToggleVisibilityCommand = new RelayCommand<object>((a) =>
-            {
-                gamesEditor.ToggleHideGame(Game.Game);
-                mainModel.ToggleGameOptionsCommand.Execute(null);
-            });
-
-            RemoveGameCommand = new RelayCommand<object>((a) =>
-            {
-                gamesEditor.RemoveGame(Game.Game);
-                mainModel.ToggleGameOptionsCommand.Execute(null);
-            });
-
             ContextActionCommand = new RelayCommand<object>((a) =>
             {
                 if (Game?.IsInstalling == true || Game?.IsUnistalling == true)
@@ -198,27 +139,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public void InitializeItems()
         {
             var items = new List<GameActionItem>();
-            if (Game.IsInstalled)
-            {
-                items.Add(new GameActionItem(StartGameCommand, resources.GetString("LOCPlayGame")));
-            }
-            else
-            {
-                items.Add(new GameActionItem(InstallGameCommand, resources.GetString("LOCInstallGame")));
-            }
-
-            Game.OtherActions.ForEach(a => items.Add(new GameActionItem(ActivateActionCommand, a, a.Name)));
-
-            items.Add(new GameActionItem(ToggleFavoritesCommand, Game.Favorite ? resources.GetString("LOCRemoveFavoriteGame") : resources.GetString("LOCFavoriteGame")));
-            items.Add(new GameActionItem(ToggleVisibilityCommand, Game.Hidden ? resources.GetString("LOCUnHideGame") : resources.GetString("LOCHideGame")));
-            items.Add(new GameActionItem(RemoveGameCommand, resources.GetString("LOCRemoveGame")));
-
-            if (!Game.IsCustomGame && Game.IsInstalled)
-            {
-                items.Add(new GameActionItem(UninstallGameCommand, resources.GetString("LOCUninstallGame")));
-            }
-
-            GameItems = items;
         }
 
         public void CheckSetup()

@@ -180,5 +180,62 @@ namespace Playnite
 
             CurrentLanguage = language;
         }
+
+        public static void LoadExtensionsLocalization(string extensionDir)
+        {
+            var dictionaries = Application.Current.Resources.MergedDictionaries;
+            void loadString(string xamlPath)
+            {
+                ResourceDictionary res = null;
+                try
+                {
+                    res = Xaml.FromFile<ResourceDictionary>(xamlPath);
+                    res.Source = new Uri(xamlPath, UriKind.Absolute);
+                    foreach (var key in res.Keys)
+                    {
+                        if (res[key] is string locString)
+                        {
+                            if (locString.IsNullOrEmpty())
+                            {
+                                res.Remove(key);
+                            }
+                        }
+                        else
+                        {
+                            res.Remove(key);
+                        }
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to parse localization file {xamlPath}");
+                    return;
+                }
+
+                dictionaries.Add(res);
+            }
+
+            var localDir = Path.Combine(extensionDir, PlaynitePaths.LocalizationsDirName);
+            if (!Directory.Exists(localDir))
+            {
+                return;
+            }
+
+            var enXaml = Path.Combine(localDir, "en_US.xaml");
+            if (!File.Exists(enXaml))
+            {
+                return;
+            }
+
+            loadString(enXaml);
+            if (CurrentLanguage != "english" && CurrentLanguage != "en_US")
+            {
+                var langXaml = Path.Combine(localDir, $"{CurrentLanguage}.xaml");
+                if (File.Exists(langXaml))
+                {
+                    loadString(langXaml);
+                }
+            }
+        }
     }
 }
