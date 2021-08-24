@@ -85,8 +85,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">افزونه کتابخانه مسئول این بازی غیرفعال است یا نصب نشده است.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">بارگیری رسمی ابرداده در دسترس نیست.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">هیچ بازی انتخاب نشده.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">اجرای اکشن اسکریپت بازی انجام نشد.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">اجرای عملکرد ماژول جهانی انجام نشد.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 یا جدیدتر نصب نشده است.</sys:String>
@@ -282,7 +282,7 @@
     <sys:String x:Key="LOCSettingsImportLabel">واردات به طور خودکار در کتابخانه</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">موقعیت مکانی فایل پایگاه داده نامعتبر است، باید مسیر فایل مناسب تنظیم شود.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">نام حساب نمی‌تواند خالی باشد.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">بروزرسانی کتابخانه شخص ثالث هنگام شروع برنامه</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">بعد از وارد کردن بازیها، ابرداده را بارگیری کنید</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">اجرا Playnite در حالت کمینه</sys:String>
@@ -290,7 +290,7 @@
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">هنگام راه اندازی رایانه، ثبت نام Playnite انجام نشد.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">راه اندازی در حالت تمام صفحه</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">بارگذاری تصویر ناهمزمان</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">افزایش سرعت پیمایش لیست بازی ها در ازای زمان بارگذاری تصویر کندتر</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">نمایش نام بازی اگر کاور گمشده</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">نام بازی را در نمای توری نشان دهید</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">بازی های نصب نشده را تاریک کنید</sys:String>
@@ -385,7 +385,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseSection">بستن خودکار کلاینت ها</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">واردات لیست استثنا</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">هشدار هنگام اختصاص رسانه بازی بسیار بزرگ</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">دستور باز کردن دایرکتوری</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">سازمان رتبه بندی سنی ترجیحی</sys:String>
     <sys:String x:Key="LOCStrechNone">هیچ</sys:String>
     <sys:String x:Key="LOCStrechFill">پر کردن</sys:String>
@@ -422,11 +422,15 @@
     <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">پیکربندی اولین بار</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">این جادوگر شما را در روند وارد کردن و پیکربندی خودکار کتابخانه های بازی خارجی راهنمایی می کند. Playnite می تواند به طور خودکار بازی ها را از چندین سرویس بازی مانند Steam یا GOG وارد کند و همچنین با به روزرسانی خودکار هنگام شروع برنامه، کتابخانه را به روز نگه دارد.
+
+بخاطر داشته باشید که بعداً با کلیک روی دکمه &quot;Playnite&quot; در منوی اصلی می توانید به صورت دستی هر بازی سفارشی را برای هر پلتفرم اضافه کنید.</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">ادغام کتابخانه</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">بازی ها را به طور خودکار از سرویس های ذکر شده در زیر وارد کنید. هرگونه تغییر در بازی بعدا (وضعیت نصب) به طور خودکار در هنگام راه اندازی Playnite یا هنگامی که به صورت دستی فعال شود، به روز می شود. تنظیمات انتخاب شده بر واردات اولیه و کلیه واردات بعدی تأثیر می گذارد.</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">پیکربندی تکمیل شد</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">تنظیم اولیه انجام شده است. به یاد داشته باشید که بعداً می توانید در منوی «تنظیمات» همه تنظیمات را تغییر دهید.
+
+بعداً می توانید با کلیک روی منوی آرم Playnite، هر بازی دیگری را اضافه کنید.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
     <!--Platforms Settings-->
@@ -496,7 +500,7 @@
     <sys:String x:Key="LOCGameLastActivityTitle">اخیرا بازی شده</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">دسته بندی</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">توضیحات</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">محل نصب</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">تصویر کاور</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">پیوند‌ها</sys:String>
     <sys:String x:Key="LOCGameROMTitle">تصویر، رام یا مسیر ISO</sys:String>
@@ -540,7 +544,12 @@
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">پیوند را نمی توان باز کرد ، URL معتبر نیست.</sys:String>
     <sys:String x:Key="LOCAppStartupError">برنامه شروع نشد.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">بررسی اجزا Web WebView انجام نشد. Playnite نمی تواند با این روند راه اندازی را ادامه دهد.
+
+می توانید این مشکل را حل کنید:
+  • بررسی کنید که همه پرونده ها به درستی نصب شده باشند. نصب مجدد می تواند کمک کند
+  • اطمینان حاصل کنید که آنتی ویروس هیچ پرونده ای را در فهرست Playnite مسدود نمی کند
+  • مکان نصب دیگری را انتخاب کنید</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">به دلیل از بین رفتن یا خرابی فایل تعریف شده، نمی توان شبیه سازها را وارد کرد.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">آنالیز رابط کاربری XInput انجام نشد.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">عملکرد منو اجرا نشد.</sys:String>
@@ -554,7 +563,7 @@
     <sys:String x:Key="LOCPlayAction">عمل اجرا</sys:String>
     <sys:String x:Key="LOCAddPlayAction">عمل اضافه کردن اجرا</sys:String>
     <sys:String x:Key="LOCAddAction">عمل افزودن</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">عمل حذف</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">عمل حذف پخش</sys:String>
     <sys:String x:Key="LOCOtherActions">دیگر عملیات</sys:String>
     <sys:String x:Key="LOCAddGames">افزودن بازی</sys:String>
@@ -661,9 +670,9 @@
     <sys:String x:Key="LOCThemeTestWatchChanges">دیدن تغییرات فایل</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">هنگام تغییر پرونده منبع، تم را بطور خودکار اعمال کنید</sys:String>
     <sys:String x:Key="LOCScriptRuntime">زمان اجرای ماژول</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">اسکریپت قبل از شروع بازی اجرا شود</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">اسکریپت پس از خروج از بازی اجرا شود</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">اسکریپت بعد از شروع بازی اجرا شود</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">اجرا کردن اسکریپت جهانی</sys:String>
     <sys:String x:Key="LOCStatsGlobal">سراسری</sys:String>
     <sys:String x:Key="LOCStatsFiltered">فیلتر شده</sys:String>
@@ -721,7 +730,7 @@
     <sys:String x:Key="LOCClientNotInstalledError">{0} مشتری نصب نشده است.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} مشتری اکنون باز خواهد شد. لطفا وارد سیستم شوید و این پیام را ببندید.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">منتظر ورود کاربر هستید، لطفاً این کار را ببندید...</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">محل نصب بازی یافت نشد.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">پیکربندی عملکرد بازی نامعتبر است.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">عیب یابی مشکلات همگام سازی حساب</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">عیب یابی مشکلات</sys:String>
@@ -734,7 +743,7 @@
     <sys:String x:Key="LOCPLaytime10to100">10 تا 100 ساعت</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 تا 500 ساعت</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 تا 1000 ساعت</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">+١٠٠٠</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">برای تکمیل نصب، Playnite باید دوباره راه اندازی شود. آیا می خواهید اکنون انجام شود؟</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">برنامه افزودنی به درستی بسته بندی نشده است.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">پوسته به درستی بسته بندی نشده است.</sys:String>
@@ -744,7 +753,7 @@
     <sys:String x:Key="LOCGeneralThemeLoadError">طرح زمینه به درستی بارگیری نشد.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">تم/افزونه از نسخه API پشتیبانی نشده استفاده می کند.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">نصب موفقیت آمیز بود.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">نصب افزونه؟</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">عمومی</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">برنامه افزودنی نصب نشد.
 
@@ -788,8 +797,8 @@
     <sys:String x:Key="LOCExtensionUninstallQuestion">آیا مطمئن هستید که می خواهید افزونه انتخاب شده را حذف نصب کنید؟ حذف نصب برای شروع برنامه بعدی در صف قرار می گیرد.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">برنامه های افزودنی داخلی نمی توانند حذف نصب شوند.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">این برنامه افزودنی از این نسخه Playnite پشتیبانی نمی کند.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
-    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">محل نصب کردن</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">محل داده</sys:String>
     <sys:String x:Key="LOCDiagGenerating">در حال تولید بسته تشخیصی…</sys:String>
     <sys:String x:Key="LOCDiagUploading">در حال آپلود بسته تشخیصی…</sys:String>
     <sys:String x:Key="LOCAddFromExe">واردات فایل…</sys:String>
@@ -818,7 +827,7 @@
     <sys:String x:Key="LOCQuickFilterAllGames">همه</sys:String>
     <sys:String x:Key="LOCGameListFiltered">فیلترهای اعمال شده وجود دارد.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">نتایج جستجو برای:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">یک مورد با همین نام در حال حاضر وجود دارد.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">انتخاب را به فیلتر فعلی محدود کنید</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">انتخاب دیگری</sys:String>
