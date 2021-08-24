@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Playnite.SDK;
 using Playnite.SDK.Plugins;
 using Playnite.Plugins;
+using Playnite.SDK.Events;
 
 namespace Playnite.Controllers
 {
@@ -20,7 +21,8 @@ namespace Playnite.Controllers
         public List<InstallController> InstallControllers { get; } = new List<InstallController>();
         public List<UninstallController> UninstallControllers { get; } = new List<UninstallController>();
 
-        public event EventHandler<GameStartingEventArgs> Starting;
+        // Starting even is not called by a controller, Playnite starts it automatically when a game is being started
+        public event EventHandler<OnGameStartingEventArgs> Starting;
         public event EventHandler<GameStartedEventArgs> Started;
         public event EventHandler<GameStoppedEventArgs> Stopped;
         public event EventHandler<GameUninstalledEventArgs> Uninstalled;
@@ -56,7 +58,6 @@ namespace Playnite.Controllers
         public void AddController(PlayController controller)
         {
             controller.Started += Controller_Started;
-            controller.Starting += Controller_Starting;
             controller.Stopped += Controller_Stopped;
             PlayControllers.Add(controller);
         }
@@ -103,7 +104,6 @@ namespace Playnite.Controllers
         public void RemoveController(PlayController controller)
         {
             controller.Started -= Controller_Started;
-            controller.Starting -= Controller_Starting;
             controller.Stopped -= Controller_Stopped;
             try
             {
@@ -168,11 +168,6 @@ namespace Playnite.Controllers
             Stopped?.Invoke(this, e);
         }
 
-        private void Controller_Starting(object sender, GameStartingEventArgs e)
-        {
-            Starting?.Invoke(this, e);
-        }
-
         private void Controller_Started(object sender, GameStartedEventArgs e)
         {
             Started?.Invoke(this, e);
@@ -186,6 +181,11 @@ namespace Playnite.Controllers
         private void Controller_Installed(object sender, GameInstalledEventArgs e)
         {
             Installed?.Invoke(this, e);
+        }
+
+        internal void InvokeOnStarting(object sender, OnGameStartingEventArgs e)
+        {
+            Starting?.Invoke(this, e);
         }
     }
 }

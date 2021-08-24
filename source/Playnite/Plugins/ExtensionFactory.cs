@@ -513,15 +513,9 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Starting(object sender, GameStartingEventArgs args)
+        private void Controllers_Starting(object sender, OnGameStartingEventArgs args)
         {
-            if (args.Source?.Game?.Id == null)
-            {
-                logger.Error("No game controller information found!");
-                return;
-            }
-
-            var callbackArgs = new SDK.Events.OnGameStartingEventArgs { Game = database.Games[args.Source.Game.Id] };
+            var callbackArgs = new SDK.Events.OnGameStartingEventArgs { Game = database.Games[args.Game.Id] };
             foreach (var script in Scripts)
             {
                 try

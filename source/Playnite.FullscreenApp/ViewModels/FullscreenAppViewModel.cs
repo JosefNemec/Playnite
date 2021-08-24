@@ -387,7 +387,7 @@ namespace Playnite.FullscreenApp.ViewModels
             GameStatusText = null;
         }
 
-        private void Controllers_Starting(object sender, GameStartingEventArgs e)
+        private void Controllers_Starting(object sender, OnGameStartingEventArgs e)
         {
             if (GameDetailsVisible)
             {
@@ -399,7 +399,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
 
             GameStatusVisible = true;
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Source.Game.Name);
+            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Game.Name);
         }
 
         private void Controllers_Started(object sender, GameStartedEventArgs e)

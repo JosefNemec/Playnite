@@ -183,7 +183,6 @@ namespace Playnite.Controllers
         {
             if (asyncExec)
             {
-                InvokeOnStarting(new GameStartingEventArgs());
                 ExecuteEmulatorScript(currentEmuProfile.PreScript);
 
                 procMon = new ProcessMonitor();
@@ -252,7 +251,6 @@ namespace Playnite.Controllers
             if (asyncExec)
             {
                 variables.Add("CancelToken", watcherToken.Token);
-                InvokeOnStarting(new GameStartingEventArgs());
                 watcherToken = new CancellationTokenSource();
                 stopWatch = Stopwatch.StartNew();
                 playTask = Task.Run(() =>
@@ -386,7 +384,6 @@ namespace Playnite.Controllers
             }
             else
             {
-                InvokeOnStarting(new GameStartingEventArgs());
                 Process proc;
                 if (action.Type == GameActionType.File)
                 {
