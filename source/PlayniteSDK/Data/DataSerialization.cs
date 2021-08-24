@@ -94,7 +94,7 @@ namespace Playnite.SDK.Data
         /// <param name="obj"></param>
         /// <param name="stream"></param>
         /// <param name="formatted"></param>
-        void ToJsonSteam(object obj, Stream stream, bool formatted = false);
+        void ToJsonStream(object obj, Stream stream, bool formatted = false);
 
         /// <summary>
         /// Deserialize an object from JSON string.
@@ -294,9 +294,9 @@ namespace Playnite.SDK.Data
         /// <param name="obj"></param>
         /// <param name="stream"></param>
         /// <param name="formatted"></param>
-        public static void ToJsonSteam(object obj, Stream stream, bool formatted = false)
+        public static void ToJsonStream(object obj, Stream stream, bool formatted = false)
         {
-            serializer.ToJsonSteam(obj, stream, formatted);
+            serializer.ToJsonStream(obj, stream, formatted);
         }
 
         /// <summary>

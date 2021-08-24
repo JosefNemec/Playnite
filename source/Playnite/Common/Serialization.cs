@@ -70,9 +70,9 @@ namespace Playnite.Common
             return Serialization.ToJson(obj, formatted);
         }
 
-        public void ToJsonSteam(object obj, Stream stream, bool formatted = false)
+        public void ToJsonStream(object obj, Stream stream, bool formatted = false)
         {
-            Serialization.ToJsonSteam(obj, stream, formatted);
+            Serialization.ToJsonStream(obj, stream, formatted);
         }
 
         public T FromJson<T>(string json) where T : class
@@ -235,7 +235,7 @@ namespace Playnite.Common
             });
         }
 
-        public static void ToJsonSteam(object obj, Stream stream, bool formatted = false)
+        public static void ToJsonStream(object obj, Stream stream, bool formatted = false)
         {
             using (var sw = new StreamWriter(stream, Encoding.UTF8, 4096, true))
             using (var writer = new JsonTextWriter(sw))
