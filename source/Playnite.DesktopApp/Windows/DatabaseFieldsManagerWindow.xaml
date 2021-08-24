@@ -352,12 +352,12 @@
                         <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
                             <TextBlock Text="{DynamicResource LOCCompletionStatusDefaultStatusDesc}" TextWrapping="Wrap" Margin="5" />
                             <ComboBox Margin="5"
-                                      ItemsSource="{Binding EditingCompletionStatuses}"
+                                      ItemsSource="{Binding CompletionStatusesSelection}"
                                       SelectedValue="{Binding CompletionStatusSettings.DefaultStatus}"
                                       SelectedValuePath="Id" />
                             <TextBlock Text="{DynamicResource LOCCompletionStatusPlayedStatusDesc}" TextWrapping="Wrap" Margin="5" />
                             <ComboBox Margin="5"
-                                      ItemsSource="{Binding EditingCompletionStatuses}"
+                                      ItemsSource="{Binding CompletionStatusesSelection}"
                                       SelectedValue="{Binding CompletionStatusSettings.PlayedStatus}"
                                       SelectedValuePath="Id" />
                         </StackPanel>
