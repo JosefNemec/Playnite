@@ -266,7 +266,7 @@
     <sys:String x:Key="LOCSettingsImportLabel">Αυτόματη εισαγωγή στη βιβλιοθήκη</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Μη έγκυρη θέση αρχείου βάσης δεδομένων, πρέπει να οριστεί κατάλληλη διαδρομή αρχείου.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName"></sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Λήψη ενημερώσεων βιβλιοθήκης από 3rd party  κατά την εκκίνηση</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport"></sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
@@ -474,7 +474,7 @@
     <sys:String x:Key="LOCGameLastActivityTitle">Παίχτηκαν τελευταία</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Κατηγορία</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Περιγραφή</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Κατάλογος εγκατάστασης</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Εικόνα εξωφύλλου</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Σύνδεσμοι</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Διαδρομή Image/ISO</sys:String>
@@ -529,7 +529,7 @@
     <sys:String x:Key="LOCPlayAction"></sys:String>
     <sys:String x:Key="LOCAddPlayAction"></sys:String>
     <sys:String x:Key="LOCAddAction">Προσθέστε ενέργεια</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">Διαγραφή ενέργειας</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Κατάργηση ενέργειας αναπαραγωγής</sys:String>
     <sys:String x:Key="LOCOtherActions">Άλλες ενέργειες</sys:String>
     <sys:String x:Key="LOCAddGames">Προσθήκη παιχνιδιών</sys:String>
@@ -709,7 +709,7 @@
     <sys:String x:Key="LOCPLaytime10to100">10 έως 100 ώρες</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 έως 500 ώρες</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 έως 1000 ώρες</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
@@ -719,7 +719,7 @@
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Η Εγκατάσταση ήταν επιτυχής.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Εγκατάσταση επέκτασης;</sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
@@ -768,7 +768,7 @@
     <sys:String x:Key="LOCQuickFilterAllGames">Όλα</sys:String>
     <sys:String x:Key="LOCGameListFiltered">Υπάρχουν φίλτρα που εφαρμόζονται.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Αποτελέσματα αναζήτησης για:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Υπάρχει ήδη ένα στοιχείο με το ίδιο όνομα.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Περιορισμός επιλογής στο τρέχων φίλτρο</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Επιλογή άλλου</sys:String>
