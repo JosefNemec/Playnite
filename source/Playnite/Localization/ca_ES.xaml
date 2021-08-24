@@ -87,8 +87,8 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">El connector de la biblioteca responsable d'aquest joc està desactivat o no està instal·lat.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">La baixada de metadades oficials no està disponible.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No hi ha cap joc seleccionat.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Ha fallat l'execució de l'acció de l'script de joc</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Ha fallat l'execució de l'acció de l'script global</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 o més recent no està instal·lat</sys:String>
@@ -282,7 +282,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCSettingsImportLabel">Importa els canvis a la biblioteca automàticament</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">La ubicació del fitxer de base de dades no és vàlida; cal definir la ruta del fitxer adequada.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">El nom del compte no pot estar buit.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Descarregueu les actualitzacions de la biblioteca de tercers a l'iniciar</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Descarregar base de dades després d'importar jocs</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Inicieu Playnite minimitzat</sys:String>
@@ -290,7 +290,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">No s’ha pogut registrar Playnite per iniciar-se quan s'obri de l’ordinador.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Inicia en el mode de pantalla completa</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Càrrega d’imatge asíncrona</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Millora la suavitat de desplaçament de les llistes de jocs a canvi de temps de càrrega d'imatges més lents.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostra el nom del joc si no hi ha imatge de caràtula</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostra els noms dels jocs a la vista de cobertes</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Enfosqueix els jocs no instal·lats</sys:String>
@@ -386,7 +386,7 @@ Si desactivat, les imatges d'art de fons seran descarregades només quan es nece
     <sys:String x:Key="LOCSettingsAutoCloseSection">Tanca automàticament els Clients</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">Importar la llista d'exclusions</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Mostrar avís quan s'assignin medis del joc molt grans</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Ordre d’obertura de directori</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Organització de classificació per edat preferida</sys:String>
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
@@ -423,11 +423,16 @@ També es pot canviar a les opcions de l'aplicació.</sys:String>
     <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Primera configuració</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Aquest assistent et guiarà a través del procés d’importació automàtica de jocs i la configuració de biblioteques de jocs externes. Playnite pot importar automàticament jocs de diversos serveis com ara Steam o GOG, i també pot mantenir la biblioteca actualitzada de forma automàtica durant l'obertura de l’aplicació.
+        
+Tingueu en compte que sempre podeu afegir qualsevol joc personalitzat per a qualsevol plataforma manualment des del menú principal fent clic al botó &quot;Playnite&quot;.  
+    </sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integració de biblioteques</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Importa automàticament els jocs des dels serveis següents. Qualsevol canvi posterior del joc (estat de la instal·lació) s'actualitzarà automàticament a l’arrencada de Playnite o quan s’activi manualment. La configuració seleccionada afecta a les importacions inicials i posteriors.</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuració finalitzada</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">La configuració inicial ha estat completada. Recorda que pots canviar tots els paràmetres mes tard en el menú 'Paràmetres'
+
+També pots afegir més jocs seleccionant el menú del logo Playnite</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
     <!--Platforms Settings-->
@@ -499,7 +504,7 @@ Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Última Partida</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Categoria</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Descripció</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Directori d'instal·lació</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Imatge de coberta</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Enllaços</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Drecera d'Imatge, ROM o ISO</sys:String>
@@ -543,7 +548,12 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">No es pot obrir l’enllaç, l’URL no és vàlida.</sys:String>
     <sys:String x:Key="LOCAppStartupError">No s’ha pogut iniciar l’aplicació.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">No s’ha pogut inicialitzar el component de visualització web, Playnite no pot continuar.
+
+Pots provar això per solucionar el problema:
+  • Comprova que tots els fitxers estiguin instal·lats correctament, la reinstal·lació pot ajudar
+  • Comprova si els antivirus no bloquegen fitxers al directori de Playnite
+  • Prova una ubicació d’instal·lació diferent</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">No es poden importar emuladors perquè falta un fitxer de definició o està corromput.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">No s'ha pogut iniciar la interfície XInput</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">No s’ha pogut executar l'acció del menú.</sys:String>
@@ -557,7 +567,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCPlayAction">Acció de Jugar</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Afegeix Acció de Jugar</sys:String>
     <sys:String x:Key="LOCAddAction">Afegeix Acció</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">Eliminar Acció</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Eliminar Acció de Jugar</sys:String>
     <sys:String x:Key="LOCOtherActions">Altres Accions</sys:String>
     <sys:String x:Key="LOCAddGames">Afegeix jocs</sys:String>
@@ -664,9 +674,9 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Mira els canvis dels fitxers</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Aplicar automàticament el tema quan canvïi el fitxer font</sys:String>
     <sys:String x:Key="LOCScriptRuntime">Temps d'execució del Script</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Script per executar abans de començar un joc</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Script per executar després de sortir d'un joc</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">Script per executar després de començar un joc</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Executa un script global</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrat</sys:String>
@@ -724,7 +734,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">El client de {0} no està instal·lat.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Ara s'obrirà el client de {0}. Inicia sessió i tanca aquest missatge.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Esperant que l'usuari iniciï la sessió. Si us plau, tanca aquest missatge quan ho hagis fet…</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">No s'ha trobat el directori d’instal·lació del joc.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Configuració d’acció de joc no vàlida.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Resolució de problemes de sincronització del compte</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Solució de problemes</sys:String>
@@ -737,7 +747,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 a 100 hores</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 a 500 hores</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 a 1000 hores</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">S'ha de reiniciar Playnite per a completar la instal·lació. Vols reiniciar-lo ara?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">L'extensió no està empaquetada correctament.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">El tema no està empaquetat correctament.</sys:String>
@@ -747,7 +757,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCGeneralThemeLoadError">No s'ha pogut carregar correctament el tema.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Aquest tema o extensió utilitza una versió de l'API que no té suport.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instal·lació s'ha realitzat correctament.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instal·la extensió?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">General</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">No s'ha pogut instal·lar l'extensió.
         
@@ -789,8 +799,8 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">Segur que vols desinstal·lar l'extensió seleccionada? La desinstal·lació es produirà la pròxima vegada que el programa s'executi.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Les extensions preinstal·lades no es poden desinstal·lar.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Aquesta extensió no és compatible amb aquesta versió de Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
-    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Directori d'instal·lació</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Directori de dades</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Generant paquet de diagnosi…</sys:String>
     <sys:String x:Key="LOCDiagUploading">Pujant paquet de diagnosi…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Importa fitxer…</sys:String>
@@ -819,7 +829,7 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Tots</sys:String>
     <sys:String x:Key="LOCGameListFiltered">S'han aplicat filtres.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Resultats de la cerca per:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Ja existeix un fitxer amb el mateix nom.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limitar selecció al filtre actual</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Selecciona un altre
