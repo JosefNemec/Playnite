@@ -87,8 +87,8 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Knjižnični dodatak odgovoran za ovu igru je onemogućen ili nije instaliran.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Preuzimanje zvaničnih metapodataka nije dostupno.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nije odabrana nijedna igra.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Neuspjelo pokretanje skriptirane radnje igre.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Neuspjelo pokretanje globalne skriptirane radnje.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 ili noviji nije instaliran.</sys:String>
@@ -282,7 +282,7 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCSettingsImportLabel">Uvezi promjene u biblioteku igara automatski</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Pogrešna lokacija fajla baze podataka, ispravna putanja se mora podesiti.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Naziv računa ne može biti prazan.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Preuzmi ažuriranja biblioteke igara klijenta pri pokretanju</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Preuzmi metapodatke nakon uvoženja igara</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Pokreni Playnite smanjen</sys:String>
@@ -290,7 +290,7 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Neuspjelo registriranje pokretanja Playnitea prilikom pokretanja kompjutera.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Pokreni u Prikazu Punog Zaslona</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asinkrono učitavanje slika</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Poboljšava glatkost skrolovanja listi igara u zamjenu za sporije učitavanje slika.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Prikaži naziv igre ako naslovnica nedostaje</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Prikaži nazive igara na prikazu rešetke</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Zatamni igre koje nisu instalirane</sys:String>
@@ -422,7 +422,9 @@ Ovo takođe može da se promjeni i u postavkama aplikacije.</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integracija biblioteke igara</sys:String>
     <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguriranje završeno</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Inicijalno konfiguriranje je sada završeno. Zapamtite da možete uvek da promijenite sve postavke kasnije u &quot;Postavke&quot; meniju.
+
+Možete također i da dodati bilo koju drugu igru kasnije tako što kliknete na Playnite logo.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
     <!--Platforms Settings-->
@@ -494,7 +496,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Posljednji put igrano</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategorija</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Opis</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Lokacija instalacije</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Naslovnica</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Linkovi</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Image, ROM ili ISO putanja</sys:String>
@@ -551,7 +553,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCPlayAction">Radnja za igru</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Dodaj radnju za igru</sys:String>
     <sys:String x:Key="LOCAddAction">Dodaj radnju</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">Obriši radnju</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Ukloni radnju za igru</sys:String>
     <sys:String x:Key="LOCOtherActions">Ostale radnje</sys:String>
     <sys:String x:Key="LOCAddGames">Dodaj igre</sys:String>
@@ -718,7 +720,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} klijent nije instaliran.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} klijent je sada otvoren. Molimo prijavite se i onda zatvorite ovu poruku.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Čekanje da se korisnik prijavi, molimo zatvorite ovo kad ste gotovi…</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Lokacija instalacije igre nije pronađena.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Pogrešna konfiguracija radnje igre.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Rješavanje problema s sinkronizacijom računa</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Rješavanje problema</sys:String>
@@ -731,7 +733,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">Od 10 do 100 sati</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">Od 100 do 500 sati</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Od 500 do 1000 sati</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
@@ -741,7 +743,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/proširenje koristi nepodržanu API verziju.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalacija je uspješna.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instaliraj proširenje?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Neuspjela instalacija proširenja.
 
@@ -794,7 +796,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Sve</sys:String>
     <sys:String x:Key="LOCGameListFiltered">Neki filteri su aplicirani.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Rezultati pretrage za:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Stavka s istim imenom već postoji.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limitiraj odabir na trenutni filter.</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Izaberi drugu</sys:String>
