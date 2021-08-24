@@ -118,7 +118,6 @@ if (!$SkipBuild)
     PackExtensionTemplate "CustomLibraryPlugin" $OutputDir
     PackExtensionTemplate "CustomMetadataPlugin" $OutputDir
     PackExtensionTemplate "GenericPlugin" $OutputDir
-    PackExtensionTemplate "IronPythonScript" $OutputDir
     PackExtensionTemplate "PowerShellScript" $OutputDir
 }
 
