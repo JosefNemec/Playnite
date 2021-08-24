@@ -113,6 +113,11 @@ namespace Playnite
         public static List<AddonUpdate> CheckAddonUpdates(ServicesClient serviceClient)
         {
             var updateList = new List<AddonUpdate>();
+            if (PlayniteEnvironment.InOfflineMode)
+            {
+                return updateList;
+            }
+
             var descriptions = ExtensionFactory.GetInstalledManifests();
             updateList.AddRange(CheckAddonsForUpdate(descriptions.Where(a => a.Type == ExtensionType.MetadataProvider), serviceClient));
             updateList.AddRange(CheckAddonsForUpdate(descriptions.Where(a => a.Type == ExtensionType.GameLibrary), serviceClient));

@@ -175,6 +175,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void SearchAddon()
         {
+            if (PlayniteEnvironment.InOfflineMode)
+            {
+                return;
+            }
+
             IsOnlineListLoading = true;
             Task.Run(() =>
             {
@@ -196,6 +201,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void CheckUpdates()
         {
+            if (PlayniteEnvironment.InOfflineMode)
+            {
+                return;
+            }
+
             if (IsUpdateListLoading || UpdateAddonList != null)
             {
                 return;
