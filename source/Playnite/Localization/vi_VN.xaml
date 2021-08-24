@@ -281,7 +281,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsImportLabel">Tự động nhập các thay đổi trong thư viện</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Vị trí tệp cơ sở dữ liệu không hợp lệ, cần đặt đường dẫn tệp thích hợp</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Tên tài khoản không thể để trống</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Tải xuống bản cập nhật cho thư viện từ bên thứ ba khi khởi động</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Tải xuống siêu dữ liệu ngay sau khi nhập trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Chạy Playnite dưới dạng thu nhỏ</sys:String>
@@ -289,7 +289,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Thất bại trong việc đưa Playnite vào khởi động cùng lúc với máy tính</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Chạy ở chế độ toàn màn hình</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Tải hình ảnh không đồng bộ</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Cải thiện độ mượt mà khi cuộn danh sách trò chơi và đổi lấy thời gian tải hình ảnh chậm hơn</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Hiển thị tên trò chơi nếu thiếu ảnh bìa</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Hiển thị tên trò chơi ở chế độ xem dạng lưới</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Làm tối màu các trò chơi chưa được cài đặt</sys:String>
