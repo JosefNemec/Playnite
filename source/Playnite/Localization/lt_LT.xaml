@@ -272,7 +272,7 @@ Jeigu norite padėti sutaisyti klaidą, atsiųskite diagnostine informaciną.Ač
     <sys:String x:Key="LOCSettingsImportLabel">Įtraukti bibliotekos pakeitimus automatiškai</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Neteisinga duombazės failo vieta, nurtodykite tikslų kelią iki failo.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Vartotojo vardas negali būti tuščias.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Atsisiųti 3-čiųjų šalių bibliotekų atnaujinimus paleidžiant</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Atsisiųsti metaduomenis po žaidimų importavimo</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
@@ -280,7 +280,7 @@ Jeigu norite padėti sutaisyti klaidą, atsiųskite diagnostine informaciną.Ač
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nepavyko užregistruoti Playnite paleidimo paleidžiant kompiuterį.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asinchroninis paveikslėlių krovimas</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Pagreitina navigavimą žaidimų sąraše, bet sulėtina paveikslėlių krovimą.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Rodyti žaidimo pavadinimą tinklelio rėžime</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers"></sys:String>
@@ -480,7 +480,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Paskutinį kartą žaista</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategorija</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Aprašymas</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Žaidimo direktorija</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Viršelio paveikslėlis</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Nuorodos</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Atvaizdo/ISO kelias</sys:String>
@@ -535,7 +535,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCPlayAction">Žaidimo veiksma</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Pridėti žaidimo veiksmą</sys:String>
     <sys:String x:Key="LOCAddAction">Pridėti veiksmą</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">Pašalinti veiksmą</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Pašalinti žaidimo veiksmą</sys:String>
     <sys:String x:Key="LOCOtherActions">Kiti veiksmai</sys:String>
     <sys:String x:Key="LOCAddGames">Pridėti žaidimus</sys:String>
@@ -702,7 +702,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} klientas yra neįdiegtas.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Bus atidarytas {0} klientas. Prašome prisijungti ir uždaryti šį langą.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Nerasta įdiegto žaidimo katalogas.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neteisingai nustatytas žaidimo veiksmas.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Spręsti vartotojo sinchronizacijos problemas</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
@@ -715,7 +715,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">Nuo 10 iki 100 valandų</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">Nuo 100 iki 500 valandų</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Nuo 500 iki 1000 valandų</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
@@ -725,7 +725,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Įdiegti plėtinį?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Nepavyko įdiekti plėtinių.
 
