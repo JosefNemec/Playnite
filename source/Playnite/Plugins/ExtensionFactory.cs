@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.Common;
 using Playnite.SDK.Models;
+using Playnite.SDK.Events;
 
 namespace Playnite.Plugins
 {
@@ -146,9 +147,9 @@ namespace Playnite.Plugins
             }
             else if (File.Exists(path))
             {
-                foreach (var dirPath in Serialization.FromJsonFile<List<string>>(path))
+                foreach (var dirPath in File.ReadAllLines(path).Where(a => !a.IsNullOrWhiteSpace() && !a.StartsWith("#")))
                 {
-                    var man = GetManifestFromFile(Path.Combine(dirPath, PlaynitePaths.ExtensionManifestFileName));
+                    var man = GetManifestFromFile(Path.Combine(dirPath.Trim(), PlaynitePaths.ExtensionManifestFileName));
                     if (man != null)
                     {
                         yield return man;
