@@ -87,8 +87,8 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">本遊戲的資料庫外掛程式已被停用或尚未安裝</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">無法下載官方元資料</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">未選擇任何項目。</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">遊戲腳本動作執行失敗</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">全域腳本動作執行失敗</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">尚未安裝PowerShell 3.0 或更新版本</sys:String>
@@ -282,7 +282,7 @@
     <sys:String x:Key="LOCSettingsImportLabel">自動匯入資料庫的改動</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">無效的數據庫位置，必須設定正確的文件路徑</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">帳號名稱不能為空白</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">在啟動時下載第三方資料庫更新</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">匯入遊戲後下載元資料</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">以最小化狀態啟動Playnite</sys:String>
@@ -290,7 +290,7 @@
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">無法設定Playnite於開機後自動啟動</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">以全螢幕模式啟動</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">非同步縮圖載入</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">提升瀏覽遊戲列表時的滑鼠滾動順暢度，但圖片讀取速度相對較慢</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">如無封面圖片則顯示遊戲名稱</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">在網格檢視中顯示遊戲名稱</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">暗色顯示未安裝遊戲</sys:String>
@@ -385,7 +385,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉登入器</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">匯入例外清單</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">當設定的遊戲素材過大時顯示警告</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">資料夾開啟指令</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">預設年齡分級組織</sys:String>
     <sys:String x:Key="LOCStrechNone">無</sys:String>
     <sys:String x:Key="LOCStrechFill">填滿</sys:String>
@@ -422,11 +422,15 @@
     <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">首次配置</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">本精靈將帶領您完成遊戲匯入以及外部遊戲資料庫的設定。Playnite可以自動從遊戲服務商如Steam或GOG匯入遊戲，並於啟動時自動更新保持遊戲狀態同步。
+
+請留意，您可隨時點選&quot;Playnite&quot;按鈕，透過主選單手動新增任何平台上的自訂遊戲。    </sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">資料庫整合</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">自動從以下的服務匯入遊戲。以後Playnite啟動時將會自動更新遊戲狀態(安裝狀態) 或您可手動進行更新。此設定將會影響初次以及所有後續的匯入過程。</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">完成設定</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">已完成初始設定。請留意您可隨時於設定中更改配置。
+
+您亦可隨時點選Playnite圖標來新增任何遊戲。</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
     <!--Platforms Settings-->
@@ -498,7 +502,7 @@
     <sys:String x:Key="LOCGameLastActivityTitle">最後遊玩</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">分類</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">描述</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">安裝目錄</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">封面圖片</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">連結</sys:String>
     <sys:String x:Key="LOCGameROMTitle">圖片，ROM或ISO路徑</sys:String>
@@ -542,7 +546,12 @@
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">無法開啟連結，網址格式不符。</sys:String>
     <sys:String x:Key="LOCAppStartupError">無法開啟應用程式</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">無法初始化網頁瀏覽元件，Playnite無法繼續啟動。
+        
+您可以嘗試以下方法解決:        
+  • 檢查所有檔案是否已正確安裝。重新安裝可能有所幫助
+  • 檢查防毒軟體是否封鎖了Playnite資料夾內的檔案
+  • 嘗試安裝在不同的位置</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">無法匯入模擬器，因為定義檔已損壞或丟失。</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Xinput介面啓用失敗</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">無法執行選單動作</sys:String>
@@ -556,7 +565,7 @@
     <sys:String x:Key="LOCPlayAction">啟動動作</sys:String>
     <sys:String x:Key="LOCAddPlayAction">新增啟動動作</sys:String>
     <sys:String x:Key="LOCAddAction">新增動作</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">刪除動作</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">移除啟動動作</sys:String>
     <sys:String x:Key="LOCOtherActions">其他動作</sys:String>
     <sys:String x:Key="LOCAddGames">新增遊戲</sys:String>
@@ -663,9 +672,9 @@
     <sys:String x:Key="LOCThemeTestWatchChanges">閱讀檔案更動</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">當來源檔案更改時自動套用主題</sys:String>
     <sys:String x:Key="LOCScriptRuntime">腳本執行階段</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">啟動遊戲前執行的腳本</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">離開遊戲後執行的腳本</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">啟動遊戲後執行的腳本</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">執行全域腳本</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全域</sys:String>
     <sys:String x:Key="LOCStatsFiltered">已過濾</sys:String>
@@ -723,7 +732,7 @@
     <sys:String x:Key="LOCClientNotInstalledError">{0} 未安裝客戶端程式</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} 客戶端程式即將啟動，請登入並關閉此訊息。</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">正在等候用戶登入，完成後請關閉此訊息...</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">找不到遊戲安裝資料夾</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">無效的遊戲動作設定</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">解決帳號同步問題</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">疑難排解</sys:String>
@@ -736,7 +745,7 @@
     <sys:String x:Key="LOCPLaytime10to100">10到100小時</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100到500小時</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500到1000小時</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">必須重啟Playnite來完成安裝。是否立即重啟?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">擴充功能未被正確封裝</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">主題未被正確封裝</sys:String>
@@ -746,7 +755,7 @@
     <sys:String x:Key="LOCGeneralThemeLoadError">主題載入失敗</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">主題/附加元件使用了未支援的API版本</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安裝成功</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">安裝附加元件?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">通用</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安裝附加元件失敗。
  
@@ -791,8 +800,8 @@
     <sys:String x:Key="LOCExtensionUninstallQuestion">是否移除選定的擴充功能? 移除將會於下次程式啟動後進行</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">無法移除內建擴充功能</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">此擴充功能不支援目前版本的Playnite</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
-    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">安裝目錄</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">資料目錄</sys:String>
     <sys:String x:Key="LOCDiagGenerating">產生診斷報告中...</sys:String>
     <sys:String x:Key="LOCDiagUploading">上傳診斷報告中...</sys:String>
     <sys:String x:Key="LOCAddFromExe">匯入檔案...</sys:String>
@@ -821,7 +830,7 @@
     <sys:String x:Key="LOCQuickFilterAllGames">全部</sys:String>
     <sys:String x:Key="LOCGameListFiltered">已套用過濾條件</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">搜尋結果：</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">已存在相同名稱的物件</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">將選擇限於目前過濾結果</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">選擇另一個</sys:String>
