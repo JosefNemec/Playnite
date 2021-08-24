@@ -1109,7 +1109,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void RemoveLink(Link link)
         {
-            link.PropertyChanged -= Link_PropertyChanged;
+            if (link != null)
+            {
+                link.PropertyChanged -= Link_PropertyChanged;
+            }
+
             EditingGame.Links.Remove(link);
         }
 
