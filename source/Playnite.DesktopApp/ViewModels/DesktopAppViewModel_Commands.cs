@@ -297,7 +297,9 @@ namespace Playnite.DesktopApp.ViewModels
 
             UpdateLibraryCommand = new RelayCommand<LibraryPlugin>((a) =>
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 UpdateLibrary(a);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }, (a) => GameAdditionAllowed);
 
             RemoveGameSelectionCommand = new RelayCommand<object>((a) =>
@@ -569,12 +571,16 @@ namespace Playnite.DesktopApp.ViewModels
 
             UpdateEmulationDirCommand = new RelayCommand<GameScannerConfig>((a) =>
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 UpdateEmulationLibrary(a);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }, (a) => GameAdditionAllowed);
 
             UpdateEmulationDirsCommand = new RelayCommand(() =>
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 UpdateEmulationLibrary();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }, () => GameAdditionAllowed);
         }
     }
