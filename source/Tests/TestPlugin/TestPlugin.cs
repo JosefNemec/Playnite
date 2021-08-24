@@ -17,7 +17,7 @@ using System.Windows.Media;
 
 namespace TestPlugin
 {
-    public class TestPlugin : Plugin
+    public class TestPlugin : GenericPlugin
     {
         private static ILogger logger = LogManager.GetLogger();
 
@@ -25,13 +25,9 @@ namespace TestPlugin
 
         public override Guid Id { get; } = Guid.Parse("D51194CD-AA44-47A0-8B89-D1FD544DD9C9");
 
-        public override PluginProperties Properties { get; } = new PluginProperties
-        {
-            HasSettings = true
-        };
-
         public TestPlugin(IPlayniteAPI api) : base(api)
         {
+            Properties = new GenericPluginProperties { HasSettings = true };
             Settings = new TestPluginSettingsViewModel(this, api);
             AddCustomElementSupport(new AddCustomElementSupportArgs
             {
@@ -98,65 +94,59 @@ namespace TestPlugin
             throw new NotImplementedException();
         }
 
-        public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        public override IEnumerable<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
         {
-            return new List<MainMenuItem>
+            yield return new MainMenuItem
             {
-                new MainMenuItem
+                Description = "window test",
+                Action = (_) =>
                 {
-                    Description = "window test",
-                    Action = (_) =>
+                    var window = PlayniteApi.Dialogs.CreateWindow(new WindowCreationOptions()
                     {
-                        var window = PlayniteApi.Dialogs.CreateWindow(new WindowCreationOptions()
-                        {
-                            ShowCloseButton = false,
-                            ShowMaximizeButton = false
-                        }
-                        );
-                        window.Title = "window plugin test";
-                        window.Content = new TestPluginSettingsView();
-                        window.Owner = PlayniteApi.Dialogs.GetCurrentAppWindow();
-                        window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-                        window.Height = 640;
-                        window.Width = 480;
-                        window.ShowDialog();
+                        ShowCloseButton = false,
+                        ShowMaximizeButton = false
                     }
-                },
-                new MainMenuItem
+                    );
+                    window.Title = "window plugin test";
+                    window.Content = new TestPluginSettingsView();
+                    window.Owner = PlayniteApi.Dialogs.GetCurrentAppWindow();
+                    window.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                    window.Height = 640;
+                    window.Width = 480;
+                    window.ShowDialog();
+                }
+            };
+            yield return new MainMenuItem
+            {
+                Description = "-"
+            };
+            yield return new MainMenuItem
+            {
+                Description = "serialization test",
+                Action = (_) =>
                 {
-                    Description = "-"
-                },
-                new MainMenuItem
-                {
-                    Description = "serialization test",
-                    Action = (_) =>
-                    {
-                        var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
-                        PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
-                    }
+                    var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
+                    PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
                 }
             };
         }
 
-        public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        public override IEnumerable<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
         {
-            return new List<GameMenuItem>
+            yield return new GameMenuItem
             {
-                new GameMenuItem
-                {
-                    Description = "window test",
-                    MenuSection = "test plugin"
-                },
-                new GameMenuItem
-                {
-                    Description = "-",
-                    MenuSection = "test plugin"
-                },
-                new GameMenuItem
-                {
-                    Description = "serialization test",
-                    MenuSection = "test plugin"
-                }
+                Description = "window test",
+                MenuSection = "test plugin"
+            };
+            yield return new GameMenuItem
+            {
+                Description = "-",
+                MenuSection = "test plugin"
+            };
+            yield return new GameMenuItem
+            {
+                Description = "serialization test",
+                MenuSection = "test plugin"
             };
         }
 
@@ -193,39 +183,38 @@ namespace TestPlugin
             }
         }
 
-        public override List<SidebarItem> GetSidebarItems()
+        public override IEnumerable<SidebarItem> GetSidebarItems()
         {
-            var items = new List<SidebarItem>
+            yield return new SidebarItem
             {
-                new CalcSidebar(),
-                new ViewSidebarTest(),
-                new CalcSidebar()
+                Title = "direct test",
+                Activated = () => Process.Start("calc"),
+                Icon = new TextBlock
                 {
-                    Title = "zaltulator",
-                    Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
-                    IconPadding = new System.Windows.Thickness(4),
-                    ProgressValue = 0
-                }
+                    Text = char.ConvertFromUtf32(0xebdf),
+                    FontSize = 20,
+                    FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
+                },
+                ProgressValue = 40
             };
-
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    items.Add(new CalcSidebar { Title = i.ToString() });
-            //}
-
-            return items;
+            yield return new ViewSidebarTest();
+            yield return new CalcSidebar()
+            {
+                Title = "zaltulator",
+                Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
+                IconPadding = new System.Windows.Thickness(4),
+                ProgressValue = 0
+            };
         }
 
-        public override List<PlayController> GetPlayActions(GetPlayActionsArgs args)
+        public override IEnumerable<PlayController> GetPlayActions(GetPlayActionsArgs args)
         {
-            return new List<PlayController>
+            yield return new AutomaticPlayController(args.Game)
             {
-                new AutomaticPlayController(args.Game)
-                {
-                    Name = "Test Action",
-                    Path = "cmd.exe",
-                    Type = GenericPlayActionType.File
-                }
+                Type = AutomaticPlayActionType.File,
+                TrackingMode = TrackingMode.Process,
+                Name = "Notepad",
+                Path = "notepad.exe"
             };
         }
 
@@ -239,22 +228,24 @@ namespace TestPlugin
             return null;
         }
 
-        public override List<TopPanelItem> GetTopPanelItems()
+        public override IEnumerable<TopPanelItem> GetTopPanelItems()
         {
-            return new List<TopPanelItem>
+            yield return new TopPanelItem()
             {
-                new TopPanelItem()
+                Icon = new TextBlock
                 {
-                    Icon = new TextBlock
-                    {
-                        Text = char.ConvertFromUtf32(0xeaf1),
-                        FontSize = 20,
-                        FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
-                    },
-                    Title = "Steam fields",
-                    Activated = () => Process.Start(@"steam://open/friends")
-                }
+                    Text = char.ConvertFromUtf32(0xebdf),
+                    FontSize = 20,
+                    FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
+                },
+                Title = "Calculator",
+                Activated = () => Process.Start("calc")
             };
+            //new TopPanelItem()
+            //{
+            //    Title = "Steam fields",
+            //    Activated = () => Process.Start(@"steam://open/friends")
+            //}
         }
     }
 }
