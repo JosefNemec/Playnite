@@ -266,7 +266,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importați schimbările în librărie în mod automat</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Locație către baza de date este invalidă, trebuie setată în mod corect.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Numele contului nu poate fi gol.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Descarcă update-uri la librării terțe la pornire</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Descarcă metadata după ce imporți jocurile</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Lansează Playnite la bară</sys:String>
@@ -274,7 +274,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nu s-a putut seta Playnite pentru pornirea deodată cu calculatorul.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Lansează în mod Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Îmbunătățește performanța în scroll-ul listelor de jocuri, dar imaginile se vor încărca mai incet.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Arata numele jocurile in modul &quot;Grid&quot; de redare</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Întunecați jocurile neinstalate</sys:String>
@@ -473,7 +473,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Ultima Dată Jucat</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Categorie</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Descriere</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Directorul de instalare</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Imagine Copertă</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Link-uri</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Calea către Imagine, ROM sau ISO</sys:String>
@@ -528,7 +528,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCPlayAction">Buton de Lansare</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Adăugare buton de lansare</sys:String>
     <sys:String x:Key="LOCAddAction">Adaugă Acţiune</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">Șterge Acțiunea</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Ștergere buton de lansare</sys:String>
     <sys:String x:Key="LOCOtherActions">Alte Acțiuni</sys:String>
     <sys:String x:Key="LOCAddGames">Adăugare Jocuri</sys:String>
@@ -695,7 +695,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">Programul {0} nu este instalat.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Se va deschide clientul {0}. Vă rugăm să vă logați și să închideți mesajul acesta.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Calea de instalare a jocului nu a fost gasită.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Setarea acțiunii jocului este invalidă.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Depanarea problemelor de sincronizare a contului</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Probleme de troubleshooting</sys:String>
@@ -708,7 +708,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">Între 10 și 100 ore</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">Între 100 și 500 ore</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">Între 500 și 1000 ore</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">Mai mult de 1000 ore</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite trebuie repornit pentru a putea termina instalarea. Doriți să reporniți acum?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
@@ -718,7 +718,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalare cu succes</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalați Extensia?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Generic</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
@@ -743,7 +743,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Extensiile integrate nu pot fi dezinstalate.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Această extensie nu suportă versiunea actuală de Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Directorul de instalare</sys:String>
     <sys:String x:Key="LOCExtensionDataDir"></sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
@@ -773,7 +773,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Toate</sys:String>
     <sys:String x:Key="LOCGameListFiltered">Sunt aplicate filtrele.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Rezultatele căutării pentru:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Alege altul</sys:String>
