@@ -48,6 +48,15 @@
             <DataTrigger Binding="{Settings SidebarPosition}" Value="Bottom">
                 <Setter Property="BorderThickness" Value="0,0,0,3" />
             </DataTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Content" Value="{x:Null}" />
+                    <Condition Property="ContentTemplate" Value="{x:Null}" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="OrangeRed" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
