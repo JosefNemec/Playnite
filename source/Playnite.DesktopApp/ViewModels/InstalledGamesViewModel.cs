@@ -455,12 +455,19 @@ namespace Playnite.DesktopApp.ViewModels
 
         public static List<Game> AddImportableGamesToDb(List<GameMetadata> games, GameDatabase database)
         {
+            var statusSettings = database.GetCompletionStatusSettings();
             using (var buffer = database.BufferedUpdate())
             {
                 var addedGames = new List<Game>();
                 foreach (var game in games)
                 {
                     var added = database.ImportGame(game);
+                    if (statusSettings.DefaultStatus != Guid.Empty)
+                    {
+                        added.CompletionStatusId = statusSettings.DefaultStatus;
+                        database.Games.Update(added);
+                    }
+
                     addedGames.Add(added);
                 }
 

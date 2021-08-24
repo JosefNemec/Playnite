@@ -509,6 +509,11 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
+        public ObservableCollection<CompletionStatus> CompletionStatusesSelection
+        {
+            get;
+        }
+
         public ObservableCollection<CompletionStatus> EditingCompletionStatuses
         {
             get;
@@ -518,7 +523,11 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                AddItem(EditingCompletionStatuses);
+                var added = AddItem(EditingCompletionStatuses);
+                if (added != null)
+                {
+                    CompletionStatusesSelection.Add(added);
+                }
             });
         }
 
@@ -526,6 +535,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((a) =>
             {
+                a.ForEach(s => CompletionStatusesSelection.Remove((CompletionStatus)s));
                 RemoveItem(EditingCompletionStatuses, a.Cast<CompletionStatus>().ToList());
             }, (a) => a?.Count > 0);
         }
@@ -581,6 +591,13 @@ namespace Playnite.DesktopApp.ViewModels
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingCompletionStatuses = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
+            CompletionStatusesSelection = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
+            CompletionStatusesSelection.Insert(0, new CompletionStatus
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = Guid.Empty
+            });
+
             PlatformsSpecifications = Emulation.Platforms.OrderBy(a => a.Name).ToList();
             PlatformsSpecifications.Insert(0, new EmulatedPlatform
             {
@@ -830,7 +847,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void AddItem<TItem>(IList<TItem> collection) where TItem : DatabaseObject
+        public TItem AddItem<TItem>(IList<TItem> collection) where TItem : DatabaseObject
         {
             var res = dialogs.SelectString(
                 resources.GetString("LOCEnterName"),
@@ -844,9 +861,13 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 else
                 {
-                    collection.Add(typeof(TItem).CrateInstance<TItem>(res.SelectedString));
+                    var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
+                    collection.Add(newItem);
+                    return newItem;
                 }
             }
+
+            return null;
         }
 
         public void RenameItem<TItem>(IList<TItem> collection, TItem item) where TItem : DatabaseObject
