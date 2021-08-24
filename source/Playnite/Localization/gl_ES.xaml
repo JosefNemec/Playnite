@@ -87,8 +87,8 @@ Se escolles a opción &quot;Engadir á lista de exclusións&quot;, evitarase que
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">O complemento da biblioteca responsable deste xogo está deshabilitado ou non instalado.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">A descárrega de metadatos oficial non está dispoñíbel.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Ningún xogo foi seleccionado.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Fallou a execución do script de accións do xogo.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Fallou a execución do script de accións global.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">O PowerShell 3.0 ou máis novo non foi instalado.</sys:String>
