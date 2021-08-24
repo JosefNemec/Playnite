@@ -1,0 +1,6 @@
+﻿Id: Test_Metadata_Plugin
+Name: Test Metadata Plugin
+Author: Josef Nemec
+Version: 1.0
+Module: TestMetadataPlugin.dll
+Type: MetadataProvider

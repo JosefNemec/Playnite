@@ -41,16 +41,16 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
-            {
-                if (!other.IsNullOrEmpty())
-                {
-                    if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
-                    {
-                        diffFields.Add(field);
-                    }
-                }
-            }
+            //void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
+            //{
+            //    if (!other.IsNullOrEmpty())
+            //    {
+            //        if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
+            //        {
+            //            diffFields.Add(field);
+            //        }
+            //    }
+            //}
 
             if (!newInfo.Name.IsNullOrEmpty())
             {
@@ -372,20 +372,20 @@ namespace Playnite.DesktopApp.ViewModels
                         var gameInfo = new GameInfo
                         {
                             Name = provider.GetName(fieldArgs),
-                            Genres = provider.GetGenres(fieldArgs),
+                            Genres = provider.GetGenres(fieldArgs)?.Where(a => a != null).ToList(),
                             ReleaseDate = provider.GetReleaseDate(fieldArgs),
-                            Developers = provider.GetDevelopers(fieldArgs),
-                            Publishers = provider.GetPublishers(fieldArgs),
-                            Tags = provider.GetTags(fieldArgs),
-                            Features = provider.GetFeatures(fieldArgs),
+                            Developers = provider.GetDevelopers(fieldArgs)?.Where(a => a != null).ToList(),
+                            Publishers = provider.GetPublishers(fieldArgs)?.Where(a => a != null).ToList(),
+                            Tags = provider.GetTags(fieldArgs)?.Where(a => a != null).ToList(),
+                            Features = provider.GetFeatures(fieldArgs)?.Where(a => a != null).ToList(),
                             Description = provider.GetDescription(fieldArgs),
-                            Links = provider.GetLinks(fieldArgs),
+                            Links = provider.GetLinks(fieldArgs)?.Where(a => a != null).ToList(),
                             CriticScore = provider.GetCriticScore(fieldArgs),
                             CommunityScore = provider.GetCommunityScore(fieldArgs),
-                            AgeRatings = provider.GetAgeRatings(fieldArgs),
-                            Series = provider.GetSeries(fieldArgs),
-                            Regions = provider.GetRegions(fieldArgs),
-                            Platforms = provider.GetPlatforms(fieldArgs),
+                            AgeRatings = provider.GetAgeRatings(fieldArgs)?.Where(a => a != null).ToList(),
+                            Series = provider.GetSeries(fieldArgs)?.Where(a => a != null).ToList(),
+                            Regions = provider.GetRegions(fieldArgs)?.Where(a => a != null).ToList(),
+                            Platforms = provider.GetPlatforms(fieldArgs)?.Where(a => a != null).ToList(),
                             Icon = provider.GetIcon(fieldArgs),
                             CoverImage = provider.GetCoverImage(fieldArgs),
                             BackgroundImage = provider.GetBackgroundImage(fieldArgs)

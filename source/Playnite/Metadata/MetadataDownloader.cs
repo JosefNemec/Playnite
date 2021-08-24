@@ -189,25 +189,25 @@ namespace Playnite.Metadata
                                 gameInfo.Name = provider.GetName(getFieldArgs);
                                 break;
                             case MetadataField.Genres:
-                                gameInfo.Genres = provider.GetGenres(getFieldArgs);
+                                gameInfo.Genres = provider.GetGenres(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.ReleaseDate:
                                 gameInfo.ReleaseDate = provider.GetReleaseDate(getFieldArgs);
                                 break;
                             case MetadataField.Developers:
-                                gameInfo.Developers = provider.GetDevelopers(getFieldArgs);
+                                gameInfo.Developers = provider.GetDevelopers(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Publishers:
-                                gameInfo.Publishers = provider.GetPublishers(getFieldArgs);
+                                gameInfo.Publishers = provider.GetPublishers(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Tags:
-                                gameInfo.Tags = provider.GetTags(getFieldArgs);
+                                gameInfo.Tags = provider.GetTags(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Description:
                                 gameInfo.Description = provider.GetDescription(getFieldArgs);
                                 break;
                             case MetadataField.Links:
-                                gameInfo.Links = provider.GetLinks(getFieldArgs);
+                                gameInfo.Links = provider.GetLinks(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.CriticScore:
                                 gameInfo.CriticScore = provider.GetCriticScore(getFieldArgs);
@@ -225,19 +225,19 @@ namespace Playnite.Metadata
                                 gameInfo.BackgroundImage = provider.GetBackgroundImage(getFieldArgs);
                                 break;
                             case MetadataField.Features:
-                                gameInfo.Features = provider.GetFeatures(getFieldArgs);
+                                gameInfo.Features = provider.GetFeatures(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.AgeRating:
-                                gameInfo.AgeRatings = provider.GetAgeRatings(getFieldArgs);
+                                gameInfo.AgeRatings = provider.GetAgeRatings(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Region:
-                                gameInfo.Regions = provider.GetRegions(getFieldArgs);
+                                gameInfo.Regions = provider.GetRegions(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Series:
-                                gameInfo.Series = provider.GetSeries(getFieldArgs);
+                                gameInfo.Series = provider.GetSeries(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             case MetadataField.Platform:
-                                gameInfo.Platforms = provider.GetPlatforms(getFieldArgs);
+                                gameInfo.Platforms = provider.GetPlatforms(getFieldArgs)?.Where(a => a != null).ToList();
                                 break;
                             default:
                                 throw new NotImplementedException();
