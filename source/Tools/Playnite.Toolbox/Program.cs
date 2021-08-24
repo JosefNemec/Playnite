@@ -94,7 +94,7 @@ namespace Playnite.Toolbox
                     case ExtensionType.GameLibrary:
                         return ItemType.LibraryPlugin;
                     case ExtensionType.Script:
-                        return desc.Module.EndsWith("psm1", StringComparison.OrdinalIgnoreCase) ? ItemType.PowerShellScript : ItemType.IronPythonScript;
+                        return ItemType.PowerShellScript;
                     case ExtensionType.MetadataProvider:
                         return ItemType.MetadataPlugin;
                 }
@@ -117,10 +117,7 @@ namespace Playnite.Toolbox
                         outPath = Themes.GenerateNewTheme(ApplicationMode.Fullscreen, options.Name);
                         break;
                     case ItemType.PowerShellScript:
-                        outPath = Extensions.GenerateScriptExtension(ScriptLanguage.PowerShell, options.Name, options.OutDirectory);
-                        break;
-                    case ItemType.IronPythonScript:
-                        outPath = Extensions.GenerateScriptExtension(ScriptLanguage.IronPython, options.Name, options.OutDirectory);
+                        outPath = Extensions.GenerateScriptExtension(options.Name, options.OutDirectory);
                         break;
                     case ItemType.GenericPlugin:
                         outPath = Extensions.GeneratePluginExtension(ExtensionType.GenericPlugin, options.Name, options.OutDirectory);
@@ -160,7 +157,6 @@ namespace Playnite.Toolbox
                         outPath = Themes.PackageTheme(options.Directory, options.Destination, ApplicationMode.Fullscreen);
                         break;
                     case ItemType.PowerShellScript:
-                    case ItemType.IronPythonScript:
                     case ItemType.GenericPlugin:
                     case ItemType.MetadataPlugin:
                     case ItemType.LibraryPlugin:
@@ -194,7 +190,6 @@ namespace Playnite.Toolbox
                         break;
                     case ItemType.Uknown:
                     case ItemType.PowerShellScript:
-                    case ItemType.IronPythonScript:
                     case ItemType.GenericPlugin:
                     case ItemType.MetadataPlugin:
                     case ItemType.LibraryPlugin:

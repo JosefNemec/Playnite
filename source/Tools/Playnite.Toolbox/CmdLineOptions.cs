@@ -13,7 +13,6 @@ namespace Playnite.Toolbox
         DesktopTheme,
         FullscreenTheme,
         PowerShellScript,
-        IronPythonScript,
         GenericPlugin,
         MetadataPlugin,
         LibraryPlugin
