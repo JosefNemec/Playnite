@@ -282,7 +282,7 @@ namespace Playnite.DesktopApp.ViewModels
             };
 
             SelectedSectionView = sectionViews[0];
-            foreach (var plugin in extensions.LibraryPlugins.Where(a => a.Capabilities?.CanShutdownClient == true))
+            foreach (var plugin in extensions.LibraryPlugins.Where(a => a.Properties?.CanShutdownClient == true))
             {
                 AutoCloseClientsList.Add(new SelectableItem<LibraryPlugin>(plugin)
                 {

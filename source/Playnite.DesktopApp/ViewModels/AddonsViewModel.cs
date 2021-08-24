@@ -263,7 +263,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             DesktopThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
             FullscreenThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
-            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && a.Plugin.Properties?.HasSettings == true).ToList();
+            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && ((GenericPlugin)a.Plugin).Properties?.HasSettings == true).ToList();
             AnyGenericPluginSettings = GenericPlugins.HasItems();
         }
 

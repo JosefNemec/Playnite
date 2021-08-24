@@ -331,7 +331,7 @@ namespace Playnite.Controllers
         {
             Start(new GameAction
             {
-                Type = controller.Type == GenericPlayActionType.Url ? GameActionType.URL : GameActionType.File,
+                Type = controller.Type == AutomaticPlayActionType.Url ? GameActionType.URL : GameActionType.File,
                 Arguments = controller.Arguments,
                 Path = controller.Path,
                 WorkingDir = controller.WorkingDir,

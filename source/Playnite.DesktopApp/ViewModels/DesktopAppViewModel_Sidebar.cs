@@ -227,7 +227,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    var items = plugin.Value.Plugin.GetSidebarItems();
+                    var items = plugin.Value.Plugin.GetSidebarItems().ToList();
                     if (items.HasItems())
                     {
                         items.ForEach(a => sideItems.Add(new SidebarWrapperItem(a, this)));

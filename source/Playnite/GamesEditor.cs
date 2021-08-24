@@ -996,7 +996,7 @@ namespace Playnite
                 else
                 {
                     var plugin = Extensions.GetLibraryPlugin(game.PluginId);
-                    if (plugin?.Capabilities?.CanShutdownClient == true &&
+                    if (plugin?.Properties?.CanShutdownClient == true &&
                         AppSettings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id))
                     {
                         if (shutdownJobs.TryGetValue(game.PluginId, out var existingJob))

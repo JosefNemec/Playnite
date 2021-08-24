@@ -1186,7 +1186,7 @@ namespace Playnite.Database
                 return updated;
             }
 
-            if (library.Capabilities?.HasCustomizedGameImport == true)
+            if (library.Properties?.HasCustomizedGameImport == true)
             {
                 var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
                 foreach (var game in importedGames)

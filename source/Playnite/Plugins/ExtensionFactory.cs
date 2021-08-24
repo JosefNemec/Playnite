@@ -52,9 +52,9 @@ namespace Playnite.Plugins
             get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.MetadataProvider).Select(a => (MetadataPlugin)a.Value.Plugin).ToList();
         }
 
-        public List<Plugin> GenericPlugins
+        public List<GenericPlugin> GenericPlugins
         {
-            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.GenericPlugin).Select(a => (Plugin)a.Value.Plugin).ToList();
+            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.GenericPlugin).Select(a => (GenericPlugin)a.Value.Plugin).ToList();
         }
 
         public  List<PlayniteScript> Scripts
@@ -398,7 +398,7 @@ namespace Playnite.Plugins
                     }
                     else
                     {
-                        if (typeof(Plugin).IsAssignableFrom(type))
+                        if (typeof(GenericPlugin).IsAssignableFrom(type) || typeof(LibraryPlugin).IsAssignableFrom(type) || typeof(MetadataPlugin).IsAssignableFrom(type))
                         {
                             var ignore = Attribute.IsDefined(type, typeof(IgnorePluginAttribute));
                             var load = Attribute.IsDefined(type, typeof(LoadPluginAttribute));
@@ -485,7 +485,7 @@ namespace Playnite.Plugins
             var callbackArgs = new SDK.Events.OnGameStoppedEventArgs
             {
                 Game = database.Games[game.Id],
-                EllapsedSeconds = ellapsedTime
+                ElapsedSeconds = ellapsedTime
             };
 
             foreach (var script in Scripts)
@@ -756,8 +756,8 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    var items = plugin.Plugin.GetTopPanelItems();
-                    if (items != null)
+                    var items = plugin.Plugin.GetTopPanelItems().ToList();
+                    if (items.HasItems())
                     {
                         res.AddRange(items);
                     }
