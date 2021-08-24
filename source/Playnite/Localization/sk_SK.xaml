@@ -87,8 +87,8 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Doplnok knižnice zodpovedajúci k tejto hre je vypnutý alebo nenainštalovaný.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Prevzatie oficiálnych metadát nie je k dispozícii.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nie je vybraná žiadna hra.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Nepodarilo sa spustiť herný skript.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">Nepodarilo sa spustiť globálny skript.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">Nie je nainštalovaný PowerShell 3.0 alebo novší.</sys:String>
@@ -282,7 +282,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsImportLabel">Importovať zmeny v knižnici automaticky</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Chybné umiestnenie súboru databázy, musíte zadať správne umiestnenie súboru.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Názov účtu nesmie byť prázdny.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Pri spustení aktualizovať externé knižnice</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Prevziať metadáta po importe hier</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Spustiť Playnite minimalizovaný</sys:String>
@@ -290,7 +290,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nepodarilo sa zaregistrovať Playnite pre štart pri spustení počítača.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Spustiť v režime celej obrazovky</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchrónne načítanie obrázkov</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Vylepšuje plynulosť skrolovania zoznamu hier na úkor pomalšieho načítavania obrázkov.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Ak chýba obal hry, tak zobraziť názov hry</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">V zobrazení mriežky zobrazovať názvy hier</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Stmaviť nenainštalované hry</sys:String>
@@ -385,7 +385,7 @@ Ak nie je povolené, obrázky pozadia sa budú preberať len vtedy ak sú potreb
     <sys:String x:Key="LOCSettingsAutoCloseSection">Automaticky zavrieť klientov</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">Importovať zoznam vylúčených</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Pri priradení príliš veľkých herných médií zobrazovať upozornenie</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Príkaz pre otvorenie adresára</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Preferovaná organizácia pre vekové obmedzenia</sys:String>
     <sys:String x:Key="LOCStrechNone">Žiadne</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplniť</sys:String>
@@ -422,11 +422,13 @@ Je to tiež možné zmeniť v nastaveniach.</sys:String>
     <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Úvodné nastavenie</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Tento sprievodca vás prevedie procesom automatického importu a konfigurácie externých knižníc hier. Playnite môže automaticky importovať hry z viacerých herných služieb ako napr. Steam alebo GOG, a tiež udržovať knižnicu aktuálnu automatickou aktualizáciou pri každom spustení aplikácie.
+
+Nezabudnite, že ľubovoľnú vlastnú hru pre ľubovoľnú platformu môžete pridať aj neskôr ručne kliknutím na tlačidlo 'Playnite' v hlavnej ponuke.</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integrácia knižnice</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Automaticky importovať hry zo služieb uvedených nižšie. Všetky neskoršie zmeny hry (stav inštalácie) sa aktualizujú automaticky pri spustení Playnite alebo pri manuálnom spustení. Vybraté nastavenia ovplyvnia počiatočný a všetky nasledujúce importy.</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurácia dokončená</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Počiatočné nastavenie bolo dokončené. Nezabudnite, že všetky nastavenia môžete neskôr zmeniť v ponuke „Nastavenia“.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
     <!--Platforms Settings-->
@@ -498,7 +500,7 @@ Monetálne ju používa {1} hier a {2} emulátorov.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Naposledy hrané</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategória</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Popis</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Inštalačný priečinok</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Obrázok na obale</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">Odkazy</sys:String>
     <sys:String x:Key="LOCGameROMTitle">Cesta k obrazu, ROM alebo ISO</sys:String>
@@ -542,7 +544,12 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Odkaz sa nedá otvoriť, adresa URL nie je v platnom formáte.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Aplikáciu sa nepodarilo spustiť.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Inicializácia komponentu WebView zlyhala. Playnite nemôže pokračovať v procese spustenia.
+
+Môžete sa pokúsiť problém vyriešiť:
+  • Skontrolujte, či sú všetky súbory nainštalované správne. Pomôcť by mohla opätovná inštalácia
+  • Uistite sa, že váš antivírus neblokuje žiadne súbory v adresári Playnite
+  • Vyberte iné umiestnenie inštalácie</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emulátory nie je možné importovať z dôvodu chýbajúceho alebo poškodeného definičného súboru.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Nepodarilo sa inicializovať rozhranie XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Nepodarilo sa spustiť ponuku akcie.</sys:String>
@@ -556,7 +563,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCPlayAction">Akcia hrať</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Pridať akciu Hrať</sys:String>
     <sys:String x:Key="LOCAddAction">Pridať akciu</sys:String>
-    <sys:String x:Key="LOCDeleteAction"></sys:String>
+    <sys:String x:Key="LOCDeleteAction">Vymazať akciu</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Odstrániť akciu Hrať</sys:String>
     <sys:String x:Key="LOCOtherActions">Ďalšie akcie</sys:String>
     <sys:String x:Key="LOCAddGames">Pridať hry</sys:String>
@@ -663,9 +670,9 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Sledovať zmeny súboru</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Automaticky použiť motív vzhľadu pri zmenách súboru</sys:String>
     <sys:String x:Key="LOCScriptRuntime">Runtime skriptov</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Skript, ktorý sa má vykonať pred spustením hry</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Skript, ktorý sa má vykonať po ukončení hry</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">Skript, ktorý sa má vykonať po spustení hry</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Spustiť globálny skript</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globálne</sys:String>
     <sys:String x:Key="LOCStatsFiltered"></sys:String>
@@ -723,7 +730,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">Klient {0} nie je nainštalovaný.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Klient {0} sa teraz otvorí, prihláste sa a potom túto správu zavrite.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Čaká sa na prihlásenie používateľa, keď sa tak stane, toto okno zavrite…</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Priečinok s inštaláciou hry sa nenašiel.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Neplatná konfigurácia hry.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Riešenie problémov so synchronizáciou účtu</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Riešenie problémov</sys:String>
@@ -736,7 +743,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCPLaytime10to100">10 až 100 hodín</sys:String>
     <sys:String x:Key="LOCPLaytime100to500">100 až 500 hodín</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 až 1000 hodín</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Na dokončenie inštalácie je potrebné Playnite reštartovať. Chcete teraz reštartovať?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšírenie nie je správne zabalené.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Motív vzhľadu nie je správne zabalený.</sys:String>
@@ -746,7 +753,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCGeneralThemeLoadError">Motív vzhľadu sa nepodarilo správne načítať.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motív vzhľadu/rozširenie používa nepodporovanu verziu API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Inštalácia bola úspešná.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainštalovať rozšírenie?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Obecné</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Inštalácia rozšírenia zlyhala.
 
@@ -791,8 +798,8 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">Naozaj chcete odinštalovať vybrané rozšírenie? Odinštalácia sa vykoná pri ďalšom štarte aplikácie.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Vstavané rozšírenia nemožno odinštalovať.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Toto rozšírenie nepodporuje túto verziu Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
-    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Inštalačný priečinok</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Adresár s dátami</sys:String>
     <sys:String x:Key="LOCDiagGenerating">Vytvára sa diagnostický balíček…</sys:String>
     <sys:String x:Key="LOCDiagUploading">Nahráva sa diagnostický balíček…</sys:String>
     <sys:String x:Key="LOCAddFromExe">Importovať súbor…</sys:String>
@@ -821,7 +828,7 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Všetko</sys:String>
     <sys:String x:Key="LOCGameListFiltered">Sú použité nejaké filtre.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">Výsledky vyhľadávania pre:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Položka s týmto názvom už existuje.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Obmedziť výber na aktuálny filter</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Vybrať dalšiu</sys:String>
