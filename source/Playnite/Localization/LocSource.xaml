@@ -150,6 +150,8 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCRemoveLabel">Remove</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Download</sys:String>
     <sys:String x:Key="LOCSearchLabel">Search</sys:String>
+    <sys:String x:Key="LOCSearchResolutionLabel">Resolution:</sys:String>
+    <sys:String x:Key="LOCSearchResolutionAnyLabel">Any</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListViewLabel">List View</sys:String>
     <sys:String x:Key="LOCCoversLabel">Covers</sys:String>
