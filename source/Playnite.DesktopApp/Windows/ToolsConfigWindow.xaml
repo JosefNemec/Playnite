@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCMenuSoftwareTools}"
@@ -64,6 +65,7 @@
                 
                 <TextBlock Text="{DynamicResource LOCPathLabel}" Margin="5,5,5,0"  />
                 <TextBox Margin="5"
+                         pbeh:TextBoxBehavior.FileBrowserAttachment="File|*.*"
                          Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}"/>
                 
                 <TextBlock Text="{DynamicResource LOCArgumentsTitle}" Margin="5,5,5,0"  />
@@ -72,6 +74,7 @@
 
                 <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" Margin="5,5,5,0"  />
                 <TextBox Margin="5"
+                         pbeh:TextBoxBehavior.AttachDirectoryBrowser="True"
                          Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <CheckBox Content="{DynamicResource LOCToolsShowOnSidebar}" Margin="5"
