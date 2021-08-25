@@ -80,12 +80,12 @@
                     Command="{Binding SearchCommand}"/>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Name="TextBlockResolution" Text="{DynamicResource LOCSearchResolutionLabel}" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                <pctrls:NullableIntBox MinValue="1" MaxValue="9999" Width="40"
+                <pctrls:NullIntNumericBox MinValue="1" MaxValue="9999" Width="40"
                                         Margin="10,0,0,0"
                                         Value="{Binding SearchWidth}"/>
                 <TextBlock Text="x" VerticalAlignment="Center"
                            Margin="4,0,4,0"/>
-                <pctrls:NullableIntBox MinValue="1" MaxValue="9999" Width="40"
+                <pctrls:NullIntNumericBox MinValue="1" MaxValue="9999" Width="40"
                                        Value="{Binding SearchHeight}"/>
 
                 <Button Content="{DynamicResource LOCPresets}" Margin="15,0,0,0" Padding="2"
