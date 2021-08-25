@@ -325,6 +325,14 @@
   Databases: [Sony - PlayStation 3, Sony - PlayStation 3 (PSN)]
   Emulators: [rpcs3]
 
+- Name: Sony PlayStation 4
+  Id: playstation4
+  IgdbId: 48
+
+- Name: Sony PlayStation 5
+  Id: playstation5
+  IgdbId: 167
+
 - Name: Sony PlayStation Portable
   Id: sony_psp
   IgdbId: 38
@@ -348,6 +356,14 @@
   IgdbId: 12
   Databases: [Microsoft - Xbox 360, Microsoft - XBOX 360 (Digital), Microsoft - XBOX 360 (Games on Demand)]
   Emulators: [xenia]
+
+- Name: Microsoft Xbox Series
+  Id: xbox_series
+  IgdbId: 169
+
+- Name: Microsoft Xbox One
+  Id: xbox_one
+  IgdbId: 49 
 
 - Name: PC (DOS)
   Id: pc_dos
