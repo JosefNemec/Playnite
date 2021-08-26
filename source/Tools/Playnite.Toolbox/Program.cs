@@ -117,16 +117,16 @@ namespace Playnite.Toolbox
                         outPath = Themes.GenerateNewTheme(ApplicationMode.Fullscreen, options.Name);
                         break;
                     case ItemType.PowerShellScript:
-                        outPath = Extensions.GenerateScriptExtension(options.Name, options.OutDirectory);
+                        outPath = Extensions.GenerateScriptExtension(options.Name, options.OutDirectory.Trim('"'));
                         break;
                     case ItemType.GenericPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GenericPlugin, options.Name, options.OutDirectory);
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GenericPlugin, options.Name, options.OutDirectory.Trim('"'));
                         break;
                     case ItemType.MetadataPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.MetadataProvider, options.Name, options.OutDirectory);
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.MetadataProvider, options.Name, options.OutDirectory.Trim('"'));
                         break;
                     case ItemType.LibraryPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GameLibrary, options.Name, options.OutDirectory);
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GameLibrary, options.Name, options.OutDirectory.Trim('"'));
                         break;
                     default:
                         throw new NotSupportedException($"Uknown extension type {options.Type}.");
