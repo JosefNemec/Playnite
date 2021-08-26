@@ -299,7 +299,7 @@ namespace Playnite.Plugins
 
                 try
                 {
-                    script = PlayniteScript.FromFile(scriptPath);
+                    script = PlayniteScript.FromFile(scriptPath, $"{desc.DirectoryName}#PS");
                     if (script == null)
                     {
                         FailedExtensions.Add(desc);

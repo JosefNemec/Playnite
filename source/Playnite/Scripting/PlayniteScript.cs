@@ -59,14 +59,16 @@ namespace Playnite.Scripting
             get; private set;
         }
 
+        private string name;
         public string Name
         {
-            get => System.IO.Path.GetFileName(Path);
+            get => name ?? System.IO.Path.GetFileName(Path);
         }
 
-        public PlayniteScript(string path)
+        public PlayniteScript(string path, string name = null)
         {
             Path = path;
+            this.name = name;
         }
 
         public virtual List<ScriptGameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
@@ -79,14 +81,14 @@ namespace Playnite.Scripting
             return new List<ScriptMainMenuItem>();
         }
 
-        public static PlayniteScript FromFile(string path)
+        public static PlayniteScript FromFile(string path, string name)
         {
             var extension = System.IO.Path.GetExtension(path).ToLower();
             if (extension == ".psm1" || extension == ".psd1")
             {
                 if (PowerShellRuntime.IsInstalled)
                 {
-                    return new PowerShellScript(path);
+                    return new PowerShellScript(path, name);
                 }
                 else
                 {

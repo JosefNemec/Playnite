@@ -19,7 +19,7 @@ namespace Playnite.Scripting.PowerShell
 
         public PowerShellRuntime Runtime { get; }
 
-        public PowerShellScript(string path) : base(path)
+        public PowerShellScript(string path, string name) : base(path, name)
         {
             Runtime = new PowerShellRuntime(Name);
             Runtime.ImportModule(path);
