@@ -21,7 +21,7 @@ namespace _namespace_
         }
 
         // Override additional methods based on supported metadata fields.
-        public override string GetDescription()
+        public override string GetDescription(GetMetadataFieldArgs args)
         {
             return options.GameData.Name + " description";
         }

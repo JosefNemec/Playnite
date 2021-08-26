@@ -29,6 +29,10 @@ namespace _namespace_
         public _name_(IPlayniteAPI api) : base(api)
         {
             settings = new _name_SettingsViewModel(this);
+            Properties = new MetadataPluginProperties
+            {
+                HasSettings = true
+            };
         }
 
         public override OnDemandMetadataProvider GetMetadataProvider(MetadataRequestOptions options)

@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK;
+using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -27,9 +28,13 @@ namespace _namespace_
         public _name_(IPlayniteAPI api) : base(api)
         {
             settings = new _name_SettingsViewModel(this);
+            Properties = new LibraryPluginProperties
+            {
+                HasSettings = true
+            };
         }
 
-        public override IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
         {
             // Return list of user's games.
             return new List<GameInfo>()
@@ -38,26 +43,34 @@ namespace _namespace_
                 {
                     Name = "Notepad",
                     GameId = "notepad",
-                    PlayAction = new GameAction()
+                    GameActions = new List<GameAction>
                     {
-                        Type = GameActionType.File,
-                        Path = "notepad.exe"
+                        new GameAction()
+                        {
+                            Type = GameActionType.File,
+                            Path = "notepad.exe",
+                            IsPlayAction = true
+                        }
                     },
                     IsInstalled = true,
-                    Icon = @"c:\Windows\notepad.exe"
+                    Icon = new MetadataFile(@"c:\Windows\notepad.exe")
                 },
                 new GameInfo()
                 {
                     Name = "Calculator",
                     GameId = "calc",
-                    PlayAction = new GameAction()
+                    GameActions = new List<GameAction>
                     {
-                        Type = GameActionType.File,
-                        Path = "calc.exe"
+                        new GameAction()
+                        {
+                            Type = GameActionType.File,
+                            Path = "calc.exe",
+                            IsPlayAction = true
+                        }
                     },
                     IsInstalled = true,
-                    Icon = @"https://playnite.link/applogo.png",
-                    BackgroundImage =  @"https://playnite.link/applogo.png"
+                    Icon = new MetadataFile(@"https://playnite.link/applogo.png"),
+                    BackgroundImage = new MetadataFile(@"https://playnite.link/applogo.png")
                 }
             };
         }
