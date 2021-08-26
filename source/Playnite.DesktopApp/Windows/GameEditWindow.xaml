@@ -904,7 +904,7 @@
                     <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
                         <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Left" MinWidth="80"
                                 Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" Margin="10,0,0,5"
-                                CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-actions" />
+                                CommandParameter="https://playnite.link/docs/{AppBranch}/manual/gameActions.html" />
                         <Button Content="{DynamicResource LOCAddAction}" Margin="0,0,10,5" DockPanel.Dock="Right"
                                 Command="{Binding AddActionCommand}"/>
                     </DockPanel>    
@@ -972,7 +972,7 @@
                     <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Bottom" MinWidth="80"
                             HorizontalAlignment="Left"
                             Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-scripts" />
+                            CommandParameter="https://playnite.link/docs/{AppBranch}/manual/gameScripts.html" />
                     <Grid DockPanel.Dock="Top" Margin="0,5,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />

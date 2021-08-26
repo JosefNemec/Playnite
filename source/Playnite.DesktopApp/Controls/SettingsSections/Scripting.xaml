@@ -31,7 +31,7 @@
                 <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Right"
                         VerticalAlignment="Center"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Game-scripts" />
+                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/gameScripts.html" />
                 <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
                            TextWrapping="Wrap" DockPanel.Dock="Left" />
             </DockPanel>          

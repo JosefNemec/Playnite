@@ -103,7 +103,7 @@
                         Style="{StaticResource BottomButton}" />
                 <Button Content="{DynamicResource LOCMenuHelpTitle}"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Adding-new-emulator"                        
+                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/emulators.html#emulator-is-not-being-imported"                        
                         DockPanel.Dock="Left" Style="{StaticResource BottomButton}"/>
             </DockPanel>
         </Border>
