@@ -207,7 +207,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 var selectedLibs = RecommendedAddons.Where(a => a.Selected == true).ToList();
                 selectedLibs.Add(new RecommendedAddon("IGDBMetadata_Builtin", "IGDB"));
-                selectedLibs.Add(new RecommendedAddon("SteamFriendsButton_bc14d3d7", "SteamFriendsButton"));
 
                 if (selectedLibs.HasItems())
                 {
@@ -265,8 +264,7 @@ namespace Playnite.DesktopApp.ViewModels
                         });
                     }
 
-                    SelectedIndex++;
-                    SetPluginConfiguration(selectedPlugins[0]);
+                    SelectedIndex = Pages.Finish;
                     return;
                 }
                 else
