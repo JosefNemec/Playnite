@@ -102,6 +102,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 selectedBuiltinProfile = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedBuiltInProfilePlatforms));
             }
         }
 
@@ -129,6 +130,25 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 OnPropertyChanged();
+            }
+        }
+
+        public string SelectedBuiltInProfilePlatforms
+        {
+            get
+            {
+                if (SelectedBuiltinProfile == null)
+                {
+                    return string.Empty;
+                }
+
+                var profile = EmulatorDefinition.GetProfile(SelectedEmulator.BuiltInConfigId, SelectedBuiltinProfile.BuiltInProfileName);
+                if (profile == null)
+                {
+                    return string.Empty;
+                }
+
+                return string.Join(", ", profile.Platforms.Select(a => Emulation.GetPlatform(a)?.Name).Where(a => a != null));
             }
         }
 

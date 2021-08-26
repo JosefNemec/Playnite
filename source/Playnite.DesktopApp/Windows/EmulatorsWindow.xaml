@@ -181,7 +181,7 @@
                                                 Visibility="{Binding Data.SelectedBuiltinProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToVisibilityConverter}}">
                                         <TabItem Header="{DynamicResource LOCGeneralLabel}">
                                             <controls:GridEx KeyboardNavigation.TabNavigation="Local" Margin="3"
-                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="2">
+                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="3">
                                                 <!--Name-->
                                                 <TextBlock Text="{DynamicResource LOCNameLabel}" />
                                                 <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
@@ -189,6 +189,9 @@
                                                 <TextBlock Text="{DynamicResource LOCEmulatorBuiltInProfile}" />
                                                 <ComboBox SelectedValue="{Binding BuiltInProfileName}" VerticalAlignment="Center"
                                                           ItemsSource="{Binding Data.SelectedEmulatorBuiltInProfiles, Source={StaticResource Proxy}}" />
+                                                <!--Platforms-->
+                                                <TextBlock Text="{DynamicResource LOCPlatformsTitle}" />
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding Data.SelectedBuiltInProfilePlatforms, Source={StaticResource Proxy}}" />
                                             </controls:GridEx>
                                         </TabItem>
                                         <TabItem Header="{DynamicResource LOCScripts}">
