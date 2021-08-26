@@ -37,7 +37,7 @@ namespace Playnite.API
         public string FontFamilyName => settings.FontFamilyName;
         public bool DiscordPresenceEnabled => settings.DiscordPresenceEnabled;
         public AgeRatingOrg AgeRatingOrgPriority => settings.AgeRatingOrgPriority;
-        public bool SidebarVisible => settings.SidebarVisible;
+        public bool SidebarVisible => settings.ShowSidebar;
         public Dock SidebarPosition => settings.SidebarPosition;
 
         public PlayniteSettingsAPI(PlayniteSettings settings, GameDatabase db)

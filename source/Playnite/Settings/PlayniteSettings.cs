@@ -861,17 +861,17 @@ namespace Playnite
             }
         }
 
-        private bool sidebarVisible = true;
-        public bool SidebarVisible
+        private bool showSidebar = true;
+        public bool ShowSidebar
         {
             get
             {
-                return sidebarVisible;
+                return showSidebar;
             }
 
             set
             {
-                sidebarVisible = value;
+                showSidebar = value;
                 OnPropertyChanged();
             }
         }

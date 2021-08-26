@@ -53,7 +53,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(Sidebar,
                     Sidebar.VisibilityProperty,
                     mainModel.AppSettings,
-                    nameof(PlayniteSettings.SidebarVisible),
+                    nameof(PlayniteSettings.ShowSidebar),
                     converter: new BooleanToVisibilityConverter());
             }
 

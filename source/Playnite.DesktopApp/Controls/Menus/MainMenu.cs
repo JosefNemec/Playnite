@@ -150,7 +150,7 @@ namespace Playnite.DesktopApp.Controls
                 new Binding
                 {
                     Source = mainModel.AppSettings,
-                    Path = new PropertyPath(nameof(PlayniteSettings.SidebarVisible))
+                    Path = new PropertyPath(nameof(PlayniteSettings.ShowSidebar))
                 });
 
             sideBarItem.Items.Add(new Separator());
