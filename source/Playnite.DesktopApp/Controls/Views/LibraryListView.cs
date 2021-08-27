@@ -87,6 +87,14 @@ namespace Playnite.DesktopApp.Controls.Views
                     nameof(DesktopAppViewModel.SelectedGamesBinder),
                     BindingMode.TwoWay);
             }
+
+            ControlTemplateTools.InitializePluginControls(
+                mainModel.Extensions,
+                Template,
+                this,
+                SDK.ApplicationMode.Desktop,
+                mainModel,
+                $"{nameof(DesktopAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
         }
     }
 }

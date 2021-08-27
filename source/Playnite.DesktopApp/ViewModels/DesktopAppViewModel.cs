@@ -105,15 +105,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 else
                 {
-                    if (AppSettings.ViewSettings.GamesViewType == ViewType.Details ||
-                        (AppSettings.ViewSettings.GamesViewType == ViewType.Grid && AppSettings.GridViewSideBarVisible))
-                    {
-                        SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
-                    }
-                    else
-                    {
-                        SelectedGameDetails = null;
-                    }
+                    SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
                 }
 
                 selectedGame = value;

@@ -478,6 +478,14 @@ namespace Playnite.FullscreenApp.Controls.Views
                 }
 
                 SetListCommandBindings();
+
+                ControlTemplateTools.InitializePluginControls(
+                    mainModel.Extensions,
+                    Template,
+                    this,
+                    ApplicationMode.Fullscreen,
+                    mainModel,
+                    $"{nameof(FullscreenAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
             }
         }
 

@@ -124,6 +124,14 @@ namespace Playnite.DesktopApp.Controls.Views
                 VirtualizingPanel.SetIsVirtualizingWhenGrouping(ListGames, true);
                 VirtualizingPanel.SetVirtualizationMode(ListGames, VirtualizationMode.Recycling);
             }
+
+            ControlTemplateTools.InitializePluginControls(
+                mainModel.Extensions,
+                Template,
+                this,
+                SDK.ApplicationMode.Desktop,
+                mainModel,
+                $"{nameof(DesktopAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
         }
     }
 }

@@ -126,6 +126,14 @@ namespace Playnite.DesktopApp.Controls.Views
             SetViewBinding(ref ViewDetails, "PART_ViewDetails", ViewType.Details);
             SetViewBinding(ref ViewGrid, "PART_ViewGrid", ViewType.Grid);
             SetViewBinding(ref ViewList, "PART_ViewList", ViewType.List);
+
+            ControlTemplateTools.InitializePluginControls(
+                mainModel.Extensions,
+                Template,
+                this,
+                SDK.ApplicationMode.Desktop,
+                mainModel,
+                $"{nameof(DesktopAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
         }
 
         private void SetViewBinding(ref Control elem, string partId, ViewType type)

@@ -65,6 +65,14 @@ namespace Playnite.DesktopApp.Controls.Views
                     mainModel,
                     nameof(mainModel.ActiveView));
             }
+
+            ControlTemplateTools.InitializePluginControls(
+                mainModel.Extensions,
+                Template,
+                this,
+                SDK.ApplicationMode.Desktop,
+                mainModel,
+                $"{nameof(DesktopAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
         }
     }
 }
