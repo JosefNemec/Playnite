@@ -589,7 +589,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                EditingScanners = null;
+                SelectedScanner = null;
             }
         }
     }
