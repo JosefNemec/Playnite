@@ -22,21 +22,6 @@ For example, to include `TestUserControl1` control from `TestPlugin` source:
 <ContentControl x:Name="TestPlugin_TestUserControl1" />
 ```
 
-Extension controls can be currently used in following views:
-
-|Desktop mode |
-| --- |
-|DetailsViewGameOverview.xaml|
-|DetailsViewItemTemplate.xaml|
-|GridViewGameOverview.xaml|
-|GridViewItemTemplate.xaml|
-
-| Fullscreen mode |
-| --- |
-| GameDetails.xaml |
-| ListGameItemTemplate.xaml |
-| Main.xaml |
-
 Detecting if an extension is installed
 ---------------------
 
