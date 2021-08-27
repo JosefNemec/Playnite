@@ -56,5 +56,8 @@
                                      Value="{Binding Settings.TopPanelSectionSeparatorWidth}"
                                      VerticalAlignment="Center" Width="50"/>
         </StackPanel>
+
+        <CheckBox Content="{DynamicResource LOCTopPanelMainButtonMove}" Margin="0,15,0,0"
+                  IsChecked="{Binding Settings.MainMenuButtonSidebarMove}" />
     </StackPanel>
 </UserControl>

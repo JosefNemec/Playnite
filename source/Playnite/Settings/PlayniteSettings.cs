@@ -873,6 +873,7 @@ namespace Playnite
             {
                 showSidebar = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMainMenuOnTopPanel));
             }
         }
 
@@ -890,6 +891,25 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool mainMenuButtonSidebarMove = true;
+        public bool MainMenuButtonSidebarMove
+        {
+            get
+            {
+                return mainMenuButtonSidebarMove;
+            }
+
+            set
+            {
+                mainMenuButtonSidebarMove = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMainMenuOnTopPanel));
+            }
+        }
+
+        [JsonIgnore]
+        public bool ShowMainMenuOnTopPanel => !ShowSidebar || (ShowSidebar && !MainMenuButtonSidebarMove);
 
         private bool minimizeToTray = false;
         public bool MinimizeToTray

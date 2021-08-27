@@ -9,7 +9,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Sidebar}">
                     <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"
-                            x:Name="BorderContentHolder">
+                            x:Name="BorderContentHolder" Margin="{TemplateBinding Padding}">
                         <DockPanel x:Name="DockContentHolder">                            
                             <Border x:Name="PART_ElemMainMenu" Background="Transparent"
                                     Width="44" Height="44" Margin="0,0,0,5"
@@ -28,7 +28,8 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Right">
-                            <Setter Property="Margin" Value="0,20,0,5" TargetName="PART_ElemMainMenu" />
+                            <Setter Property="Padding" Value="0,25,0,0" />
+                            <Setter Property="Margin" Value="0,0,0,5" TargetName="PART_ElemMainMenu" />
                             <Setter Property="BorderThickness" Value="1,0,0,0" TargetName="BorderContentHolder" />
                         </DataTrigger>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Top">

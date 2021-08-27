@@ -199,8 +199,8 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ElemMainMenu,
                     FrameworkElement.VisibilityProperty,
                     mainModel.AppSettings,
-                    nameof(PlayniteSettings.ShowSidebar),
-                    converter: new InvertedBooleanToVisibilityConverter());
+                    nameof(PlayniteSettings.ShowMainMenuOnTopPanel),
+                    converter: new BooleanToVisibilityConverter());
             }
 
             TextMainSearch = Template.FindName("PART_TextMainSearch", this) as SearchBox;

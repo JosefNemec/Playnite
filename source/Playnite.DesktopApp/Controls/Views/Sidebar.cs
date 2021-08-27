@@ -1,5 +1,6 @@
 ﻿using Playnite.Behaviors;
 using Playnite.Common;
+using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -95,6 +96,11 @@ namespace Playnite.DesktopApp.Controls.Views
                     Placement = PlacementMode.Bottom
                 };
                 ElemMainMenu.ContextMenu.SetResourceReference(ContextMenu.StyleProperty, "TopPanelMenu");
+                BindingTools.SetBinding(ElemMainMenu,
+                    FrameworkElement.VisibilityProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.ShowMainMenuOnTopPanel),
+                    converter: new InvertedBooleanToVisibilityConverter());
             }
         }
     }
