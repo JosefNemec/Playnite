@@ -82,14 +82,14 @@
                              IsChecked="{Binding ReleaseDate.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="ReleaseDate">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding CurrentGame.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" />
+                        <TextBlock Text="{Binding CurrentGame.ReleaseDate}" />
                     </RadioButton.Content>
                 </RadioButton>                
                 <RadioButton Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding ReleaseDate.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="ReleaseDate">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" />
+                        <TextBlock Text="{Binding NewGame.GameInfo.ReleaseDate}" />
                     </RadioButton.Content>
                 </RadioButton>
 
