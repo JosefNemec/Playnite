@@ -320,17 +320,17 @@
   Emulators: [pcsx2, retroarch]
 
 - Name: Sony PlayStation 3
-  Id: playstation3
+  Id: sony_playstation3
   IgdbId: 9
   Databases: [Sony - PlayStation 3, Sony - PlayStation 3 (PSN)]
   Emulators: [rpcs3]
 
 - Name: Sony PlayStation 4
-  Id: playstation4
+  Id: sony_playstation4
   IgdbId: 48
 
 - Name: Sony PlayStation 5
-  Id: playstation5
+  Id: sony_playstation5
   IgdbId: 167
 
 - Name: Sony PlayStation Portable

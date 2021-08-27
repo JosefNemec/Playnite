@@ -1053,7 +1053,31 @@ namespace Playnite.Database
 
             if (game.Platforms?.Any() == true)
             {
-                toAdd.PlatformIds = Platforms.Add(game.Platforms).Select(a => a.Id).ToList();
+                var platIds = new List<Guid>();
+                foreach (var platform in game.Platforms)
+                {
+                    var exPlat = Platforms.FirstOrDefault(a => a.SpecificationId == platform || a.Name.Equals(platform, StringComparison.OrdinalIgnoreCase));
+                    if (exPlat != null)
+                    {
+                        platIds.AddMissing(exPlat.Id);
+                    }
+                    else
+                    {
+                        var dbPlat = Emulation.GetPlatform(platform);
+                        if (dbPlat != null)
+                        {
+                            var newPlat = new Platform(dbPlat.Name) { SpecificationId = dbPlat.Id };
+                            Platforms.Add(newPlat);
+                            platIds.AddMissing(newPlat.Id);
+                        }
+                        else
+                        {
+                            platIds.AddMissing(Platforms.Add(platform).Id);
+                        }
+                    }
+                }
+
+                toAdd.PlatformIds = platIds;
             }
 
             if (game.Developers?.Any() == true)
