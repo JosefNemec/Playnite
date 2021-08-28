@@ -1542,7 +1542,7 @@ namespace Playnite
             }
         }
 
-        private bool showTopPanelGeneralViewItem = true;
+        private bool showTopPanelGeneralViewItem = false;
         public bool ShowTopPanelGeneralViewItem
         {
             get => showTopPanelGeneralViewItem;
@@ -1553,7 +1553,7 @@ namespace Playnite
             }
         }
 
-        private bool showTopPanelGroupingItem = false;
+        private bool showTopPanelGroupingItem = true;
         public bool ShowTopPanelGroupingItem
         {
             get => showTopPanelGroupingItem;
@@ -1564,7 +1564,7 @@ namespace Playnite
             }
         }
 
-        private bool showTopPanelSortingItem = false;
+        private bool showTopPanelSortingItem = true;
         public bool ShowTopPanelSortingItem
         {
             get => showTopPanelSortingItem;
@@ -1586,7 +1586,7 @@ namespace Playnite
             }
         }
 
-        private bool showTopPanelDetailsViewSwitch = false;
+        private bool showTopPanelDetailsViewSwitch = true;
         public bool ShowTopPanelDetailsViewSwitch
         {
             get => showTopPanelDetailsViewSwitch;
@@ -1597,7 +1597,7 @@ namespace Playnite
             }
         }
 
-        private bool showTopPanelGridViewSwitch = false;
+        private bool showTopPanelGridViewSwitch = true;
         public bool ShowTopPanelGridViewSwitch
         {
             get => showTopPanelGridViewSwitch;
@@ -1608,7 +1608,7 @@ namespace Playnite
             }
         }
 
-        private bool showTopPanelListViewSwitch = false;
+        private bool showTopPanelListViewSwitch = true;
         public bool ShowTopPanelListViewSwitch
         {
             get => showTopPanelListViewSwitch;
@@ -1619,7 +1619,7 @@ namespace Playnite
             }
         }
 
-        private bool showTopPanelExplorerSwitch = false;
+        private bool showTopPanelExplorerSwitch = true;
         public bool ShowTopPanelExplorerSwitch
         {
             get => showTopPanelExplorerSwitch;
