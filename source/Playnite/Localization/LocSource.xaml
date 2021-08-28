@@ -901,10 +901,6 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Grouping settings</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelSortingItem">Sorting settings</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Filter presets</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSettings">View settings</sys:String>
-    <sys:String x:Key="LOCTopPanelGroupSettings">Group settings</sys:String>
-    <sys:String x:Key="LOCTopPanelSortSettings">Sort settings</sys:String>
-    <sys:String x:Key="LOCTopPanelFilterPresets">Filter presets</sys:String>
     <sys:String x:Key="LOCTopPanelPluginPanelPosition">Plugin items position</sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Section separator width</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Move main menu button to the sidebar</sys:String>    

@@ -155,10 +155,10 @@ namespace Playnite.DesktopApp.Controls.Views
             PanelMainItems = Template.FindName("PART_PanelMainItems", this) as Panel;
             if (PanelMainItems != null)
             {
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelGeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.TopPanelViewSettings, out ButtonViewSettings));
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelFilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.TopPanelFilterPresets, out ButtonFilterPresets));
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelGroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.TopPanelGroupSettings, out ButtonGroupSettings));
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.TopPanelSortSettings, out ButtonSortSettings));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelGeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.SettingsTopPanelGeneralViewItem, out ButtonViewSettings));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelFilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.SettingsTopPanelFilterPresetsItem, out ButtonFilterPresets));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelGroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.SettingsTopPanelGroupingItem, out ButtonGroupSettings));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSortSettingsTemplate", new SortSettingsMenu(mainModel.AppSettings), LOC.SettingsTopPanelSortingItem, out ButtonSortSettings));
 
                 LeftViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
                 RightViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;

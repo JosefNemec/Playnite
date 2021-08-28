@@ -522,6 +522,14 @@ namespace Playnite
         /// </summary>
         public const string SearchLabel = "LOCSearchLabel";
         /// <summary>
+        /// Resolution:
+        /// </summary>
+        public const string SearchResolutionLabel = "LOCSearchResolutionLabel";
+        /// <summary>
+        /// Any
+        /// </summary>
+        public const string SearchResolutionAnyLabel = "LOCSearchResolutionAnyLabel";
+        /// <summary>
         /// Zoom
         /// </summary>
         public const string ZoomLabel = "LOCZoomLabel";
@@ -3058,7 +3066,7 @@ namespace Playnite
         /// </summary>
         public const string AddonsSearching = "LOCAddonsSearching";
         /// <summary>
-        /// Add-on is not compatbile with this version of Playnite.
+        /// Add-on is not compatible with this version of Playnite.
         /// </summary>
         public const string AddonErrorNotCompatible = "LOCAddonErrorNotCompatible";
         /// <summary>
@@ -3246,22 +3254,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsTopPanelFilterPresetsItem = "LOCSettingsTopPanelFilterPresetsItem";
         /// <summary>
-        /// View settings
-        /// </summary>
-        public const string TopPanelViewSettings = "LOCTopPanelViewSettings";
-        /// <summary>
-        /// Group settings
-        /// </summary>
-        public const string TopPanelGroupSettings = "LOCTopPanelGroupSettings";
-        /// <summary>
-        /// Sort settings
-        /// </summary>
-        public const string TopPanelSortSettings = "LOCTopPanelSortSettings";
-        /// <summary>
-        /// Filter presets
-        /// </summary>
-        public const string TopPanelFilterPresets = "LOCTopPanelFilterPresets";
-        /// <summary>
         /// Plugin items position
         /// </summary>
         public const string TopPanelPluginPanelPosition = "LOCTopPanelPluginPanelPosition";
@@ -3269,6 +3261,10 @@ namespace Playnite
         /// Section separator width
         /// </summary>
         public const string TopPanelSeparatorWidth = "LOCTopPanelSeparatorWidth";
+        /// <summary>
+        /// Move main menu button to the sidebar
+        /// </summary>
+        public const string TopPanelMainButtonMove = "LOCTopPanelMainButtonMove";
         /// <summary>
         /// Explorer panel
         /// </summary>
@@ -3486,7 +3482,7 @@ namespace Playnite
         /// </summary>
         public const string ErrorEmulatorSpecificationNotFound = "LOCErrorEmulatorSpecificationNotFound";
         /// <summary>
-        /// Emulator executable not found.
+        /// Emulator startup script not found.
         /// </summary>
         public const string ErrorEmulatorStartupScriptNotFound = "LOCErrorEmulatorStartupScriptNotFound";
         /// <summary>
@@ -3546,6 +3542,10 @@ namespace Playnite
         /// </summary>
         public const string EmuSaveScanConfig = "LOCEmuSaveScanConfig";
         /// <summary>
+        /// Saves configuration for later use during library update. Saved configurations can be managed via "Configure Emulators" menu.
+        /// </summary>
+        public const string EmuSaveScanConfigTooltip = "LOCEmuSaveScanConfigTooltip";
+        /// <summary>
         /// Add scanner
         /// </summary>
         public const string EmuAddScanner = "LOCEmuAddScanner";
@@ -3558,7 +3558,7 @@ namespace Playnite
         /// </summary>
         public const string StartScan = "LOCStartScan";
         /// <summary>
-        /// Add scan configuration(s) with emulators to scan specific folders.
+        /// Add scan configuration(s) with emulators to scan specific folders. Make sure that emulators are properly configured prior to importing games (via Library -&gt; Configure Emulators menu).
         /// </summary>
         public const string EmuImportDirectoryConfigDesc = "LOCEmuImportDirectoryConfigDesc";
         /// <summary>

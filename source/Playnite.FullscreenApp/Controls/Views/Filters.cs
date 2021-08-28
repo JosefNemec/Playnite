@@ -117,7 +117,7 @@ namespace Playnite.FullscreenApp.Controls.Views
             PanelItemsHost.Children.Add(SelectSortDirection);
 
             desc = new TextBlock();
-            desc.Text = ResourceProvider.GetString(LOC.TopPanelFilterPresets);
+            desc.Text = ResourceProvider.GetString(LOC.SettingsTopPanelFilterPresetsItem);
             desc.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelText");
             PanelItemsHost.Children.Add(desc);
 
