@@ -1630,6 +1630,17 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelSelectRandomGameButton = false;
+        public bool ShowTopPanelSelectRandomGameButton
+        {
+            get => showTopPanelSelectRandomGameButton;
+            set
+            {
+                showTopPanelSelectRandomGameButton = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double topPanelSectionSeparatorWidth = 15;
         public double TopPanelSectionSeparatorWidth
         {

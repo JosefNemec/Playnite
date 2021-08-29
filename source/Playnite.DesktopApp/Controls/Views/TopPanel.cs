@@ -51,6 +51,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TopPanelWrapperItem ButtonSwitchDetailsView;
         private TopPanelWrapperItem ButtonSwitchGridView;
         private TopPanelWrapperItem ButtonSwitchListView;
+        private TopPanelWrapperItem ButtonSelectRandomGame;
 
         private Canvas LeftViewSeparator = new Canvas();
         private Canvas RightViewSeparator = new Canvas();
@@ -113,6 +114,7 @@ namespace Playnite.DesktopApp.Controls.Views
             ButtonSwitchDetailsView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelDetailsViewSwitch;
             ButtonSwitchGridView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGridViewSwitch;
             ButtonSwitchListView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelListViewSwitch;
+            ButtonSelectRandomGame.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelSelectRandomGameButton;
 
             var showSeparators = ButtonSwitchDetailsView.Visible || ButtonSwitchGridView.Visible || ButtonSwitchListView.Visible;
             LeftViewSeparator.Visibility = showSeparators ? Visibility.Visible : Visibility.Collapsed;
@@ -176,6 +178,7 @@ namespace Playnite.DesktopApp.Controls.Views
                     converter: new BooleanToVisibilityConverter());
                 PanelMainItems.Children.Add(updatesButton);
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelExplorerSwitchTemplate", mainModel.ToggleExplorerPanelCommand, ResourceProvider.GetString(LOC.TopPanelExplorerSwitch), out ButtonExplorerSwitch));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSelectRandomGameButtonTemplate", mainModel.SelectRandomGameCommand, ResourceProvider.GetString(LOC.TopPanelSelectRandomGameButton), out ButtonSelectRandomGame));
                 SetButtonVisibility();
             }
 
