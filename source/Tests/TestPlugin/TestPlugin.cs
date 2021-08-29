@@ -135,6 +135,10 @@ namespace TestPlugin
         {
             yield return new GameMenuItem
             {
+                Description = "test plugin root test"
+            };
+            yield return new GameMenuItem
+            {
                 Description = "window test",
                 MenuSection = "test plugin"
             };
@@ -209,13 +213,14 @@ namespace TestPlugin
 
         public override IEnumerable<PlayController> GetPlayActions(GetPlayActionsArgs args)
         {
-            yield return new AutomaticPlayController(args.Game)
-            {
-                Type = AutomaticPlayActionType.File,
-                TrackingMode = TrackingMode.Process,
-                Name = "Notepad",
-                Path = "notepad.exe"
-            };
+            return null;
+            //yield return new AutomaticPlayController(args.Game)
+            //{
+            //    Type = AutomaticPlayActionType.File,
+            //    TrackingMode = TrackingMode.Process,
+            //    Name = "Notepad",
+            //    Path = "notepad.exe"
+            //};
         }
 
         public override Control GetGameViewControl(GetGameViewControlArgs args)
