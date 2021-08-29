@@ -275,7 +275,7 @@ namespace Playnite.Audio
 
             var mixInput = new CachedSoundSampleProvider(sound);
             var ss = new VolumeSampleProvider(mixInput);
-            ss.Volume = volume;
+            ss.Volume = volume * volume;
             AddMixerInput(ss);
             return ss;
         }
