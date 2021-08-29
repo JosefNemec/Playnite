@@ -44,6 +44,11 @@ Game action controllers
 
 Controllers (for installing and starting games) have been reworked. See [related documentation page](../tutorials/extensions/gameActions.md) for more information about how to implement them in Playnite 9.
 
+Other
+---------------------
+
+Extensions no longer log into main log file (playnite.log), but use separate file called `extensions.log`.
+
 Script extensions
 ---------------------
 
