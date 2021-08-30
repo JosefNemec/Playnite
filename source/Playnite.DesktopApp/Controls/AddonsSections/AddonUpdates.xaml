@@ -84,7 +84,7 @@
         </DockPanel>
         
         <TextBlock Visibility="{Binding IsUpdateListLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
-                   Text="{DynamicResource LOCAddonCheckingUpdates}"
+                   Text="{DynamicResource LOCAddonLookingForUpdates}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <TextBlock Text="{DynamicResource LOCAddonNoAddonsAvailable}"

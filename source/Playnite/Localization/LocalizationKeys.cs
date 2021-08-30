@@ -3098,10 +3098,6 @@ namespace Playnite
         /// </summary>
         public const string AddonAlreadyInstalled = "LOCAddonAlreadyInstalled";
         /// <summary>
-        /// Checking add-on updates…
-        /// </summary>
-        public const string AddonCheckingUpdates = "LOCAddonCheckingUpdates";
-        /// <summary>
         /// No add-on updates available.
         /// </summary>
         public const string AddonNoAddonsAvailable = "LOCAddonNoAddonsAvailable";
