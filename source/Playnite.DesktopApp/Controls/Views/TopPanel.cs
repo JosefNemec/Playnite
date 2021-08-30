@@ -177,8 +177,8 @@ namespace Playnite.DesktopApp.Controls.Views
                     nameof(mainModel.UpdatesAvailable),
                     converter: new BooleanToVisibilityConverter());
                 PanelMainItems.Children.Add(updatesButton);
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelExplorerSwitchTemplate", mainModel.ToggleExplorerPanelCommand, ResourceProvider.GetString(LOC.TopPanelExplorerSwitch), out ButtonExplorerSwitch));
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelSelectRandomGameButtonTemplate", mainModel.SelectRandomGameCommand, ResourceProvider.GetString(LOC.TopPanelSelectRandomGameButton), out ButtonSelectRandomGame));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelExplorerSwitchTemplate", mainModel.ToggleExplorerPanelCommand, ResourceProvider.GetString(LOC.TopPanelExplorerSwitch), out ButtonExplorerSwitch));
                 SetButtonVisibility();
             }
 
