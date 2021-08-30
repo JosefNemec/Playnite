@@ -3270,6 +3270,10 @@ namespace Playnite
         /// </summary>
         public const string TopPanelExplorerSwitch = "LOCTopPanelExplorerSwitch";
         /// <summary>
+        /// Select random game
+        /// </summary>
+        public const string TopPanelSelectRandomGameButton = "LOCTopPanelSelectRandomGameButton";
+        /// <summary>
         /// Save grouping and sorting settings
         /// </summary>
         public const string FilterPresetSaveViewOptions = "LOCFilterPresetSaveViewOptions";

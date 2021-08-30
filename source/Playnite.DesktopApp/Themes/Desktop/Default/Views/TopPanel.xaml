@@ -56,6 +56,11 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
+    <DataTemplate x:Key="TopPanelSelectRandomGameButtonTemplate">
+        <TextBlock Text="&#xef03;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+
     <Style x:Key="TopPanelMenu" TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
