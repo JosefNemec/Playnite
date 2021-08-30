@@ -38,38 +38,38 @@ namespace TestGameLibrary
             return null;
         }
 
-        public override IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
+        public override IEnumerable<GameMetadata> GetGames(LibraryGetGamesArgs args)
         {
-            return new List<GameInfo>()
+            return new List<GameMetadata>()
             {
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Notepad",
                     GameId = "notepad",
                     IsInstalled = true,
-                    Icon = new Playnite.SDK.Metadata.MetadataFile(@"c:\Windows\notepad.exe")
+                    Icon = new MetadataFile(@"c:\Windows\notepad.exe")
                 },
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Calculator",
                     GameId = "calc",
                     IsInstalled = true,
-                    Icon = new Playnite.SDK.Metadata.MetadataFile(@"https://playnite.link/applogo.png"),
-                    BackgroundImage =  new Playnite.SDK.Metadata.MetadataFile(@"https://playnite.link/applogo.png")
+                    Icon = new MetadataFile(@"https://playnite.link/applogo.png"),
+                    BackgroundImage =  new MetadataFile(@"https://playnite.link/applogo.png")
                 },
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Paint",
                     GameId = "mspaint",
                     IsInstalled = true,
-                    Icon = new Playnite.SDK.Metadata.MetadataFile(LibraryIcon)
+                    Icon = new MetadataFile(LibraryIcon)
                 },
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "WordPad",
                     GameId = "write",
                     IsInstalled = true,
-                    Icon = new Playnite.SDK.Metadata.MetadataFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga"))
+                    Icon = new MetadataFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga"))
                 }
             };
         }

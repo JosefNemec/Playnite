@@ -85,12 +85,12 @@ namespace Playnite.API
             return database.GetFullFilePath(databasePath);
         }
 
-        public Game ImportGame(GameInfo game)
+        public Game ImportGame(GameMetadata game)
         {
             return database.ImportGame(game);
         }
 
-        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        public Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin)
         {
             return database.ImportGame(game, sourcePlugin.Id);
         }

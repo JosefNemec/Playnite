@@ -170,7 +170,7 @@ namespace Playnite
             return g;
         }
 
-        public static GameInfo ExpandGame(this GameInfo game)
+        public static GameMetadata ExpandGame(this GameMetadata game)
         {
             var g = game.GetClone();
             g.InstallDirectory = g.StringExpand(g.InstallDirectory);
@@ -227,13 +227,13 @@ namespace Playnite
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 
-        public static string ExpandVariables(this GameInfo game, string inputString, bool fixSeparators = false)
+        public static string ExpandVariables(this GameMetadata game, string inputString, bool fixSeparators = false)
         {
             var g = game.ExpandGame();
             return StringExpand(g, inputString, fixSeparators);
         }
 
-        private static string StringExpand(this GameInfo game, string inputString, bool fixSeparators = false)
+        private static string StringExpand(this GameMetadata game, string inputString, bool fixSeparators = false)
         {
             if (string.IsNullOrEmpty(inputString) || !inputString.Contains('{'))
             {
@@ -260,9 +260,13 @@ namespace Playnite
 
             result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             result = result.Replace(ExpandableVariables.Name, game.Name);
-            result = result.Replace(ExpandableVariables.Platform, game.Platforms?[0]);
             result = result.Replace(ExpandableVariables.GameId, game.GameId);
             result = result.Replace(ExpandableVariables.Version, game.Version);
+            if (game.Platforms.HasItems() && game.Platforms.First() is MetadataNameProperty prop)
+            {
+                result = result.Replace(ExpandableVariables.Platform, prop.Name);
+            }
+
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 

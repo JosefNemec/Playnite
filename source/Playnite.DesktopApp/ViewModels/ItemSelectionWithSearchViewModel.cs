@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Playnite.Metadata.Providers;
-using Playnite.SDK.Metadata;
 using Playnite.Windows;
 using Playnite.SDK.Plugins;
 

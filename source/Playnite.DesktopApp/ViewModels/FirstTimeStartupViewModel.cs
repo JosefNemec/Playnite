@@ -3,7 +3,6 @@ using Playnite.API;
 using Playnite.Common;
 using Playnite.Plugins;
 using Playnite.SDK;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using Playnite.Commands;

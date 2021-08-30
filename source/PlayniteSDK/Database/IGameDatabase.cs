@@ -177,7 +177,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="game">Game data to import.</param>
         /// <returns>Imported game.</returns>
-        Game ImportGame(GameInfo game);
+        Game ImportGame(GameMetadata game);
 
         /// <summary>
         /// Import new game into database from a library plugin.
@@ -185,6 +185,6 @@ namespace Playnite.SDK
         /// <param name="game">Game data to import.</param>
         /// <param name="sourcePlugin">Source library plugin.</param>
         /// <returns>Imported game.</returns>
-        Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin);
+        Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin);
     }
 }

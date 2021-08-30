@@ -165,6 +165,58 @@ namespace Playnite.Database
             return items;
         }
 
+        public virtual TItem GetOrGenerate(MetadataProperty property)
+        {
+            if (property is MetadataNameProperty nameProp)
+            {
+                var existingItem = this.FirstOrDefault(a => GameFieldComparer.StringEquals(a.Name, nameProp.Name));
+                if (existingItem != null)
+                {
+                    return existingItem;
+                }
+                else
+                {
+                    return typeof(TItem).CrateInstance<TItem>(nameProp.Name);
+                }
+            }
+            else if (property is MetadataIdProperty idProp)
+            {
+                return this[idProp.Id];
+            }
+
+            throw new NotSupportedException($"{property.GetType()} property type is not supported in this collection.");
+        }
+
+        public virtual IEnumerable<TItem> GetOrGenerate(IEnumerable<MetadataProperty> properties)
+        {
+            foreach (var property in properties)
+            {
+                yield return GetOrGenerate(property);
+            }
+        }
+
+        public virtual TItem Add(MetadataProperty property)
+        {
+            if (property is MetadataNameProperty nameProp)
+            {
+                return Add(nameProp.Name, GameFieldComparer.FieldEquals);
+            }
+            else if (property is MetadataIdProperty idProp)
+            {
+                return this[idProp.Id];
+            }
+
+            throw new NotSupportedException($"{property.GetType()} property type is not supported in this collection.");
+        }
+
+        public virtual IEnumerable<TItem> Add(IEnumerable<MetadataProperty> properties)
+        {
+            foreach (var property in properties)
+            {
+                yield return Add(property);
+            }
+        }
+
         public virtual TItem Add(string itemName, Func<TItem, string, bool> existingComparer)
         {
             if (string.IsNullOrEmpty(itemName)) throw new ArgumentNullException(nameof(itemName));

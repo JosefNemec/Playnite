@@ -2,7 +2,6 @@
 using Playnite.Common.Media.Icons;
 using Playnite.Database;
 using Playnite.SDK;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.Windows;
 using System;
@@ -61,7 +60,7 @@ namespace Playnite.DesktopApp.ViewModels
         public class ListDiffItem<T> : DiffItem where T : DatabaseObject
         {
             public List<SelectableItem<T>> Current { get; set; }
-            public List<SelectableItem<string>> New { get; set; }
+            public List<SelectableItem<T>> New { get; set; }
         }
 
         public class ListObjectItem<T> : DiffItem
@@ -78,7 +77,7 @@ namespace Playnite.DesktopApp.ViewModels
         private List<GameField> diffFields;
 
         public Game CurrentGame { get; set; }
-        public GameMetadata NewGame { get; set; }
+        public ComparableMetadatGameData NewGame { get; set; }
 
         public DiffItem Name { get; } = new DiffItem();
         public DiffItem Description { get; } = new DiffItem();
@@ -138,7 +137,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public GameMetadata ResultMetadata { get; private set; }
+        public ComparableMetadatGameData ResultMetadata { get; private set; }
 
         public MetadataComparisonViewModel(
             GameDatabase database,
@@ -146,7 +145,7 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             Game currentData,
-            GameMetadata newData,
+            ComparableMetadatGameData newData,
             List<GameField> diffFields)
         {
             this.database = database;
@@ -182,12 +181,12 @@ namespace Playnite.DesktopApp.ViewModels
                 CommunityScore.Enabled = true;
             }
 
-            void loadNewListData<T>(ListDiffItem<T> list, List<T> currentGameData, List<string> metadataSource, GameField field) where T : DatabaseObject
+            void loadNewListData<T>(ListDiffItem<T> list, List<T> currentGameData, List<T> newGameData, GameField field) where T : DatabaseObject
             {
                 if (diffFields.Contains(field))
                 {
                     list.Enabled = true;
-                    list.New = metadataSource.Select(a => new SelectableItem<string>(a) { Selected = true }).ToList();
+                    list.New = newGameData.Select(a => new SelectableItem<T>(a) { Selected = true }).ToList();
                     if (currentGameData.HasItems())
                     {
                         list.Current = currentGameData.Select(a => new SelectableItem<T>(a)).ToList();
@@ -195,20 +194,20 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            loadNewListData(AgeRatings, CurrentGame.AgeRatings, NewGame.GameInfo.AgeRatings, GameField.AgeRatings);
-            loadNewListData(Series, CurrentGame.Series, NewGame.GameInfo.Series, GameField.Series);
-            loadNewListData(Regions, CurrentGame.Regions, NewGame.GameInfo.Regions, GameField.Regions);
-            loadNewListData(Platforms, CurrentGame.Platforms, NewGame.GameInfo.Platforms, GameField.Platforms);
-            loadNewListData(Developers, CurrentGame.Developers, NewGame.GameInfo.Developers, GameField.Developers);
-            loadNewListData(Publishers, CurrentGame.Publishers, NewGame.GameInfo.Publishers, GameField.Publishers);
-            loadNewListData(Tags, CurrentGame.Tags, NewGame.GameInfo.Tags, GameField.Tags);
-            loadNewListData(Features, CurrentGame.Features, NewGame.GameInfo.Features, GameField.Features);
-            loadNewListData(Genres, CurrentGame.Genres, NewGame.GameInfo.Genres, GameField.Genres);
+            loadNewListData(AgeRatings, CurrentGame.AgeRatings, NewGame.AgeRatings, GameField.AgeRatings);
+            loadNewListData(Series, CurrentGame.Series, NewGame.Series, GameField.Series);
+            loadNewListData(Regions, CurrentGame.Regions, NewGame.Regions, GameField.Regions);
+            loadNewListData(Platforms, CurrentGame.Platforms, NewGame.Platforms, GameField.Platforms);
+            loadNewListData(Developers, CurrentGame.Developers, NewGame.Developers, GameField.Developers);
+            loadNewListData(Publishers, CurrentGame.Publishers, NewGame.Publishers, GameField.Publishers);
+            loadNewListData(Tags, CurrentGame.Tags, NewGame.Tags, GameField.Tags);
+            loadNewListData(Features, CurrentGame.Features, NewGame.Features, GameField.Features);
+            loadNewListData(Genres, CurrentGame.Genres, NewGame.Genres, GameField.Genres);
 
             if (diffFields.Contains(GameField.Links))
             {
                 Links.Enabled = true;
-                Links.New = NewGame.GameInfo.Links.Select(a => new SelectableItem<Link>(a) { Selected = true }).ToList();
+                Links.New = NewGame.Links.Select(a => new SelectableItem<Link>(a) { Selected = true }).ToList();
                 if (CurrentGame.Links.HasItems())
                 {
                     Links.Current = CurrentGame.Links.Select(a => new SelectableItem<Link>(a)).ToList();
@@ -219,21 +218,21 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Icon.Enabled = true;
                 CurrentIcon = ImageSourceManager.GetImage(CurrentGame.Icon, false, new BitmapLoadProperties(256, 256));
-                NewIcon = ImageSourceManager.GetImage(newData.GameInfo.Icon.Path, false, new BitmapLoadProperties(256, 256));
+                NewIcon = ImageSourceManager.GetImage(newData.Icon.Path, false, new BitmapLoadProperties(256, 256));
             }
 
             if (diffFields.Contains(GameField.CoverImage))
             {
                 Cover.Enabled = true;
                 CurrentCover = ImageSourceManager.GetImage(CurrentGame.CoverImage, false, new BitmapLoadProperties(900, 900));
-                NewCover = ImageSourceManager.GetImage(newData.GameInfo.CoverImage.Path, false, new BitmapLoadProperties(900, 900));
+                NewCover = ImageSourceManager.GetImage(newData.CoverImage.Path, false, new BitmapLoadProperties(900, 900));
             }
 
             if (diffFields.Contains(GameField.BackgroundImage))
             {
                 Background.Enabled = true;
                 CurrentBackground = ImageSourceManager.GetImage(CurrentGame.BackgroundImage, false, new BitmapLoadProperties(1920, 1080));
-                NewBackground = ImageSourceManager.GetImage(newData.GameInfo.BackgroundImage.Path, false, new BitmapLoadProperties(1920, 1080));
+                NewBackground = ImageSourceManager.GetImage(newData.BackgroundImage.Path, false, new BitmapLoadProperties(1920, 1080));
             }
         }
 
@@ -253,98 +252,98 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (diffFields.Contains(GameField.Name) && Name.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.Name = null;
+                ResultMetadata.Name = null;
             }
 
             if (diffFields.Contains(GameField.Description) && Description.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.Description = null;
+                ResultMetadata.Description = null;
             }
 
             if (diffFields.Contains(GameField.CommunityScore) && CommunityScore.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.CommunityScore = null;
+                ResultMetadata.CommunityScore = null;
             }
 
             if (diffFields.Contains(GameField.CriticScore) && CriticScore.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.CriticScore = null;
+                ResultMetadata.CriticScore = null;
             }
 
             if (diffFields.Contains(GameField.ReleaseDate) && ReleaseDate.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.ReleaseDate = null;
+                ResultMetadata.ReleaseDate = null;
             }
 
             if (diffFields.Contains(GameField.AgeRatings))
             {
-                ResultMetadata.GameInfo.AgeRatings = ConsolidateListSources(AgeRatings.Current, AgeRatings.New);
+                ResultMetadata.AgeRatings = ConsolidateDbListSources(AgeRatings.Current, AgeRatings.New);
             }
 
             if (diffFields.Contains(GameField.Regions))
             {
-                ResultMetadata.GameInfo.Regions = ConsolidateListSources(Regions.Current, Regions.New);
+                ResultMetadata.Regions = ConsolidateDbListSources(Regions.Current, Regions.New);
             }
 
             if (diffFields.Contains(GameField.Series))
             {
-                ResultMetadata.GameInfo.Series = ConsolidateListSources(Series.Current, Series.New);
+                ResultMetadata.Series = ConsolidateDbListSources(Series.Current, Series.New);
             }
 
             if (diffFields.Contains(GameField.Platforms))
             {
-                ResultMetadata.GameInfo.Platforms = ConsolidateListSources(Platforms.Current, Platforms.New);
+                ResultMetadata.Platforms = ConsolidateDbListSources(Platforms.Current, Platforms.New);
             }
 
             if (diffFields.Contains(GameField.Links))
             {
-                ResultMetadata.GameInfo.Links = ConsolidateListSources(Links.Current, Links.New);
+                ResultMetadata.Links = ConsolidateGenericListSources(Links.Current, Links.New);
             }
 
             if (diffFields.Contains(GameField.Developers))
             {
-                ResultMetadata.GameInfo.Developers = ConsolidateListSources(Developers.Current, Developers.New);
+                ResultMetadata.Developers = ConsolidateDbListSources(Developers.Current, Developers.New);
             }
 
             if (diffFields.Contains(GameField.Publishers))
             {
-                ResultMetadata.GameInfo.Publishers = ConsolidateListSources(Publishers.Current, Publishers.New);
+                ResultMetadata.Publishers = ConsolidateDbListSources(Publishers.Current, Publishers.New);
             }
 
             if (diffFields.Contains(GameField.Tags))
             {
-                ResultMetadata.GameInfo.Tags = ConsolidateListSources(Tags.Current, Tags.New);
+                ResultMetadata.Tags = ConsolidateDbListSources(Tags.Current, Tags.New);
             }
 
             if (diffFields.Contains(GameField.Features))
             {
-                ResultMetadata.GameInfo.Features = ConsolidateListSources(Features.Current, Features.New);
+                ResultMetadata.Features = ConsolidateDbListSources(Features.Current, Features.New);
             }
 
             if (diffFields.Contains(GameField.Genres))
             {
-                ResultMetadata.GameInfo.Genres = ConsolidateListSources(Genres.Current, Genres.New);
+                ResultMetadata.Genres = ConsolidateDbListSources(Genres.Current, Genres.New);
             }
 
             if (diffFields.Contains(GameField.Icon) && Icon.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.Icon = null;
+                ResultMetadata.Icon = null;
             }
 
             if (diffFields.Contains(GameField.CoverImage) && Cover.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.CoverImage = null;
+                ResultMetadata.CoverImage = null;
             }
 
             if (diffFields.Contains(GameField.BackgroundImage) && Background.Source == MetadataChangeDataSource.Current)
             {
-                ResultMetadata.GameInfo.BackgroundImage = null;
+                ResultMetadata.BackgroundImage = null;
             }
 
             window.Close(true);
         }
 
-        private List<T> ConsolidateListSources<T>(List<SelectableItem<T>> source, List<SelectableItem<T>> other)
+        private List<T> ConsolidateGenericListSources<T>(List<SelectableItem<T>> source, List<SelectableItem<T>> other)
         {
             var res = new List<T>();
             if (source.HasItems())
@@ -368,12 +367,12 @@ namespace Playnite.DesktopApp.ViewModels
             return res;
         }
 
-        private List<string> ConsolidateListSources<T>(List<SelectableItem<T>> source, List<SelectableItem<string>> other) where T : DatabaseObject
+        private List<T> ConsolidateDbListSources<T>(List<SelectableItem<T>> source, List<SelectableItem<T>> other) where T : DatabaseObject
         {
-            var res = new List<string>();
+            var res = new List<T>();
             if (source.HasItems())
             {
-                var srcItems = source.Where(a => a.Selected == true).Select(a => a.Item.Name);
+                var srcItems = source.Where(a => a.Selected == true).Select(a => a.Item);
                 if (srcItems.HasItems())
                 {
                     res.AddRange(srcItems);
@@ -383,6 +382,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (other.HasItems())
             {
                 var srcItems = other.Where(a => a.Selected == true).Select(a => a.Item);
+                if (srcItems.HasItems())
                 {
                     res.AddMissing(srcItems.ToList());
                 }

@@ -42,12 +42,12 @@ namespace Playnite.Database
         {
         }
 
-        public Game ImportGame(GameInfo game)
+        public Game ImportGame(GameMetadata game)
         {
             throw new NotImplementedException();
         }
 
-        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        public Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin)
         {
             throw new NotImplementedException();
         }

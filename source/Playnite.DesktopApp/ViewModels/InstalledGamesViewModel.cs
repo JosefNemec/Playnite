@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Playnite.Common;
-using Playnite.SDK.Metadata;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using Playnite.Windows;
@@ -296,18 +295,13 @@ namespace Playnite.DesktopApp.ViewModels
                     continue;
                 }
 
-                var newGame = new GameInfo()
+                var newGame = new GameMetadata()
                 {
                     Name = program.Item.Name.RemoveTrademarks(),
                     GameId = program.Item.AppId,
                     InstallDirectory = program.Item.WorkDir,
-                    Source = program.Type == ProgramType.UWP ? "Microsoft Store" : string.Empty,
+                    Source = program.Type == ProgramType.UWP ? new MetadataNameProperty("Microsoft Store") : null,
                     IsInstalled = true
-                };
-
-                var newMeta = new GameMetadata()
-                {
-                    GameInfo = newGame
                 };
 
                 var path = program.Item.Path;
@@ -332,10 +326,10 @@ namespace Playnite.DesktopApp.ViewModels
                 if (program.IconSource != null &&  program.IconSource != ImportableProgram.EmptyImage)
                 {
                     var bitmap = (BitmapSource)program.IconSource;
-                    newMeta.GameInfo.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
+                    newGame.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
                 }
 
-                SelectedGames.Add(newMeta);
+                SelectedGames.Add(newGame);
             }
 
             CloseView(true);

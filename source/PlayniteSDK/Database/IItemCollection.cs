@@ -177,6 +177,20 @@ namespace Playnite.SDK
         IEnumerable<TItem> Add(List<string> items);
 
         /// <summary>
+        ///
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        TItem Add(MetadataProperty property);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="properties"></param>
+        /// <returns></returns>
+        IEnumerable<TItem> Add(IEnumerable<MetadataProperty> properties);
+
+        /// <summary>
         /// Adds new items into collection.
         /// </summary>
         /// <param name="items">Names of items to be added.</param>

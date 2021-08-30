@@ -14,7 +14,6 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Common.Web;
 using Playnite.Metadata;
-using Playnite.SDK.Metadata;
 using Playnite.Settings;
 using Playnite.Plugins;
 using Playnite.Common;

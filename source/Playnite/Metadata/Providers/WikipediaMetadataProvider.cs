@@ -11,7 +11,6 @@ using AngleSharp.Parser.Html;
 using Newtonsoft.Json;
 using Playnite.Common.Web;
 using Playnite.SDK;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 
@@ -52,27 +51,27 @@ namespace Playnite.Metadata.Providers
         {
             if (AvailableFields.Contains(MetadataField.ReleaseDate))
             {
-                return gameData.GameInfo.ReleaseDate;
+                return gameData.ReleaseDate;
             }
 
             return base.GetReleaseDate(args);
         }
 
-        public override List<string> GetDevelopers(GetMetadataFieldArgs args)
+        public override IEnumerable<MetadataProperty> GetDevelopers(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.Developers))
             {
-                return gameData.GameInfo.Developers;
+                return gameData.Developers;
             }
 
             return base.GetDevelopers(args);
         }
 
-        public override List<string> GetPublishers(GetMetadataFieldArgs args)
+        public override IEnumerable<MetadataProperty> GetPublishers(GetMetadataFieldArgs args)
         {
             if (AvailableFields.Contains(MetadataField.Publishers))
             {
-                return gameData.GameInfo.Publishers;
+                return gameData.Publishers;
             }
 
             return base.GetPublishers(args);
@@ -82,7 +81,7 @@ namespace Playnite.Metadata.Providers
         {
             if (AvailableFields.Contains(MetadataField.ReleaseDate))
             {
-                return gameData.GameInfo.CoverImage;
+                return gameData.CoverImage;
             }
 
             return base.GetCoverImage(args);
@@ -92,7 +91,7 @@ namespace Playnite.Metadata.Providers
         {
             if (AvailableFields.Contains(MetadataField.Name))
             {
-                return gameData.GameInfo.Name;
+                return gameData.Name;
             }
 
             return base.GetName(args);
@@ -106,25 +105,25 @@ namespace Playnite.Metadata.Providers
                 GetData();
             }
 
-            if (!gameData.IsEmpty)
+            if (gameData != null)
             {
                 fields.Add(MetadataField.Name);
-                if (gameData.GameInfo.Publishers.HasItems())
+                if (gameData.Publishers.HasItems())
                 {
                     fields.Add(MetadataField.Publishers);
                 }
 
-                if (gameData.GameInfo.Developers.HasItems())
+                if (gameData.Developers.HasItems())
                 {
                     fields.Add(MetadataField.Developers);
                 }
 
-                if (gameData.GameInfo.ReleaseDate != null)
+                if (gameData.ReleaseDate != null)
                 {
                     fields.Add(MetadataField.ReleaseDate);
                 }
 
-                if (gameData.GameInfo.CoverImage != null)
+                if (gameData.CoverImage != null)
                 {
                     fields.Add(MetadataField.CoverImage);
                 }
@@ -144,7 +143,7 @@ namespace Playnite.Metadata.Providers
                 var item = plugin.PlayniteApi.Dialogs.ChooseItemWithSearch(null, (a) => plugin.SearchMetadata(a), options.GameData.Name);
                 if (item == null)
                 {
-                    gameData = GameMetadata.GetEmptyData();
+                    gameData = new GameMetadata();
                 }
                 else
                 {
@@ -296,15 +295,14 @@ namespace Playnite.Metadata.Providers
         public GameMetadata ParseGamePage(WikiPage page, string gameName = "")
         {
             logger.Info("Parsing wiki page " + page.title);
-            var gameInfo = new GameInfo();
-            var metadata = new GameMetadata() { GameInfo = gameInfo };
+            var gameInfo = new GameMetadata();
             var parser = new HtmlParser();
             var document = parser.Parse(@"<html><head></head><body>" + page.text["*"] + @"</body></html>?");
             var tables = document.QuerySelectorAll("table.infobox.hproduct");
 
             if (tables.Length == 0)
             {
-                return metadata;
+                return gameInfo;
             }
 
             IElement infoTable = null;
@@ -378,7 +376,7 @@ namespace Playnite.Metadata.Providers
 
             if (!image.IsNullOrEmpty())
             {
-                metadata.GameInfo.CoverImage = new MetadataFile(image);
+               gameInfo.CoverImage = new MetadataFile(image);
             }
 
             // Other fields
@@ -394,7 +392,7 @@ namespace Playnite.Metadata.Providers
                 if (rowName.IndexOf("developer", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     gameInfo.Developers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()).ToList();
+                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).ToList();
 
                     continue;
                 }
@@ -402,14 +400,14 @@ namespace Playnite.Metadata.Providers
                 if (rowName.IndexOf("publisher", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     gameInfo.Publishers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()).ToList();
+                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).ToList();
                     continue;
                 }
 
                 if (rowName.IndexOf("genre", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     gameInfo.Genres = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => Regex.Replace(a, @"\[\d+\]", "").Trim()).ToList();
+                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).ToList();
                     continue;
                 }
 
@@ -483,7 +481,7 @@ namespace Playnite.Metadata.Providers
                 }
             }
 
-            return metadata;
+            return gameInfo;
         }
 
         public override OnDemandMetadataProvider GetMetadataProvider(MetadataRequestOptions options)

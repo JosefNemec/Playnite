@@ -44,6 +44,11 @@ Game action controllers
 
 Controllers (for installing and starting games) have been reworked. See [related documentation page](../tutorials/extensions/gameActions.md) for more information about how to implement them in Playnite 9.
 
+Metadata plugin changes
+---------------------
+
+Metadata sources no longer return data ass string but instead use `MetadataProperty` objects. See [metadata plugin page](extensions/metadataPlugins.md#MetadataProperty) for more information.
+
 Other
 ---------------------
 

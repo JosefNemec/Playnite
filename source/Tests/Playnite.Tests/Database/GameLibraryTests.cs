@@ -23,9 +23,9 @@ namespace Playnite.Tests.Database
             var libPlugin = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
             ulong timeToImport = 500;
             libPlugin.Setup(a => a.Id).Returns(Guid.NewGuid());
-            libPlugin.Setup(a => a.GetGames(It.IsAny<LibraryGetGamesArgs>())).Returns(() => new List<GameInfo>
+            libPlugin.Setup(a => a.GetGames(It.IsAny<LibraryGetGamesArgs>())).Returns(() => new List<GameMetadata>
             {
-                new GameInfo()
+                new GameMetadata()
                 {
                     GameId = gameId,
                     Playtime = timeToImport

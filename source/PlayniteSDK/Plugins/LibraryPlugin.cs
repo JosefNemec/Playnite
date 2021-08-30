@@ -92,9 +92,9 @@ namespace Playnite.SDK.Plugins
         /// Gets library games.
         /// </summary>
         /// <returns>List of library games.</returns>
-        public virtual IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
+        public virtual IEnumerable<GameMetadata> GetGames(LibraryGetGamesArgs args)
         {
-            return new List<GameInfo>();
+            return new List<GameMetadata>();
         }
 
         /// <summary>

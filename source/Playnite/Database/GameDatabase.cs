@@ -7,7 +7,6 @@ using System.Windows.Media.Imaging;
 using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
-using Playnite.SDK.Metadata;
 using Playnite.Common;
 using Playnite.Settings;
 using Playnite.SDK.Plugins;
@@ -946,86 +945,7 @@ namespace Playnite.Database
             return new EventBufferHandler(this);
         }
 
-        private string AddNewGameFile(string path, Guid gameId)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                return null;
-            }
-
-            var fileName = Guid.NewGuid().ToString();
-            if (path.IsHttpUrl())
-            {
-                var url = new Uri(path);
-                fileName += Path.GetExtension(url.AbsolutePath);
-            }
-            else
-            {
-                fileName += Path.GetExtension(path);
-            }
-
-            MetadataFile metaFile = null;
-
-            try
-            {
-                if (path.IsHttpUrl())
-                {
-                    metaFile = new MetadataFile(fileName, HttpDownloader.DownloadData(path));
-                }
-                else
-                {
-                    if (File.Exists(path))
-                    {
-                        if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                        {
-                            using (var ms = new MemoryStream())
-                            {
-                                if (IconExtractor.ExtractMainIconFromFile(path, ms))
-                                {
-                                    fileName = Path.ChangeExtension(fileName, ".ico");
-                                    metaFile = new MetadataFile(fileName, ms.ToArray());
-                                }
-                            }
-                        }
-                        else
-                        {
-                            metaFile = new MetadataFile(fileName, File.ReadAllBytes(path));
-                        }
-                    }
-                    else
-                    {
-                        logger.Error($"Can't add game file during game import, file doesn't exists: {path}");
-                    }
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, $"Failed to import game file during game import from {path}");
-            }
-
-            if (metaFile != null)
-            {
-                if (metaFile.FileName.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
-                {
-                    metaFile.FileName = Path.ChangeExtension(metaFile.FileName, ".png");
-                    var tga = BitmapExtensions.TgaToBitmap(metaFile.Content);
-                    if (tga == null)
-                    {
-                        return null;
-                    }
-                    else
-                    {
-                        metaFile.Content = tga.ToPngArray();
-                    }
-                }
-
-                return AddFile(metaFile, gameId);
-            }
-
-            return null;
-        }
-
-        private Game GameInfoToGame(GameInfo game, Guid pluginId)
+        private Game GameInfoToGame(GameMetadata game, Guid pluginId)
         {
             var toAdd = new Game()
             {
@@ -1053,31 +973,12 @@ namespace Playnite.Database
 
             if (game.Platforms?.Any() == true)
             {
-                var platIds = new List<Guid>();
-                foreach (var platform in game.Platforms)
-                {
-                    var exPlat = Platforms.FirstOrDefault(a => a.SpecificationId == platform || a.Name.Equals(platform, StringComparison.OrdinalIgnoreCase));
-                    if (exPlat != null)
-                    {
-                        platIds.AddMissing(exPlat.Id);
-                    }
-                    else
-                    {
-                        var dbPlat = Emulation.GetPlatform(platform);
-                        if (dbPlat != null)
-                        {
-                            var newPlat = new Platform(dbPlat.Name) { SpecificationId = dbPlat.Id };
-                            Platforms.Add(newPlat);
-                            platIds.AddMissing(newPlat.Id);
-                        }
-                        else
-                        {
-                            platIds.AddMissing(Platforms.Add(platform).Id);
-                        }
-                    }
-                }
+                toAdd.PlatformIds = Platforms.Add(game.Platforms).Select(a => a.Id).ToList();
+            }
 
-                toAdd.PlatformIds = platIds;
+            if (game.Regions?.Any() == true)
+            {
+                toAdd.RegionIds = Regions.Add(game.Regions).Select(a => a.Id).ToList();
             }
 
             if (game.Developers?.Any() == true)
@@ -1120,17 +1021,12 @@ namespace Playnite.Database
                 toAdd.SeriesIds = Series.Add(game.Series).Select(a => a.Id).ToList();
             }
 
-            if (game.Regions?.Any() == true)
-            {
-                toAdd.RegionIds = Regions.Add(game.Regions).Select(a => a.Id).ToList();
-            }
-
-            if (!string.IsNullOrEmpty(game.Source))
+            if (game.Source != null)
             {
                 toAdd.SourceId = Sources.Add(game.Source).Id;
             }
 
-            if (!string.IsNullOrEmpty(game.CompletionStatus))
+            if (game.CompletionStatus != null)
             {
                 toAdd.CompletionStatusId = CompletionStatuses.Add(game.CompletionStatus).Id;
             }
@@ -1138,52 +1034,36 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public Game ImportGame(GameInfo game)
+        public Game ImportGame(GameMetadata game)
         {
             return ImportGame(game, Guid.Empty);
         }
 
-        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        public Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin)
         {
             return ImportGame(game, sourcePlugin.Id);
         }
 
-        public Game ImportGame(GameInfo game, Guid pluginId)
+        public Game ImportGame(GameMetadata game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
-            toAdd.Icon = AddNewGameFile(game.Icon?.Path, toAdd.Id);
-            toAdd.CoverImage = AddNewGameFile(game.CoverImage?.Path, toAdd.Id);
-            toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage?.Path, toAdd.Id);
+
+            if (game.Icon != null)
+            {
+                toAdd.Icon = AddFile(game.Icon, toAdd.Id);
+            }
+
+            if (game.CoverImage != null)
+            {
+                toAdd.CoverImage = AddFile(game.CoverImage, toAdd.Id);
+            }
+
+            if (game.BackgroundImage != null)
+            {
+                toAdd.BackgroundImage = AddFile(game.BackgroundImage, toAdd.Id);
+            }
+
             toAdd.IncludeLibraryPluginAction = true;
-            Games.Add(toAdd);
-            return toAdd;
-        }
-
-        public Game ImportGame(GameMetadata metadata)
-        {
-            var toAdd = GameInfoToGame(metadata.GameInfo, Guid.Empty);
-            if (metadata.GameInfo.Icon != null)
-            {
-                toAdd.Icon = AddFile(metadata.GameInfo.Icon, toAdd.Id);
-            }
-
-            if (metadata.GameInfo.CoverImage != null)
-            {
-                toAdd.CoverImage = AddFile(metadata.GameInfo.CoverImage, toAdd.Id);
-            }
-
-            if (metadata.GameInfo.BackgroundImage != null)
-            {
-                if (metadata.GameInfo.BackgroundImage.Content == null)
-                {
-                    toAdd.BackgroundImage = metadata.GameInfo.BackgroundImage.Path;
-                }
-                else
-                {
-                    toAdd.BackgroundImage = AddFile(metadata.GameInfo.BackgroundImage, toAdd.Id);
-                }
-            }
-
             Games.Add(toAdd);
             return toAdd;
         }

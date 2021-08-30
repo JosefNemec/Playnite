@@ -69,7 +69,7 @@
                              IsChecked="{Binding Name.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Name">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.Name}" />
+                        <TextBlock Text="{Binding NewGame.Name}" />
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -89,7 +89,7 @@
                              IsChecked="{Binding ReleaseDate.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="ReleaseDate">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.ReleaseDate}" />
+                        <TextBlock Text="{Binding NewGame.ReleaseDate}" />
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -110,7 +110,7 @@
                               Visibility="{Binding Genres.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -132,7 +132,7 @@
                               Visibility="{Binding Developers.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -154,7 +154,7 @@
                               Visibility="{Binding Publishers.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -176,7 +176,7 @@
                               Visibility="{Binding Features.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -198,7 +198,7 @@
                               Visibility="{Binding Tags.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -244,7 +244,7 @@
                               Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -266,7 +266,7 @@
                               Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -288,7 +288,7 @@
                               Visibility="{Binding Series.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -310,7 +310,7 @@
                               Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -332,7 +332,7 @@
                              IsChecked="{Binding Description.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Description">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.Description}"
+                        <TextBlock Text="{Binding NewGame.Description}"
                                    TextWrapping="Wrap" MaxHeight="150" TextTrimming="CharacterEllipsis" />
                     </RadioButton.Content>
                 </RadioButton>
@@ -353,7 +353,7 @@
                              IsChecked="{Binding CriticScore.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="CriticScore">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.CriticScore}"  />
+                        <TextBlock Text="{Binding NewGame.CriticScore}"  />
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -373,7 +373,7 @@
                              IsChecked="{Binding CommunityScore.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="CommunityScore">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.CommunityScore}"  />
+                        <TextBlock Text="{Binding NewGame.CommunityScore}"  />
                     </RadioButton.Content>
                 </RadioButton>
 

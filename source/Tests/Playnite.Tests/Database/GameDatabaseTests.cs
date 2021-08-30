@@ -14,6 +14,31 @@ using Playnite.Common;
 
 namespace Playnite.Tests.Database
 {
+    public class TestGameDatabase : GameDatabase
+    {
+        public TestGameDatabase() : base()
+        {
+            Game.DatabaseReference = this;
+        }
+
+        public TestGameDatabase(string path) : base(path)
+        {
+            Game.DatabaseReference = this;
+        }
+
+        public void ClearRegions()
+        {
+            Regions.Select(a => a.Id).ToList().ForEach(a => Regions.Remove(a));
+            Assert.AreEqual(0, Regions.Count);
+        }
+
+        public void ClearPlatforms()
+        {
+            Platforms.Select(a => a.Id).ToList().ForEach(a => Platforms.Remove(a));
+            Assert.AreEqual(0, Platforms.Count);
+        }
+    }
+
     [TestFixture]
     public class GameDatabaseTests
     {
@@ -144,6 +169,136 @@ namespace Playnite.Tests.Database
                 newGame.CategoryIds = new List<Guid> { addedCat.Id, addedCat2.Id };
                 db.Games.Add(newGame);
                 Assert.AreEqual(2, db.UsedCategories.Count);
+            }
+        }
+
+        [Test]
+        public void GameImportPlatformTest()
+        {
+            using (var temp = TempDirectory.Create())
+            using (var db = new TestGameDatabase(temp.TempPath))
+            {
+                db.OpenDatabase();
+                db.ClearPlatforms();
+
+                // Import based on specificication id, should use spec
+                var imported = db.ImportGame(new GameMetadata
+                {
+                    Platforms = new List<MetadataProperty> { new MetadataSpecProperty("pc_windows") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("pc_windows", db.Platforms.First().SpecificationId);
+                Assert.AreEqual("pc_windows", imported.Platforms[0].SpecificationId);
+                Assert.AreEqual("PC (Windows)", imported.Platforms[0].Name);
+
+                // Import based on specification name, should use spec
+                db.ClearPlatforms();
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Platforms = new List<MetadataProperty> { new MetadataSpecProperty("PC (Windows)") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("pc_windows", db.Platforms.First().SpecificationId);
+                Assert.AreEqual("pc_windows", imported.Platforms[0].SpecificationId);
+                Assert.AreEqual("PC (Windows)", imported.Platforms[0].Name);
+
+                // Field name matching test
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Platforms = new List<MetadataProperty> { new MetadataNameProperty("PC(Windows)") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("pc_windows", imported.Platforms[0].SpecificationId);
+                Assert.AreEqual("PC (Windows)", imported.Platforms[0].Name);
+                Assert.AreEqual(1, db.Platforms.Count);
+
+                // Import based on existing name
+                var plat = db.Platforms.First();
+                plat.Name = "PC (Windows) 1";
+                db.Platforms.Update(plat);
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Platforms = new List<MetadataProperty> { new MetadataNameProperty("PC (Windows) 1") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("pc_windows", imported.Platforms[0].SpecificationId);
+                Assert.AreEqual("PC (Windows) 1", imported.Platforms[0].Name);
+                Assert.AreEqual(1, db.Platforms.Count);
+
+                // Import of uknown platform
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Platforms = new List<MetadataProperty> { new MetadataNameProperty("test") }
+                }, Guid.Empty);
+
+                Assert.AreEqual(null, imported.Platforms[0].SpecificationId);
+                Assert.AreEqual("test", imported.Platforms[0].Name);
+                Assert.AreEqual(2, db.Platforms.Count);
+            }
+        }
+
+        [Test]
+        public void GameImportRegionTest()
+        {
+            using (var temp = TempDirectory.Create())
+            using (var db = new TestGameDatabase(temp.TempPath))
+            {
+                db.OpenDatabase();
+                db.ClearRegions();
+
+                // Import based on specificication id, should use spec
+                var imported = db.ImportGame(new GameMetadata
+                {
+                    Regions = new List<MetadataProperty> { new MetadataSpecProperty("world") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("world", db.Regions.First().SpecificationId);
+                Assert.AreEqual("world", imported.Regions[0].SpecificationId);
+                Assert.AreEqual("World", imported.Regions[0].Name);
+
+                // Import based on specification name, should use spec
+                db.ClearRegions();
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Regions = new List<MetadataProperty> { new MetadataSpecProperty("World") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("world", db.Regions.First().SpecificationId);
+                Assert.AreEqual("world", imported.Regions[0].SpecificationId);
+                Assert.AreEqual("World", imported.Regions[0].Name);
+
+                // Field name matching test
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Regions = new List<MetadataProperty> { new MetadataNameProperty("Wo rld") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("world", imported.Regions[0].SpecificationId);
+                Assert.AreEqual("World", imported.Regions[0].Name);
+                Assert.AreEqual(1, db.Regions.Count);
+
+                // Import based on existing name
+                var region = db.Regions.First();
+                region.Name = "World 1";
+                db.Regions.Update(region);
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Regions = new List<MetadataProperty> { new MetadataNameProperty("World 1") }
+                }, Guid.Empty);
+
+                Assert.AreEqual("world", imported.Regions[0].SpecificationId);
+                Assert.AreEqual("World 1", imported.Regions[0].Name);
+                Assert.AreEqual(1, db.Regions.Count);
+
+                // Import of uknown Region
+                imported = db.ImportGame(new GameMetadata
+                {
+                    Regions = new List<MetadataProperty> { new MetadataNameProperty("test") }
+                }, Guid.Empty);
+
+                Assert.AreEqual(null, imported.Regions[0].SpecificationId);
+                Assert.AreEqual("test", imported.Regions[0].Name);
+                Assert.AreEqual(2, db.Regions.Count);
             }
         }
     }

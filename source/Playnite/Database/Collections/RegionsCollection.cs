@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Emulators;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,106 @@ namespace Playnite.Database
                 }
             }
             return base.Remove(itemsToRemove);
+        }
+
+        public override Region Add(MetadataProperty property)
+        {
+            if (property is MetadataSpecProperty specProp)
+            {
+                var exRegion = this.FirstOrDefault(a => a.SpecificationId == specProp.Id);
+                if (exRegion != null)
+                {
+                    return exRegion;
+                }
+
+                var reg = Emulation.Regions.FirstOrDefault(a => a.Id == specProp.Id || a.Name == specProp.Id);
+                if (reg != null)
+                {
+                    exRegion = this.FirstOrDefault(a => a.SpecificationId == reg.Id);
+                    if (exRegion != null)
+                    {
+                        return exRegion;
+                    }
+                    else
+                    {
+                        var newReg = new Region(reg.Name) { SpecificationId = reg.Id };
+                        Add(newReg);
+                        return newReg;
+                    }
+                }
+                else
+                {
+                    var newReg = new Region(reg.Id);
+                    Add(newReg);
+                    return newReg;
+                }
+            }
+            else
+            {
+                return base.Add(property);
+            }
+        }
+
+        public override IEnumerable<Region> Add(IEnumerable<MetadataProperty> properties)
+        {
+            foreach (var property in properties)
+            {
+                if (property is MetadataSpecProperty specProp)
+                {
+                    yield return Add(specProp);
+                }
+                else
+                {
+                    yield return base.Add(property);
+                }
+            }
+        }
+
+        public override Region GetOrGenerate(MetadataProperty property)
+        {
+            if (property is MetadataSpecProperty specProp)
+            {
+                var exRegion = this.FirstOrDefault(a => a.SpecificationId == specProp.Id);
+                if (exRegion != null)
+                {
+                    return exRegion;
+                }
+
+                var reg = Emulation.Regions.FirstOrDefault(a => a.Id == specProp.Id || a.Name == specProp.Id);
+                if (reg != null)
+                {
+                    exRegion = this.FirstOrDefault(a => a.SpecificationId == reg.Id);
+                    if (exRegion != null)
+                    {
+                        return exRegion;
+                    }
+                    else
+                    {
+                        return new Region(reg.Name) { SpecificationId = reg.Id };
+                    }
+                }
+
+                return null;
+            }
+            else
+            {
+                return base.GetOrGenerate(property);
+            }
+        }
+
+        public override IEnumerable<Region> GetOrGenerate(IEnumerable<MetadataProperty> properties)
+        {
+            foreach (var property in properties)
+            {
+                if (property is MetadataSpecProperty specProp)
+                {
+                    yield return GetOrGenerate(specProp);
+                }
+                else
+                {
+                    yield return base.GetOrGenerate(property);
+                }
+            }
         }
     }
 }

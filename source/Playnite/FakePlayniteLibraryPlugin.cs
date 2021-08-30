@@ -20,7 +20,7 @@ namespace Playnite
         {
         }
 
-        public override IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
+        public override IEnumerable<GameMetadata> GetGames(LibraryGetGamesArgs args)
         {
             throw new NotImplementedException();
         }

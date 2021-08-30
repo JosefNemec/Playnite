@@ -1,5 +1,4 @@
-﻿using Playnite.SDK.Metadata;
-using Playnite.SDK.Models;
+﻿using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,7 +159,7 @@ namespace Playnite.SDK.Plugins
         /// Gets genres.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetGenres(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetGenres(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -178,7 +177,7 @@ namespace Playnite.SDK.Plugins
         /// Gets developers.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetDevelopers(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetDevelopers(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -187,7 +186,7 @@ namespace Playnite.SDK.Plugins
         /// Gets publishers.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetPublishers(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetPublishers(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -196,7 +195,7 @@ namespace Playnite.SDK.Plugins
         /// Gets tags.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetTags(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetTags(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -259,7 +258,7 @@ namespace Playnite.SDK.Plugins
         /// Gets links.
         /// </summary>
         /// <returns></returns>
-        public virtual List<Link> GetLinks(GetMetadataFieldArgs args)
+        public virtual IEnumerable<Link> GetLinks(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -268,7 +267,7 @@ namespace Playnite.SDK.Plugins
         /// Gets features.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetFeatures(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetFeatures(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -277,7 +276,7 @@ namespace Playnite.SDK.Plugins
         /// Gets age rating.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetAgeRatings(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetAgeRatings(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -286,7 +285,7 @@ namespace Playnite.SDK.Plugins
         /// Gets series.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetSeries(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetSeries(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -295,7 +294,7 @@ namespace Playnite.SDK.Plugins
         /// Gets region.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetRegions(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetRegions(GetMetadataFieldArgs args)
         {
             return null;
         }
@@ -304,7 +303,7 @@ namespace Playnite.SDK.Plugins
         /// Gets platform.
         /// </summary>
         /// <returns></returns>
-        public virtual List<string> GetPlatforms(GetMetadataFieldArgs args)
+        public virtual IEnumerable<MetadataProperty> GetPlatforms(GetMetadataFieldArgs args)
         {
             return null;
         }

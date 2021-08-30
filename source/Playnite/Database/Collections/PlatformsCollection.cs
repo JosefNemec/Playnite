@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.Emulators;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -126,6 +127,106 @@ namespace Playnite.Database
             }
 
             base.Update(item);
+        }
+
+        public override Platform Add(MetadataProperty property)
+        {
+            if (property is MetadataSpecProperty specProp)
+            {
+                var exPlat = this.FirstOrDefault(a => a.SpecificationId == specProp.Id);
+                if (exPlat != null)
+                {
+                    return exPlat;
+                }
+
+                var plat = Emulation.Platforms.FirstOrDefault(a => a.Id == specProp.Id || a.Name == specProp.Id);
+                if (plat != null)
+                {
+                    exPlat = this.FirstOrDefault(a => a.SpecificationId == plat.Id);
+                    if (exPlat != null)
+                    {
+                        return exPlat;
+                    }
+                    else
+                    {
+                        var newPlat = new Platform(plat.Name) { SpecificationId = plat.Id };
+                        Add(newPlat);
+                        return newPlat;
+                    }
+                }
+                else
+                {
+                    var newPlat = new Platform(plat.Id);
+                    Add(newPlat);
+                    return newPlat;
+                }
+            }
+            else
+            {
+                return base.Add(property);
+            }
+        }
+
+        public override IEnumerable<Platform> Add(IEnumerable<MetadataProperty> properties)
+        {
+            foreach (var property in properties)
+            {
+                if (property is MetadataSpecProperty specProp)
+                {
+                    yield return Add(specProp);
+                }
+                else
+                {
+                    yield return base.Add(property);
+                }
+            }
+        }
+
+        public override Platform GetOrGenerate(MetadataProperty property)
+        {
+            if (property is MetadataSpecProperty specProp)
+            {
+                var exPlat = this.FirstOrDefault(a => a.SpecificationId == specProp.Id);
+                if (exPlat != null)
+                {
+                    return exPlat;
+                }
+
+                var plat = Emulation.Platforms.FirstOrDefault(a => a.Id == specProp.Id || a.Name == specProp.Id);
+                if (plat != null)
+                {
+                    exPlat = this.FirstOrDefault(a => a.SpecificationId == plat.Id);
+                    if (exPlat != null)
+                    {
+                        return exPlat;
+                    }
+                    else
+                    {
+                        return new Platform(plat.Name) { SpecificationId = plat.Id };
+                    }
+                }
+
+                return null;
+            }
+            else
+            {
+                return base.GetOrGenerate(property);
+            }
+        }
+
+        public override IEnumerable<Platform> GetOrGenerate(IEnumerable<MetadataProperty> properties)
+        {
+            foreach (var property in properties)
+            {
+                if (property is MetadataSpecProperty specProp)
+                {
+                    yield return GetOrGenerate(specProp);
+                }
+                else
+                {
+                    yield return base.GetOrGenerate(property);
+                }
+            }
         }
     }
 }

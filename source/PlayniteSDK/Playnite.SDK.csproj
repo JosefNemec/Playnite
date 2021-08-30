@@ -109,11 +109,9 @@
     <Compile Include="Models\GameSource.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DatabaseObject.cs" />
-    <Compile Include="Models\GameInfo.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\Metadata\GameMetadata.cs" />
-    <Compile Include="Models\Metadata\MetadataFile.cs" />
+    <Compile Include="Models\GameMetadata.cs" />
     <Compile Include="Models\CompletionStatus.cs" />
     <Compile Include="Models\Emulator.cs" />
     <Compile Include="Models\Game.cs" />

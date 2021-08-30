@@ -1,9 +1,6 @@
 Metadata Plugins
 =====================
 
-> [!NOTE]
-> Playnite 6.0 and newer is required for custom metadata support.
-
 To implement metadata plugin:
 
 * Read the introduction to [extensions](intro.md) and [plugins](plugins.md).
@@ -35,6 +32,20 @@ MetadataRequestOptions
 - `IsBackgroundDownload` indicates whether the download is being processed in background. By either automatically started download for newly imported games or manually initiated bulk download. When set to false it indicates that download is for manually initiated request from game edit dialog.
 
 - `GameData` contains game that should be updated we new metadata.
+
+MetadataProperty
+---------------------
+
+Some fields like `Genres`, `Tags` and others that are globally stored as static values and shared between games are referenced by metadata sources via `MetadataProperty`. Based on what type is used to reference metadata, Playnite will use different method to assign final data.
+
+Available property types:
+
+| Type | Description |
+| --- | --- |
+| MetadataNameProperty | Playnite will assign field value based on a name (Playnite 8 behavior). If fields with the same name exists in game library, it's reused. |
+| MetadataIdProperty | Playnite will assign field value based on objects database ID. Use if you want to reference specific object already existing in the game library. |
+| MetadataSpecProperty | Playnite will assign filed value based on specification identifier. Currently only available for [Platforms](https://github.com/JosefNemec/Playnite/blob/devel/source/Playnite/Emulation/Platforms.yaml) and [Regions](https://github.com/JosefNemec/Playnite/blob/devel/source/Playnite/Emulation/Regions.yaml). Identifier matches based on an ID or a Name. |
+
 
 Example plugin
 ---------------------
