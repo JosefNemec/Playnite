@@ -188,6 +188,23 @@ namespace Playnite
 
             try
             {
+                if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
+                {
+                    logger.Warn("Multiple Playnite processes detected before installing addons.");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Thread.Sleep(500);
+                        if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
+                        {
+                            break;
+                        }
+                        else if (i == 9)
+                        {
+                            logger.Warn("Another Playnite instance didn't shutdown in time before addon installation.");
+                        }
+                    }
+                }
+
                 var installed = ExtensionInstaller.InstallExtensionQueue();
                 var installedTheme = installed.FirstOrDefault(a => a is ThemeManifest);
                 if (installedTheme != null)
