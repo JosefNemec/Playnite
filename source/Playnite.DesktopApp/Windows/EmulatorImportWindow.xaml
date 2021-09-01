@@ -68,16 +68,18 @@
                 <DataTemplate>
                     <StackPanel Margin="20,3,10,3">
                         <TextBlock Text="{DynamicResource LOCEmuImportProfilesToImportHeader}" />
-                        <ItemsControl ItemsSource="{Binding Profiles}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2"
-                                              IsChecked="{Binding Import}" Content="{Binding Name}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                      MaxHeight="300">
+                            <ItemsControl ItemsSource="{Binding Profiles}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2"
+                                                  IsChecked="{Binding Import}" Content="{Binding Name}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>                        
                     </StackPanel>
-
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>

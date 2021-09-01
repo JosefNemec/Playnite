@@ -109,7 +109,7 @@
                                       ItemsSource="{Binding SelectableEmulatorDefinitions}"
                                       SelectedValue="{Binding SelectedEmulator.BuiltInConfigId}"
                                       SelectedValuePath="Id" />
-
+ 
                             <!--Profiles-->
                             <DockPanel Grid.ColumnSpan="2" Margin="0,5,0,0">
                                 <TextBlock Text="{DynamicResource LOCProfilesLabel}" DockPanel.Dock="Top" Margin="0" />
@@ -151,7 +151,7 @@
                                                  ItemsSource="{Binding Source={StaticResource ProfilesSource}}"
                                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
                                                  Width="220" DockPanel.Dock="Top" Margin="0,0,0,5"
-                                                 DisplayMemberPath="Name">
+                                                 DisplayMemberPath="Name" ScrollViewer.CanContentScroll="False">
                                             <ListBox.GroupStyle>
                                                 <GroupStyle>
                                                     <GroupStyle.HeaderTemplate>
@@ -181,7 +181,7 @@
                                                 Visibility="{Binding Data.SelectedBuiltinProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToVisibilityConverter}}">
                                         <TabItem Header="{DynamicResource LOCGeneralLabel}">
                                             <controls:GridEx KeyboardNavigation.TabNavigation="Local" Margin="3"
-                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="3">
+                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="5">
                                                 <!--Name-->
                                                 <TextBlock Text="{DynamicResource LOCNameLabel}" />
                                                 <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
@@ -192,6 +192,38 @@
                                                 <!--Platforms-->
                                                 <TextBlock Text="{DynamicResource LOCPlatformsTitle}" />
                                                 <TextBlock TextWrapping="Wrap" Text="{Binding Data.SelectedBuiltInProfilePlatforms, Source={StaticResource Proxy}}" />
+                                                <!--Arguments-->
+                                                <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
+                                                <TextBlock TextWrapping="Wrap">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="Margin" Value="0,10,10,10" />
+                                                            <Setter Property="Text" Value="{Binding Data.SelectedBuiltInProfileDefinition.StartupArguments, Source={StaticResource Proxy}}" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.StartupArguments, Source={StaticResource Proxy}}" Value="{x:Null}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LOCEmulatorFunctionHandledByScript}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <!--FileTypes-->
+                                                <TextBlock Text="{DynamicResource LOCSupportedFilesTitle}" />
+                                                <TextBlock TextWrapping="Wrap">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="Margin" Value="0,10,10,10" />
+                                                            <Setter Property="Text" Value="{Binding Data.SelectedBuiltInProfileDefinition.ImageExtensions, Converter={StaticResource ListToStringConverter}, Source={StaticResource Proxy}}" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.ImageExtensions, Source={StaticResource Proxy}}" Value="{x:Null}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LOCEmulatorFunctionHandledByScript}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
                                             </controls:GridEx>
                                         </TabItem>
                                         <TabItem Header="{DynamicResource LOCScripts}">
@@ -240,13 +272,12 @@
 
                                                 <!--Executable-->
                                                 <TextBlock Text="{DynamicResource LOCExecutableTitle}" />
-                                                <TextBox TabIndex="1" Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}"
+                                                <TextBox Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}"
                                                          pbeh:TextBoxBehavior.FileBrowserAttachment="File|*.*"/>
 
                                                 <!--Arguments-->
                                                 <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
-                                                <TextBox Name="TextArguments" Text="{Binding Arguments,UpdateSourceTrigger=PropertyChanged}"
-                                                         DockPanel.Dock="Left" />
+                                                <TextBox Name="TextArguments" Text="{Binding Arguments,UpdateSourceTrigger=PropertyChanged}" />
 
                                                 <!--WorkingDir-->
                                                 <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" />

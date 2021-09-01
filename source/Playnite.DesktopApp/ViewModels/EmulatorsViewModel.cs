@@ -103,6 +103,7 @@ namespace Playnite.DesktopApp.ViewModels
                 selectedBuiltinProfile = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SelectedBuiltInProfilePlatforms));
+                OnPropertyChanged(nameof(SelectedBuiltInProfileDefinition));
             }
         }
 
@@ -130,6 +131,19 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 OnPropertyChanged();
+            }
+        }
+
+        public EmulatorDefinitionProfile SelectedBuiltInProfileDefinition
+        {
+            get
+            {
+                if (SelectedEmulator == null || SelectedBuiltinProfile == null)
+                {
+                    return null;
+                }
+
+                return EmulatorDefinition.GetProfile(SelectedEmulator.BuiltInConfigId, SelectedBuiltinProfile.BuiltInProfileName);
             }
         }
 
