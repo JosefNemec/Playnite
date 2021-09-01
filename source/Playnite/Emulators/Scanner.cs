@@ -735,6 +735,7 @@ namespace Playnite.Emulators
             var game = new ScannedGame();
             game.Name = scriptGame.Name ?? scriptGame.Serial;
             game.Roms = new ObservableCollection<ScannedRom>();
+            game.ScriptSource = scriptGame;
 
             if (scriptGame.Serial.IsNullOrEmpty())
             {
@@ -835,6 +836,7 @@ namespace Playnite.Emulators
         private string name;
         private GameScannerConfig sourceConfig;
         private ReleaseDate? releaseDate;
+        private ScriptScannedGame scriptSource;
         #endregion backing fields
 
         public bool Import                              { get => import; set => SetValue(ref import, value); }
@@ -844,6 +846,7 @@ namespace Playnite.Emulators
         public string Name                              { get => name; set => SetValue(ref name, value); }
         public GameScannerConfig SourceConfig           { get => sourceConfig; set => SetValue(ref sourceConfig, value); }
         public ReleaseDate? ReleaseDate                 { get => releaseDate; set => SetValue(ref releaseDate, value); }
+        public ScriptScannedGame ScriptSource           { get => scriptSource; set => SetValue(ref scriptSource, value); }
 
         public Game ToGame()
         {
@@ -863,27 +866,28 @@ namespace Playnite.Emulators
                 game.RegionIds = Regions.Select(a => a.Id).ToList();
             }
 
-            game.GameActions = new ObservableCollection<GameAction>
+            var playAction = new GameAction
             {
-                new GameAction
-                {
-                    Type = GameActionType.Emulator,
-                    EmulatorId = SourceConfig.EmulatorId,
-                    EmulatorProfileId = SourceConfig.EmulatorProfileId,
-                    IsPlayAction = true,
-                    Name = Name
-                }
+                Type = GameActionType.Emulator,
+                EmulatorId = SourceConfig.EmulatorId,
+                EmulatorProfileId = SourceConfig.EmulatorProfileId,
+                IsPlayAction = true,
+                Name = Name
             };
 
-            var roms = Roms.Where(a => a.Import).ToList();
-            game.InstallDirectory = Paths.GetCommonDirectory(roms.Select(a => a.Path).ToArray());
-            game.Roms = new ObservableCollection<GameRom>();
-            foreach (var rom in roms)
+            game.GameActions = new ObservableCollection<GameAction> { playAction };
+            if (Roms.HasItems())
             {
-                var romPath = game.InstallDirectory.IsNullOrEmpty()
-                    ? rom.Path
-                    : rom.Path.Replace(game.InstallDirectory, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar);
-                game.Roms.Add(new GameRom(rom.Name.DiscName ?? rom.Name.SanitizedName, romPath));
+                var roms = Roms.Where(a => a.Import).ToList();
+                game.InstallDirectory = Paths.GetCommonDirectory(roms.Select(a => a.Path).ToArray());
+                game.Roms = new ObservableCollection<GameRom>();
+                foreach (var rom in roms)
+                {
+                    var romPath = game.InstallDirectory.IsNullOrEmpty()
+                        ? rom.Path
+                        : rom.Path.Replace(game.InstallDirectory, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar);
+                    game.Roms.Add(new GameRom(rom.Name.DiscName ?? rom.Name.SanitizedName, romPath));
+                }
             }
 
             return game;
