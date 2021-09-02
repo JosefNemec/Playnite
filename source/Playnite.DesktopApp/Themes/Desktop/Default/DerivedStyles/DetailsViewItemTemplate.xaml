@@ -20,6 +20,15 @@
                             </TextBlock>
                         </DockPanel>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsInstalled}" Value="False" />
+                                <Condition Binding="{Settings DarkenUninstalledDetailsIcons}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Opacity" Value="0.4" TargetName="PART_ImageIcon" />
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

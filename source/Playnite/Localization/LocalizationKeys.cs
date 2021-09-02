@@ -1086,9 +1086,21 @@ namespace Playnite
         /// </summary>
         public const string SettingsShowNamesUnderCover = "LOCSettingsShowNamesUnderCover";
         /// <summary>
-        /// Darken not installed games
+        /// Darken cover image of not installed games
         /// </summary>
         public const string SettingsDarkenUninstalledGridCovers = "LOCSettingsDarkenUninstalledGridCovers";
+        /// <summary>
+        /// Darken name of not installed games
+        /// </summary>
+        public const string SettingsDarkenUninstalledGridNames = "LOCSettingsDarkenUninstalledNames";
+        /// <summary>
+        /// Darken cover image of not installed games
+        /// </summary>
+        public const string SettingsDarkenUninstalledDetailsIcons = "LOCSettingsDarkenUninstalledIcons";
+        /// <summary>
+        /// Darken name of not installed games
+        /// </summary>
+        public const string SettingsDarkenUninstalledDetailsNames = "LOCSettingsDarkenUninstalledNames";
         /// <summary>
         /// Show game icons on Details view list
         /// </summary>

@@ -294,7 +294,9 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Can improve scrolling smoothness of game lists in exchange for slower image load times.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Show game name if cover art is missing</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Show game names on Grid view</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Darken not installed games</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Darken cover image of not installed games</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledIcons">Darken icons of not installed games</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledNames">Darken name of not installed games</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Show game icons on Details view list</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Show item count on group descriptions</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Show only assigned fields on filter and explorer panels</sys:String>

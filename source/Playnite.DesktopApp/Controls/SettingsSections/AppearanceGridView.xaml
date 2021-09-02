@@ -52,7 +52,9 @@
         <CheckBox Content="{DynamicResource LOCSettingsShowNamesUnderCover}" Margin="0,15,0,0"
                   Name="CheckNameUnderCover" IsChecked="{Binding Settings.ShowNamesUnderCovers}"/>
         <CheckBox Content="{DynamicResource LOCSettingsDarkenUninstalledGridCovers}" Margin="0,15,0,0"
-                  Name="CheckDarkenUninstalledCovers" IsChecked="{Binding Settings.DarkenUninstalledGamesGrid}"/>
+                  Name="CheckDarkenUninstalledGridCovers" IsChecked="{Binding Settings.DarkenUninstalledGridCovers}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsDarkenUninstalledNames}" Margin="0,15,0,0"
+                  Name="CheckDarkenUninstalledGridNames" IsChecked="{Binding Settings.DarkenUninstalledGridNames}"/>
 
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCGridViewScrollAmountModifier}" VerticalAlignment="Center" Margin="0,0,5,0" />

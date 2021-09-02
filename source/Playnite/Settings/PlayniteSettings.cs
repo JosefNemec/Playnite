@@ -1443,17 +1443,50 @@ namespace Playnite
             }
         }
 
-        private bool darkenUninstalledGamesGrid = false;
-        public bool DarkenUninstalledGamesGrid
+        private bool darkenUninstalledGridCovers = true;
+        public bool DarkenUninstalledGridCovers
         {
-            get => darkenUninstalledGamesGrid;
+            get => darkenUninstalledGridCovers;
             set
             {
-                darkenUninstalledGamesGrid = value;
+                darkenUninstalledGridCovers = value;
                 OnPropertyChanged();
             }
         }
 
+        private bool darkenUninstalledGridNames = true;
+        public bool DarkenUninstalledGridNames
+        {
+            get => darkenUninstalledGridNames;
+            set
+            {
+                darkenUninstalledGridNames = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool darkenUninstalledDetailsIcons = true;
+        public bool DarkenUninstalledDetailsIcons
+        {
+            get => darkenUninstalledDetailsIcons;
+            set
+            {
+                darkenUninstalledDetailsIcons = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool darkenUninstalledDetailsNames = true;
+        public bool DarkenUninstalledDetailsNames
+        {
+            get => darkenUninstalledDetailsNames;
+            set
+            {
+                darkenUninstalledDetailsNames = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private bool usedFieldsOnlyOnFilterLists = true;
         public bool UsedFieldsOnlyOnFilterLists
         {

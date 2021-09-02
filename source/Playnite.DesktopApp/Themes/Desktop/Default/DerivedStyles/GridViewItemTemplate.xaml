@@ -38,7 +38,7 @@
                                     </StackPanel>
                                 </Viewbox>
                             </Grid>
-                            <TextBlock Text="{Binding DisplayName}"
+                            <TextBlock x:Name="DisplayName" Text="{Binding DisplayName}"
                                    Style="{DynamicResource BaseTextBlockStyle}"                                                                   
                                    TextAlignment="Center" TextTrimming="CharacterEllipsis"
                                    VerticalAlignment="Center"
@@ -54,9 +54,16 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsInstalled}" Value="False" />
-                                <Condition Binding="{Settings DarkenUninstalledGamesGrid}" Value="True" />
+                                <Condition Binding="{Settings DarkenUninstalledGridCovers}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderMouseOver" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsInstalled}" Value="False" />
+                                <Condition Binding="{Settings DarkenUninstalledGridNames}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" TargetName="DisplayName" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>

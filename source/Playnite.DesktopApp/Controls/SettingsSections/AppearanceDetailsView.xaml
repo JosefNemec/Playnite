@@ -35,7 +35,12 @@
                                    IsEnabled="{Binding Settings.IndentGameDetails}" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+        <CheckBox Content="{DynamicResource LOCSettingsDarkenUninstalledIcons}" Margin="0,0,0,0"
+                  Name="CheckDarkenUninstalledDetailsIcons" IsChecked="{Binding Settings.DarkenUninstalledDetailsIcons}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsDarkenUninstalledNames}" Margin="0,15,0,0"
+                  Name="CheckDarkenUninstalledDetailsNames" IsChecked="{Binding Settings.DarkenUninstalledDetailsNames}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
             <TextBlock VerticalAlignment="Center"
                        Text="{DynamicResource LOCSettingsGameDetailsCoverHeight}"/>
             <pctrls:NullIntNumericBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"

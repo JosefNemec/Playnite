@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="DetailsViewItemStyle" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
@@ -19,12 +19,13 @@
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsInstalled}" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsInstalled}" Value="False">
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsInstalled}" Value="False" />
+                                <Condition Binding="{Settings DarkenUninstalledDetailsNames}" Value="True" />
+                            </MultiDataTrigger.Conditions>
                             <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
-                        </DataTrigger>                        
+                        </MultiDataTrigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="SelectedRectangle" />
                             <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
