@@ -32,6 +32,7 @@ namespace Playnite.Database
         public IItemCollection<GameFeature> Features { get; } = new InMemoryItemCollection<GameFeature>();
         public IItemCollection<GameScannerConfig> GameScanners { get; } = new InMemoryItemCollection<GameScannerConfig>();
         public IItemCollection<CompletionStatus> CompletionStatuses => new InMemoryItemCollection<CompletionStatus>();
+        public IItemCollection<ImportExclusionItem> ImportExclusions => new InMemoryItemCollection<ImportExclusionItem>();
         public bool IsOpen => true;
 
 #pragma warning disable CS0067

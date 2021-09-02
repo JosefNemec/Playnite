@@ -122,7 +122,7 @@ namespace Playnite.Database
         public AppSoftwareCollection SoftwareApps { get; private set; }
         public IItemCollection<GameScannerConfig> GameScanners { get; private set; }
         public FilterPresetsCollection FilterPresets { get; private set; }
-        public ImportExclusionsCollection ImportExclusions { get; private set; }
+        public IItemCollection<ImportExclusionItem> ImportExclusions { get; private set; }
         public IItemCollection<CompletionStatus> CompletionStatuses { get; private set; }
 
         public List<Guid> UsedPlatforms { get; } = new List<Guid>();
@@ -228,7 +228,7 @@ namespace Playnite.Database
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
                 (GameScanners as GameScannersCollection).InitializeCollection(GameScannersDirectoryPath);
                 FilterPresets.InitializeCollection(FilterPresetsDirectoryPath);
-                ImportExclusions.InitializeCollection(ImportExclusionsDirectoryPath);
+                (ImportExclusions as ImportExclusionsCollection).InitializeCollection(ImportExclusionsDirectoryPath);
                 (CompletionStatuses as CompletionStatusesCollection).InitializeCollection(CompletionStatusesDirectoryPath);
 
                 Games.ItemUpdated += Games_ItemUpdated;
