@@ -93,7 +93,6 @@ namespace Playnite.Controllers
             if (currentEmuProfile is CustomEmulatorProfile emuProf)
             {
                 var expandedProfile = emuProf.ExpandVariables(Game, emulator.InstallDir, romPath);
-                var expandedAction = action.ExpandVariables(Game, emulator.InstallDir, romPath);
                 expandedProfile.Executable = CheckPath(expandedProfile.Executable, nameof(expandedProfile.Executable), FileSystemItem.File);
                 expandedProfile.WorkingDirectory = CheckPath(expandedProfile.WorkingDirectory, nameof(expandedProfile.WorkingDirectory), FileSystemItem.Directory);
 
@@ -115,14 +114,14 @@ namespace Playnite.Controllers
                 {
                     if (action.OverrideDefaultArgs)
                     {
-                        startupArgs = expandedAction.Arguments;
+                        startupArgs = Game.ExpandVariables(action.Arguments, false, emulator.InstallDir, romPath);
                     }
                     else
                     {
                         startupArgs = expandedProfile.Arguments;
                         if (!action.AdditionalArguments.IsNullOrEmpty())
                         {
-                            startupArgs += " " + expandedAction.AdditionalArguments;
+                            startupArgs += " " + Game.ExpandVariables(action.AdditionalArguments, false, emulator.InstallDir, romPath);
                         }
                     }
 

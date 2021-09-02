@@ -32,19 +32,6 @@ namespace Playnite
 
     public static class GameActionExtensions
     {
-        public static GameAction ExpandVariables(this EmulationPlayAction action, Game game, string emulatorDir, string romPath)
-        {
-            var g = game.GetClone();
-            g.Roms = new System.Collections.ObjectModel.ObservableCollection<GameRom> { new GameRom("", romPath) };
-            var expaded = action.GetClone();
-            expaded.AdditionalArguments = g.ExpandVariables(expaded.AdditionalArguments, false, emulatorDir);
-            expaded.Arguments = g.ExpandVariables(expaded.Arguments, false, emulatorDir);
-            expaded.WorkingDir = g.ExpandVariables(expaded.WorkingDir, true, emulatorDir);
-            expaded.TrackingPath = g.ExpandVariables(expaded.TrackingPath, true, emulatorDir);
-            expaded.SelectedRomPath = g.ExpandVariables(expaded.SelectedRomPath, true, emulatorDir);
-            return expaded;
-        }
-
         public static GameAction ExpandVariables(this GameAction action, Game game)
         {
             var expaded = action.GetClone();
