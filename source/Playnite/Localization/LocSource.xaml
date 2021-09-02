@@ -887,7 +887,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCActionTrackingModeProcess">Process</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Folder</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log trace messages</sys:String>
-    <sys:String x:Key="LOCMultiEditOverwriteWarning">Following changes overwrite data for all currently selected game!</sys:String>    
+    <sys:String x:Key="LOCMultiEditOverwriteWarning">Following changes overwrite data for all currently selected games!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">None</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Uniform</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Items only</sys:String>
