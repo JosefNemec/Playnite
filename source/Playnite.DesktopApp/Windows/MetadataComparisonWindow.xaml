@@ -16,7 +16,7 @@
     <controls:WindowBase.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
             <Setter Property="Margin" Value="5,5,5,5" />
-            <Setter Property="VerticalAlignment" Value="Center" />            
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
             <Setter Property="Margin" Value="5" />
@@ -44,7 +44,7 @@
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
             <GridEx ColumnCount="3" StarColumns="1,2"
                     Margin="5,0,5,0"
-                    RowCount="40" AutoLayoutColumns="3">                
+                    RowCount="40" AutoLayoutColumns="3">
                 <Canvas />
                 <TextBlock Text="{DynamicResource LOCMetadataDiffCurrent}"  />
                 <TextBlock Text="{DynamicResource LOCMetadataDiffNew}"  />
@@ -57,7 +57,7 @@
 
                 <!--Name-->
                 <TextBlock Text="{DynamicResource LOCNameLabel}"
-                           Visibility="{Binding Name.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />                
+                           Visibility="{Binding Name.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <RadioButton Visibility="{Binding Name.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"                             
                              IsChecked="{Binding Name.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Name">
@@ -77,14 +77,14 @@
                 <Separator Grid.ColumnSpan="3"
                            Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
-                           Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />                
+                           Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <RadioButton Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding ReleaseDate.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="ReleaseDate">
                     <RadioButton.Content>
                         <TextBlock Text="{Binding CurrentGame.ReleaseDate}" />
                     </RadioButton.Content>
-                </RadioButton>                
+                </RadioButton>
                 <RadioButton Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding ReleaseDate.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="ReleaseDate">
@@ -386,18 +386,24 @@
                              IsChecked="{Binding Icon.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Icon">
                     <RadioButton.Content>
-                        <Image Source="{Binding CurrentIcon}"
+                        <StackPanel>
+                            <Image Source="{Binding CurrentIcon}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="64"/>
+                            <TextBlock Text="{Binding CurrentIconDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
                 <RadioButton Visibility="{Binding Icon.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding Icon.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Icon">
                     <RadioButton.Content>
-                        <Image Source="{Binding NewIcon}"
+                        <StackPanel>
+                            <Image Source="{Binding NewIcon}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="64"/>
+                            <TextBlock Text="{Binding NewIconDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -410,18 +416,24 @@
                              IsChecked="{Binding Cover.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Cover">
                     <RadioButton.Content>
-                        <Image Source="{Binding CurrentCover}"
+                        <StackPanel>
+                            <Image Source="{Binding CurrentCover}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="128"/>
+                            <TextBlock Text="{Binding CurrentCoverDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
                 <RadioButton Visibility="{Binding Cover.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding Cover.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Cover">
                     <RadioButton.Content>
-                        <Image Source="{Binding NewCover}"
+                        <StackPanel>
+                            <Image Source="{Binding NewCover}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="128"/>
+                            <TextBlock Text="{Binding NewCoverDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -434,18 +446,24 @@
                              IsChecked="{Binding Background.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Background">
                     <RadioButton.Content>
-                        <Image Source="{Binding CurrentBackground}"
+                        <StackPanel>
+                            <Image Source="{Binding CurrentBackground}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="169"/>
+                            <TextBlock Text="{Binding CurrentBackgroundDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
                 <RadioButton Visibility="{Binding Background.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding Background.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Background">
                     <RadioButton.Content>
-                        <Image Source="{Binding NewBackground}"
+                        <StackPanel>
+                            <Image Source="{Binding NewBackground}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="169"/>
+                            <TextBlock Text="{Binding NewBackgroundDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
             </GridEx>
