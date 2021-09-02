@@ -2850,13 +2850,21 @@ namespace Playnite
         /// </summary>
         public const string UrlNavigationMessage = "LOCUrlNavigationMessage";
         /// <summary>
-        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage. 
+        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage.
         /// </summary>
         public const string GameImageSizeWarning = "LOCGameImageSizeWarning";
         /// <summary>
         /// Performance Warning
         /// </summary>
         public const string PerformanceWarningTitle = "LOCPerformanceWarningTitle";
+        /// <summary>
+        /// File with extension {0} is not compatible.
+        /// </summary>
+        public const string IncompatibleDragAndDropExtensionError = "LOCIncompatibleDragAndDropExtensionError";
+        /// <summary>
+        /// Incompatible file extension
+        /// </summary>
+        public const string IncompatibleDragAndDropExtensionErrorTitle = "LOCIncompatibleDragAndDropExtensionErrorTitle";
         /// <summary>
         /// Don't Show Again
         /// </summary>
