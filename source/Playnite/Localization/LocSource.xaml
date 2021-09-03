@@ -410,7 +410,7 @@ Can also be changed in application settings.</sys:String>
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulation Import Wizard</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">This wizard will guide you through the process of downloading and importing console emulators and importing emulated games.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">Keep in mind that you can always add additional emulators and/or games later via main menu (under "Library" menu for Emulator settings and "Add Games" menu for emulated games).</sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription">Below is a list of emulators that Playnite can recognize and configure automatically. You can download  emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Below is a list of emulators that Playnite can recognize and configure automatically. You can download emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">You can import any emulators that are installed on your PC by clicking the 'Autodetect From Folder…' button. Playnite will search the selected folder for any known emulators and provide the option to import them. You can use this button multiple times to import emulators from different folders. Emulators will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">You can import games by clicking the 'Scan Folder Using Emulator' button. Selecting the appropriate emulator will tell Playnite which file types should be scanned and imported. You can use this button multiple times to import games from different folders. Games will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">There are no emulators selected for import. You won't be able to automatically import any emulated games without configuring emulators first. Are you sure you want to continue and exit import process?</sys:String>
@@ -854,7 +854,7 @@ Application restart is requred to finish the process. Do you want to reset setti
 
 If you want to install or uninstall additional integrations, use "Add-ons" option from main menu.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Themes Desktop</sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren">Themes Fullscren</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Themes Fullscreen</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Searching…</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">Add-on is not compatible with this version of Playnite.</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Failed to download add-on installation package.</sys:String>
