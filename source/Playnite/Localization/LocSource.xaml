@@ -795,6 +795,8 @@ Covers: {1} mega pixels
 Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Performance Warning</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Don't Show Again</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">File with extension {0} is not compatible.</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Incompatible file extension</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Selected image file might be too large for optimal performance.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">Are you sure you want to uninstall selected theme? Uninstallation will be queued to next application start.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Built-in themes can't be uninstalled.</sys:String>
