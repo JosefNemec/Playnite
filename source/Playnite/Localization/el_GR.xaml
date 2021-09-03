@@ -67,12 +67,16 @@
     <sys:String x:Key="LOCGameInstallError">Δεν είναι δυνατή η εγκατάσταση του παιχνιδιού: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Δεν είναι δυνατή η απεγκατάσταση του παιχνιδιού: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoInstallAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Δεν έχει επιλεχθεί παιχνίδι.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled"></sys:String>
+    <sys:String x:Key="LOCErrorStartupNoController"></sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ενεργοποιημένο</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Αφαίρεση</sys:String>
@@ -101,6 +105,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">Τελευταίο Παιχνίδι</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Παίχτηκαν Περισσότερο</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Μετρητής Παιχνιδιού</sys:String>
+    <sys:String x:Key="LOCFolderLabel"></sys:String>
     <sys:String x:Key="LOCNotesLabel">Σημειώσεις</sys:String>
     <sys:String x:Key="LOCAddedLabel">Προστέθηκε</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Ημερομηνίας Προσθήκης</sys:String>
@@ -116,7 +121,6 @@
     <sys:String x:Key="LOCNoLabel">Όχι</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Καλώς Ήρθατε</sys:String>
     <sys:String x:Key="LOCLocalUserLabel">Τοπικός Χρήστης</sys:String>
-    <sys:String x:Key="LOCAuthenticateLabel">Επικύρωση</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Γενικά</sys:String>
     <sys:String x:Key="LOCMediaLabel">Πολυμέσα</sys:String>
     <sys:String x:Key="LOCLinksLabel">Σύνδεσμοι</sys:String>
@@ -131,6 +135,8 @@
     <sys:String x:Key="LOCRemoveLabel">Αφαίρεση</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Λήψη</sys:String>
     <sys:String x:Key="LOCSearchLabel">Αναζήτηση</sys:String>
+    <sys:String x:Key="LOCSearchResolutionLabel"></sys:String>
+    <sys:String x:Key="LOCSearchResolutionAnyLabel"></sys:String>
     <sys:String x:Key="LOCZoomLabel">Μεγέθυνση</sys:String>
     <sys:String x:Key="LOCListViewLabel">Προβολή Λίστας</sys:String>
     <sys:String x:Key="LOCCoversLabel">Εξώφυλλα</sys:String>
@@ -164,7 +170,6 @@
     <sys:String x:Key="LOCColumns"></sys:String>
     <sys:String x:Key="LOCRow"></sys:String>
     <sys:String x:Key="LOCRows"></sys:String>
-    <sys:String x:Key="LOCGameVariablesTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">Δεν είναι δυνατή η λήψη εικονιδίου αν η εντολή Αναπαραγωγή λείπει ή έχει οριστεί διεύθυνση URL.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
@@ -178,15 +183,11 @@
     <sys:String x:Key="LOCMetaDescriptionFields">Επιλέξτε ποια πεδία πρέπει να συμπληρωθούν αυτόματα από το Playnite και ποιες πηγές θα πρέπει να χρησιμοποιηθούν για την απόκτηση των δεδομένων.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
     <!--Progess string-->
-    <sys:String x:Key="LOCProgressSteamLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressGOGLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressOriginLibImport"></sys:String>
-    <sys:String x:Key="LOCProgressBattleNetLibImport"></sys:String>
     <sys:String x:Key="LOCProgressMetadata">Λήψη metadata...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
     <sys:String x:Key="LOCProgressImportinGames"></sys:String>
+    <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
-    <sys:String x:Key="LOCProgressSteamCategoryImport"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Η ενημέρωση της βιβλιοθήκης ολοκληρώθηκε</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
     <!--Menu-->
@@ -202,6 +203,8 @@
     <sys:String x:Key="LOCMenuOpenClient">Άνοιγμα 3rd Party Client</sys:String>
     <sys:String x:Key="LOCMenuClients"></sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Ενημέρωση Βιβλιοθήκης Παιχνιδιών</sys:String>
+    <sys:String x:Key="LOCMenuCancelLibraryUpdate"></sys:String>
+    <sys:String x:Key="LOCMenuUpdateEmulatedDirs"></sys:String>
     <sys:String x:Key="LOCMenuAddGame">Προσθήκη Παιχνιδιού</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Χειροκίνητα...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Αυτόματη Σάρωση...</sys:String>
@@ -234,6 +237,7 @@
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont"></sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Θέση Πίνακα Φίλτρων</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Θέση Πίνακα Εξερεύνησης</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
@@ -244,12 +248,14 @@
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSquare"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch"></sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification"></sys:String>
     <sys:String x:Key="LOCSettingsLabel">Ρυθμίσεις</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Γενικά</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelLabel"></sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Εμφάνιση</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
@@ -260,22 +266,15 @@
     <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Αυτόματη εισαγωγή στη βιβλιοθήκη</sys:String>
-    <sys:String x:Key="LOCSettingsImportInstalledLabel">Εισαγωγή εγκατεστημένων παιχνιδιών</sys:String>
-    <sys:String x:Key="LOCSettingsConnectAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsImportUninstalledLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsImportLibraryLabel">Εισαγωγή όλων των παιχνιδιών</sys:String>
-    <sys:String x:Key="LOCSettingsImportSteamLibraryLabel">Εισαγωγή όλων των παιχνιδιών (Πρέπει να παρέχετε κλειδί δημόσιου λογαριασμού ή API)</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Μη έγκυρη θέση αρχείου βάσης δεδομένων, πρέπει να οριστεί κατάλληλη διαδρομή αρχείου.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountLibImport"></sys:String>
-    <sys:String x:Key="LOCSettingsInvalidSteamAccountCatImport"></sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Λήψη ενημερώσεων βιβλιοθήκης από 3rd party  κατά την εκκίνηση</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport"></sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized"></sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Εκκίνηση του Playnite κατά την εκκίνηση του υπολογιστή σας</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError"></sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Εκκίνηση σε Λειτουργία Πλήρους Οθόνης</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartupTooltip">Περιλαμβάνει Steam, Origin και άλλα.</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Ασύγχρονη φόρτωση εικόνων</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover"></sys:String>
@@ -287,7 +286,6 @@
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
-    <sys:String x:Key="LOCSettingsShowSteamFriendsButton"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
@@ -301,12 +299,8 @@
     <sys:String x:Key="LOCSettingsSkinFullscreen">Θέμα Πλήρους Οθόνης</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Προφίλ θέματος πλήρους οθόνης</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
-    <sys:String x:Key="LOCSettingsWhatsSteamName">Ποιο είναι το όνομα του λογαριασμού μου?</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Κατάσταση σύνδεσης:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Ρυθμίσεις Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsSteamImportMetadata"></sys:String>
-    <sys:String x:Key="LOCImportSteamCategoriesLabel"></sys:String>
-    <sys:String x:Key="LOCImportSteamLastActivityLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Καθαρισμός web cache</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Μπορεί να επιλύσει προβλήματα που συναντώνται όταν συνδέονται λογαριασμοί.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray"></sys:String>
@@ -314,20 +308,8 @@
     <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Κατά την έναρξη του παιχνιδιού:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose"></sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxy"></sys:String>
-    <sys:String x:Key="LOCSettingsGOGUseGalaxyTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarn"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportWarnTitle">Εισαγωγή κατηγοριών?</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorAccount">Δεν είναι δυνατή η εισαγωγή κατηγοριών, δεν έχει επιλεγεί ο λογαριασμός εισαγωγής.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportErrorDb">Δεν είναι δυνατή η εισαγωγή κατηγοριών, η βάση δεδομένων δεν ανοίγει.</sys:String>
-    <sys:String x:Key="LOCSettingsSteamCatImportError">Αποτυχία εισαγωγής κατηγοριών Steam: {0}</sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorAccount"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportErrorDb"></sys:String>
-    <sys:String x:Key="LOCSettingsSteamLastActivityImportError"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Αυτό θα σας αποσυνδέσει από όλες τις συνδεδεμένες υπηρεσίες. Απαιτείται επανεκκίνηση της εφαρμογής, θέλετε να προχωρήσετε?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Καθαρισμός Cache?</sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyTooltip">Απαιτείται κλειδί API για ιδιωτικούς λογαριασμούς Steam</sys:String>
-    <sys:String x:Key="LOCSettingsApiKeyUrlText">Αποκτήστε κλειδί API</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Απαιτείται επανεκκίνηση του Playnite για την εφαρμογή νέου θέματος</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Λήψη περισσότερων θεμάτων</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Δημιουργία νέου θέματος</sys:String>
@@ -342,11 +324,6 @@
     <sys:String x:Key="LOCSettingsFullscreenColumns">Αριθμός στηλών</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Αριθμός γραμμών λεπτομερής προβολής</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSource"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceImage"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceScreenshot"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceStore"></sys:String>
-    <sys:String x:Key="LOCSteamBackgroundSourceBanner"></sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Το Playnite θα χρησιμοποιήσει τα διαθέσιμα screenshots παιχνιδιών ως φόντο αντί για την εικόνα φόντου του καταστήματος.
 Δεν ισχύει αναδρομικά σε υπάρχοντα παιχνίδια.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
@@ -354,11 +331,13 @@
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetMonitor"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles"></sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus"></sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage"></sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Εμφάνιση Ρολογιού</sys:String>
+    <sys:String x:Key="LOCSettingsHideMouseCursor"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout"></sys:String>
@@ -387,7 +366,6 @@
     <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
-    <sys:String x:Key="LOCSettingsStartGameDirectly"></sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
     <sys:String x:Key="LOCStrechNone"></sys:String>
@@ -399,12 +377,10 @@
     <sys:String x:Key="LOCDockTop"></sys:String>
     <sys:String x:Key="LOCDockBottom"></sys:String>
     <sys:String x:Key="LOCImportError">Σφάλμα Εισαγωγής</sys:String>
-    <sys:String x:Key="LOCLoginChecking"></sys:String>
     <sys:String x:Key="LOCLoginRequired">Απαιτείται πιστοποίηση</sys:String>
     <sys:String x:Key="LOCLoginFailed">Η ταυτοποίηση απέτυχε</sys:String>
-    <sys:String x:Key="LOCLoggedIn"></sys:String>
-    <sys:String x:Key="LOCNotLoggedIn"></sys:String>
-    <sys:String x:Key="LOCNotLoggedInError"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Εισαγωγή Metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Λήψη Μεταδεδομένων</sys:String>
@@ -413,7 +389,7 @@
     <sys:String x:Key="LOCEmuWizardWindowTitle">Οδηγός Εισαγωγής Εξομοιωτών</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuWizardDownloadListIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
@@ -423,27 +399,16 @@
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Σάρωση…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Ρυθμίσεις Πρώτης Εκκίνησης</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocDefault"></sys:String>
-    <sys:String x:Key="LOCFirstDBLocCustom"></sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Ενσωμάτωση Βιβλιοθήκης</sys:String>
     <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstSteamIntegration">Steam ενσωμάτωση</sys:String>
-    <sys:String x:Key="LOCFirstOriginIntegration">Origin ενσωμάτωση</sys:String>
-    <sys:String x:Key="LOCFirstGOGIntegration">GOG ενσωμάτωση</sys:String>
-    <sys:String x:Key="LOCFirstBattleNetIntegration">Battle.net ενσωμάτωση</sys:String>
-    <sys:String x:Key="LOCFirstUplayIntegration">Uplay ενσωμάτωση</sys:String>
-    <sys:String x:Key="LOCFirstSteamImportCategories">Εισαγωγή κατηγοριών από λογαριασμό:</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesTitle">Άλλα παιχνίδια</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesText">Κάντε κλικ στο παρακάτω κουμπί για να εισάγετε άλλα εγκατεστημένα παιχνίδια ή για να τα αναζητήσετε με μη αυτόματο τρόπο (συμπεριλαμβανομένων των παιχνιδιών του Windows Store).</sys:String>
-    <sys:String x:Key="LOCFirstOtherGamesImportButton">Εισαγωγή Παιχνιδιών</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Η διαμόρφωση ολοκληρώθηκε</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstConfigOpenEmuImport"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayout"></sys:String>
-    <sys:String x:Key="LOCFirstConfigGridViewLayoutDesc"></sys:String>
+    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Ρυθμίστε πλατφόρμες και εξομοιωτές</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
@@ -544,18 +509,9 @@
     <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSteamCategoryImportError">Αποτυχία εισαγωγής κατηγοριών Steam.</sys:String>
-    <sys:String x:Key="LOCBnetInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών Battle.net.</sys:String>
-    <sys:String x:Key="LOCSteamInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών του Steam.</sys:String>
-    <sys:String x:Key="LOCGOGInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών GOG.</sys:String>
-    <sys:String x:Key="LOCOriginInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών Origin.</sys:String>
-    <sys:String x:Key="LOCUplayInstalledImportError">Αποτυχία εισαγωγής εγκατεστημένων παιχνιδιών Uplay.</sys:String>
-    <sys:String x:Key="LOCBnetLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης Battle.net.</sys:String>
-    <sys:String x:Key="LOCSteamLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης Steam.</sys:String>
-    <sys:String x:Key="LOCGOGLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης GOG.</sys:String>
-    <sys:String x:Key="LOCOriginLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης Battle.net.</sys:String>
-    <sys:String x:Key="LOCUplayLibraryImportError">Αποτυχία λήψης της βιβλιοθήκης Uplay.</sys:String>
+
     <sys:String x:Key="LOCLibraryImportError"></sys:String>
+    <sys:String x:Key="LOCLibraryImportEmulatedError"></sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Δεν είναι δυνατή η αναζήτηση παιχνιδιών στο επιλεγμένο προφίλ εξομοιωτή. Το προφίλ δεν περιέχει επεκτάσεις αρχείων ή πλατφόρμες.</sys:String>
     <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
@@ -570,6 +526,7 @@
     <sys:String x:Key="LOCUseExeIcon">Χρησιμοποιήστε το εικονίδιο του exe</sys:String>
     <sys:String x:Key="LOCImageURL">URL εικόνας</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Προσθήκη συνδέσμου</sys:String>
+    <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Αποθήκευση Αλλαγών</sys:String>
     <sys:String x:Key="LOCPlayAction"></sys:String>
     <sys:String x:Key="LOCAddPlayAction"></sys:String>
@@ -609,15 +566,8 @@
     <sys:String x:Key="LOCChange">αλλαγή</sys:String>
     <sys:String x:Key="LOCAdvanced">Προχωρημένα</sys:String>
     <sys:String x:Key="LOCNever">Ποτέ</sys:String>
-    <sys:String x:Key="LOCCompletionStatusNotPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayed"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusBeaten"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusCompleted"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlaying"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusAbandoned"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusOnHold"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlanToPlay"></sys:String>
     <sys:String x:Key="LOCCompletionStatus">Κατάσταση ολοκλήρωσης</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses"></sys:String>
     <sys:String x:Key="LOCUserScore">Βαθμολογία χρηστών</sys:String>
     <sys:String x:Key="LOCCriticScore">βαθμολογία κριτικών</sys:String>
     <sys:String x:Key="LOCCommunityScore">Βαθμολογία κοινότητας</sys:String>
@@ -653,6 +603,7 @@
     <sys:String x:Key="LOCDefault"></sys:String>
     <sys:String x:Key="LOCSelect"></sys:String>
     <sys:String x:Key="LOCSelectAll"></sys:String>
+    <sys:String x:Key="LOCDeselectAll"></sys:String>
     <sys:String x:Key="LOCFirst"></sys:String>
     <sys:String x:Key="LOCRandom">Τυχαίο</sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
@@ -667,6 +618,7 @@
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCIsPlayAction"></sys:String>
     <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Επιλέξτε Παιχνίδια για εισαγωγή</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">αναζήτηση metadata</sys:String>
@@ -694,6 +646,7 @@
     <sys:String x:Key="LOCStatsFiltered"></sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
     <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
+    <sys:String x:Key="LOCTestScript"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame">Προσθήκη στα αγαπημένα</sys:String>
@@ -720,6 +673,7 @@
     <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Η ανάπτυξη του Playnite υποστηρίζεται από τους:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
@@ -779,6 +733,8 @@
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Να μην εμφανιστεί ξανά</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
@@ -798,51 +754,164 @@
     <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
     <sys:String x:Key="LOCOverviewLabel"></sys:String>
     <sys:String x:Key="LOCSidebar"></sys:String>
+    <sys:String x:Key="LOCToolsShowOnSidebar"></sys:String>
+    <sys:String x:Key="LOCSettingsReset"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsForDevelopers"></sys:String>
+    <sys:String x:Key="LOCSettingsExternalExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsNewExternalExtensionBox"></sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
     <sys:String x:Key="LOCCommonLinksForum"></sys:String>
     <sys:String x:Key="LOCCommonLinksNews"></sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage"></sys:String>
-    <!--itch.io-->
-    <sys:String x:Key="LOCItchioSignInNotif"></sys:String>
-    <sys:String x:Key="LOCItchioSignInWaitMessage"></sys:String>
-    <sys:String x:Key="LOCItchioClientNotInstalledError"></sys:String>
-    <!--GOG-->
-    <sys:String x:Key="LOCGOGUseLogin"></sys:String>
-    <sys:String x:Key="LOCGOGUseAccountName">Όνομα Λογαριασμού</sys:String>
-    <sys:String x:Key="LOCGOGAccountSyncDescription" xml:space="preserve"></sys:String>
-    <!--Steam-->
-    <sys:String x:Key="LOCSteamCustomUrlName"></sys:String>
-    <sys:String x:Key="LOCSteamLoggedInUser"></sys:String>
-    <sys:String x:Key="LOCSteamRequiresApiKey"></sys:String>
-    <sys:String x:Key="LOCSteamLinksCommunityHub">Κέντρο Κοινότητας</sys:String>
-    <sys:String x:Key="LOCSteamLinksDiscussions"></sys:String>
-    <sys:String x:Key="LOCSteamLinksGuides">Οδηγοί</sys:String>
-    <sys:String x:Key="LOCSteamLinksWorkshop">Εργαστήριο</sys:String>
-    <sys:String x:Key="LOCSteamUseVerticalCovers"></sys:String>
-    <sys:String x:Key="LOCSteamImportFreeSubGames"></sys:String>
     <sys:String x:Key="LOCFullscreenFirstTimeError">Η αρχική εγκατάσταση δεν ολοκληρώθηκε. Το Playnite θα επανεκκινήσει τώρα σε Λειτουργία Επιφάνειας Εργασίας για να ολοκληρώσετε τη διαδικασία.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Έπαιξες Πρόσφατα</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Αγαπημένα</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Παίχτηκαν Περισσότερο</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Όλα</sys:String>
     <sys:String x:Key="LOCGameListFiltered">Υπάρχουν φίλτρα που εφαρμόζονται.</sys:String>
+    <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Αποτελέσματα αναζήτησης για:</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Υπάρχει ήδη ένα στοιχείο με το ίδιο όνομα.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Περιορισμός επιλογής στο τρέχων φίλτρο</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Επιλογή άλλου</sys:String>
-    <!--IGDB-->
-    <sys:String x:Key="LOCIgdbUseScreenshotIfNecessary">Χρήση στιγμιότυπων οθόνης (screenshots) εάν το γραφικό δεν είναι διαθέσιμο</sys:String>
-    <sys:String x:Key="LOCIgdbMultipleArtworkOptionsTitle">Εάν υπάρχουν διαθέσιμες πολλές εικόνες, τότε θα χρησιμοποιηθεί:</sys:String>
-    <sys:String x:Key="LOCIgdbSelectBackgroundTitle"></sys:String>
-    <!--Humble-->
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGames"></sys:String>
-    <sys:String x:Key="LOCHumbleImportTroveGames"></sys:String>
-    <sys:String x:Key="LOCHumbleIgnoreThirdPartyStoreGamesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFree"></sys:String>
-    <sys:String x:Key="LOCHumbleImportThirdPartyDrmFreeTooltip"></sys:String>
-    <!--Xbox-->
-    <sys:String x:Key="LOCXboxXboxAppClientPriorityLaunch">Εκκίνηση της εφαρμογής Xbox Pass αντί του Microsoft Store κατά την εκκίνηση του πελάτη</sys:String>
-    <sys:String x:Key="LOCXboxImport360Games">Εισαγωγή παιχνιδιών Xbox 360</sys:String>
-    <sys:String x:Key="LOCXboxImportXboneGames">Εισαγωγή παιχνιδιών Xbox One</sys:String>
+    <sys:String x:Key="LOCMenuAddons"></sys:String>
+    <sys:String x:Key="LOCExtensionsInstalled"></sys:String>
+    <sys:String x:Key="LOCExtensionsSettings"></sys:String>
+    <sys:String x:Key="LOCExtensionsBrowse"></sys:String>
+    <sys:String x:Key="LOCExtensionsUpdates"></sys:String>
+    <sys:String x:Key="LOCExtensionsUpdatesCount"></sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo"></sys:String>
+    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop"></sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren"></sys:String>
+    <sys:String x:Key="LOCAddonsSearching"></sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible"></sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed"></sys:String>
+    <sys:String x:Key="LOCAddonErrorManifestDownloadError"></sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
+    <sys:String x:Key="LOCAddonInstall"></sys:String>
+    <sys:String x:Key="LOCAddonUninstall"></sys:String>
+    <sys:String x:Key="LOCAddonAlreadyInstalled"></sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
+    <sys:String x:Key="LOCAddonChangelogNotAvailavble"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusFailed"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
+    <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
+    <sys:String x:Key="LOCAddonLicenseWindowTitle"></sys:String>
+    <sys:String x:Key="LOCLicenseAccept"></sys:String>
+    <sys:String x:Key="LOCLicenseDecline"></sys:String>
+    <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
+    <sys:String x:Key="LOCSelectActionTitle"></sys:String>
+    <sys:String x:Key="LOCActionTrackingMode"></sys:String>
+    <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
+    <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
+    <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
+    <sys:String x:Key="LOCGameActionTypeScript"></sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
+    <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
+    <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
+    <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
+    <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeUniform"></sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly"></sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
+    <sys:String x:Key="LOCGridViewScrollAmountModifier"></sys:String>
+    <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
+    <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
+    <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem"></sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
+    <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
+    <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
+    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
+    <sys:String x:Key="LOCInPast7Days"></sys:String>
+    <sys:String x:Key="LOCInPast31Days"></sys:String>
+    <sys:String x:Key="LOCInPast365Days"></sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo"></sys:String>
+    <sys:String x:Key="LOCConfigure"></sys:String>
+    <sys:String x:Key="LOCFilterPresetSave"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSize"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizeSmall"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
+    <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
+    <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
+    <sys:String x:Key="LOCErrorAudioInterfaceInit"></sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi"></sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionGeneral"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionVisuals"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionAudio"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionMenus"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSection"></sys:String>
+    <sys:String x:Key="LOCGameIsStarting"></sys:String>
+    <sys:String x:Key="LOCGameIsRunning"></sys:String>
+    <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingAlternative"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSelectFileTooltip"></sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip"></sys:String>
+    <sys:String x:Key="LOCStartupScript"></sys:String>
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameActionSelectOnStart"></sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
+    <sys:String x:Key="LOCEmulatorSpec"></sys:String>
+    <sys:String x:Key="LOCPlatformSpec"></sys:String>
+    <sys:String x:Key="LOCRegionSpec"></sys:String>
+    <sys:String x:Key="LOCEmulatorPreScriptDescription"></sys:String>
+    <sys:String x:Key="LOCEmulatorPostScriptDescription"></sys:String>
+    <sys:String x:Key="LOCEmulatorStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound"></sys:String>
+    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound"></sys:String>
+    <sys:String x:Key="LOCSplitEmuImportSplitGames"></sys:String>
+    <sys:String x:Key="LOCSplitEmuImportMergeGames"></sys:String>
+    <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
+    <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
+    <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
+    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
+    <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
+    <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader"></sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuAddScanner"></sys:String>
+    <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
+    <sys:String x:Key="LOCStartScan"></sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
 </ResourceDictionary>
