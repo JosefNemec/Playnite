@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
@@ -111,6 +113,8 @@ namespace Playnite.DesktopApp.Controls
                 ).ToString());
             }
 
+            this.Loaded += DdItemListSelectionBox_Loaded;
+
             UpdateTextStatus();
         }
 
@@ -126,6 +130,24 @@ namespace Playnite.DesktopApp.Controls
             {
                 TextFilterString.Text = ItemsList?.AsString;
             }
+        }
+
+        private void DdItemListSelectionBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (TextSearchBox != null)
+            {
+                BindingTools.SetBinding(TextSearchBox,
+                    SearchBox.TextProperty,
+                    ItemsList,
+                    nameof(SelectableDbItemList.SearchText),
+                    BindingMode.TwoWay,
+                    delay: 100);
+            }
+        }
+
+        public override void ButtonCheckedOnlyAction(object sender, RoutedEventArgs e)
+        {
+            ItemsList.SearchCheckedState = (bool)((ToggleButton)sender).IsChecked;
         }
     }
 }

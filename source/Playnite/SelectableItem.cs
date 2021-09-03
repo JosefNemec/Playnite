@@ -90,6 +90,17 @@ namespace System
             }
         }
 
+        private bool isVisible = true;
+        public bool IsVisible
+        {
+            get => isVisible;
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
         private TItem item;
         public TItem Item
         {
@@ -490,6 +501,36 @@ namespace System
     {
         private readonly bool includeNoneItem;
 
+        private bool searchCheckedState = false;
+        public bool SearchCheckedState
+        {
+            get
+            {
+                return searchCheckedState;
+            }
+
+            set
+            {
+                searchCheckedState = value;
+                SearchItems();
+            }
+        }
+
+        private string searchText = string.Empty;
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+
+            set
+            {
+                searchText = value;
+                SearchItems();
+            }
+        }
+
         public SelectableDbItemList(
             IEnumerable<DatabaseObject> collection,
             IEnumerable<Guid> selected = null,
@@ -612,6 +653,22 @@ namespace System
         public bool ContainsIds(IEnumerable<Guid> ids)
         {
             return Items.Select(a => a.Item.Id).Contains(ids);
+        }
+
+        private void SearchItems()
+        {
+            Items.FindAll(x => !(bool)x.IsVisible).ForEach(x => x.IsVisible = true);
+
+            if (SearchCheckedState)
+            {
+                Items.FindAll(x => !(bool)x.Selected || !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                    .ForEach(x => x.IsVisible = false);
+            }
+            else
+            {
+                Items.FindAll(x => !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                    .ForEach(x => x.IsVisible = false);
+            }
         }
 
         public override string ToString()

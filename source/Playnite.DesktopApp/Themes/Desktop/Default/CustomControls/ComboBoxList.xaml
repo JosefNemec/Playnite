@@ -47,7 +47,27 @@
                     <Border Background="{DynamicResource PopupBackgroundBrush}"
                             BorderThickness="{DynamicResource PopupBorderThickness}"
                             BorderBrush="{DynamicResource PopupBorderBrush}">
-                        <ItemsControl x:Name="PART_ItemsPanel" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Margin="5"
+                                  Visibility="{TemplateBinding UseSearchBox, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <SearchBox Grid.Column="0" x:Name="PART_SearchBox" Margin="-3,-3,5,-3" />
+
+                                <ToggleButton Grid.Column="1" Content="&#xf00d;"
+                                              x:Name="PART_CheckedOnly"
+                                              ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
+                                              FontFamily="{DynamicResource FontIcoFont}" />
+                            </Grid>
+                            <ItemsControl x:Name="PART_ItemsPanel" Grid.Row="1" />
+                        </Grid>
                     </Border>
                 </Popup>
             </Grid>
@@ -56,6 +76,7 @@
 
     <Style x:Key="ComboBoxListItemStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
         <Setter Property="Padding" Value="5" />
+        <Setter Property="Visibility" Value="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Style>
     
     <Style TargetType="{x:Type ComboBoxList}">
