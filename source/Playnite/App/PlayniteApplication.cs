@@ -241,7 +241,7 @@ namespace Playnite
                 var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
                 if (theme != ThemeManager.DefaultTheme.Name)
                 {
-                    customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.Id == theme);
+                    customTheme = ThemeManager.GetAvailableThemes(mode).Where(a => a.Id == theme).OrderByDescending(a => a.Version).FirstOrDefault();
                     if (customTheme == null)
                     {
                         logger.Error($"Failed to apply theme {theme}, theme not found.");
