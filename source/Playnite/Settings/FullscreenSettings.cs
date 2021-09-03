@@ -495,7 +495,7 @@ namespace Playnite
             }
         }
 
-        private float interfaceVolume = 0.3f;
+        private float interfaceVolume = 0.5f;
         public float InterfaceVolume
         {
             get
