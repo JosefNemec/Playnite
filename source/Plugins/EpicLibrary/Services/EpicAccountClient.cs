@@ -261,8 +261,9 @@ namespace EpicLibrary.Services
 
         private string getExcahngeToken(string sid)
         {
-            using (var handler = new HttpClientHandler())
-            using (var httpClient = new HttpClient())
+            var cookieContainer = new CookieContainer();
+            using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
+            using (var httpClient = new HttpClient(handler))
             {
                 httpClient.DefaultRequestHeaders.Clear();
                 httpClient.DefaultRequestHeaders.Add("X-Epic-Event-Action", "login");
@@ -279,6 +280,17 @@ namespace EpicLibrary.Services
                     var match = Regex.Match(cookies.First(), @"=(.+);");
                     var xsrf = match.Groups[1].Value;
                     httpClient.DefaultRequestHeaders.Add("X-XSRF-TOKEN", xsrf);
+                    var country = "US";
+                    try
+                    {
+                        country = System.Globalization.CultureInfo.CurrentCulture.Name.Split(new char[] { '-' }).Last();
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, $"Failed to get country for auth request.");
+                    }
+
+                    cookieContainer.Add(new Uri("https://www.epicgames.com"), new Cookie("EPIC_COUNTRY", country));
                     resp = httpClient.PostAsync("https://www.epicgames.com/id/api/exchange/generate", null).GetAwaiter().GetResult();
                     var respContent = resp.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                     return Serialization.FromJson<Dictionary<string, string>>(respContent)["code"];
