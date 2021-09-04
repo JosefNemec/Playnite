@@ -99,11 +99,17 @@ namespace Playnite.DesktopApp.ViewModels
         public DiffItem Background { get; } = new DiffItem();
 
         public object CurrentIcon { get; set; }
+        public string CurrentIconDimensions { get; set; }
         public object NewIcon { get; set; }
+        public string NewIconDimensions { get; set; }
         public object CurrentCover { get; set; }
+        public string CurrentCoverDimensions { get; set; }
         public object NewCover { get; set; }
+        public string NewCoverDimensions { get; set; }
         public object CurrentBackground { get; set; }
+        public string CurrentBackgroundDimensions { get; set; }
         public object NewBackground { get; set; }
+        public string NewBackgroundDimensions { get; set; }
 
         public RelayCommand<object> ConfirmCommand
         {
@@ -218,21 +224,27 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Icon.Enabled = true;
                 CurrentIcon = ImageSourceManager.GetImage(CurrentGame.Icon, false, new BitmapLoadProperties(256, 256));
+                CurrentIconDimensions = GetImageProperties(CurrentGame.Icon)?.Item1;
                 NewIcon = ImageSourceManager.GetImage(newData.Icon.Path, false, new BitmapLoadProperties(256, 256));
+                NewIconDimensions = GetImageProperties(newData.Icon.Path)?.Item1;
             }
 
             if (diffFields.Contains(GameField.CoverImage))
             {
                 Cover.Enabled = true;
                 CurrentCover = ImageSourceManager.GetImage(CurrentGame.CoverImage, false, new BitmapLoadProperties(900, 900));
+                CurrentCoverDimensions = GetImageProperties(CurrentGame.CoverImage)?.Item1;
                 NewCover = ImageSourceManager.GetImage(newData.CoverImage.Path, false, new BitmapLoadProperties(900, 900));
+                NewCoverDimensions = GetImageProperties(newData.CoverImage.Path)?.Item1;
             }
 
             if (diffFields.Contains(GameField.BackgroundImage))
             {
                 Background.Enabled = true;
                 CurrentBackground = ImageSourceManager.GetImage(CurrentGame.BackgroundImage, false, new BitmapLoadProperties(1920, 1080));
+                CurrentBackgroundDimensions = GetImageProperties(CurrentGame.BackgroundImage)?.Item1;
                 NewBackground = ImageSourceManager.GetImage(newData.BackgroundImage.Path, false, new BitmapLoadProperties(1920, 1080));
+                NewBackgroundDimensions = GetImageProperties(newData.BackgroundImage.Path)?.Item1;
             }
         }
 
@@ -389,6 +401,28 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             return res;
+        }
+
+        private Tuple<string, ImageProperties> GetImageProperties(string image)
+        {
+            try
+            {
+                var imagePath = ImageSourceManager.GetImagePath(image);
+                if (!imagePath.IsNullOrEmpty())
+                {
+                    var props = Images.GetImageProperties(imagePath);
+                    return new Tuple<string, ImageProperties>($"{props?.Width}x{props.Height}px", props);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to get metadata from image  {image}");
+                return null;
+            }
         }
 
         private void SelectAllCurrent()

@@ -17,21 +17,9 @@ $global:ErrorActionPreference = "Stop"
 & .\common.ps1
 
 $global:gitOutPath = "gitout.txt"
-$changeBaseLogDir = "..\source\Tools\Playnite.Toolbox\Templates\Themes\Changelog"
+$changeBaseLogDir = "..\source\Tools\Playnite.Toolbox\Templates\SDK\Changelog"
 $changeLogDir = Join-Path $changeBaseLogDir "$OldVersion-$NewVersion"
 New-EmptyFolder $changeLogDir
-
-function SaveXamlile()
-{
-    param(
-        $commitHash,
-        $filePath,
-        $targetPath
-    )
-
-    New-FolderFromFilePath $targetPath
-    Start-Process "git" "--no-pager show $($commitHash):$($filePath)" -NoNewWindow -Wait -RedirectStandardOutput $targetPath
-}
 
 function SaveDiffFile()
 {
@@ -43,7 +31,6 @@ function SaveDiffFile()
 
     New-FolderFromFilePath $targetPath
     Start-Process "git" "--no-pager show $($commitHash):$($filePath)" -NoNewWindow -Wait -RedirectStandardOutput $targetPath
-    (Get-FileHash $targetPath -Algorithm MD5).Hash | Out-File $targetPath -NoNewline
 }
 
 function GetFileList
@@ -68,34 +55,18 @@ function ExportThemeFiles
     $files = GetFileList $commitHash $themeRootPath
     foreach ($file in $files)
     {
-        $subPath = $file -replace ".+(DesktopApp|FullscreenApp)/Themes/", ""
-        $subPath = $subPath.Replace("/Default/", "/")
-
-        if ($file -match "theme\.yaml$")
-        {
-            continue
-        }
-
-        if ($subPath -match "\.xaml$")
-        {
-            SaveXamlile $OldCommit $file (Join-Path $destination $subPath)
-        }
-        else
-        {            
-            SaveDiffFile $OldCommit $file (Join-Path $destination $subPath)
-        }
+        $subPath = $file -replace "source/PlayniteSDK/", ""        
+        SaveDiffFile $OldCommit $file (Join-Path $destination $subPath)        
     }
 }
 
 try
 {
     Start-Process "git" "--no-pager diff --name-status $OldCommit $NewCommit" -NoNewWindow -Wait -RedirectStandardOutput $gitOutPath
-    $changes = Get-Content $gitOutPath | Where { $_ -match "(DesktopApp|FullscreenApp)/Themes/(Desktop|Fullscreen)/Default" -and  $_ -notmatch "theme\.yaml$" }
+    $changes = Get-Content $gitOutPath | Where { $_ -match "source/PlayniteSDK" -and  $_ -notmatch "\.csproj$" }
     $changes | Out-File (Join-Path $changeBaseLogDir "$OldVersion-$NewVersion.txt")
 
-    ExportThemeFiles $OldCommit "../source/Playnite.DesktopApp/Themes/Desktop/Default" $changeLogDir
-    ExportThemeFiles $OldCommit "../source/Playnite.FullscreenApp/Themes/Fullscreen/Default"  $changeLogDir
-    
+    ExportThemeFiles $OldCommit "../source/PlayniteSDK" $changeLogDir    
     New-ZipFromDirectory $changeLogDir (Join-Path $changeBaseLogDir "$OldVersion.zip")    
     
     $changeList = ""
@@ -105,14 +76,12 @@ try
         {
             $changeFileName = $change -replace "M\s+", ""
             $newPath = Join-Path ".." $changeFileName
-            $oldPath = Join-Path $changeLogDir ($change -replace "M\s+source/Playnite.(Desktop|Fullscreen)App/Themes/", "")
-            $oldPath = $oldPath -replace "Default\\", ""
-            
+            $oldPath = Join-Path $changeLogDir ($change -replace "M\s+source/PlayniteSDK/", "")
             $htmlDiffFile = ($changeFileName.Replace("/","_") + ".html")
             $htmlDiffOut = Join-Path $DirffOutDir $htmlDiffFile
-            StartAndWait $WinMergePath "`"$oldPath`" `"$newPath`" -minimize -noninteractive -u -cfg ReportFiles/ReportType=2 -or `"$htmlDiffOut`"" | Out-Null
 
-            $link = "https://playnite.link/themechangelog/$OldVersion-$NewVersion/$htmlDiffFile"
+            StartAndWait $WinMergePath "`"$oldPath`" `"$newPath`" -minimize -noninteractive -u -cfg ReportFiles/ReportType=2 -or `"$htmlDiffOut`"" | Out-Null
+            $link = "https://playnite.link/sdkchangelog/$OldVersion-$NewVersion/$htmlDiffFile"
             $changeList += ("[$change]($link)" + "  `n")
         }
         else
@@ -121,7 +90,7 @@ try
         }
     }
 
-    $changeList | Out-File "themediffchangelist.txt" -Encoding utf8
+    $changeList | Out-File "sdkdiffchangelist.txt" -Encoding utf8
 }
 finally
 {

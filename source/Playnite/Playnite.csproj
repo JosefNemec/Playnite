@@ -237,6 +237,7 @@
     <Compile Include="Database\Collections\ImportExclusionsCollection.cs" />
     <Compile Include="Database\Collections\FilterPresetsCollection.cs" />
     <Compile Include="Database\Collections\CompletionStatusesCollection.cs" />
+    <Compile Include="Database\OldModels\Ver2.cs" />
     <Compile Include="Emulators\DatModels.cs" />
     <Compile Include="Emulators\Emulation.cs" />
     <Compile Include="Emulators\EmulationDatabase.cs" />
@@ -447,7 +448,6 @@
     <Compile Include="Settings\AutoClientShutdownSettings.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
-    <Compile Include="Settings\ImportExclusionList.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />
     <Compile Include="Settings\PlaynitePaths.cs" />
     <Compile Include="PipeServer.cs" />

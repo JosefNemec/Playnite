@@ -13,6 +13,9 @@ List of currently supported languages can be seen [here](https://github.com/Jose
 
 Localization files must contain proper `ResourceDictionary` objects, otherwise they won't be loaded. You can see examples of localization files [here](https://github.com/JosefNemec/Playnite/tree/master/source/Playnite/Localization).
 
+> [!WARNING]
+> String keys are shared between all extensions so make sure you use unique keys for your extension if there's a possibility of a conflict.
+
 Getting localized strings
 ---------------------
 

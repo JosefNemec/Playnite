@@ -77,6 +77,7 @@
     <Compile Include="Models\GameRom.cs" />
     <Compile Include="Models\GameScannerConfig.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\ImportExclusionList.cs" />
     <Compile Include="Models\InstallationStatus.cs" />
     <Compile Include="Models\PastTimeSegment.cs" />
     <Compile Include="Models\PlaytimeCategory.cs" />

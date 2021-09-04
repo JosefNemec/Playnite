@@ -163,6 +163,11 @@ namespace Playnite.SDK
         IItemCollection<CompletionStatus> CompletionStatuses { get; }
 
         /// <summary>
+        /// Gets collection of import exclusions.
+        /// </summary>
+        IItemCollection<ImportExclusionItem> ImportExclusions { get; }
+
+        /// <summary>
         /// Gets value indicating whether database is opened.
         /// </summary>
         bool IsOpen { get; }

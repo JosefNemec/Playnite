@@ -263,7 +263,16 @@ namespace Playnite.DesktopApp.ViewModels
                         });
                     }
 
-                    SelectedIndex = Pages.Finish;
+                    if (selectedPlugins.HasItems())
+                    {
+                        SelectedIndex++;
+                        SetPluginConfiguration(selectedPlugins[0]);
+                    }
+                    else
+                    {
+                        SelectedIndex = Pages.Finish;
+                    }
+
                     return;
                 }
                 else

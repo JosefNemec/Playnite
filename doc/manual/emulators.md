@@ -65,7 +65,9 @@ Following example show how to configure `snex9x` emulator:
 Game import support
 ---------------------
 
-To import a game you need configure a scanner first. How games are imported is controller by an emulator and its selected profile. Built-in emulators/profiles use several different method how to detect a game. Custom profiles only match a game by a file name and file extension.
+To import a game you need configure a scanner first. How games are imported is controller by an emulator and its selected profile. Built-in emulators/profiles use several different method how to detect a game.
+
+Custom profiles primarily match games by specified file extensions. If you want to increase accuracy of the import, make sure you also assign correct platforms to the profile and that those platforms have [platform specification](libraryManager.md#platform-specification) assigned to them.
 
 Playnite by default groups multi-disc games under one game entry. You can alternatively split or merge these via right-click menu after selecting games on import list. Right-click menu also gives you an ability to change platform and region in bulk.
 
