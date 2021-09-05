@@ -376,13 +376,13 @@
   IgdbId: 6
   Emulators: [pcem, scummvm]
 
-- Name: Linux
-  Id: linux
+- Name: PC (Linux)
+  Id: pc_linux
   IgdbId: 3
   Emulators: []
 
-  - Name: Mac
-  Id: mac
+  - Name: Macintosh
+  Id: macintosh
   IgdbId: 14
   Emulators: []
 
