@@ -381,7 +381,7 @@
   IgdbId: 3
   Emulators: []
 
-  - Name: Macintosh
+- Name: Macintosh
   Id: macintosh
   IgdbId: 14
   Emulators: []
