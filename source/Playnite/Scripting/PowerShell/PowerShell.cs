@@ -34,7 +34,7 @@ namespace Playnite.Scripting.PowerShell
         public PowerShellRuntime(string runspaceName = "PowerShell")
         {
             initialSessionState = InitialSessionState.CreateDefault();
-            initialSessionState.ExecutionPolicy = ExecutionPolicy.Unrestricted;
+            initialSessionState.ExecutionPolicy = ExecutionPolicy.Bypass;
             initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;
             powershell = System.Management.Automation.PowerShell.Create(initialSessionState);
             runspace = powershell.Runspace;
