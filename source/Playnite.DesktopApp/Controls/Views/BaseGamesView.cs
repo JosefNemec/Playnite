@@ -113,9 +113,12 @@ namespace Playnite.DesktopApp.Controls.Views
 
                 ScrollToSelectedBehavior.SetEnabled(ListGames, true);
 
-                ListGames.InputBindings.Add(new KeyBinding(mainModel.EditSelectedGamesCommand, mainModel.EditSelectedGamesCommand.Gesture));
-                ListGames.InputBindings.Add(new KeyBinding(mainModel.RemoveSelectedGamesCommand, mainModel.RemoveSelectedGamesCommand.Gesture));
-                ListGames.InputBindings.Add(new KeyBinding(mainModel.StartSelectedGameCommand, mainModel.StartSelectedGameCommand.Gesture));
+                if (!DesignerProperties.GetIsInDesignMode(this))
+                {
+                    ListGames.InputBindings.Add(new KeyBinding(mainModel.EditSelectedGamesCommand, mainModel.EditSelectedGamesCommand.Gesture));
+                    ListGames.InputBindings.Add(new KeyBinding(mainModel.RemoveSelectedGamesCommand, mainModel.RemoveSelectedGamesCommand.Gesture));
+                    ListGames.InputBindings.Add(new KeyBinding(mainModel.StartSelectedGameCommand, mainModel.StartSelectedGameCommand.Gesture));
+                }
 
                 ListGames.SelectionMode = SelectionMode.Extended;
                 VirtualizingPanel.SetCacheLengthUnit(ListGames, VirtualizationCacheLengthUnit.Item);
