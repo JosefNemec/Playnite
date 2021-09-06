@@ -378,7 +378,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (scanRes.Error != null)
             {
-                dialogs.ShowErrorMessage(LOC.EmulatedGameScanFailed + "\n" + scanRes.Error.Message, "");
+                dialogs.ShowErrorMessage(resources.GetString(LOC.EmulatedGameScanFailed) + "\n" + scanRes.Error.Message, "");
                 IsScanSetup = true;
             }
             else
