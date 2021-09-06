@@ -418,6 +418,9 @@ namespace Playnite.Database
                             PlatformsCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Platform, Platform>(dir, (oldPlat, newPlat) =>
                             {
+                                newPlat.Icon = oldPlat.Icon;
+                                newPlat.Cover = oldPlat.Cover;
+                                newPlat.Background = oldPlat.Background;
                                 if (newPlat.Name == "PC")
                                 {
                                     newPlat.Name = "PC (Windows)";
