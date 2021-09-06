@@ -733,17 +733,19 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UseGameActionsChanges)
                 {
-                    game.GameActions = EditingGame.GameActions;
+                    // Get clone here, because original collection has some WPF bound collection view source that causes #2443
+                    // This happens even after unloading game edit view, which makes no sense.
+                    game.GameActions = EditingGame.GameActions?.GetClone();
                 }
 
                 if (UseLinksChanges)
                 {
-                    game.Links = EditingGame.Links;
+                    game.Links = EditingGame.Links?.GetClone();
                 }
 
                 if (UseRomsChanges)
                 {
-                    game.Roms = EditingGame.Roms;
+                    game.Roms = EditingGame.Roms?.GetClone();
                 }
 
                 if (UseIconChanges)
@@ -926,7 +928,7 @@ namespace Playnite.DesktopApp.ViewModels
                     if (!compatibleExtensions.Contains(imageExtension))
                     {
                         playniteApi.Dialogs.ShowErrorMessage(string.Format(
-                            resources.GetString("LOCIncompatibleDragAndDropExtensionError"), imageExtension), 
+                            resources.GetString("LOCIncompatibleDragAndDropExtensionError"), imageExtension),
                             resources.GetString("LOCIncompatibleDragAndDropExtensionErrorTitle"));
                     }
                     else if (File.Exists(path))
@@ -972,7 +974,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropCover(DragEventArgs args)
         {
-            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif" }; 
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif" };
             var path = PrepareImagePath(GetDroppedImage(args, compatibleExtensions), tempCoverFileName);
             if (!string.IsNullOrEmpty(path))
             {
