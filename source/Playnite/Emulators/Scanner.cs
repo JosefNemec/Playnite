@@ -167,7 +167,7 @@ namespace Playnite.Emulators
 
             var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
-            var builtinProfileDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtinProfile.BuiltInProfileName);
+            var builtinProfileDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
             if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
@@ -230,7 +230,7 @@ namespace Playnite.Emulators
                             assignedPlatforms.AddMissing(platform);
                         }
                     }
-                    else if (builtinProfile != null)
+                    else if (builtinProfileDef != null)
                     {
                         assignedPlatforms.AddMissing(Emulation.GetPlatform(builtinProfileDef.Platforms.First()));
                     }
