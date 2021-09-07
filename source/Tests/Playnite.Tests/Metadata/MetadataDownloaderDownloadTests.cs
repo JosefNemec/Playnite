@@ -381,12 +381,12 @@ namespace Playnite.Tests.Metadata
                 {
                     Name = "Game",
                     GameId = "storeId",
-                    Genres = new List<MetadataProperty> { new MetadataNameProperty("Genre") },
+                    Genres = new HashSet<MetadataProperty> { new MetadataNameProperty("Genre") },
                     ReleaseDate = new ReleaseDate(2012, 6, 6),
-                    Developers = new List<MetadataProperty> { new MetadataNameProperty("Developer") },
-                    Publishers = new List<MetadataProperty> { new MetadataNameProperty("Publisher") },
-                    Tags = new List<MetadataProperty> { new MetadataNameProperty("Tag") },
-                    Features = new List<MetadataProperty> { new MetadataNameProperty("Feature") },
+                    Developers = new HashSet<MetadataProperty> { new MetadataNameProperty("Developer") },
+                    Publishers = new HashSet<MetadataProperty> { new MetadataNameProperty("Publisher") },
+                    Tags = new HashSet<MetadataProperty> { new MetadataNameProperty("Tag") },
+                    Features = new HashSet<MetadataProperty> { new MetadataNameProperty("Feature") },
                     Description = "Description",
                     Links = new List<Link> { new Link() }
                 });
@@ -454,13 +454,13 @@ namespace Playnite.Tests.Metadata
             {
                 Name = "IGDB Game " + gameId,
                 Description = $"IGDB Description {gameId}",
-                Developers = new List<MetadataProperty> { new MetadataNameProperty($"IGDB Developer {gameId}") },
-                Genres = new List<MetadataProperty> { new MetadataNameProperty($"IGDB Genre {gameId}") },
+                Developers = new HashSet<MetadataProperty> { new MetadataNameProperty($"IGDB Developer {gameId}") },
+                Genres = new HashSet<MetadataProperty> { new MetadataNameProperty($"IGDB Genre {gameId}") },
                 Links = new List<Link> { new Link($"IGDB link {gameId}", $"IGDB link url {gameId}") },
-                Publishers = new List<MetadataProperty> { new MetadataNameProperty($"IGDB publisher {gameId}") },
+                Publishers = new HashSet<MetadataProperty> { new MetadataNameProperty($"IGDB publisher {gameId}") },
                 ReleaseDate = new ReleaseDate(2012, 6, 6),
-                Tags = new List<MetadataProperty> { new MetadataNameProperty($"IGDB Tag {gameId}") },
-                Features = new List<MetadataProperty> { new MetadataNameProperty($"IGDB Feature {gameId}") },
+                Tags = new HashSet<MetadataProperty> { new MetadataNameProperty($"IGDB Tag {gameId}") },
+                Features = new HashSet<MetadataProperty> { new MetadataNameProperty($"IGDB Feature {gameId}") },
                 Icon = icon,
                 BackgroundImage = background,
                 CoverImage = image
@@ -481,13 +481,13 @@ namespace Playnite.Tests.Metadata
                 {
                     Name = "Game1",
                     Description = "Description",
-                    Developers = new List<MetadataProperty> { new MetadataNameProperty("Developers") },
-                    Genres = new List<MetadataProperty> { new MetadataNameProperty("Genres") },
+                    Developers = new HashSet<MetadataProperty> { new MetadataNameProperty("Developers") },
+                    Genres = new HashSet<MetadataProperty> { new MetadataNameProperty("Genres") },
                     Links = new List<Link>() { new Link("Link", "URL") },
-                    Publishers = new List<MetadataProperty> { new MetadataNameProperty("Publishers") },
+                    Publishers = new HashSet<MetadataProperty> { new MetadataNameProperty("Publishers") },
                     ReleaseDate = new ReleaseDate(2012, 6, 6),
-                    Tags = new List<MetadataProperty> { new MetadataNameProperty("Tags") },
-                    Features = new List<MetadataProperty> { new MetadataNameProperty("Features") },
+                    Tags = new HashSet<MetadataProperty> { new MetadataNameProperty("Tags") },
+                    Features = new HashSet<MetadataProperty> { new MetadataNameProperty("Features") },
                     UserScore = 1,
                     CommunityScore = 2,
                     CriticScore = 3
@@ -589,8 +589,8 @@ namespace Playnite.Tests.Metadata
                 var settings = new MetadataDownloaderSettings { SkipExistingValues = false };
                 settings.ConfigureFields(new List<Guid> { testPlugin.Id }, true);
 
-                testPlugin.ReturnMetadata.Platforms = new List<MetadataProperty> { new MetadataSpecProperty("pc_windows") };
-                testPlugin.ReturnMetadata.Regions = new List<MetadataProperty> { new MetadataSpecProperty("world") };
+                testPlugin.ReturnMetadata.Platforms = new HashSet<MetadataProperty> { new MetadataSpecProperty("pc_windows") };
+                testPlugin.ReturnMetadata.Regions = new HashSet<MetadataProperty> { new MetadataSpecProperty("world") };
                 downloader.DownloadMetadataAsync(
                     db.Games.ToList(), settings, new PlayniteSettings(), null, new CancellationTokenSource().Token).GetAwaiter().GetResult();
                 Assert.AreEqual("pc_windows", db.Platforms.First().SpecificationId);

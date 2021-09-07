@@ -165,5 +165,17 @@ namespace Playnite.Tests
             Assert.IsFalse(list2.Contains(list1));
             Assert.IsFalse(list1.Contains(list3));
         }
+
+        [Test]
+        public void ToHashSetTest()
+        {
+            var list = new List<int> { 1, 2, 3, 4, };
+            var hash = list.ToHashSet();
+            Assert.AreEqual(4, hash.Count);
+
+            list = new List<int> { 1, 2, 3, 4, 2, 3 };
+            hash = list.ToHashSet();
+            Assert.AreEqual(4, hash.Count);
+        }
     }
 }

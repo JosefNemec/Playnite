@@ -119,6 +119,7 @@
     <Compile Include="GamesStatsTests.cs" />
     <Compile Include="Models\CopyDiffToTest.cs" />
     <Compile Include="CueSheetTests.cs" />
+    <Compile Include="Models\MetadataPropertyTests.cs" />
     <Compile Include="ReleaseDateTests.cs" />
     <Compile Include="SerializationTests.cs" />
     <Compile Include="IniParserTests.cs" />

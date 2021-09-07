@@ -124,12 +124,35 @@ namespace Playnite.SDK.Models
         {
             return Id.ToString();
         }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as MetadataIdProperty);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(MetadataIdProperty other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            return Id == other.Id;
+        }
     }
 
     /// <summary>
     /// Represents metadata property referencing data by name.
     /// </summary>
-    public class MetadataNameProperty : MetadataProperty
+    public class MetadataNameProperty : MetadataProperty, IEquatable<MetadataNameProperty>
     {
         /// <summary>
         /// Property name value.
@@ -158,12 +181,35 @@ namespace Playnite.SDK.Models
         {
             return Name;
         }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as MetadataNameProperty);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(MetadataNameProperty other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            return Name == other.Name;
+        }
     }
 
     /// <summary>
     /// Represents metadata property referencing specification object by id.
     /// </summary>
-    public class MetadataSpecProperty : MetadataProperty
+    public class MetadataSpecProperty : MetadataProperty, IEquatable<MetadataSpecProperty>
     {
         /// <summary>
         /// Gets specification id.
@@ -191,6 +237,29 @@ namespace Playnite.SDK.Models
         public override string ToString()
         {
             return Id;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as MetadataSpecProperty);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(MetadataSpecProperty other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            return Id == other.Id;
         }
     }
 
@@ -329,52 +398,52 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets Series.
         /// </summary>
-        public IEnumerable<MetadataProperty> Series { get; set; }
+        public HashSet<MetadataProperty> Series { get; set; }
 
         /// <summary>
         /// Gets or sets AgeRating.
         /// </summary>
-        public IEnumerable<MetadataProperty> AgeRatings { get; set; }
+        public HashSet<MetadataProperty> AgeRatings { get; set; }
 
         /// <summary>
         /// Gets or sets Region.
         /// </summary>
-        public IEnumerable<MetadataProperty> Regions { get; set; }
+        public HashSet<MetadataProperty> Regions { get; set; }
 
         /// <summary>
         /// Gets or sets Platform.
         /// </summary>
-        public IEnumerable<MetadataProperty> Platforms { get; set; }
+        public HashSet<MetadataProperty> Platforms { get; set; }
 
         /// <summary>
         /// Gets or sets Developers.
         /// </summary>
-        public IEnumerable<MetadataProperty> Developers { get; set; }
+        public HashSet<MetadataProperty> Developers { get; set; }
 
         /// <summary>
         /// Gets or sets Publishers.
         /// </summary>
-        public IEnumerable<MetadataProperty> Publishers { get; set; }
+        public HashSet<MetadataProperty> Publishers { get; set; }
 
         /// <summary>
         /// Gets or sets Genres.
         /// </summary>
-        public IEnumerable<MetadataProperty> Genres { get; set; }
+        public HashSet<MetadataProperty> Genres { get; set; }
 
         /// <summary>
         /// Gets or sets Categories.
         /// </summary>
-        public IEnumerable<MetadataProperty> Categories { get; set; }
+        public HashSet<MetadataProperty> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets Tags.
         /// </summary>
-        public IEnumerable<MetadataProperty> Tags { get; set; }
+        public HashSet<MetadataProperty> Tags { get; set; }
 
         /// <summary>
         /// Gets or sets game Features.
         /// </summary>
-        public IEnumerable<MetadataProperty> Features { get; set; }
+        public HashSet<MetadataProperty> Features { get; set; }
 
         /// <summary>
         /// Creates new instance of <see cref="GameMetadata"/>.
