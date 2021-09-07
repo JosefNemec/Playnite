@@ -132,6 +132,10 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Close();
             gamesEditor.RemoveGame(gameDetails.Game.Game);
+            if (mainModel.GameDetailsVisible)
+            {
+                mainModel.ToggleGameDetailsCommand.Execute(null);
+            }
         }
     }
 }
