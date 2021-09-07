@@ -19,7 +19,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Background="{DynamicResource ControlBackgroundDarkBrush}"
+                            <Border Background="{DynamicResource CheckBoxCheckMarkBkBrush}"
                                     VerticalAlignment="Center"
                                     BorderThickness="2" BorderBrush="{DynamicResource ControlBackgroundBrush}"
                                     Grid.Column="0" Margin="0,0,10,0" Width="24" Height="24">

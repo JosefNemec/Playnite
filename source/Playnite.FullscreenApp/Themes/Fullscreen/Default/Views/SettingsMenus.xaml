@@ -56,7 +56,7 @@
                                         Grid.Column="0" TextTrimming="WordEllipsis">
                                 <ContentPresenter RecognizesAccessKey="True" />
                             </TextBlock>
-                            <Border Background="{DynamicResource ControlBackgroundDarkBrush}"
+                            <Border Background="{DynamicResource CheckBoxCheckMarkBkBrush}"
                                     VerticalAlignment="Center"
                                     BorderThickness="2" BorderBrush="{DynamicResource ControlBackgroundBrush}"
                                     Grid.Column="1" Width="26" Height="26">
