@@ -71,56 +71,16 @@
       <Link>Templates\Themes\Fonts\icofont.ttf</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\..\references\Fonts\PlayStation4.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\PlayStation4.ttf</Link>
+    <None Include="..\..\..\references\Fonts\TitilliumWeb*.*">    
+      <Link>Templates\Themes\Fullscreen\Fonts\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-Black.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Black.ttf</Link>
+    <None Include="..\..\..\references\Fonts\PlayStation4.*">    
+      <Link>Templates\Themes\Fullscreen\Fonts\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-Bold.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Bold.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-BoldItalic.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-BoldItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-ExtraLight.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-ExtraLight.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-ExtraLightItalic.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-ExtraLightItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-Italic.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Italic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-Light.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Light.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-LightItalic.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-LightItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-Regular.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-Regular.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-SemiBold.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-SemiBold.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb-SemiBoldItalic.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\TitilliumWeb-SemiBoldItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\..\references\Fonts\XBOXONE.ttf">
-      <Link>Templates\Themes\Fullscreen\Fonts\XBOXONE.ttf</Link>
+    <None Include="..\..\..\references\Fonts\XBOXONE.*">    
+      <Link>Templates\Themes\Fullscreen\Fonts\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="App.config" />
