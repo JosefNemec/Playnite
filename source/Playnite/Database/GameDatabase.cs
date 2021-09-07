@@ -1262,7 +1262,20 @@ namespace Playnite.Database
                 foreach (var rom in game.Roms)
                 {
                     var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
-                    importedRoms.AddMissing(Path.GetFullPath(path));
+                    string absPath = null;
+                    try
+                    {
+                        absPath = Path.GetFullPath(path);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to get absolute ROM path:\n{rom.Path}\n{path}");
+                    }
+
+                    if (!absPath.IsNullOrEmpty())
+                    {
+                        importedRoms.AddMissing(absPath);
+                    }
                 }
             }
 
