@@ -797,8 +797,8 @@ Capas: {1} mega pixels
 Imagens de fundo: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Aviso de desempenho</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Não mostrar novamente</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">O arquivo com a extensão {0} não é compatível.</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Extensão de arquivo incompatível</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">A imagem selecionada pode ser grande demais para um desempenho ideal.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">Tem certeza que deseja desinstalar o tema selecionado? A desinstalação será realizada na próxima vez que a aplicação for iniciada.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Temas integrados não podem ser desinstalados.</sys:String>
@@ -820,7 +820,12 @@ Imagens de fundo: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCSidebar">Barra lateral</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Exibir na barra lateral</sys:String>
     <sys:String x:Key="LOCSettingsReset">Redefinir configurações</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">Todas as configurações da aplicação serão redefinidas a seus valores padrão, excluindo:
+- O local do banco de dados
+- A lista de exclusão de importações
+- As configurações de extensões, incluindo integrações de biblioteca
+
+O reinicio da aplicação será necessário para terminar o processo. Você deseja redefinir as configurações?</sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">Para desenvolvedores</sys:String>
     <sys:String x:Key="LOCSettingsExternalExtensions">Extensões externas</sys:String>
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Inserir o caminho completo da pasta.</sys:String>    
@@ -847,7 +852,9 @@ Imagens de fundo: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">Atualizações</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">Atualizações ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">O gerenciamento de extensões e temas instalados, incluindo suas configurações, foi movida para o novo menu de &quot;add-ons&quot;.</sys:String>
-    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Todas as integrações de biblioteca atualmente instaladas podem ser configuradas aqui.
+
+Se você deseja instalar ou desinstalar integrações adicionais, use a opção &quot;add-ons&quot; do menu principal.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Temas para desktop</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">Temas de tela cheia</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Procurando...</sys:String>
@@ -911,14 +918,18 @@ Imagens de fundo: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCConfigure">Configurar</sys:String>
     <sys:String x:Key="LOCFilterPresetSave">Salvar predefinição</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Minimizar após iniciar o jogo</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Minimize o Playnite após um jogo ser iniciado.
+
+Desabilitar essa opção pode levar a problemas com os jogos não recebendo comandos ao iniciar!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Tamanho da fonte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Tamanho da fonte pequena</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Suporte à dispositivos XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se desabilitado, o Playnite não recebera nenhum comando de controladores XInput.
+
+Desabilite se você utilizar ferramentas que traduzam comandos XInput para comandos de mouse/teclado e o Playnite está reconhecendo comandos duplicados.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Mostrar itens no menu principal:</sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Inverter o vínculo dos botões X/A na visualização padrão</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Trocar o vínculo entre os botões de iniciar um jogo e de mostrar os detalhes do jogo na visualização padrão.</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volume da interface</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volume em segundo plano</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Silenciar quando em segundo plano</sys:String>
@@ -949,7 +960,9 @@ Melhor qualidade do que o balanceado, velocidade média, baixo uso de memória.<
     <sys:String x:Key="LOCSelectFileTooltip">Selecionar arquivo...</sys:String>
     <sys:String x:Key="LOCSelectDirectoryTooltip">Selecionar pasta...</sys:String>
     <sys:String x:Key="LOCStartupScript">Script de inicialização</sys:String>
-    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">Por favor, note que tanto extensões quanto temas podem afetar severamente a performance, estabilidade e segurança do Playnite.
+
+Se você começar a experienciar problemas após a instalação de um tema ou extensão, primeiro tente desabilitar-lo/desinstala-lo para checar se eram a raiz do problema.</sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">Escolher ao iniciar</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Perfis integrados</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Perfil integrado</sys:String>
@@ -978,11 +991,11 @@ Melhor qualidade do que o balanceado, velocidade média, baixo uso de memória.<
     <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Perfis para importar:</sys:String>
     <sys:String x:Key="LOCEmuAutoScanConfigurations">Configurações de escaneamento automático</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig">Salvar como uma configuração de escaneamento automático</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Salve a configuração para um uso posterior durante a atualização da biblioteca. Configurações salvas podem ser gerenciadas pelo menu de &quot;configurar emuladores&quot;.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Adicionar escâner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Adicionar escâner salvo</sys:String>
     <sys:String x:Key="LOCStartScan">Iniciar escaneamento</sys:String>
-    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Adicione configurações para emuladores escanearem pastas especificas. Tenha certeza que esses emuladores estão corretamente configurados antes de importar jogos (pelo menu &quot;biblioteca&quot; -&gt; &quot;configurar emuladores&quot;)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Estado padrão designado a jogos recentemente adicionados</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
 </ResourceDictionary>

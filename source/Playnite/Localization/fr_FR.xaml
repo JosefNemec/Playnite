@@ -793,8 +793,8 @@ Jaquettes : {1} px (hauteur)
 Images de fond : {2} px (hauteur)</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Avertissement de performances</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Ne plus afficher</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Le fichier ayant l'extension {0} n'est pas compatible</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Extension de fichier incompatible</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">L'image sélectionnée pourrait être trop lourde pour des performances optimales.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">Voulez-vous désinstaller le thème sélectionné ? La désinstallation sera planifiée au prochain lancement de l'application.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Les thèmes par défaut ne peuvent être désinstallés.</sys:String>

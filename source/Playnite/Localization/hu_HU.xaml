@@ -783,8 +783,8 @@ Borítók: {1} megapixel
 Hátterek: {2} megapixel</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Csökkent teljesítmény</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Ne mutasd többször</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">{0} fájlkiterjesztés nem támogatott.</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Nem támogatott fájl kiterjesztés</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">A kiválasztott kép túl nagy méretű az optimális működéshez. </sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">Biztos eltávolítod a kijelölt témát? A következő indításnál fog törlődni.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Beépitett témát nem lehet eltávolítani.</sys:String>
@@ -877,7 +877,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCActionTrackingModeProcess">Folyamat</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mappa</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Nyomonkövetési üzenetek naplózása</sys:String>
-    <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
+    <sys:String x:Key="LOCMultiEditOverwriteWarning">A módosítások felülírják az összes kijelölt játék szerkesztett adatát!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Nincs</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Arányos</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Csak az elemek</sys:String>
@@ -894,7 +894,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Elválasztó szélessége</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Főmenü gomb az oldalsávon</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Platformpanel</sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Véletlenszerű játék</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Sorba rendezési és csoportosítási beállítások mentése</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Mutassa gyorsszűrőként teljes képernyős módban</sys:String>
     <sys:String x:Key="LOCInPast7Days">Az elmúlt 7 napban</sys:String>
@@ -953,7 +953,7 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Beépített profilok</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Beépített profil</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Egyéni profilok</sys:String>
-    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript">A beépített szkript kezeli</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emulátor adatok</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Platform adatok</sys:String>
     <sys:String x:Key="LOCRegionSpec">Régió adatok</sys:String>

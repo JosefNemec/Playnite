@@ -92,7 +92,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Emulator-Skript konnte nicht ausgeführt werden.</sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction">»Spielen«-Skriptaktion konnte nicht ausgeführt werden.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 oder neuer ist nicht installiert.</sys:String>
-    <sys:String x:Key="LOCErrorStartupNoController"></sys:String>
+    <sys:String x:Key="LOCErrorStartupNoController">Es konnte nicht herausgefunden werden, wie das Spiel gestartet wird.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktiviert</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Entfernen</sys:String>
@@ -284,7 +284,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsImportLabel">Bibliotheksänderungen automatisch importieren</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ungültiger Pfad zur Datenbank.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Name des Benutzerkontos darf nicht leer sein.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Drittanbieter-Bibliotheken beim Starten aktualisieren</sys:String>
+    <sys:String x:Key="LOCSettingsUpdateLibStartup">Bibliothek beim Starten aktualisieren</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup">Emulierte Ordner durchsuchen</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Metadaten nach Spieleimport herunterladen</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Playnite minimiert starten</sys:String>
@@ -590,7 +590,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCPrivateAccount">Privates Konto</sys:String>
     <sys:String x:Key="LOCPublicAccount">Öffentliches Konto</sys:String>
     <sys:String x:Key="LOCAPIKey">API-Schlüssel</sys:String>
-    <sys:String x:Key="LOCStartupError">Fehler beim Starten von Playnite</sys:String>
+    <sys:String x:Key="LOCStartupError">Fehler beim Starten</sys:String>
     <sys:String x:Key="LOCSkinError">Fehler beim Anwenden des Designs</sys:String>
     <sys:String x:Key="LOCClearAll">Alle zurücksetzen</sys:String>
     <sys:String x:Key="LOCSetupRunning">Wird installiert</sys:String>
@@ -848,8 +848,8 @@ Hintergründe: {2} Megapixel</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">Aktualisierungen ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">Die Verwaltung installierter Erweiterungen und Designs wurden einschließlich ihrer Einstellungen in das neue Menü »Add-ons« verschoben.</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren"></sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">Designs Desktop</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Designs Vollbild</sys:String>
     <sys:String x:Key="LOCAddonsSearching"></sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">Das Add-on ist mit dieser Version von Playnite nicht kompatibel.</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Das Installationspaket des Add-ons konnte nicht heruntergeladen werden.</sys:String>
@@ -911,7 +911,9 @@ Hintergründe: {2} Megapixel</sys:String>
     <sys:String x:Key="LOCConfigure">Konfigurieren</sys:String>
     <sys:String x:Key="LOCFilterPresetSave">Voreinstellung speichern</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Nach Starten des Spiels minimieren</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Playnite nach dem Starten des Spiels minimieren.
+
+Das Deaktivieren dieser Option kann zu Problemen mit Spielen führen, die beim Start keinen Eingabefokus erhalten!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Schriftgröße</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Schriftgröße klein</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">XInput-Geräteunterstützung</sys:String>
@@ -956,16 +958,16 @@ Falls nach dem Installieren von Designs oder Erweiterungen Probleme auftreten, v
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Integrierte Profile</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Integriertes Profil</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Personalisierte Profile</sys:String>
-    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Verwaltet von einem integrierten Skript</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Spezifikation Emulator</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Spezifikation Plattform</sys:String>
     <sys:String x:Key="LOCRegionSpec">Spezifikation Region</sys:String>
-    <sys:String x:Key="LOCEmulatorPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCEmulatorPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCEmulatorStartedScriptDescription"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound"></sys:String>
+    <sys:String x:Key="LOCEmulatorPreScriptDescription">Vor Start des Emulators ausführen</sys:String>
+    <sys:String x:Key="LOCEmulatorPostScriptDescription">Nach Start des Emulators ausführen</sys:String>
+    <sys:String x:Key="LOCEmulatorStartedScriptDescription">Nach Verlassen des Emulators ausführen</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound">Ausführebare Programmdatei des Emulators nicht gefunden.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound">Spezifikation des Emulators nicht gefunden.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound">Skript zum Starten des Emulators nicht gefunden.</sys:String>
     <sys:String x:Key="LOCSplitEmuImportSplitGames"></sys:String>
     <sys:String x:Key="LOCSplitEmuImportMergeGames">Zu einem Spiel zusammenfassen</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform">Plattform festlegen</sys:String>

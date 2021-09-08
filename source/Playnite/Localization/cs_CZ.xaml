@@ -295,7 +295,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Může zlepšit plynulost skrolování v seznamech her, ale obrázky se načítají pomaleji.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Zobrazit jméno hry, pokud chybí obrázek obálky</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Zobrazit jména her v zobrazení mřížky</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Ztmavit neinstalované hry</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Ztmavit nenainstalované hry</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Zobrazit ikony her v režimu zobrazení podrobností</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Zobrazit počty položek v popiscích skupin</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Ukazovat pouze přiřazená pole ve filtrovacím a průzkumném panelu</sys:String>
@@ -796,8 +796,8 @@ Obaly: {1} mega pixelů
 Obrázky na pozadí: {2} mega pixelů</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Varování o Výkonu</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Příště Nezobrazovat</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Soubor s koncovkou {0} není podporovaný.</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Nepodporovaná koncovka souboru</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Zvolený obrázek je nejspíš příliš velký pro dosažení optimálního výkonu.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">Opravdu chcete odinstalovat vybraný motiv? Odinstalace bude zařazena do fronty pro další spuštění aplikace.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Vestavěné motivy nelze odinstalovat.</sys:String>
@@ -890,7 +890,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCActionTrackingModeProcess">Proces</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Adresář</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Ukládat logy o sledování</sys:String>
-    <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
+    <sys:String x:Key="LOCMultiEditOverwriteWarning">Následující změny přepisují data pro všechny aktuálně vybrané hry!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Žádné</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Jednotné</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Pouze položky</sys:String>
@@ -907,7 +907,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Šířka oddělovače sekcí</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Přesunout tlačítko hlavního menu do postranního panelu</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Panel průzkumníka</sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Vybírač náhodných her</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Uložit nastavení seskupování a řazení</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Zobrazit jako rychlý filtr v režimu Celé Obrazovky</sys:String>
     <sys:String x:Key="LOCInPast7Days">Za posledních 7 dní</sys:String>
@@ -966,7 +966,7 @@ Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Vestavěné profily</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Vestavěný profil</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Vlastní profily</sys:String>
-    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Spravováno vestavěným skriptem</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Specifikace emulátoru</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Specifikace platformy</sys:String>
     <sys:String x:Key="LOCRegionSpec">Specifikace regionu</sys:String>

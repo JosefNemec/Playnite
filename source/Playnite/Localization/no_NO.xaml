@@ -892,7 +892,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCActionTrackingModeDefault">Standard</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">Prosess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mappe</sys:String>
-    <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
+    <sys:String x:Key="LOCDevelTraceLogEnable">Logg sporingsmeldinger</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Følgende endringer overskriver data for alle valgte spill!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ingen</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Uniformt</sys:String>
@@ -905,8 +905,8 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">Generelle visningsinnstillinger</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Grupperingsinnstillinger</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelSortingItem">Sorteringsinnstillinger</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem"></sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Filteroppsett</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Posisjon for plugin-knapper</sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Seksjonsskillenes bredde</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Flytt hovedmenyknappen til sidestolpen</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Utforskerkolonne</sys:String>
@@ -989,13 +989,13 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Kunne ikke søke gjennom mapper etter emulerte spill.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Skjul importerte</sys:String>
     <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Profiler som skal importeres:</sys:String>
-    <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations">Autosøk-konfigurasjoner</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">Lagre som autosøk-konfigurasjon</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Lagrer konfigurasjon til senere bruk under biblioteksoppdatering. Lagrede konfigurasjoner kan administreres via &quot;Konfigurer emulatorer&quot;-menyen.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Legg til skanner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Legg til lagret skanner</sys:String>
     <sys:String x:Key="LOCStartScan">Start søk</sys:String>
-    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Bruk søkekonfigurasjoner med emulatorer for å søke gjennom bestemte mapper. Pass på at emulatorer er riktig konfigurert før du importerer spill (via Bibliotek -&gt; Konfigurer Emulatorer).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Standardstatus tilordnet spill som nylig er lagt til</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status tilordnet spill som spilles for første gang</sys:String>
 </ResourceDictionary>
