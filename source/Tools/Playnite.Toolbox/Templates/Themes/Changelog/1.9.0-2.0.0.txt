@@ -10,6 +10,7 @@ A	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/SearchBox.xam
 M	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/SidebarItem.xaml
 A	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/TopPanelItem.xaml
 D	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/ViewSettingsMenu.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/CheckBox.xaml
 A	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/DataGrid.xaml
 M	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/Expander.xaml
 M	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/TabControl.xaml
@@ -34,6 +35,7 @@ M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/CustomControls/FilterE
 A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/CustomControls/FilterPresetSelector.xaml
 M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/CustomControls/FilterStringListSelection.xaml
 D	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/CustomControls/WindowBase.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/CheckBox.xaml
 M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/ScrollViewer.xaml
 M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/Slider.xaml
 A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/ToggleButton.xaml
