@@ -76,6 +76,22 @@ namespace Playnite
         [JsonIgnore]
         public const FullscreenButtonPrompts DefaultButtonPrompts = FullscreenButtonPrompts.Xbox;
 
+        private bool isMusicMuted = false;
+        [JsonIgnore]
+        public bool IsMusicMuted
+        {
+            get
+            {
+                return isMusicMuted;
+            }
+
+            set
+            {
+                isMusicMuted = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int monitor = Computer.GetGetPrimaryScreenIndex();
         public int Monitor
         {

@@ -307,6 +307,19 @@ namespace Playnite.FullscreenApp
             }
         }
 
+        public static void SetBackgroundSoundVolume(float volume)
+        {
+            if (Audio == null)
+            {
+                return;
+            }
+
+            if (backgroundSound != null)
+            {
+                backgroundSound.Volume = volume;
+            }
+        }
+
         private void InitializeAudio()
         {
             try

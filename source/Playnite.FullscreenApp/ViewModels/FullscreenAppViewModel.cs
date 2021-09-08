@@ -480,6 +480,10 @@ namespace Playnite.FullscreenApp.ViewModels
                     FullscreenApplication.PlayBackgroundSound();
                 }
             }
+            else if (e.PropertyName == nameof(FullscreenSettings.IsMusicMuted))
+            {
+                FullscreenApplication.SetBackgroundSoundVolume(AppSettings.Fullscreen.IsMusicMuted ? 0f : AppSettings.Fullscreen.BackgroundVolume);
+            }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
