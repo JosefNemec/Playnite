@@ -180,9 +180,16 @@ namespace Playnite
                     archive.CreateEntryFromFile(playnitePath, Path.GetFileName(playnitePath));
 
                     // Program file list
-                    var fileListPath = Path.Combine(diagTemp, "fileList.txt");
-                    File.WriteAllText(fileListPath, string.Join(Environment.NewLine, GetPlayniteFilesList()));
-                    archive.CreateEntryFromFile(fileListPath, Path.GetFileName(fileListPath));
+                    try
+                    {
+                        var fileListPath = Path.Combine(diagTemp, "fileList.txt");
+                        File.WriteAllText(fileListPath, string.Join(Environment.NewLine, GetPlayniteFilesList()));
+                        archive.CreateEntryFromFile(fileListPath, Path.GetFileName(fileListPath));
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to pack app file list.");
+                    }
 
                     // User actions description
                     if (!string.IsNullOrWhiteSpace(userActionsDescription))
