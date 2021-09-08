@@ -106,8 +106,6 @@ namespace Playnite
                 }
             }
 
-            var allLoaded = true;
-            var loadedXamls = new List<ResourceDictionary>();
             var acceptableXamls = new List<string>();
             var defaultRoot = $"Themes/{mode.GetDescription()}/{DefaultTheme.DirectoryName}/";
             foreach (var dict in app.Resources.MergedDictionaries)
@@ -118,6 +116,7 @@ namespace Playnite
                 }
             }
 
+            var allLoaded = true;
             foreach (var accXaml in acceptableXamls)
             {
                 var xamlPath = Path.Combine(theme.DirectoryPath, accXaml);
@@ -129,15 +128,6 @@ namespace Playnite
                 try
                 {
                     var xaml = Xaml.FromFile(xamlPath);
-                    if (xaml is ResourceDictionary xamlDir)
-                    {
-                        xamlDir.Source = new Uri(xamlPath, UriKind.Absolute);
-                        loadedXamls.Add(xamlDir as ResourceDictionary);
-                    }
-                    else
-                    {
-                        logger.Error($"Skipping theme file {xamlPath}, it's not resource dictionary.");
-                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -145,6 +135,11 @@ namespace Playnite
                     allLoaded = false;
                     break;
                 }
+            }
+
+            if (!allLoaded)
+            {
+                return false;
             }
 
             try
@@ -165,51 +160,51 @@ namespace Playnite
                 logger.Error(e, "Failed to set custom mouse cursor.");
             }
 
-            if (allLoaded)
+            var themeRoot = $"Themes\\{mode.GetDescription()}\\{theme.DirectoryName}\\";
+            // This is sad that we have to do this, but it fixes issues like #2328
+            // We need to remove all loaded theme resources and reload them in specific order:
+            //      default/1.xaml -> theme/1.xaml -> default/2.xaml -> theme/2.xaml etc.
+            //
+            // We can't just load custom theme files at the end or insert them in already loaded pool of resources
+            // because styling with static references won't reload data from custom theme files.
+            // That's why we also have to create new instances of default styles.
+            foreach (var defaultRes in app.Resources.MergedDictionaries.ToList())
             {
-                var themeRoot = $"Themes\\{mode.GetDescription()}\\{theme.DirectoryName}\\";
-                // This is sad that we have to do this, but it fixes issues like #2328
-                // We need to remove all loaded theme resources and reload them in specific order:
-                //      default/1.xaml -> theme/1.xaml -> default/2.xaml -> theme/2.xaml etc.
-                //
-                // We can't just load custom theme files at the end or insert them in already loaded pool of resources
-                // because styling with static references won't reload data from custom theme files.
-                // That's why we also have to create new instances of default styles.
-                foreach (var defaultRes in app.Resources.MergedDictionaries.ToList())
+                if (defaultRes.Source.OriginalString.StartsWith(defaultRoot))
                 {
-                    if (defaultRes.Source.OriginalString.StartsWith(defaultRoot))
-                    {
-                        app.Resources.MergedDictionaries.Remove(defaultRes);
-                    }
+                    app.Resources.MergedDictionaries.Remove(defaultRes);
                 }
-
-                foreach (var themeXamlFile in acceptableXamls)
-                {
-                    var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), "Default", themeXamlFile);
-                    var defaultXaml = Xaml.FromFile(defaultPath);
-                    if (defaultXaml is ResourceDictionary xamlDir)
-                    {
-                        xamlDir.Source = new Uri(defaultPath, UriKind.Absolute);
-                        app.Resources.MergedDictionaries.Add(xamlDir);
-                    }
-
-                    var loaded = loadedXamls.FirstOrDefault(a =>
-                    {
-                        var cust = a.Source.OriginalString.Substring(a.Source.OriginalString.IndexOf(themeRoot) + themeRoot.Length);
-                        var def = themeXamlFile;
-                        return cust == def;
-                    });
-
-                    if (loaded != null)
-                    {
-                        app.Resources.MergedDictionaries.Add(loaded);
-                    }
-                }
-
-                return true;
             }
 
-            return false;
+            foreach (var themeXamlFile in acceptableXamls)
+            {
+                var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), "Default", themeXamlFile);
+                var defaultXaml = Xaml.FromFile(defaultPath);
+                if (defaultXaml is ResourceDictionary xamlDir)
+                {
+                    xamlDir.Source = new Uri(defaultPath, UriKind.Absolute);
+                    app.Resources.MergedDictionaries.Add(xamlDir);
+                }
+
+                var xamlPath = Path.Combine(theme.DirectoryPath, themeXamlFile);
+                if (!File.Exists(xamlPath))
+                {
+                    continue;
+                }
+
+                var xaml = Xaml.FromFile(xamlPath);
+                if (xaml is ResourceDictionary themeDir)
+                {
+                    themeDir.Source = new Uri(xamlPath, UriKind.Absolute);
+                    app.Resources.MergedDictionaries.Add(themeDir);
+                }
+                else
+                {
+                    logger.Error($"Skipping theme file {xamlPath}, it's not resource dictionary.");
+                }
+            }
+
+            return true;
         }
 
         public static IEnumerable<ThemeManifest> GetAvailableThemes()
