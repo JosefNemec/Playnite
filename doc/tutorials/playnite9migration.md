@@ -26,15 +26,6 @@ Multiple changes have been made to various data models, properties removed, rena
 
 File changes:
 
-[M	source/PlayniteSDK/Models/AppSoftware.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_AppSoftware.cs.html)  
-[M	source/PlayniteSDK/Models/CompletionStatus.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_CompletionStatus.cs.html)  
-[M	source/PlayniteSDK/Models/DatabaseObject.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_DatabaseObject.cs.html)  
-[M	source/PlayniteSDK/Models/Emulator.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Emulator.cs.html)  
-[M	source/PlayniteSDK/Models/Game.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Game.cs.html)  
-[M	source/PlayniteSDK/Models/GameAction.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_GameAction.cs.html)  
-[M	source/PlayniteSDK/Models/PastTimeSegment.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_PastTimeSegment.cs.html)  
-[M	source/PlayniteSDK/Models/Platform.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Platform.cs.html)  
-[M	source/PlayniteSDK/Models/Region.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Region.cs.html)  
 [M	source/PlayniteSDK/BuiltInExtensions.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_BuiltInExtensions.cs.html)  
 [M	source/PlayniteSDK/Collections/ObservableObject.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Collections_ObservableObject.cs.html)  
 [M	source/PlayniteSDK/Data/DataSerialization.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Data_DataSerialization.cs.html)  
@@ -52,6 +43,15 @@ File changes:
 [M	source/PlayniteSDK/IWebView.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_IWebView.cs.html)  
 [M	source/PlayniteSDK/LogManager.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_LogManager.cs.html)  
 [M	source/PlayniteSDK/MetadataProvider.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_MetadataProvider.cs.html)  
+[M	source/PlayniteSDK/Models/AppSoftware.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_AppSoftware.cs.html)  
+[M	source/PlayniteSDK/Models/CompletionStatus.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_CompletionStatus.cs.html)  
+[M	source/PlayniteSDK/Models/DatabaseObject.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_DatabaseObject.cs.html)  
+[M	source/PlayniteSDK/Models/Emulator.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Emulator.cs.html)  
+[M	source/PlayniteSDK/Models/Game.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Game.cs.html)  
+[M	source/PlayniteSDK/Models/GameAction.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_GameAction.cs.html)  
+[M	source/PlayniteSDK/Models/PastTimeSegment.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_PastTimeSegment.cs.html)  
+[M	source/PlayniteSDK/Models/Platform.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Platform.cs.html)  
+[M	source/PlayniteSDK/Models/Region.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Models_Region.cs.html)  
 [M	source/PlayniteSDK/Plugins/LibraryPlugin.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Plugins_LibraryPlugin.cs.html)  
 [M	source/PlayniteSDK/Plugins/MetadataPlugin.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Plugins_MetadataPlugin.cs.html)  
 [M	source/PlayniteSDK/Plugins/Plugin.cs](https://playnite.link/sdkchangelog/5.6.0-6.0.0/source_PlayniteSDK_Plugins_Plugin.cs.html)  
@@ -102,6 +102,7 @@ A	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/SearchBox.xam
 [M	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/SidebarItem.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.DesktopApp_Themes_Desktop_Default_CustomControls_SidebarItem.xaml.html)  
 A	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/TopPanelItem.xaml  
 D	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/ViewSettingsMenu.xaml  
+[M	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/CheckBox.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.DesktopApp_Themes_Desktop_Default_DefaultControls_CheckBox.xaml.html)  
 A	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/DataGrid.xaml  
 [M	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/Expander.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.DesktopApp_Themes_Desktop_Default_DefaultControls_Expander.xaml.html)  
 [M	source/Playnite.DesktopApp/Themes/Desktop/Default/DefaultControls/TabControl.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.DesktopApp_Themes_Desktop_Default_DefaultControls_TabControl.xaml.html)  
@@ -126,6 +127,7 @@ D	source/Playnite.DesktopApp/Themes/Desktop/DefaultRed/Constants.xaml
 A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/CustomControls/FilterPresetSelector.xaml  
 [M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/CustomControls/FilterStringListSelection.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.FullscreenApp_Themes_Fullscreen_Default_CustomControls_FilterStringListSelection.xaml.html)  
 D	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/CustomControls/WindowBase.xaml  
+[M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/CheckBox.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.FullscreenApp_Themes_Fullscreen_Default_DefaultControls_CheckBox.xaml.html)  
 [M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/ScrollViewer.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.FullscreenApp_Themes_Fullscreen_Default_DefaultControls_ScrollViewer.xaml.html)  
 [M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/Slider.xaml](https://playnite.link/themechangelog/1.9.0-2.0.0/source_Playnite.FullscreenApp_Themes_Fullscreen_Default_DefaultControls_Slider.xaml.html)  
 A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/DefaultControls/ToggleButton.xaml  
@@ -161,4 +163,3 @@ D	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/SettingsMenu.xam
 A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/SettingsMenus.xaml  
 A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/TextInput.xaml  
 D	source/Playnite.FullscreenApp/Themes/Fullscreen/DefaultLime/Constants.xaml  
-
