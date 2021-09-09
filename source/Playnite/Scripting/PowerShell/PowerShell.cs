@@ -15,13 +15,75 @@ using Playnite.SDK;
 
 namespace Playnite.Scripting.PowerShell
 {
-    public class PowerShellRuntime : IScriptRuntime
+    public interface IPowerShellRuntime : IDisposable
+    {
+        object Execute(string script, string workDir = null, Dictionary<string, object> variables = null);
+        object ExecuteFile(string path, string workDir = null);
+        object ExecuteFile(string path, string workDir = null, Dictionary<string, object> variables = null);
+        void SetVariable(string name, object value);
+        object GetVariable(string name);
+        CommandInfo GetFunction(string name);
+        void ImportModule(string path);
+        object InvokeFunction(string name, List<object> arguments);
+    }
+
+    public class DummyPowerShellRuntime : IPowerShellRuntime
+    {
+        public DummyPowerShellRuntime()
+        {
+        }
+
+        public object Execute(string script, string workDir = null, Dictionary<string, object> variables = null)
+        {
+            return null;
+        }
+
+        public object ExecuteFile(string path, string workDir = null)
+        {
+            return null;
+        }
+
+        public object ExecuteFile(string path, string workDir = null, Dictionary<string, object> variables = null)
+        {
+            return null;
+        }
+
+        public void SetVariable(string name, object value)
+        {
+        }
+
+        public object GetVariable(string name)
+        {
+            return null;
+        }
+
+        public CommandInfo GetFunction(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ImportModule(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object InvokeFunction(string name, List<object> arguments)
+        {
+            return null;
+        }
+
+        public void Dispose()
+        {
+        }
+    }
+
+    public class PowerShellRuntime : IPowerShellRuntime
     {
         private System.Management.Automation.PowerShell powershell;
         private Runspace runspace;
         private PSModuleInfo module;
         private InitialSessionState initialSessionState;
-        public bool IsDisposed { get; private set; }
+        public bool IsDisposed { get; internal set; }
 
         public static bool IsInstalled
         {
@@ -31,8 +93,13 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public PowerShellRuntime(string runspaceName = "PowerShell")
+        public PowerShellRuntime(string runspaceName)
         {
+            if (!IsInstalled)
+            {
+                throw new Exception("PowerShell 5.1 is not installed.");
+            }
+
             initialSessionState = InitialSessionState.CreateDefault();
             initialSessionState.ExecutionPolicy = ExecutionPolicy.Bypass;
             initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;

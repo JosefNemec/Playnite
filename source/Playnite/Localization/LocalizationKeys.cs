@@ -1514,7 +1514,7 @@ namespace Playnite
         /// </summary>
         public const string EmuWizardNotice = "LOCEmuWizardNotice";
         /// <summary>
-        /// Below is a list of emulators that Playnite can recognize and configure automatically. You can download  emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.
+        /// Below is a list of emulators that Playnite can recognize and configure automatically. You can download emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.
         /// </summary>
         public const string EmuDownloadDescription = "LOCEmuDownloadDescription";
         /// <summary>
@@ -2850,13 +2850,17 @@ namespace Playnite
         /// </summary>
         public const string UrlNavigationMessage = "LOCUrlNavigationMessage";
         /// <summary>
-        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage.
+        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage. 
         /// </summary>
         public const string GameImageSizeWarning = "LOCGameImageSizeWarning";
         /// <summary>
         /// Performance Warning
         /// </summary>
         public const string PerformanceWarningTitle = "LOCPerformanceWarningTitle";
+        /// <summary>
+        /// Don't Show Again
+        /// </summary>
+        public const string DontShowAgainTitle = "LOCDontShowAgainTitle";
         /// <summary>
         /// File with extension {0} is not compatible.
         /// </summary>
@@ -2865,10 +2869,6 @@ namespace Playnite
         /// Incompatible file extension
         /// </summary>
         public const string IncompatibleDragAndDropExtensionErrorTitle = "LOCIncompatibleDragAndDropExtensionErrorTitle";
-        /// <summary>
-        /// Don't Show Again
-        /// </summary>
-        public const string DontShowAgainTitle = "LOCDontShowAgainTitle";
         /// <summary>
         /// Selected image file might be too large for optimal performance.
         /// </summary>
@@ -3066,7 +3066,7 @@ namespace Playnite
         /// </summary>
         public const string AddonsThemesDesktop = "LOCAddonsThemesDesktop";
         /// <summary>
-        /// Themes Fullscren
+        /// Themes Fullscreen
         /// </summary>
         public const string AddonsThemesFullscren = "LOCAddonsThemesFullscren";
         /// <summary>
@@ -3206,7 +3206,7 @@ namespace Playnite
         /// </summary>
         public const string DevelTraceLogEnable = "LOCDevelTraceLogEnable";
         /// <summary>
-        /// Following changes overwrite data for all currently selected game!
+        /// Following changes overwrite data for all currently selected games!
         /// </summary>
         public const string MultiEditOverwriteWarning = "LOCMultiEditOverwriteWarning";
         /// <summary>
@@ -3274,7 +3274,7 @@ namespace Playnite
         /// </summary>
         public const string TopPanelExplorerSwitch = "LOCTopPanelExplorerSwitch";
         /// <summary>
-        /// Select random game
+        /// Random game picker
         /// </summary>
         public const string TopPanelSelectRandomGameButton = "LOCTopPanelSelectRandomGameButton";
         /// <summary>
@@ -3458,6 +3458,10 @@ namespace Playnite
         /// </summary>
         public const string EmulatorCustomProfiles = "LOCEmulatorCustomProfiles";
         /// <summary>
+        /// Handled by a built-in script
+        /// </summary>
+        public const string EmulatorFunctionHandledByScript = "LOCEmulatorFunctionHandledByScript";
+        /// <summary>
         /// Emulator specification
         /// </summary>
         public const string EmulatorSpec = "LOCEmulatorSpec";
@@ -3577,5 +3581,9 @@ namespace Playnite
         /// Status assigned to games played for the first time
         /// </summary>
         public const string CompletionStatusPlayedStatusDesc = "LOCCompletionStatusPlayedStatusDesc";
+        /// <summary>
+        /// Failed to create PowerShell script runtime.
+        /// </summary>
+        public const string PowerShellCreationError = "LOCPowerShellCreationError";
     }
 }

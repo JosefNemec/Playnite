@@ -430,8 +430,6 @@
     <Compile Include="PlayniteUriHandler.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />
-    <Compile Include="Scripting\Batch\Batch.cs" />
-    <Compile Include="Scripting\IScriptRuntime.cs" />
     <Compile Include="Scripting\PlayniteScript.cs" />
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
