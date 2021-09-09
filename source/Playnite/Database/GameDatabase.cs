@@ -569,7 +569,14 @@ namespace Playnite.Database
             }
 
             IsOpen = true;
-            DatabaseOpened?.Invoke(this, null);
+            if (PlayniteApplication.Current != null)
+            {
+                PlayniteApplication.Current.SyncContext.Send((_) => DatabaseOpened?.Invoke(this, null), null);
+            }
+            else
+            {
+                DatabaseOpened?.Invoke(this, null);
+            }
         }
 
         private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
