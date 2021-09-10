@@ -164,8 +164,8 @@
                                 </StackPanel>
                                 <DockPanel Margin="0,10,0,10">
                                     <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
-                                    <TextBox pbeh:TextBoxBehavior.AttachDirectoryBrowser="True" Margin="10,0,10,0"
-                                                Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <dctrls:PathSelectionBox Margin="10,0,10,0" ShowDirectorySelector="True"
+                                                             Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
                                           ToolTip="{DynamicResource LOCEmuSaveScanConfigTooltip}"

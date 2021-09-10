@@ -225,7 +225,6 @@
     <Compile Include="Audio.cs" />
     <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
-    <Compile Include="Behaviors\TextBoxBehaviors.cs" />
     <Compile Include="Common\CueSheet.cs" />
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />

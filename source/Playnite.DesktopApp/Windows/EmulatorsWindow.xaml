@@ -92,6 +92,9 @@
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                     <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
+                                <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
                             </controls:GridEx.Resources>
 
                             <!--Name-->
@@ -100,8 +103,8 @@
 
                             <!--InstallDir-->
                             <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" />
-                            <TextBox Text="{Binding SelectedEmulator.InstallDir, UpdateSourceTrigger=PropertyChanged}"
-                                     pbeh:TextBoxBehavior.AttachDirectoryBrowser="True"/>
+                            <pctrls:PathSelectionBox Text="{Binding SelectedEmulator.InstallDir, UpdateSourceTrigger=PropertyChanged}"
+                                                     ShowDirectorySelector="True"/>
 
                             <!--BuiltInProfile-->
                             <TextBlock Text="{DynamicResource LOCEmulatorSpec}"/>
@@ -272,8 +275,8 @@
 
                                                 <!--Executable-->
                                                 <TextBlock Text="{DynamicResource LOCExecutableTitle}" />
-                                                <TextBox Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}"
-                                                         pbeh:TextBoxBehavior.FileBrowserAttachment="File|*.*"/>
+                                                <pctrls:PathSelectionBox x:Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}"
+                                                                         ShowFileSelector="True"/>
 
                                                 <!--Arguments-->
                                                 <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
@@ -281,8 +284,8 @@
 
                                                 <!--WorkingDir-->
                                                 <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" />
-                                                <TextBox Name="TextWorkdir" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"                                                         
-                                                         pbeh:TextBoxBehavior.AttachDirectoryBrowser="True"/>
+                                                <pctrls:PathSelectionBox x:Name="TextWorkdir" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"                                                         
+                                                                         ShowDirectorySelector="True"/>
 
                                                 <!--FileTypes-->
                                                 <TextBlock Text="{DynamicResource LOCSupportedFilesTitle}" />
@@ -367,6 +370,9 @@
                             <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                 <Setter Property="VerticalAlignment" Value="Center" />
                             </Style>
+                            <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
                         </controls:GridEx.Resources>
                         
                         <!--Name-->
@@ -375,8 +381,8 @@
 
                         <!--Directory-->
                         <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
-                        <TextBox pbeh:TextBoxBehavior.AttachDirectoryBrowser="True"
-                                 Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
+                        <pctrls:PathSelectionBox ShowDirectorySelector="True"
+                                                 Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!--Emulator-->
                         <TextBlock Text="{DynamicResource LOCEmuScanEmulator}" VerticalAlignment="Center" />

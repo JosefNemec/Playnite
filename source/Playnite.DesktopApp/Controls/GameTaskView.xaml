@@ -6,6 +6,7 @@
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
              xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
              xmlns:mods="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
+             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              mc:Ignorable="d" 
              d:DesignWidth="600">
     <UserControl.Resources>
@@ -20,6 +21,9 @@
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
+                <Setter Property="Margin" Value="3" />
+            </Style>
+            <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}" >
                 <Setter Property="Margin" Value="3" />
             </Style>
             <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
@@ -88,21 +92,20 @@
                 <RowDefinition Name="RowTrackingPath" Height="{Binding ShowTrackingPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>                
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{DynamicResource LOCPathLabel}" Grid.Column="0" Grid.Row="0" />
-            <DockPanel IsEnabled="{Binding ShowPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-                       Grid.Column="1" Grid.Row="0" LastChildFill="True" >
-                <Button Name="ButtonBrowse" Content="..." DockPanel.Dock="Right" Click="ButtonBrowsePath_Click" 
-                    Height="{Binding ActualHeight, ElementName=TextPath}" Margin="0,0,3,0"/>
-                <TextBox Name="TextPath" Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left" />
-            </DockPanel>
+            <TextBlock Text="{DynamicResource LOCPathLabel}" Grid.Column="0" Grid.Row="0" />            
+            <pctrls:PathSelectionBox x:Name="TextPath" Grid.Column="1" Grid.Row="0"
+                                     Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}"
+                                     IsEnabled="{Binding ShowPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+                                     ShowFileSelector="True"/>
 
             <TextBlock Text="{DynamicResource LOCArgumentsTitle}" Grid.Column="0" Grid.Row="1" />
             <TextBox IsEnabled="{Binding ShowArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
                      Name="TextArguments" Grid.Column="1" Grid.Row="1" Text="{Binding Arguments}" />
 
             <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" Grid.Column="0" Grid.Row="2" />
-            <TextBox IsEnabled="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-                     Name="TextWorkDir" Grid.Column="1" Grid.Row="2" Text="{Binding WorkingDir}" />
+            <pctrls:PathSelectionBox IsEnabled="{Binding ShowWorkingDirRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+                                     x:Name="TextWorkDir" Grid.Column="1" Grid.Row="2" Text="{Binding WorkingDir}"
+                                     ShowDirectorySelector="True" />
             
             <StackPanel Orientation="Horizontal"
                     IsEnabled="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
@@ -138,8 +141,8 @@
             <TextBox Name="EmulatorArguments" Grid.Column="1" Grid.Row="7" Text="{Binding Arguments}" />
 
             <TextBlock Text="Tracking path" Grid.Column="0" Grid.Row="8" />
-            <TextBox Grid.Column="1" Grid.Row="8"
-                     Text="{Binding TrackingPath}"/>
+            <pctrls:PathSelectionBox Grid.Column="1" Grid.Row="8" ShowDirectorySelector="True"
+                                     Text="{Binding TrackingPath}"/>
         </Grid>
     </Grid>
 </UserControl>
