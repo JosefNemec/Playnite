@@ -99,6 +99,7 @@ namespace Playnite.DesktopApp.Controls
                 TextInputText.TextChanged += TextFilter_TextChanged;
                 TextInputText.KeyUp += TextFilter_KeyUp;
                 TextInputText.GotFocus += TextInputText_GotFocus;
+                TextInputText.LostFocus += TextInputText_GotFocus;
 
                 BindingTools.SetBinding(
                     TextInputText,
