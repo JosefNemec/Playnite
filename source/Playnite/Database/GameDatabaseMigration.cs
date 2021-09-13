@@ -238,6 +238,52 @@ namespace Playnite.Database
                     });
                 }
 
+                // Generate default filter presets
+                FilterPresetsCollection.MapLiteDbEntities(mapper);
+                using (var db = createDb<FilterPreset>(Path.Combine(databasePath, filterPresetsDirName)))
+                {
+                    var col = db.GetCollection<FilterPreset>();
+                    col.InsertBulk(new List<FilterPreset>
+                    {
+                        new FilterPreset
+                        {
+                            Name = "All",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.Name,
+                            SortingOrderDirection = SortOrderDirection.Ascending,
+                            Settings = new FilterSettings()
+                        },
+                        new FilterPreset
+                        {
+                            Name = "Recently Played",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.LastActivity,
+                            SortingOrderDirection = SortOrderDirection.Descending,
+                            Settings = new FilterSettings { IsInstalled = true }
+                        },
+                        new FilterPreset
+                        {
+                            Name = "Favorites",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.Name,
+                            SortingOrderDirection = SortOrderDirection.Ascending,
+                            Settings = new FilterSettings { Favorite = true }
+                        },
+                        new FilterPreset
+                        {
+                            Name = "Most Played",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.Playtime,
+                            SortingOrderDirection = SortOrderDirection.Descending,
+                            Settings = new FilterSettings()
+                        }
+                    });
+                }
+
                 // Convert import exclusion list
                 ImportExclusionsCollection.MapLiteDbEntities(mapper);
                 using (var db = createDb<CompletionStatus>(Path.Combine(databasePath, importExclusionsDirName)))
