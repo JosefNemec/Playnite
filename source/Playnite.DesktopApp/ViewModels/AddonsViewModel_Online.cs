@@ -89,6 +89,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 addonSearchText = value;
                 OnPropertyChanged();
+                SearchAddon();
             }
         }
 
@@ -175,6 +176,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void SearchAddon()
         {
+            if (IsOnlineListLoading)
+            {
+                return;
+            }
+
             if (PlayniteEnvironment.InOfflineMode)
             {
                 return;
@@ -185,7 +191,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    OnlineAddonList = serviceClient.GetAllAddons(activeAddonSearchMode, AddonSearchText).ToList();
+                    OnlineAddonList = serviceClient.GetAllAddons(activeAddonSearchMode, AddonSearchText).OrderBy(a => a.Name).ToList();
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

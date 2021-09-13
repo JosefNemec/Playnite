@@ -6,6 +6,7 @@
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              xmlns:mkr="clr-namespace:Playnite.DesktopApp.Markup"
              xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="700">
 
@@ -43,7 +44,8 @@
                 <Button Content="{DynamicResource LOCSearchLabel}"
                         Command="{Binding SearchAddonCommand}"
                         Margin="5,0,0,0" DockPanel.Dock="Right"/>
-                <TextBox Text="{Binding AddonSearchText, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding AddonSearchText, UpdateSourceTrigger=PropertyChanged, Delay=500}"
+                         pbeh:FocusBahaviors.OnVisibilityFocus="True"
                          DockPanel.Dock="Left">
                     <TextBox.InputBindings>
                         <KeyBinding Command="{Binding SearchAddonCommand}" Key="Return" />
