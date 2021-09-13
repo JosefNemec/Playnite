@@ -19,7 +19,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="&#xeaa1;" x:Name="CollapsedIcon" FontFamily="{StaticResource FontIcoFont}"
+                            <TextBlock Text="&#xeaa0;" x:Name="CollapsedIcon" FontFamily="{StaticResource FontIcoFont}"
                                        VerticalAlignment="Center" HorizontalAlignment="Center"
                                        Style="{DynamicResource BaseTextBlockStyle}"
                                        Foreground="{DynamicResource GlyphBrush}" FontSize="18" MinWidth="20" Margin="5,0,5,0"
