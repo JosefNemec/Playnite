@@ -58,18 +58,18 @@
                     
                     <TextBlock Text="{DynamicResource LOCSettingsLabel}"
                                Style="{DynamicResource SettingsMenuHeaderText}" />
-                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionGeneral}" CommandParameter="0"
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuGeneralButtonTemplate}" CommandParameter="0"
                                      pbeh:FocusBahaviors.OnVisibilityFocus="True" />
-                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionVisuals}" CommandParameter="1" />
-                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionAudio}" CommandParameter="5" />
-                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionLayout}" CommandParameter="2" />
-                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSectionMenus}" CommandParameter="3" />
-                    <pctrls:ButtonEx Content="{DynamicResource LOCSettingsFSSection}" CommandParameter="4" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuVisualsButtonTemplate}" CommandParameter="1" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuAudioButtonTemplate}" CommandParameter="5" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuLayoutButtonTemplate}" CommandParameter="2" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuMenusButtonTemplate}" CommandParameter="3" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuInputButtonTemplate}" CommandParameter="4" />
 
                     <TextBlock Style="{StaticResource TextBlockBaseStyle}"
                            Text="{DynamicResource LOCSettingsRestartNotification}"
                            HorizontalAlignment="Right"
-                           Margin="10,20,10,0"/>
+                           Margin="10,20,20,0"/>
 
                     <TextBlock Text="{Binding OptionDescription}"
                                Margin="20,50,20,10" TextWrapping="Wrap">

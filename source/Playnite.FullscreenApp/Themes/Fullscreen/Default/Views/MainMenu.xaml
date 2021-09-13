@@ -7,6 +7,7 @@
 
     <Style x:Key="MainMenuButton" BasedOn="{StaticResource {x:Type ButtonEx}}" TargetType="ButtonEx">
         <Setter Property="Margin" Value="0,5,0,5" />
+        <Setter Property="Padding" Value="0,3,20,3" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
     </Style>
@@ -17,4 +18,98 @@
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Margin" Value="0,0,20,0" />
     </Style>
+
+    <DataTemplate x:Key="MainMenuSettingsButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef3a;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCSettingsLabel}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuLibUpdateButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefd1;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuReloadLibrary}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuCancelLibUpdateButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xecb1;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuCancelLibraryUpdate}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuExitPlayniteButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef16;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCExitPlaynite}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuSwithDesktopButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef1d;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCBackToDesktopMode}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuRandomGameButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefcf;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuSelectRandomGame}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuShutdowButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefc4;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuShutdownSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuSuspendButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef9e;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuSuspendSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuHibernateButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefc4;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuHibernateSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="MainMenuRestartButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef80;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuRestartSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="MainMenuFeedbackButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xeff2;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuIssues}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="MainMenuPatreonButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{DynamicResource LOCMenuPatreonSupport}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>
