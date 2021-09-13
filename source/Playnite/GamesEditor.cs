@@ -177,30 +177,16 @@ namespace Playnite
                     return;
                 }
 
-                var isScriptRuntimeNeeded =
-                    !AppSettings.GameStartedScript.IsNullOrWhiteSpace() ||
-                    !AppSettings.PostScript.IsNullOrWhiteSpace() ||
-                    !AppSettings.PreScript.IsNullOrWhiteSpace() ||
-                    !game.GameStartedScript.IsNullOrWhiteSpace() ||
-                    !game.PostScript.IsNullOrWhiteSpace() ||
-                    !game.PreScript.IsNullOrWhiteSpace();
-                if (isScriptRuntimeNeeded)
+                try
                 {
-                    try
-                    {
-                        scriptRuntimes.TryAdd(game.Id, new PowerShellRuntime($"{game.Name} {game.Id} runtime"));
-                    }
-                    catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        // This should really only happen on Windows 7 without PS 5.1 installed, which is very small percentage of users.
-                        // It should not prevent game startup.
-                        logger.Error(e, "Failed to create PowerShell runtime.");
-                        Dialogs.ShowErrorMessage(resources.GetString(LOC.PowerShellCreationError) + "\n\n" + e.Message, "");
-                        scriptRuntimes.TryAdd(game.Id, new DummyPowerShellRuntime());
-                    }
+                    scriptRuntimes.TryAdd(game.Id, new PowerShellRuntime($"{game.Name} {game.Id} runtime"));
                 }
-                else
+                catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
                 {
+                    // This should really only happen on Windows 7 without PS 5.1 installed, which is very small percentage of users.
+                    // It should not prevent game startup.
+                    logger.Error(e, "Failed to create PowerShell runtime.");
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.PowerShellCreationError) + "\n\n" + e.Message, "");
                     scriptRuntimes.TryAdd(game.Id, new DummyPowerShellRuntime());
                 }
 
