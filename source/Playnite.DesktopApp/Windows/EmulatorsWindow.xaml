@@ -30,9 +30,9 @@
     <DockPanel>
         <DockPanel.Resources>
             <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
-        </DockPanel.Resources>        
-        
-        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        </DockPanel.Resources>
+
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
                 <Button TabIndex="2" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
                         IsCancel="True" Style="{StaticResource BottomButton}"

@@ -28,7 +28,7 @@
     </controls:WindowBase.Resources>
 
     <DockPanel Margin="0,5,0,0">
-        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <TextBlock Text="{DynamicResource LOCSettingsRestartNotification}"
                            Margin="5,0,0,0" DockPanel.Dock="Left" VerticalAlignment="Center"
@@ -42,7 +42,7 @@
             </DockPanel>
         </Border>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}"
                 DockPanel.Dock="Left">
             <TreeView MinWidth="160" BorderThickness="0" ScrollViewer.CanContentScroll="False">
                 <i:Interaction.Triggers>
@@ -73,7 +73,7 @@
         </Border>
 
         <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
-                BorderBrush="{StaticResource NormalBorderBrush}">
+                BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <ContentControl Content="{Binding SelectedSectionView}"/>
         </Border>
     </DockPanel>

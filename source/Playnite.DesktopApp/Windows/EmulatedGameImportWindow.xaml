@@ -213,7 +213,7 @@
                     Visibility="{Binding IsScanSetup, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
         </StackPanel>
 
-        <Border Grid.Row="3" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <Border Grid.Row="3" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Command="{Binding CancelCommand}" 

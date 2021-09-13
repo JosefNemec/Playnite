@@ -42,7 +42,7 @@
                 </ItemsControl>
             </ScrollViewer>
         </DockPanel>
-        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <ProgressBar Value="{Binding UpdateProgress}" Maximum="100" Height="25"
                              Visibility="{Binding ShowProgress, Converter={pcon:BooleanToVisibilityConverter}}"

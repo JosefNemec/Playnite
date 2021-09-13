@@ -25,7 +25,7 @@
     </controls:WindowBase.Resources>
 
     <DockPanel Margin="0,5,0,0">
-        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Command="{Binding CancelCommand}"
@@ -40,7 +40,7 @@
             </DockPanel>
         </Border>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}"
                 DockPanel.Dock="Left">
             <TreeView Width="230" BorderThickness="0">
                 <i:Interaction.Triggers>
@@ -89,7 +89,7 @@
         </Border>
 
         <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
-                BorderBrush="{StaticResource NormalBorderBrush}">
+                BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <ContentControl Content="{Binding SelectedSectionView}" />
         </Border>
     </DockPanel>
