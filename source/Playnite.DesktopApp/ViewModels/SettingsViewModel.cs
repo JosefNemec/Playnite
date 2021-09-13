@@ -153,7 +153,7 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 var res = dialogs.SelectString(LOC.SettingsNewExternalExtensionBox, "", "");
-                if (res.Result)
+                if (res.Result && !res.SelectedString.IsNullOrEmpty())
                 {
                     Settings.DevelExtenions.Add(new SelectableItem<string>(res.SelectedString) { Selected = true });
                     Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
