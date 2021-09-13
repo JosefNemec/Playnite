@@ -16,18 +16,20 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="270"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
                 <Setter Property="Margin" Value="3" />
             </Style>
             <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}" >
+                <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="3" />
             </Style>
             <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" >
                 <Setter Property="Margin" Value="3" />
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                 <Setter Property="VerticalAlignment" Value="Center" />
@@ -109,7 +111,7 @@
             
             <StackPanel Orientation="Horizontal"
                     IsEnabled="{Binding ShowEmulatorRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
-                    Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5,0,5">
+                    Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,3,0,3">
                 <TextBlock Text="{DynamicResource LOCEmulatorTitle}" />
                 <ComboBox Name="ComboEmulator" SelectionChanged="ComboEmulator_SelectionChanged"
                       Margin="5,0,10,0"
