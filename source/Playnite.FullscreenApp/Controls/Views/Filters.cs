@@ -1,6 +1,7 @@
 ﻿using Playnite.Behaviors;
 using Playnite.Common;
 using Playnite.FullscreenApp.ViewModels;
+using Playnite.Input;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -13,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Playnite.FullscreenApp.Controls.Views
 {
@@ -52,7 +54,13 @@ namespace Playnite.FullscreenApp.Controls.Views
             }
 
             PanelItemsHost = Template.FindName("PART_PanelItemsHost", this) as Panel;
-            PanelItemsHost.Focusable = false;
+            if (PanelItemsHost != null)
+            {
+                PanelItemsHost.Focusable = false;
+                PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Back)));
+                PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Escape)));
+                PanelItemsHost.InputBindings.Add(new XInputBinding(mainModel.ToggleFiltersCommand, XInputButton.B));
+            }
 
             var ButtonClear = new ButtonEx();
             ButtonClear.Command = mainModel.ClearFiltersCommand;
