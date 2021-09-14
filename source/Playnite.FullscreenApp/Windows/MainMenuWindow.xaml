@@ -40,12 +40,9 @@
                     <StackPanel.Resources>
                         <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource MainMenuButton}" />
                     </StackPanel.Resources>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30,30,40,30">
-                        <TextBlock Text="Playnite" Style="{DynamicResource MainMenuHeaderText}"/>
-                        <Image Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" Height="48"
-                               RenderOptions.BitmapScalingMode="Fant" />
-                    </StackPanel>
 
+                    <ContentControl ContentTemplate="{DynamicResource MainMenuHeaderTemplate}"
+                                    Focusable="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
                     <pctrls:ButtonEx x:Name="PART_ButtonPickRandomGame"
                                      ContentTemplate="{DynamicResource MainMenuRandomGameButtonTemplate}"

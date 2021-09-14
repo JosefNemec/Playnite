@@ -25,8 +25,11 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 selectedSectionView = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSubMenuOpened));
             }
         }
+
+        public bool IsSubMenuOpened { get => SelectedSectionView != null; }
 
         private bool isMenuEnabled = true;
         public bool IsMenuEnabled

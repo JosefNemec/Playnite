@@ -54,10 +54,11 @@
                         <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource SettingsMenuButton}">
                             <Setter Property="Command" Value="{Binding OpenSectionCommand}" />
                         </Style>
-                    </StackPanel.Resources>
+                    </StackPanel.Resources>                    
                     
-                    <TextBlock Text="{DynamicResource LOCSettingsLabel}"
-                               Style="{DynamicResource SettingsMenuHeaderText}" />
+                    <ContentControl ContentTemplate="{DynamicResource SettingsMenuHeaderTemplate}"
+                                    Focusable="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    
                     <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuGeneralButtonTemplate}" CommandParameter="0"
                                      pbeh:FocusBahaviors.OnVisibilityFocus="True" />
                     <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuVisualsButtonTemplate}" CommandParameter="1" />
@@ -67,9 +68,10 @@
                     <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuInputButtonTemplate}" CommandParameter="4" />
 
                     <TextBlock Style="{StaticResource TextBlockBaseStyle}"
-                           Text="{DynamicResource LOCSettingsRestartNotification}"
-                           HorizontalAlignment="Right"
-                           Margin="10,20,20,0"/>
+                               Text="{DynamicResource LOCSettingsRestartNotification}"
+                               Visibility="{Binding IsSubMenuOpened, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               HorizontalAlignment="Right"
+                               Margin="10,20,20,0"/>
 
                     <TextBlock Text="{Binding OptionDescription}"
                                Margin="20,50,20,10" TextWrapping="Wrap">

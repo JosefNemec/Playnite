@@ -29,6 +29,9 @@
                                 BorderThickness="3" Visibility="Hidden" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Background" Value="{DynamicResource ControlBackgroundDarkBrush}" />                            
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderFocus" />

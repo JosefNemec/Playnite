@@ -38,9 +38,9 @@
                     Grid.Column="1" Grid.Row="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                 <DockPanel>
-                    <TextBlock Text="{Binding GameDetails.Game.DisplayName}"
-                               DockPanel.Dock="Top"
-                               Style="{DynamicResource GameMenuHeaderText}" />
+                    <ContentControl Focusable="False" DockPanel.Dock="Top"
+                                    Content="{Binding GameDetails.Game}"
+                                    ContentTemplate="{DynamicResource GameMenuHeaderTemplate}" />
                     <pctrls:ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
                                            KeyboardNavigation.DirectionalNavigation="Once"
                                            pbeh:FocusBahaviors.FocusBinding="True"
@@ -49,8 +49,9 @@
                             <DataTemplate>
                                 <pctrls:ButtonEx Content="{Binding Title}"
                                                  Command="{Binding Command}"
+                                                 ContentTemplate="{Binding Template}"
                                                  CommandParameter="{Binding CommandParameter}"
-                                                 Style="{DynamicResource GameMenuButton}"/>
+                                                 Style="{DynamicResource GameMenuButton}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.Template>

@@ -6,10 +6,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using static Playnite.FullscreenApp.ViewModels.GameDetailsViewModel;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
+    public class GameActionItem
+    {
+        public RelayCommandBase Command { get; set; }
+        public object CommandParameter { get; set; }
+        public string Title { get; set; }
+        public object Template { get; set; }
+
+        public GameActionItem(RelayCommandBase command, string title)
+        {
+            Command = command;
+            Title = title;
+        }
+
+        public GameActionItem(RelayCommandBase command, string title, string templateName)
+        {
+            Command = command;
+            Title = title;
+            Template = ResourceProvider.GetResource(templateName) ?? DependencyProperty.UnsetValue;
+        }
+
+        public GameActionItem(RelayCommandBase command, object commandParameter, string title)
+        {
+            Command = command;
+            CommandParameter = commandParameter;
+            Title = title;
+        }
+
+        public GameActionItem(RelayCommandBase command, object commandParameter, string title, string templateName)
+        {
+            Command = command;
+            CommandParameter = commandParameter;
+            Title = title;
+            Template = ResourceProvider.GetResource(templateName) ?? DependencyProperty.UnsetValue;
+        }
+    }
+
     public class GameMenuViewModel : ObservableObject
     {
         private static readonly ILogger logger = LogManager.GetLogger();
@@ -61,22 +98,22 @@ namespace Playnite.FullscreenApp.ViewModels
             var items = new List<GameActionItem>();
             if (GameDetails.Game.IsInstalled)
             {
-                items.Add(new GameActionItem(StartGameCommand, ResourceProvider.GetString(LOC.PlayGame)));
+                items.Add(new GameActionItem(StartGameCommand, ResourceProvider.GetString(LOC.PlayGame), "GameMenuPlayButtonTemplate"));
             }
             else
             {
-                items.Add(new GameActionItem(InstallGameCommand, ResourceProvider.GetString(LOC.InstallGame)));
+                items.Add(new GameActionItem(InstallGameCommand, ResourceProvider.GetString(LOC.InstallGame), "GameMenuInstallButtonTemplate"));
             }
 
-            gameDetails.Game.GameActions?.Where(a => !a.IsPlayAction).ForEach(a => items.Add(new GameActionItem(ActivateActionCommand, a, a.Name)));
+            gameDetails.Game.GameActions?.Where(a => !a.IsPlayAction).ForEach(a => items.Add(new GameActionItem(ActivateActionCommand, a, a.Name, "GameMenuCustomActionButtonTemplate")));
 
-            items.Add(new GameActionItem(ToggleFavoritesCommand, GameDetails.Game.Favorite ? ResourceProvider.GetString(LOC.RemoveFavoriteGame) : ResourceProvider.GetString(LOC.FavoriteGame)));
-            items.Add(new GameActionItem(ToggleVisibilityCommand, GameDetails.Game.Hidden ? ResourceProvider.GetString(LOC.UnHideGame) : ResourceProvider.GetString(LOC.HideGame)));
-            items.Add(new GameActionItem(RemoveGameCommand, ResourceProvider.GetString(LOC.RemoveGame)));
+            items.Add(new GameActionItem(ToggleFavoritesCommand, GameDetails.Game.Favorite ? ResourceProvider.GetString(LOC.RemoveFavoriteGame) : ResourceProvider.GetString(LOC.FavoriteGame), "GameMenuFavoriesButtonTemplate"));
+            items.Add(new GameActionItem(ToggleVisibilityCommand, GameDetails.Game.Hidden ? ResourceProvider.GetString(LOC.UnHideGame) : ResourceProvider.GetString(LOC.HideGame), "GameMenuVisibilityButtonTemplate"));
+            items.Add(new GameActionItem(RemoveGameCommand, ResourceProvider.GetString(LOC.RemoveGame), "GameMenuRemoveButtonTemplate"));
 
             if (!GameDetails.Game.IsCustomGame && GameDetails.Game.IsInstalled)
             {
-                items.Add(new GameActionItem(UninstallGameCommand, ResourceProvider.GetString(LOC.UninstallGame)));
+                items.Add(new GameActionItem(UninstallGameCommand, ResourceProvider.GetString(LOC.UninstallGame), "GameMenuUninstallButtonTemplate"));
             }
 
             GameItems = items;
