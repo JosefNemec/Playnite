@@ -145,6 +145,7 @@ namespace Playnite.ViewModels
         public PlayniteAPI PlayniteApi { get; set; }
         public IResourceProvider Resources { get; }
         public ExtensionFactory Extensions { get; set; }
+        public bool IgnoreFilterChanges { get; set; } = false;
 
         public MainViewModelBase(
             GameDatabase database,
@@ -209,6 +210,11 @@ namespace Playnite.ViewModels
             get => activeFilterPreset;
             set
             {
+                if (activeFilterPreset == value)
+                {
+                    return;
+                }
+
                 activeFilterPreset = value;
                 if (App.Mode == ApplicationMode.Desktop)
                 {
@@ -242,6 +248,7 @@ namespace Playnite.ViewModels
                 GamesView.IgnoreViewConfigChanges = true;
             }
 
+            IgnoreFilterChanges = true;
             var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
             var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
             filter.ApplyFilter(preset.Settings);
@@ -262,6 +269,7 @@ namespace Playnite.ViewModels
 
             if (GamesView != null)
             {
+                IgnoreFilterChanges = false;
                 GamesView.IgnoreViewConfigChanges = false;
                 GamesView.RefreshView();
             }

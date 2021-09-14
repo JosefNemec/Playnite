@@ -488,6 +488,11 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
+            if (!IgnoreFilterChanges)
+            {
+                ActiveFilterPreset = null;
+            }
+
             OnPropertyChanged(nameof(IsSearchActive));
             OnPropertyChanged(nameof(IsExtraFilterActive));
         }

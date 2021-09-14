@@ -244,12 +244,20 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings = settings;
             ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
+            AppSettings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
         }
 
+        private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
+        {
+            if (!IgnoreFilterChanges)
+            {
+                ActiveFilterPreset = null;
+            }
+        }
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
         {
             PlayniteApi.Notifications.Remove(e.Message.Id);
