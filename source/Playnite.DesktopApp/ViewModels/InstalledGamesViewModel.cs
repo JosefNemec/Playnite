@@ -301,7 +301,8 @@ namespace Playnite.DesktopApp.ViewModels
                     GameId = program.Item.AppId,
                     InstallDirectory = program.Item.WorkDir,
                     Source = program.Type == ProgramType.UWP ? new MetadataNameProperty("Microsoft Store") : null,
-                    IsInstalled = true
+                    IsInstalled = true,
+                    Platforms = new HashSet<MetadataProperty> { new MetadataSpecProperty("pc_windows") }
                 };
 
                 var path = program.Item.Path;
