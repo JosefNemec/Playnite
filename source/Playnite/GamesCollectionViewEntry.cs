@@ -80,7 +80,7 @@ namespace Playnite
         public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
-        public char NameGroup => GetNameGroup();
+        public char NameGroup => Game.GetNameGroup();
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;
@@ -569,20 +569,6 @@ namespace Playnite
         public static explicit operator Game(GamesCollectionViewEntry entry)
         {
             return entry.Game;
-        }
-
-        private char GetNameGroup()
-        {
-            var nameMatch = Game.SortingName.IsNullOrEmpty() ? Game.Name : Game.SortingName;
-            if (nameMatch.IsNullOrEmpty())
-            {
-                return '#';
-            }
-            else
-            {
-                var firstChar = char.ToUpper(nameMatch[0]);
-                return char.IsLetter(firstChar) ? firstChar : '#';
-            }
         }
     }
 }

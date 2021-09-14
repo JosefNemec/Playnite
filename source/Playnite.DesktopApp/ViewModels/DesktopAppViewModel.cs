@@ -258,6 +258,7 @@ namespace Playnite.DesktopApp.ViewModels
                 ActiveFilterPreset = null;
             }
         }
+
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
         {
             PlayniteApi.Notifications.Remove(e.Message.Id);
@@ -348,7 +349,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             LoadSideBarItems();
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.FilterSettings);
-            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
+            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
 
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             (_) =>

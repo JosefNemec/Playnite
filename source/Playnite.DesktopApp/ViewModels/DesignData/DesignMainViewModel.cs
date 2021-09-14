@@ -83,7 +83,7 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings.GridViewSideBarVisible = true;
             AppSettings.ShowNamesUnderCovers = true;
             AppSettings.ShowNameEmptyCover = true;
-            AppSettings.ViewSettings.SelectedExplorerField = GroupableField.LastActivity;
+            AppSettings.ViewSettings.SelectedExplorerField = ExplorerField.LastActivity;
 
             Extensions = new ExtensionFactory(database, new GameControllerFactory());
             GamesView = new DesktopCollectionView(database, AppSettings, Extensions);
