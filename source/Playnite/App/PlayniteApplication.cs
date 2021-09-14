@@ -906,12 +906,24 @@ namespace Playnite
                     }
 
                     MainModelBase.UpdatesAvailable = true;
-                    updateCheckTimer.Dispose();
                 }
             }
             catch (Exception exc)
             {
                 logger.Warn(exc, "Failed to process update.");
+            }
+
+            try
+            {
+                var updates = Addons.CheckAddonUpdates(ServicesClient);
+                if (updates.HasItems())
+                {
+                    Api.Notifications.Add(MainModelBase.GetAddonUpdatesFoundMessage(updates));
+                }
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to process addon update check.");
             }
         }
 

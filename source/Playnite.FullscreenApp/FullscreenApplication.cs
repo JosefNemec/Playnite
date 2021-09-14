@@ -159,11 +159,6 @@ namespace Playnite.FullscreenApp
             {
                 await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
             }
-
-            if (!PlayniteEnvironment.InOfflineMode)
-            {
-                await MainModel.CheckForAddonUpdates();
-            }
         }
         public override void InitializeNative()
         {
