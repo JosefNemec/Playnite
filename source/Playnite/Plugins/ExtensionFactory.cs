@@ -149,7 +149,19 @@ namespace Playnite.Plugins
             {
                 foreach (var dirPath in File.ReadAllLines(path).Where(a => !a.IsNullOrWhiteSpace() && !a.StartsWith("#")))
                 {
-                    var man = GetManifestFromFile(Path.Combine(dirPath.Trim(), PlaynitePaths.ExtensionManifestFileName));
+                    ExtensionManifest man = null;
+                    try
+                    {
+                        if (Directory.Exists(dirPath))
+                        {
+                            man = GetManifestFromFile(Path.Combine(dirPath.Trim(), PlaynitePaths.ExtensionManifestFileName));
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to read extension dev file.");
+                    }
+
                     if (man != null)
                     {
                         yield return man;
