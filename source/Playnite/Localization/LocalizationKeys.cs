@@ -2046,6 +2046,10 @@ namespace Playnite
         /// </summary>
         public const string SaveChanges = "LOCSaveChanges";
         /// <summary>
+        /// Apply field changes to game(s) being edited.
+        /// </summary>
+        public const string GameEditChangeSaveTooltip = "LOCGameEditChangeSaveTooltip";
+        /// <summary>
         /// Play Action
         /// </summary>
         public const string PlayAction = "LOCPlayAction";
