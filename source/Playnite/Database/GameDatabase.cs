@@ -1199,6 +1199,16 @@ namespace Playnite.Database
             (CompletionStatuses as CompletionStatusesCollection).SetSettings(settings);
         }
 
+        public GameScannersSettings GetGameScannersSettings()
+        {
+            return (GameScanners as GameScannersCollection).GetSettings();
+        }
+
+        public void SetGameScannersSettings(GameScannersSettings settings)
+        {
+            (GameScanners as GameScannersCollection).SetSettings(settings);
+        }
+
         public static void GenerateSampleData(IGameDatabase database)
         {
             database.Platforms.Add("Windows");

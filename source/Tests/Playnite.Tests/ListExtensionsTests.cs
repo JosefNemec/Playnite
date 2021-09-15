@@ -176,6 +176,8 @@ namespace Playnite.Tests
             list = new List<int> { 1, 2, 3, 4, 2, 3 };
             hash = list.ToHashSet();
             Assert.AreEqual(4, hash.Count);
+
+            new List<int>(0).ToHashSet();
         }
     }
 }

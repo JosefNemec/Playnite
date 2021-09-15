@@ -25,6 +25,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private List<string> crcExcludeFileTypes;
+        /// <summary>
+        /// Gets or sets list of file extensions that should be excluded from CRC check.
+        /// </summary>
+        public List<string> CrcExcludeFileTypes
+        {
+            get => crcExcludeFileTypes;
+            set
+            {
+                crcExcludeFileTypes = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string emulatorProfileId;
         /// <summary>
         /// Gets or sets assigned emulator profile id.
@@ -91,6 +105,11 @@ namespace Playnite.SDK.Models
                 if (!string.Equals(Directory, tro.Directory, StringComparison.Ordinal))
                 {
                     tro.Directory = Directory;
+                }
+
+                if (!CrcExcludeFileTypes.IsListEqual(tro.CrcExcludeFileTypes))
+                {
+                    tro.CrcExcludeFileTypes = CrcExcludeFileTypes;
                 }
             }
             else

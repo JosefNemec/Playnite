@@ -980,6 +980,9 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuImportAssignPlatform">Set platform</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Set region</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Scan folder</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Scan configurations</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Exclude patterns from checksum scan</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Files matching specified pattern(s) won't be scanned for checksum and will be matched by file name. See emulator help page for more information.</sys:String>
     <sys:String x:Key="LOCEmuScanEmulator">Scan with emulator</sys:String>
     <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Include in bulk scan auto-scan</sys:String>
     <sys:String x:Key="LOCEmuNoValidConfigSet">No valid scan configuration set. Make sure that all fields are set properly.</sys:String>

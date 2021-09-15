@@ -3518,6 +3518,18 @@ namespace Playnite
         /// </summary>
         public const string EmuScanDirectory = "LOCEmuScanDirectory";
         /// <summary>
+        /// Scan configurations
+        /// </summary>
+        public const string EmuScanConfigurations = "LOCEmuScanConfigurations";
+        /// <summary>
+        /// Exclude patterns from checksum scan
+        /// </summary>
+        public const string EmuCrcExcludeFileTypes = "LOCEmuCrcExcludeFileTypes";
+        /// <summary>
+        /// Files matching specified pattern(s) won't be scanned for checksum and will be matched by file name. See emulator help page for more information.
+        /// </summary>
+        public const string EmuCrcExcludeFileTypesTooltip = "LOCEmuCrcExcludeFileTypesTooltip";
+        /// <summary>
         /// Scan with emulator
         /// </summary>
         public const string EmuScanEmulator = "LOCEmuScanEmulator";
@@ -3582,7 +3594,7 @@ namespace Playnite
         /// </summary>
         public const string CompletionStatusPlayedStatusDesc = "LOCCompletionStatusPlayedStatusDesc";
         /// <summary>
-        /// Failed to create PowerShell script runtime.
+        /// Failed to initialize PowerShell script runtime.
         /// </summary>
         public const string PowerShellCreationError = "LOCPowerShellCreationError";
     }

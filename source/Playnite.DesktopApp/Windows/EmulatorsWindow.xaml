@@ -338,81 +338,106 @@
             </TabItem>
 
             <TabItem Header="{DynamicResource LOCEmuAutoScanConfigurations}">
-                <Grid Margin="5,5,5,5" DockPanel.Dock="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="3"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top" Margin="10,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <ListBox Grid.Row="0" Grid.Column="0" Name="ListScannerConfigs"
+                        <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
+                                   Grid.Column="0" Margin="0,0,10,0"
+                                   ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                        <TextBox Text="{Binding GlobalScanSettings.CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
+                                 Grid.Column="1" ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}" />
+                    </Grid>
+                    <TextBlock Text="{DynamicResource LOCEmuScanConfigurations}" DockPanel.Dock="Top" Margin="10,0,10,0" />
+                    <Separator DockPanel.Dock="Top" Margin="10,5,10,0" />
+                    <Grid Margin="5,5,5,5" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ListBox Grid.Row="0" Grid.Column="0" Name="ListScannerConfigs"
                              Margin="5,0,0,5"
                              ItemsSource="{Binding EditingScanners}"
                              SelectedItem="{Binding SelectedScanner, Mode=TwoWay}"
                              DisplayMemberPath="Name"                     
                              pbeh:ScrollToSelectedBehavior.Enabled="True" />
 
-                    <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
-                    
-                    <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,5,5,0"
-                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="4" StarRows="4"
+                        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
+
+                        <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,5,5,0"
+                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="5" StarRows="5"
                                      IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
                                      DataContext="{Binding SelectedScanner}">
-                        <controls:GridEx.Resources>
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                                <Setter Property="Margin" Value="0,10,10,10" />
-                            </Style>
-                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                            </Style>
-                            <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                            </Style>
-                        </controls:GridEx.Resources>
-                        
-                        <!--Name-->
-                        <TextBlock Text="{DynamicResource LOCNameLabel}" />
-                        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                            <controls:GridEx.Resources>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Margin" Value="0,10,10,10" />
+                                </Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                                <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </controls:GridEx.Resources>
 
-                        <!--Directory-->
-                        <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
-                        <pctrls:PathSelectionBox ShowDirectorySelector="True"
+                            <!--Name-->
+                            <TextBlock Text="{DynamicResource LOCNameLabel}" />
+                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <!--Directory-->
+                            <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
+                            <pctrls:PathSelectionBox ShowDirectorySelector="True"
                                                  Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <!--Emulator-->
-                        <TextBlock Text="{DynamicResource LOCEmuScanEmulator}" VerticalAlignment="Center" />
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <ComboBox Width="150" VerticalAlignment="Center" Name="ComboEmulatorList"
+                            <!--Emulator-->
+                            <TextBlock Text="{DynamicResource LOCEmuScanEmulator}" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ComboBox Width="150" VerticalAlignment="Center" Name="ComboEmulatorList"
                                       ItemsSource="{Binding Data.EditingEmulators, Source={StaticResource Proxy}}"
                                       DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}" />
-                            <TextBlock Text="{DynamicResource LOCProfileLabel}" VerticalAlignment="Center" Margin="10,0,10,0"  />
-                            <ComboBox Width="150" VerticalAlignment="Center"
+                                <TextBlock Text="{DynamicResource LOCProfileLabel}" VerticalAlignment="Center" Margin="10,0,10,0"  />
+                                <ComboBox Width="150" VerticalAlignment="Center"
                                       ItemsSource="{Binding SelectedItem.AllProfiles, ElementName=ComboEmulatorList}"
                                       DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId, Delay=50}" />
-                        </StackPanel>
+                            </StackPanel>
 
-                        <!--Startup scan-->
-                        <CheckBox Content="{DynamicResource LOCEmuScanIncludeGlobalUpdate}"
+                            <!--IgnoreTypes-->
+                            <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
+                                       ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                            <TextBox Text="{Binding CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
+                                     ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+
+                            <!--Startup scan-->
+                            <CheckBox Content="{DynamicResource LOCEmuScanIncludeGlobalUpdate}"
                                   Grid.ColumnSpan="2" Margin="0,5,10,5"
                                   IsChecked="{Binding InGlobalUpdate}"/>
-                    </controls:GridEx>
+                        </controls:GridEx>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
-                        <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddScanConfigCommand}" />
-                        <Button Content="{DynamicResource LOCCopyTitle}" Margin="5"
+                            <Button Content="{DynamicResource LOCCopyTitle}" Margin="5"
                                 Command="{Binding CopyScanConfigCommand}"
                                 CommandParameter="{Binding SelectedItem, ElementName=ListScannerConfigs}"/>
-                        <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5"
+                            <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5"
                                 Command="{Binding RemoveScanConfigCommand}"
                                 CommandParameter="{Binding SelectedItem, ElementName=ListScannerConfigs}"/>
-                    </StackPanel>                    
-                </Grid>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>                
             </TabItem>
         </TabControl>
     </DockPanel>

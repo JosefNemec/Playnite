@@ -402,6 +402,7 @@ namespace System.Collections.Generic
                 var allItems = new List<T>(list1.Count() + list2.Count());
                 allItems.AddRange(list1);
                 allItems.AddRange(list2);
+                return allItems;
             }
             else if (list1.HasItems() && !list2.HasItems())
             {
@@ -471,7 +472,7 @@ namespace System.Collections.Generic
                 return new HashSet<T>();
             }
 
-            return new HashSet<T>(source.Distinct());
+            return new HashSet<T>(source);
         }
     }
 }

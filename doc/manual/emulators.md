@@ -76,6 +76,15 @@ Auto-scan configurations
 
 Scanner configurations can be used to automatically add new games during library import via `Update Game Library` menu. Specific configurations can be excluded from global library update on scanner configurations screen via `Library -> Configure Emulators` menu.
 
+### Exclude patterns
+
+These specify file patterns used during checksum scan. When a file matches specified pattern(s), its checksum won't be calculated and game will be imported based on other ROM properties (mainly file name). This can significantly speed up scanning process but also make import less accurate.
+
+Multiple patterns can be specified by separating the list with comma: `*.chd,*.iso`
+
+> [!NOTE]
+> `chd` files are excluded by default because there are currently no records for them in emulation database Playnite uses for game matching.
+
 Launching games
 ---------------------
 
