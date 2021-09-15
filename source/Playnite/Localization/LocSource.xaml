@@ -983,9 +983,12 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuScanConfigurations">Scan configurations</sys:String>
     <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Exclude patterns from checksum scan</sys:String>
     <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Files matching specified pattern(s) won't be scanned for checksum and will be matched by file name. See emulator help page for more information.</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Scan with emulator</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Include in bulk scan auto-scan</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">No valid scan configuration set. Make sure that all fields are set properly.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Scan with emulator</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Name has to be set when saving new configuration.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulator or emulator profile is not set.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Directory to scan is not specified or it doesn't exists.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Scan configuration is not set properly.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Include in bulk scan auto-scan</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Failed to scan folder for emulators.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Failed to scan folder(s) for emulated games.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Hide imported</sys:String>

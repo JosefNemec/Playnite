@@ -18,6 +18,7 @@ using Playnite.Windows;
 using Playnite.DesktopApp.Windows;
 using Playnite.ViewModels;
 using Playnite.Emulators;
+using System.IO;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -323,18 +324,28 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void StartScan()
         {
-            var validConfigs = ScannerConfigs.Where(a =>
-                a.EmulatorId != Guid.Empty &&
-                !a.EmulatorProfileId.IsNullOrEmpty() &&
-                !a.Directory.IsNullOrEmpty());
-
-            if (!validConfigs.HasItems())
+            foreach (var config in ScannerConfigs)
             {
-                Dialogs.ShowMessage(LOC.EmuNoValidConfigSet, "", MessageBoxButton.OK);
-                return;
+                if (config.Save && config.Name.IsNullOrWhiteSpace())
+                {
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigNameError), "");
+                    return;
+                }
+
+                if (config.EmulatorId == Guid.Empty || config.EmulatorProfileId.IsNullOrEmpty())
+                {
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigNoEmulatorError), "");
+                    return;
+                }
+
+                if (config.Directory.IsNullOrEmpty() || !Directory.Exists(config.Directory))
+                {
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigDirectoryError), "");
+                    return;
+                }
             }
 
-            foreach (var config in validConfigs.Where(a => a.Save))
+            foreach (var config in ScannerConfigs.Where(a => a.Save))
             {
                 var exists = database.GameScanners.Any(c =>
                     string.Equals(c.Directory, config.Directory, StringComparison.OrdinalIgnoreCase) &&
@@ -358,7 +369,7 @@ namespace Playnite.DesktopApp.ViewModels
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
                 var existingGame = database.GetImportedRomFiles();
-                foreach (GameScannerConfig config in validConfigs)
+                foreach (GameScannerConfig config in ScannerConfigs)
                 {
                     args.Text = resources.GetString(LOC.EmuWizardScanningSpecific).Format(config.Directory);
                     GameList.AddRange(GameScanner.Scan(

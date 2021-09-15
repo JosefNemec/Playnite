@@ -3534,13 +3534,25 @@ namespace Playnite
         /// </summary>
         public const string EmuScanEmulator = "LOCEmuScanEmulator";
         /// <summary>
+        /// Name has to be set when saving new configuration.
+        /// </summary>
+        public const string ScanConfigNameError = "LOCScanConfigNameError";
+        /// <summary>
+        /// Emulator or emulator profile is not set.
+        /// </summary>
+        public const string ScanConfigNoEmulatorError = "LOCScanConfigNoEmulatorError";
+        /// <summary>
+        /// Directory to scan is not specified or it doesn't exists.
+        /// </summary>
+        public const string ScanConfigDirectoryError = "LOCScanConfigDirectoryError";
+        /// <summary>
+        /// Scan configuration is not set properly.
+        /// </summary>
+        public const string ScanConfigError = "LOCScanConfigError";
+        /// <summary>
         /// Include in bulk scan auto-scan
         /// </summary>
         public const string EmuScanIncludeGlobalUpdate = "LOCEmuScanIncludeGlobalUpdate";
-        /// <summary>
-        /// No valid scan configuration set. Make sure that all fields are set properly.
-        /// </summary>
-        public const string EmuNoValidConfigSet = "LOCEmuNoValidConfigSet";
         /// <summary>
         /// Failed to scan folder for emulators.
         /// </summary>
