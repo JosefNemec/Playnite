@@ -495,6 +495,7 @@ namespace Playnite.ViewModels
                     newRegions).Select(a => a.ToGame()).ToList();
                 if (scanned.HasItems())
                 {
+                    var statusSettings = Database.GetCompletionStatusSettings();
                     if (newPlatforms.HasItems())
                     {
                         Database.Platforms.Add(newPlatforms);
@@ -503,6 +504,11 @@ namespace Playnite.ViewModels
                     if (newRegions.HasItems())
                     {
                         Database.Regions.Add(newRegions);
+                    }
+
+                    if (statusSettings.DefaultStatus != Guid.Empty)
+                    {
+                        scanned.ForEach(g => g.CompletionStatusId = statusSettings.DefaultStatus);
                     }
 
                     addedGames.AddRange(scanned);

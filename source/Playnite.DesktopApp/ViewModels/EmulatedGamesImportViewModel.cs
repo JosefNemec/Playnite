@@ -433,6 +433,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void ImportGames()
         {
+            var statusSettings = database.GetCompletionStatusSettings();
             using (database.BufferedUpdate())
             {
                 foreach (var newPlat in newPlatforms)
@@ -454,6 +455,11 @@ namespace Playnite.DesktopApp.ViewModels
                 foreach (var scannedGame in GameList.Where(a => a.Import && a.Roms?.Any(r => r.Import) == true))
                 {
                     var game = scannedGame.ToGame();
+                    if (statusSettings.DefaultStatus != Guid.Empty)
+                    {
+                        game.CompletionStatusId = statusSettings.DefaultStatus;
+                    }
+
                     database.Games.Add(game);
                     ImportedGames.Add(game);
                 }
