@@ -327,9 +327,25 @@ namespace Playnite.ViewModels
                 new MessageBoxToggle(LOC.FilterPresetShowOnFSTopPanel, false)
             };
 
+            var overwriteExisting = false;
             var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty, options);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
+                var existingPreset = Database.FilterPresets.FirstOrDefault(a => string.Equals(a.Name, res.SelectedString, StringComparison.InvariantCultureIgnoreCase));
+                if (existingPreset != null)
+                {
+                    var dialogRes = Dialogs.ShowMessage(LOC.FilterPresetNameConflict, "", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                    if (dialogRes == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
+
+                    if (dialogRes == MessageBoxResult.Yes)
+                    {
+                        overwriteExisting = true;
+                    }
+                }
+
                 var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
                 var preset = new FilterPreset
                 {
@@ -349,8 +365,18 @@ namespace Playnite.ViewModels
                     }
                 }
 
-                Database.FilterPresets.Add(preset);
-                ActiveFilterPreset = preset;
+                if (existingPreset != null && overwriteExisting)
+                {
+                    preset.Id = existingPreset.Id;
+                    Database.FilterPresets.Update(preset);
+                    ActiveFilterPreset = existingPreset;
+                }
+                else
+                {
+                    Database.FilterPresets.Add(preset);
+                    ActiveFilterPreset = preset;
+                }
+
                 OnPropertyChanged(nameof(SortedFilterPresets));
                 OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }

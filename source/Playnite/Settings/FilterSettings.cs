@@ -95,6 +95,42 @@ namespace Playnite
         {
             return SortingOrder != null;
         }
+
+        public override void CopyDiffTo(object target)
+        {
+            base.CopyDiffTo(target);
+            if (target is FilterPreset tro)
+            {
+                if (!Settings.IsEqualJson(tro.Settings))
+                {
+                    tro.Settings = Settings;
+                }
+
+                if (SortingOrder != tro.SortingOrder)
+                {
+                    tro.SortingOrder = SortingOrder;
+                }
+
+                if (SortingOrderDirection != tro.SortingOrderDirection)
+                {
+                    tro.SortingOrderDirection = SortingOrderDirection;
+                }
+
+                if (GroupingOrder != tro.GroupingOrder)
+                {
+                    tro.GroupingOrder = GroupingOrder;
+                }
+
+                if (ShowInFullscreeQuickSelection != tro.ShowInFullscreeQuickSelection)
+                {
+                    tro.ShowInFullscreeQuickSelection = ShowInFullscreeQuickSelection;
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"Target object has to be of type {GetType().Name}");
+            }
+        }
     }
 
     public class FilterChangedEventArgs : EventArgs

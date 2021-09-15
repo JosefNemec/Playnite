@@ -3597,5 +3597,9 @@ namespace Playnite
         /// Failed to initialize PowerShell script runtime.
         /// </summary>
         public const string PowerShellCreationError = "LOCPowerShellCreationError";
+        /// <summary>
+        /// Filter preset with specified name already exists. Update preset with new settings?
+        /// </summary>
+        public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
     }
 }

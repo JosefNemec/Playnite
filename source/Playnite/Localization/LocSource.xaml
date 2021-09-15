@@ -1000,4 +1000,5 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Default status assigned to newly added games</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset with specified name already exists. Update preset with new settings?</sys:String>
 </ResourceDictionary>
