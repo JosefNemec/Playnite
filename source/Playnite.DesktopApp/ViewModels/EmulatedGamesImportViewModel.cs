@@ -366,19 +366,21 @@ namespace Playnite.DesktopApp.ViewModels
             newPlatforms = new List<Platform>();
             newRegions = new List<Region>();
             GameList.Clear();
+            var scanString = resources.GetString(LOC.EmuWizardScanningSpecific);
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
                 var existingGame = database.GetImportedRomFiles();
                 foreach (GameScannerConfig config in ScannerConfigs)
                 {
-                    args.Text = resources.GetString(LOC.EmuWizardScanningSpecific).Format(config.Directory);
+                    args.Text = scanString.Format(config.Directory);
                     GameList.AddRange(GameScanner.Scan(
                         config,
                         database,
                         existingGame,
                         args.CancelToken,
                         newPlatforms,
-                        newRegions));
+                        newRegions,
+                        (path) => args.Text = scanString.Format(path)));
                 }
             },
             new GlobalProgressOptions(LOC.EmuWizardScanning)

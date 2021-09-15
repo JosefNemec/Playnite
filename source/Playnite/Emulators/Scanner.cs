@@ -156,7 +156,8 @@ namespace Playnite.Emulators
             List<string> importedFiles,
             CancellationToken cancelToken,
             List<Platform> newPlatforms,
-            List<Region> newRegions)
+            List<Region> newRegions,
+            Action<string> fileScanCallback = null)
         {
             List<ScannedGame> games;
             var emulator = database.Emulators[scanner.EmulatorId];
@@ -182,7 +183,8 @@ namespace Playnite.Emulators
                     database,
                     importedFiles,
                     cancelToken,
-                    crcExclusions);
+                    crcExclusions,
+                    fileScanCallback);
             }
             else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
             {
@@ -192,7 +194,8 @@ namespace Playnite.Emulators
                     builtinProfile,
                     importedFiles,
                     cancelToken,
-                    crcExclusions);
+                    crcExclusions,
+                    fileScanCallback);
             }
             else
             {
@@ -324,7 +327,8 @@ namespace Playnite.Emulators
             BuiltInEmulatorProfile profile,
             List<string> importedFiles,
             CancellationToken cancelToken,
-            string crcExludePatterns)
+            string crcExludePatterns,
+            Action<string> fileScanCallback = null)
         {
             var emuProf = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
             if (emuProf == null)
@@ -404,7 +408,8 @@ namespace Playnite.Emulators
                     emuProf.Platforms,
                     importedFiles,
                     cancelToken,
-                    crcExludePatterns);
+                    crcExludePatterns,
+                    fileScanCallback);
             }
         }
 
@@ -415,7 +420,8 @@ namespace Playnite.Emulators
             GameDatabase database,
             List<string> importedFiles,
             CancellationToken cancelToken,
-            string crcExludePatterns)
+            string crcExludePatterns,
+            Action<string> fileScanCallback = null)
         {
             if (profile == null)
             {
@@ -434,7 +440,8 @@ namespace Playnite.Emulators
                 platforms,
                 importedFiles,
                 cancelToken,
-                crcExludePatterns);
+                crcExludePatterns,
+                fileScanCallback);
         }
 
         private static List<ScannedGame> ScanDirectory(
@@ -443,7 +450,8 @@ namespace Playnite.Emulators
             List<string> scanPlatforms,
             List<string> importedFiles,
             CancellationToken cancelToken,
-            string crcExludePatterns)
+            string crcExludePatterns,
+            Action<string> fileScanCallback = null)
         {
             logger.Info($"Scanning emulated directory {directory}.");
             if (!Directory.Exists(directory))
@@ -463,7 +471,8 @@ namespace Playnite.Emulators
                     importedFiles,
                     resultRoms,
                     cancelToken,
-                    crcExludePatterns);
+                    crcExludePatterns,
+                    fileScanCallback);
             }
             finally
             {
@@ -480,7 +489,8 @@ namespace Playnite.Emulators
             List<string> importedFiles,
             Dictionary<string, List<ScannedRom>> resultRoms,
             CancellationToken cancelToken,
-            string crcExludePatterns)
+            string crcExludePatterns,
+            Action<string> fileScanCallback = null)
         {
             void addRom(ScannedRom rom)
             {
@@ -506,6 +516,8 @@ namespace Playnite.Emulators
                 logger.Error(e, "Failed to enumarete directory entires.");
                 return;
             }
+
+            fileScanCallback?.Invoke(directory);
 
             // Cue files have priority since they will potentionaliy remove additional .bin files to match
             if (supportedExtensions.ContainsString("cue", StringComparison.OrdinalIgnoreCase))
@@ -535,6 +547,7 @@ namespace Playnite.Emulators
                                 return;
                             }
 
+                            fileScanCallback?.Invoke(bin);
                             romData = LookupGameInDb(
                                 bin,
                                 Path.GetExtension(bin).TrimStart('.'),
@@ -562,6 +575,8 @@ namespace Playnite.Emulators
                     {
                         logger.Error(e, $"Failed to process cue file {cueFile}");
                     }
+
+                    fileScanCallback?.Invoke(directory);
                 }
             }
 
@@ -590,6 +605,7 @@ namespace Playnite.Emulators
 
                 try
                 {
+                    fileScanCallback?.Invoke(file);
                     var romData = LookupGameInDb(
                         file,
                         ext,
@@ -611,6 +627,8 @@ namespace Playnite.Emulators
                 {
                     logger.Error(e, $"Failed scan rom file {file}");
                 }
+
+                fileScanCallback?.Invoke(directory);
             }
 
             foreach (var dir in dirs)
@@ -627,7 +645,8 @@ namespace Playnite.Emulators
                     importedFiles,
                     resultRoms,
                     cancelToken,
-                    crcExludePatterns);
+                    crcExludePatterns,
+                    fileScanCallback);
             }
         }
 
