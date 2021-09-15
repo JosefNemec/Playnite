@@ -108,6 +108,7 @@ namespace Playnite
         }
 
         private string theme = ThemeManager.DefaultFullscreenThemeId;
+        [RequiresRestart]
         public string Theme
         {
             get
@@ -362,6 +363,7 @@ namespace Playnite
         }
 
         private bool asyncImageLoading = false;
+        [RequiresRestart]
         public bool AsyncImageLoading
         {
             get
@@ -392,6 +394,7 @@ namespace Playnite
         }
 
         private double fontSize = 22;
+        [RequiresRestart]
         public double FontSize
         {
             get
@@ -407,6 +410,7 @@ namespace Playnite
         }
 
         private double fontSizeSmall = 18;
+        [RequiresRestart]
         public double FontSizeSmall
         {
             get
@@ -422,6 +426,7 @@ namespace Playnite
         }
 
         private bool enableXinputProcessing = true;
+        [RequiresRestart]
         public bool EnableXinputProcessing
         {
             get
@@ -557,6 +562,7 @@ namespace Playnite
         }
 
         private AudioInterfaceApi audioInterfaceApi = AudioInterfaceApi.WASAPI;
+        [RequiresRestart]
         public AudioInterfaceApi AudioInterfaceApi
         {
             get
