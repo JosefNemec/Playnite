@@ -1211,12 +1211,12 @@ namespace Playnite
                         {
                             foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
                             {
-                                addAction($"{emulator.Name}: {profile.Name}", profile);
+                                addAction($"{action.Name}: {profile.Name}", profile);
                             }
 
                             foreach (var profile in emulator.CustomProfiles ?? new ObservableCollection<CustomEmulatorProfile>())
                             {
-                                addAction($"{emulator.Name}: {profile.Name}", profile);
+                                addAction($"{action.Name}: {profile.Name}", profile);
                             }
                         }
                         else
@@ -1228,7 +1228,7 @@ namespace Playnite
                             }
                             else
                             {
-                                addAction(emulator.Name, prof);
+                                addAction(action.Name, prof);
                             }
                         }
                     }
