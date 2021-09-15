@@ -51,6 +51,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,9 @@
     </Compile>
     <Compile Include="..\..\PlayniteSDK\RelayCommand.cs">
       <Link>Shared\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Playnite\Common\Extensions\StringExtensions.cs">
+      <Link>Shared\StringExtensions.cs</Link>
     </Compile>
     <Compile Include="..\..\Playnite\Common\FileSystem.cs">
       <Link>Shared\FileSystem.cs</Link>
