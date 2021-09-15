@@ -357,11 +357,21 @@
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseUserScoreChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                        <pctrls:NullIntNumericBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
-                                                 MinValue="0" MaxValue="100"
-                                                 Value="{Binding EditingGame.UserScore}"
-                                                 ToolTip="{DynamicResource LOCDescriptionScoreValues}"
-                                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
+                        <TextBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
+                                 ToolTip="{DynamicResource LOCDescriptionScoreValues}"
+                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
+                            <TextBox.Text>
+                                <Binding Path="EditingGame.UserScore"
+                                         UpdateSourceTrigger="PropertyChanged" 
+                                         ValidatesOnDataErrors="True"
+                                         NotifyOnValidationError="True"
+                                         Converter="{pcon:NullableIntToStringConverter}">
+                                    <Binding.ValidationRules>
+                                        <pcon:NullableIntFieldValidation MinValue="0" MaxValue="100" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
 
                         <!-- CriticScore -->
                         <TextBlock Grid.Column="3" Grid.Row="7" Text="{DynamicResource LOCCriticScore}"/>
@@ -369,11 +379,21 @@
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseCriticScoreChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                        <pctrls:NullIntNumericBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
-                                                 MinValue="0" MaxValue="100"
-                                                 Value="{Binding EditingGame.CriticScore}"
-                                                 ToolTip="{DynamicResource LOCDescriptionScoreValues}"
-                                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
+                        <TextBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
+                                 ToolTip="{DynamicResource LOCDescriptionScoreValues}"
+                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
+                            <TextBox.Text>
+                                <Binding Path="EditingGame.CriticScore"
+                                         UpdateSourceTrigger="PropertyChanged" 
+                                         ValidatesOnDataErrors="True"
+                                         NotifyOnValidationError="True"
+                                         Converter="{pcon:NullableIntToStringConverter}">
+                                    <Binding.ValidationRules>
+                                        <pcon:NullableIntFieldValidation MinValue="0" MaxValue="100" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
 
                         <!-- CommunityScore -->
                         <TextBlock Grid.Column="3" Grid.Row="8" Text="{DynamicResource LOCCommunityScore}"/>
@@ -381,11 +401,21 @@
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseCommunityScoreChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                        <pctrls:NullIntNumericBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
-                                                 MinValue="0" MaxValue="100"
-                                                 Value="{Binding EditingGame.CommunityScore}"
-                                                 ToolTip="{DynamicResource LOCDescriptionScoreValues}"
-                                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0" />
+                        <TextBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
+                                 ToolTip="{DynamicResource LOCDescriptionScoreValues}"
+                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
+                            <TextBox.Text>
+                                <Binding Path="EditingGame.CommunityScore"
+                                         UpdateSourceTrigger="PropertyChanged" 
+                                         ValidatesOnDataErrors="True"
+                                         NotifyOnValidationError="True"
+                                         Converter="{pcon:NullableIntToStringConverter}">
+                                    <Binding.ValidationRules>
+                                        <pcon:NullableIntFieldValidation MinValue="0" MaxValue="100" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
