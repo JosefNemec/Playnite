@@ -299,7 +299,7 @@ namespace Playnite.Database
 
         private void DatabaseCollection_ItemCollectionChanged<T>(ExplorerField field, ItemCollectionChangedEventArgs<T> e) where T : DatabaseObject
         {
-            if (settings.UsedFieldsOnlyOnFilterLists)
+            if (settings.UsedFieldsOnlyOnFilterLists && field != ExplorerField.Presets)
             {
                 return;
             }
