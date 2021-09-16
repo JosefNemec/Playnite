@@ -206,10 +206,10 @@ namespace Playnite
                 }
 
                 var installed = ExtensionInstaller.InstallExtensionQueue();
-                var installedTheme = installed.FirstOrDefault(a => a is ThemeManifest);
-                if (installedTheme != null)
+                var installedTheme = installed.FirstOrDefault(a => a.manifest is ThemeManifest && !a.updated);
+                if (installedTheme.manifest != null)
                 {
-                    var theme = installedTheme as ThemeManifest;
+                    var theme = installedTheme.manifest as ThemeManifest;
                     if (theme.Mode == Mode)
                     {
                         if (theme.Mode == ApplicationMode.Desktop)
