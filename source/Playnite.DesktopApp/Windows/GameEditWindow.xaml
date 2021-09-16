@@ -499,10 +499,21 @@
                     <DockPanel Grid.Column="2" Grid.Row="1">
                         <TextBlock Text="{Binding EditingGame.Playtime, Converter={pcon:PlayTimeToStringConverter}}"
                                    DockPanel.Dock="Right" />
-                        <pctrls:UlongNumericBox UlongValue="{Binding EditingGame.Playtime}"
-                                                ToolTip="{DynamicResource LOCDescriptionPlaytimeSeconds}"
-                                                ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
-                                                DockPanel.Dock="Left" />
+                        <TextBox ToolTip="{DynamicResource LOCDescriptionPlaytimeSeconds}"
+                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
+                                 DockPanel.Dock="Left">
+                            <TextBox.Text>
+                                <Binding Path="EditingGame.Playtime"
+                                         UpdateSourceTrigger="PropertyChanged" 
+                                         ValidatesOnDataErrors="True"
+                                         NotifyOnValidationError="True"
+                                         Converter="{pcon:UlongToStringConverter}">
+                                    <Binding.ValidationRules>
+                                        <pcon:UlongFieldValidation />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </DockPanel>
 
                     <!-- PlayCount -->
@@ -511,8 +522,19 @@
                               Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                               IsChecked="{Binding UsePlayCountChanges}"
                               ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                    <pctrls:UlongNumericBox Grid.Column="2" Grid.Row="2"
-                                            UlongValue="{Binding EditingGame.PlayCount}" />
+                    <TextBox Grid.Column="2" Grid.Row="2">
+                        <TextBox.Text>
+                            <Binding Path="EditingGame.PlayCount"
+                                    UpdateSourceTrigger="PropertyChanged" 
+                                    ValidatesOnDataErrors="True"
+                                    NotifyOnValidationError="True"
+                                    Converter="{pcon:UlongToStringConverter}">
+                                <Binding.ValidationRules>
+                                    <pcon:UlongFieldValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
 
                     <!-- CompletionStatus -->
                     <TextBlock Grid.Column="1" Grid.Row="3" Text="{DynamicResource LOCCompletionStatus}"/>
