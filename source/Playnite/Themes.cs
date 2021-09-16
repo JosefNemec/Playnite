@@ -15,6 +15,7 @@ using YamlDotNet.Serialization;
 using Playnite.API;
 using Playnite.Extensions.Markup;
 using System.Windows.Input;
+using Playnite.Plugins;
 
 namespace Playnite
 {
@@ -87,12 +88,12 @@ namespace Playnite
             }
         }
 
-        public static bool ApplyTheme(Application app, ThemeManifest theme, ApplicationMode mode)
+        public static AddonLoadError ApplyTheme(Application app, ThemeManifest theme, ApplicationMode mode)
         {
             if (theme.Id.IsNullOrEmpty())
             {
                 logger.Error($"Theme {theme.Name}, doesn't have ID.");
-                return false;
+                return AddonLoadError.Uknown;
             }
 
             var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
@@ -102,7 +103,7 @@ namespace Playnite
                 if (themeVersion.Major != apiVesion.Major || themeVersion > apiVesion)
                 {
                     logger.Error($"Failed to apply {theme.Name} theme, unsupported API version {theme.ThemeApiVersion}.");
-                    return false;
+                    return AddonLoadError.SDKVersion;
                 }
             }
 
@@ -139,7 +140,7 @@ namespace Playnite
 
             if (!allLoaded)
             {
-                return false;
+                return AddonLoadError.Uknown;
             }
 
             try
@@ -204,7 +205,7 @@ namespace Playnite
                 }
             }
 
-            return true;
+            return AddonLoadError.None;
         }
 
         public static IEnumerable<ThemeManifest> GetAvailableThemes()

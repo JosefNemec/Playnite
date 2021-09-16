@@ -754,8 +754,10 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Extension is not packaged properly.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Theme is not packaged properly.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Extension "{0}" failed to load properly.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Can't load "{0}" extension, current Playnite version is not supported.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Theme "{0}" failed to load properly.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Extension failed to load properly.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Can't load "{0}" theme, current Playnite version is not supported.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Extension failed to load properly.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Theme failed to load properly.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme/Extension is using unsupported API version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>

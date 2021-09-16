@@ -30,13 +30,20 @@ namespace Playnite.Plugins
         }
     }
 
+    public enum AddonLoadError
+    {
+        None,
+        Uknown,
+        SDKVersion
+    }
+
     public class ExtensionFactory : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
         private IGameDatabase database;
         private GameControllerFactory controllers;
 
-        public List<ExtensionManifest> FailedExtensions { get; } = new List<ExtensionManifest>();
+        public List<(ExtensionManifest manifest, AddonLoadError error)> FailedExtensions { get; } = new List<(ExtensionManifest manifest, AddonLoadError error)>();
 
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
@@ -305,7 +312,7 @@ namespace Playnite.Plugins
                 if (!File.Exists(scriptPath))
                 {
                     logger.Error($"Cannot load script extension, {scriptPath} not found.");
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                     continue;
                 }
 
@@ -314,7 +321,7 @@ namespace Playnite.Plugins
                     script = PlayniteScript.FromFile(scriptPath, $"{desc.DirectoryName}#PS");
                     if (script == null)
                     {
-                        FailedExtensions.Add(desc);
+                        FailedExtensions.Add((desc, AddonLoadError.Uknown));
                         continue;
                     }
 
@@ -333,7 +340,7 @@ namespace Playnite.Plugins
                 {
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                     continue;
                 }
 
@@ -391,7 +398,7 @@ namespace Playnite.Plugins
                         logger.Error(e, string.Empty);
                     }
 
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                 }
             }
         }
@@ -426,7 +433,7 @@ namespace Playnite.Plugins
             else
             {
                 logger.Error($"Plugin dependencices are not compatible: {descriptor.Name}");
-                FailedExtensions.Add(descriptor);
+                FailedExtensions.Add((descriptor, AddonLoadError.SDKVersion));
                 // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }

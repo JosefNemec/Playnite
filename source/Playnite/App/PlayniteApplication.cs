@@ -41,6 +41,8 @@ namespace Playnite
         private XInputDevice xdevice;
         private System.Threading.Timer updateCheckTimer;
         private bool installingAddon = false;
+        private AddonLoadError themeLoadError = AddonLoadError.None;
+        private ThemeManifest customTheme;
 
         private bool isActive;
         public bool IsActive
@@ -231,7 +233,7 @@ namespace Playnite
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
-            ThemeManifest customTheme = null;
+            customTheme = null;
             if (CmdLine.ForceDefaultTheme || CmdLine.SafeStartup)
             {
                 logger.Warn("Default theme forced by cmdline.");
@@ -268,10 +270,11 @@ namespace Playnite
             // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
             if (customTheme != null)
             {
-                if (!ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode))
+                themeLoadError = ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
+                if (themeLoadError != AddonLoadError.None)
                 {
                     ThemeManager.SetCurrentTheme(null);
-                    logger.Error($"Failed to load theme {customTheme.Name}.");
+                    logger.Error($"Failed to load theme {customTheme.Name}, {themeLoadError}.");
                 }
             }
 
@@ -431,8 +434,20 @@ namespace Playnite
             foreach (var fail in Extensions.FailedExtensions)
             {
                 Api.Notifications.Add(new NotificationMessage(
-                    fail.DirectoryPath,
-                    ResourceProvider.GetString(LOC.SpecificExtensionLoadError).Format(fail.Name),
+                    fail.manifest.DirectoryPath,
+                    fail.error == AddonLoadError.SDKVersion ?
+                        ResourceProvider.GetString(LOC.SpecificExtensionLoadSDKError).Format(fail.manifest.Name) :
+                        ResourceProvider.GetString(LOC.SpecificExtensionLoadError).Format(fail.manifest.Name),
+                    NotificationType.Error));
+            }
+
+            if (themeLoadError != AddonLoadError.None && customTheme != null)
+            {
+                Api.Notifications.Add(new NotificationMessage(
+                    customTheme.DirectoryPath,
+                    themeLoadError == AddonLoadError.SDKVersion ?
+                        ResourceProvider.GetString(LOC.SpecificThemeLoadSDKError).Format(customTheme.Name) :
+                        ResourceProvider.GetString(LOC.SpecificThemeLoadError).Format(customTheme.Name),
                     NotificationType.Error));
             }
         }

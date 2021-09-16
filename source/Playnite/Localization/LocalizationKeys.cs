@@ -2798,9 +2798,17 @@ namespace Playnite
         /// </summary>
         public const string SpecificExtensionLoadError = "LOCSpecificExtensionLoadError";
         /// <summary>
+        /// Can't load "{0}" extension, current Playnite version is not supported.
+        /// </summary>
+        public const string SpecificExtensionLoadSDKError = "LOCSpecificExtensionLoadSDKError";
+        /// <summary>
         /// Theme "{0}" failed to load properly.
         /// </summary>
         public const string SpecificThemeLoadError = "LOCSpecificThemeLoadError";
+        /// <summary>
+        /// Can't load "{0}" theme, current Playnite version is not supported.
+        /// </summary>
+        public const string SpecificThemeLoadSDKError = "LOCSpecificThemeLoadSDKError";
         /// <summary>
         /// Extension failed to load properly.
         /// </summary>
