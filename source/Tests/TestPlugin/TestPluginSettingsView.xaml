@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:TestPlugin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBox Text="{Binding Settings.Option1, UpdateSourceTrigger=PropertyChanged}" />
-    </Grid>
+    <DockPanel>
+        <TextBox Text="{Binding Settings.Option1, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top"/>
+        <Slider Value="{Binding Settings.Option2, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top"
+                Minimum="0" Maximum="1000"/>
+    </DockPanel>
 </UserControl>

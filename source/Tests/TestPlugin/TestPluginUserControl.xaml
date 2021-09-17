@@ -7,7 +7,9 @@
              xmlns:sdk="clr-namespace:Playnite.SDK.Controls;assembly=Playnite.SDK"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Button Content="{Binding GameContext.Name}" Foreground="LimeGreen" />
-    </Grid>
+    <DockPanel>
+        <TextBlock Text="{Binding SettingsModel.Settings.Option2, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   Foreground="LimeGreen" DockPanel.Dock="Top" />
+        <Button Content="{Binding GameContext.Name}" Foreground="LimeGreen" DockPanel.Dock="Top" />
+    </DockPanel>
 </PluginUserControl>
