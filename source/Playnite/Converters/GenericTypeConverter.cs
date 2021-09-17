@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -20,11 +21,25 @@ namespace Playnite.Converters
             var converter = TypeDescriptor.GetConverter(targetType);
             if (StringFormat.IsNullOrEmpty())
             {
-                return converter.ConvertFrom(value);
+                try
+                {
+                    return converter.ConvertFrom(value);
+                }
+                catch
+                {
+                    return DependencyProperty.UnsetValue;
+                }
             }
             else
             {
-                return converter.ConvertFrom(string.Format(StringFormat, value));
+                try
+                {
+                    return converter.ConvertFrom(string.Format(StringFormat, value));
+                }
+                catch
+                {
+                    return DependencyProperty.UnsetValue;
+                }
             }
         }
 
