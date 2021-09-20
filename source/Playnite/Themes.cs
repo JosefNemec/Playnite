@@ -224,8 +224,8 @@ namespace Playnite
         public static List<ThemeManifest> GetAvailableThemes(ApplicationMode mode)
         {
             var modeDir = GetThemeRootDir(mode);
-            var added = new List<string>();
-            var themes = new List<ThemeManifest>();
+            var user = new List<BaseExtensionManifest>();
+            var install = new List<BaseExtensionManifest>();
 
             var userPath = Path.Combine(PlaynitePaths.ThemesUserDataPath, modeDir);
             if (!PlayniteSettings.IsPortable && Directory.Exists(userPath))
@@ -238,11 +238,10 @@ namespace Playnite
                         if (File.Exists(descriptorPath))
                         {
                             var info = new FileInfo(descriptorPath);
-                            added.Add(info.Directory.Name);
                             var man = new ThemeManifest(descriptorPath);
                             if (!man.Id.IsNullOrEmpty())
                             {
-                                themes.Add(man);
+                                user.Add(man);
                             }
                         }
                     }
@@ -264,12 +263,16 @@ namespace Playnite
                         if (File.Exists(descriptorPath))
                         {
                             var info = new FileInfo(descriptorPath);
-                            if (!added.Contains(info.Directory.Name))
+                            var man = new ThemeManifest(descriptorPath);
+                            if (!man.Id.IsNullOrEmpty())
                             {
-                                var man = new ThemeManifest(descriptorPath);
-                                if (!man.Id.IsNullOrEmpty())
+                                if (user.Any(a => a.Id == man.Id))
                                 {
-                                    themes.Add(man);
+                                    continue;
+                                }
+                                else
+                                {
+                                    install.Add(man);
                                 }
                             }
                         }
@@ -281,7 +284,10 @@ namespace Playnite
                 }
             }
 
-            return themes;
+            var result = new List<ThemeManifest>();
+            result.AddRange(ExtensionFactory.DeduplicateExtList(user).Cast<ThemeManifest>());
+            result.AddRange(ExtensionFactory.DeduplicateExtList(install).Cast<ThemeManifest>());
+            return result;
         }
     }
 }

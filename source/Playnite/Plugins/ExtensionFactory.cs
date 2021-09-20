@@ -215,25 +215,24 @@ namespace Playnite.Plugins
             return null;
         }
 
-        public static IEnumerable<ExtensionManifest> GetInstalledManifests(List<string> externalPaths = null)
+        internal static IEnumerable<BaseExtensionManifest> DeduplicateExtList(List<BaseExtensionManifest> list)
         {
-            var added = new List<string>();
+            return list.GroupBy(a => a.Id).Select(g => g.OrderByDescending(x => x.Version).First());
+        }
+
+        public static List<ExtensionManifest> GetInstalledManifests(List<string> externalPaths = null)
+        {
+            var externals = new List<BaseExtensionManifest>();
+            var user = new List<BaseExtensionManifest>();
+            var install = new List<BaseExtensionManifest>();
             if (externalPaths.HasItems())
             {
                 foreach (var ext in externalPaths)
                 {
                     foreach (var man in GetManifestsFromPath(ext))
                     {
-                        if (added.Contains(man.Id))
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            added.Add(man.Id);
-                            man.IsExternalDev = true;
-                            yield return man;
-                        }
+                        externals.Add(man);
+                        man.IsExternalDev = true;
                     }
                 }
             }
@@ -246,14 +245,13 @@ namespace Playnite.Plugins
                     var man = GetManifestFromFile(desc.FullName);
                     if (man?.Id.IsNullOrEmpty() == false)
                     {
-                        if (added.Contains(man.Id))
+                        if (externals.Any(a => a.Id == man.Id))
                         {
                             continue;
                         }
                         else
                         {
-                            added.Add(man.Id);
-                            yield return man;
+                            user.Add(man);
                         }
                     }
                 }
@@ -267,18 +265,23 @@ namespace Playnite.Plugins
                     var man = GetManifestFromFile(desc.FullName);
                     if (man?.Id.IsNullOrEmpty() == false)
                     {
-                        if (added.Contains(man.Id))
+                        if (externals.Any(a => a.Id == man.Id) || user.Any(a => a.Id == man.Id))
                         {
                             continue;
                         }
                         else
                         {
-                            added.Add(man.Id);
-                            yield return man;
+                            install.Add(man);
                         }
                     }
                 }
             }
+
+            var result = new List<ExtensionManifest>();
+            result.AddRange(DeduplicateExtList(externals).Cast<ExtensionManifest>());
+            result.AddRange(DeduplicateExtList(user).Cast<ExtensionManifest>());
+            result.AddRange(DeduplicateExtList(install).Cast<ExtensionManifest>());
+            return result;
         }
 
         private bool VerifyAssemblyReferences(Assembly asm, ExtensionManifest manifest)
