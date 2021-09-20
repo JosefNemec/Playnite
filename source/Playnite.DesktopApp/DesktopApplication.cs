@@ -211,6 +211,7 @@ namespace Playnite.DesktopApp
             }
 
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            OnExtensionsLoaded();
 
             try
             {

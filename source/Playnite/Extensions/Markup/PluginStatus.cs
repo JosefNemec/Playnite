@@ -1,42 +1,43 @@
-﻿using System;
+﻿using Playnite.Plugins;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace Playnite.Extensions.Markup
 {
-    public class PluginStatus : MarkupExtension
+    public class PluginStatus : BindingExtension
     {
         public string Status { get; set; }
         public string Plugin { get; set; }
 
+        public PluginStatus() : this(null)
+        {
+        }
+
+        public PluginStatus(string path) : base(path)
+        {
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            {
+                return;
+            }
+        }
+
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            if (ServiceProvider.IsTargetTemplate(serviceProvider) || Plugin.IsNullOrEmpty() || Status.IsNullOrEmpty())
+            if (ServiceProvider.IsTargetTemplate(serviceProvider))
             {
                 return this;
             }
 
-            var plugin = PlayniteApplication.Current?.Extensions.Plugins.FirstOrDefault(a => a.Value.Description.Id == Plugin).Value;
-            var installed = plugin != null;
-            var provider = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-            var targetType = IProvideValueTargetExtensions.GetTargetType(provider);
-            if (targetType == typeof(Visibility))
-            {
-                return installed ? Visibility.Visible : Visibility.Collapsed;
-            }
-            else if (targetType == typeof(string))
-            {
-                return installed.ToString();
-            }
-            else
-            {
-                return installed;
-            }
+            Source = PlayniteApplication.Current;
+            Path = $"{nameof(PlayniteApplication.ExtensionsStatusBinder)}[{Plugin}].{nameof(ExtensionsStatusBinder.Status.IsInstalled)}";
+            return base.ProvideValue(serviceProvider);
         }
     }
 }

@@ -60,6 +60,7 @@ namespace Playnite
             get => Updater.CurrentVersion;
         }
 
+        public event EventHandler ExtensionsLoaded;
         public ApplicationMode Mode { get; }
         public IDialogsFactory Dialogs { get; set; }
         public PlayniteSettings AppSettings { get; set; }
@@ -79,6 +80,9 @@ namespace Playnite
         public ServicesClient ServicesClient { get; private set; }
         public static bool SoundsEnabled { get; set; } = true;
         public MainViewModelBase MainModelBase { get; set; }
+
+        private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
+        public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }
 
         public PlayniteApplication()
         {
@@ -1259,6 +1263,12 @@ namespace Playnite
                 Dialogs.ShowErrorMessage(
                     string.Format(ResourceProvider.GetString("LOCExtensionInstallFail"), e.Message), "");
             }
+        }
+
+        public void OnExtensionsLoaded()
+        {
+            ExtensionsLoaded?.Invoke(this, EventArgs.Empty);
+            OnPropertyChanged(nameof(this.ExtensionsStatusBinder));
         }
     }
 }
