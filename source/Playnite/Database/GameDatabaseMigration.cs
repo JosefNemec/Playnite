@@ -175,7 +175,14 @@ namespace Playnite.Database
 
                 void convertList<TOld, TNew>(string dir, Action<TOld, TNew> propertyMapper = null) where TOld : Ver2_DatabaseObject where TNew : DatabaseObject
                 {
-                    using (var db = new LiteDatabase($"Filename={dir}.db;Mode=Exclusive;Journal=false", mapper))
+                    var dbFile = dir + ".db";
+                    if (File.Exists(dbFile))
+                    {
+                        logger.Warn($"Migration database file {dbFile} already exists!");
+                        File.Delete(dbFile);
+                    }
+
+                    using (var db = new LiteDatabase($"Filename={dbFile};Mode=Exclusive;Journal=false", mapper))
                     {
                         var col = db.GetCollection<TNew>();
                         col.EnsureIndex(a => a.Id, true);
@@ -211,7 +218,14 @@ namespace Playnite.Database
 
                 LiteDatabase createDb<T>(string dir) where T : DatabaseObject
                 {
-                    var db = new LiteDatabase($"Filename={dir}.db;Mode=Exclusive;Journal=false", mapper);
+                    var dbFile = dir + ".db";
+                    if (File.Exists(dbFile))
+                    {
+                        logger.Warn($"Migration database file {dbFile} already exists!");
+                        File.Delete(dbFile);
+                    }
+
+                    var db = new LiteDatabase($"Filename={dbFile};Mode=Exclusive;Journal=false", mapper);
                     var col = db.GetCollection<T>();
                     col.EnsureIndex(a => a.Id, true);
                     return db;
@@ -310,11 +324,14 @@ namespace Playnite.Database
                     }
                 }
 
+                var dirToConvert = new string[] {
+                    "games", "platforms", "emulators", "genres", "companies", "tags", "features",
+                    "categories", "series", "ageratings", "regions", "sources", "tools" };
                 foreach (var dir in Directory.GetDirectories(databasePath))
                 {
                     switch (Path.GetFileName(dir))
                     {
-                        case gamesDirName:
+                        case "games":
                             GameAction convertAction(Ver2_GameAction oldAction)
                             {
                                 var newAction = new GameAction
@@ -460,7 +477,7 @@ namespace Playnite.Database
                             });
                             break;
 
-                        case platformsDirName:
+                        case "platforms":
                             PlatformsCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Platform, Platform>(dir, (oldPlat, newPlat) =>
                             {
@@ -484,7 +501,7 @@ namespace Playnite.Database
                             });
                             break;
 
-                        case emulatorsDirName:
+                        case "emulators":
                             EmulatorsCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Emulator, Emulator>(dir, (oldEmu, newEmu) =>
                             {
@@ -515,42 +532,42 @@ namespace Playnite.Database
                             });
                             break;
 
-                        case genresDirName:
+                        case "genres":
                             GenresCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Genre, Genre>(dir);
                             break;
 
-                        case companiesDirName:
+                        case "companies":
                             CompaniesCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Company, Company>(dir);
                             break;
 
-                        case tagsDirName:
+                        case "tags":
                             TagsCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Tag, Tag>(dir);
                             break;
 
-                        case featuresDirName:
+                        case "features":
                             FeaturesCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_GameFeature, GameFeature>(dir);
                             break;
 
-                        case categoriesDirName:
+                        case "categories":
                             CategoriesCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Category, Category>(dir);
                             break;
 
-                        case seriesDirName:
+                        case "series":
                             SeriesCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Series, Series>(dir);
                             break;
 
-                        case ageRatingsDirName:
+                        case "ageratings":
                             AgeRatingsCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_AgeRating, AgeRating>(dir);
                             break;
 
-                        case regionsDirName:
+                        case "regions":
                             RegionsCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_Region, Region>(dir, (oldRegion, newRegion) =>
                             {
@@ -562,12 +579,12 @@ namespace Playnite.Database
                             });
                             break;
 
-                        case sourcesDirName:
+                        case "sources":
                             GamesSourcesCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_GameSource, GameSource>(dir);
                             break;
 
-                        case toolsDirName:
+                        case "tools":
                             AppSoftwareCollection.MapLiteDbEntities(mapper);
                             convertList<Ver2_AppSoftware, AppSoftware>(dir);
                             break;
@@ -576,7 +593,7 @@ namespace Playnite.Database
 
                 foreach (var dir in Directory.GetDirectories(databasePath))
                 {
-                    if (Path.GetFileName(dir) == filesDirName)
+                    if (!dirToConvert.Contains(Path.GetFileName(dir)))
                     {
                         continue;
                     }
