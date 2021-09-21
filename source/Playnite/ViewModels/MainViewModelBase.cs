@@ -98,7 +98,7 @@ namespace Playnite.ViewModels
             }
         }
 
-        private bool updatesAvailable = true;
+        private bool updatesAvailable = false;
         public bool UpdatesAvailable
         {
             get => updatesAvailable;
