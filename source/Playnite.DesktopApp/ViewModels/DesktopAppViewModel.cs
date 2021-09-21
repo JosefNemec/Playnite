@@ -281,6 +281,14 @@ namespace Playnite.DesktopApp.ViewModels
                 SelectedGame = null;
                 SelectedGameDetails = null;
             }
+
+            if (!IgnoreFilterChanges && ActiveFilterPreset != null)
+            {
+                if (ActiveFilterPreset.SortingOrder != null)
+                {
+                    ActiveFilterPreset = null;
+                }
+            }
         }
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
