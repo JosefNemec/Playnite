@@ -56,6 +56,34 @@ namespace Playnite.FullscreenApp.Controls.Views
             else if (mainModel != null)
             {
                 this.mainModel = mainModel;
+                this.mainModel.PropertyChanged += MainModel_PropertyChanged;
+            }
+        }
+
+        private void MainModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(mainModel.SelectedGame) &&
+                mainModel.GameDetailsVisible &&
+                mainModel.SelectedGame == null)
+            {
+                // This takes care of case where game is modified in a way that would remove it from current list.
+                // Changing favorite status, removing it etc. It would result in empty game details #2458
+                // TODO handle properly in future via TODO from SelectedGame property
+                if (mainModel.GamesView.CollectionView.Count > 0)
+                {
+                    if (mainModel.LastValidSelectedGameIndex + 1 > mainModel.GamesView.CollectionView.Count)
+                    {
+                        mainModel.SelectedGame = mainModel.GamesView.CollectionView.GetItemAt(mainModel.LastValidSelectedGameIndex - 1) as GamesCollectionViewEntry;
+                    }
+                    else
+                    {
+                        mainModel.SelectedGame = mainModel.GamesView.CollectionView.GetItemAt(mainModel.LastValidSelectedGameIndex) as GamesCollectionViewEntry;
+                    }
+                }
+                else
+                {
+                    mainModel.ToggleGameDetailsCommand.Execute(null);
+                }
             }
         }
 

@@ -120,6 +120,8 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        internal int LastValidSelectedGameIndex;
+
         private GamesCollectionViewEntry selectedGame;
         public new GamesCollectionViewEntry SelectedGame
         {
@@ -140,6 +142,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
                 else
                 {
+                    LastValidSelectedGameIndex = GamesView.CollectionView.IndexOf(value);
                     SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this, Dialogs);
                 }
 
