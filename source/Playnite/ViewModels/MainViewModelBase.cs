@@ -98,7 +98,7 @@ namespace Playnite.ViewModels
             }
         }
 
-        private bool updatesAvailable = false;
+        private bool updatesAvailable = true;
         public bool UpdatesAvailable
         {
             get => updatesAvailable;
@@ -272,6 +272,10 @@ namespace Playnite.ViewModels
                 IgnoreFilterChanges = false;
                 GamesView.IgnoreViewConfigChanges = false;
                 GamesView.RefreshView();
+                if (GamesView.CollectionView.Count > 0)
+                {
+                    SelectGame((GamesView.CollectionView.GetItemAt(0) as GamesCollectionViewEntry).Id);
+                }
             }
         }
 
@@ -639,6 +643,10 @@ namespace Playnite.ViewModels
         public async void CancelProgress()
         {
             await GlobalTaskHandler.CancelAndWaitAsync();
+        }
+
+        public virtual void SelectGame(Guid id)
+        {
         }
     }
 }

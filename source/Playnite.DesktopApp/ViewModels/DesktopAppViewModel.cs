@@ -617,7 +617,7 @@ namespace Playnite.DesktopApp.ViewModels
             model.OpenView();
         }
 
-        public void SelectGame(Guid id)
+        public override void SelectGame(Guid id)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;

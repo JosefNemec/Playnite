@@ -105,17 +105,7 @@ namespace Playnite.FullscreenApp.Controls
                 if (SelectedItem != null)
                 {
                     var selItem = ItemContainerGenerator.ContainerFromItem(SelectedItem) as FrameworkElement;
-                    if (selItem == null)
-                    {
-                        UpdateLayout();
-                        selItem = ItemContainerGenerator.ContainerFromItem(SelectedItem) as FrameworkElement;
-                        if (selItem == null)
-                        {
-                            itemsPanel?.ScrollToItem(SelectedItem);
-                        }
-                    }
-
-                    if (selItem != null)
+                    if (selItem != null && !selItem.IsFocused)
                     {
                         selItem.Focus();
                         selItem.BringIntoView();
