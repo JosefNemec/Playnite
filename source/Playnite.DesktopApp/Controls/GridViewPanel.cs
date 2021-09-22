@@ -388,6 +388,30 @@ namespace Playnite.DesktopApp.Controls
             InvalidateMeasure();
         }
 
+        protected override void BringIndexIntoView(int index)
+        {
+            if (index < 0)
+            {
+                return;
+            }
+
+            var itemRect = GetItemRect(index);
+            if (itemRect.Y > 0 && itemRect.Bottom < Viewport.Height)
+            {
+                return;
+            }
+            else if (itemRect.Bottom > Viewport.Height)
+            {
+                SetVerticalOffset(Offset.Y + (itemRect.Bottom - Viewport.Height));
+                return;
+            }
+            else if (itemRect.Y < 0)
+            {
+                SetVerticalOffset(Offset.Y + itemRect.Y);
+                return;
+            }
+        }
+
         public Rect MakeVisible(Visual visual, Rect rectangle)
         {
             var index = ((ItemContainerGenerator)ItemContainerGenerator).IndexFromContainer(visual);

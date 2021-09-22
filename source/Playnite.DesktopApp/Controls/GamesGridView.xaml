@@ -381,7 +381,8 @@
               DataContext="{Binding AppSettings.ViewSettings, RelativeSource={RelativeSource AncestorType=UserControl}}"
               ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}"
               VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-              VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5">
+              VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
+              pbeh:ScrollToSelectedBehavior.Enabled="True">
         <ListView.Resources>
             <p:BindingProxy x:Key="SettingsProxy" Data="{Binding}" />
         </ListView.Resources>
