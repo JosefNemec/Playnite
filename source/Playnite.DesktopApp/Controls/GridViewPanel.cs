@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Reflection;
+using System.Linq;
 
 namespace Playnite.DesktopApp.Controls
 {
@@ -128,7 +129,20 @@ namespace Playnite.DesktopApp.Controls
             var groupItem = ItemsOwner as IHierarchicalVirtualizationAndScrollInfo;
             if (groupItem != null)
             {
-                UpdateScrollInfo(groupItem.Constraints.Viewport.Size);
+                // This is a workaround for issues like #2454, caused by some bug in WPF.
+                // Collapsed groups are SOMETIMES treated as expandeded and will force initialization of child items.
+                var expander = ElementTreeHelper.FindVisualChildren<Expander>(groupItem as GroupItem).FirstOrDefault();
+                if (expander != null && expander.IsExpanded == false)
+                {
+                    UpdateScrollInfo(new Size(0, 0));
+                    CleanUpItems();
+                    return new Size(0, 0);
+                }
+                else
+                {
+                    UpdateScrollInfo(groupItem.Constraints.Viewport.Size);
+                }
+
                 Offset = groupItem.Constraints.Viewport.Location;
             }
             else
@@ -212,7 +226,7 @@ namespace Playnite.DesktopApp.Controls
 
         private void GetVisibleRange(out int firstIndex, out int lastIndex)
         {
-            if (itemCount == 0)
+            if (itemCount == 0 || Viewport.Height < ItemHeight)
             {
                 firstIndex = -1;
                 lastIndex = -1;
@@ -240,6 +254,14 @@ namespace Playnite.DesktopApp.Controls
             if (lastIndex >= itemCount)
             {
                 lastIndex = itemCount - 1;
+            }
+        }
+
+        private void CleanUpItems()
+        {
+            for (int i = InternalChildren.Count - 1; i >= 0; i--)
+            {
+                RemoveInternalChildRange(i, 1);
             }
         }
 

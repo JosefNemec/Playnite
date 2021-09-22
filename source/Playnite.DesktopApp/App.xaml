@@ -78,6 +78,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewGroupStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/ListViewGroupStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/StandardWindowStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/WindowBarButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/BottomButton.xaml" />
