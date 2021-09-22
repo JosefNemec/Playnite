@@ -12,7 +12,7 @@
              d:DesignHeight="300" d:DesignWidth="502.764">
     
     <UserControl.Resources>
-        <pcon:ListToStringConverter x:Key="ListToStringConverter" />
+        <pcon:NiceListToStringConverter x:Key="ListToStringConverter" />
         <pcon:PlayTimeToStringConverter x:Key="PlayTimeToStringConverter" />
         <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
         <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
@@ -85,7 +85,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplatePlatform">
-            <TextBlock Text="{Binding Platforms, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
+            <TextBlock Text="{Binding Platforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource TextItemStyle}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateLibrary">
@@ -265,7 +265,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateSeries">
-            <TextBlock Text="{Binding Series, Mode=OneWay}" />
+            <TextBlock Text="{Binding Series, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateVersion">
@@ -289,7 +289,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateAgeRating">
-            <TextBlock Text="{Binding AgeRatings, Mode=OneWay}" />
+            <TextBlock Text="{Binding AgeRatings, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateRegion">
@@ -301,7 +301,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateRegion">
-            <TextBlock Text="{Binding Regions, Mode=OneWay}" />
+            <TextBlock Text="{Binding Regions, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateSource">
