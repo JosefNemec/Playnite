@@ -259,10 +259,7 @@ namespace Playnite.DesktopApp.Controls
 
         private void CleanUpItems()
         {
-            for (int i = InternalChildren.Count - 1; i >= 0; i--)
-            {
-                RemoveInternalChildRange(i, 1);
-            }
+            RemoveInternalChildRange(0, InternalChildren.Count - 1);
         }
 
         private void CleanUpItems(int firstIndex, int lastIndex)
