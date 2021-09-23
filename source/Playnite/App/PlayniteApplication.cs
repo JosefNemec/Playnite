@@ -433,7 +433,11 @@ namespace Playnite
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
             SDK.Data.SQLite.Init((a,b) => new Sqlite(a, b));
-            Startup();
+            if (!Startup())
+            {
+                return;
+            }
+
             logger.Info($"Application {CurrentVersion} started");
             foreach (var fail in Extensions.FailedExtensions)
             {
@@ -557,7 +561,7 @@ namespace Playnite
             CurrentNative.Run();
         }
 
-        public abstract void Startup();
+        public abstract bool Startup();
 
         public bool CheckOtherInstances()
         {
@@ -897,7 +901,7 @@ namespace Playnite
                 });
             }
 
-            Database.Dispose();
+            Database?.Dispose();
             resourcesReleased = true;
         }
 

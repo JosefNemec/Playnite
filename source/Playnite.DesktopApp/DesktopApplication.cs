@@ -63,7 +63,7 @@ namespace Playnite.DesktopApp
             this.splashScreen = splashScreen;
         }
 
-        public override void Startup()
+        public override bool Startup()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
@@ -94,6 +94,7 @@ namespace Playnite.DesktopApp
 #pragma warning restore CS4014
             ProcessArguments();
             splashScreen?.Close(new TimeSpan(0));
+            return true;
         }
 
         private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)

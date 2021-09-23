@@ -55,7 +55,7 @@ namespace Playnite.FullscreenApp
             this.splashScreen = splashScreen;
         }
 
-        public override void Startup()
+        public override bool Startup()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashWindow>();
@@ -71,7 +71,7 @@ namespace Playnite.FullscreenApp
                 ReleaseResources();
                 Process.Start(PlaynitePaths.DesktopExecutablePath);
                 CurrentNative.Shutdown(0);
-                return;
+                return false;
             }
 
             ConfigureApplication();
@@ -87,6 +87,7 @@ namespace Playnite.FullscreenApp
             ProcessArguments();
             InitializeAudio();
             PropertyChanged += FullscreenApplication_PropertyChanged;
+            return true;
         }
 
         public override void InstantiateApp()
