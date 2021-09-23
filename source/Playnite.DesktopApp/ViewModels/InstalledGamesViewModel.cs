@@ -343,8 +343,15 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 return;
             }
-            var program = Common.Programs.GetProgramData(path);
 
+            if (!path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) &&
+                !path.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) &&
+                !path.EndsWith(".bat", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            var program = Common.Programs.GetProgramData(path);
             var import = new ImportableProgram(program, ProgramType.Win32)
             {
                 Selected = true

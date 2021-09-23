@@ -121,7 +121,7 @@ namespace Playnite.Common
                 };
             }
 
-            throw new NotSupportedException("Only exe and lnk files are supported.");
+            throw new NotSupportedException("Only exe, bat and lnk files are supported.");
         }
 
         public static void CreateShortcut(string executablePath, string arguments, string iconPath, string shortcutPath)
