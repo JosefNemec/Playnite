@@ -133,7 +133,11 @@ namespace Playnite
 
             try
             {
-                pipeService = new PipeService();
+                // This can fail in rare cases when switching application modes
+                // if an old instance fails to clean after itself or if it gets stuck on exit.
+                Policy.Handle<Exception>()
+                        .WaitAndRetry(3, a => TimeSpan.FromSeconds(3))
+                        .Execute(() => pipeService = new PipeService());
                 pipeService.CommandExecuted += PipeService_CommandExecuted;
                 pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
                 pipeServer.StartServer(pipeService);
