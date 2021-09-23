@@ -43,7 +43,7 @@ namespace Playnite
                     }
                 }
 
-                var extDesc = extensions.Plugins.FirstOrDefault(a =>
+                var extDesc = extensions?.Plugins?.FirstOrDefault(a =>
                     crashModules.FirstOrDefault(m => m.Name ==
                         a.Value.Description.Module ||
                         Paths.AreEqual(a.Value.Description.DirectoryPath, Path.GetDirectoryName(m.Assembly.Location))) != null).Value;
