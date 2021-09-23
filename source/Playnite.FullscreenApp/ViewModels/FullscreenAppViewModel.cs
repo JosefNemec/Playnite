@@ -529,6 +529,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void SwitchToDesktopMode()
         {
+            Logger.Info("Switching to Desktop mode.");
             if (GlobalTaskHandler.IsActive)
             {
                 Dialogs.ActivateGlobalProgress(

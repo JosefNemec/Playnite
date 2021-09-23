@@ -775,6 +775,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SwitchToFullscreenMode()
         {
+            Logger.Info("Switching to Fullscreen mode.");
             if (GlobalTaskHandler.IsActive)
             {
                 Dialogs.ActivateGlobalProgress(
