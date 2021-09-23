@@ -110,6 +110,10 @@ namespace Playnite
         /// </summary>
         public const string ExtCrashDescriptionFS = "LOCExtCrashDescriptionFS";
         /// <summary>
+        /// Uknown extension or a theme caused an unrecoverable error.
+        /// </summary>
+        public const string ExtCrashDescriptionUknown = "LOCExtCrashDescriptionUknown";
+        /// <summary>
         /// Unrecoverable error occurred.
         /// </summary>
         public const string CrashDescriptionFullscreen = "LOCCrashDescriptionFullscreen";

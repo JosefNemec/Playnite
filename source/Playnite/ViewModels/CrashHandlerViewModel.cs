@@ -42,6 +42,17 @@ namespace Playnite.ViewModels
             }
         }
 
+        private bool showDisableCheck;
+        public bool ShowDisableCheck
+        {
+            get => showDisableCheck;
+            set
+            {
+                showDisableCheck = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string ExtCrashDescription { get; set; }
 
         public RelayCommand<object> CreateDiagPackageCommand
@@ -122,9 +133,18 @@ namespace Playnite.ViewModels
             this.mode = mode;
             this.exInfo = exInfo;
             this.settings = settings;
-            ExtCrashDescription = resources.
-                GetString(mode == ApplicationMode.Desktop ? "LOCExtCrashDescription" : "LOCExtCrashDescriptionFS").
-                Format(exInfo.CrashExtension.Name);
+            if (exInfo.CrashExtension == null)
+            {
+                ShowDisableCheck = false;
+                ExtCrashDescription = resources.GetString(LOC.ExtCrashDescriptionUknown);
+            }
+            else
+            {
+                ShowDisableCheck = true;
+                ExtCrashDescription = resources.
+                    GetString(mode == ApplicationMode.Desktop ? LOC.ExtCrashDescription : LOC.ExtCrashDescriptionFS).
+                    Format(exInfo.CrashExtension.Name);
+            }
         }
 
         public void OpenView()
@@ -158,7 +178,7 @@ namespace Playnite.ViewModels
 
         public void RestartApp()
         {
-            if (exInfo?.IsExtensionCrash == true && DisableExtension)
+            if (exInfo?.CrashExtension != null && exInfo?.IsExtensionCrash == true && DisableExtension)
             {
                 settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.Id);
                 settings.SaveSettings();
