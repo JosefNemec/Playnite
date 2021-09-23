@@ -35,6 +35,13 @@ namespace Playnite.FullscreenApp.Controls
                 return;
             }
 
+            // Not sure how this can happen since it's not null even if no physical keyboard is connected.
+            // However there was one crash report with this happening.
+            if (Keyboard.PrimaryDevice.ActiveSource == null)
+            {
+                return;
+            }
+
             if (e.Delta < 0)
             {
                 var eventArgs = new KeyEventArgs(
