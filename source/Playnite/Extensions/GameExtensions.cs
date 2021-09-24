@@ -50,6 +50,8 @@ namespace Playnite
 
     public static class GameExtensions
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         public static string GetDefaultIcon(this Game game, PlayniteSettings settings, GameDatabase database, LibraryPlugin plugin)
         {
             if (settings.DefaultIconSource == DefaultIconSourceOptions.None)
@@ -264,45 +266,53 @@ namespace Playnite
 
         public static string GetRawExecutablePath(this Game game)
         {
-            var playAction = game.GameActions?.FirstOrDefault(a => a.IsPlayAction);
-            if (playAction == null)
+            try
             {
-                return null;
-            }
-
-            playAction = playAction.ExpandVariables(game);
-            if (playAction.Type == GameActionType.File)
-            {
-                if (string.IsNullOrEmpty(playAction.WorkingDir))
+                var playAction = game.GameActions?.FirstOrDefault(a => a.IsPlayAction && a.Type == GameActionType.File);
+                if (playAction == null)
                 {
-                    if (Paths.IsValidFilePath(playAction.Path))
+                    return null;
+                }
+
+                playAction = playAction.ExpandVariables(game);
+                if (playAction.Type == GameActionType.File)
+                {
+                    if (string.IsNullOrEmpty(playAction.WorkingDir))
                     {
-                        return Path.GetFullPath(playAction.Path);
+                        if (Paths.IsValidFilePath(playAction.Path))
+                        {
+                            return Path.GetFullPath(playAction.Path);
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
                     else
                     {
-                        return null;
+                        if (Path.IsPathRooted(playAction.Path))
+                        {
+                            return playAction.Path;
+                        }
+                        else
+                        {
+                            var combined = Path.Combine(playAction.WorkingDir, playAction.Path);
+                            return Path.GetFullPath(combined);
+                        }
                     }
+                }
+                else if (playAction.Type == GameActionType.URL)
+                {
+                    return playAction.Path;
                 }
                 else
                 {
-                    if (Path.IsPathRooted(playAction.Path))
-                    {
-                        return playAction.Path;
-                    }
-                    else
-                    {
-                        var combined = Path.Combine(playAction.WorkingDir, playAction.Path);
-                        return Path.GetFullPath(combined);
-                    }
+                    return null;
                 }
             }
-            else if (playAction.Type == GameActionType.URL)
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                return playAction.Path;
-            }
-            else
-            {
+                logger.Error(e, "Failed to get executable from game data.");
                 return null;
             }
         }
