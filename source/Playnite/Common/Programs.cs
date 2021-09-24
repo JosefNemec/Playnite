@@ -117,7 +117,7 @@ IconIndex=0";
                                 programs.Add(program);
                             }
                         }
-                        catch (System.Security.SecurityException e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        catch (System.Security.SecurityException e)
                         {
                             logger.Warn(e, $"Failed to read registry key {rootString + key}");
                         }
