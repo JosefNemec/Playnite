@@ -221,56 +221,64 @@ namespace Playnite.ViewModels
             string crashDescription = null,
             DiagnosticPackageInfo packageInfo = null)
         {
-            var diagPath = Path.Combine(PlaynitePaths.TempPath, "diag.zip");
-            if (packageInfo == null)
+            try
             {
-                packageInfo = new DiagnosticPackageInfo
+                var diagPath = Path.Combine(PlaynitePaths.TempPath, "diag.zip");
+                if (packageInfo == null)
                 {
-                    IsCrashPackage = false,
-                    PlayniteVersion = Updater.CurrentVersion.ToString(4)
-                };
-            }
+                    packageInfo = new DiagnosticPackageInfo
+                    {
+                        IsCrashPackage = false,
+                        PlayniteVersion = Updater.CurrentVersion.ToString(4)
+                    };
+                }
 
-            var genResult = GlobalProgress.ActivateProgress((_) =>
-                Diagnostic.CreateDiagPackage(diagPath, crashDescription, packageInfo),
-                new GlobalProgressOptions("LOCDiagGenerating"));
-            if (genResult.Result != true)
-            {
-                logger.Error(genResult.Error, "Failed to created diagnostics package.");
-                dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageCreationError"), "");
-                return;
-            }
-
-            var mode = PlayniteApplication.Current.Mode;
-            if (PlayniteEnvironment.InOfflineMode && mode == ApplicationMode.Desktop)
-            {
-                Explorer.NavigateToFileSystemEntry(diagPath);
-                return;
-            }
-
-            var uploadedId = Guid.Empty;
-            var uploadResult = GlobalProgress.ActivateProgress((_) =>
-                uploadedId = new ServicesClient().UploadDiagPackage(diagPath),
-                new GlobalProgressOptions("LOCDiagUploading"));
-            if (uploadResult.Result == true)
-            {
-                if (mode == ApplicationMode.Desktop)
+                var genResult = GlobalProgress.ActivateProgress((_) =>
+                    Diagnostic.CreateDiagPackage(diagPath, crashDescription, packageInfo),
+                    new GlobalProgressOptions("LOCDiagGenerating"));
+                if (genResult.Result != true)
                 {
-                    dialogs.ShowSelectableString(ResourceProvider.GetString("LOCDiagPackageCreationSuccess"), "", uploadedId.ToString());
+                    logger.Error(genResult.Error, "Failed to created diagnostics package.");
+                    dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageCreationError"), "");
+                    return;
+                }
+
+                var mode = PlayniteApplication.Current.Mode;
+                if (PlayniteEnvironment.InOfflineMode && mode == ApplicationMode.Desktop)
+                {
+                    Explorer.NavigateToFileSystemEntry(diagPath);
+                    return;
+                }
+
+                var uploadedId = Guid.Empty;
+                var uploadResult = GlobalProgress.ActivateProgress((_) =>
+                    uploadedId = new ServicesClient().UploadDiagPackage(diagPath),
+                    new GlobalProgressOptions("LOCDiagUploading"));
+                if (uploadResult.Result == true)
+                {
+                    if (mode == ApplicationMode.Desktop)
+                    {
+                        dialogs.ShowSelectableString(ResourceProvider.GetString("LOCDiagPackageCreationSuccess"), "", uploadedId.ToString());
+                    }
+                    else
+                    {
+                        dialogs.ShowMessage(ResourceProvider.GetString("LOCDiagPackageSentSuccess"));
+                    }
                 }
                 else
                 {
-                    dialogs.ShowMessage(ResourceProvider.GetString("LOCDiagPackageSentSuccess"));
+                    logger.Error(uploadResult.Error, "Failed to upload diag package.");
+                    dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageUploadError"), "");
+                    if (mode == ApplicationMode.Desktop)
+                    {
+                        Explorer.NavigateToFileSystemEntry(diagPath);
+                    }
                 }
             }
-            else
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(uploadResult.Error, "Failed to upload diag package.");
-                dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageUploadError"), "");
-                if (mode == ApplicationMode.Desktop)
-                {
-                    Explorer.NavigateToFileSystemEntry(diagPath);
-                }
+                logger.Error(e, "Failed to process CreateDiagPackage");
+                dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageCreationError"), "");
             }
         }
 
