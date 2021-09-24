@@ -128,7 +128,11 @@
                                Foreground="{DynamicResource WarningBrush}"
                                Visibility="{Binding IsQueuedForInstall, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                    <ItemsControl Margin="0,10,0,0" ItemsSource="{Binding Screenshots}">
+                    <TextBlock TextWrapping="Wrap" Margin="0,10,0,10"
+                               Text="{Binding Description}"
+                               FontSize="{DynamicResource FontSizeSmall}" />
+                    
+                    <ItemsControl ItemsSource="{Binding Screenshots}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Margin="3" ToolTip="{Binding Image, Mode=OneWay}">
@@ -146,10 +150,6 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
-                    
-                    <TextBlock TextWrapping="Wrap" Margin="0,5,0,5"
-                               Text="{Binding Description}"
-                               FontSize="{DynamicResource FontSizeSmall}" />
                 </StackPanel>
             </ScrollViewer>
             
