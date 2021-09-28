@@ -7,9 +7,6 @@
     [ValidateSet("x86", "x64")]
     [string]$Platform = "x86",
 
-    # File path with list of values for Common.config
-    [string]$PlayniteConfigUpdate,
-
     # Target directory for build files    
     [string]$OutputDir,
 
@@ -121,55 +118,6 @@ if (!$SkipBuild)
     PackExtensionTemplate "PowerShellScript" $OutputDir
 }
 
-# -------------------------------------------
-#            Set config values
-# -------------------------------------------
-if ($PlayniteConfigUpdate)
-{
-    Write-OperationLog "Updating config values..."
-    if ($PlayniteConfigUpdate.StartsWith("http"))
-    {
-        $configFile = Join-Path $env:TEMP "config.cfg"
-        Invoke-WebRequest $PlayniteConfigUpdate -OutFile $configFile
-        $PlayniteConfigUpdate = $configFile
-    }
-
-    $configPath = Join-Path $OutputDir "Common.config"
-    [xml]$configXml = Get-Content $configPath
-    $customConfigContent = Get-Content $PlayniteConfigUpdate
-
-    foreach ($line in $customConfigContent)
-    {
-        $proName = $line.Split(">")[0]
-        $proValue = $line.Split(">")[1]
-
-        if ([string]::IsNullOrEmpty($proName))
-        {
-            continue
-        }
-
-        Write-DebugLog "Settings config value $proName : $proValue"
-
-        if ($configXml.appSettings.add.key -contains $proName)
-        {
-            $node = $configXml.appSettings.add | Where { $_.key -eq $proName }
-            $node.value = $proValue
-        }
-        else
-        {            
-            $node = $configXml.CreateElement("add")
-            $node.SetAttribute("key", $proName)
-            $node.SetAttribute("value", $proValue)
-            $configXml.appSettings.AppendChild($node) | Out-Null
-        }
-    }
-
-    $configXml.Save($configPath)
-}
-
-$buildNumber = (Get-ChildItem (Join-Path $OutputDir "Playnite.dll")).VersionInfo.ProductVersion
-$buildNumber = $buildNumber -replace "\.0\.\d+$", ""
-$buildNumberPlain = $buildNumber.Replace(".", "")
 New-Folder $InstallerDir
 
 # -------------------------------------------
