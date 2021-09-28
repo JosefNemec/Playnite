@@ -28,8 +28,8 @@ namespace Playnite.Tests.Models
             {
                 Name = "test game",
                 InstallDirectory = dir,
-                GameImagePath = Path.Combine(dir, "test.iso"),
-                PlatformId = database.Platforms.First().Id,
+                Roms = new ObservableCollection<GameRom> { new GameRom("test", Path.Combine(dir, "test.iso")) },
+                PlatformIds = new List<Guid> { database.Platforms.First().Id },
                 Version = "1.0",
                 PluginId = Guid.NewGuid(),
                 GameId = "game_id",
@@ -40,17 +40,36 @@ namespace Playnite.Tests.Models
             Assert.AreEqual("teststring", game.ExpandVariables("teststring"));
             Assert.AreEqual(dir + "teststring", game.ExpandVariables("{InstallDir}teststring"));
             Assert.AreEqual(game.InstallDirectory, game.ExpandVariables("{InstallDir}"));
-            Assert.AreEqual(game.GameImagePath, game.ExpandVariables("{ImagePath}"));
             Assert.AreEqual("test", game.ExpandVariables("{ImageNameNoExt}"));
             Assert.AreEqual("test.iso", game.ExpandVariables("{ImageName}"));
             Assert.AreEqual(PlaynitePaths.ProgramPath, game.ExpandVariables("{PlayniteDir}"));
             Assert.AreEqual("test game", game.ExpandVariables("{Name}"));
             Assert.AreEqual("test2", game.ExpandVariables("{InstallDirName}"));
-            Assert.AreEqual(game.Platform.Name, game.ExpandVariables("{Platform}"));
+            Assert.AreEqual(game.Platforms[0].Name, game.ExpandVariables("{Platform}"));
             Assert.AreEqual(game.PluginId.ToString(), game.ExpandVariables("{PluginId}"));
             Assert.AreEqual(game.GameId, game.ExpandVariables("{GameId}"));
             Assert.AreEqual(game.Id.ToString(), game.ExpandVariables("{DatabaseId}"));
             Assert.AreEqual(game.Version, game.ExpandVariables("{Version}"));
+            Assert.AreEqual(Path.Combine(dir, "test.iso"), game.ExpandVariables("{ImagePath}"));
+        }
+
+        [Test]
+        public void ExpandVariablesReferenceTest()
+        {
+            var database = new InMemoryGameDatabase();
+            Game.DatabaseReference = database;
+            GameDatabase.GenerateSampleData(database);
+
+            var game = new Game()
+            {
+                Name = "test game",
+                InstallDirectory = @"{PlayniteDir}\test\test2\",
+                Roms = new ObservableCollection<GameRom> { new GameRom("test", @"{InstallDir}\test.iso") }
+            };
+
+            var expanded = game.ExpandVariables("{ImagePath}");
+            StringAssert.DoesNotContain("{ImagePath}", expanded);
+            StringAssert.DoesNotContain("{PlayniteDir}", expanded);
         }
 
         [Test]
@@ -77,18 +96,16 @@ namespace Playnite.Tests.Models
             {
                 Name = "Name",
                 InstallDirectory = "InstallDirectory",
-                GameImagePath = "GameImagePath",
-                PlatformId = new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+                PlatformIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
                 Version = "Version",
                 PluginId = new Guid(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
                 GameId = "GameId",
                 Id = new Guid(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
                 Added = new DateTime(10),
-                AgeRatingId = new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4),
+                AgeRatingIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
                 BackgroundImage = "BackgroundImage",
                 CategoryIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
                 CommunityScore = 10,
-                CompletionStatus = CompletionStatus.Beaten,
                 CoverImage = "CoverImage",
                 CriticScore = 20,
                 Description = "Description",
@@ -108,16 +125,15 @@ namespace Playnite.Tests.Models
                 PlayCount = 1,
                 Playtime = 10,
                 PublisherIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
-                RegionId = new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5),
-                ReleaseDate = new DateTime(40),
-                SeriesId = new Guid(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6),
+                RegionIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
+                ReleaseDate = new ReleaseDate(2000),
+                SeriesIds = new List<Guid> { new Guid(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6) },
                 SortingName = "SortingName",
                 SourceId = new Guid(7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7),
                 TagIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
                 FeatureIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
                 UserScore = 30,
-                PlayAction = new GameAction(),
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() }
             };
 
             var changes = 0;
@@ -125,22 +141,19 @@ namespace Playnite.Tests.Models
             var game1 = new Game()
             {
                 GameId = "id",
-                PlayAction = new GameAction() { Name = "play1" },
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
             };
 
             var game2 = new Game()
             {
                 GameId = "id",
-                PlayAction = new GameAction() { Name = "play1" },
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
             };
 
             var game3 = new Game()
             {
                 GameId = "id",
-                PlayAction = new GameAction() { Name = "play3" },
-                OtherActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action3" }, new GameAction() { Name = "action4" } }
+                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action3" }, new GameAction() { Name = "action4" } }
             };
 
             game1.PropertyChanged += (s, e) => changes++;

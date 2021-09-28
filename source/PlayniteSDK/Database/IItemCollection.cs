@@ -112,7 +112,7 @@ namespace Playnite.SDK
     /// <summary>
     /// Describes collection of items for game database.
     /// </summary>
-    public interface IItemCollection
+    public interface IItemCollection : IDisposable
     {
         /// <summary>
         /// Gets item collection type.
@@ -175,6 +175,20 @@ namespace Playnite.SDK
         /// <param name="items">Names of items to be added.</param>
         /// <returns>Newly added items or existing items if there are some present with the same names.</returns>
         IEnumerable<TItem> Add(List<string> items);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        TItem Add(MetadataProperty property);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="properties"></param>
+        /// <returns></returns>
+        IEnumerable<TItem> Add(IEnumerable<MetadataProperty> properties);
 
         /// <summary>
         /// Adds new items into collection.

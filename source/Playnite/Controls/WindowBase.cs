@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Playnite.Controls
@@ -44,6 +45,7 @@ namespace Playnite.Controls
     [TemplatePart(Name = "PART_TextTitle", Type = typeof(TextBlock))]
     public class WindowBase : Window, INotifyPropertyChanged
     {
+        private WindowPositionHandler positionHandler;
         private readonly EmptyWindowAutomationPeer automationPeer;
 
         private Button MinimizeButton;
@@ -141,6 +143,19 @@ namespace Playnite.Controls
             }
         }
 
+        public bool BlockAltF4
+        {
+            get
+            {
+                return (bool)GetValue(BlockAltF4Property);
+            }
+
+            set
+            {
+                SetValue(BlockAltF4Property, value);
+            }
+        }
+
         public static readonly DependencyProperty ShowMinimizeButtonProperty =
             DependencyProperty.Register(nameof(ShowMinimizeButton), typeof(bool), typeof(WindowBase), new PropertyMetadata(true, ShowMinimizeButtonPropertyChanged));
         public static readonly DependencyProperty ShowMaximizeButtonProperty =
@@ -149,6 +164,8 @@ namespace Playnite.Controls
             DependencyProperty.Register(nameof(ShowCloseButton), typeof(bool), typeof(WindowBase), new PropertyMetadata(true, ShowCloseButtonPropertyChanged));
         public static readonly DependencyProperty ShowTitleProperty =
             DependencyProperty.Register(nameof(ShowTitle), typeof(bool), typeof(WindowBase), new PropertyMetadata(true, ShowTitlePropertyChanged));
+        public static readonly DependencyProperty BlockAltF4Property =
+            DependencyProperty.Register(nameof(BlockAltF4), typeof(bool), typeof(WindowBase), new PropertyMetadata(false));
 
         public bool IsShown { get; private set; }
 
@@ -184,6 +201,32 @@ namespace Playnite.Controls
                 IsShown = true;
                 RaiseEvent(new RoutedEventArgs(LoadedRoutedEvent));
             };
+
+            PreviewKeyDown += (_, e) =>
+            {
+                if (e.Key == Key.System && e.SystemKey == Key.F4 && BlockAltF4)
+                {
+                    e.Handled = true;
+                }
+            };
+
+            // This fixes an issue if SizeToContent is used on windows with custom WindowChrome (all Playnite windows)
+            // https://stackoverflow.com/questions/29207331/wpf-window-with-custom-chrome-has-unwanted-outline-on-right-and-bottom
+            SourceInitialized += (_, e) =>
+            {
+                if (SizeToContent == SizeToContent.WidthAndHeight)
+                {
+                    InvalidateMeasure();
+                }
+            };
+        }
+
+        public WindowBase(string savePositionName) : this()
+        {
+            if (PlayniteApplication.Current.AppSettings != null)
+            {
+                positionHandler = new WindowPositionHandler(this, savePositionName, PlayniteApplication.Current.AppSettings.WindowPositions);
+            }
         }
 
         public static void SetTextRenderingOptions(TextFormattingModeOptions formatting, TextRenderingModeOptions rendering)

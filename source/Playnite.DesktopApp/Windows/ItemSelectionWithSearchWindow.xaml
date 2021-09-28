@@ -46,7 +46,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Border Padding="10" Background="{StaticResource NormalBrushDark}" DockPanel.Dock="Bottom"
+            <Border Padding="10" DockPanel.Dock="Bottom"
             BorderThickness="0" Grid.Row="1">
                 <DockPanel>
                     <Button Name="ButtonSearch" Content="{DynamicResource LOCSearchLabel}" Padding="10,5,10,5" DockPanel.Dock="Left"

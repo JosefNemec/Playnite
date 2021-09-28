@@ -38,9 +38,9 @@
                         <Border x:Name="Border" Grid.Row="1" Margin="0" Height="6" CornerRadius="{DynamicResource ControlCornerRadius}"
                                 Background="{TemplateBinding Background}" BorderBrush="{DynamicResource NormalBorderBrush}"
                                 BorderThickness="{DynamicResource ControlBorderThickness}" />
-                        <Track Grid.Row="1" x:Name="PART_Track">
+                        <Track Grid.Row="1" x:Name="PART_Track" Height="{TemplateBinding Height}">
                             <Track.Thumb>
-                                <Thumb Width="25" />
+                                <Thumb Width="10" />
                             </Track.Thumb>
                             <Track.DecreaseRepeatButton>
                                 <RepeatButton Style="{StaticResource SliderTrackButton}"

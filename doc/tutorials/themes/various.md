@@ -9,6 +9,13 @@ For example creating image that uses `applogo.png` file stored in `Images` subfo
 <Image Source="{ThemeFile 'Images/applogo.png'}" />
 ```
 
+If you need to reference theme files based on game property, use `ThemeFileBinding` markup extension.
+
+For example to bind to an image based on game's platform name:
+```xml 
+<Image Source="{ThemeFileBinding Game.Platform.Name, PathFormat='Platforms/{0}.jpg'}" />
+```
+
 Adding video to a theme
 ---------------------
 
@@ -32,6 +39,25 @@ You may have seen something like this in theme files:
 This notifies theme engine about what kind of checkbox it is and how to hookup functionality for it. If the name is changed or removed then the element will loose all functionality and you will need to set it up in theme file itself via `Binding` markups. You can see PART specifications in appropriate backend file for each control/view (for example [this file](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.DesktopApp/Controls/Views/GameOverview.cs) for GameOverview view).
 
 This however doesn't mean that you can only include information backed by PART definition in your themes...
+
+Custom mouse cursor
+---------------------
+
+Custom mouse cursors are only supported in `.cur` and `.ani` formats. To assign custom cursor to a theme, put `cursor.cur` or `cursor.ani` file into theme directory root (next to `theme.yaml` file).
+
+Changing audio files
+---------------------
+
+All audio files must be stored in `audio` sub-directory and have **44.1 kHz** sampling rate!
+
+You can currently change several audio samples in Fullscreen themes:
+
+| Type | File name | Supported formats |
+| :--- | :--- | :--- |
+| Navigation sound | navigation | `.wav`, `.mp3` |
+| Activation sound | activation | `.wav`, `.mp3` |
+| Background sound/music | background | `.wma`, `.mp3` |
+
 
 Adding additional information to views
 ---------------------

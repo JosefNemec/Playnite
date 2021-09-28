@@ -1,183 +1,99 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="ButtonPromptA" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="q" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptA">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                       Foreground="{DynamicResource TextBrush}"
+                       Text="q" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptB" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="e" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptB">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="e" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptX" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="t" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptX">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                       Foreground="{DynamicResource TextBrush}"
+                       Text="t" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptY" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="u" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptY">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="u" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptLB" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="f" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptLB">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="f" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptRB" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="z" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptRB">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="z" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptLT" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="j" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptLT">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="j" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptRT" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="v" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptRT">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="v" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptBack" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="b" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptBack">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="b" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptStart" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="k" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptStart">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="k" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptLS" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="g" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptLS">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="g" />
+        </Viewbox>
+    </DataTemplate>
 
-    <Style x:Key="ButtonPromptRS" TargetType="ContentControl">
-        <Setter Property="Focusable" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Viewbox>
-                        <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
-                                   Foreground="{DynamicResource TextBrush}"
-                                   Text="x" />
-                    </Viewbox>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate x:Key="ButtonPromptRS">
+        <Viewbox>
+            <TextBlock FontFamily="{DynamicResource FontXboxOneController}"
+                        Foreground="{DynamicResource TextBrush}"
+                        Text="x" />
+        </Viewbox>
+    </DataTemplate>
 </ResourceDictionary>

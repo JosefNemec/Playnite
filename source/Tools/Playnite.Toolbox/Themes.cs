@@ -178,7 +178,7 @@ namespace Playnite.Toolbox
             }
 
             var defaultThemeDir = Path.Combine(Paths.GetThemesPath(mode), "Default");
-            targetPath = Path.Combine(targetPath, $"{Common.Paths.GetSafePathName(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
+            targetPath = Path.Combine(targetPath, $"{Common.Paths.GetSafePathName(extInfo.Id).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedThemeFileExtention}");
             FileSystem.PrepareSaveFile(targetPath);
             using (var zipStream = new FileStream(targetPath, FileMode.Create))
             {
@@ -367,6 +367,10 @@ namespace Playnite.Toolbox
                 resDir.Attribute("Source").Value = val;
                 defaultThemeXamlFiles.Add(val.Replace('/', '\\'));
             }
+
+            // Remove resources that should not be part of the theme
+            var hidden = appXaml.Descendants().FirstOrDefault(a => a.Attribute("Source")?.Value == "HiddenStyles.xaml");
+            hidden?.Remove();
 
             // Change localization file reference
             var langElem = appXaml.Descendants().First(a => a.Attribute("Source")?.Value.EndsWith(PlaynitePaths.EngLocSourceFileName) == true);

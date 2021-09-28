@@ -1,0 +1,10 @@
+Id: rpcs3
+Name: RPCS3
+Website: 'https://rpcs3.net/'
+Profiles:
+  - Name: Default
+    Platforms: [sony_playstation3]
+    ProfileFiles: ['qt\plugins\platforms\qwindows.dll']
+    StartupExecutable: ^rpcs3.*\.exe$
+    StartupArguments: '"{ImagePath}"'
+    ScriptGameImport: true

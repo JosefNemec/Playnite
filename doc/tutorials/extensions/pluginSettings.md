@@ -6,6 +6,8 @@ Basics
 
 Plugins can provide configuration view that end users can use to change plugin's behavior. This includes UI component to display settings objects and input verification methods.
 
+Plugins providing settings have to `HasSettings` plugin property set to `true`.
+
 Implementation
 ---------------------
 
@@ -107,18 +109,20 @@ To store your settings permanently you have to implement some logic that will st
 Following example shows how to load and save values for your plugin.
 
 ```csharp
-public class TestPluginSettings : ISettings
+public class TestPluginSettings : ObservableObject, ISettings
 {
     private TestPlugin plugin;
+    
+    private string option1 = string.Empty;
+    private bool option2 = false;
+    private bool optionThatWontBeSaved = false;
 
-    public string Option1 { get; set; } = string.Empty;
-
-    public bool Option2 { get; set; } = false;
-
+    public string Option1 { get => option1; set => SetValue(ref option1, value); }
+    public bool Option2 { get => option2; set => SetValue(ref option2, value); }
     // Playnite serializes settings object to a JSON object and saves it as text file.
-    // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
-    [JsonIgnore]
-    public bool OptionThatWontBeSaved { get; set; } = false;
+    // If you want to exclude some property from being saved then use `JsonDontSerialize` ignore attribute.
+    [DontSerialize]
+    public bool OptionThatWontBeSaved { get => optionThatWontBeSaved; set => SetValue(ref optionThatWontBeSaved, value); }
 
     // Parameterless constructor must exist if you want to use LoadPluginSettings method.
     public TestPluginSettings()

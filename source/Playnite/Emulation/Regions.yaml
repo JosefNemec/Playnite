@@ -1,0 +1,81 @@
+- Id: australia
+  Name: Australia
+  Codes: [A, AU, Australia]
+  IgdbId: 3
+- Id: asia
+  Name: Asia
+  Codes: [As, Asia]
+  IgdbId: 7
+- Id: brazil
+  Name: Brazil
+  Codes: [B, BR, Brazil]
+- Id: canada
+  Name: Canada
+  Codes: [C, CA, Canada]
+- Id: china
+  Name: China
+  Codes: [Ch, CN, China]
+  IgdbId: 6
+- Id: netherlands
+  Name: Netherlands
+  Codes: [D, Nl, Netherlands]
+- Id: europe
+  Name: Europe
+  Codes: [E, EU, Europe]
+  DefaultImport: true
+  IgdbId: 1
+- Id: france
+  Name: France
+  Codes: [F, FR, France]
+- Id: germany
+  Name: Germany
+  Codes: [G, DE, Germany]
+- Id: greece
+  Name: Greece
+  Codes: [Gr, Greece]
+- Id: holland
+  Name: Holland
+  Codes: [H, Holland]
+- Id: hongKong
+  Name: Hong Kong
+  Codes: [HK, "Hong Kong"]
+- Id: italy
+  Name: Italy
+  Codes: [I, IT, Italy]
+- Id: japan
+  Name: Japan
+  Codes: [J, JP, Japan]
+  DefaultImport: true
+  IgdbId: 5
+- Id: korea
+  Name: Korea
+  Codes: [K, KR, Korea]
+- Id: newZealand
+  Name: New Zealand
+  Codes: [NZ, "New Zealand"]
+  IgdbId: 4
+- Id: norway
+  Name: Norway
+  Codes: [No, Norway]
+- Id: russia
+  Name: Russia
+  Codes: [R, RU, Russia]
+- Id: spain
+  Name: Spain
+  Codes: [S, ES, Spain]
+- Id: sweden
+  Name: Sweden
+  Codes: [Sw, SE, Sweden]
+- Id: usa
+  Name: USA
+  Codes: [U, NA, USA, US]
+  DefaultImport: true
+  IgdbId: 2
+- Id: unitedKingdom
+  Name: United Kingdom
+  Codes: [UK, GB, "United Kingdom"]
+- Id: world
+  Name: World
+  Codes: [W, World]
+  DefaultImport: true
+  IgdbId: 8

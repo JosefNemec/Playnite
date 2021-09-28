@@ -44,6 +44,42 @@ namespace Playnite.SDK
     }
 
     /// <summary>
+    /// Represents message box toggle option.
+    /// </summary>
+    public class MessageBoxToggle : ObservableObject
+    {
+        /// <summary>
+        /// Gets or sets title toggle option.
+        /// </summary>
+        public string Title { get; set; }
+
+        private bool selected;
+        /// <summary>
+        /// Gets or sets value indicating whether this is option is selected.
+        /// </summary>
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="selected"></param>
+        public MessageBoxToggle(string title, bool selected = false)
+        {
+            Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
+            Selected = selected;
+        }
+    }
+
+    /// <summary>
     /// Represents arguments for global progress action.
     /// </summary>
     public class GlobalProgressActionArgs : ObservableObject
@@ -61,7 +97,7 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets cancelation token source.
         /// </summary>
-        public CancellationTokenSource CancelToken { get; }
+        public CancellationToken CancelToken { get; }
 
         private double progressMaxValue = 0;
         /// <summary>
@@ -111,7 +147,7 @@ namespace Playnite.SDK
         /// <param name="mainContext"></param>
         /// <param name="mainDispatcher"></param>
         /// <param name="cancelToken"></param>
-        public GlobalProgressActionArgs(SynchronizationContext mainContext, Dispatcher mainDispatcher, CancellationTokenSource cancelToken)
+        public GlobalProgressActionArgs(SynchronizationContext mainContext, Dispatcher mainDispatcher, CancellationToken cancelToken)
         {
             MainContext = mainContext;
             MainDispatcher = mainDispatcher;
@@ -262,18 +298,12 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets or sets dialog result. True if user confirmed selected otherwise false.
         /// </summary>
-        public bool Result
-        {
-            get; set;
-        }
+        public bool Result { get; set; }
 
         /// <summary>
         /// Gets or sets string selected by user.
         /// </summary>
-        public string SelectedString
-        {
-            get; set;
-        }
+        public string SelectedString { get; set; }
 
         /// <summary>
         /// Creates new instance of StringSelectionDialogResult.
@@ -420,6 +450,16 @@ namespace Playnite.SDK
         /// <param name="defaultInput">Default string presented in input field.</param>
         /// <returns>Selection result.</returns>
         StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="messageBoxText"></param>
+        /// <param name="caption"></param>
+        /// <param name="defaultInput"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput, List<MessageBoxToggle> options);
 
         /// <summary>
         /// Displays dialog with textbox allowing to select/copy text.

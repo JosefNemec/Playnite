@@ -10,8 +10,11 @@ using System.Windows.Controls;
 
 namespace Playnite.DesktopApp.Controls
 {
+    [TemplatePart(Name = "PART_ProgressStatus", Type = typeof(ProgressBar))]
     public class SidebarItem : Button
     {
+        private ProgressBar ProgressStatus;
+
         static SidebarItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(SidebarItem), new FrameworkPropertyMetadata(typeof(SidebarItem)));
@@ -23,13 +26,28 @@ namespace Playnite.DesktopApp.Controls
 
             BindingTools.SetBinding(this,
                 Button.CommandProperty,
-                nameof(SideBarItem.Command));
-            BindingTools.SetBinding(this,
-                Button.CommandParameterProperty,
-                nameof(SideBarItem.CommandParameter));
+                nameof(SidebarWrapperItem.Command));
             BindingTools.SetBinding(this,
                 ContentPresenter.ContentProperty,
-                nameof(SideBarItem.ImageObject));
+                nameof(SidebarWrapperItem.IconObject));
+            BindingTools.SetBinding(this,
+                ContentPresenter.VisibilityProperty,
+                nameof(SidebarWrapperItem.Visible),
+                converter: new BooleanToVisibilityConverter());
+            BindingTools.SetBinding(this,
+                ContentPresenter.ToolTipProperty,
+                nameof(SidebarWrapperItem.Title));
+
+            ProgressStatus = Template.FindName("PART_ProgressStatus", this) as ProgressBar;
+            if (ProgressStatus != null)
+            {
+                BindingTools.SetBinding(ProgressStatus,
+                    ProgressBar.MaximumProperty,
+                    nameof(SidebarWrapperItem.ProgressMaximum));
+                BindingTools.SetBinding(ProgressStatus,
+                    ProgressBar.ValueProperty,
+                    nameof(SidebarWrapperItem.ProgressValue));
+            }
         }
     }
 }

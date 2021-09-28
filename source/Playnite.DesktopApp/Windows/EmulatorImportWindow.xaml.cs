@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class EmulatorImportWindow : WindowBase
     {
-        public EmulatorImportWindow() : base()
+        public EmulatorImportWindow() : base(nameof(EmulatorImportWindow))
         {
             InitializeComponent();
         }

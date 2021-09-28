@@ -22,6 +22,7 @@ using Playnite.Metadata;
 using Playnite.SDK;
 using Microsoft.Win32;
 using Playnite.SDK.Models;
+using System.Collections.ObjectModel;
 
 namespace Playnite
 {
@@ -42,6 +43,16 @@ namespace Playnite
     {
         Library,
         Statistics
+    }
+
+    public enum ImageLoadScaling
+    {
+        [Description(LOC.SettingsImageScalingQuality)]
+        None,
+        [Description(LOC.SettingsImageScalingBalanced)]
+        BitmapDotNet,
+        [Description(LOC.SettingsImageScalingAlternative)]
+        Custom
     }
 
     public enum TrayIconType
@@ -115,7 +126,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 5;
+        } = 6;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -850,18 +861,19 @@ namespace Playnite
             }
         }
 
-        private bool sidebarVisible = false;
-        public bool SidebarVisible
+        private bool showSidebar = true;
+        public bool ShowSidebar
         {
             get
             {
-                return sidebarVisible;
+                return showSidebar;
             }
 
             set
             {
-                sidebarVisible = value;
+                showSidebar = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMainMenuOnTopPanel));
             }
         }
 
@@ -879,6 +891,25 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool mainMenuButtonSidebarMove = true;
+        public bool MainMenuButtonSidebarMove
+        {
+            get
+            {
+                return mainMenuButtonSidebarMove;
+            }
+
+            set
+            {
+                mainMenuButtonSidebarMove = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowMainMenuOnTopPanel));
+            }
+        }
+
+        [JsonIgnore]
+        public bool ShowMainMenuOnTopPanel => !ShowSidebar || (ShowSidebar && !MainMenuButtonSidebarMove);
 
         private bool minimizeToTray = false;
         public bool MinimizeToTray
@@ -957,6 +988,21 @@ namespace Playnite
             }
         }
 
+        private bool updateEmulatedLibStartup = true;
+        public bool UpdateEmulatedLibStartup
+        {
+            get
+            {
+                return updateEmulatedLibStartup;
+            }
+
+            set
+            {
+                updateEmulatedLibStartup = value;
+                OnPropertyChanged();
+            }
+        }
+
         private AfterLaunchOptions afterLaunch = AfterLaunchOptions.Minimize;
         public AfterLaunchOptions AfterLaunch
         {
@@ -987,7 +1033,7 @@ namespace Playnite
             }
         }
 
-        private string theme = "Default";
+        private string theme = ThemeManager.DefaultDesktopThemeId;
         [RequiresRestart]
         public string Theme
         {
@@ -1036,21 +1082,6 @@ namespace Playnite
             set
             {
                 disabledPlugins = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool showSteamFriendsButton = true;
-        public bool ShowSteamFriendsButton
-        {
-            get
-            {
-                return showSteamFriendsButton;
-            }
-
-            set
-            {
-                showSteamFriendsButton = value;
                 OnPropertyChanged();
             }
         }
@@ -1173,6 +1204,22 @@ namespace Playnite
             set
             {
                 fontFamilyName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string monospaceFontFamilyName = "Consolas";
+        [RequiresRestart]
+        public string MonospaceFontFamilyName
+        {
+            get
+            {
+                return monospaceFontFamilyName;
+            }
+
+            set
+            {
+                monospaceFontFamilyName = value;
                 OnPropertyChanged();
             }
         }
@@ -1315,17 +1362,6 @@ namespace Playnite
             set
             {
                 metadataSettings = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.PowerShell;
-        public ScriptLanguage ActionsScriptLanguage
-        {
-            get => actionsScriptLanguage;
-            set
-            {
-                actionsScriptLanguage = value;
                 OnPropertyChanged();
             }
         }
@@ -1473,18 +1509,6 @@ namespace Playnite
             }
         }
 
-        private ApplicationView currentApplicationView;
-        [JsonIgnore]
-        public ApplicationView CurrentApplicationView
-        {
-            get => currentApplicationView;
-            set
-            {
-                currentApplicationView = value;
-                OnPropertyChanged();
-            }
-        }
-
         private AgeRatingOrg ageRatingOrgPriority = AgeRatingOrg.PEGI;
         public AgeRatingOrg AgeRatingOrgPriority
         {
@@ -1492,6 +1516,197 @@ namespace Playnite
             set
             {
                 ageRatingOrgPriority = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool traceLogEnabled = true;
+        public bool TraceLogEnabled
+        {
+            get => traceLogEnabled;
+            set
+            {
+                traceLogEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double gridViewScrollModifier = 1.5;
+        public double GridViewScrollModifier
+        {
+            get => gridViewScrollModifier;
+            set
+            {
+                gridViewScrollModifier = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelGeneralViewItem = false;
+        public bool ShowTopPanelGeneralViewItem
+        {
+            get => showTopPanelGeneralViewItem;
+            set
+            {
+                showTopPanelGeneralViewItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelGroupingItem = true;
+        public bool ShowTopPanelGroupingItem
+        {
+            get => showTopPanelGroupingItem;
+            set
+            {
+                showTopPanelGroupingItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelSortingItem = true;
+        public bool ShowTopPanelSortingItem
+        {
+            get => showTopPanelSortingItem;
+            set
+            {
+                showTopPanelSortingItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelFilterPresetsItem = true;
+        public bool ShowTopPanelFilterPresetsItem
+        {
+            get => showTopPanelFilterPresetsItem;
+            set
+            {
+                showTopPanelFilterPresetsItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelDetailsViewSwitch = true;
+        public bool ShowTopPanelDetailsViewSwitch
+        {
+            get => showTopPanelDetailsViewSwitch;
+            set
+            {
+                showTopPanelDetailsViewSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelGridViewSwitch = true;
+        public bool ShowTopPanelGridViewSwitch
+        {
+            get => showTopPanelGridViewSwitch;
+            set
+            {
+                showTopPanelGridViewSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelListViewSwitch = true;
+        public bool ShowTopPanelListViewSwitch
+        {
+            get => showTopPanelListViewSwitch;
+            set
+            {
+                showTopPanelListViewSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelExplorerSwitch = true;
+        public bool ShowTopPanelExplorerSwitch
+        {
+            get => showTopPanelExplorerSwitch;
+            set
+            {
+                showTopPanelExplorerSwitch = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelSelectRandomGameButton = false;
+        public bool ShowTopPanelSelectRandomGameButton
+        {
+            get => showTopPanelSelectRandomGameButton;
+            set
+            {
+                showTopPanelSelectRandomGameButton = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double topPanelSectionSeparatorWidth = 15;
+        public double TopPanelSectionSeparatorWidth
+        {
+            get
+            {
+                return topPanelSectionSeparatorWidth;
+            }
+
+            set
+            {
+                topPanelSectionSeparatorWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dock pluginTopPanelAlignment = Dock.Right;
+        public Dock PluginTopPanelAlignment
+        {
+            get => pluginTopPanelAlignment;
+            set
+            {
+                pluginTopPanelAlignment = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Guid selectedFilterPreset;
+        public Guid SelectedFilterPreset
+        {
+            get => selectedFilterPreset;
+            set
+            {
+                selectedFilterPreset = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ImageLoadScaling imageScalerMode = ImageLoadScaling.BitmapDotNet;
+        public ImageLoadScaling ImageScalerMode
+        {
+            get => imageScalerMode;
+            set
+            {
+                imageScalerMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool useCompositionWebViewRenderer = false;
+        public bool UseCompositionWebViewRenderer
+        {
+            get => useCompositionWebViewRenderer;
+            set
+            {
+                useCompositionWebViewRenderer = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool addonsPerfNoticeShown = false;
+        public bool AddonsPerfNoticeShown
+        {
+            get => addonsPerfNoticeShown;
+            set
+            {
+                addonsPerfNoticeShown = value;
                 OnPropertyChanged();
             }
         }
@@ -1517,11 +1732,20 @@ namespace Playnite
             get; private set;
         } = new FullscreenSettings();
 
-        [JsonIgnore]
-        public ImportExclusionList ImportExclusionList
+        private List<SelectableItem<string>> develExtenions = new List<SelectableItem<string>>();
+        public List<SelectableItem<string>> DevelExtenions
         {
-            get; set;
-        } = new ImportExclusionList();
+            get
+            {
+                return develExtenions;
+            }
+
+            set
+            {
+                develExtenions = value;
+                OnPropertyChanged();
+            }
+        }
 
         public PlayniteSettings()
         {
@@ -1557,6 +1781,33 @@ namespace Playnite
         private static void SaveSettingFile(object settings, string path)
         {
             FileSystem.WriteStringToFile(path, JsonConvert.SerializeObject(settings, Formatting.Indented));
+        }
+
+        public static PlayniteSettings GetDefaultSettings()
+        {
+            var settings = new PlayniteSettings();
+            settings.ViewSettings.ListViewColumsOrder = new List<GameField>
+                {
+                    GameField.Icon,
+                    GameField.Name,
+                    GameField.ReleaseDate,
+                    GameField.Genres,
+                    GameField.LastActivity,
+                    GameField.Playtime,
+                    GameField.PluginId
+                };
+
+            var columns = new ListViewColumnsProperties();
+            columns.Icon.Visible = true;
+            columns.Name.Visible = true;
+            columns.ReleaseDate.Visible = true;
+            columns.Genres.Visible = true;
+            columns.LastActivity.Visible = true;
+            columns.Playtime.Visible = true;
+            columns.PluginId.Visible = true;
+            settings.ViewSettings.ListViewColumns = columns;
+            settings.MetadataSettings = MetadataDownloaderSettings.GetDefaultSettings();
+            return settings;
         }
 
         public static PlayniteSettings LoadSettings()
@@ -1637,44 +1888,40 @@ namespace Playnite
                 settings.Version = 5;
             }
 
-            settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.WindowPositionsPath);
-            if (settings.WindowPositions == null)
+            if (settings.Version == 5)
             {
-                logger.Warn("No existing WindowPositions settings found.");
-                settings.WindowPositions = LoadSettingFile<WindowPositions>(PlaynitePaths.BackupWindowPositionsPath);
-                if (settings.WindowPositions == null)
-                {
-                    logger.Warn("No WindowPositions settings backup found, creating default ones.");
-                    settings.WindowPositions = new WindowPositions();
-                }
+                settings.ViewSettings.ListViewColumns.AgeRating.Field = GameField.AgeRatings;
+                settings.ViewSettings.ListViewColumns.Platform.Field = GameField.Platforms;
+                settings.ViewSettings.ListViewColumns.Series.Field = GameField.Series;
+                settings.ViewSettings.ListViewColumns.Region.Field = GameField.Regions;
+                settings.Version = 6;
             }
 
-            settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath);
-            if (settings.Fullscreen == null)
-            {
-                logger.Warn("No existing fullscreen settings found.");
-                settings.Fullscreen = LoadSettingFile<FullscreenSettings>(PlaynitePaths.BackupFullscreenConfigFilePath);
-                if (settings.Fullscreen == null)
-                {
-                    logger.Warn("No fullscreen settings backup found, creating default ones.");
-                    settings.Fullscreen = new FullscreenSettings();
-                }
-            }
-
-            settings.ImportExclusionList = LoadSettingFile<ImportExclusionList>(PlaynitePaths.ExclusionListConfigFilePath);
-            if (settings.ImportExclusionList == null)
-            {
-                logger.Warn("No existing ImportExclusionList settings found.");
-                settings.ImportExclusionList = LoadSettingFile<ImportExclusionList>(PlaynitePaths.BackupExclusionListConfigFilePath);
-                if (settings.ImportExclusionList == null)
-                {
-                    logger.Warn("No ImportExclusionList settings backup found, creating default ones.");
-                    settings.ImportExclusionList = new ImportExclusionList();
-                }
-            }
-
+            settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);
+            settings.Fullscreen = LoadExternalConfig<FullscreenSettings>(PlaynitePaths.FullscreenConfigFilePath, PlaynitePaths.BackupFullscreenConfigFilePath);
             settings.BackupSettings();
             return settings;
+        }
+
+        private static T LoadExternalConfig<T>(string origPath, string backupPath, bool generateDefault = true) where T : class, new()
+        {
+            var name = Path.GetFileName(origPath);
+            var config = LoadSettingFile<T>(origPath);
+            if (config == null)
+            {
+                logger.Warn($"No existing {name} settings found.");
+                config = LoadSettingFile<T>(backupPath);
+                if (config == null)
+                {
+                    logger.Warn($"No {name} settings backup found, creating default ones.");
+                    if (generateDefault)
+                    {
+                        config = new T();
+                    }
+                }
+            }
+
+            return config;
         }
 
         public void SaveSettings()
@@ -1685,7 +1932,6 @@ namespace Playnite
                 SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
-                SaveSettingFile(ImportExclusionList, PlaynitePaths.ExclusionListConfigFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -1701,7 +1947,6 @@ namespace Playnite
                 SaveSettingFile(this, PlaynitePaths.BackupConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
-                SaveSettingFile(ImportExclusionList, PlaynitePaths.BackupExclusionListConfigFilePath);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -1722,18 +1967,18 @@ namespace Playnite
 #if DEBUG
             var consoleTarget = new ColoredConsoleTarget()
             {
-                Layout = @"${level:uppercase=true}|${logger}:${message}${onexception:${newline}${exception}}"
+                Layout = @"${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception}}"
             };
 
             config.AddTarget("console", consoleTarget);
 
-            var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
+            var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
             config.LoggingRules.Add(rule1);
 #endif
-            var fileTarget = new FileTarget()
+            var coreFileTarget = new FileTarget()
             {
                 FileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.log"),
-                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true}|${logger}:${message}${onexception:${newline}${exception:format=toString}}",
+                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception:format=toString}}",
                 KeepFileOpen = false,
                 ArchiveFileName = Path.Combine(PlaynitePaths.ConfigRootPath, "playnite.{#####}.log"),
                 ArchiveAboveSize = 4096000,
@@ -1742,10 +1987,27 @@ namespace Playnite
                 Encoding = Encoding.UTF8
             };
 
-            config.AddTarget("file", fileTarget);
+            var extensionFileTarget = new FileTarget()
+            {
+                FileName = Path.Combine(PlaynitePaths.ConfigRootPath, "extensions.log"),
+                Layout = "${date:format=dd-MM HH\\:mm\\:ss.fff}|${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception:format=toString}}",
+                KeepFileOpen = false,
+                ArchiveFileName = Path.Combine(PlaynitePaths.ConfigRootPath, "extensions.{#####}.log"),
+                ArchiveAboveSize = 4096000,
+                ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                MaxArchiveFiles = 2,
+                Encoding = Encoding.UTF8
+            };
 
-            var rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
-            config.LoggingRules.Add(rule2);
+            var allRule = new LoggingRule("*", LogLevel.Trace, coreFileTarget);
+            allRule.Filters.Add(new NLog.Filters.ConditionBasedFilter()
+            {
+                Condition = "contains('${logger}', '#')",
+                Action = NLog.Filters.FilterResult.Ignore
+            });
+
+            config.LoggingRules.Add(allRule);
+            config.LoggingRules.Add(new LoggingRule("*#*", LogLevel.Trace, extensionFileTarget));
 
             NLog.LogManager.Configuration = config;
             SDK.LogManager.Init(new NLogLogProvider());

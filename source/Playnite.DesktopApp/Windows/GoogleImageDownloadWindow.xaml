@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
         xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         mc:Ignorable="d"
@@ -24,6 +26,7 @@
         <pcon:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
         <pcon:NegateConverter x:Key="NegateConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </controls:WindowBase.Resources>
 
     <Grid Margin="0,4,0,0">
@@ -72,9 +75,38 @@
                 Command="{Binding LoadMoreCommand}"
                 Content="{DynamicResource LOCLoadMore}" />
 
-        <DockPanel Grid.Row="2" Margin="15,5,10,5">
+        <DockPanel Grid.Row="2" Margin="15,5,10,5" LastChildFill="True">
             <Button Name="ButtonSearch" Content="{DynamicResource LOCSearchLabel}" Padding="10,5,10,5" DockPanel.Dock="Left"
                     Command="{Binding SearchCommand}"/>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Name="TextBlockResolution" Text="{DynamicResource LOCSearchResolutionLabel}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <pctrls:NullIntNumericBox MinValue="1" MaxValue="9999" Width="40"
+                                        Margin="10,0,0,0"
+                                        Value="{Binding SearchWidth}"/>
+                <TextBlock Text="x" VerticalAlignment="Center"
+                           Margin="4,0,4,0"/>
+                <pctrls:NullIntNumericBox MinValue="1" MaxValue="9999" Width="40"
+                                       Value="{Binding SearchHeight}"/>
+
+                <Button Content="{DynamicResource LOCPresets}" Margin="15,0,0,0" Padding="2"
+                        pbeh:LeftClickContextMenuBehavior.Enabled="True">
+                    <Button.ContextMenu>
+                        <ContextMenu Placement="Bottom">
+                            <MenuItem Header="{DynamicResource LOCSearchResolutionAnyLabel}"
+                                    Command="{Binding ClearSearchResolutionCommand}"/>
+                            <MenuItem Header="1920x620 (Steam Hero)"
+                                    Command="{Binding SetSearchResolutionCommand}"
+                                    CommandParameter="1920x620"/>
+                            <MenuItem Header="1920x1080 (1080p)"
+                                    Command="{Binding SetSearchResolutionCommand}"
+                                    CommandParameter="1920x1080"/>
+                            <MenuItem Header="2560x1440 (1440p)"
+                                    Command="{Binding SetSearchResolutionCommand}"
+                                    CommandParameter="2560x1440"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </StackPanel>
             <TextBox Name="TextSearch" Margin="10,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Center"
                      Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>

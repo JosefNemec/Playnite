@@ -12,12 +12,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Playnite.Plugins;
 
 namespace Playnite.API
 {
     public class PlayniteAPI : IPlayniteAPI
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private readonly GamesEditor gameEditor;
+        private readonly ExtensionFactory extensions;
 
         public PlayniteAPI(
             IGameDatabaseAPI databaseApi,
@@ -30,7 +33,10 @@ namespace Playnite.API
             INotificationsAPI notifications,
             GamesEditor gameEditor,
             IUriHandlerAPI uriHandler,
-            IPlayniteSettingsAPI settingsApi)
+            IPlayniteSettingsAPI settingsApi,
+            IAddons addonsApi,
+            IEmulationAPI emulation,
+            ExtensionFactory extensions)
         {
             WebViews = webViewFactory;
             Paths = pathsApi;
@@ -43,6 +49,10 @@ namespace Playnite.API
             this.gameEditor = gameEditor;
             UriHandler = uriHandler;
             ApplicationSettings = settingsApi;
+            Addons = addonsApi;
+            Emulation = emulation;
+            this.extensions = extensions;
+            SDK.API.Instance = this;
         }
 
         public IDialogsFactory Dialogs { get; }
@@ -65,6 +75,10 @@ namespace Playnite.API
 
         public IPlayniteSettingsAPI ApplicationSettings { get; }
 
+        public IAddons Addons { get; }
+
+        public IEmulationAPI Emulation { get; }
+
         public string ExpandGameVariables(Game game, string inputString)
         {
             return game?.ExpandVariables(inputString);
@@ -75,28 +89,53 @@ namespace Playnite.API
             return action?.ExpandVariables(game);
         }
 
-        public ILogger CreateLogger(string name)
-        {
-            return new Logger(name);
-        }
-
-        public ILogger CreateLogger()
-        {
-            var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;
-            return CreateLogger(className);
-        }
-
         public void StartGame(Guid gameId)
         {
             var game = Database.Games.Get(gameId);
             if (game == null)
             {
-                throw new Exception($"Can't start game, game ID {gameId} not found.");
+                logger.Error($"Can't start game, game ID {gameId} not found.");
             }
             else
             {
                 gameEditor.PlayGame(game);
             }
+        }
+
+        public void InstallGame(Guid gameId)
+        {
+            var game = Database.Games.Get(gameId);
+            if (game == null)
+            {
+                logger.Error($"Can't install game, game ID {gameId} not found.");
+            }
+            else
+            {
+                gameEditor.InstallGame(game);
+            }
+        }
+
+        public void UninstallGame(Guid gameId)
+        {
+            var game = Database.Games.Get(gameId);
+            if (game == null)
+            {
+                logger.Error($"Can't uninstall game, game ID {gameId} not found.");
+            }
+            else
+            {
+                gameEditor.UnInstallGame(game);
+            }
+        }
+
+        public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
+        {
+            extensions.AddCustomElementSupport(source, args);
+        }
+
+        public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
+        {
+            extensions.AddSettingsSupport(source, args);
         }
     }
 }

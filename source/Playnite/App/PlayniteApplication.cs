@@ -26,6 +26,7 @@ using System.Windows.Media;
 using Playnite.SDK.Events;
 using System.Windows.Threading;
 using System.Net;
+using Playnite.Common.Web;
 
 namespace Playnite
 {
@@ -40,6 +41,8 @@ namespace Playnite
         private XInputDevice xdevice;
         private System.Threading.Timer updateCheckTimer;
         private bool installingAddon = false;
+        private AddonLoadError themeLoadError = AddonLoadError.None;
+        private ThemeManifest customTheme;
 
         private bool isActive;
         public bool IsActive
@@ -54,9 +57,10 @@ namespace Playnite
 
         public System.Version CurrentVersion
         {
-            get => Updater.GetCurrentVersion();
+            get => Updater.CurrentVersion;
         }
 
+        public event EventHandler ExtensionsLoaded;
         public ApplicationMode Mode { get; }
         public IDialogsFactory Dialogs { get; set; }
         public PlayniteSettings AppSettings { get; set; }
@@ -70,9 +74,19 @@ namespace Playnite
         public ComputerScreen CurrentScreen { get; set; } = Computer.GetPrimaryScreen();
         public DiscordManager Discord { get; set; }
         public SynchronizationContext SyncContext { get; private set; }
-
+        public Action<PlayniteUriEventArgs> AppUriHandler { get; set; }
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
+        public ServicesClient ServicesClient { get; private set; }
+        public static bool SoundsEnabled { get; set; } = true;
+        public MainViewModelBase MainModelBase { get; set; }
+
+        private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
+        public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }
+
+        public PlayniteApplication()
+        {
+        }
 
         public PlayniteApplication(
             Application nativeApp,
@@ -119,7 +133,11 @@ namespace Playnite
 
             try
             {
-                pipeService = new PipeService();
+                // This can fail in rare cases when switching application modes
+                // if an old instance fails to clean after itself or if it gets stuck on exit.
+                Policy.Handle<Exception>()
+                        .WaitAndRetry(3, a => TimeSpan.FromSeconds(3))
+                        .Execute(() => pipeService = new PipeService());
                 pipeService.CommandExecuted += PipeService_CommandExecuted;
                 pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
                 pipeServer.StartServer(pipeService);
@@ -131,6 +149,15 @@ namespace Playnite
 
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
+            NLogLogger.IsTraceEnabled = AppSettings.TraceLogEnabled;
+            if (CmdLine.ResetSettings)
+            {
+                var settings = PlayniteSettings.GetDefaultSettings();
+                settings.FirstTimeWizardComplete = true;
+                settings.DatabasePath = AppSettings.DatabasePath;
+                settings.SaveSettings();
+                AppSettings = settings;
+            }
 
             var relaunchPath = string.Empty;
             if (AppSettings.StartInFullscreen && mode == ApplicationMode.Desktop && !CmdLine.StartInDesktop)
@@ -154,6 +181,7 @@ namespace Playnite
                 return;
             }
 
+            ServicesClient = new ServicesClient();
             CurrentNative.SessionEnding += Application_SessionEnding;
             CurrentNative.Exit += Application_Exit;
             CurrentNative.Startup += Application_Startup;
@@ -170,20 +198,37 @@ namespace Playnite
 
             try
             {
-                var installed = ExtensionInstaller.InstallExtensionQueue();
-                var installedTheme = installed.FirstOrDefault(a => a is ThemeManifest);
-                if (installedTheme != null)
+                if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
                 {
-                    var theme = installedTheme as ThemeManifest;
+                    logger.Warn("Multiple Playnite processes detected before installing addons.");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Thread.Sleep(500);
+                        if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
+                        {
+                            break;
+                        }
+                        else if (i == 9)
+                        {
+                            logger.Warn("Another Playnite instance didn't shutdown in time before addon installation.");
+                        }
+                    }
+                }
+
+                var installed = ExtensionInstaller.InstallExtensionQueue();
+                var installedTheme = installed.FirstOrDefault(a => a.manifest is ThemeManifest && !a.updated);
+                if (installedTheme.manifest != null)
+                {
+                    var theme = installedTheme.manifest as ThemeManifest;
                     if (theme.Mode == Mode)
                     {
                         if (theme.Mode == ApplicationMode.Desktop)
                         {
-                            AppSettings.Theme = theme.DirectoryName;
+                            AppSettings.Theme = theme.Id;
                         }
                         else
                         {
-                            AppSettings.Fullscreen.Theme = theme.DirectoryName;
+                            AppSettings.Fullscreen.Theme = theme.Id;
                         }
                     }
                 }
@@ -196,7 +241,7 @@ namespace Playnite
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
-            ThemeManifest customTheme = null;
+            customTheme = null;
             if (CmdLine.ForceDefaultTheme || CmdLine.SafeStartup)
             {
                 logger.Warn("Default theme forced by cmdline.");
@@ -206,17 +251,17 @@ namespace Playnite
                 var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
                 if (theme != ThemeManager.DefaultTheme.Name)
                 {
-                    customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.DirectoryName == theme);
+                    customTheme = ThemeManager.GetAvailableThemes(mode).Where(a => a.Id == theme).OrderByDescending(a => a.Version).FirstOrDefault();
                     if (customTheme == null)
                     {
                         logger.Error($"Failed to apply theme {theme}, theme not found.");
                         if (mode == ApplicationMode.Desktop)
                         {
-                            AppSettings.Theme = "Default";
+                            AppSettings.Theme = ThemeManager.DefaultDesktopThemeId;
                         }
                         else
                         {
-                            AppSettings.Fullscreen.Theme = "Default";
+                            AppSettings.Fullscreen.Theme = ThemeManager.DefaultFullscreenThemeId;
                         }
 
                         ThemeManager.SetCurrentTheme(defaultTheme);
@@ -233,10 +278,11 @@ namespace Playnite
             // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
             if (customTheme != null)
             {
-                if (!ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode))
+                themeLoadError = ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
+                if (themeLoadError != AddonLoadError.None)
                 {
                     ThemeManager.SetCurrentTheme(null);
-                    logger.Error($"Failed to load theme {customTheme.Name}.");
+                    logger.Error($"Failed to load theme {customTheme.Name}, {themeLoadError}.");
                 }
             }
 
@@ -261,6 +307,16 @@ namespace Playnite
                     else
                     {
                         logger.Error($"Cannot set font {AppSettings.FontFamilyName}, font not found.");
+                    }
+
+                    if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.MonospaceFontFamilyName))
+                    {
+                        CurrentNative.Resources.Add(
+                            "MonospaceFontFamily", new FontFamily(AppSettings.MonospaceFontFamilyName));
+                    }
+                    else
+                    {
+                        logger.Error($"Cannot set monospace font {AppSettings.MonospaceFontFamilyName}, font not found.");
                     }
 
                     if (AppSettings.FontSize > 0)
@@ -296,6 +352,20 @@ namespace Playnite
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
+                }
+            }
+            else
+            {
+                if (AppSettings.Fullscreen.FontSize > 0)
+                {
+                    CurrentNative.Resources.Add(
+                        "FontSize", AppSettings.Fullscreen.FontSize);
+                }
+
+                if (AppSettings.Fullscreen.FontSizeSmall > 0)
+                {
+                    CurrentNative.Resources.Add(
+                        "FontSizeSmall", AppSettings.Fullscreen.FontSizeSmall);
                 }
             }
 
@@ -366,13 +436,30 @@ namespace Playnite
             logger.Info($"Application started from '{PlaynitePaths.ProgramPath}'");
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
-            Startup();
+            SDK.Data.SQLite.Init((a,b) => new Sqlite(a, b));
+            if (!Startup())
+            {
+                return;
+            }
+
             logger.Info($"Application {CurrentVersion} started");
             foreach (var fail in Extensions.FailedExtensions)
             {
                 Api.Notifications.Add(new NotificationMessage(
-                    fail.DirectoryPath,
-                    ResourceProvider.GetString(LOC.SpecificExtensionLoadError).Format(fail.Name),
+                    fail.manifest.DirectoryPath,
+                    fail.error == AddonLoadError.SDKVersion ?
+                        ResourceProvider.GetString(LOC.SpecificExtensionLoadSDKError).Format(fail.manifest.Name) :
+                        ResourceProvider.GetString(LOC.SpecificExtensionLoadError).Format(fail.manifest.Name),
+                    NotificationType.Error));
+            }
+
+            if (themeLoadError != AddonLoadError.None && customTheme != null)
+            {
+                Api.Notifications.Add(new NotificationMessage(
+                    customTheme.DirectoryPath,
+                    themeLoadError == AddonLoadError.SDKVersion ?
+                        ResourceProvider.GetString(LOC.SpecificThemeLoadSDKError).Format(customTheme.Name) :
+                        ResourceProvider.GetString(LOC.SpecificThemeLoadError).Format(customTheme.Name),
                     NotificationType.Error));
             }
         }
@@ -478,7 +565,7 @@ namespace Playnite
             CurrentNative.Run();
         }
 
-        public abstract void Startup();
+        public abstract bool Startup();
 
         public bool CheckOtherInstances()
         {
@@ -693,8 +780,17 @@ namespace Playnite
 
                     break;
 
+                case UriCommands.InstallAddon:
+                    if (arguments.Count() != 2)
+                    {
+                        return;
+                    }
+
+                    InstallOnlineAddon(arguments[1]);
+                    break;
+
                 default:
-                    logger.Warn($"Uknown URI command {command}");
+                    AppUriHandler(args);
                     break;
             }
         }
@@ -705,16 +801,27 @@ namespace Playnite
             {
                 try
                 {
-                    xdevice = new XInputDevice(InputManager.Current, this)
+                    if (xdevice == null)
                     {
-                        SimulateAllKeys = false,
-                        SimulateNavigationKeys = true
-                    };
+                        xdevice = new XInputDevice(InputManager.Current, this)
+                        {
+                            SimulateAllKeys = false,
+                            SimulateNavigationKeys = true
+                        };
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, "Failed intitialize XInput");
                     Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCXInputInitErrorMessage"), "");
+                }
+            }
+            else
+            {
+                if (xdevice != null)
+                {
+                    xdevice.Dispose();
+                    xdevice = null;
                 }
             }
         }
@@ -798,6 +905,7 @@ namespace Playnite
                 });
             }
 
+            Database?.Dispose();
             resourcesReleased = true;
         }
 
@@ -819,27 +927,30 @@ namespace Playnite
                                 updater,
                                 new UpdateWindowFactory(),
                                 new ResourceProvider(),
-                                Dialogs).OpenView();
+                                Dialogs,
+                                Mode).OpenView();
                         });
                     }
 
-                    Api.Notifications.Add(
-                        new NotificationMessage("UpdateAvailable",
-                        updateBody,
-                        NotificationType.Info, () =>
-                        {
-                            new UpdateViewModel(
-                                updater,
-                                new UpdateWindowFactory(),
-                                new ResourceProvider(),
-                                Dialogs).OpenView();
-                        }));
-                    updateCheckTimer.Dispose();
+                    MainModelBase.UpdatesAvailable = true;
                 }
             }
             catch (Exception exc)
             {
                 logger.Warn(exc, "Failed to process update.");
+            }
+
+            try
+            {
+                var updates = Addons.CheckAddonUpdates(ServicesClient);
+                if (updates.HasItems())
+                {
+                    Api.Notifications.Add(MainModelBase.GetAddonUpdatesFoundMessage(updates));
+                }
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to process addon update check.");
             }
         }
 
@@ -874,8 +985,7 @@ namespace Playnite
             {
                 try
                 {
-                    var client = new ServicesClient();
-                    client.PostUserUsage(AppSettings.InstallInstanceId);
+                    ServicesClient.PostUserUsage(AppSettings.InstallInstanceId);
                 }
                 catch (Exception exc)
                 {
@@ -936,43 +1046,9 @@ namespace Playnite
         {
             if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
             {
-                var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
-                (_) =>
+                var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(), (_) =>
                 {
-                    if (AppSettings.DatabasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var newDbPath = GameDatabase.GetMigratedDbPath(AppSettings.DatabasePath);
-                        var newResolvedDbPath = GameDatabase.GetFullDbPath(newDbPath);
-                        if (Directory.Exists(newResolvedDbPath))
-                        {
-                            newDbPath += "_db";
-                            newResolvedDbPath += "_db";
-                        }
-
-                        if (!File.Exists(AppSettings.DatabasePath))
-                        {
-                            AppSettings.DatabasePath = newDbPath;
-                        }
-                        else
-                        {
-                            var dbSize = new FileInfo(AppSettings.DatabasePath).Length;
-                            if (FileSystem.GetFreeSpace(newResolvedDbPath) < dbSize)
-                            {
-                                throw new NoDiskSpaceException(dbSize);
-                            }
-
-                            GameDatabase.MigrateOldDatabaseFormat(AppSettings.DatabasePath);
-                            GameDatabase.MigrateToNewFormat(AppSettings.DatabasePath, newResolvedDbPath);
-                            FileSystem.DeleteFile(AppSettings.DatabasePath);
-                            AppSettings.DatabasePath = newDbPath;
-                        }
-
-                        GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
-                    }
-                    else
-                    {
-                        GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
-                    }
+                    GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
                 }, new GlobalProgressOptions("LOCDBUpgradeProgress"));
 
                 if (migrationProgress.ActivateProgress().Result != true)
@@ -1007,6 +1083,103 @@ namespace Playnite
             }
         }
 
+        public void ShowAddonPerfNotice()
+        {
+            if (AppSettings.AddonsPerfNoticeShown)
+            {
+                return;
+            }
+
+            Dialogs.ShowMessage(LOC.AddonPerfNotice, "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            AppSettings.AddonsPerfNoticeShown = true;
+            AppSettings.SaveSettings();
+        }
+
+        public void InstallOnlineAddon(string addonId)
+        {
+            try
+            {
+                var addon = ServicesClient.GetAddon(addonId);
+                var package = addon.InstallerManifest.GetLatestCompatiblePackage();
+                if (package == null)
+                {
+                    Dialogs.ShowErrorMessage(LOC.AddonErrorNotCompatible, "");
+                    return;
+                }
+
+                var message = string.Format(
+                    ResourceProvider.GetString(addon.IsTheme ? LOC.ThemeInstallPrompt : LOC.ExtensionInstallPrompt),
+                    addon.Name, addon.Author, package.Version);
+                BaseExtensionManifest existing = null;
+                if (addon.IsTheme)
+                {
+                    existing = ThemeManager.GetAvailableThemes().FirstOrDefault(a => a.Id == addon.AddonId);
+                }
+                else
+                {
+                    existing = ExtensionFactory.GetInstalledManifests().FirstOrDefault(a => a.Id == addon.AddonId);
+                }
+
+                if (existing != null)
+                {
+                    message = string.Format(
+                    ResourceProvider.GetString(addon.IsTheme ? LOC.ThemeUpdatePrompt : LOC.ExtensionUpdatePrompt),
+                    addon.Name, existing.Version, package.Version);
+                }
+
+                if (Dialogs.ShowMessage(message, LOC.GeneralExtensionInstallTitle, MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
+                var licenseRes = addon.CheckAddonLicense();
+                if (licenseRes == null)
+                {
+                    Dialogs.ShowErrorMessage(LOC.AddonErrorDownloadFailed, string.Empty);
+                    return;
+                }
+
+                if (licenseRes == false)
+                {
+                    return;
+                }
+
+                ShowAddonPerfNotice();
+                var locaPath = addon.GetTargetDownloadPath();
+                FileSystem.DeleteFile(locaPath);
+                var res = Dialogs.ActivateGlobalProgress((_) =>
+                {
+                    if (package.PackageUrl.IsHttpUrl())
+                    {
+                        FileSystem.PrepareSaveFile(locaPath);
+                        HttpDownloader.DownloadFile(package.PackageUrl, locaPath);
+                    }
+                    else
+                    {
+                        File.Copy(package.PackageUrl, locaPath);
+                    }
+                },
+                new GlobalProgressOptions(LOC.DownloadingLabel, false));
+                if (res.Error != null)
+                {
+                    logger.Error(res.Error, $"Failed to download addon {package.PackageUrl}");
+                    Dialogs.ShowErrorMessage(LOC.AddonErrorDownloadFailed, string.Empty);
+                    return;
+                }
+
+                ExtensionInstaller.QueuePackageInstall(locaPath);
+                if (Dialogs.ShowMessage(LOC.ExtInstallationRestartNotif, LOC.SettingsRestartTitle,
+                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Restart(new CmdLineOptions { SkipLibUpdate = true });
+                };
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to install addon from uri {addonId}");
+            }
+        }
+
         public void InstallThemeFile(string themeFile)
         {
             try
@@ -1034,6 +1207,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    ShowAddonPerfNotice();
                     ExtensionInstaller.QueuePackageInstall(themeFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
@@ -1065,7 +1239,7 @@ namespace Playnite
 
                 var message = string.Format(ResourceProvider.GetString("LOCExtensionInstallPrompt"),
                     desc.Name, desc.Author, desc.Version);
-                var existing = ExtensionFactory.GetExtensionDescriptors().FirstOrDefault(a => a.Id == desc.Id);
+                var existing = ExtensionFactory.GetInstalledManifests().FirstOrDefault(a => a.Id == desc.Id);
                 if (existing != null)
                 {
                     message = string.Format(ResourceProvider.GetString("LOCExtensionUpdatePrompt"),
@@ -1077,6 +1251,7 @@ namespace Playnite
                         ResourceProvider.GetString("LOCGeneralExtensionInstallTitle"),
                         MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    ShowAddonPerfNotice();
                     ExtensionInstaller.QueuePackageInstall(extensionFile);
                     if (Dialogs.ShowMessage(
                         ResourceProvider.GetString("LOCExtInstallationRestartNotif"),
@@ -1096,6 +1271,12 @@ namespace Playnite
                 Dialogs.ShowErrorMessage(
                     string.Format(ResourceProvider.GetString("LOCExtensionInstallFail"), e.Message), "");
             }
+        }
+
+        public void OnExtensionsLoaded()
+        {
+            ExtensionsLoaded?.Invoke(this, EventArgs.Empty);
+            OnPropertyChanged(nameof(this.ExtensionsStatusBinder));
         }
     }
 }

@@ -1,0 +1,9 @@
+Id: atari800
+Name: Atari800
+Website: 'https://atari800.github.io/'
+Profiles:
+  - Name: Default    
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [atari_8bit, atari_5200]
+    ImageExtensions: [xfd, atr, atx, cdm, cas, bin, a52]
+    StartupExecutable: ^atari800\.exe$

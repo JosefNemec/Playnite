@@ -11,6 +11,7 @@ using Playnite.DesktopApp.Windows;
 using Playnite.Metadata;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.Settings;
 using Playnite.ViewModels;
@@ -39,7 +40,18 @@ namespace Playnite.DesktopApp
         private SplashScreen splashScreen;
 
         public List<ThirdPartyTool> ThirdPartyTools { get; private set; }
-        public DesktopAppViewModel MainModel { get; set; }
+
+        private DesktopAppViewModel mainModel;
+        public DesktopAppViewModel MainModel
+        {
+            get => mainModel;
+            set
+            {
+                mainModel = value;
+                MainModelBase = value;
+            }
+        }
+
         public new static DesktopApplication Current
         {
             get => PlayniteApplication.Current == null ? null : (DesktopApplication)PlayniteApplication.Current;
@@ -51,12 +63,14 @@ namespace Playnite.DesktopApp
             this.splashScreen = splashScreen;
         }
 
-        public override void Startup()
+        public override bool Startup()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashHandlerWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
+            LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
+            ActionSelectionWindowFactory.SetWindowType<ActionSelectionWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
             ConfigureApplication();
@@ -68,6 +82,7 @@ namespace Playnite.DesktopApp
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
             InstantiateApp();
+            AppUriHandler = MainModel.ProcessUriRequest;
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
             SetupInputs(false);
@@ -79,6 +94,7 @@ namespace Playnite.DesktopApp
 #pragma warning restore CS4014
             ProcessArguments();
             splashScreen?.Close(new TimeSpan(0));
+            return true;
         }
 
         private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
@@ -126,6 +142,7 @@ namespace Playnite.DesktopApp
         public override void InstantiateApp()
         {
             Database = new GameDatabase();
+            Database.SetAsSingletonInstance();
             Controllers = new GameControllerFactory(Database);
             Extensions = new ExtensionFactory(Database, Controllers);
             GamesEditor = new DesktopGamesEditor(
@@ -141,12 +158,15 @@ namespace Playnite.DesktopApp
                 null,
                 new PlayniteInfoAPI(),
                 new PlaynitePathsAPI(),
-                new WebViewFactory(),
+                new WebViewFactory(AppSettings),
                 new ResourceProvider(),
                 new NotificationsAPI(),
                 GamesEditor,
                 new PlayniteUriHandler(),
-                new PlayniteSettingsAPI(AppSettings));
+                new PlayniteSettingsAPI(AppSettings, Database),
+                new AddonsAPI(Extensions, AppSettings),
+                new Emulators.Emulation(),
+                Extensions);
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(
@@ -186,8 +206,13 @@ namespace Playnite.DesktopApp
 
         private async void OpenMainViewAsync(bool isFirstStart)
         {
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup);
+            if (!isFirstStart)
+            {
+                Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            }
+
+            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            OnExtensionsLoaded();
 
             try
             {
@@ -203,14 +228,14 @@ namespace Playnite.DesktopApp
 
             if (isFirstStart)
             {
-                await MainModel.UpdateDatabase(false);
+                await MainModel.UpdateLibrary(false);
                 await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
                 if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
                 {
-                    await MainModel.UpdateDatabase(AppSettings.DownloadMetadataOnImport);
+                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
                 }
             }
         }
@@ -245,7 +270,8 @@ namespace Playnite.DesktopApp
                     Dialogs,
                     new ResourceProvider(),
                     Extensions,
-                    Api);
+                    Api,
+                    ServicesClient);
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
@@ -257,17 +283,6 @@ namespace Playnite.DesktopApp
                 {
                     AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.SaveSettings();
-                }
-
-                // Emulator wizard
-                if (wizardModel.StartEmulatorWizard)
-                {
-                    var model = new EmulatorImportViewModel(Database,
-                       EmulatorImportViewModel.DialogType.Wizard,
-                       new EmulatorImportWindowFactory(),
-                       Dialogs,
-                       new ResourceProvider());
-                    model.OpenView();
                 }
             }
             else

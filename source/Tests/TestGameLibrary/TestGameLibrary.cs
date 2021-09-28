@@ -38,58 +38,38 @@ namespace TestGameLibrary
             return null;
         }
 
-        public override IEnumerable<GameInfo> GetGames()
+        public override IEnumerable<GameMetadata> GetGames(LibraryGetGamesArgs args)
         {
-            return new List<GameInfo>()
+            return new List<GameMetadata>()
             {
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Notepad",
                     GameId = "notepad",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "notepad.exe"
-                    },
                     IsInstalled = true,
-                    Icon = @"c:\Windows\notepad.exe"
+                    Icon = new MetadataFile(@"c:\Windows\notepad.exe")
                 },
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Calculator",
                     GameId = "calc",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "calc.exe"
-                    },
                     IsInstalled = true,
-                    Icon = @"https://playnite.link/applogo.png",
-                    BackgroundImage =  @"https://playnite.link/applogo.png"
+                    Icon = new MetadataFile(@"https://playnite.link/applogo.png"),
+                    BackgroundImage =  new MetadataFile(@"https://playnite.link/applogo.png")
                 },
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Paint",
                     GameId = "mspaint",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "mspaint.exe"
-                    },
                     IsInstalled = true,
-                    Icon = LibraryIcon
+                    Icon = new MetadataFile(LibraryIcon)
                 },
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "WordPad",
                     GameId = "write",
-                    PlayAction = new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        Path = "write.exe"
-                    },
                     IsInstalled = true,
-                    Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga")
+                    Icon = new MetadataFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\icon.tga"))
                 }
             };
         }

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,8 +16,7 @@ namespace System.Collections.Generic
         /// <summary>
         /// If set to <c>true</c> no <see cref="PropertyChanged"/> events will be fired.
         /// </summary>
-        [JsonIgnore]
-        public bool SuppressNotifications
+        internal bool SuppressNotifications
         {
             get; set;
         } = false;
@@ -37,6 +35,35 @@ namespace System.Collections.Generic
             if (!SuppressNotifications)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="property"></param>
+        /// <param name="value"></param>
+        /// <param name="propertyName"></param>
+        protected void SetValue<T>(ref T property, T value, [CallerMemberName]string propertyName = null)
+        {
+            property = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="property"></param>
+        /// <param name="value"></param>
+        /// <param name="propertyNames"></param>
+        protected void SetValue<T>(ref T property, T value, params string[] propertyNames)
+        {
+            property = value;
+            foreach (var pro in propertyNames)
+            {
+                OnPropertyChanged(pro);
             }
         }
     }

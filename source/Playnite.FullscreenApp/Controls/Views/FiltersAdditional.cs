@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace Playnite.FullscreenApp.Controls.Views
 {
@@ -80,6 +81,21 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ItemsHost = Template.FindName("PART_ItemsHost", this) as ItemsControl;
                 if (ItemsHost != null)
                 {
+                    XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+                    ItemsHost.ItemsPanel = Xaml.FromString<ItemsPanelTemplate>(new XDocument(
+                        new XElement(pns + nameof(ItemsPanelTemplate),
+                            new XElement(pns + nameof(VirtualizingStackPanel)))
+                    ).ToString());
+                    ItemsHost.Template = Xaml.FromString<ControlTemplate>(new XDocument(
+                         new XElement(pns + nameof(ControlTemplate),
+                            new XElement(pns + nameof(ScrollViewer),
+                                new XAttribute(nameof(ScrollViewer.Focusable), false),
+                                new XAttribute(nameof(ScrollViewer.HorizontalScrollBarVisibility), ScrollBarVisibility.Disabled),
+                                new XAttribute(nameof(ScrollViewer.VerticalScrollBarVisibility), ScrollBarVisibility.Auto),
+                                new XAttribute(nameof(ScrollViewer.CanContentScroll), true),
+                                new XElement(pns + nameof(ItemsPresenter))))
+                    ).ToString());
+
                     AssignFilter("LOCGenreLabel", "PART_ButtonGenre", GameField.Genres, nameof(FilterSettings.Genre));
                     AssignFilter("LOCGameReleaseYearTitle", "PART_ButtonReleaseYear", GameField.ReleaseYear, nameof(FilterSettings.ReleaseYear));
                     AssignFilter("LOCDeveloperLabel", "PART_ButtonDeveloper", GameField.Developers, nameof(FilterSettings.Developer));
@@ -87,11 +103,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                     AssignFilter("LOCFeatureLabel", "PART_ButtonFeature", GameField.Features, nameof(FilterSettings.Feature));
                     AssignFilter("LOCTagLabel", "PART_ButtonTag", GameField.Tags, nameof(FilterSettings.Tag));
                     AssignFilter("LOCTimePlayed", "PART_ButtonPlayTime", GameField.Playtime, nameof(FilterSettings.PlayTime));
-                    AssignFilter("LOCCompletionStatus", "PART_ButtonCompletionStatus", GameField.CompletionStatus, nameof(FilterSettings.CompletionStatus));
+                    AssignFilter("LOCCompletionStatus", "PART_ButtonCompletionStatus", GameField.CompletionStatus, nameof(FilterSettings.CompletionStatuses));
                     AssignFilter("LOCSeriesLabel", "PART_ButtonSeries", GameField.Series, nameof(FilterSettings.Series));
-                    AssignFilter("LOCRegionLabel", "PART_ButtonRegion", GameField.Region, nameof(FilterSettings.Region));
+                    AssignFilter("LOCRegionLabel", "PART_ButtonRegion", GameField.Regions, nameof(FilterSettings.Region));
                     AssignFilter("LOCSourceLabel", "PART_ButtonSource", GameField.Source, nameof(FilterSettings.Source));
-                    AssignFilter("LOCAgeRatingLabel", "PART_ButtonAgeRating", GameField.AgeRating, nameof(FilterSettings.AgeRating));
+                    AssignFilter("LOCAgeRatingLabel", "PART_ButtonAgeRating", GameField.AgeRatings, nameof(FilterSettings.AgeRating));
                     AssignFilter("LOCUserScore", "PART_ButtonUserScore", GameField.UserScore, nameof(FilterSettings.UserScore));
                     AssignFilter("LOCCommunityScore", "PART_ButtonCommunityScore", GameField.CommunityScore, nameof(FilterSettings.CommunityScore));
                     AssignFilter("LOCCriticScore", "PART_ButtonCriticScore", GameField.CriticScore, nameof(FilterSettings.CriticScore));
@@ -106,8 +122,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         {
             var button = new ButtonEx();
             button.SetResourceReference(ButtonBase.ContentProperty, title);
-            button.SetResourceReference(ButtonBase.MarginProperty, "ItemMargin");
-            button.SetResourceReference(ButtonBase.StyleProperty, "ButtonFilterNagivation");
+            button.SetResourceReference(ButtonBase.StyleProperty, "FilterPanelNagivationButton");
             button.Command = mainModel.LoadSubFilterCommand;
             button.CommandParameter = field;
             BindingTools.SetBinding(

@@ -14,6 +14,69 @@ using System.Threading.Tasks;
 
 namespace System
 {
+    public class NamedObject<TItem>
+    {
+        public string Name { get; }
+        public TItem Value { get; }
+
+        public NamedObject(TItem value)
+        {
+            Value = value;
+            Name = value.ToString();
+        }
+
+        public NamedObject(TItem value, string name)
+        {
+            Value = value;
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as NamedObject<TItem>);
+        }
+
+        public bool Equals(NamedObject<TItem> p)
+        {
+            if (p is null)
+            {
+                return false;
+            }
+
+            return Value.Equals(p.Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+
+        public static bool operator ==(NamedObject<TItem> l, NamedObject<TItem> r)
+        {
+            if ((l is null && !(r is null)) || (!(l is null) && r is null))
+            {
+                return false;
+            }
+
+            if (l is null && r is null)
+            {
+                return true;
+            }
+
+            return l.Value.Equals(r.Value);
+        }
+
+        public static bool operator !=(NamedObject<TItem> l, NamedObject<TItem> r)
+        {
+            return !(l == r);
+        }
+    }
+
     public class SelectableItem<TItem> : ObservableObject
     {
         private bool? selected = false;
@@ -67,13 +130,20 @@ namespace System
             IEnumerable<TItem> collection,
             IEnumerable<TItem> selected = null)
         {
-            Items = new List<SelectableItem<TItem>>(collection.Select(a =>
+            if (collection.HasItems())
             {
-                var newItem = new SelectableItem<TItem>(a);
-                newItem.Selected = selected?.Contains(a) == true;
-                newItem.PropertyChanged += NewItem_PropertyChanged;
-                return newItem;
-            }));
+                Items = new List<SelectableItem<TItem>>(collection.Select(a =>
+                {
+                    var newItem = new SelectableItem<TItem>(a);
+                    newItem.Selected = selected?.Contains(a) == true;
+                    newItem.PropertyChanged += NewItem_PropertyChanged;
+                    return newItem;
+                }));
+            }
+            else
+            {
+                Items = new List<SelectableItem<TItem>>();
+            }
         }
 
         internal virtual void OnSelectionChanged()
@@ -142,6 +212,38 @@ namespace System
             }
         }
 
+        public virtual void SetItems(IEnumerable<TItem> items, IEnumerable<TItem> selected = null)
+        {
+            SuppressNotifications = true;
+            var oldSelection = GetSelectedItems();
+            foreach (var item in Items)
+            {
+                item.PropertyChanged -= NewItem_PropertyChanged;
+            }
+
+            Items.Clear();
+            if (items.HasItems())
+            {
+                foreach (var item in items)
+                {
+                    var newItem = new SelectableItem<TItem>(item)
+                    {
+                        Selected = selected?.Contains(item) == true
+                    };
+
+                    newItem.PropertyChanged += NewItem_PropertyChanged;
+                    Items.Add(newItem);
+                }
+            }
+
+            SuppressNotifications = false;
+            OnCollectionChanged();
+            if (!oldSelection.IsListEqual(GetSelectedItems()))
+            {
+                OnSelectionChanged();
+            }
+        }
+
         public void Add(SelectableItem<TItem> item)
         {
             throw new NotImplementedException();
@@ -201,7 +303,7 @@ namespace System
             }
         }
 
-        public void SetItems(IEnumerable<string> items, IEnumerable<string> selected = null)
+        public override void SetItems(IEnumerable<string> items, IEnumerable<string> selected = null)
         {
             SuppressNotifications = true;
             var oldSelection = GetSelectedItems();

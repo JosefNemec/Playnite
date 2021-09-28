@@ -15,6 +15,20 @@ namespace Playnite.DesktopApp.Controls
 
         public SliderEx() : base()
         {
+            KeyUp += SliderEx_KeyUp;
+        }
+
+        private void SliderEx_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Left ||
+                e.Key == System.Windows.Input.Key.Right ||
+                e.Key == System.Windows.Input.Key.Up ||
+                e.Key == System.Windows.Input.Key.Down)
+            {
+                IgnoreChanges = false;
+                FinalValue = Value;
+                IgnoreChanges = true;
+            }
         }
 
         public double FinalValue
@@ -29,7 +43,6 @@ namespace Playnite.DesktopApp.Controls
                 typeof(double),
                 typeof(SliderEx),
                 new FrameworkPropertyMetadata(0d,
-
                     FinalValueChangedCallback));
 
         protected override void OnThumbDragCompleted(DragCompletedEventArgs e)
@@ -50,6 +63,5 @@ namespace Playnite.DesktopApp.Controls
                 obj.FinalValue = value;
             }
         }
-
     }
 }

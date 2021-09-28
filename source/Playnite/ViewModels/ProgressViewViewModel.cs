@@ -16,8 +16,9 @@ namespace Playnite.ViewModels
         private IWindowFactory window;
         private Action<GlobalProgressActionArgs> progresAction;
         private GlobalProgressOptions args;
-        private CancellationTokenSource cancellationToken = new CancellationTokenSource();
+        private CancellationTokenSource cancellationToken;
         private bool canCancel = false;
+        private bool wasCancelled = false;
 
         private GlobalProgressActionArgs progressArgs;
         public GlobalProgressActionArgs ProgressArgs
@@ -68,6 +69,7 @@ namespace Playnite.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 canCancel = false;
+                wasCancelled = true;
                 cancellationToken.Cancel();
             }, (a) => Cancelable && canCancel);
         }
@@ -98,10 +100,11 @@ namespace Playnite.ViewModels
             {
                 try
                 {
+                    cancellationToken = new CancellationTokenSource();
                     ProgressArgs = new GlobalProgressActionArgs(
                         PlayniteApplication.Current.SyncContext,
                         PlayniteApplication.CurrentNative.Dispatcher,
-                        cancellationToken)
+                        cancellationToken.Token)
                     {
                         Text = ProgressText
                     };
@@ -113,12 +116,16 @@ namespace Playnite.ViewModels
                     window.Close(false);
                     return;
                 }
+                finally
+                {
+                    cancellationToken.Dispose();
+                }
 
                 window.Close(true);
             });
 
             var res = window.CreateAndOpenDialog(this);
-            return new GlobalProgressResult(res, cancellationToken.IsCancellationRequested, FailException);
+            return new GlobalProgressResult(res, wasCancelled, FailException);
         }
     }
 

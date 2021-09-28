@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     mc:Ignorable="d">    
 
     <Style TargetType="{x:Type LibraryGridView}">
@@ -23,7 +23,6 @@
                                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                              ScrollViewer.PanningMode="VerticalOnly"
                                              ItemContainerStyle="{DynamicResource GridViewItemStyle}"
-                                             SelectionMode="Extended"
                                              DockPanel.Dock="Left"
                                              BorderThickness="0">
                                 <ExtendedListBox.ItemTemplate>
@@ -31,6 +30,9 @@
                                         <GameListItem Style="{StaticResource GridViewItemTemplate}" />
                                     </DataTemplate>
                                 </ExtendedListBox.ItemTemplate>
+                                <ExtendedListBox.GroupStyle>
+                                    <GroupStyle ContainerStyle="{StaticResource GridViewGroupStyle}"/>
+                                </ExtendedListBox.GroupStyle>
                             </ExtendedListBox>
                             <TextBlock FontSize="{StaticResource FontSizeLarge}" Margin="0,40,0,0"
                                        Text="{DynamicResource LOCNoItemsFound}" TextWrapping="Wrap"                                      

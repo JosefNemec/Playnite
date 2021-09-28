@@ -16,12 +16,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.CompilerServices;
+using Playnite.FullscreenApp.Controls;
 
 namespace Playnite.FullscreenApp.Windows
 {
     public partial class TextInputWindow : WindowBase
     {
         private MessageBoxResult result;
+        private bool capsEnabled = false;
 
         private string text = string.Empty;
         public string Text
@@ -61,6 +63,14 @@ namespace Playnite.FullscreenApp.Windows
             });
         }
 
+        public RelayCommand<object> ToggleCapsCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ToggleCaps();
+            });
+        }
+
         public RelayCommand<object> ConfirmCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -77,13 +87,30 @@ namespace Playnite.FullscreenApp.Windows
             });
         }
 
+        private List<MessageBoxToggle> toggleOptions;
+        public List<MessageBoxToggle> ToggleOptions
+        {
+            get => toggleOptions;
+            set
+            {
+                toggleOptions = value;
+                OnPropertyChanged(nameof(ToggleOptions));
+            }
+        }
+
         public TextInputWindow() : base()
         {
             InitializeComponent();
+            WindowTools.ConfigureChildWindow(this);
             DataContext = this;
         }
 
-        public StringSelectionDialogResult ShowInput(Window owner, string messageBoxText, string caption, string defaultInput)
+        public StringSelectionDialogResult ShowInput(
+            Window owner,
+            string messageBoxText,
+            string caption,
+            string defaultInput,
+            List<MessageBoxToggle> options = null)
         {
             if (owner == null)
             {
@@ -95,11 +122,15 @@ namespace Playnite.FullscreenApp.Windows
                 Owner = owner;
             }
 
-            Height = owner.Height;
-            Width = owner.Width;
             Button1.Focus();
             Text = messageBoxText;
             InputText = defaultInput ?? string.Empty;
+            ToggleOptions = options;
+            if (options.HasItems())
+            {
+                ItemsToggleOptions.Visibility = Visibility.Visible;
+            }
+
             ShowDialog();
 
             if (result == MessageBoxResult.Cancel)
@@ -145,6 +176,41 @@ namespace Playnite.FullscreenApp.Windows
         public void ClearText()
         {
             InputText = string.Empty;
+        }
+
+        private void TextInputText_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                TextInputText.MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
+                e.Handled = true;
+                return;
+            }
+            else if (e.Key == Key.Down)
+            {
+                TextInputText.MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void ToggleCaps()
+        {
+            foreach (var child in GridInput.Children)
+            {
+                if (child is ButtonEx button)
+                {
+                    var cont = button.Content?.ToString();
+                    if (cont.IsNullOrEmpty() || cont.Length > 1)
+                    {
+                        continue;
+                    }
+
+                    button.Content = capsEnabled ? cont.ToLower() : cont.ToUpper();
+                }
+            }
+
+            capsEnabled = !capsEnabled;
         }
     }
 }

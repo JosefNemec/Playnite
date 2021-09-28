@@ -1,0 +1,29 @@
+﻿<controls:WindowBase x:Class="Playnite.DesktopApp.Windows.LicenseAgreementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
+        xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+        mc:Ignorable="d"
+        Style="{DynamicResource StandardWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding LicenseTitle}" Height="600" Width="500"
+        AutomationProperties.AutomationId="WindowLicense">
+
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+            <Button Content="{DynamicResource LOCLicenseAccept}" Margin="5" MinWidth="100"
+                    Command="{Binding AcceptCommnad}" IsDefault="True" />
+            <Button Content="{DynamicResource LOCLicenseDecline}" Margin="5" MinWidth="100"
+                    Command="{Binding DeclineCommand}" IsCancel="True" />
+        </StackPanel>
+        <TextBox AcceptsReturn="True" IsReadOnly="True" DockPanel.Dock="Top" TextWrapping="Wrap"
+                 HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+                 BorderThickness="0" Margin="5,5,5,5"
+                 Text="{Binding License}"/>
+    </DockPanel>    
+</controls:WindowBase>

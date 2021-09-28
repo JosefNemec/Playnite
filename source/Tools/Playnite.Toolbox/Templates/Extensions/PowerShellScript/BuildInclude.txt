@@ -1,2 +1,2 @@
 extension.yaml
-PowerShellScript.ps1
+PowerShellScript.psm1

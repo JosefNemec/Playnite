@@ -77,6 +77,9 @@
         <KeyBinding Command="{Binding OpenDbFieldsManagerCommand}"
                 Key ="{Binding OpenDbFieldsManagerCommand.Gesture.Key}"
                 Modifiers="{Binding OpenDbFieldsManagerCommand.Gesture.Modifiers}" />
+        <KeyBinding Command="{Binding OpenAddonsCommand}"
+                Key ="{Binding OpenAddonsCommand.Gesture.Key}"
+                Modifiers="{Binding OpenAddonsCommand.Gesture.Modifiers}" />
         <pin:XInputBinding Button="Guide" Command="{Binding OpenFullScreenFromControllerCommand}" />
     </c:WindowBase.InputBindings>
 

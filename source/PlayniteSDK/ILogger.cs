@@ -62,5 +62,18 @@ namespace Playnite.SDK
         /// <param name="exception">Message to be added into log.</param>
         /// <param name="message">Exception to be added into log.</param>
         void Error(Exception exception, string message);
+
+        /// <summary>
+        /// Writes message to log with Trace serverity.
+        /// </summary>
+        /// <param name="message">Message to be added into log.</param>
+        void Trace(string message);
+
+        /// <summary>
+        /// Writes message to log with Trace serverity, including parsed exception.
+        /// </summary>
+        /// <param name="exception">Message to be added into log.</param>
+        /// <param name="message">Exception to be added into log.</param>
+        void Trace(Exception exception, string message);
     }
 }

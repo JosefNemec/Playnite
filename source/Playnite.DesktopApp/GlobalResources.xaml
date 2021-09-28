@@ -33,7 +33,7 @@
     <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
     <pcon:InvertedBoolenConverter x:Key="InvertedBoolenConverter" />
     <pcon:ListToStringConverter x:Key="ListToStringConverter" />
-    <pcon:LongToTimePlayedConverter x:Key="LongToTimePlayedConverter" />
+    <pcon:PlayTimeToStringConverter x:Key="PlayTimeToStringConverter" />
     <pcon:NegateConverter x:Key="NegateConverter" />
     <pcon:NotificationIconConverter x:Key="NotificationIconConverter" />
     <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
@@ -48,4 +48,10 @@
     <pcon:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
     <pcon:ValueConverterGroup x:Key="ValueConverterGroup" />
     <pcon:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
+    <pcon:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+    <pcon:InvertedIntToVisibilityConverter x:Key="InvertedIntToVisibilityConverter" />
+    <pcon:ObjectEqualityToBoolConverter x:Key="ObjectEqualityToBoolConverter" />
+    <pcon:ObjectEqualityToVisibilityConverter x:Key="ObjectEqualityToVisibilityConverter" />
+    <pcon:InvertedObjectEqualityToBoolConverter x:Key="InvertedObjectEqualityToBoolConverter" />
+    <pcon:InvertedObjectEqualityToVisibilityConverter x:Key="InvertedObjectEqualityToVisibilityConverter" />
 </ResourceDictionary>

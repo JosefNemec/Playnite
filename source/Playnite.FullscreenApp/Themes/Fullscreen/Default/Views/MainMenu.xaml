@@ -1,86 +1,118 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d">    
-
-    <Style TargetType="{x:Type MainMenu}">        
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MainMenu}">
-                    <Grid d:DesignHeight="{StaticResource DesignHeight}">
-                        <StackPanel x:Name="PART_MenuHost"  
-                                    KeyboardNavigation.TabNavigation="Cycle"
-                                    KeyboardNavigation.DirectionalNavigation="Cycle"
-                                    Background="{DynamicResource OverlayMenuBackgroundBrush}"
-                                    Margin="0,0,100,0" MinWidth="440"
-                                    HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30,30,40,30">
-                                <TextBlock Text="Playnite" Style="{DynamicResource TextBlockBaseStyle}"
-                                       FontFamily="{DynamicResource FontTitilliumWebBold}"
-                                       FontSize="36" Margin="0,0,20,0" />
-                                <Image Source="{ThemeFile 'Images/applogo_clean.png'}" Height="48"
-                                   RenderOptions.BitmapScalingMode="Fant" />
-                            </StackPanel>
-
-                            <ButtonEx x:Name="PART_ButtonSettings"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCSettingsLabel}" />
-
-                            <ButtonEx x:Name="PART_ButtonUpdateLibrary"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuReloadLibrary}" />
-
-                            <ButtonEx x:Name="PART_ButtonExitPlaynite"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCExitPlaynite}" />
-
-                            <ButtonEx x:Name="PART_ButtonSwitchToDesktop"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCBackToDesktopMode}" />
-
-                            <Canvas Height="75" />
-
-                            <ButtonEx x:Name="PART_ButtonPickRandomGame"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuSelectRandomGame}" />
-
-                            <Canvas Height="75" />
-
-                            <ButtonEx x:Name="PART_ButtonShutdownSystem"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuShutdownSystem}" />
-
-                            <ButtonEx x:Name="PART_ButtonSleepSystem"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuSuspendSystem}" />
-                            
-                            <ButtonEx x:Name="PART_ButtonHibernateSystem"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuHibernateSystem}" />
-
-                            <ButtonEx x:Name="PART_ButtonRestartSystem"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuRestartSystem}"/>
-
-                            <Canvas Height="75" />
-
-                            <ButtonEx x:Name="PART_ButtoFeedback"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuIssues}" />
-
-                            <ButtonEx x:Name="PART_ButtonPatreon"
-                                      Style="{DynamicResource ButtonMainMenu}"
-                                      Content="{DynamicResource LOCMenuPatreonSupport}" />
-                        </StackPanel>
-                        <Border Background="{DynamicResource OverlayBrush}"
-                                Width="{Binding ActualWidth, ElementName=PART_MenuHost}"
-                                Margin="{Binding Margin, ElementName=PART_MenuHost}"
-                                HorizontalAlignment="Right" VerticalAlignment="Stretch"
-                                Visibility="{Binding SettingsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+                    xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp">
+    
+    <Style x:Key="MainMenuBorder" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource OverlayMenuBackgroundBrush}" />
     </Style>
+
+    <Style x:Key="MainMenuButton" BasedOn="{StaticResource {x:Type ButtonEx}}" TargetType="ButtonEx">
+        <Setter Property="Margin" Value="0,5,0,5" />
+        <Setter Property="Padding" Value="20,3,20,3" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+    </Style>
+
+    <DataTemplate x:Key="MainMenuHeaderTemplate">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,30,40,30">
+            <Image Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" Height="48"
+                   RenderOptions.BitmapScalingMode="Fant" />
+            <TextBlock Text="Playnite" FontSize="36" Style="{DynamicResource TextBlockBaseStyle}"
+                       Margin="20,0,0,0"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuSettingsButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef3a;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCSettingsLabel}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuLibUpdateButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefd1;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuReloadLibrary}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuCancelLibUpdateButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xecb1;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuCancelLibraryUpdate}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuExitPlayniteButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef16;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCExitPlaynite}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuSwithDesktopButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef1d;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCBackToDesktopMode}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuRandomGameButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefcf;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuSelectRandomGame}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuShutdowButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefc4;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuShutdownSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuSuspendButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef9e;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuSuspendSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuHibernateButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefc4;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuHibernateSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="MainMenuRestartButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef80;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuRestartSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="MainMenuFeedbackButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xeff2;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuIssues}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="MainMenuPatreonButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{DynamicResource LOCMenuPatreonSupport}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

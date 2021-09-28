@@ -10,13 +10,80 @@ using Playnite.API;
 using Microsoft.Win32;
 using System.IO;
 using Playnite.SDK.Exceptions;
+using Microsoft.PowerShell;
+using Playnite.SDK;
 
 namespace Playnite.Scripting.PowerShell
 {
-    public class PowerShellRuntime : IScriptRuntime
+    public interface IPowerShellRuntime : IDisposable
     {
-        private static NLog.Logger logger = NLog.LogManager.GetLogger("PowerShell");
+        object Execute(string script, string workDir = null, Dictionary<string, object> variables = null);
+        object ExecuteFile(string path, string workDir = null);
+        object ExecuteFile(string path, string workDir = null, Dictionary<string, object> variables = null);
+        void SetVariable(string name, object value);
+        object GetVariable(string name);
+        CommandInfo GetFunction(string name);
+        void ImportModule(string path);
+        object InvokeFunction(string name, List<object> arguments);
+    }
+
+    public class DummyPowerShellRuntime : IPowerShellRuntime
+    {
+        public DummyPowerShellRuntime()
+        {
+        }
+
+        public object Execute(string script, string workDir = null, Dictionary<string, object> variables = null)
+        {
+            return null;
+        }
+
+        public object ExecuteFile(string path, string workDir = null)
+        {
+            return null;
+        }
+
+        public object ExecuteFile(string path, string workDir = null, Dictionary<string, object> variables = null)
+        {
+            return null;
+        }
+
+        public void SetVariable(string name, object value)
+        {
+        }
+
+        public object GetVariable(string name)
+        {
+            return null;
+        }
+
+        public CommandInfo GetFunction(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ImportModule(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object InvokeFunction(string name, List<object> arguments)
+        {
+            return null;
+        }
+
+        public void Dispose()
+        {
+        }
+    }
+
+    public class PowerShellRuntime : IPowerShellRuntime
+    {
+        private System.Management.Automation.PowerShell powershell;
         private Runspace runspace;
+        private PSModuleInfo module;
+        private InitialSessionState initialSessionState;
+        public bool IsDisposed { get; internal set; }
 
         public static bool IsInstalled
         {
@@ -26,38 +93,45 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
-        public PowerShellRuntime(string runspaceName = "PowerShell")
+        public PowerShellRuntime(string runspaceName)
         {
-            runspace = RunspaceFactory.CreateRunspace();
-            runspace.Name = runspaceName;
-            runspace.ApartmentState = System.Threading.ApartmentState.MTA;
-            runspace.ThreadOptions = PSThreadOptions.UseCurrentThread;
-            runspace.Open();
-
-            using (var pipe = runspace.CreatePipeline())
+            if (!IsInstalled)
             {
-                pipe.Commands.AddScript("Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted");
-                pipe.Commands.AddScript("$global:ErrorActionPreference = \"Stop\"");
-                pipe.Invoke();
+                throw new Exception("PowerShell 5.1 is not installed.");
             }
 
-            SetVariable("__logger", new Logger(runspaceName));
+            initialSessionState = InitialSessionState.CreateDefault();
+            initialSessionState.ExecutionPolicy = ExecutionPolicy.Bypass;
+            initialSessionState.ThreadOptions = PSThreadOptions.UseCurrentThread;
+            powershell = System.Management.Automation.PowerShell.Create(initialSessionState);
+            runspace = powershell.Runspace;
+            runspace.Name = runspaceName;
+            SetVariable("ErrorActionPreference", "Stop");
+            SetVariable("__logger", LogManager.GetLogger(runspaceName));
         }
 
         public void Dispose()
         {
+            IsDisposed = true;
             runspace.Close();
             runspace.Dispose();
         }
 
-        public object Execute(string script, string workDir = null)
+        public void ImportModule(string path)
         {
-            return Execute(script, null, workDir);
+            powershell.Runspace.SessionStateProxy.Path.SetLocation(Path.GetDirectoryName(path));
+            module = powershell
+                .AddCommand("Import-Module")
+                .AddParameter("PassThru")
+                .AddArgument(path)
+                .Invoke<PSModuleInfo>().FirstOrDefault();
+            powershell.Streams.ClearStreams();
+            powershell.Commands.Clear();
         }
 
-        public object Execute(string script, Dictionary<string, object> variables, string workDir = null)
+        public object Execute(string script, string workDir = null, Dictionary<string, object> variables = null)
         {
-            if (!workDir.IsNullOrEmpty())
+            if (!workDir.IsNullOrEmpty() && Directory.Exists(workDir))
             {
                 runspace.SessionStateProxy.Path.PushCurrentLocation("main");
                 runspace.SessionStateProxy.Path.SetLocation(WildcardPattern.Escape(workDir));
@@ -94,7 +168,7 @@ namespace Playnite.Scripting.PowerShell
                     {
                         if (result.Count == 1)
                         {
-                            return result[0].BaseObject;
+                            return result[0]?.BaseObject;
                         }
                         else
                         {
@@ -105,7 +179,7 @@ namespace Playnite.Scripting.PowerShell
             }
             finally
             {
-                if (!workDir.IsNullOrEmpty())
+                if (!workDir.IsNullOrEmpty() && Directory.Exists(workDir) && runspace.RunspaceStateInfo.State == RunspaceState.Opened)
                 {
                     runspace.SessionStateProxy.Path.PopLocation("main");
                 }
@@ -114,8 +188,13 @@ namespace Playnite.Scripting.PowerShell
 
         public object ExecuteFile(string path, string workDir = null)
         {
-            var content = File.ReadAllText(path);
-            return Execute(content, null, workDir);
+            return ExecuteFile(path, workDir);
+        }
+
+        public object ExecuteFile(string path, string workDir = null, Dictionary<string, object> variables = null)
+        {
+            var cmd = "& '{0}' $__FileArg".Format(Path.GetFullPath(path));
+            return Execute(cmd, workDir, variables != null ? new Dictionary<string, object> { { "__FileArg", variables } } : null);
         }
 
         public void SetVariable(string name, object value)
@@ -128,12 +207,35 @@ namespace Playnite.Scripting.PowerShell
             return runspace.SessionStateProxy.GetVariable(name);
         }
 
-        public bool GetFunctionExits(string name)
+        public CommandInfo GetFunction(string name)
         {
-            using (var pipe = runspace.CreatePipeline($"Get-Command {name} -EA 0"))
+            if (module == null)
             {
-                var res = pipe.Invoke();
-                return res.Count != 0;
+                return null;
+            }
+            CommandInfo command;
+            return module.ExportedCommands.TryGetValue(name, out command) ? command : null;
+        }
+
+        public object InvokeFunction(string name, List<object> arguments)
+        {
+            var command = GetFunction(name);
+            powershell.AddCommand(command);
+            foreach (var argument in arguments)
+            {
+                powershell.AddArgument(argument);
+            }
+            var result = powershell.Invoke();
+            powershell.Streams.ClearStreams();
+            powershell.Commands.Clear();
+
+            if (result.Count == 1)
+            {
+                return result[0].BaseObject;
+            }
+            else
+            {
+                return result.Select(a => a?.BaseObject).ToList();
             }
         }
     }

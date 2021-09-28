@@ -68,7 +68,23 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        AppSoftware
+        AppSoftware,
+        /// <summary>
+        ///
+        /// </summary>
+        GameScanners,
+        /// <summary>
+        ///
+        /// </summary>
+        FilterPresets,
+        /// <summary>
+        ///
+        /// </summary>
+        ImportExclusions,
+        /// <summary>
+        ///
+        /// </summary>
+        CompletionStatuses
     }
 
     /// <summary>
@@ -137,6 +153,21 @@ namespace Playnite.SDK
         IItemCollection<GameFeature> Features { get; }
 
         /// <summary>
+        /// Gets collection of game features.
+        /// </summary>
+        IItemCollection<GameScannerConfig> GameScanners { get; }
+
+        /// <summary>
+        /// Gets collection of game statuses.
+        /// </summary>
+        IItemCollection<CompletionStatus> CompletionStatuses { get; }
+
+        /// <summary>
+        /// Gets collection of import exclusions.
+        /// </summary>
+        IItemCollection<ImportExclusionItem> ImportExclusions { get; }
+
+        /// <summary>
         /// Gets value indicating whether database is opened.
         /// </summary>
         bool IsOpen { get; }
@@ -151,7 +182,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="game">Game data to import.</param>
         /// <returns>Imported game.</returns>
-        Game ImportGame(GameInfo game);
+        Game ImportGame(GameMetadata game);
 
         /// <summary>
         /// Import new game into database from a library plugin.
@@ -159,6 +190,6 @@ namespace Playnite.SDK
         /// <param name="game">Game data to import.</param>
         /// <param name="sourcePlugin">Source library plugin.</param>
         /// <returns>Imported game.</returns>
-        Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin);
+        Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin);
     }
 }

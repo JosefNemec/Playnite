@@ -22,7 +22,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class LibraryIntegrationsWindow : WindowBase
     {
-        public LibraryIntegrationsWindow() : base()
+        public LibraryIntegrationsWindow() : base(nameof(LibraryIntegrationsWindow))
         {
             InitializeComponent();
         }

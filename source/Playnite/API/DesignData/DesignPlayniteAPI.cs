@@ -31,6 +31,15 @@ namespace Playnite.API.DesignData
 
         public IPlayniteSettingsAPI ApplicationSettings => throw new NotImplementedException();
 
+        public IAddons Addons => throw new NotImplementedException();
+
+        public IEmulationAPI Emulation => throw new NotImplementedException();
+
+        public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         public ILogger CreateLogger(string name)
         {
             throw new NotImplementedException();
@@ -52,6 +61,21 @@ namespace Playnite.API.DesignData
         }
 
         public void StartGame(Guid gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InstallGame(Guid gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UninstallGame(Guid gameId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
         {
             throw new NotImplementedException();
         }

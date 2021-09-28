@@ -48,12 +48,7 @@ namespace Playnite.FullscreenApp
                 nameof(FullscreenViewSettings.SortingOrderDirection)
             }).Contains(e.PropertyName))
             {
-                Logger.Debug("Updating collection view settings.");
-                using (CollectionView.DeferRefresh())
-                {
-                    CollectionView.SortDescriptions.Clear();
-                    SetViewDescriptions();
-                }
+                RefreshView();
             }
         }
 
@@ -64,7 +59,7 @@ namespace Playnite.FullscreenApp
             if (viewSettings.SortingOrder != SortOrder.Name)
             {
                 CollectionView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
-            } 
+            }
         }
 
         private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
@@ -112,6 +107,21 @@ namespace Playnite.FullscreenApp
                 {
                     Items.Add(item);
                 }
+            }
+        }
+
+        public override void RefreshView()
+        {
+            if (IgnoreViewConfigChanges)
+            {
+                return;
+            }
+
+            Logger.Debug("Updating collection view settings.");
+            using (CollectionView.DeferRefresh())
+            {
+                CollectionView.SortDescriptions.Clear();
+                SetViewDescriptions();
             }
         }
     }

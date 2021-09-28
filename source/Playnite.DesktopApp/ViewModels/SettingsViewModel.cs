@@ -21,6 +21,9 @@ using Playnite.DesktopApp.Markup;
 using System.Text.RegularExpressions;
 using Playnite.DesktopApp.Controls;
 using System.Diagnostics;
+using Playnite.SDK.Exceptions;
+using Playnite.Scripting.PowerShell;
+using System.Collections.ObjectModel;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -36,9 +39,43 @@ namespace Playnite.DesktopApp.ViewModels
         }
     }
 
-    public class SettingsViewModel : SettingsViewModelBase
+    public class SettingsViewModel : ObservableObject
     {
+        internal static ILogger logger = LogManager.GetLogger();
+        internal IWindowFactory window;
+        internal IResourceProvider resources;
+        internal IDialogsFactory dialogs;
+        internal GameDatabase database;
+        internal PlayniteSettings originalSettings;
+        internal PlayniteApplication application;
+        internal List<string> editedFields = new List<string>();
+        internal bool closingHanled = false;
+
         public List<SelectableItem<LibraryPlugin>> AutoCloseClientsList { get; } = new List<SelectableItem<LibraryPlugin>>();
+
+        private UserControl selectedSectionView;
+        public UserControl SelectedSectionView
+        {
+            get => selectedSectionView;
+            set
+            {
+                selectedSectionView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlayniteSettings settings;
+        public PlayniteSettings Settings
+        {
+            get => settings;
+            set
+            {
+                settings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
 
         public bool ShowDpiSettings
         {
@@ -47,12 +84,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<LoadedPlugin> GenericPlugins
         {
-            get => Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin).ToList();
-        }
-
-        public bool AnyGenericPluginSettings
-        {
-            get => Extensions?.GenericPlugins.HasItems() == true;
+            get; private set;
         }
 
         public List<ThemeManifest> AvailableThemes
@@ -116,13 +148,32 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<IList<object>> RemoveImmportExclusionItemCommand
+        public RelayCommand<object> AddDevelExtensionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var res = dialogs.SelectString(LOC.SettingsNewExternalExtensionBox, "", "");
+                if (res.Result && !res.SelectedString.IsNullOrEmpty())
+                {
+                    if (Settings.DevelExtenions.FirstOrDefault(s => s.Item.Equals(res.SelectedString, StringComparison.OrdinalIgnoreCase)) != null)
+                    {
+                        return;
+                    }
+
+                    Settings.DevelExtenions.Add(new SelectableItem<string>(res.SelectedString) { Selected = true });
+                    Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
+                }
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveDevelExtensionCommand
         {
             get => new RelayCommand<IList<object>>((items) =>
             {
-                foreach (ImportExclusionItem item in items.ToList())
+                foreach (SelectableItem<string> item in items.ToList())
                 {
-                    Settings.ImportExclusionList.Items.Remove(item);
+                    Settings.DevelExtenions.Remove(item);
+                    Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
                 }
             }, (items) => items != null && items.Count > 0);
         }
@@ -135,11 +186,55 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<ThemeManifest> UninstallThemeCommand
+        public RelayCommand<object> SetDefaultsCommand
         {
-            get => new RelayCommand<ThemeManifest>((a) =>
+            get => new RelayCommand<object>((ratio) =>
             {
-                UninstallTheme(a);
+                SetDefaults();
+            });
+        }
+
+        public RelayCommand<string> TestScriptCommand
+        {
+            get => new RelayCommand<string>((a) =>
+            {
+                TestScript(a);
+            }, (a) => !a.IsNullOrEmpty());
+        }
+
+        private readonly List<ImportExclusionItem> removedExclusionItems = new List<ImportExclusionItem>();
+        public RelayCommand<IList<object>> RemoveImportExclusionItemCommand
+        {
+            get => new RelayCommand<IList<object>>((items) =>
+            {
+                foreach (ImportExclusionItem item in items.ToList())
+                {
+                    ImportExclusionList.Remove(item);
+                    removedExclusionItems.Add(item);
+                }
+            }, (items) => items != null && items.Count > 0);
+        }
+
+        public RelayCommand<object> CancelCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                CloseView();
+            });
+        }
+
+        public RelayCommand<object> ConfirmCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                ConfirmDialog();
+            });
+        }
+
+        public RelayCommand<object> WindowClosingCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
             });
         }
 
@@ -152,8 +247,18 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, settings, window, dialogs, resources, extensions, app)
+            PlayniteApplication app)
         {
+            this.database = database;
+            this.window = window;
+            this.dialogs = dialogs;
+            this.resources = resources;
+            this.application = app;
+            originalSettings = settings;
+
+            Settings = settings.GetClone();
+            Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
+
             AvailableTrayIcons = new List<SelectableTrayIcon>
             {
                 new SelectableTrayIcon(TrayIconType.Default),
@@ -171,27 +276,26 @@ namespace Playnite.DesktopApp.ViewModels
                 { 5, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
                 { 6, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
                 { 7, new Controls.SettingsSections.Input() { DataContext = this } },
-                { 8, new Controls.SettingsSections.Extensions() { DataContext = this } },
+                { 8, new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this } },
                 { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
-                { 10, new Controls.SettingsSections.EmptyParent() { DataContext = this } },
                 { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
-                { 15, new Controls.SettingsSections.ExtensionsLibraries() { DataContext = this } },
-                { 16, new Controls.SettingsSections.ExtensionsMetadata() { DataContext = this } },
-                { 17, new Controls.SettingsSections.ExtensionsOther() { DataContext = this } },
-                { 18, new Controls.SettingsSections.ExtensionsThemes() { DataContext = this } }
+                { 19, new Controls.SettingsSections.Development() { DataContext = this } },
+                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
-            foreach (var plugin in extensions.LibraryPlugins.Where(a => a.Capabilities?.CanShutdownClient == true))
+            foreach (var plugin in extensions.LibraryPlugins.Where(a => a.Properties?.CanShutdownClient == true))
             {
                 AutoCloseClientsList.Add(new SelectableItem<LibraryPlugin>(plugin)
                 {
                     Selected = settings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id)
                 });
             }
+
+            ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
@@ -208,47 +312,25 @@ namespace Playnite.DesktopApp.ViewModels
                     SelectedSectionView = null;
                 }
             }
-            else if (selectedItem.NewValue is Plugin plugin)
+            else
             {
-                SelectedSectionView = GetPluginSettingsView(plugin.Id);
-            }
-            else if (selectedItem.NewValue is LoadedPlugin ldPlugin)
-            {
-                SelectedSectionView = GetPluginSettingsView(ldPlugin.Plugin.Id);
+                SelectedSectionView = null;
             }
         }
 
-        public override void CloseView()
+        public bool? OpenView()
         {
-            foreach (var plugin in loadedPluginSettings.Values)
-            {
-                plugin.Settings.CancelEdit();
-            }
+            return window.CreateAndOpenDialog(this);
+        }
 
+        public void CloseView()
+        {
             closingHanled = true;
             window.Close(false);
         }
 
-        public override void WindowClosing()
+        public void ConfirmDialog()
         {
-            if (!closingHanled)
-            {
-                foreach (var plugin in loadedPluginSettings.Values)
-                {
-                    plugin.Settings.CancelEdit();
-                }
-            }
-        }
-
-        public override void ConfirmDialog()
-        {
-            if (!VerifyPluginSettings())
-            {
-                return;
-            }
-
-            UpdateDisabledExtensions();
-
             if (editedFields.Contains(nameof(Settings.StartOnBoot)))
             {
                 try
@@ -265,16 +347,12 @@ namespace Playnite.DesktopApp.ViewModels
 
             var shutdownPlugins = AutoCloseClientsList.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
             Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
+            var develExtListUpdated = !Settings.DevelExtenions.IsEqualJson(originalSettings.DevelExtenions);
 
             EndEdit();
             originalSettings.SaveSettings();
-            foreach (var plugin in loadedPluginSettings.Values)
-            {
-                plugin.Settings.EndEdit();
-            }
-
             if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true ||
-                extUninstallQeueued)
+                develExtListUpdated)
             {
                 if (dialogs.ShowMessage(
                     resources.GetString("LOCSettingsRestartAskMessage"),
@@ -288,6 +366,11 @@ namespace Playnite.DesktopApp.ViewModels
             if (editedFields.Contains(nameof(Settings.DiscordPresenceEnabled)) && application.Discord != null)
             {
                 application.Discord.IsPresenceEnabled = Settings.DiscordPresenceEnabled;
+            }
+
+            if (editedFields.Contains(nameof(Settings.TraceLogEnabled)))
+            {
+                NLogLogger.IsTraceEnabled = Settings.TraceLogEnabled;
             }
 
             closingHanled = true;
@@ -329,16 +412,60 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private void UninstallTheme(ThemeManifest a)
+        private void SetDefaults()
         {
             if (dialogs.ShowMessage(
-               "LOCThemeUninstallQuestion",
-               string.Empty,
-               MessageBoxButton.YesNo,
-               MessageBoxImage.Question) == MessageBoxResult.Yes)
+                LOC.SettingsDefaultResetDesc,
+                string.Empty,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                extUninstallQeueued = true;
-                ExtensionInstaller.QueueExtensionUninstall(a.DirectoryPath);
+                application.Restart(new CmdLineOptions
+                {
+                    SkipLibUpdate = true,
+                    ResetSettings = true
+                });
+            }
+        }
+
+        public void EndEdit()
+        {
+            Settings.CopyProperties(originalSettings, true, new List<string>()
+            {
+                nameof(PlayniteSettings.FilterSettings),
+                nameof(PlayniteSettings.ViewSettings),
+                nameof(PlayniteSettings.InstallInstanceId),
+                nameof(PlayniteSettings.GridItemHeight),
+                nameof(PlayniteSettings.WindowPositions),
+                nameof(PlayniteSettings.Fullscreen)
+            }, true);
+
+            database.ImportExclusions.Remove(removedExclusionItems);
+        }
+
+        public void TestScript(string script)
+        {
+            try
+            {
+                var game = application.Api.MainView.SelectedGames.DefaultIfEmpty(new SDK.Models.Game("Test game")).FirstOrDefault();
+                var expanded = game.ExpandVariables(script);
+                using (var runtime = new PowerShellRuntime($"test script runtime"))
+                {
+                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true);
+                }
+            }
+            catch (Exception exc)
+            {
+                var message = exc.Message;
+                if (exc is ScriptRuntimeException err)
+                {
+                    message = err.Message + "\n\n" + err.ScriptStackTrace;
+                }
+
+                Dialogs.ShowMessage(
+                    message,
+                    resources.GetString("LOCScriptError"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
     }

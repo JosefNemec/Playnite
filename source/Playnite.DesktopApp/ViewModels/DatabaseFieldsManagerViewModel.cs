@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Playnite.Windows;
 using System.Windows;
 using Playnite.Common.Media.Icons;
+using Playnite.Emulators;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -25,6 +26,9 @@ namespace Playnite.DesktopApp.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private GameDatabase database;
+
+        public List<EmulatedPlatform> PlatformsSpecifications { get; set; }
+        public List<EmulatedRegion> RegionsSpecifications { get; set; }
 
         #region Genres
 
@@ -328,7 +332,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                RemoveUnusedItems(EditingSeries, g => g.SeriesId);
+                RemoveUnusedItems(EditingSeries, g => g.SeriesIds);
             }, (a) => EditingSeries.Count > 0);
         }
 
@@ -369,7 +373,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                RemoveUnusedItems(EditingAgeRatings, g => g.AgeRatingId);
+                RemoveUnusedItems(EditingAgeRatings, g => g.AgeRatingIds);
             }, (a) => EditingAgeRatings.Count > 0);
         }
 
@@ -410,7 +414,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                RemoveUnusedItems(EditingRegions, g => g.RegionId);
+                RemoveUnusedItems(EditingRegions, g => g.RegionIds);
             }, (a) => EditingRegions.Count > 0);
         }
 
@@ -498,6 +502,62 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion Categories
 
+        #region CompletionStatuses
+
+        public CompletionStatusSettings CompletionStatusSettings
+        {
+            get;
+        }
+
+        public ObservableCollection<CompletionStatus> CompletionStatusesSelection
+        {
+            get;
+        }
+
+        public ObservableCollection<CompletionStatus> EditingCompletionStatuses
+        {
+            get;
+        }
+
+        public RelayCommand<object> AddCompletionStatusCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                var added = AddItem(EditingCompletionStatuses);
+                if (added != null)
+                {
+                    CompletionStatusesSelection.Add(added);
+                }
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveCompletionStatusCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                a.ForEach(s => CompletionStatusesSelection.Remove((CompletionStatus)s));
+                RemoveItem(EditingCompletionStatuses, a.Cast<CompletionStatus>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameCompletionStatusCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(EditingCompletionStatuses, a.First() as CompletionStatus);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<object> RemoveUnusedCompletionStatusesCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                RemoveUnusedItems(EditingCompletionStatuses, g => g.CompletionStatusId);
+            }, (a) => EditingCompletionStatuses.Count > 0);
+        }
+
+        #endregion CompletionStatuses
+
         public RelayCommand<object> SaveCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -530,6 +590,29 @@ namespace Playnite.DesktopApp.ViewModels
             EditingSources = database.Sources.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingCompletionStatuses = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
+            CompletionStatusesSelection = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
+            CompletionStatusesSelection.Insert(0, new CompletionStatus
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = Guid.Empty
+            });
+
+            PlatformsSpecifications = Emulation.Platforms.OrderBy(a => a.Name).ToList();
+            PlatformsSpecifications.Insert(0, new EmulatedPlatform
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = null
+            });
+
+            RegionsSpecifications = Emulation.Regions.OrderBy(a => a.Name).ToList();
+            RegionsSpecifications.Insert(0, new EmulatedRegion
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = null
+            });
+
+            CompletionStatusSettings = database.GetCompletionStatusSettings();
         }
 
         public void OpenView()
@@ -555,7 +638,9 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateDbCollection(database.Sources, EditingSources);
                 UpdateDbCollection(database.Tags, EditingTags);
                 UpdateDbCollection(database.Features, EditingFeatures);
+                UpdateDbCollection(database.CompletionStatuses, EditingCompletionStatuses);
                 UpdatePlatformsCollection();
+                UpdateCompletionStatusSettings();
             }
 
             window.Close(true);
@@ -664,11 +749,7 @@ namespace Playnite.DesktopApp.ViewModels
             var unused = new List<Guid>(sourceCollection.Select(a => a.Id));
             foreach (var game in database.Games)
             {
-                var usedId = fieldSelector(game);
-                if (unused.Contains(usedId))
-                {
-                    unused.Remove(usedId);
-                }
+                unused.Remove(fieldSelector(game));
             }
 
             if (unused.Count > 0)
@@ -700,11 +781,7 @@ namespace Playnite.DesktopApp.ViewModels
             var unused = new List<Guid>(sourceCollection.Select(a => a.Id));
             foreach (var game in database.Games)
             {
-                var usedIds = fieldSelector(game) ?? new List<Guid>();
-                foreach (var item in unused.Intersect(usedIds).ToList())
-                {
-                    unused.Remove(item);
-                }
+                fieldSelector(game)?.ForEach(a => unused.Remove(a));
             }
 
             if (unused.Count > 0)
@@ -736,15 +813,17 @@ namespace Playnite.DesktopApp.ViewModels
             var unused = new List<Guid>(EditingPlatforms.Select(a => a.Id));
             foreach (var game in database.Games)
             {
-                if (unused.Contains(game.PlatformId))
-                {
-                    unused.Remove(game.PlatformId);
-                }
+                game.PlatformIds?.ForEach(a => unused.Remove(a));
             }
 
             foreach (var emulator in database.Emulators)
             {
-                foreach (var profile in emulator.Profiles)
+                if (!emulator.CustomProfiles.HasItems())
+                {
+                    continue;
+                }
+
+                foreach (var profile in emulator.CustomProfiles)
                 {
                     var usedIds = profile.Platforms ?? new List<Guid>();
                     foreach (var item in unused.Intersect(usedIds).ToList())
@@ -773,7 +852,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void AddItem<TItem>(IList<TItem> collection) where TItem : DatabaseObject
+        public TItem AddItem<TItem>(IList<TItem> collection) where TItem : DatabaseObject
         {
             var res = dialogs.SelectString(
                 resources.GetString("LOCEnterName"),
@@ -787,9 +866,13 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 else
                 {
-                    collection.Add(typeof(TItem).CrateInstance<TItem>(res.SelectedString));
+                    var newItem = typeof(TItem).CrateInstance<TItem>(res.SelectedString);
+                    collection.Add(newItem);
+                    return newItem;
                 }
             }
+
+            return null;
         }
 
         public void RenameItem<TItem>(IList<TItem> collection, TItem item) where TItem : DatabaseObject
@@ -874,6 +957,15 @@ namespace Playnite.DesktopApp.ViewModels
         public void RemovePlatformBackground(Platform platform)
         {
             platform.Background = null;
+        }
+
+        private void UpdateCompletionStatusSettings()
+        {
+            var dbSet = database.GetCompletionStatusSettings();
+            if (!CompletionStatusSettings.IsEqualJson(dbSet))
+            {
+                database.SetCompletionStatusSettings(CompletionStatusSettings);
+            }
         }
     }
 }

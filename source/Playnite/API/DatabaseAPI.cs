@@ -32,6 +32,9 @@ namespace Playnite.API
         public IItemCollection<Region> Regions => database.Regions;
         public IItemCollection<GameSource> Sources => database.Sources;
         public IItemCollection<GameFeature> Features => database.Features;
+        public IItemCollection<GameScannerConfig> GameScanners => database.GameScanners;
+        public IItemCollection<CompletionStatus> CompletionStatuses => database.CompletionStatuses;
+        public IItemCollection<ImportExclusionItem> ImportExclusions => database.ImportExclusions;
 
         public string DatabasePath
         {
@@ -83,12 +86,12 @@ namespace Playnite.API
             return database.GetFullFilePath(databasePath);
         }
 
-        public Game ImportGame(GameInfo game)
+        public Game ImportGame(GameMetadata game)
         {
             return database.ImportGame(game);
         }
 
-        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        public Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin)
         {
             return database.ImportGame(game, sourcePlugin.Id);
         }

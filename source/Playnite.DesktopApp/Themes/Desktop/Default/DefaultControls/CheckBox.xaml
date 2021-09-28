@@ -21,7 +21,7 @@
                             <Border x:Name="BulletBorder" CornerRadius="{DynamicResource ControlCornerRadius}"
                                     BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
                                     Style="{DynamicResource HighlightBorder}" >
-                                <Grid Width="18" Height="18" Background="{DynamicResource NormalBrushDark}">
+                                <Grid Width="18" Height="18" Background="{DynamicResource CheckBoxCheckMarkBkBrush}">
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed">
                                         <TextBlock Text="b" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>

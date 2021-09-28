@@ -27,10 +27,15 @@ namespace Playnite.FullscreenApp.Controls
             if (e is XInputEventArgs xinput)
             {
                 if (xinput.XButton == XInputButton.A)
-                {                    
+                {
                     OnClick();
                     e.Handled = true;
                 }
+            }
+            else if (e.Key == Key.Enter)
+            {
+                OnClick();
+                e.Handled = true;
             }
         }
     }

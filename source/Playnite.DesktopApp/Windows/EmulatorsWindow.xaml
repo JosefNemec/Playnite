@@ -10,12 +10,13 @@
         xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
         xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:psdkm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{DynamicResource LOCEmulatorsWindowTitle}"
-        Width="830" Height="700"
+        Width="1024" Height="768"
         AutomationProperties.AutomationId="WindowEmulators"
         x:Name="WindowEmulators">
 
@@ -26,12 +27,12 @@
         <Thickness x:Key="EditSeparatorMargin">5,5,5,7</Thickness>
     </controls:WindowBase.Resources>
     
-    <DockPanel KeyboardNavigation.TabNavigation="Local">
+    <DockPanel>
         <DockPanel.Resources>
             <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
         </DockPanel.Resources>
 
-        <Border KeyboardNavigation.TabIndex="2" DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
                 <Button TabIndex="2" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
                         IsCancel="True" Style="{StaticResource BottomButton}"
@@ -41,151 +42,403 @@
                         Command="{Binding ConfirmCommand}"/>
                 <Button Content="{DynamicResource LOCMenuHelpTitle}"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Adding-new-emulator"                        
+                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/emulators.html"                        
                         DockPanel.Dock="Left" Style="{StaticResource BottomButton}"/>
             </DockPanel>
         </Border>
-        <Grid Margin="5" DockPanel.Dock="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="7*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-            </Grid.RowDefinitions>
 
-            <Grid Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <ListBox Name="ListEmulators" Grid.ColumnSpan="4" Grid.Row="0" Margin="5,5,5,5"
-                                ItemsSource="{Binding EditingEmulators}"
-                                SelectedItem="{Binding SelectedEmulator, Mode=TwoWay}"
-                                pbeh:ScrollToSelectedBehavior.Enabled="True">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="5"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <Button Content="{DynamicResource LOCAddTitle}" Name="ButtonAddEmulator"
-                            Grid.Row="1" Grid.Column="0" Margin="5"
-                            Command="{Binding AddEmulatorCommand}"/>
-                <Button Content="{DynamicResource LOCCopyTitle}" Name="ButtonCopyEmulator" 
-                            Grid.Row="1" Grid.Column="1" Margin="5"
-                            Command="{Binding CopyEmulatorCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
-                <Button Content="{DynamicResource LOCRemoveTitle}" Name="ButtonRemoveEmulator" 
-                            Grid.Row="1" Grid.Column="2" Margin="5"
-                            Command="{Binding RemoveEmulatorCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
-            </Grid>
-
-            <DockPanel Grid.Column="1">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
-                    <Button Content="{DynamicResource LOCDownloadEmulatorsButton}"
-                                HorizontalAlignment="Right" Margin="5"
+        <TabControl DockPanel.Dock="Top">
+            <TabItem Header="{DynamicResource LOCEmulatorsTitle}">
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="5,0,5,5">
+                        <Button Content="{DynamicResource LOCAddTitle}" Name="ButtonAddEmulator" Margin="5"
+                                Command="{Binding AddEmulatorCommand}" />
+                        <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImportEmulator" Margin="5"
+                                Command="{Binding ImportEmulatorsCommand}" />
+                        <Button Content="{DynamicResource LOCCopyTitle}" Name="ButtonCopyEmulator" Margin="5"
+                                Command="{Binding CopyEmulatorCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Name="ButtonRemoveEmulator" Margin="5"
+                                Command="{Binding RemoveEmulatorCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
+                        <Button Content="{DynamicResource LOCDownloadEmulatorsButton}"
+                                Margin="5" DockPanel.Dock="Right"
                                 Name="ButtonDownloadEmulators" Command="{Binding DownloadEmulatorsCommand}"/>
-                    <Button Content="{DynamicResource LOCImportEmulatorsButton}"
-                                HorizontalAlignment="Right" Margin="5"
-                                Name="ButtonImportEmulators" Command="{Binding ImportEmulatorsCommand}"/>
-                </StackPanel>
-                
-                <StackPanel KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
-                    <StackPanel Grid.Row="0" Margin="{StaticResource EditSeparatorMargin}">
-                        <TextBlock Text="{DynamicResource LOCGameNameTitle}" />
-                        <TextBox TabIndex="1" Name="TextEmulatorName" Margin="0,5,0,0"
-                                 Text="{Binding SelectedEmulator.Name,UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
+                    </DockPanel>
 
-                    <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
-                        <TextBlock Text="{DynamicResource LOCProfilesLabel}" />
-                        <DockPanel Margin="0,5,0,0">
-                            <Button TabIndex="5" Content="{DynamicResource LOCRemoveTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"
-                                    Command="{Binding RemoveEmulatorProfileCommand}"
-                                    CommandParameter="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}"/>
-                            <Button TabIndex="4" Content="{DynamicResource LOCCopyTitle}" DockPanel.Dock="Right" Margin="5,0,5,0"
-                                    Command="{Binding CopyEmulatorProfileCommand}"
-                                    CommandParameter="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}"/>
-                            <Button TabIndex="3" Content="{DynamicResource LOCAddTitle}" DockPanel.Dock="Right" Margin="10,0,5,0"
-                                    Command="{Binding AddEmulatorProfileCommand}"
-                                    CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
-                            <ComboBox TabIndex="2" Name="ComboEmulatorProfiles" Margin="0,0,0,0" DockPanel.Dock="Left"
-                                      VerticalAlignment="Center" DisplayMemberPath="Name"
-                                      ItemsSource="{Binding SelectedEmulator.Profiles}"
-                                      SelectedItem="{Binding SelectedProfile}"/>
-                        </DockPanel>
-                    </StackPanel>
+                    <Grid Margin="5" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <GroupBox Header="{DynamicResource LOCProfileSettings}" Grid.Row="2" Margin="5,5,5,5"
-                              IsEnabled="{Binding SelectedItem, ElementName=ComboEmulatorProfiles, Converter={StaticResource NullToBoolConverter}}">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <Grid DataContext="{Binding SelectedItem, ElementName=ComboEmulatorProfiles}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
+                        <ListBox Name="ListEmulators" Grid.Row="0" Margin="5,0,5,0"
+                                 ItemsSource="{Binding EditingEmulators}"
+                                 SelectedItem="{Binding SelectedEmulator, Mode=TwoWay}"
+                                 DisplayMemberPath="Name"                     
+                                 pbeh:ScrollToSelectedBehavior.Enabled="True" />
 
-                                <StackPanel Grid.Row="0" Margin="{StaticResource EditSeparatorMargin}">
-                                    <TextBlock Text="{DynamicResource LOCNameLabel}" />
-                                    <TextBox Name="TextEmulatorProfileName" Margin="0,5,0,0"
-                                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-                                </StackPanel>
+                        <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="1" Margin="5,5,5,0"
+                                         AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="4" StarRows="3"
+                                         IsEnabled="{Binding SelectedItem, ElementName=ListEmulators, Converter={StaticResource NullToBoolConverter}}">
+                            <controls:GridEx.Resources>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Margin" Value="0,10,10,10" />
+                                </Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                                <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </controls:GridEx.Resources>
 
-                                <StackPanel Grid.Row="1" Margin="{StaticResource EditSeparatorMargin}">
-                                    <TextBlock Text="{DynamicResource LOCSupportedPlatformsTitle}" />                                          
-                                    <pctrls:DdItemListSelectionBox ItemsList="{Binding Data.AvailablePlatforms, Source={StaticResource Proxy}}"
-                                                                   BoundIds="{Binding Platforms, Mode=TwoWay}"
-                                                                   Margin="0,5,0,0" />
-                                </StackPanel>
+                            <!--Name-->
+                            <TextBlock Text="{DynamicResource LOCGameNameTitle}" />
+                            <TextBox Text="{Binding SelectedEmulator.Name,UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <StackPanel Grid.Row="2" Margin="{StaticResource EditSeparatorMargin}">
-                                    <TextBlock Text="{DynamicResource LOCExecutableTitle}" />
-                                    <DockPanel KeyboardNavigation.TabNavigation="Local" Margin="0,5,0,0">
-                                        <Button TabIndex="2" Name="ButtonLocateExe" Content="..." Height="26" DockPanel.Dock="Right" Margin="5,0,0,0"
-                                                Command="{Binding Data.SelectEmulatorExecutableCommand, Source={StaticResource Proxy}}"
-                                                CommandParameter="{Binding}"/>
-                                        <TextBox TabIndex="1" Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"/>
+                            <!--InstallDir-->
+                            <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" />
+                            <pctrls:PathSelectionBox Text="{Binding SelectedEmulator.InstallDir, UpdateSourceTrigger=PropertyChanged}"
+                                                     ShowDirectorySelector="True"/>
+
+                            <!--BuiltInProfile-->
+                            <TextBlock Text="{DynamicResource LOCEmulatorSpec}"/>
+                            <ComboBox VerticalAlignment="Center" DisplayMemberPath="Name"
+                                      ItemsSource="{Binding SelectableEmulatorDefinitions}"
+                                      SelectedValue="{Binding SelectedEmulator.BuiltInConfigId}"
+                                      SelectedValuePath="Id" />
+ 
+                            <!--Profiles-->
+                            <DockPanel Grid.ColumnSpan="2" Margin="0,5,0,0">
+                                <TextBlock Text="{DynamicResource LOCProfilesLabel}" DockPanel.Dock="Top" Margin="0" />
+                                <Separator DockPanel.Dock="Top" Margin="0,4,0,4" />
+                                <Grid>
+                                    <Grid.Resources>
+                                        <CollectionViewSource x:Key="ProfilesSource" Source="{Binding SelectedEmulator.AllProfiles}">
+                                            <CollectionViewSource.GroupDescriptions>
+                                                <PropertyGroupDescription PropertyName="Type" />
+                                            </CollectionViewSource.GroupDescriptions>
+                                        </CollectionViewSource>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <DockPanel Margin="0,0,5,0" Grid.Column="0">
+                                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                                            <Button Content="{DynamicResource LOCAddTitle}" DockPanel.Dock="Right"
+                                                    Command="{Binding AddEmulatorProfileCommand}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+                                                <Button.ContextMenu>
+                                                    <ContextMenu Placement="Top" />
+                                                </Button.ContextMenu>
+                                            </Button>
+                                            <Button Content="{DynamicResource LOCCopyTitle}" Margin="5,0,5,0"
+                                                    Command="{Binding CopyEmulatorProfileCommand}"
+                                                    CommandParameter="{Binding Data.SelectedProfile, Source={StaticResource Proxy}}"/>
+                                            <Button Content="{DynamicResource LOCRemoveTitle}"
+                                                    Command="{Binding RemoveEmulatorProfileCommand}"
+                                                    CommandParameter="{Binding Data.SelectedProfile, Source={StaticResource Proxy}}"/>
+                                        </StackPanel>
+
+                                        <ListBox SelectedItem="{Binding SelectedProfile}"
+                                                 ItemsSource="{Binding Source={StaticResource ProfilesSource}}"
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                 Width="220" DockPanel.Dock="Top" Margin="0,0,0,5"
+                                                 DisplayMemberPath="Name" ScrollViewer.CanContentScroll="False">
+                                            <ListBox.GroupStyle>
+                                                <GroupStyle>
+                                                    <GroupStyle.HeaderTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Margin="2,5,2,5" FontStyle="Italic">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Name}" Value="{x:Type psdkm:BuiltInEmulatorProfile}">
+                                                                                <Setter Property="Text" Value="{DynamicResource LOCEmulatorBuiltInProfiles}" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Name}" Value="{x:Type psdkm:CustomEmulatorProfile}">
+                                                                                <Setter Property="Text" Value="{DynamicResource LOCEmulatorCustomProfiles}" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </DataTemplate>
+                                                    </GroupStyle.HeaderTemplate>
+                                                </GroupStyle>
+                                            </ListBox.GroupStyle>
+                                        </ListBox>
                                     </DockPanel>
-                                </StackPanel>
 
-                                <StackPanel Grid.Row="3" Margin="{StaticResource EditSeparatorMargin}">
-                                    <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
-                                    <TextBox Name="TextArguments" Margin="0,5,0,0" Text="{Binding Arguments,UpdateSourceTrigger=PropertyChanged}"
-                                            DockPanel.Dock="Left" ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
-                                </StackPanel>
+                                    <TabControl DataContext="{Binding Data.SelectedBuiltinProfile, Source={StaticResource Proxy}}" Grid.Column="1"
+                                                Visibility="{Binding Data.SelectedBuiltinProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToVisibilityConverter}}">
+                                        <TabItem Header="{DynamicResource LOCGeneralLabel}">
+                                            <controls:GridEx KeyboardNavigation.TabNavigation="Local" Margin="3"
+                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="5">
+                                                <!--Name-->
+                                                <TextBlock Text="{DynamicResource LOCNameLabel}" />
+                                                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <!--BuiltInProfile-->
+                                                <TextBlock Text="{DynamicResource LOCEmulatorBuiltInProfile}" />
+                                                <ComboBox SelectedValue="{Binding BuiltInProfileName}" VerticalAlignment="Center"
+                                                          ItemsSource="{Binding Data.SelectedEmulatorBuiltInProfiles, Source={StaticResource Proxy}}" />
+                                                <!--Platforms-->
+                                                <TextBlock Text="{DynamicResource LOCPlatformsTitle}" />
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding Data.SelectedBuiltInProfilePlatforms, Source={StaticResource Proxy}}" />
+                                                <!--Arguments-->
+                                                <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
+                                                <TextBlock TextWrapping="Wrap">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="Margin" Value="0,10,10,10" />
+                                                            <Setter Property="Text" Value="{Binding Data.SelectedBuiltInProfileDefinition.StartupArguments, Source={StaticResource Proxy}}" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.StartupArguments, Source={StaticResource Proxy}}" Value="{x:Null}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LOCEmulatorFunctionHandledByScript}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <!--FileTypes-->
+                                                <TextBlock Text="{DynamicResource LOCSupportedFilesTitle}" />
+                                                <TextBlock TextWrapping="Wrap">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="Margin" Value="0,10,10,10" />
+                                                            <Setter Property="Text" Value="{Binding Data.SelectedBuiltInProfileDefinition.ImageExtensions, Converter={StaticResource ListToStringConverter}, Source={StaticResource Proxy}}" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.ImageExtensions, Source={StaticResource Proxy}}" Value="{x:Null}">
+                                                                    <Setter Property="Text" Value="{DynamicResource LOCEmulatorFunctionHandledByScript}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </controls:GridEx>
+                                        </TabItem>
+                                        <TabItem Header="{DynamicResource LOCScripts}">
+                                            <Grid>
+                                                <Grid.Resources>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                                                        <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+                                                        <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+                                                        <Setter Property="AcceptsReturn" Value="True" />
+                                                    </Style>
+                                                </Grid.Resources>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
 
-                                <StackPanel Grid.Row="4" Margin="{StaticResource EditSeparatorMargin}">
-                                    <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" />
-                                    <TextBox Name="TextWorkdir" Margin="0,5,0,0" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"
-                                        ToolTip="{DynamicResource LOCGameVariablesTooltip}"/>
-                                </StackPanel>
+                                                <TextBlock Grid.Row="0" Text="{DynamicResource LOCEmulatorPreScriptDescription}" />
+                                                <TextBox Grid.Row="1" Text="{Binding PreScript}" AcceptsReturn="True" AcceptsTab="True" />
+                                                <TextBlock Grid.Row="2" Text="{DynamicResource LOCEmulatorPostScriptDescription}" />
+                                                <TextBox Grid.Row="3" Text="{Binding PostScript}" AcceptsReturn="True" AcceptsTab="True" />
+                                                <TextBlock Grid.Row="4" Text="{DynamicResource LOCEmulatorStartedScriptDescription}" />
+                                                <TextBox Grid.Row="5" Text="{Binding ExitScript}" AcceptsReturn="True" AcceptsTab="True" />
+                                            </Grid>
+                                        </TabItem>
+                                    </TabControl>
 
-                                <StackPanel Grid.Row="5" Margin="{StaticResource EditSeparatorMargin}">
-                                    <TextBlock Text="{DynamicResource LOCSupportedFilesTitle}" />
-                                    <TextBox Name="TextImageExtension" Margin="0,5,0,0"
-                                        Text="{Binding ImageExtensions,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
-                                </StackPanel>
-                            </Grid>
-                        </ScrollViewer>
-                    </GroupBox>
-                </StackPanel>
-            </DockPanel>
-        </Grid>
+                                    <TabControl DataContext="{Binding Data.SelectedCustomProfile, Source={StaticResource Proxy}}" Grid.Column="1"
+                                                Visibility="{Binding Data.SelectedCustomProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToVisibilityConverter}}">
+                                        <TabItem Header="{DynamicResource LOCGeneralLabel}">
+                                            <controls:GridEx KeyboardNavigation.TabNavigation="Local" Margin="3"
+                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="6">
+                                                <!--Name-->
+                                                <TextBlock Text="{DynamicResource LOCNameLabel}" />
+                                                <TextBox Name="TextEmulatorProfileName"
+                                                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                                <!--Platforms-->
+                                                <TextBlock Text="{DynamicResource LOCSupportedPlatformsTitle}" />
+                                                <pctrls:DdItemListSelectionBox ItemsList="{Binding Data.AvailablePlatforms, Source={StaticResource Proxy}}"
+                                                                               BoundIds="{Binding Platforms, Mode=TwoWay}" />
+
+                                                <!--Executable-->
+                                                <TextBlock Text="{DynamicResource LOCExecutableTitle}" />
+                                                <pctrls:PathSelectionBox x:Name="TextExecutable" Text="{Binding Executable,UpdateSourceTrigger=PropertyChanged}"
+                                                                         ShowFileSelector="True"/>
+
+                                                <!--Arguments-->
+                                                <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
+                                                <TextBox Name="TextArguments" Text="{Binding Arguments,UpdateSourceTrigger=PropertyChanged}" />
+
+                                                <!--WorkingDir-->
+                                                <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" />
+                                                <pctrls:PathSelectionBox x:Name="TextWorkdir" Text="{Binding WorkingDirectory,UpdateSourceTrigger=PropertyChanged}"                                                         
+                                                                         ShowDirectorySelector="True"/>
+
+                                                <!--FileTypes-->
+                                                <TextBlock Text="{DynamicResource LOCSupportedFilesTitle}" />
+                                                <TextBox Name="TextImageExtension"
+                                                         Text="{Binding ImageExtensions,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"/>
+                                            </controls:GridEx>
+                                        </TabItem>
+                                        <TabItem Header="{DynamicResource LOCScripts}">
+                                            <Grid>
+                                                <Grid.Resources>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                                                        <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+                                                        <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+                                                        <Setter Property="AcceptsReturn" Value="True" />
+                                                    </Style>
+                                                </Grid.Resources>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock Grid.Row="0" Text="{DynamicResource LOCEmulatorPreScriptDescription}" />
+                                                <TextBox Grid.Row="1" Text="{Binding PreScript}" AcceptsReturn="True" AcceptsTab="True"
+                                                         FontFamily="{DynamicResource MonospaceFontFamily}"/>
+                                                <TextBlock Grid.Row="2" Text="{DynamicResource LOCEmulatorPostScriptDescription}" />
+                                                <TextBox Grid.Row="3" Text="{Binding PostScript}" AcceptsReturn="True" AcceptsTab="True"
+                                                         FontFamily="{DynamicResource MonospaceFontFamily}"/>
+                                                <TextBlock Grid.Row="4" Text="{DynamicResource LOCEmulatorStartedScriptDescription}" />
+                                                <TextBox Grid.Row="5" Text="{Binding ExitScript}" AcceptsReturn="True" AcceptsTab="True"
+                                                         FontFamily="{DynamicResource MonospaceFontFamily}"/>
+                                            </Grid>
+                                        </TabItem>
+                                        <TabItem Header="{DynamicResource LOCStartupScript}">
+                                            <TextBox VerticalAlignment="Stretch" AcceptsReturn="True" AcceptsTab="True"
+                                                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"
+                                                     FontFamily="{DynamicResource MonospaceFontFamily}"
+                                                     Text="{Binding StartupScript}" />
+                                        </TabItem>
+                                    </TabControl>
+                                </Grid>
+                            </DockPanel>
+                        </controls:GridEx>
+                    </Grid>
+                </DockPanel>                
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LOCEmuAutoScanConfigurations}">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top" Margin="10,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
+                                   Grid.Column="0" Margin="0,0,10,0"
+                                   ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                        <TextBox Text="{Binding GlobalScanSettings.CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
+                                 Grid.Column="1" ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}" />
+                    </Grid>
+                    <TextBlock Text="{DynamicResource LOCEmuScanConfigurations}" DockPanel.Dock="Top" Margin="10,0,10,0" />
+                    <Separator DockPanel.Dock="Top" Margin="10,5,10,0" />
+                    <Grid Margin="5,5,5,5" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ListBox Grid.Row="0" Grid.Column="0" Name="ListScannerConfigs"
+                             Margin="5,0,0,5"
+                             ItemsSource="{Binding EditingScanners}"
+                             SelectedItem="{Binding SelectedScanner, Mode=TwoWay}"
+                             DisplayMemberPath="Name"                     
+                             pbeh:ScrollToSelectedBehavior.Enabled="True" />
+
+                        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
+
+                        <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,5,5,0"
+                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="5" StarRows="5"
+                                     IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
+                                     DataContext="{Binding SelectedScanner}">
+                            <controls:GridEx.Resources>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Margin" Value="0,10,10,10" />
+                                </Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                                <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </controls:GridEx.Resources>
+
+                            <!--Name-->
+                            <TextBlock Text="{DynamicResource LOCNameLabel}" />
+                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <!--Directory-->
+                            <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
+                            <pctrls:PathSelectionBox ShowDirectorySelector="True"
+                                                 Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <!--Emulator-->
+                            <TextBlock Text="{DynamicResource LOCEmuScanEmulator}" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <ComboBox Width="150" VerticalAlignment="Center" Name="ComboEmulatorList"
+                                      ItemsSource="{Binding Data.EditingEmulators, Source={StaticResource Proxy}}"
+                                      DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}" />
+                                <TextBlock Text="{DynamicResource LOCProfileLabel}" VerticalAlignment="Center" Margin="10,0,10,0"  />
+                                <ComboBox Width="150" VerticalAlignment="Center"
+                                      ItemsSource="{Binding SelectedItem.AllProfiles, ElementName=ComboEmulatorList}"
+                                      DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId, Delay=50}" />
+                            </StackPanel>
+
+                            <!--IgnoreTypes-->
+                            <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
+                                       ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                            <TextBox Text="{Binding CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
+                                     ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+
+                            <!--Startup scan-->
+                            <CheckBox Content="{DynamicResource LOCEmuScanIncludeGlobalUpdate}"
+                                  Grid.ColumnSpan="2" Margin="0,5,10,5"
+                                  IsChecked="{Binding InGlobalUpdate}"/>
+                        </controls:GridEx>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
+                                Command="{Binding AddScanConfigCommand}" />
+                            <Button Content="{DynamicResource LOCCopyTitle}" Margin="5"
+                                Command="{Binding CopyScanConfigCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=ListScannerConfigs}"/>
+                            <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5"
+                                Command="{Binding RemoveScanConfigCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=ListScannerConfigs}"/>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>                
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </controls:WindowBase>

@@ -1,5 +1,23 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.0.0
+
+* **Breaking Changes**
+  * **Many** breaking changes to the entire SDK. All extensions and themes have to updated to work with Playnite 9. See [Playnite 9 migration guide](tutorials/playnite9migration.md) for more details.
+  * Removed IronPython support.
+  * Extensions no longer log into main `playnite.log` log file, but instead log into separate `extensions.log` file.
+  * Playnite 9 changes how library files are stored on disk. This is not breaking change to the SDK, but some existing extensions modify library files directly (which was never supported) and those will not work anymore.
+
+* New
+  * PowerShell extensions are now implemented as proper PowerShell modules.
+  * Playnite now includes built-in add-on browser that can be used to install/update extension. You need to publish your extension to [add-on repository](https://github.com/JosefNemec/PlayniteAddonDatabase) for it to work.
+  * Ability to inject elements into Sidebar, Top panel and any custom theme that supports specific extension element explicitly.
+  * Ability to dynamically inject play, install and uninstall actions.
+  * You can now load extensions from custom directories via `For developers` settings menu.
+  * Added `Trace` severity log messages. These are not written into log files unless enabled in `For developers` settings menu.
+  * Import exclusions can be controlled via the SDK.
+  * Themes can now add [custom mouse cursor](tutorials/themes/various.md#custom-mouse-cursor) and [sound files](tutorials/themes/various.md#changing-audio-files).
+
 #### 5.5.0
 
 * New

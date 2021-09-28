@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Playnite.Metadata.Providers;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 
 namespace Playnite.Tests.Metadata
@@ -15,15 +14,15 @@ namespace Playnite.Tests.Metadata
     {
         private void ValidateGameDate(GameMetadata metadata)
         {
-            Assert.IsNotNull(metadata.GameInfo.ReleaseDate);
-            Assert.IsTrue(metadata.GameInfo.Developers.Count > 0 && !string.IsNullOrEmpty(metadata.GameInfo.Developers[0]));
-            Assert.IsTrue(metadata.GameInfo.Publishers.Count > 0 && !string.IsNullOrEmpty(metadata.GameInfo.Publishers[0]));
-            Assert.IsTrue(metadata.GameInfo.Genres.Count > 0 && !string.IsNullOrEmpty(metadata.GameInfo.Genres[0]));
+            Assert.IsNotNull(metadata.ReleaseDate);
+            Assert.IsTrue(metadata.Developers.Count() > 0 && !string.IsNullOrEmpty(metadata.Developers.First().ToString()));
+            Assert.IsTrue(metadata.Publishers.Count() > 0 && !string.IsNullOrEmpty(metadata.Publishers.First().ToString()));
+            Assert.IsTrue(metadata.Genres.Count() > 0 && !string.IsNullOrEmpty(metadata.Genres.First().ToString()));
         }
 
         private void ValidateBoxArt(GameMetadata game)
         {
-            Assert.IsTrue(game.CoverImage?.OriginalUrl.IsNullOrEmpty() == false);
+            Assert.IsTrue(game.CoverImage?.Path.IsNullOrEmpty() == false);
         }
 
         [Test]

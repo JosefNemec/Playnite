@@ -63,6 +63,7 @@ namespace Playnite.Tests
             Assert.IsTrue(Paths.IsFullPath(@"c:\test"));
             Assert.IsTrue(Paths.IsFullPath(@"c:\test\test.exe"));
             Assert.IsTrue(Paths.IsFullPath(@"c:\test\"));
+            Assert.IsTrue(Paths.IsFullPath(@"c:\test\..\test.exe"));
             Assert.IsFalse(Paths.IsFullPath(@"test"));
             Assert.IsFalse(Paths.IsFullPath(@"\test"));
             Assert.IsFalse(Paths.IsFullPath(@".\test"));
@@ -75,6 +76,56 @@ namespace Playnite.Tests
         public void GetSafeFilenameTest()
         {
             Assert.AreEqual("test aaa", Paths.GetSafePathName("test >> aaa "));
+        }
+
+        [Test]
+        public void GetCommonDirectoryTest()
+        {
+            Assert.AreEqual(@"c:\test\", Paths.GetCommonDirectory(new string[]
+            {
+                @"c:\test\file.exe",
+                @"c:\test\file2.exe",
+                @"c:\test\",
+            }));
+
+            Assert.AreEqual(@"c:\test\file\", Paths.GetCommonDirectory(new string[]
+            {
+                @"c:\test\file\aa.exe",
+                @"c:\test\file\bb.ee",
+                @"c:\test\file\cc.ss",
+            }));
+
+            Assert.AreEqual(@"c:\", Paths.GetCommonDirectory(new string[]
+            {
+                @"c:\file1.aa",
+                @"c:\file1.aa",
+                @"c:\file1.aa",
+            }));
+
+            Assert.AreEqual(string.Empty, Paths.GetCommonDirectory(new string[]
+            {
+                @"c:\test\file1",
+                @"d:\test\file2",
+                @"e:\test\file",
+            }));
+
+            Assert.AreEqual(string.Empty, Paths.GetCommonDirectory(new string[]
+{
+                @"c:\test\file1",
+                @"d:\test1\aa\file2",
+                @"e:\test2\file",
+            }));
+        }
+
+        [Test]
+        public void MathcesFilePattern()
+        {
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", "*.txt"));
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", "*.TXT"));
+            Assert.IsFalse(Paths.MathcesFilePattern(@"c:\test\aa.txt", "*.doc"));
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", @"c:\**\*.txt"));
+            Assert.IsFalse(Paths.MathcesFilePattern(@"c:\test\aa.txt", @"d:\**\*.txt"));
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", ".doc;*.txt"));
         }
     }
 }

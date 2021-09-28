@@ -1,0 +1,14 @@
+Id: altirra
+Name: Altirra
+Website: 'http://www.virtualdub.org/altirra.html'
+Profiles:
+  - Name: Atari 8-bit
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [atari_8bit]
+    ImageExtensions: [atr, atx, xfd, dcm, pro, cas, wav, rom, bin, car, xex, obx, com, arc, sap, zip]
+    StartupExecutable: ^altirra\.exe$
+  - Name: Atari 5200
+    StartupArguments: '/hardware:5200 /kernel:5200 "{ImagePath}"'
+    Platforms: [atari_5200]
+    ImageExtensions: [rom, bin, car, a52, zip]
+    StartupExecutable: ^altirra\.exe$

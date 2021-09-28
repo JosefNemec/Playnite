@@ -28,7 +28,7 @@
     </controls:WindowBase.Resources>
 
     <DockPanel Margin="0,5,0,0">
-        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <TextBlock Text="{DynamicResource LOCSettingsRestartNotification}"
                            Margin="5,0,0,0" DockPanel.Dock="Left" VerticalAlignment="Center"
@@ -42,7 +42,7 @@
             </DockPanel>
         </Border>
 
-        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}"
+        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}"
                 DockPanel.Dock="Left">
             <TreeView MinWidth="160" BorderThickness="0" ScrollViewer.CanContentScroll="False">
                 <i:Interaction.Triggers>
@@ -57,36 +57,23 @@
                     <TreeViewItem Header="{DynamicResource LOCDetailsViewLabel}" Tag="3" />
                     <TreeViewItem Header="{DynamicResource LOCGridViewLabel}" Tag="4" />
                     <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="5" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsTopPanelLabel}" Tag="20" />
                 </TreeViewItem>
                 <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
                 <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
                 <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsImportExclusionList}" Tag="14" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsForDevelopers}" Tag="19" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" IsExpanded="True">
                     <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="13" />
                 </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8">
-                    <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="15"/>
-                    <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="16" />
-                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="17" />
-                    <TreeViewItem Header="{DynamicResource LOCThemes}" Tag="18" />
-                </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="10"
-                          DisplayMemberPath="Name"
-                          ItemsSource="{Binding Extensions.LibraryPlugins}" />
-                <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="10"
-                          DisplayMemberPath="Name"
-                          ItemsSource="{Binding Extensions.MetadataPlugins}"/>
-                <TreeViewItem Header="{DynamicResource LOCPlugins}" Tag="10"
-                          DisplayMemberPath="Description.Name"
-                          ItemsSource="{Binding GenericPlugins}"
-                          Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TreeViewItem Header="{DynamicResource LOCExtensions}" Tag="8" />
             </TreeView>
         </Border>
 
         <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
-                BorderBrush="{StaticResource NormalBorderBrush}">
+                BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <ContentControl Content="{Binding SelectedSectionView}"/>
         </Border>
     </DockPanel>

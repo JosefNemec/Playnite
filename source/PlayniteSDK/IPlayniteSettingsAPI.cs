@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Playnite.SDK
 {
@@ -120,7 +121,18 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
+        ///
         AgeRatingOrg AgeRatingOrgPriority { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        bool SidebarVisible { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        Dock SidebarPosition { get; }
 
         /// <summary>
         /// Checks if game is added on import exclusion list.

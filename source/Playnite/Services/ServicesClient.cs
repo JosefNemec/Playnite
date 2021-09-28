@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
+using Playnite.Common;
 using Playnite.SDK;
+using PlayniteServices.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,7 +22,7 @@ namespace Playnite.Services
         {
         }
 
-        public ServicesClient(string endpoint) : base(endpoint, Updater.GetCurrentVersion())
+        public ServicesClient(string endpoint) : base(endpoint, Updater.CurrentVersion)
         {
         }
 
@@ -33,11 +35,11 @@ namespace Playnite.Services
         {
             var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
             var winId = root.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false).GetValue("ProductId").ToString().GetSHA256Hash();
-            var user = new PlayniteServices.Models.Playnite.User()
+            var user = new User()
             {
                 Id = winId,
                 WinVersion = Environment.OSVersion.VersionString,
-                PlayniteVersion = Updater.GetCurrentVersion().ToString(),
+                PlayniteVersion = Updater.CurrentVersion.ToString(),
                 Is64Bit = Environment.Is64BitOperatingSystem
             };
 
@@ -63,6 +65,16 @@ namespace Playnite.Services
                     return result.Data;
                 }
             }
+        }
+
+        public List<AddonManifest> GetAllAddons(AddonType type, string searchTerm)
+        {
+            return ExecuteGetRequest<List<AddonManifest>>($"/addons?type={type}&searchTerm={searchTerm}".UrlEncode());
+        }
+
+        public AddonManifest GetAddon(string addonId)
+        {
+            return ExecuteGetRequest<List<AddonManifest>>($"/addons?addonId={addonId}".UrlEncode()).FirstOrDefault();
         }
     }
 }

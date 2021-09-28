@@ -1,8 +1,0 @@
-Name: Cemu
-Website: 'https://cemu.info/'
-Profiles:
-  - Name: Default
-    DefaultArguments: '-g "{ImagePath}" -f'
-    Platforms: [Nintendo Wii U]
-    ImageExtensions: [wud, wux, rpx]
-    ExecutableLookup: ^cemu.*\.exe$

@@ -16,7 +16,7 @@
     <controls:WindowBase.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
             <Setter Property="Margin" Value="5,5,5,5" />
-            <Setter Property="VerticalAlignment" Value="Center" />            
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
             <Setter Property="Margin" Value="5" />
@@ -44,7 +44,7 @@
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
             <GridEx ColumnCount="3" StarColumns="1,2"
                     Margin="5,0,5,0"
-                    RowCount="40" AutoLayoutColumns="3">                
+                    RowCount="40" AutoLayoutColumns="3">
                 <Canvas />
                 <TextBlock Text="{DynamicResource LOCMetadataDiffCurrent}"  />
                 <TextBlock Text="{DynamicResource LOCMetadataDiffNew}"  />
@@ -57,7 +57,7 @@
 
                 <!--Name-->
                 <TextBlock Text="{DynamicResource LOCNameLabel}"
-                           Visibility="{Binding Name.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />                
+                           Visibility="{Binding Name.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <RadioButton Visibility="{Binding Name.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"                             
                              IsChecked="{Binding Name.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Name">
@@ -69,7 +69,7 @@
                              IsChecked="{Binding Name.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Name">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.Name}" />
+                        <TextBlock Text="{Binding NewGame.Name}" />
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -77,19 +77,19 @@
                 <Separator Grid.ColumnSpan="3"
                            Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
-                           Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />                
+                           Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <RadioButton Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding ReleaseDate.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="ReleaseDate">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding CurrentGame.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" />
+                        <TextBlock Text="{Binding CurrentGame.ReleaseDate}" />
                     </RadioButton.Content>
-                </RadioButton>                
+                </RadioButton>
                 <RadioButton Visibility="{Binding ReleaseDate.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding ReleaseDate.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="ReleaseDate">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" />
+                        <TextBlock Text="{Binding NewGame.ReleaseDate}" />
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -110,7 +110,7 @@
                               Visibility="{Binding Genres.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -132,7 +132,7 @@
                               Visibility="{Binding Developers.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -154,7 +154,7 @@
                               Visibility="{Binding Publishers.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -176,7 +176,7 @@
                               Visibility="{Binding Features.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -198,7 +198,7 @@
                               Visibility="{Binding Tags.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item}" />
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -229,83 +229,91 @@
 
                 <!--Age rating-->
                 <Separator Grid.ColumnSpan="3"
-                           Visibility="{Binding AgeRating.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCAgeRatingLabel}"
-                           Visibility="{Binding AgeRating.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <RadioButton Visibility="{Binding AgeRating.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding AgeRating.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
-                             GroupName="AgeRating">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding CurrentGame.AgeRating}" />
-                    </RadioButton.Content>
-                </RadioButton>
-                <RadioButton Visibility="{Binding AgeRating.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding AgeRating.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
-                             GroupName="AgeRating">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.AgeRating}" />
-                    </RadioButton.Content>
-                </RadioButton>
+                           Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <ItemsControl ItemsSource="{Binding AgeRatings.Current}"
+                              Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding AgeRatings.New}"
+                              Visibility="{Binding AgeRatings.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <!--Region-->
                 <Separator Grid.ColumnSpan="3"
-                           Visibility="{Binding Region.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCRegionLabel}"
-                           Visibility="{Binding Region.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <RadioButton Visibility="{Binding Region.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding Region.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
-                             GroupName="Region">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding CurrentGame.Region}" />
-                    </RadioButton.Content>
-                </RadioButton>
-                <RadioButton Visibility="{Binding Region.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding Region.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
-                             GroupName="Region">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.Region}" />
-                    </RadioButton.Content>
-                </RadioButton>
+                           Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <ItemsControl ItemsSource="{Binding Regions.Current}"
+                              Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding Regions.New}"
+                              Visibility="{Binding Regions.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <!--Series-->
                 <Separator Grid.ColumnSpan="3"
                            Visibility="{Binding Series.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCSeriesLabel}"
                            Visibility="{Binding Series.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <RadioButton Visibility="{Binding Series.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding Series.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
-                             GroupName="Series">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding CurrentGame.Series}" />
-                    </RadioButton.Content>
-                </RadioButton>
-                <RadioButton Visibility="{Binding Series.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding Series.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
-                             GroupName="Series">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.Series}" />
-                    </RadioButton.Content>
-                </RadioButton>
+                <ItemsControl ItemsSource="{Binding Series.Current}"
+                              Visibility="{Binding Series.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding Series.New}"
+                              Visibility="{Binding Series.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <!--Platform-->
                 <Separator Grid.ColumnSpan="3"
-                           Visibility="{Binding Platform.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                           Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <TextBlock Text="{DynamicResource LOCGamePlatformTitle}"
-                           Visibility="{Binding Platform.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <RadioButton Visibility="{Binding Platform.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding Platform.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
-                             GroupName="Platform">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding CurrentGame.Platform}" />
-                    </RadioButton.Content>
-                </RadioButton>
-                <RadioButton Visibility="{Binding Platform.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             IsChecked="{Binding Platform.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
-                             GroupName="Platform">
-                    <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.Platform}" />
-                    </RadioButton.Content>
-                </RadioButton>
+                           Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <ItemsControl ItemsSource="{Binding Platforms.Current}"
+                              Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding Platforms.New}"
+                              Visibility="{Binding Platforms.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Selected}" Content="{Binding Item.Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <!--Description-->
                 <Separator Grid.ColumnSpan="3"
@@ -324,7 +332,7 @@
                              IsChecked="{Binding Description.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Description">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.Description}"
+                        <TextBlock Text="{Binding NewGame.Description}"
                                    TextWrapping="Wrap" MaxHeight="150" TextTrimming="CharacterEllipsis" />
                     </RadioButton.Content>
                 </RadioButton>
@@ -345,7 +353,7 @@
                              IsChecked="{Binding CriticScore.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="CriticScore">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.CriticScore}"  />
+                        <TextBlock Text="{Binding NewGame.CriticScore}"  />
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -365,7 +373,7 @@
                              IsChecked="{Binding CommunityScore.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="CommunityScore">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.GameInfo.CommunityScore}"  />
+                        <TextBlock Text="{Binding NewGame.CommunityScore}"  />
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -378,18 +386,24 @@
                              IsChecked="{Binding Icon.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Icon">
                     <RadioButton.Content>
-                        <Image Source="{Binding CurrentIcon}"
+                        <StackPanel>
+                            <Image Source="{Binding CurrentIcon}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="64"/>
+                            <TextBlock Text="{Binding CurrentIconDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
                 <RadioButton Visibility="{Binding Icon.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding Icon.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Icon">
                     <RadioButton.Content>
-                        <Image Source="{Binding NewIcon}"
+                        <StackPanel>
+                            <Image Source="{Binding NewIcon}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="64"/>
+                            <TextBlock Text="{Binding NewIconDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -402,18 +416,24 @@
                              IsChecked="{Binding Cover.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Cover">
                     <RadioButton.Content>
-                        <Image Source="{Binding CurrentCover}"
+                        <StackPanel>
+                            <Image Source="{Binding CurrentCover}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="128"/>
+                            <TextBlock Text="{Binding CurrentCoverDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
                 <RadioButton Visibility="{Binding Cover.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding Cover.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Cover">
                     <RadioButton.Content>
-                        <Image Source="{Binding NewCover}"
+                        <StackPanel>
+                            <Image Source="{Binding NewCover}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="128"/>
+                            <TextBlock Text="{Binding NewCoverDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
 
@@ -426,18 +446,24 @@
                              IsChecked="{Binding Background.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="Background">
                     <RadioButton.Content>
-                        <Image Source="{Binding CurrentBackground}"
+                        <StackPanel>
+                            <Image Source="{Binding CurrentBackground}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="169"/>
+                            <TextBlock Text="{Binding CurrentBackgroundDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
                 <RadioButton Visibility="{Binding Background.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding Background.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="Background">
                     <RadioButton.Content>
-                        <Image Source="{Binding NewBackground}"
+                        <StackPanel>
+                            <Image Source="{Binding NewBackground}"
                                Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="Fant"
                                HorizontalAlignment="Left" Height="169"/>
+                            <TextBlock Text="{Binding NewBackgroundDimensions}" />
+                        </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
             </GridEx>

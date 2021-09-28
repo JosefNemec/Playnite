@@ -13,7 +13,7 @@ namespace _namespace_
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
-        private _name_Settings settings { get; set; }
+        private _name_SettingsViewModel settings { get; set; }
 
         public override Guid Id { get; } = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
@@ -28,7 +28,11 @@ namespace _namespace_
 
         public _name_(IPlayniteAPI api) : base(api)
         {
-            settings = new _name_Settings(this);
+            settings = new _name_SettingsViewModel(this);
+            Properties = new MetadataPluginProperties
+            {
+                HasSettings = true
+            };
         }
 
         public override OnDemandMetadataProvider GetMetadataProvider(MetadataRequestOptions options)

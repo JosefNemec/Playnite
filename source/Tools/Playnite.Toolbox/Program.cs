@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using CommandLine.Text;
 using Playnite.API;
 using Playnite.Common;
 using Playnite.Plugins;
@@ -7,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Runtime;
 using System.Text;
@@ -20,9 +20,10 @@ namespace Playnite.Toolbox
 {
     class Program
     {
+        public static int AppResult { get; set; } = 0;
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             FileSystem.CreateDirectory(PlaynitePaths.JitProfilesPath);
             ProfileOptimization.SetProfileRoot(PlaynitePaths.JitProfilesPath);
@@ -31,20 +32,41 @@ namespace Playnite.Toolbox
             logger.Debug("Toolbox started.");
             logger.Debug(Environment.CommandLine);
 
-            var cmdlineParser = new Parser(with => with.CaseInsensitiveEnumValues = true);
-            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions>(args)
-                .WithParsed<NewCmdLineOptions>(ProcessNewOptions)
+            var cmdlineParser = new Parser(with =>
+            {
+                with.CaseInsensitiveEnumValues = true;
+                with.HelpWriter = null;
+            });
+
+            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions>(args);
+            result.WithParsed<NewCmdLineOptions>(ProcessNewOptions)
                 .WithParsed<PackCmdLineOptions>(ProcessPackOptions)
-                .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions);
+                .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions)
+                .WithNotParsed(errs => DisplayHelp(result, errs));
             if (result.Tag == ParserResultType.NotParsed)
             {
-                logger.Error("No acceptable arguments given.");
+                AppResult = 2;
             }
 
             if (Debugger.IsAttached)
             {
                 Console.ReadLine();
             }
+
+            return AppResult;
+        }
+
+        static void DisplayHelp<T>(ParserResult<T> result, IEnumerable<Error> errs)
+        {
+            var helpText = HelpText.AutoBuild(result, h =>
+            {
+                h.AdditionalNewLineAfterOption = false;
+                h.AddEnumValuesToHelpText = true;
+                h.AutoHelp = false;
+                h.AutoVersion = false;
+                return h;
+            });
+            Console.WriteLine(helpText);
         }
 
         public static ItemType GetExtensionType(string directory)
@@ -72,7 +94,7 @@ namespace Playnite.Toolbox
                     case ExtensionType.GameLibrary:
                         return ItemType.LibraryPlugin;
                     case ExtensionType.Script:
-                        return desc.Module.EndsWith("ps1", StringComparison.OrdinalIgnoreCase) ? ItemType.PowerShellScript : ItemType.IronPythonScript;
+                        return ItemType.PowerShellScript;
                     case ExtensionType.MetadataProvider:
                         return ItemType.MetadataPlugin;
                 }
@@ -95,19 +117,16 @@ namespace Playnite.Toolbox
                         outPath = Themes.GenerateNewTheme(ApplicationMode.Fullscreen, options.Name);
                         break;
                     case ItemType.PowerShellScript:
-                        outPath = Extensions.GenerateScriptExtension(ScriptLanguage.PowerShell, options.Name, options.OutDirectory);
-                        break;
-                    case ItemType.IronPythonScript:
-                        outPath = Extensions.GenerateScriptExtension(ScriptLanguage.IronPython, options.Name, options.OutDirectory);
+                        outPath = Extensions.GenerateScriptExtension(options.Name, options.OutDirectory.Trim('"'));
                         break;
                     case ItemType.GenericPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GenericPlugin, options.Name, options.OutDirectory);
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GenericPlugin, options.Name, options.OutDirectory.Trim('"'));
                         break;
                     case ItemType.MetadataPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.MetadataProvider, options.Name, options.OutDirectory);
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.MetadataProvider, options.Name, options.OutDirectory.Trim('"'));
                         break;
                     case ItemType.LibraryPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GameLibrary, options.Name, options.OutDirectory);
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GameLibrary, options.Name, options.OutDirectory.Trim('"'));
                         break;
                     default:
                         throw new NotSupportedException($"Uknown extension type {options.Type}.");
@@ -118,6 +137,7 @@ namespace Playnite.Toolbox
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
+                AppResult = 1;
                 logger.Error(e, $"Failed to create new {options.Type}." + Environment.NewLine + e.Message);
             }
         }
@@ -137,7 +157,6 @@ namespace Playnite.Toolbox
                         outPath = Themes.PackageTheme(options.Directory, options.Destination, ApplicationMode.Fullscreen);
                         break;
                     case ItemType.PowerShellScript:
-                    case ItemType.IronPythonScript:
                     case ItemType.GenericPlugin:
                     case ItemType.MetadataPlugin:
                     case ItemType.LibraryPlugin:
@@ -151,7 +170,8 @@ namespace Playnite.Toolbox
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
-                logger.Error(e, $"Failed to pack extension." + Environment.NewLine + e.Message);
+                AppResult = 1;
+                logger.Error(e, $"Failed to pack extension: {options.Directory}." + Environment.NewLine + e.Message);
             }
         }
 
@@ -170,7 +190,6 @@ namespace Playnite.Toolbox
                         break;
                     case ItemType.Uknown:
                     case ItemType.PowerShellScript:
-                    case ItemType.IronPythonScript:
                     case ItemType.GenericPlugin:
                     case ItemType.MetadataPlugin:
                     case ItemType.LibraryPlugin:
@@ -179,6 +198,7 @@ namespace Playnite.Toolbox
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
+                AppResult = 1;
                 logger.Error(e, "Failed to update extension." + Environment.NewLine + e.Message);
             }
         }

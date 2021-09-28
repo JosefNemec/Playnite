@@ -46,33 +46,39 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ToggleButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/ToolTip.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TreeView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/DataGrid.xaml" />
 
                 <!--Custom Controls-->
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedListView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExtendedDataGrid.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/GameMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/GameGroupMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/HtmlTextView.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/MainMenu.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/TrayContextMenu.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NullableIntBox.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NumericBox.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ViewSettingsMenu.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/NumericBoxes.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SliderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ExpanderEx.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/WindowBase.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SidebarItem.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/ComboBoxList.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/FilterSelectionBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SearchBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/TopPanelItem.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/PathSelectionBox.xaml" />
 
                 <!--Derived Styles-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/PropertyItemButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsScrollViewer.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/Simplebutton.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewGroupStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/GridViewItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemTemplate.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewGroupStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/DetailsViewItemStyle.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/ListViewGroupStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/StandardWindowStyle.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/WindowBarButton.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/BottomButton.xaml" />
@@ -86,8 +92,8 @@
                 <!--Views-->
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/Sidebar.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/ExplorerPanel.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/Views/FilterPanel.xaml" />
-                <ResourceDictionary Source="Themes/Desktop/Default/Views/MainPanel.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/FilterPanelView.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/TopPanel.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/NotificationPanel.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/DetailsViewGameOverview.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/GridViewGameOverview.xaml" />

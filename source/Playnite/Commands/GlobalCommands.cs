@@ -76,7 +76,8 @@ namespace Playnite.Commands
                 throw new Exception("No URL was given.");
             }
 
-            if (!Regex.IsMatch(url, @"^.*:\/\/"))
+            url = url.Replace("{AppBranch}", PlayniteEnvironment.AppBranch);
+            if (!url.IsUri())
             {
                 url = "http://" + url;
             }

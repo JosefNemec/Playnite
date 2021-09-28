@@ -146,6 +146,12 @@ namespace Playnite.Tests
             Assert.AreEqual(3, distinct[0]);
             Assert.AreEqual(4, distinct[1]);
             Assert.AreEqual(5, distinct[2]);
+
+            ListExtensions.GetDistinctItemsP(list1, list2, list3).ToArray();
+            Assert.AreEqual(3, distinct.Count());
+            Assert.AreEqual(3, distinct[0]);
+            Assert.AreEqual(4, distinct[1]);
+            Assert.AreEqual(5, distinct[2]);
         }
 
         [Test]
@@ -158,6 +164,20 @@ namespace Playnite.Tests
             Assert.IsTrue(list1.Contains(list2));
             Assert.IsFalse(list2.Contains(list1));
             Assert.IsFalse(list1.Contains(list3));
+        }
+
+        [Test]
+        public void ToHashSetTest()
+        {
+            var list = new List<int> { 1, 2, 3, 4, };
+            var hash = list.ToHashSet();
+            Assert.AreEqual(4, hash.Count);
+
+            list = new List<int> { 1, 2, 3, 4, 2, 3 };
+            hash = list.ToHashSet();
+            Assert.AreEqual(4, hash.Count);
+
+            new List<int>(0).ToHashSet();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                AddNewAreRating();
+                AddNewAgeRating();
             });
         }
 
@@ -227,6 +227,38 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> AddRomCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddRom();
+            });
+        }
+
+        public RelayCommand<GameRom> RemoveRomCommand
+        {
+            get => new RelayCommand<GameRom>((rom) =>
+            {
+                RemoveRom(rom);
+            });
+        }
+
+        public RelayCommand<GameRom> MoveUpRomCommand
+        {
+            get => new RelayCommand<GameRom>((rom) =>
+            {
+                MoveRomUp(rom);
+            });
+        }
+
+        public RelayCommand<GameRom> MoveDownRomCommand
+        {
+            get => new RelayCommand<GameRom>((rom) =>
+            {
+                MoveRomDown(rom);
+            });
+        }
+
         public RelayCommand<object> SelectInstallDirCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -240,22 +272,6 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 SelectGameImage();
-            });
-        }
-
-        public RelayCommand<object> AddPlayActionCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                AddPlayAction();
-            });
-        }
-
-        public RelayCommand<object> DeletePlayActionCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                RemovePlayAction();
             });
         }
 
@@ -345,6 +361,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 SelectGoogleBackground();
             });
+        }
+
+        public RelayCommand<string> TestScriptCommand
+        {
+            get => new RelayCommand<string>((a) =>
+            {
+                TestScript(a);
+            }, (a) => !a.IsNullOrEmpty());
         }
     }
 }

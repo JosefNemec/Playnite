@@ -7,7 +7,6 @@ using System.Windows.Media.Imaging;
 using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
-using Playnite.SDK.Metadata;
 using Playnite.Common;
 using Playnite.Settings;
 using Playnite.SDK.Plugins;
@@ -17,16 +16,38 @@ using System.Drawing.Imaging;
 using System.Threading;
 using System.Collections.Concurrent;
 using Playnite.Common.Media.Icons;
+using System.Reflection;
 
 namespace Playnite.Database
 {
-    public partial class GameDatabase : IGameDatabase
+    public partial class GameDatabase : IGameDatabase, IDisposable
     {
         public const double MaximumRecommendedIconSize = 0.1;
         public const double MaximumRecommendedCoverSize = 1;
         public const double MaximumRecommendedBackgroundSize = 4;
 
         private static ILogger logger = LogManager.GetLogger();
+
+        private static readonly Dictionary<string, Type> collectionsSpec = new Dictionary<string, Type>
+        {
+            { nameof(Platforms), typeof(PlatformsCollection) },
+            { nameof(Emulators), typeof(EmulatorsCollection) },
+            { nameof(Genres), typeof(GenresCollection) },
+            { nameof(Companies), typeof(CompaniesCollection) },
+            { nameof(Tags), typeof(TagsCollection) },
+            { nameof(Categories), typeof(CategoriesCollection) },
+            { nameof(AgeRatings), typeof(AgeRatingsCollection) },
+            { nameof(Series), typeof(SeriesCollection) },
+            { nameof(Regions), typeof(RegionsCollection) },
+            { nameof(Sources), typeof(GamesSourcesCollection) },
+            { nameof(Features), typeof(FeaturesCollection) },
+            { nameof(SoftwareApps), typeof(AppSoftwareCollection) },
+            { nameof(Games), typeof(GamesCollection) },
+            { nameof(GameScanners), typeof(GameScannersCollection) },
+            { nameof(FilterPresets), typeof(FilterPresetsCollection) },
+            { nameof(ImportExclusions), typeof(ImportExclusionsCollection) },
+            { nameof(CompletionStatuses), typeof(CompletionStatusesCollection) }
+        };
 
         #region Locks
 
@@ -42,6 +63,7 @@ namespace Playnite.Database
             get; private set;
         }
 
+        private const string settingsFileName = "database.json";
         private const string gamesDirName = "games";
         private const string platformsDirName = "platforms";
         private const string emulatorsDirName = "emulators";
@@ -56,7 +78,10 @@ namespace Playnite.Database
         private const string regionsDirName = "regions";
         private const string sourcesDirName = "sources";
         private const string toolsDirName = "tools";
-        private const string settingsFileName = "database.json";
+        private const string gameScannersDirName = "scanners";
+        private const string filterPresetsDirName = "filterpresets";
+        private const string importExclusionsDirName = "importexclusions";
+        private const string completionStatusesDirName = "completionstatuses";
 
         private string GamesDirectoryPath { get => Path.Combine(DatabasePath, gamesDirName); }
         private string PlatformsDirectoryPath { get => Path.Combine(DatabasePath, platformsDirName); }
@@ -73,6 +98,10 @@ namespace Playnite.Database
         private string DatabaseFileSettingsPath { get => Path.Combine(DatabasePath, settingsFileName); }
         private string FeaturesDirectoryPath { get => Path.Combine(DatabasePath, featuresDirName); }
         private string ToolsDirectoryPath { get => Path.Combine(DatabasePath, toolsDirName); }
+        private string GameScannersDirectoryPath { get => Path.Combine(DatabasePath, gameScannersDirName); }
+        private string FilterPresetsDirectoryPath { get => Path.Combine(DatabasePath, filterPresetsDirName); }
+        private string ImportExclusionsDirectoryPath { get => Path.Combine(DatabasePath, importExclusionsDirName); }
+        private string CompletionStatusesDirectoryPath { get => Path.Combine(DatabasePath, completionStatusesDirName); }
 
         #endregion Paths
 
@@ -91,6 +120,10 @@ namespace Playnite.Database
         public IItemCollection<GameSource> Sources { get; private set; }
         public IItemCollection<GameFeature> Features { get; private set; }
         public AppSoftwareCollection SoftwareApps { get; private set; }
+        public IItemCollection<GameScannerConfig> GameScanners { get; private set; }
+        public FilterPresetsCollection FilterPresets { get; private set; }
+        public IItemCollection<ImportExclusionItem> ImportExclusions { get; private set; }
+        public IItemCollection<CompletionStatus> CompletionStatuses { get; private set; }
 
         public List<Guid> UsedPlatforms { get; } = new List<Guid>();
         public List<Guid> UsedGenres { get; } = new List<Guid>();
@@ -103,8 +136,11 @@ namespace Playnite.Database
         public List<Guid> UsedRegions { get; } = new List<Guid>();
         public List<Guid> UsedSources { get; } = new List<Guid>();
         public List<Guid> UsedFeastures { get; } = new List<Guid>();
+        public List<Guid> UsedCompletionStatuses { get; } = new List<Guid>();
 
         #endregion Lists
+
+        public static GameDatabase Instance { get; private set; }
 
         public bool IsOpen
         {
@@ -149,9 +185,7 @@ namespace Playnite.Database
             }
         }
 
-        public static readonly ushort DBVersion = 6;
-
-        public static readonly ushort NewFormatVersion = 2;
+        public static readonly ushort NewFormatVersion = 3;
 
         #region Events
 
@@ -169,6 +203,7 @@ namespace Playnite.Database
         public event EventHandler RegionsInUseUpdated;
         public event EventHandler SourcesInUseUpdated;
         public event EventHandler FeaturesInUseUpdated;
+        public event EventHandler CompletionStatusesInUseUpdated;
 
         #endregion Events
 
@@ -191,6 +226,10 @@ namespace Playnite.Database
                 (Features as FeaturesCollection).InitializeCollection(FeaturesDirectoryPath);
                 (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
+                (GameScanners as GameScannersCollection).InitializeCollection(GameScannersDirectoryPath);
+                FilterPresets.InitializeCollection(FilterPresetsDirectoryPath);
+                (ImportExclusions as ImportExclusionsCollection).InitializeCollection(ImportExclusionsDirectoryPath);
+                (CompletionStatuses as CompletionStatusesCollection).InitializeCollection(CompletionStatusesDirectoryPath);
 
                 Games.ItemUpdated += Games_ItemUpdated;
                 Games.ItemCollectionChanged += Games_ItemCollectionChanged;
@@ -204,6 +243,7 @@ namespace Playnite.Database
                 Regions.ItemCollectionChanged += Regions_ItemCollectionChanged;
                 Sources.ItemCollectionChanged += Sources_ItemCollectionChanged;
                 Features.ItemCollectionChanged += Features_ItemCollectionChanged;
+                CompletionStatuses.ItemCollectionChanged += CompletionStatuses_ItemCollectionChanged;
             }
         }
 
@@ -211,9 +251,9 @@ namespace Playnite.Database
         {
             foreach (var game in Games)
             {
-                if (game.PlatformId != Guid.Empty && Platforms.ContainsItem(game.PlatformId))
+                if (game.PlatformIds.HasItems())
                 {
-                    UsedPlatforms.AddMissing(game.PlatformId);
+                    UsedPlatforms.AddMissing(game.PlatformIds.Where(a => Platforms.ContainsItem(a)));
                 }
 
                 if (game.GenreIds.HasItems())
@@ -241,19 +281,19 @@ namespace Playnite.Database
                     UsedCategories.AddMissing(game.CategoryIds.Where(a => Categories.ContainsItem(a)));
                 }
 
-                if (game.SeriesId != Guid.Empty && Series.ContainsItem(game.SeriesId))
+                if (game.SeriesIds.HasItems())
                 {
-                    UsedSeries.AddMissing(game.SeriesId);
+                    UsedSeries.AddMissing(game.SeriesIds.Where(a => Series.ContainsItem(a)));
                 }
 
-                if (game.AgeRatingId != Guid.Empty && AgeRatings.ContainsItem(game.AgeRatingId))
+                if (game.AgeRatingIds.HasItems())
                 {
-                    UsedAgeRatings.AddMissing(game.AgeRatingId);
+                    UsedAgeRatings.AddMissing(game.AgeRatingIds.Where(a => AgeRatings.ContainsItem(a)));
                 }
 
-                if (game.RegionId != Guid.Empty && Regions.ContainsItem(game.RegionId))
+                if (game.RegionIds.HasItems())
                 {
-                    UsedRegions.AddMissing(game.RegionId);
+                    UsedRegions.AddMissing(game.RegionIds.Where(a => Regions.ContainsItem(a)));
                 }
 
                 if (game.SourceId != Guid.Empty && Sources.ContainsItem(game.SourceId))
@@ -265,6 +305,11 @@ namespace Playnite.Database
                 {
                     UsedFeastures.AddMissing(game.FeatureIds.Where(a => Features.ContainsItem(a)));
                 }
+
+                if (game.CompletionStatusId != Guid.Empty && CompletionStatuses.ContainsItem(game.CompletionStatusId))
+                {
+                    UsedCompletionStatuses.AddMissing(game.CompletionStatusId);
+                }
             }
         }
 
@@ -274,22 +319,51 @@ namespace Playnite.Database
         {
         }
 
+        public static LiteDB.BsonMapper GetCollectionMapper()
+        {
+            var mapper = new LiteDB.BsonMapper()
+            {
+                SerializeNullValues = false,
+                TrimWhitespace = false,
+                EmptyStringToNull = true,
+                IncludeFields = false,
+                IncludeNonPublic = false
+            };
+
+            foreach (var col in collectionsSpec)
+            {
+                col.Value.
+                    GetMethod(nameof(GamesCollection.MapLiteDbEntities), BindingFlags.Public | BindingFlags.Static).
+                    Invoke(null, new object[] { mapper });
+            }
+
+            return mapper;
+        }
+
         public GameDatabase(string path)
         {
+            var mapper = GetCollectionMapper();
             DatabasePath = GetFullDbPath(path);
-            Platforms = new PlatformsCollection(this);
-            Games = new GamesCollection(this);
-            Emulators = new EmulatorsCollection(this);
-            Genres = new GenresCollection(this);
-            Companies = new CompaniesCollection(this);
-            Tags = new TagsCollection(this);
-            Categories = new CategoriesCollection(this);
-            AgeRatings = new AgeRatingsCollection(this);
-            Series = new SeriesCollection(this);
-            Regions = new RegionsCollection(this);
-            Sources = new GamesSourcesCollection(this);
-            Features = new FeaturesCollection(this);
-            SoftwareApps = new AppSoftwareCollection(this);
+
+            foreach (var col in collectionsSpec)
+            {
+                var collection = Activator.CreateInstance(col.Value, this, mapper);
+                typeof(GameDatabase).GetProperty(col.Key).SetValue(this, collection);
+            }
+        }
+
+        public void Dispose()
+        {
+            if (!IsOpen)
+            {
+                return;
+            }
+
+            foreach (var col in collectionsSpec)
+            {
+                var prop = typeof(GameDatabase).GetProperty(col.Key);
+                typeof(IDisposable).GetMethod(nameof(IDisposable.Dispose)).Invoke(prop.GetValue(this), null);
+            }
         }
 
         public static string GetDefaultPath(bool portable)
@@ -412,9 +486,7 @@ namespace Playnite.Database
             if (!dbExists)
             {
                 // Generate default platforms
-                var platforms = EmulatorDefinition.GetDefinitions()
-                    .SelectMany(a => a.Profiles.SelectMany(b => b.Platforms)).Distinct()
-                    .Select(a => new Platform(a)).ToList();
+                var platforms = Emulation.Platforms.Where(a => a.IgdbId != 0).Select(a => new Platform(a.Name) { SpecificationId = a.Id }).ToList();
                 if (platforms.HasItems())
                 {
                     var col = Platforms as ItemCollection<Platform>;
@@ -422,10 +494,89 @@ namespace Playnite.Database
                     col.Add(platforms);
                     col.IsEventsEnabled = true;
                 }
+
+                // Generate default regions
+                var regions = Emulation.Regions.Where(a => a.DefaultImport).Select(a => new Region(a.Name) { SpecificationId = a.Id }).ToList();
+                if (regions.HasItems())
+                {
+                    var col = Regions as ItemCollection<Region>;
+                    col.IsEventsEnabled = false;
+                    col.Add(regions);
+                    col.IsEventsEnabled = true;
+                }
+
+                // Generate default completion statuses
+                var compCol = CompletionStatuses as CompletionStatusesCollection;
+                var defStatuses = new string[] { "Not Played", "Played", "Beaten", "Completed", "Playing", "Abandoned", "On Hold", "Plan to Play" };
+                foreach (var status in defStatuses)
+                {
+                    compCol.IsEventsEnabled = false;
+                    compCol.Add(status);
+                    compCol.IsEventsEnabled = true;
+                }
+
+                var set = new CompletionStatusSettings
+                {
+                    DefaultStatus = compCol.First(a => a.Name == defStatuses[0]).Id,
+                    PlayedStatus = compCol.First(a => a.Name == defStatuses[1]).Id
+                };
+
+                compCol.SetSettings(set);
+
+                // Generate default filter presets
+                FilterPresets.IsEventsEnabled = false;
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "All",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Name,
+                    SortingOrderDirection = SortOrderDirection.Ascending,
+                    Settings = new FilterSettings()
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Recently Played",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.LastActivity,
+                    SortingOrderDirection = SortOrderDirection.Descending,
+                    Settings = new FilterSettings { IsInstalled = true }
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Favorites",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Name,
+                    SortingOrderDirection = SortOrderDirection.Ascending,
+                    Settings = new FilterSettings { Favorite = true }
+                });
+
+                FilterPresets.Add(new FilterPreset
+                {
+                    Name = "Most Played",
+                    ShowInFullscreeQuickSelection = true,
+                    GroupingOrder = GroupableField.None,
+                    SortingOrder = SortOrder.Playtime,
+                    SortingOrderDirection = SortOrderDirection.Descending,
+                    Settings = new FilterSettings()
+                });
+
+                FilterPresets.IsEventsEnabled = true;
             }
 
             IsOpen = true;
-            DatabaseOpened?.Invoke(this, null);
+            if (PlayniteApplication.Current != null)
+            {
+                PlayniteApplication.Current.SyncContext.Send((_) => DatabaseOpened?.Invoke(this, null), null);
+            }
+            else
+            {
+                DatabaseOpened?.Invoke(this, null);
+            }
         }
 
         private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
@@ -434,17 +585,18 @@ namespace Playnite.Database
             {
                 foreach (var game in e.AddedItems)
                 {
-                    UpdateFieldsInUse(game.PlatformId, UsedPlatforms, PlatformsInUseUpdated, Platforms);
+                    UpdateFieldsInUse(game.PlatformIds, UsedPlatforms, PlatformsInUseUpdated, Platforms);
                     UpdateFieldsInUse(game.GenreIds, UsedGenres, GenresInUseUpdated, Genres);
                     UpdateFieldsInUse(game.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated, Companies);
                     UpdateFieldsInUse(game.PublisherIds, UsedPublishers, PublishersInUseUpdated, Companies);
                     UpdateFieldsInUse(game.TagIds, UsedTags, TagsInUseUpdated, Tags);
                     UpdateFieldsInUse(game.CategoryIds, UsedCategories, CategoriesInUseUpdated, Categories);
-                    UpdateFieldsInUse(game.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
-                    UpdateFieldsInUse(game.SeriesId, UsedSeries, SeriesInUseUpdated, Series);
-                    UpdateFieldsInUse(game.RegionId, UsedRegions, RegionsInUseUpdated, Regions);
+                    UpdateFieldsInUse(game.AgeRatingIds, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
+                    UpdateFieldsInUse(game.SeriesIds, UsedSeries, SeriesInUseUpdated, Series);
+                    UpdateFieldsInUse(game.RegionIds, UsedRegions, RegionsInUseUpdated, Regions);
                     UpdateFieldsInUse(game.SourceId, UsedSources, SourcesInUseUpdated, Sources);
                     UpdateFieldsInUse(game.FeatureIds, UsedFeastures, FeaturesInUseUpdated, Features);
+                    UpdateFieldsInUse(game.CompletionStatusId, UsedCompletionStatuses, CompletionStatusesInUseUpdated, CompletionStatuses);
                 }
             }
         }
@@ -453,17 +605,18 @@ namespace Playnite.Database
         {
             foreach (var upd in e.UpdatedItems)
             {
-                UpdateFieldsInUse(upd.NewData.PlatformId, UsedPlatforms, PlatformsInUseUpdated, Platforms);
+                UpdateFieldsInUse(upd.NewData.PlatformIds, UsedPlatforms, PlatformsInUseUpdated, Platforms);
                 UpdateFieldsInUse(upd.NewData.GenreIds, UsedGenres, GenresInUseUpdated, Genres);
                 UpdateFieldsInUse(upd.NewData.DeveloperIds, UsedDevelopers, DevelopersInUseUpdated, Companies);
                 UpdateFieldsInUse(upd.NewData.PublisherIds, UsedPublishers, PublishersInUseUpdated, Companies);
                 UpdateFieldsInUse(upd.NewData.TagIds, UsedTags, TagsInUseUpdated, Tags);
                 UpdateFieldsInUse(upd.NewData.CategoryIds, UsedCategories, CategoriesInUseUpdated, Categories);
-                UpdateFieldsInUse(upd.NewData.AgeRatingId, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
-                UpdateFieldsInUse(upd.NewData.SeriesId, UsedSeries, SeriesInUseUpdated, Series);
-                UpdateFieldsInUse(upd.NewData.RegionId, UsedRegions, RegionsInUseUpdated, Regions);
+                UpdateFieldsInUse(upd.NewData.AgeRatingIds, UsedAgeRatings, AgeRatingsInUseUpdated, AgeRatings);
+                UpdateFieldsInUse(upd.NewData.SeriesIds, UsedSeries, SeriesInUseUpdated, Series);
+                UpdateFieldsInUse(upd.NewData.RegionIds, UsedRegions, RegionsInUseUpdated, Regions);
                 UpdateFieldsInUse(upd.NewData.SourceId, UsedSources, SourcesInUseUpdated, Sources);
                 UpdateFieldsInUse(upd.NewData.FeatureIds, UsedFeastures, FeaturesInUseUpdated, Features);
+                UpdateFieldsInUse(upd.NewData.CompletionStatusId, UsedCompletionStatuses, CompletionStatusesInUseUpdated, CompletionStatuses);
             }
         }
 
@@ -560,6 +713,11 @@ namespace Playnite.Database
             UpdateRemovedFieldsInUse(e.RemovedItems, UsedPlatforms, PlatformsInUseUpdated);
         }
 
+        private void CompletionStatuses_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<CompletionStatus> e)
+        {
+            UpdateRemovedFieldsInUse(e.RemovedItems, UsedCompletionStatuses, CompletionStatusesInUseUpdated);
+        }
+
         #region Files
 
         public string GetFileStoragePath(Guid parentId)
@@ -580,9 +738,9 @@ namespace Playnite.Database
             {
                 return AddFile(file.FileName, file.Content, parentId);
             }
-            else if (!file.OriginalUrl.IsNullOrEmpty())
+            else if (!file.Path.IsNullOrEmpty())
             {
-                return AddFile(file.OriginalUrl, parentId);
+                return AddFile(file.Path, parentId);
             }
             else
             {
@@ -747,33 +905,6 @@ namespace Playnite.Database
 
         #endregion Files
 
-        public void AssignPcPlatform(Game game)
-        {
-            var platform = Platforms.FirstOrDefault(a => a.Name == "PC");
-            if (platform == null)
-            {
-                platform = new Platform("PC");
-                Platforms.Add(platform);
-            }
-
-            game.PlatformId = platform.Id;
-        }
-
-        public void AssignPcPlatform(List<Game> games)
-        {
-            var platform = Platforms.FirstOrDefault(a => a.Name == "PC");
-            if (platform == null)
-            {
-                platform = new Platform("PC");
-                Platforms.Add(platform);
-            }
-
-            foreach (var game in games)
-            {
-                game.PlatformId = platform.Id;
-            }
-        }
-
         public void BeginBufferUpdate()
         {
             Platforms.BeginBufferUpdate();
@@ -789,6 +920,10 @@ namespace Playnite.Database
             Features.BeginBufferUpdate();
             Games.BeginBufferUpdate();
             SoftwareApps.BeginBufferUpdate();
+            GameScanners.BeginBufferUpdate();
+            FilterPresets.BeginBufferUpdate();
+            ImportExclusions.BeginBufferUpdate();
+            CompletionStatuses.BeginBufferUpdate();
         }
 
         public void EndBufferUpdate()
@@ -806,6 +941,10 @@ namespace Playnite.Database
             Features.EndBufferUpdate();
             Games.EndBufferUpdate();
             SoftwareApps.EndBufferUpdate();
+            GameScanners.EndBufferUpdate();
+            FilterPresets.EndBufferUpdate();
+            ImportExclusions.EndBufferUpdate();
+            CompletionStatuses.EndBufferUpdate();
         }
 
         public IDisposable BufferedUpdate()
@@ -813,86 +952,7 @@ namespace Playnite.Database
             return new EventBufferHandler(this);
         }
 
-        private string AddNewGameFile(string path, Guid gameId)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                return null;
-            }
-
-            var fileName = Guid.NewGuid().ToString();
-            if (path.IsHttpUrl())
-            {
-                var url = new Uri(path);
-                fileName += Path.GetExtension(url.AbsolutePath);
-            }
-            else
-            {
-                fileName += Path.GetExtension(path);
-            }
-
-            MetadataFile metaFile = null;
-
-            try
-            {
-                if (path.IsHttpUrl())
-                {
-                    metaFile = new MetadataFile(fileName, HttpDownloader.DownloadData(path));
-                }
-                else
-                {
-                    if (File.Exists(path))
-                    {
-                        if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                        {
-                            using (var ms = new MemoryStream())
-                            {
-                                if (IconExtractor.ExtractMainIconFromFile(path, ms))
-                                {
-                                    fileName = Path.ChangeExtension(fileName, ".ico");
-                                    metaFile = new MetadataFile(fileName, ms.ToArray());
-                                }
-                            }
-                        }
-                        else
-                        {
-                            metaFile = new MetadataFile(fileName, File.ReadAllBytes(path));
-                        }
-                    }
-                    else
-                    {
-                        logger.Error($"Can't add game file during game import, file doesn't exists: {path}");
-                    }
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, $"Failed to import game file during game import from {path}");
-            }
-
-            if (metaFile != null)
-            {
-                if (metaFile.FileName.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
-                {
-                    metaFile.FileName = Path.ChangeExtension(metaFile.FileName, ".png");
-                    var tga = BitmapExtensions.TgaToBitmap(metaFile.Content);
-                    if (tga == null)
-                    {
-                        return null;
-                    }
-                    else
-                    {
-                        metaFile.Content = tga.ToPngArray();
-                    }
-                }
-
-                return AddFile(metaFile, gameId);
-            }
-
-            return null;
-        }
-
-        private Game GameInfoToGame(GameInfo game, Guid pluginId)
+        private Game GameInfoToGame(GameMetadata game, Guid pluginId)
         {
             var toAdd = new Game()
             {
@@ -901,18 +961,16 @@ namespace Playnite.Database
                 GameId = game.GameId,
                 Description = game.Description,
                 InstallDirectory = game.InstallDirectory,
-                GameImagePath = game.GameImagePath,
                 SortingName = game.SortingName,
-                OtherActions = game.OtherActions == null ? null : new ObservableCollection<GameAction>(game.OtherActions),
-                PlayAction = game.PlayAction,
+                GameActions = game.GameActions == null ? null : new ObservableCollection<GameAction>(game.GameActions),
                 ReleaseDate = game.ReleaseDate,
                 Links = game.Links == null ? null : new ObservableCollection<Link>(game.Links),
+                Roms = game.Roms == null ? null : new ObservableCollection<GameRom>(game.Roms),
                 IsInstalled = game.IsInstalled,
                 Playtime = game.Playtime,
                 PlayCount = game.PlayCount,
                 LastActivity = game.LastActivity,
                 Version = game.Version,
-                CompletionStatus = game.CompletionStatus,
                 UserScore = game.UserScore,
                 CriticScore = game.CriticScore,
                 CommunityScore = game.CommunityScore,
@@ -920,9 +978,14 @@ namespace Playnite.Database
                 Favorite = game.Favorite
             };
 
-            if (!game.Platform.IsNullOrEmpty())
+            if (game.Platforms?.Any() == true)
             {
-                toAdd.PlatformId = Platforms.Add(game.Platform).Id;
+                toAdd.PlatformIds = Platforms.Add(game.Platforms).Select(a => a.Id).ToList();
+            }
+
+            if (game.Regions?.Any() == true)
+            {
+                toAdd.RegionIds = Regions.Add(game.Regions).Select(a => a.Id).ToList();
             }
 
             if (game.Developers?.Any() == true)
@@ -955,90 +1018,101 @@ namespace Playnite.Database
                 toAdd.FeatureIds = Features.Add(game.Features).Select(a => a.Id).ToList();
             }
 
-            if (!string.IsNullOrEmpty(game.AgeRating))
+            if (game.AgeRatings?.Any() == true)
             {
-                toAdd.AgeRatingId = AgeRatings.Add(game.AgeRating).Id;
+                toAdd.AgeRatingIds = AgeRatings.Add(game.AgeRatings).Select(a => a.Id).ToList();
             }
 
-            if (!string.IsNullOrEmpty(game.Series))
+            if (game.Series?.Any() == true)
             {
-                toAdd.SeriesId = Series.Add(game.Series).Id;
+                toAdd.SeriesIds = Series.Add(game.Series).Select(a => a.Id).ToList();
             }
 
-            if (!string.IsNullOrEmpty(game.Region))
-            {
-                toAdd.RegionId = Regions.Add(game.Region).Id;
-            }
-
-            if (!string.IsNullOrEmpty(game.Source))
+            if (game.Source != null)
             {
                 toAdd.SourceId = Sources.Add(game.Source).Id;
             }
 
+            if (game.CompletionStatus != null)
+            {
+                toAdd.CompletionStatusId = CompletionStatuses.Add(game.CompletionStatus).Id;
+            }
+
             return toAdd;
         }
 
-        public Game ImportGame(GameInfo game)
+        public Game ImportGame(GameMetadata game)
         {
             return ImportGame(game, Guid.Empty);
         }
 
-        public Game ImportGame(GameInfo game, LibraryPlugin sourcePlugin)
+        public Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin)
         {
             return ImportGame(game, sourcePlugin.Id);
         }
 
-        public Game ImportGame(GameInfo game, Guid pluginId)
+        public Game ImportGame(GameMetadata game, Guid pluginId)
         {
             var toAdd = GameInfoToGame(game, pluginId);
-            toAdd.Icon = AddNewGameFile(game.Icon, toAdd.Id);
-            toAdd.CoverImage = AddNewGameFile(game.CoverImage, toAdd.Id);
-            toAdd.BackgroundImage = AddNewGameFile(game.BackgroundImage, toAdd.Id);
+
+            if (game.Icon != null)
+            {
+                toAdd.Icon = AddFile(game.Icon, toAdd.Id);
+            }
+
+            if (game.CoverImage != null)
+            {
+                toAdd.CoverImage = AddFile(game.CoverImage, toAdd.Id);
+            }
+
+            if (game.BackgroundImage != null)
+            {
+                toAdd.BackgroundImage = AddFile(game.BackgroundImage, toAdd.Id);
+            }
+
+            toAdd.IncludeLibraryPluginAction = true;
             Games.Add(toAdd);
             return toAdd;
         }
 
-        public Game ImportGame(GameMetadata metadata)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken)
         {
-            var toAdd = GameInfoToGame(metadata.GameInfo, Guid.Empty);
-            if (metadata.Icon != null)
+            var statusSettings = GetCompletionStatusSettings();
+            bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
             {
-                toAdd.Icon = AddFile(metadata.Icon, toAdd.Id);
-            }
-
-            if (metadata.CoverImage != null)
-            {
-                toAdd.CoverImage = AddFile(metadata.CoverImage, toAdd.Id);
-            }
-
-            if (metadata.BackgroundImage != null)
-            {
-                if (metadata.BackgroundImage.Content == null)
+                var updated = false;
+                if ((game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus)) &&
+                    game.CompletionStatusId != statusSettings.PlayedStatus)
                 {
-                    toAdd.BackgroundImage = metadata.BackgroundImage.OriginalUrl;
+                    game.CompletionStatusId = statusSettings.PlayedStatus;
+                    updated = true;
                 }
-                else
+                else if ((game.Playtime == 0 && game.CompletionStatusId == Guid.Empty) &&
+                    game.CompletionStatusId != statusSettings.DefaultStatus)
                 {
-                    toAdd.BackgroundImage = AddFile(metadata.BackgroundImage, toAdd.Id);
+                    game.CompletionStatusId = statusSettings.DefaultStatus;
+                    updated = true;
                 }
+
+                return updated;
             }
 
-            Games.Add(toAdd);
-            return toAdd;
-        }
-
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, IList<ImportExclusionItem> excludedItems)
-        {
-            if (library.Capabilities?.HasCustomizedGameImport == true)
+            if (library.Properties?.HasCustomizedGameImport == true)
             {
-                return library.ImportGames()?.ToList() ?? new List<Game>();
+                var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
+                foreach (var game in importedGames)
+                {
+                    updateCompletionStatus(game, statusSettings);
+                }
+
+                return importedGames;
             }
             else
             {
                 var addedGames = new List<Game>();
-                foreach (var newGame in library.GetGames())
+                foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
                 {
-                    if (excludedItems.Any(a => a.GameId == newGame.GameId && a.LibraryId == library.Id))
+                    if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
                     {
                         logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
                         continue;
@@ -1050,7 +1124,12 @@ namespace Playnite.Database
                         logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
                         try
                         {
-                            addedGames.Add(ImportGame(newGame, library.Id));
+                            var importedGame = ImportGame(newGame, library.Id);
+                            addedGames.Add(importedGame);
+                            if (updateCompletionStatus(importedGame, statusSettings))
+                            {
+                                Games.Update(importedGame);
+                            }
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
@@ -1059,39 +1138,75 @@ namespace Playnite.Database
                     }
                     else
                     {
-                        existingGame.IsInstalled = newGame.IsInstalled;
-                        existingGame.InstallDirectory = newGame.InstallDirectory;
-                        if (existingGame.PlayAction == null || existingGame.PlayAction.IsHandledByPlugin)
+                        var existingGameUpdated = false;
+                        if (existingGame.IsInstalled != newGame.IsInstalled)
                         {
-                            existingGame.PlayAction = newGame.PlayAction;
+                            existingGame.IsInstalled = newGame.IsInstalled;
+                            existingGameUpdated = true;
+                        }
+
+                        if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
+                        {
+                            existingGame.InstallDirectory = newGame.InstallDirectory;
+                            existingGameUpdated = true;
                         }
 
                         if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
                            (newGame.Playtime > 0 && forcePlayTimeSync))
                         {
-                            existingGame.Playtime = newGame.Playtime;
-                            if (existingGame.CompletionStatus == CompletionStatus.NotPlayed)
+                            if (existingGame.Playtime != newGame.Playtime)
                             {
-                                existingGame.CompletionStatus = CompletionStatus.Played;
+                                existingGame.Playtime = newGame.Playtime;
+                                existingGameUpdated = true;
                             }
 
                             if (existingGame.LastActivity == null && newGame.LastActivity != null)
                             {
                                 existingGame.LastActivity = newGame.LastActivity;
+                                existingGameUpdated = true;
+                            }
+
+                            if (updateCompletionStatus(existingGame, statusSettings))
+                            {
+                                existingGameUpdated = true;
                             }
                         }
 
-                        if (existingGame.OtherActions?.Any() != true && newGame.OtherActions?.Any() == true)
+                        if (!existingGame.GameActions.HasItems() && newGame.GameActions.HasItems())
                         {
-                            existingGame.OtherActions = new ObservableCollection<GameAction>(newGame.OtherActions);
+                            existingGame.GameActions = new ObservableCollection<GameAction>(newGame.GameActions);
+                            existingGameUpdated = true;
                         }
 
-                        Games.Update(existingGame);
+                        if (existingGameUpdated)
+                        {
+                            Games.Update(existingGame);
+                        }
                     }
                 }
 
                 return addedGames;
             }
+        }
+
+        public CompletionStatusSettings GetCompletionStatusSettings()
+        {
+            return (CompletionStatuses as CompletionStatusesCollection).GetSettings();
+        }
+
+        public void SetCompletionStatusSettings(CompletionStatusSettings settings)
+        {
+            (CompletionStatuses as CompletionStatusesCollection).SetSettings(settings);
+        }
+
+        public GameScannersSettings GetGameScannersSettings()
+        {
+            return (GameScanners as GameScannersCollection).GetSettings();
+        }
+
+        public void SetGameScannersSettings(GameScannersSettings settings)
+        {
+            (GameScanners as GameScannersCollection).SetSettings(settings);
         }
 
         public static void GenerateSampleData(IGameDatabase database)
@@ -1110,19 +1225,19 @@ namespace Playnite.Database
 
             var designGame = new Game($"Star Wars: Knights of the Old Republic")
             {
-                ReleaseDate = new DateTime(2009, 9, 5),
-                PlatformId = database.Platforms.First().Id,
+                ReleaseDate = new ReleaseDate(2009, 9, 5),
+                PlatformIds = new List<Guid> { database.Platforms.First().Id },
                 PlayCount = 20,
                 Playtime = 115200,
                 LastActivity = DateTime.Today,
                 IsInstalled = true,
-                AgeRatingId = database.AgeRatings.First().Id,
+                AgeRatingIds =  new List<Guid> { database.AgeRatings.First().Id },
                 CategoryIds = new List<Guid> { database.Categories.First().Id },
                 DeveloperIds = new List<Guid> { database.Companies.First().Id },
                 PublisherIds = new List<Guid> { database.Companies.Last().Id },
                 GenreIds = new List<Guid> { database.Genres.First().Id },
-                RegionId = database.Regions.First().Id,
-                SeriesId = database.Series.First().Id,
+                RegionIds =  new List<Guid> { database.Regions.First().Id },
+                SeriesIds = new List<Guid> { database.Series.First().Id },
                 SourceId = database.Sources.First().Id,
                 TagIds = new List<Guid> { database.Tags.First().Id },
                 FeatureIds = new List<Guid> { database.Features.First().Id },
@@ -1154,6 +1269,44 @@ namespace Playnite.Database
         private void ReleaseFileLock(string filePath)
         {
             fileLocks.TryRemove(filePath, out var removed);
+        }
+
+        public List<string> GetImportedRomFiles()
+        {
+            var importedRoms = new List<string>();
+            foreach (var game in Games.Where(a => a.Roms.HasItems()))
+            {
+                foreach (var rom in game.Roms)
+                {
+                    var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
+                    string absPath = null;
+                    try
+                    {
+                        absPath = Path.GetFullPath(path);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to get absolute ROM path:\n{rom.Path}\n{path}");
+                    }
+
+                    if (!absPath.IsNullOrEmpty())
+                    {
+                        importedRoms.AddMissing(absPath);
+                    }
+                }
+            }
+
+            return importedRoms;
+        }
+
+        public void SetAsSingletonInstance()
+        {
+            if (Instance != null)
+            {
+                throw new Exception("Database singleton intance already exists.");
+            }
+
+            Instance = this;
         }
     }
 }

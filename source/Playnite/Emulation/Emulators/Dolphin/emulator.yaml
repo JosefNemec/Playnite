@@ -1,0 +1,14 @@
+Id: dolphin
+Name: Dolphin
+Website: 'https://dolphin-emu.org/'
+Profiles:
+  - Name: Nintendo GameCube
+    StartupArguments: '--exec="{ImagePath}" --batch'
+    Platforms: [nintendo_gamecube]
+    ImageExtensions: [elf, dol, gcm, tgc, ciso, gcz, iso, wad, dff, rvz]
+    StartupExecutable: ^Dolphin\.exe$
+  - Name: Nintendo Wii
+    StartupArguments: '--exec="{ImagePath}" --batch'
+    Platforms: [nintendo_wii]
+    ImageExtensions: [elf, dol, tgc, wbfs, ciso, gcz, iso, wad, dff, rvz, wia]
+    StartupExecutable: ^Dolphin\.exe$

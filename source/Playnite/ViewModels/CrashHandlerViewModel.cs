@@ -42,6 +42,17 @@ namespace Playnite.ViewModels
             }
         }
 
+        private bool showDisableCheck;
+        public bool ShowDisableCheck
+        {
+            get => showDisableCheck;
+            set
+            {
+                showDisableCheck = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string ExtCrashDescription { get; set; }
 
         public RelayCommand<object> CreateDiagPackageCommand
@@ -51,7 +62,7 @@ namespace Playnite.ViewModels
                 CreateDiagPackage(new DiagnosticPackageInfo
                 {
                     IsCrashPackage = true,
-                    PlayniteVersion = Updater.GetCurrentVersion().ToString(4)
+                    PlayniteVersion = Updater.CurrentVersion.ToString(4)
                 });
             });
         }
@@ -122,9 +133,18 @@ namespace Playnite.ViewModels
             this.mode = mode;
             this.exInfo = exInfo;
             this.settings = settings;
-            ExtCrashDescription = resources.
-                GetString(mode == ApplicationMode.Desktop ? "LOCExtCrashDescription" : "LOCExtCrashDescriptionFS").
-                Format(exInfo.CrashExtension.Name);
+            if (exInfo.CrashExtension == null)
+            {
+                ShowDisableCheck = false;
+                ExtCrashDescription = resources.GetString(LOC.ExtCrashDescriptionUknown);
+            }
+            else
+            {
+                ShowDisableCheck = true;
+                ExtCrashDescription = resources.
+                    GetString(mode == ApplicationMode.Desktop ? LOC.ExtCrashDescription : LOC.ExtCrashDescriptionFS).
+                    Format(exInfo.CrashExtension.Name);
+            }
         }
 
         public void OpenView()
@@ -158,9 +178,9 @@ namespace Playnite.ViewModels
 
         public void RestartApp()
         {
-            if (exInfo?.IsExtensionCrash == true && DisableExtension)
+            if (exInfo?.CrashExtension != null && exInfo?.IsExtensionCrash == true && DisableExtension)
             {
-                settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.DirectoryName);
+                settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.Id);
                 settings.SaveSettings();
             }
 
@@ -201,65 +221,73 @@ namespace Playnite.ViewModels
             string crashDescription = null,
             DiagnosticPackageInfo packageInfo = null)
         {
-            var diagPath = Path.Combine(PlaynitePaths.TempPath, "diag.zip");
-            if (packageInfo == null)
+            try
             {
-                packageInfo = new DiagnosticPackageInfo
+                var diagPath = Path.Combine(PlaynitePaths.TempPath, "diag.zip");
+                if (packageInfo == null)
                 {
-                    IsCrashPackage = false,
-                    PlayniteVersion = Updater.GetCurrentVersion().ToString(4)
-                };
-            }
+                    packageInfo = new DiagnosticPackageInfo
+                    {
+                        IsCrashPackage = false,
+                        PlayniteVersion = Updater.CurrentVersion.ToString(4)
+                    };
+                }
 
-            var genResult = GlobalProgress.ActivateProgress((_) =>
-                Diagnostic.CreateDiagPackage(diagPath, crashDescription, packageInfo),
-                new GlobalProgressOptions("LOCDiagGenerating"));
-            if (genResult.Result != true)
-            {
-                logger.Error(genResult.Error, "Failed to created diagnostics package.");
-                dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageCreationError"), "");
-                return;
-            }
-
-            var mode = PlayniteApplication.Current.Mode;
-            if (PlayniteEnvironment.InOfflineMode && mode == ApplicationMode.Desktop)
-            {
-                Explorer.NavigateToFileSystemEntry(diagPath);
-                return;
-            }
-
-            var uploadedId = Guid.Empty;
-            var uploadResult = GlobalProgress.ActivateProgress((_) =>
-                uploadedId = new ServicesClient().UploadDiagPackage(diagPath),
-                new GlobalProgressOptions("LOCDiagUploading"));
-            if (uploadResult.Result == true)
-            {
-                if (mode == ApplicationMode.Desktop)
+                var genResult = GlobalProgress.ActivateProgress((_) =>
+                    Diagnostic.CreateDiagPackage(diagPath, crashDescription, packageInfo),
+                    new GlobalProgressOptions("LOCDiagGenerating"));
+                if (genResult.Result != true)
                 {
-                    dialogs.ShowSelectableString(ResourceProvider.GetString("LOCDiagPackageCreationSuccess"), "", uploadedId.ToString());
+                    logger.Error(genResult.Error, "Failed to created diagnostics package.");
+                    dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageCreationError"), "");
+                    return;
+                }
+
+                var mode = PlayniteApplication.Current.Mode;
+                if (PlayniteEnvironment.InOfflineMode && mode == ApplicationMode.Desktop)
+                {
+                    Explorer.NavigateToFileSystemEntry(diagPath);
+                    return;
+                }
+
+                var uploadedId = Guid.Empty;
+                var uploadResult = GlobalProgress.ActivateProgress((_) =>
+                    uploadedId = new ServicesClient().UploadDiagPackage(diagPath),
+                    new GlobalProgressOptions("LOCDiagUploading"));
+                if (uploadResult.Result == true)
+                {
+                    if (mode == ApplicationMode.Desktop)
+                    {
+                        dialogs.ShowSelectableString(ResourceProvider.GetString("LOCDiagPackageCreationSuccess"), "", uploadedId.ToString());
+                    }
+                    else
+                    {
+                        dialogs.ShowMessage(ResourceProvider.GetString("LOCDiagPackageSentSuccess"));
+                    }
                 }
                 else
                 {
-                    dialogs.ShowMessage(ResourceProvider.GetString("LOCDiagPackageSentSuccess"));
+                    logger.Error(uploadResult.Error, "Failed to upload diag package.");
+                    dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageUploadError"), "");
+                    if (mode == ApplicationMode.Desktop)
+                    {
+                        Explorer.NavigateToFileSystemEntry(diagPath);
+                    }
                 }
             }
-            else
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(uploadResult.Error, "Failed to upload diag package.");
-                dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageUploadError"), "");
-                if (mode == ApplicationMode.Desktop)
-                {
-                    Explorer.NavigateToFileSystemEntry(diagPath);
-                }
+                logger.Error(e, "Failed to process CreateDiagPackage");
+                dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCDiagPackageCreationError"), "");
             }
         }
 
         private void SaveLog()
         {
-            var targetPath = dialogs.SaveFile("Log file|*.log", true);
+            var targetPath = dialogs.SaveFile("zip file|*.zip", true);
             if (!targetPath.IsNullOrEmpty())
             {
-                File.Copy(PlaynitePaths.LogPath, targetPath, true);
+                Diagnostic.CreateLogPackage(targetPath);
             }
         }
     }

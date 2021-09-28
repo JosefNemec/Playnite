@@ -127,13 +127,13 @@
                                                 <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center" />
 
                                                 <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
-                                                <TextBlock Name="PART_TextCompletionStatus" VerticalAlignment="Center" />
+                                                <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" />
 
                                                 <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                                 <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />
 
                                                 <Label Name="PART_ElemPlatform" Content="{DynamicResource LOCPlatformTitle}" />
-                                                <Button Name="PART_ButtonPlatform" VerticalAlignment="Center" />
+                                                <ItemsControl Name="PART_ItemsPlatforms" />
 
                                                 <Label Name="PART_ElemGenres" Content="{DynamicResource LOCGenreLabel}" />
                                                 <ItemsControl Name="PART_ItemsGenres"  />
@@ -157,16 +157,16 @@
                                                 <ItemsControl Name="PART_ItemsTags" />
 
                                                 <Label Name="PART_ElemAgeRating" Content="{DynamicResource LOCAgeRatingLabel}" />
-                                                <Button Name="PART_ButtonAgeRating" VerticalAlignment="Center" />
+                                                <ItemsControl Name="PART_ItemsAgeRatings" />
 
                                                 <Label Name="PART_ElemSeries" Content="{DynamicResource LOCSeriesLabel}" />
-                                                <Button Name="PART_ButtonSeries" VerticalAlignment="Center" />
+                                                <ItemsControl Name="PART_ItemsSeries" />
 
                                                 <Label Name="PART_ElemSource" Content="{DynamicResource LOCSourceLabel}" />
                                                 <Button Name="PART_ButtonSource" VerticalAlignment="Center" />
 
                                                 <Label Name="PART_ElemRegion" Content="{DynamicResource LOCRegionLabel}" />
-                                                <Button Name="PART_ButtonRegion" VerticalAlignment="Center" />
+                                                <ItemsControl Name="PART_ItemsRegions" />
 
                                                 <Label Name="PART_ElemVersion" Content="{DynamicResource LOCVersionLabel}" />
                                                 <Button Name="PART_ButtonVersion" VerticalAlignment="Center" />

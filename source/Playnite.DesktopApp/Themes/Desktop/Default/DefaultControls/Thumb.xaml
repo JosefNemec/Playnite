@@ -7,14 +7,16 @@
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type Thumb}">
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
         <Setter Property="Background" Value="{DynamicResource NormalBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Grid>
                         <Rectangle x:Name="HoverRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                   Width="Auto" Height="Auto" RadiusX="3" RadiusY="4"
-                                   Stroke="{x:Null}" Margin="4.5,1,4.5,1" MinHeight="10"
+                                   Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" RadiusX="3" RadiusY="4"
+                                   Stroke="{x:Null}" Margin="0" MinHeight="10"
                                    Fill="{TemplateBinding Background}" />
                     </Grid>
                     <ControlTemplate.Triggers>

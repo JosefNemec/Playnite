@@ -96,9 +96,6 @@
             </ComboBox>
         </controls:GridEx>
 
-        <CheckBox Content="{DynamicResource LOCSettingsShowSteamFriendsButton}" Margin="0,15,0,0"
-                  Name="CheckShowSteamFriends" IsChecked="{Binding Settings.ShowSteamFriendsButton}"/>
-
         <CheckBox Content="{DynamicResource LOCSettingsHiddenInQuickLaunch}" Margin="0,15,0,0"
                   ToolTip="{DynamicResource LOCSettingsHiddenInQuickLaunchTooltip}"
                   IsChecked="{Binding Settings.ShowHiddenInQuickLaunch}"/>
@@ -106,7 +103,7 @@
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCSettingsQuicLaunchItems}"
                        VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <pctrls:NullableIntBox MinValue="0" MaxValue="99" Width="50"
+            <pctrls:NullIntNumericBox MinValue="0" MaxValue="99" Width="50"
                                    Value="{Binding Settings.QuickLaunchItems}"/>
         </StackPanel>
 
@@ -115,7 +112,7 @@
                             ContentStringFormat="{}{0} *" VerticalAlignment="Top" />
             <UniformGrid Rows="2">
                 <UniformGrid.Resources>
-                    <Style TargetType="pctrls:NullableIntBox" BasedOn="{StaticResource {x:Type pctrls:NullableIntBox}}">
+                    <Style TargetType="pctrls:NullIntNumericBox" BasedOn="{StaticResource {x:Type pctrls:NullIntNumericBox}}">
                         <Setter Property="Margin" Value="5,0,5,0" />
                         <Setter Property="Width" Value="50" />
                         <Setter Property="MinValue" Value="9" />
@@ -128,11 +125,11 @@
                 <TextBlock Text="{DynamicResource LOCFontLarger}" Margin="5,0,5,0"/>
                 <TextBlock Text="{DynamicResource LOCFontLargest}" Margin="5,0,5,0"/>
 
-                <pctrls:NullableIntBox Value="{Binding Settings.FontSizeSmall}"/>
-                <pctrls:NullableIntBox Value="{Binding Settings.FontSize}"/>
-                <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLarge}"/>
-                <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLarger}"/>
-                <pctrls:NullableIntBox Value="{Binding Settings.FontSizeLargest}"/>
+                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeSmall}"/>
+                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSize}"/>
+                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLarge}"/>
+                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLarger}"/>
+                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLargest}"/>
             </UniformGrid>
 
             <Button Content="{DynamicResource LOCDefault}" VerticalAlignment="Bottom"

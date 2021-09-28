@@ -1,0 +1,165 @@
+Id: bizhawk
+Name: BizHawk
+Website: 'http://tasvideos.org/Bizhawk.html/'
+Profiles:
+  - Name: Apple II
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [apple_2]
+    ImageExtensions: [dsk, do, po, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Atari 2600
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [atari_2600]
+    ImageExtensions: [a26, zip, rar, 7z, gz, bin]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Atari 7800
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [atari_7800]
+    ImageExtensions: [a78, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Atari Lynx
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [atari_lynx]
+    ImageExtensions: [lnx, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Coleco ColecoVision
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [coleco_vision]
+    ImageExtensions: [col, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Commodore 64
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [commodore_64]
+    ImageExtensions: [prg, d64, g64, crt, tap, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Mattel Intellivision
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [mattel_intellivision]
+    ImageExtensions: [int, bin, rom, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: NEC TurboGrafx 16
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nec_turbografx_16]
+    ImageExtensions: [pce, cue, ccd, mds, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: NEC TurboGrafx-CD
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nec_turbografx_cd]
+    ImageExtensions: [cue, ccd, mds]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Nintendo Entertainment System
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [nes, fds, unf, nsf, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Nintendo Game Boy
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_gameboy]
+    ImageExtensions: [gb, sgb, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Nintendo Game Boy Color
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_gameboycolor]
+    ImageExtensions: [gbc, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Nintendo Game Boy Advance
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [gba, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Nintendo Virtual Boy
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_virtualboy]
+    ImageExtensions: [vb, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Nintendo 64
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_64]
+    ImageExtensions: [z64, v64, n64, zip]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: PC Engine SuperGrafx
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nec_supergrafx]
+    ImageExtensions: [sgx, zip, rar, 7z, gz, pce]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Sega Game Gear
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sega_gamegear]
+    ImageExtensions: [gg, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Sega Genesis
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sega_genesis]
+    ImageExtensions: [gen, md, smd, 32x, bin, cue, ccd, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Sega Master System
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sega_mastersystem]
+    ImageExtensions: [sms, gg, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Sega Saturn
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sega_saturn]
+    ImageExtensions: [iso, bin, cue]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: SNK Neo Geo Pocket
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [snk_neogeopocket]
+    ImageExtensions: [ngp, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: SNK Neo Geo Pocket Color
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [snk_neogeopocket_color]
+    ImageExtensions: [ngc, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Sony PlayStation
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sony_playstation]
+    ImageExtensions: [cue, ccd, mds, m3u]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Super Nintendo Entertainment System
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [smc, sfc, xml, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: WonderSwan
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [bandai_wonderswan]
+    ImageExtensions: [ws, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: WonderSwan Color
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [bandai_wonderswan_color]
+    ImageExtensions: [wsc, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Sinclair ZX Spectrum
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sinclair_zxspectrum]
+    ImageExtensions: [tzx, tap, dsk, pzx, csw, wav, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$

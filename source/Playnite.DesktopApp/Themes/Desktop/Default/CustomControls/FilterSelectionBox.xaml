@@ -1,0 +1,94 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <ControlTemplate x:Key="FilterSelectionBoxTemplate" TargetType="{x:Type FilterSelectionBoxBase}">
+        <Border BorderThickness="{DynamicResource ControlBorderThickness}"
+                CornerRadius="{DynamicResource ControlCornerRadius}"
+                Style="{DynamicResource HighlightBorder}"
+                Background="{TemplateBinding Background}"
+                x:Name="Root">
+            <Grid>
+                <DockPanel>
+                    <Viewbox Margin="0,0,2,0" DockPanel.Dock="Right">
+                        <TextBlock Text="6" FontFamily="Marlett"
+                                   Foreground="{DynamicResource GlyphBrush}"
+                                   VerticalAlignment="Center"/>
+                    </Viewbox>
+                    <TextBlock x:Name="PART_TextFilterString"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" 
+                               VerticalAlignment="Center" DockPanel.Dock="Left"
+                               Margin="5,0,0,0"/>
+                </DockPanel>
+                <ToggleButton x:Name="MainToggle"
+                              BorderThickness="0" Focusable="False"
+                              HorizontalContentAlignment="Stretch"
+                              Background="Transparent">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                        <Border Background="Transparent">
+                                            <ContentPresenter />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
+                <TextBox x:Name="PART_TextFilterInput" BorderThickness="0"
+                         VerticalAlignment="Center" Margin="1,0,30,0"/>
+                <Button x:Name="PART_ButtonClearFilter"
+                        Margin="0,0,20,0" FontSize="18"
+                        Background="Transparent" HorizontalAlignment="Right"
+                        BorderThickness="0" Padding="3,0,3,0"
+                        ContentTemplate="{DynamicResource ClearTextIconTemplate}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
+                       IsOpen="{Binding IsChecked, ElementName=MainToggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
+                       MaxHeight="300" MinWidth="{Binding ActualWidth, ElementName=MainToggle}">
+                    <Border Background="{DynamicResource PopupBackgroundBrush}"
+                            BorderThickness="{DynamicResource PopupBorderThickness}"
+                            BorderBrush="{DynamicResource PopupBorderBrush}">
+                        <ItemsControl x:Name="PART_ItemsPanel" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="FilterSelectionBoxItemStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="Padding" Value="5" />
+    </Style>
+
+    <Style TargetType="{x:Type FilterEnumSelectionBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
+    </Style>
+    
+    <Style TargetType="{x:Type FilterStringSelectionBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
+    </Style>
+
+    <Style TargetType="{x:Type FilterSelectionBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
+    </Style>
+</ResourceDictionary>

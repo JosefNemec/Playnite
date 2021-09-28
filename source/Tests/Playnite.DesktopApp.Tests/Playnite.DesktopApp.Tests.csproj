@@ -67,16 +67,12 @@
     <Compile Include="TestsSetupClass.cs" />
     <Compile Include="ViewModels\DatabaseFieldsManagerViewModelTests.cs" />
     <Compile Include="ViewModels\GameEditViewModelTests.cs" />
-    <Compile Include="ViewModels\MainViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{DEB1B9F3-6FC9-4185-8DAA-4FCA15B46F83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Playnite.DesktopApp\Playnite.DesktopApp.csproj">
       <Project>{26dcc539-e67f-4cb5-970f-f02c1f5c6e00}</Project>
       <Name>Playnite.DesktopApp</Name>

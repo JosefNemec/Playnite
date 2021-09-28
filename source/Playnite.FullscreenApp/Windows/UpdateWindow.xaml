@@ -14,7 +14,7 @@
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
-        Style="{StaticResource MessageBoxWindowStyle}"
+        Style="{StaticResource ChildWindowStyle}"
         d:DesignWidth="1920" d:DesignHeight="1080">
     
     <c:WindowBase.InputBindings>
@@ -24,11 +24,11 @@
     </c:WindowBase.InputBindings>
 
     <Viewbox>
-        <Grid Height="1080">
+        <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -75,12 +75,12 @@
                              Visibility="{Binding ShowProgress, Converter={pcon:BooleanToVisibilityConverter}}"
                              DockPanel.Dock="Top" Margin="5"/>
                     <pctrls:ButtonEx x:Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
-                            Style="{StaticResource ButtonMessageBox}"
+                            Style="{StaticResource MessageBoxButton}"
                             IsEnabled="{Binding ShowProgress, Converter={pcon:NegateConverter}}"
                             Command="{Binding CloseCommand}" />
                     <pctrls:ButtonEx x:Name="ButtonInstall" Content="{DynamicResource LOCUpdaterInstallUpdate}" DockPanel.Dock="Right"
                             pbeh:FocusBahaviors.OnVisibilityFocus="True"
-                            Style="{StaticResource ButtonMessageBox}"
+                            Style="{StaticResource MessageBoxButton}"
                             IsEnabled="{Binding ShowProgress, Converter={pcon:NegateConverter}}"
                             Command="{Binding InstallUpdateCommand}"/>
                 </DockPanel>

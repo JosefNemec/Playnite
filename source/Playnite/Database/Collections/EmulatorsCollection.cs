@@ -12,20 +12,38 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        public EmulatorsCollection(GameDatabase database) : base(type: GameDatabaseCollection.Emulators)
+        public EmulatorsCollection(GameDatabase database, LiteDB.BsonMapper mapper) : base(mapper, type: GameDatabaseCollection.Emulators)
         {
             db = database;
+        }
+
+        public static void MapLiteDbEntities(LiteDB.BsonMapper mapper)
+        {
+            mapper.Entity<Emulator>().
+                Id(a => a.Id, false).
+                Ignore(a => a.SelectableProfiles).
+                Ignore(a => a.AllProfiles);
+            mapper.Entity<BuiltInEmulatorProfile>().
+                Ignore(a => a.Type);
+            mapper.Entity<CustomEmulatorProfile>().
+                Ignore(a => a.Type);
         }
 
         private void RemoveUsage(Guid id)
         {
             foreach (var game in db.Games)
             {
-                if (game.PlayAction?.Type == GameActionType.Emulator && game.PlayAction?.EmulatorId == id)
+                if (game.GameActions.HasItems())
                 {
-                    game.PlayAction.EmulatorId = Guid.Empty;
-                    game.PlayAction.EmulatorProfileId = Guid.Empty;
-                    db.Games.Update(game);
+                    foreach (var action in game.GameActions)
+                    {
+                        if (action?.Type == GameActionType.Emulator && action?.EmulatorId == id)
+                        {
+                            action.EmulatorId = Guid.Empty;
+                            action.EmulatorProfileId = null;
+                            db.Games.Update(game);
+                        }
+                    }
                 }
             }
         }

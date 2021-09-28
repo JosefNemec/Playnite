@@ -3,7 +3,6 @@ using Playnite.Database;
 using Playnite.Controllers;
 using Playnite.Scripting;
 using Playnite.SDK;
-using Playnite.SDK.Events;
 using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using System;
@@ -15,10 +14,30 @@ using System.Text;
 using System.Threading.Tasks;
 using Playnite.Common;
 using Playnite.SDK.Models;
-using System.IO.Compression;
+using Playnite.SDK.Events;
 
 namespace Playnite.Plugins
 {
+    public class ExtensionsStatusBinder
+    {
+        public class Status : ObservableObject
+        {
+            private bool isInstalled;
+            public bool IsInstalled { get => isInstalled; set => SetValue(ref isInstalled, value); }
+        }
+
+        public Status this[string pluginId]
+        {
+            get
+            {
+                var plugin = PlayniteApplication.Current.Extensions?.Plugins.FirstOrDefault(a => a.Value.Description.Id == pluginId).Value;
+                return new Status { IsInstalled = plugin != null };
+            }
+
+            set { throw new NotSupportedException(); }
+        }
+    }
+
     public class LoadedPlugin
     {
         public Plugin Plugin { get; }
@@ -31,13 +50,20 @@ namespace Playnite.Plugins
         }
     }
 
+    public enum AddonLoadError
+    {
+        None,
+        Uknown,
+        SDKVersion
+    }
+
     public class ExtensionFactory : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
         private IGameDatabase database;
         private GameControllerFactory controllers;
 
-        public List<ExtensionManifest> FailedExtensions { get; } = new List<ExtensionManifest>();
+        public List<(ExtensionManifest manifest, AddonLoadError error)> FailedExtensions { get; } = new List<(ExtensionManifest manifest, AddonLoadError error)>();
 
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
@@ -54,63 +80,15 @@ namespace Playnite.Plugins
             get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.MetadataProvider).Select(a => (MetadataPlugin)a.Value.Plugin).ToList();
         }
 
-        public List<Plugin> GenericPlugins
+        public List<GenericPlugin> GenericPlugins
         {
-            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.GenericPlugin).Select(a => (Plugin)a.Value.Plugin).ToList();
+            get => Plugins.Where(a => a.Value.Description.Type == ExtensionType.GenericPlugin).Select(a => (GenericPlugin)a.Value.Plugin).ToList();
         }
 
         public  List<PlayniteScript> Scripts
         {
             get; private set;
         } =  new List<PlayniteScript>();
-
-        public bool HasExportedFunctions
-        {
-            get => ExportedFunctions?.Any() == true;
-        }
-
-        private List<ScriptFunctionExport> scriptFunctions;
-        public List<ScriptFunctionExport> ScriptFunctions
-        {
-            get => scriptFunctions;
-            set
-            {
-                scriptFunctions = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ExportedFunctions));
-            }
-        }
-
-        private List<ExtensionFunction> pluginFunctions;
-        public List<ExtensionFunction> PluginFunctions
-        {
-            get => pluginFunctions;
-            set
-            {
-                pluginFunctions = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ExportedFunctions));
-            }
-        }
-
-        public List<ExtensionFunction> ExportedFunctions
-        {
-            get
-            {
-                var funcs = new List<ExtensionFunction>();
-                if (ScriptFunctions?.Any() == true)
-                {
-                    funcs.AddRange(ScriptFunctions);
-                }
-
-                if (PluginFunctions?.Any() == true)
-                {
-                    funcs.AddRange(PluginFunctions);
-                }
-
-                return funcs;
-            }
-        }
 
         public ExtensionFactory(IGameDatabase database, GameControllerFactory controllers)
         {
@@ -129,9 +107,9 @@ namespace Playnite.Plugins
             DisposeScripts();
             controllers.Installed -= Controllers_Installed;
             controllers.Starting -= Controllers_Starting;
-            controllers.Started -= Controllers_Installed;
-            controllers.Stopped -= Controllers_Installed;
-            controllers.Uninstalled -= Controllers_Installed;
+            controllers.Started -= Controllers_Started;
+            controllers.Stopped -= Controllers_Stopped;
+            controllers.Uninstalled -= Controllers_Uninstalled;
         }
 
         private void DisposeScripts()
@@ -152,7 +130,6 @@ namespace Playnite.Plugins
             }
 
             Scripts = new List<PlayniteScript>();
-            ScriptFunctions = null;
         }
 
         private void DisposePlugins()
@@ -173,7 +150,6 @@ namespace Playnite.Plugins
             }
 
             Plugins = new Dictionary<Guid, LoadedPlugin>();
-            PluginFunctions = null;
         }
 
         public static void CreatePluginFolders()
@@ -186,38 +162,98 @@ namespace Playnite.Plugins
             }
         }
 
-        public static List<ExtensionManifest> GetExtensionDescriptors()
+        private static IEnumerable<ExtensionManifest> GetManifestsFromPath(string path)
         {
-            var descs = new List<ExtensionManifest>();
-            foreach (var file in GetExtensionDescriptorFiles())
+            if (Directory.Exists(path))
+            {
+                var man = GetManifestFromFile(Path.Combine(path, PlaynitePaths.ExtensionManifestFileName));
+                if (man != null)
+                {
+                    yield return man;
+                }
+            }
+            else if (File.Exists(path))
+            {
+                foreach (var dirPath in File.ReadAllLines(path).Where(a => !a.IsNullOrWhiteSpace() && !a.StartsWith("#")))
+                {
+                    ExtensionManifest man = null;
+                    try
+                    {
+                        if (Directory.Exists(dirPath))
+                        {
+                            man = GetManifestFromFile(Path.Combine(dirPath.Trim(), PlaynitePaths.ExtensionManifestFileName));
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to read extension dev file.");
+                    }
+
+                    if (man != null)
+                    {
+                        yield return man;
+                    }
+                }
+            }
+        }
+
+        private static ExtensionManifest GetManifestFromFile(string file)
+        {
+            if (File.Exists(file))
             {
                 try
                 {
-                    descs.Add(ExtensionManifest.FromFile(file));
+                    return ExtensionManifest.FromFile(file);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     logger.Error(e, $"Failed to parse plugin description: {file}");
-                    continue;
+                    return null;
                 }
             }
 
-            return descs;
+            return null;
         }
 
-        private static List<string> GetExtensionDescriptorFiles()
+        internal static IEnumerable<BaseExtensionManifest> DeduplicateExtList(List<BaseExtensionManifest> list)
         {
-            var added = new List<string>();
-            var plugins = new List<string>();
+            return list.GroupBy(a => a.Id).Select(g => g.OrderByDescending(x => x.Version).First());
+        }
+
+        public static List<ExtensionManifest> GetInstalledManifests(List<string> externalPaths = null)
+        {
+            var externals = new List<BaseExtensionManifest>();
+            var user = new List<BaseExtensionManifest>();
+            var install = new List<BaseExtensionManifest>();
+            if (externalPaths.HasItems())
+            {
+                foreach (var ext in externalPaths)
+                {
+                    foreach (var man in GetManifestsFromPath(ext))
+                    {
+                        externals.Add(man);
+                        man.IsExternalDev = true;
+                    }
+                }
+            }
 
             if (!PlayniteSettings.IsPortable && Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
             {
                 var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
                 {
-                    plugins.Add(desc.FullName);
-                    var info = new FileInfo(desc.FullName);
-                    added.Add(info.Directory.Name);
+                    var man = GetManifestFromFile(desc.FullName);
+                    if (man?.Id.IsNullOrEmpty() == false)
+                    {
+                        if (externals.Any(a => a.Id == man.Id))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            user.Add(man);
+                        }
+                    }
                 }
             }
 
@@ -226,13 +262,26 @@ namespace Playnite.Plugins
                 var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)
                 {
-                    plugins.Add(desc.FullName);
-                    var info = new FileInfo(desc.FullName);
-                    added.Add(info.Directory.Name);
+                    var man = GetManifestFromFile(desc.FullName);
+                    if (man?.Id.IsNullOrEmpty() == false)
+                    {
+                        if (externals.Any(a => a.Id == man.Id) || user.Any(a => a.Id == man.Id))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            install.Add(man);
+                        }
+                    }
                 }
             }
 
-            return plugins;
+            var result = new List<ExtensionManifest>();
+            result.AddRange(DeduplicateExtList(externals).Cast<ExtensionManifest>());
+            result.AddRange(DeduplicateExtList(user).Cast<ExtensionManifest>());
+            result.AddRange(DeduplicateExtList(install).Cast<ExtensionManifest>());
+            return result;
         }
 
         private bool VerifyAssemblyReferences(Assembly asm, ExtensionManifest manifest)
@@ -262,15 +311,20 @@ namespace Playnite.Plugins
             return true;
         }
 
-        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
+        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             var allSuccess = true;
             DisposeScripts();
-            var functions = new List<ScriptFunctionExport>();
-
-            foreach (ScriptExtensionDescription desc in GetExtensionDescriptors().Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.DirectoryName)))
+            var manifests = GetInstalledManifests(externals).Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.Id)).ToList();
+            foreach (var desc in manifests)
             {
-                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                if (desc.Id.IsNullOrEmpty())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionIds.Contains(desc.Id))
                 {
                     logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
                     continue;
@@ -281,16 +335,16 @@ namespace Playnite.Plugins
                 if (!File.Exists(scriptPath))
                 {
                     logger.Error($"Cannot load script extension, {scriptPath} not found.");
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                     continue;
                 }
 
                 try
                 {
-                    script = PlayniteScript.FromFile(scriptPath);
+                    script = PlayniteScript.FromFile(scriptPath, $"{desc.DirectoryName}#PS");
                     if (script == null)
                     {
-                        FailedExtensions.Add(desc);
+                        FailedExtensions.Add((desc, AddonLoadError.Uknown));
                         continue;
                     }
 
@@ -302,35 +356,41 @@ namespace Playnite.Plugins
                         FileSystem.CreateDirectory(extDir);
                         script.SetVariable("CurrentExtensionDataPath", extDir);
                     }
+
+                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                     continue;
                 }
 
                 Scripts.Add(script);
                 logger.Info($"Loaded script extension: {scriptPath}, version {desc.Version}");
-
-                if (desc.Functions?.Any() == true)
-                {
-                    functions.AddRange(desc.Functions.Select(a => new ScriptFunctionExport(a.Description, a.FunctionName, script)));
-                }
             }
 
-            ScriptFunctions = functions;
             return allSuccess;
         }
 
-        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly)
+        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
-            DisposePlugins();
-            var funcs = new List<ExtensionFunction>();
-            foreach (var desc in GetExtensionDescriptors().Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.DirectoryName) != true))
+            if (Plugins.HasItems())
             {
-                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionFolders.Contains(desc.DirectoryName))
+                throw new Exception("Plugin can be loaded only once!");
+            }
+
+            var manifests = GetInstalledManifests(externals).Where(a => a.Type != ExtensionType.Script && ignoreList?.Contains(a.Id) != true).ToList();
+            foreach (var desc in manifests)
+            {
+                if (desc.Id.IsNullOrEmpty())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
+                if (builtInOnly && !BuiltinExtensions.BuiltinExtensionIds.Contains(desc.Id))
                 {
                     logger.Warn($"Skipping load of {desc.Name}, builtInOnly is enabled.");
                     continue;
@@ -348,16 +408,10 @@ namespace Playnite.Plugins
                         }
 
                         Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
-#pragma warning disable 0618
-                        var plugFunc = plugin.GetFunctions();
-#pragma warning restore 0618
-                        if (plugFunc?.Any() == true)
-                        {
-                            funcs.AddRange(plugFunc);
-                        }
-
                         logger.Info($"Loaded plugin: {desc.Name}, version {desc.Version}");
                     }
+
+                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -367,14 +421,12 @@ namespace Playnite.Plugins
                         logger.Error(e, string.Empty);
                     }
 
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                 }
             }
-
-            PluginFunctions = funcs;
         }
 
-        public IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
+        private IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
             var asmName = AssemblyName.GetAssemblyName(asmPath);
@@ -389,9 +441,14 @@ namespace Playnite.Plugins
                     }
                     else
                     {
-                        if (typeof(Plugin).IsAssignableFrom(type))
+                        if (typeof(GenericPlugin).IsAssignableFrom(type) || typeof(LibraryPlugin).IsAssignableFrom(type) || typeof(MetadataPlugin).IsAssignableFrom(type))
                         {
-                            yield return (Plugin)Activator.CreateInstance(type, new object[] { injectingApi });
+                            var ignore = Attribute.IsDefined(type, typeof(IgnorePluginAttribute));
+                            var load = Attribute.IsDefined(type, typeof(LoadPluginAttribute));
+                            if ((ignore && load) || !ignore)
+                            {
+                                yield return (Plugin)Activator.CreateInstance(type, new object[] { injectingApi });
+                            }
                         }
                     }
                 }
@@ -399,7 +456,7 @@ namespace Playnite.Plugins
             else
             {
                 logger.Error($"Plugin dependencices are not compatible: {descriptor.Name}");
-                FailedExtensions.Add(descriptor);
+                FailedExtensions.Add((descriptor, AddonLoadError.SDKVersion));
                 // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }
@@ -421,19 +478,20 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Uninstalled(object sender, GameControllerEventArgs args)
+        private void Controllers_Uninstalled(object sender, GameUninstalledEventArgs args)
         {
-            if (args.Controller?.Game == null)
+            if (args.Source?.Game == null)
             {
                 logger.Error("No game controller information found!");
                 return;
             }
 
+            var callbackArgs = new SDK.Events.OnGameUninstalledEventArgs { Game = args.Source.Game };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameUninstalled(args.Controller.Game);
+                    script.OnGameUninstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -445,7 +503,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameUninstalled(args.Controller.Game);
+                    plugin.Plugin.OnGameUninstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -454,19 +512,30 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Stopped(object sender, GameControllerEventArgs args)
+        private void Controllers_Stopped(object sender, GameStoppedEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
+            if (args.Source?.Game?.Id == null)
             {
                 logger.Error("No game controller information found!");
                 return;
             }
 
+            InvokeOnGameStopped(args.Source.Game, args.SessionLength);
+        }
+
+        public void InvokeOnGameStopped(Game game, ulong ellapsedTime)
+        {
+            var callbackArgs = new SDK.Events.OnGameStoppedEventArgs
+            {
+                Game = database.Games[game.Id],
+                ElapsedSeconds = ellapsedTime
+            };
+
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStopped(database.Games[args.Controller.Game.Id], args.EllapsedTime);
+                    script.OnGameStopped(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -478,7 +547,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStopped(database.Games[args.Controller.Game.Id], args.EllapsedTime);
+                    plugin.Plugin.OnGameStopped(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -487,19 +556,14 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Starting(object sender, GameControllerEventArgs args)
+        private void Controllers_Starting(object sender, OnGameStartingEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
-            {
-                logger.Error("No game controller information found!");
-                return;
-            }
-
+            var callbackArgs = new SDK.Events.OnGameStartingEventArgs { Game = database.Games[args.Game.Id] };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStarting(database.Games[args.Controller.Game.Id]);
+                    script.OnGameStarting(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -511,7 +575,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarting(database.Games[args.Controller.Game.Id]);
+                    plugin.Plugin.OnGameStarting(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -520,19 +584,20 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Started(object sender, GameControllerEventArgs args)
+        private void Controllers_Started(object sender, GameStartedEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
+            if (args.Source?.Game?.Id == null)
             {
                 logger.Error("No game controller information found!");
                 return;
             }
 
+            var callbackArgs = new SDK.Events.OnGameStartedEventArgs { Game = database.Games[args.Source.Game.Id] };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStarted(database.Games[args.Controller.Game.Id]);
+                    script.OnGameStarted(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -544,7 +609,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarted(database.Games[args.Controller.Game.Id]);
+                    plugin.Plugin.OnGameStarted(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -553,19 +618,20 @@ namespace Playnite.Plugins
             }
         }
 
-        private void Controllers_Installed(object sender, GameControllerEventArgs args)
+        private void Controllers_Installed(object sender, GameInstalledEventArgs args)
         {
-            if (args.Controller?.Game?.Id == null)
+            if (args.Source?.Game?.Id == null)
             {
                 logger.Error("No game controller information found!");
                 return;
             }
 
+            var callbackArgs = new SDK.Events.OnGameInstalledEventArgs { Game = database.Games[args.Source.Game.Id] };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameInstalled(database.Games[args.Controller.Game.Id]);
+                    script.OnGameInstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -577,7 +643,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameInstalled(database.Games[args.Controller.Game.Id]);
+                    plugin.Plugin.OnGameInstalled(callbackArgs);
                 }
                 catch (Exception e)
                 {
@@ -588,7 +654,7 @@ namespace Playnite.Plugins
 
         public void InvokeOnGameSelected(List<Game> oldValue, List<Game> newValue)
         {
-            var args = new GameSelectionEventArgs(oldValue, newValue);
+            var args = new SDK.Events.OnGameSelectedEventArgs(oldValue, newValue);
             foreach (var script in Scripts)
             {
                 try
@@ -632,7 +698,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnApplicationStarted();
+                    plugin.Plugin.OnApplicationStarted(new SDK.Events.OnApplicationStartedEventArgs());
                 }
                 catch (Exception e)
                 {
@@ -659,7 +725,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnApplicationStopped();
+                    plugin.Plugin.OnApplicationStopped(new SDK.Events.OnApplicationStoppedEventArgs());
                 }
                 catch (Exception e)
                 {
@@ -686,7 +752,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnLibraryUpdated();
+                    plugin.Plugin.OnLibraryUpdated(new SDK.Events.OnLibraryUpdatedEventArgs());
                 }
                 catch (Exception e)
                 {
@@ -699,5 +765,63 @@ namespace Playnite.Plugins
         {
             return LibraryPlugins.FirstOrDefault(a => a.Id == pluginId);
         }
+
+        public List<PluginUiElementSupport> CustomElementList = new List<PluginUiElementSupport>();
+        public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
+        {
+            if (CustomElementList.Any(a => a.Source == source))
+            {
+                return;
+            }
+
+            var elemSupport = args.GetClone<AddCustomElementSupportArgs, PluginUiElementSupport>();
+            elemSupport.Source = source;
+            CustomElementList.Add(elemSupport);
+        }
+
+        public List<PluginSettingsSupport> SettingsSupportList = new List<PluginSettingsSupport>();
+        public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
+        {
+            if (SettingsSupportList.Any(a => a.Source == source))
+            {
+                return;
+            }
+
+            var elemSupport = args.GetClone<AddSettingsSupportArgs, PluginSettingsSupport>();
+            elemSupport.Source = source;
+            SettingsSupportList.Add(elemSupport);
+        }
+
+        public List<TopPanelItem> GetTopPanelPluginItems()
+        {
+            var res = new List<TopPanelItem>();
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    var items = plugin.Plugin.GetTopPanelItems().ToList();
+                    if (items.HasItems())
+                    {
+                        res.AddRange(items);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get top panel itesm from {plugin.Description.Id}");
+                }
+            }
+
+            return res;
+        }
+    }
+
+    public class PluginUiElementSupport : AddCustomElementSupportArgs
+    {
+        public Plugin Source { get; set; }
+    }
+
+    public class PluginSettingsSupport : AddSettingsSupportArgs
+    {
+        public Plugin Source { get; set; }
     }
 }

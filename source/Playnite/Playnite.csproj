@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.props')" />
-  <Import Project="..\packages\cef.redist.x86.88.2.9\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.88.2.9\build\cef.redist.x86.props')" />
-  <Import Project="..\packages\cef.redist.x64.88.2.9\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.88.2.9\build\cef.redist.x64.props')" />
+  <Import Project="..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -47,20 +47,23 @@
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CefSharp, Version=88.2.90.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.Common.88.2.90\lib\net452\CefSharp.dll</HintPath>
+    <Reference Include="CefSharp, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Common.92.0.260\lib\net452\CefSharp.dll</HintPath>
     </Reference>
-    <Reference Include="CefSharp.Core, Version=88.2.90.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.Common.88.2.90\lib\net452\CefSharp.Core.dll</HintPath>
+    <Reference Include="CefSharp.Core, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Common.92.0.260\lib\net452\CefSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="CefSharp.OffScreen, Version=88.2.90.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.OffScreen.88.2.90\lib\net452\CefSharp.OffScreen.dll</HintPath>
+    <Reference Include="CefSharp.OffScreen, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.OffScreen.92.0.260\lib\net452\CefSharp.OffScreen.dll</HintPath>
     </Reference>
-    <Reference Include="CefSharp.Wpf, Version=88.2.90.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.Wpf.88.2.90\lib\net452\CefSharp.Wpf.dll</HintPath>
+    <Reference Include="CefSharp.Wpf, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Wpf.92.0.260\lib\net452\CefSharp.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="CommandLine, Version=2.5.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommandLineParser.2.5.0\lib\net461\CommandLine.dll</HintPath>
+    <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Crc32.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc0b95cf99bf4e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crc32.NET.1.2.0\lib\net20\Crc32.NET.dll</HintPath>
     </Reference>
     <Reference Include="DiscordRPC">
       <HintPath>..\..\references\DiscordRPC.dll</HintPath>
@@ -74,21 +77,11 @@
     <Reference Include="HtmlRenderer.WPF">
       <HintPath>..\..\references\HtmlRenderer.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="IronPython, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPython.2.7.8.1\lib\net45\IronPython.dll</HintPath>
+    <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
     </Reference>
-    <Reference Include="IronPython.Modules, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPython.2.7.8.1\lib\net45\IronPython.Modules.dll</HintPath>
-    </Reference>
-    <Reference Include="IronPython.SQLite, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPython.2.7.8.1\lib\net45\IronPython.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="IronPython.Wpf, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPython.2.7.8.1\lib\net45\IronPython.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\references\LiteDB.dll</HintPath>
+    <Reference Include="Markdig, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdig.0.18.0\lib\net40\Markdig.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Dynamic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Dynamic.dll</HintPath>
@@ -120,11 +113,20 @@
     <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack.1.1.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="Nett, Version=0.10.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nett.0.10.1\lib\Net40\Nett.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.9\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.7.6\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotoSauce.MagicScaler, Version=0.11.2.0, Culture=neutral, PublicKeyToken=fc6b9b7b06809481, processorArchitecture=MSIL">
+      <HintPath>..\packages\PhotoSauce.MagicScaler.0.11.2\lib\net461\PhotoSauce.MagicScaler.dll</HintPath>
     </Reference>
     <Reference Include="Polly, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Polly.5.1.0\lib\net45\Polly.dll</HintPath>
@@ -141,7 +143,17 @@
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.26.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLNado">
+      <HintPath>..\..\references\SQLNado.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -152,7 +164,26 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -163,9 +194,11 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Management.Automation" />
+    <Reference Include="Windows">
+      <HintPath>..\..\references\Windows.winmd</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsInput, Version=1.0.6.0, Culture=neutral, PublicKeyToken=de2685b4776e9c2e, processorArchitecture=MSIL">
       <HintPath>..\packages\InputSimulatorPlus.1.0.7\lib\net20\WindowsInput.dll</HintPath>
@@ -178,27 +211,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\PlayniteServices\Models\Playnite\Playnite.cs">
-      <Link>Services\Models\Playnite\Playnite.cs</Link>
-    </Compile>
+    <Compile Include="Addons\Addons.cs" />
+    <Compile Include="API\AddonsAPI.cs" />
     <Compile Include="API\DatabaseAPI.cs" />
     <Compile Include="API\DesignData\DesignNotificationsAPI.cs" />
     <Compile Include="API\DesignData\DesignPlayniteAPI.cs" />
     <Compile Include="API\NotificationsAPI.cs" />
     <Compile Include="API\PlayniteSettingsAPI.cs" />
-    <Compile Include="API\ScriptExtensionDescription.cs" />
-    <Compile Include="API\Logger.cs" />
     <Compile Include="API\PlayniteAPI.cs" />
     <Compile Include="API\PlayniteInfoAPI.cs" />
     <Compile Include="API\PlaynitePathsAPI.cs" />
-    <Compile Include="API\ExtensionDescription.cs" />
+    <Compile Include="Archive.cs" />
+    <Compile Include="Audio.cs" />
+    <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
+    <Compile Include="Behaviors\SelectorBehaviors.cs" />
+    <Compile Include="Common\CueSheet.cs" />
+    <Compile Include="Common\Extensions\KeyExtensions.cs" />
+    <Compile Include="Common\FileSystem_Checksum.cs" />
+    <Compile Include="Controls\ExtendedDataGrid.cs" />
+    <Compile Include="ControlTemplateTools.cs" />
+    <Compile Include="Converters\GenericTypeConverter.cs" />
+    <Compile Include="Converters\ObjectEqualityToBoolConverter.cs" />
+    <Compile Include="Converters\NumericConverters.cs" />
+    <Compile Include="Database\Collections\GameScannersCollection.cs" />
+    <Compile Include="Database\Collections\ImportExclusionsCollection.cs" />
+    <Compile Include="Database\Collections\FilterPresetsCollection.cs" />
+    <Compile Include="Database\Collections\CompletionStatusesCollection.cs" />
+    <Compile Include="Database\OldModels\Ver2.cs" />
+    <Compile Include="Emulators\DatModels.cs" />
+    <Compile Include="Emulators\Emulation.cs" />
+    <Compile Include="Emulators\EmulationDatabase.cs" />
+    <Compile Include="Emulators\Scanner.cs" />
+    <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Extensions\Markup\PluginSettings.cs" />
+    <Compile Include="Extensions\Markup\PluginStatus.cs" />
+    <Compile Include="Extensions\Markup\ThemeFileBinding.cs" />
+    <Compile Include="Manifests\AddonManifestBase.cs" />
+    <Compile Include="Manifests\ExtensionManifest.cs" />
     <Compile Include="App\CmdLineOptions.cs" />
     <Compile Include="Behaviors\AnimatedVisibility.cs" />
     <Compile Include="Behaviors\MediaElementBehaviors.cs" />
     <Compile Include="CefTools.cs" />
     <Compile Include="App\PlayniteApplication.cs" />
     <Compile Include="App\UpdateManifest.cs" />
-    <Compile Include="BaseGameController.cs" />
     <Compile Include="Behaviors\ExpanderBehaviors.cs" />
     <Compile Include="Behaviors\FocusBahaviors.cs" />
     <Compile Include="Behaviors\LeftClickContextMenuBehavior.cs" />
@@ -207,6 +262,56 @@
     <Compile Include="CmdlineCommands.cs" />
     <Compile Include="Commands\GlobalCommands.cs" />
     <Compile Include="Commands\GenericCommands.cs" />
+    <Compile Include="Common\BindingTools.cs" />
+    <Compile Include="Common\Computer.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\DesignerTools.cs" />
+    <Compile Include="Common\Exceptions.cs" />
+    <Compile Include="Common\Explorer.cs" />
+    <Compile Include="Common\Extensions\BitmapExtensions.cs" />
+    <Compile Include="Common\Extensions\BitmapIconExtensions.cs" />
+    <Compile Include="Common\Extensions\CloneObject.cs" />
+    <Compile Include="Common\Extensions\Enums.cs" />
+    <Compile Include="Common\Extensions\IconExtension.cs" />
+    <Compile Include="Common\Extensions\ItemsControlExtensions.cs" />
+    <Compile Include="Common\Extensions\LongExtensions.cs" />
+    <Compile Include="Common\Extensions\ObjectExtensions.cs" />
+    <Compile Include="Common\Extensions\ProcessExtensions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
+    <Compile Include="Common\Extensions\WindowExtensions.cs" />
+    <Compile Include="Common\FileSystem.cs" />
+    <Compile Include="Common\GlobalRandom.cs" />
+    <Compile Include="Common\Images.cs" />
+    <Compile Include="Common\IniParser.cs" />
+    <Compile Include="Native\Gdi32.cs" />
+    <Compile Include="Common\ItemsSource.cs" />
+    <Compile Include="Common\JsonRpcClient.cs" />
+    <Compile Include="Common\MarkupConverter.cs" />
+    <Compile Include="Common\Media\Icons\IconExtractor.cs" />
+    <Compile Include="Common\Media\Icons\IconUtil.cs" />
+    <Compile Include="Common\MemoryCache.cs" />
+    <Compile Include="Common\NLogLogProvider.cs" />
+    <Compile Include="Common\Paths.cs" />
+    <Compile Include="Common\ProcessMonitor.cs" />
+    <Compile Include="Common\ProcessStarter.cs" />
+    <Compile Include="Common\Programs.cs" />
+    <Compile Include="Common\Programs2.cs" />
+    <Compile Include="Common\Resources.cs" />
+    <Compile Include="Common\Roman.cs" />
+    <Compile Include="Common\SafeFileEnumerator.cs" />
+    <Compile Include="Common\Serialization.cs" />
+    <Compile Include="Common\SigningTools.cs" />
+    <Compile Include="Common\Sizes.cs" />
+    <Compile Include="Common\Sqlite.cs" />
+    <Compile Include="Common\SystemDialogs.cs" />
+    <Compile Include="Common\TempDirectory.cs" />
+    <Compile Include="Common\TGASharpLib.cs" />
+    <Compile Include="Common\Timer.cs" />
+    <Compile Include="Common\Units.cs" />
+    <Compile Include="Common\Web\Downloader.cs" />
+    <Compile Include="Common\Web\HttpDownloader.cs" />
+    <Compile Include="Common\Xaml.cs" />
+    <Compile Include="Common\Xml.cs" />
     <Compile Include="Controls\ExtendedListBox.cs" />
     <Compile Include="Controls\ExtendedListView.cs" />
     <Compile Include="Controls\FadeImage.xaml.cs">
@@ -214,9 +319,6 @@
     </Compile>
     <Compile Include="Controls\GridEx.cs" />
     <Compile Include="Controls\HtmlTextView.cs" />
-    <Compile Include="Controls\VirtualizingGridPanel.cs" />
-    <Compile Include="Controls\VirtualizingTilePanel.cs" />
-    <Compile Include="Controls\VirtualizingUniformPanel.cs" />
     <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
     <Compile Include="Converters\DockToStringConverter.cs" />
@@ -238,7 +340,7 @@
     <Compile Include="Converters\IconToImageSourceConverter.cs" />
     <Compile Include="Converters\InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\ListToStringConverter.cs" />
-    <Compile Include="Converters\LongToTimePlayedConverter.cs" />
+    <Compile Include="Converters\PlayTimeToStringConverter.cs" />
     <Compile Include="Converters\NegateConverter.cs" />
     <Compile Include="Converters\NotificationIconConverter.cs" />
     <Compile Include="Converters\NullableDateToStringConverter.cs" />
@@ -278,10 +380,6 @@
     <Compile Include="Database\OldModels\NewVer1\OldGame.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldGameAction.cs" />
     <Compile Include="Database\OldModels\NewVer1\OldLink.cs" />
-    <Compile Include="Database\OldModels\Ver3\Emulator.cs" />
-    <Compile Include="Database\OldModels\Ver6\Emulator.cs" />
-    <Compile Include="Database\OldModels\Ver6\Game.cs" />
-    <Compile Include="Database\OldModels\Ver6\Platform.cs" />
     <Compile Include="Database\Collections\CompaniesCollection.cs" />
     <Compile Include="Database\Collections\PlatformsCollection.cs" />
     <Compile Include="DiagnosticPackageInfo.cs" />
@@ -290,8 +388,6 @@
     <Compile Include="EasyAntiCheat.cs" />
     <Compile Include="ElementTreeHelper.cs" />
     <Compile Include="Exceptions.cs" />
-    <Compile Include="Extensions\EmulatorProfileExtensions.cs" />
-    <Compile Include="Extensions\GameActionExtensions.cs" />
     <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="Extensions\IProvideValueTarget.cs" />
     <Compile Include="Extensions\Markup\Api.cs" />
@@ -301,7 +397,6 @@
     <Compile Include="Extensions\Markup\ThemeFile.cs" />
     <Compile Include="Extensions\ServiceProvider.cs" />
     <Compile Include="FakePlayniteLibraryPlugin.cs" />
-    <Compile Include="GameActionActivator.cs" />
     <Compile Include="GamesCollectionView.cs" />
     <Compile Include="GamesCollectionViewEntry.cs" />
     <Compile Include="GamesEditor.cs" />
@@ -312,33 +407,45 @@
     <Compile Include="Input\MouseWheelGesture.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="Localization\LocalizationKeys.cs" />
+    <Compile Include="Manifests\AddonManifests.cs" />
+    <Compile Include="Manifests\ThemeManifest.cs" />
     <Compile Include="Metadata\MetadataDownloaderSettings.cs" />
+    <Compile Include="Native\Kernel32.cs" />
+    <Compile Include="Native\Ntdll.cs" />
+    <Compile Include="Native\Powrprof.cs" />
+    <Compile Include="Native\Processthreadsapi.cs" />
+    <Compile Include="Native\Psapi.cs" />
+    <Compile Include="Native\Shell32.cs" />
+    <Compile Include="Native\Shlwapi.cs" />
+    <Compile Include="Native\User32.cs" />
+    <Compile Include="Native\Winbase.cs" />
+    <Compile Include="Native\Windef.cs" />
+    <Compile Include="Native\WinError.cs" />
+    <Compile Include="Native\Wingdi.cs" />
+    <Compile Include="Native\Winnt.cs" />
+    <Compile Include="Native\Wintrust.cs" />
+    <Compile Include="Native\Winuser.cs" />
     <Compile Include="ObservablePowerStatus.cs" />
     <Compile Include="PlayniteProcess.cs" />
     <Compile Include="PlayniteUriHandler.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />
-    <Compile Include="Scripting\Batch\Batch.cs" />
-    <Compile Include="Scripting\IronPython\IronPython.cs" />
-    <Compile Include="Scripting\IronPython\IronPythonScript.cs" />
-    <Compile Include="Scripting\IScriptRuntime.cs" />
     <Compile Include="Scripting\PlayniteScript.cs" />
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />
+    <Compile Include="SdkHelpers.cs" />
     <Compile Include="SelectableItem.cs" />
     <Compile Include="Services\BaseServicesClient.cs" />
     <Compile Include="Services\GenericResponse.cs" />
-    <Compile Include="Emulators\EmulatorDefinition.cs" />
-    <Compile Include="Emulators\EmulatorFinder.cs" />
     <Compile Include="GameTools.cs" />
     <Compile Include="Database\DatabaseStats.cs" />
     <Compile Include="Controllers\GameControllerFactory.cs" />
     <Compile Include="App\IPlayniteApplication.cs" />
     <Compile Include="Metadata\MetadataDownloader.cs" />
+    <Compile Include="Services\Models\Playnite.cs" />
     <Compile Include="Settings\AutoClientShutdownSettings.cs" />
     <Compile Include="Settings\DetailsVisibilitySettings.cs" />
     <Compile Include="Settings\FullscreenSettings.cs" />
-    <Compile Include="Settings\ImportExclusionList.cs" />
     <Compile Include="Settings\OldSettings\Plugins.cs" />
     <Compile Include="Settings\PlaynitePaths.cs" />
     <Compile Include="PipeServer.cs" />
@@ -359,10 +466,13 @@
     <Compile Include="ThirdPartyClients\ThirdPartyToolsList.cs" />
     <Compile Include="ObservableTime.cs" />
     <Compile Include="UrlConstants.cs" />
+    <Compile Include="ViewModels\AddonsViewModelBase_Online.cs" />
+    <Compile Include="ViewModels\ActionSelectionViewModel.cs" />
     <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelBase.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
     <Compile Include="ViewModels\RandomGameSelectViewModel.cs" />
+    <Compile Include="ViewModels\LicenseAgreementViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="WebView\CookieDestroyer.cs" />
     <Compile Include="WebView\OffscreenWebView.cs" />
@@ -370,6 +480,8 @@
     <Compile Include="WebView\WebViewBase.cs" />
     <Compile Include="WebView\WebViewFactory.cs" />
     <Compile Include="WindowsNotifyIconManager.cs" />
+    <Compile Include="Windows\GameStartSelectionWindowFactory.cs" />
+    <Compile Include="Windows\LicenseAgreementWindowFactory.cs" />
     <Compile Include="Windows\ExtensionCrashHandlerWindowFactory.cs" />
     <Compile Include="Windows\CrashHandlerWindowFactory.cs" />
     <Compile Include="Windows\WebViewWindow.xaml.cs">
@@ -386,16 +498,18 @@
     <None Include="App.config" />
     <None Include="Common.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="crash_reporter.cfg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Emulators\*.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="Emulation\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Localization\locstatus.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Native\Fileapi.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -410,10 +524,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>
@@ -619,18 +729,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>msvcr110.dll</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\..\references\IronPythonStdLib.zip">
-      <Link>Dependencies\IronPythonStdLib.zip</Link>
+    <ContentWithTargetPath Include="..\..\references\sqlite3.x86.dll">
+      <Link>Dependencies\sqlite3.x86.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>IronPythonStdLib.zip</TargetPath>
+      <TargetPath>sqlite3.x86.dll</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup>
     <None Include="Safe Mode.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\playnite_extension.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -643,6 +753,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
@@ -652,12 +763,12 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\cef.redist.x64.88.2.9\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.88.2.9\build\cef.redist.x64.props'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.88.2.9\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.88.2.9\build\cef.redist.x86.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets'))" />
   </Target>
-  <Import Project="..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.88.2.90\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

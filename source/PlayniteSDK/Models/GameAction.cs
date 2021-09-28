@@ -10,6 +10,28 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
+    ///
+    /// </summary>
+    public enum TrackingMode
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCActionTrackingModeDefault")]
+        Default,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCActionTrackingModeProcess")]
+        Process,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCActionTrackingModeDirectory")]
+        Directory
+    }
+
+    /// <summary>
     /// Represents game action type.
     /// </summary>
     public enum GameActionType : int
@@ -17,15 +39,23 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Game action executes a file.
         /// </summary>
+        [Description("LOCGameActionTypeFile")]
         File = 0,
         /// <summary>
         /// Game action navigates to a web based URL.
         /// </summary>
+        [Description("LOCGameActionTypeLink")]
         URL = 1,
         /// <summary>
         /// Game action starts an emulator.
         /// </summary>
-        Emulator = 2
+        [Description("LOCGameActionTypeEmulator")]
+        Emulator = 2,
+        /// <summary>
+        /// Game action startup is handled by a script.
+        /// </summary>
+        [Description("LOCGameActionTypeScript")]
+        Script = 3
     }
 
     /// <summary>
@@ -33,8 +63,6 @@ namespace Playnite.SDK.Models
     /// </summary>
     public class GameAction : ObservableObject, IEquatable<GameAction>
     {
-        private readonly Guid id = Guid.NewGuid();
-
         private GameActionType type;
         /// <summary>
         /// Gets or sets task type.
@@ -134,16 +162,16 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private bool isHandledByPlugin;
+        private bool isPlayAction;
         /// <summary>
-        /// Gets or sets value indicating wheter a action's execution should be handled by a plugin.
+        /// Gets or sets value indicating wheter an action is play action.
         /// </summary>
-        public bool IsHandledByPlugin
+        public bool IsPlayAction
         {
-            get => isHandledByPlugin;
+            get => isPlayAction;
             set
             {
-                isHandledByPlugin = value;
+                isPlayAction = value;
                 OnPropertyChanged();
             }
         }
@@ -162,16 +190,58 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Guid emulatorProfileId;
+        private string emulatorProfileId;
         /// <summary>
         /// Gets or sets emulator profile id for Emulator action type execution.
         /// </summary>
-        public Guid EmulatorProfileId
+        public string EmulatorProfileId
         {
             get => emulatorProfileId;
             set
             {
                 emulatorProfileId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private TrackingMode trackingMode = TrackingMode.Default;
+        /// <summary>
+        /// Gets or sets executable arguments for File type tasks.
+        /// </summary>
+        public TrackingMode TrackingMode
+        {
+            get => trackingMode;
+            set
+            {
+                trackingMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string trackingPath;
+        /// <summary>
+        /// Gets or sets executable arguments for File type tasks.
+        /// </summary>
+        public string TrackingPath
+        {
+            get => trackingPath;
+            set
+            {
+                trackingPath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string script;
+        /// <summary>
+        /// Gets or sets startup script.
+        /// </summary>
+        public string Script
+        {
+            get => script;
+            set
+            {
+                script = value;
                 OnPropertyChanged();
             }
         }
@@ -248,7 +318,7 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
-            if (IsHandledByPlugin != other.IsHandledByPlugin)
+            if (IsPlayAction != other.IsPlayAction)
             {
                 return false;
             }
@@ -258,12 +328,27 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
-            if (EmulatorProfileId != other.EmulatorProfileId)
+            if (!string.Equals(EmulatorProfileId, other.EmulatorProfileId, StringComparison.Ordinal))
             {
                 return false;
             }
 
             if (OverrideDefaultArgs != other.OverrideDefaultArgs)
+            {
+                return false;
+            }
+
+            if (!string.Equals(TrackingPath, other.TrackingPath, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (TrackingMode != other.TrackingMode)
+            {
+                return false;
+            }
+
+            if (!string.Equals(Script, other.Script, StringComparison.Ordinal))
             {
                 return false;
             }

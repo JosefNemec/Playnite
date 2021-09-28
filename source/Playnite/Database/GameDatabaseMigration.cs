@@ -1,6 +1,8 @@
 ﻿using LiteDB;
 using Newtonsoft.Json.Linq;
 using Playnite.Common;
+using Playnite.Database.OldModels;
+using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -9,538 +11,22 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite.Database
 {
     public partial class GameDatabase
     {
-        public static void MigrateOldDatabaseFormat(string path)
+        public static void MigrateNewDatabaseFormat(string databasePath)
         {
-            using (var db = new LiteDatabase(path))
-            {
-                if (db.Engine.UserVersion == DBVersion)
-                {
-                    return;
-                }
-
-                var originalVersion = db.Engine.UserVersion;
-                var trans = db.BeginTrans();
-
-                try
-                {
-                    // 0 to 1
-                    if (db.Engine.UserVersion == 0 && DBVersion > 0)
-                    {
-                        // Create: ObservableCollection<Link>Links
-                        // Migrate: CommunityHubUrl, StoreUrl, WikiUrl to Links
-                        // Remove: CommunityHubUrl, StoreUrl, WikiUrl
-                        logger.Info("Migrating database from 0 to 1 version.");
-
-                        var collection = db.GetCollection("games");
-                        foreach (var game in collection.FindAll())
-                        {
-                            var links = new ObservableCollection<Link>();
-
-                            if (game.ContainsKey("CommunityHubUrl"))
-                            {
-                                links.Add(new Link("Forum", game["CommunityHubUrl"].AsString));
-                                game.Remove("CommunityHubUrl");
-                            }
-
-                            if (game.ContainsKey("StoreUrl"))
-                            {
-                                links.Add(new Link("Store", game["StoreUrl"].AsString));
-                                game.Remove("StoreUrl");
-                            }
-
-                            if (game.ContainsKey("WikiUrl"))
-                            {
-                                links.Add(new Link("Wiki", game["WikiUrl"].AsString));
-                                game.Remove("WikiUrl");
-                            }
-
-                            if (links.Count > 0)
-                            {
-                                game.Add("Links", new BsonArray(links.Select(a => BsonMapper.Global.ToDocument(a))));
-                            }
-
-                            collection.Update(game);
-                        }
-
-                        db.Engine.UserVersion = 1;
-                    }
-
-                    // 1 to 2
-                    if (db.Engine.UserVersion == 1 && DBVersion > 1)
-                    {
-                        // Migrate: Emulators collection
-                        // From:
-                        // -Name: DOSBox
-                        //  DefaultArguments: '-conf "{ImagePath}" -exit'
-                        //  Platforms: [MS - DOS, PC]
-                        //  ImageExtensions: [.conf]
-                        //  ExecutableLookup: ^ dosbox\.exe
-                        //  WorkingDirectory: 
-                        // To:
-                        // -Name: DOSBox
-                        //  Configurations:
-                        //    -Name: Default
-                        //     DefaultArguments: '-conf "{ImagePath}" -exit'
-                        //     Platforms: [MS - DOS, PC]
-                        //     ImageExtensions: [.conf]
-                        //     ExecutableLookup: ^ dosbox\.exe
-                        //     WorkingDirectory:
-                        //
-                        // Add: EmulatorProfile into game's PlayTask when using emulator
-                        // Add: checksum to file metadata
-                        // Convert: Platforms and Emulators Id from int to ObjectId
-                        logger.Info("Migrating database from 1 to 2 version.");
-
-                        var platCollection = db.GetCollection("platforms");
-                        var conPlatforms = new Dictionary<int, ObjectId>();
-                        foreach (var platform in platCollection.FindAll().ToList())
-                        {
-                            var oldId = platform["_id"].AsInt32;
-                            var newId = ObjectId.NewObjectId();
-                            conPlatforms.Add(oldId, newId);
-                            platCollection.Delete(oldId);
-                            platform["_id"] = newId;
-                            platCollection.Insert(platform);
-                        }
-
-                        var conEmulators = new Dictionary<int, ObjectId>();
-                        var emuCollection = db.GetCollection("emulators");
-                        foreach (var emulator in emuCollection.FindAll().ToList())
-                        {
-                            var platforms = emulator["Platforms"]?.AsArray?
-                                .Where(a => conPlatforms.ContainsKey(a.AsInt32))?
-                                .Select(a => conPlatforms[a]).ToList();
-
-                            var profiles = new List<OldModels.Ver3.EmulatorProfile>
-                            {
-                                new OldModels.Ver3.EmulatorProfile()
-                                {
-                                    Name = "Default",
-                                    Arguments = emulator["Arguments"],
-                                    Executable = emulator["Executable"],
-                                    ImageExtensions = emulator["ImageExtensions"]?.AsArray?.Select(a => a.AsString.TrimStart('.'))?.ToList(),
-                                    Platforms = platforms,
-                                    WorkingDirectory = emulator["WorkingDirectory"]
-                                }
-                            };
-
-                            emulator.Remove("Arguments");
-                            emulator.Remove("Executable");
-                            emulator.Remove("ImageExtensions");
-                            emulator.Remove("Platforms");
-                            emulator.Remove("WorkingDirectory");
-                            emulator.Add("Profiles", new BsonArray(profiles.Select(a => BsonMapper.Global.ToDocument(a))));
-                            var oldId = emulator["_id"].AsInt32;
-                            var newId = ObjectId.NewObjectId();
-                            conEmulators.Add(oldId, newId);
-                            emuCollection.Delete(oldId);
-                            emulator["_id"] = newId;
-                            emuCollection.Insert(emulator);
-                        }
-
-                        var gameCol = db.GetCollection("games");
-                        var emusCollection = db.GetCollection<OldModels.Ver3.Emulator>("emulators");
-                        foreach (var game in gameCol.FindAll().ToList())
-                        {
-                            int? oldPlatId = game["PlatformId"]?.AsInt32;
-                            if (oldPlatId != null)
-                            {
-                                if (conPlatforms.ContainsKey(oldPlatId.Value))
-                                {
-                                    game["PlatformId"] = conPlatforms[oldPlatId.Value];
-                                }
-                                else
-                                {
-                                    game.Remove("PlatformId");
-                                }
-                            }
-
-                            if (game["PlayTask"].AsDocument != null)
-                            {
-                                var task = game["PlayTask"].AsDocument;
-                                if (task.AsDocument["Type"].AsString == "Emulator")
-                                {
-                                    var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
-                                    if (conEmulators.ContainsKey(oldEmuId))
-                                    {
-                                        var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
-                                        task.AsDocument["EmulatorId"] = emulator.Id;
-                                        task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
-                                    }
-                                    else
-                                    {
-                                        task.AsDocument.Remove("EmulatorId");
-                                        task.AsDocument.Remove("EmulatorProfileId");
-                                    }
-                                }
-                                else
-                                {
-                                    task.AsDocument.Remove("EmulatorId");
-                                    task.AsDocument.Remove("EmulatorProfileId");
-                                }
-                            }
-
-                            if (game["OtherTasks"].AsArray != null)
-                            {
-                                foreach (var task in game["OtherTasks"].AsArray)
-                                {
-                                    if (task.AsDocument["Type"].AsString == "Emulator")
-                                    {
-                                        var oldEmuId = task.AsDocument["EmulatorId"].AsInt32;
-                                        if (conEmulators.ContainsKey(oldEmuId))
-                                        {
-                                            var emulator = emusCollection.FindById(conEmulators[oldEmuId]);
-                                            task.AsDocument["EmulatorId"] = emulator.Id;
-                                            task.AsDocument["EmulatorProfileId"] = emulator.Profiles?.First().Id;
-                                        }
-                                        else
-                                        {
-                                            task.AsDocument.Remove("EmulatorId");
-                                            task.AsDocument.Remove("EmulatorProfileId");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        task.AsDocument.Remove("EmulatorId");
-                                        task.AsDocument.Remove("EmulatorProfileId");
-                                    }
-                                }
-                            }
-
-                            gameCol.Update(game);
-                        }
-
-                        emusCollection.EnsureIndex("Id");
-                        db.GetCollection("games").EnsureIndex("Id");
-                        db.GetCollection("platforms").EnsureIndex("Id");
-
-                        db.Engine.UserVersion = 2;
-                    }
-
-                    // 2 to 3
-                    if (db.Engine.UserVersion == 2 && DBVersion > 2)
-                    {
-                        // Remove "_type" field of "games" collection
-                        var gameCol = db.GetCollection("games");
-                        foreach (var game in gameCol.FindAll().ToList())
-                        {
-                            game.Remove("_type");
-                            gameCol.Update(game);
-                        }
-
-                        db.Engine.UserVersion = 3;
-                    }
-
-                    // 3 to 4
-                    if (db.Engine.UserVersion == 3 && DBVersion > 3)
-                    {
-                        var conPlatforms = new Dictionary<object, Guid>();
-                        var platCollection = db.GetCollection("platforms");
-                        foreach (var platform in platCollection.FindAll().ToList())
-                        {
-                            var oldId = platform["_id"];
-                            var newId = Guid.NewGuid();
-                            conPlatforms.Add(oldId, newId);
-                            platCollection.Delete(oldId);
-                            platform["_id"] = newId;
-                            platCollection.Insert(platform);
-                        }
-
-                        var conEmulators = new Dictionary<object, Guid>();
-                        var conEmuProfiles = new Dictionary<string, Guid>();
-                        var emuCollection = db.GetCollection("emulators");
-                        foreach (var emulator in emuCollection.FindAll().ToList())
-                        {
-                            var oldId = emulator["_id"];
-                            var newId = Guid.NewGuid();
-                            conEmulators.Add(oldId, newId);
-                            emulator["_id"] = newId;
-
-                            var profiles = emulator["Profiles"];
-                            if (!profiles.IsNull)
-                            {
-                                foreach (BsonDocument profile in profiles.AsArray)
-                                {
-                                    var oldProfId = profile["_id"];
-                                    var newProfId = Guid.NewGuid();
-                                    conEmuProfiles.Add(oldId.AsString + oldProfId.AsString, newProfId);
-                                    profile["_id"] = newProfId;
-
-                                    var profPlatforms = profile["Platforms"];
-                                    var newPlatforms = new BsonArray();
-                                    if (!profPlatforms.IsNull)
-                                    {
-                                        foreach (var platform in profPlatforms.AsArray)
-                                        {
-                                            if (conPlatforms.TryGetValue(platform, out var newPlat))
-                                            {
-                                                newPlatforms.Add(newPlat);
-                                            }
-                                        }
-                                    }
-
-                                    profile["Platforms"] = newPlatforms;
-                                }
-                            }
-
-                            emuCollection.Delete(oldId);
-                            emuCollection.Insert(emulator);
-                        }
-
-                        var providerTable = new Dictionary<string, Guid>()
-                        {
-                            { "Custom", Guid.Empty },
-                            { "GOG", Guid.Parse("AEBE8B7C-6DC3-4A66-AF31-E7375C6B5E9E") },
-                            { "Origin", Guid.Parse("85DD7072-2F20-4E76-A007-41035E390724") },
-                            { "Steam", Guid.Parse("CB91DFC9-B977-43BF-8E70-55F46E410FAB") },
-                            { "Uplay", Guid.Parse("C2F038E5-8B92-4877-91F1-DA9094155FC5") },
-                            { "BattleNet", Guid.Parse("E3C26A3D-D695-4CB7-A769-5FF7612C7EDD") },
-                        };
-
-                        var gameCol = db.GetCollection("games");
-                        foreach (var game in gameCol.FindAll().ToList())
-                        {
-                            if (!game["Image"].IsNull)
-                            {
-                                game.Add("CoverImage", game["Image"]);
-                                game.Remove("Image");
-                            }
-
-                            if (!game["IsoPath"].IsNull)
-                            {
-                                game.Add("GameImagePath", game["IsoPath"]);
-                                game.Remove("IsoPath");
-                            }
-
-                            if (!game["ProviderId"].IsNull)
-                            {
-                                game.Add("GameId", game["ProviderId"]);
-                                game.Remove("ProviderId");
-                            }
-
-                            var platform = game["PlatformId"];
-                            if (!platform.IsNull)
-                            {
-                                if (conPlatforms.TryGetValue(platform, out var newPlat))
-                                {
-                                    game["PlatformId"] = newPlat;
-                                }
-                                else
-                                {
-                                    game.Remove("PlatformId");
-                                }
-                            }
-
-                            var playAction = game["PlayTask"];
-                            if (!playAction.IsNull)
-                            {
-                                MigrateGameAction(playAction.AsDocument, game["Provider"].AsString != "Custom");
-                                game.Remove("PlayTask");
-                                game.Add("PlayAction", playAction);
-                            }
-
-                            var otherActions = game["OtherTasks"];
-                            if (!otherActions.IsNull)
-                            {
-                                foreach (BsonDocument task in otherActions.AsArray)
-                                {
-                                    MigrateGameAction(task, false);
-                                }
-
-                                game.Remove("OtherTasks");
-                                game.Add("OtherActions", otherActions);
-                            }
-
-                            var provider = game["Provider"].AsString;
-                            game.Add("PluginId", providerTable[provider]);
-                            game.Remove("Provider");
-                            gameCol.Update(game);
-                        }
-
-                        void MigrateGameAction(BsonDocument action, bool handleByPlugin)
-                        {
-                            action.Remove("IsPrimary");
-                            action.Remove("IsBuiltIn");
-                            action.Add("IsHandledByPlugin", handleByPlugin);
-
-                            var oldEmulator = action["EmulatorId"];
-                            if (!oldEmulator.IsNull)
-                            {
-                                if (conEmulators.TryGetValue(oldEmulator, out var newEmu))
-                                {
-                                    action["EmulatorId"] = newEmu;
-                                }
-                                else
-                                {
-                                    action.Remove("EmulatorId");
-                                }
-                            }
-
-                            var oldProfile = action["EmulatorProfileId"];
-                            if (!oldProfile.IsNull)
-                            {
-                                if (conEmuProfiles.TryGetValue(oldEmulator.AsString + oldProfile.AsString, out var newProf))
-                                {
-                                    action["EmulatorProfileId"] = newProf;
-                                }
-                                else
-                                {
-                                    action.Remove("EmulatorProfileId");
-                                }
-                            }
-                        }
-
-                        db.Engine.UserVersion = 4;
-                    }
-
-                    // 4 to 5
-                    if (db.Engine.UserVersion == 4 && DBVersion > 4)
-                    {
-                        // Fix Game action that have invalid emualtor ids
-                        var gameCol = db.GetCollection("games");
-                        foreach (var game in gameCol.FindAll().ToList())
-                        {
-                            var fixApplied = false;
-                            var playAction = game["PlayAction"];
-                            if (!playAction.IsNull)
-                            {
-                                if (FixGameAction(playAction.AsDocument))
-                                {
-                                    fixApplied = true;
-                                }
-
-                            }
-
-                            var otherActions = game["OtherActions"];
-                            if (!otherActions.IsNull)
-                            {
-                                foreach (BsonDocument task in otherActions.AsArray)
-                                {
-                                    if (FixGameAction(task))
-                                    {
-                                        fixApplied = true;
-                                    }
-                                }
-                            }
-
-                            if (fixApplied)
-                            {
-                                gameCol.Update(game);
-                            }
-                        }
-
-                        bool FixGameAction(BsonDocument action)
-                        {
-                            var fixedAny = false;
-                            if (action["Type"].AsString != "Emulator")
-                            {
-                                var oldEmulator = action["EmulatorId"];
-                                if (!oldEmulator.IsNull)
-                                {
-                                    action.Remove("EmulatorId");
-                                    fixedAny = true;
-                                }
-
-                                var oldProfile = action["EmulatorProfileId"];
-                                if (!oldProfile.IsNull)
-                                {
-                                    action.Remove("EmulatorProfileId");
-                                    fixedAny = true;
-                                }
-                            }
-
-                            return fixedAny;
-                        }
-
-                        db.Engine.UserVersion = 5;
-                    }
-
-                    // 5 to 6
-                    if (db.Engine.UserVersion == 5 && DBVersion > 5)
-                    {
-                        // Remove _type from emulator profiles (was added by a bug in old versions)
-                        var emuCollection = db.GetCollection("emulators");
-                        foreach (var emulator in emuCollection.FindAll().ToList())
-                        {
-                            var update = false;
-                            var profiles = emulator["Profiles"];
-                            if (!profiles.IsNull)
-                            {
-                                foreach (BsonDocument profile in profiles.AsArray)
-                                {
-                                    if (profile.ContainsKey("_type"))
-                                    {
-                                        update = true;
-                                        profile.Remove("_type");
-                                    }
-                                }
-                            }
-
-                            if (update)
-                            {
-                                emuCollection.Update(emulator);
-                            }
-                        }
-
-                        var gameCol = db.GetCollection("games");
-                        foreach (var game in gameCol.FindAll().ToList())
-                        {
-                            // Change game states object
-                            var state = game["State"];
-                            if (!state.IsNull)
-                            {
-                                game.Add("IsInstalled", state.AsDocument["Installed"].AsBoolean);
-                            }
-
-                            // Change game Id from int to Guid
-                            gameCol.Delete(game["_id"].AsInt32);
-                            game["_id"] = Guid.NewGuid();
-                            gameCol.Insert(game);
-                        }
-
-                        db.Engine.UserVersion = 6;
-                    }
-
-                    trans.Commit();
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, "Failed to migrate database, reverting back.");
-                    trans.Rollback();
-                    throw;
-                }
-
-                // we must do this outside of transaction operation
-                if (originalVersion <= 2)
-                {
-                    foreach (var file in db.FileStorage.FindAll().ToList())
-                    {
-                        using (var fStream = file.OpenRead())
-                        {
-                            var hash = FileSystem.GetMD5(fStream);
-                            file.Metadata.Set("checksum", hash);
-                            db.FileStorage.SetMetadata(file.Id, file.Metadata);
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void MigrateNewDatabaseFormat(string path)
-        {
-            var dbSettings = GetSettingsFromDbPath(path);
-            var gamesDir = Path.Combine(path, gamesDirName);
+            var dbSettings = GetSettingsFromDbPath(databasePath);
+            var gamesDir = Path.Combine(databasePath, gamesDirName);
 
             // 1 to 2
             if (dbSettings.Version == 1 && NewFormatVersion > 1)
             {
-                void convetList<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
+                void convetList<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : Ver2_DatabaseObject
                 {
                     if (game.TryGetValue(origKey, out var storedObj))
                     {
@@ -578,7 +64,7 @@ namespace Playnite.Database
                     }
                 }
 
-                void covertObject<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : DatabaseObject
+                void covertObject<T>(Dictionary<string, object> game, string origKey, string newKey, Dictionary<string, T> convertedList) where T : Ver2_DatabaseObject
                 {
                     if (game.TryGetValue(origKey, out var storedObj))
                     {
@@ -601,7 +87,7 @@ namespace Playnite.Database
                     }
                 }
 
-                void saveCollection<T>(Dictionary<string, T> collection, string collPath) where T : DatabaseObject
+                void saveCollection<T>(Dictionary<string, T> collection, string collPath) where T : Ver2_DatabaseObject
                 {
                     if (collection.Any())
                     {
@@ -612,14 +98,14 @@ namespace Playnite.Database
                     }
                 }
 
-                var allGenres = new Dictionary<string, Genre>(StringComparer.CurrentCultureIgnoreCase);
-                var allCompanies = new Dictionary<string, Company>(StringComparer.CurrentCultureIgnoreCase);
-                var allTags = new Dictionary<string, Tag>(StringComparer.CurrentCultureIgnoreCase);
-                var allCategories = new Dictionary<string, Category>(StringComparer.CurrentCultureIgnoreCase);
-                var allSeries = new Dictionary<string, Series>(StringComparer.CurrentCultureIgnoreCase);
-                var allRatings = new Dictionary<string, AgeRating>(StringComparer.CurrentCultureIgnoreCase);
-                var allRegions = new Dictionary<string, Region>(StringComparer.CurrentCultureIgnoreCase);
-                var allSources = new Dictionary<string, GameSource>(StringComparer.CurrentCultureIgnoreCase);
+                var allGenres = new Dictionary<string, Ver2_Genre>(StringComparer.CurrentCultureIgnoreCase);
+                var allCompanies = new Dictionary<string, Ver2_Company>(StringComparer.CurrentCultureIgnoreCase);
+                var allTags = new Dictionary<string, Ver2_Tag>(StringComparer.CurrentCultureIgnoreCase);
+                var allCategories = new Dictionary<string, Ver2_Category>(StringComparer.CurrentCultureIgnoreCase);
+                var allSeries = new Dictionary<string, Ver2_Series>(StringComparer.CurrentCultureIgnoreCase);
+                var allRatings = new Dictionary<string, Ver2_AgeRating>(StringComparer.CurrentCultureIgnoreCase);
+                var allRegions = new Dictionary<string, Ver2_Region>(StringComparer.CurrentCultureIgnoreCase);
+                var allSources = new Dictionary<string, Ver2_GameSource>(StringComparer.CurrentCultureIgnoreCase);
 
                 // Convert following object to Id representations and store them in separete lists:
                 foreach (var file in Directory.EnumerateFiles(gamesDir, "*.json"))
@@ -632,129 +118,498 @@ namespace Playnite.Database
                         continue;
                     }
 
-                    // Genres    
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Genres), nameof(Game.GenreIds), allGenres);
+                    // Genres
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Genres), nameof(Ver2_Game.GenreIds), allGenres);
 
                     // Developers
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Developers), nameof(Game.DeveloperIds), allCompanies);
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Developers), nameof(Ver2_Game.DeveloperIds), allCompanies);
 
                     // Publishers
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Publishers), nameof(Game.PublisherIds), allCompanies);
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Publishers), nameof(Ver2_Game.PublisherIds), allCompanies);
 
                     // Tags
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Tags), nameof(Game.TagIds), allTags);
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Tags), nameof(Ver2_Game.TagIds), allTags);
 
                     // Categories
-                    convetList(game, nameof(OldModels.NewVer1.OldGame.Categories), nameof(Game.CategoryIds), allCategories);
+                    convetList(game, nameof(OldModels.NewVer1.OldGame.Categories), nameof(Ver2_Game.CategoryIds), allCategories);
 
                     // Series
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Series), nameof(Game.SeriesId), allSeries);
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Series), nameof(Ver2_Game.SeriesId), allSeries);
 
                     // AgeRating
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.AgeRating), nameof(Game.AgeRatingId), allRatings);
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.AgeRating), nameof(Ver2_Game.AgeRatingId), allRatings);
 
                     // Region
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Region), nameof(Game.RegionId), allRegions);
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Region), nameof(Ver2_Game.RegionId), allRegions);
 
                     // Source
-                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Source), nameof(Game.SourceId), allSources);
+                    covertObject(game, nameof(OldModels.NewVer1.OldGame.Source), nameof(Ver2_Game.SourceId), allSources);
 
                     FileSystem.WriteStringToFileSafe(file, Serialization.ToJson(game));
                 }
 
-                saveCollection(allGenres, Path.Combine(path, genresDirName));
-                saveCollection(allCompanies, Path.Combine(path, companiesDirName));
-                saveCollection(allTags, Path.Combine(path, tagsDirName));
-                saveCollection(allCategories, Path.Combine(path, categoriesDirName));
-                saveCollection(allSeries, Path.Combine(path, seriesDirName));
-                saveCollection(allRatings, Path.Combine(path, ageRatingsDirName));
-                saveCollection(allRegions, Path.Combine(path, regionsDirName));
-                saveCollection(allSources, Path.Combine(path, sourcesDirName));
+                saveCollection(allGenres, Path.Combine(databasePath, genresDirName));
+                saveCollection(allCompanies, Path.Combine(databasePath, companiesDirName));
+                saveCollection(allTags, Path.Combine(databasePath, tagsDirName));
+                saveCollection(allCategories, Path.Combine(databasePath, categoriesDirName));
+                saveCollection(allSeries, Path.Combine(databasePath, seriesDirName));
+                saveCollection(allRatings, Path.Combine(databasePath, ageRatingsDirName));
+                saveCollection(allRegions, Path.Combine(databasePath, regionsDirName));
+                saveCollection(allSources, Path.Combine(databasePath, sourcesDirName));
 
                 dbSettings.Version = 2;
-                SaveSettingsToDbPath(dbSettings, path);
+                SaveSettingsToDbPath(dbSettings, databasePath);
             }
-        }
 
-        public static void MigrateToNewFormat(string oldPath, string newPath)
-        {
-            using (var db = new LiteDatabase(oldPath))
+            // 2 to 3
+            if (dbSettings.Version == 2 && NewFormatVersion > 2)
             {
-                string ExportFile(Guid parentId, string fileId)
+                var mapper = new BsonMapper()
                 {
-                    if (!string.IsNullOrEmpty(fileId))
-                    {
-                        if (fileId.IsHttpUrl())
-                        {
-                            return fileId;
-                        }
+                    SerializeNullValues = false,
+                    TrimWhitespace = false,
+                    EmptyStringToNull = true,
+                    IncludeFields = false,
+                    IncludeNonPublic = false
+                };
 
-                        var cover = db.FileStorage.FindById(fileId);
-                        if (cover != null)
-                        {
-                            var newFileId = Path.Combine(parentId.ToString(), Guid.NewGuid() + Path.GetExtension(cover.Filename));
-                            var targetPath = Path.Combine(newPath, filesDirName, newFileId);
-                            FileSystem.PrepareSaveFile(targetPath);
-                            cover.SaveAs(targetPath);
-                            return newFileId;
-                        }
+                void convertList<TOld, TNew>(string dir, Action<TOld, TNew> propertyMapper = null) where TOld : Ver2_DatabaseObject where TNew : DatabaseObject
+                {
+                    var dbFile = dir + ".db";
+                    if (File.Exists(dbFile))
+                    {
+                        logger.Warn($"Migration database file {dbFile} already exists!");
+                        File.Delete(dbFile);
                     }
 
-                    return null;
+                    using (var db = new LiteDatabase($"Filename={dbFile};Mode=Exclusive;Journal=false", mapper))
+                    {
+                        var col = db.GetCollection<TNew>();
+                        col.EnsureIndex(a => a.Id, true);
+                        foreach (var file in Directory.GetFiles(dir, "*.json"))
+                        {
+                            if (Guid.TryParse(Path.GetFileNameWithoutExtension(file), out _))
+                            {
+                                TOld oldItem = null;
+                                try
+                                {
+                                    oldItem = Serialization.FromJsonFile<TOld>(file);
+                                }
+                                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                                {
+                                    logger.Error(e, $"Failed to load old database file {file}.");
+                                    continue;
+                                }
+
+                                if (oldItem == null)
+                                {
+                                    logger.Warn($"Failed to load old database file {file}, it's empty.");
+                                    continue;
+                                }
+
+                                var newItem = typeof(TNew).CrateInstance<TNew>(oldItem.Name);
+                                newItem.Id = oldItem.Id;
+                                propertyMapper?.Invoke(oldItem, newItem);
+                                col.Insert(newItem);
+                            }
+                        }
+                    }
                 }
 
-                var gamesDir = Path.Combine(newPath, gamesDirName);
-                FileSystem.CreateDirectory(gamesDir);
-                var gameCol = db.GetCollection("games");
-                foreach (var game in gameCol.FindAll())
+                LiteDatabase createDb<T>(string dir) where T : DatabaseObject
                 {
-                    var conGame = BsonMapper.Global.ToObject<OldModels.Ver6.OldGame>(game);
-                    var targetFile = Path.Combine(gamesDir, $"{conGame.Id.ToString()}.json");
-                    conGame.CoverImage = ExportFile(conGame.Id, conGame.CoverImage);
-                    conGame.Icon = ExportFile(conGame.Id, conGame.Icon);
-                    conGame.BackgroundImage = ExportFile(conGame.Id, conGame.BackgroundImage);
-                    File.WriteAllText(targetFile, Serialization.ToJson(conGame, false));
+                    var dbFile = dir + ".db";
+                    if (File.Exists(dbFile))
+                    {
+                        logger.Warn($"Migration database file {dbFile} already exists!");
+                        File.Delete(dbFile);
+                    }
+
+                    var db = new LiteDatabase($"Filename={dbFile};Mode=Exclusive;Journal=false", mapper);
+                    var col = db.GetCollection<T>();
+                    col.EnsureIndex(a => a.Id, true);
+                    return db;
                 }
 
-                var platformsDir = Path.Combine(newPath, platformsDirName);
-                FileSystem.CreateDirectory(platformsDir);
-                var platformsCol = db.GetCollection("platforms");
-                foreach (var platform in platformsCol.FindAll())
+                // Convert completion statuses
+                CompletionStatusesCollection.MapLiteDbEntities(mapper);
+                var convertedCompStatuses = new List<CompletionStatus>();
+                using (var db = createDb<CompletionStatus>(Path.Combine(databasePath, completionStatusesDirName)))
                 {
-                    var conPlatform = BsonMapper.Global.ToObject<OldModels.Ver6.Platform>(platform);
-                    var targetFile = Path.Combine(platformsDir, $"{conPlatform.Id.ToString()}.json");
-                    conPlatform.Cover = ExportFile(conPlatform.Id, conPlatform.Cover);
-                    conPlatform.Icon = ExportFile(conPlatform.Id, conPlatform.Icon);
-                    File.WriteAllText(targetFile, Serialization.ToJson(conPlatform, false));
+                    var col = db.GetCollection<CompletionStatus>();
+                    foreach (Ver2_CompletionStatus value in Enum.GetValues(typeof(Ver2_CompletionStatus)))
+                    {
+                        var newStatus = new CompletionStatus(value.GetDescription());
+                        convertedCompStatuses.Add(newStatus);
+                        col.Insert(newStatus);
+                    }
+
+                    var setCol = db.GetCollection<CompletionStatusSettings>();
+                    setCol.Insert(new CompletionStatusSettings
+                    {
+                        DefaultStatus = convertedCompStatuses[0].Id,
+                        PlayedStatus = convertedCompStatuses[1].Id
+                    });
                 }
 
-                var emulatorsDir = Path.Combine(newPath, emulatorsDirName);
-                FileSystem.CreateDirectory(emulatorsDir);
-                var emulatorsCol = db.GetCollection("emulators");
-                foreach (var emulator in emulatorsCol.FindAll())
+                // Generate default filter presets
+                FilterPresetsCollection.MapLiteDbEntities(mapper);
+                using (var db = createDb<FilterPreset>(Path.Combine(databasePath, filterPresetsDirName)))
                 {
-                    var conEmulator = BsonMapper.Global.ToObject<OldModels.Ver6.Emulator>(emulator);
-                    var targetFile = Path.Combine(emulatorsDir, $"{conEmulator.Id.ToString()}.json");
-                    File.WriteAllText(targetFile, Serialization.ToJson(conEmulator, false));
+                    var col = db.GetCollection<FilterPreset>();
+                    col.InsertBulk(new List<FilterPreset>
+                    {
+                        new FilterPreset
+                        {
+                            Name = "All",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.Name,
+                            SortingOrderDirection = SortOrderDirection.Ascending,
+                            Settings = new FilterSettings()
+                        },
+                        new FilterPreset
+                        {
+                            Name = "Recently Played",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.LastActivity,
+                            SortingOrderDirection = SortOrderDirection.Descending,
+                            Settings = new FilterSettings { IsInstalled = true }
+                        },
+                        new FilterPreset
+                        {
+                            Name = "Favorites",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.Name,
+                            SortingOrderDirection = SortOrderDirection.Ascending,
+                            Settings = new FilterSettings { Favorite = true }
+                        },
+                        new FilterPreset
+                        {
+                            Name = "Most Played",
+                            ShowInFullscreeQuickSelection = true,
+                            GroupingOrder = GroupableField.None,
+                            SortingOrder = SortOrder.Playtime,
+                            SortingOrderDirection = SortOrderDirection.Descending,
+                            Settings = new FilterSettings()
+                        }
+                    });
                 }
-            }
 
-            var dbSet = new DatabaseSettings() { Version = 1 };
-            File.WriteAllText(Path.Combine(newPath, settingsFileName), Serialization.ToJson(dbSet));
-        }
+                // Convert import exclusion list
+                ImportExclusionsCollection.MapLiteDbEntities(mapper);
+                using (var db = createDb<CompletionStatus>(Path.Combine(databasePath, importExclusionsDirName)))
+                {
+                    var listPath = Path.Combine(PlaynitePaths.ConfigRootPath, "exclusionList.json");
+                    if (File.Exists(listPath))
+                    {
+                        Ver2_ImportExclusionList exclusionList = null;
+                        try
+                        {
+                            exclusionList = Serialization.FromJsonFile<Ver2_ImportExclusionList>(listPath);
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, "Failed to load old exclusion list.");
+                        }
 
-        public static string GetMigratedDbPath(string originalPath)
-        {
-            if (Path.IsPathRooted(originalPath))
-            {
-                var rootDir = Path.GetDirectoryName(originalPath);
-                var appData = Environment.ExpandEnvironmentVariables("%AppData%");
-                rootDir = rootDir.Replace(appData, "%AppData%");
-                return Path.Combine(rootDir, Path.GetFileNameWithoutExtension(originalPath));
-            }
-            else
-            {
-                return Path.Combine(ExpandableVariables.PlayniteDirectory, Path.GetFileNameWithoutExtension(originalPath));
+                        if (exclusionList != null)
+                        {
+                            var col = db.GetCollection<ImportExclusionItem>();
+                            col.Insert(exclusionList.Items.Select(a => new ImportExclusionItem(a.GameId, a.GameName, a.LibraryId, a.LibraryName)));
+                            File.Delete(listPath);
+                        }
+                    }
+                }
+
+                var dirToConvert = new string[] {
+                    "games", "platforms", "emulators", "genres", "companies", "tags", "features",
+                    "categories", "series", "ageratings", "regions", "sources", "tools" };
+                foreach (var dir in Directory.GetDirectories(databasePath))
+                {
+                    switch (Path.GetFileName(dir))
+                    {
+                        case "games":
+                            GameAction convertAction(Ver2_GameAction oldAction)
+                            {
+                                var newAction = new GameAction
+                                {
+                                    Name = oldAction.Name,
+                                    Type = (GameActionType)oldAction.Type,
+                                    AdditionalArguments = oldAction.AdditionalArguments,
+                                    Arguments = oldAction.Arguments,
+                                    EmulatorId = oldAction.EmulatorId,
+                                    OverrideDefaultArgs = oldAction.OverrideDefaultArgs,
+                                    Path = oldAction.Path,
+                                    WorkingDir = oldAction.WorkingDir
+                                };
+
+                                if (oldAction.EmulatorProfileId != Guid.Empty)
+                                {
+                                    newAction.EmulatorProfileId = CustomEmulatorProfile.ProfilePrefix + oldAction.EmulatorProfileId;
+                                }
+
+                                return newAction;
+                            }
+
+                            string convertScript(string source, Ver2_ScriptLanguage runtime)
+                            {
+                                if (source.IsNullOrWhiteSpace())
+                                {
+                                    return null;
+                                }
+
+                                if (runtime == Ver2_ScriptLanguage.PowerShell)
+                                {
+                                    return source;
+                                }
+                                else if (runtime == Ver2_ScriptLanguage.Batch)
+                                {
+                                    source = "$scriptPath = (Join-Path $env:TEMP 'playniteScript.bat')\n@\"\n" + source + "\n\"@ | Out-File $scriptPath -Encoding ascii\n";
+                                    source = source + "Start-Process \"cmd.exe\" \"/c $scriptPath\" -Wait";
+                                    source = "# Batch support has been removed in Playnite 9\n# This conversion was automatically generated\n" + source;
+                                    return source;
+                                }
+                                else
+                                {
+                                    source = "throw \"IronPython support has been removed in Playnite 9\"\n" + source;
+                                    source = source.Replace("\n", "\n#");
+                                    return source;
+                                }
+                            }
+
+                            GamesCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Game, Game>(dir, (oldGame, newGame) =>
+                            {
+                                newGame.BackgroundImage = oldGame.BackgroundImage;
+                                newGame.Description = oldGame.Description;
+                                newGame.Notes = oldGame.Notes;
+                                newGame.GenreIds = oldGame.GenreIds;
+                                newGame.Hidden = oldGame.Hidden;
+                                newGame.Favorite = oldGame.Favorite;
+                                newGame.Icon = oldGame.Icon;
+                                newGame.CoverImage = oldGame.CoverImage;
+                                newGame.InstallDirectory = oldGame.InstallDirectory;
+                                newGame.LastActivity = oldGame.LastActivity;
+                                newGame.SortingName = oldGame.SortingName;
+                                newGame.GameId = oldGame.GameId;
+                                newGame.PluginId = oldGame.PluginId;
+                                newGame.PublisherIds = oldGame.PublisherIds;
+                                newGame.DeveloperIds = oldGame.DeveloperIds;
+                                newGame.CategoryIds = oldGame.CategoryIds;
+                                newGame.TagIds = oldGame.TagIds;
+                                newGame.FeatureIds = oldGame.FeatureIds;
+                                newGame.IsInstalled = oldGame.IsInstalled;
+                                newGame.Playtime = (ulong)oldGame.Playtime;
+                                newGame.Added = oldGame.Added;
+                                newGame.Modified = oldGame.Modified;
+                                newGame.PlayCount = (ulong)oldGame.PlayCount;
+                                newGame.Version = oldGame.Version;
+                                newGame.SourceId = oldGame.SourceId;
+                                newGame.UserScore = oldGame.UserScore;
+                                newGame.CommunityScore = oldGame.CommunityScore;
+                                newGame.CriticScore = oldGame.CriticScore;
+                                newGame.UseGlobalGameStartedScript = oldGame.UseGlobalGameStartedScript;
+                                newGame.UseGlobalPostScript = oldGame.UseGlobalPostScript;
+                                newGame.UseGlobalPreScript = oldGame.UseGlobalPreScript;
+                                newGame.Manual = oldGame.Manual;
+
+                                newGame.CompletionStatusId = convertedCompStatuses[(int)oldGame.CompletionStatus].Id;
+                                newGame.PreScript = convertScript(oldGame.PreScript, oldGame.ActionsScriptLanguage);
+                                newGame.PostScript = convertScript(oldGame.PostScript, oldGame.ActionsScriptLanguage);
+                                newGame.GameStartedScript = convertScript(oldGame.GameStartedScript, oldGame.ActionsScriptLanguage);
+
+                                var allActions = new List<GameAction>();
+                                if (oldGame.PlayAction != null)
+                                {
+                                    newGame.IncludeLibraryPluginAction = oldGame.PlayAction.IsHandledByPlugin;
+                                    if (!oldGame.PlayAction.IsHandledByPlugin)
+                                    {
+                                        var playAction = convertAction(oldGame.PlayAction);
+                                        playAction.Name = "Play";
+                                        playAction.IsPlayAction = true;
+                                        allActions.Add(playAction);
+                                    }
+                                }
+
+                                oldGame.OtherActions?.Where(a => a != null).ForEach(a => allActions.Add(convertAction(a)));
+                                if (allActions.HasItems())
+                                {
+                                    newGame.GameActions = allActions.ToObservable();
+                                }
+
+                                if (!oldGame.GameImagePath.IsNullOrEmpty())
+                                {
+                                    newGame.Roms = new ObservableCollection<GameRom> { new GameRom(Path.GetFileNameWithoutExtension(oldGame.GameImagePath), oldGame.GameImagePath) };
+                                }
+
+                                if (oldGame.ReleaseDate != null)
+                                {
+                                    newGame.ReleaseDate = new ReleaseDate(oldGame.ReleaseDate.Value);
+                                }
+
+                                if (oldGame.PlatformId != Guid.Empty)
+                                {
+                                    newGame.PlatformIds = new List<Guid> { oldGame.PlatformId };
+                                }
+
+                                if (oldGame.SeriesId != Guid.Empty)
+                                {
+                                    newGame.SeriesIds = new List<Guid> { oldGame.SeriesId };
+                                }
+
+                                if (oldGame.AgeRatingId != Guid.Empty)
+                                {
+                                    newGame.AgeRatingIds = new List<Guid> { oldGame.AgeRatingId };
+                                }
+
+                                if (oldGame.RegionId != Guid.Empty)
+                                {
+                                    newGame.RegionIds = new List<Guid> { oldGame.RegionId };
+                                }
+
+                                if (oldGame.Links.HasItems())
+                                {
+                                    newGame.Links = oldGame.Links.Where(a => a != null).Select(a => new Link(a.Name, a.Url)).ToObservable();
+                                }
+                            });
+                            break;
+
+                        case "platforms":
+                            PlatformsCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Platform, Platform>(dir, (oldPlat, newPlat) =>
+                            {
+                                newPlat.Icon = oldPlat.Icon;
+                                newPlat.Cover = oldPlat.Cover;
+                                newPlat.Background = oldPlat.Background;
+                                if (newPlat.Name == "PC")
+                                {
+                                    newPlat.Name = "PC (Windows)";
+                                }
+                                else if (newPlat.Name == "DOS")
+                                {
+                                    newPlat.Name = "PC (DOS)";
+                                }
+
+                                var platSpec = Emulation.Platforms.FirstOrDefault(a => a.Name.Equals(newPlat.Name, StringComparison.OrdinalIgnoreCase));
+                                if (platSpec != null)
+                                {
+                                    newPlat.SpecificationId = platSpec.Id;
+                                }
+                            });
+                            break;
+
+                        case "emulators":
+                            EmulatorsCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Emulator, Emulator>(dir, (oldEmu, newEmu) =>
+                            {
+                                if (!oldEmu.Profiles.HasItems())
+                                {
+                                    return;
+                                }
+
+                                newEmu.CustomProfiles = new ObservableCollection<CustomEmulatorProfile>();
+                                foreach (var oldProfile in oldEmu.Profiles)
+                                {
+                                    newEmu.CustomProfiles.Add(new CustomEmulatorProfile
+                                    {
+                                        Id = CustomEmulatorProfile.ProfilePrefix + oldProfile.Id,
+                                        Name = oldProfile.Name,
+                                        Platforms = oldProfile.Platforms,
+                                        ImageExtensions = oldProfile.ImageExtensions,
+                                        Executable = oldProfile.Executable,
+                                        Arguments = oldProfile.Arguments,
+                                        WorkingDirectory = oldProfile.WorkingDirectory
+                                    });
+                                }
+
+                                if (!newEmu.CustomProfiles[0].WorkingDirectory.IsNullOrEmpty())
+                                {
+                                    newEmu.InstallDir = newEmu.CustomProfiles[0].WorkingDirectory;
+                                }
+                            });
+                            break;
+
+                        case "genres":
+                            GenresCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Genre, Genre>(dir);
+                            break;
+
+                        case "companies":
+                            CompaniesCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Company, Company>(dir);
+                            break;
+
+                        case "tags":
+                            TagsCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Tag, Tag>(dir);
+                            break;
+
+                        case "features":
+                            FeaturesCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_GameFeature, GameFeature>(dir);
+                            break;
+
+                        case "categories":
+                            CategoriesCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Category, Category>(dir);
+                            break;
+
+                        case "series":
+                            SeriesCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Series, Series>(dir);
+                            break;
+
+                        case "ageratings":
+                            AgeRatingsCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_AgeRating, AgeRating>(dir);
+                            break;
+
+                        case "regions":
+                            RegionsCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_Region, Region>(dir, (oldRegion, newRegion) =>
+                            {
+                                var regSpec = Emulation.Regions.FirstOrDefault(a => a.Name.Equals(newRegion.Name, StringComparison.OrdinalIgnoreCase));
+                                if (regSpec != null)
+                                {
+                                    newRegion.SpecificationId = regSpec.Id;
+                                }
+                            });
+                            break;
+
+                        case "sources":
+                            GamesSourcesCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_GameSource, GameSource>(dir);
+                            break;
+
+                        case "tools":
+                            AppSoftwareCollection.MapLiteDbEntities(mapper);
+                            convertList<Ver2_AppSoftware, AppSoftware>(dir);
+                            break;
+                    }
+                }
+
+                foreach (var dir in Directory.GetDirectories(databasePath))
+                {
+                    if (!dirToConvert.Contains(Path.GetFileName(dir)))
+                    {
+                        continue;
+                    }
+
+                    try
+                    {
+                        Directory.Delete(dir, true);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed to delete old database files.");
+                    }
+                }
+
+                dbSettings.Version = 3;
+                SaveSettingsToDbPath(dbSettings, databasePath);
             }
         }
 
@@ -763,11 +618,6 @@ namespace Playnite.Database
             if (string.IsNullOrEmpty(databasePath))
             {
                 throw new ArgumentNullException(nameof(databasePath));
-            }
-
-            if (databasePath.EndsWith(".db", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
             }
 
             var fullPath = GetFullDbPath(databasePath);

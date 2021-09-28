@@ -9,8 +9,8 @@ using System.Windows.Data;
 
 namespace Playnite.DesktopApp.Controls
 {
-    public class NullableIntBox : TextBox
-    {        
+    public class NullIntNumericBox : TextBox
+    {
         public int MinValue
         {
             get
@@ -53,23 +53,23 @@ namespace Playnite.DesktopApp.Controls
         }
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(int?), typeof(NullableIntBox),
+            DependencyProperty.Register(nameof(Value), typeof(int?), typeof(NullIntNumericBox),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, ValuePropertyChanged, CoerceValue, false, UpdateSourceTrigger.PropertyChanged));
 
         public static readonly DependencyProperty MinValueProperty =
-            DependencyProperty.Register(nameof(MinValue), typeof(int?), typeof(NullableIntBox),
+            DependencyProperty.Register(nameof(MinValue), typeof(int?), typeof(NullIntNumericBox),
                 new PropertyMetadata(0, MinValuePropertyChanged));
 
         public static readonly DependencyProperty MaxValueProperty =
-            DependencyProperty.Register(nameof(MaxValue), typeof(int?), typeof(NullableIntBox),
+            DependencyProperty.Register(nameof(MaxValue), typeof(int?), typeof(NullIntNumericBox),
                 new PropertyMetadata(int.MaxValue, MaxValuePropertyChanged));
 
-        static NullableIntBox()
+        static NullIntNumericBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(NullableIntBox), new FrameworkPropertyMetadata(typeof(NullableIntBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(NullIntNumericBox), new FrameworkPropertyMetadata(typeof(NullIntNumericBox)));
         }
 
-        public NullableIntBox()
+        public NullIntNumericBox()
         {
             Text = Value.ToString();
             LostFocus += NumericBox_LostFocus;
@@ -109,7 +109,7 @@ namespace Playnite.DesktopApp.Controls
 
         private static object CoerceValue(DependencyObject element, object baseValue)
         {
-            var box = (NullableIntBox)element;
+            var box = (NullIntNumericBox)element;
             var value = (int?)baseValue;
             if (value == null)
             {
@@ -124,7 +124,7 @@ namespace Playnite.DesktopApp.Controls
         }
 
         private static void ValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {                      
+        {
         }
 
         private static void MinValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)

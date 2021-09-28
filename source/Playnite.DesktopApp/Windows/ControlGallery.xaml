@@ -134,8 +134,8 @@ or when typed text reaches the edge of the text box, a new line is automatically
                         
                     </StackPanel>
                     <StackPanel Grid.Column="1">
-                        <pctrls:NullableIntBox Margin="5" />
-                        <pctrls:NumericBox Margin="5" />
+                        <pctrls:NullIntNumericBox Margin="5" />
+                        <pctrls:LongNumericBox Margin="5" />
                         <pctrls:SearchBox Margin="5" />
                         <pctrls:FilterSelectionBox Margin="5" />
                         <pctrls:DdItemListSelectionBox Margin="5" />

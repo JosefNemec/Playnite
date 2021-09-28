@@ -68,7 +68,7 @@ namespace Playnite.DesktopApp.ViewModels
             ProgressStatus = "Status example in progress...";
             ProgressValue = 50;
             ProgressTotal = 100;
-            ProgressVisible = true;
+            ProgressActive = true;
 
             var database = new InMemoryGameDatabase();
             Game.DatabaseReference = database;
@@ -83,7 +83,7 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings.GridViewSideBarVisible = true;
             AppSettings.ShowNamesUnderCovers = true;
             AppSettings.ShowNameEmptyCover = true;
-            AppSettings.ViewSettings.SelectedExplorerField = GroupableField.LastActivity;
+            AppSettings.ViewSettings.SelectedExplorerField = ExplorerField.LastActivity;
 
             Extensions = new ExtensionFactory(database, new GameControllerFactory());
             GamesView = new DesktopCollectionView(database, AppSettings, Extensions);
@@ -92,7 +92,7 @@ namespace Playnite.DesktopApp.ViewModels
             SelectedGames = new List<GamesCollectionViewEntry>() { SelectedGame };
             SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0], AppSettings);
 
-            PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI(), null, null, null);
+            PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI(), null, null, null, null, null, null);
             PlayniteApi.Notifications.Add(new NotificationMessage("1", "Some testing notification message.", NotificationType.Info));
             PlayniteApi.Notifications.Add(new NotificationMessage("2", "Some really long testing notification message that should be on more lines of text.", NotificationType.Error));
         }

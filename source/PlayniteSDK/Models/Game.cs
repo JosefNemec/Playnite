@@ -9,167 +9,167 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
-using Newtonsoft.Json;
+using Playnite.SDK.Data;
 
 namespace Playnite.SDK.Models
 {
     /// <summary>
     /// Specifies <see cref="Game"/> fields.
     /// </summary>
-    public enum GameField
+    public enum GameField : int
     {
         ///
-        BackgroundImage,
+        BackgroundImage = 0,
         ///
-        Description,
+        Description = 1,
         ///
-        GenreIds,
+        GenreIds = 2,
         ///
-        Hidden,
+        Hidden = 3,
         ///
-        Favorite,
+        Favorite = 4,
         ///
-        Icon,
+        Icon = 5,
         ///
-        CoverImage,
+        CoverImage = 6,
         ///
-        InstallDirectory,
+        InstallDirectory = 7,
         ///
-        GameImagePath,
+        LastActivity = 9,
         ///
-        LastActivity,
+        SortingName = 10,
         ///
-        SortingName,
+        Gameid = 11,
         ///
-        Gameid,
+        PluginId = 12,
         ///
-        PluginId,
+        PublisherIds = 16,
         ///
-        OtherActions,
+        DeveloperIds = 17,
         ///
-        PlayAction,
+        ReleaseDate = 18,
         ///
-        PlatformId,
+        CategoryIds = 19,
         ///
-        PublisherIds,
+        TagIds = 20,
         ///
-        DeveloperIds,
+        Links = 21,
         ///
-        ReleaseDate,
+        IsInstalling = 22,
         ///
-        CategoryIds,
+        IsUninstalling = 23,
         ///
-        TagIds,
+        IsLaunching = 24,
         ///
-        Links,
+        IsRunning = 25,
         ///
-        IsInstalling,
+        IsInstalled = 26,
         ///
-        IsUninstalling,
+        IsCustomGame = 27,
         ///
-        IsLaunching,
+        Playtime = 28,
         ///
-        IsRunning,
+        Added = 29,
         ///
-        IsInstalled,
+        Modified = 30,
         ///
-        IsCustomGame,
+        PlayCount = 31,
         ///
-        Playtime,
+        Version = 33,
         ///
-        Added,
+        SourceId = 36,
         ///
-        Modified,
+        CompletionStatus = 37,
         ///
-        PlayCount,
+        UserScore = 38,
         ///
-        SeriesId,
+        CriticScore = 39,
         ///
-        Version,
+        CommunityScore = 40,
         ///
-        AgeRatingId,
+        Genres = 41,
         ///
-        RegionId,
+        Developers = 42,
         ///
-        SourceId,
+        Publishers = 43,
         ///
-        CompletionStatus,
+        Tags = 44,
         ///
-        UserScore,
+        Categories = 45,
         ///
-        CriticScore,
+        Source = 50,
         ///
-        CommunityScore,
+        ReleaseYear = 51,
         ///
-        Genres,
+        PreScript = 53,
         ///
-        Developers,
+        PostScript = 54,
         ///
-        Publishers,
+        Name = 55,
         ///
-        Tags,
+        Features = 56,
         ///
-        Categories,
+        FeatureIds = 57,
         ///
-        Platform,
+        UseGlobalPostScript = 58,
         ///
-        Series,
+        UseGlobalPreScript = 59,
         ///
-        AgeRating,
+        UserScoreRating = 60,
         ///
-        Region,
+        CommunityScoreRating = 61,
         ///
-        Source,
+        CriticScoreRating = 62,
         ///
-        ReleaseYear,
+        UserScoreGroup = 63,
         ///
-        ActionsScriptLanguage,
+        CommunityScoreGroup = 64,
         ///
-        PreScript,
+        CriticScoreGroup = 65,
         ///
-        PostScript,
+        LastActivitySegment = 66,
         ///
-        Name,
+        AddedSegment = 67,
         ///
-        Features,
+        ModifiedSegment = 68,
         ///
-        FeatureIds,
+        PlaytimeCategory = 69,
         ///
-        UseGlobalPostScript,
+        InstallationStatus = 70,
         ///
-        UseGlobalPreScript,
+        None = 71,
         ///
-        UserScoreRating,
+        GameStartedScript = 72,
         ///
-        CommunityScoreRating,
+        UseGlobalGameStartedScript = 73,
         ///
-        CriticScoreRating,
+        Notes = 74,
         ///
-        UserScoreGroup,
+        Manual = 75,
         ///
-        CommunityScoreGroup,
+        GameActions = 76,
         ///
-        CriticScoreGroup,
+        IncludeLibraryPluginAction = 77,
         ///
-        LastActivitySegment,
+        Roms = 78,
         ///
-        AddedSegment,
+        AgeRatingIds = 79,
         ///
-        ModifiedSegment,
+        AgeRatings = 80,
         ///
-        PlaytimeCategory,
+        SeriesIds = 81,
         ///
-        InstallationStatus,
+        Series = 82,
         ///
-        None,
+        RegionIds = 83,
         ///
-        GameStartedScript,
+        Regions = 84,
         ///
-        UseGlobalGameStartedScript,
+        PlatformIds = 85,
         ///
-        Notes,
+        Platforms = 86,
         ///
-        Manual
+        CompletionStatusId = 87
     }
 
     /// <summary>
@@ -332,38 +332,12 @@ namespace Playnite.SDK.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(installDirectory))
-                {
-                    if (PlayAction != null)
-                    {
-                        return PlayAction.WorkingDir;
-                    }
-                }
-
                 return installDirectory;
             }
 
             set
             {
                 installDirectory = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string gameImagePath;
-        /// <summary>
-        /// Gets or sets game's ISO, ROM or other type of executable image path.
-        /// </summary>
-        public string GameImagePath
-        {
-            get
-            {
-                return gameImagePath;
-            }
-
-            set
-            {
-                gameImagePath = value;
                 OnPropertyChanged();
             }
         }
@@ -441,58 +415,58 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private ObservableCollection<GameAction> otherActions;
+        private bool includeLibraryPluginAction = true;
+        /// <summary>
+        /// Gets or sets id of plugin responsible for handling this game.
+        /// </summary>
+        public bool IncludeLibraryPluginAction
+        {
+            get
+            {
+                return includeLibraryPluginAction;
+            }
+
+            set
+            {
+                includeLibraryPluginAction = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<GameAction> gameActions;
         /// <summary>
         /// Gets or sets list of additional game actions.
         /// </summary>
-        public ObservableCollection<GameAction> OtherActions
+        public ObservableCollection<GameAction> GameActions
         {
             get
             {
-                return otherActions;
+                return gameActions;
             }
 
             set
             {
-                otherActions = value;
+                gameActions = value;
                 OnPropertyChanged();
             }
         }
 
-        private GameAction playAction;
-        /// <summary>
-        /// Gets or sets game action used to starting the game.
-        /// </summary>
-        public GameAction PlayAction
-        {
-            get
-            {
-                return playAction;
-            }
-
-            set
-            {
-                playAction = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Guid platformId;
+        private List<Guid> platformIds;
         /// <summary>
         /// Gets or sets platform id.
         /// </summary>
-        public Guid PlatformId
+        public List<Guid> PlatformIds
         {
             get
             {
-                return platformId;
+                return platformIds;
             }
 
             set
             {
-                platformId = value;
+                platformIds = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Platform));
+                OnPropertyChanged(nameof(Platforms));
             }
         }
 
@@ -534,11 +508,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private DateTime? releaseDate;
+        private ReleaseDate? releaseDate;
         /// <summary>
         /// Gets or set game's release date.
         /// </summary>
-        public DateTime? ReleaseDate
+        public ReleaseDate? ReleaseDate
         {
             get
             {
@@ -628,6 +602,24 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private ObservableCollection<GameRom> roms;
+        /// <summary>
+        /// Gets or sets list of game ROM files.
+        /// </summary>
+        public ObservableCollection<GameRom> Roms
+        {
+            get
+            {
+                return roms;
+            }
+
+            set
+            {
+                roms = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool isInstalling;
         /// <summary>
         /// Gets or sets value indicating wheter a game is being installed..
@@ -699,11 +691,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private long playtime = 0;
+        private ulong playtime = 0;
         /// <summary>
         /// Gets or sets played time in seconds.
         /// </summary>
-        public long Playtime
+        public ulong Playtime
         {
             get
             {
@@ -756,11 +748,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private long playCount = 0;
+        private ulong playCount = 0;
         /// <summary>
         /// Gets or sets a number indicating how many times the game has been played.
         /// </summary>
-        public long PlayCount
+        public ulong PlayCount
         {
             get
             {
@@ -774,20 +766,20 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Guid seriesId;
+        private List<Guid> seriesIds;
         /// <summary>
         /// Gets or sets game series.
         /// </summary>
-        public Guid SeriesId
+        public List<Guid> SeriesIds
         {
             get
             {
-                return seriesId;
+                return seriesIds;
             }
 
             set
             {
-                seriesId = value;
+                seriesIds = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Series));
             }
@@ -811,41 +803,41 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private Guid ageRatingId;
+        private List<Guid> ageRatingIds;
         /// <summary>
         /// Gets or sets age rating for a game.
         /// </summary>
-        public Guid AgeRatingId
+        public List<Guid> AgeRatingIds
         {
             get
             {
-                return ageRatingId;
+                return ageRatingIds;
             }
 
             set
             {
-                ageRatingId = value;
+                ageRatingIds = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(AgeRating));
+                OnPropertyChanged(nameof(AgeRatings));
             }
         }
 
-        private Guid regionId;
+        private List<Guid> regionIds;
         /// <summary>
         /// Gets or sets game region.
         /// </summary>
-        public Guid RegionId
+        public List<Guid> RegionIds
         {
             get
             {
-                return regionId;
+                return regionIds;
             }
 
             set
             {
-                regionId = value;
+                regionIds = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Region));
+                OnPropertyChanged(nameof(Regions));
             }
         }
 
@@ -868,21 +860,22 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private CompletionStatus completionStatus = CompletionStatus.NotPlayed;
+        private Guid completionStatusId;
         /// <summary>
         /// Gets or sets game completion status.
         /// </summary>
-        public CompletionStatus CompletionStatus
+        public Guid CompletionStatusId
         {
             get
             {
-                return completionStatus;
+                return completionStatusId;
             }
 
             set
             {
-                completionStatus = value;
+                completionStatusId = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CompletionStatus));
             }
         }
 
@@ -943,20 +936,6 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CommunityScoreGroup));
                 OnPropertyChanged(nameof(CommunityScoreRating));
-            }
-        }
-
-        private ScriptLanguage actionsScriptLanguage = ScriptLanguage.PowerShell;
-        /// <summary>
-        /// Gets or sets scripting language for <see cref="PreScript"/> and <see cref="PostScript"/> scripts.
-        /// </summary>
-        public ScriptLanguage ActionsScriptLanguage
-        {
-            get => actionsScriptLanguage;
-            set
-            {
-                actionsScriptLanguage = value;
-                OnPropertyChanged();
             }
         }
 
@@ -1074,7 +1053,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's genres.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public List<Genre> Genres
         {
             get
@@ -1091,7 +1070,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's developers.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public List<Company> Developers
         {
             get
@@ -1108,7 +1087,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's publishers.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public List<Company> Publishers
         {
             get
@@ -1125,7 +1104,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's tags.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public List<Tag> Tags
         {
             get
@@ -1142,7 +1121,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's features.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public List<GameFeature> Features
         {
             get
@@ -1159,7 +1138,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's categories.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public List<Category> Categories
         {
             get
@@ -1176,52 +1155,93 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's platform.
         /// </summary>
-        [JsonIgnore]
-        public Platform Platform
+        [DontSerialize]
+        public List<Platform> Platforms
         {
-            get => DatabaseReference?.Platforms[platformId];
+            get
+            {
+                if (platformIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Platform>(DatabaseReference?.Platforms.Get(platformIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
         /// Gets game's series.
         /// </summary>
-        [JsonIgnore]
-        public Series Series
+        [DontSerialize]
+        public List<Series> Series
         {
-            get => DatabaseReference?.Series[seriesId];
+            get
+            {
+                if (seriesIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Series>(DatabaseReference?.Series.Get(seriesIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
         /// Get game's age rating.
         /// </summary>
-        [JsonIgnore]
-        public AgeRating AgeRating
+        [DontSerialize]
+        public List<AgeRating> AgeRatings
         {
-            get => DatabaseReference?.AgeRatings[ageRatingId];
+            get
+            {
+                if (ageRatingIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<AgeRating>(DatabaseReference?.AgeRatings.Get(ageRatingIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
         /// Gets game's region.
         /// </summary>
-        [JsonIgnore]
-        public Region Region
+        [DontSerialize]
+        public List<Region> Regions
         {
-            get => DatabaseReference?.Regions[regionId];
+            get
+            {
+                if (regionIds?.Any() == true && DatabaseReference != null)
+                {
+                    return new List<Region>(DatabaseReference?.Regions.Get(regionIds).OrderBy(a => a.Name));
+                }
+
+                return null;
+            }
         }
 
         /// <summary>
         /// Gets game's source.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public GameSource Source
         {
             get => DatabaseReference?.Sources[sourceId];
         }
 
         /// <summary>
+        /// Gets game's completion status.
+        /// </summary>
+        [DontSerialize]
+        public CompletionStatus CompletionStatus
+        {
+            get => DatabaseReference?.CompletionStatuses[completionStatusId];
+        }
+
+        /// <summary>
         /// Gets game's release year.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public int? ReleaseYear
         {
             get => ReleaseDate?.Year;
@@ -1230,7 +1250,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's user score rating.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public ScoreRating UserScoreRating
         {
             get => GetScoreRating(UserScore);
@@ -1239,7 +1259,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's community score rating.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public ScoreRating CommunityScoreRating
         {
             get => GetScoreRating(CommunityScore);
@@ -1248,7 +1268,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's critic score rating.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public ScoreRating CriticScoreRating
         {
             get => GetScoreRating(CriticScore);
@@ -1257,7 +1277,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's user score group.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public ScoreGroup UserScoreGroup
         {
             get => GetScoreGroup(UserScore);
@@ -1266,7 +1286,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's community score group.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public ScoreGroup CommunityScoreGroup
         {
             get => GetScoreGroup(CommunityScore);
@@ -1275,7 +1295,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's critic score group.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public ScoreGroup CriticScoreGroup
         {
             get => GetScoreGroup(CriticScore);
@@ -1284,7 +1304,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets time segment for games last activity.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public PastTimeSegment LastActivitySegment
         {
             get => GetPastTimeSegment(LastActivity);
@@ -1293,7 +1313,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets time segment for games added date.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public PastTimeSegment AddedSegment
         {
             get => GetPastTimeSegment(Added);
@@ -1302,7 +1322,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets time segment for games modified date..
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public PastTimeSegment ModifiedSegment
         {
             get => GetPastTimeSegment(Modified);
@@ -1311,7 +1331,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game's play time category.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public PlaytimeCategory PlaytimeCategory
         {
             get => GetPlayTimeCategory(Playtime);
@@ -1320,7 +1340,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets value indicating wheter the game is custom game.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public bool IsCustomGame
         {
             get => PluginId == Guid.Empty;
@@ -1329,7 +1349,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets game installation state.
         /// </summary>
-        [JsonIgnore]
+        [DontSerialize]
         public InstallationStatus InstallationStatus
         {
             get => IsInstalled ? InstallationStatus.Installed : InstallationStatus.Uninstalled;
@@ -1342,7 +1362,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         /// <param name="seconds">Play time in seconds.</param>
         /// <returns></returns>
-        private PlaytimeCategory GetPlayTimeCategory(long seconds)
+        private PlaytimeCategory GetPlayTimeCategory(ulong seconds)
         {
             if (seconds == 0)
             {
@@ -1585,11 +1605,6 @@ namespace Playnite.SDK.Models
                     tro.InstallDirectory = InstallDirectory;
                 }
 
-                if (!string.Equals(GameImagePath, tro.GameImagePath, StringComparison.Ordinal))
-                {
-                    tro.GameImagePath = GameImagePath;
-                }
-
                 if (LastActivity != tro.LastActivity)
                 {
                     tro.LastActivity = LastActivity;
@@ -1610,19 +1625,14 @@ namespace Playnite.SDK.Models
                     tro.PluginId = PluginId;
                 }
 
-                if (!OtherActions.IsListEqualExact(tro.OtherActions))
+                if (!GameActions.IsListEqualExact(tro.GameActions))
                 {
-                    tro.OtherActions = OtherActions;
+                    tro.GameActions = GameActions;
                 }
 
-                if (!GameAction.Equals(PlayAction, tro.PlayAction))
+                if (!PlatformIds.IsListEqual(tro.PlatformIds))
                 {
-                    tro.PlayAction = PlayAction;
-                }
-
-                if (PlatformId != tro.PlatformId)
-                {
-                    tro.PlatformId = PlatformId;
+                    tro.PlatformIds = PlatformIds;
                 }
 
                 if (!PublisherIds.IsListEqual(tro.PublisherIds))
@@ -1658,6 +1668,11 @@ namespace Playnite.SDK.Models
                 if (!Links.IsListEqualExact(tro.Links))
                 {
                     tro.Links = Links;
+                }
+
+                if (!Roms.IsListEqualExact(tro.Roms))
+                {
+                    tro.Roms = Roms;
                 }
 
                 if (IsInstalling != tro.IsInstalling)
@@ -1705,9 +1720,9 @@ namespace Playnite.SDK.Models
                     tro.PlayCount = PlayCount;
                 }
 
-                if (SeriesId != tro.SeriesId)
+                if (!SeriesIds.IsListEqual(tro.SeriesIds))
                 {
-                    tro.SeriesId = SeriesId;
+                    tro.SeriesIds = SeriesIds;
                 }
 
                 if (Version != tro.Version)
@@ -1715,14 +1730,14 @@ namespace Playnite.SDK.Models
                     tro.Version = Version;
                 }
 
-                if (AgeRatingId != tro.AgeRatingId)
+                if (!AgeRatingIds.IsListEqual(tro.AgeRatingIds))
                 {
-                    tro.AgeRatingId = AgeRatingId;
+                    tro.AgeRatingIds = AgeRatingIds;
                 }
 
-                if (RegionId != tro.RegionId)
+                if (!RegionIds.IsListEqual(tro.RegionIds))
                 {
-                    tro.RegionId = RegionId;
+                    tro.RegionIds = RegionIds;
                 }
 
                 if (SourceId != tro.SourceId)
@@ -1730,9 +1745,9 @@ namespace Playnite.SDK.Models
                     tro.SourceId = SourceId;
                 }
 
-                if (CompletionStatus != tro.CompletionStatus)
+                if (CompletionStatusId != tro.CompletionStatusId)
                 {
-                    tro.CompletionStatus = CompletionStatus;
+                    tro.CompletionStatusId = CompletionStatusId;
                 }
 
                 if (UserScore != tro.UserScore)
@@ -1765,11 +1780,6 @@ namespace Playnite.SDK.Models
                     tro.GameStartedScript = GameStartedScript;
                 }
 
-                if (ActionsScriptLanguage != tro.ActionsScriptLanguage)
-                {
-                    tro.ActionsScriptLanguage = ActionsScriptLanguage;
-                }
-
                 if (UseGlobalPostScript != tro.UseGlobalPostScript)
                 {
                     tro.UseGlobalPostScript = UseGlobalPostScript;
@@ -1788,6 +1798,11 @@ namespace Playnite.SDK.Models
                 if (!string.Equals(Manual, tro.Manual, StringComparison.Ordinal))
                 {
                     tro.Manual = Manual;
+                }
+
+                if (IncludeLibraryPluginAction != tro.IncludeLibraryPluginAction)
+                {
+                    tro.IncludeLibraryPluginAction = IncludeLibraryPluginAction;
                 }
             }
             else
@@ -1850,11 +1865,6 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.InstallDirectory);
             }
 
-            if (!string.Equals(GameImagePath, otherGame.GameImagePath, StringComparison.Ordinal))
-            {
-                changes.Add(GameField.GameImagePath);
-            }
-
             if (LastActivity != otherGame.LastActivity)
             {
                 changes.Add(GameField.LastActivity);
@@ -1879,20 +1889,15 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.PluginId);
             }
 
-            if (!OtherActions.IsListEqualExact(otherGame.OtherActions))
+            if (!GameActions.IsListEqualExact(otherGame.GameActions))
             {
-                changes.Add(GameField.OtherActions);
+                changes.Add(GameField.GameActions);
             }
 
-            if (!GameAction.Equals(PlayAction, otherGame.PlayAction))
+            if (!PlatformIds.IsListEqual(otherGame.PlatformIds))
             {
-                changes.Add(GameField.PlayAction);
-            }
-
-            if (PlatformId != otherGame.PlatformId)
-            {
-                changes.Add(GameField.PlatformId);
-                changes.Add(GameField.Platform);
+                changes.Add(GameField.PlatformIds);
+                changes.Add(GameField.Platforms);
             }
 
             if (!PublisherIds.IsListEqual(otherGame.PublisherIds))
@@ -1937,6 +1942,11 @@ namespace Playnite.SDK.Models
             if (!Links.IsListEqualExact(otherGame.Links))
             {
                 changes.Add(GameField.Links);
+            }
+
+            if (!Roms.IsListEqualExact(otherGame.Roms))
+            {
+                changes.Add(GameField.Roms);
             }
 
             if (IsInstalling != otherGame.IsInstalling)
@@ -1997,9 +2007,9 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.PlayCount);
             }
 
-            if (SeriesId != otherGame.SeriesId)
+            if (!SeriesIds.IsListEqual(otherGame.SeriesIds))
             {
-                changes.Add(GameField.SeriesId);
+                changes.Add(GameField.SeriesIds);
                 changes.Add(GameField.Series);
             }
 
@@ -2008,16 +2018,16 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.Version);
             }
 
-            if (AgeRatingId != otherGame.AgeRatingId)
+            if (!AgeRatingIds.IsListEqual(otherGame.AgeRatingIds))
             {
-                changes.Add(GameField.AgeRatingId);
-                changes.Add(GameField.AgeRating);
+                changes.Add(GameField.AgeRatingIds);
+                changes.Add(GameField.AgeRatings);
             }
 
-            if (RegionId != otherGame.RegionId)
+            if (!RegionIds.IsListEqual(otherGame.RegionIds))
             {
-                changes.Add(GameField.RegionId);
-                changes.Add(GameField.Region);
+                changes.Add(GameField.RegionIds);
+                changes.Add(GameField.Regions);
             }
 
             if (SourceId != otherGame.SourceId)
@@ -2026,8 +2036,9 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.Source);
             }
 
-            if (CompletionStatus != otherGame.CompletionStatus)
+            if (CompletionStatusId != otherGame.CompletionStatusId)
             {
+                changes.Add(GameField.CompletionStatusId);
                 changes.Add(GameField.CompletionStatus);
             }
 
@@ -2088,11 +2099,6 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.GameStartedScript);
             }
 
-            if (ActionsScriptLanguage != otherGame.ActionsScriptLanguage)
-            {
-                changes.Add(GameField.ActionsScriptLanguage);
-            }
-
             if (UseGlobalPostScript != otherGame.UseGlobalPostScript)
             {
                 changes.Add(GameField.UseGlobalPostScript);
@@ -2113,7 +2119,30 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.Manual);
             }
 
+            if (IncludeLibraryPluginAction != otherGame.IncludeLibraryPluginAction)
+            {
+                changes.Add(GameField.IncludeLibraryPluginAction);
+            }
+
             return changes;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public char GetNameGroup()
+        {
+            var nameMatch = string.IsNullOrEmpty(SortingName) ? Name : SortingName;
+            if (string.IsNullOrEmpty(nameMatch))
+            {
+                return '#';
+            }
+            else
+            {
+                var firstChar = char.ToUpper(nameMatch[0]);
+                return char.IsLetter(firstChar) ? firstChar : '#';
+            }
         }
     }
 }

@@ -21,17 +21,45 @@ namespace Playnite.Toolbox
         private const string libraryCsproj = "CustomLibraryPlugin.csproj";
         private const string metadataCsproj = "CustomMetadataPlugin.csproj";
 
-        public static string GenerateScriptExtension(ScriptLanguage language, string name, string directory)
+        public static string GenerateScriptExtension(string name, string directory)
         {
-            var extDirName = Common.Paths.GetSafePathName(name).Replace(" ", string.Empty);
-            var outDir = Path.Combine(directory, extDirName);
+            var normalizedName = Common.Paths.GetSafePathName(name).Replace(" ", string.Empty);
+            var outDir = Path.Combine(directory, normalizedName);
             if (Directory.Exists(outDir))
             {
                 throw new Exception($"Extension already exists: {outDir}");
             }
 
-            var templateArchive = Paths.GetScriptTemplateArchivePath(language);
+            var templateArchive = Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions", "PowerShellScript.zip"); ;
             ZipFile.ExtractToDirectory(templateArchive, outDir);
+            var pluginId = Guid.NewGuid();
+            foreach (var filePath in Directory.GetFiles(outDir, "*.*", SearchOption.AllDirectories))
+            {
+                var changed = false;
+                var fileContent = File.ReadAllText(filePath, Encoding.UTF8);
+                if (fileContent.Contains(nameReplaceMask))
+                {
+                    fileContent = fileContent.Replace(nameReplaceMask, normalizedName);
+                    changed = true;
+                }
+
+                if (fileContent.Contains(guidReplaceMask))
+                {
+                    fileContent = fileContent.Replace(guidReplaceMask, pluginId.ToString());
+                    changed = true;
+                }
+
+                if (changed)
+                {
+                    File.WriteAllText(filePath, fileContent, Encoding.UTF8);
+                }
+
+                if (filePath.Contains(nameReplaceMask))
+                {
+                    File.Move(filePath, filePath.Replace(nameReplaceMask, normalizedName));
+                }
+            }
+
             return outDir;
         }
 
@@ -108,7 +136,7 @@ namespace Playnite.Toolbox
 
             extInfo.VerifyManifest();
 
-            var packedPath = Path.Combine(targetPath, $"{Common.Paths.GetSafePathName(extInfo.Name).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
+            var packedPath = Path.Combine(targetPath, $"{Common.Paths.GetSafePathName(extInfo.Id).Replace(' ', '_')}_{extInfo.Version.ToString().Replace(".", "_")}{PlaynitePaths.PackedExtensionFileExtention}");
             FileSystem.PrepareSaveFile(packedPath);
             var ignoreFiles = File.ReadAllLines(Paths.ExtFileIgnoreListPath);
 

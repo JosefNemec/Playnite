@@ -1,0 +1,9 @@
+Id: m64p
+Name: m64p
+Website: 'https://m64p.github.io/'
+Profiles:
+  - Name: Default
+    StartupArguments: '--nogui "{ImagePath}"'
+    ImageExtensions: [n64, v64, z64, zip, 7z]
+    Platforms: [nintendo_64]
+    StartupExecutable: ^mupen64plus-gui\.exe$

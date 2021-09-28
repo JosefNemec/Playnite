@@ -1,0 +1,9 @@
+Id: virtualjaguar
+Name: Virtual Jaguar
+Website: 'https://icculus.org/virtualjaguar/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [atari_jaguar]
+    ImageExtensions: [abs, rom, jag, bin]
+    StartupExecutable: ^virtualjaguar\.exe$

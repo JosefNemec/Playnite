@@ -1,5 +1,6 @@
-﻿Name: Default
+﻿Id: Playnite_builtin_DefaultFullscreen
+Name: Default
 Author: Playnite
 Version: 1.0
 Mode: Fullscreen
-ThemeApiVersion: 1.2.0
+ThemeApiVersion: 2.0.0

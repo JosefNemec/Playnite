@@ -60,18 +60,18 @@
                 <DockPanel Margin="20" LastChildFill="False">
                     <TextBlock Text="{DynamicResource LOCFirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource LOCFirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,20"/>
-                   
-                    <ItemsControl ItemsSource="{Binding LibraryPlugins}"
+
+                    <ItemsControl ItemsSource="{Binding RecommendedAddons}"
                                   HorizontalAlignment="Stretch" VerticalAlignment="Top">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <CheckBox Content="{Binding Plugin.Name}" IsChecked="{Binding Selected}"
+                                <CheckBox Content="{Binding Name}" IsChecked="{Binding Selected}"
                                            Margin="7"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="4" />
+                                <UniformGrid Columns="3" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>             
@@ -90,80 +90,7 @@
                     <ContentControl Content="{Binding SelectedProviderSettingsView}"
                                     Margin="20,10,20,20" DockPanel.Dock="Top"/>
                 </DockPanel>                
-            </TabItem>
-
-            <!-- Layout -->
-            <!--<TabItem Visibility="Collapsed">
-                <StackPanel Margin="20">
-                    <TextBlock Text="{DynamicResource LOCFirstConfigGridViewLayout}"
-                               VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
-                    <TextBlock Text="{DynamicResource LOCFirstConfigGridViewLayoutDesc}"
-                               TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,20"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                        <RadioButton Margin="20,0,20,0"
-                                     IsChecked="{Binding IsBannerLayoutSelected}">
-                            <RadioButton.LayoutTransform>
-                                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
-                            </RadioButton.LayoutTransform>
-                            <RadioButton.Content>
-                                <UniformGrid Columns="5" Rows="3" Margin="10,0,0,0">
-                                    <UniformGrid.Resources>
-                                        <Style TargetType="Border" BasedOn="{StaticResource PopupBorder}">
-                                            <Setter Property="Width" Value="35" />
-                                            <Setter Property="Height" Value="76" />
-                                            <Setter Property="Margin" Value="2" />
-                                        </Style>
-                                    </UniformGrid.Resources>
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                </UniformGrid>
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton Margin="20,0,20,0"
-                                     IsChecked="{Binding IsBoxLayoutSelected}">
-                            <RadioButton.LayoutTransform>
-                                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="-90" />
-                            </RadioButton.LayoutTransform>
-                            <RadioButton.Content>
-                                <UniformGrid Columns="3" Rows="4" Margin="10,0,0,0">
-                                    <UniformGrid.Resources>
-                                        <Style TargetType="Border" BasedOn="{StaticResource PopupBorder}">
-                                            <Setter Property="Width" Value="63" />
-                                            <Setter Property="Height" Value="45" />
-                                            <Setter Property="Margin" Value="2" />
-                                        </Style>
-                                    </UniformGrid.Resources>
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                    <Border />
-                                </UniformGrid>
-                            </RadioButton.Content>
-                        </RadioButton>
-                    </StackPanel>
-                </StackPanel>             
-            </TabItem>-->
+            </TabItem>           
 
             <!-- Finish -->
             <TabItem Header="Done" Visibility="Collapsed" Foreground="{StaticResource TextBrush}">
@@ -171,25 +98,20 @@
                     <TextBlock Text="{DynamicResource LOCFirstConfigFinishedTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource LOCFirstConfigFinishedText}" 
                                TextWrapping="Wrap" Margin="0,20,0,0" DockPanel.Dock="Top"/>
-                    <CheckBox Content="{DynamicResource LOCFirstConfigOpenEmuImport}"
-                              IsChecked="{Binding StartEmulatorWizard}"
-                              DockPanel.Dock="Bottom" Margin="0,0,0,20"/>
                 </DockPanel>
             </TabItem>
         </TabControl>
 
-        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button TabIndex="3" Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding FinishCommand}" IsVisibleChanged="ButtonFinish_IsVisibleChanged"/>
                 <Button TabIndex="2" Content="{DynamicResource LOCNextLabel}" Name="ButtonNext" DockPanel.Dock="Right"
+                        Visibility="{Binding ShowFinishButton, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding NextCommand}"/>
-                <Button TabIndex="1" Content="{DynamicResource LOCBackLabel}" Name="ButtonBack" DockPanel.Dock="Right"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding BackCommand}" IsEnabledChanged="ButtonBack_IsEnabledChanged"/>
             </DockPanel>
         </Border>
     </Grid>

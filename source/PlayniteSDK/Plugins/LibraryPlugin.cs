@@ -4,15 +4,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
 {
     /// <summary>
-    /// Represents capabilities of a library plugin.
+    /// Represents arguments for <see cref="LibraryPlugin.GetGames(LibraryGetGamesArgs)"/> method.
     /// </summary>
-    public class LibraryPluginCapabilities
+    public class LibraryGetGamesArgs
+    {
+        /// <summary>
+        /// Gets cancellataion token.
+        /// </summary>
+        public CancellationToken CancelToken { get; internal set; }
+    }
+
+    /// <summary>
+    /// Represents arguments for <see cref="LibraryPlugin.ImportGames(LibraryImportGamesArgs)"/> method.
+    /// </summary>
+    public class LibraryImportGamesArgs
+    {
+        /// <summary>
+        /// Gets cancellataion token.
+        /// </summary>
+        public CancellationToken CancelToken { get; internal set; }
+    }
+
+    /// <summary>
+    /// Represents <see cref="LibraryPlugin"/> plugin properties.
+    /// </summary>
+    public class LibraryPluginProperties : PluginProperties
     {
         /// <summary>
         /// Gets or sets value indicating whether plugin is capable of closing down original game client.
@@ -30,6 +53,11 @@ namespace Playnite.SDK.Plugins
     /// </summary>
     public abstract class LibraryPlugin : Plugin
     {
+        /// <summary>
+        /// Gets plugin's properties.
+        /// </summary>
+        public LibraryPluginProperties Properties { get; protected set; }
+
         /// <summary>
         /// Creates new instance of <see cref="LibraryPlugin"/>.
         /// </summary>
@@ -61,36 +89,21 @@ namespace Playnite.SDK.Plugins
         public virtual LibraryClient Client { get; }
 
         /// <summary>
-        /// Gets plugin's library capabilities.
-        /// </summary>
-        public virtual LibraryPluginCapabilities Capabilities { get; }
-
-        /// <summary>
         /// Gets library games.
         /// </summary>
         /// <returns>List of library games.</returns>
-        public virtual IEnumerable<GameInfo> GetGames()
+        public virtual IEnumerable<GameMetadata> GetGames(LibraryGetGamesArgs args)
         {
-            return new List<GameInfo>();
+            return new List<GameMetadata>();
         }
 
         /// <summary>
         /// Initiates game import if "HasCustomizedGameImport" capability is enabled.
         /// </summary>
         /// <returns>List of newly imported games.</returns>
-        public virtual IEnumerable<Game> ImportGames()
+        public virtual IEnumerable<Game> ImportGames(LibraryImportGamesArgs args)
         {
             return new List<Game>();
-        }
-
-        /// <summary>
-        /// Gets controller responsible for handling of library game or null if no specific controller is available.
-        /// </summary>
-        /// <param name="game">Game to be handled.</param>
-        /// <returns>Game controller.</returns>
-        public virtual IGameController GetGameController(Game game)
-        {
-            return null;
         }
 
         /// <summary>
@@ -100,6 +113,12 @@ namespace Playnite.SDK.Plugins
         public virtual LibraryMetadataProvider GetMetadataDownloader()
         {
             return null;
+        }
+
+        ///<inheritdoc/>
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

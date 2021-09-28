@@ -22,8 +22,6 @@
         <pcon:NegateConverter x:Key="NegateConverter" />
         <pcon:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
         <pcon:ListToStringConverter x:Key="ListToStringConverter" />
-        <pvm:SelectedPlatformsToStringConverter x:Key="SelectedPlatformsToStringConverter" />
-        <pvm:SelectedPlatformsToListConverter x:Key="SelectedPlatformsToListConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </controls:WindowBase.Resources>
 
@@ -93,9 +91,9 @@
                     </ScrollViewer>
                 </DockPanel>
             </TabItem>
-        </TabControl>        
+        </TabControl>
 
-        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
                 <Button Content="{DynamicResource LOCCancelLabel}" Name="ButtonClose" DockPanel.Dock="Right"                        
                         Style="{StaticResource BottomButton}" Command="{Binding CancelCommand}" TabIndex="6"/>

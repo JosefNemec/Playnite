@@ -72,7 +72,7 @@ namespace Playnite.Input
         }
     }
 
-    public class XInputDevice
+    public class XInputDevice : IDisposable
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly InputSimulator inputSimulator = new InputSimulator();
@@ -170,6 +170,7 @@ namespace Playnite.Input
 
         private InputManager inputManager;
         private uint lastState = 0;
+        private bool isDisposed = false;
 
         public XInputDevice(InputManager input, PlayniteApplication app)
         {
@@ -213,6 +214,11 @@ namespace Playnite.Input
             {
                 while (true)
                 {
+                    if (isDisposed)
+                    {
+                        return;
+                    }
+
                     if (app.IsActive != true)
                     {
                         await Task.Delay(pollingRate);
@@ -250,6 +256,11 @@ namespace Playnite.Input
                     await Task.Delay(pollingRate);
                 }
             });
+        }
+
+        public void Dispose()
+        {
+            isDisposed = true;
         }
 
         private void ProcessState(GamePadState state, PlayerIndex playniteIndex)

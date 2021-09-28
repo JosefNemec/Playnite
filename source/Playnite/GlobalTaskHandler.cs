@@ -9,7 +9,17 @@ namespace Playnite
 {
     public static class GlobalTaskHandler
     {
-        public static CancellationTokenSource CancelToken = new CancellationTokenSource();
+        private static CancellationTokenSource cancelToken = new CancellationTokenSource();
+        public static CancellationTokenSource CancelToken
+        {
+            get => cancelToken;
+            set
+            {
+                cancelToken?.Dispose();
+                cancelToken = value;
+            }
+        }
+
         public static Task ProgressTask;
 
         public static bool IsActive

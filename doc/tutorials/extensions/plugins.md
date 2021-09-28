@@ -28,7 +28,7 @@ Run [Toolbox](../toolbox.md) with arguments specific to a type of plugin you wan
 
 For example, to create new library plugin:
 
-```
+```cmd
 Toolbox.exe new LibraryPlugin "SomeLibrary importer" "d:\somefolder"
 ```
 
@@ -39,7 +39,7 @@ This will generate new C# project, with all of required classes already premade.
 Don't forget to implement functionality for template methods and properties that by default return `NotImplementedException` exception.
 
 > [!NOTE] 
-If you are having issue compiling plugin created from template, then make sure that nuget dependencies are downloaded and installed properly. You can do that by using "Manage NuGet Packages" menu after right-clicking on plugin solution/project in solution explorer.
+If you are having issue compiling plugin created from the template, then make sure that nuget dependencies are downloaded and installed properly. You can do that by using "Manage NuGet Packages" menu after right-clicking on plugin solution/project in solution explorer.
 
 ### Manually
 
@@ -58,7 +58,7 @@ Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. 
 
 #### 3. Create manifest file
 
-Described in [introduction section](../intro.md) to extensions.
+Described in [introduction section](intro.md) to extensions.
 
 Plugin dependencies
 ---------------------
@@ -83,7 +83,6 @@ If you want to use functionality/code from non-SDK assemblies, you have several 
 * Open GitHub issues for the functionality to be exposed in the SDK.
 * Link the source code to your project (choose "Add as link" when adding a source file into plugin project) and compile it with your plugin assembly.
 
-
 Plugin settings
 ---------------------
 
@@ -93,10 +92,3 @@ Examples
 ---------------------
 
 Support for all 3rd part clients in Playnite is implemented fully using plugins so you can use then as a reference when implementing new ones. Source can be found [on GitHub](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins).
-
-Distributing plugins
----------------------
-
-It's highly recommend to use [Toolbox](../toolbox.md) to package the plugin and distribute resulting `.pext` file. Packaging removes unnecessary references automatically and makes it easier for users to install your extension.
-
-When distributing plugins it is ok to leave out dlls for `Json.Net` reference, since it's distributed with Playnite already.

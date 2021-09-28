@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Playnite.Audio;
 using Playnite.Common;
 using Playnite.SDK;
 using System;
@@ -25,52 +26,8 @@ namespace Playnite
         //Explore
     }
 
-    public class FullscreenViewSettings : ObservableObject
+    public class FullscreenViewSettings : ViewSettingsBase
     {
-        private SortOrder sortingOrder = SortOrder.Name;
-        public SortOrder SortingOrder
-        {
-            get
-            {
-                return sortingOrder;
-            }
-
-            set
-            {
-                sortingOrder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private SortOrderDirection sortingOrderDirection = SortOrderDirection.Descending;
-        public SortOrderDirection SortingOrderDirection
-        {
-            get
-            {
-                return sortingOrderDirection;
-            }
-
-            set
-            {
-                sortingOrderDirection = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private GroupableField selectedExplorerField = GroupableField.Library;
-        public GroupableField SelectedExplorerField
-        {
-            get
-            {
-                return selectedExplorerField;
-            }
-
-            set
-            {
-                selectedExplorerField = value;
-                OnPropertyChanged();
-            }
-        }
     }
 
     public class FullscreenFilterSettings : FilterSettings
@@ -95,7 +52,7 @@ namespace Playnite
                     Developer?.IsSet == true ||
                     Tag?.IsSet == true ||
                     Feature?.IsSet == true ||
-                    CompletionStatus?.IsSet == true ||
+                    CompletionStatuses?.IsSet == true ||
                     UserScore?.IsSet == true ||
                     CriticScore?.IsSet == true ||
                     CommunityScore?.IsSet == true ||
@@ -119,21 +76,19 @@ namespace Playnite
         [JsonIgnore]
         public const FullscreenButtonPrompts DefaultButtonPrompts = FullscreenButtonPrompts.Xbox;
 
-        private ActiveFullscreenView activeView = ActiveFullscreenView.RecentlyPlayed;
-        public ActiveFullscreenView ActiveView
+        private bool isMusicMuted = false;
+        [JsonIgnore]
+        public bool IsMusicMuted
         {
             get
             {
-                return activeView;
+                return isMusicMuted;
             }
 
             set
             {
-                if (value != activeView)
-                {
-                    activeView = value;
-                    OnPropertyChanged();
-                }
+                isMusicMuted = value;
+                OnPropertyChanged();
             }
         }
 
@@ -152,7 +107,8 @@ namespace Playnite
             }
         }
 
-        private string theme = "Default";
+        private string theme = ThemeManager.DefaultFullscreenThemeId;
+        [RequiresRestart]
         public string Theme
         {
             get
@@ -287,21 +243,6 @@ namespace Playnite
             }
         }
 
-        private bool installedOnlyInQuickFilters = false;
-        public bool InstalledOnlyInQuickFilters
-        {
-            get
-            {
-                return installedOnlyInQuickFilters;
-            }
-
-            set
-            {
-                installedOnlyInQuickFilters = value;
-                OnPropertyChanged();
-            }
-        }
-
         private FullscreenFilterSettings filterSettings = new FullscreenFilterSettings();
         public FullscreenFilterSettings FilterSettings
         {
@@ -384,6 +325,265 @@ namespace Playnite
             set
             {
                 mainBackgroundImageDarkAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool usePrimaryDisplay = false;
+        public bool UsePrimaryDisplay
+        {
+            get => usePrimaryDisplay;
+            set
+            {
+                usePrimaryDisplay = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Guid selectedFilterPreset;
+        public Guid SelectedFilterPreset
+        {
+            get => selectedFilterPreset;
+            set
+            {
+                selectedFilterPreset = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool hideMouserCursor = false;
+        public bool HideMouserCursor
+        {
+            get => hideMouserCursor;
+            set
+            {
+                hideMouserCursor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool asyncImageLoading = false;
+        [RequiresRestart]
+        public bool AsyncImageLoading
+        {
+            get
+            {
+                return asyncImageLoading;
+            }
+
+            set
+            {
+                asyncImageLoading = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool minimizeAfterGameStartup = true;
+        public bool MinimizeAfterGameStartup
+        {
+            get
+            {
+                return minimizeAfterGameStartup;
+            }
+
+            set
+            {
+                minimizeAfterGameStartup = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSize = 22;
+        [RequiresRestart]
+        public double FontSize
+        {
+            get
+            {
+                return fontSize;
+            }
+
+            set
+            {
+                fontSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double fontSizeSmall = 18;
+        [RequiresRestart]
+        public double FontSizeSmall
+        {
+            get
+            {
+                return fontSizeSmall;
+            }
+
+            set
+            {
+                fontSizeSmall = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool enableXinputProcessing = true;
+        [RequiresRestart]
+        public bool EnableXinputProcessing
+        {
+            get
+            {
+                return enableXinputProcessing;
+            }
+
+            set
+            {
+                enableXinputProcessing = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowRestart = true;
+        public bool MainMenuShowRestart
+        {
+            get
+            {
+                return mainMenuShowRestart;
+            }
+
+            set
+            {
+                mainMenuShowRestart = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowShutdown = true;
+        public bool MainMenuShowShutdown
+        {
+            get
+            {
+                return mainMenuShowShutdown;
+            }
+
+            set
+            {
+                mainMenuShowShutdown = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowSuspend = true;
+        public bool MainMenuShowSuspend
+        {
+            get
+            {
+                return mainMenuShowSuspend;
+            }
+
+            set
+            {
+                mainMenuShowSuspend = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowHibernate = true;
+        public bool MainMenuShowHibernate
+        {
+            get
+            {
+                return mainMenuShowHibernate;
+            }
+
+            set
+            {
+                mainMenuShowHibernate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool swapStartDetailsAction = false;
+        public bool SwapStartDetailsAction
+        {
+            get
+            {
+                return swapStartDetailsAction;
+            }
+
+            set
+            {
+                swapStartDetailsAction = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private float interfaceVolume = 0.5f;
+        public float InterfaceVolume
+        {
+            get
+            {
+                return interfaceVolume;
+            }
+
+            set
+            {
+                interfaceVolume = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private float musicVolume = 0.3f;
+        public float BackgroundVolume
+        {
+            get
+            {
+                return musicVolume;
+            }
+
+            set
+            {
+                musicVolume = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool muteInBackground = true;
+        public bool MuteInBackground
+        {
+            get
+            {
+                return muteInBackground;
+            }
+
+            set
+            {
+                muteInBackground = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private AudioInterfaceApi audioInterfaceApi = AudioInterfaceApi.WASAPI;
+        [RequiresRestart]
+        public AudioInterfaceApi AudioInterfaceApi
+        {
+            get
+            {
+                return audioInterfaceApi;
+            }
+
+            set
+            {
+                audioInterfaceApi = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ImageLoadScaling imageScalerMode = ImageLoadScaling.BitmapDotNet;
+        public ImageLoadScaling ImageScalerMode
+        {
+            get => imageScalerMode;
+            set
+            {
+                imageScalerMode = value;
                 OnPropertyChanged();
             }
         }

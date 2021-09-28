@@ -1,0 +1,9 @@
+Id: nanoboyadvance
+Name: NanoboyAdvance
+Website: 'https://github.com/fleroviux/NanoboyAdvance'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [gba, zip]
+    StartupExecutable: ^NanoboyAdvance\.exe$

@@ -22,29 +22,6 @@ function global:StartAndWait()
     return $proc.ExitCode
 }
 
-function global:Start-SigningWatcher()
-{
-    param(
-        [string]$Pass
-    )
-
-    Write-OperationLog "Starting signing watcher..."
-    $global:SigningWatcherJob = Start-Job {
-        Import-Module PSNativeAutomation
-        while ($true)
-        {
-            $window = Get-UIWindow -ControlType Dialog -Name "Common profile login" -EA 0
-            if ($window)
-            {
-                $window | Get-UIEdit | Set-UIValue $args[0]
-                $window | Get-UIButton -AutomationId 1010 | Invoke-UIInvokePattern
-            }
-
-            Start-Sleep -Seconds 1
-        }
-    } -ArgumentList $Pass
-}
-
 function global:Invoke-Nuget()
 {
     param(
@@ -96,34 +73,6 @@ function global:Get-MsBuildPath()
     }
 
     throw "MS Build not found."
-}
-
-function global:Stop-SigningWatcher()
-{
-    Write-OperationLog "Stopping signing watcher..."
-    if ($SigningWatcherJob)
-    {
-        $SigningWatcherJob.StopJob()
-    }
-}
-
-function global:SignFile()
-{
-    param(
-        [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]
-        [string]$Path        
-    )
-    
-    process
-    {
-        Write-Host "Signing file `"$Path`"" -ForegroundColor Green
-        $signToolPath = (Resolve-Path "c:\Program Files*\Windows Kits\*\bin\*\x86\signtool.exe").Path
-        $res = StartAndWait $signToolPath ('sign /n "Open Source Developer, Josef Němec" /t http://time.certum.pl /v ' + "`"$Path`"")
-        if ($res -ne 0)
-        {        
-            throw "Failed to sign file."
-        }
-    }
 }
 
 function global:New-Folder()
@@ -189,6 +138,17 @@ function global:New-ZipFromDirectory()
     [IO.Compression.ZipFile]::CreateFromDirectory($directory, $resultZipPath, "Optimal", $includeBaseDirectory) 
 }
 
+function global:Expand-ZipToDirectory()
+{
+    param(
+        [string]$zipPath,
+        [string]$directory
+    )
+
+    Add-Type -assembly "System.IO.Compression.Filesystem" | Out-Null
+    [IO.Compression.ZipFile]::ExtractToDirectory($zipPath, $directory, $true)
+}
+
 function global:Write-OperationLog()
 {
     param(
@@ -238,4 +198,40 @@ function global:Write-DebugLog()
     )
 
     Write-Host $Message -ForegroundColor DarkGray
+}
+
+function global:BuildInnoInstaller()
+{
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$SourceDir,
+        [Parameter(Mandatory = $true)]
+        [string]$DestinationFile,
+        [Parameter(Mandatory = $true)]
+        [string]$Version
+    )
+
+    $innoCompiler = "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
+    $innoScript = "InnoSetup.iss"    
+    $innoTempScript = "InnoSetup.temp.iss"
+    $destinationExe = Split-Path $DestinationFile -Leaf
+    $destinationDir = Split-Path $DestinationFile -Parent
+        
+    Write-OperationLog "Building Inno Setup $destinationExe..."
+    New-Folder $destinationDir
+    $scriptContent = Get-Content $innoScript
+    $scriptContent = $scriptContent -replace "{source_path}", $SourceDir
+    $scriptContent = $scriptContent -replace "{version}", $Version
+    $scriptContent = $scriptContent -replace "{out_dir}", $destinationDir
+    $scriptContent = $scriptContent -replace "{out_file_name}", ($destinationExe -replace "\..+`$", "")
+    $scriptContent | Out-File $innoTempScript "utf8"
+   
+    $res = StartAndWait $innoCompiler "/Q $innoTempScript" -WorkingDir $PWD    
+    if ($res -ne 0)
+    {        
+        throw "Inno build failed."
+    }
+
+    (Get-FileHash $DestinationFile -Algorithm md5).Hash
+    Remove-Item $innoTempScript
 }

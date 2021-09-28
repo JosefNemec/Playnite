@@ -1,12 +1,16 @@
 # Extension Toolbox utility
 
+Introduction
+---------------------
+
+Toolbox is Playnite utility that can be used for various tasks, mainly for creating extensions and themes. Toolbox is distributed with every Playnite installation and can be found in Playnite's installation directory.
 
 Creating new extensions
 ---------------------
 
 ### Themes
 
-```
+```cmd
 Toolbox.exe new <themetype> <themename>
 ```
 
@@ -18,18 +22,17 @@ Toolbox.exe new <themetype> <themename>
 
 #### Example
 
-```
+```cmd
 Toolbox.exe new desktoptheme "New Desktop Theme"
 ```
 
 ### Scripts
 
-```
+```cmd
 Toolbox.exe new <scripttype> <scriptname> <targetfolder>
 ```
 
 `<scripttype>` available options:
-- **IronPythonScript**
 - **PowerShellScript**
 
 `<scriptname>` - name of the new script extension.
@@ -38,13 +41,13 @@ Toolbox.exe new <scripttype> <scriptname> <targetfolder>
 
 #### Example
 
-```
-Toolbox.exe new IronPythonScript "Testing Script" "d:\somefolder"
+```cmd
+Toolbox.exe new PowerShellScript "Testing Script" "d:\somefolder"
 ```
 
 ### Plugins
 
-```
+```cmd
 Toolbox.exe new <plugintype> <pluginname> <targetfolder>
 ```
 
@@ -59,14 +62,14 @@ Toolbox.exe new <plugintype> <pluginname> <targetfolder>
 
 #### Example
 
-```
+```cmd
 Toolbox.exe new MetadataPlugin "GameDatabase metadata provider" "d:\somefolder"
 ```
 
 Packing extensions
 ---------------------
 
-```
+```cmd
 Toolbox.exe pack <extensionfolder> <targetfolder>
 ```
 
@@ -76,7 +79,7 @@ Toolbox.exe pack <extensionfolder> <targetfolder>
 
 #### Example
 
-```
+```cmd
 Toolbox.exe pack "C:\Playnite\Themes\Fullscreen\TestingFullscreen" "c:\somefolder"
 ```
 

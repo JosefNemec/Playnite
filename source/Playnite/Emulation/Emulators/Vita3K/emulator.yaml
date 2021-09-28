@@ -1,0 +1,9 @@
+Id: vita3k
+Name: Vita3K
+Website: 'https://vita3k.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [sony_vita]
+    ImageExtensions: [vpk]
+    StartupExecutable: ^Vita3K.*\.exe$

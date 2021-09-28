@@ -12,6 +12,127 @@ using Playnite.SDK.Models;
 
 namespace Playnite
 {
+    public class FilterPreset : DatabaseObject
+    {
+        private FilterSettings settings;
+        public FilterSettings Settings
+        {
+            get => settings;
+            set
+            {
+                settings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SortOrder? sortingOrder;
+        public SortOrder? SortingOrder
+        {
+            get
+            {
+                return sortingOrder;
+            }
+
+            set
+            {
+                sortingOrder = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SortOrderDirection? sortingOrderDirection;
+        public SortOrderDirection? SortingOrderDirection
+        {
+            get
+            {
+                return sortingOrderDirection;
+            }
+
+            set
+            {
+                sortingOrderDirection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private GroupableField? groupingOrder;
+        public GroupableField? GroupingOrder
+        {
+            get
+            {
+                return groupingOrder;
+            }
+
+            set
+            {
+                groupingOrder = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showInFullscreeQuickSelection = true;
+        public bool ShowInFullscreeQuickSelection
+        {
+            get => showInFullscreeQuickSelection;
+            set
+            {
+                showInFullscreeQuickSelection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShouldSerializeGroupingOrder()
+        {
+            return GroupingOrder != null;
+        }
+
+        public bool ShouldSerializeSortingOrderDirection()
+        {
+            return SortingOrderDirection != null;
+        }
+
+        public bool ShouldSerializeSortingOrder()
+        {
+            return SortingOrder != null;
+        }
+
+        public override void CopyDiffTo(object target)
+        {
+            base.CopyDiffTo(target);
+            if (target is FilterPreset tro)
+            {
+                if (!Settings.IsEqualJson(tro.Settings))
+                {
+                    tro.Settings = Settings;
+                }
+
+                if (SortingOrder != tro.SortingOrder)
+                {
+                    tro.SortingOrder = SortingOrder;
+                }
+
+                if (SortingOrderDirection != tro.SortingOrderDirection)
+                {
+                    tro.SortingOrderDirection = SortingOrderDirection;
+                }
+
+                if (GroupingOrder != tro.GroupingOrder)
+                {
+                    tro.GroupingOrder = GroupingOrder;
+                }
+
+                if (ShowInFullscreeQuickSelection != tro.ShowInFullscreeQuickSelection)
+                {
+                    tro.ShowInFullscreeQuickSelection = ShowInFullscreeQuickSelection;
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"Target object has to be of type {GetType().Name}");
+            }
+        }
+    }
+
     public class FilterChangedEventArgs : EventArgs
     {
         public List<string> Fields
@@ -59,6 +180,16 @@ namespace Playnite
         {
             Values = new List<string>() { value };
         }
+
+        public bool Equals(StringFilterItemProperites obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return Values.IsListEqual(obj?.Values);
+        }
     }
 
     public class EnumFilterItemProperites : ObservableObject
@@ -90,6 +221,16 @@ namespace Playnite
         public EnumFilterItemProperites(int value)
         {
             Values = new List<int>() { value };
+        }
+
+        public bool Equals(EnumFilterItemProperites obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return Values.IsListEqual(obj?.Values);
         }
     }
 
@@ -164,6 +305,16 @@ namespace Playnite
         {
             return Ids.HasItems();
         }
+
+        public bool Equals(FilterItemProperites obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return Ids.IsListEqual(obj?.Ids) && Text == obj.Text;
+        }
     }
 
     public class FilterSettings : ObservableObject
@@ -199,7 +350,7 @@ namespace Playnite
                     Tag?.IsSet == true ||
                     Platform?.IsSet == true ||
                     Library?.IsSet == true ||
-                    CompletionStatus?.IsSet == true ||
+                    CompletionStatuses?.IsSet == true ||
                     UserScore?.IsSet == true ||
                     CriticScore?.IsSet == true ||
                     CommunityScore?.IsSet == true ||
@@ -556,8 +707,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites completionStatus;
-        public EnumFilterItemProperites CompletionStatus
+        private FilterItemProperites completionStatus;
+        public FilterItemProperites CompletionStatuses
         {
             get
             {
@@ -570,7 +721,7 @@ namespace Playnite
                 {
                     completionStatus = value;
                     OnPropertyChanged();
-                    OnFilterChanged(nameof(CompletionStatus));
+                    OnFilterChanged(nameof(CompletionStatuses));
                 }
             }
         }
@@ -727,7 +878,8 @@ namespace Playnite
             }
         }
 
-        public bool SuppressFilterChanges = false;
+        [JsonIgnore]
+        public bool SuppressFilterChanges { get; set; } = false;
         public event EventHandler<FilterChangedEventArgs> FilterChanged;
 
         public void OnFilterChanged(string field)
@@ -863,10 +1015,10 @@ namespace Playnite
                 filterChanges.Add(nameof(Library));
             }
 
-            if (CompletionStatus != null)
+            if (CompletionStatuses != null)
             {
-                CompletionStatus = null;
-                filterChanges.Add(nameof(CompletionStatus));
+                CompletionStatuses = null;
+                filterChanges.Add(nameof(CompletionStatuses));
             }
 
             if (UserScore != null)
@@ -922,6 +1074,177 @@ namespace Playnite
             {
                 OnFilterChanged(filterChanges);
             }
+        }
+
+        public void ApplyFilter(FilterSettings settings)
+        {
+            var filterChanges = new List<string>();
+            SuppressFilterChanges = true;
+
+            if (Name != settings.Name)
+            {
+                Name = settings.Name;
+                filterChanges.Add(nameof(Name));
+            }
+
+            if (Genre?.Equals(settings.Genre) != true)
+            {
+                Genre = settings.Genre;
+                filterChanges.Add(nameof(Genre));
+            }
+
+            if (Platform?.Equals(settings.Platform) != true)
+            {
+                Platform = settings.Platform;
+                filterChanges.Add(nameof(Platform));
+            }
+
+            if (ReleaseYear?.Equals(settings.ReleaseYear) != true)
+            {
+                ReleaseYear = settings.ReleaseYear;
+                filterChanges.Add(nameof(ReleaseYear));
+            }
+
+            if (Version != settings.Version)
+            {
+                Version = settings.Version;
+                filterChanges.Add(nameof(Version));
+            }
+
+            if (Publisher?.Equals(settings.Publisher) != true)
+            {
+                Publisher = settings.Publisher;
+                filterChanges.Add(nameof(Publisher));
+            }
+
+            if (Developer?.Equals(settings.Developer) != true)
+            {
+                Developer = settings.Developer;
+                filterChanges.Add(nameof(Developer));
+            }
+
+            if (Category?.Equals(settings.Category) != true)
+            {
+                Category = settings.Category;
+                filterChanges.Add(nameof(Category));
+            }
+
+            if (Tag?.Equals(settings.Tag) != true)
+            {
+                Tag = settings.Tag;
+                filterChanges.Add(nameof(Tag));
+            }
+
+            if (IsInstalled != settings.IsInstalled)
+            {
+                IsInstalled = settings.IsInstalled;
+                filterChanges.Add(nameof(IsInstalled));
+            }
+
+            if (IsUnInstalled != settings.IsUnInstalled)
+            {
+                IsUnInstalled = settings.IsUnInstalled;
+                filterChanges.Add(nameof(IsUnInstalled));
+            }
+
+            if (Hidden != settings.Hidden)
+            {
+                Hidden = settings.Hidden;
+                filterChanges.Add(nameof(Hidden));
+            }
+
+            if (Favorite != settings.Favorite)
+            {
+                Favorite = settings.Favorite;
+                filterChanges.Add(nameof(Favorite));
+            }
+
+            if (Series?.Equals(settings.Series) != true)
+            {
+                Series = settings.Series;
+                filterChanges.Add(nameof(Series));
+            }
+
+            if (Region?.Equals(settings.Region) != true)
+            {
+                Region = settings.Region;
+                filterChanges.Add(nameof(Region));
+            }
+
+            if (Source?.Equals(settings.Source) != true)
+            {
+                Source = settings.Source;
+                filterChanges.Add(nameof(Source));
+            }
+
+            if (AgeRating?.Equals(settings.AgeRating) != true)
+            {
+                AgeRating = settings.AgeRating;
+                filterChanges.Add(nameof(AgeRating));
+            }
+
+            if (Library?.Equals(settings.Library) != true)
+            {
+                Library = settings.Library;
+                filterChanges.Add(nameof(Library));
+            }
+
+            if (CompletionStatuses?.Equals(settings.CompletionStatuses) != true)
+            {
+                CompletionStatuses = settings.CompletionStatuses;
+                filterChanges.Add(nameof(CompletionStatuses));
+            }
+
+            if (UserScore?.Equals(settings.UserScore) != true)
+            {
+                UserScore = settings.UserScore;
+                filterChanges.Add(nameof(UserScore));
+            }
+
+            if (CriticScore?.Equals(settings.CriticScore) != true)
+            {
+                CriticScore = settings.CriticScore;
+                filterChanges.Add(nameof(CriticScore));
+            }
+
+            if (CommunityScore?.Equals(settings.CommunityScore) != true)
+            {
+                CommunityScore = settings.CommunityScore;
+                filterChanges.Add(nameof(CommunityScore));
+            }
+
+            if (LastActivity?.Equals(settings.LastActivity) != true)
+            {
+                LastActivity = settings.LastActivity;
+                filterChanges.Add(nameof(LastActivity));
+            }
+
+            if (Added?.Equals(settings.Added) != true)
+            {
+                Added = settings.Added;
+                filterChanges.Add(nameof(Added));
+            }
+
+            if (Modified?.Equals(settings.Modified) != true)
+            {
+                Modified = settings.Modified;
+                filterChanges.Add(nameof(Modified));
+            }
+
+            if (PlayTime?.Equals(settings.PlayTime) != true)
+            {
+                PlayTime = settings.PlayTime;
+                filterChanges.Add(nameof(PlayTime));
+            }
+
+            if (Feature?.Equals(settings.Feature) != true)
+            {
+                Feature = settings.Feature;
+                filterChanges.Add(nameof(Feature));
+            }
+
+            SuppressFilterChanges = false;
+            OnFilterChanged(filterChanges);
         }
 
         #region Serialization Conditions
@@ -996,9 +1319,9 @@ namespace Playnite
             return Library?.IsSet == true;
         }
 
-        public bool ShouldSerializeCompletionStatus()
+        public bool ShouldSerializeCompletionStatuses()
         {
-            return CompletionStatus?.IsSet == true;
+            return CompletionStatuses?.IsSet == true;
         }
 
         public bool ShouldSerializeUserScore()

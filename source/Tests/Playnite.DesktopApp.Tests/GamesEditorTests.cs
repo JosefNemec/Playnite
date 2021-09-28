@@ -65,6 +65,11 @@ namespace Playnite.DesktopApp.Tests
                 Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
             };
 
+            var completionStatuses = new List<Guid>
+            {
+                Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
+            };
+
             // All common
             var gamesCommon = new List<Game>()
             {
@@ -72,24 +77,24 @@ namespace Playnite.DesktopApp.Tests
                 {
                     Name = "Game",
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     Description = "Description",
-                    PlatformId = platId,
+                    PlatformIds = new List<Guid>{ platId },
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
-                    SeriesId = series[0],
+                    SeriesIds = new List<Guid>{ series[0] },
                     Version = "Version 3",
-                    AgeRatingId = ratings[0],
-                    RegionId = regions[0],
+                    AgeRatingIds = new List<Guid>{ ratings[0] },
+                    RegionIds = new List<Guid>{ regions[0] },
                     SourceId = sources[0],
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 2,
                     CommunityScore = 99,
@@ -99,25 +104,25 @@ namespace Playnite.DesktopApp.Tests
                 new Game()
                 {
                     Name = "Game",
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
-                    SeriesId = series[0],
-                    AgeRatingId = ratings[0],
-                    RegionId = regions[0],
+                    SeriesIds = new List<Guid>{ series[0] },
+                    AgeRatingIds = new List<Guid>{ ratings[0] },
+                    RegionIds = new List<Guid>{ regions[0] },
                     SourceId = sources[0],
                     Description = "Description",
-                    PlatformId = platId,
+                    PlatformIds = new List<Guid>{ platId },
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
                     Version = "Version 3",
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 2,
                     CommunityScore = 99,
@@ -128,24 +133,24 @@ namespace Playnite.DesktopApp.Tests
                 {
                     Name = "Game",
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     Description = "Description",
-                    PlatformId = platId,
+                    PlatformIds = new List<Guid>{ platId },
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
-                    SeriesId = series[0],
+                    SeriesIds = new List<Guid>{ series[0] },
                     Version = "Version 3",
-                    AgeRatingId = ratings[0],
-                    RegionId = regions[0],
+                    AgeRatingIds = new List<Guid>{ ratings[0] },
+                    RegionIds = new List<Guid>{ regions[0] },
                     SourceId = sources[0],
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 2,
                     CommunityScore = 99,
@@ -165,17 +170,17 @@ namespace Playnite.DesktopApp.Tests
             CollectionAssert.AreEqual(firstGame.TagIds, gameCommon.TagIds);
             CollectionAssert.AreEqual(firstGame.FeatureIds, gameCommon.FeatureIds);
             Assert.AreEqual(firstGame.Description, gameCommon.Description);
-            Assert.AreEqual(firstGame.PlatformId, gameCommon.PlatformId);
+            CollectionAssert.AreEqual(firstGame.PlatformIds, gameCommon.PlatformIds);
             Assert.AreEqual(firstGame.LastActivity, gameCommon.LastActivity);
             Assert.AreEqual(firstGame.Added, gameCommon.Added);
             Assert.AreEqual(firstGame.Playtime, gameCommon.Playtime);
             Assert.AreEqual(firstGame.PlayCount, gameCommon.PlayCount);
-            Assert.AreEqual(firstGame.SeriesId, gameCommon.SeriesId);
+            CollectionAssert.AreEqual(firstGame.SeriesIds, gameCommon.SeriesIds);
             Assert.AreEqual(firstGame.Version, gameCommon.Version);
-            Assert.AreEqual(firstGame.AgeRatingId, gameCommon.AgeRatingId);
-            Assert.AreEqual(firstGame.RegionId, gameCommon.RegionId);
+            CollectionAssert.AreEqual(firstGame.AgeRatingIds, gameCommon.AgeRatingIds);
+            CollectionAssert.AreEqual(firstGame.RegionIds, gameCommon.RegionIds);
             Assert.AreEqual(firstGame.SourceId, gameCommon.SourceId);
-            Assert.AreEqual(firstGame.CompletionStatus, gameCommon.CompletionStatus);
+            Assert.AreEqual(firstGame.CompletionStatusId, gameCommon.CompletionStatusId);
             Assert.AreEqual(firstGame.UserScore, gameCommon.UserScore);
             Assert.AreEqual(firstGame.CriticScore, gameCommon.CriticScore);
             Assert.AreEqual(firstGame.CommunityScore, gameCommon.CommunityScore);
@@ -188,25 +193,25 @@ namespace Playnite.DesktopApp.Tests
                 new Game()
                 {
                     Name = "Game 1",
-                    ReleaseDate = new DateTime(2011,6,20),
+                    ReleaseDate = new ReleaseDate(2011,6,20),
                     GenreIds = new List<Guid>() { genres[0], genres[1], genres[2] },
                     DeveloperIds = new List<Guid>() { developers[0], developers[1], developers[2] },
                     PublisherIds = new List<Guid>() { publishers[0], publishers[1], publishers[2] },
                     CategoryIds = new List<Guid>() { categories[0], categories[1], categories[2] },
                     TagIds = new List<Guid>() { tags[0], tags[1], tags[2] },
                     FeatureIds = new List<Guid>() { tags[0], tags[1], tags[2] },
-                    SeriesId = series[0],
-                    AgeRatingId = ratings[0],
-                    RegionId = regions[0],
+                    SeriesIds = new List<Guid>{ series[0] },
+                    AgeRatingIds = new List<Guid>{ ratings[0] },
+                    RegionIds = new List<Guid>{ regions[0] },
                     SourceId = sources[0],
                     Description = "Description 1",
-                    PlatformId = Guid.NewGuid(),
+                    PlatformIds = new List<Guid>{ Guid.NewGuid() },
                     LastActivity = new DateTime(2012,1,1),
                     Added = new DateTime(2012,1,1),
                     Playtime = 1,
                     PlayCount = 1,
                     Version = "Version 1",
-                    CompletionStatus = CompletionStatus.Beaten,
+                    CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
                     CriticScore = 1,
                     CommunityScore = 1,
@@ -222,19 +227,19 @@ namespace Playnite.DesktopApp.Tests
                     CategoryIds = new List<Guid>() { categories[3], categories[4], categories[5] },
                     TagIds = new List<Guid>() { tags[3], tags[4], tags[5] },
                     FeatureIds = new List<Guid>() { tags[3], tags[4], tags[5] },
-                    SeriesId = series[1],
-                    AgeRatingId = ratings[1],
-                    RegionId = regions[1],
+                    SeriesIds = new List<Guid>{ series[1] },
+                    AgeRatingIds = new List<Guid>{ ratings[1] },
+                    RegionIds = new List<Guid>{ regions[1] },
                     SourceId = sources[1],
-                    ReleaseDate = new DateTime(2012,6,20),
+                    ReleaseDate = new ReleaseDate(2012,6,20),
                     Description = "Description 2",
-                    PlatformId = Guid.NewGuid(),
+                    PlatformIds = new List<Guid>{ Guid.NewGuid() },
                     LastActivity = new DateTime(2012,1,2),
                     Added = new DateTime(2012,1,2),
                     Playtime = 2,
                     PlayCount = 2,
                     Version = "Version 2",
-                    CompletionStatus = CompletionStatus.Completed,
+                    CompletionStatusId = completionStatuses[1],
                     UserScore = 2,
                     CriticScore = 2,
                     CommunityScore = 2,
@@ -250,19 +255,19 @@ namespace Playnite.DesktopApp.Tests
                     CategoryIds = new List<Guid>() { categories[6], categories[7], categories[8] },
                     TagIds = new List<Guid>() { tags[6], tags[7], tags[8] },
                     FeatureIds = new List<Guid>() { tags[6], tags[7], tags[8] },
-                    SeriesId = series[2],
-                    AgeRatingId = ratings[2],
-                    RegionId = regions[2],
+                    SeriesIds = new List<Guid>{ series[2] },
+                    AgeRatingIds = new List<Guid>{ ratings[2] },
+                    RegionIds = new List<Guid>{ regions[2] },
                     SourceId = sources[2],
-                    ReleaseDate = new DateTime(2013,6,20),
+                    ReleaseDate = new ReleaseDate(2013,6,20),
                     Description = "Description 3",
-                    PlatformId = Guid.NewGuid(),
+                    PlatformIds = new List<Guid>{ Guid.NewGuid() },
                     LastActivity = new DateTime(2012,1,3),
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
                     Version = "Version 3",
-                    CompletionStatus = CompletionStatus.NotPlayed,
+                    CompletionStatusId = completionStatuses[2],
                     UserScore = 3,
                     CriticScore = 3,
                     CommunityScore = 3,
@@ -275,7 +280,7 @@ namespace Playnite.DesktopApp.Tests
             Assert.IsNull(gameNoCommon.Name);
             Assert.IsNull(gameNoCommon.ReleaseDate);
             Assert.IsNull(gameNoCommon.Description);
-            Assert.AreEqual(Guid.Empty, gameNoCommon.PlatformId);
+            CollectionAssert.IsEmpty(gameNoCommon.PlatformIds);
             CollectionAssert.IsEmpty(gameNoCommon.GenreIds);
             CollectionAssert.IsEmpty(gameNoCommon.DeveloperIds);
             CollectionAssert.IsEmpty(gameNoCommon.PublisherIds);
@@ -286,12 +291,12 @@ namespace Playnite.DesktopApp.Tests
             Assert.IsNull(gameNoCommon.Added);
             Assert.AreEqual(gameNoCommon.Playtime, 0);
             Assert.AreEqual(gameNoCommon.PlayCount, 0);
-            Assert.AreEqual(Guid.Empty, gameNoCommon.SeriesId);
+            CollectionAssert.IsEmpty(gameNoCommon.SeriesIds);
             Assert.IsNull(gameNoCommon.Version);
-            Assert.AreEqual(Guid.Empty, gameNoCommon.AgeRatingId);
-            Assert.AreEqual(Guid.Empty, gameNoCommon.RegionId);
+            CollectionAssert.IsEmpty(gameNoCommon.AgeRatingIds);
+            CollectionAssert.IsEmpty(gameNoCommon.RegionIds);
             Assert.AreEqual(Guid.Empty, gameNoCommon.SourceId);
-            Assert.AreEqual(gameNoCommon.CompletionStatus, CompletionStatus.NotPlayed);
+            Assert.AreEqual(Guid.Empty, gameNoCommon.CompletionStatusId);
             Assert.IsNull(gameNoCommon.UserScore);
             Assert.IsNull(gameNoCommon.CriticScore);
             Assert.IsNull(gameNoCommon.CommunityScore);

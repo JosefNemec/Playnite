@@ -74,8 +74,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine, Version=2.5.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommandLineParser.2.5.0\lib\net461\CommandLine.dll</HintPath>
+    <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
@@ -97,14 +97,14 @@
     <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCL.raw, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCL.raw.0.8.4\lib\net45\SQLitePCL.raw.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Abstractions, Version=2.1.0.227, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Abstractions.2.1.0.227\lib\net40\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -114,7 +114,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -132,21 +131,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\AddonsSections\AddonUpdates.xaml.cs">
+      <DependentUpon>AddonUpdates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AddonsSections\BrowseAddons.xaml.cs">
+      <DependentUpon>BrowseAddons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AddonsSections\InstalledExtensions.xaml.cs">
+      <DependentUpon>InstalledExtensions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ComboBoxList.cs" />
     <Compile Include="Controls\ExpanderEx.cs" />
-    <Compile Include="Controls\FilterStringSelectionBox.xaml.cs">
-      <DependentUpon>FilterStringSelectionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FilterEnumSelectionBox.xaml.cs">
-      <DependentUpon>FilterEnumSelectionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DdItemListSelectionBox.xaml.cs">
-      <DependentUpon>DdItemListSelectionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FilterSelectionBox.xaml.cs">
-      <DependentUpon>FilterSelectionBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GameGroupMenu.cs" />
-    <Compile Include="Controls\GameMenu.cs" />
+    <Compile Include="Controls\Menus\FilterPresetsMenu.cs" />
+    <Compile Include="Controls\ComboBoxListBase.cs" />
+    <Compile Include="Controls\Menus\GameGroupMenu.cs" />
+    <Compile Include="Controls\Menus\GameMenu.cs" />
     <Compile Include="Controls\GamesGridView.xaml.cs">
       <DependentUpon>GamesGridView.xaml</DependentUpon>
     </Compile>
@@ -158,13 +157,21 @@
       <DependentUpon>LibraryStatistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MenuHelpers.cs" />
+    <Compile Include="Controls\Menus\ViewSelectionMenu.cs" />
+    <Compile Include="Controls\Menus\SortSettingsMenu.cs" />
+    <Compile Include="Controls\Menus\GroupSettingsMenu.cs" />
     <Compile Include="Controls\MetadataDownloadSettings.xaml.cs">
       <DependentUpon>MetadataDownloadSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NullableIntBox.cs" />
-    <Compile Include="Controls\NumericBox.cs" />
-    <Compile Include="Controls\SearchBox.xaml.cs">
-      <DependentUpon>SearchBox.xaml</DependentUpon>
+    <Compile Include="Controls\NumericDoubleBox.cs" />
+    <Compile Include="Controls\LongNumericBox.cs" />
+    <Compile Include="Controls\PathSelectionBox.cs" />
+    <Compile Include="Controls\SettingsSections\LibrariesConfigWindowInfo.xaml.cs">
+      <DependentUpon>LibrariesConfigWindowInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\AppearanceTopPanel.xaml.cs">
+      <DependentUpon>AppearanceTopPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\AppearanceAdvanced.xaml.cs">
       <DependentUpon>AppearanceAdvanced.xaml</DependentUpon>
@@ -184,17 +191,14 @@
     <Compile Include="Controls\SettingsSections\ClientShutdown.xaml.cs">
       <DependentUpon>ClientShutdown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsThemes.xaml.cs">
-      <DependentUpon>ExtensionsThemes.xaml</DependentUpon>
+    <Compile Include="Controls\AddonsSections\InstalledThemes.xaml.cs">
+      <DependentUpon>InstalledThemes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsOther.xaml.cs">
-      <DependentUpon>ExtensionsOther.xaml</DependentUpon>
+    <Compile Include="Controls\SettingsSections\Development.xaml.cs">
+      <DependentUpon>Development.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsLibraries.xaml.cs">
-      <DependentUpon>ExtensionsLibraries.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SettingsSections\ExtensionsMetadata.xaml.cs">
-      <DependentUpon>ExtensionsMetadata.xaml</DependentUpon>
+    <Compile Include="Controls\SettingsSections\AddonsMoveInfo.xaml.cs">
+      <DependentUpon>AddonsMoveInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
       <DependentUpon>ImportExlusionList.xaml</DependentUpon>
@@ -229,13 +233,19 @@
     <Compile Include="Controls\SettingsSections\Scripting.xaml.cs">
       <DependentUpon>Scripting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SearchBox.cs" />
+    <Compile Include="Controls\DdItemListSelectionBox.cs" />
+    <Compile Include="Controls\FilterEnumSelectionBox.cs" />
+    <Compile Include="Controls\FilterSelectionBox.cs" />
+    <Compile Include="Controls\FilterStringSelectionBox.cs" />
+    <Compile Include="Controls\TopPanelItem.cs" />
     <Compile Include="Controls\SidebarItem.cs" />
     <Compile Include="Controls\SliderWithPopup.xaml.cs">
       <DependentUpon>SliderWithPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TrayContextMenu.cs" />
-    <Compile Include="Controls\ViewSettingsMenu.cs" />
-    <Compile Include="Controls\MainMenu.cs" />
+    <Compile Include="Controls\Menus\TrayContextMenu.cs" />
+    <Compile Include="Controls\Menus\ViewSettingsMenu.cs" />
+    <Compile Include="Controls\Menus\MainMenu.cs" />
     <Compile Include="Controls\Views\ExplorerPanel.cs" />
     <Compile Include="Controls\Views\Library.cs" />
     <Compile Include="Controls\Views\GameOverview.cs" />
@@ -249,20 +259,25 @@
     <Compile Include="Controls\Views\NotificationPanel.cs" />
     <Compile Include="Controls\Views\Sidebar.cs" />
     <Compile Include="Controls\Views\MainWindow.cs" />
-    <Compile Include="Controls\Views\MainPanel.cs" />
+    <Compile Include="Controls\Views\TopPanel.cs" />
     <Compile Include="Controls\SliderEx.cs" />
+    <Compile Include="Controls\GridViewPanel.cs" />
     <Compile Include="DesktopApplication.cs" />
     <Compile Include="DesktopCollectionView.cs" />
     <Compile Include="DesktopDialogs.cs" />
     <Compile Include="DesktopGamesEditor.cs" />
-    <Compile Include="Markup\Api.cs" />
-    <Compile Include="Markup\MainViewModel.cs" />
-    <Compile Include="Markup\Settings.cs" />
-    <Compile Include="Markup\ThemeFile.cs" />
+    <Compile Include="Markups.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\AddonsViewModel.cs" />
+    <Compile Include="ViewModels\AddonsViewModel_Installed.cs" />
+    <Compile Include="ViewModels\AddonsViewModel_Online.cs" />
     <Compile Include="ViewModels\CategoryConfigViewModel.cs" />
     <Compile Include="ViewModels\DatabaseFieldsManagerViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
+    <Compile Include="ViewModels\DesktopAppViewModel_Sidebar.cs" />
+    <Compile Include="ViewModels\DesktopAppViewModel_Commands.cs" />
+    <Compile Include="ViewModels\DesktopAppViewModel_TopPanel.cs" />
+    <Compile Include="ViewModels\EmulatedGamesImportViewModel.cs" />
     <Compile Include="ViewModels\EmulatorImportViewModel.cs" />
     <Compile Include="ViewModels\EmulatorsViewModel.cs" />
     <Compile Include="ViewModels\FirstTimeStartupViewModel.cs" />
@@ -281,9 +296,24 @@
     <Compile Include="ViewModels\PluginSettingsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\MetadataComparisonViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModelBase.cs" />
+    <Compile Include="PluginSettingsHelper.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
+      <DependentUpon>ActionSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmulatedGameImportWindow.xaml.cs">
+      <DependentUpon>EmulatedGameImportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmulatorDownloadWindow.xaml.cs">
+      <DependentUpon>EmulatorDownloadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LicenseAgreementWindow.xaml.cs">
+      <DependentUpon>LicenseAgreementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddonsWindow.xaml.cs">
+      <DependentUpon>AddonsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ExtensionCrashHandlerWindow.xaml.cs">
       <DependentUpon>ExtensionCrashHandlerWindow.xaml</DependentUpon>
     </Compile>
@@ -388,18 +418,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Themes\Desktop\ClassicBlue\theme.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicGreen\theme.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicPlain\theme.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\DefaultRed\theme.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Resource Include="Resources\igdbicon.png" />
     <None Include="Themes\Desktop\Default\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -411,10 +429,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{deb1b9f3-6fc9-4185-8daa-4fca15b46f83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>
@@ -426,9 +440,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\contributors.txt" />
-    <None Include="Themes\Desktop\Classic\theme.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <SplashScreen Include="SplashScreen.png" />
     <Content Include="Themes\Desktop\Default\Constants.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -492,12 +503,12 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\Views\FilterPanel.xaml">
+    <Content Include="Themes\Desktop\Default\Views\FilterPanelView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\Views\MainPanel.xaml">
+    <Content Include="Themes\Desktop\Default\Views\TopPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -522,24 +533,15 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\CustomControls\MainMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Page Include="Controls\FilterStringSelectionBox.xaml">
+    <Page Include="Controls\AddonsSections\AddonUpdates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\FilterEnumSelectionBox.xaml">
+    <Page Include="Controls\AddonsSections\BrowseAddons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\DdItemListSelectionBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\FilterSelectionBox.xaml">
+    <Page Include="Controls\AddonsSections\InstalledExtensions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -559,7 +561,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\SearchBox.xaml">
+    <Page Include="Controls\SettingsSections\LibrariesConfigWindowInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceTopPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -587,19 +593,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsThemes.xaml">
+    <Page Include="Controls\AddonsSections\InstalledThemes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsOther.xaml">
+    <Page Include="Controls\SettingsSections\Development.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsLibraries.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\SettingsSections\ExtensionsMetadata.xaml">
+    <Page Include="Controls\SettingsSections\AddonsMoveInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -655,11 +657,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Content Include="Themes\Desktop\Default\CustomControls\ViewSettingsMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Themes\Desktop\Default\DerivedStyles\HighlightBorder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -835,12 +832,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Desktop\Default\CustomControls\NullableIntBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Desktop\Default\CustomControls\NumericBox.xaml">
+    <Content Include="Themes\Desktop\Default\CustomControls\NumericBoxes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -910,11 +902,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Themes\Desktop\Classic\Constants.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="Themes\Desktop\Default\Views\ExplorerPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -925,46 +912,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Themes\Desktop\Classic\DerivedStyles\DetailsViewItemStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicPlain\Constants.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicPlain\DerivedStyles\DetailsViewItemStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicGreen\Constants.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicGreen\DerivedStyles\DetailsViewItemStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicBlue\Constants.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\ClassicBlue\DerivedStyles\DetailsViewItemStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\Desktop\DefaultRed\Constants.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="Themes\Desktop\Default\DerivedStyles\NotificationMessage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1025,7 +972,72 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\GridViewGroupStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\SearchBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ComboBoxList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\FilterSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExtendedDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\TopPanelItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\PathSelectionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\ListViewGroupStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ActionSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EmulatedGameImportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EmulatorDownloadWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\LicenseAgreementWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\AddonsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1133,16 +1145,13 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)
-"C:\Program Files\PowerShell\7\pwsh.exe" -file "$(SolutionDir)\..\build\copyPluginsToBuild.ps1" "$(ConfigurationName)" "$(TargetDir)\" "$(SolutionDir)\"</PostBuildEvent>
+    <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)</PostBuildEvent>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
-  <Import Project="..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets" Condition="Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets'))" />
     <Error Condition="!Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets'))" />
   </Target>
   <Import Project="..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets" Condition="Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" />

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using Playnite.SDK.Data;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using System;
@@ -7,10 +7,143 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
 {
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetPlayActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetInstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetUninstallActionsArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public Game Game { get; set; }
+    }
+
+    /// <summary>
+    /// When used, specific plugin class will be loaded by Playnite.
+    /// </summary>
+    public class LoadPluginAttribute : Attribute
+    {
+    }
+
+    /// <summary>
+    /// When used, specific plugin class won't be loaded by Playnite.
+    /// </summary>
+    public class IgnorePluginAttribute : Attribute
+    {
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GetGameViewControlArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ApplicationMode Mode { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddCustomElementSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> ElementList { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddSettingsSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SettingsRoot { get; set; }
+    }
+
+    /// <summary>
+    /// Represents plugin properties.
+    /// </summary>
+    public abstract class PluginProperties
+    {
+        /// <summary>
+        /// Gets or sets value indicating that the plugin provides user settings view.
+        /// </summary>
+        public bool HasSettings { get; set; }
+    }
+
+    /// <summary>
+    /// Represents <see cref="GenericPlugin"/> plugin properties.
+    /// </summary>
+    public class GenericPluginProperties : PluginProperties
+    {
+    }
+
+    /// <summary>
+    /// Represents generic plugin.
+    /// </summary>
+    public abstract class GenericPlugin : Plugin
+    {
+        /// <summary>
+        /// Gets plugin's properties.
+        /// </summary>
+        public GenericPluginProperties Properties { get; protected set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="playniteAPI"></param>
+        public GenericPlugin(IPlayniteAPI playniteAPI) : base(playniteAPI)
+        {
+        }
+    }
+
     /// <summary>
     /// Represents base Playnite plugin.
     /// </summary>
@@ -61,82 +194,65 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Returns list of plugin functions.
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("Use GetGameMenuItems and GetMainMenuItems methods.")]
-        public virtual IEnumerable<ExtensionFunction> GetFunctions()
-        {
-            return null;
-        }
-
-        /// <summary>
         /// Called before game is started.
         /// </summary>
-        /// <param name="game">Game that will be started.</param>
-        public virtual void OnGameStarting(Game game)
+        public virtual void OnGameStarting(OnGameStartingEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game has started.
         /// </summary>
-        /// <param name="game">Game that started.</param>
-        public virtual void OnGameStarted(Game game)
+        public virtual void OnGameStarted(OnGameStartedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game stopped running.
         /// </summary>
-        /// <param name="game">Game that stopped running.</param>
-        /// <param name="ellapsedSeconds">Time in seconds of how long the game was running.</param>
-        public virtual void OnGameStopped(Game game, long ellapsedSeconds)
+        public virtual void OnGameStopped(OnGameStoppedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game has been installed.
         /// </summary>
-        /// <param name="game">Game that's been installed.</param>
-        public virtual void OnGameInstalled(Game game)
+        public virtual void OnGameInstalled(OnGameInstalledEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game has been uninstalled.
         /// </summary>
-        /// <param name="game">Game that's been uninstalled.</param>
-        public virtual void OnGameUninstalled(Game game)
+        public virtual void OnGameUninstalled(OnGameUninstalledEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when game selection changed.
         /// </summary>
-        /// <param name="args"></param>
-        public virtual void OnGameSelected(GameSelectionEventArgs args)
+        public virtual void OnGameSelected(OnGameSelectedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when appliaction is started and initialized.
         /// </summary>
-        public virtual void OnApplicationStarted()
+        public virtual void OnApplicationStarted(OnApplicationStartedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called when appliaction is stutting down.
         /// </summary>
-        public virtual void OnApplicationStopped()
+        public virtual void OnApplicationStopped(OnApplicationStoppedEventArgs args)
         {
         }
 
         /// <summary>
         /// Called library update has been finished.
         /// </summary>
-        public virtual void OnLibraryUpdated()
+        public virtual void OnLibraryUpdated(OnLibraryUpdatedEventArgs args)
         {
         }
 
@@ -145,7 +261,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args">Contextual arguments.</param>
         /// <returns>List of menu items to be displayed in game menu.</returns>
-        public virtual List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+        public virtual IEnumerable<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
         {
             return null;
         }
@@ -155,7 +271,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <param name="args">Contextual arguments.</param>
         /// <returns>List of menu items to be displayed in Playnite's main menu.</returns>
-        public virtual List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        public virtual IEnumerable<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
         {
             return null;
         }
@@ -186,7 +302,7 @@ namespace Playnite.SDK.Plugins
             var pluginConfig = Path.Combine(pluginDir, "plugin.cfg");
             if (File.Exists(pluginConfig))
             {
-                return JsonConvert.DeserializeObject<TConfig>(File.ReadAllText(pluginConfig));
+                return Serialization.FromJsonFile<TConfig>(pluginConfig);
             }
             else
             {
@@ -204,8 +320,7 @@ namespace Playnite.SDK.Plugins
             var setFile = Path.Combine(GetPluginUserDataPath(), pluginSettingFileName);
             if (File.Exists(setFile))
             {
-                var strConf = File.ReadAllText(setFile);
-                return JsonConvert.DeserializeObject<TSettings>(strConf);
+                return Serialization.FromJsonFile<TSettings>(setFile);
             }
             else
             {
@@ -227,7 +342,7 @@ namespace Playnite.SDK.Plugins
                 Directory.CreateDirectory(setDir);
             }
 
-            var strConf = JsonConvert.SerializeObject(settings, Formatting.Indented);
+            var strConf = Serialization.ToJson(settings, true);
             File.WriteAllText(setFile, strConf);
         }
 
@@ -243,6 +358,82 @@ namespace Playnite.SDK.Plugins
             }
 
             return PlayniteApi.MainView.OpenPluginSettings(Id);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual IEnumerable<PlayController> GetPlayActions(GetPlayActionsArgs args)
+        {
+            yield break;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual IEnumerable<InstallController> GetInstallActions(GetInstallActionsArgs args)
+        {
+            yield break;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual IEnumerable<UninstallController> GetUninstallActions(GetUninstallActionsArgs args)
+        {
+            yield break;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public virtual Control GetGameViewControl(GetGameViewControlArgs args)
+        {
+            return null;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        public void AddCustomElementSupport(AddCustomElementSupportArgs args)
+        {
+            PlayniteApi.AddCustomElementSupport(this, args);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        public void AddSettingsSupport(AddSettingsSupportArgs args)
+        {
+            PlayniteApi.AddSettingsSupport(this, args);
+        }
+
+        /// <summary>
+        /// Gets sidebar items provided by this plugin.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IEnumerable<SidebarItem> GetSidebarItems()
+        {
+            yield break;
+        }
+
+        /// <summary>
+        ///Gets top panel items provided by this plugin.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IEnumerable<TopPanelItem> GetTopPanelItems()
+        {
+            yield break;
         }
     }
 }

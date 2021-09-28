@@ -24,7 +24,7 @@ Creating Playnite themes
 ---------------------
 
 > [!WARNING] 
-> Do not edit built-in default themes. Always create new copy of theme files are edit those. Broken edits to default theme files could to Playnite not being able to start anymore.
+> Do not edit built-in default themes. Always create new copy of theme files (ideally using Toolbox utility) are edit those. Broken edits to default theme files could lead to Playnite not being able to start anymore.
 
 > [!WARNING] 
 > Please read the documentation carefully, especially section about [distribution and theme updates](distributionAndUpdates.md). Not updating your theme regularly could cause issues to theme users, for example they might not be able to use newly added features. Or they might not be able to load the theme at all in newer version of Playnite, in the worst case scenario.
@@ -43,6 +43,11 @@ Option #1 doesn't require installation of any additional applications and themes
 Option #2 requires installation of [Visual Studio IDE](https://visualstudio.microsoft.com/), Community edition is free to download and includes [Blend](https://docs.microsoft.com/en-us/visualstudio/designers/creating-a-ui-by-using-blend-for-visual-studio?view=vs-2019) editor. This approach takes some time to set up, but offers all advantages that manual editing lacks, like live preview, autocompletion of XAML properties, visual editor etc. 
 
 **Using Blend editor is recommended option.**
+
+Integrating with plugins
+---------------------
+
+Plugins can provide custom UI elements that can be integration into a theme. See [extension integration page](extensionIntegration.md) for more details.
 
 Theme files and directories
 ---------------------

@@ -7,8 +7,8 @@
              d:DesignHeight="400" d:DesignWidth="600">
     <StackPanel>
         <TextBlock Text="Description for Option1:"/>
-        <TextBox Text="{Binding Option1}"/>
+        <TextBox Text="{Binding Settings.Option1}"/>
         <TextBlock Text="Description for Option2:"/>
-        <CheckBox IsChecked="{Binding Option2}"/>
+        <CheckBox IsChecked="{Binding Settings.Option2}"/>
     </StackPanel>
 </UserControl>

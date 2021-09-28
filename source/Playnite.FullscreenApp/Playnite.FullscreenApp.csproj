@@ -74,8 +74,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine, Version=2.5.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommandLineParser.2.5.0\lib\net461\CommandLine.dll</HintPath>
+    <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="HtmlRenderer, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -88,20 +88,23 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
     <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCL.raw, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCL.raw.0.8.4\lib\net45\SQLitePCL.raw.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Abstractions, Version=2.1.0.227, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Abstractions.2.1.0.227\lib\net40\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -112,7 +115,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -127,6 +129,9 @@
     </ApplicationDefinition>
     <Compile Include="Api\MainViewAPI.cs" />
     <Compile Include="Commands\GlobalCommands.cs" />
+    <Compile Include="Controls\ToggleButtonEx.cs" />
+    <Compile Include="Controls\FilterPresetSelector.cs" />
+    <Compile Include="Controls\GameListItem.cs" />
     <Compile Include="Controls\ListBoxEx.cs" />
     <Compile Include="Controls\CheckBoxEx.cs" />
     <Compile Include="Controls\FilterStringListSelection.cs" />
@@ -135,34 +140,70 @@
     <Compile Include="Controls\ScrollViewerEx.cs" />
     <Compile Include="Controls\ItemsControlEx.cs" />
     <Compile Include="Controls\ButtonEx.cs" />
+    <Compile Include="Controls\SettingsSections\Menus.xaml.cs">
+      <DependentUpon>Menus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Input.xaml.cs">
+      <DependentUpon>Input.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Layout.xaml.cs">
+      <DependentUpon>Layout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Audio.xaml.cs">
+      <DependentUpon>Audio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsSections\Visuals.xaml.cs">
+      <DependentUpon>Visuals.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SliderEx.cs" />
     <Compile Include="Controls\ComboBoxEx.cs" />
     <Compile Include="Controls\FilterDbItemtSelection.cs" />
     <Compile Include="Controls\Views\FiltersAdditional.cs" />
     <Compile Include="Controls\Views\Filters.cs" />
     <Compile Include="Controls\Views\GameDetails.cs" />
-    <Compile Include="Controls\Views\GameMenu.cs" />
+    <Compile Include="Controls\Views\GameStatus.cs" />
     <Compile Include="Controls\Views\Main.cs" />
-    <Compile Include="Controls\Views\MainMenu.cs" />
-    <Compile Include="Controls\Views\Notifications.cs" />
-    <Compile Include="Controls\Views\SettingsMenu.cs" />
     <Compile Include="FullscreenCollectionView.cs" />
     <Compile Include="FullscreenDialogs.cs" />
-    <Compile Include="Markup\Api.cs" />
-    <Compile Include="Markup\MainViewModel.cs" />
-    <Compile Include="Markup\Settings.cs" />
-    <Compile Include="Markup\ThemeFile.cs" />
+    <Compile Include="Markup\Markups.cs" />
+    <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />
+    <Compile Include="ViewModels\FullscreenAppViewModel_Commands.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
+    <Compile Include="ViewModels\GameMenuViewModel.cs" />
+    <Compile Include="ViewModels\NotificationsViewModel.cs" />
+    <Compile Include="ViewModels\MainMenuViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
+      <DependentUpon>ActionSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LicenseAgreementWindow.xaml.cs">
+      <DependentUpon>LicenseAgreementWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ExtensionCrashWindow.xaml.cs">
       <DependentUpon>ExtensionCrashWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CrashWindow.xaml.cs">
       <DependentUpon>CrashWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\NotificationsWindow.xaml.cs">
+      <DependentUpon>NotificationsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GameMenuWindow.xaml.cs">
+      <DependentUpon>GameMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainMenuWindow.xaml.cs">
+      <DependentUpon>MainMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\RandomGameSelectWindow.xaml.cs">
       <DependentUpon>RandomGameSelectWindow.xaml</DependentUpon>
@@ -176,56 +217,21 @@
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddonsUpdateWindow.xaml.cs">
+      <DependentUpon>AddonsUpdateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WindowTools.cs" />
     <SplashScreen Include="SplashScreen.png" />
-    <Resource Include="..\..\references\Fonts\icofont.ttf">
-      <Link>Fonts\icofont.ttf</Link>
+    <Resource Include="..\..\references\Fonts\*.*">
+      <Link>Fonts\%(Filename)%(Extension)</Link>
     </Resource>
-    <Resource Include="..\..\references\Fonts\PlayStation4.ttf">
-      <Link>Fonts\PlayStation4.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-Black.ttf">
-      <Link>Fonts\TitilliumWeb-Black.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-Bold.ttf">
-      <Link>Fonts\TitilliumWeb-Bold.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-BoldItalic.ttf">
-      <Link>Fonts\TitilliumWeb-BoldItalic.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-ExtraLight.ttf">
-      <Link>Fonts\TitilliumWeb-ExtraLight.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-ExtraLightItalic.ttf">
-      <Link>Fonts\TitilliumWeb-ExtraLightItalic.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-Italic.ttf">
-      <Link>Fonts\TitilliumWeb-Italic.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-Light.ttf">
-      <Link>Fonts\TitilliumWeb-Light.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-LightItalic.ttf">
-      <Link>Fonts\TitilliumWeb-LightItalic.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-Regular.ttf">
-      <Link>Fonts\TitilliumWeb-Regular.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-SemiBold.ttf">
-      <Link>Fonts\TitilliumWeb-SemiBold.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\TitilliumWeb-SemiBoldItalic.ttf">
-      <Link>Fonts\TitilliumWeb-SemiBoldItalic.ttf</Link>
-    </Resource>
-    <Resource Include="..\..\references\Fonts\XBOXONE.ttf">
-      <Link>Fonts\XBOXONE.ttf</Link>
-    </Resource>
-    <None Include="app.manifest" />
-    <None Include="Themes\Fullscreen\DefaultLime\theme.yaml">
+    <Content Include="Themes\Fullscreen\Default\audio\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <None Include="app.manifest" />
     <None Include="Themes\Fullscreen\Default\Images\custom_cover_background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -238,6 +244,34 @@
     <None Include="Themes\Fullscreen\Default\theme.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Include="Controls\SettingsSections\Menus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Input.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Layout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\General.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Audio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SettingsSections\Visuals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HiddenStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GlobalResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -247,16 +281,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FullscreenApplication.cs" />
-    <Content Include="Themes\Fullscreen\Default\CustomControls\WindowBase.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\MainWindowStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Themes\Fullscreen\Default\Constants.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -283,7 +307,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Fullscreen\Default\Views\Notifications.xaml">
+    <Content Include="Themes\Fullscreen\Default\Views\NotificationsMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -318,7 +342,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ListGameItem.xaml">
+    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ListGameItemStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -329,11 +353,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Themes\Fullscreen\Default\DerivedStyles\ButtonTopMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ToggleButtonTopFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -353,41 +372,11 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ButtonVirtualKeyboard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Themes\Fullscreen\Default\DefaultControls\TextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ButtonMessageBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ButtonMainMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ButtonFilterNagivation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Fullscreen\Default\DerivedStyles\CheckBoxSettings.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Themes\Fullscreen\DefaultLime\Constants.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Themes\Fullscreen\Default\DefaultControls\ToolTip.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -398,22 +387,22 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Page Include="Windows\ExtensionCrashWindow.xaml">
+    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ListGameItemTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\RandomGameSelectWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UpdateWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <None Include="Themes\Fullscreen\Default\Images\applogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="Themes\Fullscreen\Default\Views\MainMenu.xaml">
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\CustomControls\FilterPresetSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\GameStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\ActionSelection.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -423,17 +412,80 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Fullscreen\Default\Views\SettingsMenu.xaml">
+    <Content Include="Themes\Fullscreen\Default\Views\MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\SettingsMenus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\TextInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="Windows\ActionSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\LicenseAgreementWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ExtensionCrashWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\GameMenuWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\NotificationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainMenuWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\RandomGameSelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddonsUpdateWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UpdateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <None Include="Themes\Fullscreen\Default\Images\applogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Themes\Fullscreen\Default\Views\GameDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Themes\Fullscreen\Default\Views\Filters.xaml">
+    <Content Include="Themes\Fullscreen\Default\Views\FiltersView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -498,10 +550,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Playnite.Common\Playnite.Common.csproj">
-      <Project>{DEB1B9F3-6FC9-4185-8DAA-4FCA15B46F83}</Project>
-      <Name>Playnite.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19BC9097-5705-4352-90E2-99F0C63230D0}</Project>
       <Name>Playnite.SDK</Name>
@@ -513,19 +561,16 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)
-"C:\Program Files\PowerShell\7\pwsh.exe" -file "$(SolutionDir)\..\build\copyPluginsToBuild.ps1" "$(ConfigurationName)" "$(TargetDir)\" "$(SolutionDir)\"</PostBuildEvent>
+    <PostBuildEvent>SETX PLAYNITE_SLN $(SolutionDir)</PostBuildEvent>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
-  <Import Project="..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets" Condition="Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw.0.8.4\build\net45\SQLitePCL.raw.targets'))" />
     <Error Condition="!Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets'))" />
   </Target>
-  <Import Project="..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets" Condition="Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" />  
+  <Import Project="..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets" Condition="Exists('..\packages\LargeAddressAware.1.0.5\build\LargeAddressAware.targets')" />
   <PropertyGroup>
     <LargeAddressAware>true</LargeAddressAware>
   </PropertyGroup>

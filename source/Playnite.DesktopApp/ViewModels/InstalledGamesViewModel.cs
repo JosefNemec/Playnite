@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Playnite.Common;
-using Playnite.SDK.Metadata;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using Playnite.Windows;
@@ -296,19 +295,14 @@ namespace Playnite.DesktopApp.ViewModels
                     continue;
                 }
 
-                var newGame = new GameInfo()
+                var newGame = new GameMetadata()
                 {
                     Name = program.Item.Name.RemoveTrademarks(),
                     GameId = program.Item.AppId,
                     InstallDirectory = program.Item.WorkDir,
-                    Source = program.Type == ProgramType.UWP ? "Microsoft Store" : string.Empty,
+                    Source = program.Type == ProgramType.UWP ? new MetadataNameProperty("Microsoft Store") : null,
                     IsInstalled = true,
-                    Platform = "PC"
-                };
-
-                var newMeta = new GameMetadata()
-                {
-                    GameInfo = newGame
+                    Platforms = new HashSet<MetadataProperty> { new MetadataSpecProperty("pc_windows") }
                 };
 
                 var path = program.Item.Path;
@@ -317,22 +311,26 @@ namespace Playnite.DesktopApp.ViewModels
                     path = program.Item.Path.Replace(program.Item.WorkDir, string.Empty).TrimStart('\\');
                 }
 
-                newGame.PlayAction = new GameAction()
+                newGame.GameActions = new List<GameAction>
                 {
-                    Path = path,
-                    Arguments = program.Item.Arguments,
-                    Type = GameActionType.File,
-                    WorkingDir = program.Type == ProgramType.Win32 ? ExpandableVariables.InstallationDirectory : string.Empty,
-                    Name = "Play"
+                     new GameAction()
+                    {
+                        Path = path,
+                        Arguments = program.Item.Arguments,
+                        Type = GameActionType.File,
+                        WorkingDir = program.Type == ProgramType.Win32 ? ExpandableVariables.InstallationDirectory : string.Empty,
+                        Name = newGame.Name,
+                        IsPlayAction = true
+                    }
                 };
 
                 if (program.IconSource != null &&  program.IconSource != ImportableProgram.EmptyImage)
                 {
                     var bitmap = (BitmapSource)program.IconSource;
-                    newMeta.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
+                    newGame.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
                 }
 
-                SelectedGames.Add(newMeta);
+                SelectedGames.Add(newGame);
             }
 
             CloseView(true);
@@ -345,8 +343,15 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 return;
             }
-            var program = Common.Programs.GetProgramData(path);
 
+            if (!path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) &&
+                !path.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) &&
+                !path.EndsWith(".bat", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            var program = Common.Programs.GetProgramData(path);
             var import = new ImportableProgram(program, ProgramType.Win32)
             {
                 Selected = true
@@ -452,14 +457,20 @@ namespace Playnite.DesktopApp.ViewModels
 
         public static List<Game> AddImportableGamesToDb(List<GameMetadata> games, GameDatabase database)
         {
+            var statusSettings = database.GetCompletionStatusSettings();
             using (var buffer = database.BufferedUpdate())
             {
                 var addedGames = new List<Game>();
                 foreach (var game in games)
                 {
                     var added = database.ImportGame(game);
+                    if (statusSettings.DefaultStatus != Guid.Empty)
+                    {
+                        added.CompletionStatusId = statusSettings.DefaultStatus;
+                        database.Games.Update(added);
+                    }
+
                     addedGames.Add(added);
-                    database.AssignPcPlatform(added);
                 }
 
                 return addedGames;

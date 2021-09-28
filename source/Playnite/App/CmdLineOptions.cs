@@ -45,6 +45,9 @@ namespace Playnite
         [Option("safestartup")]
         public bool SafeStartup { get; set; }
 
+        [Option("resetsettings")]
+        public bool ResetSettings { get; set; }
+        
         [Option("masterinstance")]
         public bool MasterInstance { get; set; }
 

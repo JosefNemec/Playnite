@@ -1,0 +1,9 @@
+Id: blastem
+Name: BlastEm
+Website: 'https://www.retrodev.com/blastem/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-fullscreen "{ImagePath}"'
+    Platforms: [sega_genesis]
+    ImageExtensions: [bin, md, zip]
+    StartupExecutable: ^blastem\.exe$

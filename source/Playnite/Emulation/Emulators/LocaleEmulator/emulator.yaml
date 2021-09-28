@@ -1,0 +1,9 @@
+Id: localeemulator
+Name: Locale Emulator
+Website: 'https://pooi.moe/Locale-Emulator/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [pc_windows]
+    ImageExtensions: [exe]
+    StartupExecutable: ^LEProc\.exe$

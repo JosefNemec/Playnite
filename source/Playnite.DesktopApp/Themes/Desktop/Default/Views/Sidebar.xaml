@@ -9,7 +9,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Sidebar}">
                     <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PanelSeparatorBrush}"
-                            x:Name="BorderContentHolder">
+                            x:Name="BorderContentHolder" Margin="{TemplateBinding Padding}">
                         <DockPanel x:Name="DockContentHolder">                            
                             <Border x:Name="PART_ElemMainMenu" Background="Transparent"
                                     Width="44" Height="44" Margin="0,0,0,5"
@@ -19,52 +19,33 @@
                                        RenderOptions.BitmapScalingMode="Fant" />
                             </Border>
 
-                            <ItemsControl x:Name="PART_ListSideBarItems"
-                                          DockPanel.Dock="Top" >
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <SidebarItem Style="{DynamicResource SideBarViewItem}"
-                                                     Width="44" Height="44" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Vertical" />
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden"
+                                          DockPanel.Dock="Top" CanContentScroll="True"
+                                          x:Name="ScrollSidebarItems">
+                                <StackPanel x:Name="PART_PanelSideBarItems" Orientation="Vertical" />
+                            </ScrollViewer> 
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Right">
-                            <Setter Property="Margin" Value="0,20,0,5" TargetName="PART_ElemMainMenu" />
+                            <Setter Property="Padding" Value="0,25,0,0" />
+                            <Setter Property="Margin" Value="0,0,0,5" TargetName="PART_ElemMainMenu" />
                             <Setter Property="BorderThickness" Value="1,0,0,0" TargetName="BorderContentHolder" />
                         </DataTrigger>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Top">
                             <Setter Property="Margin" Value="0,0,5,0" TargetName="PART_ElemMainMenu" />
                             <Setter Property="BorderThickness" Value="0,0,0,1" TargetName="BorderContentHolder" />
                             <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ElemMainMenu" />
-                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ListSideBarItems" />
-                            <Setter Property="ItemsPanel" TargetName="PART_ListSideBarItems">
-                                <Setter.Value>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="ScrollSidebarItems" />
+                            <Setter Property="Margin" Value="0,0,100,0" TargetName="ScrollSidebarItems" />
+                            <Setter Property="Orientation" Value="Horizontal" TargetName="PART_PanelSideBarItems" />
                         </DataTrigger>
                         <DataTrigger Binding="{Settings SidebarPosition}" Value="Bottom">
                             <Setter Property="Margin" Value="0,0,5,0" TargetName="PART_ElemMainMenu" />
                             <Setter Property="BorderThickness" Value="0,1,0,0" TargetName="BorderContentHolder" />
                             <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ElemMainMenu" />
-                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="PART_ListSideBarItems" />
-                            <Setter Property="ItemsPanel" TargetName="PART_ListSideBarItems">
-                                <Setter.Value>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="DockPanel.Dock" Value="Left" TargetName="ScrollSidebarItems" />
+                            <Setter Property="Orientation" Value="Horizontal" TargetName="PART_PanelSideBarItems" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

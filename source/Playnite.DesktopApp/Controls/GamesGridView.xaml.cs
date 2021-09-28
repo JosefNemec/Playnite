@@ -217,9 +217,9 @@ namespace Playnite.DesktopApp.Controls
             {
                 newColumn = CreateColumn(field, SortOrder.Name, "CellTemplateName", "HeaderTemplateName");
             }
-            else if (field == GameField.Platform)
+            else if (field == GameField.Platforms)
             {
-                newColumn = CreateColumn(field, SortOrder.Platform, "CellTemplatePlatform", "HeaderTemplatePlatform");
+                newColumn = CreateColumn(field, SortOrder.Platform, "CellTemplatePlatform", "HeaderTemplatePlatform", "Platform");
             }
             else if (field == GameField.PluginId)
             {
@@ -285,13 +285,13 @@ namespace Playnite.DesktopApp.Controls
             {
                 newColumn = CreateColumn(field, SortOrder.Version, "CellTemplateVersion", "HeaderTemplateVersion");
             }
-            else if (field == GameField.AgeRating)
+            else if (field == GameField.AgeRatings)
             {
-                newColumn = CreateColumn(field, SortOrder.AgeRating, "CellTemplateAgeRating", "HeaderTemplateAgeRating");
+                newColumn = CreateColumn(field, SortOrder.AgeRating, "CellTemplateAgeRating", "HeaderTemplateAgeRating", "AgeRating");
             }
-            else if (field == GameField.Region)
+            else if (field == GameField.Regions)
             {
-                newColumn = CreateColumn(field, SortOrder.Region, "CellTemplateRegion", "HeaderTemplateRegion");
+                newColumn = CreateColumn(field, SortOrder.Region, "CellTemplateRegion", "HeaderTemplateRegion", "Region");
             }
             else if (field == GameField.Source)
             {
@@ -321,8 +321,9 @@ namespace Playnite.DesktopApp.Controls
             return newColumn;
         }
 
-        private GamesGridViewColumn CreateColumn(GameField field, SortOrder? sortOrder, string cellTemplateName, string headerTemplateName)
+        private GamesGridViewColumn CreateColumn(GameField field, SortOrder? sortOrder, string cellTemplateName, string headerTemplateName, string bindingName = null)
         {
+            // bindingName is there for backwards compatibility between P8 and P9
             var column = new GamesGridViewColumn
             {
                 Field = field,
@@ -332,7 +333,7 @@ namespace Playnite.DesktopApp.Controls
             BindingOperations.SetBinding(
                 column,
                 GridViewColumn.WidthProperty,
-                new Binding($"{nameof(ViewSettings.ListViewColumns)}.{field.ToString()}.{nameof(ListViewColumnProperty.Width)}")
+                new Binding($"{nameof(ViewSettings.ListViewColumns)}.{bindingName ?? field.ToString()}.{nameof(ListViewColumnProperty.Width)}")
                 {
                     Source = AppSettings.ViewSettings,
                     Mode = BindingMode.TwoWay
