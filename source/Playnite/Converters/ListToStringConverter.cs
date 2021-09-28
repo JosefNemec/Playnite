@@ -62,7 +62,14 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            return string.Join(",", (IEnumerable<object>)value);
+            string sep = ",";
+
+            if (parameter is string customSep)
+            {
+                sep = customSep;
+            }
+            
+            return string.Join(sep, (IEnumerable<object>)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -75,7 +82,14 @@ namespace Playnite.Converters
             }
             else
             {
-                var converted = stringVal.Split(new char[] { ',' });
+                string sep = ",";
+                
+                if (parameter is string customSep)
+                {
+                    sep = customSep;
+                }
+                
+                var converted = stringVal.Split(new [] { sep }, StringSplitOptions.RemoveEmptyEntries);
                 if (targetType == typeof(ComparableList<string>))
                 {
                     return new ComparableList<string>(converted);
