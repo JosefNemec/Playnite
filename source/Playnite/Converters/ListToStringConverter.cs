@@ -50,6 +50,8 @@ namespace Playnite.Converters
 
     public class ListToStringConverter : MarkupExtension, IValueConverter
     {
+        private const string defaultSeperator = ",";
+    
         public static string MakeString(IEnumerable<string> source)
         {
             return string.Join(",", source);
@@ -62,7 +64,7 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            string sep = ",";
+            string sep = defaultSeperator;
 
             if (parameter is string customSep)
             {
@@ -82,7 +84,7 @@ namespace Playnite.Converters
             }
             else
             {
-                string sep = ",";
+                string sep = defaultSeperator;
                 
                 if (parameter is string customSep)
                 {
