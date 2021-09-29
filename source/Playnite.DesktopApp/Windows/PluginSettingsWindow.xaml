@@ -18,6 +18,10 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <controls:WindowBase.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </controls:WindowBase.Resources>
+
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
             <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
