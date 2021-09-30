@@ -586,7 +586,13 @@ namespace Playnite.Database
 
                         case "tools":
                             AppSoftwareCollection.MapLiteDbEntities(mapper);
-                            convertList<Ver2_AppSoftware, AppSoftware>(dir);
+                            convertList<Ver2_AppSoftware, AppSoftware>(dir, (oldApp, newApp) =>
+                            {
+                                newApp.Arguments = oldApp.Arguments;
+                                newApp.Icon = oldApp.Icon;
+                                newApp.Path = oldApp.Path;
+                                newApp.WorkingDir = oldApp.WorkingDir;
+                            });
                             break;
                     }
                 }
