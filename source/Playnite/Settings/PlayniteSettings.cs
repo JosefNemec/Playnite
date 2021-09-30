@@ -1890,6 +1890,37 @@ namespace Playnite
 
             if (settings.Version == 5)
             {
+                if (settings.DisabledPlugins.HasItems())
+                {
+                    // P9 saves disabled list based on add-on IDs, not directory names.
+                    var idsMigration = new Dictionary<string, string>
+                    {
+                        { "AmazonGamesLibrary", "AmazonLibrary_Builtin" },
+                        { "BattleNetLibrary", "BattlenetLibrary_Builtin" },
+                        { "BethesdaLibrary", "BethesdaLibrary_Builtin" },
+                        { "EpicLibrary", "EpicGamesLibrary_Builtin" },
+                        { "GogLibrary", "GogLibrary_Builtin" },
+                        { "HumbleLibrary", "HumbleLibrary_Builtin" },
+                        { "IGDBMetadata", "IGDBMetadata_Builtin" },
+                        { "ItchioLibrary", "ItchioLibrary_Builtin" },
+                        { "LibraryExporter", "LibraryExporterPS_Builtin" },
+                        { "OriginLibrary", "OriginLibrary_Builtin" },
+                        { "PSNLibrary", "PlayStationLibrary_Builtin" },
+                        { "SteamLibrary", "SteamLibrary_Builtin" },
+                        { "TwitchLibrary", "TwitchLibrary_Builtin" },
+                        { "UplayLibrary", "UplayLibrary_Builtin" },
+                        { "XboxLibrary", "XboxLibrary_Builtin" }
+                    };
+
+                    for (int i = 0; i < settings.DisabledPlugins.Count; i++)
+                    {
+                        if (idsMigration.TryGetValue(settings.DisabledPlugins[i], out var newValue))
+                        {
+                            settings.DisabledPlugins[i] = newValue;
+                        }
+                    }
+                }
+
                 settings.ViewSettings.ListViewColumns.AgeRating.Field = GameField.AgeRatings;
                 settings.ViewSettings.ListViewColumns.Platform.Field = GameField.Platforms;
                 settings.ViewSettings.ListViewColumns.Series.Field = GameField.Series;
