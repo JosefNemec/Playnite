@@ -1,5 +1,5 @@
 
-# <img src="https://github.com/JosefNemec/Playnite/raw/master/web/applogo.png" width="32">  Playnite
+# <img src="https://playnite.link/applogo.png" width="32">  Playnite
 An open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin, Battle.net and Uplay. Includes game emulation support, providing one unified interface for your games.
 
 Screenshots are available at the [Homepage](http://playnite.link/)
@@ -42,7 +42,7 @@ Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach a diagnostics package, which can be created from inside the "About Playnite..." submenu.
 
-General discussion lives on our [Forum](https://playnite.link/forum) and [Discord](https://discord.gg/hSFvmN6) or you can follow [@AppPlaynite](https://twitter.com/AppPlaynite) for updates.
+Biggest community around Playnite currently gathers on our [Discord server](https://discord.gg/hSFvmN6) and [Forums](https://playnite.link/forum). You can also follow [@AppPlaynite](https://twitter.com/AppPlaynite) for general updates.
 
 Contributions
 ---------
