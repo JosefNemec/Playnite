@@ -41,6 +41,7 @@ Odporúčame uložiť súbor so záznamami (log) a nahlásiť tento problém vý
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Rozšírenie &quot;{0}&quot; spôsobilo neodstrániteľnú chybu.
 
 Odporúčame to nahlásiť vývojárovi rozšírenia. Ak sa táto chyba opakuje, rozšírenie vypnite.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Vyskytla sa neopraviteľná chyba.
 
 Ak nám chcete pomôcť tento problém opraviť, odošlite prosím diagnostický balíček. Ďakujeme.</sys:String>
@@ -562,6 +563,7 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCAddLinkButton">Pridať odkaz</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Uložiť zmeny</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Akcia hrať</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Pridať akciu Hrať</sys:String>
     <sys:String x:Key="LOCAddAction">Pridať akciu</sys:String>
@@ -750,8 +752,10 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšírenie nie je správne zabalené.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Motív vzhľadu nie je správne zabalený.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Rozšírenie &quot;{0}&quot; sa nepodarilo správne načítať</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Motív vzhľadu &quot;{0}&quot; sa nepodarilo správne načítať.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšítenie sa nepodarilo správne načítať</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšítenie sa nepodarilo správne načítať</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Motív vzhľadu sa nepodarilo správne načítať.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motív vzhľadu/rozširenie používa nepodporovanu verziu API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Inštalácia bola úspešná.</sys:String>
@@ -958,9 +962,15 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
     <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -974,4 +984,6 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
 </ResourceDictionary>

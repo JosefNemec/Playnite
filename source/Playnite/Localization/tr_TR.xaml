@@ -41,6 +41,7 @@ Günlük dosyasını kaydetmenizi ve sorunu uzantının geliştiricisine bildirm
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">&quot;{0}&quot; uzantısı, kurtarılamaz bir hataya neden oldu.
 
 Sorunu uzantının geliştiricisine bildirmenizi öneririz. Sorun tekrarlanmaya devam ederse, uzantıyı devre dışı bırakın.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
         
 Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgilerini gönderin. Teşekkür ederim.</sys:String>
@@ -565,6 +566,7 @@ Sorunu çözmeyi deneyebilirsiniz:
     <sys:String x:Key="LOCAddLinkButton">Bağlantı Ekle</sys:String>
     <sys:String x:Key="LOCAddRom">ROM ekle</sys:String>
     <sys:String x:Key="LOCSaveChanges">Değişiklikleri Kaydet</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Oyna Eylemi</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Oyna Eylemi Ekle</sys:String>
     <sys:String x:Key="LOCAddAction">Eylem Ekle</sys:String>
@@ -753,8 +755,10 @@ Sorunu çözmeyi deneyebilirsiniz:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Uzantı düzgün paketlenmemiş.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Tema düzgün paketlenmemiş.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">&quot;{0}&quot; uzantısı düzgün yüklenemedi.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">&quot;{0}&quot; teması düzgün yüklenemedi.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Uzantı düzgün yüklenemedi.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Uzantı düzgün yüklenemedi.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Tema düzgün yüklenemedi.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Uzantı, desteklenmeyen API sürümü kullanıyor.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Kurulum başarılı oldu.</sys:String>
@@ -795,8 +799,8 @@ Kapaklar: {1} mega piksel
 Arka planlar: {2} mega piksel</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Performans Uyarısı</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Bir Daha Gösterme</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Dosya, {0} uzantısı ile uyumlu değil.</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Uyumsuz dosya uzantısı</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Seçilen resim dosyası en iyi performans için çok büyük olabilir.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">Seçili temayı kaldırmak istediğinizden emin misiniz? Kaldırma işlemi, bir sonraki uygulama başlangıcına kadar sıraya alınacaktır.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Yerleşik temalar kaldırılamaz.</sys:String>
@@ -890,7 +894,7 @@ Ek entegrasyonlar yüklemek veya kaldırmak istiyorsanız ana menüden &quot;Ekl
     <sys:String x:Key="LOCActionTrackingModeProcess">İşlem</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Klasör</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">İzleme mesajlarını günlüğe kaydet</sys:String>
-    <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
+    <sys:String x:Key="LOCMultiEditOverwriteWarning">Yapılacak olan değişiklikler seçili olan tüm oyunların verilerinin üzerine yazılacaktır!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Tekdüze</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Sadece Öğeler</sys:String>
@@ -907,7 +911,7 @@ Ek entegrasyonlar yüklemek veya kaldırmak istiyorsanız ana menüden &quot;Ekl
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Bölüm ayırıcı genişliği</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Ana menü düğmesini kenar çubuğuna taşı</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Keşif Paneli</sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Rastgele oyun seçici</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Gruplandırma ve sıralama ayarlarını kaydet</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Tam ekran modunda hızlı filtre olarak göster</sys:String>
     <sys:String x:Key="LOCInPast7Days">Son 7 gün içinde</sys:String>
@@ -966,7 +970,7 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Gömülü modüller</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Gömülü profiller</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Özel profiller</sys:String>
-    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Dahili betik tarafından işleniyor</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emülatör özellikleri</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Platform özellikleri</sys:String>
     <sys:String x:Key="LOCRegionSpec">Bölge özellikleri</sys:String>
@@ -981,9 +985,15 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCEmuImportAssignPlatform">Platformu ayarla</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Bölge Ayarla</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Klasörleri tara</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Emülatörle tara</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Toplu tarama içinde otomatik-tarama içerir</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Geçerli bir tarama yapılandırması ayarlanmadı. Tüm alanların doğru ayarlandığından emin olun.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Emülatörle tara</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Toplu tarama içinde otomatik-tarama içerir</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Emülatörler için klasör taranamadı.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Emülatör oyunları için klasör taranamadı.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">İçe aktarılanları gizle</sys:String>
@@ -997,4 +1007,6 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Belirli klasörleri taramak için emülatörlerle tarama yapılandırmaları ekleyin. Oyunları içe aktarmadan önce emülatörlerin doğru şekilde yapılandırıldığından emin olun (Kütüphane -&gt; Emülatör Yapılandır menüsü aracılığıyla).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Yeni eklenen oyunlara atanan varsayılan durum</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">İlk kez oynanan oyunlara atanan statü</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
 </ResourceDictionary>

@@ -41,6 +41,7 @@ Us recomanem desar el fitxer de registre i informar del problema al desenvolupad
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">L'extensió &quot;{0}&quot; ha provocat un error irrecuperable.
 
 Us recomanem que informeu del problema al desenvolupador de l'extensió. Si el problema es repeteix, desactiveu l'extensió.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">S'ha produït un error irrecuperable.
 
 Si voleu ajudar-nos a arreglar aquest problema, envieu-nos la informació de diagnòstic. Gràcies.</sys:String>
@@ -566,6 +567,7 @@ Pots provar això per solucionar el problema:
     <sys:String x:Key="LOCAddLinkButton">Afegeix enllaç</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Guardar canvis</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Acció de Jugar</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Afegeix Acció de Jugar</sys:String>
     <sys:String x:Key="LOCAddAction">Afegeix Acció</sys:String>
@@ -754,8 +756,10 @@ Pots provar això per solucionar el problema:
     <sys:String x:Key="LOCGeneralExtensionPackageError">L'extensió no està empaquetada correctament.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">El tema no està empaquetat correctament.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">No s'ha pogut carregar correctament l'extensió &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">No s'ha pogut carregar correctament el tema &quot;{0}&quot;.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">No s'ha pogut carregar correctament l'extensió.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">No s'ha pogut carregar correctament l'extensió.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">No s'ha pogut carregar correctament el tema.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Aquest tema o extensió utilitza una versió de l'API que no té suport.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instal·lació s'ha realitzat correctament.</sys:String>
@@ -960,9 +964,15 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
     <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -976,4 +986,6 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
 </ResourceDictionary>

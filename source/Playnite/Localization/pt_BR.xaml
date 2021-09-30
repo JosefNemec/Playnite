@@ -42,6 +42,7 @@ Recomendamos que você salve o arquivo de log e relate o problema para o desenvo
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">A extensão &quot;{0}&quot; causou um erro irrecuperável.
 
 Recomendamos que você relate o problema para o desenvolvedor da extensão. Se os problemas persistirem, desabilite a extensão.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Uma extensão ou tema desconhecido causou um erro irrecuperável.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
  
 Se você deseja nos ajudar a corrigir este problema, por favor envie informações de diagnóstico. Obrigado.</sys:String>
@@ -567,6 +568,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCAddLinkButton">Adicionar link</sys:String>
     <sys:String x:Key="LOCAddRom">Adicionar ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Salvar alterações</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Aplique as alterações ao (s) jogo (s) sendo editado (s).</sys:String>
     <sys:String x:Key="LOCPlayAction">Ação de jogar</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Adicionar ação de jogar</sys:String>
     <sys:String x:Key="LOCAddAction">Adicionar ação</sys:String>
@@ -755,8 +757,10 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Extensão não foi empacotada corretamente.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">O tema não foi empacotado corretamente.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Falha ao carregar extensão &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Impossível carregar  extensão &quot;{0}&quot; , versão atual do Playnite não suportada.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Falha ao carregar tema &quot;{0}&quot;</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Falha ao carregar extensão.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Impossível carregar  tema &quot;{0}&quot; , versão atual do Playnite não suportada.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Falha ao carregar extensão.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Falha ao carregar tema.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">O tema ou extensão está usando uma versão não compatível da API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem-sucedida.</sys:String>
@@ -982,9 +986,15 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCEmuImportAssignPlatform">Definir plataforma</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Definir região</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Escanear pasta</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Escanear com emulador</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Incluir escaneamentos automáticos no escaneamento em massa</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Nenhuma configuração de escaneamento selecionada. Tenha certeza que todos os campos estão selecionados propriamente.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Verificando configurações</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Excluir padrão da verificação de Hash</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Arquivos que correspondem ao (s) filtros não serão verificados quanto Hash e serão comparados pelo nome do arquivo. Consulte a página de ajuda do emulador para obter mais informações.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Escanear com emulador</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Nenhum nome informado ao salvar nova configuração.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulador ou perfil de emulador não está definido.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Para para pesquisa não especificada ou ela não existe.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">A configuração de pesquisa não está definida corretamente.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Incluir escaneamentos automáticos no escaneamento em massa</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Falha em escanear pasta por emuladores.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Falha em escanear pasta(s) por jogos emulados.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Esconder importados</sys:String>
@@ -998,4 +1008,6 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Adicione configurações para emuladores escanearem pastas especificas. Tenha certeza que esses emuladores estão corretamente configurados antes de importar jogos (pelo menu &quot;biblioteca&quot; -&gt; &quot;configurar emuladores&quot;)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Estado padrão designado a jogos recentemente adicionados</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Erro ao executar script PowerShell.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Já existe uma filtro com o nome especificado. Atualizar com novas configurações? </sys:String>
 </ResourceDictionary>

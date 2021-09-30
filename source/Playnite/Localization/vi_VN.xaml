@@ -41,6 +41,7 @@ Chúng tôi khuyên bạn nên lưu tệp nhật ký và báo cáo vấn đề c
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Tiện ích mở rộng &quot;{0}&quot; đã gây ra lỗi không thể khôi phục.
 
 Chúng tôi khuyên bạn nên báo cáo vấn đề này cho nhà phát triển của tiện ích. Nếu sự cố vẫn tái diễn, hãy tắt tiện ích mở rộng.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Đã xảy ra lỗi không thể khôi phục.
 
 Nếu bạn muốn giúp chúng tôi khắc phục sự cố này, xin vui lòng gửi thông tin chẩn đoán đến cho chúng tôi. Xin cám ơn.</sys:String>
@@ -219,17 +220,17 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCMenuOpenClient">Mở Client bên thứ 3</sys:String>
     <sys:String x:Key="LOCMenuClients">Client bên thứ 3</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Cập nhật Thư viện trò chơi</sys:String>
-    <sys:String x:Key="LOCMenuCancelLibraryUpdate"></sys:String>
-    <sys:String x:Key="LOCMenuUpdateEmulatedDirs"></sys:String>
-    <sys:String x:Key="LOCMenuAddGame"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated"></sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore"></sys:String>
-    <sys:String x:Key="LOCMenuAbout"></sys:String>
+    <sys:String x:Key="LOCMenuCancelLibraryUpdate">Hủy cập nhật thư viện</sys:String>
+    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">Cập nhật các thư mục giả lập</sys:String>
+    <sys:String x:Key="LOCMenuAddGame">Thêm Trò chơi</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">Tự tay thêm...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Tự động quét...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">Trò chơi giả lập...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Ứng dụng Microsoft Store...</sys:String>
+    <sys:String x:Key="LOCMenuAbout">Về Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Gửi phản hồi</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Chuyển sang chế độ toàn màn hình</sys:String>
-    <sys:String x:Key="LOCMenuLinksTitle"></sys:String>
+    <sys:String x:Key="LOCMenuLinksTitle">Liên kết</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Trợ giúp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Hỗ trợ trên Patreon</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Tài liệu về bộ công cụ phát triển phần mềm</sys:String>
@@ -544,6 +545,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCAddLinkButton"></sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction"></sys:String>
     <sys:String x:Key="LOCAddPlayAction"></sys:String>
     <sys:String x:Key="LOCAddAction"></sys:String>
@@ -732,8 +734,10 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
@@ -914,9 +918,15 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
     <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -930,4 +940,6 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
 </ResourceDictionary>

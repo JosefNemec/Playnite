@@ -41,6 +41,9 @@ Vi anbefaler at du lagrer loggfilen og rapporterer problemet til utvikleren av u
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Utvidelse &quot;{0}&quot; forårsaket en uopprettelig feil .
 
 Vi anbefaler at du lagrer loggfilen og rapporterer problemet til utvikleren av utvidelsen. Hvis problemet fortsetter så deaktiverer du utvidelsen.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">En ukjent utvidelse eller et ukjent tema forårsaket en uopprettelig feil.
+
+Vi anbefaler at du deaktiverer tredjepartstillegg etter tur for å isolerer den som skaper problemer, og rapporterer feilen til utvikleren av tillegget.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">En uopprettelig feil har oppstått.
 
 Vil du hjelpe oss med å løse dette problemet, kan du gjerne sende diagnoseinformasjon. Takk.</sys:String>
@@ -247,8 +250,8 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot; forhindres spille
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Kilde for manglende spillomslag</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Manglende bakgrunnskilde for spillet</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikal avstand til spilldetaljer</sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Rutenettvisning detaljenes posisjon</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Detaljvisning spillisteposisjon</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detaljkolonnens posisjon i rutenettvisning</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spillistens posisjon i detaljvisning</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Tegn separator mellom panelene</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Bildehøyde for spillomslag</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Spilllistens ikonhøyde</sys:String>
@@ -268,7 +271,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot; forhindres spille
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam-banner</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Vertikalt omslag fra Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">*Krever omstart for at endringene skal tre i kraft</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">*Krever omstart</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Innstillinger</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Generelt</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelLabel">Toppanel</sys:String>
@@ -566,6 +569,7 @@ Du kan prøve disse for å løse problemet:
     <sys:String x:Key="LOCAddLinkButton">Legg til lenke</sys:String>
     <sys:String x:Key="LOCAddRom">Legg til ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Lagre endringer</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Gjennomfør endringene i aktiverte felt for spill som redigeres.</sys:String>
     <sys:String x:Key="LOCPlayAction">Spillhandling</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Legg til spillhandling</sys:String>
     <sys:String x:Key="LOCAddAction">Legg til handling</sys:String>
@@ -755,8 +759,10 @@ Playnite må startes på nytt for å fullføre installasjonen. Vil du starte på
     <sys:String x:Key="LOCGeneralExtensionPackageError">Utvidelse er ikke pakket ordentlig.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Tema er ikke pakket ordentlig.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Utvidelsen &quot;{0}&quot; lastet ikke inn riktig.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Kan ikke laste utvidelsen &quot;{0}&quot;. Denne versjonen av Playnite er ikke støttet.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Temaet &quot;{0}&quot; lastet ikke inn riktig.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Utvidelsen lastet ikke inn riktig.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Kan ikke laste inn temaet &quot;{0}&quot;. Denne versjonen av Playnite er ikke støttet.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Utvidelsen lastet ikke inn riktig.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Temaet lastet ikke inn riktig.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema eller utvidelse bruker ikke-støttet API-versjon.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installasjonen var vellykket.</sys:String>
@@ -878,7 +884,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCAddonLookingForUpdates">Ser etter oppdateringer for tillegg …</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">En eller flere oppdateringer for tillegg er tilgjengelig.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Velg elementer som skal oppdateres</sys:String>
-    <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
+    <sys:String x:Key="LOCAddonDevReferenceLoaded">Utvidelse utvikles eksternt</sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle">Lisensavtale for {0}</sys:String>
     <sys:String x:Key="LOCLicenseAccept">Godta</sys:String>
     <sys:String x:Key="LOCLicenseDecline">Avslå</sys:String>
@@ -982,9 +988,15 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform">Velg plattform</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Velg region</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Søk gjennom mappe </sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Søk med emulator</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Inkluder i globalt automatisk søk</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Ingen gyldig søkekonfigurasjon er valgt. Påse at alle felt er korrekt utfylt.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Søk gjennom konfigurasjoner</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Ekskluder mønster fra kontrollsum-skann</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Filer som passer med spesifiserte mønstre vil ikke ble sjekket mot kontrollsum, og vil bli koblet med filmnavn. Se hjelpesiden for emulatorer for mer informasjon.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Søk med emulator</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Navn må velges når nye konfigurasjon skal lagres.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulator eller emulator-profil er ikke valgt.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Mappe som skal søkes i er ikke spesifisert eller eksisterer ikke.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Søkekonfigurasjon er ikke riktig angitt.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Inkluder i globalt automatisk søk</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Kunne ikke søke gjennom mapper etter emulatorer.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Kunne ikke søke gjennom mapper etter emulerte spill.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Skjul importerte</sys:String>
@@ -998,4 +1010,6 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Bruk søkekonfigurasjoner med emulatorer for å søke gjennom bestemte mapper. Pass på at emulatorer er riktig konfigurert før du importerer spill (via Bibliotek -&gt; Konfigurer Emulatorer).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Standardstatus tilordnet spill som nylig er lagt til</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status tilordnet spill som spilles for første gang</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Kunne ikke initialisere PowerShell-skriptkjøring.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Et filteroppsett med dette navnet eksisterer allerede. Vil du oppdatere oppsettet med nye innstillinger?</sys:String>
 </ResourceDictionary>

@@ -37,6 +37,7 @@
 תודה על העזרה.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">אירעה שגיאה שלא ניתנת לתיקון.
 אם ברצונך לעזור לנו לתקן את הבעיה, אנא אבחן את התקלה ושלח לנו את מידע האבחון. תודה.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">השבתת ההרחבה</sys:String>
@@ -543,6 +544,7 @@
     <sys:String x:Key="LOCAddLinkButton">הוסף קישור</sys:String>
     <sys:String x:Key="LOCAddRom">הוסף ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">שמור שינויים</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">פעולת משחק</sys:String>
     <sys:String x:Key="LOCAddPlayAction">הוסף פעולת משחק</sys:String>
     <sys:String x:Key="LOCAddAction">הוסף פעולה</sys:String>
@@ -731,8 +733,10 @@
     <sys:String x:Key="LOCGeneralExtensionPackageError">הרחבה אינה ארוזה כראוי.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">ערכת נושא אינה ארוזה כראוי.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">הרחבה &quot;{0}&quot; נכשלה להיטען כראוי.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">ערכת נושא &quot;{0}&quot; נכשלה להיטען כראוי.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">הרחבה נכשלה להיטען כראוי.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">הרחבה נכשלה להיטען כראוי.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">ערכת נושא נכשלה להיטען כראוי.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">ערכת נושא\הרחבה משתמשת בגירסת API שאינה נתמכת.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">ההתקנה הסתיימה בהצלחה.</sys:String>
@@ -917,9 +921,15 @@
     <sys:String x:Key="LOCEmuImportAssignPlatform">הגדר פלטפורמה</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">הגדר אזור</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">סרוק תיקיה</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">החבא מיובאים</sys:String>
@@ -933,4 +943,6 @@
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
 </ResourceDictionary>

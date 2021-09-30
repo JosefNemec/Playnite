@@ -41,6 +41,9 @@ Recomendamos guardar el archivo de registro e informar del problema al desarroll
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">La extensión &quot;{0}&quot; provocó un error irrecuperable.
 
 Recomendamos informar del problema al desarrollador de la extensión. Si el problema se repite, desactiva la extensión.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Extensión desconocida o un tema causó un error irrecuperable.
+
+Recomendamos deshabilitar los complementos de terceros, aislando el problemático y reportando el problema al desarrollador del complemento.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ha ocurrido un error irrecuperable.
 
 Si quieres ayudarnos a solucionar este problema, por favor, envía la información de diagnóstico. Gracias.</sys:String>
@@ -563,11 +566,12 @@ Puede intentar resolver el problema:
     <sys:String x:Key="LOCMenuActionExecError">No se pudo ejecutar la acción del menú.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar Detalles del Juego</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Usar el icono del ejecutable</sys:String>
+    <sys:String x:Key="LOCUseExeIcon">De acción de juego</sys:String>
     <sys:String x:Key="LOCImageURL">URL de la imagen</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Agregar Enlace</sys:String>
     <sys:String x:Key="LOCAddRom">Agregar rom</sys:String>
     <sys:String x:Key="LOCSaveChanges">Guardar Cambios</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Aplicar cambios de campo a los juegos que se están editando.</sys:String>
     <sys:String x:Key="LOCPlayAction">Acción de Jugar</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Añadir acción de Jugar</sys:String>
     <sys:String x:Key="LOCAddAction">Agregar Acción</sys:String>
@@ -756,8 +760,10 @@ Puede intentar resolver el problema:
     <sys:String x:Key="LOCGeneralExtensionPackageError">La extensión no está empaquetada correctamente.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">El tema no está empaquetado correctamente.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">La extensión &quot;{0}&quot; no se pudo cargar correctamente.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">No se puede cargar la extensión &quot;{0}&quot;, la versión actual de Playnite no es compatible.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">El tema &quot;{0}&quot; no se pudo cargar correctamente.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">La extensión no se cargó correctamente.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">No se puede cargar el tema &quot;{0}&quot;, la versión actual de Playnite no es compatible.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">La extensión no se cargó correctamente.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">El tema no se cargó correctamente.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Extensión está usando una versión de API no soportada.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instalación fue exitosa.</sys:String>
@@ -983,9 +989,15 @@ Si comienza a experimentar algunos problemas después de instalar un tema o una 
     <sys:String x:Key="LOCEmuImportAssignPlatform">Establecer plataforma</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Establecer región</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Escanear Carpeta</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Escanear con emulador</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Incluir en escaneo automático en masa</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">No hay configuracion de escaneo válido establecida. Asegúrate de que todos los campos estén configurados correctamente.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Escanear configuraciones</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Patrones de exclusión para el escanéo checksum</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Los archivos que coincidan con los patrones especificados no se escanearán para la suma de comprobación y se coincidirán con el nombre del archivo. Consulta la página de ayuda del emulador para obtener más información.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Escanear con emulador</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">El nombre debe configurarse al guardar la nueva configuración.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">El emulador o el perfil emulador no se ha establecido.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">El directorio para escanear no se ha especificado o no existe.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">La configuración de escaneo no está configurada correctamente.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Incluir en escaneo automático en masa</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Error al escanear la carpeta para emuladores.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Error al analizar la(s) carpeta(s) para juegos emulados.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Ocultar importados</sys:String>
@@ -999,4 +1011,6 @@ Si comienza a experimentar algunos problemas después de instalar un tema o una 
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Agregar la(s) configuración(s) de escaneo con los emuladores para escanear carpetas específicas. Asegurate de que los emuladores estén configurados correctamente antes de importar juegos (a través del menú  Biblioteca -&gt; Configurar Emuladores).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Estado predeterminado asignado a juegos recién agregados</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado asignado a juegos jugados por primera vez</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Error al inicializar el tiempo de ejecución de script de PowerShell.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">El filtro preestablecido con el nombre especificado ya existe. ¿Actualizar filtro con las nuevas configuraciones?</sys:String>
 </ResourceDictionary>

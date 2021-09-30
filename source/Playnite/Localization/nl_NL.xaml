@@ -41,6 +41,9 @@ We raden aan om het log bestand op te slaan en het probleem te rapporteren aan e
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensie {0} heeft onherstelbare fout veroorzaakt.
 
 We raden aan om het probleem te rapporteren aan de extensie ontwikkelaar. Als het probleem zich blijft voordoen, schakel de extensie dan uit.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Onbekende extensie of thema veroorzaakte een onherstelbare fout.
+
+We bevelen aan derde-partij extensies uit te schakelen, de problematische extensie uit te schakelen en het probleem te rapporteren aan de ontwikkelaar van die extensie.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
 
 Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diagnostische informatie. Bedankt.</sys:String>
@@ -570,6 +573,7 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCAddLinkButton">Voeg Link Toe</sys:String>
     <sys:String x:Key="LOCAddRom">ROM toevoegen</sys:String>
     <sys:String x:Key="LOCSaveChanges">Sla Wijzigingen Op</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Wijzigingen in dit veld toepassen op spel(len) die bewerkt worden.</sys:String>
     <sys:String x:Key="LOCPlayAction">Speel Actie</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Voeg Speel Actie Toe</sys:String>
     <sys:String x:Key="LOCAddAction">Voeg Actie Toe</sys:String>
@@ -760,8 +764,10 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Extensie is niet correct verpakt.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Thema is niet correct verpakt.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Extensie &quot;{0}&quot; kon niet correct geladen worden.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Kan &quot;{0}&quot; extensie niet laden; huidige versie van Playnite wordt niet ondersteund.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Thema &quot;{0}&quot; kon niet correct geladen worden.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Extensie kon niet correct geladen worden.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Kan &quot;{0}&quot; thema niet laden; huidige versie van Playnite wordt niet ondersteund.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Extensie kon niet correct geladen worden.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Thema kon niet correct geladen worden.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thema/Extensie gebruikt niet-ondersteunde API versie.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installatie is gelukt.</sys:String>
@@ -998,9 +1004,15 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCEmuImportAssignPlatform">Platform instellen</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Regio instellen</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Map scannen</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Scan met emulator</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Betrek bij bulk scan auto-scan</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Geen geldige scanconfiguratie ingesteld. Zorg ervoor dat alle velden goed ingevuld zijn.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Scan instellingen</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Patronen uitsluiten van checksum-scan</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Bestanden die overeenkomen met de patronen zullen niet gescand worden op hun checksum en zullen gematcht worden op hun bestandsnaam. Zie emulator-hulppagina voor meer informatie.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Scan met emulator</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Naam is verplicht bij het opslaan van een nieuwe configuratie.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulator of emulatorprofiel is niet ingesteld.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Map om te scannen is niet opgegeven of bestaat niet.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Scan-configuratie is niet goed ingesteld.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Betrek bij bulk scan auto-scan</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Map scannen op emulators mislukt.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Map(pen) scannen op geëmuleerde spellen mislukt.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Geïmporteerde verbergen</sys:String>
@@ -1014,4 +1026,6 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Voeg scanconfiguratie(s) met emulators toe om specifieke mappen te scannen. Zorg ervoor dat emulators goed geconfigureerd zijn voordat je spellen importeert (via het Bibliotheek -&gt; Configureer Emulators menu).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Standaardstatus die toegewezen wordt aan nieuwe spellen</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status die toegewezen wordt aan spellen die voor het eerst gespeeld zijn</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Powershell script runtime initialiseren is mislukt.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset met de opgegeven naam bestaat al. Preset updaten met nieuwe instellingen?</sys:String>
 </ResourceDictionary>

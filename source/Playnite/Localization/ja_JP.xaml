@@ -41,6 +41,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">拡張機能 &quot;{0}&quot; は回復不能なエラーを起こしました。
 
 拡張機能の開発者への報告が推奨されます。もしエラーが続くなら拡張機能を無効にしてください。</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">回復不能なエラーが発生しました。
 
 この問題の修正を支援する場合は、診断情報を送信してください。ありがとうございます。</sys:String>
@@ -569,6 +570,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCAddLinkButton">関連リンクを追加</sys:String>
     <sys:String x:Key="LOCAddRom">ROMの追加</sys:String>
     <sys:String x:Key="LOCSaveChanges">保存</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">プレイアクション</sys:String>
     <sys:String x:Key="LOCAddPlayAction">プレイアクションの追加</sys:String>
     <sys:String x:Key="LOCAddAction">アクションの追加</sys:String>
@@ -757,8 +759,10 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCGeneralExtensionPackageError">拡張機能は適切にパッケージされていません。</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">テーマは適切にパッケージされていません。</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">拡張機能 &quot;{0}&quot; は正常に読み込めませんでした。</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">テーマ &quot;{0}&quot; は正常に読み込めませんでした。</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">拡張機能は正常に読み込めませんでした。</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">拡張機能は正常に読み込めませんでした。</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">テーマは正常に読み込めませんでした。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">テーマ/拡張機能にサポートされていないAPIが使用されています。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">インストールが成功しました。</sys:String>
@@ -966,9 +970,15 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform">プラットフォームの設定</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">リージョン設定</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">フォルダをスキャン</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">エミュレータでのスキャン</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">バルクスキャンのオートスキャンに含める</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">エミュレータでのスキャン</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">バルクスキャンのオートスキャンに含める</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -982,4 +992,6 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">特定のフォルダをスキャンするために、エミュレータのスキャン設定を追加する。ゲームをインポートする前に、エミュレーターが適切に設定されていることを確認してください（「ライブラリ」→「エミュレーターの設定」メニューから）。</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">新しく追加されたゲームに割り当てられるデフォルトのステータス</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">初めてプレイするゲームに付与されるステータス</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
 </ResourceDictionary>

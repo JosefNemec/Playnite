@@ -41,6 +41,7 @@ Doporučujeme uložit diagnostické soubory a nahlášení problému jejímu vý
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Rozšíření &quot;{0}&quot; způsobilo závažnou chybu.
 
 Doporučujeme nahlásit problém jejímu vývojáři. Pokud tento problém přetrvává, rozšíření zakažte.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Nastala závažná chyba.
         
 Pokud nám chcete pomoci tento problém opravit, odešlete prosím diagnostické informace. Děkujeme.</sys:String>
@@ -61,10 +62,10 @@ Pokud nám chcete pomoci tento problém opravit, odešlete prosím diagnostické
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Opravdu chcete odstranit {0} her?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Opravdu chcete tuto hru odstranit?
 
-Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hru vyjmete z příštích aktualizacích knihovny.</sys:String>
+Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hru vyjmete z příštích aktualizací knihovny.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Opravdu chcete tuto odstranit {0} her?
 
-Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z příštích aktualizacích knihovny.</sys:String>
+Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z příštích aktualizací knihovny.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Jste si jisti, že chcete odstranit {0} záznamů, které nejsou současně používané?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Žádná nepoužitá pole nebyla nalezena.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ano (přidat do seznamu výjimek)</sys:String>
@@ -566,6 +567,7 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCAddLinkButton">Přidat Odkaz</sys:String>
     <sys:String x:Key="LOCAddRom">Přidat ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Uložit Změny</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Akce Hrát</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Přidat Akci Hrát</sys:String>
     <sys:String x:Key="LOCAddAction">Přidat Akci</sys:String>
@@ -754,8 +756,10 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšíření není správně zabaleno.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Motiv není správně zabalen.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Rozšíření &quot;{0}&quot; se nepodařilo správně načíst.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Motiv &quot;{0}&quot; se nepodařilo správně načíst.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšíření se nepodařilo správně načíst.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšíření se nepodařilo správně načíst.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Motiv se nepodařil správně načíst.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motiv Vzhledu/Rozšíření používá nepodporovanou verzi API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalace byla úspěšná.</sys:String>
@@ -981,9 +985,15 @@ Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je
     <sys:String x:Key="LOCEmuImportAssignPlatform">Nastavit platformu</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Nastavit region</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Skenovat adresář</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Skenovat s emulátorem</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Zahrnout v souhrnném auto-skenu</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Žádná platná konfigurace skenu nenastavena. Ujistěte se, že všechna pole jsou správně nastavena.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Skenovat s emulátorem</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Zahrnout v souhrnném auto-skenu</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Nepodařilo se skenovat složku pro emulátory.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Nepodařilo se skenovat složku(ky) pro emulované hry.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Skrýt importované</sys:String>
@@ -997,4 +1007,6 @@ Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Přidejte emulátorové konfigurace pro skenování specifických adresářů. Ujistěte se, že jsou emulátory před importováním her správně nastavené (přes nabídku Knihovna -&gt; Konfigurovat emulátory)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Výchozí stav nastavený nové přidaným hrám</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Stav nastavený poprvé hraným hrám</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
 </ResourceDictionary>

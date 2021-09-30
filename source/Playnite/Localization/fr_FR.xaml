@@ -41,6 +41,9 @@ Il est recommandé de signaler ce problème au développeur de l'extension (via 
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">L'extension &quot;{0}&quot; a causé une erreur critique.
 
 Il est recommandé de signaler ce problème au développeur de l'extension et de la désactiver si il devait persister.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Une extension ou un thème a provoqué une erreur irrécupérable.
+
+Nous vous recommandons de désactiver les modules complémentaires, d'isoler celui qui pose problème et de signaler le problème au développeur du module en question.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur est survenue.
         
 Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rapport de bug. Merci.</sys:String>
@@ -258,7 +261,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Position du panneau d'explorateur</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Propriétés de l'affichage en grille</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Format d'affichage</sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Cette option affecte également le mode Plein Écran !</sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Les options listées ci-dessous affectent également le mode Plein Écran</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Mise à l'échelle</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Boîtier DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
@@ -362,7 +365,7 @@ Le nouvel emplacement de la base de données ne sera utilisé qu'après le redé
     <sys:String x:Key="LOCSettingsSelectChildSection">Sélectionner une sous-section</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Aucun paramètre n'est disponible</sys:String>
     <sys:String x:Key="LOCSettingsErrorLoadingSettings">Impossible de charger les paramètres</sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice">Ces scripts s'appliquent à la totalité des jeux de la bibliothèque. Des scripts individuels peuvent être assignés de manière indépendante en modifiant les propriétés de chaque jeu.</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Ces scripts s'appliquent à l'ensemble la bibliothèque. Des scripts supplémentaires peuvent être assignés individuellement en modifiant les propriétés des jeux désirés.</sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animer les transitions des images de fond</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Taille du texte</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatique</sys:String>
@@ -563,6 +566,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCAddLinkButton">Ajouter un lien</sys:String>
     <sys:String x:Key="LOCAddRom">Ajouter une ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Enregistrer les modifications</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Action de lancement</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Ajouter action de lancement</sys:String>
     <sys:String x:Key="LOCAddAction">Ajouter une action</sys:String>
@@ -602,7 +606,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCAdvanced">Avancé</sys:String>
     <sys:String x:Key="LOCNever">[Indéterminé]</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Progression</sys:String>
-    <sys:String x:Key="LOCCompletionStatuses">Statut des progressions</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">Progression</sys:String>
     <sys:String x:Key="LOCUserScore">Ma note</sys:String>
     <sys:String x:Key="LOCCriticScore">Note presse</sys:String>
     <sys:String x:Key="LOCCommunityScore">Note communauté</sys:String>
@@ -751,13 +755,15 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCGeneralExtensionPackageError">L'extension n'a pas été archivée correctement.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Le thème n'a pas été archivé correctement.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">L'extension &quot;{0}&quot; ne s'est pas chargée correctement.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">L'extension &quot;{0}&quot; n'est pas supportée par cette version de Playnite et ne peut pas être chargée.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Le thème &quot;{0}&quot; ne s'est pas chargé correctement.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">L'extension ne s'est pas chargée correctement.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Le thème &quot;{0}&quot; n'est pas supporté par cette version de Playnite et ne peut pas être chargé.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">L'extension ne s'est pas chargée correctement.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Le thème ne s'est pas chargé correctement.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thème/Extension utilise une version d'API non supportée.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
-    <sys:String x:Key="LOCExtensionGeneric">Générique</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Divers</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">L'installation de l'extension a échoué.
 
 {0}</sys:String>
@@ -822,7 +828,7 @@ Images de fond : {2} px (hauteur)</sys:String>
 - Les paramètres d'extension et des bibliothèques
     
 L'application va redémarrer pour achever ce processus. Voulez-vous réinitialiser les paramètres ?</sys:String>
-    <sys:String x:Key="LOCSettingsForDevelopers">Pour les développeurs</sys:String>
+    <sys:String x:Key="LOCSettingsForDevelopers">Développement</sys:String>
     <sys:String x:Key="LOCSettingsExternalExtensions">Extension externes</sys:String>
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Indiquer le chemin complet du dossier</sys:String>    
     <!--Common Library-->
@@ -858,7 +864,7 @@ Pour installer ou désinstaller des intégrations, utilisez l'option &quot;Exten
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Échec du téléchargement du paquet de l'extension.</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError">Échec du téléchargement du manifeste d'extension.</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart">Une redémarrage est requis pour appliquer les paramètres.</sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall">Cette extension est en liste d'attente d'installation.</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">Cette extension est en attente d'installation.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Désinstaller</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Déjà installé</sys:String>
@@ -876,7 +882,7 @@ Pour installer ou désinstaller des intégrations, utilisez l'option &quot;Exten
     <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} Contrat d'utilisation</sys:String>
     <sys:String x:Key="LOCLicenseAccept">Accepter</sys:String>
     <sys:String x:Key="LOCLicenseDecline">Refuser</sys:String>
-    <sys:String x:Key="LOCIncludePluginGameActions">Inclure les actions de lancement des intégrations de bibliothèque</sys:String>
+    <sys:String x:Key="LOCIncludePluginGameActions">Inclure les actions de lancement du client</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Sélectionner l'action</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Mode de suivi</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Lien</sys:String>
@@ -895,24 +901,24 @@ Pour installer ou désinstaller des intégrations, utilisez l'option &quot;Exten
     <sys:String x:Key="LOCGridViewScrollAmountModifier">Vitesse de défilement</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">Supprimer l'élément ?</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage">Êtes-vous certain de vouloir supprimer cet item ?</sys:String>    
-    <sys:String x:Key="LOCSettingsTopPanelItems">Afficher les boutons dans le panneau supérieur :</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelItems">Boutons à afficher dans le panneau supérieur :</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">Paramètres d'affichage général</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Paramètres de groupement</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelSortingItem">Paramètres de triage</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Paramètres de filtrage</sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Paramètres des plug-ins</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Paramètres de regroupement</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">Paramètres de tri</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Filtres rapides</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Position des plugins</sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Largeur des séparateurs</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Déplacer le bouton du menu principal vers la barre latérale</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Explorateur</sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Sélecteur de jeu aléatoire</sys:String>
-    <sys:String x:Key="LOCFilterPresetSaveViewOptions">Enregistrer les paramètres de groupement et de triage</sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Jeu aléatoire</sys:String>
+    <sys:String x:Key="LOCFilterPresetSaveViewOptions">Enregistrer les paramètres de tri et de regroupement</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Afficher comme filtre rapide en mode Plein Écran </sys:String>
     <sys:String x:Key="LOCInPast7Days">Ces sept derniers jours</sys:String>
     <sys:String x:Key="LOCInPast31Days">Ces trente et un derniers jours</sys:String>
     <sys:String x:Key="LOCInPast365Days">Ces 365 derniers jours</sys:String>
     <sys:String x:Key="LOCMoreThan365DaysAgo">Il y a plus d'un an</sys:String>
     <sys:String x:Key="LOCConfigure">Configurer</sys:String>
-    <sys:String x:Key="LOCFilterPresetSave">Enregistrer le Preset</sys:String>
+    <sys:String x:Key="LOCFilterPresetSave">Enregistrer le Préréglage</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Réduire après le lancement du jeu</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Réduit Playnite après le lancement du jeu.
 
@@ -949,9 +955,9 @@ Désactiver cette option dans le cadre de l'utilisation d'un outil de conversion
 Garantit la meilleur qualité mais peut être lent et utiliser beaucoup de mémoire.
     
 Équilibré:
-Bon compris entre qualité et performances.
+Bon compromis entre qualité et performances.
     
-Alternative:
+Alternatif:
 Qualité améliorée avec une pénalité minimale en termes de performances.</sys:String>
     <sys:String x:Key="LOCSelectFileTooltip">Sélectionner un fichier…</sys:String>
     <sys:String x:Key="LOCSelectDirectoryTooltip">Sélectionner un dossier…</sys:String>
@@ -977,21 +983,29 @@ Si vous rencontrez des problèmes après l'installation d'un thème ou d'une ext
     <sys:String x:Key="LOCSplitEmuImportMergeGames">Fusionner les jeux en un seul.</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform">Indiquer la plateforme</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Indiquer la région</sys:String>
-    <sys:String x:Key="LOCEmuScanDirectory">Scanner un dossier</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Scanner à l'aide de l'émulateur</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Inclure dans l'auto-scan global</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Aucune paramètre de scan valide n'a été trouvé. Assurez-vous que tous les champs sont correctement renseignés.</sys:String>
+    <sys:String x:Key="LOCEmuScanDirectory">Dossier d'analyse</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Configurations d'analyse</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Émulateur d'analyse</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Un nom doit être indiqué pour enregistrer une nouvelle configuration.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">L'émulateur ou le profil d'émulateur n'est pas indiqué.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Le dossier n'est pas spécifié ou n'existe pas.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">La configuration de l'analyse n'est pas correctement paramétrée.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Inclure dans l'auto-scan global</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Échec de l'analyse des dossiers d'émulateurs.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Échec de l'analyse des dossiers de jeux émulés.</sys:String>
-    <sys:String x:Key="LOCEmuScanHideImported">Cacher l'importation</sys:String>
+    <sys:String x:Key="LOCEmuScanHideImported">Ignorer les exécutables non reconnus</sys:String>
     <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Profils à importer :</sys:String>
-    <sys:String x:Key="LOCEmuAutoScanConfigurations">Configurations de scan automatique</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfig">Enregistrer comme configuration de scan automatique</sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations">Configurations d'analyse</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">Enregistrer le profil</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Enregistre la configuration pour une utilisation ultérieure. La configuration enregistrée peut être gérée depuis le menu de configuration des émulateurs.</sys:String>
-    <sys:String x:Key="LOCEmuAddScanner">Ajouter un outil d'analyse</sys:String>
-    <sys:String x:Key="LOCEmuAddSavedScanner">Ajouter l'outil d'analyse enregistré</sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">Créer un profil d'analyse</sys:String>
+    <sys:String x:Key="LOCEmuAddSavedScanner">Ajouter un profil préexistant</sys:String>
     <sys:String x:Key="LOCStartScan">Lancer l'analyse</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Ajoute des configurations d'analyse aux émulateurs pour des dossiers spécifique. Assurez-vous que les émulateurs sont correctement configurés (via le menu de configuration des émulateurs) avant de lancer l'importation.</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Statut par défaut des jeux nouvellement ajoutés</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Statut des jeux lancés pour la première fois</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Échec de l'initialisation du script PowerShell.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Un préréglage portant ce nom existe déjà. Mettre à jour le préréglage avec les nouveaux paramètres ?</sys:String>
 </ResourceDictionary>

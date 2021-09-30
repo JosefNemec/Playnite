@@ -41,6 +41,9 @@ Javasoljuk, hogy mentsd el a naplófájlt, és jelentsd a problémát a bővítm
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">&quot;{0}&quot; bővítmény összeomlott.
 
 Javasoljuk, hogy jelentsd a problémát a bővítmény készítőjének. Ha ismétlődik a probléma, tiltsd le a bővítményt.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Ismeretlen bővítmény vagy téma miatti váratlan összeomlás.
+
+Azt javasoljuk, hogy tiltsd le a harmadik féltől származó bővítményeket, hogy kizárhasd a hibásat, és utána jelentsd a fejlesztőjének a problémát.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Helyrehozhatatlan hiba történt.
 
 Ha segíteni szeretnél a hiba elhárításában, küldj hibajelentést. Köszönöm!
@@ -567,6 +570,7 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCAddLinkButton">Link hozzáadása</sys:String>
     <sys:String x:Key="LOCAddRom">Játék ROM hozzáadása</sys:String>
     <sys:String x:Key="LOCSaveChanges">Változások mentése</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Szerkesztett játék(ok) módosított mezőinek mentése.</sys:String>
     <sys:String x:Key="LOCPlayAction">Indítási művelet</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Indítási művelet hozzáadása</sys:String>
     <sys:String x:Key="LOCAddAction">Müvelet hozzáadása</sys:String>
@@ -755,8 +759,10 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCGeneralExtensionPackageError">A bővítmény helytelenül csomagolt.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">A téma helytelenül csomagolt.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">{0} bővítményt nem sikerült betölteni.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">{0} bővítmény betöltése nem sikerült, a Playnite verziója nem támogatott.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">{0} témát nem sikerült betölteni.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">A bővítményt nem sikerült betölteni.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">{0} téma betöltése nem sikerült, a Playnite verziója nem támogatott.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">A bővítményt nem sikerült betölteni.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">A témát nem sikerült betölteni.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">A Téma/Bővítmény nem támogatott API-t használ.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Sikeres telepítés.</sys:String>
@@ -968,9 +974,15 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCEmuImportAssignPlatform">Platform beállítása</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Régió beállítása</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Mappa beolvasása</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Beolvasás az emulátorral</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Olvassa be automatikusan a tömeges beolvasásnál</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Nincs működő beolvasási profil. Ellenőrizd, hogy minden mező ki van töltve.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Beolvasás konfigurációk</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Keresési minták kihagyása az ellenőrző keresésből</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Egyéni keresőmintákkal egyező fájlok nem lesznek ellenőrizve, csak fájlnév alapján. Több infóért nézd meg a súgó emulátor oldalát.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Beolvasás az emulátorral</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Add meg az új konfigurációs fájl nevét. </sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulátor vagy a profilja nincs beállítva.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Nincs megadva beolvasandó mappa, vagy nem létezik.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Hibásak a beolvasási beállítások.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Olvassa be automatikusan a tömeges beolvasásnál</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Nem sikerült a mappa beolvasása az emulátorhoz.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Emulált játékok mappájának (mappáinak) beolvasása sikertelen.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Importáltak elrejtése</sys:String>
@@ -984,4 +996,6 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Beolvasási beállításokat állíthatsz be az emulátorokhoz, hogy megadott mappákon futtathasd. Győződj meg importálás előtt, hogy az emulátor helyesen be van állítva (Könyvtár / Emulátorok beállítása menüpont)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Újonnan hozzáadott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatása sikertelen.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
 </ResourceDictionary>
