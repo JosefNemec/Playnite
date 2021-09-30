@@ -20,6 +20,9 @@ Recommended WPF resources:
 * https://www.wpftutorial.net/GettingStarted.html
 * https://www.tutorialspoint.com/wpf/
 
+> [!NOTE]
+> There's currently very active community around theme/extension development on our [Discord server](https://discord.gg/hSFvmN6). We highly recommend joining if you plan to develop add-ons for Playnite!
+
 Creating Playnite themes
 ---------------------
 

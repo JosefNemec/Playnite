@@ -29,6 +29,9 @@ Extensions fall under several categories of extended functionality that are avai
 > [!WARNING] 
 > Automatic installations and updates via `.pext` and `.pthm` files (and via built-in add-on browser/updater) always replace the entire add-on directory completely. Meaning that any files that are not part of the installation package will be lost during installation process! It is highly recommended to store generated files in a separate extensions data folder. See [Data directories](dataDirectory.md) page to learn more about extension directories.
 
+> [!NOTE]
+> There's currently very active community around theme/extension development on our [Discord server](https://discord.gg/hSFvmN6). We highly recommend joining if you plan to develop add-ons for Playnite!
+
 Creating Extensions
 ---------------------
 
