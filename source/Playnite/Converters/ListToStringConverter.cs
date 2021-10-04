@@ -63,9 +63,7 @@ namespace Playnite.Converters
             {
                 return string.Empty;
             }
-
             string sep = defaultSeperator;
-
             if (parameter is string customSep)
             {
                 sep = customSep;
