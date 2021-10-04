@@ -26,7 +26,7 @@ function Get-ParamSfoValue
     param([string]$path, [string]$key)
 
     #thanks to https://psdevwiki.com/ps3/PARAM.SFO
-    [byte[]]$bytes = Get-Content $path -Encoding Byte -Raw
+    [byte[]]$bytes = Get-Content -LiteralPath $path -Encoding Byte -Raw
     $keyTableOffset = [System.BitConverter]::ToUInt32($bytes, 0x08)
     $dataTableOffset = [System.BitConverter]::ToUInt32($bytes, 0x0c)
 
@@ -74,7 +74,7 @@ foreach ($game in $games)
     $parentDir = $game.Directory.Parent.FullName
     $paramSfoPath = Join-Path $parentDir "PARAM.SFO"
 
-    if (Test-Path $paramSfoPath -PathType Leaf)
+    if (Test-Path -LiteralPath $paramSfoPath -PathType Leaf)
     {
         $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
         if ($null -ne $scannedGame.Serial)
