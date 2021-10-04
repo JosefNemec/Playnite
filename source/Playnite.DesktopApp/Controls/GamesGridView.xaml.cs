@@ -219,7 +219,7 @@ namespace Playnite.DesktopApp.Controls
             }
             else if (field == GameField.Platforms)
             {
-                newColumn = CreateColumn(field, SortOrder.Platform, "CellTemplatePlatform", "HeaderTemplatePlatform", "Platform");
+                newColumn = CreateColumn(field, SortOrder.Platforms, "CellTemplatePlatform", "HeaderTemplatePlatform", "Platform");
             }
             else if (field == GameField.PluginId)
             {
@@ -287,11 +287,11 @@ namespace Playnite.DesktopApp.Controls
             }
             else if (field == GameField.AgeRatings)
             {
-                newColumn = CreateColumn(field, SortOrder.AgeRating, "CellTemplateAgeRating", "HeaderTemplateAgeRating", "AgeRating");
+                newColumn = CreateColumn(field, SortOrder.AgeRatings, "CellTemplateAgeRating", "HeaderTemplateAgeRating", "AgeRating");
             }
             else if (field == GameField.Regions)
             {
-                newColumn = CreateColumn(field, SortOrder.Region, "CellTemplateRegion", "HeaderTemplateRegion", "Region");
+                newColumn = CreateColumn(field, SortOrder.Regions, "CellTemplateRegion", "HeaderTemplateRegion", "Region");
             }
             else if (field == GameField.Source)
             {
