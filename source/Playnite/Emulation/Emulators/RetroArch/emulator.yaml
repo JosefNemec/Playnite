@@ -152,7 +152,7 @@ Profiles:
   - Name: Dolphin
     StartupArguments: '-L ".\cores\dolphin_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_gamecube, nintendo_wii]
-    ImageExtensions: [gcm, iso, wbfs, ciso, gcz, elf, dol, dff, tgc, wad, zip, 7z]
+    ImageExtensions: [gcm, iso, wbfs, ciso, gcz, elf, dol, dff, tgc, wad, zip, 7z, rvz]
     ProfileFiles: ['cores\dolphin_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
