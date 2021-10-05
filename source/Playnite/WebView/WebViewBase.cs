@@ -64,9 +64,7 @@ namespace Playnite.WebView
                     Name = name,
                     Value = value,
                     Expires = expires,
-                    Creation = DateTime.Now,
                     HttpOnly = false,
-                    LastAccess = DateTime.Now,
                     Secure = false,
                     Path = path
                 });
@@ -79,14 +77,12 @@ namespace Playnite.WebView
             {
                 manager.SetCookie(url, new Cookie()
                 {
-                    Creation = cookie.Creation,
                     Domain = cookie.Domain,
                     Expires = cookie.Expires,
                     HttpOnly = cookie.HttpOnly,
                     Secure = cookie.Secure,
                     SameSite = (CefSharp.Enums.CookieSameSite)(int)cookie.SameSite,
                     Priority = (CefSharp.Enums.CookiePriority)(int)cookie.Priority,
-                    LastAccess = cookie.LastAccess,
                     Name = cookie.Name,
                     Path = cookie.Path,
                     Value = cookie.Value
