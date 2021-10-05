@@ -89,7 +89,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<ThemeManifest> AvailableThemes
         {
-            get => ThemeManager.GetAvailableThemes(ApplicationMode.Desktop);
+            get => ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
         }
 
         public List<PlayniteLanguage> AvailableLanguages
