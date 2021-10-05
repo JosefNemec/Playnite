@@ -348,6 +348,7 @@ namespace Playnite.Plugins
                         continue;
                     }
 
+                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                     script.SetVariable("PlayniteApi", injectingApi);
                     script.SetVariable("CurrentExtensionInstallPath", desc.DirectoryPath);
                     if (!desc.Id.IsNullOrEmpty())
@@ -356,8 +357,6 @@ namespace Playnite.Plugins
                         FileSystem.CreateDirectory(extDir);
                         script.SetVariable("CurrentExtensionDataPath", extDir);
                     }
-
-                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -398,6 +397,7 @@ namespace Playnite.Plugins
 
                 try
                 {
+                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                     var plugins = LoadPlugins(desc, injectingApi);
                     foreach (var plugin in plugins)
                     {
@@ -410,8 +410,6 @@ namespace Playnite.Plugins
                         Plugins.Add(plugin.Id, new LoadedPlugin(plugin, desc));
                         logger.Info($"Loaded plugin: {desc.Name}, version {desc.Version}");
                     }
-
-                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
