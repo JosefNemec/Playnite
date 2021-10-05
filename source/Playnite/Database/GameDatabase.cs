@@ -1278,6 +1278,11 @@ namespace Playnite.Database
             {
                 foreach (var rom in game.Roms)
                 {
+                    if (rom.Path.IsNullOrWhiteSpace() || rom.Name.IsNullOrWhiteSpace())
+                    {
+                        continue;
+                    }
+
                     var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
                     string absPath = null;
                     try
