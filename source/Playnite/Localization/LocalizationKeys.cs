@@ -110,7 +110,7 @@ namespace Playnite
         /// </summary>
         public const string ExtCrashDescriptionFS = "LOCExtCrashDescriptionFS";
         /// <summary>
-        /// Uknown extension or a theme caused an unrecoverable error.
+        /// Unknown extension or a theme caused an unrecoverable error.
         /// </summary>
         public const string ExtCrashDescriptionUknown = "LOCExtCrashDescriptionUknown";
         /// <summary>
@@ -3629,5 +3629,13 @@ namespace Playnite
         /// Filter preset with specified name already exists. Update preset with new settings?
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
+        /// <summary>
+        /// Playnite is running with elevated privileges (as an administrator). This is not recommended since it gives elevated privileges to all installed extensions and all games/apps started from Playnite!
+        /// </summary>
+        public const string ElevatedProcessWarning = "LOCElevatedProcessWarning";
+        /// <summary>
+        /// Show warning if Playnite is running with elevated privileges
+        /// </summary>
+        public const string ElevatedProcessWarningShowOption = "LOCElevatedProcessWarningShowOption";
     }
 }

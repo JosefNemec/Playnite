@@ -1711,6 +1711,17 @@ namespace Playnite
             }
         }
 
+        private bool showElevatedRightsWarning = true;
+        public bool ShowElevatedRightsWarning
+        {
+            get => showElevatedRightsWarning;
+            set
+            {
+                showElevatedRightsWarning = value;
+                OnPropertyChanged();
+            }
+        }
+
         [JsonIgnore]
         public static bool IsPortable
         {

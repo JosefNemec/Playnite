@@ -1011,4 +1011,8 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset with specified name already exists. Update preset with new settings?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite is running with elevated privileges (as an administrator). This is not recommended since it gives elevated privileges to all installed extensions and all games/apps started from Playnite!
+
+We recommend you restart Playnite under standard privileges since Playnite doesn't require elevated privileges to work properly.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Show warning if Playnite is running with elevated privileges</sys:String>
 </ResourceDictionary>
