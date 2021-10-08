@@ -9,6 +9,17 @@ using System.Windows.Controls;
 namespace Playnite.SDK
 {
     /// <summary>
+    /// Describes interface for Fullscreen mode settings.
+    /// </summary>
+    public interface IFullscreenSettingsAPI
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        bool IsMusicMuted { get; set; }
+    }
+
+    /// <summary>
     /// Describes application settings API.
     /// </summary>
     public interface IPlayniteSettingsAPI
@@ -133,6 +144,11 @@ namespace Playnite.SDK
         ///
         /// </summary>
         Dock SidebarPosition { get; }
+
+        /// <summary>
+        /// Gets Fullscreen mode related settings.
+        /// </summary>
+        IFullscreenSettingsAPI Fullscreen { get; }
 
         /// <summary>
         /// Checks if game is added on import exclusion list.

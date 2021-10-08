@@ -1,5 +1,10 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.1.0
+
+* New
+  * `IsMusicMuted` property exposed in settings API.
+
 #### 6.0.0
 
 * **Breaking Changes**
