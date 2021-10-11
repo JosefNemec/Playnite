@@ -291,7 +291,7 @@ namespace Playnite
                 {
                     return false;
                 }
-                else if (game.ReleaseDate != null && !filterSettings.ReleaseYear.Values.Contains(game.ReleaseYear.ToString()))
+                else if (game.ReleaseDate == null || !filterSettings.ReleaseYear.Values.Contains(game.ReleaseYear.ToString()))
                 {
                     return false;
                 }
