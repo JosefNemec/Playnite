@@ -23,3 +23,7 @@
     background-color: #d9edf7;
     border-color: #bce8f1;
 }
+
+article h4 {
+    border-bottom: 0px;
+}
