@@ -125,6 +125,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
             }
 
+            SetToggleFilter(nameof(FilterSettings.UseAndFilteringStyle), LOC.UseFilterStyleAndTitle);
             SetToggleFilter(nameof(FilterSettings.IsInstalled), nameof(DatabaseStats.Installed), LOC.GameIsInstalledTitle);
             SetToggleFilter(nameof(FilterSettings.IsUnInstalled), nameof(DatabaseStats.UnInstalled), LOC.GameIsUnInstalledTitle);
             SetToggleFilter(nameof(FilterSettings.Hidden), nameof(DatabaseStats.Hidden), LOC.GameHiddenTitle);
@@ -198,6 +199,19 @@ namespace Playnite.DesktopApp.Controls.Views
 
             SetLabelTag(nameof(FilterSettings.Modified), LOC.DateModifiedLabel);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.Modified), typeof(PastTimeSegment));
+        }
+
+        private void SetToggleFilter(string binding, string text)
+        {
+            var elem = new CheckBox();
+            elem.SetResourceReference(CheckBox.StyleProperty, "FilterPanelCheckBox");
+            BindingTools.SetBinding(elem,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.FilterSettings,
+                binding,
+                BindingMode.TwoWay);
+            elem.Content = ResourceProvider.GetString(text);
+            PanelItemsHost.Children.Add(elem);
         }
 
         private void SetToggleFilter(string binding, string countBinding, string text)

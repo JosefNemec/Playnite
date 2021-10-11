@@ -1822,6 +1822,10 @@ namespace Playnite
         /// </summary>
         public const string GameInstallationStatus = "LOCGameInstallationStatus";
         /// <summary>
+        /// Include only games that match all criteria
+        /// </summary>
+        public const string UseFilterStyleAndTitle = "LOCUseFilterStyleAndTitle";
+        /// <summary>
         /// Installed
         /// </summary>
         public const string GameIsInstalledTitle = "LOCGameIsInstalledTitle";
