@@ -778,9 +778,19 @@ namespace Playnite.DesktopApp.ViewModels
             Logger.Info("Switching to Fullscreen mode.");
             if (GlobalTaskHandler.IsActive)
             {
-                Dialogs.ActivateGlobalProgress(
-                    (_) => GlobalTaskHandler.CancelAndWait(),
-                    new GlobalProgressOptions("LOCOpeningFullscreenModeMessage"));
+                var dialogRes = Dialogs.ActivateGlobalProgress((_) =>
+                    {
+                        var waitRes = GlobalTaskHandler.CancelAndWait(30_000);
+                        if (waitRes == false)
+                        {
+                            Logger.Error("Active global task failed to finish in time when switching to fullscreen mode.");
+                        }
+                    },
+                    new GlobalProgressOptions(LOC.OpeningFullscreenModeMessage));
+                if (dialogRes.Error != null)
+                {
+                    Logger.Error(dialogRes.Error, "Cancelling global task when switching to fullscreen mode failed.");
+                }
             }
 
             CloseView();
