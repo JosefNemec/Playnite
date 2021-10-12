@@ -686,12 +686,22 @@ namespace Playnite.DesktopApp.ViewModels
                         else
                         {
                             // Other file types to be added in #501
-                            if (!(new List<string>() { ".exe", ".lnk" }).Contains(ext))
+                            if (!(new List<string>() { ".exe", ".lnk", ".url" }).Contains(ext))
                             {
                                 return;
                             }
 
-                            var game = GameExtensions.GetGameFromExecutable(path);
+                            Game game = null;
+                            try
+                            {
+                                game = GameExtensions.GetGameFromExecutable(path);
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                Logger.Error(e, "Failed to get game data from file.");
+                                return;
+                            }
+
                             var icoPath = game.Icon;
                             game.Icon = null;
                             if (icoPath.IsNullOrEmpty())
