@@ -125,11 +125,11 @@ namespace Playnite.DesktopApp.Controls.Views
                 ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
             }
 
-            SetToggleFilter(nameof(FilterSettings.UseAndFilteringStyle), LOC.UseFilterStyleAndTitle);
             SetToggleFilter(nameof(FilterSettings.IsInstalled), nameof(DatabaseStats.Installed), LOC.GameIsInstalledTitle);
             SetToggleFilter(nameof(FilterSettings.IsUnInstalled), nameof(DatabaseStats.UnInstalled), LOC.GameIsUnInstalledTitle);
             SetToggleFilter(nameof(FilterSettings.Hidden), nameof(DatabaseStats.Hidden), LOC.GameHiddenTitle);
             SetToggleFilter(nameof(FilterSettings.Favorite), nameof(DatabaseStats.Favorite), LOC.GameFavoriteTitle);
+            SetToggleFilter(nameof(FilterSettings.UseAndFilteringStyle), LOC.UseFilterStyleAndTitle);
 
             SetLabelTag(nameof(FilterSettings.Platform), LOC.PlatformTitle);
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform));

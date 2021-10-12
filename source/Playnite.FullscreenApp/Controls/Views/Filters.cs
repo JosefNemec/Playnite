@@ -72,11 +72,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                     mainModel,
                     nameof(mainModel.FilterPanelVisible));
 
-            AssignBoolFilter(nameof(FilterSettings.UseAndFilteringStyle), LOC.UseFilterStyleAndTitle);
             AssignBoolFilter(nameof(FilterSettings.IsInstalled), LOC.GameIsInstalledTitle);
             AssignBoolFilter(nameof(FilterSettings.IsUnInstalled), LOC.GameIsUnInstalledTitle);
             AssignBoolFilter(nameof(FilterSettings.Favorite), LOC.GameFavoriteTitle);
             AssignBoolFilter(nameof(FilterSettings.Hidden), LOC.GameHiddenTitle);
+            AssignBoolFilter(nameof(FilterSettings.UseAndFilteringStyle), LOC.UseFilterStyleAndTitle);
             AssignFilter(GameField.PluginId, nameof(FilterSettings.Library), LOC.Library);
             AssignFilter(GameField.Platforms, nameof(FilterSettings.Platform), LOC.PlatformTitle);
             AssignFilter(GameField.Categories, nameof(FilterSettings.Category), LOC.CategoryLabel);
