@@ -143,7 +143,7 @@ namespace Playnite
                     return false;
                 }
             }
-            else if (listData.HasItems())
+            else if (listData != null && listData.HasItems())
             {
                 return false;
             }
