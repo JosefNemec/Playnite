@@ -1015,7 +1015,7 @@ If you start experiencing some issues after installing a theme or an extension, 
 
 We recommend you restart Playnite under standard privileges since Playnite doesn't require elevated privileges to work properly.</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Show warning if Playnite is running with elevated privileges</sys:String>
-    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you install them:
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
         
 {0}
     </sys:String>
