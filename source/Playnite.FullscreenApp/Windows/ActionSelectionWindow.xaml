@@ -27,7 +27,7 @@
         <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" MinWidth="300" />
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -37,6 +37,7 @@
             </Grid.RowDefinitions>
 
             <Border Style="{DynamicResource ActionSelectionBorder}"
+                    MinWidth="400" Width="Auto"
                     Grid.Column="1" Grid.Row="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                 <DockPanel>

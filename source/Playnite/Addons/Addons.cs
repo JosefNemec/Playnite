@@ -125,6 +125,9 @@ namespace Playnite
             updateList.AddRange(CheckAddonsForUpdate(descriptions.Where(a => a.Type == ExtensionType.Script), serviceClient));
             updateList.AddRange(CheckAddonsForUpdate(ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).Where(a => !a.IsBuiltInTheme), serviceClient));
             updateList.AddRange(CheckAddonsForUpdate(ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).Where(a => !a.IsBuiltInTheme), serviceClient));
+
+            var blackList = serviceClient.GetAddonBlacklist();
+            updateList.Where(a => blackList.Contains(a.Item.AddonId)).ToList().ForEach(a => updateList.Remove(a));
             return updateList;
         }
     }

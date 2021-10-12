@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 namespace Playnite.API
 {
-    public class FullscreenSettignsAPI : IFullscreenSettingsAPI
+    public class FullscreenSettingsAPI : IFullscreenSettingsAPI
     {
         private readonly FullscreenSettings settings;
 
@@ -20,7 +20,7 @@ namespace Playnite.API
             set => settings.IsMusicMuted = value;
         }
 
-        public FullscreenSettignsAPI(FullscreenSettings settings)
+        public FullscreenSettingsAPI(FullscreenSettings settings)
         {
             this.settings = settings;
         }
@@ -61,7 +61,7 @@ namespace Playnite.API
         {
             this.settings = settings;
             this.db = db;
-            Fullscreen = new FullscreenSettignsAPI(settings.Fullscreen);
+            Fullscreen = new FullscreenSettingsAPI(settings.Fullscreen);
         }
 
         public bool GetGameExcludedFromImport(string gameId, Guid libraryId)

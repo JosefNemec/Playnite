@@ -3641,5 +3641,9 @@ namespace Playnite
         /// Show warning if Playnite is running with elevated privileges
         /// </summary>
         public const string ElevatedProcessWarningShowOption = "LOCElevatedProcessWarningShowOption";
+        /// <summary>
+        /// Following extensions have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you install them.
+        /// </summary>
+        public const string WarningBlacklistedExtensions = "LOCWarningBlacklistedExtensions";
     }
 }

@@ -127,6 +127,28 @@ namespace Playnite
                     }
                 }
             }
+            if (string.Equals(Path.GetExtension(path), ".url", StringComparison.OrdinalIgnoreCase))
+            {
+                var urlData = IniParser.Parse(File.ReadAllLines(path));
+                var shortcut = urlData["InternetShortcut"];
+                if (shortcut == null)
+                {
+                    throw new Exception("URL file doesn't have shortcut definition section.");
+                }
+
+                game.Name = Path.GetFileNameWithoutExtension(path);
+                game.Icon = shortcut["IconFile"];
+                game.GameActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>
+                {
+                    new GameAction()
+                    {
+                        Type = GameActionType.URL,
+                        Path = shortcut["URL"],
+                        IsPlayAction = true,
+                        Name = game.Name
+                    }
+                };
+            }
             else
             {
                 var file = new FileInfo(path);

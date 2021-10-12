@@ -36,7 +36,7 @@ There are generally two approaches to theme creation in Playnite.
 
 1. **[Manually editing](manualEditing.md)** XAML files using any text editor.
 
-2. **[Using Blend/Visual Studio](usingDesigner.md)** designer.
+2. **[Using Blend/Visual Studio](usingBlend.md)** designer.
 
 Option #1 doesn't require installation of any additional applications and themes can be generally created even using Notepad. However this approach has major disadvantages:
 * You don't get live preview of changes your are making.
@@ -46,6 +46,9 @@ Option #1 doesn't require installation of any additional applications and themes
 Option #2 requires installation of [Visual Studio IDE](https://visualstudio.microsoft.com/), Community edition is free to download and includes [Blend](https://docs.microsoft.com/en-us/visualstudio/designers/creating-a-ui-by-using-blend-for-visual-studio?view=vs-2019) editor. This approach takes some time to set up, but offers all advantages that manual editing lacks, like live preview, autocompletion of XAML properties, visual editor etc. 
 
 **Using Blend editor is recommended option.**
+
+> [!WARNING] 
+> Theme installation and update always replaces the entire theme directory completely. Meaning that any files that are not part of the installation package will be lost during installation process! If your theme includes some custom functionality that requires user to replace/add files to theme's directory, make sure they know that they will loose those changes after an update!
 
 Integrating with plugins
 ---------------------

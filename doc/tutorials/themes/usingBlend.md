@@ -3,7 +3,7 @@
 Installing Blend
 ---------------------
 
-Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components for workloads you might not be interested in, for theme development you only need `.NET Desktop development` workload.
+Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components you might not be interested in, for theme development you only need `.NET Desktop development` workload.
 
 Creating new theme
 ---------------------
@@ -37,23 +37,40 @@ To edit theme in Blend open `Theme.sln` file from theme's directory.
 
 As a first thing after creating new theme, open `theme.yaml` file and change manifest fields if you need to (you will probably need to change Author at least). For more information about available manifest fields see [manifest file page](manifestFile.md).
 
-### Files
+Files
+---------------------
 
 Themes consist of several `.xaml` files. Each view, panel or specific control usually has their own xaml file. Commonly used resources like colors and brushes that affect all controls are generally defined in `Constants.xaml`.
 
-### Live preview
+Live preview
+---------------------
 
 To open live preview (design view):
-* Open appropriate style (xaml) file.
-* Toggle `Design` view using `Design` tab button.
-  * It is highly recommended to keep XAML text view open as well since it's faster for making changes. To have both views open you can split the editor using buttons on bottom right part of the editor (offering both horizontal and vertical split.
-  * ![image](images/designSwitch.png)
 
-* Select root of the style (line starting with "<Style TargetType=...")
-* On design panel select `Style` dropdown then `Edit Template` and lastly `Edit Current`.
+#### 1) Open appropriate style (xaml) file
+
+Not all files can be previewed in design view, some only contain constants like colors, brushes etc. `Constants.xaml` is best example of this. If you want to see preview for these resources, open resources window (View -> Resources window) and expand appropriate file.
+
+#### 2) Open design view panel
+
+Toggle design view using `Design` tab button. It is highly recommended to keep XAML text view open as well since it's faster for making changes. To have both views open you can split the editor using buttons on bottom right part of the editor (offering both horizontal and vertical split.
+
+![image](images/designSwitch.png)
+
+#### 3) Select style to preview
+
+Since single xaml file can contain multiple styles for multiple views/controls, you need to select style you want to preview first. To do so select line in a text editor starting with with `<Style TargetType=...`.
+
+#### 4) Activate preview
+
+On design panel select `Style` dropdown, then `Edit Template` and lastly `Edit Current`. This will load preview for style you selected in previous step.
+
 ![image](images/templateEdit.png)
 
-Now the preview for the specific control/panel should be visible. Something like this:
+#### 5) Enjoy
+
+Now a preview for the specific view/control should be visible. If the view doesn't seem to display all resources properly (for example missing or incorrect colors and brushes are used), see troubleshooting section.
+
 ![image](images/designExample.png)
 
 Troubleshooting
