@@ -1,4 +1,6 @@
-﻿param(
+﻿#Requires -Modules powershell-yaml
+
+param(
     # Build configuration
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
@@ -67,8 +69,30 @@ function PackExtensionTemplate()
     Remove-Item $templateOutDir -Recurse -Force
 } 
 
+# -------------------------------------------
+#            Verify various non-build files
+# -------------------------------------------
 .\VerifyLanguageFiles.ps1
 
+$platforms = Get-Content "..\source\Playnite\Emulation\Platforms.yaml" -Raw | ConvertFrom-Yaml
+if (!($platforms.Count -gt 0))
+{
+    throw "Platforms definition file is not valid."
+}
+
+$regions = Get-Content "..\source\Playnite\Emulation\Regions.yaml" -Raw | ConvertFrom-Yaml
+if (!($regions.Count -gt 0))
+{
+    throw "Regions definition file is not valid."
+}
+
+Get-ChildItem "..\source\Playnite\Emulation\" -Filter "*.yaml" -Recurse | ForEach {
+    $emuDef = Get-Content $_.FullName -Raw | ConvertFrom-Yaml
+    if (!$emuDef.Id)
+    {
+        throw "$($_.FullName) is not valid emulator definition."
+    }
+}
 # -------------------------------------------
 #            Compile application 
 # -------------------------------------------
