@@ -304,7 +304,7 @@ namespace Playnite
                 {
                     return false;
                 }
-                else if (filterSettings.PlayTime.Values[0] == ((int)game.PlaytimeCategory) == false)
+                else if (filterSettings.PlayTime.Values.First() == ((int)game.PlaytimeCategory) == false)
                 {
                     return false;
                 }
