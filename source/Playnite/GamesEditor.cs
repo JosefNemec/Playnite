@@ -947,6 +947,7 @@ namespace Playnite
             }
             else
             {
+                AppSettings.Fullscreen.IsMusicMuted = true;
                 if (AppSettings.Fullscreen.MinimizeAfterGameStartup)
                 {
                     Application.Minimize();
@@ -985,6 +986,7 @@ namespace Playnite
             else
             {
                 Application.Restore();
+                AppSettings.Fullscreen.IsMusicMuted = false;
             }
 
             if (AppSettings.DiscordPresenceEnabled)

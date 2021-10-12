@@ -87,8 +87,11 @@ namespace Playnite
 
             set
             {
-                isMusicMuted = value;
-                OnPropertyChanged();
+                if (isMusicMuted != value)
+                {
+                    isMusicMuted = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
