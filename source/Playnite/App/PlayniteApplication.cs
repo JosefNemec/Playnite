@@ -960,6 +960,23 @@ namespace Playnite
 
             try
             {
+                var manifests = ExtensionFactory.GetInstalledManifests();
+                var blackList = ServicesClient.GetAddonBlacklist();
+                var installedList = manifests.Where(a => blackList.Contains(a.Id)).ToList();
+                if (installedList.HasItems())
+                {
+                    Dialogs.ShowMessage(ResourceProvider.GetString(LOC.WarningBlacklistedExtensions).Format(
+                        string.Join(Environment.NewLine, installedList.Select(a => a.Name))),
+                        "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to process addon blacklist check.");
+            }
+
+            try
+            {
                 var updates = Addons.CheckAddonUpdates(ServicesClient);
                 if (updates.HasItems())
                 {
