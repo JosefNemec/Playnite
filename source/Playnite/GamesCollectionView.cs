@@ -98,6 +98,59 @@ namespace Playnite
             }
         }
 
+        private bool IsFilterMatchingSingleOnly(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
+        {
+            if (objectData == null && (filter == null || !filter.IsSet))
+            {
+                return true;
+            }
+
+            if (filter.Ids.HasItems())
+            {
+                if (filter.Ids.Count != 1)
+                {
+                    return false;
+                }
+
+                if (filter.Ids.Contains(idData))
+                {
+                    return true;
+                }
+            }
+            else if (idData == Guid.Empty)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsFilterMatchingList(FilterItemProperites filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
+        {
+            if (objectData == null && (filter == null || !filter.IsSet))
+            {
+                return true;
+            }
+
+            if (filter.Ids.HasItems())
+            {
+                if (listData == null || !listData.HasItems())
+                {
+                    return false;
+                }
+                else if (filter.Ids.Intersect(listData).Count() != filter.Ids.Count())
+                {
+                    return false;
+                }
+            }
+            else if (listData != null && listData.HasItems())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private bool IsFilterMatchingSingle(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
@@ -147,22 +200,301 @@ namespace Playnite
             return filter.Values.Contains((int)score);
         }
 
-        private bool Filter(object item)
+        private bool IsScoreFilterMatchingSingle(EnumFilterItemProperites filter, ScoreGroup score)
         {
-            var entry = (GamesCollectionViewEntry)item;
-            var game = entry.Game;
-            if (!filterSettings.IsActive)
+            if (filter.Values.Count != 1)
             {
-                if (game.Hidden)
+                return false;
+            }
+            return filter.Values.Contains((int)score);
+        }
+
+        public bool FilterByStyleAnd(Game game)
+        {
+            // ------------------ Installed
+            bool installedResult = false;
+            if ((filterSettings.IsInstalled && filterSettings.IsUnInstalled) ||
+                (!filterSettings.IsInstalled && !filterSettings.IsUnInstalled))
+            {
+                installedResult = true;
+            }
+            else
+            {
+                if (filterSettings.IsInstalled && game.IsInstalled)
+                {
+                    installedResult = true;
+                }
+                else if (filterSettings.IsUnInstalled && !game.IsInstalled)
+                {
+                    installedResult = true;
+                }
+            }
+
+            if (!installedResult)
+            {
+                return false;
+            }
+
+            // ------------------ Hidden
+            if (filterSettings.Hidden != game.Hidden)
+            {
+                return false;
+            }
+
+            // ------------------ Favorite
+            if (filterSettings.Favorite != game.Favorite)
+            {
+                return false;
+            }
+
+            // ------------------ Providers
+            if (filterSettings.Library?.IsSet == true)
+            {
+                if (filterSettings.Library.Ids?.Count != 1)
                 {
                     return false;
                 }
                 else
                 {
-                    return true;
+                    var libInter = filterSettings.Library.Ids?.Intersect(new List<Guid> { game.PluginId });
+                    if (libInter?.Any() == false)
+                    {
+                        return false;
+                    }
                 }
             }
 
+            // ------------------ Name filter
+            if (!filterSettings.Name.IsNullOrEmpty())
+            {
+                if (game.Name.IsNullOrEmpty())
+                {
+                    return false;
+                }
+                else if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+                {
+                    if (game.GetNameGroup() != filterSettings.Name[1])
+                    {
+                        return false;
+                    }
+                }
+                else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Release Year
+            if (filterSettings.ReleaseYear?.IsSet == true)
+            {
+                if (filterSettings.ReleaseYear.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (game.ReleaseDate == null || !filterSettings.ReleaseYear.Values.Contains(game.ReleaseYear.ToString()))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Playtime
+            if (filterSettings.PlayTime?.IsSet == true)
+            {
+                if (filterSettings.PlayTime.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (filterSettings.PlayTime.Values.First() == ((int)game.PlaytimeCategory) == false)
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Version
+            if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version) != true)
+            {
+                return false;
+            }
+
+            // ------------------ Completion Status
+            if (filterSettings.CompletionStatuses?.IsSet == true)
+            {
+                if (!IsFilterMatchingSingleOnly(filterSettings.CompletionStatuses, game.CompletionStatusId, game.CompletionStatus))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Last Activity
+            if (filterSettings.LastActivity?.IsSet == true)
+            {
+                if (filterSettings.LastActivity.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (!filterSettings.LastActivity.Values.Contains((int)game.LastActivitySegment))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Added
+            if (filterSettings.Added?.IsSet == true)
+            {
+                if (filterSettings.Added.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (!filterSettings.Added.Values.Contains((int)game.AddedSegment))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Modified
+            if (filterSettings.Modified?.IsSet == true)
+            {
+                if (filterSettings.Modified.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (!filterSettings.Modified.Values.Contains((int)game.ModifiedSegment))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ User Score
+            if (filterSettings.UserScore != null)
+            {
+                if (!IsScoreFilterMatchingSingle(filterSettings.UserScore, game.UserScoreGroup))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Community Score
+            if (filterSettings.CommunityScore != null)
+            {
+                if (!IsScoreFilterMatchingSingle(filterSettings.CommunityScore, game.CommunityScoreGroup))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Critic Score
+            if (filterSettings.CriticScore != null)
+            {
+                if (!IsScoreFilterMatchingSingle(filterSettings.CriticScore, game.CriticScoreGroup))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Series filter
+            if (filterSettings.Series?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Series, game.SeriesIds, game.Series))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Region filter
+            if (filterSettings.Region?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Region, game.RegionIds, game.Regions))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Source filter
+            if (filterSettings.Source?.IsSet == true)
+            {
+                if (!IsFilterMatchingSingleOnly(filterSettings.Source, game.SourceId, game.Source))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ AgeRating filter
+            if (filterSettings.AgeRating?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.AgeRating, game.AgeRatingIds, game.AgeRatings))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Genre
+            if (filterSettings.Genre?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Genre, game.GenreIds, game.Genres))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Platform
+            if (filterSettings.Platform?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Platform, game.PlatformIds, game.Platforms))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Publisher
+            if (filterSettings.Publisher?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Publisher, game.PublisherIds, game.Publishers))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Developer
+            if (filterSettings.Developer?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Developer, game.DeveloperIds, game.Developers))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Category
+            if (filterSettings.Category?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Category, game.CategoryIds, game.Categories))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Tags
+            if (filterSettings.Tag?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Tag, game.TagIds, game.Tags))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Features
+            if (filterSettings.Feature?.IsSet == true)
+            {
+                if (!IsFilterMatchingList(filterSettings.Feature, game.FeatureIds, game.Features))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool FilterByStyleOr(Game game)
+        {
             // ------------------ Installed
             bool installedResult = false;
             if ((filterSettings.IsInstalled && filterSettings.IsUnInstalled) ||
@@ -439,6 +771,32 @@ namespace Playnite
             }
 
             return true;
+        }
+
+        private bool Filter(object item)
+        {
+            var entry = (GamesCollectionViewEntry)item;
+            var game = entry.Game;
+            if (!filterSettings.IsActive)
+            {
+                if (game.Hidden)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            if (filterSettings.UseAndFilteringStyle)
+            {
+                return FilterByStyleAnd(game);
+            }
+            else
+            {
+                return FilterByStyleOr(game);
+            }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
