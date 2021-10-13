@@ -793,7 +793,10 @@ namespace Playnite
             {
                 return FilterByStyleAnd(game);
             }
-            return FilterByStyleOr(game);
+            else
+            {
+                return FilterByStyleOr(game);
+            }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
