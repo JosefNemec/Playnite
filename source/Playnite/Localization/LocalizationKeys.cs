@@ -1826,6 +1826,10 @@ namespace Playnite
         /// </summary>
         public const string UseFilterStyleAndTitle = "LOCUseFilterStyleAndTitle";
         /// <summary>
+        /// If enabled, only games that use all the items in all the filters will be included in the view. If disabled, games that use any item in any filter will be included in the view.
+        /// </summary>
+        public const string UseFilterStyleAndTooltip = "LOCUseFilterStyleAndTooltip";
+        /// <summary>
         /// Installed
         /// </summary>
         public const string GameIsInstalledTitle = "LOCGameIsInstalledTitle";
