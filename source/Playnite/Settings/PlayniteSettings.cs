@@ -1520,7 +1520,7 @@ namespace Playnite
             }
         }
 
-        private bool traceLogEnabled = true;
+        private bool traceLogEnabled = false;
         public bool TraceLogEnabled
         {
             get => traceLogEnabled;
