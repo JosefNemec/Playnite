@@ -99,6 +99,17 @@ namespace System
             }
         }
 
+        private static string RemoveUnlessThatEmptiesTheString(string input, string pattern)
+        {
+            string output = Regex.Replace(input, pattern, string.Empty);
+
+            if (string.IsNullOrWhiteSpace(output))
+            {
+                return input;
+            }
+            return output;
+        }
+
         public static string NormalizeGameName(this string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -112,8 +123,8 @@ namespace System
             newName = newName.Replace(".", " ");
             newName = RemoveTrademarks(newName);
             newName = newName.Replace('’', '\'');
-            newName = Regex.Replace(newName, @"\[.*?\]", "");
-            newName = Regex.Replace(newName, @"\(.*?\)", "");
+            newName = RemoveUnlessThatEmptiesTheString(newName, @"\[.*?\]");
+            newName = RemoveUnlessThatEmptiesTheString(newName, @"\(.*?\)");
             newName = Regex.Replace(newName, @"\s*:\s*", ": ");
             newName = Regex.Replace(newName, @"\s+", " ");
             if (Regex.IsMatch(newName, @",\s*The$"))
