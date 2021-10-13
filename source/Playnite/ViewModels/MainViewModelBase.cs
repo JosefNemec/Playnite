@@ -514,15 +514,10 @@ namespace Playnite.ViewModels
 
             try
             {
-                var newPlatforms = new List<SDK.Models.Platform>();
-                var newRegions = new List<SDK.Models.Region>();
-                var scanned = GameScanner.Scan(
-                    scanConfig,
-                    Database,
-                    importedFiles,
+                var scanned = new GameScanner(scanConfig, Database, importedFiles).Scan(
                     token,
-                    newPlatforms,
-                    newRegions).Select(a => a.ToGame()).ToList();
+                    out var newPlatforms,
+                    out var newRegions).Select(a => a.ToGame()).ToList();
                 if (scanned.HasItems())
                 {
                     var statusSettings = Database.GetCompletionStatusSettings();

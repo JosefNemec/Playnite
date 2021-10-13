@@ -363,8 +363,6 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            newPlatforms = new List<Platform>();
-            newRegions = new List<Region>();
             GameList.Clear();
             var scanString = resources.GetString(LOC.EmuWizardScanningSpecific);
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
@@ -373,13 +371,10 @@ namespace Playnite.DesktopApp.ViewModels
                 foreach (GameScannerConfig config in ScannerConfigs)
                 {
                     args.Text = scanString.Format(config.Directory);
-                    GameList.AddRange(GameScanner.Scan(
-                        config,
-                        database,
-                        existingGame,
+                    GameList.AddRange(new GameScanner(config, database, existingGame).Scan(
                         args.CancelToken,
-                        newPlatforms,
-                        newRegions,
+                        out newPlatforms,
+                        out newRegions,
                         (path) => args.Text = scanString.Format(path)));
                 }
             },

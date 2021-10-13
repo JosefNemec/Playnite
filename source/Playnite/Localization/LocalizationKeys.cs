@@ -3646,8 +3646,24 @@ namespace Playnite
         /// </summary>
         public const string ElevatedProcessWarningShowOption = "LOCElevatedProcessWarningShowOption";
         /// <summary>
-        /// Following extensions have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you install them.
+        /// Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
         /// </summary>
         public const string WarningBlacklistedExtensions = "LOCWarningBlacklistedExtensions";
+        /// <summary>
+        /// Exclude online files from scan
+        /// </summary>
+        public const string EmuExcludeOnlineFiles = "LOCEmuExcludeOnlineFiles";
+        /// <summary>
+        /// Files stored on cloud storage won't be scanned and imported if not available locally.
+        /// </summary>
+        public const string EmuExcludeOnlineFilesTooltip = "LOCEmuExcludeOnlineFilesTooltip";
+        /// <summary>
+        /// Scan but using simplified method without file content
+        /// </summary>
+        public const string EmuUseSimplifiedOnlineFileScan = "LOCEmuUseSimplifiedOnlineFileScan";
+        /// <summary>
+        /// Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.
+        /// </summary>
+        public const string EmuUseSimplifiedOnlineFileScanTooltip = "LOCEmuUseSimplifiedOnlineFileScanTooltip";
     }
 }

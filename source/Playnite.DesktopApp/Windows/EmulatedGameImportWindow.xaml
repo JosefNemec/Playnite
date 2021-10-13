@@ -167,6 +167,17 @@
                                     <dctrls:PathSelectionBox Margin="10,0,10,0" ShowDirectorySelector="True"
                                                              Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <CheckBox Content="{DynamicResource LOCEmuExcludeOnlineFiles}"
+                                              ToolTip="{DynamicResource LOCEmuExcludeOnlineFilesTooltip}"
+                                              Name="CheckExcludeOnlineFiles"
+                                              IsChecked="{Binding ExcludeOnlineFiles}" />
+                                    <CheckBox Content="{DynamicResource LOCEmuUseSimplifiedOnlineFileScan}"
+                                              ToolTip="{DynamicResource LOCEmuUseSimplifiedOnlineFileScanTooltip}"
+                                              IsEnabled="{Binding IsChecked, ElementName=CheckExcludeOnlineFiles}"
+                                              Margin="20,0,0,0"
+                                              IsChecked="{Binding UseSimplifiedOnlineFileScan}" />
+                                </StackPanel>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
                                           ToolTip="{DynamicResource LOCEmuSaveScanConfigTooltip}"
                                           ToolTipService.InitialShowDelay="200"
