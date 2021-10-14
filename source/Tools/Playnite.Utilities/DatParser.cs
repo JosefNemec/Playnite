@@ -96,8 +96,9 @@ namespace Playnite.Utilities
 
                     SetParsedProperty(propInfo, datGame, (string)prop.Value);
                 }
-                            }
+            }
 
+            datGame.FixData();
             return datGame;
         }
 
@@ -285,7 +286,14 @@ namespace Playnite.Utilities
             {
                 if (child.Name == "game")
                 {
-                    games.Add(ParseGame(child.Value as DatObject));
+                    try
+                    {
+                        games.Add(ParseGame(child.Value as DatObject));
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"Failed top parse game child in {path}");
+                    }
                 }
             }
 
@@ -294,6 +302,7 @@ namespace Playnite.Utilities
 
         public static void ProcessLibretroDb(string libretroDir, string outputDir, bool generateSql, bool generateYaml)
         {
+            FileSystem.CreateDirectory(outputDir);
             Func<DatGame, string> libretroDbDefaultGroupSelectors = (g) => g.RomCrc;
             var libretroDbGroupSelectors = new Dictionary<string, Func<DatGame, string>>(StringComparer.OrdinalIgnoreCase)
             {
@@ -362,7 +371,19 @@ namespace Playnite.Utilities
                 "Tiger - Gizmondo.dat",
                 "Tomb Raider.dat",
                 "Wolfenstein 3D.dat",
-                "Microsoft - XBOX 360 (Title Updates).dat"
+                "Microsoft - XBOX 360 (Title Updates).dat",
+                "HBMAME.dat",
+                "MAME 2000.dat",
+                "MAME 2003.dat",
+                "MAME 2003-Plus.dat",
+                "MAME 2010.dat",
+                "MAME 2015.dat",
+                "MAME 2016.dat",
+                "MAME.dat",
+                "ScummVM.dat",
+                "Atomiswave.dat",
+                "Sony - PlayStation Minis.dat",
+                "Thomson - MOTO.dat"
             };
 
             var datFiles = new List<FileInfo>();
@@ -382,6 +403,33 @@ namespace Playnite.Utilities
                     }
 
                     var cons = DatParser.ConsolidateDatFiles(db.Select(a => a.FullName), selector);
+                    if (dbName == "Sony - PlayStation 3")
+                    {
+                        string ps3ResgionCharToRegion(char regionKey)
+                        {
+                            switch (regionKey)
+                            {
+                                case 'A': return "Asia";
+                                case 'C': return "China";
+                                case 'E': return "Europe";
+                                case 'H': return "Hong Kong";
+                                case 'J': return "Japan";
+                                case 'K': return "Korea";
+                                case 'P': return "Japan";
+                                case 'U': return "USA";
+                                default: return null;
+                            }
+                        }
+
+                        foreach (var game in cons)
+                        {
+                            if (game.Region.IsNullOrEmpty() && !game.Serial.IsNullOrEmpty())
+                            {
+                                game.Region = ps3ResgionCharToRegion(game.Serial[2]);
+                            }
+                        }
+                    }
+
                     if (generateYaml)
                     {
                         var yamlPath = Path.Combine(outputDir, $"{dbName}.yaml");
