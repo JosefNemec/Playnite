@@ -17,6 +17,7 @@ namespace Playnite.Tests
         [TestCase("Pokemon.Red.[US].[l33th4xor].Test.[22]", "Pokemon Red Test")]
         [TestCase("Pokemon.Red.[US].(l33th 4xor).Test.(22)", "Pokemon Red Test")]
         [TestCase("[PROTOTYPE]™", "[PROTOTYPE]")]
+        [TestCase("(PROTOTYPE2)™", "(PROTOTYPE2)")]
         public void NormalizeGameNameTest(string input, string expectedOutput)
         {
             string output = StringExtensions.NormalizeGameName(input);

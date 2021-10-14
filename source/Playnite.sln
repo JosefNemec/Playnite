@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1525
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}"
 EndProject
@@ -45,9 +45,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMetadataPlugin", "Tests\TestMetadataPlugin\TestMetadataPlugin.csproj", "{AFE32BF4-E669-4E3F-8363-1D32BEB158F5}"
 EndProject
 Global
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -160,6 +157,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{214A3A6E-C961-405E-8F5E-96314B672CF2} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 		{62DDB6BD-36D1-42C1-BA38-6C7550EA366E} = {214A3A6E-C961-405E-8F5E-96314B672CF2}
 		{DB0E5B51-2960-4869-899D-5E0C65A697A6} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
 		{AFE32BF4-E669-4E3F-8363-1D32BEB158F6} = {FBE3E4C8-611E-435D-B47C-FE006AAA8C4A}
@@ -173,6 +171,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3300FF38-9F6F-4C0F-87F3-776D6C64846D}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
