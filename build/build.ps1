@@ -108,7 +108,6 @@ Get-ChildItem "..\source\Playnite\Emulation\" -Filter "*.yaml" -Recurse | ForEac
     }
 }
 
-return
 # -------------------------------------------
 #            Compile application 
 # -------------------------------------------
