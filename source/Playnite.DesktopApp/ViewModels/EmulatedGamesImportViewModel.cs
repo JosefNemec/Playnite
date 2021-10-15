@@ -386,6 +386,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (scanRes.Error != null)
             {
+                logger.Error(scanRes.Error, "Failed to scan emulated folder.");
                 dialogs.ShowErrorMessage(resources.GetString(LOC.EmulatedGameScanFailed) + "\n" + scanRes.Error.Message, "");
                 IsScanSetup = true;
             }
