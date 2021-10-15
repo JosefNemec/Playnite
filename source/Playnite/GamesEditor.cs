@@ -38,6 +38,7 @@ namespace Playnite
     public class GamesEditor : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
+        private static bool showedPowerShellError = false;
         private IResourceProvider resources = new ResourceProvider();
         private GameControllerFactory controllers;
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
@@ -181,12 +182,17 @@ namespace Playnite
                 {
                     scriptRuntimes.TryAdd(game.Id, new PowerShellRuntime($"{game.Name} {game.Id} runtime"));
                 }
-                catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     // This should really only happen on Windows 7 without PS 5.1 installed, which is very small percentage of users.
                     // It should not prevent game startup.
                     logger.Error(e, "Failed to create PowerShell runtime.");
-                    Dialogs.ShowErrorMessage(resources.GetString(LOC.PowerShellCreationError) + "\n\n" + e.Message, "");
+                    if (!showedPowerShellError)
+                    {
+                        Dialogs.ShowErrorMessage(resources.GetString(LOC.PowerShellCreationError) + "\n\n" + e.Message, "");
+                        showedPowerShellError = true;
+                    }
+
                     scriptRuntimes.TryAdd(game.Id, new DummyPowerShellRuntime());
                 }
 

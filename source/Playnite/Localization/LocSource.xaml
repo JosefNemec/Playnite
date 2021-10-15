@@ -1012,7 +1012,7 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Add scan configuration(s) with emulators to scan specific folders. Make sure that emulators are properly configured prior to importing games (via Library -> Configure Emulators menu).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Default status assigned to newly added games</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime. If you are Windows 7 user, try (re)installing PowerShell 5.1 to fix the issue.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset with specified name already exists. Update preset with new settings?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite is running with elevated privileges (as an administrator). This is not recommended since it gives elevated privileges to all installed extensions and all games/apps started from Playnite!
 
