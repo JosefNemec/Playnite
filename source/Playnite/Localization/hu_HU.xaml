@@ -32,9 +32,9 @@ Négyzet - Ne változzon (több játék állításakor)</sys:String>
 
 Ha segíteni szeretnél a hiba elhárításában, röviden foglald össze, mit csináltál az összeomlás előtt és hozz létre egy diagnosztikai csomagot. Ha online vagy, a csomagot elküldöm a Playnite szerverre, elemzésre.
 
-Más esetben használhatod a 'Hibajelentés küldése' gombot hogy új hibajegyet hozz létre a GitHub-on és kézzel készítsd el a hibáról az összefoglalót. Angol nyelven kommunikálj, ha kérhetem.
+Más esetben használhatod a 'Hibajelentés küldése' gombot, hogy új hibajegyet hozz létre a GitHub-on és kézzel készítsd el a hibáról az összefoglalót. Angol nyelven kommunikálj, ha kérhetem.
 
-Köszönöm a segítséged.</sys:String>
+Köszönöm a segítséged!</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">&quot;{0}&quot; bővítmény összeomlott.
 
 Javasoljuk, hogy mentsd el a naplófájlt, és jelentsd a problémát a bővítmény készítőjének. Ha ismétlődik a probléma, tiltsd le a bővítményt.</sys:String>
@@ -502,6 +502,9 @@ Jelenleg {1} játék és {2} emulátor használja.</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Címkék</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Kiadó</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Telepítési állapot</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Szűrők egyeztetése</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Ha engedélyezve van, csak az összes szűrővel szűrt játék fog látszódni.
+Ha kikapcsolod, bármelyik szűrővel szűrt játék fog látszódni.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Telepítve</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Telepített</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nincs telepítve</sys:String>
@@ -558,8 +561,9 @@ Kérlek csatold hozzá a a következő ID-t a hibajegyhez:</sys:String>
 
 A következők segíthetnek a hiba elhárításában:
  • Ellenőrizd, hogy minden fájl megfelelően van-e telepítve; az újratelepítés megoldás lehet
- • Az elérési útban ne legyen speciális karakter
- • Ellenőrizd, hogy a vírusirtód nem blokkolja-e valamelyik fájlt a Playnite mappájában</sys:String>
+ • Windows 7 és 8 alatt telepítsd a Visual Studio C++ 2019-et
+ • Ellenőrizd, hogy a vírusirtód nem blokkolja-e valamelyik fájlt a Playnite mappájában
+ • Válassz másik telepítési célmappát</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nem sikerült az emulátorok importálása, az emulátorok definíciói hiányoznak vagy sérültek.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Az XInput felületet nem sikerült elindítani.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Menü művelet futtatása nem sikerült.</sys:String>
@@ -998,4 +1002,18 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatása sikertelen.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">A Playnite rendszergazdai jogokkal fut. Nem ajánlott így futtatni, mert az összes bövítménynek és innen indított játéknak is teljes hozzáférése lesz mindenhez.
+
+Javasoljuk, hogy rendszergazdai jogok nélkül futtasd, ugyanis a Playnite nem ígényli ezt a működéséhez.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Figyelmeztessen, ha rendszergazdaként futtatnám a Playnite-ot.</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Az alábbi bővítmények lehetségesen problémásnak voltak jelentve, instabilitás, teljesítménycsökkenés vagy biztonsági problémák miatt.
+Erősen javasoljuk az eltávolításukat:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Az online fájlok kihagyása a keresésből</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">A felhőben tárolt játékok nem lesznek beolvasva és importálva, ha nem elérhetőek a gépen.
+Támogatott platformok: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Fájltartalom vizsgálat nélküli, egyszerű beolvasás</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Nem pontos módja a beolvasásnak, ahol a fájlok nem kellenek a gépen letöltve legyenek.</sys:String>
 </ResourceDictionary>

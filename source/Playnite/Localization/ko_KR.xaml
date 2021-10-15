@@ -498,6 +498,8 @@
     <sys:String x:Key="LOCGameTagsTitle">태그</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">배급사</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">설치 상태</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">설치됨</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">설치되지 않음</sys:String>
@@ -550,12 +552,7 @@
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">링크를 열 수 없습니다. URL이 올바른 포맷이 아닙니다.</sys:String>
     <sys:String x:Key="LOCAppStartupError">프로그램 실행 실패.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">WebView 구성 요소를 초기화하지 못했습니다. Playnite는 시작 프로세스를 계속할 수 없습니다.
-
-문제 해결을 시도해볼 수 있습니다:
-  • 모든 파일이 올바르게 설치되었는지 확인하십시오. 다시 설치하면 도움이 될 수도 있습니다
-  • 바이러스 백신이 Playnite 경로의 파일을 차단하지는 않는지 확인하세요
-  • 다른 설치 위치를 선택해보세요</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">정의 파일이 없거나 손상되어 에뮬레이터를 가져올 수 없습니다.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Xinput 인터페이스 초기화에 실패했습니다.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">메뉴 작업을 실행하는 데에 실패했습니다.</sys:String>
@@ -986,4 +983,11 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

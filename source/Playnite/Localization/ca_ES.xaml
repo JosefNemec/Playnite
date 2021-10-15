@@ -499,6 +499,8 @@ Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiqueta(es)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editor(s)</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Estat de la instal·lació</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instal·lat</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instal·lat</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">No instal·lat</sys:String>
@@ -551,12 +553,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">No es pot obrir l’enllaç, l’URL no és vàlida.</sys:String>
     <sys:String x:Key="LOCAppStartupError">No s’ha pogut iniciar l’aplicació.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">No s’ha pogut inicialitzar el component de visualització web, Playnite no pot continuar.
-
-Pots provar això per solucionar el problema:
-  • Comprova que tots els fitxers estiguin instal·lats correctament, la reinstal·lació pot ajudar
-  • Comprova si els antivirus no bloquegen fitxers al directori de Playnite
-  • Prova una ubicació d’instal·lació diferent</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">No es poden importar emuladors perquè falta un fitxer de definició o està corromput.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">No s'ha pogut iniciar la interfície XInput</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">No s’ha pogut executar l'acció del menú.</sys:String>
@@ -988,4 +985,11 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

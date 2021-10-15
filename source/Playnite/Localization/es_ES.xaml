@@ -503,6 +503,9 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCGameTagsTitle">Etiqueta</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editor</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Estado de instalación</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Coincidir con todos los filtros</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Si está habilitado, solo los juegos que usan todos los elementos en todos los filtros se incluirán en la vista.
+Si está deshabilitado, los juegos que usan cualquier elemento en cualquier filtro se incluirán en la vista.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">No instalado</sys:String>
@@ -555,12 +558,13 @@ Adjunte el siguiente ID a su informe de problemas:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">No se puede abrir el enlace, la URL no está en formato válido.</sys:String>
     <sys:String x:Key="LOCAppStartupError">No se pudo iniciar la aplicación.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">No se pudo inicializar el componente WebView. Playnite no puede continuar con el proceso de inicio.
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Error al inicializar el componente WebView. Playnite no puede continuar con el proceso de inicio.
 
-Puede intentar resolver el problema:
-  • Compruebe que todos los archivos estén instalados correctamente. Reinstalar podría ayudar
-  • Asegúrese de que su antivirus no bloquee ningún archivo en el directorio de Playnite
-  • Elija una ubicación de instalación diferente</sys:String>
+Puedes intentar resolver el problema:
+  • Comprueba que todos los archivos estén instalados correctamente. La reinstalación podría ayudar
+  • Instala los redistribuibles de Visual Studio C ++ 2019  si utilizas Windows 7 u 8
+  • Asegúrate de que tu antivirus no bloquee ningún archivo en la carpeta de Playnite
+  • Elije una ubicación de instalación diferente</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">No se pueden importar emuladores porque falta o está dañado un archivo de definición.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Fallo al inicializar la interfaz XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">No se pudo ejecutar la acción del menú.</sys:String>
@@ -1013,4 +1017,17 @@ Si comienza a experimentar algunos problemas después de instalar un tema o una 
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado asignado a juegos jugados por primera vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Error al inicializar el tiempo de ejecución de script de PowerShell.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">El filtro preestablecido con el nombre especificado ya existe. ¿Actualizar filtro con las nuevas configuraciones?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite se está ejecutando con privilegios elevados (como administrador). ¡Esto no se recomienda, ya que da privilegios elevados a todas las extensiones instaladas y todos los juegos/aplicaciones iniciadas desde Playnite!
+
+Se recomienda reiniciar Playnite en privilegios estándar, ya que Playnite no requiere privilegios elevados para funcionar correctamente.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Mostrar advertencia si Playnite se está ejecutando con privilegios elevados</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Los siguientes complementos se han reportado como potencialmente problemáticos, ya sea debido a un alto impacto en estabilidad/rendimiento o problemas de seguridad. Te recomendamos encarecidamente que los desinstales:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Excluir archivos en línea de escaneo</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Los archivos almacenados en el almacenamiento en la nube no serán escaneados e importados si no están disponibles localmente.
+Soporte únicamente para: Google Drive, Dropbox y OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Escanear pero usando el método simplificado sin el contenido de archivo</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Los archivos se importaran pero utilizando un método menos preciso que no requiere que el contenido de los archivos se descargue y este presente localmente.</sys:String>
 </ResourceDictionary>

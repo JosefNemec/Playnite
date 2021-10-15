@@ -283,7 +283,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCSettingsFullscreenLabel">Helskärm</sys:String>
     <sys:String x:Key="LOCSettingsProvidersLabel">Leverantörer</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Inmatning</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">Prestanda</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importera ändringar i bibliotek automatiskt</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ogiltig databas sökväg, rätt filväg måste ställas in.</sys:String>
@@ -367,10 +367,10 @@ Den nya mappen kommer inte börja användas förens Playnite startas om.</sys:St
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Skrolla vågrätt</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Inga inställningar tillgängliga</sys:String>
-    <sys:String x:Key="LOCSettingsErrorLoadingSettings"></sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings">Misslyckades att ladda inställningar</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
     <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">Typsnittsstorlekar</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automatisk</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Gråskala</sys:String>
@@ -422,7 +422,7 @@ Den nya mappen kommer inte börja användas förens Playnite startas om.</sys:St
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Konfigurera emulatorer…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Skannar…</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">Skannar {0}...</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Första Gången Konfiguration</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
@@ -493,6 +493,8 @@ Den används för tillfället av {1} spel och {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Utgivare</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Installationsstatus</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installerad</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installerad</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Inte installerad</sys:String>
@@ -545,12 +547,7 @@ Var vänlig bifoga följande ID i din felanmälan: </sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Kan inte öppna länk, URL är inte i giltigt format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Kunde inte starta programmet.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Kunde inte köra WebView. Playnite kan inte fortsätta med startprocessen.
-
-Du kan försöka åtgärda felet:
- • Se till att alla filer är installerade på rätt sätt. Ominstallationen kan hjälpa
- • Se till att ditt antivirusprogram inte blockerar några filer i Playnites programkatalog
- • Välj en annan installationsplats</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Kan inte importera emulatorer på grund av borttappade eller korrupta definitionsfiler.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Kunde inte köra gränssnittet för XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Kunde inte köra menyåtgärd.</sys:String>
@@ -958,4 +955,11 @@ Du kan försöka åtgärda felet:
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

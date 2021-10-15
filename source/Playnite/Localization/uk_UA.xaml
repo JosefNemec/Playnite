@@ -502,6 +502,9 @@
     <sys:String x:Key="LOCGameTagsTitle">Теги</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Видавець</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Стан установки</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Відповідність всім фільтрам</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Якщо увімкнено, будуть відображатися тільки ігри що відповідають всім пунктам у всіх фільтрах.
+Якщо вимкнено, будуть відображатися ігри що відповідають будь-яким пунктам у будь-яких фільтрах.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Не встановлено</sys:String>
@@ -554,10 +557,11 @@
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Не вдається відкрити посилання, URL-адреса має неприпустимий формат.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Не вдалося запустити додаток.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Не вдалося ініціалізувати WebView компонент, Playnite не може продовжити запуск.
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Не вдалося ініціалізувати компонент WebView, Playnite не може продовжити запуск.
 
 Ви можете спробувати наступне для вирішення проблеми:
   • Перевірте що всі файли встановлено правильно, перевстановлення може допомогти
+  • Встановіть Visual Studio C ++ 2019, якщо ви користуєтесь Windows 7 або 8 
   • Перевірте чи антивірус не блокує файли в теці Playnite
   • Спробуйте інше місце встановлення</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Неможливо імпортувати емулятори через відсутність або пошкодження файлу визначення.</sys:String>
@@ -1012,4 +1016,17 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, призначений іграм, які граються вперше</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Не вдалося ініціалізувати середовище виконання сценарію PowerShell. </sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Пресет фільтра із зазначеною назвою вже існує. Оновити пресет з новими налаштуваннями? </sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite працює з правами адміністратора. Це не рекомендується, оскільки це дає підвищені привілеї для всіх встановлених розширень та всіх ігор/програм, запущених із Playnite!
+
+Ми рекомендуємо перезапустити Playnite в звичайному режимі, оскільки для нормальної роботи Playnite не потрібні підвищені привілеї. </sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Показувати попередження, якщо Playnite запущено з правами адміністратора</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Повідомлялося, що наступні надбудови є потенційно проблемними або через високий вплив на стабільність/продуктивність або через проблеми з безпекою. Ми настійно рекомендуємо видалити їх:
+       
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Виключити онлайн-файли зі сканування</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Файли, що зберігаються в хмарному сховищі, не будуть скануватися та імпортуватися, якщо вони недоступні локально.
+Підтримується лише для: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Сканувати, але використовуючи спрощений метод без вмісту файлу</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Файли будуть імпортовані, але за допомогою менш точного методу, який не вимагає завантаження вмісту файлу та його присутності локально.</sys:String>
 </ResourceDictionary>

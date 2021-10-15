@@ -495,6 +495,8 @@ Monetálne ju používa {1} hier a {2} emulátorov.</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Štítok</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Vydavateľ</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Stav inštalácie</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Nainštalované</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Nainštalované</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nenainštalované</sys:String>
@@ -547,12 +549,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Odkaz sa nedá otvoriť, adresa URL nie je v platnom formáte.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Aplikáciu sa nepodarilo spustiť.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Inicializácia komponentu WebView zlyhala. Playnite nemôže pokračovať v procese spustenia.
-
-Môžete sa pokúsiť problém vyriešiť:
-  • Skontrolujte, či sú všetky súbory nainštalované správne. Pomôcť by mohla opätovná inštalácia
-  • Uistite sa, že váš antivírus neblokuje žiadne súbory v adresári Playnite
-  • Vyberte iné umiestnenie inštalácie</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emulátory nie je možné importovať z dôvodu chýbajúceho alebo poškodeného definičného súboru.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Nepodarilo sa inicializovať rozhranie XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Nepodarilo sa spustiť ponuku akcie.</sys:String>
@@ -986,4 +983,11 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

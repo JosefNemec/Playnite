@@ -501,6 +501,8 @@ Den brukes for øyeblikket av {1} spill og {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Stikkord</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Utgiver</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Installasjonsstatus</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installert</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installert</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Ikke installert</sys:String>
@@ -553,12 +555,13 @@ Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Kan ikke åpne linken. URL har ikke et gyldig format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Kunne ikke starte applikasjonen.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Kunne ikke starte webvisningskomponenten, Playnite kan ikke fortsette med oppstart.
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Kunne ikke starte webvisningskomponenten. Playnite kan ikke fortsette oppstartsprosessen.
 
-Du kan prøve disse for å løse problemet:
-  • Kontroller at alle filene er riktig installert. Det kan hjelpe å installere seg på nytt
-  • Sjekk om antivirus ikke blokkerer filer i Playnites katalog
-  • Prøv et annet installasjonssted</sys:String>
+Du kan prøve dette for å løse problemet:
+  • Kontroller at alle filer er riktig installert. Det kan hjelpe å installere programmet på nytt
+  • Installer Visual Studio C++ 2019 hvis du bruker Windows 7 eller 8
+  • Sjekk at antivirus ikke blokkerer filer i Playnite-mappen
+  • Prøv en annen installasjonsmappe</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Kan ikke importere emulatorer på grunn av manglende eller ødelagt definisjonsfil.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Kunne ikke initialisere XInput-grensesnittet.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Kunne ikke utføre menyhandling.</sys:String>
@@ -1012,4 +1015,13 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status tilordnet spill som spilles for første gang</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Kunne ikke initialisere PowerShell-skriptkjøring.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Et filteroppsett med dette navnet eksisterer allerede. Vil du oppdatere oppsettet med nye innstillinger?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite kjører med forhøyede rettigheter (som administrator). Dette gir forhøyede rettigheter til alle spill/apper som startes fra Playnite, og er derfor ikke anbefalt!
+
+Vi anbefaler at du starter Playnite på nytt med normale rettigheter, siden Playnite ikke krever forhøyede rettigheter for å fungere riktig.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Vis advarsel hvis Playnite kjører med forhøyede rettigheter</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

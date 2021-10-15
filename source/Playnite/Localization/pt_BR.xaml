@@ -500,6 +500,9 @@ Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Marcadores</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Distribuidora</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Estado da instalação</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Combinar todos os filtros</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Se habilitado, só jogos que usem todos os itens em todos os filtros serão incluídos na visualização.
+Se desabilitado, jogos que usem qualquer item em qualquer filtro serão incluídos na visualização.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Não instalado</sys:String>
@@ -552,10 +555,11 @@ Anexe a seguinte ID ao seu relatório de falha:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Não foi possível abrir o link, o URL não está em um formato válido.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Falha ao iniciar o aplicativo.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Falha ao iniciar o componente de visualização da web. Playnite não pode continuar o processo de inicialização.
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Falha ao iniciar o componente WebView. Playnite não pode continuar o processo de inicialização.
 
 Você pode tentar corrigir o problema:
   • Verificando se todos os arquivos estão instalados corretamente. Uma re-instalação pode ajudar
+  • Instalando os pacotes redistribuíveis do Visual Studio C++ 2019 se estiver no Windows 7 ou 8
   • Verificando se o seu antivírus não está bloqueando nenhum arquivo no diretório do Playnite
   • Selecionando um local diferente para instalação</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Não foi possível importar os emuladores devido ao arquivo de definição ausente ou corrompido.</sys:String>
@@ -1010,4 +1014,17 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Erro ao executar script PowerShell.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Já existe uma filtro com o nome especificado. Atualizar com novas configurações? </sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite está rodando com privilégios elevados (como administrador). Não é a recomendação já que dá privilégios elevados para todas as extensões instaladas e todos os jogos/apps iniciados pelo Playnite!
+
+Recomendamos que reinicie o Playnite com privilégios padrão já que Playnite não requer privilégios elevados para funcionar adequadamente.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Mostrar aviso se Playnite estiver rodando com privilégios elevados</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Seguintes add-ons foram reportados como potencialmente problemáticos, seja pelo alto impacto na estabilidade/performance ou problemas de segurança. Recomendamos fortemente que os desinstale:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Excluir arquivos online do escaneamento</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Arquivos armazenados na nuvem não serão escaneados e importados se não estiverem disponíveis localmente.
+Suporte somente para: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Escanear mas usando método simplificado sem conteúdo do arquivo</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Arquivos serão importados, mas usando método menos preciso que não requer que o conteúdo do arquivo seja baixado.</sys:String>
 </ResourceDictionary>

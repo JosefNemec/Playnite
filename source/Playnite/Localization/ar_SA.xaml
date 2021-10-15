@@ -527,6 +527,8 @@
     <sys:String x:Key="LOCGameTagsTitle">وسم</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">الناشر</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">حالة التثبيت</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">مثبت</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">مثبت</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">غير مثبت</sys:String>
@@ -581,10 +583,7 @@
     <sys:String x:Key="LOCURLFormatError">لا يمكن فتح الرابط، عنوان URL غير متناسق بشكل صحيح.</sys:String>
     <sys:String x:Key="LOCAppStartupError">فشل بدء التطبيق.
 </sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">يمكنك محاولة حل المشكلة:
-  • تحقق من أن جميع الملفات مثبتة بشكل صحيح. إعادة التثبيت يمكن أن يساعد
-  • تأكد من أن مكافحة الفيروسات لا يمنع أي ملفات في دليل Playnite
-  • اختيار موقع تركيب مختلف</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">لا يمكن استيراد برامج محاكاة بسبب ملف تعريف مفقود أو تالف.
 </sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">فشل في تهيئة واجهة XInput</sys:String>
@@ -1047,4 +1046,11 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

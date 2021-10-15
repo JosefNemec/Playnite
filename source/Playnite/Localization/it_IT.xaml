@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">Italiano</sys:String>
+    <sys:String x:Key="LanguageName">Inglese</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">Lingua Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Esci</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro attivo</sys:String>
@@ -24,7 +24,7 @@
     <sys:String x:Key="LOCCategoryAddCatButton">Aggiungi una categoria</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Selezionato - Assegna categoria
 Non selezionato - Rimuovi categoria
-Indeterminato - Nessuna modifica (mentre si modificano di più giochi)</sys:String>
+Indeterminato - Nessuna modifica (mentre si modificano più giochi)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nessuna categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nessuna piattaforma</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Ops! Qualcosa è andato storto...</sys:String>
@@ -41,9 +41,9 @@ Consigliamo di salvare il file di registro e di riportare il problema allo svilu
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Estensione &quot;{0}&quot; ha causato un errore irreparabile.
 
 Consigliamo di riportare il problema allo sviluppatore dell'estensione. Se il problema persiste, disattivare l'estensione.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Estenzione o un tema sconosciuto hanno causato un errore irrecuperabile.
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Estensione o un tema sconosciuto hanno causato un errore irrecuperabile.
 
-Consigliamo di disattivare le estenzioni di terze parti, isolando quello problematico e segnalando il problema allo sviluppatore dell'estensione.</sys:String>
+Consigliamo di disattivare le estensioni di terze parti, isolando quello problematico e segnalando il problema allo sviluppatore dell'estensione.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Si è verificato un errore fatale.
  
 Se vuoi aiutarci a risolvere questo problema, invia informazioni diagnostiche. Grazie.</sys:String>
@@ -509,6 +509,9 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etichetta</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editore</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Stato dell'installazione</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Abbina tutti i filtri</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Se abilitato, solo i giochi che usano tutti gli elementi in tutti i filtri saranno inclusi nella vista.
+Se disabilitato, i giochi che usano qualsiasi elemento in qualsiasi filtro saranno inclusi nella vista.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installati</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installati</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Non installato</sys:String>
@@ -560,12 +563,13 @@ La prego di allegare il seguente codice ID al seguente resoconto del crash:</sys
  {2} fallita</sys:String>
     <sys:String x:Key="LOCURLFormatError">Impossibile aprire il collegamento, l'URL non è in un formato valido.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Impossibile avviare l'applicazione.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Inizializzazione del componente web view fallita, Playnite non può procedere con l'avvio.
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Impossibile inizializzare il componente WebView. Playnite non può continuare il processo di avvio.
 
-Puoi provare i seguenti:        
-  • Controlla che tutti i file siano installati a dovere, reinstallare potrebbe essere d'aiuto
-  • Controllare che l'antivirus non stia bloccando i file nella cartella di Playnite
-  • Provare un percorso di installazione diverso</sys:String>
+Puoi provare a risolvere il problema:
+  • Controlla che tutti i file siano installati correttamente. La reinstallazione potrebbe aiutare
+  • Installa Visual Studio C++ 2019 redistributables se sei su Windows 7 o 8
+  • Assicurati che il tuo antivirus non blocchi alcun file nella cartella Playnite
+  • Scegliere un luogo di installazione diverso</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Impossibile importare gli emulatori a causa del file di definizione mancante o corrotto.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Fallita l'inizializzazione dell'interfaccia.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Impossibile eseguire la funzione di estensione.</sys:String>
@@ -765,7 +769,7 @@ Puoi provare i seguenti:
     <sys:String x:Key="LOCGeneralExtensionPackageError">L'estensione non è confezionata correttamente</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Il tema non è stato impacchettato a dovere.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">L'estensione &quot;{0}&quot; non è stata caricata correttamente.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Impossibile caricare l'estenzione &quot;{0}&quot;, l'attuale versione di Playnite non è supportata.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Impossibile caricare l'estensione &quot;{0}&quot;, l'attuale versione di Playnite non è supportata.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Tema &quot;{0}&quot; non è stato caricato correttamente.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadSDKError">Impossibile caricare il tema &quot;{0}&quot;, l'attuale versione di Playnite non è supportata.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionLoadError">L'estensione non è stata caricata correttamente.</sys:String>    
@@ -1023,4 +1027,18 @@ Se cominci ad avere qualche problema dopo l'installazione di un tema o di una es
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assegnato ai giochi giocati per la prima volta</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Impossibile inizializzare il runtime dello script PowerShell.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Il preset del filtro con il nome specificato esiste già. Aggiornare il preset con le nuove impostazioni?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite è in esecuzione con privilegi elevati (come amministratore). Non è raccomandato poiché offre privilegi elevati a tutte le estensioni installate e a tutti i giochi/app avviate da Playnite!
+
+Ti raccomandiamo di riavviare Playnite con privilegi normali poichè Playnite non richiede privilegi elevati per funzionare.
+</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Mostra avviso se Playnite è in esecuzione con privilegi elevati</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">I seguenti add-on sono stati segnalati come potenzialmente problematici, sia a causa di un alto impatto sulla stabilità/prestazione che per problemi di sicurezza. Ti consigliamo vivamente di disinstallarli:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Escludi i file online dalla scansione</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">I file memorizzati sul cloud storage non saranno scansionati e importati se non sono disponibili localmente.
+Supportato solo per: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Scansiona ma usa metodo semplificato senza il contenuto del file</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">I file saranno importati ma usando un metodo meno accurato che non richiede il contenuto del file di essere scaricati e presenti localmente.</sys:String>
 </ResourceDictionary>

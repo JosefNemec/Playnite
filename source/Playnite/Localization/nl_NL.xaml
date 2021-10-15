@@ -503,6 +503,8 @@ Het wordt momenteel gebruikt door {1} game(s) en {2} emulator(s).Begin the Emula
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Uitgever(s)</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Installatiestatus</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Geïnstalleerd</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Geïnstalleerd</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Niet geïnstalleerd</sys:String>
@@ -561,6 +563,7 @@ Voeg de volgende ID toe aan het probleemrapport:
 
 U kunt proberen het probleem op te lossen:
   • Controleer of alle bestanden correct zijn geïnstalleerd. De herinstallatie zou kunnen helpen
+  • Installeer Visual Studio C++ 2019 redistributables als u Windows 7 of 8 gebruikt
   • Zorg ervoor dat uw antivirus geen bestanden in de Playnite-map blokkeert
   • Kies een andere installatielocatie</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Kan emulators niet importeren vanwege ontbrekend of beschadigd definitiebestand.</sys:String>
@@ -1028,4 +1031,13 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status die toegewezen wordt aan spellen die voor het eerst gespeeld zijn</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Powershell script runtime initialiseren is mislukt.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset met de opgegeven naam bestaat al. Preset updaten met nieuwe instellingen?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite draait nu met administrator rechten. Dit is niet aanbevolen sinds dit ook verhoogde rechten geeft aan alle geïnstalleerde extensies en alle spellen/applicaties die vanuit Playnite gestart worden!
+
+We raden aan Playnite met normale rechten te starten sinds Playnite geen verhoogde rechten nodig heeft om te werken.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Toon waarschuwing als Playnite met administrator rechten draait</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

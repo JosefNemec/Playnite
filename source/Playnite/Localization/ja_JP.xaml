@@ -502,6 +502,8 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCGameTagsTitle">タグ</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">パブリッシャー</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">インストール状況</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">インストール済</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">インストール済</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未インストール</sys:String>
@@ -554,12 +556,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">リンクを開けません。URLが無効な形式です。</sys:String>
     <sys:String x:Key="LOCAppStartupError">アプリケーションの起動に失敗しました。</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Webビューコンポーネントの初期化に失敗しました。Playniteは起動を続行できません。
-        
-問題を解決するためにこれらを試みることができます：        
- ・すべてのファイルが正しくインストールされていることを確認します。再インストールすると効果的です。
- ・アンチウイルスソフトがPlayniteのディレクトリ内のファイルをブロックしていないか確認します。
- ・別のインストール場所を試します。</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">定義ファイルがないか壊れているためエミュレータをインポートできません。</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">XInputのインターフェースの初期化に失敗しました</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">メニューアクションの実行に失敗しました。</sys:String>
@@ -994,4 +991,11 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">初めてプレイするゲームに付与されるステータス</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

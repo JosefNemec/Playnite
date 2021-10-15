@@ -498,6 +498,8 @@ Playnite logo menüsünü tıklayarak daha sonra başka bir oyun da ekleyebilirs
     <sys:String x:Key="LOCGameTagsTitle">Etiket(ler)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Yayımcı(lar)</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Kurulum Durumu</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Yüklü değil</sys:String>
@@ -550,12 +552,7 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Bağlantı açılamıyor, URL geçerli biçimde değil.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Uygulama başlatılamadı.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">WebGörünümü bileşeni başlatılamadı. Playnite, başlatma sürecine devam edemez.
-
-Sorunu çözmeyi deneyebilirsiniz:
-   • Tüm dosyaların doğru kurulup kurulmadığını kontrol edin. Yeniden kurulum yardımcı olabilir
-   • Antivirüs yazılımınızın Playnite dizinindeki hiçbir dosyayı engellemediğinden emin olun
-   • Farklı bir kurulum konumu seçin</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Eksik veya bozuk tanım dosyası nedeniyle emülatörler içe aktarılamıyor.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">XInput arayüzü başlatılamadı.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Menü eylemi gerçekleştirilemedi.</sys:String>
@@ -1009,4 +1006,11 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">İlk kez oynanan oyunlara atanan statü</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

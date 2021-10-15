@@ -502,6 +502,9 @@
     <sys:String x:Key="LOCGameTagsTitle">标签</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">发行商</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">安装状态</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">匹配所有筛选器</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">如果启用该选项，只有满足所有筛选项的游戏将被包含在视图中。
+如果禁用该选项，只要满足任意筛选项，游戏就将被包含在视图中。</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安装</sys:String>
@@ -558,6 +561,7 @@
 
 您可以尝试这些方法来解决问题：
   • 检查所有文件是否已正确安装，重新安装可能会有所帮助
+  • 如果您使用的是 Windows 7 或 8 请安装 Visual Studio C++ 2019 redistributables
   • 检查杀毒软件是否屏蔽了Playnite目录中的任何文件
   • 尝试安装在其他位置（路径不要出现中文）</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">未能导入模拟器，因为定义文件缺失或损坏。</sys:String>
@@ -994,7 +998,7 @@ By {1}
     <sys:String x:Key="LOCEmuCrcExcludeFileTypes">从校验和扫描中排除模式
 
 </sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">匹配指定模式的文件不会被扫描校验，而是通过文件名进行匹配。更多信息请参见仿真器帮助页面</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">匹配指定模式的文件不会被扫描校验，而是通过文件名进行匹配。更多信息请参见模拟器帮助页面</sys:String>
     <sys:String x:Key="LOCEmuScanEmulator">通过模拟器扫描</sys:String>    
     <sys:String x:Key="LOCScanConfigNameError">在保存新配置时必须设置名称。</sys:String>
     <sys:String x:Key="LOCScanConfigNoEmulatorError">未设置模拟器或模拟器配置文件。</sys:String>
@@ -1016,4 +1020,16 @@ By {1}
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">分配给首次玩游戏的状态</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">初始化PowerShell脚本运行时失败。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">具有指定名称的过滤器预设已存在。是否使用新设置更新预设？</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite正在以权限提升模式（作为管理员）运行。因这也将给所有安装的扩展以及从Playnite启动的游戏带来权限提升，故不推荐您这么做。
+Playnite并不需要权限提升模式来稳定运行，我们建议您以标准权限重启Playnite。</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">当Playnite以权限提升模式运行时显示警告</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下插件已因潜在问题而被报道，例如严重影响稳定性/性能或安全问题。我们强烈建议您卸载它们：
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">扫描时排除在线文件</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">云端存储的文件如果本地不可用将不能被扫描和导入。
+仅支持：Google Drive、DropBox、OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">只使用简单方法扫描，而不检测文件内容</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">将使用更不准确的方法导入文件，该方法不需要下载文件内容并本地展示</sys:String>
 </ResourceDictionary>

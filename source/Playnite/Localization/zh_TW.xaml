@@ -501,6 +501,8 @@
     <sys:String x:Key="LOCGameTagsTitle">標籤</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">發行商</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">安裝狀態</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
@@ -557,6 +559,7 @@
         
 您可以嘗試以下方法解決:        
   • 檢查所有檔案是否已正確安裝。重新安裝可能有所幫助
+  • 如果你的系統是Windows7或者8，請安裝Visual Studio C++ 2019 可轉散發套件
   • 檢查防毒軟體是否封鎖了Playnite資料夾內的檔案
   • 嘗試安裝在不同的位置</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">無法匯入模擬器，因為定義檔已損壞或丟失。</sys:String>
@@ -1013,4 +1016,13 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已調整首次遊玩的遊戲狀態</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">無法初始化PowerShell腳本執行環境。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名稱的過濾器預設，是否使用新設定更新預設?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite目前正以高級權限(系統管理員身分)執行中。我們不建議你使用此方式執行，因為這將會授與所有透過Playnite執行的遊戲/應用程式以及已安裝的擴充功能系統管理員等級的權限!
+
+建議你重新以普通權限啟動Playnite，因為Playnite並不需要管理員權限就可以正常運作。</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">如果Playnite正以系統管理員身分執行的話則跳出警告</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

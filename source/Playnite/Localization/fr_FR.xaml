@@ -499,6 +499,9 @@ Elle est actuellement associée à {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Mot(s) clé(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Éditeur(s)</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">État de l'installation</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Correspond à tous les filtres</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Si activé, seuls les jeux correspondant à tous les éléments de filtres seront inclus.
+Si désactivé, les jeux correspondant à au moins un élément de filtres seront inclus.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installés</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Jeu installé</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Non installés</sys:String>
@@ -555,6 +558,7 @@ Elle est actuellement associée à {1} jeu(x) et {2} émulateur(s).</sys:String>
 Veuillez essayer les solutions suivantes :        
   • Vérifiez que tous les fichiers ont été correctement installés. Réinstallez-les en cas de doute.
   • Vérifiez que votre antivirus ne bloque aucun fichier dans le répertoire de Playnite.
+  • Installez le composant &quot;Visual Studio C++ 2019 redistributables&quot; si vous utilisez Windows 7 ou 8.
   • Essayez d'installer Playnite dans un autre emplacement.</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Impossible d'importer des émulateurs, le fichier de définition d'émulateur n'existe pas.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Échec de l'initialisation de l'interface XInput.</sys:String>
@@ -566,7 +570,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCAddLinkButton">Ajouter un lien</sys:String>
     <sys:String x:Key="LOCAddRom">Ajouter une ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Enregistrer les modifications</sys:String>
-    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Appliquez les changements de champ au(x) jeu(x) en cours d'édition.</sys:String>
     <sys:String x:Key="LOCPlayAction">Action de lancement</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Ajouter action de lancement</sys:String>
     <sys:String x:Key="LOCAddAction">Ajouter une action</sys:String>
@@ -985,8 +989,8 @@ Si vous rencontrez des problèmes après l'installation d'un thème ou d'une ext
     <sys:String x:Key="LOCEmuImportAssignRegion">Indiquer la région</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Dossier d'analyse</sys:String>
     <sys:String x:Key="LOCEmuScanConfigurations">Configurations d'analyse</sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Exclure les modèles de l'analyse de somme de contrôle</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Les fichiers correspondant au(x) motif(s) spécifié(s) ne seront pas analysés pour la somme de contrôle et seront comparés au nom du fichier. Voir la page d'aide de l'émulateur pour plus d'informations.</sys:String>
     <sys:String x:Key="LOCEmuScanEmulator">Émulateur d'analyse</sys:String>    
     <sys:String x:Key="LOCScanConfigNameError">Un nom doit être indiqué pour enregistrer une nouvelle configuration.</sys:String>
     <sys:String x:Key="LOCScanConfigNoEmulatorError">L'émulateur ou le profil d'émulateur n'est pas indiqué.</sys:String>
@@ -1008,4 +1012,17 @@ Si vous rencontrez des problèmes après l'installation d'un thème ou d'une ext
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Statut des jeux lancés pour la première fois</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Échec de l'initialisation du script PowerShell.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Un préréglage portant ce nom existe déjà. Mettre à jour le préréglage avec les nouveaux paramètres ?</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite est actuellement exécuté en mode administrateur. Ce paramètre n'est pas recommandé pour cette application, car les privilèges administrateur attribués à Playnite s'appliquent à tous les jeux et applications lancés par son biais.
+
+Playnite ne nécessite pas d'être exécuté dans ce mode et il est recommandé de relancer l'application avec les paramètres par défaut.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Afficher un avertissement lorsque Playnite est exécuté en mode Administrateur</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Les extensions suivantes ont été signalées comme potentiellement problématiques, soit en raison d'un fort impact sur la stabilité/les performances, soit en raison de problèmes de sécurité. Nous vous recommandons fortement de les désinstaller :
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Exclure du scan les fichiers en ligne</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Les fichiers stockés sur le cloud ne seront pas analysés et importés s'ils ne sont pas disponibles localement.
+Pris en charge uniquement pour : Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Scanner mais en utilisant une méthode simplifiée sans le contenu du fichier</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Les fichiers seront importés mais en utilisant une méthode moins précise qui ne nécessite pas que le contenu du fichier soit téléchargé et présent localement.</sys:String>
 </ResourceDictionary>
