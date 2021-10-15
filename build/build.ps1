@@ -30,7 +30,11 @@
 )
 
 $ErrorActionPreference = "Stop"
-Install-Module powershell-yaml
+if (!(Get-InstalledModule "powershell-yaml" -EA 0))
+{
+    Install-Module powershell-yaml
+}
+
 Set-Location $PSScriptRoot
 & .\common.ps1
 
@@ -91,7 +95,20 @@ Get-ChildItem "..\source\Playnite\Emulation\" -Filter "*.yaml" -Recurse | ForEac
     {
         throw "$($_.FullName) is not valid emulator definition."
     }
+
+    foreach ($profile in $emuDef.Profiles)
+    {
+        foreach ($platId in $profile.Platforms)
+        {
+            if (!($platforms | Where { $_.Id -eq $platId } ))
+            {
+                throw "Platform $platId not found, $($_.FullName)."
+            }
+        }
+    }
 }
+
+return
 # -------------------------------------------
 #            Compile application 
 # -------------------------------------------
