@@ -322,7 +322,14 @@ namespace Playnite.Database
                 ignoreObjectSelectionChanges = false;
                 if (refreshSelection)
                 {
-                    SelectedFieldObject = FieldValues[0];
+                    if (FieldValues.HasItems())
+                    {
+                        SelectedFieldObject = FieldValues[0];
+                    }
+                    else
+                    {
+                        SelectedFieldObject = null;
+                    }
                 }
             }
         }
