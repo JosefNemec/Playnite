@@ -442,7 +442,18 @@ namespace Playnite.Database
 
                                 if (!oldGame.GameImagePath.IsNullOrEmpty())
                                 {
-                                    newGame.Roms = new ObservableCollection<GameRom> { new GameRom(Path.GetFileNameWithoutExtension(oldGame.GameImagePath), oldGame.GameImagePath) };
+                                    string romName = null;
+                                    try
+                                    {
+                                        romName = Path.GetFileNameWithoutExtension(oldGame.GameImagePath);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        // This sometimes crashes on weird ROM paths
+                                        logger.Error(e, $"Failed to get rom name from {oldGame.GameImagePath}");
+                                    }
+
+                                    newGame.Roms = new ObservableCollection<GameRom> { new GameRom(romName ?? oldGame.Name, oldGame.GameImagePath) };
                                 }
 
                                 if (oldGame.ReleaseDate != null)
