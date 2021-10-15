@@ -1,6 +1,4 @@
-﻿#Requires -Modules powershell-yaml
-
-param(
+﻿param(
     # Build configuration
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
@@ -32,6 +30,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+Install-Module powershell-yaml
 Set-Location $PSScriptRoot
 & .\common.ps1
 
