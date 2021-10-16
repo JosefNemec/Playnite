@@ -1304,7 +1304,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                var existing = collection.FirstOrDefault(a => a.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase));
+                var existing = collection.FirstOrDefault(a => a.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true);
                 if (existing != null)
                 {
                     return existing;
@@ -1427,7 +1427,7 @@ namespace Playnite.DesktopApp.ViewModels
             var newItem = CreateNewItemInCollection<Company>(Publishers, publisher);
             if (newItem != null)
             {
-                if (!Developers.Any(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase)))
+                if (!Developers.Any(a => a.Item.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true))
                 {
                     Developers.Add(newItem);
                 }
@@ -1451,7 +1451,7 @@ namespace Playnite.DesktopApp.ViewModels
             var newItem = CreateNewItemInCollection<Company>(Developers, developer);
             if (newItem != null)
             {
-                if (!Publishers.Any(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase)))
+                if (!Publishers.Any(a => a.Item.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true))
                 {
                     Publishers.Add(newItem);
                 }
