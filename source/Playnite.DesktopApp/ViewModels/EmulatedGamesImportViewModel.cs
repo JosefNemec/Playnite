@@ -445,19 +445,25 @@ namespace Playnite.DesktopApp.ViewModels
             var statusSettings = database.GetCompletionStatusSettings();
             using (database.BufferedUpdate())
             {
-                foreach (var newPlat in newPlatforms)
+                if (newPlatforms.HasItems())
                 {
-                    if (GameList.Any(a => a.Platforms?.FirstOrDefault(p => p.Id == newPlat.Id) != null))
+                    foreach (var newPlat in newPlatforms)
                     {
-                        database.Platforms.Add(newPlat);
+                        if (GameList.Any(a => a.Platforms?.FirstOrDefault(p => p.Id == newPlat.Id) != null))
+                        {
+                            database.Platforms.Add(newPlat);
+                        }
                     }
                 }
 
-                foreach (var newReg in newRegions)
+                if (newRegions.HasItems())
                 {
-                    if (GameList.Any(a => a.Regions?.FirstOrDefault(p => p.Id == newReg.Id) != null))
+                    foreach (var newReg in newRegions)
                     {
-                        database.Regions.Add(newReg);
+                        if (GameList.Any(a => a.Regions?.FirstOrDefault(p => p.Id == newReg.Id) != null))
+                        {
+                            database.Regions.Add(newReg);
+                        }
                     }
                 }
 
