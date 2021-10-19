@@ -315,10 +315,9 @@ namespace Playnite.DesktopApp.Controls
             }
 
             NotifyRowChange();
-
-            if (GameTask.OverrideDefaultArgs && !string.IsNullOrEmpty(SelectedEmulatorArguments))
+            if (GameTask.OverrideDefaultArgs && !SelectedEmulatorArguments.IsNullOrEmpty() && GameTask.Arguments.IsNullOrEmpty())
             {
-                GameTask.Arguments = $"{SelectedEmulatorArguments} {GameTask.AdditionalArguments}";
+                GameTask.Arguments = $"{SelectedEmulatorArguments} {GameTask.AdditionalArguments}".Trim();
             }
         }
 
