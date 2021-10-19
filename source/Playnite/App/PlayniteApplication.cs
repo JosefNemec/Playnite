@@ -681,7 +681,7 @@ namespace Playnite
 
             try
             {
-                CefTools.ConfigureCef();
+                CefTools.ConfigureCef(AppSettings.TraceLogEnabled);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

@@ -15,7 +15,7 @@ namespace Playnite
     {
         public static bool IsInitialized { get; private set; }
 
-        public static void ConfigureCef()
+        public static void ConfigureCef(bool enableLogs)
         {
             FileSystem.CreateDirectory(PlaynitePaths.BrowserCachePath);
             var settings = new CefSettings();
@@ -37,7 +37,8 @@ namespace Playnite
             settings.CachePath = PlaynitePaths.BrowserCachePath;
             settings.PersistSessionCookies = true;
             settings.LogFile = Path.Combine(PlaynitePaths.ConfigRootPath, "cef.log");
-            settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0";
+            settings.LogSeverity = enableLogs ? LogSeverity.Error : LogSeverity.Disable;
+            settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0";
             IsInitialized = Cef.Initialize(settings);
         }
 
