@@ -79,7 +79,14 @@ namespace Playnite.Commands
             url = url.Replace("{AppBranch}", PlayniteEnvironment.AppBranch);
             if (!url.IsUri())
             {
-                url = "http://" + url;
+                if (Paths.IsFullPath(url))
+                {
+                    // Do nothing, some people put local file paths to link fields: #2562
+                }
+                else
+                {
+                    url = "http://" + url;
+                }
             }
 
             ProcessStarter.StartUrl(url);

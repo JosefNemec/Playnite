@@ -15,6 +15,7 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class GameDetailsViewModel : ObservableObject, IDisposable
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private IResourceProvider resources;
         private IDialogsFactory dialogs;
         private DesktopGamesEditor editor;
@@ -290,7 +291,18 @@ namespace Playnite.DesktopApp.ViewModels
 
         public GameDetailsViewModel(GamesCollectionViewEntry game, PlayniteSettings settings, DesktopGamesEditor editor, IDialogsFactory dialogs, IResourceProvider resources)
         {
-            OpenLinkCommand = new RelayCommand<Link>((a) => GlobalCommands.NavigateUrl(Game.Game.ExpandVariables(a.Url)));
+            OpenLinkCommand = new RelayCommand<Link>((a) =>
+            {
+                try
+                {
+                    GlobalCommands.NavigateUrl(Game.Game.ExpandVariables(a.Url));
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to open url.");
+                }
+            });
+
             SetLibraryFilterCommand = new RelayCommand<Guid>((a) => SetLibraryFilter(a));
             SetPlatformFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Platforms));
             SetPublisherFilterCommand = new RelayCommand<DatabaseObject>((a) => SetFilter(a, GameField.Publishers));
