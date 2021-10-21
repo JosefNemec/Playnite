@@ -686,6 +686,9 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCPreScriptDescription">Execute before starting a game</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Execute after exiting a game</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Execute after a game is started</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Game starting script</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Game started script</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Game stopped script</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Execute global script</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtered</sys:String>

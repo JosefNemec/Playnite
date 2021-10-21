@@ -28,6 +28,18 @@ using Playnite.Scripting.PowerShell;
 
 namespace Playnite
 {
+    public enum GameScriptType
+    {
+        [Description(LOC.ScriptTypeStarting)]
+        Starting,
+        [Description(LOC.ScriptTypeStarted)]
+        Started,
+        [Description(LOC.ScriptTypeExit)]
+        Exit,
+        [Description("")]
+        None
+    }
+
     public class ClientShutdownJob
     {
         public Guid PluginId { get; set; }
@@ -248,14 +260,14 @@ namespace Playnite
                     shutdownJobs.TryRemove(game.PluginId, out var _);
                 }
 
-                if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true))
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting))
                 {
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                     return;
                 }
 
-                if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false))
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false, GameScriptType.Starting))
                 {
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
@@ -922,8 +934,8 @@ namespace Playnite
             UpdateGameState(game.Id, null, true, null, null, false);
             gameStartups.TryAdd(game.Id, DateTime.Now);
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.GameStartedScript, game, game.UseGlobalGameStartedScript, true);
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false, GameScriptType.Started);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.GameStartedScript, game, game.UseGlobalGameStartedScript, true, GameScriptType.Started);
 
             if (Application.Mode == ApplicationMode.Desktop)
             {
@@ -985,8 +997,8 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true);
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit);
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
                 runtime.Dispose();
@@ -1092,7 +1104,7 @@ namespace Playnite
             controllers.RemoveController(args.Source);
         }
 
-        public bool ExecuteScriptAction(IPowerShellRuntime runtime, string script, Game game, bool execute, bool global)
+        public bool ExecuteScriptAction(IPowerShellRuntime runtime, string script, Game game, bool execute, bool global, GameScriptType type)
         {
             if (!execute || script.IsNullOrWhiteSpace())
             {
@@ -1134,8 +1146,14 @@ namespace Playnite
             {
                 logger.Error(exc, global ? "Failed to execute global script." : "Failed to execute game script.");
                 logger.Debug(script);
+                var message = type.GetDescription() + Environment.NewLine + exc.Message;
+                if (exc is ScriptRuntimeException scriptExc)
+                {
+                    message = message + Environment.NewLine + Environment.NewLine + scriptExc.ScriptStackTrace;
+                }
+
                 Dialogs.ShowMessage(
-                    exc.Message,
+                    message,
                     resources.GetString(global ? LOC.ErrorGlobalScriptAction : LOC.ErrorGameScriptAction),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);

@@ -1826,7 +1826,7 @@ namespace Playnite
         /// </summary>
         public const string UseFilterStyleAndTitle = "LOCUseFilterStyleAndTitle";
         /// <summary>
-        /// If enabled, only games that use all the items in all the filters will be included in the view. If disabled, games that use any item in any filter will be included in the view.
+        /// If enabled, only games that use all the items in all the filters will be included in the view.
         /// </summary>
         public const string UseFilterStyleAndTooltip = "LOCUseFilterStyleAndTooltip";
         /// <summary>
@@ -2513,6 +2513,18 @@ namespace Playnite
         /// Execute after a game is started
         /// </summary>
         public const string GameStartedScriptDescription = "LOCGameStartedScriptDescription";
+        /// <summary>
+        /// Game starting script
+        /// </summary>
+        public const string ScriptTypeStarting = "LOCScriptTypeStarting";
+        /// <summary>
+        /// Game started script
+        /// </summary>
+        public const string ScriptTypeStarted = "LOCScriptTypeStarted";
+        /// <summary>
+        /// Game stopped script
+        /// </summary>
+        public const string ScriptTypeExit = "LOCScriptTypeExit";
         /// <summary>
         /// Execute global script
         /// </summary>
@@ -3566,7 +3578,7 @@ namespace Playnite
         /// </summary>
         public const string ScanConfigNoEmulatorError = "LOCScanConfigNoEmulatorError";
         /// <summary>
-        /// Directory to scan is not specified or it doesn't exists.
+        /// Directory to scan is not specified or it doesn't exist.
         /// </summary>
         public const string ScanConfigDirectoryError = "LOCScanConfigDirectoryError";
         /// <summary>
@@ -3630,7 +3642,7 @@ namespace Playnite
         /// </summary>
         public const string CompletionStatusPlayedStatusDesc = "LOCCompletionStatusPlayedStatusDesc";
         /// <summary>
-        /// Failed to initialize PowerShell script runtime.
+        /// Failed to initialize PowerShell script runtime. If you are Windows 7 user, try (re)installing PowerShell 5.1 to fix the issue.
         /// </summary>
         public const string PowerShellCreationError = "LOCPowerShellCreationError";
         /// <summary>

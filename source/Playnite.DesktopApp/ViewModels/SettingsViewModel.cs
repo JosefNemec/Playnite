@@ -450,7 +450,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var expanded = game.ExpandVariables(script);
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true);
+                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true, GameScriptType.None);
                 }
             }
             catch (Exception exc)

@@ -35,7 +35,7 @@ namespace Playnite.Tests
                 };
 
                 var editor = new GamesEditor(null, new GameControllerFactory(null), new PlayniteSettings(), null, null, new TestPlayniteApplication());
-                editor.ExecuteScriptAction(runtime, script, game, true, false);
+                editor.ExecuteScriptAction(runtime, script, game, true, false, GameScriptType.None);
                 var testPath = Path.Combine(tempDir.TempPath, executeScriptActionTestFileName);
                 var content = File.ReadAllText(testPath);
                 Assert.AreEqual("PowerShell", content.Trim());
