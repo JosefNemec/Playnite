@@ -886,7 +886,16 @@ namespace Playnite
                 }
             });
 
-            pipeServer?.StopServer();
+            try
+            {
+                pipeServer?.StopServer();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                // I have no idea why this fails for some people.
+                logger.Error(e, "Failed to stop pipe server.");
+            }
+
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();
