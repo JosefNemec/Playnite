@@ -179,7 +179,7 @@ namespace Playnite.Emulators
             var globalScanConfig = database.GetGameScannersSettings();
             var crcExclusions = string.Join(";",
                 ListExtensions.Merge(globalScanConfig.CrcExcludeFileTypes, scanner.CrcExcludeFileTypes).
-                Select(a => a.ToLower()).ToHashSet());
+                Select(a => a.ToLower().Trim()).ToHashSet());
 
             var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);

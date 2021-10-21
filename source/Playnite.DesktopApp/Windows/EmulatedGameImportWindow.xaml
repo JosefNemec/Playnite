@@ -167,6 +167,13 @@
                                     <dctrls:PathSelectionBox Margin="10,0,10,0" ShowDirectorySelector="True"
                                                              Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DockPanel>
+                                <DockPanel Margin="0,0,0,10">
+                                    <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
+                                               ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                                    <TextBox Text="{Binding CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
+                                             Margin="10,0,10,0"                                             
+                                             ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                                </DockPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                                     <CheckBox Content="{DynamicResource LOCEmuExcludeOnlineFiles}"
                                               ToolTip="{DynamicResource LOCEmuExcludeOnlineFilesTooltip}"
