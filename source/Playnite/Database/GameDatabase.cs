@@ -1276,28 +1276,36 @@ namespace Playnite.Database
             var importedRoms = new List<string>();
             foreach (var game in Games.Where(a => a.Roms.HasItems()))
             {
-                foreach (var rom in game.Roms)
+                try
                 {
-                    if (rom.Path.IsNullOrWhiteSpace() || rom.Name.IsNullOrWhiteSpace())
+                    foreach (var rom in game.Roms)
                     {
-                        continue;
-                    }
+                        if (rom.Path.IsNullOrWhiteSpace() || rom.Name.IsNullOrWhiteSpace())
+                        {
+                            continue;
+                        }
 
-                    var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
-                    string absPath = null;
-                    try
-                    {
-                        absPath = Path.GetFullPath(path);
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, $"Failed to get absolute ROM path:\n{rom.Path}\n{path}");
-                    }
+                        var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
+                        string absPath = null;
+                        try
+                        {
+                            absPath = Path.GetFullPath(path);
+                        }
+                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(e, $"Failed to get absolute ROM path:\n{rom.Path}\n{path}");
+                        }
 
-                    if (!absPath.IsNullOrEmpty())
-                    {
-                        importedRoms.AddMissing(absPath);
+                        if (!absPath.IsNullOrEmpty())
+                        {
+                            importedRoms.AddMissing(absPath);
+                        }
                     }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to get roms from a game.");
+                    logger.Debug(Serialization.ToJson(game.Roms));
                 }
             }
 
