@@ -635,7 +635,7 @@ namespace Playnite.Database
         {
             if (sourceData.HasItems())
             {
-                if (useCollection.AddMissing(sourceData.Where(a => dbItems.ContainsItem(a))))
+                if (useCollection.AddMissing(sourceData.Where(a => dbItems.ContainsItem(a)).ToArray()))
                 {
                     handler?.Invoke(this, EventArgs.Empty);
                 }
