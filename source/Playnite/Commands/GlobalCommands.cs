@@ -84,7 +84,7 @@ namespace Playnite.Commands
             }
 
             url = url.Replace("{AppBranch}", PlayniteEnvironment.AppBranch);
-            if (!url.IsUri())
+            if (!Regex.IsMatch(url, @"^.*:\/\/"))
             {
                 if (Paths.IsFullPath(url))
                 {
