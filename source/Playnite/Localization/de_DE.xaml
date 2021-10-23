@@ -688,6 +688,9 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCPreScriptDescription">Vor Spielstart auszuführendes Skript</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Nach Spielende auszuführendes Skript</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Nach Spielstart auszuführendes Skript</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Spiel startet Skript</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Spiel startete Skript</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Spiel beendete Skript</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Globales Skript ausführen</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Gefiltert</sys:String>
@@ -1014,7 +1017,7 @@ Falls nach dem Installieren von Designs oder Erweiterungen Probleme auftreten, v
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Füge Scan-Konfigurationen mit Emulatoren hinzu, um bestimmte Ordner zu durchsuchen. Achte vor Importieren der Spiele darauf, dass die Emulatoren korrekt konfiguriert wurden (über Bibliothek → Emulatoren konfigurieren).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Neu hinzugefügten Spielen zugeordneter Standardstatus</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Erstmalig gespielten Spielen zugeordneter Status</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Laufzeit des PowerShell-Skripts konnte nicht initialisiert werden.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Initialisierung der PowerShell-Skript-Laufzeitumgebung ist fehlgeschlagen. Falls du Windows 7 nutzt, versuche PowerShell 5.1 (erneut) zu installieren, um das Problem zu beheben.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filtervoreinstellungen mit angegebenem Namen existiert bereits. Voreinstellung mit neuen Einstellungen aktualisieren?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite wird mit erhöhten Berechtigungen ausgeführt (als Administrator). Dies wird nicht empfohlen, da alle installierten Erweiterungen wie auch über Playnite gestarteten Spielen/Anwendungen mit erhöhten Berechtigungen ausgeführt werden.
 

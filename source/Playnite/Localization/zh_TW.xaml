@@ -501,8 +501,9 @@
     <sys:String x:Key="LOCGameTagsTitle">標籤</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">發行商</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">安裝狀態</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">符合所有篩選條件</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">勾選時，只有符合所有篩選條件的遊戲才會顯示
+取消時，只要符合任意一項篩選條件的遊戲都會顯示</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
@@ -686,6 +687,9 @@
     <sys:String x:Key="LOCPreScriptDescription">啟動遊戲前執行的腳本</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">離開遊戲後執行的腳本</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">啟動遊戲後執行的腳本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">遊戲啟動時腳本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">遊戲啟動後腳本</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">遊戲停止後腳本</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">執行全域腳本</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全域</sys:String>
     <sys:String x:Key="LOCStatsFiltered">已過濾</sys:String>
@@ -1014,15 +1018,19 @@
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">新增模擬器的掃描設定以掃描特定資料夾。匯入遊戲之前請確保模擬器已正確設定(可透過 資料庫 -&gt; 設定模擬器 選單確認)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">已將新加入的遊戲調整為預設狀態</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已調整首次遊玩的遊戲狀態</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">無法初始化PowerShell腳本執行環境。</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">無法啟動PowerShell腳本執行環境。如果你是Windows7的使用者，請嘗試(重新)安裝PowerShell5.1。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名稱的過濾器預設，是否使用新設定更新預設?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite目前正以高級權限(系統管理員身分)執行中。我們不建議你使用此方式執行，因為這將會授與所有透過Playnite執行的遊戲/應用程式以及已安裝的擴充功能系統管理員等級的權限!
 
 建議你重新以普通權限啟動Playnite，因為Playnite並不需要管理員權限就可以正常運作。</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">如果Playnite正以系統管理員身分執行的話則跳出警告</sys:String>
-    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下的附加元件已經被回報含有潛在問題，有可能造成穩定性/效能降低或資訊安全疑慮。我們強烈建議你移除這些附加元件:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">不要掃描線上檔案</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">儲存在雲端且無法直接在本地電腦存取的檔案不會被掃描匯入。
+僅支援: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">使用簡易方式掃描，不下載檔案內容</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">使用較低準確度的方法，不需要下載檔案內容到本地裝置即可匯入檔案。</sys:String>
 </ResourceDictionary>

@@ -678,6 +678,9 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Script per executar abans de començar un joc</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Script per executar després de sortir d'un joc</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Script per executar després de començar un joc</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Executa un script global</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrat</sys:String>

@@ -688,6 +688,9 @@
     <sys:String x:Key="LOCPreScriptDescription">启动游戏前执行的脚本</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">退出游戏后执行的脚本</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">启动游戏后执行的脚本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">执行全局脚本</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全局</sys:String>
     <sys:String x:Key="LOCStatsFiltered">已筛选</sys:String>
@@ -1018,7 +1021,7 @@ By {1}
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">使用模拟器添加扫描配置以扫描特定文件夹。确保在导入游戏之前正确配置了模拟器（通过库 -&gt; 配置模拟器菜单）。</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">分配给新添加游戏的默认状态</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">分配给首次玩游戏的状态</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">初始化PowerShell脚本运行时失败。</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">具有指定名称的过滤器预设已存在。是否使用新设置更新预设？</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite正在以权限提升模式（作为管理员）运行。因这也将给所有安装的扩展以及从Playnite启动的游戏带来权限提升，故不推荐您这么做。
 Playnite并不需要权限提升模式来稳定运行，我们建议您以标准权限重启Playnite。</sys:String>

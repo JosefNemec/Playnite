@@ -677,6 +677,9 @@
     <sys:String x:Key="LOCPreScriptDescription">게임을 시작하기 전에 실행할 스크립트</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">게임을 나가기 전에 실행할 스크립트</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">게임을 시작한 후에 실행할 스크립트</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">전역 스크립트 실행</sys:String>
     <sys:String x:Key="LOCStatsGlobal">전역</sys:String>
     <sys:String x:Key="LOCStatsFiltered">필터링됨</sys:String>

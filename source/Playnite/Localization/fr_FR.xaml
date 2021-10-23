@@ -499,7 +499,7 @@ Elle est actuellement associée à {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Mot(s) clé(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Éditeur(s)</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">État de l'installation</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle">Correspond à tous les filtres</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Filtrage strict</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Si activé, seuls les jeux correspondant à tous les éléments de filtres seront inclus.
 Si désactivé, les jeux correspondant à au moins un élément de filtres seront inclus.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installés</sys:String>
@@ -684,6 +684,9 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCPreScriptDescription">Exécuter avant le lancement du jeu</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Exécuter après avoir quitté le jeu</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Exécuter après le lancement du jeu</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Script de lancement</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Script post-lancement</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Script d'arrêt</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Exécuter le script global</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Général</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Par filtre</sys:String>
@@ -851,13 +854,13 @@ L'application va redémarrer pour achever ce processus. Voulez-vous réinitialis
     <sys:String x:Key="LOCItemAlreadyExists">Ce nom est déjà utilisé par un autre élément.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limiter la sélection au filtrage actuel</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Autre choix</sys:String>
-    <sys:String x:Key="LOCMenuAddons">Extensions…</sys:String>
-    <sys:String x:Key="LOCExtensionsInstalled">Installée(s)</sys:String>
+    <sys:String x:Key="LOCMenuAddons">Gestionnaire d'extensions</sys:String>
+    <sys:String x:Key="LOCExtensionsInstalled">Installé(s)</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">Paramètres des extensions</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">Parcourir</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">Mises à jour</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">Mises à jour ({0})</sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo">La gestion des extensions et thèmes installés, y compris leurs paramètres, a été déplacée vers le menu des extensions</sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">La gestion des extensions et thèmes installés, y compris leurs paramètres, a été déplacée vers le gestionnaire d'extensions</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Les intégrations de bibliothèques actuellement installées peuvent être configurées ici.
 
 Pour installer ou désinstaller des intégrations, utilisez l'option &quot;Extensions&quot; depuis le menu principal.</sys:String>
@@ -867,7 +870,7 @@ Pour installer ou désinstaller des intégrations, utilisez l'option &quot;Exten
     <sys:String x:Key="LOCAddonErrorNotCompatible">Cette extension n'est pas compatible avec cette version de Playnite.</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Échec du téléchargement du paquet de l'extension.</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError">Échec du téléchargement du manifeste d'extension.</sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart">Une redémarrage est requis pour appliquer les paramètres.</sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">Un redémarrage est requis pour appliquer les paramètres.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Cette extension est en attente d'installation.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Désinstaller</sys:String>
@@ -943,7 +946,7 @@ Désactiver cette option dans le cadre de l'utilisation d'un outil de conversion
     <sys:String x:Key="LOCSettingsAudioOutputApi">Sortie audio</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApiDescription">Déterminer l'API utilisée pour la sortie audio. Modifier l'API peut résoudre certains problèmes de son.</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">Général</sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionVisuals">Rendu</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionVisuals">Affichage</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionAudio">Audio</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionLayout">Disposition</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionMenus">Menus</sys:String>
@@ -1010,7 +1013,7 @@ Si vous rencontrez des problèmes après l'installation d'un thème ou d'une ext
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Ajoute des configurations d'analyse aux émulateurs pour des dossiers spécifique. Assurez-vous que les émulateurs sont correctement configurés (via le menu de configuration des émulateurs) avant de lancer l'importation.</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Statut par défaut des jeux nouvellement ajoutés</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Statut des jeux lancés pour la première fois</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Échec de l'initialisation du script PowerShell.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Échec de l'initialisation du script PowerShell. Il est recommandé aux utilisateurs de Windows 7 de (ré)installer PowerShell 5.1 pour résoudre ce problème.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Un préréglage portant ce nom existe déjà. Mettre à jour le préréglage avec les nouveaux paramètres ?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite est actuellement exécuté en mode administrateur. Ce paramètre n'est pas recommandé pour cette application, car les privilèges administrateur attribués à Playnite s'appliquent à tous les jeux et applications lancés par son biais.
 

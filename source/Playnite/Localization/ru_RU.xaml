@@ -402,8 +402,8 @@
     <sys:String x:Key="LOCImportError">Ошибка при импортировании</sys:String>
     <sys:String x:Key="LOCLoginRequired">Нужна аутентификация</sys:String>
     <sys:String x:Key="LOCLoginFailed">Не удалось аутентифицировать</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">Альтернативный режим визуализации веб-данных</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Используйте при возникновении проблем с веб-данными, например, диалогами проверки подлинности интеграции.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Импорт метаданных</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Скачать метаданные</sys:String>
@@ -678,6 +678,9 @@
     <sys:String x:Key="LOCPreScriptDescription">Скрипт для выполнения перед запуском игры</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Скрипт для выполнения после выхода игры</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Скрипт для выполнения после запуска игры</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Выполнение глобальных скриптов</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Общее</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Отфильтровано</sys:String>
@@ -819,9 +822,9 @@
     <sys:String x:Key="LOCOverviewLabel">Обзор</sys:String>
     <sys:String x:Key="LOCSidebar">Боковая панель</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar"></sys:String>
-    <sys:String x:Key="LOCSettingsReset"></sys:String>
+    <sys:String x:Key="LOCSettingsReset">Сбросить настройки</sys:String>
     <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForDevelopers"></sys:String>
+    <sys:String x:Key="LOCSettingsForDevelopers">Для разработчиков</sys:String>
     <sys:String x:Key="LOCSettingsExternalExtensions"></sys:String>
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox"></sys:String>    
     <!--Common Library-->
@@ -840,13 +843,13 @@
     <sys:String x:Key="LOCItemAlreadyExists">Элемент с таким именем уже существует.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Ограничить подбор текущим фильтром</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Подобрать другую</sys:String>
-    <sys:String x:Key="LOCMenuAddons"></sys:String>
-    <sys:String x:Key="LOCExtensionsInstalled"></sys:String>
-    <sys:String x:Key="LOCExtensionsSettings"></sys:String>
-    <sys:String x:Key="LOCExtensionsBrowse"></sys:String>
-    <sys:String x:Key="LOCExtensionsUpdates"></sys:String>
+    <sys:String x:Key="LOCMenuAddons">Расширения...</sys:String>
+    <sys:String x:Key="LOCExtensionsInstalled">Установлены</sys:String>
+    <sys:String x:Key="LOCExtensionsSettings">Настройки расширений</sys:String>
+    <sys:String x:Key="LOCExtensionsBrowse">Browse</sys:String>
+    <sys:String x:Key="LOCExtensionsUpdates">Обновления</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount"></sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo"></sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">Управление установленными расширениями и темами, включая их настройки, перенесено в новое меню &quot;Дополнения&quot;.</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop"></sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren"></sys:String>
@@ -854,25 +857,25 @@
     <sys:String x:Key="LOCAddonErrorNotCompatible"></sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed"></sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError"></sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
-    <sys:String x:Key="LOCAddonInstall"></sys:String>
-    <sys:String x:Key="LOCAddonUninstall"></sys:String>
-    <sys:String x:Key="LOCAddonAlreadyInstalled"></sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">Требуется перезапуск приложения для применения изменений.</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">Этот плагин  запланирован к установке.</sys:String>
+    <sys:String x:Key="LOCAddonInstall">Установить</sys:String>
+    <sys:String x:Key="LOCAddonUninstall">Удалить</sys:String>
+    <sys:String x:Key="LOCAddonAlreadyInstalled">Уже установлено</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Обновления отсутствуют</sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">Обновить дополнения</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble"></sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed"></sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
-    <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
-    <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon">Загрузка {0}…</sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">Поиск обновлений...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle"></sys:String>
-    <sys:String x:Key="LOCLicenseAccept"></sys:String>
-    <sys:String x:Key="LOCLicenseDecline"></sys:String>
+    <sys:String x:Key="LOCLicenseAccept">Принять</sys:String>
+    <sys:String x:Key="LOCLicenseDecline">Отклонить</sys:String>
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
@@ -892,16 +895,16 @@
     <sys:String x:Key="LOCGridViewScrollAmountModifier"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
-    <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGroupingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelSortingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem"></sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelItems">Отображать кнопки на верхней панели:</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">Настройки отображения</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Настройки группы</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">Настройка сортировки</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Фильтр пресетов</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Положение элементов плагина</sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Отображать кнопку главного меню на боковой панели</sys:String>
-    <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch">Панель проводника</sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Подбор случайной игры</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
     <sys:String x:Key="LOCInPast7Days"></sys:String>
@@ -909,36 +912,43 @@
     <sys:String x:Key="LOCInPast365Days"></sys:String>
     <sys:String x:Key="LOCMoreThan365DaysAgo"></sys:String>
     <sys:String x:Key="LOCConfigure"></sys:String>
-    <sys:String x:Key="LOCFilterPresetSave"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame"></sys:String>
+    <sys:String x:Key="LOCFilterPresetSave">Сохранить пресет</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Свернуть после запуска игры</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSize"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSizeSmall"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSize">Размер Шрифта</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizeSmall">Размер малого шрифта</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
+    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Отображать иконки в основном меню:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
-    <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
-    <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceVolume">Громкость интерфейса</sys:String>
+    <sys:String x:Key="LOCSettingsMusiVolume">Громкость фоновой музыки</sys:String>
+    <sys:String x:Key="LOCSettingsMuteBackground">Отключения звука в фоновом режиме</sys:String>
     <sys:String x:Key="LOCErrorAudioInterfaceInit"></sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApi"></sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionGeneral"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionVisuals"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionAudio"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionLayout"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionMenus"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSection"></sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi">Программа вывода</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">Программа используемая для вывода звука. Измените, если у вас возникли проблемы со звуком.</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionGeneral">Основные</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionVisuals">Внешний вид</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionAudio">Аудио</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionLayout">Расположение</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionMenus">Меню</sys:String>
+    <sys:String x:Key="LOCSettingsFSSection">Ввод</sys:String>
     <sys:String x:Key="LOCGameIsStarting"></sys:String>
     <sys:String x:Key="LOCGameIsRunning"></sys:String>
     <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingAlternative"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingQuality"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode">Тип рендеринга изображений</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingAlternative">Альтернатива</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingBalanced">Сбалансированный</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingQuality">Качество</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve">Качество:
+Лучшее качество изображения, медленное, высокое использование памяти.
+    
+Баланс:
+.Хорошее качество, быстрая, низкая загрузка памяти.
+    
+Альтернатива:
+Лучшее качество, средняя скорость, низкое использование памяти.</sys:String>
     <sys:String x:Key="LOCSelectFileTooltip"></sys:String>
     <sys:String x:Key="LOCSelectDirectoryTooltip"></sys:String>
     <sys:String x:Key="LOCStartupScript"></sys:String>
@@ -987,7 +997,7 @@
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Показывать предупреждение, если Playnite работает с повышенным приоритетом</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFiles">Исключать онлайн-файлы из сканирования</sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Файлы из облачного хранилища не будут сканироваться и импортироваться, если они недоступны локально.

@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">Inglese</sys:String>
+    <sys:String x:Key="LanguageName">Italian</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">Lingua Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Esci</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro attivo</sys:String>
@@ -496,7 +496,7 @@ E' al momento utilizzata da {1} gioco/chi e {2} emulatore/i.</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Immagine di copertina</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Immagine dello sfondo</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Nome ordinamento</sys:String>
-    <sys:String x:Key="LOCGameProviderTitle">Distributore</sys:String>
+    <sys:String x:Key="LOCGameProviderTitle">Libreria</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Manuale</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nome</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nome Account</sys:String>
@@ -694,6 +694,9 @@ Puoi provare a risolvere il problema:
     <sys:String x:Key="LOCPreScriptDescription">Script da eseguire prima dell'avvio di un gioco</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Script da eseguire dopo l'uscita da un gioco</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Script da eseguire dopo l'avvio di un gioco</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Script di avvio gioco</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Script di gioco avviato</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Script di arresto gioco</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Esegui lo script globale</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globale</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrato</sys:String>
@@ -1025,7 +1028,7 @@ Se cominci ad avere qualche problema dopo l'installazione di un tema o di una es
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Aggiungi scansione della/delle configurazione/i con emulatori per scansionare cartelle specifiche. Accertati che gli emulatori siano configurati prima di importare i giochi (via il menu Libreria -&gt; menu di Configurazione Emulatori). </sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Stato di default assegnato ai giochi recentemente aggiunti</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assegnato ai giochi giocati per la prima volta</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Impossibile inizializzare il runtime dello script PowerShell.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Impossibile inizializzare lo script PowerShell. Se sei un utente Windows 7, prova a (re)installare PowerShell 5.1 per riparare il problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Il preset del filtro con il nome specificato esiste già. Aggiornare il preset con le nuove impostazioni?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite è in esecuzione con privilegi elevati (come amministratore). Non è raccomandato poiché offre privilegi elevati a tutte le estensioni installate e a tutti i giochi/app avviate da Playnite!
 

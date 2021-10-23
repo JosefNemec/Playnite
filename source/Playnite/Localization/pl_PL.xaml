@@ -680,6 +680,9 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Skrypt do wykonania przed uruchomieniem gry</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Skrypt do wykonania po uruchomieniem gry</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skrypt do wykonania po uruchomieniu gry</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Wykonanie skryptu globalnego</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Ogólne</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrowane</sys:String>
@@ -1007,7 +1010,7 @@ Jeżeli doświadczasz problemów po instalacji motywu lub rozszerzenia, spróbuj
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Dodaj konfiguracje skanowania emulatorami do skanowania konkretnych folderów. Upewnij się, że emulatory zostały poprawnie skonfigurowane przed importowaniem gier (za pomocą menu Biblioteka -&gt; Konfiguruj Emulatory).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Status domyślny przypisany do nowo dodanych gier.</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status przypisany do gier uruchomianych po raz pierwszy</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Nie udało się zainicjalizować skryptu systemu wykonawczego PowerShell.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Szablon filtrowania o podanej nazwie już istnieje. Zaktualizować przy pomocy nowych ustawień?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>

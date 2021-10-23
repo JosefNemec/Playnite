@@ -681,6 +681,9 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCPreScriptDescription">ゲームを開始する前に実行するスクリプト</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">ゲームを終了した後に実行するスクリプト</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">ゲームを開始した後に実行するスクリプト</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">グローバルスクリプトの実行</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全般</sys:String>
     <sys:String x:Key="LOCStatsFiltered">フィルター</sys:String>

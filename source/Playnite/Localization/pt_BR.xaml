@@ -686,6 +686,9 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPreScriptDescription">Executar antes de iniciar um jogo</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Executar depois de sair de um jogo</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Executar após um jogo ser iniciado</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Executar o script global</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrado</sys:String>
@@ -1012,7 +1015,7 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Adicione configurações para emuladores escanearem pastas especificas. Tenha certeza que esses emuladores estão corretamente configurados antes de importar jogos (pelo menu &quot;biblioteca&quot; -&gt; &quot;configurar emuladores&quot;)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Estado padrão designado a jogos recentemente adicionados</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Erro ao executar script PowerShell.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Já existe uma filtro com o nome especificado. Atualizar com novas configurações? </sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite está rodando com privilégios elevados (como administrador). Não é a recomendação já que dá privilégios elevados para todas as extensões instaladas e todos os jogos/apps iniciados pelo Playnite!
 

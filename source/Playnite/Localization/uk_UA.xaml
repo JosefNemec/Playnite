@@ -688,6 +688,9 @@
     <sys:String x:Key="LOCPreScriptDescription">Сценарій для виконання перед початком гри</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Сценарій для виконання після виходу з гри</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Сценарій для виконання після запуску гри</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Гра запускає сценарій</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Гра запустила сценарій</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Гра зупинила сценарій</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Виконати глобальний сценарій</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Глобально</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Відфільтровано </sys:String>
@@ -855,7 +858,7 @@
     <sys:String x:Key="LOCItemAlreadyExists">Елемент з таким іменем вже існує.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Обмежити вибір поточним фільтром</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Обрати іншу</sys:String>
-    <sys:String x:Key="LOCMenuAddons">Надбудови…</sys:String>
+    <sys:String x:Key="LOCMenuAddons">Надбудови...</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">Встановлені</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">Налаштування розширень </sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">Огляд</sys:String>
@@ -864,26 +867,26 @@
     <sys:String x:Key="LOCAddonsConfigMoveInfo">Управління встановленими розширеннями та темами, включаючи їх налаштування, було переміщено до нового меню &quot;Надбудови&quot;.</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Усі встановлені розширення для інтеграції бібліотек можна налаштувати тут.
 
-Якщо ви хочете встановити або видалити додаткові інтеграції, скористайтеся опцією &quot;Надбудови&quot; з головного меню. </sys:String>
+Якщо ви хочете встановити або видалити додаткові інтеграції, скористайтеся опцією &quot;Надбудови&quot; з головного меню.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Теми режиму робочого столу</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">Теми повноекранного режиму</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Пошук..</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">Надбудова не сумісна з цією версією Playnite. </sys:String>
-    <sys:String x:Key="LOCAddonErrorDownloadFailed">Не вдалося завантажити інсталяційний пакет надбудови. </sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed">Не вдалося завантажити інсталяційний пакет надбудови.</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError">Не вдалося завантажити маніфест інсталяції надбудови.</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart">Щоб застосувати очікувані зміни потрібно перезапустити програму. </sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Ця надбудова запланована для встановлення.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Встановити</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Видалити</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Вже встановлено</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Доступних оновлень надбудови немає. </sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Доступних оновлень надбудов немає.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Оновити надбудови</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Журнал змін не доступний</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Заплановано до встановлення</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">Помилка завантаження</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Ліцензію відхилено</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Завантаження: {0}...</sys:String>
-    <sys:String x:Key="LOCAddonLookingForUpdates">Пошук оновлень надбудови… </sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">Пошук оновлень надбудов… </sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Доступно одне або кілька оновлень надбудов. </sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Виберіть елементи для оновлення</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Екземпляр розширення</sys:String>
@@ -914,7 +917,7 @@
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Налаштування групування</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelSortingItem">Параметри сортування</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Пресети фільтрів</sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Позиція елементів плагіна</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Позиція елементів плагіну</sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Ширина роздільника секцій</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Перемістити кнопку головного меню на бічну панель</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Панель провідника</sys:String>
@@ -1014,7 +1017,7 @@
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Додати конфігурацію(ї) сканування з емуляторами щоб сканувати конкретні теки. Переконайтесь що емулятори правильно налаштовані до того, як імпортувати ігри (через меню Бібліотека -&gt; Налаштування емуляторів)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Стан за замовчуванням, призначений для нещодавно доданих ігор</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, призначений іграм, які граються вперше</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Не вдалося ініціалізувати середовище виконання сценарію PowerShell. </sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Не вдалося ініціалізувати середовище виконання сценарію PowerShell. Якщо ви користуєтесь Windows 7, спробуйте (повторно) встановити PowerShell 5.1, щоб вирішити проблему.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Пресет фільтра із зазначеною назвою вже існує. Оновити пресет з новими налаштуваннями? </sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite працює з правами адміністратора. Це не рекомендується, оскільки це дає підвищені привілеї для всіх встановлених розширень та всіх ігор/програм, запущених із Playnite!
 

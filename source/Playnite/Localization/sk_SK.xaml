@@ -674,6 +674,9 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Skript, ktorý sa má vykonať pred spustením hry</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Skript, ktorý sa má vykonať po ukončení hry</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skript, ktorý sa má vykonať po spustení hry</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Spustiť globálny skript</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globálne</sys:String>
     <sys:String x:Key="LOCStatsFiltered"></sys:String>

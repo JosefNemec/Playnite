@@ -689,6 +689,9 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCPreScriptDescription">Script para ejecutar antes de comenzar un juego</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Script para ejecutar después de salir de un juego</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Script para ejecutar después de que se inicia un juego</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Script de juego iniciando</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Script de juego iniciado</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Script de juego detenido</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Ejecutar script global</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrada</sys:String>
@@ -1015,7 +1018,7 @@ Si comienza a experimentar algunos problemas después de instalar un tema o una 
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Agregar la(s) configuración(s) de escaneo con los emuladores para escanear carpetas específicas. Asegurate de que los emuladores estén configurados correctamente antes de importar juegos (a través del menú  Biblioteca -&gt; Configurar Emuladores).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Estado predeterminado asignado a juegos recién agregados</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado asignado a juegos jugados por primera vez</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Error al inicializar el tiempo de ejecución de script de PowerShell.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Error al inicializar el tiempo de ejecución del script de PowerShell. Si eres usuario de Windows 7, (re)intente instalando PowerShell 5.1 para solucionar el problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">El filtro preestablecido con el nombre especificado ya existe. ¿Actualizar filtro con las nuevas configuraciones?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite se está ejecutando con privilegios elevados (como administrador). ¡Esto no se recomienda, ya que da privilegios elevados a todas las extensiones instaladas y todos los juegos/aplicaciones iniciadas desde Playnite!
 

@@ -677,6 +677,9 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Oyun başlatılmadan önce çalıştırılacak betik</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Oyundan çıkış yapıldıktan sonra çalıştırılacak betik</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Oyun başlatıldıktan sonra çalıştırılacak betik</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Genel betiği çalıştır</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Genel</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrelenmiş</sys:String>

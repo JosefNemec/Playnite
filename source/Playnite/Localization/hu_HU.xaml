@@ -688,6 +688,9 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCPreScriptDescription">Játék indítása előtt futtatott szkript</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Játékból kilépés után futtatott szkript</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Játék indítása után futtatott szkript</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Globális szkript futtatása</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globális</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Szűrt</sys:String>
@@ -1000,7 +1003,7 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Beolvasási beállításokat állíthatsz be az emulátorokhoz, hogy megadott mappákon futtathasd. Győződj meg importálás előtt, hogy az emulátor helyesen be van állítva (Könyvtár / Emulátorok beállítása menüpont)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Újonnan hozzáadott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatása sikertelen.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">A Playnite rendszergazdai jogokkal fut. Nem ajánlott így futtatni, mert az összes bövítménynek és innen indított játéknak is teljes hozzáférése lesz mindenhez.
 
