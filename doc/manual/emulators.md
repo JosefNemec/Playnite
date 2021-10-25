@@ -47,8 +47,8 @@ If your profile contains `Startup script` code, Playnite will use that instead o
 
 | Variable | Description |
 | :-- | :-- |
-| Emulator | Emulator selected to launch a game. |
-| EmulatorProfile | Emulator profile selected to launch a game. |
+| Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
+| EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
 | RomPath | ROM path selected to launch. |
 
 ### Custom profile example

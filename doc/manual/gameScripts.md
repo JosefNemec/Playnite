@@ -44,8 +44,8 @@ Playnite provides some built-in global variables that scripts can use to get mor
 
 | Variable | Description |
 | :-- | :-- |
-| PlayniteApi | Instance of Playnite API. |
-| Game | Game library object for current game session. |
+| PlayniteApi | Instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI). |
+| Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
 
 Startup script
 ---------------------
@@ -99,8 +99,8 @@ $process.Dispose()
 
 | Variable | Description |
 | :-- | :-- |
-| PlayniteApi | Instance of Playnite API. |
-| Game | Game library object for current game session. |
+| PlayniteApi | Instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI). |
+| Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
 | IsPlayAction | Indicates whether an action was started as play action. |
 
 Examples
