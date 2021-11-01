@@ -1,7 +1,25 @@
 Emulator support
 =====================
 
-Introduction
+General import guide
+---------------------
+
+General workflow for importing games is:
+
+- Setup an emulator via Library -> Configure Emulators menu.
+  - Playnite can automatically import several well known emulators and will set all emulator properties for you. To import an emulator use `Import` button on configuration window.
+  - See [Emulator support](#emulator-configuration) section for more details about emulator setup.  
+- Import game image(s) (ROMs) via Add Game -> Emulated Game menu.
+  - See [Game import support](#game-import-support) section for more details.  
+  - If you want the same directory to be re-scanned on startup (or manually) enable "Save as auto-scan" option. You can later edit saved scanner from emulator configuration window, "Auto-scan configuration" tab.
+
+> [!NOTE]
+> It's highly recommended to use automatically imported emulators and built-in profiles for better game import experience. Some built-in emulators (for example RPCS3 and ScummVM) use more advanced import mechanism then just matching file names and you won't be able to utilize it with custom profiles.
+
+> [!NOTE]
+> Playnite currently doesn't have built-in support for any arcade emulator. You will have to configure those manually. Built-in support for more well known arcade emulators will be added [in future](https://github.com/JosefNemec/Playnite/issues/2407). If you are having issues with non-arcade emulators, please open GitHub issue (games not being imported or launched properly).
+
+Emulator support
 ---------------------
 
 Playnite has a support for handling and importing of emulated games. The support is implemented in two ways:
@@ -11,9 +29,6 @@ Playnite has a support for handling and importing of emulated games. The support
 If you think that there's an emulator that should be added to built-in list, please [open new issue on GitHub](https://github.com/JosefNemec/Playnite/issues/) for it to be added.
 
 `Custom support`: You can manually configure any emulator that provides a way of launching specific games via command line arguments. Automatic game import might not be as accurate as in case of built-in profiles, since custom emulators only provide scanning based on a file name and file extension.
-
-> [!NOTE]
-> Playnite currently doesn't have built-in support for any arcade emulator. You will have to configure those manually. Built-in support for more well known arcade emulators will be added [in future](https://github.com/JosefNemec/Playnite/issues/2407). Also please open issue if built-in support for a specific emulator doesn't work as expected (games not being imported or launched properly).
 
 Emulator configuration
 ---------------------
@@ -96,6 +111,10 @@ Troubleshooting
 ---------------------
 
 If you encounter any issue when using built-in emulator configurations/profiles, please [open new issue on GitHub](https://github.com/JosefNemec/Playnite/issues/) to let us know and we will fix it.
+
+### Emulator doesn't start
+
+Usually occurs when using custom profile if executable path is not properly configured. Make sure that problematic profile points to an existing file.
 
 ### Emulator is not being imported
 
