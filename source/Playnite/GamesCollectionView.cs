@@ -242,7 +242,7 @@ namespace Playnite
             }
 
             // ------------------ Favorite
-            if (filterSettings.Favorite != game.Favorite)
+            if (filterSettings.Favorite && !game.Favorite)
             {
                 return false;
             }
