@@ -51,10 +51,10 @@
             <TabItem Header="{DynamicResource LOCEmulatorsTitle}">
                 <DockPanel>
                     <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="5,0,5,5">
-                        <Button Content="{DynamicResource LOCAddTitle}" Name="ButtonAddEmulator" Margin="5"
-                                Command="{Binding AddEmulatorCommand}" />
                         <Button Content="{DynamicResource LOCImportLabel}" Name="ButtonImportEmulator" Margin="5"
                                 Command="{Binding ImportEmulatorsCommand}" />
+                        <Button Content="{DynamicResource LOCAddTitle}" Name="ButtonAddEmulator" Margin="5"
+                                Command="{Binding AddEmulatorCommand}" />
                         <Button Content="{DynamicResource LOCCopyTitle}" Name="ButtonCopyEmulator" Margin="5"
                                 Command="{Binding CopyEmulatorCommand}"
                                 CommandParameter="{Binding SelectedItem, ElementName=ListEmulators}"/>
