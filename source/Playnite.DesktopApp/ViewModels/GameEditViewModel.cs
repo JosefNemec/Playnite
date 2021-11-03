@@ -1002,7 +1002,8 @@ namespace Playnite.DesktopApp.ViewModels
 
             var newAction = new GameAction()
             {
-                Name = "New Action"
+                Name = "New Action",
+                IsPlayAction = true
             };
 
             newAction.PropertyChanged += GameAction_PropertyChanged;
