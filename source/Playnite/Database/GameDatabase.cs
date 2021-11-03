@@ -732,23 +732,39 @@ namespace Playnite.Database
             return Path.Combine(FilesDirectoryPath, dbPath);
         }
 
-        public string AddFile(MetadataFile file, Guid parentId)
+        public string AddFile(MetadataFile file, Guid parentId, bool isImage)
         {
-            if (file.HasContent)
+            if (!file.HasImageData)
             {
-                return AddFile(file.FileName, file.Content, parentId);
+                logger.Error("Cannot add file to database, no file data provided.");
+                return null;
             }
-            else if (!file.Path.IsNullOrEmpty())
+
+            string localPath = null;
+            try
             {
-                return AddFile(file.Path, parentId);
+                localPath = file.GetLocalFile(CancellationToken.None);
             }
-            else
+            catch (Exception e)
             {
-                throw new Exception("Cannot add file, no file data provided.");
+                logger.Error(e, "Failed to get local file from metadata file");
             }
+
+            if (localPath.IsNullOrEmpty())
+            {
+                return null;
+            }
+
+            var finalFile = AddFile(localPath, parentId, isImage);
+            if (localPath.StartsWith(PlaynitePaths.TempPath))
+            {
+                FileSystem.DeleteFile(localPath);
+            }
+
+            return finalFile;
         }
 
-        public string AddFile(string path, Guid parentId)
+        public string AddFile(string path, Guid parentId, bool isImage)
         {
             CheckDbState();
             var targetDir = Path.Combine(FilesDirectoryPath, parentId.ToString());
@@ -760,8 +776,30 @@ namespace Playnite.Database
                 {
                     var extension = Path.GetExtension(new Uri(path).AbsolutePath);
                     var fileName = Guid.NewGuid().ToString() + extension;
-                    HttpDownloader.DownloadFile(path, Path.Combine(targetDir, fileName));
-                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                    var downPath = Path.Combine(targetDir, fileName);
+                    HttpDownloader.DownloadFile(path, downPath);
+                    if (isImage)
+                    {
+                        var converted = Images.ConvertToCompatibleFormat(downPath, Path.Combine(targetDir, Path.GetFileNameWithoutExtension(fileName)));
+                        if (converted.IsNullOrEmpty())
+                        {
+                            FileSystem.DeleteFile(downPath);
+                            return null;
+                        }
+                        else if (converted == downPath)
+                        {
+                            dbPath = Path.Combine(parentId.ToString(), fileName);
+                        }
+                        else
+                        {
+                            dbPath = Path.Combine(parentId.ToString(), Path.GetFileName(converted));
+                            FileSystem.DeleteFile(downPath);
+                        }
+                    }
+                    else
+                    {
+                        dbPath = Path.Combine(parentId.ToString(), fileName);
+                    }
                 }
                 catch (WebException e)
                 {
@@ -771,40 +809,48 @@ namespace Playnite.Database
             }
             else
             {
-                var fileName = Path.GetFileName(path);
-                // Re-use file if already part of db folder, don't copy.
-                if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
+                try
                 {
-                    dbPath = Path.Combine(parentId.ToString(), fileName);
-                }
-                else
-                {
-                    try
+                    var fileName = Path.GetFileName(path);
+                    // Re-use file if already part of db folder, don't copy.
+                    if (Paths.AreEqual(targetDir, Path.GetDirectoryName(path)))
+                    {
+                        dbPath = Path.Combine(parentId.ToString(), fileName);
+                    }
+                    else
                     {
                         fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
-                        FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                        if (isImage)
+                        {
+                            var converted = Images.ConvertToCompatibleFormat(path, Path.Combine(targetDir, Path.GetFileNameWithoutExtension(fileName)));
+                            if (converted.IsNullOrEmpty())
+                            {
+                                return null;
+                            }
+                            else if (converted == path)
+                            {
+                                FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                                dbPath = Path.Combine(parentId.ToString(), fileName);
+                            }
+                            else
+                            {
+                                dbPath = Path.Combine(parentId.ToString(), Path.GetFileName(converted));
+                            }
+                        }
+                        else
+                        {
+                            FileSystem.CopyFile(path, Path.Combine(targetDir, fileName));
+                            dbPath = Path.Combine(parentId.ToString(), fileName);
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, $"Failed to copy file {path} to database.");
-                        return null;
-                    }
-
-                    dbPath = Path.Combine(parentId.ToString(), fileName);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to add {path} file to database.");
+                    return null;
                 }
             }
 
-            DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
-            return dbPath;
-        }
-
-        public string AddFile(string fileName, byte[] content, Guid parentId)
-        {
-            CheckDbState();
-            var dbPath = Path.Combine(parentId.ToString(), Guid.NewGuid().ToString() + Path.GetExtension(fileName));
-            var targetPath = Path.Combine(FilesDirectoryPath, dbPath);
-            FileSystem.PrepareSaveFile(targetPath);
-            File.WriteAllBytes(targetPath, content);
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Added));
             return dbPath;
         }
@@ -1057,17 +1103,17 @@ namespace Playnite.Database
 
             if (game.Icon != null)
             {
-                toAdd.Icon = AddFile(game.Icon, toAdd.Id);
+                toAdd.Icon = AddFile(game.Icon, toAdd.Id, true);
             }
 
             if (game.CoverImage != null)
             {
-                toAdd.CoverImage = AddFile(game.CoverImage, toAdd.Id);
+                toAdd.CoverImage = AddFile(game.CoverImage, toAdd.Id, true);
             }
 
             if (game.BackgroundImage != null)
             {
-                toAdd.BackgroundImage = AddFile(game.BackgroundImage, toAdd.Id);
+                toAdd.BackgroundImage = AddFile(game.BackgroundImage, toAdd.Id, true);
             }
 
             toAdd.IncludeLibraryPluginAction = true;

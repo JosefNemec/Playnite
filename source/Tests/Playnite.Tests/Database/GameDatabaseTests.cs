@@ -103,9 +103,9 @@ namespace Playnite.Tests.Database
                 db.OpenDatabase();
                 var game = new Game("Test");
                 db.Games.Add(game);
-                game.Icon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                game.BackgroundImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                game.CoverImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
+                game.Icon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                game.BackgroundImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                game.CoverImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
 
                 Assert.IsNotEmpty(game.Icon);
                 Assert.IsNotEmpty(game.BackgroundImage);

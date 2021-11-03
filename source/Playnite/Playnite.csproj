@@ -283,6 +283,7 @@
     <Compile Include="Common\GlobalRandom.cs" />
     <Compile Include="Common\Images.cs" />
     <Compile Include="Common\IniParser.cs" />
+    <Compile Include="Metadata\MetadataFileExtensions.cs" />
     <Compile Include="Native\Gdi32.cs" />
     <Compile Include="Common\ItemsSource.cs" />
     <Compile Include="Common\JsonRpcClient.cs" />

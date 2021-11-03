@@ -501,7 +501,7 @@ namespace Playnite.Metadata
                                 {
                                     if (playniteSettings.DownloadBackgroundsImmediately && gameData.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
+                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id, true);
                                     }
                                     else if (!playniteSettings.DownloadBackgroundsImmediately &&
                                              !gameData.BackgroundImage.Path.IsNullOrEmpty())
@@ -510,7 +510,7 @@ namespace Playnite.Metadata
                                     }
                                     else if (gameData.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id);
+                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id, true);
                                     }
                                 }
                             }
@@ -524,7 +524,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, (a) => a.CoverImage, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.CoverImage != null)
                                 {
-                                    game.CoverImage = database.AddFile(gameData.CoverImage, game.Id);
+                                    game.CoverImage = database.AddFile(gameData.CoverImage, game.Id, true);
                                 }
                             }
                         }
@@ -537,7 +537,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Icon, MetadataField.Icon, (a) => a.Icon, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.Icon != null)
                                 {
-                                    game.Icon = database.AddFile(gameData.Icon, game.Id);
+                                    game.Icon = database.AddFile(gameData.Icon, game.Id, true);
                                 }
                             }
                         }

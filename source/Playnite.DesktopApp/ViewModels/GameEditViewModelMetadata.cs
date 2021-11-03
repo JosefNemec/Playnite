@@ -352,44 +352,45 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private string ProcessMetadataFile(string file, string tempFileName)
+        {
+            return ProcessMetadataFile(new MetadataFile(file), tempFileName);
+        }
+
         private string ProcessMetadataFile(MetadataFile file, string tempFileName)
         {
-            if (file.HasContent)
-            {
-                var extension = Path.GetExtension(file.FileName);
-                var fileName = tempFileName + extension;
-                var targetPath = Path.Combine(PlaynitePaths.TempPath, fileName);
-                FileSystem.PrepareSaveFile(targetPath);
-                File.WriteAllBytes(targetPath, file.Content);
-                return targetPath;
-            }
-            else if (!file.Path.IsNullOrEmpty())
-            {
-                if (file.Path.IsHttpUrl())
+            string localFile = null;
+            var progRes = dialogs.ActivateGlobalProgress((a) =>
                 {
-                    var extension = Path.GetExtension(new Uri(file.Path).AbsolutePath);
-                    var fileName = tempFileName + extension;
-                    var targetPath = Path.Combine(PlaynitePaths.TempPath, fileName);
-                    var progRes = dialogs.ActivateGlobalProgress((a) =>
-                        HttpDownloader.DownloadFile(file.Path, targetPath, a.CancelToken),
-                        new GlobalProgressOptions("LOCDownloadingMediaLabel", true));
-                    if (progRes.Result == true && !progRes.Canceled)
+                    localFile = file.GetLocalFile(a.CancelToken);
+                    // GetLocalFile creates generic Guid based name if a file is http link
+                    if (localFile?.StartsWith(PlaynitePaths.TempPath) == true)
                     {
-                        return targetPath;
+                        var resFile = Path.Combine(PlaynitePaths.TempPath, tempFileName + Path.GetExtension(localFile));
+                        if (!localFile.Equals(resFile, StringComparison.OrdinalIgnoreCase))
+                        {
+                            FileSystem.DeleteFile(resFile);
+                            File.Move(localFile, resFile);
+                            localFile = resFile;
+                        }
                     }
-                    else
-                    {
-                        logger.Error(progRes.Error, $"Failed to download {file.Path}.");
-                        return null;
-                    }
+                },
+                new GlobalProgressOptions("LOCDownloadingMediaLabel", true));
+            if (progRes.Result == true && !progRes.Canceled)
+            {
+                if (localFile.IsNullOrEmpty())
+                {
+                    return null;
                 }
                 else
                 {
-                    return file.Path;
+                    localFile = Images.ConvertToCompatibleFormat(localFile, Path.Combine(PlaynitePaths.TempPath, tempFileName));
+                    return localFile;
                 }
             }
             else
             {
+                logger.Error(progRes.Error, $"Failed to download {file.Path}.");
                 return null;
             }
         }
@@ -403,9 +404,6 @@ namespace Playnite.DesktopApp.ViewModels
                 ReleaseDate = game.ReleaseDate,
                 CommunityScore = game.CommunityScore,
                 CriticScore = game.CriticScore,
-                Icon = game.Icon,
-                CoverImage = game.CoverImage,
-                BackgroundImage = game.BackgroundImage,
                 Links = game.Links
             };
 
@@ -452,6 +450,21 @@ namespace Playnite.DesktopApp.ViewModels
             if (game.Platforms.HasItems())
             {
                 result.Platforms = (database.Platforms as PlatformsCollection).GetOrGenerate(game.Platforms).Where(a => a != null).ToList();
+            }
+
+            if (game.CoverImage != null)
+            {
+                result.CoverImage = new MetadataFile(ProcessMetadataFile(game.CoverImage, tempCoverFileName));
+            }
+
+            if (game.Icon != null)
+            {
+                result.Icon = new MetadataFile(ProcessMetadataFile(game.Icon, tempIconFileName));
+            }
+
+            if (game.BackgroundImage != null)
+            {
+                result.BackgroundImage = new MetadataFile(ProcessMetadataFile(game.BackgroundImage, tempBackgroundFileName));
             }
 
             return result;
@@ -607,7 +620,7 @@ namespace Playnite.DesktopApp.ViewModels
                         url = model.SelectedImage.ThumbUrl;
                     }
 
-                    return PrepareImagePath(url, tempFileName);
+                    return ProcessMetadataFile(url, tempFileName);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

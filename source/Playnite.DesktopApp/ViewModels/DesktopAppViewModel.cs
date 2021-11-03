@@ -713,20 +713,9 @@ namespace Playnite.DesktopApp.ViewModels
                                 }
                             }
 
-                            if (icoPath?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
+                            if (!icoPath.IsNullOrEmpty())
                             {
-                                using (var ms = new MemoryStream())
-                                {
-                                    if (IconExtractor.ExtractMainIconFromFile(icoPath, ms))
-                                    {
-                                        var iconName = Guid.NewGuid().ToString() + ".ico";
-                                        game.Icon = Database.AddFile(iconName, ms.ToArray(), game.Id);
-                                    }
-                                }
-                            }
-                            else if (!icoPath.IsNullOrEmpty())
-                            {
-                                game.Icon = Database.AddFile(icoPath, game.Id);
+                                game.Icon = Database.AddFile(icoPath, game.Id, true);
                             }
 
                             Database.Games.Add(game);

@@ -124,7 +124,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             string addNewFile(string path, Guid parent)
             {
-                var newPath = database.AddFile(path, parent);
+                var newPath = database.AddFile(path, parent, true);
                 if (Paths.AreEqual(Path.GetDirectoryName(path), PlaynitePaths.TempPath))
                 {
                     File.Delete(path);

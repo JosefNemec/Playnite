@@ -14,11 +14,15 @@ namespace Playnite.Common
 
         public string TempPath { get; private set; }
 
-        public static TempDirectory Create(bool autoDelete = true)
+        public static TempDirectory Create(bool autoDelete = true, string dirName = null)
         {
-            var stack = new StackTrace(1);
-            var method = stack.GetFrame(0).GetMethod();
-            var dirName = Paths.GetSafePathName($"{method.DeclaringType.Name}_{method.Name}");
+            if (dirName.IsNullOrEmpty())
+            {
+                var stack = new StackTrace(1);
+                var method = stack.GetFrame(0).GetMethod();
+                dirName = Paths.GetSafePathName($"{method.DeclaringType.Name}_{method.Name}");
+            }
+
             return new TempDirectory(dirName, autoDelete);
         }
 

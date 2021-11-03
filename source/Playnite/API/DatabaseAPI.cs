@@ -58,7 +58,7 @@ namespace Playnite.API
                 throw new FileNotFoundException("Cannot add file to database, file not found.");
             }
 
-            return database.AddFile(path, parentId);
+            return database.AddFile(path, parentId, false);
         }
 
         public void SaveFile(string id, string path)
