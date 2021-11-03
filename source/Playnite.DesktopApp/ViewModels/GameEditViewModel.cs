@@ -833,14 +833,14 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void UseExeIcon()
         {
-            var playAction = EditingGame.GameActions?.FirstOrDefault(a => a.IsPlayAction);
-            if (playAction == null || playAction.Type == GameActionType.URL)
+            var playAction = EditingGame.GameActions?.FirstOrDefault(a => a.IsPlayAction && a.Type == GameActionType.File);
+            if (playAction == null)
             {
-                dialogs.ShowMessage(resources.GetString("LOCExecIconMissingPlayAction"));
+                dialogs.ShowErrorMessage(LOC.ExecIconMissingPlayAction, "");
                 return;
             }
 
-            var path = Game.GetRawExecutablePath();
+            var path = EditingGame.GetRawExecutablePath();
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
             {
                 logger.Error($"Can't find executable for icon extraction, file {path}");

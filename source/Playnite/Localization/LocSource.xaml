@@ -188,7 +188,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCColumns">Columns</sys:String>
     <sys:String x:Key="LOCRow">Row</sys:String>
     <sys:String x:Key="LOCRows">Rows</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Couldn't get icon from Play action. There's no action of File type present.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Only download missing metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip downloading metadata for data fields that already contain information.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Games selection</sys:String>
