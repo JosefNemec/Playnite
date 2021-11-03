@@ -628,6 +628,27 @@ namespace Playnite.Database
                 dbSettings.Version = 3;
                 SaveSettingsToDbPath(dbSettings, databasePath);
             }
+
+            // 3 to 4
+            // No data format change, only to cleanup mess caused by bug #2618
+            if (dbSettings.Version == 3 && NewFormatVersion > 3)
+            {
+                var filesDir = Path.Combine(databasePath, filesDirName);
+                foreach (var dir in Directory.GetDirectories(filesDir))
+                {
+                    try
+                    {
+                        Directory.GetFiles(dir, "*.exe").ForEach(a => File.Delete(a));
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to delete file.");
+                    }
+                }
+
+                dbSettings.Version = 4;
+                SaveSettingsToDbPath(dbSettings, databasePath);
+            }
         }
 
         public static bool GetMigrationRequired(string databasePath)

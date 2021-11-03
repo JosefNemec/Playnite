@@ -185,7 +185,7 @@ namespace Playnite.Database
             }
         }
 
-        public static readonly ushort NewFormatVersion = 3;
+        public static readonly ushort NewFormatVersion = 4;
 
         #region Events
 
