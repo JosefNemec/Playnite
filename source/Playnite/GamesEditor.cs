@@ -1010,6 +1010,10 @@ namespace Playnite
                 {
                     logger.Debug("Game session was too short for client to be shutdown.");
                 }
+                else if (Database.Games.Any(x => x.IsRunning && x.PluginId == game.PluginId))
+                {
+                    logger.Debug("Shutdown process canceled because another game from library was detected as running.");
+                }
                 else
                 {
                     var plugin = Extensions.GetLibraryPlugin(game.PluginId);
