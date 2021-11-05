@@ -199,14 +199,14 @@ namespace Playnite.Common
 
         public static T FromYamlFile<T>(string filePath) where T : class
         {
-            return FromYaml<T>(File.ReadAllText(filePath));
+            return FromYaml<T>(FileSystem.ReadStringFromFile(filePath));
         }
 
         public static bool TryFromYamlFile<T>(string filePath, out T deserialized) where T : class
         {
             try
             {
-                deserialized = FromYaml<T>(File.ReadAllText(filePath));
+                deserialized = FromYaml<T>(FileSystem.ReadStringFromFile(filePath));
                 return true;
             }
             catch
@@ -296,6 +296,7 @@ namespace Playnite.Common
 
         public static T FromJsonFile<T>(string filePath) where T : class
         {
+            filePath = FileSystem.FixPathLength(filePath);
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 return FromJsonStream<T>(fs);
@@ -306,6 +307,7 @@ namespace Playnite.Common
         {
             try
             {
+                filePath = FileSystem.FixPathLength(filePath);
                 using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
                     deserialized = FromJsonStream<T>(fs);
@@ -364,14 +366,14 @@ namespace Playnite.Common
 
         public static T FromTomlFile<T>(string filePath) where T : class
         {
-            return FromToml<T>(File.ReadAllText(filePath));
+            return FromToml<T>(FileSystem.ReadStringFromFile(filePath));
         }
 
         public static bool TryFromTomlFile<T>(string filePath, out T deserialized) where T : class
         {
             try
             {
-                deserialized = FromToml<T>(File.ReadAllText(filePath));
+                deserialized = FromToml<T>(FileSystem.ReadStringFromFile(filePath));
                 return true;
             }
             catch
