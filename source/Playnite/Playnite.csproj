@@ -200,9 +200,6 @@
       <HintPath>..\..\references\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="WindowsInput, Version=1.0.6.0, Culture=neutral, PublicKeyToken=de2685b4776e9c2e, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputSimulatorPlus.1.0.7\lib\net20\WindowsInput.dll</HintPath>
-    </Reference>
     <Reference Include="XInputDotNetPure">
       <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
     </Reference>

@@ -25,6 +25,8 @@ using System.Drawing.Imaging;
 using Playnite.SDK.Plugins;
 using System.Collections.ObjectModel;
 using Playnite.Scripting.PowerShell;
+using Playnite.Windows;
+using System.Windows.Input;
 
 namespace Playnite
 {
@@ -950,15 +952,19 @@ namespace Playnite
             }
             else
             {
+                if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    Application.Quit();
+                    return;
+                }
+
                 AppSettings.Fullscreen.IsMusicMuted = true;
                 if (AppSettings.Fullscreen.MinimizeAfterGameStartup)
                 {
                     Application.Minimize();
                 }
-                else if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
-                {
-                    Application.Quit();
-                }
+
+                PlayniteApplication.Current.IsActive = false;
             }
 
             if (AppSettings.DiscordPresenceEnabled)
