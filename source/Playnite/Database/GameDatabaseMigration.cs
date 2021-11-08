@@ -638,7 +638,15 @@ namespace Playnite.Database
                 {
                     try
                     {
-                        Directory.GetFiles(dir, "*.exe").ForEach(a => File.Delete(a));
+                        Directory.GetFiles(dir, "*.exe").ForEach(a =>
+                        {
+                            // Only delete files named as guid as those are 99% made by 2618 bug
+                            // People sometimes put foreign files into libary folder :|, so we don't want to delete something else.
+                            if (Guid.TryParse(Path.GetFileNameWithoutExtension(a), out var _))
+                            {
+                                File.Delete(a);
+                            }
+                        });
                     }
                     catch (Exception e)
                     {
