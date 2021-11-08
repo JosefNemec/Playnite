@@ -18,6 +18,26 @@ using Playnite.SDK.Events;
 
 namespace Playnite.Plugins
 {
+    public class ExtensionsStatusBinder
+    {
+        public class Status : ObservableObject
+        {
+            private bool isInstalled;
+            public bool IsInstalled { get => isInstalled; set => SetValue(ref isInstalled, value); }
+        }
+
+        public Status this[string pluginId]
+        {
+            get
+            {
+                var plugin = PlayniteApplication.Current.Extensions?.Plugins.FirstOrDefault(a => a.Value.Description.Id == pluginId).Value;
+                return new Status { IsInstalled = plugin != null };
+            }
+
+            set { throw new NotSupportedException(); }
+        }
+    }
+
     public class LoadedPlugin
     {
         public Plugin Plugin { get; }
@@ -30,13 +50,20 @@ namespace Playnite.Plugins
         }
     }
 
+    public enum AddonLoadError
+    {
+        None,
+        Uknown,
+        SDKVersion
+    }
+
     public class ExtensionFactory : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
         private IGameDatabase database;
         private GameControllerFactory controllers;
 
-        public List<ExtensionManifest> FailedExtensions { get; } = new List<ExtensionManifest>();
+        public List<(ExtensionManifest manifest, AddonLoadError error)> FailedExtensions { get; } = new List<(ExtensionManifest manifest, AddonLoadError error)>();
 
         public Dictionary<Guid, LoadedPlugin> Plugins
         {
@@ -149,7 +176,19 @@ namespace Playnite.Plugins
             {
                 foreach (var dirPath in File.ReadAllLines(path).Where(a => !a.IsNullOrWhiteSpace() && !a.StartsWith("#")))
                 {
-                    var man = GetManifestFromFile(Path.Combine(dirPath.Trim(), PlaynitePaths.ExtensionManifestFileName));
+                    ExtensionManifest man = null;
+                    try
+                    {
+                        if (Directory.Exists(dirPath))
+                        {
+                            man = GetManifestFromFile(Path.Combine(dirPath.Trim(), PlaynitePaths.ExtensionManifestFileName));
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to read extension dev file.");
+                    }
+
                     if (man != null)
                     {
                         yield return man;
@@ -176,25 +215,24 @@ namespace Playnite.Plugins
             return null;
         }
 
-        public static IEnumerable<ExtensionManifest> GetInstalledManifests(List<string> externalPaths = null)
+        internal static IEnumerable<BaseExtensionManifest> DeduplicateExtList(List<BaseExtensionManifest> list)
         {
-            var added = new List<string>();
+            return list.GroupBy(a => a.Id).Select(g => g.OrderByDescending(x => x.Version).First());
+        }
+
+        public static List<ExtensionManifest> GetInstalledManifests(List<string> externalPaths = null)
+        {
+            var externals = new List<BaseExtensionManifest>();
+            var user = new List<BaseExtensionManifest>();
+            var install = new List<BaseExtensionManifest>();
             if (externalPaths.HasItems())
             {
                 foreach (var ext in externalPaths)
                 {
                     foreach (var man in GetManifestsFromPath(ext))
                     {
-                        if (added.Contains(man.Id))
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            added.Add(man.Id);
-                            man.IsExternalDev = true;
-                            yield return man;
-                        }
+                        externals.Add(man);
+                        man.IsExternalDev = true;
                     }
                 }
             }
@@ -207,14 +245,13 @@ namespace Playnite.Plugins
                     var man = GetManifestFromFile(desc.FullName);
                     if (man?.Id.IsNullOrEmpty() == false)
                     {
-                        if (added.Contains(man.Id))
+                        if (externals.Any(a => a.Id == man.Id))
                         {
                             continue;
                         }
                         else
                         {
-                            added.Add(man.Id);
-                            yield return man;
+                            user.Add(man);
                         }
                     }
                 }
@@ -228,18 +265,23 @@ namespace Playnite.Plugins
                     var man = GetManifestFromFile(desc.FullName);
                     if (man?.Id.IsNullOrEmpty() == false)
                     {
-                        if (added.Contains(man.Id))
+                        if (externals.Any(a => a.Id == man.Id) || user.Any(a => a.Id == man.Id))
                         {
                             continue;
                         }
                         else
                         {
-                            added.Add(man.Id);
-                            yield return man;
+                            install.Add(man);
                         }
                     }
                 }
             }
+
+            var result = new List<ExtensionManifest>();
+            result.AddRange(DeduplicateExtList(externals).Cast<ExtensionManifest>());
+            result.AddRange(DeduplicateExtList(user).Cast<ExtensionManifest>());
+            result.AddRange(DeduplicateExtList(install).Cast<ExtensionManifest>());
+            return result;
         }
 
         private bool VerifyAssemblyReferences(Assembly asm, ExtensionManifest manifest)
@@ -293,7 +335,7 @@ namespace Playnite.Plugins
                 if (!File.Exists(scriptPath))
                 {
                     logger.Error($"Cannot load script extension, {scriptPath} not found.");
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                     continue;
                 }
 
@@ -302,7 +344,7 @@ namespace Playnite.Plugins
                     script = PlayniteScript.FromFile(scriptPath, $"{desc.DirectoryName}#PS");
                     if (script == null)
                     {
-                        FailedExtensions.Add(desc);
+                        FailedExtensions.Add((desc, AddonLoadError.Uknown));
                         continue;
                     }
 
@@ -321,7 +363,7 @@ namespace Playnite.Plugins
                 {
                     allSuccess = false;
                     logger.Error(e, $"Failed to load script file {scriptPath}");
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                     continue;
                 }
 
@@ -379,7 +421,7 @@ namespace Playnite.Plugins
                         logger.Error(e, string.Empty);
                     }
 
-                    FailedExtensions.Add(desc);
+                    FailedExtensions.Add((desc, AddonLoadError.Uknown));
                 }
             }
         }
@@ -414,7 +456,7 @@ namespace Playnite.Plugins
             else
             {
                 logger.Error($"Plugin dependencices are not compatible: {descriptor.Name}");
-                FailedExtensions.Add(descriptor);
+                FailedExtensions.Add((descriptor, AddonLoadError.SDKVersion));
                 // TODO: Unload assembly once Playnite switches to .NET Core
             }
         }

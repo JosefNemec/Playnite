@@ -1,5 +1,4 @@
 ﻿using Playnite.SDK;
-using Playnite.SDK.Metadata;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -34,12 +33,12 @@ namespace _namespace_
             };
         }
 
-        public override IEnumerable<GameInfo> GetGames(LibraryGetGamesArgs args)
+        public override IEnumerable<GameMetadata> GetGames(LibraryGetGamesArgs args)
         {
             // Return list of user's games.
-            return new List<GameInfo>()
+            return new List<GameMetadata>()
             {
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Notepad",
                     GameId = "notepad",
@@ -55,7 +54,7 @@ namespace _namespace_
                     IsInstalled = true,
                     Icon = new MetadataFile(@"c:\Windows\notepad.exe")
                 },
-                new GameInfo()
+                new GameMetadata()
                 {
                     Name = "Calculator",
                     GameId = "calc",

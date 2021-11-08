@@ -110,6 +110,10 @@ namespace Playnite
         /// </summary>
         public const string ExtCrashDescriptionFS = "LOCExtCrashDescriptionFS";
         /// <summary>
+        /// Uknown extension or a theme caused an unrecoverable error.
+        /// </summary>
+        public const string ExtCrashDescriptionUknown = "LOCExtCrashDescriptionUknown";
+        /// <summary>
         /// Unrecoverable error occurred.
         /// </summary>
         public const string CrashDescriptionFullscreen = "LOCCrashDescriptionFullscreen";
@@ -1514,7 +1518,7 @@ namespace Playnite
         /// </summary>
         public const string EmuWizardNotice = "LOCEmuWizardNotice";
         /// <summary>
-        /// Below is a list of emulators that Playnite can recognize and configure automatically. You can download  emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.
+        /// Below is a list of emulators that Playnite can recognize and configure automatically. You can download emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.
         /// </summary>
         public const string EmuDownloadDescription = "LOCEmuDownloadDescription";
         /// <summary>
@@ -2045,6 +2049,10 @@ namespace Playnite
         /// Save Changes
         /// </summary>
         public const string SaveChanges = "LOCSaveChanges";
+        /// <summary>
+        /// Apply field changes to game(s) being edited.
+        /// </summary>
+        public const string GameEditChangeSaveTooltip = "LOCGameEditChangeSaveTooltip";
         /// <summary>
         /// Play Action
         /// </summary>
@@ -2794,9 +2802,17 @@ namespace Playnite
         /// </summary>
         public const string SpecificExtensionLoadError = "LOCSpecificExtensionLoadError";
         /// <summary>
+        /// Can't load "{0}" extension, current Playnite version is not supported.
+        /// </summary>
+        public const string SpecificExtensionLoadSDKError = "LOCSpecificExtensionLoadSDKError";
+        /// <summary>
         /// Theme "{0}" failed to load properly.
         /// </summary>
         public const string SpecificThemeLoadError = "LOCSpecificThemeLoadError";
+        /// <summary>
+        /// Can't load "{0}" theme, current Playnite version is not supported.
+        /// </summary>
+        public const string SpecificThemeLoadSDKError = "LOCSpecificThemeLoadSDKError";
         /// <summary>
         /// Extension failed to load properly.
         /// </summary>
@@ -2861,6 +2877,14 @@ namespace Playnite
         /// Don't Show Again
         /// </summary>
         public const string DontShowAgainTitle = "LOCDontShowAgainTitle";
+        /// <summary>
+        /// File with extension {0} is not compatible.
+        /// </summary>
+        public const string IncompatibleDragAndDropExtensionError = "LOCIncompatibleDragAndDropExtensionError";
+        /// <summary>
+        /// Incompatible file extension
+        /// </summary>
+        public const string IncompatibleDragAndDropExtensionErrorTitle = "LOCIncompatibleDragAndDropExtensionErrorTitle";
         /// <summary>
         /// Selected image file might be too large for optimal performance.
         /// </summary>
@@ -3058,7 +3082,7 @@ namespace Playnite
         /// </summary>
         public const string AddonsThemesDesktop = "LOCAddonsThemesDesktop";
         /// <summary>
-        /// Themes Fullscren
+        /// Themes Fullscreen
         /// </summary>
         public const string AddonsThemesFullscren = "LOCAddonsThemesFullscren";
         /// <summary>
@@ -3198,7 +3222,7 @@ namespace Playnite
         /// </summary>
         public const string DevelTraceLogEnable = "LOCDevelTraceLogEnable";
         /// <summary>
-        /// Following changes overwrite data for all currently selected game!
+        /// Following changes overwrite data for all currently selected games!
         /// </summary>
         public const string MultiEditOverwriteWarning = "LOCMultiEditOverwriteWarning";
         /// <summary>
@@ -3266,7 +3290,7 @@ namespace Playnite
         /// </summary>
         public const string TopPanelExplorerSwitch = "LOCTopPanelExplorerSwitch";
         /// <summary>
-        /// Select random game
+        /// Random game picker
         /// </summary>
         public const string TopPanelSelectRandomGameButton = "LOCTopPanelSelectRandomGameButton";
         /// <summary>
@@ -3450,6 +3474,10 @@ namespace Playnite
         /// </summary>
         public const string EmulatorCustomProfiles = "LOCEmulatorCustomProfiles";
         /// <summary>
+        /// Handled by a built-in script
+        /// </summary>
+        public const string EmulatorFunctionHandledByScript = "LOCEmulatorFunctionHandledByScript";
+        /// <summary>
         /// Emulator specification
         /// </summary>
         public const string EmulatorSpec = "LOCEmulatorSpec";
@@ -3506,17 +3534,41 @@ namespace Playnite
         /// </summary>
         public const string EmuScanDirectory = "LOCEmuScanDirectory";
         /// <summary>
+        /// Scan configurations
+        /// </summary>
+        public const string EmuScanConfigurations = "LOCEmuScanConfigurations";
+        /// <summary>
+        /// Exclude patterns from checksum scan
+        /// </summary>
+        public const string EmuCrcExcludeFileTypes = "LOCEmuCrcExcludeFileTypes";
+        /// <summary>
+        /// Files matching specified pattern(s) won't be scanned for checksum and will be matched by file name. See emulator help page for more information.
+        /// </summary>
+        public const string EmuCrcExcludeFileTypesTooltip = "LOCEmuCrcExcludeFileTypesTooltip";
+        /// <summary>
         /// Scan with emulator
         /// </summary>
         public const string EmuScanEmulator = "LOCEmuScanEmulator";
         /// <summary>
+        /// Name has to be set when saving new configuration.
+        /// </summary>
+        public const string ScanConfigNameError = "LOCScanConfigNameError";
+        /// <summary>
+        /// Emulator or emulator profile is not set.
+        /// </summary>
+        public const string ScanConfigNoEmulatorError = "LOCScanConfigNoEmulatorError";
+        /// <summary>
+        /// Directory to scan is not specified or it doesn't exists.
+        /// </summary>
+        public const string ScanConfigDirectoryError = "LOCScanConfigDirectoryError";
+        /// <summary>
+        /// Scan configuration is not set properly.
+        /// </summary>
+        public const string ScanConfigError = "LOCScanConfigError";
+        /// <summary>
         /// Include in bulk scan auto-scan
         /// </summary>
         public const string EmuScanIncludeGlobalUpdate = "LOCEmuScanIncludeGlobalUpdate";
-        /// <summary>
-        /// No valid scan configuration set. Make sure that all fields are set properly.
-        /// </summary>
-        public const string EmuNoValidConfigSet = "LOCEmuNoValidConfigSet";
         /// <summary>
         /// Failed to scan folder for emulators.
         /// </summary>
@@ -3569,5 +3621,13 @@ namespace Playnite
         /// Status assigned to games played for the first time
         /// </summary>
         public const string CompletionStatusPlayedStatusDesc = "LOCCompletionStatusPlayedStatusDesc";
+        /// <summary>
+        /// Failed to initialize PowerShell script runtime.
+        /// </summary>
+        public const string PowerShellCreationError = "LOCPowerShellCreationError";
+        /// <summary>
+        /// Filter preset with specified name already exists. Update preset with new settings?
+        /// </summary>
+        public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
     }
 }

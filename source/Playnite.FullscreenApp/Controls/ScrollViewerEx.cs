@@ -19,8 +19,20 @@ namespace Playnite.FullscreenApp.Controls
 
         public ScrollViewerEx() : base()
         {
+            Loaded += ScrollViewerEx_Loaded;
+            Unloaded += ScrollViewerEx_Unloaded;
+        }
+
+        private void ScrollViewerEx_Loaded(object sender, RoutedEventArgs e)
+        {
             ScrollChanged += ScrollViewerEx_ScrollChanged;
             PreviewKeyDown += ScrollViewerEx_PreviewKeyDown;
+        }
+
+        private void ScrollViewerEx_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ScrollChanged -= ScrollViewerEx_ScrollChanged;
+            PreviewKeyDown -= ScrollViewerEx_PreviewKeyDown;
         }
 
         private void ScrollViewerEx_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -57,6 +69,11 @@ namespace Playnite.FullscreenApp.Controls
 
         private void ScrollViewerEx_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            if (e.VerticalChange == 0 && e.HorizontalChange == 0)
+            {
+                return;
+            }
+
             if (VerticalOffset == 0)
             {
                 MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
@@ -65,7 +82,7 @@ namespace Playnite.FullscreenApp.Controls
             else if (VerticalOffset >= ScrollableHeight)
             {
                 MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
-                e.Handled = true;                
+                e.Handled = true;
             }
         }
     }

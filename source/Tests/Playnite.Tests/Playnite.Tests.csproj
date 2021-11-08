@@ -117,8 +117,10 @@
     <Compile Include="Extensions\EnumsTests.cs" />
     <Compile Include="FileSystemTests.cs" />
     <Compile Include="GamesStatsTests.cs" />
+    <Compile Include="ExtensionFactoryTests.cs" />
     <Compile Include="Models\CopyDiffToTest.cs" />
     <Compile Include="CueSheetTests.cs" />
+    <Compile Include="Models\MetadataPropertyTests.cs" />
     <Compile Include="ReleaseDateTests.cs" />
     <Compile Include="SerializationTests.cs" />
     <Compile Include="IniParserTests.cs" />
@@ -130,7 +132,6 @@
     <Compile Include="PlayniteUriHandlerTests.cs" />
     <Compile Include="Plugins\ExtensionManifestTests.cs" />
     <Compile Include="ProcessStarterTests.cs" />
-    <Compile Include="Scripting\Batch\BatchTests.cs" />
     <Compile Include="SigningToolsTests.cs" />
     <Compile Include="TestPlayniteApplication.cs" />
     <Compile Include="XmlTests.cs" />

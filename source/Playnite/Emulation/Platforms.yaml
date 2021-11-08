@@ -376,6 +376,16 @@
   IgdbId: 6
   Emulators: [pcem, scummvm]
 
+- Name: PC (Linux)
+  Id: pc_linux
+  IgdbId: 3
+  Emulators: []
+
+- Name: Macintosh
+  Id: macintosh
+  IgdbId: 14
+  Emulators: []
+
 - Name: Adobe Flash
   Id: adobe_flash
   Emulators: [flashplayerprojector]

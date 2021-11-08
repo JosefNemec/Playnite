@@ -818,6 +818,11 @@ namespace Playnite.DesktopApp.ViewModels
 
             foreach (var emulator in database.Emulators)
             {
+                if (!emulator.CustomProfiles.HasItems())
+                {
+                    continue;
+                }
+
                 foreach (var profile in emulator.CustomProfiles)
                 {
                     var usedIds = profile.Platforms ?? new List<Guid>();

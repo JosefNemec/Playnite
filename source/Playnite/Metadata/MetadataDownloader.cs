@@ -187,19 +187,19 @@ namespace Playnite.Metadata
                                 metadata.Name = provider.GetName(getFieldArgs);
                                 break;
                             case MetadataField.Genres:
-                                metadata.Genres = provider.GetGenres(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Genres = provider.GetGenres(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.ReleaseDate:
                                 metadata.ReleaseDate = provider.GetReleaseDate(getFieldArgs);
                                 break;
                             case MetadataField.Developers:
-                                metadata.Developers = provider.GetDevelopers(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Developers = provider.GetDevelopers(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.Publishers:
-                                metadata.Publishers = provider.GetPublishers(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Publishers = provider.GetPublishers(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.Tags:
-                                metadata.Tags = provider.GetTags(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Tags = provider.GetTags(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.Description:
                                 metadata.Description = provider.GetDescription(getFieldArgs);
@@ -223,19 +223,19 @@ namespace Playnite.Metadata
                                 metadata.BackgroundImage = provider.GetBackgroundImage(getFieldArgs);
                                 break;
                             case MetadataField.Features:
-                                metadata.Features = provider.GetFeatures(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Features = provider.GetFeatures(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.AgeRating:
-                                metadata.AgeRatings = provider.GetAgeRatings(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.AgeRatings = provider.GetAgeRatings(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.Region:
-                                metadata.Regions = provider.GetRegions(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Regions = provider.GetRegions(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.Series:
-                                metadata.Series = provider.GetSeries(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Series = provider.GetSeries(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             case MetadataField.Platform:
-                                metadata.Platforms = provider.GetPlatforms(getFieldArgs)?.Where(a => a != null).ToList();
+                                metadata.Platforms = provider.GetPlatforms(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
                             default:
                                 throw new NotImplementedException();

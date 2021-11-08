@@ -45,7 +45,14 @@ namespace Playnite.FullscreenApp.Controls
             else if (mainModel != null)
             {
                 this.mainModel = mainModel;
+                // Done via event instead of input binding because input binding disables item select on righ-click.
+                PreviewMouseRightButtonUp += GameListItem_MouseRightButtonUp;
             }
+        }
+
+        private void GameListItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            mainModel.OpenGameMenuCommand.Execute(null);
         }
 
         public override void OnApplyTemplate()

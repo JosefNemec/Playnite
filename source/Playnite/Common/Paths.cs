@@ -189,5 +189,22 @@ namespace Playnite.Common
                 return common.Substring(0, common.LastIndexOf(Path.DirectorySeparatorChar) + 1);
             }
         }
+
+        public static bool MathcesFilePattern(string filePath, string pattern)
+        {
+            if (filePath.IsNullOrEmpty() || pattern.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            if (pattern.Contains(';'))
+            {
+                return Shlwapi.PathMatchSpecExW(filePath, pattern, MatchPatternFlags.Multiple) == 0;
+            }
+            else
+            {
+                return Shlwapi.PathMatchSpecExW(filePath, pattern, MatchPatternFlags.Normal) == 0;
+            }
+        }
     }
 }

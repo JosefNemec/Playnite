@@ -42,7 +42,7 @@ namespace Playnite
         private GameControllerFactory controllers;
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
         private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
-        private readonly ConcurrentDictionary<Guid, PowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, PowerShellRuntime>();
+        private readonly ConcurrentDictionary<Guid, IPowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, IPowerShellRuntime>();
 
         public PlayniteApplication Application;
         public ExtensionFactory Extensions { get; private set; }
@@ -177,7 +177,19 @@ namespace Playnite
                     return;
                 }
 
-                scriptRuntimes.TryAdd(game.Id, new PowerShellRuntime($"{game.Name} {game.Id} runtime"));
+                try
+                {
+                    scriptRuntimes.TryAdd(game.Id, new PowerShellRuntime($"{game.Name} {game.Id} runtime"));
+                }
+                catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    // This should really only happen on Windows 7 without PS 5.1 installed, which is very small percentage of users.
+                    // It should not prevent game startup.
+                    logger.Error(e, "Failed to create PowerShell runtime.");
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.PowerShellCreationError) + "\n\n" + e.Message, "");
+                    scriptRuntimes.TryAdd(game.Id, new DummyPowerShellRuntime());
+                }
+
                 if (playAction is AutomaticPlayController)
                 {
                     logger.Debug("Using automatic plugin controller to start a game.");
@@ -1087,7 +1099,7 @@ namespace Playnite
             controllers.RemoveController(args.Source);
         }
 
-        public bool ExecuteScriptAction(PowerShellRuntime runtime, string script, Game game, bool execute, bool global)
+        public bool ExecuteScriptAction(IPowerShellRuntime runtime, string script, Game game, bool execute, bool global)
         {
             if (!execute || script.IsNullOrWhiteSpace())
             {
@@ -1199,12 +1211,12 @@ namespace Playnite
                         {
                             foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
                             {
-                                addAction($"{emulator.Name}: {profile.Name}", profile);
+                                addAction($"{action.Name}: {profile.Name}", profile);
                             }
 
                             foreach (var profile in emulator.CustomProfiles ?? new ObservableCollection<CustomEmulatorProfile>())
                             {
-                                addAction($"{emulator.Name}: {profile.Name}", profile);
+                                addAction($"{action.Name}: {profile.Name}", profile);
                             }
                         }
                         else
@@ -1216,7 +1228,7 @@ namespace Playnite
                             }
                             else
                             {
-                                addAction(emulator.Name, prof);
+                                addAction(action.Name, prof);
                             }
                         }
                     }

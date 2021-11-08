@@ -49,7 +49,7 @@ namespace Playnite.Tests
             throw new NotImplementedException();
         }
 
-        public override void Startup()
+        public override bool Startup()
         {
             throw new NotImplementedException();
         }

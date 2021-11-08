@@ -227,7 +227,7 @@ namespace TestPlugin
         {
             if (args.Name == "TestUserControl")
             {
-                return new TestPluginUserControl();
+                return new TestPluginUserControl(Settings);
             }
 
             return null;

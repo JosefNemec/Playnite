@@ -21,6 +21,7 @@
                     Command="{Binding RestartCommand}"/>
             <CheckBox Content="{DynamicResource LOCCrashDisableExtension}" DockPanel.Dock="Right"
                       IsChecked="{Binding DisableExtension}"
+                      Visibility="{Binding ShowDisableCheck, Converter={StaticResource BooleanToVisibilityConverter}}"
                       VerticalAlignment="Center" Margin="0,0,10,0"/>
         </DockPanel>
         <TextBlock Text="{Binding ExtCrashDescription}"

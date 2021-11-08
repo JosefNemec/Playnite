@@ -13,6 +13,18 @@ namespace Playnite.FullscreenApp.Controls
 {
     public class ItemsControlEx : ItemsControl
     {
+        public bool HorizontalLayout
+        {
+            get { return (bool)GetValue(HorizontalLayoutProperty); }
+            set { SetValue(HorizontalLayoutProperty, value); }
+        }
+
+        public static readonly DependencyProperty HorizontalLayoutProperty =
+            DependencyProperty.Register(
+                nameof(HorizontalLayout),
+                typeof(bool),
+                typeof(ItemsControlEx));
+
         static ItemsControlEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ItemsControlEx), new FrameworkPropertyMetadata(typeof(ItemsControlEx)));
@@ -25,49 +37,101 @@ namespace Playnite.FullscreenApp.Controls
 
         private void ItemsControlEx_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Right)
+            if (HorizontalLayout)
             {
-                MoveFocus(new TraversalRequest(FocusNavigationDirection.Right));
-                e.Handled = true;
-            }
-            else if (e.Key == Key.Left)
-            {
-                MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
-                e.Handled = true;
-            }
-            else if (e.Key == Key.Down && Items.Count > 0)
-            {
-                var currentElem = (FrameworkElement)Keyboard.FocusedElement;
-                var lastItem = ItemContainerGenerator.ContainerFromIndex(Items.Count - 1);
-                if (lastItem != null)
+                if (e.Key == Key.Up)
                 {
-                    if (lastItem is ContentPresenter)
+                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
+                    e.Handled = true;
+                }
+                else if (e.Key == Key.Down)
+                {
+                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                    e.Handled = true;
+                }
+                else if (e.Key == Key.Right && Items.Count > 0)
+                {
+                    var currentElem = (FrameworkElement)Keyboard.FocusedElement;
+                    var lastItem = ItemContainerGenerator.ContainerFromIndex(Items.Count - 1);
+                    if (lastItem != null)
                     {
-                        lastItem = VisualTreeHelper.GetChild(lastItem, 0);
-                    }
+                        if (lastItem is ContentPresenter)
+                        {
+                            lastItem = VisualTreeHelper.GetChild(lastItem, 0);
+                        }
 
-                    if (lastItem == currentElem)
+                        if (lastItem == currentElem)
+                        {
+                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Right));
+                            e.Handled = true;
+                        }
+                    }
+                }
+                else if (e.Key == Key.Left && Items.Count > 0)
+                {
+                    var currentElem = (FrameworkElement)Keyboard.FocusedElement;
+                    var firstElem = ItemContainerGenerator.ContainerFromIndex(0);
+                    if (firstElem != null)
                     {
-                        MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
-                        e.Handled = true;
+                        if (firstElem is ContentPresenter)
+                        {
+                            firstElem = VisualTreeHelper.GetChild(firstElem, 0);
+                        }
+
+                        if (firstElem == currentElem)
+                        {
+                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
+                            e.Handled = true;
+                        }
                     }
                 }
             }
-            else if (e.Key == Key.Up && Items.Count > 0)
+            else
             {
-                var currentElem = (FrameworkElement)Keyboard.FocusedElement;
-                var firstElem = ItemContainerGenerator.ContainerFromIndex(0);
-                if (firstElem != null)
+                if (e.Key == Key.Right)
                 {
-                    if (firstElem is ContentPresenter)
+                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Right));
+                    e.Handled = true;
+                }
+                else if (e.Key == Key.Left)
+                {
+                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
+                    e.Handled = true;
+                }
+                else if (e.Key == Key.Down && Items.Count > 0)
+                {
+                    var currentElem = (FrameworkElement)Keyboard.FocusedElement;
+                    var lastItem = ItemContainerGenerator.ContainerFromIndex(Items.Count - 1);
+                    if (lastItem != null)
                     {
-                        firstElem = VisualTreeHelper.GetChild(firstElem, 0);
-                    }
+                        if (lastItem is ContentPresenter)
+                        {
+                            lastItem = VisualTreeHelper.GetChild(lastItem, 0);
+                        }
 
-                    if (firstElem == currentElem)
+                        if (lastItem == currentElem)
+                        {
+                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                            e.Handled = true;
+                        }
+                    }
+                }
+                else if (e.Key == Key.Up && Items.Count > 0)
+                {
+                    var currentElem = (FrameworkElement)Keyboard.FocusedElement;
+                    var firstElem = ItemContainerGenerator.ContainerFromIndex(0);
+                    if (firstElem != null)
                     {
-                        MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
-                        e.Handled = true;
+                        if (firstElem is ContentPresenter)
+                        {
+                            firstElem = VisualTreeHelper.GetChild(firstElem, 0);
+                        }
+
+                        if (firstElem == currentElem)
+                        {
+                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
+                            e.Handled = true;
+                        }
                     }
                 }
             }

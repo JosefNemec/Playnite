@@ -12,7 +12,7 @@
              d:DesignHeight="300" d:DesignWidth="502.764">
     
     <UserControl.Resources>
-        <pcon:ListToStringConverter x:Key="ListToStringConverter" />
+        <pcon:NiceListToStringConverter x:Key="ListToStringConverter" />
         <pcon:PlayTimeToStringConverter x:Key="PlayTimeToStringConverter" />
         <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
         <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
@@ -85,7 +85,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplatePlatform">
-            <TextBlock Text="{Binding Platforms, Mode=OneWay}" Style="{StaticResource TextItemStyle}"/>
+            <TextBlock Text="{Binding Platforms, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" Style="{StaticResource TextItemStyle}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateLibrary">
@@ -265,7 +265,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateSeries">
-            <TextBlock Text="{Binding Series, Mode=OneWay}" />
+            <TextBlock Text="{Binding Series, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateVersion">
@@ -289,7 +289,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateAgeRating">
-            <TextBlock Text="{Binding AgeRatings, Mode=OneWay}" />
+            <TextBlock Text="{Binding AgeRatings, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateRegion">
@@ -301,7 +301,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateRegion">
-            <TextBlock Text="{Binding Regions, Mode=OneWay}" />
+            <TextBlock Text="{Binding Regions, Mode=OneWay, Converter={StaticResource ListToStringConverter}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateSource">
@@ -381,7 +381,8 @@
               DataContext="{Binding AppSettings.ViewSettings, RelativeSource={RelativeSource AncestorType=UserControl}}"
               ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}"
               VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-              VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5">
+              VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
+              pbeh:ScrollToSelectedBehavior.Enabled="True">
         <ListView.Resources>
             <p:BindingProxy x:Key="SettingsProxy" Data="{Binding}" />
         </ListView.Resources>
@@ -415,48 +416,7 @@
             </Style>
         </ListView.ItemContainerStyle>
         <ListView.GroupStyle>
-            <GroupStyle>
-                <GroupStyle.ContainerStyle>
-                    <Style TargetType="{x:Type GroupItem}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <pc:ExpanderEx SaveGameGroupId="{Binding Name, Mode=OneWay}" IsExpanded="True">
-                                        <pc:ExpanderEx.Header>
-                                            <DockPanel Background="Transparent">
-                                                <DockPanel.ContextMenu>
-                                                    <pc:GameGroupMenu />
-                                                </DockPanel.ContextMenu>
-                                                <TextBlock VerticalAlignment="Center" Margin="0,0,5,0"
-                                                           DockPanel.Dock="Left">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                                                            <Setter Property="Text" Value="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" />
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="{x:Null}">
-                                                                    <Setter Property="Text" Value="{DynamicResource LOCNone}" />
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Name, Converter={StaticResource ObjectToStringConverter}}" Value="">
-                                                                    <Setter Property="Text" Value="{DynamicResource LOCNone}" />
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-                                                <TextBlock Text="{Binding Items.Count, Mode=OneWay, StringFormat=({0})}"
-                                                           VerticalAlignment="Center" DockPanel.Dock="Left"
-                                                           Foreground="{StaticResource TextBrush}"
-                                                           Visibility="{Binding Path=AppSettings.ShowGroupCount, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                            </DockPanel>
-                                        </pc:ExpanderEx.Header>
-                                        <ItemsPresenter />
-                                    </pc:ExpanderEx>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </GroupStyle.ContainerStyle>
-            </GroupStyle>
+            <GroupStyle ContainerStyle="{StaticResource ListViewGroupStyle}"/>
         </ListView.GroupStyle>
 
         <ListView.View>

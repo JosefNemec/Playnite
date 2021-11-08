@@ -30,6 +30,7 @@
     <Color x:Key="BackgroundToneColor">#2C3A67</Color>
     <Color x:Key="GridItemBackgroundColor">#151e3d</Color>
     <Color x:Key="PanelSeparatorColor">#662C3A67</Color>
+    <Color x:Key="WindowPanelSeparatorColor">#3355CDFF</Color>
 
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}" />
@@ -46,7 +47,9 @@
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#0a0e1e" />
     <SolidColorBrush x:Key="GridItemBackgroundBrush" Color="{DynamicResource GridItemBackgroundColor}" />
     <SolidColorBrush x:Key="PanelSeparatorBrush" Color="{DynamicResource PanelSeparatorColor}" />
+    <SolidColorBrush x:Key="WindowPanelSeparatorBrush" Color="{DynamicResource WindowPanelSeparatorColor}" />
     <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#1f2847" />
+    <SolidColorBrush x:Key="CheckBoxCheckMarkBkBrush" Color="{DynamicResource MainColorDark}" />
 
     <SolidColorBrush x:Key="PositiveRatingBrush" Color="#78ffa0" />
     <SolidColorBrush x:Key="NegativeRatingBrush" Color="#ff6b6b" />

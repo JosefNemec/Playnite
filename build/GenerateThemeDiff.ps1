@@ -96,8 +96,9 @@ try
     ExportThemeFiles $OldCommit "../source/Playnite.DesktopApp/Themes/Desktop/Default" $changeLogDir
     ExportThemeFiles $OldCommit "../source/Playnite.FullscreenApp/Themes/Fullscreen/Default"  $changeLogDir
     
-    New-ZipFromDirectory $changeLogDir (Join-Path $changeBaseLogDir "$OldVersion.zip")
-
+    New-ZipFromDirectory $changeLogDir (Join-Path $changeBaseLogDir "$OldVersion.zip")    
+    
+    $changeList = ""
     foreach ($change in $changes)
     {
         if ($change.StartsWith("M"))
@@ -109,16 +110,18 @@ try
             
             $htmlDiffFile = ($changeFileName.Replace("/","_") + ".html")
             $htmlDiffOut = Join-Path $DirffOutDir $htmlDiffFile
-            StartAndWait "c:\programs\winmerge\WinMergeU.exe" "`"$oldPath`" `"$newPath`" -minimize -noninteractive -u -cfg ReportFiles/ReportType=2 -or `"$htmlDiffOut`"" | Out-Null
+            StartAndWait $WinMergePath "`"$oldPath`" `"$newPath`" -minimize -noninteractive -u -cfg ReportFiles/ReportType=2 -or `"$htmlDiffOut`"" | Out-Null
 
             $link = "https://playnite.link/themechangelog/$OldVersion-$NewVersion/$htmlDiffFile"
-            "[$change]($link)"
+            $changeList += ("[$change]($link)" + "  `n")
         }
         else
         {
-            $change
+            $changeList += ($change + "  `n")
         }
     }
+
+    $changeList | Out-File "themediffchangelist.txt" -Encoding utf8
 }
 finally
 {

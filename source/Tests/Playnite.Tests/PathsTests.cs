@@ -116,5 +116,16 @@ namespace Playnite.Tests
                 @"e:\test2\file",
             }));
         }
+
+        [Test]
+        public void MathcesFilePattern()
+        {
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", "*.txt"));
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", "*.TXT"));
+            Assert.IsFalse(Paths.MathcesFilePattern(@"c:\test\aa.txt", "*.doc"));
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", @"c:\**\*.txt"));
+            Assert.IsFalse(Paths.MathcesFilePattern(@"c:\test\aa.txt", @"d:\**\*.txt"));
+            Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", ".doc;*.txt"));
+        }
     }
 }

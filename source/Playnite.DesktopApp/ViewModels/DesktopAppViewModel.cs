@@ -244,10 +244,19 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings = settings;
             ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
+            AppSettings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
             AppSettings.PropertyChanged += AppSettings_PropertyChanged;
             GamesStats = new DatabaseStats(database);
             InitializeCommands();
+        }
+
+        private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
+        {
+            if (!IgnoreFilterChanges)
+            {
+                ActiveFilterPreset = null;
+            }
         }
 
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
@@ -271,6 +280,14 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 SelectedGame = null;
                 SelectedGameDetails = null;
+            }
+
+            if (!IgnoreFilterChanges && ActiveFilterPreset != null)
+            {
+                if (ActiveFilterPreset.SortingOrder != null)
+                {
+                    ActiveFilterPreset = null;
+                }
             }
         }
 
@@ -340,7 +357,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             LoadSideBarItems();
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.FilterSettings);
-            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
+            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
 
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             (_) =>
@@ -608,7 +625,7 @@ namespace Playnite.DesktopApp.ViewModels
             model.OpenView();
         }
 
-        public void SelectGame(Guid id)
+        public override void SelectGame(Guid id)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;
@@ -750,10 +767,15 @@ namespace Playnite.DesktopApp.ViewModels
                 Logger.Error(e, "Failed to check for update.");
                 Dialogs.ShowErrorMessage(Resources.GetString("LOCUpdateCheckFailMessage"), Resources.GetString("LOCUpdateError"));
             }
+
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            CheckForAddonUpdates();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         public void SwitchToFullscreenMode()
         {
+            Logger.Info("Switching to Fullscreen mode.");
             if (GlobalTaskHandler.IsActive)
             {
                 Dialogs.ActivateGlobalProgress(

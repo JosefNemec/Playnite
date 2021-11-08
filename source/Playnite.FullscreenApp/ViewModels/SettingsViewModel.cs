@@ -16,6 +16,8 @@ namespace Playnite.FullscreenApp.ViewModels
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly IWindowFactory window;
         private readonly Dictionary<int, UserControl> sectionViews;
+        private IInputElement oldFocus;
+        private List<string> editedFields = new List<string>();
 
         private UserControl selectedSectionView;
         public UserControl SelectedSectionView
@@ -25,8 +27,11 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 selectedSectionView = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSubMenuOpened));
             }
         }
+
+        public bool IsSubMenuOpened { get => SelectedSectionView != null; }
 
         private bool isMenuEnabled = true;
         public bool IsMenuEnabled
@@ -83,7 +88,7 @@ namespace Playnite.FullscreenApp.ViewModels
             FullscreenAppViewModel mainModel)
         {
             this.window = window;
-
+            mainModel.AppSettings.Fullscreen.PropertyChanged += (_, e) => editedFields.AddMissing(e.PropertyName);
             sectionViews = new Dictionary<int, UserControl>()
             {
                 { 0, new Controls.SettingsSections.General(mainModel) { DataContext = this } },
@@ -104,6 +109,16 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (SelectedSectionView == null)
             {
+                if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
+                {
+                    if (Dialogs.ShowMessage(
+                        LOC.SettingsRestartAskMessage, LOC.SettingsRestartTitle,
+                        MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        PlayniteApplication.Current.Restart(new CmdLineOptions() { SkipLibUpdate = true });
+                    }
+                }
+
                 window.Close(true);
             }
             else
@@ -113,8 +128,6 @@ namespace Playnite.FullscreenApp.ViewModels
                 oldFocus?.Focus();
             }
         }
-
-        private IInputElement oldFocus;
 
         private void OpenSection(string section)
         {

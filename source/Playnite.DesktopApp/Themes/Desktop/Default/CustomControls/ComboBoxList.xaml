@@ -24,7 +24,21 @@
                 <ToggleButton x:Name="MainToggle"
                               BorderThickness="0" Focusable="False"
                               HorizontalContentAlignment="Stretch"
-                              Background="Transparent" />
+                              Background="Transparent">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                        <Border Background="Transparent">
+                                            <ContentPresenter />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
                 <Button x:Name="PART_ButtonClearFilter"
                         Margin="0,0,20,0" FontSize="18"
                         Background="Transparent" HorizontalAlignment="Right"

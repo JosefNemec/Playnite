@@ -225,13 +225,14 @@ namespace Playnite.Common
             }
         }
 
-        public static string ToJson(object obj, bool formatted = false)
+        public static string ToJson(object obj, bool formatted = false, params JsonConverter[] converters)
         {
             return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()
             {
                 Formatting = formatted ? Formatting.Indented : Formatting.None,
                 NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = JsonResolver.Global
+                ContractResolver = JsonResolver.Global,
+                Converters = converters
             });
         }
 

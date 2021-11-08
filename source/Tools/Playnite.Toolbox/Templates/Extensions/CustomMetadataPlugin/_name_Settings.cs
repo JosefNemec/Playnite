@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace _namespace_
 {
-    public class _name_Settings
+    public class _name_Settings : ObservableObject
     {
-        public string Option1 { get; set; } = string.Empty;
-        public bool Option2 { get; set; } = false;
+        private string option1 = string.Empty;
+        private bool option2 = false;
+        private bool optionThatWontBeSaved = false;
 
+        public string Option1 { get => option1; set => SetValue(ref option1, value); }
+        public bool Option2 { get => option2; set => SetValue(ref option2, value); }
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonDontSerialize` ignore attribute.
         [DontSerialize]
-        public bool OptionThatWontBeSaved { get; set; } = false;
+        public bool OptionThatWontBeSaved { get => optionThatWontBeSaved; set => SetValue(ref optionThatWontBeSaved, value); }
     }
 
     public class _name_SettingsViewModel : ObservableObject, ISettings

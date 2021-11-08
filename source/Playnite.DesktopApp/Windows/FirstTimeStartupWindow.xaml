@@ -102,7 +102,7 @@
             </TabItem>
         </TabControl>
 
-        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource NormalBorderBrush}">
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button TabIndex="3" Content="{DynamicResource LOCFinishLabel}" Name="ButtonFinish" DockPanel.Dock="Right"
                         Visibility="{Binding ShowFinishButton, Converter={StaticResource BooleanToVisibilityConverter}}"

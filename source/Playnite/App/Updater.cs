@@ -208,7 +208,7 @@ namespace Playnite
 
         private string GetUpdateManifestData(string url)
         {
-            return downloader.DownloadString(Url.Combine(url, "update.json"));
+            return downloader.DownloadString(Url.Combine(url, UpdateManifest.ServerManifestFileName));
         }
     }
 }

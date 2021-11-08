@@ -126,7 +126,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 5;
+        } = 6;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -1886,6 +1886,15 @@ namespace Playnite
                 settings.MetadataSettings.Region = new MetadataFieldSettings(
                     true, new List<Guid> { Guid.Empty });
                 settings.Version = 5;
+            }
+
+            if (settings.Version == 5)
+            {
+                settings.ViewSettings.ListViewColumns.AgeRating.Field = GameField.AgeRatings;
+                settings.ViewSettings.ListViewColumns.Platform.Field = GameField.Platforms;
+                settings.ViewSettings.ListViewColumns.Series.Field = GameField.Series;
+                settings.ViewSettings.ListViewColumns.Region.Field = GameField.Regions;
+                settings.Version = 6;
             }
 
             settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);

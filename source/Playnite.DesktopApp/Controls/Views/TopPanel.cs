@@ -165,9 +165,33 @@ namespace Playnite.DesktopApp.Controls.Views
                 LeftViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
                 RightViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
                 PanelMainItems.Children.Add(LeftViewSeparator);
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription(), out ButtonSwitchDetailsView));
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription(), out ButtonSwitchGridView));
-                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription(), out ButtonSwitchListView));
+
+                var detailsButton = AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription(), out ButtonSwitchDetailsView);
+                BindingTools.SetBinding(detailsButton,
+                    TopPanelItem.IsToggledProperty,
+                    mainModel.AppSettings.ViewSettings,
+                    nameof(ViewSettings.GamesViewType),
+                    converter: new EnumToBooleanConverter(),
+                    converterParameter: ViewType.Details);
+                PanelMainItems.Children.Add(detailsButton);
+
+                var gridButton = AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription(), out ButtonSwitchGridView);
+                BindingTools.SetBinding(gridButton,
+                    TopPanelItem.IsToggledProperty,
+                    mainModel.AppSettings.ViewSettings,
+                    nameof(ViewSettings.GamesViewType),
+                    converter: new EnumToBooleanConverter(),
+                    converterParameter: ViewType.Grid);
+                PanelMainItems.Children.Add(gridButton);
+
+                var listButton = AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription(), out ButtonSwitchListView);
+                BindingTools.SetBinding(listButton,
+                    TopPanelItem.IsToggledProperty,
+                    mainModel.AppSettings.ViewSettings,
+                    nameof(ViewSettings.GamesViewType),
+                    converter: new EnumToBooleanConverter(),
+                    converterParameter: ViewType.List);
+                PanelMainItems.Children.Add(listButton);
                 PanelMainItems.Children.Add(RightViewSeparator);
 
                 var updatesButton = AssignPanelButton("TopPanelUpdateButtonTemplate", mainModel.OpenUpdatesCommand, ResourceProvider.GetString(LOC.UpdateIsAvailableNotificationBody), out _);

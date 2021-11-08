@@ -80,7 +80,7 @@ namespace Playnite
         public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
-        public char NameGroup => GetNameGroup();
+        public char NameGroup => Game.GetNameGroup();
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;
@@ -467,18 +467,22 @@ namespace Playnite
             {
                 return null;
             }
-            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && LibraryPlugin?.LibraryIcon.IsNullOrEmpty() == false)
+
+            if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && LibraryPlugin?.LibraryIcon.IsNullOrEmpty() == false)
             {
                 return ImageSourceManager.GetImage(LibraryPlugin.LibraryIcon, cached);
             }
-            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform && Platform?.Icon.IsNullOrEmpty() == false)
+
+            if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform)
             {
-                return ImageSourceManager.GetImage(Platform.Icon, cached);
+                var plat = Game.Platforms?.FirstOrDefault(a => !a.Icon.IsNullOrEmpty());
+                if (plat != null)
+                {
+                    return ImageSourceManager.GetImage(plat.Icon, cached);
+                }
             }
-            else
-            {
-                return ImageSourceManager.GetResourceImage("DefaultGameIcon", cached, loadProperties);
-            }
+
+            return ImageSourceManager.GetResourceImage("DefaultGameIcon", cached, loadProperties);
         }
 
         public object GetDefaultCoverImage(bool cached, BitmapLoadProperties loadProperties = null)
@@ -487,14 +491,17 @@ namespace Playnite
             {
                 return null;
             }
-            else if (settings.DefaultCoverSource == DefaultCoverSourceOptions.Platform && Platform?.Cover.IsNullOrEmpty() == false)
+
+            if (settings.DefaultCoverSource == DefaultCoverSourceOptions.Platform)
             {
-                return ImageSourceManager.GetImage(Platform.Cover, cached, loadProperties);
+                var plat = Game.Platforms?.FirstOrDefault(a => !a.Cover.IsNullOrEmpty());
+                if (plat != null)
+                {
+                    return ImageSourceManager.GetImage(plat.Cover, cached);
+                }
             }
-            else
-            {
-                return ImageSourceManager.GetResourceImage("DefaultGameCover", cached, loadProperties);
-            }
+
+            return ImageSourceManager.GetResourceImage("DefaultGameCover", cached, loadProperties);
         }
 
         public string GetBackgroundImage()
@@ -503,19 +510,27 @@ namespace Playnite
             {
                 return Game.BackgroundImage;
             }
-            else if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.None)
+
+            if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.None)
             {
                 return null;
             }
-            else if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Cover && !CoverImage.IsNullOrEmpty())
+
+            if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Cover && !CoverImage.IsNullOrEmpty())
             {
                 return CoverImage;
             }
-            else if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Platform && Platform?.Background.IsNullOrEmpty() == false)
+
+            if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Platform)
             {
-                return Platform.Background;
+                var plat = Game.Platforms?.FirstOrDefault(a => !a.Background.IsNullOrEmpty());
+                if (plat != null)
+                {
+                    return plat.Background;
+                }
             }
-            else if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Library && LibraryPlugin?.LibraryBackground.IsNullOrEmpty() == false)
+
+            if (settings.DefaultBackgroundSource == DefaultBackgroundSourceOptions.Library && LibraryPlugin?.LibraryBackground.IsNullOrEmpty() == false)
             {
                 return LibraryPlugin.LibraryBackground;
             }
@@ -554,20 +569,6 @@ namespace Playnite
         public static explicit operator Game(GamesCollectionViewEntry entry)
         {
             return entry.Game;
-        }
-
-        private char GetNameGroup()
-        {
-            var nameMatch = Game.SortingName.IsNullOrEmpty() ? Game.Name : Game.SortingName;
-            if (nameMatch.IsNullOrEmpty())
-            {
-                return '#';
-            }
-            else
-            {
-                var firstChar = char.ToUpper(nameMatch[0]);
-                return char.IsLetter(firstChar) ? firstChar : '#';
-            }
         }
     }
 }

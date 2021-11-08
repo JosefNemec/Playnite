@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace Playnite.Extensions.Markup
 {
@@ -34,15 +35,32 @@ namespace Playnite.Extensions.Markup
                 return this;
             }
 
-            var pSource = PlayniteApplication.Current?.Extensions.SettingsSupportList.FirstOrDefault(a => a.SourceName == Plugin);
+            var pSource = PlayniteApplication.Current.Extensions?.SettingsSupportList.FirstOrDefault(a => a.SourceName == Plugin);
             if (pSource == null || pSource.SettingsRoot.IsNullOrEmpty())
             {
-                return DependencyProperty.UnsetValue;
+                PlayniteApplication.Current.ExtensionsLoaded += Current_ExtensionsLoaded;
+                Source = "";
+                PathRoot = "";
+                return base.ProvideValue(serviceProvider);
             }
+            else
+            {
+                Source = pSource.Source;
+                PathRoot = $"{pSource.SettingsRoot}.";
+                return base.ProvideValue(serviceProvider);
+            }
+        }
 
-            Source = pSource.Source;
-            PathRoot = pSource.SettingsRoot + '.';
-            return base.ProvideValue(serviceProvider);
+        private void Current_ExtensionsLoaded(object sender, EventArgs e)
+        {
+            PlayniteApplication.Current.ExtensionsLoaded -= Current_ExtensionsLoaded;
+            var pSource = PlayniteApplication.Current?.Extensions?.SettingsSupportList.FirstOrDefault(a => a.SourceName == Plugin);
+            if (pSource != null)
+            {
+                PathRoot = $"{pSource.SettingsRoot}.";
+                binding.Path = new PropertyPath(PathRoot + Path);
+                binding.Source = pSource.Source;
+            }
         }
     }
 }

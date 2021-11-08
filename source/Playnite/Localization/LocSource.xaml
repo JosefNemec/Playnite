@@ -40,6 +40,9 @@ We recommend saving the log file and reporting the issue to extension's develope
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extension "{0}" caused an unrecoverable error.
 
 We recommend reporting the issue to extension's developer. If the issue keeps reoccurring, disable the extension.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Unknown extension or a theme caused an unrecoverable error.
+
+We recommend disabling 3rd party add-ons, isolating the problematic one and reporting the issue to add-on's developer.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Unrecoverable error occurred.
 
 If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
@@ -410,7 +413,7 @@ Can also be changed in application settings.</sys:String>
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emulation Import Wizard</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">This wizard will guide you through the process of downloading and importing console emulators and importing emulated games.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">Keep in mind that you can always add additional emulators and/or games later via main menu (under "Library" menu for Emulator settings and "Add Games" menu for emulated games).</sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription">Below is a list of emulators that Playnite can recognize and configure automatically. You can download  emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Below is a list of emulators that Playnite can recognize and configure automatically. You can download emulator installers from their websites. Once you have the emulators installed (manually), you can import them on emulator configuration dialog.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">You can import any emulators that are installed on your PC by clicking the 'Autodetect From Folder…' button. Playnite will search the selected folder for any known emulators and provide the option to import them. You can use this button multiple times to import emulators from different folders. Emulators will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">You can import games by clicking the 'Scan Folder Using Emulator' button. Selecting the appropriate emulator will tell Playnite which file types should be scanned and imported. You can use this button multiple times to import games from different folders. Games will be added to the bottom of the current list.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">There are no emulators selected for import. You won't be able to automatically import any emulated games without configuring emulators first. Are you sure you want to continue and exit import process?</sys:String>
@@ -565,6 +568,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCAddLinkButton">Add Link</sys:String>
     <sys:String x:Key="LOCAddRom">Add ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Save Changes</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Apply field changes to game(s) being edited.</sys:String>
     <sys:String x:Key="LOCPlayAction">Play Action</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Add Play Action</sys:String>
     <sys:String x:Key="LOCAddAction">Add Action</sys:String>
@@ -754,8 +758,10 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Extension is not packaged properly.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Theme is not packaged properly.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Extension "{0}" failed to load properly.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Can't load "{0}" extension, current Playnite version is not supported.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Theme "{0}" failed to load properly.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Extension failed to load properly.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Can't load "{0}" theme, current Playnite version is not supported.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Extension failed to load properly.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Theme failed to load properly.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Theme/Extension is using unsupported API version.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
@@ -796,6 +802,8 @@ Covers: {1} mega pixels
 Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Performance Warning</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Don't Show Again</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">File with extension {0} is not compatible.</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Incompatible file extension</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Selected image file might be too large for optimal performance.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">Are you sure you want to uninstall selected theme? Uninstallation will be queued to next application start.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Built-in themes can't be uninstalled.</sys:String>
@@ -853,7 +861,7 @@ Application restart is requred to finish the process. Do you want to reset setti
 
 If you want to install or uninstall additional integrations, use "Add-ons" option from main menu.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Themes Desktop</sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren">Themes Fullscren</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Themes Fullscreen</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Searching…</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">Add-on is not compatible with this version of Playnite.</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Failed to download add-on installation package.</sys:String>
@@ -979,9 +987,15 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuImportAssignPlatform">Set platform</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Set region</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Scan folder</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Scan with emulator</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Include in bulk scan auto-scan</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">No valid scan configuration set. Make sure that all fields are set properly.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Scan configurations</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Exclude patterns from checksum scan</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Files matching specified pattern(s) won't be scanned for checksum and will be matched by file name. See emulator help page for more information.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Scan with emulator</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Name has to be set when saving new configuration.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulator or emulator profile is not set.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Directory to scan is not specified or it doesn't exists.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Scan configuration is not set properly.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Include in bulk scan auto-scan</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Failed to scan folder for emulators.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Failed to scan folder(s) for emulated games.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Hide imported</sys:String>
@@ -995,4 +1009,6 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Add scan configuration(s) with emulators to scan specific folders. Make sure that emulators are properly configured prior to importing games (via Library -> Configure Emulators menu).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Default status assigned to newly added games</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset with specified name already exists. Update preset with new settings?</sys:String>
 </ResourceDictionary>

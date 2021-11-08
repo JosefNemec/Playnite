@@ -6,6 +6,7 @@
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCMenuSoftwareTools}"
@@ -19,7 +20,7 @@
     </controls:WindowBase.Resources>
 
     <DockPanel>
-        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource NormalBorderBrush}">
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}">
             <DockPanel LastChildFill="False" Margin="5">
                 <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}" IsCancel="True"
@@ -64,18 +65,16 @@
                          Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>     
                 
                 <TextBlock Text="{DynamicResource LOCPathLabel}" Margin="5,5,5,0"  />
-                <TextBox Margin="5"
-                         pbeh:TextBoxBehavior.FileBrowserAttachment="File|*.*"
-                         Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}"/>
+                <pctrls:PathSelectionBox Margin="5" ShowFileSelector="True"
+                                         Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}"/>
                 
                 <TextBlock Text="{DynamicResource LOCArgumentsTitle}" Margin="5,5,5,0"  />
                 <TextBox Margin="5"
                          Text="{Binding Arguments, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" Margin="5,5,5,0"  />
-                <TextBox Margin="5"
-                         pbeh:TextBoxBehavior.AttachDirectoryBrowser="True"
-                         Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"/>
+                <pctrls:PathSelectionBox Margin="5" ShowDirectorySelector="True"
+                                         Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <CheckBox Content="{DynamicResource LOCToolsShowOnSidebar}" Margin="5"
                           IsChecked="{Binding ShowOnSidebar}" />

@@ -37,6 +37,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> SelectNextGameCommand { get; private set; }
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         public RelayCommand<object> CloseGameStatusCommand { get; private set; }
+        public RelayCommand SwitchToDesktopCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -330,6 +331,8 @@ namespace Playnite.FullscreenApp.ViewModels
                 GameStatusVisible = false;
                 GameListFocused = true;
             });
+
+            SwitchToDesktopCommand = new RelayCommand(() => SwitchToDesktopMode());
         }
     }
 }

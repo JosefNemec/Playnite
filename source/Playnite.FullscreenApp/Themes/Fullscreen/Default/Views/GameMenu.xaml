@@ -18,4 +18,65 @@
         <Setter Property="Padding" Value="15,15,15,15" />
         <Setter Property="Background" Value="#AA000000" />
     </Style>
+
+    <DataTemplate x:Key="GameMenuHeaderTemplate">
+        <TextBlock Text="{Binding DisplayName}"
+                   Style="{DynamicResource GameMenuHeaderText}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuPlayButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xec74;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuInstallButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef08;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuFavoriesButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xf000;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuVisibilityButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef21;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuRemoveButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xeee4;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuUninstallButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xec53;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuCustomActionButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="25" Margin="0,0,10,0"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

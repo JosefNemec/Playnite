@@ -392,7 +392,7 @@ namespace Playnite.Metadata.Providers
                 if (rowName.IndexOf("developer", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     gameInfo.Developers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).ToList();
+                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).Cast<MetadataProperty>().ToHashSet();
 
                     continue;
                 }
@@ -400,14 +400,14 @@ namespace Playnite.Metadata.Providers
                 if (rowName.IndexOf("publisher", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     gameInfo.Publishers = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).ToList();
+                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).Cast<MetadataProperty>().ToHashSet();
                     continue;
                 }
 
                 if (rowName.IndexOf("genre", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     gameInfo.Genres = rowValue.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).ToList();
+                        .Select(a => new MetadataNameProperty(Regex.Replace(a, @"\[\d+\]", "").Trim())).Cast<MetadataProperty>().ToHashSet();
                     continue;
                 }
 

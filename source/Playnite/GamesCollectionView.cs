@@ -247,6 +247,13 @@ namespace Playnite
                 {
                     return false;
                 }
+                else if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+                {
+                    if (game.GetNameGroup() != filterSettings.Name[1])
+                    {
+                        return false;
+                    }
+                }
                 else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
                 {
                     return false;

@@ -120,6 +120,8 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        internal int LastValidSelectedGameIndex;
+
         private GamesCollectionViewEntry selectedGame;
         public new GamesCollectionViewEntry SelectedGame
         {
@@ -140,6 +142,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
                 else
                 {
+                    LastValidSelectedGameIndex = GamesView.CollectionView.IndexOf(value);
                     SelectedGameDetails = new GameDetailsViewModel(value, Resources, GamesEditor, this, Dialogs);
                 }
 
@@ -480,10 +483,19 @@ namespace Playnite.FullscreenApp.ViewModels
                     FullscreenApplication.PlayBackgroundSound();
                 }
             }
+            else if (e.PropertyName == nameof(FullscreenSettings.IsMusicMuted))
+            {
+                FullscreenApplication.SetBackgroundSoundVolume(AppSettings.Fullscreen.IsMusicMuted ? 0f : AppSettings.Fullscreen.BackgroundVolume);
+            }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
         {
+            if (!IgnoreFilterChanges)
+            {
+                ActiveFilterPreset = null;
+            }
+
             OnPropertyChanged(nameof(IsSearchActive));
             OnPropertyChanged(nameof(IsExtraFilterActive));
         }
@@ -517,6 +529,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void SwitchToDesktopMode()
         {
+            Logger.Info("Switching to Desktop mode.");
             if (GlobalTaskHandler.IsActive)
             {
                 Dialogs.ActivateGlobalProgress(
@@ -696,7 +709,7 @@ namespace Playnite.FullscreenApp.ViewModels
         protected void InitializeView()
         {
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
-            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings);
+            DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             (_) =>
             {
@@ -747,7 +760,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public void SelectGame(Guid id)
+        public override void SelectGame(Guid id)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;

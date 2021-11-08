@@ -22,10 +22,13 @@ namespace TestPlugin
     /// </summary>
     public partial class TestPluginUserControl : PluginUserControl
     {
-        public TestPluginUserControl()
+        public TestPluginSettingsViewModel SettingsModel { get; set;}
+
+        public TestPluginUserControl(TestPluginSettingsViewModel settings)
         {
             InitializeComponent();
             DataContext = this;
+            SettingsModel = settings;
         }
 
         public override void GameContextChanged(Game oldContext, Game newContext)

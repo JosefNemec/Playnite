@@ -2126,5 +2126,23 @@ namespace Playnite.SDK.Models
 
             return changes;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public char GetNameGroup()
+        {
+            var nameMatch = string.IsNullOrEmpty(SortingName) ? Name : SortingName;
+            if (string.IsNullOrEmpty(nameMatch))
+            {
+                return '#';
+            }
+            else
+            {
+                var firstChar = char.ToUpper(nameMatch[0]);
+                return char.IsLetter(firstChar) ? firstChar : '#';
+            }
+        }
     }
 }

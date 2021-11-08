@@ -199,6 +199,11 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public GameScannersSettings GlobalScanSettings
+        {
+            get;
+        }
+
         public List<EmulatorDefinition> SelectableEmulatorDefinitions { get; set; }
         public IList<EmulatorDefinition> EmulatorDefinitions { get; set; }
 
@@ -320,6 +325,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingScanners = database.GameScanners.GetClone().ToObservable();
             SelectedEmulator = EditingEmulators.Count > 0 ? EditingEmulators[0] : null;
             SelectedScanner = EditingScanners.Count > 0 ? EditingScanners[0] : null;
+            GlobalScanSettings = database.GetGameScannersSettings();
         }
 
         public bool? OpenView()
@@ -386,6 +392,12 @@ namespace Playnite.DesktopApp.ViewModels
                         database.GameScanners.Update(item);
                     }
                 }
+            }
+
+            var dbSet = database.GetGameScannersSettings();
+            if (!GlobalScanSettings.IsEqualJson(dbSet))
+            {
+                database.SetGameScannersSettings(GlobalScanSettings);
             }
         }
 

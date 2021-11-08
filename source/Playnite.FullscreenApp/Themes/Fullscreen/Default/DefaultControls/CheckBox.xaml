@@ -19,7 +19,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Background="{DynamicResource ControlBackgroundDarkBrush}"
+                            <Border Background="{DynamicResource CheckBoxCheckMarkBkBrush}"
                                     VerticalAlignment="Center"
                                     BorderThickness="2" BorderBrush="{DynamicResource ControlBackgroundBrush}"
                                     Grid.Column="0" Margin="0,0,10,0" Width="24" Height="24">
@@ -44,6 +44,9 @@
 
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Visibility" Value="Visible" TargetName="CheckIcon" />
                         </Trigger>

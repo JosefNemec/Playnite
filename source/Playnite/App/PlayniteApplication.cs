@@ -41,6 +41,8 @@ namespace Playnite
         private XInputDevice xdevice;
         private System.Threading.Timer updateCheckTimer;
         private bool installingAddon = false;
+        private AddonLoadError themeLoadError = AddonLoadError.None;
+        private ThemeManifest customTheme;
 
         private bool isActive;
         public bool IsActive
@@ -58,6 +60,7 @@ namespace Playnite
             get => Updater.CurrentVersion;
         }
 
+        public event EventHandler ExtensionsLoaded;
         public ApplicationMode Mode { get; }
         public IDialogsFactory Dialogs { get; set; }
         public PlayniteSettings AppSettings { get; set; }
@@ -77,6 +80,9 @@ namespace Playnite
         public ServicesClient ServicesClient { get; private set; }
         public static bool SoundsEnabled { get; set; } = true;
         public MainViewModelBase MainModelBase { get; set; }
+
+        private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
+        public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }
 
         public PlayniteApplication()
         {
@@ -127,7 +133,11 @@ namespace Playnite
 
             try
             {
-                pipeService = new PipeService();
+                // This can fail in rare cases when switching application modes
+                // if an old instance fails to clean after itself or if it gets stuck on exit.
+                Policy.Handle<Exception>()
+                        .WaitAndRetry(3, a => TimeSpan.FromSeconds(3))
+                        .Execute(() => pipeService = new PipeService());
                 pipeService.CommandExecuted += PipeService_CommandExecuted;
                 pipeServer = new PipeServer(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
                 pipeServer.StartServer(pipeService);
@@ -206,10 +216,10 @@ namespace Playnite
                 }
 
                 var installed = ExtensionInstaller.InstallExtensionQueue();
-                var installedTheme = installed.FirstOrDefault(a => a is ThemeManifest);
-                if (installedTheme != null)
+                var installedTheme = installed.FirstOrDefault(a => a.manifest is ThemeManifest && !a.updated);
+                if (installedTheme.manifest != null)
                 {
-                    var theme = installedTheme as ThemeManifest;
+                    var theme = installedTheme.manifest as ThemeManifest;
                     if (theme.Mode == Mode)
                     {
                         if (theme.Mode == ApplicationMode.Desktop)
@@ -231,7 +241,7 @@ namespace Playnite
             ThemeManager.SetDefaultTheme(defaultTheme);
 
             // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
-            ThemeManifest customTheme = null;
+            customTheme = null;
             if (CmdLine.ForceDefaultTheme || CmdLine.SafeStartup)
             {
                 logger.Warn("Default theme forced by cmdline.");
@@ -241,7 +251,7 @@ namespace Playnite
                 var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
                 if (theme != ThemeManager.DefaultTheme.Name)
                 {
-                    customTheme = ThemeManager.GetAvailableThemes(mode).SingleOrDefault(a => a.Id == theme);
+                    customTheme = ThemeManager.GetAvailableThemes(mode).Where(a => a.Id == theme).OrderByDescending(a => a.Version).FirstOrDefault();
                     if (customTheme == null)
                     {
                         logger.Error($"Failed to apply theme {theme}, theme not found.");
@@ -268,10 +278,11 @@ namespace Playnite
             // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
             if (customTheme != null)
             {
-                if (!ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode))
+                themeLoadError = ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
+                if (themeLoadError != AddonLoadError.None)
                 {
                     ThemeManager.SetCurrentTheme(null);
-                    logger.Error($"Failed to load theme {customTheme.Name}.");
+                    logger.Error($"Failed to load theme {customTheme.Name}, {themeLoadError}.");
                 }
             }
 
@@ -426,13 +437,29 @@ namespace Playnite
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
             SDK.Data.SQLite.Init((a,b) => new Sqlite(a, b));
-            Startup();
+            if (!Startup())
+            {
+                return;
+            }
+
             logger.Info($"Application {CurrentVersion} started");
             foreach (var fail in Extensions.FailedExtensions)
             {
                 Api.Notifications.Add(new NotificationMessage(
-                    fail.DirectoryPath,
-                    ResourceProvider.GetString(LOC.SpecificExtensionLoadError).Format(fail.Name),
+                    fail.manifest.DirectoryPath,
+                    fail.error == AddonLoadError.SDKVersion ?
+                        ResourceProvider.GetString(LOC.SpecificExtensionLoadSDKError).Format(fail.manifest.Name) :
+                        ResourceProvider.GetString(LOC.SpecificExtensionLoadError).Format(fail.manifest.Name),
+                    NotificationType.Error));
+            }
+
+            if (themeLoadError != AddonLoadError.None && customTheme != null)
+            {
+                Api.Notifications.Add(new NotificationMessage(
+                    customTheme.DirectoryPath,
+                    themeLoadError == AddonLoadError.SDKVersion ?
+                        ResourceProvider.GetString(LOC.SpecificThemeLoadSDKError).Format(customTheme.Name) :
+                        ResourceProvider.GetString(LOC.SpecificThemeLoadError).Format(customTheme.Name),
                     NotificationType.Error));
             }
         }
@@ -538,7 +565,7 @@ namespace Playnite
             CurrentNative.Run();
         }
 
-        public abstract void Startup();
+        public abstract bool Startup();
 
         public bool CheckOtherInstances()
         {
@@ -878,7 +905,7 @@ namespace Playnite
                 });
             }
 
-            Database.Dispose();
+            Database?.Dispose();
             resourcesReleased = true;
         }
 
@@ -906,12 +933,24 @@ namespace Playnite
                     }
 
                     MainModelBase.UpdatesAvailable = true;
-                    updateCheckTimer.Dispose();
                 }
             }
             catch (Exception exc)
             {
                 logger.Warn(exc, "Failed to process update.");
+            }
+
+            try
+            {
+                var updates = Addons.CheckAddonUpdates(ServicesClient);
+                if (updates.HasItems())
+                {
+                    Api.Notifications.Add(MainModelBase.GetAddonUpdatesFoundMessage(updates));
+                }
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to process addon update check.");
             }
         }
 
@@ -1232,6 +1271,12 @@ namespace Playnite
                 Dialogs.ShowErrorMessage(
                     string.Format(ResourceProvider.GetString("LOCExtensionInstallFail"), e.Message), "");
             }
+        }
+
+        public void OnExtensionsLoaded()
+        {
+            ExtensionsLoaded?.Invoke(this, EventArgs.Empty);
+            OnPropertyChanged(nameof(this.ExtensionsStatusBinder));
         }
     }
 }

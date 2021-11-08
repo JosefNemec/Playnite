@@ -55,7 +55,7 @@ namespace Playnite.FullscreenApp
             this.splashScreen = splashScreen;
         }
 
-        public override void Startup()
+        public override bool Startup()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashWindow>();
@@ -71,7 +71,7 @@ namespace Playnite.FullscreenApp
                 ReleaseResources();
                 Process.Start(PlaynitePaths.DesktopExecutablePath);
                 CurrentNative.Shutdown(0);
-                return;
+                return false;
             }
 
             ConfigureApplication();
@@ -87,6 +87,7 @@ namespace Playnite.FullscreenApp
             ProcessArguments();
             InitializeAudio();
             PropertyChanged += FullscreenApplication_PropertyChanged;
+            return true;
         }
 
         public override void InstantiateApp()
@@ -151,6 +152,8 @@ namespace Playnite.FullscreenApp
         {
             Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            OnExtensionsLoaded();
+
             splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
@@ -158,11 +161,6 @@ namespace Playnite.FullscreenApp
             if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
             {
                 await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
-            }
-
-            if (!PlayniteEnvironment.InOfflineMode)
-            {
-                await MainModel.CheckForAddonUpdates();
             }
         }
         public override void InitializeNative()
@@ -304,6 +302,19 @@ namespace Playnite.FullscreenApp
                 Audio.StopPlayback(backgroundSound);
                 backgroundSound.Dispose();
                 backgroundSound = null;
+            }
+        }
+
+        public static void SetBackgroundSoundVolume(float volume)
+        {
+            if (Audio == null)
+            {
+                return;
+            }
+
+            if (backgroundSound != null)
+            {
+                backgroundSound.Volume = volume;
             }
         }
 

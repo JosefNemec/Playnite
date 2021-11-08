@@ -104,7 +104,7 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter = null)
         {
             if (canExecute == null)
             {
@@ -118,7 +118,7 @@ namespace Playnite.SDK
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public override void Execute(object parameter)
+        public override void Execute(object parameter = null)
         {
             execute();
         }

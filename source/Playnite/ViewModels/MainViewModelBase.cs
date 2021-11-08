@@ -145,6 +145,7 @@ namespace Playnite.ViewModels
         public PlayniteAPI PlayniteApi { get; set; }
         public IResourceProvider Resources { get; }
         public ExtensionFactory Extensions { get; set; }
+        public bool IgnoreFilterChanges { get; set; } = false;
 
         public MainViewModelBase(
             GameDatabase database,
@@ -209,6 +210,11 @@ namespace Playnite.ViewModels
             get => activeFilterPreset;
             set
             {
+                if (activeFilterPreset == value)
+                {
+                    return;
+                }
+
                 activeFilterPreset = value;
                 if (App.Mode == ApplicationMode.Desktop)
                 {
@@ -242,6 +248,7 @@ namespace Playnite.ViewModels
                 GamesView.IgnoreViewConfigChanges = true;
             }
 
+            IgnoreFilterChanges = true;
             var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
             var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
             filter.ApplyFilter(preset.Settings);
@@ -262,8 +269,13 @@ namespace Playnite.ViewModels
 
             if (GamesView != null)
             {
+                IgnoreFilterChanges = false;
                 GamesView.IgnoreViewConfigChanges = false;
                 GamesView.RefreshView();
+                if (GamesView.CollectionView.Count > 0)
+                {
+                    SelectGame((GamesView.CollectionView.GetItemAt(0) as GamesCollectionViewEntry).Id);
+                }
             }
         }
 
@@ -319,9 +331,25 @@ namespace Playnite.ViewModels
                 new MessageBoxToggle(LOC.FilterPresetShowOnFSTopPanel, false)
             };
 
+            var overwriteExisting = false;
             var res = Dialogs.SelectString(LOC.EnterName, string.Empty, string.Empty, options);
             if (res.Result && !res.SelectedString.IsNullOrEmpty())
             {
+                var existingPreset = Database.FilterPresets.FirstOrDefault(a => string.Equals(a.Name, res.SelectedString, StringComparison.InvariantCultureIgnoreCase));
+                if (existingPreset != null)
+                {
+                    var dialogRes = Dialogs.ShowMessage(LOC.FilterPresetNameConflict, "", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                    if (dialogRes == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
+
+                    if (dialogRes == MessageBoxResult.Yes)
+                    {
+                        overwriteExisting = true;
+                    }
+                }
+
                 var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
                 var preset = new FilterPreset
                 {
@@ -341,8 +369,18 @@ namespace Playnite.ViewModels
                     }
                 }
 
-                Database.FilterPresets.Add(preset);
-                ActiveFilterPreset = preset;
+                if (existingPreset != null && overwriteExisting)
+                {
+                    preset.Id = existingPreset.Id;
+                    Database.FilterPresets.Update(preset);
+                    ActiveFilterPreset = existingPreset;
+                }
+                else
+                {
+                    Database.FilterPresets.Add(preset);
+                    ActiveFilterPreset = preset;
+                }
+
                 OnPropertyChanged(nameof(SortedFilterPresets));
                 OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
@@ -487,6 +525,7 @@ namespace Playnite.ViewModels
                     newRegions).Select(a => a.ToGame()).ToList();
                 if (scanned.HasItems())
                 {
+                    var statusSettings = Database.GetCompletionStatusSettings();
                     if (newPlatforms.HasItems())
                     {
                         Database.Platforms.Add(newPlatforms);
@@ -495,6 +534,11 @@ namespace Playnite.ViewModels
                     if (newRegions.HasItems())
                     {
                         Database.Regions.Add(newRegions);
+                    }
+
+                    if (statusSettings.DefaultStatus != Guid.Empty)
+                    {
+                        scanned.ForEach(g => g.CompletionStatusId = statusSettings.DefaultStatus);
                     }
 
                     addedGames.AddRange(scanned);
@@ -599,6 +643,10 @@ namespace Playnite.ViewModels
         public async void CancelProgress()
         {
             await GlobalTaskHandler.CancelAndWaitAsync();
+        }
+
+        public virtual void SelectGame(Guid id)
+        {
         }
     }
 }

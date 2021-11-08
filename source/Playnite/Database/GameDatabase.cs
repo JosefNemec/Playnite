@@ -569,7 +569,14 @@ namespace Playnite.Database
             }
 
             IsOpen = true;
-            DatabaseOpened?.Invoke(this, null);
+            if (PlayniteApplication.Current != null)
+            {
+                PlayniteApplication.Current.SyncContext.Send((_) => DatabaseOpened?.Invoke(this, null), null);
+            }
+            else
+            {
+                DatabaseOpened?.Invoke(this, null);
+            }
         }
 
         private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
@@ -1192,6 +1199,16 @@ namespace Playnite.Database
             (CompletionStatuses as CompletionStatusesCollection).SetSettings(settings);
         }
 
+        public GameScannersSettings GetGameScannersSettings()
+        {
+            return (GameScanners as GameScannersCollection).GetSettings();
+        }
+
+        public void SetGameScannersSettings(GameScannersSettings settings)
+        {
+            (GameScanners as GameScannersCollection).SetSettings(settings);
+        }
+
         public static void GenerateSampleData(IGameDatabase database)
         {
             database.Platforms.Add("Windows");
@@ -1262,7 +1279,20 @@ namespace Playnite.Database
                 foreach (var rom in game.Roms)
                 {
                     var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
-                    importedRoms.AddMissing(Path.GetFullPath(path));
+                    string absPath = null;
+                    try
+                    {
+                        absPath = Path.GetFullPath(path);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to get absolute ROM path:\n{rom.Path}\n{path}");
+                    }
+
+                    if (!absPath.IsNullOrEmpty())
+                    {
+                        importedRoms.AddMissing(absPath);
+                    }
                 }
             }
 

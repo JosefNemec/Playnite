@@ -129,7 +129,7 @@ namespace Playnite
                     return null;
                 }
 
-                return manifest.Packages.OrderBy(a => a.Version).FirstOrDefault();
+                return manifest.Packages.OrderByDescending(a => a.Version).FirstOrDefault();
             }
         }
 

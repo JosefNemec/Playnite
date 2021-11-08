@@ -12,6 +12,7 @@ namespace Playnite.Extensions.Markup
 {
     public class BindingExtension : MarkupExtension
     {
+        internal Binding binding;
         public string PathRoot { get; set; }
         public object Source { get; set; }
         public string Path { get; set; }
@@ -34,7 +35,7 @@ namespace Playnite.Extensions.Markup
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            var binding = new Binding()
+            binding = new Binding()
             {
                 Path = new PropertyPath(PathRoot + Path),
                 Delay = Delay,

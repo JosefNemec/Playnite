@@ -12,32 +12,21 @@ namespace Playnite.FullscreenApp.ViewModels
 {
     public class GameDetailsViewModel : ObservableObject, IDisposable
     {
-        public class GameActionItem
-        {
-            public RelayCommandBase Command { get; set; }
-            public object CommandParameter { get; set; }
-            public string Title { get; set; }
-
-            public GameActionItem(RelayCommandBase command, string title)
-            {
-                Command = command;
-                Title = title;
-            }
-
-            public GameActionItem(RelayCommandBase command, object commandParameter, string title)
-            {
-                Command = command;
-                CommandParameter = commandParameter;
-                Title = title;
-            }
-        }
-
         private readonly IResourceProvider resources;
         private readonly GamesEditor gamesEditor;
         private readonly FullscreenAppViewModel mainModel;
         private IDialogsFactory dialogs;
 
-        public GamesCollectionViewEntry Game { get; set; }
+        private GamesCollectionViewEntry game;
+        public GamesCollectionViewEntry Game
+        {
+            get => game;
+            set
+            {
+                game = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string ContextActionDescription
         {
@@ -82,7 +71,6 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Game = gameView;
             resources = new ResourceProvider();
-            InitializeItems();
         }
 
         public GameDetailsViewModel(
@@ -99,7 +87,6 @@ namespace Playnite.FullscreenApp.ViewModels
             Game = gameView;
             Game.Game.PropertyChanged += Game_PropertyChanged;
             InitializeCommands();
-            InitializeItems();
         }
 
         public void Dispose()
@@ -109,7 +96,6 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            InitializeItems();
             OnPropertyChanged(nameof(ContextActionDescription));
         }
 
@@ -134,11 +120,6 @@ namespace Playnite.FullscreenApp.ViewModels
                     gamesEditor.PlayGame(Game.Game);
                 }
             });
-        }
-
-        public void InitializeItems()
-        {
-            var items = new List<GameActionItem>();
         }
 
         public void CheckSetup()

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Playnite.Database;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Concurrent;
@@ -663,8 +664,8 @@ namespace Playnite
             }
         }
 
-        private GroupableField selectedExplorerField = GroupableField.Library;
-        public GroupableField SelectedExplorerField
+        private ExplorerField selectedExplorerField = ExplorerField.Library;
+        public ExplorerField SelectedExplorerField
         {
             get
             {

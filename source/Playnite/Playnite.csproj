@@ -225,7 +225,6 @@
     <Compile Include="Audio.cs" />
     <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
-    <Compile Include="Behaviors\TextBoxBehaviors.cs" />
     <Compile Include="Common\CueSheet.cs" />
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />
@@ -233,6 +232,7 @@
     <Compile Include="ControlTemplateTools.cs" />
     <Compile Include="Converters\GenericTypeConverter.cs" />
     <Compile Include="Converters\ObjectEqualityToBoolConverter.cs" />
+    <Compile Include="Converters\NumericConverters.cs" />
     <Compile Include="Database\Collections\GameScannersCollection.cs" />
     <Compile Include="Database\Collections\ImportExclusionsCollection.cs" />
     <Compile Include="Database\Collections\FilterPresetsCollection.cs" />
@@ -430,8 +430,6 @@
     <Compile Include="PlayniteUriHandler.cs" />
     <Compile Include="Plugins\ExtensionFactory.cs" />
     <Compile Include="Plugins\ExtensionInstaller.cs" />
-    <Compile Include="Scripting\Batch\Batch.cs" />
-    <Compile Include="Scripting\IScriptRuntime.cs" />
     <Compile Include="Scripting\PlayniteScript.cs" />
     <Compile Include="Scripting\PowerShell\PowerShell.cs" />
     <Compile Include="Scripting\PowerShell\PowerShellScript.cs" />

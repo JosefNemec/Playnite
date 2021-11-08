@@ -18,6 +18,7 @@ using Playnite.Windows;
 using Playnite.DesktopApp.Windows;
 using Playnite.ViewModels;
 using Playnite.Emulators;
+using System.IO;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -323,18 +324,28 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void StartScan()
         {
-            var validConfigs = ScannerConfigs.Where(a =>
-                a.EmulatorId != Guid.Empty &&
-                !a.EmulatorProfileId.IsNullOrEmpty() &&
-                !a.Directory.IsNullOrEmpty());
-
-            if (!validConfigs.HasItems())
+            foreach (var config in ScannerConfigs)
             {
-                Dialogs.ShowMessage(LOC.EmuNoValidConfigSet, "", MessageBoxButton.OK);
-                return;
+                if (config.Save && config.Name.IsNullOrWhiteSpace())
+                {
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigNameError), "");
+                    return;
+                }
+
+                if (config.EmulatorId == Guid.Empty || config.EmulatorProfileId.IsNullOrEmpty())
+                {
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigNoEmulatorError), "");
+                    return;
+                }
+
+                if (config.Directory.IsNullOrEmpty() || !Directory.Exists(config.Directory))
+                {
+                    Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigDirectoryError), "");
+                    return;
+                }
             }
 
-            foreach (var config in validConfigs.Where(a => a.Save))
+            foreach (var config in ScannerConfigs.Where(a => a.Save))
             {
                 var exists = database.GameScanners.Any(c =>
                     string.Equals(c.Directory, config.Directory, StringComparison.OrdinalIgnoreCase) &&
@@ -355,19 +366,21 @@ namespace Playnite.DesktopApp.ViewModels
             newPlatforms = new List<Platform>();
             newRegions = new List<Region>();
             GameList.Clear();
+            var scanString = resources.GetString(LOC.EmuWizardScanningSpecific);
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
                 var existingGame = database.GetImportedRomFiles();
-                foreach (GameScannerConfig config in validConfigs)
+                foreach (GameScannerConfig config in ScannerConfigs)
                 {
-                    args.Text = resources.GetString(LOC.EmuWizardScanningSpecific).Format(config.Directory);
+                    args.Text = scanString.Format(config.Directory);
                     GameList.AddRange(GameScanner.Scan(
                         config,
                         database,
                         existingGame,
                         args.CancelToken,
                         newPlatforms,
-                        newRegions));
+                        newRegions,
+                        (path) => args.Text = scanString.Format(path)));
                 }
             },
             new GlobalProgressOptions(LOC.EmuWizardScanning)
@@ -378,7 +391,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (scanRes.Error != null)
             {
-                dialogs.ShowErrorMessage(LOC.EmulatedGameScanFailed + "\n" + scanRes.Error.Message, "");
+                dialogs.ShowErrorMessage(resources.GetString(LOC.EmulatedGameScanFailed) + "\n" + scanRes.Error.Message, "");
                 IsScanSetup = true;
             }
             else
@@ -433,6 +446,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void ImportGames()
         {
+            var statusSettings = database.GetCompletionStatusSettings();
             using (database.BufferedUpdate())
             {
                 foreach (var newPlat in newPlatforms)
@@ -454,6 +468,11 @@ namespace Playnite.DesktopApp.ViewModels
                 foreach (var scannedGame in GameList.Where(a => a.Import && a.Roms?.Any(r => r.Import) == true))
                 {
                     var game = scannedGame.ToGame();
+                    if (statusSettings.DefaultStatus != Guid.Empty)
+                    {
+                        game.CompletionStatusId = statusSettings.DefaultStatus;
+                    }
+
                     database.Games.Add(game);
                     ImportedGames.Add(game);
                 }

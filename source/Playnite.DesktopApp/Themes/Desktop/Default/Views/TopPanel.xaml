@@ -25,11 +25,6 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="TopPanelViewSelectionTemplate">
-        <TextBlock Text="&#xeec0;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
-    </DataTemplate>
-
     <DataTemplate x:Key="TopPanelSwitchDetailsViewTemplate">
         <TextBlock Text="&#xE145;" FontFamily="Segoe UI Symbol" FontSize="20"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -73,7 +68,9 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
                             Grid.IsSharedSizeScope="True">
-                        <ItemsPresenter />
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                        </ScrollViewer>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

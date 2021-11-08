@@ -237,7 +237,7 @@ namespace Playnite.DesktopApp.ViewModels
                     settings.DisabledPlugins?.Contains(a.Id) != true,
                     Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
                     a,
-                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
+                    extensions.FailedExtensions.Any(ext => ext.manifest.DirectoryPath.Equals(a.DirectoryPath))))
                 .OrderBy(a => a.Description.Name)
                 .ToList();
 
@@ -247,7 +247,7 @@ namespace Playnite.DesktopApp.ViewModels
                     settings.DisabledPlugins?.Contains(a.Id) != true,
                     Extensions.Plugins.Values.FirstOrDefault(b => a.DescriptionPath == b.Description.DescriptionPath)?.Plugin,
                     a,
-                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
+                    extensions.FailedExtensions.Any(ext => ext.manifest.DirectoryPath.Equals(a.DirectoryPath))))
                 .OrderBy(a => a.Description.Name)
                 .ToList();
 
@@ -257,7 +257,7 @@ namespace Playnite.DesktopApp.ViewModels
                     settings.DisabledPlugins?.Contains(a.Id) != true,
                     null,
                     a,
-                    extensions.FailedExtensions.Any(ext => ext.DirectoryPath.Equals(a.DirectoryPath))))
+                    extensions.FailedExtensions.Any(ext => ext.manifest.DirectoryPath.Equals(a.DirectoryPath))))
                 .OrderBy(a => a.Description.Name)
                 .ToList();
 

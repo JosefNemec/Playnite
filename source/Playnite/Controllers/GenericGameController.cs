@@ -36,7 +36,7 @@ namespace Playnite.Controllers
         private GameDatabase database;
         private static ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
-        private PowerShellRuntime scriptRuntime;
+        private IPowerShellRuntime scriptRuntime;
         private PowerShellRuntime playRuntime;
         private Task playTask;
         private bool isDisposed = false;
@@ -45,7 +45,7 @@ namespace Playnite.Controllers
         public GenericPlayController(
             GameDatabase db,
             Game game,
-            PowerShellRuntime scriptRuntime,
+            IPowerShellRuntime scriptRuntime,
             IPlayniteAPI playniteApi) : base(game)
         {
             execContext = SynchronizationContext.Current;

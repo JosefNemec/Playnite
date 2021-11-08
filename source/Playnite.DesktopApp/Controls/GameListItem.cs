@@ -63,14 +63,14 @@ namespace Playnite.DesktopApp.Controls
             PanelHost = Template.FindName("PART_PanelHost", this) as FrameworkElement;
             if (PanelHost != null)
             {
-                var mBinding = new MouseBinding(mainModel.StartGameCommand, new MouseGesture(MouseAction.LeftDoubleClick));
-                BindingTools.SetBinding(mBinding,
-                    MouseBinding.CommandParameterProperty,
-                    nameof(GamesCollectionViewEntry.Game));
-                PanelHost.InputBindings.Add(mBinding);
-
                 if (!DesignerProperties.GetIsInDesignMode(this))
                 {
+                    var mBinding = new MouseBinding(mainModel.StartGameCommand, new MouseGesture(MouseAction.LeftDoubleClick));
+                    BindingTools.SetBinding(mBinding,
+                        MouseBinding.CommandParameterProperty,
+                        nameof(GamesCollectionViewEntry.Game));
+                    PanelHost.InputBindings.Add(mBinding);
+
                     PanelHost.ContextMenu = new GameMenu(mainModel) { ShowStartSection = true };
                     BindingTools.SetBinding(PanelHost.ContextMenu,
                         Button.DataContextProperty,

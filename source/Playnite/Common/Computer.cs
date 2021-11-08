@@ -124,7 +124,15 @@ namespace Playnite.Common
 
         public static int GetWindowsReleaseId()
         {
-            return Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ReleaseId", ""));
+            var relVal = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ReleaseId", "");
+            if (relVal?.ToString().IsNullOrEmpty() == true)
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt32(relVal);
+            }
         }
 
         public static string GetWindowsProductName()

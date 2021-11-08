@@ -37,8 +37,7 @@
                            Content="{DynamicResource LOCSettingsAsyncImageLoading}"
                            ContentStringFormat="{}{0} *"
                            Tag="{DynamicResource LOCSettingsAsyncImageLoadingTooltip}"/>
-        <DockPanel LastChildFill="False"
-                   IsEnabled="{Binding IsChecked, ElementName=TogglePrimaryDisplayOnly, Converter={StaticResource NegateConverter}}">
+        <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCSettingsImageScalerMode}"
                        Style="{DynamicResource SettingsSectionText}" />
             <pctrls:ComboBoxEx x:Name="SelectImageScaler" DockPanel.Dock="Right"

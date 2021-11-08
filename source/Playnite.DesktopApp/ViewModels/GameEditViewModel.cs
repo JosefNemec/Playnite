@@ -733,17 +733,19 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UseGameActionsChanges)
                 {
-                    game.GameActions = EditingGame.GameActions;
+                    // Get clone here, because original collection has some WPF bound collection view source that causes #2443
+                    // This happens even after unloading game edit view, which makes no sense.
+                    game.GameActions = EditingGame.GameActions?.GetClone();
                 }
 
                 if (UseLinksChanges)
                 {
-                    game.Links = EditingGame.Links;
+                    game.Links = EditingGame.Links?.GetClone();
                 }
 
                 if (UseRomsChanges)
                 {
-                    game.Roms = EditingGame.Roms;
+                    game.Roms = EditingGame.Roms?.GetClone();
                 }
 
                 if (UseIconChanges)
@@ -885,7 +887,25 @@ namespace Playnite.DesktopApp.ViewModels
                     path = ProcessMetadataFile(new MetadataFile(path), tempFileName);
                 }
 
-                if (!path.IsNullOrEmpty() && path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                return PrepareImagePath(path);
+            }
+
+            return null;
+        }
+
+        public string PrepareImagePath(string path)
+        {
+            if (!string.IsNullOrEmpty(path))
+            {
+                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = SaveFileIconToTemp(path);
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        return string.Empty;
+                    }
+                }
+                else if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
                 {
                     path = SaveConvertedTgaToTemp(path);
                 }
@@ -896,7 +916,7 @@ namespace Playnite.DesktopApp.ViewModels
             return null;
         }
 
-        public string GetDroppedImage(DragEventArgs args)
+        public string GetDroppedImage(DragEventArgs args, List<string> compatibleExtensions)
         {
             if (args.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -904,7 +924,14 @@ namespace Playnite.DesktopApp.ViewModels
                 if (files?.Length == 1)
                 {
                     var path = files[0];
-                    if (File.Exists(path) && new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".exe" }.Contains(Path.GetExtension(path).ToLower()))
+                    var imageExtension = Path.GetExtension(path).ToLower();
+                    if (!compatibleExtensions.Contains(imageExtension))
+                    {
+                        playniteApi.Dialogs.ShowErrorMessage(string.Format(
+                            resources.GetString("LOCIncompatibleDragAndDropExtensionError"), imageExtension),
+                            resources.GetString("LOCIncompatibleDragAndDropExtensionErrorTitle"));
+                    }
+                    else if (File.Exists(path))
                     {
                         return path;
                     }
@@ -916,41 +943,20 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropIcon(DragEventArgs args)
         {
-            var path = PrepareImagePath(GetDroppedImage(args), tempIconFileName);
-            if (!path.IsNullOrEmpty())
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".tga", ".exe", ".tif" };
+            var path = PrepareImagePath(GetDroppedImage(args, compatibleExtensions), tempIconFileName);
+            if (!string.IsNullOrEmpty(path))
             {
-                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveFileIconToTemp(path);
-                    if (string.IsNullOrEmpty(path))
-                    {
-                        return;
-                    }
-                }
-
                 EditingGame.Icon = path;
-                CheckImagePerformanceRestrains(path, 512);
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedIconSize);
             }
         }
 
         public void SelectIcon()
         {
-            var path = dialogs.SelectIconFile();
+            var path = PrepareImagePath(dialogs.SelectIconFile(), tempIconFileName);
             if (!string.IsNullOrEmpty(path))
             {
-                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveFileIconToTemp(path);
-                    if (string.IsNullOrEmpty(path))
-                    {
-                        return;
-                    }
-                }
-                else if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveConvertedTgaToTemp(path);
-                }
-
                 EditingGame.Icon = path;
                 CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedIconSize);
             }
@@ -959,7 +965,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void SelectCover()
         {
             var path = PrepareImagePath(dialogs.SelectImagefile(), tempCoverFileName);
-            if (path != null)
+            if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.CoverImage = path;
                 CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedCoverSize);
@@ -968,8 +974,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropCover(DragEventArgs args)
         {
-            var path = PrepareImagePath(GetDroppedImage(args), tempCoverFileName);
-            if (!path.IsNullOrEmpty())
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif" };
+            var path = PrepareImagePath(GetDroppedImage(args, compatibleExtensions), tempCoverFileName);
+            if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.CoverImage = path;
                 CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedCoverSize);
@@ -979,18 +986,21 @@ namespace Playnite.DesktopApp.ViewModels
         public void SelectBackground()
         {
             var path = PrepareImagePath(dialogs.SelectImagefile(), tempBackgroundFileName);
-            if (!path.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.BackgroundImage = path;
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedBackgroundSize);
             }
         }
 
         public void DropBackground(DragEventArgs args)
         {
-            var path = PrepareImagePath(GetDroppedImage(args), tempBackgroundFileName);
-            if (!path.IsNullOrEmpty())
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif" };
+            var path = PrepareImagePath(GetDroppedImage(args, compatibleExtensions), tempBackgroundFileName);
+            if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.BackgroundImage = path;
+                CheckImagePerformanceRestrains(path, GameDatabase.MaximumRecommendedBackgroundSize);
             }
         }
 

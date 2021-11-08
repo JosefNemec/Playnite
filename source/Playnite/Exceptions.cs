@@ -27,11 +27,18 @@ namespace Playnite
         {
             try
             {
+                var playniteStackCalls = 0;
                 var stack = new StackTrace(exception);
                 var crashModules = new List<Module>();
                 foreach (var frame in stack.GetFrames())
                 {
-                    crashModules.AddMissing(frame.GetMethod().Module);
+                    var module = frame.GetMethod().Module;
+                    if (module.Name.StartsWith("Playnite"))
+                    {
+                        playniteStackCalls++;
+                    }
+
+                    crashModules.AddMissing(module);
                 }
 
                 if (exception.InnerException != null)
@@ -39,11 +46,17 @@ namespace Playnite
                     stack = new StackTrace(exception.InnerException);
                     foreach (var frame in stack.GetFrames())
                     {
-                        crashModules.AddMissing(frame.GetMethod().Module);
+                        var module = frame.GetMethod().Module;
+                        if (module.Name.StartsWith("Playnite"))
+                        {
+                            playniteStackCalls++;
+                        }
+
+                        crashModules.AddMissing(module);
                     }
                 }
 
-                var extDesc = extensions.Plugins.FirstOrDefault(a =>
+                var extDesc = extensions?.Plugins?.FirstOrDefault(a =>
                     crashModules.FirstOrDefault(m => m.Name ==
                         a.Value.Description.Module ||
                         Paths.AreEqual(a.Value.Description.DirectoryPath, Path.GetDirectoryName(m.Assembly.Location))) != null).Value;
@@ -57,7 +70,16 @@ namespace Playnite
                 }
                 else
                 {
-                    return new ExceptionInfo();
+                    // This usually happens if an exception occurs in XAML because of faulty custom theme.
+                    // The only stack entry would be Playnite's entry point or no entry at all.
+                    if (playniteStackCalls == 0 || playniteStackCalls == 1)
+                    {
+                        return new ExceptionInfo { IsExtensionCrash = true };
+                    }
+                    else
+                    {
+                        return new ExceptionInfo();
+                    }
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

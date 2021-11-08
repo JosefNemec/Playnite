@@ -138,11 +138,11 @@ namespace Playnite.FullscreenApp.Windows
 
             if (this != owner)
             {
+                Height = owner.ActualHeight;
+                Width = owner.ActualWidth;
                 Owner = owner;
             }
 
-            Height = owner.ActualHeight;
-            Width = owner.ActualWidth;
             result = defaultResult;
             SetStrings(messageBoxText, caption);
             DisplayIcon = icon;
@@ -197,11 +197,11 @@ namespace Playnite.FullscreenApp.Windows
 
             if (this != owner)
             {
+                Height = owner.ActualHeight;
+                Width = owner.ActualWidth;
                 Owner = owner;
             }
 
-            Height = owner.ActualHeight;
-            Width = owner.ActualWidth;
             SetStrings(messageBoxText, caption);
             DisplayIcon = icon;
             ShowOKButton = false;

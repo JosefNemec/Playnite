@@ -23,8 +23,8 @@ namespace Playnite.Toolbox
 
         public static string GenerateScriptExtension(string name, string directory)
         {
-            var extDirName = Common.Paths.GetSafePathName(name).Replace(" ", string.Empty);
-            var outDir = Path.Combine(directory, extDirName);
+            var normalizedName = Common.Paths.GetSafePathName(name).Replace(" ", string.Empty);
+            var outDir = Path.Combine(directory, normalizedName);
             if (Directory.Exists(outDir))
             {
                 throw new Exception($"Extension already exists: {outDir}");
@@ -32,6 +32,34 @@ namespace Playnite.Toolbox
 
             var templateArchive = Path.Combine(PlaynitePaths.ProgramPath, "Templates", "Extensions", "PowerShellScript.zip"); ;
             ZipFile.ExtractToDirectory(templateArchive, outDir);
+            var pluginId = Guid.NewGuid();
+            foreach (var filePath in Directory.GetFiles(outDir, "*.*", SearchOption.AllDirectories))
+            {
+                var changed = false;
+                var fileContent = File.ReadAllText(filePath, Encoding.UTF8);
+                if (fileContent.Contains(nameReplaceMask))
+                {
+                    fileContent = fileContent.Replace(nameReplaceMask, normalizedName);
+                    changed = true;
+                }
+
+                if (fileContent.Contains(guidReplaceMask))
+                {
+                    fileContent = fileContent.Replace(guidReplaceMask, pluginId.ToString());
+                    changed = true;
+                }
+
+                if (changed)
+                {
+                    File.WriteAllText(filePath, fileContent, Encoding.UTF8);
+                }
+
+                if (filePath.Contains(nameReplaceMask))
+                {
+                    File.Move(filePath, filePath.Replace(nameReplaceMask, normalizedName));
+                }
+            }
+
             return outDir;
         }
 

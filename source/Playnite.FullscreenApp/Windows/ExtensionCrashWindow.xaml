@@ -44,6 +44,7 @@
                                 x:Name="ButtonRestart" />
                         <pctrls:CheckBoxEx Content="{DynamicResource LOCCrashDisableExtension}"
                                            IsChecked="{Binding DisableExtension}"
+                                           Visibility="{Binding ShowDisableCheck, Converter={StaticResource BooleanToVisibilityConverter}}"
                                            VerticalAlignment="Center" Margin="20,0,0,0"/>
                     </StackPanel>
                 </StackPanel>

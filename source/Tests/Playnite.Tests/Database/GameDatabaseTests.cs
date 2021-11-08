@@ -184,7 +184,7 @@ namespace Playnite.Tests.Database
                 // Import based on specificication id, should use spec
                 var imported = db.ImportGame(new GameMetadata
                 {
-                    Platforms = new List<MetadataProperty> { new MetadataSpecProperty("pc_windows") }
+                    Platforms = new HashSet<MetadataProperty> { new MetadataSpecProperty("pc_windows") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("pc_windows", db.Platforms.First().SpecificationId);
@@ -195,7 +195,7 @@ namespace Playnite.Tests.Database
                 db.ClearPlatforms();
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Platforms = new List<MetadataProperty> { new MetadataSpecProperty("PC (Windows)") }
+                    Platforms = new HashSet<MetadataProperty> { new MetadataSpecProperty("PC (Windows)") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("pc_windows", db.Platforms.First().SpecificationId);
@@ -205,7 +205,7 @@ namespace Playnite.Tests.Database
                 // Field name matching test
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Platforms = new List<MetadataProperty> { new MetadataNameProperty("PC(Windows)") }
+                    Platforms = new HashSet<MetadataProperty> { new MetadataNameProperty("PC(Windows)") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("pc_windows", imported.Platforms[0].SpecificationId);
@@ -218,7 +218,7 @@ namespace Playnite.Tests.Database
                 db.Platforms.Update(plat);
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Platforms = new List<MetadataProperty> { new MetadataNameProperty("PC (Windows) 1") }
+                    Platforms = new HashSet<MetadataProperty> { new MetadataNameProperty("PC (Windows) 1") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("pc_windows", imported.Platforms[0].SpecificationId);
@@ -228,7 +228,7 @@ namespace Playnite.Tests.Database
                 // Import of uknown platform
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Platforms = new List<MetadataProperty> { new MetadataNameProperty("test") }
+                    Platforms = new HashSet<MetadataProperty> { new MetadataNameProperty("test") }
                 }, Guid.Empty);
 
                 Assert.AreEqual(null, imported.Platforms[0].SpecificationId);
@@ -249,7 +249,7 @@ namespace Playnite.Tests.Database
                 // Import based on specificication id, should use spec
                 var imported = db.ImportGame(new GameMetadata
                 {
-                    Regions = new List<MetadataProperty> { new MetadataSpecProperty("world") }
+                    Regions = new HashSet<MetadataProperty> { new MetadataSpecProperty("world") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("world", db.Regions.First().SpecificationId);
@@ -260,7 +260,7 @@ namespace Playnite.Tests.Database
                 db.ClearRegions();
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Regions = new List<MetadataProperty> { new MetadataSpecProperty("World") }
+                    Regions = new HashSet<MetadataProperty> { new MetadataSpecProperty("World") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("world", db.Regions.First().SpecificationId);
@@ -270,7 +270,7 @@ namespace Playnite.Tests.Database
                 // Field name matching test
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Regions = new List<MetadataProperty> { new MetadataNameProperty("Wo rld") }
+                    Regions = new HashSet<MetadataProperty> { new MetadataNameProperty("Wo rld") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("world", imported.Regions[0].SpecificationId);
@@ -283,7 +283,7 @@ namespace Playnite.Tests.Database
                 db.Regions.Update(region);
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Regions = new List<MetadataProperty> { new MetadataNameProperty("World 1") }
+                    Regions = new HashSet<MetadataProperty> { new MetadataNameProperty("World 1") }
                 }, Guid.Empty);
 
                 Assert.AreEqual("world", imported.Regions[0].SpecificationId);
@@ -293,7 +293,7 @@ namespace Playnite.Tests.Database
                 // Import of uknown Region
                 imported = db.ImportGame(new GameMetadata
                 {
-                    Regions = new List<MetadataProperty> { new MetadataNameProperty("test") }
+                    Regions = new HashSet<MetadataProperty> { new MetadataNameProperty("test") }
                 }, Guid.Empty);
 
                 Assert.AreEqual(null, imported.Regions[0].SpecificationId);

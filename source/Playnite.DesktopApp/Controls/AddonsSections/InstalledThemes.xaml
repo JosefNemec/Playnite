@@ -83,7 +83,7 @@
 
             <TextBlock Text="{DynamicResource LOCThemeUnsupported}" 
                                Margin="0,10,0,0" DockPanel.Dock="Top" TextWrapping="Wrap"
-                               FontWeight="Bold"
+                               Foreground="{DynamicResource WarningBrush}"
                                Visibility="{Binding IsCompatible, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
 
             <TextBlock Margin="0,10,0,0"  DockPanel.Dock="Top">
