@@ -59,7 +59,8 @@ namespace Playnite.Common
         Unknown,
         Win7,
         Win8,
-        Win10
+        Win10,
+        Win11
     }
 
     public enum HwCompany
@@ -89,7 +90,14 @@ namespace Playnite.Common
                 }
                 else if (version.Major == 10)
                 {
-                    return WindowsVersion.Win10;
+                    if (version.Build >= 22000)
+                    {
+                        return WindowsVersion.Win11;
+                    }
+                    else
+                    {
+                        return WindowsVersion.Win10;
+                    }
                 }
                 else
                 {

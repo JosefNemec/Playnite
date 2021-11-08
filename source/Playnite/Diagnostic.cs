@@ -148,7 +148,7 @@ namespace Playnite
                     // UWP app info
                     try
                     {
-                        if (Computer.WindowsVersion == WindowsVersion.Win10)
+                        if (Computer.WindowsVersion == WindowsVersion.Win10 || Computer.WindowsVersion == WindowsVersion.Win11)
                         {
                             var uwpInfoPath = Path.Combine(diagTemp, "uwp.txt");
                             var uwpApps = Programs.GetUWPApps();

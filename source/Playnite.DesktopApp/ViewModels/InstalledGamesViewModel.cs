@@ -384,7 +384,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     allApps.AddRange(installed.Select(a => new ImportableProgram(a, ProgramType.Win32)));
 
-                    if (Computer.WindowsVersion == WindowsVersion.Win10)
+                    if (Computer.WindowsVersion == WindowsVersion.Win10 || Computer.WindowsVersion == WindowsVersion.Win11)
                     {
                         allApps.AddRange(Playnite.Common.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP)));
                     }
