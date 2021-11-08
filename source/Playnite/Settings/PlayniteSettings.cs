@@ -544,22 +544,6 @@ namespace Playnite
             }
         }
 
-        private bool disableDpiAwareness = false;
-        [RequiresRestart]
-        public bool DisableDpiAwareness
-        {
-            get
-            {
-                return disableDpiAwareness;
-            }
-
-            set
-            {
-                disableDpiAwareness = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool asyncImageLoading = true;
         [RequiresRestart]
         public bool AsyncImageLoading

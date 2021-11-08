@@ -26,11 +26,6 @@
     <StackPanel Margin="20">
         <CheckBox Content="Discord Rich Presence"
                   IsChecked="{Binding Settings.DiscordPresenceEnabled}" />
-        <CheckBox Content="{DynamicResource LOCSettingsDisableDpiAwareness}"
-                  Visibility="{Binding ShowDpiSettings, Converter={StaticResource BooleanToVisibilityConverter}}"
-                  ContentStringFormat="{}{0} *"
-                  Name="CheckDisableDpiAwareness" IsChecked="{Binding Settings.DisableDpiAwareness}"
-                  Margin="0,15,0,0"/>
         <CheckBox IsChecked="{Binding Settings.ShowElevatedRightsWarning}" Margin="0,15,0,0"
                   Content="{DynamicResource LOCElevatedProcessWarningShowOption}"/>
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">

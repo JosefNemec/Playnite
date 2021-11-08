@@ -1039,54 +1039,6 @@ namespace Playnite
             });
         }
 
-        public void DisableDpiAwareness()
-        {
-            if (Computer.WindowsVersion == WindowsVersion.Win10 && Computer.GetWindowsReleaseId() >= 1903)
-            {
-                return;
-            }
-
-            try
-            {
-                logger.Info("Disabling DPI awareness.");
-                // https://stackoverflow.com/questions/13858665/disable-dpi-awareness-for-wpf-application
-                var setDpiHwnd = typeof(HwndTarget).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
-                setDpiHwnd?.SetValue(null, false);
-
-                var setProcessDpiAwareness = typeof(HwndTarget).GetProperty("ProcessDpiAwareness", BindingFlags.Static | BindingFlags.NonPublic);
-
-                // Doesn't work
-                //if (Computer.WindowsVersion == WindowsVersion.Win10 && Computer.GetWindowsReleaseId() >= 1903)
-                //{
-                //    Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName.StartsWith("WindowsBase"));
-                //    var enumType = assembly.GetType("MS.Win32.NativeMethods+PROCESS_DPI_AWARENESS");
-                //    foreach (var enumVal in Enum.GetValues(enumType))
-                //    {
-                //        if (enumVal.ToString() == "PROCESS_SYSTEM_DPI_AWARE")
-                //        {
-                //            setProcessDpiAwareness?.SetValue(null, enumVal, null);
-                //            break;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                    setProcessDpiAwareness?.SetValue(null, 1, null);
-                //}
-
-                var setDpi = typeof(UIElement).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
-                setDpi?.SetValue(null, false);
-                var setDpiXValues = (List<double>)typeof(UIElement).GetField("DpiScaleXValues", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
-                setDpiXValues?.Insert(0, 1);
-                var setDpiYValues = (List<double>)typeof(UIElement).GetField("DpiScaleYValues", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
-                setDpiYValues?.Insert(0, 1);
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to disable DPI awarness.");
-            }
-        }
-
         public bool MigrateDatabase()
         {
             if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))

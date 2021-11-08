@@ -77,11 +77,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
 
-        public bool ShowDpiSettings
-        {
-            get => Computer.WindowsVersion != WindowsVersion.Win10;
-        }
-
         public List<LoadedPlugin> GenericPlugins
         {
             get; private set;

@@ -74,10 +74,6 @@ namespace Playnite.DesktopApp
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
             ConfigureApplication();
-            if (AppSettings.DisableDpiAwareness)
-            {
-                DisableDpiAwareness();
-            }
 
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));

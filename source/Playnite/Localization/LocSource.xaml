@@ -303,7 +303,6 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Show only assigned fields on filter and explorer panels</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disable hardware acceleration</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Show hidden games in quick launch lists</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Affects Jump List and tray menu lists.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Number of quick launch items</sys:String>
