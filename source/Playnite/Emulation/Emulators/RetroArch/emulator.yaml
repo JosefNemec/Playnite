@@ -750,3 +750,17 @@ Profiles:
     ImageExtensions: [bin, ccd, chd, cue, iso, mds, zip, 7z]
     ProfileFiles: ['cores\yabause_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
+
+  - Name: PCSX2
+    StartupArguments: '-L ".\cores\pcsx2_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [elf, iso, ciso, chd, cso, bin, mdf, nrg, dump, gz, img, m3u]
+    ProfileFiles: ['cores\pcsx2_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: DuckStation
+    StartupArguments: '-L ".\cores\duckstation_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [exe, psexe, cue, bin, img, iso, chd, pbp, ecm, mds, psf, m3u]
+    ProfileFiles: ['cores\duckstation_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
