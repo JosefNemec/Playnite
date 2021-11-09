@@ -666,7 +666,7 @@ namespace Playnite
         /// </summary>
         public const string Rows = "LOCRows";
         /// <summary>
-        /// Cannot get icon if Play action is missing or is set to URL.
+        /// Couldn't get icon from Play action. There's no action of File type present.
         /// </summary>
         public const string ExecIconMissingPlayAction = "LOCExecIconMissingPlayAction";
         /// <summary>
@@ -1113,10 +1113,6 @@ namespace Playnite
         /// Use when experiencing stuttering or similar UI issues
         /// </summary>
         public const string SettingsDisableAccelerationTooltip = "LOCSettingsDisableAccelerationTooltip";
-        /// <summary>
-        /// Disable DPI Scaling
-        /// </summary>
-        public const string SettingsDisableDpiAwareness = "LOCSettingsDisableDpiAwareness";
         /// <summary>
         /// Show hidden games in quick launch lists
         /// </summary>
@@ -2857,6 +2853,10 @@ namespace Playnite
         /// Generic
         /// </summary>
         public const string ExtensionGeneric = "LOCExtensionGeneric";
+        /// <summary>
+        /// Failed to install {0} add-on.
+        /// </summary>
+        public const string AddonInstallFaild = "LOCAddonInstallFaild";
         /// <summary>
         /// Failed to install extension.
         /// </summary>

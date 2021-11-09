@@ -772,6 +772,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install add-on?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Generic</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Failed to install "{0}" add-on.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Failed to install extension.
 
 {0}</sys:String>

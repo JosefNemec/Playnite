@@ -80,6 +80,7 @@ namespace Playnite
         public ServicesClient ServicesClient { get; private set; }
         public static bool SoundsEnabled { get; set; } = true;
         public MainViewModelBase MainModelBase { get; set; }
+        public List<ExtensionInstallResult> ExtensionsInstallResult { get; set; }
 
         private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
         public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }
@@ -216,11 +217,11 @@ namespace Playnite
                     }
                 }
 
-                var installed = ExtensionInstaller.InstallExtensionQueue();
-                var installedTheme = installed.FirstOrDefault(a => a.manifest is ThemeManifest && !a.updated);
-                if (installedTheme.manifest != null)
+                ExtensionsInstallResult = ExtensionInstaller.InstallExtensionQueue();
+                var installedTheme = ExtensionsInstallResult.FirstOrDefault(a => a.InstalledManifest is ThemeManifest && !a.Updated);
+                if (installedTheme?.InstalledManifest != null)
                 {
-                    var theme = installedTheme.manifest as ThemeManifest;
+                    var theme = installedTheme.InstalledManifest as ThemeManifest;
                     if (theme.Mode == Mode)
                     {
                         if (theme.Mode == ApplicationMode.Desktop)
@@ -444,6 +445,14 @@ namespace Playnite
             }
 
             logger.Info($"Application {CurrentVersion} started");
+
+            ExtensionsInstallResult?.Where(a => a.InstallError != null).ForEach(ext =>
+                Api.Notifications.Add(new NotificationMessage(
+                    "inst_err" + ext.PackagePath,
+                    ResourceProvider.GetString(LOC.AddonInstallFaild).Format(Path.GetFileNameWithoutExtension(ext.PackagePath)) +
+                        "\n" + ext.InstallError.Message,
+                    NotificationType.Error)));
+
             foreach (var fail in Extensions.FailedExtensions)
             {
                 Api.Notifications.Add(new NotificationMessage(
