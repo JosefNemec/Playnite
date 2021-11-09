@@ -83,11 +83,15 @@ if (!($platforms.Count -gt 0))
     throw "Platforms definition file is not valid."
 }
 
+Write-OperationLog "Platforms definitions are OK"
+
 $regions = Get-Content "..\source\Playnite\Emulation\Regions.yaml" -Raw | ConvertFrom-Yaml
 if (!($regions.Count -gt 0))
 {
     throw "Regions definition file is not valid."
 }
+
+Write-OperationLog "Regions definitions are OK"
 
 Get-ChildItem "..\source\Playnite\Emulation\" -Filter "*.yaml" -Recurse | ForEach {
     $emuDef = Get-Content $_.FullName -Raw | ConvertFrom-Yaml
@@ -107,6 +111,8 @@ Get-ChildItem "..\source\Playnite\Emulation\" -Filter "*.yaml" -Recurse | ForEac
         }
     }
 }
+
+Write-OperationLog "Emulator definitions are OK"
 
 # -------------------------------------------
 #            Compile application 
