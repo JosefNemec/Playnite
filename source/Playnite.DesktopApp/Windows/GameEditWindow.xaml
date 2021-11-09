@@ -154,7 +154,7 @@
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddGenreCommand}" />
                             <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
-                                                   UseSearchBox="True"     
+                                                   ShowSearchBox="True"     
                                                    IsThreeState="{Binding IsMultiGameEdit}"
                                                    ItemsList="{Binding Genres}" />
                         </DockPanel>
@@ -219,7 +219,7 @@
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddFeatureCommand}" />
                             <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
-                                                   UseSearchBox="True"     
+                                                   ShowSearchBox="True"     
                                                    IsThreeState="{Binding IsMultiGameEdit}"
                                                    ItemsList="{Binding Features}" />
                         </DockPanel>
@@ -236,7 +236,7 @@
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddTagCommand}" />
                             <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
-                                                   UseSearchBox="True"        
+                                                   ShowSearchBox="True"        
                                                    IsThreeState="{Binding IsMultiGameEdit}"
                                                    ItemsList="{Binding Tags}" />
                         </DockPanel>

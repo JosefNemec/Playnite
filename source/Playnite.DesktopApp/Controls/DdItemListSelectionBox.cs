@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
@@ -113,15 +114,7 @@ namespace Playnite.DesktopApp.Controls
                 ).ToString());
             }
 
-            this.Loaded += DdItemListSelectionBox_Loaded;
-
             UpdateTextStatus();
-        }
-
-        public override void ClearButtonAction(RoutedEventArgs e)
-        {
-            ItemsList.SetSelection(null);
-            BoundIds = null;
         }
 
         private void UpdateTextStatus()
@@ -132,22 +125,20 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        private void DdItemListSelectionBox_Loaded(object sender, RoutedEventArgs e)
+        public override void TextSearchBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if (TextSearchBox != null)
-            {
-                BindingTools.SetBinding(TextSearchBox,
-                    SearchBox.TextProperty,
-                    ItemsList,
-                    nameof(SelectableDbItemList.SearchText),
-                    BindingMode.TwoWay,
-                    delay: 100);
-            }
+            ItemsList.SearchText = ((SearchBox)sender).Text;
         }
 
         public override void ButtonCheckedOnlyAction(object sender, RoutedEventArgs e)
         {
-            ItemsList.SearchCheckedState = (bool)((ToggleButton)sender).IsChecked;
+            ItemsList.ShowSelectedOnly = (bool)((ToggleButton)sender).IsChecked;
+        }
+
+        public override void ClearButtonAction(RoutedEventArgs e)
+        {
+            ItemsList.SetSelection(null);
+            BoundIds = null;
         }
     }
 }

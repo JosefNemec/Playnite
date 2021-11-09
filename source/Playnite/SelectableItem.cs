@@ -501,17 +501,17 @@ namespace System
     {
         private readonly bool includeNoneItem;
 
-        private bool searchCheckedState = false;
-        public bool SearchCheckedState
+        private bool showSelectedOnly = false;
+        public bool ShowSelectedOnly
         {
             get
             {
-                return searchCheckedState;
+                return showSelectedOnly;
             }
 
             set
             {
-                searchCheckedState = value;
+                showSelectedOnly = value;
                 SearchItems();
             }
         }
@@ -655,20 +655,20 @@ namespace System
             return Items.Select(a => a.Item.Id).Contains(ids);
         }
 
-        private void SearchItems()
+        public void SearchItems()
         {
-            Items.FindAll(x => !(bool)x.IsVisible).ForEach(x => x.IsVisible = true);
+           Items.ForEach(x => x.IsVisible = true);
 
-            if (SearchCheckedState)
-            {
-                Items.FindAll(x => !(bool)x.Selected || !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
-                    .ForEach(x => x.IsVisible = false);
-            }
-            else
-            {
-                Items.FindAll(x => !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
-                    .ForEach(x => x.IsVisible = false);
-            }
+           if (ShowSelectedOnly)
+           {
+               Items.FindAll(x => !(bool)x.Selected || !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                   .ForEach(x => x.IsVisible = false);
+           }
+           else
+           {
+               Items.FindAll(x => !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                   .ForEach(x => x.IsVisible = false);
+           }
         }
 
         public override string ToString()

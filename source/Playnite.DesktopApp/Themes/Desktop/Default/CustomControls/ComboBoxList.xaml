@@ -67,16 +67,15 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <Grid Grid.Row="0" Margin="5"
-                                  Visibility="{TemplateBinding UseSearchBox, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid Grid.Row="0" Margin="5" Name="PART_SearchOptions">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <SearchBox Grid.Column="0" x:Name="PART_SearchBox" Margin="-3,-3,5,-3" />
+                                <SearchBox Grid.Column="0" x:Name="PART_SearchBox" Height="35" />
 
                                 <ToggleButton Grid.Column="1" Content="&#xf00d;"
-                                              x:Name="PART_CheckedOnly"
+                                              x:Name="PART_CheckedOnly" Height="30"
                                               ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
                                               FontFamily="{DynamicResource FontIcoFont}" />
                             </Grid>
