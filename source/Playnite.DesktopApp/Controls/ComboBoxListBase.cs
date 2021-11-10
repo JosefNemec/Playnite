@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Xml.Linq;
 
@@ -15,50 +14,13 @@ namespace Playnite.DesktopApp.Controls
     [TemplatePart(Name = "PART_ItemsPanel", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ButtonClearFilter", Type = typeof(Button))]
     [TemplatePart(Name = "PART_TextFilterString", Type = typeof(TextBlock))]
-    [TemplatePart(Name = "PART_CheckedOnly", Type = typeof(TextBlock))]
-    [TemplatePart(Name = "PART_SearchBox", Type = typeof(TextBlock))]
-    [TemplatePart(Name = "PART_SearchOptions", Type = typeof(Grid))]
     public abstract class ComboBoxListBase : Control
     {
         internal ItemsControl ItemsPanel;
         internal Button ButtonClearFilter;
         internal TextBlock TextFilterString;
-        internal ToggleButton ButtonCheckedOnly;
-        internal SearchBox TextSearchBox;
-        internal Grid SearchOptions;
 
         internal bool IgnoreChanges { get; set; }
-
-        private string searchText = string.Empty;
-        public string SearchText
-        {
-            get
-            {
-                return searchText;
-            }
-
-            set
-            {
-                searchText = value;
-                if (TextSearchBox != null)
-                {
-                    TextSearchBox_KeyUp(TextSearchBox, null);
-                }
-            }
-        }
-
-        public bool ShowSearchBox
-        {
-            get => (bool)GetValue(ShowSearchBoxProperty);
-            set => SetValue(ShowSearchBoxProperty, value);
-        }
-
-        public static readonly DependencyProperty ShowSearchBoxProperty = DependencyProperty.Register(
-            nameof(ShowSearchBox),
-            typeof(bool),
-            typeof(ComboBoxListBase),            
-            new PropertyMetadata(false));
-
 
         public bool IsThreeState
         {
@@ -78,41 +40,10 @@ namespace Playnite.DesktopApp.Controls
             ButtonClearFilter = Template.FindName("PART_ButtonClearFilter", this) as Button;
             TextFilterString = Template.FindName("PART_TextFilterString", this) as TextBlock;
             ItemsPanel = Template.FindName("PART_ItemsPanel", this) as ItemsControl;
-            ButtonCheckedOnly = Template.FindName("PART_CheckedOnly", this) as ToggleButton;
-            TextSearchBox = Template.FindName("PART_SearchBox", this) as SearchBox;
-            SearchOptions = Template.FindName("PART_SearchOptions", this) as Grid;
 
             if (ButtonClearFilter != null)
             {
                 ButtonClearFilter.Click += (_, e) => ClearButtonAction(e);
-            }
-
-            if (ButtonCheckedOnly != null)
-            {
-                ButtonCheckedOnly.Click += (_, e) => ButtonCheckedOnlyAction(_, e);
-            }
-
-            if (SearchOptions != null)
-            {
-                BindingTools.SetBinding(
-                    SearchOptions,
-                    Grid.VisibilityProperty,
-                    this,
-                    nameof(ShowSearchBox),
-                    converter: new Converters.BooleanToVisibilityConverter());
-
-                BindingTools.SetBinding(
-                    TextSearchBox,
-                    SearchBox.TextProperty,
-                    this,
-                    nameof(SearchText),
-                    System.Windows.Data.BindingMode.TwoWay,
-                    delay: 100);
-            }
-
-            if (TextSearchBox != null)
-            {
-                TextSearchBox.KeyUp += TextSearchBox_KeyUp;
             }
 
             if (ItemsPanel != null)
@@ -153,14 +84,6 @@ namespace Playnite.DesktopApp.Controls
         }
 
         public virtual void ClearButtonAction(RoutedEventArgs e)
-        {
-        }
-
-        public virtual void TextSearchBox_KeyUp(object sender, KeyEventArgs e)
-        {
-        }
-
-        public virtual void ButtonCheckedOnlyAction(object sender, RoutedEventArgs e)
         {
         }
     }

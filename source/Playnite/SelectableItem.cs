@@ -657,18 +657,7 @@ namespace System
 
         public void SearchItems()
         {
-           Items.ForEach(x => x.IsVisible = true);
-
-           if (ShowSelectedOnly)
-           {
-               Items.FindAll(x => !(bool)x.Selected || !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
-                   .ForEach(x => x.IsVisible = false);
-           }
-           else
-           {
-               Items.FindAll(x => !x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
-                   .ForEach(x => x.IsVisible = false);
-           }
+           Items.ForEach(x => x.IsVisible = (ShowSelectedOnly ? (bool)x.Selected : true) && x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
         }
 
         public override string ToString()

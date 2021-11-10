@@ -14,8 +14,45 @@ using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
 {
+    [TemplatePart(Name = "PART_CheckedOnly", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "PART_SearchBox", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "PART_SearchOptions", Type = typeof(Grid))]
     public class DdItemListSelectionBox : ComboBoxListBase
     {
+        internal ToggleButton ButtonCheckedOnly;
+        internal SearchBox TextSearchBox;
+        internal Grid SearchOptions;
+
+        private string searchText = string.Empty;
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+
+            set
+            {
+                searchText = value;
+                if (TextSearchBox != null && ItemsList != null)
+                {
+                    ItemsList.SearchText = searchText;
+                }
+            }
+        }
+
+        public bool ShowSearchBox
+        {
+            get => (bool)GetValue(ShowSearchBoxProperty);
+            set => SetValue(ShowSearchBoxProperty, value);
+        }
+
+        public static readonly DependencyProperty ShowSearchBoxProperty = DependencyProperty.Register(
+            nameof(ShowSearchBox),
+            typeof(bool),
+            typeof(ComboBoxListBase),
+            new PropertyMetadata(false));
+
         public SelectableDbItemList ItemsList
         {
             get
@@ -101,6 +138,11 @@ namespace Playnite.DesktopApp.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            
+            ButtonCheckedOnly = Template.FindName("PART_CheckedOnly", this) as ToggleButton;
+            TextSearchBox = Template.FindName("PART_SearchBox", this) as SearchBox;
+            SearchOptions = Template.FindName("PART_SearchOptions", this) as Grid;
+
             if (ItemsPanel != null)
             {
                 XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
@@ -110,27 +152,38 @@ namespace Playnite.DesktopApp.Controls
                             new XAttribute(nameof(CheckBox.IsChecked), "{Binding Selected}"),
                             new XAttribute(nameof(CheckBox.Content), "{Binding Item.Name}"),
                             new XAttribute(nameof(CheckBox.IsThreeState), "{Binding IsThreeState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=DdItemListSelectionBox}}"),
+                            new XAttribute(nameof(CheckBox.Visibility), "{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"),
                             new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource ComboBoxListItemStyle}}")))
                 ).ToString());
+            }
+
+            if (ButtonCheckedOnly != null)
+            {
+                ButtonCheckedOnly.Click += (_, e) => ButtonCheckedOnlyAction(_, e);
+            }
+
+            if (SearchOptions != null)
+            {
+                BindingTools.SetBinding(
+                    SearchOptions,
+                    Grid.VisibilityProperty,
+                    this,
+                    nameof(ShowSearchBox),
+                    converter: new Converters.BooleanToVisibilityConverter());
+
+                BindingTools.SetBinding(
+                    TextSearchBox,
+                    SearchBox.TextProperty,
+                    this,
+                    nameof(SearchText),
+                    BindingMode.TwoWay,
+                    delay: 100);
             }
 
             UpdateTextStatus();
         }
 
-        private void UpdateTextStatus()
-        {
-            if (TextFilterString != null)
-            {
-                TextFilterString.Text = ItemsList?.AsString;
-            }
-        }
-
-        public override void TextSearchBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            ItemsList.SearchText = ((SearchBox)sender).Text;
-        }
-
-        public override void ButtonCheckedOnlyAction(object sender, RoutedEventArgs e)
+        public void ButtonCheckedOnlyAction(object sender, RoutedEventArgs e)
         {
             ItemsList.ShowSelectedOnly = (bool)((ToggleButton)sender).IsChecked;
         }
@@ -139,6 +192,14 @@ namespace Playnite.DesktopApp.Controls
         {
             ItemsList.SetSelection(null);
             BoundIds = null;
+        }
+
+        private void UpdateTextStatus()
+        {
+            if (TextFilterString != null)
+            {
+                TextFilterString.Text = ItemsList?.AsString;
+            }
         }
     }
 }
