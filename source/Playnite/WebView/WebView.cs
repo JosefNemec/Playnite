@@ -23,6 +23,7 @@ namespace Playnite.WebView
         public bool CanExecuteJavascriptInMainFrame => window.Browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
+        public event EventHandler<WebViewJavascriptMessageReceivedEventArgs> JavascriptMessageReceived;
 
         public WebView(int width, int height, bool useCompositionRenderer = false) : this(width, height, Colors.Transparent, useCompositionRenderer)
         {
@@ -34,6 +35,8 @@ namespace Playnite.WebView
             window = new WebViewWindow();
             window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;
             window.Browser.TitleChanged += Browser_TitleChanged;
+            window.Browser.JavascriptMessageReceived+= Browser_JavascriptMessageReceived;
+
             if (useCompositionRenderer)
             {
                 window.Browser.RenderHandler = new CompositionTargetRenderHandler(window.Browser, window.Browser.DpiScaleFactor, window.Browser.DpiScaleFactor);
@@ -136,6 +139,11 @@ namespace Playnite.WebView
                 Result = res.Result,
                 Success = res.Success
             };
+        }
+
+        private void Browser_JavascriptMessageReceived (object sender, JavascriptMessageReceivedEventArgs e)
+        {
+            JavascriptMessageReceived?.Invoke(this, new WebViewJavascriptMessageReceivedEventArgs { message = e.Message.ToString() }); 
         }
     }
 }

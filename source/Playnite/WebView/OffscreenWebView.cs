@@ -20,6 +20,7 @@ namespace Playnite.WebView
         public bool CanExecuteJavascriptInMainFrame => browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
+        public event EventHandler<WebViewJavascriptMessageReceivedEventArgs> JavascriptMessageReceived;
 
         public OffscreenWebView()
         {
@@ -40,6 +41,8 @@ namespace Playnite.WebView
             browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
             browser.LoadingStateChanged += Browser_LoadingStateChanged;
             browser.BrowserInitialized += Browser_BrowserInitialized;
+            browser.JavascriptMessageReceived += Browser_JavascriptMessageReceived;
+
             if (settings != null)
             {
                 browser.CreateBrowser(null, settings);
@@ -63,6 +66,13 @@ namespace Playnite.WebView
             }
 
             LoadingChanged?.Invoke(this, new WebViewLoadingChangedEventArgs { IsLoading = e.IsLoading });
+            NavigationChanged?.Invoke(this, new EventArgs());
+        }
+
+        private void Browser_JavascriptMessageReceived(object sender, JavascriptMessageReceivedEventArgs e)
+        {
+
+            JavascriptMessageReceived?.Invoke(this, new WebViewJavascriptMessageReceivedEventArgs { message = e.Message.ToString() });
             NavigationChanged?.Invoke(this, new EventArgs());
         }
 

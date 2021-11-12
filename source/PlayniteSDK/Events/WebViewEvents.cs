@@ -16,4 +16,17 @@ namespace Playnite.SDK.Events
         /// </summary>
         public bool IsLoading { get; set; }
     }
+
+    /// <summary>
+    /// Represents message from javascript.
+    /// </summary>
+    public class WebViewJavascriptMessageReceivedEventArgs
+    {
+        /// <summary>
+        /// Gets or sets message from javascript
+        /// </summary>
+        /// 
+        public string message { get; set; }
+    }
+
 }

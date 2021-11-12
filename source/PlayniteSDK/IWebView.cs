@@ -156,6 +156,11 @@ namespace Playnite.SDK
         event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 
         /// <summary>
+        /// Occurs when javascript post a message.
+        /// </summary>
+        event EventHandler<WebViewJavascriptMessageReceivedEventArgs> JavascriptMessageReceived;
+
+        /// <summary>
         /// Evaluates JavaScript script in the browser instance.
         /// </summary>
         /// <param name="script"></param>
