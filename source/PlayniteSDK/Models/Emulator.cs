@@ -235,6 +235,9 @@ namespace Playnite.SDK.Models
         }
 
         private bool overrideDefaultArgs;
+        /// <summary>
+        /// Gets or sets value indicating whether built-in arguments should be overriden.
+        /// </summary>
         public bool OverrideDefaultArgs
         {
             get => overrideDefaultArgs;
@@ -246,6 +249,9 @@ namespace Playnite.SDK.Models
         }
 
         private string customArguments;
+        /// <summary>
+        /// Gets or set custom emulator arguments.
+        /// </summary>
         public string CustomArguments
         {
             get => customArguments;
