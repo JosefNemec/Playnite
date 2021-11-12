@@ -258,7 +258,14 @@ namespace Playnite.Common
 
         public static void Shutdown()
         {
-            ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");
+            if (WindowsVersion == WindowsVersion.Win7)
+            {
+                ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");
+            }
+            else
+            {
+                ProcessStarter.StartProcess("shutdown.exe", "-s -hybrid -t 0");
+            }
         }
 
         public static void Restart()
