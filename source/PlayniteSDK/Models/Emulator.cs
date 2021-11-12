@@ -234,6 +234,28 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool overrideDefaultArgs;
+        public bool OverrideDefaultArgs
+        {
+            get => overrideDefaultArgs;
+            set
+            {
+                overrideDefaultArgs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string customArguments;
+        public string CustomArguments
+        {
+            get => customArguments;
+            set
+            {
+                customArguments = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Creates new instance of <see cref="BuiltInEmulatorProfile"/>.
         /// </summary>
@@ -271,6 +293,16 @@ namespace Playnite.SDK.Models
             }
 
             if (!string.Equals(PreScript, other.PreScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(CustomArguments, other.CustomArguments, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (OverrideDefaultArgs != other.OverrideDefaultArgs)
             {
                 return false;
             }

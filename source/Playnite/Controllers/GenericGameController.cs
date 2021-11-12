@@ -168,7 +168,27 @@ namespace Playnite.Controllers
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound));
                     }
 
-                    startupArgs = Game.ExpandVariables(profileDef.StartupArguments, false, null, romPath);
+                    if (action.OverrideDefaultArgs)
+                    {
+                        startupArgs = Game.ExpandVariables(action.Arguments, false, null, romPath);
+                    }
+                    else
+                    {
+                        if (builtIn.OverrideDefaultArgs)
+                        {
+                            startupArgs = Game.ExpandVariables(builtIn.CustomArguments, false, null, romPath);
+                        }
+                        else
+                        {
+                            startupArgs = Game.ExpandVariables(profileDef.StartupArguments, false, null, romPath);
+                        }
+
+                        if (!action.AdditionalArguments.IsNullOrEmpty())
+                        {
+                            startupArgs += " " + Game.ExpandVariables(action.AdditionalArguments, false, emulator.InstallDir, romPath);
+                        }
+                    }
+
                     StartEmulatorProcess(startupPath, startupArgs, startupDir, asyncExec);
                 }
             }

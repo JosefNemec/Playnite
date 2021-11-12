@@ -16,6 +16,7 @@ using Microsoft.Win32;
 using Playnite.SDK.Models;
 using System.ComponentModel;
 using Playnite.Common;
+using Playnite.Emulators;
 
 namespace Playnite.DesktopApp.Controls
 {
@@ -26,6 +27,32 @@ namespace Playnite.DesktopApp.Controls
     {
         public bool IsCurrentEmulatorProfileCustom => GameTask.EmulatorProfileId?.StartsWith(CustomEmulatorProfile.ProfilePrefix) == true;
 
+        public bool CanOverrideArgs
+        {
+            get
+            {
+                if (GameTask.EmulatorProfileId?.StartsWith(CustomEmulatorProfile.ProfilePrefix) == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    var emu = Emulators.First(a => a.Id == GameTask.EmulatorId);
+                    var emuProf = emu.BuiltinProfiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
+                    if (emuProf != null)
+                    {
+                        var def = EmulatorDefinition.GetProfile(emu.BuiltInConfigId, emuProf.BuiltInProfileName);
+                        if (def?.ScriptStartup == false)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
+
         public bool ShowCustomEmulatorArgsRow
         {
             get
@@ -35,7 +62,7 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                return GameTask.Type == GameActionType.Emulator && GameTask.OverrideDefaultArgs && IsCurrentEmulatorProfileCustom;
+                return GameTask.Type == GameActionType.Emulator && GameTask.OverrideDefaultArgs && CanOverrideArgs;
             }
         }
 
@@ -60,7 +87,7 @@ namespace Playnite.DesktopApp.Controls
                 {
                     return false;
                 }
-                else if (GameTask.Type == GameActionType.Emulator && !IsCurrentEmulatorProfileCustom)
+                else if (GameTask.Type == GameActionType.Emulator && !CanOverrideArgs)
                 {
                     return false;
                 }
@@ -82,7 +109,7 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                if (GameTask.Type == GameActionType.Emulator && !IsCurrentEmulatorProfileCustom)
+                if (GameTask.Type == GameActionType.Emulator && !CanOverrideArgs)
                 {
                     return false;
                 }
@@ -143,7 +170,7 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                if (GameTask.Type == GameActionType.Emulator && !IsCurrentEmulatorProfileCustom)
+                if (GameTask.Type == GameActionType.Emulator && !CanOverrideArgs)
                 {
                     return false;
                 }
@@ -355,14 +382,40 @@ namespace Playnite.DesktopApp.Controls
             if (GameTask?.EmulatorId != Guid.Empty && Emulators.Any(a => a.Id == GameTask?.EmulatorId))
             {
                 var emulator = Emulators.First(a => a.Id == GameTask.EmulatorId);
-                var emulatorProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
-                if (emulatorProfile != null)
+                var emulatorProfile = emulator.AllProfiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
+                if (emulatorProfile == null)
                 {
-                    SelectedEmulatorArguments = emulatorProfile.Arguments;
+                    SelectedEmulatorArguments = string.Empty;
                 }
                 else
                 {
-                    SelectedEmulatorArguments = emulator.CustomProfiles?.FirstOrDefault()?.Arguments;
+                    if (emulatorProfile is CustomEmulatorProfile customProfile)
+                    {
+                        SelectedEmulatorArguments = customProfile.Arguments;
+                    }
+                    else if (emulatorProfile is BuiltInEmulatorProfile builtInProfile)
+                    {
+                        if (builtInProfile.OverrideDefaultArgs)
+                        {
+                            SelectedEmulatorArguments = builtInProfile.CustomArguments;
+                        }
+                        else
+                        {
+                            var def = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtInProfile.BuiltInProfileName);
+                            if (def?.ScriptStartup == false)
+                            {
+                                SelectedEmulatorArguments = def.StartupArguments;
+                            }
+                            else
+                            {
+                                SelectedEmulatorArguments = string.Empty;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SelectedEmulatorArguments = string.Empty;
+                    }
                 }
             }
             else

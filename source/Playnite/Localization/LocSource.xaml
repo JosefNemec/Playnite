@@ -660,6 +660,8 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCOther">Other</sys:String>
     <sys:String x:Key="LOCThemes">Themes</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Built-in Arguments</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Custom Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Override Emulator Arguments</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Play action</sys:String>

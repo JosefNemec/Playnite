@@ -92,6 +92,9 @@
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                     <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
+                                <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
                                 <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
                                     <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
@@ -184,7 +187,7 @@
                                                 Visibility="{Binding Data.SelectedBuiltinProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToVisibilityConverter}}">
                                         <TabItem Header="{DynamicResource LOCGeneralLabel}">
                                             <controls:GridEx KeyboardNavigation.TabNavigation="Local" Margin="3"
-                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="5">
+                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="7">
                                                 <!--Name-->
                                                 <TextBlock Text="{DynamicResource LOCNameLabel}" />
                                                 <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
@@ -194,33 +197,44 @@
                                                           ItemsSource="{Binding Data.SelectedEmulatorBuiltInProfiles, Source={StaticResource Proxy}}" />
                                                 <!--Platforms-->
                                                 <TextBlock Text="{DynamicResource LOCPlatformsTitle}" />
-                                                <TextBlock TextWrapping="Wrap" Text="{Binding Data.SelectedBuiltInProfilePlatforms, Source={StaticResource Proxy}}" />
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding Data.SelectedBuiltInProfilePlatforms, Source={StaticResource Proxy}}"
+                                                           Margin="0,10,0,10"/>
+                                                
                                                 <!--Arguments-->
-                                                <TextBlock Text="{DynamicResource LOCArgumentsTitle}" />
-                                                <TextBlock TextWrapping="Wrap">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                <TextBlock Text="{DynamicResource LOCBuiltinArguments}"                                                           
+                                                           Visibility="{Binding OverrideDefaultArgs, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                                                <TextBox IsReadOnly="True"
+                                                         Visibility="{Binding OverrideDefaultArgs, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                                                    <TextBox.Style>
+                                                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                                             <Setter Property="VerticalAlignment" Value="Center" />
-                                                            <Setter Property="Margin" Value="0,10,10,10" />
                                                             <Setter Property="Text" Value="{Binding Data.SelectedBuiltInProfileDefinition.StartupArguments, Source={StaticResource Proxy}}" />
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.StartupArguments, Source={StaticResource Proxy}}" Value="{x:Null}">
+                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.ScriptStartup, Source={StaticResource Proxy}}" Value="{StaticResource True}">
                                                                     <Setter Property="Text" Value="{DynamicResource LOCEmulatorFunctionHandledByScript}" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
+                                                    </TextBox.Style>
+                                                </TextBox>                                                
+                                                <!--Custom Arguments-->
+                                                <TextBlock Text="{DynamicResource LOCOverrideEmulatorArguments}"
+                                                           Visibility="{Binding Data.SelectedBuiltInProfileDefinition.ScriptStartup, Source={StaticResource Proxy}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+                                                <CheckBox IsChecked="{Binding OverrideDefaultArgs}" Name="CheckOverBuiltInArguments"
+                                                          Visibility="{Binding Data.SelectedBuiltInProfileDefinition.ScriptStartup, Source={StaticResource Proxy}, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                                                <TextBlock Text="{DynamicResource LOCCustomArguments}"
+                                                           Visibility="{Binding OverrideDefaultArgs, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                                <TextBox Text="{Binding CustomArguments, UpdateSourceTrigger=PropertyChanged}"
+                                                         Visibility="{Binding OverrideDefaultArgs, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                                 <!--FileTypes-->
                                                 <TextBlock Text="{DynamicResource LOCSupportedFilesTitle}" />
                                                 <TextBlock TextWrapping="Wrap">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                                                             <Setter Property="VerticalAlignment" Value="Center" />
-                                                            <Setter Property="Margin" Value="0,10,10,10" />
                                                             <Setter Property="Text" Value="{Binding Data.SelectedBuiltInProfileDefinition.ImageExtensions, Converter={StaticResource ListToStringConverter}, Source={StaticResource Proxy}}" />
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.ImageExtensions, Source={StaticResource Proxy}}" Value="{x:Null}">
+                                                                <DataTrigger Binding="{Binding Data.SelectedBuiltInProfileDefinition.ScriptStartup, Source={StaticResource Proxy}}" Value="{StaticResource True}">
                                                                     <Setter Property="Text" Value="{DynamicResource LOCEmulatorFunctionHandledByScript}" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
@@ -257,7 +271,7 @@
                                             </Grid>
                                         </TabItem>
                                     </TabControl>
-
+                                    
                                     <TabControl DataContext="{Binding Data.SelectedCustomProfile, Source={StaticResource Proxy}}" Grid.Column="1"
                                                 Visibility="{Binding Data.SelectedCustomProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToVisibilityConverter}}">
                                         <TabItem Header="{DynamicResource LOCGeneralLabel}">
