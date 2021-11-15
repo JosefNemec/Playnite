@@ -30,6 +30,8 @@ namespace Playnite.FullscreenApp.API
             }
         }
 
+        public DesktopView ActiveDesktopView => DesktopView.Details;
+
         public MainViewAPI(FullscreenAppViewModel mainModel)
         {
             this.mainModel = mainModel;

@@ -229,6 +229,7 @@ namespace TestPlugin
         {
             if (args.Name == "TestUserControl")
             {
+                logger.Warn(PlayniteApi.MainView.ActiveDesktopView.ToString());
                 return new TestPluginUserControl(Settings);
             }
 

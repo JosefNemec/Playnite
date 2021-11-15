@@ -30,6 +30,8 @@ namespace Playnite.DesktopApp.API
             }
         }
 
+        public DesktopView ActiveDesktopView => (DesktopView)mainModel.AppSettings.ViewSettings.GamesViewType;
+
         public MainViewAPI(DesktopAppViewModel mainModel)
         {
             this.mainModel = mainModel;
