@@ -299,6 +299,9 @@ namespace Playnite.Metadata
                             continue;
                         }
 
+                        var dataModified = false;
+                        game.PropertyChanged += (_, __) => dataModified = true;
+
                         if (game != null)
                         {
                             progressCallback?.Invoke(game, i, games.Count);
@@ -543,8 +546,9 @@ namespace Playnite.Metadata
                         }
 
                         // Just to be sure check if somebody didn't remove game while downloading data
-                        if (database.Games.FirstOrDefault(a => a.Id == games[i].Id) != null)
+                        if (database.Games.FirstOrDefault(a => a.Id == games[i].Id) != null && dataModified)
                         {
+                            game.Modified = DateTime.Now;
                             database.Games.Update(game);
                         }
                         else
