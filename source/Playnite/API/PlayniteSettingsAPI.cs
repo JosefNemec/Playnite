@@ -26,6 +26,18 @@ namespace Playnite.API
         }
     }
 
+    public class CompletionStatusSettignsApi : ICompletionStatusSettignsApi
+    {
+        private readonly GameDatabase db;
+        public CompletionStatusSettignsApi(GameDatabase database)
+        {
+            db = database;
+        }
+
+        public Guid DefaultStatus => db.GetCompletionStatusSettings().DefaultStatus;
+        public Guid PlayedStatus => db.GetCompletionStatusSettings().DefaultStatus;
+    }
+
     public class PlayniteSettingsAPI : IPlayniteSettingsAPI
     {
         private readonly PlayniteSettings settings;
@@ -56,12 +68,14 @@ namespace Playnite.API
         public bool SidebarVisible => settings.ShowSidebar;
         public Dock SidebarPosition => settings.SidebarPosition;
         public IFullscreenSettingsAPI Fullscreen { get; }
+        public ICompletionStatusSettignsApi CompletionStatus { get; }
 
         public PlayniteSettingsAPI(PlayniteSettings settings, GameDatabase db)
         {
             this.settings = settings;
             this.db = db;
             Fullscreen = new FullscreenSettingsAPI(settings.Fullscreen);
+            CompletionStatus = new CompletionStatusSettignsApi(db);
         }
 
         public bool GetGameExcludedFromImport(string gameId, Guid libraryId)

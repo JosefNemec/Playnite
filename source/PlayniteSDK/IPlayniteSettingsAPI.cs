@@ -20,6 +20,22 @@ namespace Playnite.SDK
     }
 
     /// <summary>
+    /// Describes interafce for completion status related settings.
+    /// </summary>
+    public interface ICompletionStatusSettignsApi
+    {
+        /// <summary>
+        /// Gets ID of status to be assigned to newly added games.
+        /// </summary>
+        Guid DefaultStatus { get; }
+
+        /// <summary>
+        /// Gets ID of status to be assigned when a game is played for the first time.
+        /// </summary>
+        Guid PlayedStatus { get; }
+    }
+
+    /// <summary>
     /// Describes application settings API.
     /// </summary>
     public interface IPlayniteSettingsAPI
@@ -149,6 +165,11 @@ namespace Playnite.SDK
         /// Gets Fullscreen mode related settings.
         /// </summary>
         IFullscreenSettingsAPI Fullscreen { get; }
+
+        /// <summary>
+        /// Gets completion status related settings.
+        /// </summary>
+        ICompletionStatusSettignsApi CompletionStatus { get; }
 
         /// <summary>
         /// Checks if game is added on import exclusion list.
