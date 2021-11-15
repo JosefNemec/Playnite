@@ -32,6 +32,8 @@ namespace Playnite.DesktopApp.API
 
         public DesktopView ActiveDesktopView => (DesktopView)mainModel.AppSettings.ViewSettings.GamesViewType;
 
+        public List<Game> FilteredGames => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList();
+
         public MainViewAPI(DesktopAppViewModel mainModel)
         {
             this.mainModel = mainModel;
@@ -58,6 +60,11 @@ namespace Playnite.DesktopApp.API
             {
                 mainModel.SelectGame(game.Id);
             }
+        }
+
+        public void SelectGames(IEnumerable<Guid> gameIds)
+        {
+            mainModel.SelectGames(gameIds);
         }
     }
 }

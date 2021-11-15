@@ -42,6 +42,11 @@ namespace Playnite.SDK
         IEnumerable<Game> SelectedGames { get; }
 
         /// <summary>
+        /// Gets list of games currently available in game list.
+        /// </summary>
+        List<Game> FilteredGames { get; }
+
+        /// <summary>
         /// Opens settings view for specified plugin.
         /// </summary>
         /// <param name="pluginId">Plugin ID.</param>
@@ -58,5 +63,11 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="gameId">Game's database ID.</param>
         void SelectGame(Guid gameId);
+
+        /// <summary>
+        /// Selects multiple games.
+        /// </summary>
+        /// <param name="gameIds">List of game IDs to select.</param>
+        void SelectGames(IEnumerable<Guid> gameIds);
     }
 }

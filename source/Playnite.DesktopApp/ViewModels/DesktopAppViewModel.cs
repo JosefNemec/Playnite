@@ -628,7 +628,19 @@ namespace Playnite.DesktopApp.ViewModels
         public override void SelectGame(Guid id)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
-            SelectedGame = viewEntry;
+            if (viewEntry != null)
+            {
+                SelectedGame = viewEntry;
+            }
+        }
+
+        public void SelectGames(IEnumerable<Guid> gameIds)
+        {
+            var entries = GamesView.Items.Where(a => gameIds.Contains(a.Game.Id));
+            if (entries.HasItems())
+            {
+                SelectedGamesBinder = entries.Cast<object>().ToList();
+            }
         }
 
         protected virtual void OnClosing(CancelEventArgs args)
