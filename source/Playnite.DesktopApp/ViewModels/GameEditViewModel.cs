@@ -479,6 +479,20 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            if (EditingGame.GameActions.HasItems())
+            {
+                foreach (var action in EditingGame.GameActions)
+                {
+                    if (action.TrackingMode == TrackingMode.Directory && action.TrackingPath.IsNullOrWhiteSpace())
+                    {
+                        dialogs.ShowErrorMessage(
+                            resources.GetString(LOC.EmptyTrackingFolderError),
+                            resources.GetString(LOC.InvalidGameData));
+                        return;
+                    }
+                }
+            }
+
             if (UseNameChanges)
             {
                 if (string.IsNullOrWhiteSpace(EditingGame.Name))

@@ -2110,6 +2110,10 @@ namespace Playnite
         /// </summary>
         public const string EmptyGameNameError = "LOCEmptyGameNameError";
         /// <summary>
+        /// Game action tracking directory cannot be empty.
+        /// </summary>
+        public const string EmptyTrackingFolderError = "LOCEmptyTrackingFolderError";
+        /// <summary>
         /// Game name cannot be empty before searching metadata.
         /// </summary>
         public const string EmptyGameNameMetaSearchError = "LOCEmptyGameNameMetaSearchError";
@@ -2409,6 +2413,14 @@ namespace Playnite
         /// Emulator Arguments
         /// </summary>
         public const string EmulatorArguments = "LOCEmulatorArguments";
+        /// <summary>
+        /// Built-in Arguments
+        /// </summary>
+        public const string BuiltinArguments = "LOCBuiltinArguments";
+        /// <summary>
+        /// Custom Arguments
+        /// </summary>
+        public const string CustomArguments = "LOCCustomArguments";
         /// <summary>
         /// Additional Emulator Arguments
         /// </summary>
@@ -2854,7 +2866,7 @@ namespace Playnite
         /// </summary>
         public const string ExtensionGeneric = "LOCExtensionGeneric";
         /// <summary>
-        /// Failed to install {0} add-on.
+        /// Failed to install "{0}" add-on.
         /// </summary>
         public const string AddonInstallFaild = "LOCAddonInstallFaild";
         /// <summary>
@@ -3142,7 +3154,7 @@ namespace Playnite
         /// </summary>
         public const string AddonAlreadyInstalled = "LOCAddonAlreadyInstalled";
         /// <summary>
-        /// No add-on updates available.
+        /// No new add-on updates found.
         /// </summary>
         public const string AddonNoAddonsAvailable = "LOCAddonNoAddonsAvailable";
         /// <summary>

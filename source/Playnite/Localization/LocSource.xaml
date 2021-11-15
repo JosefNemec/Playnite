@@ -585,6 +585,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCOpenPlaynite">Open Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profile Settings</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Game name cannot be empty.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Game action tracking directory cannot be empty.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Game name cannot be empty before searching metadata.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Invalid game data</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Enter valid web URL starting with http:// or https://</sys:String>
