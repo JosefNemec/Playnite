@@ -27,6 +27,7 @@ using Playnite.SDK.Events;
 using System.Windows.Threading;
 using System.Net;
 using Playnite.Common.Web;
+using System.ServiceProcess;
 
 namespace Playnite
 {
@@ -473,6 +474,34 @@ namespace Playnite
                     NotificationType.Error));
             }
 
+            try
+            {
+                if (AppSettings.ShowNahimicServiceWarning)
+                {
+                    if (ServiceController.GetServices().FirstOrDefault(a =>
+                        (a.ServiceName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true ||
+                         a.DisplayName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true) &&
+                        a.Status != ServiceControllerStatus.Stopped) != null)
+                    {
+                        var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
+                        var dontShowResponse = new MessageBoxOption(LOC.DontShowAgainTitle);
+                        var res = Dialogs.ShowMessage(
+                            LOC.NahimicServiceWarning, "",
+                            MessageBoxImage.Warning,
+                            new List<MessageBoxOption> { okResponse, dontShowResponse });
+                        if (res == dontShowResponse)
+                        {
+                            AppSettings.ShowNahimicServiceWarning = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception nahExc)
+            {
+                // ServiceController.GetServices() can apparently blow up on Win32Exception sometimes
+                logger.Error(nahExc, "Failed to check for Nahimic service.");
+            }
+
             if (PlayniteEnvironment.IsElevated && AppSettings.ShowElevatedRightsWarning)
             {
                 var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
@@ -480,11 +509,7 @@ namespace Playnite
                 var res = Dialogs.ShowMessage(
                     LOC.ElevatedProcessWarning, "",
                     MessageBoxImage.Warning,
-                    new List<MessageBoxOption>
-                    {
-                        okResponse,
-                        dontShowResponse
-                    });
+                    new List<MessageBoxOption> { okResponse, dontShowResponse });
                 if (res == dontShowResponse)
                 {
                     AppSettings.ShowElevatedRightsWarning = false;

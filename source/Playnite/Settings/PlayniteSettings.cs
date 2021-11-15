@@ -1695,6 +1695,17 @@ namespace Playnite
             }
         }
 
+        private bool showNahimicServiceWarning = true;
+        public bool ShowNahimicServiceWarning
+        {
+            get => showNahimicServiceWarning;
+            set
+            {
+                showNahimicServiceWarning = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool showElevatedRightsWarning = true;
         public bool ShowElevatedRightsWarning
         {

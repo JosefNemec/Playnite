@@ -3662,6 +3662,10 @@ namespace Playnite
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
         /// <summary>
+        /// Nahimic service has been detected to be running on your system. This service is know to cause serious rendering issues to Playnite (and other apps).        
+        /// </summary>
+        public const string NahimicServiceWarning = "LOCNahimicServiceWarning";
+        /// <summary>
         /// Playnite is running with elevated privileges (as an administrator). This is not recommended since it gives elevated privileges to all installed extensions and all games/apps started from Playnite!
         /// </summary>
         public const string ElevatedProcessWarning = "LOCElevatedProcessWarning";
