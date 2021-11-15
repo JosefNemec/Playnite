@@ -556,12 +556,11 @@ namespace Playnite.Plugins
 
         private void Controllers_Starting(object sender, OnGameStartingEventArgs args)
         {
-            var callbackArgs = new SDK.Events.OnGameStartingEventArgs { Game = database.Games[args.Game.Id] };
             foreach (var script in Scripts)
             {
                 try
                 {
-                    script.OnGameStarting(callbackArgs);
+                    script.OnGameStarting(args);
                 }
                 catch (Exception e)
                 {
@@ -573,7 +572,7 @@ namespace Playnite.Plugins
             {
                 try
                 {
-                    plugin.Plugin.OnGameStarting(callbackArgs);
+                    plugin.Plugin.OnGameStarting(args);
                 }
                 catch (Exception e)
                 {
@@ -590,7 +589,12 @@ namespace Playnite.Plugins
                 return;
             }
 
-            var callbackArgs = new SDK.Events.OnGameStartedEventArgs { Game = database.Games[args.Source.Game.Id] };
+            var callbackArgs = new OnGameStartedEventArgs
+            {
+                Game = database.Games[args.Source.Game.Id],
+                SourceAction = (args.Source as GenericPlayController)?.SourceGameAction?.GetClone()
+            };
+
             foreach (var script in Scripts)
             {
                 try

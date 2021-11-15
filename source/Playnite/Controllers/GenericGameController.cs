@@ -41,6 +41,7 @@ namespace Playnite.Controllers
         private Task playTask;
         private bool isDisposed = false;
         private EmulatorProfile currentEmuProfile;
+        internal GameAction SourceGameAction { get; private set; }
 
         public GenericPlayController(
             GameDatabase db,
@@ -81,6 +82,7 @@ namespace Playnite.Controllers
                 throw new Exception("Uknown play action configuration.");
             }
 
+            SourceGameAction = action;
             emulator = emulator.GetClone();
             emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
 
@@ -371,6 +373,7 @@ namespace Playnite.Controllers
                 throw new Exception("Cannot start emulator using this configuration.");
             }
 
+            SourceGameAction = playAction;
             var gameClone = Game.GetClone();
             var action = playAction.GetClone();
             if (gameClone.Roms.HasItems())

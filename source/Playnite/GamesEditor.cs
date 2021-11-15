@@ -253,7 +253,11 @@ namespace Playnite
                 controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
-                controllers.InvokeOnStarting(this, new SDK.Events.OnGameStartingEventArgs { Game = game.GetClone() });
+                controllers.InvokeOnStarting(this, new SDK.Events.OnGameStartingEventArgs
+                {
+                    Game = game.GetClone(),
+                    SourceAction = (playAction as GameAction)?.GetClone()
+                });
 
                 if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
                 {

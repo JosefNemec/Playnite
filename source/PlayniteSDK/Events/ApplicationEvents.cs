@@ -86,6 +86,11 @@ namespace Playnite.SDK.Events
         /// Gets or sets game object initiating the event.
         /// </summary>
         public Game Game { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets custom game action used to start the game.
+        /// </summary>
+        public GameAction SourceAction { get; internal set; }
     }
 
     /// <summary>
@@ -97,6 +102,11 @@ namespace Playnite.SDK.Events
         /// Gets or sets game object initiating the event.
         /// </summary>
         public Game Game { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets custom game action used to start the game.
+        /// </summary>
+        public GameAction SourceAction { get; internal set; }
     }
 
     /// <summary>

@@ -60,11 +60,13 @@ namespace TestPlugin
         public override void OnGameStarted(OnGameStartedEventArgs args)
         {
             logger.Info($"TestPluginDev OnGameStarted {args.Game.Name}");
+            logger.Warn(args.SourceAction?.Name);
         }
 
         public override void OnGameStarting(OnGameStartingEventArgs args)
         {
             logger.Info($"TestPluginDev OnGameStarting {args.Game.Name}");
+            logger.Warn(args.SourceAction?.Name);
         }
 
         public override void OnGameStopped(OnGameStoppedEventArgs args)
