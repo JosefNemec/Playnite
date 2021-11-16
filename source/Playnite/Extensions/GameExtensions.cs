@@ -127,7 +127,7 @@ namespace Playnite
                     }
                 }
             }
-            if (string.Equals(Path.GetExtension(path), ".url", StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(Path.GetExtension(path), ".url", StringComparison.OrdinalIgnoreCase))
             {
                 var urlData = IniParser.Parse(File.ReadAllLines(path));
                 var shortcut = urlData["InternetShortcut"];
