@@ -40,9 +40,9 @@ We recommend saving the log file and reporting the issue to extension's develope
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extension "{0}" caused an unrecoverable error.
 
 We recommend reporting the issue to extension's developer. If the issue keeps reoccurring, disable the extension.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Uknown extension or a theme caused an unrecoverable error.
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Unknown extension or a theme caused an unrecoverable error.
 
-We recommend disabling 3rd party add-ons, isolating problematic one and reporting the issue to add-on's developer.</sys:String>
+We recommend disabling 3rd party add-ons, isolating the problematic one and reporting the issue to add-on's developer.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Unrecoverable error occurred.
 
 If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
@@ -688,6 +688,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCMetadataDiffCurrent">Current</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">New</sys:String>
     <sys:String x:Key="LOCTestScript">Test script</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Show only selected items.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Save as default</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Add to Favorites</sys:String>

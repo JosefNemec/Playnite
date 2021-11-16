@@ -296,6 +296,13 @@ Profiles:
     ProfileFiles: ['cores\genesis_plus_gx_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
+  - Name: Genesis Plus GX Wide
+    StartupArguments: '-L ".\cores\genesis_plus_gx_wide_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_gamegear, sega_mastersystem, sega_cd, sega_genesis]
+    ImageExtensions: [mdx, md, smd, gen, bin, cue, iso, sms, gg, sg, 68k, chd, zip, 7z]
+    ProfileFiles: ['cores\genesis_plus_gx_wide_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
   - Name: gpSP
     StartupArguments: '-L ".\cores\gpsp_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_gameboyadvance]
@@ -679,6 +686,13 @@ Profiles:
     Platforms: [atari_2600]
     ImageExtensions: [a26, bin, zip, 7z]
     ProfileFiles: ['cores\stella2014_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: SwanStation
+    StartupArguments: '-L ".\cores\swanstation_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [exe, psexe, cue, bin, img, iso, chd, pbp, ecm, mds, psf, m3u]
+    ProfileFiles: ['cores\swanstation_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
   - Name: TempGBA

@@ -11,23 +11,17 @@ namespace Playnite.Tests
     [TestFixture]
     public class StringExtensionsTests
     {
-        [Test]
-        public void NormalizeGameNameTest()
+        [TestCase("Middle-earth™: Shadow of War™", "Middle-earth: Shadow of War")]
+        [TestCase("Command®   & Conquer™ Red_Alert 3™ : Uprising©:_Best Game", "Command & Conquer Red Alert 3: Uprising: Best Game")]
+        [TestCase("Witcher 3, The", "The Witcher 3")]
+        [TestCase("Pokemon.Red.[US].[l33th4xor].Test.[22]", "Pokemon Red Test")]
+        [TestCase("Pokemon.Red.[US].(l33th 4xor).Test.(22)", "Pokemon Red Test")]
+        [TestCase("[PROTOTYPE]™", "[PROTOTYPE]")]
+        [TestCase("(PROTOTYPE2)™", "(PROTOTYPE2)")]
+        public void NormalizeGameNameTest(string input, string expectedOutput)
         {
-            Assert.AreEqual("Middle-earth: Shadow of War",
-                StringExtensions.NormalizeGameName("Middle-earth™: Shadow of War™"));
-
-            Assert.AreEqual("Command & Conquer Red Alert 3: Uprising: Best Game",
-                StringExtensions.NormalizeGameName("Command®   & Conquer™ Red_Alert 3™ : Uprising©:_Best Game"));
-
-            Assert.AreEqual("The Witcher 3",
-                StringExtensions.NormalizeGameName("Witcher 3, The"));
-
-            Assert.AreEqual("Pokemon Red Test",
-                StringExtensions.NormalizeGameName("Pokemon.Red.[US].[l33th4xor].Test.[22]"));
-
-            Assert.AreEqual("Pokemon Red Test",
-                StringExtensions.NormalizeGameName("Pokemon.Red.[US].(l33th 4xor).Test.(22)"));
+            string output = StringExtensions.NormalizeGameName(input);
+            Assert.AreEqual(expectedOutput, output);
         }
 
         [Test]
