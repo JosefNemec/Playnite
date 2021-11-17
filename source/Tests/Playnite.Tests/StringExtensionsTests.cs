@@ -110,11 +110,6 @@ namespace Playnite.Tests
         [TestCase("An Usual Game", "Usual Game")]
         public void ConvertToSortableNameTest(string input, string expected)
         {
-            Assert.AreEqual("Witcher 03", StringExtensions.ConvertToSortableName("The Witcher 3"));
-            Assert.AreEqual("Witcher 03", StringExtensions.ConvertToSortableName("the Witcher 3"));
-            Assert.AreEqual("Game", StringExtensions.ConvertToSortableName("A Game"));
-            Assert.AreEqual("Usual Game", StringExtensions.ConvertToSortableName("An Usual Game"));
-            Assert.AreEqual("AnUsual Game", StringExtensions.ConvertToSortableName("AnUsual Game"));
             var output = input.ConvertToSortableName();
             Assert.AreEqual(expected, output);
         }
