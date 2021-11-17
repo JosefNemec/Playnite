@@ -324,7 +324,6 @@ namespace System
             return match.Value;
         }
 
-        //There's unicode forms of roman numerals but I haven't seen them in the wild in use in game titles, so I'm ignoring them for now
         private static Dictionary<char, int> RomanNumeralValues = new Dictionary<char, int>
         {
             { 'I', 1 }, { 'V', 5 }, { 'X', 10 }, { 'L', 50 }, { 'C', 100 }, { 'D', 500 }, { 'M', 1000 },
@@ -332,41 +331,27 @@ namespace System
             {'Ⅰ', 1}, {'Ⅱ', 2}, {'Ⅲ', 3}, {'Ⅳ', 4}, {'Ⅴ', 5}, {'Ⅵ', 6}, {'Ⅶ', 7}, {'Ⅷ', 8}, {'Ⅸ', 9}, {'Ⅹ', 10}, {'Ⅺ', 11}, {'Ⅻ', 12}, {'Ⅼ', 50}, {'Ⅽ', 100}, {'Ⅾ', 500}, {'Ⅿ', 1000},
             //unicode lowercase
             {'ⅰ', 1}, {'ⅱ', 2}, {'ⅲ', 3}, {'ⅳ', 4}, {'ⅴ', 5}, {'ⅵ', 6}, {'ⅶ', 7}, {'ⅷ', 8}, {'ⅸ', 9}, {'ⅹ', 10}, {'ⅺ', 11}, {'ⅻ', 12}, {'ⅼ', 50}, {'ⅽ', 100}, {'ⅾ', 500}, {'ⅿ', 1000},
+            //unicode big/exotic numbers
+            {'ↀ', 1000}, {'ↁ', 5000}, {'ↂ', 10000}, {'Ↄ', 100}, {'ↄ', 100}, {'ↅ', 6}, {'ↆ', 50 }, {'ↇ', 50000}, {'ↈ', 100000 }
         };
         //TODO: figure out if a number IS a roman numeral or if roman numerals are its components
         public static int ConvertRomanNumeralToInt(string input)
         {
-            char? prevChar = null;
-            var numericalValues = new Stack<int>();
-            foreach (char c in input)
-            {
-                int value = RomanNumeralValues[c];
-
-                //group by character, eg III=3, XX=20
-                if (prevChar == c)
-                {
-                    value += numericalValues.Pop();
-                }
-
-                numericalValues.Push(value);
-
-                prevChar = c;
-            }
-
             int output = 0;
-            int? numberToTheRight = null;
-            //Since this is a stack, this will go through grouped number values of the roman numerals right to left
-            foreach (int v in numericalValues)
+            int? biggestNumberToTheRight = null;
+            for (int i = input.Length - 1; i >= 0; i--)
             {
-                if (v < numberToTheRight)
+                char c = input[i];
+                int value = RomanNumeralValues[c];
+                if (value < biggestNumberToTheRight)
                 {
-                    output -= v;
+                    output -= value;
                 }
-                else if (v > numberToTheRight || numberToTheRight == null)
+                else
                 {
-                    output += v;
+                    output += value;
+                    biggestNumberToTheRight = value;
                 }
-                numberToTheRight = v;
             }
             return output;
         }
