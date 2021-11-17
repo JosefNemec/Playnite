@@ -286,6 +286,8 @@ namespace System
         /// </summary>
         private static int NumberLength = 2;
 
+        private static string[] ExcludedRomanNumerals = new[] { "XXL", "XXX", "D", "DD", "DM", "MII", "MIX", "MX", "MC", "LLC" };
+
         public SortableNameConverter(IEnumerable<string> articles, bool batchOperation = false)
         {
             Articles = articles ?? throw new ArgumentNullException(nameof(articles));
@@ -294,11 +296,12 @@ namespace System
             if (batchOperation)
                 options |= RegexOptions.Compiled;
 
-            //(?!^) prevents the numerical matches from happening at the start of the string (for example for X-COM or XIII)
+            //(?<!\w|^) prevents the numerical matches from happening at the start of the string (for example for X-COM or XIII) and attached to a word
+            //\u2160-\u2188 is the unicode range of roman numerals listed in RomanNumeralValues
             //using [0-9] here instead of \d because \d also matches ٠١٢٣٤٥٦٧٨٩ and I don't know what to do with those           
             //the (?i) is a modifier that makes the rest of the regex (to the right of it) case insensitive
             //see https://www.regular-expressions.info/modifiers.html
-            _regex = new Regex($@"(?!^)\b((?<roman>[MDCLXVI\u2160-\u217F]+)|(?<arabic>[0-9]+))\b|(?i)^(?<article>{articlesPattern})\s+", options);
+            _regex = new Regex($@"(?<!\w|^)((?<roman>(?<!\.)[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)^(?<article>{articlesPattern})\s+", options);
         }
 
         public string Convert(string input)
@@ -308,9 +311,23 @@ namespace System
 
         private string MatchEvaluator(Match match)
         {
-            Group matchedGroup = match.Groups.Cast<Group>().Skip(1).SingleOrDefault(g => g.Success);
             if (match.Groups["roman"].Success)
             {
+                if (match.Value == "I")
+                {
+                    if (match.Index + 2 == match.Captures[0].Length)
+                    {
+                        return "1".PadLeft(NumberLength, '0');
+                    }
+                    else //if the I isn't at the end of the string, ignore it
+                    {
+                        return match.Value;
+                    }
+                }
+                else if (ExcludedRomanNumerals.Contains(match.Value))
+                {
+                    return match.Value;
+                }
                 return ConvertRomanNumeralToInt(match.Value).ToString(new string('0', NumberLength));
             }
             else if (match.Groups["arabic"].Success)
@@ -334,6 +351,12 @@ namespace System
             //unicode big/exotic numbers
             {'ↀ', 1000}, {'ↁ', 5000}, {'ↂ', 10000}, {'Ↄ', 100}, {'ↄ', 100}, {'ↅ', 6}, {'ↆ', 50 }, {'ↇ', 50000}, {'ↈ', 100000 }
         };
+
+        /// <summary>
+        /// Convert a number from Roman numerals to an integer
+        /// </summary>
+        /// <param name="input">The roman numeral(s). Beware: this is not validated. Stuff like IVX will return nonsense numbers.</param>
+        /// <returns></returns>
         //TODO: figure out if a number IS a roman numeral or if roman numerals are its components
         public static int ConvertRomanNumeralToInt(string input)
         {

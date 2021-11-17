@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Playnite;
+using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +23,6 @@ namespace Playnite.Tests
         {
             string output = StringExtensions.NormalizeGameName(input);
             Assert.AreEqual(expectedOutput, output);
-        }
-
-        [Test]
-        public void ConvertToSortableName()
-        {
-            Assert.AreEqual("Witcher 3", StringExtensions.ConvertToSortableName("The Witcher 3"));
-            Assert.AreEqual("Witcher 3", StringExtensions.ConvertToSortableName("the Witcher 3"));
-            Assert.AreEqual("Game", StringExtensions.ConvertToSortableName("A Game"));
-            Assert.AreEqual("Usual Game", StringExtensions.ConvertToSortableName("An Usual Game"));
-            Assert.AreEqual("AnUsual Game", StringExtensions.ConvertToSortableName("AnUsual Game"));
         }
 
         [Test]
@@ -101,24 +92,46 @@ namespace Playnite.Tests
         [TestCase("Final Fantasy XIII-2", "Final Fantasy 13-02")]
         [TestCase("Final Fantasy Ⅻ", "Final Fantasy 12")] //Ⅻ is a single unicode character here
         [TestCase("FINAL FANTASY X/X-2 HD Remaster", "FINAL FANTASY 10/10-02 HD Remaster")]
+        [TestCase("Warhammer ↂↇ", "Warhammer 40000")]
         [TestCase("The Jungle Book", "Jungle Book")]
         [TestCase("Carmageddon 2: Carpocalypse Now", "Carmageddon 02: Carpocalypse Now")]
         [TestCase("SOULCALIBUR IV", "SOULCALIBUR 04")]
         [TestCase("Quake III: Team Arena", "Quake 03: Team Arena")]
-        [TestCase("THE KING OF FIGHTERS XIII STEAM EDITION", "KING OF FIGHTERS 13 STEAM EDITION")]
+        [TestCase("THE KING OF FIGHTERS XIV STEAM EDITION", "KING OF FIGHTERS 14 STEAM EDITION")]
         [TestCase("A Hat in Time", "Hat in Time")]
         [TestCase("Battlefield 1942", "Battlefield 1942")]
         [TestCase("Battlefield V", "Battlefield 05")] //with the Battlefield series' numbering, ordering is going to be messed up no matter what, so this is acceptable
-        [TestCase("Gobliiins", "Gobliiins")]
         [TestCase("12 is Better Than 6", "12 is Better Than 06")] //edge case, should be acceptable
-        [TestCase("XIII", "XIII")] //this and the following should be exempt from numeral parsing and padding
-        [TestCase("X: Beyond the Frontier", "X: Beyond the Frontier")]
-        [TestCase("X3: Terran Conflict", "X3: Terran Conflict")]
-        [TestCase("X-COM", "X-COM")]
+        [TestCase("Tales of Monkey Island: Chapter 1 - Launch of the Screaming Narwhal", "Tales of Monkey Island: Chapter 01 - Launch of the Screaming Narwhal")]
+        [TestCase("KOBOLD: Chapter I", "KOBOLD: Chapter 01")]
+        [TestCase("The Witcher 3", "Witcher 03")]
+        [TestCase("the Witcher 3", "Witcher 03")]
+        [TestCase("A Game", "Game")]
+        [TestCase("An Usual Game", "Usual Game")]
         public void ConvertToSortableNameTest(string input, string expected)
         {
+            Assert.AreEqual("Witcher 03", StringExtensions.ConvertToSortableName("The Witcher 3"));
+            Assert.AreEqual("Witcher 03", StringExtensions.ConvertToSortableName("the Witcher 3"));
+            Assert.AreEqual("Game", StringExtensions.ConvertToSortableName("A Game"));
+            Assert.AreEqual("Usual Game", StringExtensions.ConvertToSortableName("An Usual Game"));
+            Assert.AreEqual("AnUsual Game", StringExtensions.ConvertToSortableName("AnUsual Game"));
             var output = input.ConvertToSortableName();
             Assert.AreEqual(expected, output);
+        }
+
+        [TestCase("SHENZHEN I/O")]
+        [TestCase("XIII")]
+        [TestCase("X: Beyond the Frontier")]
+        [TestCase("X3: Terran Conflict")]
+        [TestCase("X-COM")]
+        [TestCase("Gobliiins")]
+        [TestCase("Before I Forget")]
+        [TestCase("A.I.M. Racing")]
+        [TestCase("S.T.A.L.K.E.R.: Shadow of Chernobyl")]
+        [TestCase("AnUsual Game")]
+        public void SortableNameIsUnchanged(string input)
+        {
+            ConvertToSortableNameTest(input, input);
         }
 
         [TestCase("I", 1)]
