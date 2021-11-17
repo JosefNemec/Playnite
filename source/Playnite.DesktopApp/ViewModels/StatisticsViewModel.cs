@@ -119,6 +119,7 @@ namespace Playnite.DesktopApp.ViewModels
             new FilterSection(GameField.Regions, LOC.RegionsLabel),
             new FilterSection(GameField.Source, LOC.SourcesLabel),
             new FilterSection(GameField.CompletionStatus, LOC.CompletionStatus),
+            new FilterSection(GameField.IsInstalled, LOC.GameIsInstalledTitle)
         };
 
         private FilterSection selectedFilter;
@@ -291,6 +292,9 @@ namespace Playnite.DesktopApp.ViewModels
                 case GameField.CompletionStatus:
                     FilterObjects = new List<FilterObject>(database.UsedCompletionStatuses.Select(a => database.CompletionStatuses[a]).OrderBy(a => a.Name).Select(a => new FilterObject(a)));
                     break;
+                case GameField.IsInstalled:
+                    FilterObjects = new List<FilterObject>() { new FilterObject(true, "Installed"), new FilterObject(false, "Not installed") };
+                    break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -413,6 +417,8 @@ namespace Playnite.DesktopApp.ViewModels
                     return game.SourceId == ((DatabaseObject)SelectedFilterObject.Value).Id;
                 case GameField.CompletionStatus:
                     return game.CompletionStatusId == ((DatabaseObject)SelectedFilterObject.Value).Id;
+                case GameField.IsInstalled:
+                    return game.IsInstalled == (bool)SelectedFilterObject.Value;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {
