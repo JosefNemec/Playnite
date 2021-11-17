@@ -33,18 +33,15 @@ namespace System
             }
         }
 
-        public static string ConvertToSortableName(string name)
+        public static string ConvertToSortableName(this string name)
         {
             if (string.IsNullOrEmpty(name))
             {
                 return string.Empty;
             }
 
-            var newName = name;
-            newName = Regex.Replace(newName, @"^the\s+", "", RegexOptions.IgnoreCase);
-            newName = Regex.Replace(newName, @"^a\s+", "", RegexOptions.IgnoreCase);
-            newName = Regex.Replace(newName, @"^an\s+", "", RegexOptions.IgnoreCase);
-            return newName;
+            var converter = new SortableNameConverter(new[] { "The", "A", "An" });
+            return converter.Convert(name);
         }
 
         public static string RemoveTrademarks(this string str, string remplacement = "")
@@ -275,6 +272,103 @@ namespace System
             int @charsUntilStringEnd = str.Length - startSearchFromIndex;
             resultStringBuilder.Append(str, startSearchFromIndex, @charsUntilStringEnd);
             return resultStringBuilder.ToString();
+        }
+    }
+
+    public class SortableNameConverter
+    {
+        public IEnumerable<string> Articles { get; }
+
+        private Regex _regex;
+
+        /// <summary>
+        /// The minimum string length of numbers. If 4, XXIII or 23 will turn into 0023.
+        /// </summary>
+        private static int NumberLength = 2;
+
+        public SortableNameConverter(IEnumerable<string> articles, bool batchOperation = false)
+        {
+            Articles = articles ?? throw new ArgumentNullException(nameof(articles));
+            string articlesPattern = string.Join("|", articles.Select(Regex.Escape));
+            var options = RegexOptions.ExplicitCapture;
+            if (batchOperation)
+                options |= RegexOptions.Compiled;
+
+            //(?!^) prevents the numerical matches from happening at the start of the string (for example for X-COM or XIII)
+            //using [0-9] here instead of \d because \d also matches ٠١٢٣٤٥٦٧٨٩ and I don't know what to do with those           
+            //the (?i) is a modifier that makes the rest of the regex (to the right of it) case insensitive
+            //see https://www.regular-expressions.info/modifiers.html
+            _regex = new Regex($@"(?!^)\b((?<roman>[MDCLXVI\u2160-\u217F]+)|(?<arabic>[0-9]+))\b|(?i)^(?<article>{articlesPattern})\s+", options);
+        }
+
+        public string Convert(string input)
+        {
+            return _regex.Replace(input, MatchEvaluator);
+        }
+
+        private string MatchEvaluator(Match match)
+        {
+            Group matchedGroup = match.Groups.Cast<Group>().Skip(1).SingleOrDefault(g => g.Success);
+            if (match.Groups["roman"].Success)
+            {
+                return ConvertRomanNumeralToInt(match.Value).ToString(new string('0', NumberLength));
+            }
+            else if (match.Groups["arabic"].Success)
+            {
+                return match.Value.PadLeft(NumberLength, '0');
+            }
+            else if (match.Groups["article"].Success)
+            {
+                return string.Empty;
+            }
+            return match.Value;
+        }
+
+        //There's unicode forms of roman numerals but I haven't seen them in the wild in use in game titles, so I'm ignoring them for now
+        private static Dictionary<char, int> RomanNumeralValues = new Dictionary<char, int>
+        {
+            { 'I', 1 }, { 'V', 5 }, { 'X', 10 }, { 'L', 50 }, { 'C', 100 }, { 'D', 500 }, { 'M', 1000 },
+            //unicode uppercase
+            {'Ⅰ', 1}, {'Ⅱ', 2}, {'Ⅲ', 3}, {'Ⅳ', 4}, {'Ⅴ', 5}, {'Ⅵ', 6}, {'Ⅶ', 7}, {'Ⅷ', 8}, {'Ⅸ', 9}, {'Ⅹ', 10}, {'Ⅺ', 11}, {'Ⅻ', 12}, {'Ⅼ', 50}, {'Ⅽ', 100}, {'Ⅾ', 500}, {'Ⅿ', 1000},
+            //unicode lowercase
+            {'ⅰ', 1}, {'ⅱ', 2}, {'ⅲ', 3}, {'ⅳ', 4}, {'ⅴ', 5}, {'ⅵ', 6}, {'ⅶ', 7}, {'ⅷ', 8}, {'ⅸ', 9}, {'ⅹ', 10}, {'ⅺ', 11}, {'ⅻ', 12}, {'ⅼ', 50}, {'ⅽ', 100}, {'ⅾ', 500}, {'ⅿ', 1000},
+        };
+        //TODO: figure out if a number IS a roman numeral or if roman numerals are its components
+        public static int ConvertRomanNumeralToInt(string input)
+        {
+            char? prevChar = null;
+            var numericalValues = new Stack<int>();
+            foreach (char c in input)
+            {
+                int value = RomanNumeralValues[c];
+
+                //group by character, eg III=3, XX=20
+                if (prevChar == c)
+                {
+                    value += numericalValues.Pop();
+                }
+
+                numericalValues.Push(value);
+
+                prevChar = c;
+            }
+
+            int output = 0;
+            int? numberToTheRight = null;
+            //Since this is a stack, this will go through grouped number values of the roman numerals right to left
+            foreach (int v in numericalValues)
+            {
+                if (v < numberToTheRight)
+                {
+                    output -= v;
+                }
+                else if (v > numberToTheRight || numberToTheRight == null)
+                {
+                    output += v;
+                }
+                numberToTheRight = v;
+            }
+            return output;
         }
     }
 }

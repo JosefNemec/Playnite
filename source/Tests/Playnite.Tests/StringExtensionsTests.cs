@@ -97,5 +97,46 @@ namespace Playnite.Tests
             Assert.IsTrue("test[dasd".ContainsAny(new char[] { ']', '[' }));
             Assert.IsFalse("test dasd".ContainsAny(new char[] { ']', '[' }));
         }
+
+        [TestCase("Final Fantasy XIII-2", "Final Fantasy 13-02")]
+        [TestCase("Final Fantasy Ⅻ", "Final Fantasy 12")] //Ⅻ is a single unicode character here
+        [TestCase("FINAL FANTASY X/X-2 HD Remaster", "FINAL FANTASY 10/10-02 HD Remaster")]
+        [TestCase("The Jungle Book", "Jungle Book")]
+        [TestCase("Carmageddon 2: Carpocalypse Now", "Carmageddon 02: Carpocalypse Now")]
+        [TestCase("SOULCALIBUR IV", "SOULCALIBUR 04")]
+        [TestCase("Quake III: Team Arena", "Quake 03: Team Arena")]
+        [TestCase("THE KING OF FIGHTERS XIII STEAM EDITION", "KING OF FIGHTERS 13 STEAM EDITION")]
+        [TestCase("A Hat in Time", "Hat in Time")]
+        [TestCase("Battlefield 1942", "Battlefield 1942")]
+        [TestCase("Battlefield V", "Battlefield 05")] //with the Battlefield series' numbering, ordering is going to be messed up no matter what, so this is acceptable
+        [TestCase("Gobliiins", "Gobliiins")]
+        [TestCase("12 is Better Than 6", "12 is Better Than 06")] //edge case, should be acceptable
+        [TestCase("XIII", "XIII")] //this and the following should be exempt from numeral parsing and padding
+        [TestCase("X: Beyond the Frontier", "X: Beyond the Frontier")]
+        [TestCase("X3: Terran Conflict", "X3: Terran Conflict")]
+        [TestCase("X-COM", "X-COM")]
+        public void ConvertToSortableNameTest(string input, string expected)
+        {
+            var output = input.ConvertToSortableName();
+            Assert.AreEqual(expected, output);
+        }
+
+        [TestCase("I", 1)]
+        [TestCase("II", 2)]
+        [TestCase("IV", 4)]
+        [TestCase("IIII", 4)] //odd notation, but should parse
+        [TestCase("VIII", 8)]
+        [TestCase("IIX", 8)] //odd notation, but should parse
+        [TestCase("XIII", 13)]
+        [TestCase("XIX", 19)]
+        [TestCase("CCLXXXI", 281)]
+        [TestCase("MCMLVIII", 1958)]
+        [TestCase("MCMXCVIII", 1998)]
+        [TestCase("MCMXCIX", 1999)]
+        public void ConvertRomanNumeralsToIntTest(string input, int expected)
+        {
+            int output = SortableNameConverter.ConvertRomanNumeralToInt(input);
+            Assert.AreEqual(expected, output);
+        }
     }
 }
