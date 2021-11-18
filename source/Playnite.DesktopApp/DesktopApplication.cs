@@ -1,5 +1,6 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
 using Playnite.API;
+using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Controls;
 using Playnite.Database;
@@ -57,8 +58,8 @@ namespace Playnite.DesktopApp
             get => PlayniteApplication.Current == null ? null : (DesktopApplication)PlayniteApplication.Current;
         }
 
-        public DesktopApplication(App nativeApp, SplashScreen splashScreen, CmdLineOptions cmdLine)
-            : base(nativeApp, ApplicationMode.Desktop, DefaultThemeName, cmdLine)
+        public DesktopApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
+            : base(appInitializer, ApplicationMode.Desktop, DefaultThemeName, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
@@ -234,6 +235,9 @@ namespace Playnite.DesktopApp
                     await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
                 }
             }
+
+            // This is most likely safe place to consider application to be started properly
+            FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
         }
 
         private bool ProcessStartupWizard()

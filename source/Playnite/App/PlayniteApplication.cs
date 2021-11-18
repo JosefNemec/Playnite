@@ -91,7 +91,7 @@ namespace Playnite
         }
 
         public PlayniteApplication(
-            Application nativeApp,
+            Func<Application> appInitializer,
             ApplicationMode mode,
             string defaultThemeName,
             CmdLineOptions cmdLine)
@@ -109,13 +109,10 @@ namespace Playnite
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             }
 
-            SyncContext = new DispatcherSynchronizationContext(nativeApp.Dispatcher);
-            SynchronizationContext.SetSynchronizationContext(SyncContext);
             CmdLine = cmdLine;
             Mode = mode;
             Current = this;
-            CurrentNative = nativeApp;
-            CurrentNative.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             if (!Debugger.IsAttached)
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -126,11 +123,33 @@ namespace Playnite
                 if (CheckOtherInstances() || CmdLine.Shutdown)
                 {
                     resourcesReleased = true;
-                    CurrentNative.Shutdown(0);
+                    Environment.Exit(0);
                     return;
                 }
             }
 
+            if (FileSystem.FileExists(PlaynitePaths.SafeStartupFlagFile))
+            {
+                if (MessageBox.Show(
+                    "Playnite closed unexpectedly while starting. This is usually caused by 3rd party theme or extension. Do you want to start in safe mode with all 3rd party add-ons disabled?",
+                    "Startup Error",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    cmdLine.SafeStartup = true;
+                }
+            }
+            else
+            {
+                FileSystem.CreateFile(PlaynitePaths.SafeStartupFlagFile);
+            }
+
+            // All code above has to be called before we create instance of WPF app,
+            // because MessageBox forces WPF to initialize and fire startup app events.
+            CurrentNative = appInitializer();
+            CurrentNative.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            SyncContext = new DispatcherSynchronizationContext(CurrentNative.Dispatcher);
+            SynchronizationContext.SetSynchronizationContext(SyncContext);
             appMutex = new Mutex(true, instanceMuxet);
 
             try
@@ -411,6 +430,10 @@ namespace Playnite
             var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
             logger.Error(exception, "Unhandled exception occured.");
             CrashHandlerViewModel crashModel = null;
+
+            // Delete safe startup flag if we are able to handle the crash,
+            // safe startup option should show for crashes we are not handling.
+            FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
             if (crashInfo.IsExtensionCrash)
             {
                 crashModel = new CrashHandlerViewModel(
@@ -670,8 +693,6 @@ namespace Playnite
                 }
 
                 logger.Info("Application already running, shutting down.");
-                resourcesReleased = true;
-                CurrentNative.Shutdown(0);
                 return true;
             }
             else
@@ -683,8 +704,6 @@ namespace Playnite
                 if (processes.Count > 1 && processes.Max(a => a.Id) != curProcess.Id)
                 {
                     logger.Info("Another process instance(s) is already running, shutting down.");
-                    resourcesReleased = true;
-                    CurrentNative.Shutdown(0);
                     return true;
                 }
             }
