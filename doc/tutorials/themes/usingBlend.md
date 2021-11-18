@@ -5,6 +5,9 @@ Installing Blend
 
 Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components you might not be interested in, for theme development you only need `.NET Desktop development` workload.
 
+> [!NOTE] 
+> Couple people reported that live preview doesn't work properly in Visual Studio 2022, therefore 2019 or 2017 version is recommended.
+
 Creating new theme
 ---------------------
 [Open command prompt](https://www.windows-commandline.com/how-to-open-command-prompt/) and [navigate](https://www.windows-commandline.com/command-prompt-change-directory/) to Playnite's installation folder. To create new theme you need to run `Toolbox.exe` utility with these arguments:
