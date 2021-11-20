@@ -269,7 +269,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     settings.GameSortingNameRemovedArticles.Remove(selectedItem);
                 }
-                settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles;
+                settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles.GetClone();
             }, (a) => a?.Count > 0);
         }
 
@@ -280,6 +280,7 @@ namespace Playnite.DesktopApp.ViewModels
                 dialogs.ActivateGlobalProgress(args =>
                 {
                     args.ProgressMaxValue = database.Games.Count;
+                    var updatedGames = new List<SDK.Models.Game>();
                     var c = new SortableNameConverter(settings.GameSortingNameRemovedArticles, true);
                     foreach (var game in database.Games)
                     {
@@ -293,6 +294,7 @@ namespace Playnite.DesktopApp.ViewModels
                             if (game.Name != sortingName)
                             {
                                 game.SortingName = sortingName;
+                                database.Games.Update(game);
                             }
                         }
                         args.CurrentProgressValue++;
