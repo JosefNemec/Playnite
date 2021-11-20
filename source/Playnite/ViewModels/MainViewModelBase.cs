@@ -435,33 +435,6 @@ namespace Playnite.ViewModels
             await GlobalTaskHandler.ProgressTask;
         }
 
-        private void AutofillSortingNames(IList<Game> games)
-        {
-            if (!AppSettings.GameSortingNameAutofill)
-            {
-                return;
-            }
-
-            Dialogs.ActivateGlobalProgress(args =>
-            {
-                args.ProgressMaxValue = games.Count;
-                var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, true);
-                foreach (var game in games)
-                {
-                    if (!game.SortingName.IsNullOrEmpty())
-                    {
-                        string sortingName = c.Convert(game.Name);
-                        if (game.Name != sortingName)
-                        {
-                            game.SortingName = sortingName;
-                            Logger.Info($"Set {game.Name} sorting name to {sortingName}");
-                        }
-                    }
-                    args.CurrentProgressValue++;
-                }
-            }, new GlobalProgressOptions(Resources.GetString("LOCSortingNameAutofillProgress"), false));
-        }
-
         private List<Game> ImportLibraryGames(LibraryPlugin plugin, CancellationToken token)
         {
             var addedGames = new List<Game>();
@@ -516,8 +489,6 @@ namespace Playnite.ViewModels
                     addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
                 }
 
-                AutofillSortingNames(addedGames);
-
                 return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
@@ -526,9 +497,7 @@ namespace Playnite.ViewModels
         {
             await UpdateLibraryData((token) =>
             {
-                var addedGames = ImportLibraryGames(plugin, token);
-                AutofillSortingNames(addedGames);
-                return addedGames;
+                return ImportLibraryGames(plugin, token);
             }, AppSettings.DownloadMetadataOnImport);
         }
 
@@ -646,16 +615,40 @@ namespace Playnite.ViewModels
                         Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.GetString(LOC.ProgressMetadata);
+                        string progressBaseStr = ProgressStatus = Resources.GetString(LOC.ProgressMetadata);
                         using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
                             downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
-                                    ProgressStatus = Resources.GetString(LOC.ProgressMetadata) + $" [{ProgressValue}/{ProgressTotal}]";
+                                    ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
                                 },
                                 GlobalTaskHandler.CancelToken.Token).Wait();
+                        }
+                    }
+
+                    if (addedGames.Any() && AppSettings.GameSortingNameAutofill)
+                    {
+                        Logger.Info($"Setting Sorting Name for {addedGames.Count} new games.");
+                        ProgressValue = 0;
+                        ProgressTotal = addedGames.Count;
+                        string progressBaseStr = ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
+                        var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, batchOperation: addedGames.Count > 20);
+                        foreach (var game in addedGames)
+                        {
+                            if (GlobalTaskHandler.CancelToken.Token.IsCancellationRequested)
+                            {
+                                break;
+                            }
+                            string sortingName = c.Convert(game.Name);
+                            if (sortingName != game.Name)
+                            {
+                                game.SortingName = sortingName;
+                                Database.Games.Update(game);
+                            }
+                            ProgressValue++;
+                            ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
                         }
                     }
                 });

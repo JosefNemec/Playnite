@@ -475,6 +475,59 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public async Task SetSortingNames(List<Game> games, bool skipIfOtherTaskIsRunning = false)
+        {
+            if (!AppSettings.GameSortingNameAutofill)
+            {
+                return;
+            }
+            if (skipIfOtherTaskIsRunning && GlobalTaskHandler.ProgressTask?.Status == TaskStatus.Running)
+            {
+                Logger.Warn("Skipping setting Sorting Name for newly added games, some global task is already in progress.");
+                return;
+            }
+            GameAdditionAllowed = false;
+
+            try
+            {
+                if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
+                {
+                    GlobalTaskHandler.CancelToken.Cancel();
+                    await GlobalTaskHandler.ProgressTask;
+                }
+
+                DatabaseFilters.IgnoreDatabaseUpdates = true;
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                ProgressActive = true;
+                ProgressValue = 0;
+                ProgressTotal = games.Count;
+                string progressBaseStr = ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
+
+                var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, batchOperation: games.Count > 20);
+                foreach (var game in games)
+                {
+                    if (GlobalTaskHandler.CancelToken.Token.IsCancellationRequested)
+                    {
+                        break;
+                    }
+                    string sortingName = c.Convert(game.Name);
+                    if (sortingName != game.Name)
+                    {
+                        game.SortingName = sortingName;
+                        Database.Games.Update(game);
+                    }
+                    ProgressValue++;
+                    ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
+                }
+            }
+            finally
+            {
+                ProgressActive = false;
+                GameAdditionAllowed = true;
+                DatabaseFilters.IgnoreDatabaseUpdates = false;
+            }
+        }
+
         public async Task DownloadMetadata(MetadataDownloaderSettings settings)
         {
             List<Game> games = null;
@@ -535,7 +588,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Database.Games.Remove(newGame);
             }
-}
+        }
 
         public async void ImportWindowsStoreGames(InstalledGamesViewModel model)
         {
@@ -553,6 +606,7 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
+                await SetSortingNames(addedGames, true);
             }
         }
 
@@ -572,6 +626,7 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
+                await SetSortingNames(addedGames, true);
             }
         }
 
@@ -593,6 +648,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
             }
+            await SetSortingNames(model.ImportedGames, true);
         }
 
         public void OpenAboutWindow(AboutViewModel model)
@@ -881,7 +937,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 ProcessStarter.StartProcess(app.Path, app.Arguments, app.WorkingDir);
             }
-            catch (Exception e)  when (!PlayniteEnvironment.ThrowAllErrors)
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to start app tool.");
                 Dialogs.ShowErrorMessage(
