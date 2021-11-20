@@ -1711,6 +1711,29 @@ namespace Playnite
             }
         }
 
+        private bool gameSortingNameAutofill = true;
+        public bool GameSortingNameAutofill
+        {
+            get => gameSortingNameAutofill;
+            set
+            {
+                gameSortingNameAutofill = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> gameSortingNameRemovedArticles = new List<string> { "The", "A", "An" };
+        public List<string> GameSortingNameRemovedArticles
+        {
+            get => gameSortingNameRemovedArticles;
+            set
+            {
+                gameSortingNameRemovedArticles = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         [JsonIgnore]
         public static bool IsPortable
         {

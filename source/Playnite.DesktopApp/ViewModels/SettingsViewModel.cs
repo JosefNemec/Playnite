@@ -238,6 +238,69 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> AddSortingNameRemovedArticle
+        {
+            get => new RelayCommand<object>(_ =>
+            {
+                var res = dialogs.SelectString(
+                    resources.GetString("LOCEnterName"),
+                    resources.GetString("LOCAddNewItem"),
+                    "");
+                if (res.Result && !res.SelectedString.IsNullOrEmpty())
+                {
+                    if (settings.GameSortingNameRemovedArticles.Any(a => a.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        dialogs.ShowErrorMessage(resources.GetString("LOCItemAlreadyExists"), "");
+                    }
+                    else
+                    {
+                        settings.GameSortingNameRemovedArticles.Add(res.SelectedString);
+                        settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles;
+                    }
+                }
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveSortingNameRemovedArticle
+        {
+            get => new RelayCommand<IList<object>>((selectedItems) =>
+            {
+                foreach (string selectedItem in selectedItems)
+                {
+                    settings.GameSortingNameRemovedArticles.Remove(selectedItem);
+                }
+                settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles;
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<object> FillSortingNameForAllGames
+        {
+            get => new RelayCommand<object>(_ =>
+            {
+                dialogs.ActivateGlobalProgress(args =>
+                {
+                    args.ProgressMaxValue = database.Games.Count;
+                    var c = new SortableNameConverter(settings.GameSortingNameRemovedArticles, true);
+                    foreach (var game in database.Games)
+                    {
+                        if (args.CancelToken.IsCancellationRequested)
+                        {
+                            return;
+                        }
+                        if (game.SortingName.IsNullOrEmpty())
+                        {
+                            string sortingName = c.Convert(game.Name);
+                            if (game.Name != sortingName)
+                            {
+                                game.SortingName = sortingName;
+                            }
+                        }
+                        args.CurrentProgressValue++;
+                    }
+                }, new GlobalProgressOptions(resources.GetString("LOCSortingNameAutofillProgress"), true));
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -283,7 +346,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
                 { 19, new Controls.SettingsSections.Development() { DataContext = this } },
-                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
+                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
+                { 21, new Controls.SettingsSections.Sorting() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];

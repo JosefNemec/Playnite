@@ -435,6 +435,33 @@ namespace Playnite.ViewModels
             await GlobalTaskHandler.ProgressTask;
         }
 
+        private void AutofillSortingNames(IList<Game> games)
+        {
+            if (!AppSettings.GameSortingNameAutofill)
+            {
+                return;
+            }
+
+            Dialogs.ActivateGlobalProgress(args =>
+            {
+                args.ProgressMaxValue = games.Count;
+                var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, true);
+                foreach (var game in games)
+                {
+                    if (!game.SortingName.IsNullOrEmpty())
+                    {
+                        string sortingName = c.Convert(game.Name);
+                        if (game.Name != sortingName)
+                        {
+                            game.SortingName = sortingName;
+                            Logger.Info($"Set {game.Name} sorting name to {sortingName}");
+                        }
+                    }
+                    args.CurrentProgressValue++;
+                }
+            }, new GlobalProgressOptions(Resources.GetString("LOCSortingNameAutofillProgress"), false));
+        }
+
         private List<Game> ImportLibraryGames(LibraryPlugin plugin, CancellationToken token)
         {
             var addedGames = new List<Game>();
@@ -489,6 +516,8 @@ namespace Playnite.ViewModels
                     addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
                 }
 
+                AutofillSortingNames(addedGames);
+
                 return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
@@ -497,7 +526,9 @@ namespace Playnite.ViewModels
         {
             await UpdateLibraryData((token) =>
             {
-                return ImportLibraryGames(plugin, token);
+                var addedGames = ImportLibraryGames(plugin, token);
+                AutofillSortingNames(addedGames);
+                return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
 

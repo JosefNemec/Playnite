@@ -1,4 +1,4 @@
-///
+﻿///
 /// DO NOT MODIFY! Automatically generated via buildLocConstants.ps1 script.
 /// 
 namespace Playnite
@@ -110,7 +110,7 @@ namespace Playnite
         /// </summary>
         public const string ExtCrashDescriptionFS = "LOCExtCrashDescriptionFS";
         /// <summary>
-        /// Uknown extension or a theme caused an unrecoverable error.
+        /// Unknown extension or a theme caused an unrecoverable error.
         /// </summary>
         public const string ExtCrashDescriptionUknown = "LOCExtCrashDescriptionUknown";
         /// <summary>
@@ -2530,6 +2530,10 @@ namespace Playnite
         /// </summary>
         public const string TestScript = "LOCTestScript";
         /// <summary>
+        /// Show only selected items.
+        /// </summary>
+        public const string OnlyItemsSelectedTooltip = "LOCOnlyItemsSelectedTooltip";
+        /// <summary>
         /// Save as default
         /// </summary>
         public const string SaveAsDefault = "LOCSaveAsDefault";
@@ -3629,5 +3633,33 @@ namespace Playnite
         /// Filter preset with specified name already exists. Update preset with new settings?
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
+        /// <summary>
+        /// Automatically fill sorting name for batch-added games
+        /// </summary>
+        public const string SortingNameAutofill = "LOCSortingNameAutofill";
+        /// <summary>
+        /// When you add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name, for example "The Witcher 3" will get a Sorting Name of "Witcher 03"
+        /// </summary>
+        public const string SortingNameAutofillTooltip = "LOCSortingNameAutofillTooltip";
+        /// <summary>
+        /// These words will be removed from the start of the automatically filled Sorting Name value:
+        /// </summary>
+        public const string SortingNameRemovedArticles = "LOCSortingNameRemovedArticles";
+        /// <summary>
+        /// Use this for ignoring words at the start of a string for sorting purposes. The default is "The", "An", and "A".
+        /// </summary>
+        public const string SortingNameRemovedArticlesTooltip = "LOCSortingNameRemovedArticlesTooltip";
+        /// <summary>
+        /// Fill Sorting Name for games without one
+        /// </summary>
+        public const string SortingNameAutofillButton = "LOCSortingNameAutofillButton";
+        /// <summary>
+        /// Sorting
+        /// </summary>
+        public const string SettingsSortingLabel = "LOCSettingsSortingLabel";
+        /// <summary>
+        /// Filling Sorting Name values...
+        /// </summary>
+        public const string SortingNameAutofillProgress = "LOCSortingNameAutofillProgress";
     }
 }
