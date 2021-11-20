@@ -1723,6 +1723,7 @@ namespace Playnite
         }
 
         private List<string> gameSortingNameRemovedArticles = new List<string> { "The", "A", "An" };
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<string> GameSortingNameRemovedArticles
         {
             get => gameSortingNameRemovedArticles;
