@@ -255,7 +255,7 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         settings.GameSortingNameRemovedArticles.Add(res.SelectedString);
-                        settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles;
+                        settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles.GetClone();
                     }
                 }
             });
