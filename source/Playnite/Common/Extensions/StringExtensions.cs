@@ -286,7 +286,7 @@ namespace System
         /// </summary>
         private static int NumberLength = 2;
 
-        private static string[] ExcludedRomanNumerals = new[] { "XXL", "XXX", "D", "DD", "DM", "MII", "MIX", "MX", "MC", "LLC" };
+        private static string[] ExcludedRomanNumerals = new[] { "XXL", "XL", "XD", "XXX", "D", "DD", "DM", "MII", "MIX", "MX", "MC", "LLC" };
 
         public SortableNameConverter(IEnumerable<string> articles, bool batchOperation = false)
         {
@@ -296,49 +296,51 @@ namespace System
             if (batchOperation)
                 options |= RegexOptions.Compiled;
 
-            //(?<!\w|^) prevents the numerical matches from happening at the start of the string (for example for X-COM or XIII) and attached to a word
+            //(?<![\w.]|^) prevents the numerical matches from happening at the start of the string (for example for X-COM or XIII) or attached to a word or . (to avoid S.T.A.L.K.E.R. -> S.T.A.50.K.E.R.)
+            //(?!\.) prevents matching roman numerals with a period right after (again for cases like abbreviations with periods, but that start with a roman numeral character)
             //\u2160-\u2188 is the unicode range of roman numerals listed in RomanNumeralValues
             //using [0-9] here instead of \d because \d also matches ٠١٢٣٤٥٦٧٨٩ and I don't know what to do with those           
             //the (?i) is a modifier that makes the rest of the regex (to the right of it) case insensitive
             //see https://www.regular-expressions.info/modifiers.html
-            _regex = new Regex($@"(?<!\w|^)((?<roman>(?<!\.)[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)^(?<article>{articlesPattern})\s+", options);
+            _regex = new Regex($@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)^(?<article>{articlesPattern})\s+", options);
         }
 
         public string Convert(string input)
         {
-            return _regex.Replace(input, MatchEvaluator);
-        }
-
-        private string MatchEvaluator(Match match)
-        {
-            if (match.Groups["roman"].Success)
+            return _regex.Replace(input, match =>
             {
-                if (match.Value == "I")
+                if (match.Groups["roman"].Success)
                 {
-                    if (match.Index + 2 == match.Captures[0].Length)
+                    if (match.Value == "I")
                     {
-                        return "1".PadLeft(NumberLength, '0');
+                        bool matchIsAtEndOfString = match.Index + 1 == input.Length;
+                        bool matchComesAfterChapter = input.Substring(Math.Max(0, match.Index - 9), Math.Min(9, match.Index))
+                                                           .Contains("chapter", StringComparison.InvariantCultureIgnoreCase);
+                        if (matchIsAtEndOfString || matchComesAfterChapter)
+                        {
+                            return "1".PadLeft(NumberLength, '0');
+                        }
+                        else //if the I isn't at the end of the string, ignore it
+                        {
+                            return match.Value;
+                        }
                     }
-                    else //if the I isn't at the end of the string, ignore it
+                    else if (ExcludedRomanNumerals.Contains(match.Value))
                     {
                         return match.Value;
                     }
+                    return ConvertRomanNumeralToInt(match.Value)?.ToString(new string('0', NumberLength)) ?? match.Value;
                 }
-                else if (ExcludedRomanNumerals.Contains(match.Value))
+                else if (match.Groups["arabic"].Success)
                 {
-                    return match.Value;
+                    return match.Value.PadLeft(NumberLength, '0');
                 }
-                return ConvertRomanNumeralToInt(match.Value).ToString(new string('0', NumberLength));
-            }
-            else if (match.Groups["arabic"].Success)
-            {
-                return match.Value.PadLeft(NumberLength, '0');
-            }
-            else if (match.Groups["article"].Success)
-            {
-                return string.Empty;
-            }
-            return match.Value;
+                else if (match.Groups["article"].Success)
+                {
+                    return string.Empty;
+                }
+                return match.Value;
+            });
         }
 
         private static Dictionary<char, int> RomanNumeralValues = new Dictionary<char, int>
@@ -356,12 +358,14 @@ namespace System
         /// Convert a number from Roman numerals to an integer
         /// </summary>
         /// <param name="input">The roman numeral(s). Beware: this is not validated. Stuff like IVX will return nonsense numbers.</param>
-        /// <returns></returns>
+        /// <returns>An integer form of the supplied roman numeral, or NULL if the supplied roman numeral makes no sense</returns>
         //TODO: figure out if a number IS a roman numeral or if roman numerals are its components
-        public static int ConvertRomanNumeralToInt(string input)
+        public static int? ConvertRomanNumeralToInt(string input)
         {
             int output = 0;
             int? biggestNumberToTheRight = null;
+            int prevCharGroupLength = 0;
+            int[] lastTwoDistinctNumericValues = new[] { 0, 0 };
             for (int i = input.Length - 1; i >= 0; i--)
             {
                 char c = input[i];
@@ -374,6 +378,28 @@ namespace System
                 {
                     output += value;
                     biggestNumberToTheRight = value;
+                }
+
+                //validation
+                if (value != lastTwoDistinctNumericValues[1])
+                {
+                    //reject things like IVX and VIX
+                    if(value < lastTwoDistinctNumericValues[0] && lastTwoDistinctNumericValues[1] < lastTwoDistinctNumericValues[0])
+                    {
+                        return null;
+                    }
+
+                    lastTwoDistinctNumericValues[0] = lastTwoDistinctNumericValues[1];
+                    lastTwoDistinctNumericValues[1] = value;
+                    prevCharGroupLength = 1;
+                }
+                else
+                {
+                    prevCharGroupLength++;
+                    if (prevCharGroupLength == 4)
+                    {
+                        return null;
+                    }
                 }
             }
             return output;

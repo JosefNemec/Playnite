@@ -93,17 +93,16 @@ namespace Playnite.Tests
         [TestCase("Final Fantasy Ⅻ", "Final Fantasy 12")] //Ⅻ is a single unicode character here
         [TestCase("FINAL FANTASY X/X-2 HD Remaster", "FINAL FANTASY 10/10-02 HD Remaster")]
         [TestCase("Warhammer ↂↇ", "Warhammer 40000")]
-        [TestCase("The Jungle Book", "Jungle Book")]
         [TestCase("Carmageddon 2: Carpocalypse Now", "Carmageddon 02: Carpocalypse Now")]
         [TestCase("SOULCALIBUR IV", "SOULCALIBUR 04")]
         [TestCase("Quake III: Team Arena", "Quake 03: Team Arena")]
         [TestCase("THE KING OF FIGHTERS XIV STEAM EDITION", "KING OF FIGHTERS 14 STEAM EDITION")]
         [TestCase("A Hat in Time", "Hat in Time")]
-        [TestCase("Battlefield 1942", "Battlefield 1942")]
-        [TestCase("Battlefield V", "Battlefield 05")] //with the Battlefield series' numbering, ordering is going to be messed up no matter what, so this is acceptable
-        [TestCase("12 is Better Than 6", "12 is Better Than 06")] //edge case, should be acceptable
+        [TestCase("Battlefield V", "Battlefield 05")]
         [TestCase("Tales of Monkey Island: Chapter 1 - Launch of the Screaming Narwhal", "Tales of Monkey Island: Chapter 01 - Launch of the Screaming Narwhal")]
+        [TestCase("Tales of Monkey Island: Chapter I - Launch of the Screaming Narwhal", "Tales of Monkey Island: Chapter 01 - Launch of the Screaming Narwhal")]
         [TestCase("KOBOLD: Chapter I", "KOBOLD: Chapter 01")]
+        [TestCase("Crazy Machines 1.5 New from the Lab", "Crazy Machines 01.5 New from the Lab")]
         [TestCase("The Witcher 3", "Witcher 03")]
         [TestCase("the Witcher 3", "Witcher 03")]
         [TestCase("A Game", "Game")]
@@ -123,6 +122,8 @@ namespace Playnite.Tests
         [TestCase("Before I Forget")]
         [TestCase("A.I.M. Racing")]
         [TestCase("S.T.A.L.K.E.R.: Shadow of Chernobyl")]
+        [TestCase("Battlefield 1942")]
+        [TestCase("Metal Wolf Chaos XD")]
         [TestCase("AnUsual Game")]
         public void SortableNameIsUnchanged(string input)
         {
@@ -132,7 +133,6 @@ namespace Playnite.Tests
         [TestCase("I", 1)]
         [TestCase("II", 2)]
         [TestCase("IV", 4)]
-        [TestCase("IIII", 4)] //odd notation, but should parse
         [TestCase("VIII", 8)]
         [TestCase("IIX", 8)] //odd notation, but should parse
         [TestCase("XIII", 13)]
@@ -143,8 +143,17 @@ namespace Playnite.Tests
         [TestCase("MCMXCIX", 1999)]
         public void ConvertRomanNumeralsToIntTest(string input, int expected)
         {
-            int output = SortableNameConverter.ConvertRomanNumeralToInt(input);
+            int? output = SortableNameConverter.ConvertRomanNumeralToInt(input);
             Assert.AreEqual(expected, output);
+        }
+
+        [TestCase("IVX")]
+        [TestCase("VIX")]
+        [TestCase("IIII")]
+        public void ConvertRomanNumeralsToIntRejectsNonsense(string input)
+        {
+            int? output = SortableNameConverter.ConvertRomanNumeralToInt(input);
+            Assert.AreEqual(null, output);
         }
     }
 }
