@@ -33,6 +33,17 @@ namespace System
             }
         }
 
+        public static string ConvertToSortableName(this string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
+            var converter = new SortableNameConverter(new[] { "The", "A", "An" });
+            return converter.Convert(name);
+        }
+
         public static string RemoveTrademarks(this string str, string remplacement = "")
         {
             if (str.IsNullOrEmpty())
@@ -275,7 +286,7 @@ namespace System
         /// </summary>
         private static int NumberLength = 2;
 
-        private static string[] ExcludedRomanNumerals = new[] { "XXL", "XL", "XD", "XXX", "D", "DD", "DM", "MII", "MIX", "MX", "MC", "LLC" };
+        private static string[] ExcludedRomanNumerals = new[] { "XL", "XD", "XXX", "D", "DM", "MII", "MIX", "MX", "MC" };
 
         public SortableNameConverter(IEnumerable<string> articles, bool batchOperation = false)
         {
@@ -347,19 +358,22 @@ namespace System
         /// Convert a number from Roman numerals to an integer
         /// </summary>
         /// <param name="input">The roman numeral(s). Beware: this is not validated. Stuff like IVX will return nonsense numbers.</param>
-        /// <returns>An integer form of the supplied roman numeral, or NULL if the supplied roman numeral makes no sense</returns>
+        /// <param name="validate">If false, parse any roman numerals. If true, reject invalid ones</param>
+        /// <returns>An integer form of the supplied roman numeral, or NULL if the supplied roman numeral is invalid and <paramref name="validate"/> is true</returns>
         //TODO: figure out if a number IS a roman numeral or if roman numerals are its components
-        public static int? ConvertRomanNumeralToInt(string input)
+        public static int? ConvertRomanNumeralToInt(string input, bool validate = true)
         {
             int output = 0;
-            int? biggestNumberToTheRight = null;
+            int biggestNumberToTheRight = 0;
+
             int prevCharGroupLength = 0;
-            int[] lastTwoDistinctNumericValues = new[] { 0, 0 };
+            int lastNumericValue = 0;
             for (int i = input.Length - 1; i >= 0; i--)
             {
                 char c = input[i];
                 int value = RomanNumeralValues[c];
-                if (value < biggestNumberToTheRight)
+                bool subtract = value < biggestNumberToTheRight;
+                if (subtract)
                 {
                     output -= value;
                 }
@@ -369,29 +383,60 @@ namespace System
                     biggestNumberToTheRight = value;
                 }
 
-                //validation
-                if (value != lastTwoDistinctNumericValues[1])
+                #region validation
+
+                if (!validate)
                 {
-                    //reject things like IVX and VIX
-                    if(value < lastTwoDistinctNumericValues[0] && lastTwoDistinctNumericValues[1] < lastTwoDistinctNumericValues[0])
+                    continue;
+                }
+
+                //reject things like IVX and VIX and IIX
+                //subtractive numerals are only ever singular
+                if (subtract && lastNumericValue < biggestNumberToTheRight)
+                {
+                    return null;
+                }
+
+                //reject things like VX or DM
+                if (subtract && value * 5 > biggestNumberToTheRight)
+                {
+                    return null;
+                }
+
+                if (value == lastNumericValue)
+                {
+                    //Numerals that aren't 1 or 10ⁿ can't repeat
+                    if (!IsPowerOf10Or1(value))
                     {
                         return null;
                     }
 
-                    lastTwoDistinctNumericValues[0] = lastTwoDistinctNumericValues[1];
-                    lastTwoDistinctNumericValues[1] = value;
-                    prevCharGroupLength = 1;
-                }
-                else
-                {
+                    //No numeral can repeat 4 times
                     prevCharGroupLength++;
                     if (prevCharGroupLength == 4)
                     {
                         return null;
                     }
                 }
+                else
+                {
+                    prevCharGroupLength = 1;
+                }
+
+                lastNumericValue = value;
+
+                #endregion validation
             }
             return output;
+        }
+
+        private static bool IsPowerOf10Or1(int x)
+        {
+            while (x > 9 && x % 10 == 0)
+            {
+                x /= 10;
+            }
+            return x == 1;
         }
     }
 }

@@ -135,11 +135,13 @@ namespace Playnite.Tests
         [TestCase("II", 2)]
         [TestCase("IV", 4)]
         [TestCase("VIII", 8)]
-        [TestCase("IIX", 8)] //odd notation, but should parse
+        [TestCase("IX", 9)]
         [TestCase("XIII", 13)]
         [TestCase("XIX", 19)]
         [TestCase("CCLXXXI", 281)]
         [TestCase("MCMLVIII", 1958)]
+        [TestCase("LMMXXIV", 1974)]
+        [TestCase("MLMXXIV", 1974)]
         [TestCase("MCMXCVIII", 1998)]
         [TestCase("MCMXCIX", 1999)]
         public void ConvertRomanNumeralsToIntTest(string input, int expected)
@@ -151,6 +153,8 @@ namespace Playnite.Tests
         [TestCase("IVX")]
         [TestCase("VIX")]
         [TestCase("IIII")]
+        [TestCase("XXL")]
+        [TestCase("IIX")]
         public void ConvertRomanNumeralsToIntRejectsNonsense(string input)
         {
             int? output = SortableNameConverter.ConvertRomanNumeralToInt(input);
