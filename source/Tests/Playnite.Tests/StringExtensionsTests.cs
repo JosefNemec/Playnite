@@ -103,6 +103,8 @@ namespace Playnite.Tests
         [TestCase("Tales of Monkey Island: Chapter I - Launch of the Screaming Narwhal", "Tales of Monkey Island: Chapter 01 - Launch of the Screaming Narwhal")]
         [TestCase("KOBOLD: Chapter I", "KOBOLD: Chapter 01")]
         [TestCase("Crazy Machines 1.5 New from the Lab", "Crazy Machines 01.5 New from the Lab")]
+        [TestCase("Half-Life 2: Episode One", "Half-Life 02: Episode 01")]
+        [TestCase("Unravel Two", "Unravel 02")]
         [TestCase("The Witcher 3", "Witcher 03")]
         [TestCase("the Witcher 3", "Witcher 03")]
         [TestCase("A Game", "Game")]
@@ -125,6 +127,7 @@ namespace Playnite.Tests
         [TestCase("S.T.A.L.K.E.R.: Shadow of Chernobyl")]
         [TestCase("Battlefield 1942")]
         [TestCase("Metal Wolf Chaos XD")]
+        [TestCase("Prince of Persia: The Two Thrones")]
         [TestCase("AnUsual Game")]
         public void SortableNameIsUnchanged(string input)
         {

@@ -279,19 +279,22 @@ namespace System
     {
         public IEnumerable<string> Articles { get; }
 
-        private Regex _regex;
+        private Regex regex;
 
         /// <summary>
         /// The minimum string length of numbers. If 4, XXIII or 23 will turn into 0023.
         /// </summary>
         private static int NumberLength = 2;
 
-        private static string[] ExcludedRomanNumerals = new[] { "XL", "XD", "XXX", "D", "DM", "MII", "MIX", "MX", "MC" };
+        private static string[] ExcludedRomanNumerals = new[] { "XL", "XD", "XXX", "D", "MII", "MIX", "MX", "MC" };
+
+        private static Dictionary<string, int> NumberWordValues = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase) { { "one", 1 }, { "two", 2 }, { "three", 3 } };
 
         public SortableNameConverter(IEnumerable<string> articles, bool batchOperation = false)
         {
             Articles = articles ?? throw new ArgumentNullException(nameof(articles));
             string articlesPattern = string.Join("|", articles.Select(Regex.Escape));
+            string numberWordPattern = string.Join("|", NumberWordValues.Keys);
             var options = RegexOptions.ExplicitCapture;
             if (batchOperation)
                 options |= RegexOptions.Compiled;
@@ -302,25 +305,22 @@ namespace System
             //using [0-9] here instead of \d because \d also matches ٠١٢٣٤٥٦٧٨٩ and I don't know what to do with those           
             //the (?i) is a modifier that makes the rest of the regex (to the right of it) case insensitive
             //see https://www.regular-expressions.info/modifiers.html
-            _regex = new Regex($@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)^(?<article>{articlesPattern})\s+", options);
+            regex = new Regex($@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)^(?<article>{articlesPattern})\s+|\b(?<numberword>{numberWordPattern})\b", options);
         }
 
         public string Convert(string input)
         {
-            return _regex.Replace(input, match =>
+            return regex.Replace(input, match =>
             {
                 if (match.Groups["roman"].Success)
                 {
                     if (match.Value == "I")
                     {
-                        bool matchIsAtEndOfString = match.Index + 1 == input.Length;
-                        bool matchComesAfterChapter = input.Substring(Math.Max(0, match.Index - 9), Math.Min(9, match.Index))
-                                                           .Contains("chapter", StringComparison.InvariantCultureIgnoreCase);
-                        if (matchIsAtEndOfString || matchComesAfterChapter)
+                        if (MatchComesAfterChapterOrEpisodeOrAtEndOfString(input, match))
                         {
                             return "1".PadLeft(NumberLength, '0');
                         }
-                        else //if the I isn't at the end of the string, ignore it
+                        else
                         {
                             return match.Value;
                         }
@@ -339,8 +339,28 @@ namespace System
                 {
                     return string.Empty;
                 }
+                else if (match.Groups["numberword"].Success)
+                {
+                    if (MatchComesAfterChapterOrEpisodeOrAtEndOfString(input, match))
+                    {
+                        return NumberWordValues[match.Value].ToString(new string('0', NumberLength));
+                    }
+                    else
+                    {
+                        return match.Value;
+                    }
+                }
                 return match.Value;
             });
+        }
+
+        private static bool MatchComesAfterChapterOrEpisodeOrAtEndOfString(string input, Match match)
+        {
+            bool matchIsAtEndOfString = match.Index + match.Length == input.Length;
+            string theBitImmediatelyPriorToTheMatch = input.Substring(Math.Max(0, match.Index - 9), Math.Min(9, match.Index));
+            return matchIsAtEndOfString
+                || theBitImmediatelyPriorToTheMatch.Contains("chapter", StringComparison.InvariantCultureIgnoreCase)
+                || theBitImmediatelyPriorToTheMatch.Contains("episode", StringComparison.InvariantCultureIgnoreCase);
         }
 
         private static Dictionary<char, int> RomanNumeralValues = new Dictionary<char, int>
@@ -360,7 +380,6 @@ namespace System
         /// <param name="input">The roman numeral(s). Beware: this is not validated. Stuff like IVX will return nonsense numbers.</param>
         /// <param name="validate">If false, parse any roman numerals. If true, reject invalid ones</param>
         /// <returns>An integer form of the supplied roman numeral, or NULL if the supplied roman numeral is invalid and <paramref name="validate"/> is true</returns>
-        //TODO: figure out if a number IS a roman numeral or if roman numerals are its components
         public static int? ConvertRomanNumeralToInt(string input, bool validate = true)
         {
             int output = 0;
@@ -397,7 +416,9 @@ namespace System
                     return null;
                 }
 
-                //reject things like VX or DM
+                //reject things like VX or LC or DM
+                //subtractions can't be half the bigger value
+                //IV is as close as the two numbers get in value
                 if (subtract && value * 5 > biggestNumberToTheRight)
                 {
                     return null;
@@ -406,7 +427,7 @@ namespace System
                 if (value == lastNumericValue)
                 {
                     //Numerals that aren't 1 or 10ⁿ can't repeat
-                    if (!IsPowerOf10Or1(value))
+                    if (!IsOneOrPowerOfTen(value))
                     {
                         return null;
                     }
@@ -430,7 +451,7 @@ namespace System
             return output;
         }
 
-        private static bool IsPowerOf10Or1(int x)
+        private static bool IsOneOrPowerOfTen(int x)
         {
             while (x > 9 && x % 10 == 0)
             {
