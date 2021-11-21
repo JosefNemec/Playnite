@@ -109,7 +109,8 @@ namespace Playnite.Tests
         [TestCase("An Usual Game", "Usual Game")]
         public void ConvertToSortableNameTest(string input, string expected)
         {
-            var output = input.ConvertToSortableName();
+            var c = new SortableNameConverter(new PlayniteSettings().GameSortingNameRemovedArticles);
+            var output = c.Convert(input);
             Assert.AreEqual(expected, output);
         }
 

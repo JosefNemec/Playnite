@@ -33,17 +33,6 @@ namespace System
             }
         }
 
-        public static string ConvertToSortableName(this string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                return string.Empty;
-            }
-
-            var converter = new SortableNameConverter(new[] { "The", "A", "An" });
-            return converter.Convert(name);
-        }
-
         public static string RemoveTrademarks(this string str, string remplacement = "")
         {
             if (str.IsNullOrEmpty())
