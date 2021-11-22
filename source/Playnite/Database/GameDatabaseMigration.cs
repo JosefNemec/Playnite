@@ -642,23 +642,26 @@ namespace Playnite.Database
             if (dbSettings.Version == 3 && NewFormatVersion > 3)
             {
                 var filesDir = Path.Combine(databasePath, filesDirName);
-                foreach (var dir in Directory.GetDirectories(filesDir))
+                if (Directory.Exists(filesDir))
                 {
-                    try
+                    foreach (var dir in Directory.GetDirectories(filesDir))
                     {
-                        Directory.GetFiles(dir, "*.exe").ForEach(a =>
+                        try
                         {
-                            // Only delete files named as guid as those are 99% made by 2618 bug
-                            // People sometimes put foreign files into libary folder :|, so we don't want to delete something else.
-                            if (Guid.TryParse(Path.GetFileNameWithoutExtension(a), out var _))
+                            Directory.GetFiles(dir, "*.exe").ForEach(a =>
                             {
-                                File.Delete(a);
-                            }
-                        });
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to delete file.");
+                                // Only delete files named as guid as those are 99% made by 2618 bug
+                                // People sometimes put foreign files into libary folder :|, so we don't want to delete something else.
+                                if (Guid.TryParse(Path.GetFileNameWithoutExtension(a), out var _))
+                                {
+                                    File.Delete(a);
+                                }
+                            });
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to delete file.");
+                        }
                     }
                 }
 
