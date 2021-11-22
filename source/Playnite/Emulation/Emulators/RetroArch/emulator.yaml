@@ -688,6 +688,13 @@ Profiles:
     ProfileFiles: ['cores\stella2014_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
+  - Name: SwanStation
+    StartupArguments: '-L ".\cores\swanstation_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [exe, psexe, cue, bin, img, iso, chd, pbp, ecm, mds, psf, m3u]
+    ProfileFiles: ['cores\swanstation_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
   - Name: TempGBA
     StartupArguments: '-L ".\cores\tempgba_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_gameboyadvance]

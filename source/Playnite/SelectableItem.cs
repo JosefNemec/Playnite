@@ -90,6 +90,17 @@ namespace System
             }
         }
 
+        private bool isVisible = true;
+        public bool IsVisible
+        {
+            get => isVisible;
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
         private TItem item;
         public TItem Item
         {
@@ -490,6 +501,36 @@ namespace System
     {
         private readonly bool includeNoneItem;
 
+        private bool showSelectedOnly = false;
+        public bool ShowSelectedOnly
+        {
+            get
+            {
+                return showSelectedOnly;
+            }
+
+            set
+            {
+                showSelectedOnly = value;
+                SearchItems();
+            }
+        }
+
+        private string searchText = string.Empty;
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+
+            set
+            {
+                searchText = value;
+                SearchItems();
+            }
+        }
+
         public SelectableDbItemList(
             IEnumerable<DatabaseObject> collection,
             IEnumerable<Guid> selected = null,
@@ -612,6 +653,11 @@ namespace System
         public bool ContainsIds(IEnumerable<Guid> ids)
         {
             return Items.Select(a => a.Item.Id).Contains(ids);
+        }
+
+        public void SearchItems()
+        {
+           Items.ForEach(x => x.IsVisible = (ShowSelectedOnly ? (bool)x.Selected : true) && x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
         }
 
         public override string ToString()
