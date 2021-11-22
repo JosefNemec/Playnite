@@ -28,7 +28,7 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -235,6 +235,7 @@
     <Compile Include="Database\Collections\ImportExclusionsCollection.cs" />
     <Compile Include="Database\Collections\FilterPresetsCollection.cs" />
     <Compile Include="Database\Collections\CompletionStatusesCollection.cs" />
+    <Compile Include="Database\Collections\LiteDBFileReaderV7.cs" />
     <Compile Include="Database\OldModels\Ver2.cs" />
     <Compile Include="Emulators\DatModels.cs" />
     <Compile Include="Emulators\Emulation.cs" />
