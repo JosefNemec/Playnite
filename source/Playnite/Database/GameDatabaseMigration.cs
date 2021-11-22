@@ -207,6 +207,14 @@ namespace Playnite.Database
                                     continue;
                                 }
 
+                                // No idea how these get created, most likely by some 3rd party extension.
+                                // They cause several issues so don't migrate them.
+                                if (oldItem.Name.IsNullOrWhiteSpace())
+                                {
+                                    logger.Warn($"Failed to load old database file {file}, has empty name.");
+                                    continue;
+                                }
+
                                 var newItem = typeof(TNew).CrateInstance<TNew>(oldItem.Name);
                                 newItem.Id = oldItem.Id;
                                 propertyMapper?.Invoke(oldItem, newItem);
