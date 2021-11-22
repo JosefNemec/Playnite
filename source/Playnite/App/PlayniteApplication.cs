@@ -128,6 +128,7 @@ namespace Playnite
                 }
             }
 
+#if !DEBUG
             if (FileSystem.FileExists(PlaynitePaths.SafeStartupFlagFile))
             {
                 if (MessageBox.Show(
@@ -143,6 +144,7 @@ namespace Playnite
             {
                 FileSystem.CreateFile(PlaynitePaths.SafeStartupFlagFile);
             }
+#endif
 
             // All code above has to be called before we create instance of WPF app,
             // because MessageBox forces WPF to initialize and fire startup app events.
