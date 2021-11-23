@@ -8,6 +8,37 @@ using System.Threading.Tasks;
 
 namespace Playnite.WebView
 {
+    public class CustomResourceRequestHandler : CefSharp.Handler.ResourceRequestHandler
+    {
+        private readonly string userAgent;
+
+        public CustomResourceRequestHandler(string userAgent)
+        {
+            this.userAgent = userAgent;
+        }
+
+        protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
+        {
+            request.SetHeaderByName("user-agent", userAgent, true);
+            return CefReturnValue.Continue;
+        }
+    }
+
+    public class CustomRequestHandler : CefSharp.Handler.RequestHandler
+    {
+        private readonly CustomResourceRequestHandler handler;
+
+        public CustomRequestHandler(string userAgent)
+        {
+            handler = new CustomResourceRequestHandler(userAgent);
+        }
+
+        protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
+        {
+            return handler;
+        }
+    }
+
     public class WebViewBase
     {
         public List<HttpCookie> GetCookies()
