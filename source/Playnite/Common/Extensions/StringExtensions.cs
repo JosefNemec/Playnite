@@ -377,9 +377,10 @@ namespace System
         /// <summary>
         /// Convert a number from Roman numerals to an integer
         /// </summary>
-        /// <param name="input">The roman numeral(s). Beware: this is not validated. Stuff like IVX will return nonsense numbers.</param>
-        /// <param name="validate">If false, parse any roman numerals. If true, reject invalid ones</param>
-        /// <returns>An integer form of the supplied roman numeral, or NULL if the supplied roman numeral is invalid and <paramref name="validate"/> is true</returns>
+        /// <param name="input">The roman numeral.</param>
+        /// <param name="validate">If false, parse any roman numeral. If true, reject invalid ones.</param>
+        /// <returns>An integer form of the supplied roman numeral, or NULL if the supplied roman numeral is invalid and <paramref name="validate"/> is true.</returns>
+        /// <exception cref="KeyNotFoundException">When the input contains non-numeral characters.</exception>
         public static int? ConvertRomanNumeralToInt(string input, bool validate = true)
         {
             int output = 0;
