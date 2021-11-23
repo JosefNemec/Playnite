@@ -9,7 +9,8 @@
         Title="" Height="450" Width="800"
         xmlns:controls="clr-namespace:Playnite.Controls"
         Style="{DynamicResource StandardWindowStyle}"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        KeyUp="WindowBase_KeyUp">
     <DockPanel Name="PanelContent">
         <TextBox Text="{Binding Address, ElementName=Browser}"
                  Background="{DynamicResource NormalBrushDark}"
