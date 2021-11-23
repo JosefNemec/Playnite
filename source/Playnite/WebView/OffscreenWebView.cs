@@ -30,8 +30,7 @@ namespace Playnite.WebView
         {
             Initialize(new BrowserSettings
             {
-                Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled,
-                ApplicationCache = settings.CacheEnabled ? CefState.Enabled : CefState.Disabled
+                Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled
             });
         }
 

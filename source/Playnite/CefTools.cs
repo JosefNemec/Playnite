@@ -38,7 +38,7 @@ namespace Playnite
             settings.PersistSessionCookies = true;
             settings.LogFile = Path.Combine(PlaynitePaths.ConfigRootPath, "cef.log");
             settings.LogSeverity = enableLogs ? LogSeverity.Error : LogSeverity.Disable;
-            settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0";
+            settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0";
             IsInitialized = Cef.Initialize(settings);
         }
 

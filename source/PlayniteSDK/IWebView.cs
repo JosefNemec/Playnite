@@ -21,6 +21,7 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets or sets value indicating whether cache is enabled.
         /// </summary>
+        [Obsolete("AppCache was removed from CEF")]
         public bool CacheEnabled { get; set; } = true;
     }
 
