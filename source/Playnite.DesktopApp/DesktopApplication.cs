@@ -225,14 +225,14 @@ namespace Playnite.DesktopApp
 
             if (isFirstStart)
             {
-                await MainModel.UpdateLibrary(false);
+                await MainModel.UpdateLibrary(false, false);
                 await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
                 if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
                 {
-                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
+                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
                 }
             }
 

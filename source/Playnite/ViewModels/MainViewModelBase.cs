@@ -463,7 +463,7 @@ namespace Playnite.ViewModels
             return addedGames;
         }
 
-        public async Task UpdateLibrary(bool metaForNewGames)
+        public async Task UpdateLibrary(bool metaForNewGames, bool updateEmu)
         {
             await UpdateLibraryData((token) =>
             {
@@ -478,15 +478,18 @@ namespace Playnite.ViewModels
                     addedGames.AddRange(ImportLibraryGames(plugin, token));
                 }
 
-                var importedRoms = Database.GetImportedRomFiles();
-                foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate).ToList())
+                if (updateEmu)
                 {
-                    if (token.IsCancellationRequested)
+                    var importedRoms = Database.GetImportedRomFiles();
+                    foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate).ToList())
                     {
-                        return addedGames;
-                    }
+                        if (token.IsCancellationRequested)
+                        {
+                            return addedGames;
+                        }
 
-                    addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                        addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                    }
                 }
 
                 return addedGames;

@@ -32,7 +32,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
-            await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport);
+            await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport, true);
         }, () => !MainModel.ProgressActive);
         public RelayCommand CancelProgressCommand => new RelayCommand(() => CancelProgress(), () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
 

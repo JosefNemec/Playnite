@@ -161,7 +161,7 @@ namespace Playnite.FullscreenApp
 
             if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
             {
-                await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
+                await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
             }
 
             // This is most likely safe place to consider application to be started properly
