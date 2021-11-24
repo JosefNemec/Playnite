@@ -33,17 +33,6 @@ namespace System
             }
         }
 
-        public static string ConvertToSortableName(this string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                return string.Empty;
-            }
-
-            var converter = new SortableNameConverter(new[] { "The", "A", "An" });
-            return converter.Convert(name);
-        }
-
         public static string RemoveTrademarks(this string str, string remplacement = "")
         {
             if (str.IsNullOrEmpty())
@@ -288,13 +277,18 @@ namespace System
 
         private static string[] ExcludedRomanNumerals = new[] { "XL", "XD", "XXX", "D", "MII", "MIX", "MX", "MC" };
 
+        //When adding/removing entries here, be sure to update the regex too
         private static Dictionary<string, int> NumberWordValues = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase) { { "one", 1 }, { "two", 2 }, { "three", 3 } };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="articles">Words to remove from the start of the title. Suggested: the contents of PlayniteSettings.GameSortingNameRemovedArticles, or "The", "A", "An".</param>
+        /// <param name="batchOperation">Optimize for larger amounts of throughput. Slower for small amounts.</param>
         public SortableNameConverter(IEnumerable<string> articles, bool batchOperation = false)
         {
             Articles = articles ?? throw new ArgumentNullException(nameof(articles));
             string articlesPattern = string.Join("|", articles.Select(Regex.Escape));
-            string numberWordPattern = string.Join("|", NumberWordValues.Keys);
             var options = RegexOptions.ExplicitCapture;
             if (batchOperation)
                 options |= RegexOptions.Compiled;
@@ -305,11 +299,16 @@ namespace System
             //using [0-9] here instead of \d because \d also matches ٠١٢٣٤٥٦٧٨٩ and I don't know what to do with those           
             //the (?i) is a modifier that makes the rest of the regex (to the right of it) case insensitive
             //see https://www.regular-expressions.info/modifiers.html
-            regex = new Regex($@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)^(?<article>{articlesPattern})\s+|\b(?<numberword>{numberWordPattern})\b", options);
+            regex = new Regex($@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)^(?<article>{articlesPattern})\s+|\b(?<numberword>one|two|three)\b", options);
         }
 
         public string Convert(string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return input;
+            }
+
             return regex.Replace(input, match =>
             {
                 if (match.Groups["roman"].Success)
@@ -357,7 +356,7 @@ namespace System
         private static bool MatchComesAfterChapterOrEpisodeOrAtEndOfString(string input, Match match)
         {
             bool matchIsAtEndOfString = match.Index + match.Length == input.Length;
-            string theBitImmediatelyPriorToTheMatch = input.Substring(Math.Max(0, match.Index - 9), Math.Min(9, match.Index));
+            string theBitImmediatelyPriorToTheMatch = input.Substring(Math.Max(0, match.Index - 9), length: Math.Min(9, match.Index));
             return matchIsAtEndOfString
                 || theBitImmediatelyPriorToTheMatch.Contains("chapter", StringComparison.InvariantCultureIgnoreCase)
                 || theBitImmediatelyPriorToTheMatch.Contains("episode", StringComparison.InvariantCultureIgnoreCase);
@@ -383,6 +382,11 @@ namespace System
         /// <exception cref="KeyNotFoundException">When the input contains non-numeral characters.</exception>
         public static int? ConvertRomanNumeralToInt(string input, bool validate = true)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
             int output = 0;
             int biggestNumberToTheRight = 0;
 
