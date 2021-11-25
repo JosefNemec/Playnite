@@ -84,7 +84,11 @@ namespace Playnite.Controllers
             }
 
             emulator = emulator.GetClone();
-            emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
+            if (!emulator.InstallDir.IsNullOrEmpty())
+            {
+                emulator.InstallDir = Paths.FixSeparators(emulator.InstallDir.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath));
+                emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
+            }
 
             SourceGameAction = action;
             SelectedRomPath = action.SelectedRomPath;
