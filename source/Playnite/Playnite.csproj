@@ -224,6 +224,7 @@
     <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
     <Compile Include="Common\CueSheet.cs" />
+    <Compile Include="Common\Extensions\Dictionary.cs" />
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />
     <Compile Include="Controls\ExtendedDataGrid.cs" />

@@ -83,14 +83,19 @@ namespace Playnite.SDK.Events
     public class OnGameStartingEventArgs
     {
         /// <summary>
-        /// Gets or sets game object initiating the event.
+        /// Gets game object initiating the event.
         /// </summary>
         public Game Game { get; internal set; }
 
         /// <summary>
-        /// Gets or sets custom game action used to start the game.
+        /// Gets custom game action used to start the game.
         /// </summary>
         public GameAction SourceAction { get; internal set; }
+
+        /// <summary>
+        /// Gets ROM file selected when running a game with multiple ROMs assigned.
+        /// </summary>
+        public string SelectedRomFile { get; internal set; }
     }
 
     /// <summary>
@@ -99,14 +104,19 @@ namespace Playnite.SDK.Events
     public class OnGameStartedEventArgs
     {
         /// <summary>
-        /// Gets or sets game object initiating the event.
+        /// Gets game object initiating the event.
         /// </summary>
         public Game Game { get; internal set; }
 
         /// <summary>
-        /// Gets or sets custom game action used to start the game.
+        /// Gets custom game action used to start the game.
         /// </summary>
         public GameAction SourceAction { get; internal set; }
+
+        /// <summary>
+        /// Gets ROM file selected when running a game with multiple ROMs assigned.
+        /// </summary>
+        public string SelectedRomFile { get; internal set; }
     }
 
     /// <summary>

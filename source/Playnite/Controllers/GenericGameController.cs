@@ -41,6 +41,7 @@ namespace Playnite.Controllers
         private Task playTask;
         private bool isDisposed = false;
         private EmulatorProfile currentEmuProfile;
+        internal string SelectedRomPath { get; private set; }
         internal GameAction SourceGameAction { get; private set; }
 
         public GenericPlayController(
@@ -82,9 +83,11 @@ namespace Playnite.Controllers
                 throw new Exception("Uknown play action configuration.");
             }
 
-            SourceGameAction = action;
             emulator = emulator.GetClone();
             emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
+
+            SourceGameAction = action;
+            SelectedRomPath = action.SelectedRomPath;
 
             var startupPath = "";
             var startupArgs = "";
@@ -379,6 +382,7 @@ namespace Playnite.Controllers
             if (gameClone.Roms.HasItems())
             {
                 var romPath = gameClone.Roms[0].Path;
+                SelectedRomPath = romPath;
                 var newPath = CheckPath(romPath, "ROM", FileSystemItem.File);
                 if (newPath != romPath)
                 {

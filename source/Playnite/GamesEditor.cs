@@ -253,11 +253,15 @@ namespace Playnite
                 controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
-                controllers.InvokeOnStarting(this, new SDK.Events.OnGameStartingEventArgs
+
+                var startingArgs = new SDK.Events.OnGameStartingEventArgs
                 {
                     Game = game.GetClone(),
-                    SourceAction = (playAction as GameAction)?.GetClone()
-                });
+                    SourceAction = (playAction as GameAction)?.GetClone(),
+                    SelectedRomFile = (playAction as EmulationPlayAction)?.SelectedRomPath
+                };
+
+                controllers.InvokeOnStarting(this, startingArgs);
 
                 if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
                 {
@@ -266,14 +270,20 @@ namespace Playnite
                     shutdownJobs.TryRemove(game.PluginId, out var _);
                 }
 
-                if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting))
+                var scriptVars = new Dictionary<string, object>
+                {
+                    {  "SourceAction", startingArgs.SourceAction },
+                    {  "SelectedRomFile", startingArgs.SelectedRomFile }
+                };
+
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
                 {
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                     return;
                 }
 
-                if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false, GameScriptType.Starting))
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false, GameScriptType.Starting, scriptVars))
                 {
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
@@ -940,8 +950,14 @@ namespace Playnite
             UpdateGameState(game.Id, null, true, null, null, false);
             gameStartups.TryAdd(game.Id, DateTime.Now);
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false, GameScriptType.Started);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.GameStartedScript, game, game.UseGlobalGameStartedScript, true, GameScriptType.Started);
+            var scriptVars = new Dictionary<string, object>
+            {
+                {  "SourceAction", (args.Source as GenericPlayController)?.SourceGameAction?.GetClone() },
+                {  "SelectedRomFile", (args.Source as GenericPlayController)?.SelectedRomPath }
+            };
+
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false, GameScriptType.Started, scriptVars);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.GameStartedScript, game, game.UseGlobalGameStartedScript, true, GameScriptType.Started, scriptVars);
 
             if (Application.Mode == ApplicationMode.Desktop)
             {
@@ -1118,7 +1134,14 @@ namespace Playnite
             controllers.RemoveController(args.Source);
         }
 
-        public bool ExecuteScriptAction(IPowerShellRuntime runtime, string script, Game game, bool execute, bool global, GameScriptType type)
+        public bool ExecuteScriptAction(
+            IPowerShellRuntime runtime,
+            string script,
+            Game game,
+            bool execute,
+            bool global,
+            GameScriptType type,
+            Dictionary<string, object> vars = null)
         {
             if (!execute || script.IsNullOrWhiteSpace())
             {
@@ -1143,6 +1166,7 @@ namespace Playnite
                     {  "Game", game.GetClone() }
                 };
 
+                vars?.ForEach(a => scriptVars.AddOrUpdate(a.Key, a.Value));
                 var expandedScript = game.ExpandVariables(script);
                 var dir = game.ExpandVariables(game.InstallDirectory, true);
                 if (!dir.IsNullOrEmpty() && Directory.Exists(dir))
