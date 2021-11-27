@@ -26,7 +26,7 @@ namespace Playnite.SDK.Events
         /// Gets or sets message from javascript
         /// </summary>
         /// 
-        public string message { get; set; }
+        public string Message { get; set; }
     }
 
 }
