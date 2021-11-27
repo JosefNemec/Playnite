@@ -200,6 +200,7 @@ namespace Playnite
 
             if (!relaunchPath.IsNullOrEmpty())
             {
+                FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
                 ProcessStarter.StartProcess(relaunchPath, CmdLine.ToString());
                 CurrentNative.Shutdown(0);
                 return;
