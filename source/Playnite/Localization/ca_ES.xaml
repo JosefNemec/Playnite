@@ -187,7 +187,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCColumns">Columnes</sys:String>
     <sys:String x:Key="LOCRow">Filera</sys:String>
     <sys:String x:Key="LOCRows">Fileres</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">No es pot obtenir la icona si falta l’acció de joc està definida com a URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Descarrega només les metadades que faltin</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Si activeu aquesta opció, s'ometrà la baixada de metadades dels camps que ja continguin informació.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selecció de jocs</sys:String>
@@ -302,7 +302,6 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostra només els camps assignats als panells de filtre i explorador</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Inhabilita l'acceleració de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Fes-ho servir quan tinguis problemes de rendiment o d'UI</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Inhabilita l'escala de DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Mostra els jocs ocults a les llistes de llançament ràpid</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Afecta el Jump List i les llistes del menú de safata.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Nombre d'objectes a la llista d'accés ràpid</sys:String>
@@ -578,6 +577,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Obrir Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Opcions del perfil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">El nom del joc no pot estar buit.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">El nom del joc no pot estar buit abans de cercar la base de dades.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Dades de joc no vàlides</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Introdueix un URL web vàlid començant per http: // o https: //</sys:String>
@@ -653,6 +653,8 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCOther">Altres</sys:String>
     <sys:String x:Key="LOCThemes">Temes</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'emulador</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments adicionals de l'emulador</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Substituir els arguments de l'emulador</sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -765,6 +767,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instal·lació s'ha realitzat correctament.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instal·la extensió?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">General</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">No s'ha pogut instal·lar l'extensió.
         
 {0}</sys:String>
@@ -988,6 +991,7 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

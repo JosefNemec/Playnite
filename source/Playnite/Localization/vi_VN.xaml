@@ -41,7 +41,9 @@ Chúng tôi khuyên bạn nên lưu tệp nhật ký và báo cáo vấn đề c
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Tiện ích mở rộng &quot;{0}&quot; đã gây ra lỗi không thể khôi phục.
 
 Chúng tôi khuyên bạn nên báo cáo vấn đề này cho nhà phát triển của tiện ích. Nếu sự cố vẫn tái diễn, hãy tắt tiện ích mở rộng.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Tiện ích mở rộng không xác định hoặc chủ đề gây ra lỗi không thể khôi phục.
+
+Chúng tôi khuyên bạn nên tắt tiện ích bổ sung của bên thứ 3, cô lập tiện ích bổ sung có vấn đề và báo cáo vấn đề với nhà phát triển tiện ích bổ sung.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Đã xảy ra lỗi không thể khôi phục.
 
 Nếu bạn muốn giúp chúng tôi khắc phục sự cố này, xin vui lòng gửi thông tin chẩn đoán đến cho chúng tôi. Xin cám ơn.</sys:String>
@@ -187,7 +189,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCColumns">Các Cột</sys:String>
     <sys:String x:Key="LOCRow">Dòng</sys:String>
     <sys:String x:Key="LOCRows">Các Hàng</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Không thể nhận được biểu tượng nếu hành động Play bị thiếu hoặc được đặt thành URL. </sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Không thể tải biểu tượng từ Play action. Không có hành động nào của Loại tệp hiện tại.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Chỉ tải các Siêu Dữ Liệu cò thiếu</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Bật tùy chọn này sẽ bỏ qua quá trình tải xuống siêu dữ liệu cho các trường dữ liệu mà đã chứa thông tin. </sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Lựa chọn trò chơi.</sys:String>
@@ -240,54 +242,55 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCMenuHibernateSystem">Chế độ ngủ đông</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Chọn một trò chơi ngẫu nhiên</sys:String>
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceMonoFont"></sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Các lĩnh vực trò chơi được hiển thị trên bảng chi tiết:</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">khoảng cách các mục</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Vẽ nền mục lưới</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Chiều rộng đường viền mục lưới</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Thiếu nguồn biểu tượng trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Thiếu nguồn bìa game</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Thiếu nguồn nền trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Khoảng cách dọc đến chi tiết trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Vị trí chi tiết chế độ xem lưới</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Chi tiết xem vị trí danh sách trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Vẽ dấu phân cách giữa các bảng</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Chiều cao ảnh bìa trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Chiều cao biểu tượng danh sách trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Phông chữ ứng dụng</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont">Phông chữ liền mạch</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Vị trí bảng điều khiển bộ lọc</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Vị trí bảng điều khiển Explorer 
+</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kết xuất ảnh bìa</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Tỷ lệ khung hình mục tiêu</sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Các tùy chọn sau đây cũng ảnh hưởng đến kết xuất ô ở chế độ Toàn màn hình!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Chế độ kéo dãn</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">Hộp DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0
 </sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSquare"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam"></sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSquare">Quảng trường</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Biểu ngữ Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam nắp dọc hơi</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Cần khởi động lại để áp dụng cài đặt</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Cài đặt</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Cài đặt chung</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelLabel">Bảng điều khiển trên cùng</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Giao diện</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Chi tiết trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Bố cục</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Nâng cao</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Toàn màn hình</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsProvidersLabel">Các nhà cung cấp</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">Đầu vào</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Hiệu suất</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Siêu dữ liệu</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Tự động nhập các thay đổi trong thư viện</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Vị trí tệp cơ sở dữ liệu không hợp lệ, cần đặt đường dẫn tệp thích hợp</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Tên tài khoản không thể để trống</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Tải xuống bản cập nhật cho thư viện từ bên thứ ba khi khởi động</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup">Quét các thư mục giả lập</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Tải xuống siêu dữ liệu ngay sau khi nhập trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Chạy Playnite dưới dạng thu nhỏ</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Chạy Playnite cùng lúc với máy tính</sys:String>
@@ -300,49 +303,52 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Làm tối màu các trò chơi chưa được cài đặt</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Hiển thị biểu tượng trò chơi ở chế độ xem chi tiết</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Hiển thị số lượng mục trên mô tả nhóm</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Chỉ hiển thị các trường được chỉ định trên bảng bộ lọc và bảng khám phá</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Tắt tăng tốc phần cứng</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Sử dụng khi gặp sự cố nói lắp hoặc các sự cố giao diện người dùng tương tự</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Hiển thị các trò chơi ẩn trong danh sách khởi chạy nhanh</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Ảnh hưởng đến Danh sách nhảy và danh sách menu khay.</sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">Số lượng vật phẩm khởi chạy nhanh</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Sử dụng hình nền trò chơi làm nền cửa sổ</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Làm mở ảnh nền</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">Chất lượng cao</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Làm tối ảnh nền</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Hiển thị trên chế độ lưới</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Chủ đề</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColor"></sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen"></sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation"></sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">Hồ sơ chủ đề</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">Chủ đề toàn màn hình</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Cấu hình chủ đề toàn màn hình</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">Vị trí cơ sở dữ liệu</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Trạng thái đăng nhập:</sys:String>
-    <sys:String x:Key="LOCSettingsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCSettingsWindowTitle">Cài đặt Playnite</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Xóa bộ nhớ đệm</sys:String>
-    <sys:String x:Key="LOCSettingsClearWebCacheTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameStart"></sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameClose"></sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn"></sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheTitle"></sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart"></sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateThemes"></sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsRestartTitle"></sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRows"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenColumns"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen"></sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Có thể giải quyết các vấn đề gặp phải khi liên kết tài khoản.</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Hiển thị biểu tượng khay hệ thống</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Thu nhỏ Playnite vào khay hệ thống</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Thu nhỏ Playnite vào khay hệ thống khi đóng cửa sổ ứng dụng</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">Khi trò chơi bắt đầu:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">Sau khi trò chơi kết thúc:</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Điều này sẽ đăng xuất bạn khỏi tất cả các dịch vụ được liên kết. Khởi động lại ứng dụng là bắt buộc, bạn có muốn tiếp tục không?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheTitle">Xóa bộ nhớ cache?</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Bắt buộc phải khởi động lại Playnite để áp dụng chủ đề mới</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">Nhận thêm các chủ đề</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">Tạo chủ đề mới</sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Thêm tiện ích mở rộng</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">tạo tiện ích mở rộng mới</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Giúp chúng tôi dịch Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite cần được khởi động lại để áp dụng các cài đặt mới. Khởi động lại ngay bây giờ?
+
+Khởi động lại sẽ hủy mọi tác vụ đang hoạt động (tải xuống) hiện đang được thực hiện.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Khởi động lại Playnite?</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite không thể tự động di chuyển các tệp thư viện của bạn. Bạn phải di chuyển / sao chép các tệp theo cách thủ công trước khi thay đổi vị trí. Nếu không có thư viện ở vị trí đích, một thư viện mới sẽ được tạo.
+
+Vị trí cơ sở dữ liệu mới sẽ không được sử dụng cho đến khi Playnite được khởi động lại.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Thời gian chơi sẽ không được ghi nếu hành động &quot;Đóng&quot; được đặt.</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">Số hàng</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">Số cột</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Số lượng hàng xem chi tiết</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Hiển thị hình nền trên màn hình chính</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Không áp dụng trở lại các trò chơi hiện có mà không cần tải xuống lại siêu dữ liệu.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
@@ -380,60 +386,67 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
-    <sys:String x:Key="LOCStrechNone"></sys:String>
-    <sys:String x:Key="LOCStrechFill"></sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
-    <sys:String x:Key="LOCDockLeft"></sys:String>
-    <sys:String x:Key="LOCDockRight"></sys:String>
-    <sys:String x:Key="LOCDockTop"></sys:String>
-    <sys:String x:Key="LOCDockBottom"></sys:String>
-    <sys:String x:Key="LOCImportError"></sys:String>
-    <sys:String x:Key="LOCLoginRequired"></sys:String>
-    <sys:String x:Key="LOCLoginFailed"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Tự động đóng khách hàng</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Nhập danh sách loại trừ</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Hiển thị cảnh báo khi chỉ định phương tiện trò chơi quá lớn</sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Lệnh mở thư mục</sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Tổ chức xếp hạng độ tuổi ưa thích</sys:String>
+    <sys:String x:Key="LOCStrechNone">Không có</sys:String>
+    <sys:String x:Key="LOCStrechFill">Lấp đầy</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Đồng phục</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Đồng phục để lấp đầy</sys:String>
+    <sys:String x:Key="LOCDockLeft">trái</sys:String>
+    <sys:String x:Key="LOCDockRight">phải</sys:String>
+    <sys:String x:Key="LOCDockTop">trên</sys:String>
+    <sys:String x:Key="LOCDockBottom">Dưới</sys:String>
+    <sys:String x:Key="LOCImportError">Lỗi nhập</sys:String>
+    <sys:String x:Key="LOCLoginRequired">Yêu cầu xác thực</sys:String>
+    <sys:String x:Key="LOCLoginFailed">Quá trình xác thực đã thất bại</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">Chế độ hiển thị chế độ xem web thay thế</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Sử dụng khi gặp sự cố với chế độ xem web, ví dụ: hộp thoại xác thực tích hợp.</sys:String>
     <!--Meta Import-->
-    <sys:String x:Key="LOCMetaImportWindowTitle"></sys:String>
-    <sys:String x:Key="LOCDownloadMetaButton"></sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCMetaImportWindowTitle">Nhập siêu dữ liệu</sys:String>
+    <sys:String x:Key="LOCDownloadMetaButton">Tải xuống siêu dữ liệu</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Đặt cấu hình đã chọn sẽ được sử dụng cho mọi lần tải xuống siêu dữ liệu trong tương lai.
+Cũng có thể được thay đổi trong cài đặt ứng dụng.</sys:String>
     <!--Emulator Import-->
-    <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanGames"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonSelectFiles"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
+    <sys:String x:Key="LOCEmuWizardWindowTitle">Trình hướng dẫn nhập mô phỏng</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Trình hướng dẫn này sẽ hướng dẫn bạn quá trình tải xuống và nhập trình giả lập bảng điều khiển và nhập trò chơi được mô phỏng.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Hãy nhớ rằng bạn luôn có thể thêm trình giả lập và / hoặc trò chơi bổ sung sau này thông qua menu chính (trong menu &quot;Thư viện&quot; cho cài đặt Trình giả lập và menu &quot;Thêm trò chơi&quot; cho các trò chơi được mô phỏng).</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Dưới đây là danh sách các trình giả lập mà Playnite có thể nhận dạng và định cấu hình tự động. Bạn có thể tải xuống trình cài đặt giả lập từ trang web của họ. Sau khi bạn đã cài đặt trình giả lập (theo cách thủ công), bạn có thể nhập chúng vào hộp thoại cấu hình trình giả lập.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Bạn có thể nhập bất kỳ trình giả lập nào được cài đặt trên PC của mình bằng cách nhấp vào nút 'Tự động phát hiện từ thư mục…'. Playnite sẽ tìm kiếm thư mục đã chọn cho bất kỳ trình giả lập nào đã biết và cung cấp tùy chọn để nhập chúng. Bạn có thể sử dụng nút này nhiều lần để nhập trình giả lập từ các thư mục khác nhau. Trình giả lập sẽ được thêm vào cuối danh sách hiện tại.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Bạn có thể nhập trò chơi bằng cách nhấp vào nút 'Quét thư mục bằng trình giả lập'. Việc chọn trình giả lập thích hợp sẽ cho Playnite biết loại tệp nào nên được quét và nhập. Bạn có thể sử dụng nút này nhiều lần để nhập trò chơi từ các thư mục khác nhau. Trò chơi sẽ được thêm vào cuối danh sách hiện tại.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Không có trình giả lập nào được chọn để nhập. Bạn sẽ không thể tự động nhập bất kỳ trò chơi giả lập nào nếu không định cấu hình trình giả lập trước. Bạn có chắc chắn muốn tiếp tục và thoát khỏi quá trình nhập không?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Không có trình giả lập nào được định cấu hình trong Playnite. Bạn không thể nhập trò chơi mà không định cấu hình trình giả lập trước và chọn loại tệp thích hợp. Bạn có muốn thêm một số trình giả lập bây giờ không?</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames">Quét thư mục bằng Trình giả lập</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Chọn file</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Tự động phát hiện từ thư mục…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Định cấu hình Trình giả lập…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Đang quét...</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">Đang quét {0}…</sys:String>
     <!--FirstTime Wizard-->
-    <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCFirstWindowTitle">Cấu hình lần đầu tiên</sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Quá trình này sẽ hướng dẫn bạn cách nhập tự động và cấu hình các thư viện trò chơi bên ngoài. Playnite có thể tự động nhập trò chơi từ nhiều dịch vụ trò chơi, chẳng hạn như Steam hoặc GOG.
+
+Hãy nhớ rằng bạn cũng có thể thêm thủ công bất kỳ trò chơi tùy chỉnh hoặc giả lập nào cho bất kỳ nền tảng nào sau đó từ menu chính.</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">Tích hợp Thư viện</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Sau đây là danh sách một số tích hợp thư viện được quản lý mà Playnite hỗ trợ. Vui lòng chọn những cái bạn muốn cài đặt.
+
+Các tích hợp khác có thể được cài đặt sau từ menu &quot;Tiện ích bổ sung&quot;.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">Cấu hình đã hoàn thành</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Thiết lập ban đầu đã được hoàn thành. Hãy nhớ rằng bạn có thể thay đổi tất cả cài đặt sau này cũng như thêm các tích hợp bổ sung từ menu chính.</sys:String>
+    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Không thể tải xuống một hoặc nhiều tiện ích mở rộng.
+
+Bạn có thể thử tải xuống lại các tích hợp từ menu tiện ích bổ sung sau khi trình hướng dẫn chạy lần đầu tiên kết thúc.</sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">Đang tải xuống tích hợp {0}…</sys:String>
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorTitle"></sys:String>
-    <sys:String x:Key="LOCAddPlatformTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">Định cấu hình nền tảng và trình giả lập</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Định cấu hình Trình giả lập</sys:String>
+    <sys:String x:Key="LOCPlatformsTitle">Các nền tảng</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">Nền tảng</sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle">Các trình giả lập</sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">Trình giả lập</sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle">Thêm nền tảng</sys:String>
     <sys:String x:Key="LOCSelectIconTitle"></sys:String>
     <sys:String x:Key="LOCSelectCoverTitle"></sys:String>
     <sys:String x:Key="LOCSelectImageTitle"></sys:String>
@@ -485,59 +498,69 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCGameTagsTitle"></sys:String>
     <sys:String x:Key="LOCGamePublishersTitle"></sys:String>
     <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle"></sys:String>
-    <sys:String x:Key="LOCGameFavoriteTitle"></sys:String>
-    <sys:String x:Key="LOCGameLastActivityTitle"></sys:String>
-    <sys:String x:Key="LOCGameCategoryTitle"></sys:String>
-    <sys:String x:Key="LOCGameDescriptionTitle"></sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle"></sys:String>
-    <sys:String x:Key="LOCGameCoverTitle"></sys:String>
-    <sys:String x:Key="LOCGameLinksTitle"></sys:String>
-    <sys:String x:Key="LOCGameROMTitle"></sys:String>
-    <sys:String x:Key="LOCGenreLabel"></sys:String>
-    <sys:String x:Key="LOCGenresLabel"></sys:String>
-    <sys:String x:Key="LOCCompanyLabel"></sys:String>
-    <sys:String x:Key="LOCCompaniesLabel"></sys:String>
-    <sys:String x:Key="LOCDeveloperLabel"></sys:String>
-    <sys:String x:Key="LOCDevelopersLabel"></sys:String>
-    <sys:String x:Key="LOCPublisherLabel"></sys:String>
-    <sys:String x:Key="LOCPublishersLabel"></sys:String>
-    <sys:String x:Key="LOCCategoryLabel"></sys:String>
-    <sys:String x:Key="LOCCategoriesLabel"></sys:String>
-    <sys:String x:Key="LOCTagLabel"></sys:String>
-    <sys:String x:Key="LOCTagsLabel"></sys:String>
-    <sys:String x:Key="LOCFeatureLabel"></sys:String>
-    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel"></sys:String>
-    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
-    <sys:String x:Key="LOCRegionLabel"></sys:String>
-    <sys:String x:Key="LOCRegionsLabel"></sys:String>
-    <sys:String x:Key="LOCSourceLabel"></sys:String>
-    <sys:String x:Key="LOCSourcesLabel"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Khớp tất cả các bộ lọc</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Nếu được bật, chỉ những trò chơi sử dụng tất cả các mục trong tất cả các bộ lọc mới được đưa vào chế độ xem.
+Nếu bị tắt, các trò chơi sử dụng bất kỳ mục nào trong bất kỳ bộ lọc nào sẽ được đưa vào chế độ xem.</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">cài đặt</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">cài đặt</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Chưa cài đặt</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Ẩn</sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle">Sản phẩm yêu thích</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">Lần chơi cuối</sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle">Thể loại</sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle">Mô tả</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">Thư mục cài đặt cửa hàng</sys:String>
+    <sys:String x:Key="LOCGameCoverTitle">Ảnh bìa</sys:String>
+    <sys:String x:Key="LOCGameLinksTitle">Liên kết</sys:String>
+    <sys:String x:Key="LOCGameROMTitle">Đường dẫn hình ảnh, ROM hoặc ISO</sys:String>
+    <sys:String x:Key="LOCGenreLabel">Thể loại</sys:String>
+    <sys:String x:Key="LOCGenresLabel">Các thể loại</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">Công ty</sys:String>
+    <sys:String x:Key="LOCCompaniesLabel">các công ty</sys:String>
+    <sys:String x:Key="LOCDeveloperLabel">Nhà phát triển</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel">Các nhà phát triển</sys:String>
+    <sys:String x:Key="LOCPublisherLabel">Nhà xuất bản</sys:String>
+    <sys:String x:Key="LOCPublishersLabel">Những nhà phát triển</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Thể loại</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">Các danh mục</sys:String>
+    <sys:String x:Key="LOCTagLabel">Thẻ:</sys:String>
+    <sys:String x:Key="LOCTagsLabel">Các thẻ</sys:String>
+    <sys:String x:Key="LOCFeatureLabel">Tính năng nổi bật</sys:String>
+    <sys:String x:Key="LOCFeaturesLabel">Các tính năng</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">Xếp hạng độ tuổi</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">Xếp hạng độ tuổi</sys:String>
+    <sys:String x:Key="LOCRegionLabel">Khu vực</sys:String>
+    <sys:String x:Key="LOCRegionsLabel">Các khu vực</sys:String>
+    <sys:String x:Key="LOCSourceLabel">Mã nguồn</sys:String>
+    <sys:String x:Key="LOCSourcesLabel">Các đoạn mã nguồn</sys:String>
     <!--Errors-->
-    <sys:String x:Key="LOCDatabaseErroTitle"></sys:String>
-    <sys:String x:Key="LOCDatabaseOpenError"></sys:String>
-    <sys:String x:Key="LOCDatabaseNotOpenedError"></sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError"></sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError"></sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError"></sys:String>
-    <sys:String x:Key="LOCDiagPackageSentSuccess"></sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDatabaseErroTitle">Lỗi cơ sở dữ liệu</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError">Không mở được cơ sở dữ liệu thư viện.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">Cơ sở dữ liệu không thể mở được.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">Không thể truy cập cơ sở dữ liệu thư viện. Tệp &quot;{0}&quot; đang được sử dụng bởi một quy trình khác hoặc tệp ở vị trí không thể truy cập được.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Không tạo được gói chẩn đoán.</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">Không thể tự động tải lên gói chẩn đoán.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">Thông tin trong mẫu đã được gửi thành công.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Gói chẩn đoán đã được tạo và gửi thành công.
+Vui lòng đính kèm ID sau vào báo cáo sự cố của bạn:</sys:String>
 
-    <sys:String x:Key="LOCLibraryImportError"></sys:String>
-    <sys:String x:Key="LOCLibraryImportEmulatedError"></sys:String>
-    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError"></sys:String>
-    <sys:String x:Key="LOCStartGenericError"></sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCURLFormatError"></sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
+    <sys:String x:Key="LOCLibraryImportError">Không thể nhập trò chơi từ {0}.</sys:String>
+    <sys:String x:Key="LOCLibraryImportEmulatedError">Không thể nhập trò chơi mô phỏng từ {0}.</sys:String>
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Không thể tìm kiếm trò chơi theo cấu hình trình giả lập đã chọn. Hồ sơ không chứa bất kỳ phần mở rộng hoặc nền tảng tệp nào.</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playnite không khởi động được. Vui lòng đóng tất cả các phiên bản khác và thử lại.</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Không áp dụng được chủ đề &quot;{0}&quot;, cấu hình màu &quot;{1}&quot;
+
+{2}</sys:String>
+    <sys:String x:Key="LOCURLFormatError">Không thể mở liên kết, URL không có định dạng hợp lệ.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Không thể khởi động ứng dụng</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Không thể khởi chạy thành phần WebView. Playnite không thể tiếp tục quá trình khởi động.
+
+Bạn có thể cố gắng giải quyết vấn đề:
+   • Kiểm tra xem tất cả các tệp đã được cài đặt đúng chưa. Việc cài đặt lại có thể giúp
+   • Cài đặt Visual Studio C ++ 2019 có thể phân phối lại nếu bạn đang sử dụng Windows 7 hoặc 8
+   • Đảm bảo rằng phần mềm chống vi-rút của bạn không chặn bất kỳ tệp nào trong thư mục Playnite
+   • Chọn một vị trí cài đặt khác</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Không thể nhập trình mô phỏng do tệp định nghĩa bị thiếu hoặc bị hỏng.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
@@ -561,6 +584,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCOpenPlaynite"></sys:String>
     <sys:String x:Key="LOCProfileSettings"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameError"></sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError"></sys:String>
     <sys:String x:Key="LOCInvalidGameData"></sys:String>
     <sys:String x:Key="LOCURLInputInfo"></sys:String>
@@ -589,54 +613,56 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCCompletionStatus"></sys:String>
     <sys:String x:Key="LOCCompletionStatuses"></sys:String>
     <sys:String x:Key="LOCUserScore"></sys:String>
-    <sys:String x:Key="LOCCriticScore"></sys:String>
-    <sys:String x:Key="LOCCommunityScore"></sys:String>
-    <sys:String x:Key="LOCScripts"></sys:String>
-    <sys:String x:Key="LOCPlugins"></sys:String>
-    <sys:String x:Key="LOCMetadataProviders"></sys:String>
-    <sys:String x:Key="LOCExtensions"></sys:String>
-    <sys:String x:Key="LOCExtensionID"></sys:String>
-    <sys:String x:Key="LOCReloadScripts"></sys:String>
-    <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
-    <sys:String x:Key="LOCNoGamesFound"></sys:String>
-    <sys:String x:Key="LOCNoItemsFound"></sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
-    <sys:String x:Key="LOCExitPlaynite"></sys:String>
-    <sys:String x:Key="LOCLibraries"></sys:String>
-    <sys:String x:Key="LOCUpdateAll"></sys:String>
-    <sys:String x:Key="LOCExtensionCreatedBy"></sys:String>
-    <sys:String x:Key="LOCExtensionVersion"></sys:String>
-    <sys:String x:Key="LOCExtensionModule"></sys:String>
-    <sys:String x:Key="LOCLibrary"></sys:String>
-    <sys:String x:Key="LOCStatistics"></sys:String>
-    <sys:String x:Key="LOCAll"></sys:String>
-    <sys:String x:Key="LOCNone"></sys:String>
-    <sys:String x:Key="LOCNotifications"></sys:String>
-    <sys:String x:Key="LOCWidth"></sys:String>
-    <sys:String x:Key="LOCHeight"></sys:String>
-    <sys:String x:Key="LOCSize"></sys:String>
-    <sys:String x:Key="LOCFontSmall"></sys:String>
-    <sys:String x:Key="LOCFontNormal"></sys:String>
-    <sys:String x:Key="LOCFontLarge"></sys:String>
-    <sys:String x:Key="LOCFontLarger"></sys:String>
-    <sys:String x:Key="LOCFontLargest"></sys:String>
-    <sys:String x:Key="LOCDefault"></sys:String>
-    <sys:String x:Key="LOCSelect"></sys:String>
-    <sys:String x:Key="LOCSelectAll"></sys:String>
-    <sys:String x:Key="LOCDeselectAll"></sys:String>
-    <sys:String x:Key="LOCFirst"></sys:String>
-    <sys:String x:Key="LOCRandom"></sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
-    <sys:String x:Key="LOCTransparent"></sys:String>
-    <sys:String x:Key="LOCCollapse"></sys:String>
-    <sys:String x:Key="LOCExpand"></sys:String>
-    <sys:String x:Key="LOCCollapseAll"></sys:String>
-    <sys:String x:Key="LOCExpandAll"></sys:String>
-    <sys:String x:Key="LOCOther"></sys:String>
-    <sys:String x:Key="LOCThemes"></sys:String>
-    <sys:String x:Key="LOCEmulatorArguments"></sys:String>
-    <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCCriticScore">Điểm phê bình</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Điểm cộng đồng</sys:String>
+    <sys:String x:Key="LOCScripts">Tập lệnh</sys:String>
+    <sys:String x:Key="LOCPlugins">Bổ sung</sys:String>
+    <sys:String x:Key="LOCMetadataProviders">Nguồn siêu dữ liệu</sys:String>
+    <sys:String x:Key="LOCExtensions">Tiện ích mở rộng</sys:String>
+    <sys:String x:Key="LOCExtensionID">ID tiện ích mở rộng</sys:String>
+    <sys:String x:Key="LOCReloadScripts">Tải lại Tập tin Script</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">Tất cả các tập lệnh đã được tải lại thành công.</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">Không tìm thấy trò chơi nào cho tiêu chí tìm kiếm / bộ lọc được chỉ định</sys:String>
+    <sys:String x:Key="LOCNoItemsFound">không tìm thấy vật nào</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Chuyển sang Chế độ máy tính để bàn</sys:String>
+    <sys:String x:Key="LOCExitPlaynite">Thoát Playnite</sys:String>
+    <sys:String x:Key="LOCLibraries">Các thư viện</sys:String>
+    <sys:String x:Key="LOCUpdateAll">Cập nhật tất cả</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Tạo bởi:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Phiên bản:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">Mô-đun:</sys:String>
+    <sys:String x:Key="LOCLibrary">Thư viện</sys:String>
+    <sys:String x:Key="LOCStatistics">Số liệu thống kê</sys:String>
+    <sys:String x:Key="LOCAll">Tất cả</sys:String>
+    <sys:String x:Key="LOCNone">Không có</sys:String>
+    <sys:String x:Key="LOCNotifications">Thông báo</sys:String>
+    <sys:String x:Key="LOCWidth">Rộng</sys:String>
+    <sys:String x:Key="LOCHeight">Cao</sys:String>
+    <sys:String x:Key="LOCSize">Kích cỡ</sys:String>
+    <sys:String x:Key="LOCFontSmall">Nhỏ</sys:String>
+    <sys:String x:Key="LOCFontNormal">Bình thường</sys:String>
+    <sys:String x:Key="LOCFontLarge">Lớn</sys:String>
+    <sys:String x:Key="LOCFontLarger">Lớn hơn</sys:String>
+    <sys:String x:Key="LOCFontLargest">Lớn nhất</sys:String>
+    <sys:String x:Key="LOCDefault">Mặc định</sys:String>
+    <sys:String x:Key="LOCSelect">Chọn</sys:String>
+    <sys:String x:Key="LOCSelectAll">Chọn tất cả</sys:String>
+    <sys:String x:Key="LOCDeselectAll">Bỏ chọn Tất cả</sys:String>
+    <sys:String x:Key="LOCFirst">Đầu tiên</sys:String>
+    <sys:String x:Key="LOCRandom">Ngẫu Nhiên</sys:String>
+    <sys:String x:Key="LOCUserSelect">Người dùng lựa chọn</sys:String>
+    <sys:String x:Key="LOCLoadMore">Tải thêm</sys:String>
+    <sys:String x:Key="LOCTransparent">Trong suốt</sys:String>
+    <sys:String x:Key="LOCCollapse">Thu nhỏ</sys:String>
+    <sys:String x:Key="LOCExpand">Mở rộng</sys:String>
+    <sys:String x:Key="LOCCollapseAll">Thu gọn tất cả</sys:String>
+    <sys:String x:Key="LOCExpandAll">Mở rộng tất cả</sys:String>
+    <sys:String x:Key="LOCOther">Khác</sys:String>
+    <sys:String x:Key="LOCThemes">Chủ đề</sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">Đối số của trình giả lập</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">đổi số tích hợp</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Đối số của trình giả lập</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">Đối số giả lập bổ xung</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
     <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
@@ -688,56 +714,56 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCOpenGameLocation"></sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
     <sys:String x:Key="LOCOpenGameManual"></sys:String>
-    <sys:String x:Key="LOCMoreAction"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
-    <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
-    <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
-    <sys:String x:Key="LOCTimePlayed"></sys:String>
-    <sys:String x:Key="LOCLastPlayed"></sys:String>
-    <sys:String x:Key="LOCPlayedHours"></sys:String>
-    <sys:String x:Key="LOCPlayedMinutes"></sys:String>
-    <sys:String x:Key="LOCPlayedSeconds"></sys:String>
-    <sys:String x:Key="LOCPlayedNone"></sys:String>
-    <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"></sys:String>
-    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCInstallScript"></sys:String>
-    <sys:String x:Key="LOCScriptError"></sys:String>
-    <sys:String x:Key="LOCScriptExecutionError"></sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
-    <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
-    <sys:String x:Key="LOCRenameItem"></sys:String>
-    <sys:String x:Key="LOCAddNewItem"></sys:String>
-    <sys:String x:Key="LOCEnterName"></sys:String>
-    <sys:String x:Key="LOCEnterNewName"></sys:String>
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour"></sys:String>
-    <sys:String x:Key="LOCPLaytime1to10"></sys:String>
-    <sys:String x:Key="LOCPLaytime10to100"></sys:String>
-    <sys:String x:Key="LOCPLaytime100to500"></sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000"></sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus"></sys:String>
-    <sys:String x:Key="LOCExtInstallationRestartNotif"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
+    <sys:String x:Key="LOCMoreAction">Thêm</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">Được quản lý bởi đầu vào thư viện</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">Quá trình bắt đầu trò chơi sẽ được quản lý bởi plugin thư viện chịu trách nhiệm về trò chơi này.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">Không có thông tin liên quan nào về trò chơi '{0}' được tìm thấy trên trang được chỉ định.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">Mẹo: Bạn có thể sử dụng quy trình tải xuống siêu dữ liệu nâng cao hơn trong khi chỉnh sửa trò chơi đơn lẻ thông qua tùy chọn menu &quot;Chỉnh sửa&quot;.</sys:String>
+    <sys:String x:Key="LOCProgreessAvailabilityMessage">Không khả dụng khi một số hành động đang diễn ra.</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Văn bản mô tả nhạy cảm với cú pháp HTML</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Thời gian trò chơi được tính bằng giây.</sys:String>
+    <sys:String x:Key="LOCReleaseDateTooltip">Ngày phát hành phải được đặt ở định dạng 'năm-tháng-ngày'. Giá trị Tháng và Ngày có thể bị bỏ qua</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">Giá trị từ 0 đến 100 hoặc trống không có điểm.</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Sự phát triển của Playnite được hỗ trợ bởi những người bảo trợ sau:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">Mã, bản địa hóa và những người đóng góp khác không theo thứ tự cụ thể:</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">Hủy theo dõi trò chơi?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">Giám sát cài đặt hiện đang chạy. Bạn có muốn hủy quá trình và đưa trò chơi về trạng thái trước đó không?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Giám sát thực thi trò chơi hiện đang chạy. Bạn có muốn hủy quá trình và đưa trò chơi về trạng thái trước đó không?</sys:String>
+    <sys:String x:Key="LOCTimePlayed">Thời gian chơi</sys:String>
+    <sys:String x:Key="LOCLastPlayed">Lần chơi cuối</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0}phút {1}giây</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0} phút</sys:String>
+    <sys:String x:Key="LOCPlayedSeconds">{0} giây</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Không được</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Đang mở chế độ Máy tính để bàn…</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Đang mở chế độ Toàn màn hình…</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">Đang tải thư viện trò chơi…</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">Không cài đặt được tệp tập lệnh.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">Tập lệnh đã được cài đặt thành công.</sys:String>
+    <sys:String x:Key="LOCInstallScript">Cài đặt tập lệnh</sys:String>
+    <sys:String x:Key="LOCScriptError">tập lệnh lỗi</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">Không thực hiện được chức năng tiện ích mở rộng.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">Mở thư mục siêu dữ liệu</sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">Ứng dụng khách {0} chưa được cài đặt.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">Ứng dụng khách {0} bây giờ sẽ mở. Vui lòng đăng nhập và sau đó đóng thông báo này.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Đang đợi người dùng đăng nhập, vui lòng đóng phần này khi bạn hoàn tất…</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">Không tìm thấy thư mục cài đặt trò chơi.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Cấu hình hành động trò chơi không hợp lệ.</sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Khắc phục sự cố đồng bộ hóa tài khoản</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Khắc phục sự cố</sys:String>
+    <sys:String x:Key="LOCRenameItem">Đổi tên thư mục</sys:String>
+    <sys:String x:Key="LOCAddNewItem">Thêm mục mới</sys:String>
+    <sys:String x:Key="LOCEnterName">Nhập tên</sys:String>
+    <sys:String x:Key="LOCEnterNewName">Nhập tên mới</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">ít hơn một giờ</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 đến 10 giờ</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 đến 100 giờ</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 đến 500 giờ</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 đến 1000 giờ</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">Hơn 1000 giờ</sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite phải được khởi động lại để hoàn tất quá trình cài đặt. Bạn có muốn khởi động lại bây giờ không?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">Tiện ích mở rộng không được đóng gói đúng cách.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">Chủ đề không được đóng gói đúng cách.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
@@ -748,6 +774,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
@@ -947,6 +974,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

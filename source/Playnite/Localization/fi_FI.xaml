@@ -188,7 +188,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCColumns">Sarakkeet</sys:String>
     <sys:String x:Key="LOCRow">Rivi</sys:String>
     <sys:String x:Key="LOCRows">Rivit</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Kuvaketta ei voida hakea, jos Pelaa-toiminto puuttuu tai se on asetettu URL:ksi.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Lataa vain puuttuva metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ottamalla tämän valinnan käyttöön metadataa ei ladata niille kentille, jotka jo sisältävät tietoa.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Pelikokoelma</sys:String>
@@ -303,7 +303,6 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Näytä vain käytössä olevat kentät suodatin- ja selainpaneeleissa</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Poista laitteistokiihdytys käytöstä</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Käytä jos havaitset nykimistä tai muita käyttöliittymän ongelmia</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Poista DPI-skaalaus käytöstä</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Näytä piilotetut pelit pikakäynnistyslistoilla</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Vaikuttaa ohjelmaikonin listaan sekä ilmaisinalueen ikonin listaan.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Pikakäynnistysnimikkeiden määrä</sys:String>
@@ -579,6 +578,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Avaa Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profiilin asetukset</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Pelin nimi ei voi olla tyhjä.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Pelin nimi ei voi olla tyhjä haettaessa metadataa.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Virheellinen pelidata</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Anna oikea URL-muoto alkaen http:// tai https://</sys:String>
@@ -654,6 +654,8 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCOther">Muut</sys:String>
     <sys:String x:Key="LOCThemes">Teemat</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulaattorien argumentit</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Emulaattorin lisä-argumentit</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Ohita emulaattorien argumentit</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Pelaa-toiminto</sys:String>
@@ -766,6 +768,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Asennus onnistui.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Asenna laajennus?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Yleinen</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Laajennuksen asennus epäonnistui.
  
 {0}</sys:String>
@@ -868,7 +871,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCAddonInstall">Asenna</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Poista asennus</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Jo asennettu</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Lisäosien päivityksiä ei saatavilla.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Päivitä lisäosat</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Muutosloki ei saatavilla</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Ajoitettu asennettavaksi</sys:String>
@@ -1008,6 +1011,7 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

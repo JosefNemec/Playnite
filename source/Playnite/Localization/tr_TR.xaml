@@ -41,7 +41,9 @@ Günlük dosyasını kaydetmenizi ve sorunu uzantının geliştiricisine bildirm
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">&quot;{0}&quot; uzantısı, kurtarılamaz bir hataya neden oldu.
 
 Sorunu uzantının geliştiricisine bildirmenizi öneririz. Sorun tekrarlanmaya devam ederse, uzantıyı devre dışı bırakın.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Bilinmeyen uzantı veya tema, kurtarılamaz bir hataya neden oldu.
+
+3. taraf eklentileri devre dışı bırakmanızı, sorunlu olanı ayırmanızı ve sorunu eklentinin geliştiricisine bildirmenizi öneririz.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
         
 Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgilerini gönderin. Teşekkür ederim.</sys:String>
@@ -185,7 +187,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCColumns">Sütunlar</sys:String>
     <sys:String x:Key="LOCRow">Satır</sys:String>
     <sys:String x:Key="LOCRows">Satırlar</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Oynatma işlemi eksikse veya URL'ye ayarlanmışsa simge alınamıyor.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Oyna işleminden simge alınamadı. Mevcut Dosya türü eylemi yok.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Sadece eksik olan üst veriyi indir</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Bu seçeneğin etkinleştirilmesi, zaten bilgi içeren veri alanları için üst verileri indirmeyi atlar.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Oyun Seçimi</sys:String>
@@ -300,7 +302,6 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Filtre ve gezgin panellerinde yalnızca atanmış alanları göster</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Donanım ivmesini devre dışı bırak</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Takılma veya benzeri kullanıcı arayüzü sorunları yaşarken kullanın</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI ölçeklendirmeyi devre dışı bırak</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Hızlı başlatma listelerinde gizli oyunları göster</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Sağ tıklama menüsü listesini ve sistem tepsisi listesini etkiler.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Hızlı başlatma öğelerinin sayısı</sys:String>
@@ -498,8 +499,9 @@ Playnite logo menüsünü tıklayarak daha sonra başka bir oyun da ekleyebilirs
     <sys:String x:Key="LOCGameTagsTitle">Etiket(ler)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Yayımcı(lar)</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Kurulum Durumu</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Tüm filtreleri eşleştir</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Etkinleştirilirse, yalnızca tüm filtrelerdeki tüm öğeleri kullanan oyunlar görünüme dahil edilir.
+Devre dışı bırakılırsa, herhangi bir filtredeki herhangi bir öğeyi kullanan oyunlar görünüme dahil edilir.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Yüklü</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Yüklü değil</sys:String>
@@ -552,7 +554,13 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Bağlantı açılamıyor, URL geçerli biçimde değil.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Uygulama başlatılamadı.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">WebView bileşeni başlatılamadı. Playnite, başlatma işlemine devam edemez.
+
+Sorunu çözmeyi deneyebilirsiniz:
+  • Tüm dosyaların doğru şekilde kurulduğunu kontrol edin. Yeniden yükleme yardımcı olabilir
+  • Windows 7 veya 8 kullanıyorsanız Visual Studio C++ 2019 yeniden dağıtılabilirlerini yükleyin
+  • Virüsten koruma programınızın Playnite klasöründeki hiçbir dosyayı engellemediğinden emin olun
+  • Farklı bir kurulum yeri seçin</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Eksik veya bozuk tanım dosyası nedeniyle emülatörler içe aktarılamıyor.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">XInput arayüzü başlatılamadı.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Menü eylemi gerçekleştirilemedi.</sys:String>
@@ -563,7 +571,7 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Bağlantı Ekle</sys:String>
     <sys:String x:Key="LOCAddRom">ROM ekle</sys:String>
     <sys:String x:Key="LOCSaveChanges">Değişiklikleri Kaydet</sys:String>
-    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Alan değişikliklerini, düzenlenmekte olan oyun(lar)a uygulayın.</sys:String>
     <sys:String x:Key="LOCPlayAction">Oyna Eylemi</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Oyna Eylemi Ekle</sys:String>
     <sys:String x:Key="LOCAddAction">Eylem Ekle</sys:String>
@@ -577,6 +585,7 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Playnite'ı Aç</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profil Ayarları</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Oyun adı boş bırakılamaz.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Oyun eylemi izleme dizini boş olamaz.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Üst verileri aramalarında oyun adı boş bırakılamaz.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Geçersiz oyun verileri</sys:String>
     <sys:String x:Key="LOCURLInputInfo">http:// veya https:// ile başlayan geçerli web URL'si girin</sys:String>
@@ -652,6 +661,8 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCOther">Diğer</sys:String>
     <sys:String x:Key="LOCThemes">Temalar</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argümanları</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Dahili Bağımsız Değişkenler</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Özel Bağımsız Değişkenler</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ek Emulator Argümanları</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Emulator Argümanlarını Geçersiz Kıl</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Oyna Eylemi</sys:String>
@@ -677,9 +688,9 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Oyun başlatılmadan önce çalıştırılacak betik</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Oyundan çıkış yapıldıktan sonra çalıştırılacak betik</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Oyun başlatıldıktan sonra çalıştırılacak betik</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
-    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Oyun betiği başlatıyor</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Oyun betiği başlattı</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Oyun betiği durdurdu</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Genel betiği çalıştır</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Genel</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrelenmiş</sys:String>
@@ -755,15 +766,16 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Uzantı düzgün paketlenmemiş.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Tema düzgün paketlenmemiş.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">&quot;{0}&quot; uzantısı düzgün yüklenemedi.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">&quot;{0}&quot; eklentisi yüklenemiyor, mevcut Playnite sürümü desteklenmiyor.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">&quot;{0}&quot; teması düzgün yüklenemedi.</sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">&quot;{0}&quot; teması yüklenemiyor, mevcut Playnite sürümü desteklenmiyor.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionLoadError">Uzantı düzgün yüklenemedi.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Tema düzgün yüklenemedi.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Uzantı, desteklenmeyen API sürümü kullanıyor.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Kurulum başarılı oldu.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Eklenti yükle</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Genel</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">&quot;{0}&quot; eklentisi yüklenemedi.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Uzantı kurulumu başarısız.
  
 {0}</sys:String>
@@ -869,7 +881,7 @@ Ek entegrasyonlar yüklemek veya kaldırmak istiyorsanız ana menüden &quot;Ekl
     <sys:String x:Key="LOCAddonInstall">Yükle</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Kaldır</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Zaten yüklenmiş</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Mevcut eklenti güncellemesi yok.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Yeni eklenti güncellemesi bulunamadı.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Eklentileri güncelle</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Değişiklikler mevcut değil</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Kurulum için planlandı</sys:String>
@@ -985,14 +997,14 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCEmuImportAssignPlatform">Platformu ayarla</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Bölge Ayarla</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Klasörleri tara</sys:String>
-    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Yapılandırmaları tara</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Kalıpları sağlama toplamı taramasından hariç tut</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Belirtilen desen(ler)le eşleşen dosyalar sağlama toplamı için taranmayacak ve dosya adıyla eşleştirilecektir. Daha fazla bilgi için öykünücü yardım sayfasına bakın.</sys:String>
     <sys:String x:Key="LOCEmuScanEmulator">Emülatörle tara</sys:String>    
-    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
-    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
-    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
-    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Yeni yapılandırma kaydedilirken ad belirtilmeli.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Öykünücü veya öykünücü profili ayarlanmadı.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Taranacak dizin belirtilmemiş veya mevcut değil.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Tarama yapılandırması düzgün ayarlanmamış.</sys:String>    
     <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Toplu tarama içinde otomatik-tarama içerir</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Emülatörler için klasör taranamadı.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Emülatör oyunları için klasör taranamadı.</sys:String>
@@ -1007,13 +1019,24 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Belirli klasörleri taramak için emülatörlerle tarama yapılandırmaları ekleyin. Oyunları içe aktarmadan önce emülatörlerin doğru şekilde yapılandırıldığından emin olun (Kütüphane -&gt; Emülatör Yapılandır menüsü aracılığıyla).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Yeni eklenen oyunlara atanan varsayılan durum</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">İlk kez oynanan oyunlara atanan statü</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
-    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
-    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">PowerShell betiği çalışma zamanı başlatılamadı. Windows 7 kullanıcısıysanız, sorunu çözmek için PowerShell 5.1'i (yeniden) yüklemeyi deneyin.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Belirtilen ada sahip filtre ön ayarı zaten var. Ön ayar yeni ayarlarla güncellensin mi?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic hizmetinin sisteminizde çalıştığı tespit edildi. Bu hizmetin Playnite'ta (ve diğer uygulamalarda) ciddi işleme sorunlarına neden olduğu bilinmektedir.        
+
+Bu sorunları önlemek için devre dışı bırakmanızı veya tamamen kaldırmanızı öneririz.
+
+https://playnite.link/nahimicsucks adresinden daha fazla bilgi edinin.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite, yükseltilmiş ayrıcalıklarla (yönetici olarak) çalışıyor. Bu, Playnite'tan başlatılan tüm yüklü uzantılara ve tüm oyunlara/uygulamalara yükseltilmiş ayrıcalıklar sağladığı için önerilmez!
+
+https://playnite.link/adminfaq adresinde daha fazla bilgi alabilirsiniz.</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Playnite yükseltilmiş ayrıcalıklarla çalışıyorsa uyarı göster</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Aşağıdaki eklentinin/eklentilerin, yüksek kararlılık/performans etkisi veya güvenlik sorunları nedeniyle potansiyel olarak sorunlu olduğu bildirildi. Bunları kaldırmanızı şiddetle öneririz:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Çevrimiçi dosyaları taramadan hariç tut</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Bulut depolamada depolanan dosyalar yerel olarak mevcut değilse taranmaz ve içe aktarılmaz.
+Yalnızca şunlar için desteklenir: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Dosya içeriği olmadan basitleştirilmiş yöntemi kullanarak tara</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Dosyalar içe aktarılacak, ancak dosya içeriğinin indirilmesini ve yerel olarak sunulmasını gerektirmeyen daha az doğru bir yöntem kullanılacaktır.</sys:String>
 </ResourceDictionary>

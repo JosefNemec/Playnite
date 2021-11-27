@@ -187,7 +187,7 @@
     <sys:String x:Key="LOCColumns">列</sys:String>
     <sys:String x:Key="LOCRow">行</sys:String>
     <sys:String x:Key="LOCRows">行:</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">アイコンを取得できません。プレイアクションが登録されていないか、または、URLが設定されていません。</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">存在しないmetadataのみダウンロード</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">このオプションを有効にすると、すでに情報が含まれているデータフィールドのメタデータのダウンロードがスキップされます。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">ゲームセレクト</sys:String>
@@ -302,7 +302,6 @@
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">フィルタおよびエクスプローラパネルに割り当てられたフィールドのみを表示</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">ハードウェアアクセラレーションを無効にする</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">表示崩れなどのUIの問題が発生した場合に使用します。</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPIスケーリングを無効にする</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">クイックランチリストの非表示ゲームを表示</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">ジャンプリストとトレイメニューリストに影響を与えます。</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">クイックランチの項目数</sys:String>
@@ -581,6 +580,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCOpenPlaynite">Playnite を開く</sys:String>
     <sys:String x:Key="LOCProfileSettings">プロファイル設定</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">ゲーム名は空欄にできません。</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">メタデータを検索する前にゲーム名を空欄にすることはできません。</sys:String>
     <sys:String x:Key="LOCInvalidGameData">無効なゲームデータ</sys:String>
     <sys:String x:Key="LOCURLInputInfo">http:// または https:// で始まる有効なWeb URLを入力してください。</sys:String>
@@ -656,6 +656,8 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCOther">その他</sys:String>
     <sys:String x:Key="LOCThemes">テーマ</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">エミュレータ引数</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">追加のエミュレータ引数</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">エミュレータ引数を上書きする</sys:String>
     <sys:String x:Key="LOCIsPlayAction">プレイアクション</sys:String>
@@ -768,6 +770,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">インストールが成功しました。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">拡張機能をインストールしますか？</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">全般</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">拡張機能のインストールに失敗しました。
 
 {0}</sys:String>
@@ -867,7 +870,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCAddonInstall">インストール</sys:String>
     <sys:String x:Key="LOCAddonUninstall">アンインストール</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">インストール済み</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">アップデートはありません</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">アドオンの更新</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">更新履歴は利用できません</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
@@ -994,6 +997,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">初めてプレイするゲームに付与されるステータス</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

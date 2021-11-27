@@ -187,7 +187,7 @@
     <sys:String x:Key="LOCColumns">列</sys:String>
     <sys:String x:Key="LOCRow">行</sys:String>
     <sys:String x:Key="LOCRows">行</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">如果启动操作缺失或设置为链接，则无法获取图标</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">无法通过游玩操作获取图标。不存在文件类型的操作。</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">仅下载缺失的资料数据</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">启用该选项会跳过已经含有信息的数据字段的资料数据下载。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">游戏选择</sys:String>
@@ -302,7 +302,6 @@
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">在筛选面板和资源管理面板上只显示分配的字段</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡顿或类似的用户界面问题时使用</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">禁用DPI缩放</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">在快速启动列表中显示隐藏游戏</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">影响任务栏右键菜单和托盘图标菜单。</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">快速启动列表中项目数量</sys:String>
@@ -588,6 +587,7 @@
     <sys:String x:Key="LOCOpenPlaynite">打开Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">配置文件设置</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">游戏名称不能为空</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">游戏操作跟踪目录不能为空。</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">搜索资料数据前，游戏名称不能为空</sys:String>
     <sys:String x:Key="LOCInvalidGameData">游戏数据无效</sys:String>
     <sys:String x:Key="LOCURLInputInfo">输入以http：//或https：//开头的有效网址</sys:String>
@@ -663,6 +663,8 @@
     <sys:String x:Key="LOCOther">其他</sys:String>
     <sys:String x:Key="LOCThemes">主题</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">内置参数</sys:String>
+    <sys:String x:Key="LOCCustomArguments">自定义参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模拟器参数</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">覆盖模拟器参数</sys:String>
     <sys:String x:Key="LOCIsPlayAction">游玩动作</sys:String>
@@ -688,9 +690,9 @@
     <sys:String x:Key="LOCPreScriptDescription">启动游戏前执行的脚本</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">退出游戏后执行的脚本</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">启动游戏后执行的脚本</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
-    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">游戏启动前脚本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">游戏启动后脚本</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">游戏停止脚本</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">执行全局脚本</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全局</sys:String>
     <sys:String x:Key="LOCStatsFiltered">已筛选</sys:String>
@@ -775,6 +777,7 @@
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安装成功。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安装插件？</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">通用</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">“{0}”插件安装失败。</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安装扩展失败。
 
 {0}</sys:String>
@@ -879,7 +882,7 @@ By {1}
     <sys:String x:Key="LOCAddonInstall">安装</sys:String>
     <sys:String x:Key="LOCAddonUninstall">卸载</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">无可用插件更新。</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">未发现新的插件更新。</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">更新插件</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">更新日志不可用</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">计划安装</sys:String>
@@ -1021,10 +1024,10 @@ By {1}
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">使用模拟器添加扫描配置以扫描特定文件夹。确保在导入游戏之前正确配置了模拟器（通过库 -&gt; 配置模拟器菜单）。</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">分配给新添加游戏的默认状态</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">分配给首次玩游戏的状态</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">初始化PowerShell脚本运行时失败。如果你是Windows 7用户，尝试（重新）安装PowerShell 5.1以解决这个问题。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">具有指定名称的过滤器预设已存在。是否使用新设置更新预设？</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite正在以权限提升模式（作为管理员）运行。因这也将给所有安装的扩展以及从Playnite启动的游戏带来权限提升，故不推荐您这么做。
-Playnite并不需要权限提升模式来稳定运行，我们建议您以标准权限重启Playnite。</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">当Playnite以权限提升模式运行时显示警告</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下插件已因潜在问题而被报道，例如严重影响稳定性/性能或安全问题。我们强烈建议您卸载它们：
         

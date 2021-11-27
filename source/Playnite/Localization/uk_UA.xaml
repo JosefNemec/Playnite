@@ -24,7 +24,7 @@
     <sys:String x:Key="LOCCategoryAddCatButton">Додати категорію</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Вибрано - Категорію призначено
 Не вибрано - Прибрати категорію
-Невизначено - Без змін (коли редагується кілька ігр)</sys:String>
+Невизначено - Без змін (коли редагується кілька ігор)</sys:String>
     <sys:String x:Key="LOCNoCategory">Немає категорії</sys:String>
     <sys:String x:Key="LOCNoPlatform">Немає платформи</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Дідько! Щось пішло не так...</sys:String>
@@ -80,7 +80,7 @@
     <sys:String x:Key="LOCGameStartError">Неможливо запустити гру: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Не вдалося розпочати дію: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Не вдалося відкрити розташування гри: {0}</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Невдалося створити ярлик: {0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Не вдалося створити ярлик: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Не вдалося відкрити посібник: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Не вдається встановити гру: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Не вдається видалити гру: {0}</sys:String>
@@ -122,7 +122,7 @@
     <sys:String x:Key="LOCVersionLabel">Версія</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Востаннє зіграно</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Найбільше зіграно</sys:String>
-    <sys:String x:Key="LOCPlayCountLabel">Скільки зіграно</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Разів зіграно</sys:String>
     <sys:String x:Key="LOCFolderLabel">Тека</sys:String>
     <sys:String x:Key="LOCNotesLabel">Примітки</sys:String>
     <sys:String x:Key="LOCAddedLabel">Додано</sys:String>
@@ -188,7 +188,7 @@
     <sys:String x:Key="LOCColumns">Колонки</sys:String>
     <sys:String x:Key="LOCRow">Рядок</sys:String>
     <sys:String x:Key="LOCRows">Рядки</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Неможливо отримати значок якщо дія &quot;Грати&quot; відсутня або вибрано URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Не вдалося отримати значок із дії &quot;Грати&quot;. До дії не прив'язано жодного типу файлу.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Завантажити лише відсутні метадані</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Включення цієї опції пропустить завантажування метаданих для вже заповнених полів.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Вибір ігор</sys:String>
@@ -241,7 +241,7 @@
     <sys:String x:Key="LOCMenuHibernateSystem">Режим глибокого сну</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Вибрати Випадкову Гру</sys:String>
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDetailsPanelItems">Ігрові поля, що будуть відображені на панелі деталей:</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">Ігрові поля, що будуть відображатися на панелі деталей:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Відстань між елементами</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Малювати фон елемента Сітки</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина раки елемента Сітки</sys:String>
@@ -296,14 +296,13 @@
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Асинхронне завантаження зображень</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Покращує плавність прокручування списків ігор в обмін на повільніший час завантаження зображення.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показувати назву гри, якщо відсутня обкладинка</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Відображення назв ігор у Сітці</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">Відображати назви ігор у Сітці</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Затемнювати видалені ігри</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Відображати значки ігор у списку детального перегляду</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Показувати кількість елементів в описі груп</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Показувати лише визначені поля на панелях фільтра і провідника</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Вимкнути апаратне прискорення</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Використовуйте під час блимання або подібних проблем інтерфейсу користувача</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Вимкнути масштабування DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Показувати приховані ігри в списках швидкого запуску</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Впливає на перехідний список і список в меню області сповіщень.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Кількість елементів швидкого запуску</sys:String>
@@ -396,7 +395,7 @@
     <sys:String x:Key="LOCStrechUniform">Вписати</sys:String>
     <sys:String x:Key="LOCStrechUniformToFill">Вписати зберігаючи співвідношення сторін</sys:String>
     <sys:String x:Key="LOCDockLeft">Зліва</sys:String>
-    <sys:String x:Key="LOCDockRight">Зправа</sys:String>
+    <sys:String x:Key="LOCDockRight">Справа</sys:String>
     <sys:String x:Key="LOCDockTop">Зверху</sys:String>
     <sys:String x:Key="LOCDockBottom">Внизу</sys:String>
     <sys:String x:Key="LOCImportError">Помилка імпортування</sys:String>
@@ -429,7 +428,7 @@
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Цей майстер проведе вас через автоматичний процес імпортування і налаштування зовнішніх бібліотек. Playnite може автоматично імпортувати ігри з декількох ігрових сервісів таких як Steam чи GOG, а також тримати вашу бібліотеку в актуальному стані, автоматично оновлюючи її під час запуску програми.
 
 Майте на увазі, що ви можете додати будь-яку власну гру для будь-якої платформи пізніше, натиснувши кнопку &quot;Playnite&quot; в головному меню.</sys:String>
-    <sys:String x:Key="LOCFirstExternalTitle">Інтерграція бібліотеки</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">Інтеграція бібліотеки</sys:String>
     <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Нижче наведено список деяких відібраних бібліотечних інтеграцій, які підтримує Playnite. Виберіть ті, які потрібно встановити.
 
 Інші інтеграції можна встановити пізніше з меню &quot;Надбудови&quot;.</sys:String>
@@ -586,13 +585,14 @@
     <sys:String x:Key="LOCDetectInstalled">Виявити встановлені</sys:String>
     <sys:String x:Key="LOCBrowse">Огляд...</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Відкрити Playnite</sys:String>
-    <sys:String x:Key="LOCProfileSettings">Налаштування профіля</sys:String>
+    <sys:String x:Key="LOCProfileSettings">Налаштування профілю</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Назва гри не може бути порожньою.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Каталог відстеження дій гри не може бути порожнім.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Назва гри не може бути порожньою перед пошуком метаданих.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Неприпустимі ігрові дані</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Введіть припустимий URL що починається з http:// або https://</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">Обрати URL</sys:String>
-    <sys:String x:Key="LOCMetadataDownloadError">Невдалося завантажити метадані: {0}</sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">Не вдалося завантажити метадані: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">Помилка завантаження</sys:String>
     <sys:String x:Key="LOCClearFilters">Очистити фільтри</sys:String>
     <sys:String x:Key="LOCPrivateAccount">Приватний обліковий запис</sys:String>
@@ -663,6 +663,8 @@
     <sys:String x:Key="LOCOther">Інше</sys:String>
     <sys:String x:Key="LOCThemes">Теми</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Аргументи емулятора</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Вбудовані параметри</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Користувацькі параметри</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Додаткові аргументи емулятора</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Перевизначити аргументи емулятора</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Дія &quot;Грати&quot;</sys:String>
@@ -775,6 +777,7 @@
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Встановлення завершилося успішно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Встановити надбудову?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Загальні</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Не вдалося встановити доповнення &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Не вдалося встановити розширення.
 
 {0}</sys:String>
@@ -879,7 +882,7 @@
     <sys:String x:Key="LOCAddonInstall">Встановити</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Видалити</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Вже встановлено</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Доступних оновлень надбудов немає.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Нових оновлень надбудов не знайдено.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Оновити надбудови</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Журнал змін не доступний</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Заплановано до встановлення</sys:String>
@@ -958,7 +961,7 @@
     <sys:String x:Key="LOCGameIsStarting">{0} починається… </sys:String>
     <sys:String x:Key="LOCGameIsRunning">{0} працює…</sys:String>
     <sys:String x:Key="LOCTextInputCapitalize">Верхній регістр</sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerMode">Масштабувальник промальовки зображень</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode">Масштабувальник візуалізації зображень</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">Альтернативний</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced">Збалансований</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingQuality">Якість</sys:String>
@@ -1019,9 +1022,14 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, призначений іграм, які граються вперше</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Не вдалося ініціалізувати середовище виконання сценарію PowerShell. Якщо ви користуєтесь Windows 7, спробуйте (повторно) встановити PowerShell 5.1, щоб вирішити проблему.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Пресет фільтра із зазначеною назвою вже існує. Оновити пресет з новими налаштуваннями? </sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite працює з правами адміністратора. Це не рекомендується, оскільки це дає підвищені привілеї для всіх встановлених розширень та всіх ігор/програм, запущених із Playnite!
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Було виявлено, що служба Nahimic запущена у вашій системі. Відомо, що ця служба викликає серйозні проблеми з відтворенням для Playnite (та інших програм).
 
-Ми рекомендуємо перезапустити Playnite в звичайному режимі, оскільки для нормальної роботи Playnite не потрібні підвищені привілеї. </sys:String>
+Ми рекомендуємо вимкнути або повністю видалити її, щоб уникнути цих проблем.
+
+Більше інформації на https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite працює з правами адміністратора. Це не рекомендується, оскільки це дає підвищені привілеї всім встановленим розширенням і всім іграм/додаткам запущеним з Playnite!
+
+Більше інформації - https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Показувати попередження, якщо Playnite запущено з правами адміністратора</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Повідомлялося, що наступні надбудови є потенційно проблемними або через високий вплив на стабільність/продуктивність або через проблеми з безпекою. Ми настійно рекомендуємо видалити їх:
        

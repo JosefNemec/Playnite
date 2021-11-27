@@ -189,7 +189,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot; forhindres spille
     <sys:String x:Key="LOCColumns">Kolonner</sys:String>
     <sys:String x:Key="LOCRow">Rad</sys:String>
     <sys:String x:Key="LOCRows">Rader</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Kan ikke hente ikon hvis Play-handling mangler eller er satt til URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Kunne ikke hente ikon fra spill-handling. Ingen handling er tilgjengelig for filtypen.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Last bare ned manglende metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Aktivering av dette alternativet vil hoppe over nedlasting av metadata for datafelt som allerede har informasjon.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spillvalg</sys:String>
@@ -304,7 +304,6 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot; forhindres spille
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Vis bare tildelte felt i filter- og utforskerpaneler</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Deaktiver maskinvareakselerasjon</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Brukes når du opplever hakking eller lignende problemer med brukergrensesnittet</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Deaktiver DPI-skalering</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Vis skjulte spill i hurtiglister</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Påvirker &quot;jumplisten&quot; og skuffmenyer</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Antall hurtigstart-elementer</sys:String>
@@ -587,6 +586,7 @@ Du kan prøve dette for å løse problemet:
     <sys:String x:Key="LOCOpenPlaynite">Åpne Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profilinnstillinger</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Spillnavn kan ikke være tomt.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Sporingsmappe for spillhandling kan ikke være tom</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Spillnavn kan ikke være tomt før du søker i metadata.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Ugyldig spilldata</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Angi gyldig nettadresse som starter med http:// eller https://</sys:String>
@@ -662,6 +662,8 @@ Du kan prøve dette for å løse problemet:
     <sys:String x:Key="LOCOther">Andre</sys:String>
     <sys:String x:Key="LOCThemes">Temaer</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulator-argumenter</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Innebygde argumenter</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Tilpassede argumenter</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ytterligere emulator-argumenter</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Overstyr emulator-argumenter</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Spillhandling</sys:String>
@@ -775,6 +777,7 @@ Playnite må startes på nytt for å fullføre installasjonen. Vil du starte på
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installasjonen var vellykket.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installér utvidelsen?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Generelt</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Installasjon av utvidelsen &quot;{0}&quot; mislyktes.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Kunne ikke installere utvidelsen.
 
 {0}</sys:String>
@@ -881,7 +884,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Avinstaller</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Allerede installert</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Ingen oppdateringer for tillegg er tilgjengelig.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Ingen nye oppdateringer for utvidelser er funnet.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Oppdater tillegg.</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Endringslogg er ikke tilgjengelig.</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Satt i kø for installasjon.</sys:String>
@@ -1019,9 +1022,10 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status tilordnet spill som spilles for første gang</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Kunne ikke initialisere PowerShell-skriptkjøringsmiljø. Hvis du bruker Windows 7, kan du prøve å (re-)installere PowerShell 5.1 for å rett opp problemet.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Et filteroppsett med dette navnet eksisterer allerede. Vil du oppdatere oppsettet med nye innstillinger?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite kjører med forhøyede rettigheter (som administrator). Dette gir forhøyede rettigheter til alle spill/apper som startes fra Playnite, og er derfor ikke anbefalt!
 
-Vi anbefaler at du starter Playnite på nytt med normale rettigheter, siden Playnite ikke krever forhøyede rettigheter for å fungere riktig.</sys:String>
+Mer informasjon er tilgjengelig på https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Vis advarsel hvis Playnite kjører med forhøyede rettigheter</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Følgende tillegg har blitt rapportert som potensielt problematisk , enten fordi stabilitet eller ytelse påvirkes, eller på grunn av sikkerhetsproblemer. Vi anbefaler avinstallering på det sterkeste:
         

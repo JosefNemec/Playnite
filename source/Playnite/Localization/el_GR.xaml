@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">Greek</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel"></sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Γλώσσα</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Έξοδος</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Φίλτρο Ενεργό</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Φίλτρο Απενεργοποιημένο</sys:String>
@@ -16,7 +16,7 @@
     <sys:String x:Key="LOCAboutHomePageLink">Ιστοσελίδα www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Πηγαίος Κώδικας στο GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Δημιουργία diag. πακέτου</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton"></sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">Αποστολή διαγνωστικών πληροφοριών</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Σχετικά με το Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Φτιάχτηκε από τον Josef Němec</sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle">Αντιστοίχιση κατηγορίας</sys:String>
@@ -28,12 +28,20 @@
     <sys:String x:Key="LOCNoCategory">Χωρίς Κατηγορία</sys:String>
     <sys:String x:Key="LOCNoPlatform">Χωρίς Πλατφόρμα</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Ουπς! Κάτι πήγε στραβά...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Προέκυψε μη ανακτήσιμο σφάλμα
+
+Αν επιθυμείς, μπορείς να μας βοηθήσεις να διορθώσουμε αυτό το πρόβλημα, παρακαλούμε περιέγραψε συνοπτικά τις ενέργειες σου πριν το σφάλμα, και μετά στείλε διαγνοστικές πληροφορίες.
+Αν είσαι συνδεδεμένος, το πακέτο θα ανεβεί στον διακοσμιτή του Playnite για ανάλυση.
+
+Εναλλακτικά, μπορείς να πατήσεις στο 'Αναφορά Σφάλματος' για την δημιουργία ενός GitHub issue και να αναφέρεις το σφάλμα χειροκίνητα.
+
+Ευχαριστούμε για την βοήθεια.
+</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Απενεργοποίηση επεκτάσεων</sys:String>
     <sys:String x:Key="LOCCrashSaveLog"></sys:String>
     <sys:String x:Key="LOCCrashSendDiag"></sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Αναφορά Σφάλματος</sys:String>
@@ -41,7 +49,7 @@
     <sys:String x:Key="LOCCrashRestartSafe"></sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Έξοδος απ'το Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription"></sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Ενέργειες που πάρθηκαν πριν το σφάλμα (στα Αγγλικά)</sys:String>
     <sys:String x:Key="LOCLibraryManager">Διαχείριση Συλλογής</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Κατάργηση Παιχνιδιών?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError"></sys:String>
@@ -166,12 +174,12 @@
     <sys:String x:Key="LOCAllGames">Όλα τα παιχνίδια</sys:String>
     <sys:String x:Key="LOCGameId"></sys:String>
     <sys:String x:Key="LOCDatabaseId"></sys:String>
-    <sys:String x:Key="LOCPresets"></sys:String>
-    <sys:String x:Key="LOCColumn"></sys:String>
-    <sys:String x:Key="LOCColumns"></sys:String>
-    <sys:String x:Key="LOCRow"></sys:String>
-    <sys:String x:Key="LOCRows"></sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Δεν είναι δυνατή η λήψη εικονιδίου αν η εντολή Αναπαραγωγή λείπει ή έχει οριστεί διεύθυνση URL.</sys:String>
+    <sys:String x:Key="LOCPresets">Προεπιλογές</sys:String>
+    <sys:String x:Key="LOCColumn">Στήλη</sys:String>
+    <sys:String x:Key="LOCColumns">Στήλες</sys:String>
+    <sys:String x:Key="LOCRow">Σειρά</sys:String>
+    <sys:String x:Key="LOCRows">Σειρές</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Επιλογή παιχνιδιών</sys:String>
@@ -286,7 +294,6 @@
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
@@ -314,8 +321,8 @@
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Απαιτείται επανεκκίνηση του Playnite για την εφαρμογή νέου θέματος</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Λήψη περισσότερων θεμάτων</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Δημιουργία νέου θέματος</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">Λήψη περισσότερων επεκτάσεων</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">Δημιουργία νέας επέκτασης</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Επανεκκίνηση Playnite;</sys:String>
@@ -545,6 +552,7 @@
     <sys:String x:Key="LOCOpenPlaynite">Άνοιγμα Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Ρυθμίσεις προφίλ</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Το όνομα παιχνιδιού δεν μπορεί να είναι άδειο.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Το όνομα παιχνιδιού δεν μπορεί να είναι κενό πριν από την αναζήτηση metadata.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Μη έγκυρα δεδομένα παιχνιδιού</sys:String>
     <sys:String x:Key="LOCURLInputInfo"></sys:String>
@@ -588,8 +596,8 @@
     <sys:String x:Key="LOCExitPlaynite">Εξοδος Playnite</sys:String>
     <sys:String x:Key="LOCLibraries"></sys:String>
     <sys:String x:Key="LOCUpdateAll">Ενημέρωση Όλων</sys:String>
-    <sys:String x:Key="LOCExtensionCreatedBy"></sys:String>
-    <sys:String x:Key="LOCExtensionVersion"></sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">Δημιουργήθηκε από</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">Έκδοση:</sys:String>
     <sys:String x:Key="LOCExtensionModule"></sys:String>
     <sys:String x:Key="LOCLibrary">Συλλογή</sys:String>
     <sys:String x:Key="LOCStatistics"></sys:String>
@@ -620,6 +628,8 @@
     <sys:String x:Key="LOCOther"></sys:String>
     <sys:String x:Key="LOCThemes"></sys:String>
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -731,7 +741,8 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Η Εγκατάσταση ήταν επιτυχής.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Εγκατάσταση επέκτασης;</sys:String>
-    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Γενικά</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
@@ -752,7 +763,7 @@
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
     <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
     <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
-    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Φάκελος δεδομένων</sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
     <sys:String x:Key="LOCAddFromExe"></sys:String>
@@ -931,6 +942,7 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

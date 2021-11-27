@@ -189,7 +189,7 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCColumns">Columnas</sys:String>
     <sys:String x:Key="LOCRow">Fila</sys:String>
     <sys:String x:Key="LOCRows">Filas</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">No se puede obtener el icono si falta la acción de Jugar o está configurada como URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">No se pudo obtener el icono de la acción de juego. No hay acción de tipo archivo presente.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Descargar solo metadatos faltantes</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activar esta opción saltará las descargas de metadatos de campos que ya contengan información.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selección de juegos</sys:String>
@@ -304,7 +304,6 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostrar solo los campos asignados en los paneles de filtro y explorador</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desactivar aceleración por hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usar si la interfaz da tirones o problemas similares</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Desactivar escalado DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Mostrar juegos ocultos en listas de inicio rápido</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Afecta a los menús del sistema y al área de notificación.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Número de elementos de lanzamiento rápido</sys:String>
@@ -589,6 +588,7 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCOpenPlaynite">Abrir Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Ajustes de Perfil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">El nombre del juego no puede estar vacío.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">El directorio de seguimiento de acción de juego no puede estar vacío.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">El nombre del juego no puede estar vacío antes de buscar metadatos.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Datos de juego inválidos</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Ingrese una URL web válida comenzando por http:// o https://</sys:String>
@@ -664,6 +664,8 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCOther">Otro</sys:String>
     <sys:String x:Key="LOCThemes">Temas</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argumentos del Emulador</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Argumentos incorporados</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Argumentos personalizados</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos del Emulador Adicionales</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Reemplazar argumentos del emulador</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Acción de Jugar</sys:String>
@@ -776,6 +778,7 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">La instalación fue exitosa.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">¿Instalar complemento?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Genérica</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Error al instalar el complemento &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">No se pudo instalar la extensión.
 
 {0}</sys:String>
@@ -880,7 +883,7 @@ Si deseas instalar o desinstalar integraciones adicionales, use la opción &quot
     <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Ya instalado</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">No hay actualizaciones de complementos disponibles.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">No se han encontrado nuevas actualizaciones de complementos.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Actualizar complementos</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Registro de cambios no disponible</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Programado para instalación</sys:String>
@@ -1020,9 +1023,14 @@ Si comienza a experimentar algunos problemas después de instalar un tema o una 
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado asignado a juegos jugados por primera vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Error al inicializar el tiempo de ejecución del script de PowerShell. Si eres usuario de Windows 7, (re)intente instalando PowerShell 5.1 para solucionar el problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">El filtro preestablecido con el nombre especificado ya existe. ¿Actualizar filtro con las nuevas configuraciones?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Se ha detectado el servicio Nahimic que se está ejecutando en su sistema. Este servicio es saber que causar problemas de representación serios para jugar (y otras aplicaciones).
+
+Recomendamos deshabilitar o desinstalarlo completamente para evitar estos problemas.
+
+Más información en https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite se está ejecutando con privilegios elevados (como administrador). ¡Esto no se recomienda, ya que da privilegios elevados a todas las extensiones instaladas y todos los juegos/aplicaciones iniciadas desde Playnite!
 
-Se recomienda reiniciar Playnite en privilegios estándar, ya que Playnite no requiere privilegios elevados para funcionar correctamente.</sys:String>
+Más información en https://playnite.link/adminfaq </sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Mostrar advertencia si Playnite se está ejecutando con privilegios elevados</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Los siguientes complementos se han reportado como potencialmente problemáticos, ya sea debido a un alto impacto en estabilidad/rendimiento o problemas de seguridad. Te recomendamos encarecidamente que los desinstales:
         

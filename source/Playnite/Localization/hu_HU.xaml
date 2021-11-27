@@ -190,7 +190,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCColumns">Oszlopok</sys:String>
     <sys:String x:Key="LOCRow">Sor</sys:String>
     <sys:String x:Key="LOCRows">Sorok</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Nem lehet elindítani, ha nincs Indítási művelet definiálva, vagy URL van megadva.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Nem sikerült ikont kinyerni az indítási műveletből. Nincs futtatható fájl kiválasztva.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Csak a hiányzó metaadatok letöltése</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ha bekapcsolod, metaadat letöltésekor átugorja a már meglévő adatokkal teli mezőket.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Játék választás</sys:String>
@@ -305,7 +305,6 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Csak a kijelölt mezőket mutassa a szűrőknél és platformpanelnél</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Hardveres gyorsítás tiltása</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Kapcsold be, ha szaggat, vagy más hibát produkál a program</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI skálázás tiltása</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Elrejtett játékok megjelenítése a gyorsindító listákban</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Az ugráslistára és tálcamenüre van hatással.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Gyorsindító lista elemeinek száma</sys:String>
@@ -462,7 +461,7 @@ Megpróbálhatod újra letölteni őket a bővítmények menüből, miután lefu
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Mented a nem mentett változásokat?</sys:String>
     <sys:String x:Key="LOCExecutableTitle">Program</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">Paraméterek</sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle">Munkakönyvtár</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">Munkamappa</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">Támogatott fájltípusok</sys:String>
     <sys:String x:Key="LOCImportEmulatorsButton">Emulátorok importálása...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Emulátorok letöltése...</sys:String>
@@ -588,6 +587,7 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCOpenPlaynite">Playnite megnyitása</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profil beállítások</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Játék neve nem lehet üres.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">A játékművelet rögzítő mappája nem lehet kitöltetlen.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Metaadatok keresése előtt a játék neve nem lehet üres.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Hibás játékadat</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Adj meg helyes URL-t, ami http:// -vel VAGY https:// -sel kezdődik</sys:String>
@@ -663,6 +663,8 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCOther">Egyéb</sys:String>
     <sys:String x:Key="LOCThemes">Témák</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulátor paraméterek</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Beépített paraméterek</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Egyéni paraméterek</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">További emulátor paraméterek</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Emulátor paraméterek felülírása</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Indítási művelet</sys:String>
@@ -688,9 +690,9 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCPreScriptDescription">Játék indítása előtt futtatott szkript</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Játékból kilépés után futtatott szkript</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Játék indítása után futtatott szkript</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
-    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Játék indítása előtti szkript</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Játék futása alatti szkript</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Játékból kilépés utáni szkript</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Globális szkript futtatása</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globális</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Szűrt</sys:String>
@@ -775,6 +777,7 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Sikeres telepítés.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Telepítsem a bővitményt?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Általános</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">&quot;{0}&quot; bővítmény telepítése nem sikerült.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">{0} bővítmény telepítése nem sikerült.</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Telepíted az új bővítményt? {0} 
 Készítő: {1}
@@ -865,7 +868,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCAddonInstall">Telepítés</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Eltávolítás</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Már telepített</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nincsenek frissebb bővítmények.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nem találtam frissítést a bővítményekhez.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Bővítmények frissítése</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Változásnapló nem elérhető</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">A telepítés ütemezve</sys:String>
@@ -1003,11 +1006,18 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Beolvasási beállításokat állíthatsz be az emulátorokhoz, hogy megadott mappákon futtathasd. Győződj meg importálás előtt, hogy az emulátor helyesen be van állítva (Könyvtár / Emulátorok beállítása menüpont)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Újonnan hozzáadott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatási hiba. Ha Windows 7 alól tolod, próbáld meg (újra)telepíteni a PowerShell 5.1-et.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic észlelve a gépeden. Ez komoly teljesítményvesztéssel járhat a Playnite és más programok esetében.
+
+Azt ajánljuk, hogy tiltsd le vagy távolítsd el a problémák megelőzésére.
+
+Több információt (angolul) az alábbi linken találsz: https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">A Playnite rendszergazdai jogokkal fut. Nem ajánlott így futtatni, mert az összes bövítménynek és innen indított játéknak is teljes hozzáférése lesz mindenhez.
 
-Javasoljuk, hogy rendszergazdai jogok nélkül futtasd, ugyanis a Playnite nem ígényli ezt a működéséhez.</sys:String>
+Javasoljuk, hogy rendszergazdai jogok nélkül futtasd, ugyanis a Playnite nem ígényli ezt a működéséhez.
+
+Több infót a https://playnite.link/adminfaq linken találsz.</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Figyelmeztessen, ha rendszergazdaként futtatnám a Playnite-ot.</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Az alábbi bővítmények lehetségesen problémásnak voltak jelentve, instabilitás, teljesítménycsökkenés vagy biztonsági problémák miatt.
 Erősen javasoljuk az eltávolításukat:

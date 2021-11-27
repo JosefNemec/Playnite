@@ -188,7 +188,7 @@ Selecionar a opção &quot;adicionar a lista de exclusão&quot; impedirá que o 
     <sys:String x:Key="LOCColumns">Colunas</sys:String>
     <sys:String x:Key="LOCRow">Linha</sys:String>
     <sys:String x:Key="LOCRows">Linhas</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Não é possível obter um ícone se a ação de jogar não existe ou estiver definida como um URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Não foi possível extrair ícone da ação Jogar. Não há ação do tipo de Arquivo presente.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Baixar somente metadados ausentes</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Habilitar esta opção fará com que novos metadados não sejam baixados para os campos já preenchidos.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Seleção de jogos</sys:String>
@@ -303,7 +303,6 @@ Selecionar a opção &quot;adicionar a lista de exclusão&quot; impedirá que o 
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostrar somente campos selecionados nos painéis de filtro e explorar</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desabilitar a aceleração de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use se experienciar travamentos ou problemas com a interface.</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Desabilitar ajuste de DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Mostrar jogos escondidos na lista de inicio rápido</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Afeta a lista de opções e lista de menu de bandeja.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Número de itens na lista de inicialização rápida</sys:String>
@@ -586,6 +585,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCOpenPlaynite">Abrir o Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Configurações do perfil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">O nome do jogo não pode estar vazio..</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Diretório de monitoramento de ação de jogo não pode estar vazia.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">O nome do jogo não pode estar vazio antes de buscar metadados.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Dados do jogo inválidos</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Insira um URL válido iniciado com http:// ou https://</sys:String>
@@ -661,6 +661,8 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCOther">Outros</sys:String>
     <sys:String x:Key="LOCThemes">Temas</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do emulador</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Argumentos integrados</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Argumentos Customizados</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos adicionais do emulador</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Substituir argumentos do emulador</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Ação de jogar</sys:String>
@@ -686,9 +688,9 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCPreScriptDescription">Executar antes de iniciar um jogo</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Executar depois de sair de um jogo</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Executar após um jogo ser iniciado</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
-    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Jogo iniciando o script</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Jogo iniciou o script</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Jogo encerrou o script</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Executar o script global</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrado</sys:String>
@@ -773,6 +775,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem-sucedida.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalar extensão?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Genérico</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Falha ao instalar extensão &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar extensão.
 
 {0}</sys:String>
@@ -877,7 +880,7 @@ Se você deseja instalar ou desinstalar integrações adicionais, use a opção 
     <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Já instalado</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Não há atualizações de add-ons disponíveis.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nenhuma atualização de extensão foi encontrada.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Atualizar add-ons</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Registro de mudanças não disponível</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Agendado para instalação</sys:String>
@@ -1015,11 +1018,16 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Adicione configurações para emuladores escanearem pastas especificas. Tenha certeza que esses emuladores estão corretamente configurados antes de importar jogos (pelo menu &quot;biblioteca&quot; -&gt; &quot;configurar emuladores&quot;)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Estado padrão designado a jogos recentemente adicionados</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Falha na inicialização da execução do script PowerShell. Se você for usuário Windows 7, tente (re)instalar PowerShell 5.1 para corrigir o problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Já existe uma filtro com o nome especificado. Atualizar com novas configurações? </sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Serviço Nahimic foi detectado rodando em seu sistema. Sabemos que serviço causa problemas sérios de renderização no Playnite (e outros apps).        
+
+Recomendamos desabilitá-lo ou desinstalá-lo completamente para prevenir estes problemas.
+
+Mais informações em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite está rodando com privilégios elevados (como administrador). Não é a recomendação já que dá privilégios elevados para todas as extensões instaladas e todos os jogos/apps iniciados pelo Playnite!
 
-Recomendamos que reinicie o Playnite com privilégios padrão já que Playnite não requer privilégios elevados para funcionar adequadamente.</sys:String>
+Mais informações em https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Mostrar aviso se Playnite estiver rodando com privilégios elevados</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Seguintes add-ons foram reportados como potencialmente problemáticos, seja pelo alto impacto na estabilidade/performance ou problemas de segurança. Recomendamos fortemente que os desinstale:
         

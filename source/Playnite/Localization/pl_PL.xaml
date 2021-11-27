@@ -41,7 +41,9 @@ Zalecamy zapisanie pliku dziennika i zgłoszenie problemu twórcy rozszerzenia. 
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Rozszerzenie „{0}” spowodowało nieodwracalny błąd.
 
 Zalecamy zapisanie pliku dziennika i zgłoszenie problemu twórcy rozszerzenia. Jeśli problem będzie się powtarzał, wyłącz to rozszerzenie.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Nieznane rozszerzenie lub motyw spowodował nieodwracalny błąd.
+
+Zalecamy wyłączenie rozszerzeń innych firm, aby wyizolować problematyczny dodatek i zgłosić problem do jego twórców.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Wystąpił nieodwracalny błąd.
  
 Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostyczne. Dziękujemy.</sys:String>
@@ -187,7 +189,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCColumns">Kolumny</sys:String>
     <sys:String x:Key="LOCRow">Wiersz</sys:String>
     <sys:String x:Key="LOCRows">Wiersze</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Nie można znaleźć ikony, jeśli brakuje polecenia &quot;Graj&quot; lub jest ono ustawione na adres URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Nie udało się pobrać ikony z polecenia &quot;Graj&quot;. Dla tego typu pliku nie jest dostępne żadne polecenie.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Pobieraj tylko brakujące metadane</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ta opcja pominie pobieranie metadanych tam, gdzie już znajdują się informacje.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Wybór gier</sys:String>
@@ -302,7 +304,6 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Pokazuj tylko zaznaczone pola w filtrze i panelu eksploratora</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Wyłącz przyspieszanie sprzętowe</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Użyj, gdy występują problemy z szarpaniem (suttering) lub podobne problemy z interfejsem użytkownika</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Wyłącz skalowanie DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Pokazuj ukryte gry w pasku szybkiego dostępu</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Wpływa na menu kontekstowe oraz menu zasobnika.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Liczba pozycji w pasku szybkiego dostępu</sys:String>
@@ -501,8 +502,9 @@ Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatoró
     <sys:String x:Key="LOCGameTagsTitle">Tagi</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Wydawca</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Stan instalacji</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Zastosuj wszystkie filtry</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Jeżeli aktywne, zostaną wyświetlone tylko te gry, które spełniają warunki dla wszystkich wybranych filtrów.
+Jeżeli nieaktywne, zostaną wyświetlone te gry, które spełniają minimum jeden z wybranych filtrów.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Zainstalowane</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Zainstalowane</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nie zainstalowane</sys:String>
@@ -555,7 +557,13 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Nie można otworzyć linku, URL ma nieprawidłowy format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Nie udało się uruchomić aplikacji.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Nie udało się zainicjować komponentu WebView. Playnite nie może kontynuować procesu uruchamiania.
+
+Możesz spróbować rozwiązać ten problem:
+  • Sprawdź, czy wszystkie pliki są poprawnie zainstalowane. Ponowna instalacja może pomóc
+  • Zainstaluj Visual Studio C++ 2019 redistributables, jeżeli korzystasz z Windows 7 lub 8
+  • Upewnij się, czy program antywirusowy nie blokuje plików w katalogu Playnite
+  • Wybierz inną lokalizację instalacji</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nie można zaimportować emulatorów z powodu braku lub uszkodzenia pliku z konfiguracją.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Nie można zainicjować interfejsu XInput. </sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Nie udało się uruchomić akcji menu.</sys:String>
@@ -580,6 +588,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Otwórz Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Ustawienia profilu</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Nazwa gry nie może być pusta.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Katalog śledzenia akcji gry nie może być pusty.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Nazwa gry nie może być pusta przed wyszukiwaniem metadanych.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Nieprawidłowe dane gry</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Wprowadź poprawny adres internetowy zaczynający się od http:// lub https://</sys:String>
@@ -655,6 +664,8 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCOther">Inne</sys:String>
     <sys:String x:Key="LOCThemes">Motywy</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Parametry emulatora</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Wbudowane parametry</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Własne parametry</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatkowe parametry emulatora</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Nadpisz parametry emulatora</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Polecenie &quot;Graj&quot;</sys:String>
@@ -680,9 +691,9 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">Skrypt do wykonania przed uruchomieniem gry</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Skrypt do wykonania po uruchomieniem gry</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skrypt do wykonania po uruchomieniu gry</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
-    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Skrypt uruchamiania gry</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Skrypt uruchomionej gry</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Skrypt zatrzymanej gry</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Wykonanie skryptu globalnego</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Ogólne</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrowane</sys:String>
@@ -768,6 +779,7 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Zainstalowano poprawnie.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Czy zainstalować rozszerzenie?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Ogólny</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Nie udało się zainstalować rozszerzenia &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Nie udało się zainstalować rozszerzenia.
 
 {0}</sys:String>
@@ -872,7 +884,7 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
     <sys:String x:Key="LOCAddonInstall">Zainstaluj</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Odinstaluj</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Zainstalowano</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Brak dostępnych aktualizacji dodatków.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nie znaleziono nowych aktualizacji dodatku.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Aktualizacja dodatków</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Lista zmian jest niedostępna</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Zaplanowana instalacja</sys:String>
@@ -1010,13 +1022,24 @@ Jeżeli doświadczasz problemów po instalacji motywu lub rozszerzenia, spróbuj
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Dodaj konfiguracje skanowania emulatorami do skanowania konkretnych folderów. Upewnij się, że emulatory zostały poprawnie skonfigurowane przed importowaniem gier (za pomocą menu Biblioteka -&gt; Konfiguruj Emulatory).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Status domyślny przypisany do nowo dodanych gier.</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status przypisany do gier uruchomianych po raz pierwszy</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Nie udało się znacjonalizować skryptu uruchomienia PowerShell. Jeżeli używasz Windows 7, spróbuj przeinstalować PowerShell 5.1 aby naprawić problem.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Szablon filtrowania o podanej nazwie już istnieje. Zaktualizować przy pomocy nowych ustawień?</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
-    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Wykryto, że usługa Nahimic jest uruchomiona na Twoim systemie. Usługa znana jest z tego, że powoduje poważne problemy z renderowaniem w Playnite (oraz innych aplikacjach).
+
+Zalecamy wyłączenie lub odinstalowanie tej usługi, aby zapobiec problemom.
+
+Więcej informacji na stronie https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite jest uruchomiony z uprawnieniami administratora. Nie jest to zalecane, ponieważ przyznaje to uprawnienia dla wszystkich zainstalowanych rozszerzeń i wszystkich gier/aplikacji uruchamianych z Playnite!
+
+Więcej informacji na https://playnite.link/adminfaq</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Pokaż ostrzeżenia jeżeli Playnite jest uruchomiony z uprawnieniami administratora</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Poniższe rozszerzenia zostały zgłoszone jako potencjalnie problematyczne mający duży wpływ na stabilność/wydajność lub problemy z bezpieczeństwem. Zalecamy, ich odinstalowanie:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Wykluczenie online plików ze skanowania</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Pliki przechowywane w chmurze nie będą skanowane i zaimportowane, dopóki nie będą dostępne lokalnie.
+Wsparcie tylko dla: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Skanuj używając uproszczonej metody bez zawartości plików</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Pliki zostaną zaimportowane, wykorzystując mniej dokładną metodę, która nie wymaga pobierania zawartości pliku i zapisania go lokalnie</sys:String>
 </ResourceDictionary>

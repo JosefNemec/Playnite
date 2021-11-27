@@ -197,7 +197,7 @@
     <sys:String x:Key="LOCColumns">أعمدة</sys:String>
     <sys:String x:Key="LOCRow">صف</sys:String>
     <sys:String x:Key="LOCRows">صفوف</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">لا يمكن الحصول على الأيقونة إذا كان إجراء التشغيل مفقودًا أو تم تعيينه على رابط URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">تحميل بيانات التعريف المفقودة فقط</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">تمكين هذا الخيار سيؤدي إلى تخطي تحميل بيانات التعريف لبيانات الأماكن التي تحتوي مسبقًا على معلومات.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">اختيار الألعاب</sys:String>
@@ -317,7 +317,6 @@
 </sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">تعطيل تسريع الأجهزة</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"> استخدمه عند مواجهة تشنج أو مشاكل في واجهة المستخدم المشابهة</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">تعطيل تغيير حجم DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">إظهار الألعاب المخفية في قوائم التشغيل السريع
 </sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">يؤثر على قوائم قائمة الانتقال السريع وقوائم الأدراج.
@@ -610,6 +609,7 @@
     <sys:String x:Key="LOCOpenPlaynite">فتح Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">إعدادات الملف الشخصي</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">اسم اللعبة لا يمكن أن يكون فارغاً.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">اسم اللعبة لا يمكن ان يكون فارغاً قبل البحث عن بيانات التعريف.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">بيانات اللعبة غير صالحة</sys:String>
     <sys:String x:Key="LOCURLInputInfo">أدخل رابط URL صالح يبدأ بhttp:// أو https://</sys:String>
@@ -687,6 +687,8 @@
     <sys:String x:Key="LOCOther">آخر</sys:String>
     <sys:String x:Key="LOCThemes">ثيمات</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">وسائط المحاكي</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">وسائط إضاقية للمحاكي</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">تجاوز وسائط المحاكي</sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -814,6 +816,7 @@
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">تم التثبيت بنجاح.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">تثبيت ملحق؟</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">عام</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">فشل تثبيت الملحق.
 
 {0}</sys:String>
@@ -1049,6 +1052,7 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

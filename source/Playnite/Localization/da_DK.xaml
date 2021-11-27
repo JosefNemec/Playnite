@@ -183,7 +183,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCColumns">Kolonner</sys:String>
     <sys:String x:Key="LOCRow">Række</sys:String>
     <sys:String x:Key="LOCRows">Rækker</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Kan ikke indhente ikon, hvis &quot;Play action&quot; mangler eller er sat til en URL-adresse.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro"></sys:String>
@@ -298,7 +298,6 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
@@ -556,6 +555,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCOpenPlaynite"></sys:String>
     <sys:String x:Key="LOCProfileSettings"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameError"></sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError"></sys:String>
     <sys:String x:Key="LOCInvalidGameData"></sys:String>
     <sys:String x:Key="LOCURLInputInfo">Indtast en gyldig URL som starter med http:// eller https://</sys:String>
@@ -631,6 +631,8 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCOther"></sys:String>
     <sys:String x:Key="LOCThemes"></sys:String>
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -743,6 +745,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation fuldført.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installér udvidelse?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
@@ -942,6 +945,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

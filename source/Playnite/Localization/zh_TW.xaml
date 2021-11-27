@@ -189,7 +189,7 @@
     <sys:String x:Key="LOCColumns">欄</sys:String>
     <sys:String x:Key="LOCRow">列</sys:String>
     <sys:String x:Key="LOCRows">列</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">若啟動指令未設置或被設定為網址，則無法取得圖示</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">無法從開始遊玩動作取得圖示。找不到對應的檔案類型。</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">只下載缺少的元資料</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">啟用此選項則已有資料的欄位不會從元資料更新數據。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">遊戲選擇</sys:String>
@@ -304,7 +304,6 @@
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">在過濾器跟瀏覽面板中只顯示指定欄位</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">停用硬體加速</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">可用於改善畫面停頓等界面問題</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">停用DPI縮放</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">在快速啟動列表中顯示已隱藏遊戲</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">影響工作列捷徑清單與系統列選單</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">快速啟動列表中項目數量</sys:String>
@@ -587,6 +586,7 @@
     <sys:String x:Key="LOCOpenPlaynite">打開Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">個人檔案設定</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">遊戲名不能為空白</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">遊戲指令追蹤資料夾不可為空白</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">搜尋元資料時遊戲名稱不能為空白</sys:String>
     <sys:String x:Key="LOCInvalidGameData">無效的遊戲資料</sys:String>
     <sys:String x:Key="LOCURLInputInfo">請使用包含 http:// 或 https:// 的有效網址格式</sys:String>
@@ -662,6 +662,8 @@
     <sys:String x:Key="LOCOther">其他</sys:String>
     <sys:String x:Key="LOCThemes">佈景主題</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">模擬器引數</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">預設引數</sys:String>
+    <sys:String x:Key="LOCCustomArguments">自訂引數</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模擬器引數</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">覆寫模擬器引數</sys:String>
     <sys:String x:Key="LOCIsPlayAction">啟動動作</sys:String>
@@ -774,6 +776,7 @@
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安裝成功</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安裝附加元件?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">通用</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">安裝&quot;{0}&quot;附加元件失敗</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安裝附加元件失敗。
  
 {0}</sys:String>
@@ -880,7 +883,7 @@
     <sys:String x:Key="LOCAddonInstall">安裝</sys:String>
     <sys:String x:Key="LOCAddonUninstall">移除</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">沒有可用的附加元件更新</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">未發現新的附加元件更新檔</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">更新附加元件</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">沒有可用的更新日誌</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">已排程安裝</sys:String>
@@ -1020,9 +1023,14 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已調整首次遊玩的遊戲狀態</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">無法啟動PowerShell腳本執行環境。如果你是Windows7的使用者，請嘗試(重新)安裝PowerShell5.1。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名稱的過濾器預設，是否使用新設定更新預設?</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite目前正以高級權限(系統管理員身分)執行中。我們不建議你使用此方式執行，因為這將會授與所有透過Playnite執行的遊戲/應用程式以及已安裝的擴充功能系統管理員等級的權限!
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">偵測到您的系統正在執行Nahimic服務。這個服務已被認為會造成Playnite(以及其他應用程式)在渲染上出現嚴重錯誤。        
 
-建議你重新以普通權限啟動Playnite，因為Playnite並不需要管理員權限就可以正常運作。</sys:String>
+建議你停用或者完全移除該服務以避免這些問題。
+
+更多訊息請查看 https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite目前正以高級權限(系統管理員身分)執行中。我們不建議你使用此方式執行，因為這將會授與所有透過Playnite執行的遊戲/應用程式以及已安裝的擴充功能過高等級的權限!
+
+查看此處以了解詳情 https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">如果Playnite正以系統管理員身分執行的話則跳出警告</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下的附加元件已經被回報含有潛在問題，有可能造成穩定性/效能降低或資訊安全疑慮。我們強烈建議你移除這些附加元件:
         

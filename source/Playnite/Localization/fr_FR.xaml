@@ -189,7 +189,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCColumns">Colonnes</sys:String>
     <sys:String x:Key="LOCRow">Rangée</sys:String>
     <sys:String x:Key="LOCRows">Rangées</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Impossible d'obtenir l'icône si une action de lancement est manquante ou définie sur une URL</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Télécharger uniquement les métadonnées manquantes</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Cette option ne téléchargera des métadonnées que pour les champs vides.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Sélection de jeux</sys:String>
@@ -304,7 +304,6 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Afficher uniquement les champs utilisés dans l'explorateur/filtre</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Désactiver l'accélération matérielle</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Cocher cette option en cas de ralentissement ou de malfonctionnement de l'interface.</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Désactiver la mise à l'échelle de l'OS</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Afficher les jeux masqués dans la liste de lancement rapide</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Affecte les listes en mode barre des tâches et minimisé.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Nombre de jeux dans la liste de lancement rapide</sys:String>
@@ -584,6 +583,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCOpenPlaynite">Ouvrir Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Paramètres de profil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Le nom du jeu ne peut pas être vide.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Le nom du jeu ne peut pas être vide avant de rechercher des métadonnées...</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Données invalides</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Entrez une adresse URL commençant par http:// ou https://</sys:String>
@@ -659,6 +659,8 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCOther">Autres</sys:String>
     <sys:String x:Key="LOCThemes">Thèmes</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments d'émulateur supplémentaires</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Outrepasser les paramètres de l'émulateur</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Action de lancement</sys:String>
@@ -771,6 +773,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">L'installation a réussi.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installer l'extension ?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Divers</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Échec d'installation de l'extension &quot;{0}&quot;</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">L'installation de l'extension a échoué.
 
 {0}</sys:String>
@@ -875,7 +878,7 @@ Pour installer ou désinstaller des intégrations, utilisez l'option &quot;Exten
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Désinstaller</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Déjà installé</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Aucune mise à jour d'extension disponible.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Aucune mise à jour d'extension trouvée</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Mettre à jour les extensions</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Notes de version indisponibles</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Planifié pour l'installation</sys:String>
@@ -1015,9 +1018,14 @@ Si vous rencontrez des problèmes après l'installation d'un thème ou d'une ext
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Statut des jeux lancés pour la première fois</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Échec de l'initialisation du script PowerShell. Il est recommandé aux utilisateurs de Windows 7 de (ré)installer PowerShell 5.1 pour résoudre ce problème.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Un préréglage portant ce nom existe déjà. Mettre à jour le préréglage avec les nouveaux paramètres ?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Le service Nahimic a été détecté comme étant en cours d'exécution sur votre système. Ce service est connu pour causer de sérieux problèmes de rendu pour Playnite (et d'autres applications).        
+
+Nous vous recommandons de le désactiver ou de le désinstaller complètement pour éviter ces problèmes.
+
+Plus d'informations sur https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite est actuellement exécuté en mode administrateur. Ce paramètre n'est pas recommandé pour cette application, car les privilèges administrateur attribués à Playnite s'appliquent à tous les jeux et applications lancés par son biais.
 
-Playnite ne nécessite pas d'être exécuté dans ce mode et il est recommandé de relancer l'application avec les paramètres par défaut.</sys:String>
+Pour plus d'informations : https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Afficher un avertissement lorsque Playnite est exécuté en mode Administrateur</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Les extensions suivantes ont été signalées comme potentiellement problématiques, soit en raison d'un fort impact sur la stabilité/les performances, soit en raison de problèmes de sécurité. Nous vous recommandons fortement de les désinstaller :
         

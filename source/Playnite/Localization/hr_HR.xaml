@@ -187,7 +187,7 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCColumns">Stupci</sys:String>
     <sys:String x:Key="LOCRow">Red</sys:String>
     <sys:String x:Key="LOCRows">Redovi</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Ne može da se dobije ikona ako radnja igranja nedostaje ili je nameštena na URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Samo preuzmi metapodatke koji nedostaju</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Uključivanje ove opcije će da preskoči preuzimanje metapodataka za polja podataka koja već sadrže neku informaciju.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Odabir igara</sys:String>
@@ -302,7 +302,6 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Pokaži samo dodjeljena polja na filterima i panelima preglednika</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Isključi hardversko ubrzanje</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Koristite samo kada imate probleme s mucanjem ili sličnim UI problemima</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Isključi DPI Scaling</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Prikaži skrivene igre u popisima brzog pokretanja</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Broj stvari brzog pokretanja</sys:String>
@@ -569,6 +568,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Otvori Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Postavke profila</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Naziv igre ne može biti prazan.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Naziv igre ne može biti prazan prije pretrage metapodataka.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Nevažeći podaci o igri</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Napišite validni URL koji počinje sa https:// ili http://</sys:String>
@@ -644,6 +644,8 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCOther"></sys:String>
     <sys:String x:Key="LOCThemes"></sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulatorski argumenti</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatni emulatorski argumenti</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Nadglasaj emulatorske argumente</sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -756,6 +758,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalacija je uspješna.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instaliraj proširenje?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Neuspjela instalacija proširenja.
 
 {0}</sys:String>
@@ -959,6 +962,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
