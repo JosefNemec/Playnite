@@ -119,7 +119,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Shutdown();
+                try
+                {
+                    Computer.Shutdown();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 
@@ -133,7 +140,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Hibernate();
+                try
+                {
+                    Computer.Hibernate();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 
@@ -147,7 +161,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Sleep();
+                try
+                {
+                    Computer.Sleep();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 
@@ -161,7 +182,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Restart();
+                try
+                {
+                    Computer.Restart();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 
