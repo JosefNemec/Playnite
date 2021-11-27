@@ -86,7 +86,7 @@ namespace Playnite.Common
         public static void CreateFile(string path)
         {
             path = FixPathLength(path);
-            File.Create(path);
+            File.Create(path).Dispose();
         }
 
         public static void CopyFile(string sourcePath, string targetPath, bool overwrite = true)
