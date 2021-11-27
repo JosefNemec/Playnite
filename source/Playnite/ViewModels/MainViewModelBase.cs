@@ -465,6 +465,11 @@ namespace Playnite.ViewModels
 
         public async Task UpdateLibrary(bool metaForNewGames, bool updateEmu)
         {
+            if (!GameAdditionAllowed)
+            {
+                return;
+            }
+
             await UpdateLibraryData((token) =>
             {
                 var addedGames = new List<Game>();
@@ -498,6 +503,11 @@ namespace Playnite.ViewModels
 
         public async Task UpdateLibrary(LibraryPlugin plugin)
         {
+            if (!GameAdditionAllowed)
+            {
+                return;
+            }
+
             await UpdateLibraryData((token) =>
             {
                 return ImportLibraryGames(plugin, token);
