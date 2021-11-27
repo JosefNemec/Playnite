@@ -143,7 +143,7 @@ namespace Playnite.WebView
 
         private void Browser_JavascriptMessageReceived (object sender, JavascriptMessageReceivedEventArgs e)
         {
-            JavascriptMessageReceived?.Invoke(this, new WebViewJavascriptMessageReceivedEventArgs { message = e.Message.ToString() }); 
+            JavascriptMessageReceived?.Invoke(this, new WebViewJavascriptMessageReceivedEventArgs { Message = e.Message.ToString() }); 
         }
     }
 }
