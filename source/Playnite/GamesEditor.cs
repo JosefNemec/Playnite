@@ -880,8 +880,12 @@ namespace Playnite
             ulong ellapsedTime = 0;
             if (gameStartups.TryRemove(game.Id, out var startupTime))
             {
-                ellapsedTime = Convert.ToUInt64((DateTime.Now - startupTime).TotalSeconds);
-                dbGame.Playtime += ellapsedTime;
+                // This shouldn't be a problem, but there was one crash report with startup type being more recent
+                if (startupTime < DateTime.Now)
+                {
+                    ellapsedTime = Convert.ToUInt64((DateTime.Now - startupTime).TotalSeconds);
+                    dbGame.Playtime += ellapsedTime;
+                }
             }
 
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))

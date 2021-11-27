@@ -25,19 +25,20 @@ namespace Playnite.Converters
                 return ResourceProvider.GetString("LOCPlayedNone");
             }
 
-            var time = TimeSpan.FromSeconds(seconds);
-            if (time.TotalSeconds < 60)
+            // Can't use TimeSpan from seconds because ulong is too large for it
+            if (seconds < 60)
             {
-                return string.Format(ResourceProvider.GetString("LOCPlayedSeconds"), time.Seconds);
+                return string.Format(ResourceProvider.GetString("LOCPlayedSeconds"), seconds);
             }
-            else if (time.TotalHours < 1)
+
+            var minutes = seconds / 60;
+            if (minutes < 60)
             {
-                return string.Format(ResourceProvider.GetString("LOCPlayedMinutes"), time.Minutes);
+                return string.Format(ResourceProvider.GetString("LOCPlayedMinutes"), minutes);
             }
-            else
-            {
-                return string.Format(ResourceProvider.GetString("LOCPlayedHours"), Math.Floor(time.TotalHours), time.Minutes);
-            }
+
+            var hours = minutes / 60;
+            return string.Format(ResourceProvider.GetString("LOCPlayedHours"), hours, minutes - (hours * 60));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
