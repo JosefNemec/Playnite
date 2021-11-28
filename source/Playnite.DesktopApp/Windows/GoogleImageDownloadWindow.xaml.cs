@@ -23,7 +23,7 @@ namespace Playnite.DesktopApp.Windows
             InitializeComponent();
             if (PlayniteApplication.Current.AppSettings != null)
             {
-                positionManager = new WindowPositionHandler(this, "GoogleImageDownload", PlayniteApplication.Current.AppSettings.WindowPositions);
+                positionManager = new WindowPositionHandler(this, "GoogleImageDownload_V2", PlayniteApplication.Current.AppSettings.WindowPositions);
             }
         }
     }

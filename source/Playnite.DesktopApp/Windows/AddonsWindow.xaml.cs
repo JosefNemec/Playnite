@@ -23,7 +23,7 @@ namespace Playnite.DesktopApp.Windows
             InitializeComponent();
             if (PlayniteApplication.Current.AppSettings != null)
             {
-                positionManager = new WindowPositionHandler(this, nameof(AddonsWindow), PlayniteApplication.Current.AppSettings.WindowPositions);
+                positionManager = new WindowPositionHandler(this, "AddonsWindow_2", PlayniteApplication.Current.AppSettings.WindowPositions);
             }
         }
     }
