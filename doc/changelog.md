@@ -10,6 +10,7 @@
   * [Exposed](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_IPlayniteSettingsAPI.cs.html) completion status settings.
   * [Added](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_IWebView.cs.html) option to set user agent for specific web view instance.
   * New [model changes](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_Models_Emulator.cs.html) related to added option to override built-in emulator arguments.
+  * You can now use F12 on web view windows to open Chromium dev tools.
 
 #### 6.1.0
 
