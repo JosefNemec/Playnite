@@ -278,8 +278,8 @@ namespace Playnite.Controllers
 
             if (asyncExec)
             {
-                variables.Add("CancelToken", watcherToken.Token);
                 watcherToken = new CancellationTokenSource();
+                variables.Add("CancelToken", watcherToken.Token);
                 stopWatch = Stopwatch.StartNew();
                 playTask = Task.Run(() =>
                 {
@@ -365,7 +365,7 @@ namespace Playnite.Controllers
                 WorkingDir = controller.WorkingDir,
                 TrackingMode = controller.TrackingMode,
                 TrackingPath = controller.TrackingPath
-            });
+            }, true);
         }
 
         public void Start(GameAction playAction, bool asyncExec = false)

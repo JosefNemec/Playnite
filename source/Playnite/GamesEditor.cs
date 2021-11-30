@@ -302,7 +302,7 @@ namespace Playnite
                     }
                     else if (playAction is GameAction act)
                     {
-                        genCtrl.Start(act);
+                        genCtrl.Start(act, true);
                     }
                     else
                     {
