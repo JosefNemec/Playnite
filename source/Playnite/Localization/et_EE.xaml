@@ -653,6 +653,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">Käesolev</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Uus</sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Salvesta vaikimisi</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Lisa lemmikutesse</sys:String>

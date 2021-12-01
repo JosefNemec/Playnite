@@ -699,6 +699,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">Поточні</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Нові</sys:String>
     <sys:String x:Key="LOCTestScript">Випробувати сценарій</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Показувати лише вибрані елементи</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Зберегти за замовчуванням</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Додати в Обране</sys:String>
@@ -1022,11 +1023,13 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, призначений іграм, які граються вперше</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Не вдалося ініціалізувати середовище виконання сценарію PowerShell. Якщо ви користуєтесь Windows 7, спробуйте (повторно) встановити PowerShell 5.1, щоб вирішити проблему.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Пресет фільтра із зазначеною назвою вже існує. Оновити пресет з новими налаштуваннями? </sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Було виявлено, що служба Nahimic запущена у вашій системі. Відомо, що ця служба викликає серйозні проблеми з відтворенням для Playnite (та інших програм).
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">344 / 5000
+Результати перекладу
+Було виявлено, що служба Nahimic запущена у вашій системі. Відомо, що ця служба викликає проблеми з рендерингом у Playnite (та інших програмах).
 
-Ми рекомендуємо вимкнути або повністю видалити її, щоб уникнути цих проблем.
+Якщо ви зіткнулися з будь-яким графічними проблемами в Playnite, ми рекомендуємо вимкнути або повністю видалити службу Nahimic.
 
-Більше інформації на https://playnite.link/nahimicsucks</sys:String>
+Більше інформації на https://playnite.link/nahimicsucks </sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite працює з правами адміністратора. Це не рекомендується, оскільки це дає підвищені привілеї всім встановленим розширенням і всім іграм/додаткам запущеним з Playnite!
 
 Більше інформації - https://playnite.link/adminfaq</sys:String>

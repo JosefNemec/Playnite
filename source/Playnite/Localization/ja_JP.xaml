@@ -692,6 +692,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCMetadataDiffCurrent">現在</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">新規</sys:String>
     <sys:String x:Key="LOCTestScript">スクリプトをテスト</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">デフォルトとして保存する</sys:String>
     <sys:String x:Key="LOCFavoriteGame">お気に入りに追加</sys:String>

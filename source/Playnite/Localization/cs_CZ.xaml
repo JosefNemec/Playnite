@@ -698,6 +698,7 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCMetadataDiffCurrent">Současné</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nové</sys:String>
     <sys:String x:Key="LOCTestScript">Testovat skript</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Uložit jako výchozí</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Přidat do Oblíbených</sys:String>

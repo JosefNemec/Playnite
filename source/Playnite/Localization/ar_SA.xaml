@@ -728,6 +728,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">الحالية</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">جديد</sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">حفظ كإعداد افتراضي</sys:String>
     <sys:String x:Key="LOCFavoriteGame">إضافة إلي المفضلة</sys:String>

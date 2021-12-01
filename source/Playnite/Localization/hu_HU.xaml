@@ -699,6 +699,7 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCMetadataDiffCurrent">Jelenlegi</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Új</sys:String>
     <sys:String x:Key="LOCTestScript">Szkript tesztelése</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Csak a kijelöltek látszódjanak.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Mentés alapértelmezettként</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Kedvencekhez ad</sys:String>
@@ -1008,7 +1009,7 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatási hiba. Ha Windows 7 alól tolod, próbáld meg (újra)telepíteni a PowerShell 5.1-et.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic észlelve a gépeden. Ez komoly teljesítményvesztéssel járhat a Playnite és más programok esetében.
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic észlelve a gépeden. Ez komoly megjelenítésbeli problémákkal járhat a Playnite és más programok esetében.
 
 Azt ajánljuk, hogy tiltsd le vagy távolítsd el a problémák megelőzésére.
 

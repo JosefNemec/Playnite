@@ -189,7 +189,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCColumns">Colonnes</sys:String>
     <sys:String x:Key="LOCRow">Rangée</sys:String>
     <sys:String x:Key="LOCRows">Rangées</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Impossible de générer une icône à partir de cette action de lancement. Le fichier nécessaire n'est pas présent.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Télécharger uniquement les métadonnées manquantes</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Cette option ne téléchargera des métadonnées que pour les champs vides.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Sélection de jeux</sys:String>
@@ -583,7 +583,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCOpenPlaynite">Ouvrir Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Paramètres de profil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Le nom du jeu ne peut pas être vide.</sys:String>
-    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Le répertoire de l'action de jeu ne peut pas être vide.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Le nom du jeu ne peut pas être vide avant de rechercher des métadonnées...</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Données invalides</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Entrez une adresse URL commençant par http:// ou https://</sys:String>
@@ -659,8 +659,8 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCOther">Autres</sys:String>
     <sys:String x:Key="LOCThemes">Thèmes</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Arguments de l'émulateur</sys:String>
-    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
-    <sys:String x:Key="LOCCustomArguments"></sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Arguments par défaut</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Arguments personnalisés</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Arguments d'émulateur supplémentaires</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Outrepasser les paramètres de l'émulateur</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Action de lancement</sys:String>
@@ -695,6 +695,7 @@ Veuillez essayer les solutions suivantes :
     <sys:String x:Key="LOCMetadataDiffCurrent">Actuelles</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nouvelles</sys:String>
     <sys:String x:Key="LOCTestScript">Tester le script</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">N'afficher que les objets sélectionnés</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Enregistrer comme réglage par défaut</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Ajouter aux favoris</sys:String>

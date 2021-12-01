@@ -671,6 +671,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">נוכחי</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">חדש</sys:String>
     <sys:String x:Key="LOCTestScript">סקריפט בדיקה</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">שמור כברירת המחדל</sys:String>
     <sys:String x:Key="LOCFavoriteGame">הוסף למעודפים</sys:String>

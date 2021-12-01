@@ -697,6 +697,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCMetadataDiffCurrent">Atual</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Novo</sys:String>
     <sys:String x:Key="LOCTestScript">Testar script</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Salvar como padrão</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Adicionar aos favoritos</sys:String>
@@ -1020,11 +1021,7 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Falha na inicialização da execução do script PowerShell. Se você for usuário Windows 7, tente (re)instalar PowerShell 5.1 para corrigir o problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Já existe uma filtro com o nome especificado. Atualizar com novas configurações? </sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Serviço Nahimic foi detectado rodando em seu sistema. Sabemos que serviço causa problemas sérios de renderização no Playnite (e outros apps).        
-
-Recomendamos desabilitá-lo ou desinstalá-lo completamente para prevenir estes problemas.
-
-Mais informações em https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite está rodando com privilégios elevados (como administrador). Não é a recomendação já que dá privilégios elevados para todas as extensões instaladas e todos os jogos/apps iniciados pelo Playnite!
 
 Mais informações em https://playnite.link/adminfaq</sys:String>

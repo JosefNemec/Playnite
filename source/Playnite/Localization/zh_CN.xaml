@@ -699,6 +699,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">当前</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">新的</sys:String>
     <sys:String x:Key="LOCTestScript">测试脚本</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">仅显示选中项目。</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">保存为默认</sys:String>
     <sys:String x:Key="LOCFavoriteGame">添加至收藏</sys:String>
@@ -1026,7 +1027,9 @@ By {1}
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">分配给首次玩游戏的状态</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">初始化PowerShell脚本运行时失败。如果你是Windows 7用户，尝试（重新）安装PowerShell 5.1以解决这个问题。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">具有指定名称的过滤器预设已存在。是否使用新设置更新预设？</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">已检测到Nahimic服务正在您的系统上运行。此服务会导致Playnite（和其它应用程序）出现渲染问题。
+如果您在Playnite中遇到任何图形损坏或其它渲染问题，我们建议完全禁用或卸载Nahimic服务。
+更多信息请访问https://playnite.link/nahimicsucks。</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">当Playnite以权限提升模式运行时显示警告</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下插件已因潜在问题而被报道，例如严重影响稳定性/性能或安全问题。我们强烈建议您卸载它们：

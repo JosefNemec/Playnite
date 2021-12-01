@@ -698,6 +698,7 @@ Du kan prøve dette for å løse problemet:
     <sys:String x:Key="LOCMetadataDiffCurrent">Gjeldende</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Ny</sys:String>
     <sys:String x:Key="LOCTestScript">Test skript</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Vis kun valgte elementer.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Lagre som standard</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Legg til i favoritter</sys:String>
@@ -1022,7 +1023,11 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status tilordnet spill som spilles for første gang</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Kunne ikke initialisere PowerShell-skriptkjøringsmiljø. Hvis du bruker Windows 7, kan du prøve å (re-)installere PowerShell 5.1 for å rett opp problemet.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Et filteroppsett med dette navnet eksisterer allerede. Vil du oppdatere oppsettet med nye innstillinger?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Tjenesten Nahimic er oppdaget på maskinen din. Det er kjent at denne tjenesten kan forårsake grafiske feil i Playnite (og andre programmer).
+
+Hvis du opplever grafiske feil eller andre problemer i Playnite, så anbefaler vi at du deaktiverer eller avinstallerer Nahimic.
+
+Mer informasjon er tilgjengelig her: https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite kjører med forhøyede rettigheter (som administrator). Dette gir forhøyede rettigheter til alle spill/apper som startes fra Playnite, og er derfor ikke anbefalt!
 
 Mer informasjon er tilgjengelig på https://playnite.link/adminfaq</sys:String>

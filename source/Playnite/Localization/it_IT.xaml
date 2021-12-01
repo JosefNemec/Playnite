@@ -705,6 +705,7 @@ Puoi provare a risolvere il problema:
     <sys:String x:Key="LOCMetadataDiffCurrent">Corrente</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nuovo</sys:String>
     <sys:String x:Key="LOCTestScript">Testa lo script</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Mostra solo gli elementi selezionati.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Salva come predefiniti</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Aggiungi ai preferiti</sys:String>
@@ -1033,9 +1034,9 @@ Se cominci ad avere qualche problema dopo l'installazione di un tema o di una es
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assegnato ai giochi giocati per la prima volta</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Impossibile inizializzare lo script PowerShell. Se sei un utente Windows 7, prova a (re)installare PowerShell 5.1 per riparare il problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Il preset del filtro con il nome specificato esiste già. Aggiornare il preset con le nuove impostazioni?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">È stato rilevato che il servizio Nahimic è in esecuzione sul tuo sistema. Questo servizio è noto per causare seri problemi di rendering a Playnite (e altre applicazioni).        
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">È stato rilevato che il servizio Nahimic è in esecuzione sul tuo sistema. Questo servizio è noto per causare problemi di rendering a Playnite (e altre applicazioni).
 
-Raccomandiamo di disabilitarlo o di disinstallarlo completamente per prevenire questi problemi.
+Se incontri corruzione grafica o altri problemi di rendering in Playnite, ti consigliamo di disabilitare o disinstallare completamente il servizio Nahimic.
 
 Maggiori informazioni su https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite è in esecuzione con privilegi elevati (come amministratore). Questo non è raccomandato poiché dà privilegi elevati a tutte le estensioni installate e a tutti i giochi/app avviati da Playnite!

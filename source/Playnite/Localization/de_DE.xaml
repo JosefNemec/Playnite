@@ -73,7 +73,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (zur Ausschlussliste hinzufügen)</sys:String>
     <sys:String x:Key="LOCSteamFriendsTooltip">Steam-Freunde</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Es existieren ungespeicherte Änderungen in diesem Abschnitt</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Spieleibliotheksformat wird aktualisiert …</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Spielebibliotheksformat wird aktualisiert …</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Datenbank konnte nicht aktualisiert werden.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Spielebibliothek kann nicht aktualisiert werden. Es werden {0} MB freier Speicherplatz benötigt.</sys:String>
     <sys:String x:Key="LOCGameError">Spielfehler</sys:String>
@@ -699,6 +699,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCMetadataDiffCurrent">Aktuell</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Neu</sys:String>
     <sys:String x:Key="LOCTestScript">Skript testen</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Nur ausgewählte Elemente anzeigen.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Als Standard speichern</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Zu Favoriten hinzufügen</sys:String>
@@ -1022,9 +1023,9 @@ Falls nach dem Installieren von Designs oder Erweiterungen Probleme auftreten, v
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Erstmalig gespielten Spielen zugeordneter Status</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Initialisierung der PowerShell-Skript-Laufzeitumgebung ist fehlgeschlagen. Falls du Windows 7 nutzt, versuche PowerShell 5.1 (erneut) zu installieren, um das Problem zu beheben.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filtervoreinstellung mit angegebenem Namen existiert bereits. Voreinstellung mit neuen Einstellungen aktualisieren?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Auf deinem System wurde der Nahimic-Dienst erkannt. Dieser Dienst ist dafür bekannt, schwerwiegende Rendering-Probleme für Playnite (und andere Anwendungen) zu verursachen.        
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Auf deinem System wurde der Nahimic-Dienst erkannt. Dieser Dienst ist dafür bekannt, Rendering-Probleme in Playnite (und anderen Anwendungen) zu verursachen.        
 
-Wir empfehlen, ihn zu deaktivieren oder vollständig zu deinstallieren, um diese Probleme zu vermeiden.
+Falls du in Playnite Grafikfehler oder andere Darstellungsprobleme feststellst, empfehlen wir, den Nahimic-Dienst zu deaktivieren oder vollständig zu deinstallieren.
 
 Mehr Informationen unter https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite wird mit erhöhten Berechtigungen ausgeführt (als Administrator). Dies wird nicht empfohlen, da dann auch alle installierten Erweiterungen und über Playnite gestarteten Spiele/Anwendungen mit erhöhten Berechtigungen ausgeführt werden.

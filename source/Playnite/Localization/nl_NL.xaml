@@ -702,6 +702,7 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCMetadataDiffCurrent">Huidig</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nieuw</sys:String>
     <sys:String x:Key="LOCTestScript">Test script</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Alleen geselecteerde items tonen.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Opslaan als standaard</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Voeg toe aan Favorieten</sys:String>
@@ -1038,7 +1039,11 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status die toegewezen wordt aan spellen die voor het eerst gespeeld zijn</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset met de opgegeven naam bestaat al. Preset updaten met nieuwe instellingen?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic service is gedetecteerd op dit systeem. Van deze service is bekend dat hij rendering problemen bij Playnite (en andere apps) kan veroorzaken.
+
+Als je grafische corruptie of andere rendering problemen in Playnite ervaart, bevelen we aan deze service uit te zetten of Nahimic service compleet te de-installeren.
+
+Meer informatie is te vinden op https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite draait nu met administrator rechten. Dit is niet aanbevolen sinds dit ook verhoogde rechten geeft aan alle geïnstalleerde extensies en alle spellen/applicaties die vanuit Playnite gestart worden!
 
 Meer informatie op https://playnite.link/adminfaq</sys:String>

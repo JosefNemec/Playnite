@@ -690,6 +690,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">Ajantasainen</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Uusi</sys:String>
     <sys:String x:Key="LOCTestScript">Testaa komentosarja</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Tallenna oletukseksi</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Lisää suosikkeihin</sys:String>

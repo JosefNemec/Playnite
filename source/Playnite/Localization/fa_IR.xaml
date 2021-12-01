@@ -696,6 +696,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">فعلی</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">جدید</sys:String>
     <sys:String x:Key="LOCTestScript">اسکریپت تست</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">ذخیره به عنوان پیش‌فرض</sys:String>
     <sys:String x:Key="LOCFavoriteGame">اضافه کردن به علاقه مندی ها</sys:String>
@@ -1020,11 +1021,7 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">وضعیت اختصاص داده شده به بازی هایی که برای اولین بار انجام می شوند</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">زمان اجرا اسکریپت PowerShell مقداردهی اولیه نشد. اگر کاربر ویندوز 7 هستید، برای رفع مشکل، PowerShell 5.1 را مجدداً نصب کنید.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">فیلتر از پیش تعیین شده با نام مشخص از قبل موجود است. از پیش تنظیم شده با تنظیمات جدید به روز شود؟</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">سرویس Nahimic شناسایی شده است که روی سیستم شما در حال اجرا است. شناخته شده است که این سرویس باعث ایجاد مشکلات جدی رندر برای Playnite (و سایر برنامه ها) می شود.
-
-توصیه می کنیم برای جلوگیری از این مشکلات آن را غیرفعال یا به طور کامل حذف کنید.
-
-اطلاعات بیشتر در https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite با امتیازات بالا (به عنوان مدیر) در حال اجرا است. این توصیه نمی شود زیرا به همه برنامه های افزودنی نصب شده و همه بازی ها/برنامه هایی که از Playnite شروع شده اند، امتیازات بالایی می دهد!
 
 اطلاعات بیشتر در https://playnite.link/adminfaq</sys:String>

@@ -697,6 +697,7 @@ Sorunu çözmeyi deneyebilirsiniz:
     <sys:String x:Key="LOCMetadataDiffCurrent">Geçerli</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Yeni</sys:String>
     <sys:String x:Key="LOCTestScript">Kodu test et</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Varsayılan olarak kaydet</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Favorilere ekle</sys:String>
@@ -1021,11 +1022,7 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">İlk kez oynanan oyunlara atanan statü</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell betiği çalışma zamanı başlatılamadı. Windows 7 kullanıcısıysanız, sorunu çözmek için PowerShell 5.1'i (yeniden) yüklemeyi deneyin.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Belirtilen ada sahip filtre ön ayarı zaten var. Ön ayar yeni ayarlarla güncellensin mi?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic hizmetinin sisteminizde çalıştığı tespit edildi. Bu hizmetin Playnite'ta (ve diğer uygulamalarda) ciddi işleme sorunlarına neden olduğu bilinmektedir.        
-
-Bu sorunları önlemek için devre dışı bırakmanızı veya tamamen kaldırmanızı öneririz.
-
-https://playnite.link/nahimicsucks adresinden daha fazla bilgi edinin.</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite, yükseltilmiş ayrıcalıklarla (yönetici olarak) çalışıyor. Bu, Playnite'tan başlatılan tüm yüklü uzantılara ve tüm oyunlara/uygulamalara yükseltilmiş ayrıcalıklar sağladığı için önerilmez!
 
 https://playnite.link/adminfaq adresinde daha fazla bilgi alabilirsiniz.</sys:String>

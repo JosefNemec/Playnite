@@ -698,6 +698,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">目前</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">新的</sys:String>
     <sys:String x:Key="LOCTestScript">測試腳本</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">只顯示選取的項目</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">儲存為預設值</sys:String>
     <sys:String x:Key="LOCFavoriteGame">新增至我的最愛</sys:String>
@@ -1025,7 +1026,7 @@
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名稱的過濾器預設，是否使用新設定更新預設?</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">偵測到您的系統正在執行Nahimic服務。這個服務已被認為會造成Playnite(以及其他應用程式)在渲染上出現嚴重錯誤。        
 
-建議你停用或者完全移除該服務以避免這些問題。
+如果你遇到圖形破損或其他渲染問題，建議你停用或者完全移除該Nahimic服務。
 
 更多訊息請查看 https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite目前正以高級權限(系統管理員身分)執行中。我們不建議你使用此方式執行，因為這將會授與所有透過Playnite執行的遊戲/應用程式以及已安裝的擴充功能過高等級的權限!

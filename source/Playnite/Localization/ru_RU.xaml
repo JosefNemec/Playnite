@@ -700,6 +700,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">Текущее</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Создать</sys:String>
     <sys:String x:Key="LOCTestScript">Проверить скрипт</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Сохранить по умолчанию</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Добавить в избранные</sys:String>

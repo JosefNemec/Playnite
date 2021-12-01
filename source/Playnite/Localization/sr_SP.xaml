@@ -688,6 +688,7 @@
     <sys:String x:Key="LOCMetadataDiffCurrent">Тренутно</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Ново</sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Сачувај као подразумевано</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Додај у омиљене</sys:String>
