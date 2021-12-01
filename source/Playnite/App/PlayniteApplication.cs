@@ -218,7 +218,8 @@ namespace Playnite
             {
                 DirectoryName = defaultThemeName,
                 DirectoryPath = Path.Combine(PlaynitePaths.ThemesProgramPath, ThemeManager.GetThemeRootDir(Mode), defaultThemeName),
-                Name = defaultThemeName
+                Name = defaultThemeName,
+                Id = mode == ApplicationMode.Desktop ? ThemeManager.DefaultDesktopThemeId : ThemeManager.DefaultFullscreenThemeId
             };
 
             try
@@ -274,7 +275,7 @@ namespace Playnite
             else
             {
                 var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
-                if (theme != ThemeManager.DefaultTheme.Name)
+                if (theme != ThemeManager.DefaultTheme.Id)
                 {
                     customTheme = ThemeManager.GetAvailableThemes(mode).Where(a => a.Id == theme).OrderByDescending(a => a.Version).FirstOrDefault();
                     if (customTheme == null)
