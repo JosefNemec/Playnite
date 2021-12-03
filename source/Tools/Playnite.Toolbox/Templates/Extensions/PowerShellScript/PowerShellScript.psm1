@@ -15,49 +15,36 @@ function OnLibraryUpdated()
 
 function OnGameStarting()
 {
-    param(
-        $game
-    )
-    $__logger.Info("OnGameStarting $game")
+    param($evnArgs)
+    $__logger.Info("OnGameStarting $($evnArgs.Game)")
 }
 
 function OnGameStarted()
 {
-    param(
-        $game
-    )
-    $__logger.Info("OnGameStarted $game")
+    param($evnArgs)
+    $__logger.Info("OnGameStarted $($evnArgs.Game)")
 }
 
 function OnGameStopped()
 {
-    param(
-        $game,
-        $elapsedSeconds
-    )
-    $__logger.Info("OnGameStopped $game $elapsedSeconds")
+    param($evnArgs)
+    $__logger.Info("OnGameStopped $($evnArgs.Game) $($evnArgs.ElapsedSeconds)")
 }
 
 function OnGameInstalled()
 {
-    param(
-        $game
-    )
-    $__logger.Info("OnGameInstalled $game")
+    param($evnArgs)
+    $__logger.Info("OnGameInstalled $($evnArgs.Game)")
 }
 
 function OnGameUninstalled()
 {
-    param(
-        $game
-    )
-    $__logger.Info("OnGameUninstalled $game")
+    param($evnArgs)
+    $__logger.Info("OnGameUninstalled $($evnArgs.Game)")
 }
 
 function OnGameSelected()
 {
-    param(
-        $gameSelectionEventArgs
-    )
+    param($gameSelectionEventArgs)
     $__logger.Info("OnGameSelected $($gameSelectionEventArgs.OldValue) -> $($gameSelectionEventArgs.NewValue)")
 }

@@ -121,7 +121,6 @@ namespace System
             newName = newName.RemoveTrademarks();
             newName = newName.Replace("_", " ");
             newName = newName.Replace(".", " ");
-            newName = RemoveTrademarks(newName);
             newName = newName.Replace('’', '\'');
             newName = RemoveUnlessThatEmptiesTheString(newName, @"\[.*?\]");
             newName = RemoveUnlessThatEmptiesTheString(newName, @"\(.*?\)");
@@ -156,12 +155,12 @@ namespace System
 
         public static bool Contains(this string str, string value, StringComparison comparisonType)
         {
-            return str.IndexOf(value, 0, comparisonType) != -1;
+            return str?.IndexOf(value, 0, comparisonType) != -1;
         }
 
         public static bool ContainsAny(this string str, char[] chars)
         {
-            return str.IndexOfAny(chars) >= 0;
+            return str?.IndexOfAny(chars) >= 0;
         }
 
         public static bool IsHttpUrl(this string str)

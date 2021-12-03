@@ -41,6 +41,8 @@ namespace Playnite.Controllers
         private Task playTask;
         private bool isDisposed = false;
         private EmulatorProfile currentEmuProfile;
+        internal string SelectedRomPath { get; private set; }
+        internal GameAction SourceGameAction { get; private set; }
 
         public GenericPlayController(
             GameDatabase db,
@@ -82,7 +84,14 @@ namespace Playnite.Controllers
             }
 
             emulator = emulator.GetClone();
-            emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
+            if (!emulator.InstallDir.IsNullOrEmpty())
+            {
+                emulator.InstallDir = Paths.FixSeparators(emulator.InstallDir.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath));
+                emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
+            }
+
+            SourceGameAction = action;
+            SelectedRomPath = action.SelectedRomPath;
 
             var startupPath = "";
             var startupArgs = "";
@@ -168,7 +177,27 @@ namespace Playnite.Controllers
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound));
                     }
 
-                    startupArgs = Game.ExpandVariables(profileDef.StartupArguments, false, null, romPath);
+                    if (action.OverrideDefaultArgs)
+                    {
+                        startupArgs = Game.ExpandVariables(action.Arguments, false, null, romPath);
+                    }
+                    else
+                    {
+                        if (builtIn.OverrideDefaultArgs)
+                        {
+                            startupArgs = Game.ExpandVariables(builtIn.CustomArguments, false, null, romPath);
+                        }
+                        else
+                        {
+                            startupArgs = Game.ExpandVariables(profileDef.StartupArguments, false, null, romPath);
+                        }
+
+                        if (!action.AdditionalArguments.IsNullOrEmpty())
+                        {
+                            startupArgs += " " + Game.ExpandVariables(action.AdditionalArguments, false, emulator.InstallDir, romPath);
+                        }
+                    }
+
                     StartEmulatorProcess(startupPath, startupArgs, startupDir, asyncExec);
                 }
             }
@@ -249,8 +278,8 @@ namespace Playnite.Controllers
 
             if (asyncExec)
             {
-                variables.Add("CancelToken", watcherToken.Token);
                 watcherToken = new CancellationTokenSource();
+                variables.Add("CancelToken", watcherToken.Token);
                 stopWatch = Stopwatch.StartNew();
                 playTask = Task.Run(() =>
                 {
@@ -336,7 +365,7 @@ namespace Playnite.Controllers
                 WorkingDir = controller.WorkingDir,
                 TrackingMode = controller.TrackingMode,
                 TrackingPath = controller.TrackingPath
-            });
+            }, true);
         }
 
         public void Start(GameAction playAction, bool asyncExec = false)
@@ -351,11 +380,13 @@ namespace Playnite.Controllers
                 throw new Exception("Cannot start emulator using this configuration.");
             }
 
+            SourceGameAction = playAction;
             var gameClone = Game.GetClone();
             var action = playAction.GetClone();
             if (gameClone.Roms.HasItems())
             {
                 var romPath = gameClone.Roms[0].Path;
+                SelectedRomPath = romPath;
                 var newPath = CheckPath(romPath, "ROM", FileSystemItem.File);
                 if (newPath != romPath)
                 {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Playnite.Native;
+using Playnite.Windows;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,9 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
-using WindowsInput;
-using WindowsInput.Native;
 using XInputDotNetPure;
 
 namespace Playnite.Input
@@ -75,7 +76,6 @@ namespace Playnite.Input
     public class XInputDevice : IDisposable
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        private static readonly InputSimulator inputSimulator = new InputSimulator();
 
         public class InputState
         {
@@ -107,22 +107,22 @@ namespace Playnite.Input
         private Dictionary<PlayerIndex, Dictionary<XInputButton, ButtonState>> prevStates =
             new Dictionary<PlayerIndex, Dictionary<XInputButton, ButtonState>>();
 
-        private Dictionary<XInputButton, VirtualKeyCode> keyboardMap = new Dictionary<XInputButton, VirtualKeyCode>()
+        private Dictionary<XInputButton, uint> keyboardMap = new Dictionary<XInputButton, uint>()
         {
-            {  XInputButton.A, VirtualKeyCode.RETURN },
+            {  XInputButton.A, Winuser.VK_RETURN },
             {  XInputButton.B, 0 },
             {  XInputButton.Back, 0 },
-            {  XInputButton.DPadDown, VirtualKeyCode.DOWN },
-            {  XInputButton.DPadLeft, VirtualKeyCode.LEFT },
-            {  XInputButton.DPadRight, VirtualKeyCode.RIGHT },
-            {  XInputButton.DPadUp, VirtualKeyCode.UP },
+            {  XInputButton.DPadDown, Winuser.VK_DOWN },
+            {  XInputButton.DPadLeft, Winuser.VK_LEFT },
+            {  XInputButton.DPadRight, Winuser.VK_RIGHT },
+            {  XInputButton.DPadUp, Winuser.VK_UP },
             {  XInputButton.Guide, 0 },
             {  XInputButton.LeftShoulder, 0 },
             {  XInputButton.LeftStick, 0 },
-            {  XInputButton.LeftStickDown, VirtualKeyCode.DOWN },
-            {  XInputButton.LeftStickLeft, VirtualKeyCode.LEFT },
-            {  XInputButton.LeftStickRight, VirtualKeyCode.RIGHT },
-            {  XInputButton.LeftStickUp, VirtualKeyCode.UP },
+            {  XInputButton.LeftStickDown, Winuser.VK_DOWN },
+            {  XInputButton.LeftStickLeft, Winuser.VK_LEFT },
+            {  XInputButton.LeftStickRight, Winuser.VK_RIGHT },
+            {  XInputButton.LeftStickUp, Winuser.VK_UP },
             {  XInputButton.RightShoulder, 0 },
             {  XInputButton.RightStick, 0 },
             {  XInputButton.RightStickDown, 0 },
@@ -130,8 +130,8 @@ namespace Playnite.Input
             {  XInputButton.RightStickRight, 0 },
             {  XInputButton.RightStickUp, 0 },
             {  XInputButton.Start, 0 },
-            {  XInputButton.TriggerLeft, VirtualKeyCode.PRIOR },
-            {  XInputButton.TriggerRight, VirtualKeyCode.NEXT },
+            {  XInputButton.TriggerLeft, Winuser.VK_PRIOR },
+            {  XInputButton.TriggerRight, Winuser.VK_NEXT },
             {  XInputButton.X, 0 },
             {  XInputButton.Y, 0 }
         };
@@ -426,24 +426,44 @@ namespace Playnite.Input
             }, null);
         }
 
-        private void SendKeyInput(VirtualKeyCode key, bool pressed)
+        private void SendKeyInput(uint key, bool pressed)
         {
             if (key == 0)
             {
                 return;
             }
 
+            var windowHandle = IntPtr.Zero;
+            context.Send((_) =>
+            {
+                var window = WindowManager.CurrentWindow;
+                if (window == null)
+                {
+                    windowHandle = IntPtr.Zero;
+                }
+                else
+                {
+                    var helper = new WindowInteropHelper(window);
+                    windowHandle = helper.Handle;
+                }
+            }, null);
+
+            if (windowHandle == IntPtr.Zero)
+            {
+                return;
+            }
+
             if (pressed)
             {
-                inputSimulator.Keyboard.KeyDown(key);
+                User32.SendMessage(windowHandle, Winuser.WM_KEYDOWN, key, IntPtr.Zero);
             }
             else
             {
-                inputSimulator.Keyboard.KeyUp(key);
+                User32.SendMessage(windowHandle, Winuser.WM_KEYUP, key, IntPtr.Zero);
             }
         }
 
-        private void SimulateKeyInput(VirtualKeyCode key, bool pressed)
+        private void SimulateKeyInput(uint key, bool pressed)
         {
             if (SimulateAllKeys || (SimulateNavigationKeys && IsKeysDirectionKey(key)))
             {
@@ -451,16 +471,16 @@ namespace Playnite.Input
             }
         }
 
-        private bool IsKeysDirectionKey(VirtualKeyCode key)
+        private bool IsKeysDirectionKey(uint key)
         {
             switch (key)
             {
-                case VirtualKeyCode.UP:
-                case VirtualKeyCode.DOWN:
-                case VirtualKeyCode.LEFT:
-                case VirtualKeyCode.RIGHT:
-                case VirtualKeyCode.PRIOR:
-                case VirtualKeyCode.NEXT:
+                case Winuser.VK_UP:
+                case Winuser.VK_DOWN:
+                case Winuser.VK_LEFT:
+                case Winuser.VK_RIGHT:
+                case Winuser.VK_PRIOR:
+                case Winuser.VK_NEXT:
                     return true;
                 default:
                     return false;

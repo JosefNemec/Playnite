@@ -30,6 +30,10 @@ namespace Playnite.FullscreenApp.API
             }
         }
 
+        public DesktopView ActiveDesktopView => DesktopView.Details;
+
+        public List<Game> FilteredGames => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList();
+
         public MainViewAPI(FullscreenAppViewModel mainModel)
         {
             this.mainModel = mainModel;
@@ -56,6 +60,11 @@ namespace Playnite.FullscreenApp.API
             {
                 mainModel.SelectGame(game.Id);
             }
+        }
+
+        public void SelectGames(IEnumerable<Guid> gameIds)
+        {
+            throw new NotSupportedException("Not supported in Fullscreen mode.");
         }
     }
 }

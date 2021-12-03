@@ -35,6 +35,7 @@
             </Grid.RowDefinitions>
 
             <Border Style="{DynamicResource GameMenuBorder}"
+                    MinWidth="400" Width="Auto"
                     Grid.Column="1" Grid.Row="1"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                 <DockPanel>

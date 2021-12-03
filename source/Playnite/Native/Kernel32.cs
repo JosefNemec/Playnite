@@ -77,5 +77,9 @@ namespace Playnite.Native
 
         [DllImport(dllName, CharSet = CharSet.Auto)]
         public static extern bool QueryFullProcessImageName([In] IntPtr hProcess, [In] uint dwFlags, [Out] StringBuilder lpExeName, [In, Out] ref uint lpdwSize);
+
+        [DllImport(dllName, SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.U4)]
+        public static extern uint GetFileAttributesW(string lpFileName);
     }
 }

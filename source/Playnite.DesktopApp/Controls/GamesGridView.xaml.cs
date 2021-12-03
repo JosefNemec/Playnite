@@ -37,6 +37,8 @@ namespace Playnite.DesktopApp.Controls
     /// </summary>
     public partial class GamesGridView : UserControl
     {
+        internal bool ignoreSelectedItemsListChanges = false;
+
         public object SelectedItem
         {
             get
@@ -73,7 +75,7 @@ namespace Playnite.DesktopApp.Controls
         }
 
         public static readonly DependencyProperty SelectedItemsListProperty =
-           DependencyProperty.Register(nameof(SelectedItemsList), typeof(IList<object>), typeof(GamesGridView), new PropertyMetadata(null));
+           DependencyProperty.Register(nameof(SelectedItemsList), typeof(IList<object>), typeof(GamesGridView), new PropertyMetadata(null, SelectedItemsListChanged));
 
         public IEnumerable ItemsSource
         {
@@ -180,6 +182,22 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
+        public static void SelectedItemsListChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var list = (GamesGridView)d;
+            if (list.ignoreSelectedItemsListChanges || list.GridGames.SelectionMode == SelectionMode.Single)
+            {
+                return;
+            }
+
+            list.GridGames.SelectedItems.Clear();
+            var newValues = e.NewValue as IList<object>;
+            if (newValues.HasItems())
+            {
+                newValues.ForEach(a => list.GridGames.SelectedItems.Add(a));
+            }
+        }
+
         private void InitializeColumns()
         {
             ignoreColumnChanges = true;
@@ -219,7 +237,7 @@ namespace Playnite.DesktopApp.Controls
             }
             else if (field == GameField.Platforms)
             {
-                newColumn = CreateColumn(field, SortOrder.Platform, "CellTemplatePlatform", "HeaderTemplatePlatform", "Platform");
+                newColumn = CreateColumn(field, SortOrder.Platforms, "CellTemplatePlatform", "HeaderTemplatePlatform", "Platform");
             }
             else if (field == GameField.PluginId)
             {
@@ -287,11 +305,11 @@ namespace Playnite.DesktopApp.Controls
             }
             else if (field == GameField.AgeRatings)
             {
-                newColumn = CreateColumn(field, SortOrder.AgeRating, "CellTemplateAgeRating", "HeaderTemplateAgeRating", "AgeRating");
+                newColumn = CreateColumn(field, SortOrder.AgeRatings, "CellTemplateAgeRating", "HeaderTemplateAgeRating", "AgeRating");
             }
             else if (field == GameField.Regions)
             {
-                newColumn = CreateColumn(field, SortOrder.Region, "CellTemplateRegion", "HeaderTemplateRegion", "Region");
+                newColumn = CreateColumn(field, SortOrder.Regions, "CellTemplateRegion", "HeaderTemplateRegion", "Region");
             }
             else if (field == GameField.Source)
             {
@@ -350,12 +368,14 @@ namespace Playnite.DesktopApp.Controls
 
         private void GridGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ignoreSelectedItemsListChanges = true;
             if (GridGames.SelectedItems?.Count == 1)
             {
                 SelectedItem = GridGames.SelectedItems[0];
             }
 
             SelectedItemsList = (IList<object>)GridGames.SelectedItems;
+            ignoreSelectedItemsListChanges = false;
         }
 
         private void Grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.IO;
 using Playnite.SDK;
+using Playnite.Common.Media.Icons;
+using System.Drawing.Imaging;
 
 namespace Playnite.Common
 {
@@ -96,6 +98,49 @@ namespace Playnite.Common
                 logger.Error(e, "Failed to load image properties from stream.");
                 return new ImageProperties();
             }
+        }
+
+        /// <summary>
+        /// Converts file to an image file.
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <param name="outFileRoot">Resulting file name without extension.</param>
+        /// <returns>File path to converted image if conversion was successful or original path if file is alreadny an image.</returns>
+        public static string ConvertToCompatibleFormat(string imagePath, string outFileRoot)
+        {
+            if (imagePath.IsNullOrEmpty() || !File.Exists(imagePath))
+            {
+                return null;
+            }
+
+            FileSystem.CreateDirectory(Path.GetDirectoryName(outFileRoot));
+            if (imagePath.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+            {
+                var icoPath = outFileRoot + ".ico";
+                if (IconExtractor.ExtractMainIconFromFile(imagePath, icoPath))
+                {
+                    return icoPath;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else if (imagePath.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+            {
+                var pngPath = outFileRoot + ".png";
+                try
+                {
+                    File.WriteAllBytes(pngPath, BitmapExtensions.TgaToBitmap(imagePath).ToPngArray());
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to covert {imagePath} to png.");
+                    return null;
+                }
+            }
+
+            return imagePath;
         }
     }
 }

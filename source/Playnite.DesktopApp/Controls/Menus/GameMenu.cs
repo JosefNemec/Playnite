@@ -368,7 +368,17 @@ namespace Playnite.DesktopApp.Controls
                             linksItem.Items.Add(new MenuItem()
                             {
                                 Header = link.Name,
-                                Command = new RelayCommand<Link>((_) => GlobalCommands.NavigateUrl(Game.ExpandVariables(link.Url)))
+                                Command = new RelayCommand<Link>((_) =>
+                                {
+                                    try
+                                    {
+                                        GlobalCommands.NavigateUrl(Game.ExpandVariables(link.Url));
+                                    }
+                                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                                    {
+                                        logger.Error(e, "Failed to open url.");
+                                    }
+                                })
                             });
                         }
                     }

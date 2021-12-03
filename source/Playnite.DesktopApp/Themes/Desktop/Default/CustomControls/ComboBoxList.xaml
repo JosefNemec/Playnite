@@ -132,19 +132,13 @@
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0" Margin="5" Name="PART_SearchOptions">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="auto" />
-                                </Grid.ColumnDefinitions>
-                                <SearchBox Grid.Column="0" x:Name="PART_SearchBox" Height="35" />
-
-                                <ToggleButton Grid.Column="1" Content="&#xf00d;"
-                                              x:Name="PART_CheckedOnly" Height="30"
-                                              ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
-                                              FontFamily="{DynamicResource FontIcoFont}" />
-                            </Grid>
+                            <DockPanel Grid.Row="0" Margin="5" Name="PART_ElemSearchHost">                                
+                                <CheckBox DockPanel.Dock="Right"
+                                          x:Name="PART_ToggleSelectedOnly"
+                                          ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
+                                          FontFamily="{DynamicResource FontIcoFont}" />
+                                <SearchBox DockPanel.Dock="Left" Margin="0,0,5,0" x:Name="PART_SearchBox" />
+                            </DockPanel>
                             <ItemsControl x:Name="PART_ItemsPanel" Grid.Row="1" />
                         </Grid>
                     </Border>

@@ -219,23 +219,29 @@ namespace Playnite.Scripting.PowerShell
 
         public object InvokeFunction(string name, List<object> arguments)
         {
-            var command = GetFunction(name);
-            powershell.AddCommand(command);
-            foreach (var argument in arguments)
+            try
             {
-                powershell.AddArgument(argument);
-            }
-            var result = powershell.Invoke();
-            powershell.Streams.ClearStreams();
-            powershell.Commands.Clear();
+                var command = GetFunction(name);
+                powershell.AddCommand(command);
+                foreach (var argument in arguments)
+                {
+                    powershell.AddArgument(argument);
+                }
 
-            if (result.Count == 1)
-            {
-                return result[0].BaseObject;
+                var result = powershell.Invoke();
+                if (result.Count == 1)
+                {
+                    return result[0].BaseObject;
+                }
+                else
+                {
+                    return result.Select(a => a?.BaseObject).ToList();
+                }
             }
-            else
+            finally
             {
-                return result.Select(a => a?.BaseObject).ToList();
+                powershell.Streams.ClearStreams();
+                powershell.Commands.Clear();
             }
         }
     }

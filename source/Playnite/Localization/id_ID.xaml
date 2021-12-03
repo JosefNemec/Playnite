@@ -41,6 +41,7 @@ Sebaiknya simpan file log dan laporkan masalah tersebut ke pengembang ekstensi. 
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Ekstensi &quot;{0}&quot; menyebabkan masalah yang tidak dapat dipulihkan.
 
 Sebaiknya laporkan masalah ini ke pengembang ekstensi. Jika masalah terus berulang, nonaktifkan ekstensi.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Terjadi kesalahan yang tidak dapat dipulihkan.
 
 Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagnostik. Terima kasih.</sys:String>
@@ -186,7 +187,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCColumns">Kolom</sys:String>
     <sys:String x:Key="LOCRow">Baris</sys:String>
     <sys:String x:Key="LOCRows">Baris</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Tidak bisa memuat ikon jika aksi Mainkan tidak ada atau diset ke URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Download metadata yang hilang</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Pilih Game</sys:String>
@@ -301,7 +302,6 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Matikan Hardware Acceleration</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Gunakan ketika bereksperimen dengan lag atau masalah UI</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Matikan DPI Scalling</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Jumlah objek mulai cepat</sys:String>
@@ -485,6 +485,8 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCGameTagsTitle">Tag</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Status Instalasi</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Terinstal</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Terinstal</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Belum terpasang</sys:String>
@@ -545,6 +547,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCAddLinkButton">Tambah Link</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Simpan Perubahan</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Tombol Mainkan</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Tambah Tombol Mainkan</sys:String>
     <sys:String x:Key="LOCAddAction">Tambah Aksi</sys:String>
@@ -558,6 +561,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCOpenPlaynite">Buka Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Setting Profil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Nama game tidak boleh kosong.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Nama game tidak boleh kosong sebelum mencari metadata.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Data game Invalid</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Masukan URL web yang valid. Sertakan http:// atau https://</sys:String>
@@ -633,6 +637,8 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCOther">Lainnya</sys:String>
     <sys:String x:Key="LOCThemes">Tema</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argumen untuk Emulator</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumen tambahan untuk Emulator</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Tindih argumen Emulator dengan...</sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -658,12 +664,16 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Eksekusi Skrip Global</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Disaring</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">Saat ini</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Baru</sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Simpan sebagai standar</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Tambah ke Favorit</sys:String>
@@ -733,13 +743,16 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
@@ -917,9 +930,15 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
     <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -933,4 +952,14 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

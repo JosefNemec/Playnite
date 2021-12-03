@@ -23,6 +23,11 @@ namespace System
         public static string GetDescription(this Enum source)
         {
             FieldInfo field = source.GetType().GetField(source.ToString());
+            if (field == null)
+            {
+                return string.Empty;
+            }
+
             var attributes = (DescriptionAttribute[])field.GetCustomAttributes(typeof(DescriptionAttribute), false);
             if (attributes != null && attributes.Length > 0)
             {

@@ -13,7 +13,7 @@ namespace Playnite.DesktopApp.Windows
 
     public partial class DatabaseFieldsManagerWindow : WindowBase
     {
-        public DatabaseFieldsManagerWindow() : base(nameof(DatabaseFieldsManagerWindow))
+        public DatabaseFieldsManagerWindow() : base("DatabaseFieldsManagerWindow_V2")
         {
             InitializeComponent();
         }

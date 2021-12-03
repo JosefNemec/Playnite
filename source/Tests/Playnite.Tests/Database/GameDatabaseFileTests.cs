@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Playnite;
 using Playnite.Common;
 using Playnite.Database;
+using Playnite.SDK.Models;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
@@ -20,42 +21,96 @@ namespace Playnite.Tests.Database
         [Test]
         public void AddFileTest()
         {
-            using (var temp = TempDirectory.Create())
-            using (var db = new GameDatabase(temp.TempPath))
+            using (var db = new GameDbTestWrapper())
             {
-                db.OpenDatabase();
-                var file = PlayniteTests.GenerateFakeFile();
                 var testId = Guid.NewGuid();
-                var addedId = db.AddFile(file.FileName, file.Content, testId);
-                FileAssert.Exists(Path.Combine(temp.TempPath, "files", addedId));
+                var filesDir = Path.Combine(db.DbDirectory, "files", testId.ToString());
+
+                void testImage(string path, string resFilter, string addedExt, bool addAsImage)
+                {
+                    var newPath = db.DB.AddFile(path, testId, addAsImage);
+                    Assert.IsNotNull(newPath);
+                    StringAssert.EndsWith(addedExt, newPath);
+                    Assert.AreEqual(1, Directory.GetFiles(filesDir, resFilter).Count());
+                    FileSystem.DeleteDirectory(filesDir);
+                }
+
+                void testImageMeta(MetadataFile file, string resFilter)
+                {
+                    Assert.IsNotNull(db.DB.AddFile(file, testId, true));
+                    Assert.AreEqual(1, Directory.GetFiles(filesDir, resFilter).Count());
+                    FileSystem.DeleteDirectory(filesDir);
+                }
+
+                // Standard image local file
+                testImage(Path.Combine(PlayniteTests.ResourcesPath, "Images", "applogo.png"), "*.png", ".png", true);
+
+                // Standard image htpp file
+                testImage(@"https://playnite.link/applogo.png", "*.png", ".png", true);
+
+                // Standard image content file
+                var contentImage = File.ReadAllBytes(Path.Combine(PlayniteTests.ResourcesPath, "Images", "applogo.png"));
+                testImageMeta(new MetadataFile("test.png", contentImage), "*.png");
+
+                // Local exe icon file
+                testImage(Path.Combine(PlayniteTests.ResourcesPath, "Images", "YesIcon.exe"), "*.ico", ".ico", true);
+
+                // Http exe icon file
+                testImage(@"https://playnite.link/YesIcon.exe", "*.ico", ".ico", true);
+
+                // No image
+                testImage(Path.Combine(PlayniteTests.ResourcesPath, "Images", "YesIcon.exe"), "*.exe", ".exe", false);
+
+                // No image http
+                testImage(@"https://playnite.link/YesIcon.exe", "*.exe", ".exe", false);
             }
         }
 
         [Test]
-        public void AddFileHttpTest()
+        public void AddFileFailureTest()
         {
-            using (var temp = TempDirectory.Create())
-            using (var db = new GameDatabase(temp.TempPath))
+            using (var db = new GameDbTestWrapper())
             {
-                db.OpenDatabase();
                 var testId = Guid.NewGuid();
-                var addedId = db.AddFile(@"https://playnite.link/applogo.png", testId);
-                FileAssert.Exists(Path.Combine(temp.TempPath, "files", addedId));
+                var filesDir = Path.Combine(db.DbDirectory, "files", testId.ToString());
+
+                void testImage(string path)
+                {
+                    Assert.IsNull(db.DB.AddFile(path, testId, true));
+                    Assert.IsTrue(!Directory.Exists(filesDir) || Directory.GetFiles(filesDir, "*.*").Count() == 0);
+                    FileSystem.DeleteDirectory(filesDir);
+                }
+
+                // Missing http file
+                testImage(@"https://playnite.link/doesntexists.png");
+
+                // Missing local file
+                testImage(@"c:\dir\nope.png");
+
+                // Http exe no icon file
+                testImage(@"https://playnite.link/NoIcon.exe");
+
+                // Non-image filed
+                testImage(Path.Combine(PlayniteTests.ResourcesPath, "Images", "NoIcon.exe"));
             }
         }
 
         [Test]
-        public void AddFileHttp404Test()
+        public void ImageFilePathReuseTest()
         {
-            using (var temp = TempDirectory.Create())
-            using (var db = new GameDatabase(temp.TempPath))
+            using (var db = new GameDbTestWrapper())
             {
-                db.OpenDatabase();
                 var testId = Guid.NewGuid();
-                var addedId = db.AddFile(@"https://playnite.link/doesntexists.png", testId);
-                Assert.IsNull(addedId);
-                var files = Directory.GetFiles(Path.Combine(temp.TempPath, "files", testId.ToString()));
-                Assert.AreEqual(0, files.Count());
+                var filesDir = Path.Combine(db.DbDirectory, "files", testId.ToString());
+                FileSystem.CreateDirectory(filesDir, true);
+
+                File.Copy(
+                    Path.Combine(PlayniteTests.ResourcesPath, "Images", "applogo.png"),
+                    Path.Combine(filesDir, "newFile.png"));
+
+                var resFile = db.DB.AddFile(Path.Combine(filesDir, "newFile.png"), testId, true);
+                Assert.AreEqual(testId + "\\" + "newFile.png", resFile);
+                Assert.AreEqual(1, Directory.GetFiles(filesDir, "*.*").Count());
             }
         }
     }

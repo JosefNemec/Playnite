@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props')" />
-  <Import Project="..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props')" />
-  <Import Project="..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props')" />
+  <Import Project="..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.95.7.14\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.95.7.14\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.95.7.14\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.95.7.14\build\cef.redist.x64.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -28,7 +28,7 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -41,23 +41,24 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CefSharp, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.Common.92.0.260\lib\net452\CefSharp.dll</HintPath>
+    <Reference Include="CefSharp, Version=95.7.141.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Common.95.7.141\lib\net452\CefSharp.dll</HintPath>
     </Reference>
-    <Reference Include="CefSharp.Core, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.Common.92.0.260\lib\net452\CefSharp.Core.dll</HintPath>
+    <Reference Include="CefSharp.Core, Version=95.7.141.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Common.95.7.141\lib\net452\CefSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="CefSharp.OffScreen, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.OffScreen.92.0.260\lib\net452\CefSharp.OffScreen.dll</HintPath>
+    <Reference Include="CefSharp.OffScreen, Version=95.7.141.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.OffScreen.95.7.141\lib\net462\CefSharp.OffScreen.dll</HintPath>
     </Reference>
-    <Reference Include="CefSharp.Wpf, Version=92.0.260.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
-      <HintPath>..\packages\CefSharp.Wpf.92.0.260\lib\net452\CefSharp.Wpf.dll</HintPath>
+    <Reference Include="CefSharp.Wpf, Version=95.7.141.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Wpf.95.7.141\lib\net462\CefSharp.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
       <HintPath>..\packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
@@ -180,6 +181,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
@@ -200,9 +202,6 @@
       <HintPath>..\..\references\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="WindowsInput, Version=1.0.6.0, Culture=neutral, PublicKeyToken=de2685b4776e9c2e, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputSimulatorPlus.1.0.7\lib\net20\WindowsInput.dll</HintPath>
-    </Reference>
     <Reference Include="XInputDotNetPure">
       <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
     </Reference>
@@ -226,6 +225,7 @@
     <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
     <Compile Include="Common\CueSheet.cs" />
+    <Compile Include="Common\Extensions\Dictionary.cs" />
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />
     <Compile Include="Controls\ExtendedDataGrid.cs" />
@@ -237,6 +237,7 @@
     <Compile Include="Database\Collections\ImportExclusionsCollection.cs" />
     <Compile Include="Database\Collections\FilterPresetsCollection.cs" />
     <Compile Include="Database\Collections\CompletionStatusesCollection.cs" />
+    <Compile Include="Database\Collections\LiteDBFileReaderV7.cs" />
     <Compile Include="Database\OldModels\Ver2.cs" />
     <Compile Include="Emulators\DatModels.cs" />
     <Compile Include="Emulators\Emulation.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Common\GlobalRandom.cs" />
     <Compile Include="Common\Images.cs" />
     <Compile Include="Common\IniParser.cs" />
+    <Compile Include="Metadata\MetadataFileExtensions.cs" />
     <Compile Include="Native\Gdi32.cs" />
     <Compile Include="Common\ItemsSource.cs" />
     <Compile Include="Common\JsonRpcClient.cs" />
@@ -704,26 +706,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>XInputInterface.dll</TargetPath>
     </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\concrt140.dll">
-      <Link>Dependencies\concrt140.dll</Link>
+    <None Include="..\..\references\CefSharpRedist\*.*">
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>concrt140.dll</TargetPath>
-    </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\msvcp140.dll">
-      <Link>Dependencies\msvcp140.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>msvcp140.dll</TargetPath>
-    </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\msvcp140_1.dll">
-      <Link>Dependencies\msvcp140_1.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>msvcp140_1.dll</TargetPath>
-    </ContentWithTargetPath>
-    <ContentWithTargetPath Include="..\..\references\CefSharpRedist\vcruntime140.dll">
-      <Link>Dependencies\vcruntime140.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>vcruntime140.dll</TargetPath>
-    </ContentWithTargetPath>
+    </None>
     <ContentWithTargetPath Include="..\..\references\msvcr110.dll">
       <Link>Dependencies\msvcr110.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -763,12 +749,12 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.92.0.26\build\cef.redist.x64.props'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.92.0.26\build\cef.redist.x86.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.95.7.14\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.95.7.14\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.95.7.14\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.95.7.14\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.targets'))" />
   </Target>
-  <Import Project="..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.92.0.260\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.95.7.141\build\CefSharp.Common.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

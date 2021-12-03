@@ -41,6 +41,7 @@ Odporúčame uložiť súbor so záznamami (log) a nahlásiť tento problém vý
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Rozšírenie &quot;{0}&quot; spôsobilo neodstrániteľnú chybu.
 
 Odporúčame to nahlásiť vývojárovi rozšírenia. Ak sa táto chyba opakuje, rozšírenie vypnite.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Vyskytla sa neopraviteľná chyba.
 
 Ak nám chcete pomôcť tento problém opraviť, odošlite prosím diagnostický balíček. Ďakujeme.</sys:String>
@@ -186,7 +187,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCColumns">Stĺpce</sys:String>
     <sys:String x:Key="LOCRow">Riadok</sys:String>
     <sys:String x:Key="LOCRows">Riadky</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Nie je možné získať ikonu v prípade ak chýba akcia Hrať alebo je nastavená na adresu URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Prevziať len chýbajúce metadáta</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Povolenie tejto možnosti spôsobí preskočenie preberania metadát pre polia, ktoré už obsahujú informácie.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Výber hier</sys:String>
@@ -301,7 +302,6 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Zobraziť len priradené polia vo filtri a paneloch prieskumníka</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Vypnúť hardvérovú akceleráciu</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Použite v prípade, že zaznamenávate problémy ako je zasekávanie, prípadne iné grafické artefakty</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Vypnúť škálovanie DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Zobraziť skryté hry v zoznamoch rýchleho spustenia</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Ovplyvňuje zoznam odkazov a zoznamy ponúk v systémovej lište.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Počet položiek pre rýchle spustenie</sys:String>
@@ -494,6 +494,8 @@ Monetálne ju používa {1} hier a {2} emulátorov.</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Štítok</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Vydavateľ</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Stav inštalácie</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Nainštalované</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Nainštalované</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nenainštalované</sys:String>
@@ -546,12 +548,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Odkaz sa nedá otvoriť, adresa URL nie je v platnom formáte.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Aplikáciu sa nepodarilo spustiť.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Inicializácia komponentu WebView zlyhala. Playnite nemôže pokračovať v procese spustenia.
-
-Môžete sa pokúsiť problém vyriešiť:
-  • Skontrolujte, či sú všetky súbory nainštalované správne. Pomôcť by mohla opätovná inštalácia
-  • Uistite sa, že váš antivírus neblokuje žiadne súbory v adresári Playnite
-  • Vyberte iné umiestnenie inštalácie</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emulátory nie je možné importovať z dôvodu chýbajúceho alebo poškodeného definičného súboru.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Nepodarilo sa inicializovať rozhranie XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Nepodarilo sa spustiť ponuku akcie.</sys:String>
@@ -562,6 +559,7 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCAddLinkButton">Pridať odkaz</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Uložiť zmeny</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Akcia hrať</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Pridať akciu Hrať</sys:String>
     <sys:String x:Key="LOCAddAction">Pridať akciu</sys:String>
@@ -575,6 +573,7 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCOpenPlaynite">Otvoriť Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Nastavenia profilu</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Názov hry nemôže byť prázdny.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Pred vyhľadávaním metadát musíte doplniť názov hry.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Neplatné údaje o hre</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Zadajte platnú webovú adresu URL začínajúcu reťazcom http:// alebo https://</sys:String>
@@ -650,6 +649,8 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCOther">Ostatné</sys:String>
     <sys:String x:Key="LOCThemes">Motívy vzhľadu</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Parametre emulátora</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatočné parametre emulátora</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Nahradiť parametre pre emulátor</sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -675,12 +676,16 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCPreScriptDescription">Skript, ktorý sa má vykonať pred spustením hry</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Skript, ktorý sa má vykonať po ukončení hry</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Skript, ktorý sa má vykonať po spustení hry</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Spustiť globálny skript</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globálne</sys:String>
     <sys:String x:Key="LOCStatsFiltered"></sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
     <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Uložiť ako predvolené</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Pridať do obľúbených</sys:String>
@@ -750,13 +755,16 @@ Môžete sa pokúsiť problém vyriešiť:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšírenie nie je správne zabalené.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Motív vzhľadu nie je správne zabalený.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Rozšírenie &quot;{0}&quot; sa nepodarilo správne načítať</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Motív vzhľadu &quot;{0}&quot; sa nepodarilo správne načítať.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšítenie sa nepodarilo správne načítať</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšítenie sa nepodarilo správne načítať</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Motív vzhľadu sa nepodarilo správne načítať.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motív vzhľadu/rozširenie používa nepodporovanu verziu API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Inštalácia bola úspešná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainštalovať rozšírenie?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Obecné</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Inštalácia rozšírenia zlyhala.
 
 {0}</sys:String>
@@ -958,9 +966,15 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
     <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -974,4 +988,14 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

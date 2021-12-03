@@ -4,14 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
     <StackPanel Margin="5">
+        <StackPanel.Resources>
+            <CollectionViewSource x:Key="DevelExtenionsSource" Source="{Binding Settings.DevelExtenions}">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="Item" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+        </StackPanel.Resources>
         <TextBlock Margin="0,0,0,5" Text="{DynamicResource LOCSettingsExternalExtensions}" Style="{DynamicResource BaseTextBlockStyle}" />
         <ListView DockPanel.Dock="Top" Name="ListDevelExtensions"
                   SelectionMode="Extended" Height="200"
-                  ItemsSource="{Binding Settings.DevelExtenions}">
+                  ItemsSource="{Binding Source={StaticResource DevelExtenionsSource}}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="90" Header="{DynamicResource LOCEnabledTitle}">

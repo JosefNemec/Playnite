@@ -27,7 +27,7 @@
 
     <Grid Margin="5">
         <DockPanel Visibility="{Binding IsUpdateListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
-            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
                 <Button Content="{DynamicResource LOCAddonUpdateAddons}" Margin="0,5,0,0"
                         Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding UpdateAddonsCommand}"/>
@@ -45,7 +45,7 @@
                                 <DockPanel>
                                     <CheckBox DockPanel.Dock="Left" VerticalAlignment="Top" Margin="5,5,0,0"
                                               IsChecked="{Binding Selected}"/>
-                                    <Expander DockPanel.Dock="Right" Background="Transparent">
+                                    <Expander DockPanel.Dock="Right" Background="Transparent" IsExpanded="True">
                                         <Expander.Header>
                                             <DockPanel>
                                                 <TextBlock Text="{Binding Status, Converter={StaticResource ObjectToStringConverter}}" DockPanel.Dock="Right"

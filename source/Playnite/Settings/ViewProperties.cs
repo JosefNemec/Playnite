@@ -18,7 +18,7 @@ namespace Playnite
         [Description("LOCGameNameTitle")]
         Name,
         [Description("LOCPlatformTitle")]
-        Platform,
+        Platforms,
         [Description("LOCGameProviderTitle")]
         Library,
         [Description("LOCCategoryLabel")]
@@ -38,11 +38,11 @@ namespace Playnite
         [Description("LOCSeriesLabel")]
         Series,
         [Description("LOCAgeRatingLabel")]
-        AgeRating,
+        AgeRatings,
         [Description("LOCVersionLabel")]
         Version,
         [Description("LOCRegionLabel")]
-        Region,
+        Regions,
         [Description("LOCSourceLabel")]
         Source,
         [Description("LOCPlayCountLabel")]

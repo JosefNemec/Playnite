@@ -1,5 +1,6 @@
 ﻿using Playnite.API;
 using Playnite.Audio;
+using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Database;
 using Playnite.FullscreenApp.API;
@@ -49,8 +50,8 @@ namespace Playnite.FullscreenApp
             get => PlayniteApplication.Current == null ? null : (FullscreenApplication)PlayniteApplication.Current;
         }
 
-        public FullscreenApplication(App nativeApp, SplashScreen splashScreen, CmdLineOptions cmdLine)
-            : base(nativeApp, ApplicationMode.Fullscreen, DefaultThemeName, cmdLine)
+        public FullscreenApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
+            : base(appInitializer, ApplicationMode.Fullscreen, DefaultThemeName, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
@@ -160,9 +161,13 @@ namespace Playnite.FullscreenApp
 
             if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
             {
-                await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
+                await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
             }
+
+            // This is most likely safe place to consider application to be started properly
+            FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
         }
+
         public override void InitializeNative()
         {
             ((App)CurrentNative).InitializeComponent();

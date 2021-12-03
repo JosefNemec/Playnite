@@ -14,32 +14,14 @@ using System.Xml.Linq;
 
 namespace Playnite.DesktopApp.Controls
 {
-    [TemplatePart(Name = "PART_CheckedOnly", Type = typeof(TextBlock))]
-    [TemplatePart(Name = "PART_SearchBox", Type = typeof(TextBlock))]
-    [TemplatePart(Name = "PART_SearchOptions", Type = typeof(Grid))]
+    [TemplatePart(Name = "PART_ToggleSelectedOnly", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "PART_SearchBox", Type = typeof(SearchBox))]
+    [TemplatePart(Name = "PART_ElemSearchHost", Type = typeof(FrameworkElement))]
     public class DdItemListSelectionBox : ComboBoxListBase
     {
-        internal ToggleButton ButtonCheckedOnly;
+        internal ToggleButton ToggleSelectedOnly;
         internal SearchBox TextSearchBox;
-        internal Grid SearchOptions;
-
-        private string searchText = string.Empty;
-        public string SearchText
-        {
-            get
-            {
-                return searchText;
-            }
-
-            set
-            {
-                searchText = value;
-                if (TextSearchBox != null && ItemsList != null)
-                {
-                    ItemsList.SearchText = searchText;
-                }
-            }
-        }
+        internal FrameworkElement ElemSearchHost;
 
         public bool ShowSearchBox
         {
@@ -138,13 +120,15 @@ namespace Playnite.DesktopApp.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            
-            ButtonCheckedOnly = Template.FindName("PART_CheckedOnly", this) as ToggleButton;
-            TextSearchBox = Template.FindName("PART_SearchBox", this) as SearchBox;
-            SearchOptions = Template.FindName("PART_SearchOptions", this) as Grid;
-
             if (ItemsPanel != null)
             {
+                BindingTools.ClearBinding(ItemsPanel, ItemsControl.ItemsSourceProperty);
+                BindingTools.SetBinding(
+                    ItemsPanel,
+                    ItemsControl.ItemsSourceProperty,
+                    this,
+                    "ItemsList.CollectionView");
+
                 XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
                 ItemsPanel.ItemTemplate = Xaml.FromString<DataTemplate>(new XDocument(
                     new XElement(pns + nameof(DataTemplate),
@@ -152,40 +136,44 @@ namespace Playnite.DesktopApp.Controls
                             new XAttribute(nameof(CheckBox.IsChecked), "{Binding Selected}"),
                             new XAttribute(nameof(CheckBox.Content), "{Binding Item.Name}"),
                             new XAttribute(nameof(CheckBox.IsThreeState), "{Binding IsThreeState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=DdItemListSelectionBox}}"),
-                            new XAttribute(nameof(CheckBox.Visibility), "{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"),
                             new XAttribute(nameof(CheckBox.Style), $"{{DynamicResource ComboBoxListItemStyle}}")))
                 ).ToString());
             }
 
-            if (ButtonCheckedOnly != null)
-            {
-                ButtonCheckedOnly.Click += (_, e) => ButtonCheckedOnlyAction(_, e);
-            }
-
-            if (SearchOptions != null)
+            ToggleSelectedOnly = Template.FindName("PART_ToggleSelectedOnly", this) as ToggleButton;
+            if (ToggleSelectedOnly != null)
             {
                 BindingTools.SetBinding(
-                    SearchOptions,
-                    Grid.VisibilityProperty,
+                   ToggleSelectedOnly,
+                   ToggleButton.IsCheckedProperty,
+                   this,
+                   nameof(ItemsList) + "." + nameof(ItemsList.ShowSelectedOnly),
+                   BindingMode.TwoWay);
+            }
+
+            ElemSearchHost = Template.FindName("PART_ElemSearchHost", this) as FrameworkElement;
+            if (ElemSearchHost != null)
+            {
+                BindingTools.SetBinding(
+                    ElemSearchHost,
+                    FrameworkElement.VisibilityProperty,
                     this,
                     nameof(ShowSearchBox),
                     converter: new Converters.BooleanToVisibilityConverter());
+            }
 
+            TextSearchBox = Template.FindName("PART_SearchBox", this) as SearchBox;
+            if (TextSearchBox != null)
+            {
                 BindingTools.SetBinding(
                     TextSearchBox,
                     SearchBox.TextProperty,
                     this,
-                    nameof(SearchText),
-                    BindingMode.TwoWay,
-                    delay: 100);
+                    nameof(ItemsList) + "." + nameof(ItemsList.SearchText),
+                    BindingMode.TwoWay);
             }
 
             UpdateTextStatus();
-        }
-
-        public void ButtonCheckedOnlyAction(object sender, RoutedEventArgs e)
-        {
-            ItemsList.ShowSelectedOnly = (bool)((ToggleButton)sender).IsChecked;
         }
 
         public override void ClearButtonAction(RoutedEventArgs e)

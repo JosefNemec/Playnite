@@ -30,6 +30,11 @@
 )
 
 $ErrorActionPreference = "Stop"
+if (!(Get-InstalledModule "powershell-yaml" -EA 0))
+{
+    Install-Module powershell-yaml
+}
+
 Set-Location $PSScriptRoot
 & .\common.ps1
 
@@ -67,7 +72,47 @@ function PackExtensionTemplate()
     Remove-Item $templateOutDir -Recurse -Force
 } 
 
+# -------------------------------------------
+#            Verify various non-build files
+# -------------------------------------------
 .\VerifyLanguageFiles.ps1
+
+$platforms = Get-Content "..\source\Playnite\Emulation\Platforms.yaml" -Raw | ConvertFrom-Yaml
+if (!($platforms.Count -gt 0))
+{
+    throw "Platforms definition file is not valid."
+}
+
+Write-OperationLog "Platforms definitions are OK"
+
+$regions = Get-Content "..\source\Playnite\Emulation\Regions.yaml" -Raw | ConvertFrom-Yaml
+if (!($regions.Count -gt 0))
+{
+    throw "Regions definition file is not valid."
+}
+
+Write-OperationLog "Regions definitions are OK"
+
+Get-ChildItem "..\source\Playnite\Emulation\" -Filter "*.yaml" -Recurse | ForEach {
+    $emuDef = Get-Content $_.FullName -Raw | ConvertFrom-Yaml
+    if (!$emuDef.Id)
+    {
+        throw "$($_.FullName) is not valid emulator definition."
+    }
+
+    foreach ($profile in $emuDef.Profiles)
+    {
+        foreach ($platId in $profile.Platforms)
+        {
+            if (!($platforms | Where { $_.Id -eq $platId } ))
+            {
+                throw "Platform $platId not found, $($_.FullName)."
+            }
+        }
+    }
+}
+
+Write-OperationLog "Emulator definitions are OK"
 
 # -------------------------------------------
 #            Compile application 

@@ -226,11 +226,12 @@ namespace Playnite.DesktopApp.ViewModels
         public void Search()
         {
             AvailableImages = new List<GoogleImage>();
-            var searchTerm = SearchTerm;
+            var searchTerm = SearchTerm.Replace('-', ' '); // hyphen would exclude results #2595
             if (!string.IsNullOrEmpty(SearchWidth) && !string.IsNullOrEmpty(SearchHeight))
             {
                 searchTerm = $"{searchTerm} imagesize:{SearchWidth}x{SearchHeight}";
             }
+
             if (GlobalProgress.ActivateProgress((_) =>
             {
                 AvailableImages = downloader.GetImages(searchTerm, Transparent).GetAwaiter().GetResult();

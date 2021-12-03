@@ -32,7 +32,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
-            await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport);
+            await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport, true);
         }, () => !MainModel.ProgressActive);
         public RelayCommand CancelProgressCommand => new RelayCommand(() => CancelProgress(), () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
 
@@ -119,7 +119,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Shutdown();
+                try
+                {
+                    Computer.Shutdown();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 
@@ -133,7 +140,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Hibernate();
+                try
+                {
+                    Computer.Hibernate();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 
@@ -147,7 +161,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Sleep();
+                try
+                {
+                    Computer.Sleep();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 
@@ -161,7 +182,14 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                Computer.Restart();
+                try
+                {
+                    Computer.Restart();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
             }
         }
 

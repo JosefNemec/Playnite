@@ -21,7 +21,28 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets or sets value indicating whether cache is enabled.
         /// </summary>
+        [Obsolete("AppCache was removed from CEF")]
         public bool CacheEnabled { get; set; } = true;
+
+        /// <summary>
+        /// User agent to be used for specific browser instance. Leave empty to use default.
+        /// </summary>
+        public string UserAgent { get; set; }
+
+        /// <summary>
+        /// Gets or sets window width.
+        /// </summary>
+        public int WindowWidth { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets window height.
+        /// </summary>
+        public int WindowHeight { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets window background color.
+        /// </summary>
+        public Color WindowBackground { get; set; }
     }
 
     /// <summary>
@@ -197,6 +218,13 @@ namespace Playnite.SDK
         /// <param name="background">View background color.</param>
         /// <returns>Web view.</returns>
         IWebView CreateView(int width, int height, Color background);
+
+        /// <summary>
+        /// Creates new web view.
+        /// </summary>
+        /// <param name="settings">Browser view settings.</param>
+        /// <returns></returns>
+        IWebView CreateView(WebViewSettings settings);
     }
 
     /// <summary>

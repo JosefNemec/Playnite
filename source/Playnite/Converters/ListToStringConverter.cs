@@ -51,7 +51,7 @@ namespace Playnite.Converters
     public class ListToStringConverter : MarkupExtension, IValueConverter
     {
         private const string defaultSeperator = ",";
-    
+
         public static string MakeString(IEnumerable<string> source)
         {
             return string.Join(",", source);
@@ -63,33 +63,32 @@ namespace Playnite.Converters
             {
                 return string.Empty;
             }
-            string sep = defaultSeperator;
+
+            var sep = defaultSeperator;
             if (parameter is string customSep)
             {
                 sep = customSep;
             }
-            
+
             return string.Join(sep, (IEnumerable<object>)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var stringVal = (string)value;
-
             if (string.IsNullOrEmpty(stringVal))
             {
                 return null;
             }
             else
             {
-                string sep = defaultSeperator;
-                
+                var sep = defaultSeperator;
                 if (parameter is string customSep)
                 {
                     sep = customSep;
                 }
-                
-                var converted = stringVal.Split(new [] { sep }, StringSplitOptions.RemoveEmptyEntries);
+
+                var converted = stringVal.Split(new [] { sep }, StringSplitOptions.None);
                 if (targetType == typeof(ComparableList<string>))
                 {
                     return new ComparableList<string>(converted);

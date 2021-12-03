@@ -41,6 +41,9 @@
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">擴充功能 &quot;{0}&quot; 導致無法復原的錯誤
 
 建議您保存記錄檔並向該功能的開發者回報。如果本錯誤持續發生，請關閉該功能。</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">有未知的擴充功能或佈景主題造成了無法回復的錯誤。
+
+我們建議先停用所有第三方附加元件，移除造成問題的元件後向該元件開發者回報此錯誤</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">發生無法復原的錯誤。
 
 如果您願意協助我們解決此問題，請傳送診斷資料報告給我們，謝謝。</sys:String>
@@ -50,7 +53,7 @@
     <sys:String x:Key="LOCCrashReportIssue">問題回報</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">重新啟動Playnite</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">在安全模式下重新啟動</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip">停用所有非官方擴充功能並使用預設主題</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">停用所有非官方擴充功能並使用預設佈景主題</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">離開Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">當機之前進行的行為(以英文描述)</sys:String>
     <sys:String x:Key="LOCLibraryManager">資料庫管理員</sys:String>
@@ -151,8 +154,8 @@
     <sys:String x:Key="LOCRemoveLabel">移除</sys:String>
     <sys:String x:Key="LOCDownloadLabel">下載</sys:String>
     <sys:String x:Key="LOCSearchLabel">搜尋</sys:String>
-    <sys:String x:Key="LOCSearchResolutionLabel"></sys:String>
-    <sys:String x:Key="LOCSearchResolutionAnyLabel"></sys:String>
+    <sys:String x:Key="LOCSearchResolutionLabel">解析度:</sys:String>
+    <sys:String x:Key="LOCSearchResolutionAnyLabel">任意</sys:String>
     <sys:String x:Key="LOCZoomLabel">放大</sys:String>
     <sys:String x:Key="LOCListViewLabel">列表檢視</sys:String>
     <sys:String x:Key="LOCCoversLabel">封面</sys:String>
@@ -186,7 +189,7 @@
     <sys:String x:Key="LOCColumns">欄</sys:String>
     <sys:String x:Key="LOCRow">列</sys:String>
     <sys:String x:Key="LOCRows">列</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">若啟動指令未設置或被設定為網址，則無法取得圖示</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">無法從開始遊玩動作取得圖示。找不到對應的檔案類型。</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">只下載缺少的元資料</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">啟用此選項則已有資料的欄位不會從元資料更新數據。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">遊戲選擇</sys:String>
@@ -301,7 +304,6 @@
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">在過濾器跟瀏覽面板中只顯示指定欄位</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">停用硬體加速</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">可用於改善畫面停頓等界面問題</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">停用DPI縮放</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">在快速啟動列表中顯示已隱藏遊戲</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">影響工作列捷徑清單與系統列選單</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">快速啟動列表中項目數量</sys:String>
@@ -310,10 +312,10 @@
     <sys:String x:Key="LOCSettingsBlurHighQuality">高畫質</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">背景加黑</sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">在網格檢視中顯示</sys:String>
-    <sys:String x:Key="LOCSettingsSkin">主題</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColor">主題簡介</sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen">全螢幕主題</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen">全螢幕主題簡介</sys:String>
+    <sys:String x:Key="LOCSettingsSkin">佈景主題</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">佈景主題簡介</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">全螢幕佈景主題</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">全螢幕佈景主題簡介</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">數據庫位置</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">登入狀態:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite設定</sys:String>
@@ -326,9 +328,9 @@
     <sys:String x:Key="LOCSettingsAfterGameClose">當遊戲關閉:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">即將登出所有已連結服務並重啟程式，是否繼續?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">清除快取？</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite需要重新啟動以套用新的主題</sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes">取得更多主題</sys:String>
-    <sys:String x:Key="LOCSettingsCreateThemes">建立新的主題</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite需要重新啟動以套用新的佈景主題</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">取得更多佈景主題</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">建立新的佈景主題</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">取得更多附加元件</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">添增新的附加元件</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">協助我們翻譯Playnite</sys:String>
@@ -357,7 +359,7 @@
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">顯示剩餘電量百分比</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">顯示時鐘</sys:String>
     <sys:String x:Key="LOCSettingsHideMouseCursor">隱藏滑鼠游標</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">快速過濾時只顯示已安裝遊戲</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">在快速過濾器中只顯示已安裝遊戲</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">按鈕提示</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">配置</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">水平捲軸</sys:String>
@@ -498,6 +500,9 @@
     <sys:String x:Key="LOCGameTagsTitle">標籤</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">發行商</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">安裝狀態</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">符合所有篩選條件</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">勾選時，只有符合所有篩選條件的遊戲才會顯示
+取消時，只要符合任意一項篩選條件的遊戲都會顯示</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安裝</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
@@ -545,7 +550,7 @@
     <sys:String x:Key="LOCLibraryImportEmulatedError">無法從{0}匯入模擬器遊戲。</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">無法透過指定的模擬器描述檔搜尋遊戲。描述檔未包含任何副檔名或平台。</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playnite無法啟動。請關閉所有正在執行的程式並重試</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">無法套用主題 &quot;{0}&quot;, 色彩描述檔 &quot;{1}&quot;
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">無法套用佈景主題 &quot;{0}&quot;, 色彩描述檔 &quot;{1}&quot;
  
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">無法開啟連結，網址格式不符。</sys:String>
@@ -554,6 +559,7 @@
         
 您可以嘗試以下方法解決:        
   • 檢查所有檔案是否已正確安裝。重新安裝可能有所幫助
+  • 如果你的系統是Windows7或者8，請安裝Visual Studio C++ 2019 可轉散發套件
   • 檢查防毒軟體是否封鎖了Playnite資料夾內的檔案
   • 嘗試安裝在不同的位置</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">無法匯入模擬器，因為定義檔已損壞或丟失。</sys:String>
@@ -566,6 +572,7 @@
     <sys:String x:Key="LOCAddLinkButton">新增連結</sys:String>
     <sys:String x:Key="LOCAddRom">新增ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">儲存變更</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">套用已編輯的遊戲資訊欄位</sys:String>
     <sys:String x:Key="LOCPlayAction">啟動動作</sys:String>
     <sys:String x:Key="LOCAddPlayAction">新增啟動動作</sys:String>
     <sys:String x:Key="LOCAddAction">新增動作</sys:String>
@@ -579,6 +586,7 @@
     <sys:String x:Key="LOCOpenPlaynite">打開Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">個人檔案設定</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">遊戲名不能為空白</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">遊戲指令追蹤資料夾不可為空白</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">搜尋元資料時遊戲名稱不能為空白</sys:String>
     <sys:String x:Key="LOCInvalidGameData">無效的遊戲資料</sys:String>
     <sys:String x:Key="LOCURLInputInfo">請使用包含 http:// 或 https:// 的有效網址格式</sys:String>
@@ -590,7 +598,7 @@
     <sys:String x:Key="LOCPublicAccount">公開帳號</sys:String>
     <sys:String x:Key="LOCAPIKey">API 密鑰</sys:String>
     <sys:String x:Key="LOCStartupError">啟動錯誤</sys:String>
-    <sys:String x:Key="LOCSkinError">主題錯誤</sys:String>
+    <sys:String x:Key="LOCSkinError">佈景主題錯誤</sys:String>
     <sys:String x:Key="LOCClearAll">全部清除</sys:String>
     <sys:String x:Key="LOCSetupRunning">安裝中</sys:String>
     <sys:String x:Key="LOCUninstalling">移除中</sys:String>
@@ -652,8 +660,10 @@
     <sys:String x:Key="LOCCollapseAll">全部折疊</sys:String>
     <sys:String x:Key="LOCExpandAll">全部展開</sys:String>
     <sys:String x:Key="LOCOther">其他</sys:String>
-    <sys:String x:Key="LOCThemes">主題</sys:String>
+    <sys:String x:Key="LOCThemes">佈景主題</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">模擬器引數</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">預設引數</sys:String>
+    <sys:String x:Key="LOCCustomArguments">自訂引數</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模擬器引數</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">覆寫模擬器引數</sys:String>
     <sys:String x:Key="LOCIsPlayAction">啟動動作</sys:String>
@@ -671,20 +681,24 @@
     <sys:String x:Key="LOCUpdateProgressCancelAsk">目前有背景任務正在執行。是否要取消並進行更新?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">目前有背景程式正在執行，是否要取消並關閉Playnite?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite有一個可用的更新</sys:String>
-    <sys:String x:Key="LOCThemeTestReloadList">重新載入主題清單</sys:String>
-    <sys:String x:Key="LOCThemeTestApplySkin">套用選擇的主題</sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">重新載入佈景主題清單</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">套用選擇的佈景主題</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">閱讀檔案更動</sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">當來源檔案更改時自動套用主題</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">當來源檔案更改時自動套用佈景主題</sys:String>
     <sys:String x:Key="LOCScriptRuntime">腳本執行階段</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">啟動遊戲前執行的腳本</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">離開遊戲後執行的腳本</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">啟動遊戲後執行的腳本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">遊戲啟動時腳本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">遊戲啟動後腳本</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">遊戲停止後腳本</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">執行全域腳本</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全域</sys:String>
     <sys:String x:Key="LOCStatsFiltered">已過濾</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">目前</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">新的</sys:String>
     <sys:String x:Key="LOCTestScript">測試腳本</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">只顯示選取的項目</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">儲存為預設值</sys:String>
     <sys:String x:Key="LOCFavoriteGame">新增至我的最愛</sys:String>
@@ -752,15 +766,18 @@
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">必須重啟Playnite來完成安裝。是否立即重啟?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">擴充功能未被正確封裝</sys:String>
-    <sys:String x:Key="LOCGeneralThemePackageError">主題未被正確封裝</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">佈景主題未被正確封裝</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">擴充功能 &quot;{0}&quot; 載入失敗</sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError">主題 &quot;{0}&quot; 載入失敗</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">載入擴充功能失敗</sys:String>
-    <sys:String x:Key="LOCGeneralThemeLoadError">主題載入失敗</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">主題/附加元件使用了未支援的API版本</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">無法載入&quot;{0}&quot;擴充功能，目前版本的Playnite不支援此功能。</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">佈景主題 &quot;{0}&quot; 載入失敗</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">無法載入&quot;{0}&quot;佈景主題，目前版本的Playnite不支援此功能。</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">載入擴充功能失敗</sys:String>    
+    <sys:String x:Key="LOCGeneralThemeLoadError">佈景主題載入失敗</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">佈景主題/附加元件使用了未支援的API版本</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安裝成功</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">安裝附加元件?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">通用</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">安裝&quot;{0}&quot;附加元件失敗</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安裝附加元件失敗。
  
 {0}</sys:String>
@@ -773,15 +790,15 @@
 
 目前版本: {1}
 新版本: {2}</sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">安裝主題失敗。
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">安裝佈景主題失敗。
  
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">是否安裝新的主題?
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">是否安裝新的佈景主題?
 
 {0}
 由 {1}
 版本 {2}</sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">是否升級主題 &quot;{0}&quot; ?
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">是否升級佈景主題 &quot;{0}&quot; ?
 
 目前版本: {1}
 新版本: {2}</sys:String>
@@ -797,12 +814,12 @@
 </sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">效能警告</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">不再顯示</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">擴充功能{0}的檔案不相容</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">不相容的副檔名</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">已選擇的圖片過大，可能會影響效能。</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion">是否移除選定的主題? 移除將會於下次程式啟動後進行</sys:String>
-    <sys:String x:Key="LOCThemeBuiltInUninstallHint">無法移除內建主題</sys:String>
-    <sys:String x:Key="LOCThemeUnsupported">這個主題不支援目前版本的Playnite</sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">是否移除選定的佈景主題? 移除將會於下次程式啟動後進行</sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint">無法移除內建佈景主題</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">這個佈景主題不支援目前版本的Playnite</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion">是否移除選定的擴充功能? 移除將會於下次程式啟動後進行</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">無法移除內建擴充功能</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">此擴充功能不支援目前版本的Playnite</sys:String>
@@ -852,12 +869,12 @@
     <sys:String x:Key="LOCExtensionsBrowse">瀏覽</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">更新</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">更新 {0}</sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo">對已安裝的擴充功能及主題的管理, 以及設定選項, 已被移到新增加的&quot;附加元件&quot;選單中。</sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">對已安裝的擴充功能及佈景主題的管理, 以及設定選項, 已被移到新增加的&quot;附加元件&quot;選單中。</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">可以在此處設定所有目前已安裝的資料庫整合附加元件。
 
 如果要安裝或移除額外的整合功能，請使用主選單當中的&quot;附加元件&quot;選項。</sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop">桌面模式主題</sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren">全螢幕主題</sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">桌面模式佈景主題</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">全螢幕佈景主題</sys:String>
     <sys:String x:Key="LOCAddonsSearching">搜尋中...</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">附加元件與此版本Playnite不相容</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">無法下載附加元件安裝包</sys:String>
@@ -867,7 +884,7 @@
     <sys:String x:Key="LOCAddonInstall">安裝</sys:String>
     <sys:String x:Key="LOCAddonUninstall">移除</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">沒有可用的附加元件更新</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">未發現新的附加元件更新檔</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">更新附加元件</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">沒有可用的更新日誌</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">已排程安裝</sys:String>
@@ -892,7 +909,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">處理程序</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">資料夾</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">日誌追蹤訊息</sys:String>
-    <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
+    <sys:String x:Key="LOCMultiEditOverwriteWarning">以下更改將覆寫所有已選遊戲的資料!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">無</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">統一</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">只顯示項目</sys:String>
@@ -901,63 +918,74 @@
     <sys:String x:Key="LOCAskRemoveItemTitle">移除項目？</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage">你是否確定要移除此項目？</sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems">在頂欄顯示按鈕</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGroupingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelSortingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem"></sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
-    <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
-    <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
-    <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
-    <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
-    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
-    <sys:String x:Key="LOCInPast7Days"></sys:String>
-    <sys:String x:Key="LOCInPast31Days"></sys:String>
-    <sys:String x:Key="LOCInPast365Days"></sys:String>
-    <sys:String x:Key="LOCMoreThan365DaysAgo"></sys:String>
-    <sys:String x:Key="LOCConfigure"></sys:String>
-    <sys:String x:Key="LOCFilterPresetSave"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSize"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSizeSmall"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
-    <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
-    <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
-    <sys:String x:Key="LOCErrorAudioInterfaceInit"></sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApi"></sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionGeneral"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionVisuals"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionAudio"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionLayout"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionMenus"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSection"></sys:String>
-    <sys:String x:Key="LOCGameIsStarting"></sys:String>
-    <sys:String x:Key="LOCGameIsRunning"></sys:String>
-    <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingAlternative"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingQuality"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSelectFileTooltip"></sys:String>
-    <sys:String x:Key="LOCSelectDirectoryTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">一般檢視設定</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">群組設定</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">排序設定</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">過濾器預設</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">外掛程式項目位置</sys:String>
+    <sys:String x:Key="LOCTopPanelSeparatorWidth">區塊間隔寬度</sys:String>
+    <sys:String x:Key="LOCTopPanelMainButtonMove">將主選單按鈕移至側邊欄</sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch">瀏覽面板</sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">隨機選取遊戲</sys:String>
+    <sys:String x:Key="LOCFilterPresetSaveViewOptions">儲存群組及排序設定</sys:String>
+    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">在全螢幕模式中顯示為快速過濾器</sys:String>
+    <sys:String x:Key="LOCInPast7Days">過去 7 天</sys:String>
+    <sys:String x:Key="LOCInPast31Days">過去 31 天</sys:String>
+    <sys:String x:Key="LOCInPast365Days">過去 365 天</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">超過365天以前</sys:String>
+    <sys:String x:Key="LOCConfigure">設定</sys:String>
+    <sys:String x:Key="LOCFilterPresetSave">儲存預設</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">啟動遊戲後最小化</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">遊戲開始後將Playnite最小化。
+
+如將此功能關閉可能會造成遊戲無法在啟動時取得輸入焦點而導致問題發生!</sys:String>
+    <sys:String x:Key="LOCSettingsFontSize">字型大小</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizeSmall">字體小</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">支援Xinput裝置</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">如關閉此功能，Playnite將無法再接收任何Xinput裝置的訊號
+        
+如果你是使用工具轉換Xinput訊號為鍵盤/滑鼠訊號，而且在Playnite中一直有重複發送訊號的問題，則可關閉此功能。</sys:String>
+    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">在主選單中顯示項目:</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">反轉X/A主要視圖按鈕綁定</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">交換按鈕綁定與開始遊戲並且在主要視圖當中顯示遊戲詳細資料頁面</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceVolume">介面音量</sys:String>
+    <sys:String x:Key="LOCSettingsMusiVolume">背景音量</sys:String>
+    <sys:String x:Key="LOCSettingsMuteBackground">處於背景時靜音</sys:String>
+    <sys:String x:Key="LOCErrorAudioInterfaceInit">初始化音頻介面失敗</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi">輸出API</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">這是用於音源輸出的API。如果你遇到音源問題請更換。</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionGeneral">一般</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionVisuals">視覺</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionAudio">聲音</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionLayout">版面配置</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionMenus">選單</sys:String>
+    <sys:String x:Key="LOCSettingsFSSection">輸入</sys:String>
+    <sys:String x:Key="LOCGameIsStarting">正在開始{0}...</sys:String>
+    <sys:String x:Key="LOCGameIsRunning">正在執行{0}...</sys:String>
+    <sys:String x:Key="LOCTextInputCapitalize">大寫字母</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode">影像渲染縮放</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingAlternative">備選</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingBalanced">平衡</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingQuality">畫質</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve">高效能:
+最高畫質，慢，高記憶體用量。
+    
+平衡:
+中等畫質，快，低記憶體用量。
+    
+備選:
+中高畫質，中等速度，中記憶體用量。</sys:String>
+    <sys:String x:Key="LOCSelectFileTooltip">選擇檔案...</sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip">選擇資料夾...</sys:String>
     <sys:String x:Key="LOCStartupScript">啟動腳本</sys:String>
-    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">請注意，擴充功能及主題兩者都會大幅度影響Playnite的運作效能，穩定性以及安全性。
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">請注意，擴充功能及佈景主題兩者都會大幅度影響Playnite的運作效能，穩定性以及安全性。
 
 如果你在安裝主題或擴充功能後遇到問題，請嘗試先禁用/移除它們，以確定它們是否是問題的根源。</sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">啟動時選擇</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">內建配置檔</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">內建配置檔</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">自訂檔案</sys:String>
-    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript">由內建腳本控制</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">模擬器格式</sys:String>
     <sys:String x:Key="LOCPlatformSpec">平台格式</sys:String>
     <sys:String x:Key="LOCRegionSpec">地區格式</sys:String>
@@ -972,9 +1000,15 @@
     <sys:String x:Key="LOCEmuImportAssignPlatform">設定平台</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">設定地區</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">掃描資料夾</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">用模擬器掃描</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">包括大量掃描以及自動掃描</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">找不到可用的掃描設定。請確認所有欄位都已正確填寫。</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">掃描設定</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">從校驗掃描中排除模式</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">符合特定模式的檔案不會被掃描校驗，而會使用檔案名稱配對。更多訊息請參考模擬器幫助頁面</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">用模擬器掃描</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">儲存新設定時必須輸入名稱</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">未配置模擬器或模擬器設定檔</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">未指定要掃描的資料夾或資料夾不存在</sys:String>
+    <sys:String x:Key="LOCScanConfigError">未正確配置掃描設定</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">包括大量掃描以及自動掃描</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">掃描模擬器資料夾失敗</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">掃描模擬器遊戲資料夾失敗</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">隱藏已匯入</sys:String>
@@ -988,4 +1022,24 @@
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">新增模擬器的掃描設定以掃描特定資料夾。匯入遊戲之前請確保模擬器已正確設定(可透過 資料庫 -&gt; 設定模擬器 選單確認)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">已將新加入的遊戲調整為預設狀態</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已調整首次遊玩的遊戲狀態</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">無法啟動PowerShell腳本執行環境。如果你是Windows7的使用者，請嘗試(重新)安裝PowerShell5.1。</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名稱的過濾器預設，是否使用新設定更新預設?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">偵測到您的系統正在執行Nahimic服務。這個服務已被認為會造成Playnite(以及其他應用程式)在渲染上出現嚴重錯誤。        
+
+如果你遇到圖形破損或其他渲染問題，建議你停用或者完全移除該Nahimic服務。
+
+更多訊息請查看 https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite目前正以高級權限(系統管理員身分)執行中。我們不建議你使用此方式執行，因為這將會授與所有透過Playnite執行的遊戲/應用程式以及已安裝的擴充功能過高等級的權限!
+
+查看此處以了解詳情 https://playnite.link/adminfaq</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">如果Playnite正以系統管理員身分執行的話則跳出警告</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下的附加元件已經被回報含有潛在問題，有可能造成穩定性/效能降低或資訊安全疑慮。我們強烈建議你移除這些附加元件:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">不要掃描線上檔案</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">儲存在雲端且無法直接在本地電腦存取的檔案不會被掃描匯入。
+僅支援: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">使用簡易方式掃描，不下載檔案內容</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">使用較低準確度的方法，不需要下載檔案內容到本地裝置即可匯入檔案。</sys:String>
 </ResourceDictionary>

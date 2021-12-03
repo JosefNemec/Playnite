@@ -41,6 +41,7 @@ Nós recomendamos salvar o teu ficheiro de log e reportar o problema para o dese
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensão &quot;{0}&quot; causou um erro irrecuperável.
 
 Nós recomendamos reportar o problema para o desenvolvedor da extensão. Se o problema continuar a ocorrer, desabilita a extensão.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
 
 Se quiseres ajudar-nos a corrigir este problema, por favor envia informação de diagnóstico. Obrigado.</sys:String>
@@ -187,7 +188,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCColumns">Colunas</sys:String>
     <sys:String x:Key="LOCRow">Linha</sys:String>
     <sys:String x:Key="LOCRows">Linhas</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Não é possível obter o ícone se a ação de jogo estiver em falta ou estiver definida como um endereço.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Transferir apenas metadados em falta</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ativar esta opção irá saltar a transferência de metadados para campos já preenchidos.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Seleção de jogos</sys:String>
@@ -302,7 +303,6 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostrar somente campos selecionados nos painéis de filtro e explorador</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desativar aceleração de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usa em caso de bloqueios ou problemas similares com a interface</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Desativar Escalamento de DPI</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
@@ -491,6 +491,8 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Etiqueta</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Editora</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Estado da Instalação</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalado</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
@@ -553,6 +555,7 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Adicionar Ligação</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Guardar Alterações</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction">Ação de Jogo</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Adicionar Ação de Jogo</sys:String>
     <sys:String x:Key="LOCAddAction">Adicionar Ação</sys:String>
@@ -566,6 +569,7 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Abrir Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Definições de Perfil</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">O nome do jogo não pode estar vazio.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Nome do jogo não pode estar vazio antes de procurar metadados.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Dados de jogo inválidos</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Escreve um endereço web válido, iniciado com http:// ou https://</sys:String>
@@ -641,6 +645,8 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCOther">Outros</sys:String>
     <sys:String x:Key="LOCThemes">Temas</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argumentos do Emulador</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Argumentos de Emulador Adicionais</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Substituir Argumentos de Emulador</sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -666,12 +672,16 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
     <sys:String x:Key="LOCStatsGlobal"></sys:String>
     <sys:String x:Key="LOCStatsFiltered"></sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
     <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Mostrar apenas os itens selecionados.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Guardar como predefinição</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Adicionar aos Favoritos</sys:String>
@@ -741,13 +751,16 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Tema/Extensão está a utilizar uma versão da API não suportada.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem sucedida.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalar extensão?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar extensão. {0}</sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
@@ -923,9 +936,15 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
     <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -939,4 +958,18 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">O serviço Nahimic foi detetado a correr no seu sistema. Este serviço é conhecido por causar problemas de renderização no Playnite (e outras aplicações).
+
+Se encontrar qualquer corrupção de gráficos ou outros problemas de renderização no Playnite, recomendamos que desabilite ou desinstale por completo o serviço Nahimic.
+
+Mais informação em https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

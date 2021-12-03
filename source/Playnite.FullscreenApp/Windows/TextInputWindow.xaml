@@ -18,7 +18,7 @@
     <c:WindowBase.InputBindings>
         <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
         <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
-        <pin:XInputBinding Button="RightShoulder" Command="{Binding ConfirmCommand}" />
+        <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
         <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
         <pin:XInputBinding Button="RightStick" Command="{Binding ToggleCapsCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
@@ -46,7 +46,14 @@
             <TextBox Name="TextInputText" Grid.Row="1" Grid.Column="1"
                      Style="{DynamicResource TextInputTextbox}"                     
                      PreviewKeyDown="TextInputText_PreviewKeyDown"
-                     Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
+                    <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
+                    <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
+                    <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
+                </TextBox.InputBindings>
+            </TextBox>
 
             <Border Style="{DynamicResource TextInputOptionsBorder}"
                     Grid.Row="2" Grid.Column="1" Margin="0,0,0,20">

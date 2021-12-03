@@ -41,6 +41,9 @@ We raden aan om het log bestand op te slaan en het probleem te rapporteren aan e
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensie {0} heeft onherstelbare fout veroorzaakt.
 
 We raden aan om het probleem te rapporteren aan de extensie ontwikkelaar. Als het probleem zich blijft voordoen, schakel de extensie dan uit.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Onbekende extensie of thema veroorzaakte een onherstelbare fout.
+
+We bevelen aan derde-partij extensies uit te schakelen, de problematische extensie uit te schakelen en het probleem te rapporteren aan de ontwikkelaar van die extensie.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
 
 Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diagnostische informatie. Bedankt.</sys:String>
@@ -188,7 +191,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCColumns">Kolommen</sys:String>
     <sys:String x:Key="LOCRow">Rij</sys:String>
     <sys:String x:Key="LOCRows">Rijen</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Kan geen icoon verkrijgen als de Speel actie mist of is ingesteld op een URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Kon geen icoon uit Speel actie halen. Er is geen actie met het type bestand aanwezig.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Download alleen missende metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Het inschakelen van deze optie zal het downloaden van metadata overslaan voor gegevensvelden die al informatie bevatten.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spellen selectie</sys:String>
@@ -303,7 +306,6 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Toon alleen toegewezen velden op filter en verkenning panelen</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Gebruik hardware acceleratie niet</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Gebruik als je stotteren ervaart in de UI of soortgelijke problemen</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">DPI-schaal uitschakelen</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Toon verborgen games in Snel start lijst</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Beïnvloed spring lijsten en lade menu lijsten.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Aantal snel start items </sys:String>
@@ -500,6 +502,9 @@ Het wordt momenteel gebruikt door {1} game(s) en {2} emulator(s).Begin the Emula
     <sys:String x:Key="LOCGameTagsTitle">Tag(s)</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Uitgever(s)</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Installatiestatus</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Alle filterwaarden vereist</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Indien ingeschakeld: alleen spellen die aan alle items in elk filter voldoen zullen worden weergegeven.
+Indien uitgescshakeld: spellen die voldoen aan tenminste één item in elk filter zullen worden weergegeven.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Geïnstalleerd</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Geïnstalleerd</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Niet geïnstalleerd</sys:String>
@@ -558,6 +563,7 @@ Voeg de volgende ID toe aan het probleemrapport:
 
 U kunt proberen het probleem op te lossen:
   • Controleer of alle bestanden correct zijn geïnstalleerd. De herinstallatie zou kunnen helpen
+  • Installeer Visual Studio C++ 2019 redistributables als u Windows 7 of 8 gebruikt
   • Zorg ervoor dat uw antivirus geen bestanden in de Playnite-map blokkeert
   • Kies een andere installatielocatie</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Kan emulators niet importeren vanwege ontbrekend of beschadigd definitiebestand.</sys:String>
@@ -570,6 +576,7 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCAddLinkButton">Voeg Link Toe</sys:String>
     <sys:String x:Key="LOCAddRom">ROM toevoegen</sys:String>
     <sys:String x:Key="LOCSaveChanges">Sla Wijzigingen Op</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Wijzigingen in dit veld toepassen op spel(len) die bewerkt worden.</sys:String>
     <sys:String x:Key="LOCPlayAction">Speel Actie</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Voeg Speel Actie Toe</sys:String>
     <sys:String x:Key="LOCAddAction">Voeg Actie Toe</sys:String>
@@ -583,6 +590,7 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCOpenPlaynite">Open Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profiel Instellingen</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Spelnaam kan niet leeg zijn.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Spelnaam kan niet leeg zijn bij het zoeken naar metadata.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Ongeldige spel data</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Voer een geldige web URL beginnend met http:// of https:// in</sys:String>
@@ -658,6 +666,8 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCOther">Andere</sys:String>
     <sys:String x:Key="LOCThemes">Thema's</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argumenten</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Ingebouwde argumenten</sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Extra Emulator Argumenten</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Overschrijf Emulator Argumenten</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Speel actie</sys:String>
@@ -683,12 +693,16 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCPreScriptDescription">Script dat moet worden uitgevoerd voordat een spel wordt gestart</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Script om uit te voeren na het afsluiten van een game</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Script om uit te voeren nadat een spel is gestart</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Spel starten script</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Spel gestart script</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Spel gestopt script</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Globaal script uitvoeren</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globaal</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Gefilterd</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">Huidig</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nieuw</sys:String>
     <sys:String x:Key="LOCTestScript">Test script</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Alleen geselecteerde items tonen.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Opslaan als standaard</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Voeg toe aan Favorieten</sys:String>
@@ -760,13 +774,16 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Extensie is niet correct verpakt.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Thema is niet correct verpakt.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Extensie &quot;{0}&quot; kon niet correct geladen worden.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Kan &quot;{0}&quot; extensie niet laden; huidige versie van Playnite wordt niet ondersteund.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Thema &quot;{0}&quot; kon niet correct geladen worden.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Extensie kon niet correct geladen worden.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Kan &quot;{0}&quot; thema niet laden; huidige versie van Playnite wordt niet ondersteund.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Extensie kon niet correct geladen worden.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Thema kon niet correct geladen worden.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Thema/Extensie gebruikt niet-ondersteunde API versie.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installatie is gelukt.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Extensie installeren?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Algemeen</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Installeren van extensie &quot;{0}&quot; mislukt.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Extensie installeren mislukt.
 
 {0}</sys:String>
@@ -882,7 +899,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
     <sys:String x:Key="LOCAddonInstall">Installeer</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Verwijder</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Reeds geïnstalleerd</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Geen add-on updates beschikbaar.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Geen nieuwe extensie updates gevonden.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Werk add-ons bij</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Changelog is niet beschikbaar</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Ingepland voor installatie</sys:String>
@@ -998,9 +1015,15 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCEmuImportAssignPlatform">Platform instellen</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Regio instellen</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Map scannen</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Scan met emulator</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Betrek bij bulk scan auto-scan</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Geen geldige scanconfiguratie ingesteld. Zorg ervoor dat alle velden goed ingevuld zijn.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Scan instellingen</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Patronen uitsluiten van checksum-scan</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Bestanden die overeenkomen met de patronen zullen niet gescand worden op hun checksum en zullen gematcht worden op hun bestandsnaam. Zie emulator-hulppagina voor meer informatie.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Scan met emulator</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Naam is verplicht bij het opslaan van een nieuwe configuratie.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulator of emulatorprofiel is niet ingesteld.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Map om te scannen is niet opgegeven of bestaat niet.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Scan-configuratie is niet goed ingesteld.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Betrek bij bulk scan auto-scan</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Map scannen op emulators mislukt.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Map(pen) scannen op geëmuleerde spellen mislukt.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Geïmporteerde verbergen</sys:String>
@@ -1014,4 +1037,23 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Voeg scanconfiguratie(s) met emulators toe om specifieke mappen te scannen. Zorg ervoor dat emulators goed geconfigureerd zijn voordat je spellen importeert (via het Bibliotheek -&gt; Configureer Emulators menu).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Standaardstatus die toegewezen wordt aan nieuwe spellen</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status die toegewezen wordt aan spellen die voor het eerst gespeeld zijn</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset met de opgegeven naam bestaat al. Preset updaten met nieuwe instellingen?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic service is gedetecteerd op dit systeem. Van deze service is bekend dat hij rendering problemen bij Playnite (en andere apps) kan veroorzaken.
+
+Als je grafische corruptie of andere rendering problemen in Playnite ervaart, bevelen we aan deze service uit te zetten of Nahimic service compleet te de-installeren.
+
+Meer informatie is te vinden op https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite draait nu met administrator rechten. Dit is niet aanbevolen sinds dit ook verhoogde rechten geeft aan alle geïnstalleerde extensies en alle spellen/applicaties die vanuit Playnite gestart worden!
+
+Meer informatie op https://playnite.link/adminfaq</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Toon waarschuwing als Playnite met administrator rechten draait</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">De volgende extensie(s) zijn gerapporteerd als mogelijk problematisch, door grote stabiliteits- of prestatie-impact of beveiligingsproblemen. We raden sterk aan deze te verwijderen:
+
+{0}
+</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Online bestanden uitsluiten van scan</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>
