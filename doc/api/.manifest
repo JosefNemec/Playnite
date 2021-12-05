@@ -265,6 +265,7 @@
   "Playnite.SDK.IDialogsFactory.SelectImagefile": "Playnite.SDK.IDialogsFactory.yml",
   "Playnite.SDK.IDialogsFactory.SelectString(System.String,System.String,System.String)": "Playnite.SDK.IDialogsFactory.yml",
   "Playnite.SDK.IDialogsFactory.SelectString(System.String,System.String,System.String,System.Collections.Generic.List{Playnite.SDK.MessageBoxToggle})": "Playnite.SDK.IDialogsFactory.yml",
+  "Playnite.SDK.IDialogsFactory.ShowErrorMessage(System.String)": "Playnite.SDK.IDialogsFactory.yml",
   "Playnite.SDK.IDialogsFactory.ShowErrorMessage(System.String,System.String)": "Playnite.SDK.IDialogsFactory.yml",
   "Playnite.SDK.IDialogsFactory.ShowMessage(System.String)": "Playnite.SDK.IDialogsFactory.yml",
   "Playnite.SDK.IDialogsFactory.ShowMessage(System.String,System.String)": "Playnite.SDK.IDialogsFactory.yml",
