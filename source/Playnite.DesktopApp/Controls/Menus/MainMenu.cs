@@ -307,7 +307,8 @@ namespace Playnite.DesktopApp.Controls
         private void AddExtensionItems()
         {
             extensionsItem.Items.Clear();
-            AddMenuChild(extensionsItem.Items, "LOCReloadScripts", mainModel.ReloadScriptsCommand);
+            AddMenuChild(extensionsItem.Items, LOC.ReloadScripts, mainModel.ReloadScriptsCommand);
+            AddMenuChild(extensionsItem.Items, LOC.StartInteractivePowerShell, mainModel.StartInteractivePowerShellCommand);
             extensionsItem.Items.Add(new Separator());
             var args = new GetMainMenuItemsArgs();
             var toAdd = new List<MainMenuItem>();

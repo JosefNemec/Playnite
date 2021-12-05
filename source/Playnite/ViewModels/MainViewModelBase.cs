@@ -139,6 +139,8 @@ namespace Playnite.ViewModels
         public RelayCommand<FilterPreset> ApplyFilterPresetCommand { get; private set; }
         public RelayCommand CancelProgressCommand { get; private set; }
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
+        public RelayCommand StartInteractivePowerShellCommand { get; private set; }
+
         public GameDatabase Database { get; }
         public PlayniteApplication App { get; }
         public IDialogsFactory Dialogs { get; }
@@ -191,6 +193,21 @@ namespace Playnite.ViewModels
             {
                 CancelProgress();
             }, () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
+
+            StartInteractivePowerShellCommand = new RelayCommand(() =>
+            {
+                try
+                {
+                    Scripting.PowerShell.PowerShellRuntime.StartInteractiveSession(new Dictionary<string, object>
+                    {
+                        { "PlayniteApi", PlayniteApi }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage("Failed to start interactive PowerShell.\n" + e.Message);
+                }
+            });
         }
 
         private PlayniteSettings appSettings;

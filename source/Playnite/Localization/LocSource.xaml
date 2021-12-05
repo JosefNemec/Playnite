@@ -622,6 +622,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
     <sys:String x:Key="LOCExtensionID">Extension ID</sys:String>
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
+    <sys:String x:Key="LOCStartInteractivePowerShell">Interactive SDK PowerShell</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No games found for specified search/filter criteria</sys:String>
     <sys:String x:Key="LOCNoItemsFound">No items found</sys:String>

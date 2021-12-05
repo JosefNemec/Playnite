@@ -2258,6 +2258,10 @@ namespace Playnite
         /// </summary>
         public const string ReloadScripts = "LOCReloadScripts";
         /// <summary>
+        /// Interactive SDK PowerShell
+        /// </summary>
+        public const string StartInteractivePowerShell = "LOCStartInteractivePowerShell";
+        /// <summary>
         /// All scripts reloaded successfully.
         /// </summary>
         public const string ReloadScriptsSuccess = "LOCReloadScriptsSuccess";
@@ -2557,6 +2561,10 @@ namespace Playnite
         /// Test script
         /// </summary>
         public const string TestScript = "LOCTestScript";
+        /// <summary>
+        /// Show only selected items.
+        /// </summary>
+        public const string OnlyItemsSelectedTooltip = "LOCOnlyItemsSelectedTooltip";
         /// <summary>
         /// Save as default
         /// </summary>
@@ -3662,7 +3670,7 @@ namespace Playnite
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
         /// <summary>
-        /// Nahimic service has been detected to be running on your system. This service is know to cause serious rendering issues to Playnite (and other apps).        
+        /// Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
         /// </summary>
         public const string NahimicServiceWarning = "LOCNahimicServiceWarning";
         /// <summary>
