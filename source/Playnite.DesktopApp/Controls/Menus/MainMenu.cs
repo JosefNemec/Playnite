@@ -53,7 +53,6 @@ namespace Playnite.DesktopApp.Controls
                 mainModel = model;
                 InitializeItems();
                 Opened += MainMenu_Opened;
-                Closed += MainMenu_Closed;
             }
 
             Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
@@ -213,13 +212,9 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(Items, "LOCExitAppLabel", mainModel.ShutdownCommand, null, "ExitIcon");
         }
 
-        private void MainMenu_Closed(object sender, RoutedEventArgs e)
-        {
-            ClearExtensionItems();
-        }
-
         private void MainMenu_Opened(object sender, RoutedEventArgs e)
         {
+            ClearExtensionItems();
             AddExtensionItems();
             AddToolsItems();
             AddSidebarViewItems();
