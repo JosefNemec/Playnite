@@ -8,6 +8,37 @@ using System.Threading.Tasks;
 
 namespace Playnite.WebView
 {
+    public class CustomResourceRequestHandler : CefSharp.Handler.ResourceRequestHandler
+    {
+        private readonly string userAgent;
+
+        public CustomResourceRequestHandler(string userAgent)
+        {
+            this.userAgent = userAgent;
+        }
+
+        protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
+        {
+            request.SetHeaderByName("user-agent", userAgent, true);
+            return CefReturnValue.Continue;
+        }
+    }
+
+    public class CustomRequestHandler : CefSharp.Handler.RequestHandler
+    {
+        private readonly CustomResourceRequestHandler handler;
+
+        public CustomRequestHandler(string userAgent)
+        {
+            handler = new CustomResourceRequestHandler(userAgent);
+        }
+
+        protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
+        {
+            return handler;
+        }
+    }
+
     public class WebViewBase
     {
         public List<HttpCookie> GetCookies()
@@ -64,9 +95,7 @@ namespace Playnite.WebView
                     Name = name,
                     Value = value,
                     Expires = expires,
-                    Creation = DateTime.Now,
                     HttpOnly = false,
-                    LastAccess = DateTime.Now,
                     Secure = false,
                     Path = path
                 });
@@ -79,14 +108,12 @@ namespace Playnite.WebView
             {
                 manager.SetCookie(url, new Cookie()
                 {
-                    Creation = cookie.Creation,
                     Domain = cookie.Domain,
                     Expires = cookie.Expires,
                     HttpOnly = cookie.HttpOnly,
                     Secure = cookie.Secure,
                     SameSite = (CefSharp.Enums.CookieSameSite)(int)cookie.SameSite,
                     Priority = (CefSharp.Enums.CookiePriority)(int)cookie.Priority,
-                    LastAccess = cookie.LastAccess,
                     Name = cookie.Name,
                     Path = cookie.Path,
                     Value = cookie.Value

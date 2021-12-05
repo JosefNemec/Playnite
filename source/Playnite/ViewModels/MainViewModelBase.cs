@@ -139,6 +139,8 @@ namespace Playnite.ViewModels
         public RelayCommand<FilterPreset> ApplyFilterPresetCommand { get; private set; }
         public RelayCommand CancelProgressCommand { get; private set; }
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
+        public RelayCommand StartInteractivePowerShellCommand { get; private set; }
+
         public GameDatabase Database { get; }
         public PlayniteApplication App { get; }
         public IDialogsFactory Dialogs { get; }
@@ -191,6 +193,21 @@ namespace Playnite.ViewModels
             {
                 CancelProgress();
             }, () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
+
+            StartInteractivePowerShellCommand = new RelayCommand(() =>
+            {
+                try
+                {
+                    Scripting.PowerShell.PowerShellRuntime.StartInteractiveSession(new Dictionary<string, object>
+                    {
+                        { "PlayniteApi", PlayniteApi }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage("Failed to start interactive PowerShell.\n" + e.Message);
+                }
+            });
         }
 
         private PlayniteSettings appSettings;
@@ -463,8 +480,13 @@ namespace Playnite.ViewModels
             return addedGames;
         }
 
-        public async Task UpdateLibrary(bool metaForNewGames)
+        public async Task UpdateLibrary(bool metaForNewGames, bool updateEmu)
         {
+            if (!GameAdditionAllowed)
+            {
+                return;
+            }
+
             await UpdateLibraryData((token) =>
             {
                 var addedGames = new List<Game>();
@@ -478,15 +500,18 @@ namespace Playnite.ViewModels
                     addedGames.AddRange(ImportLibraryGames(plugin, token));
                 }
 
-                var importedRoms = Database.GetImportedRomFiles();
-                foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate).ToList())
+                if (updateEmu)
                 {
-                    if (token.IsCancellationRequested)
+                    var importedRoms = Database.GetImportedRomFiles();
+                    foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate).ToList())
                     {
-                        return addedGames;
-                    }
+                        if (token.IsCancellationRequested)
+                        {
+                            return addedGames;
+                        }
 
-                    addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                        addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                    }
                 }
 
                 return addedGames;
@@ -495,6 +520,11 @@ namespace Playnite.ViewModels
 
         public async Task UpdateLibrary(LibraryPlugin plugin)
         {
+            if (!GameAdditionAllowed)
+            {
+                return;
+            }
+
             await UpdateLibraryData((token) =>
             {
                 return ImportLibraryGames(plugin, token);
@@ -514,15 +544,10 @@ namespace Playnite.ViewModels
 
             try
             {
-                var newPlatforms = new List<SDK.Models.Platform>();
-                var newRegions = new List<SDK.Models.Region>();
-                var scanned = GameScanner.Scan(
-                    scanConfig,
-                    Database,
-                    importedFiles,
+                var scanned = new GameScanner(scanConfig, Database, importedFiles).Scan(
                     token,
-                    newPlatforms,
-                    newRegions).Select(a => a.ToGame()).ToList();
+                    out var newPlatforms,
+                    out var newRegions).Select(a => a.ToGame()).ToList();
                 if (scanned.HasItems())
                 {
                     var statusSettings = Database.GetCompletionStatusSettings();

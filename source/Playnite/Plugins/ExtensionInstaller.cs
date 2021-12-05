@@ -39,6 +39,27 @@ namespace Playnite.Plugins
         }
     }
 
+    public class ExtensionInstallResult
+    {
+        public bool Updated { get; set; }
+        public Exception InstallError { get; set; }
+        public BaseExtensionManifest InstalledManifest { get; set; }
+        public string PackagePath { get; set; }
+
+        public ExtensionInstallResult(bool updated, BaseExtensionManifest installedManifest, string packagePath)
+        {
+            Updated = updated;
+            InstalledManifest = installedManifest;
+            PackagePath = packagePath;
+        }
+
+        public ExtensionInstallResult(Exception installError,  string packagePath)
+        {
+            InstallError = installError;
+            PackagePath = packagePath;
+        }
+    }
+
     public class ExtensionInstaller
     {
         private static readonly ILogger logger = LogManager.GetLogger();
@@ -94,10 +115,9 @@ namespace Playnite.Plugins
             return Serialization.FromJsonFile<List<ExtensionInstallQueueItem>>(PlaynitePaths.ExtensionQueueFilePath);
         }
 
-        public static List<(BaseExtensionManifest manifest, bool updated)> InstallExtensionQueue()
+        public static List<ExtensionInstallResult> InstallExtensionQueue()
         {
-            var anyFailed = false;
-            var installedExts = new List<(BaseExtensionManifest manifest, bool updated)>();
+            var installedExts = new List<ExtensionInstallResult>();
 
             foreach (var queueItem in GetQueuedItems())
             {
@@ -112,7 +132,7 @@ namespace Playnite.Plugins
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
-                            anyFailed = true;
+                            installedExts.Add(new ExtensionInstallResult(e, queueItem.Path));
                             logger.Error(e, $"Failed to install theme {queueItem}");
                         }
                     }
@@ -125,7 +145,7 @@ namespace Playnite.Plugins
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
-                            anyFailed = true;
+                            installedExts.Add(new ExtensionInstallResult(e, queueItem.Path));
                             logger.Error(e, $"Failed to install extension {queueItem}");
                         }
                     }
@@ -145,7 +165,6 @@ namespace Playnite.Plugins
                         }
                         catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                         {
-                            anyFailed = true;
                             logger.Error(e, $"Failed to uninstall extension {queueItem}");
                         }
                     }
@@ -157,16 +176,10 @@ namespace Playnite.Plugins
             }
 
             File.Delete(PlaynitePaths.ExtensionQueueFilePath);
-
-            if (anyFailed)
-            {
-                throw new Exception("Failed to install or uninstall one or more extensions.");
-            }
-
             return installedExts;
         }
 
-        public static (T maniefst, bool updated) InstallPackedFile<T>(string packagePath, string nanifestFileName, string rootDir, Func<string, T> newMan) where T : BaseExtensionManifest
+        public static ExtensionInstallResult InstallPackedFile<T>(string packagePath, string nanifestFileName, string rootDir, Func<string, T> newMan) where T : BaseExtensionManifest
         {
             logger.Info($"Installing extenstion/theme {packagePath}");
             var manifest = GetPackedManifest<T>(packagePath, nanifestFileName);
@@ -202,10 +215,10 @@ namespace Playnite.Plugins
                 File.Delete(packagePath);
             }
 
-            return (newMan(Path.Combine(installDir, nanifestFileName)), wasUpdated);
+            return new ExtensionInstallResult(wasUpdated, newMan(Path.Combine(installDir, nanifestFileName)), packagePath);
         }
 
-        public static (ExtensionManifest manifest, bool updated) InstallPackedExtension(string path)
+        public static ExtensionInstallResult InstallPackedExtension(string path)
         {
             return InstallPackedFile<ExtensionManifest>(
                 path,
@@ -214,7 +227,7 @@ namespace Playnite.Plugins
                 (a) => ExtensionManifest.FromFile(a));
         }
 
-        public static (ThemeManifest manifest, bool updated) InstallPackedTheme(string path)
+        public static ExtensionInstallResult InstallPackedTheme(string path)
         {
             return InstallPackedFile<ThemeManifest>(
                path,

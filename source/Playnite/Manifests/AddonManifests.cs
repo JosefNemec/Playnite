@@ -49,7 +49,7 @@ namespace Playnite
             }
 
             return Packages.
-                Where(a => a.RequiredApiVersion.Major == apiVersion.Major && a.RequiredApiVersion <= apiVersion).
+                Where(a => a.RequiredApiVersion != null && a.RequiredApiVersion.Major == apiVersion.Major && a.RequiredApiVersion <= apiVersion).
                 OrderByDescending(a => a.Version).FirstOrDefault();
         }
 

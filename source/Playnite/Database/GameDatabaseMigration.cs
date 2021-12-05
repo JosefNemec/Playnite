@@ -207,6 +207,14 @@ namespace Playnite.Database
                                     continue;
                                 }
 
+                                // No idea how these get created, most likely by some 3rd party extension.
+                                // They cause several issues so don't migrate them.
+                                if (oldItem.Name.IsNullOrWhiteSpace())
+                                {
+                                    logger.Warn($"Failed to load old database file {file}, has empty name.");
+                                    continue;
+                                }
+
                                 var newItem = typeof(TNew).CrateInstance<TNew>(oldItem.Name);
                                 newItem.Id = oldItem.Id;
                                 propertyMapper?.Invoke(oldItem, newItem);
@@ -442,7 +450,18 @@ namespace Playnite.Database
 
                                 if (!oldGame.GameImagePath.IsNullOrEmpty())
                                 {
-                                    newGame.Roms = new ObservableCollection<GameRom> { new GameRom(Path.GetFileNameWithoutExtension(oldGame.GameImagePath), oldGame.GameImagePath) };
+                                    string romName = null;
+                                    try
+                                    {
+                                        romName = Path.GetFileNameWithoutExtension(oldGame.GameImagePath);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        // This sometimes crashes on weird ROM paths
+                                        logger.Error(e, $"Failed to get rom name from {oldGame.GameImagePath}");
+                                    }
+
+                                    newGame.Roms = new ObservableCollection<GameRom> { new GameRom(romName ?? oldGame.Name, oldGame.GameImagePath) };
                                 }
 
                                 if (oldGame.ReleaseDate != null)
@@ -586,7 +605,13 @@ namespace Playnite.Database
 
                         case "tools":
                             AppSoftwareCollection.MapLiteDbEntities(mapper);
-                            convertList<Ver2_AppSoftware, AppSoftware>(dir);
+                            convertList<Ver2_AppSoftware, AppSoftware>(dir, (oldApp, newApp) =>
+                            {
+                                newApp.Arguments = oldApp.Arguments;
+                                newApp.Icon = oldApp.Icon;
+                                newApp.Path = oldApp.Path;
+                                newApp.WorkingDir = oldApp.WorkingDir;
+                            });
                             break;
                     }
                 }
@@ -609,6 +634,38 @@ namespace Playnite.Database
                 }
 
                 dbSettings.Version = 3;
+                SaveSettingsToDbPath(dbSettings, databasePath);
+            }
+
+            // 3 to 4
+            // No data format change, only to cleanup mess caused by bug #2618
+            if (dbSettings.Version == 3 && NewFormatVersion > 3)
+            {
+                var filesDir = Path.Combine(databasePath, filesDirName);
+                if (Directory.Exists(filesDir))
+                {
+                    foreach (var dir in Directory.GetDirectories(filesDir))
+                    {
+                        try
+                        {
+                            Directory.GetFiles(dir, "*.exe").ForEach(a =>
+                            {
+                                // Only delete files named as guid as those are 99% made by 2618 bug
+                                // People sometimes put foreign files into libary folder :|, so we don't want to delete something else.
+                                if (Guid.TryParse(Path.GetFileNameWithoutExtension(a), out var _))
+                                {
+                                    File.Delete(a);
+                                }
+                            });
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to delete file.");
+                        }
+                    }
+                }
+
+                dbSettings.Version = 4;
                 SaveSettingsToDbPath(dbSettings, databasePath);
             }
         }

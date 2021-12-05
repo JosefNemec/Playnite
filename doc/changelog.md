@@ -1,5 +1,22 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.2.0
+
+* New
+  * [Added](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_Events_ApplicationEvents.cs.html) selected ROM file and source game action to game starting events.
+  * [Exposed](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_IMainViewAPI.cs.html) selected Desktop view mode in UI API.
+  * [Added](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_IMainViewAPI.cs.html) option to select multiple games.
+  * [Exposed](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_IMainViewAPI.cs.html) list of currently filtered games.
+  * [Exposed](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_IPlayniteSettingsAPI.cs.html) completion status settings.
+  * [Added](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_IWebView.cs.html) option to set user agent for specific web view instance.
+  * New [model changes](https://playnite.link/sdkchangelog/6.1.0-6.2.0/PlayniteSDK_Models_Emulator.cs.html) related to added option to override built-in emulator arguments.
+  * You can now use F12 on web view windows to open Chromium dev tools.
+
+#### 6.1.0
+
+* New
+  * `IsMusicMuted` property exposed in settings API.
+
 #### 6.0.0
 
 * **Breaking Changes**

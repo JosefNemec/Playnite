@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace System
 {
@@ -86,17 +87,6 @@ namespace System
             set
             {
                 selected = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool isVisible = true;
-        public bool IsVisible
-        {
-            get => isVisible;
-            set
-            {
-                isVisible = value;
                 OnPropertyChanged();
             }
         }
@@ -497,6 +487,9 @@ namespace System
         }
     }
 
+    /// <summary>
+    /// TODO: Reworkd this whole thing with CollectionView, this should be just data holder...
+    /// </summary>
     public class SelectableDbItemList : SelectableIdItemList<DatabaseObject>, INotifyCollectionChanged
     {
         private readonly bool includeNoneItem;
@@ -512,7 +505,8 @@ namespace System
             set
             {
                 showSelectedOnly = value;
-                SearchItems();
+                OnPropertyChanged();
+                CollectionView?.Refresh();
             }
         }
 
@@ -527,7 +521,19 @@ namespace System
             set
             {
                 searchText = value;
-                SearchItems();
+                OnPropertyChanged();
+                CollectionView?.Refresh();
+            }
+        }
+
+        private ListCollectionView collectionView;
+        public ListCollectionView CollectionView
+        {
+            get => collectionView;
+            private set
+            {
+                collectionView = value;
+                OnPropertyChanged();
             }
         }
 
@@ -552,9 +558,12 @@ namespace System
                 newItem.PropertyChanged += NewItem_PropertyChanged;
                 Items.Insert(0, newItem);
             }
+
+            CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
+            CollectionView.Filter = CollectionViewFilter;
+            CollectionView.SortDescriptions.Add(new SortDescription("Item.Name", ListSortDirection.Ascending));
         }
 
-        // TODO keep ordering when item is added or removed
         public void Add(DatabaseObject item, bool selected = false)
         {
             var existing = Items.FirstOrDefault(a => a.Item.Id == item.Id);
@@ -577,6 +586,8 @@ namespace System
             {
                 OnSelectionChanged();
             }
+
+            CollectionView?.Refresh();
         }
 
         public void SetItems(IEnumerable<DatabaseObject> items, IEnumerable<Guid> selected = null)
@@ -622,6 +633,8 @@ namespace System
             {
                 OnSelectionChanged();
             }
+
+            CollectionView?.Refresh();
         }
 
         public bool Remove(DatabaseObject item)
@@ -641,6 +654,7 @@ namespace System
                 }
 
                 OnCollectionChanged();
+                CollectionView?.Refresh();
                 return true;
             }
         }
@@ -655,9 +669,10 @@ namespace System
             return Items.Select(a => a.Item.Id).Contains(ids);
         }
 
-        public void SearchItems()
+        private bool CollectionViewFilter(object item)
         {
-           Items.ForEach(x => x.IsVisible = (ShowSelectedOnly ? (bool)x.Selected : true) && x.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+            var entry = (SelectableItem<DatabaseObject>)item;
+            return (ShowSelectedOnly ? (bool)entry.Selected : true) && entry.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
         }
 
         public override string ToString()

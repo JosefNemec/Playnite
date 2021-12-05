@@ -544,22 +544,6 @@ namespace Playnite
             }
         }
 
-        private bool disableDpiAwareness = false;
-        [RequiresRestart]
-        public bool DisableDpiAwareness
-        {
-            get
-            {
-                return disableDpiAwareness;
-            }
-
-            set
-            {
-                disableDpiAwareness = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool asyncImageLoading = true;
         [RequiresRestart]
         public bool AsyncImageLoading
@@ -1520,7 +1504,7 @@ namespace Playnite
             }
         }
 
-        private bool traceLogEnabled = true;
+        private bool traceLogEnabled = false;
         public bool TraceLogEnabled
         {
             get => traceLogEnabled;
@@ -1721,7 +1705,7 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-
+        
         private List<string> gameSortingNameRemovedArticles = new List<string> { "The", "A", "An" };
         [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<string> GameSortingNameRemovedArticles
@@ -1729,11 +1713,32 @@ namespace Playnite
             get => gameSortingNameRemovedArticles;
             set
             {
-                gameSortingNameRemovedArticles = value;
+                gameSortingNameRemovedArticles = value;       
+                OnPropertyChanged();
+            }
+        } 
+        
+        private bool showNahimicServiceWarning = true;
+        public bool ShowNahimicServiceWarning
+        {
+            get => showNahimicServiceWarning;
+            set
+            {
+                showNahimicServiceWarning = value;
                 OnPropertyChanged();
             }
         }
-
+        
+        private bool showElevatedRightsWarning = true;
+        public bool ShowElevatedRightsWarning
+        {
+            get => showElevatedRightsWarning;
+            set
+            {
+                showElevatedRightsWarning = value;
+                OnPropertyChanged();
+            }
+        }
 
         [JsonIgnore]
         public static bool IsPortable
@@ -1914,6 +1919,37 @@ namespace Playnite
 
             if (settings.Version == 5)
             {
+                if (settings.DisabledPlugins.HasItems())
+                {
+                    // P9 saves disabled list based on add-on IDs, not directory names.
+                    var idsMigration = new Dictionary<string, string>
+                    {
+                        { "AmazonGamesLibrary", "AmazonLibrary_Builtin" },
+                        { "BattleNetLibrary", "BattlenetLibrary_Builtin" },
+                        { "BethesdaLibrary", "BethesdaLibrary_Builtin" },
+                        { "EpicLibrary", "EpicGamesLibrary_Builtin" },
+                        { "GogLibrary", "GogLibrary_Builtin" },
+                        { "HumbleLibrary", "HumbleLibrary_Builtin" },
+                        { "IGDBMetadata", "IGDBMetadata_Builtin" },
+                        { "ItchioLibrary", "ItchioLibrary_Builtin" },
+                        { "LibraryExporter", "LibraryExporterPS_Builtin" },
+                        { "OriginLibrary", "OriginLibrary_Builtin" },
+                        { "PSNLibrary", "PlayStationLibrary_Builtin" },
+                        { "SteamLibrary", "SteamLibrary_Builtin" },
+                        { "TwitchLibrary", "TwitchLibrary_Builtin" },
+                        { "UplayLibrary", "UplayLibrary_Builtin" },
+                        { "XboxLibrary", "XboxLibrary_Builtin" }
+                    };
+
+                    for (int i = 0; i < settings.DisabledPlugins.Count; i++)
+                    {
+                        if (idsMigration.TryGetValue(settings.DisabledPlugins[i], out var newValue))
+                        {
+                            settings.DisabledPlugins[i] = newValue;
+                        }
+                    }
+                }
+
                 settings.ViewSettings.ListViewColumns.AgeRating.Field = GameField.AgeRatings;
                 settings.ViewSettings.ListViewColumns.Platform.Field = GameField.Platforms;
                 settings.ViewSettings.ListViewColumns.Series.Field = GameField.Series;

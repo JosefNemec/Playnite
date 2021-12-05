@@ -41,6 +41,9 @@ Doporučujeme uložit diagnostické soubory a nahlášení problému jejímu vý
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Rozšíření &quot;{0}&quot; způsobilo závažnou chybu.
 
 Doporučujeme nahlásit problém jejímu vývojáři. Pokud tento problém přetrvává, rozšíření zakažte.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Neznámé rozšíření nebo motiv způsobily neopravitelnou chybu.
+
+Doporučujeme zakázat všechna rozšíření třetích stran, izolovat problematické rozšíření a nahlásit problém jeho vývojáři.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Nastala závažná chyba.
         
 Pokud nám chcete pomoci tento problém opravit, odešlete prosím diagnostické informace. Děkujeme.</sys:String>
@@ -61,10 +64,10 @@ Pokud nám chcete pomoci tento problém opravit, odešlete prosím diagnostické
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Opravdu chcete odstranit {0} her?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Opravdu chcete tuto hru odstranit?
 
-Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hru vyjmete z příštích aktualizacích knihovny.</sys:String>
+Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hru vyjmete z příštích aktualizací knihovny.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Opravdu chcete tuto odstranit {0} her?
 
-Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z příštích aktualizacích knihovny.</sys:String>
+Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z příštích aktualizací knihovny.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Jste si jisti, že chcete odstranit {0} záznamů, které nejsou současně používané?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Žádná nepoužitá pole nebyla nalezena.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ano (přidat do seznamu výjimek)</sys:String>
@@ -82,7 +85,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCManualOpenError">Selhalo otevření Příručky: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Nelze nainstalovat hru: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Nelze odinstalovat hru: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction">Akce hrát není nakonfigurována.</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Akce hrát není nastavena.</sys:String>
     <sys:String x:Key="LOCErrorNoInstallAction">Instalační funkce není dostupná.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Plugin knihovny, která je zodpovědná za tuto hru, není nainstalován či povolen.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Stažení oficiálních metadat není k dispozici.</sys:String>
@@ -186,7 +189,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCColumns">Sloupce</sys:String>
     <sys:String x:Key="LOCRow">Řádek</sys:String>
     <sys:String x:Key="LOCRows">Řádky</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Nelze získat ikonu když chybí akce Hrát nebo je nastavená na adresu URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Nelze získat ikonu z akce Hrát. Není nastavena žádná akce typu &quot;Soubor&quot;.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Stáhnout pouze chybějící metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Povolení této možnosti způsobí, že se přeskočí stahování metadat pro datová pole, která už informace obsahují.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Výběr her</sys:String>
@@ -210,7 +213,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCMenuConfigurationTitle">Konfigurace</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">Nastavení…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">Platformy a Emulátory</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Konfigurovat Emulátory…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">Nastavit Emulátory…</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Správce Knihovny…</sys:String>
     <sys:String x:Key="LOCMenuTools">Nástroje</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Stáhnout Metadata…</sys:String>
@@ -301,7 +304,6 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Ukazovat pouze přiřazená pole ve filtrovacím a průzkumném panelu</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Zakázat hardwarovou akceleraci</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Použijte pokud se setkáváte se sekáním či podobnými problémy</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Vypnout DPI Škálování</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Ukazovat skryté hry v seznamech rychlého spuštění</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Ovlivní systémovou lištu a tlačítko aplikace v hlavním panelu.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Počet položek v rychlém spuštění</sys:String>
@@ -334,7 +336,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCSettingsCreateLocalization">Pomozte nám přeložit Playnite</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite musí být restartován pro aplikování nových nastavení. Restartovat nyní?
 
-Restartování zruší všechny aktivní úlohy (stahování) které právě běží.</sys:String>
+Restartování zruší všechny aktivní úlohy (stahování), které právě běží.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Restartovat Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite nemůže přesouvat soubory knihovny automaticky. Musíte je přesunout (či zkopírovat) sami, než umístění knihovny změníte. Pokud v cílovém umístění není žádná knihovna, bude tam vytvořena nová.
 
@@ -405,26 +407,26 @@ Pokud není povoleno, obrázky na pozadí jsou staženy jen když jsou potřeba.
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Import Metadat</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Stáhnout Metadata</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Nastavit vybranou konfiguraci, aby se použila, až se příště budou stahovat metadata.
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Použít vybraná nastavení při příštím stahování metadat
 Lze také změnit v nastavení aplikace.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Průvodce Importem Emulátoru</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Tento průvodce Vás provede procesem stahovaní a importovaní konzolových emulátorů, a importováním emulovaných her.</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">Mějte na paměti, že později můžete vždy přidat další emulátory a/nebo hry prostřednictvím hlavního menu (v menu &quot;Nástroje&quot; pro nastavení emulátorů, a &quot;Přidat hry&quot; pro emulované hry).</sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription">Níže je seznam emulátorů, které Playnite dokáže rozpoznat a automaticky nakonfigurovat. Instalační programy emulátorů můžete stáhnout z jejich stránek. Až budete mít emulátory manuálně nainstalované, můžete je importovat v dialogu nastavení emulátorů.</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Níže je seznam emulátorů, které Playnite dokáže rozpoznat a automaticky nastavit. Instalační programy emulátorů můžete stáhnout z jejich stránek. Až budete mít emulátory manuálně nainstalované, můžete je importovat v dialogu nastavení emulátorů.</sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro">Můžete importovat jakékoli emulátory které jsou nainstalované na Vašem počítači kliknutím na tlačítko 'Autodetekce Ze Složky...'. Playnite prohledá zvolenou složku a vyhledá jakékoli známé emulátory a poskytne možnost je importovat. Toto tlačítko může použít několikrát pro importování emulátorů z různých složek. Emulátory budou přidány do dolní části aktuálního seznamu.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">Hry můžete importovat pomocí stisknutí tlačítka 'Skenovat složku pomocí Emulátoru'. Vybráním odpovídajícího emulátoru uvědomí Playnite o tom, které typy souborů by měly být skenovány a importovány. Toto tlačítko může použít několikrát pro import her z různých složek. Hry budou přidány do dolní části aktuálního seznamu.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Nejsou zvoleny žádné emulátory pro import. Bez nastavení emulátorů nelze automaticky importovat emulované hry. Jste si jisti, že chcete pokračovat a ukončit proces importu?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">V Playnite nejsou nakonfigurovány žádné emulátory. Nemůžete importovat hry, dokud nejprve nenakonfigurujete emulátor a nevybere příslušné typy souborů. Chcete nyní přidat emulátory?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">V Playnite nejsou nastaveny žádné emulátory. Nemůžete importovat hry, dokud nejprve nenastavíte emulátor a nevybere příslušné typy souborů. Chcete nyní přidat emulátory?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Skenovat složku pomocí Emulátoru</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Vybrat soubory</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Autodetekce Ze Složky...</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Konfigurovat Emulátory…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Nastavit Emulátory…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Skenování…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanningSpecific">Skenuji {0}...</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Úvodní Nastavení</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Tento průvodce Vás provede automatickým importem a procesem konfigurace externích herních knihoven. Playnite může automaticky importovat hry z více herních služeb, jako je Steam nebo GOG.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Tento průvodce Vás provede automatickým importem a procesem nastavení externích herních knihoven. Playnite může automaticky importovat hry z více herních služeb, jako je Steam nebo GOG.
 
 Mějte na paměti, že můžete později manuálně přidat jakoukoli vlastní hru pro jakoukoli platformu kliknutím na tlačítko 'Playnite' v hlavním menu.</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integrace Knihovny</sys:String>
@@ -439,7 +441,7 @@ Můžete se pokusit znovu stáhnout integrace z nabídky rozšíření až skon�
     <sys:String x:Key="LOCFirstDownloadingAddon">Stahuji integraci {0}...</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Nastavit Platformy a Emulátory</sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle">Konfigurovat Emulátory</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Nastavit Emulátory</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">Platformy</sys:String>
     <sys:String x:Key="LOCPlatformTitle">Platforma</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">Emulátory</sys:String>
@@ -498,6 +500,9 @@ Současně ji využívá {1} her a {2} emulátorů.</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Štítek</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Vydavatel</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Stav Instalace</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Shrnout všechny filtry</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Je-li zapnuto, v pohledu budou zahrnuty jen ty položky, které splňují všechny zadané filtry.
+Je-li vypnuto, budou zobrazeny položky, které splňují alespoň jeden filtr.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Instalováno</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Instalováno</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nenainstalováno</sys:String>
@@ -554,7 +559,8 @@ K hlášení problému, prosím, připojte následující ID:</sys:String>
 
 Může zkusit problém vyřešit takto:
   • Zkontrolujte, jestli jsou všechny soubory nainstalovány správně. Reinstalace může pomoct
-  • Ujistěte se, že antivirus neblokuje jakýkoli soubor ve složce Playnite
+  • Instalujte Visual Studio C++ 2019 redistribuce, pokud jste na Windows 7 nebo 8
+  • Ujistěte se, že antivirus neblokuje jakékoli soubory ve složce Playnite
   • Vyberte jiné instalační umístění</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nelze importovat emulátory z důvodu chybějícího nebo poškozeného definičního souboru.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Nepodařilo se inicializovat XInput rozhraní.</sys:String>
@@ -566,6 +572,7 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCAddLinkButton">Přidat Odkaz</sys:String>
     <sys:String x:Key="LOCAddRom">Přidat ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Uložit Změny</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">Aplikovat změny polí pro hru (hry) které jsou upravovány.</sys:String>
     <sys:String x:Key="LOCPlayAction">Akce Hrát</sys:String>
     <sys:String x:Key="LOCAddPlayAction">Přidat Akci Hrát</sys:String>
     <sys:String x:Key="LOCAddAction">Přidat Akci</sys:String>
@@ -579,6 +586,7 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCOpenPlaynite">Otevřít Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Natavení Profilu</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Jméno hry nemůže být prázdné.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Před vyhledáním metadat je třeba doplnit název hry.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Neplatné údaje u hry</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Vložte platný formát adresy URL začínající http:// nebo https://</sys:String>
@@ -654,6 +662,8 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCOther">Ostatní</sys:String>
     <sys:String x:Key="LOCThemes">Motivy</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argumenty Emulátoru</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Vestavěné Argumenty</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Vlastní Argumenty</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Dodatečné Argumenty Emulátoru</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Nahradit Argumenty pro Emulátor</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Akce Hrát</sys:String>
@@ -679,12 +689,16 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCPreScriptDescription">Provést před spuštěním hry</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Provést po ukončení hry</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Provést po spuštění hry</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Hra spouští skript</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Hra spustila skript</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Hra zastavila skript</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Spustit globální skript</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Globální</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtrované</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">Současné</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nové</sys:String>
     <sys:String x:Key="LOCTestScript">Testovat skript</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Uložit jako výchozí</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Přidat do Oblíbených</sys:String>
@@ -737,7 +751,7 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCSignInExternalNotif">Klient {0} bude nyní otevřen, prosím přihlaste se a poté tuto zprávu zavřete.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Čekám na přihlášení uživatele, zavřete prosím toto okno, až budete hotovi...</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Instalační adresář hry nebyl nalezen.</sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings">Neplatná konfigurace akce hry.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">Neplatné nastavení akce hry.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Řešení problémů se synchronizací účtu</sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues">Řešení potíží</sys:String>
     <sys:String x:Key="LOCRenameItem">Přejmenovat položku</sys:String>
@@ -754,13 +768,16 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCGeneralExtensionPackageError">Rozšíření není správně zabaleno.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Motiv není správně zabalen.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Rozšíření &quot;{0}&quot; se nepodařilo správně načíst.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Nelze načíst rozšíření &quot;{0}&quot;, současná verze Playnite není podporována.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">Motiv &quot;{0}&quot; se nepodařilo správně načíst.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšíření se nepodařilo správně načíst.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Nelze načíst motiv &quot;{0}&quot;, současná verze Playnite není podporována.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Rozšíření se nepodařilo správně načíst.</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">Motiv se nepodařil správně načíst.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Motiv Vzhledu/Rozšíření používá nepodporovanou verzi API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalace byla úspěšná.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Nainstalovat rozšíření?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Obecné</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Selhala instalace rozšíření &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Nepodařilo se nainstalovat rozšíření.
 
 {0}</sys:String>
@@ -865,15 +882,15 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCAddonInstall">Instalovat</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Odinstalovat</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Již nainstalováno</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nejsou k dispozici žádné aktualizace rozšíření.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nenalezeny žádné nové aktualizace rozšíření.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Aktualizovat rozšíření</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Seznam změn není k dispozici</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Naplánováno k instalaci</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusFailed">Stahování selhalo</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusFailed">Stažení selhalo</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licence zamítnuta</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Stahování {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Vyhledávají se aktualizace rozšíření…</sys:String>
-    <sys:String x:Key="LOCAddonUpdatesAvailable">Jedna nebo více aktualizací rozšíření jsou dostupné.</sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable">Jsou dostupné aktualizace pro některá rozšíření.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Vyberte položky k aktualizaci</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instance pro vývoj rozšíření</sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle">Souhlas s licencí {0}</sys:String>
@@ -927,8 +944,8 @@ Vypnutí této možnosti může vést k problémům se vstupem po spuštění hr
         
 Zakažte, pokud používáte nástroje které překládají vstup XInput na vstup klávesnice/myši a setkáváte se s dvojitým vstupem v Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Zobrazit položky na hlavní nabídce:</sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Prohodit schopnosti tlačítek X/A na hlavní stránce</sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Prohodí schopnosti tlačítek pro spuštění hry a zobrazení informací o hře na hlavní stránce.</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Prohodit využití tlačítek X/A na hlavní stránce</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Prohodí využití tlačítek pro spuštění hry a zobrazení informací o hře na hlavní stránce.</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Hlasitost rozhraní</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Hlasitost na pozadí</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Umlčet v pozadí</sys:String>
@@ -959,7 +976,7 @@ Lepší kvalita, pomalejší, nízké využití paměti.</sys:String>
     <sys:String x:Key="LOCSelectFileTooltip">Vybrat soubor...</sys:String>
     <sys:String x:Key="LOCSelectDirectoryTooltip">Vybrat adresář...</sys:String>
     <sys:String x:Key="LOCStartupScript">Skript při spuštění</sys:String>
-    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">Mějte na paměti že rozšíření a motivy můžou vysoce ovlivnit výkon, stabilitu a bezpečnost Playnite.
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">Mějte na paměti, že rozšíření a motivy můžou vysoce ovlivnit výkon, stabilitu a bezpečnost Playnite.
     
 Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je nejdříve vypnout/odinstalovat pro zjištění, jsou-li zdrojem problému.</sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">Zvolit při spuštění</sys:String>
@@ -981,20 +998,42 @@ Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je
     <sys:String x:Key="LOCEmuImportAssignPlatform">Nastavit platformu</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">Nastavit region</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Skenovat adresář</sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator">Skenovat s emulátorem</sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Zahrnout v souhrnném auto-skenu</sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet">Žádná platná konfigurace skenu nenastavena. Ujistěte se, že všechna pole jsou správně nastavena.</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Nastavení skenování</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Vyloučit vzorce ze skenu kontrolního součtu</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Soubory shodující se s zadanými vrozci nebudou skenovány pro kontrolní součet a budou vyhodnoceny podle názvu souboru. Přečtěte si stránku pro pomoc s emulátory pro více informací.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Skenovat s emulátorem</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Při ukládání nové konfigurace musí být zadáno jméno.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulátor nebo profil emulátoru není nastaven.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Adresář ke skenování není zadán nebo neexistuje.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Nastavení skenování není správně nastaveno.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Zahrnout v souhrnném auto-skenu</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Nepodařilo se skenovat složku pro emulátory.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">Nepodařilo se skenovat složku(ky) pro emulované hry.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">Skrýt importované</sys:String>
     <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Profily k importování:</sys:String>
-    <sys:String x:Key="LOCEmuAutoScanConfigurations">Automaticky skenovat konfigurace</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfig">Uložit jako auto-skenovací konfiguraci</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Uloží konfiguraci pro pozdější použití při aktualizaci knihovny. Uložené konfigurace můžou být spravovány v nabídce &quot;Konfigurovat emulátory&quot;.</sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations">Nastavení automatických skenování</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">Uložit jako nastavení auto-skenování</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Uloží nastavení pro pozdější použití při aktualizaci knihovny. Uložená nastavení mohou být spravována v nabídce &quot;Nastavit emulátory&quot;.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Přidat skener</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Přidat uložený skener</sys:String>
     <sys:String x:Key="LOCStartScan">Spustit sken</sys:String>
-    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Přidejte emulátorové konfigurace pro skenování specifických adresářů. Ujistěte se, že jsou emulátory před importováním her správně nastavené (přes nabídku Knihovna -&gt; Konfigurovat emulátory)</sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Přidejte emulátorové konfigurace pro skenování specifických adresářů. Ujistěte se, že jsou emulátory před importováním her správně nastavené (přes nabídku Knihovna -&gt; Nastavit emulátory)</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Výchozí stav nastavený nové přidaným hrám</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Stav nastavený poprvé hraným hrám</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Nepodařilo se inicializovat PowerShell script runtime. Pokud jste uživatel Windows 7, zkuste (pře)instalovat PowerShell 5.1 pro vyřešní problému.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Předvolba filtrů se zadaným jménem již existuje. Aktualizovat předvolbu s novými nastaveními?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite běží s povýšenými oprávněními (jako administrátor). Toto není doporučeno, protože tato oprávnění poskytuje také všem instalovaným rozšířením a hrám/aplikacím spuštěným z Playnite!
+
+Více informací na https://playnite.link/adminfaq</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Zobrazit varování pokud Playnite běží s povýšenými oprávněními</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Následující rozšíření byla nahlášena jako potenciálně problematická, buď kvůli vysokému dopadu na stabilitu/výkon nebo bezpečnostním potížím. Důrazně doporučujeme, abyste je odinstalovali:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Nezahrnovat ve skenu online soubory</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Soubory uložené v cloud úložišti nebudou skenovány a importovány, nejsou-li dostupné lokálně.
+Podporováno pouze pro: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Skenovat s použitím zjednodušené metody bez obsahu souborů</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Soubory budou importovány, ale s použitím méně přesné metody, která nevyžaduje stažení obsahu souboru.</sys:String>
 </ResourceDictionary>

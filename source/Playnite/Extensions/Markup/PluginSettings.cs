@@ -22,10 +22,6 @@ namespace Playnite.Extensions.Markup
 
         public PluginSettings(string path) : base(path)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                return;
-            }
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
@@ -33,6 +29,13 @@ namespace Playnite.Extensions.Markup
             if (ServiceProvider.IsTargetTemplate(serviceProvider))
             {
                 return this;
+            }
+
+            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            {
+                Source = "";
+                PathRoot = "";
+                return base.ProvideValue(serviceProvider);
             }
 
             var pSource = PlayniteApplication.Current.Extensions?.SettingsSupportList.FirstOrDefault(a => a.SourceName == Plugin);

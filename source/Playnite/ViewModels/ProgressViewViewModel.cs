@@ -19,6 +19,7 @@ namespace Playnite.ViewModels
         private CancellationTokenSource cancellationToken;
         private bool canCancel = false;
         private bool wasCancelled = false;
+        private bool wasProcessed = false;
 
         private GlobalProgressActionArgs progressArgs;
         public GlobalProgressActionArgs ProgressArgs
@@ -71,7 +72,7 @@ namespace Playnite.ViewModels
                 canCancel = false;
                 wasCancelled = true;
                 cancellationToken.Cancel();
-            }, (a) => Cancelable && canCancel);
+            }, (a) => Cancelable && canCancel && !cancellationToken.IsCancellationRequested);
         }
 
         public Exception FailException { get; private set; }
@@ -82,6 +83,7 @@ namespace Playnite.ViewModels
             this.progresAction = progresAction;
             this.args = args;
 
+            cancellationToken = new CancellationTokenSource();
             Cancelable = args.Cancelable;
             canCancel = Cancelable;
             if (args.Text?.StartsWith("LOC") == true)
@@ -96,11 +98,15 @@ namespace Playnite.ViewModels
 
         public GlobalProgressResult ActivateProgress()
         {
+            if (wasProcessed)
+            {
+                throw new Exception("Progress can be shown only once per instance.");
+            }
+
             Task.Run(() =>
             {
                 try
                 {
-                    cancellationToken = new CancellationTokenSource();
                     ProgressArgs = new GlobalProgressActionArgs(
                         PlayniteApplication.Current.SyncContext,
                         PlayniteApplication.CurrentNative.Dispatcher,
@@ -125,6 +131,7 @@ namespace Playnite.ViewModels
             });
 
             var res = window.CreateAndOpenDialog(this);
+            wasProcessed = true;
             return new GlobalProgressResult(res, wasCancelled, FailException);
         }
     }

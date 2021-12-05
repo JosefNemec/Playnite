@@ -8,14 +8,43 @@ using System.Threading.Tasks;
 namespace Playnite.SDK
 {
     /// <summary>
+    ///
+    /// </summary>
+    public enum DesktopView : int
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        Details = 0,
+        /// <summary>
+        ///
+        /// </summary>
+        Grid = 1,
+        /// <summary>
+        ///
+        /// </summary>
+        List = 2
+    }
+
+    /// <summary>
     /// Describes object providing API for main UI view.
     /// </summary>
     public interface IMainViewAPI
     {
         /// <summary>
+        /// Gets currently active Desktop mode view.
+        /// </summary>
+        DesktopView ActiveDesktopView { get; }
+
+        /// <summary>
         /// Gets list of currently selected games.
         /// </summary>
         IEnumerable<Game> SelectedGames { get; }
+
+        /// <summary>
+        /// Gets list of games currently available in game list.
+        /// </summary>
+        List<Game> FilteredGames { get; }
 
         /// <summary>
         /// Opens settings view for specified plugin.
@@ -34,5 +63,11 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="gameId">Game's database ID.</param>
         void SelectGame(Guid gameId);
+
+        /// <summary>
+        /// Selects multiple games.
+        /// </summary>
+        /// <param name="gameIds">List of game IDs to select.</param>
+        void SelectGames(IEnumerable<Guid> gameIds);
     }
 }

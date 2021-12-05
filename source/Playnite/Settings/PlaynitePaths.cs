@@ -50,19 +50,7 @@ namespace Playnite
         public static string UserProgramDataPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
         public static string JitProfilesPath => Path.Combine(ConfigRootPath, "JITProfiles");
         public static string EmulationDatabasePath => Path.Combine(ProgramPath, "Emulation", "Database");
-        public static string ConfigRootPath
-        {
-            get
-            {
-                if (PlayniteSettings.IsPortable)
-                {
-                    return ProgramPath;
-                }
-                else
-                {
-                    return UserProgramDataPath;
-                }
-            }
-        }
+        public static string ConfigRootPath => PlayniteSettings.IsPortable ? ProgramPath : UserProgramDataPath;
+        public static string SafeStartupFlagFile => Path.Combine(ConfigRootPath, "safestart.flag");
     }
 }

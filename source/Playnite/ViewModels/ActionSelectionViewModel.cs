@@ -59,14 +59,14 @@ namespace Playnite.ViewModels
             }
 
             Actions = new List<SelectableItem<object>>();
-            if (actions.HasItems())
-            {
-                Actions.AddRange(actions.Select(a => new SelectableItem<object>(a)));
-            }
-
             if (controllers.HasItems())
             {
                 Actions.AddRange(controllers.Select(a => new SelectableItem<object>(a)));
+            }
+
+            if (actions.HasItems())
+            {
+                Actions.AddRange(actions.Select(a => new SelectableItem<object>(a)));
             }
 
             Actions[0].Selected = true;

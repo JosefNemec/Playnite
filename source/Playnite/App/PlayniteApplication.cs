@@ -27,6 +27,7 @@ using Playnite.SDK.Events;
 using System.Windows.Threading;
 using System.Net;
 using Playnite.Common.Web;
+using System.ServiceProcess;
 
 namespace Playnite
 {
@@ -80,6 +81,7 @@ namespace Playnite
         public ServicesClient ServicesClient { get; private set; }
         public static bool SoundsEnabled { get; set; } = true;
         public MainViewModelBase MainModelBase { get; set; }
+        public List<ExtensionInstallResult> ExtensionsInstallResult { get; set; }
 
         private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
         public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }
@@ -89,7 +91,7 @@ namespace Playnite
         }
 
         public PlayniteApplication(
-            Application nativeApp,
+            Func<Application> appInitializer,
             ApplicationMode mode,
             string defaultThemeName,
             CmdLineOptions cmdLine)
@@ -107,13 +109,10 @@ namespace Playnite
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             }
 
-            SyncContext = new DispatcherSynchronizationContext(nativeApp.Dispatcher);
-            SynchronizationContext.SetSynchronizationContext(SyncContext);
             CmdLine = cmdLine;
             Mode = mode;
             Current = this;
-            CurrentNative = nativeApp;
-            CurrentNative.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             if (!Debugger.IsAttached)
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -124,11 +123,35 @@ namespace Playnite
                 if (CheckOtherInstances() || CmdLine.Shutdown)
                 {
                     resourcesReleased = true;
-                    CurrentNative.Shutdown(0);
+                    Environment.Exit(0);
                     return;
                 }
             }
 
+#if !DEBUG
+            if (FileSystem.FileExists(PlaynitePaths.SafeStartupFlagFile))
+            {
+                if (MessageBox.Show(
+                    "Playnite closed unexpectedly while starting. This is usually caused by 3rd party theme or extension. Do you want to start in safe mode with all 3rd party add-ons disabled?",
+                    "Startup Error",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    cmdLine.SafeStartup = true;
+                }
+            }
+            else
+            {
+                FileSystem.CreateFile(PlaynitePaths.SafeStartupFlagFile);
+            }
+#endif
+
+            // All code above has to be called before we create instance of WPF app,
+            // because MessageBox forces WPF to initialize and fire startup app events.
+            CurrentNative = appInitializer();
+            CurrentNative.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            SyncContext = new DispatcherSynchronizationContext(CurrentNative.Dispatcher);
+            SynchronizationContext.SetSynchronizationContext(SyncContext);
             appMutex = new Mutex(true, instanceMuxet);
 
             try
@@ -149,6 +172,7 @@ namespace Playnite
 
             PlayniteSettings.MigrateSettingsConfig();
             AppSettings = PlayniteSettings.LoadSettings();
+            Commands.GlobalCommands.AppSettings = AppSettings;
             NLogLogger.IsTraceEnabled = AppSettings.TraceLogEnabled;
             if (CmdLine.ResetSettings)
             {
@@ -176,6 +200,7 @@ namespace Playnite
 
             if (!relaunchPath.IsNullOrEmpty())
             {
+                FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
                 ProcessStarter.StartProcess(relaunchPath, CmdLine.ToString());
                 CurrentNative.Shutdown(0);
                 return;
@@ -193,7 +218,8 @@ namespace Playnite
             {
                 DirectoryName = defaultThemeName,
                 DirectoryPath = Path.Combine(PlaynitePaths.ThemesProgramPath, ThemeManager.GetThemeRootDir(Mode), defaultThemeName),
-                Name = defaultThemeName
+                Name = defaultThemeName,
+                Id = mode == ApplicationMode.Desktop ? ThemeManager.DefaultDesktopThemeId : ThemeManager.DefaultFullscreenThemeId
             };
 
             try
@@ -215,11 +241,11 @@ namespace Playnite
                     }
                 }
 
-                var installed = ExtensionInstaller.InstallExtensionQueue();
-                var installedTheme = installed.FirstOrDefault(a => a.manifest is ThemeManifest && !a.updated);
-                if (installedTheme.manifest != null)
+                ExtensionsInstallResult = ExtensionInstaller.InstallExtensionQueue();
+                var installedTheme = ExtensionsInstallResult.FirstOrDefault(a => a.InstalledManifest is ThemeManifest && !a.Updated);
+                if (installedTheme?.InstalledManifest != null)
                 {
-                    var theme = installedTheme.manifest as ThemeManifest;
+                    var theme = installedTheme.InstalledManifest as ThemeManifest;
                     if (theme.Mode == Mode)
                     {
                         if (theme.Mode == ApplicationMode.Desktop)
@@ -249,7 +275,7 @@ namespace Playnite
             else
             {
                 var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
-                if (theme != ThemeManager.DefaultTheme.Name)
+                if (theme != ThemeManager.DefaultTheme.Id)
                 {
                     customTheme = ThemeManager.GetAvailableThemes(mode).Where(a => a.Id == theme).OrderByDescending(a => a.Version).FirstOrDefault();
                     if (customTheme == null)
@@ -408,6 +434,10 @@ namespace Playnite
             var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
             logger.Error(exception, "Unhandled exception occured.");
             CrashHandlerViewModel crashModel = null;
+
+            // Delete safe startup flag if we are able to handle the crash,
+            // safe startup option should show for crashes we are not handling.
+            FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
             if (crashInfo.IsExtensionCrash)
             {
                 crashModel = new CrashHandlerViewModel(
@@ -443,6 +473,14 @@ namespace Playnite
             }
 
             logger.Info($"Application {CurrentVersion} started");
+
+            ExtensionsInstallResult?.Where(a => a.InstallError != null).ForEach(ext =>
+                Api.Notifications.Add(new NotificationMessage(
+                    "inst_err" + ext.PackagePath,
+                    ResourceProvider.GetString(LOC.AddonInstallFaild).Format(Path.GetFileNameWithoutExtension(ext.PackagePath)) +
+                        "\n" + ext.InstallError.Message,
+                    NotificationType.Error)));
+
             foreach (var fail in Extensions.FailedExtensions)
             {
                 Api.Notifications.Add(new NotificationMessage(
@@ -461,6 +499,48 @@ namespace Playnite
                         ResourceProvider.GetString(LOC.SpecificThemeLoadSDKError).Format(customTheme.Name) :
                         ResourceProvider.GetString(LOC.SpecificThemeLoadError).Format(customTheme.Name),
                     NotificationType.Error));
+            }
+
+            try
+            {
+                if (AppSettings.ShowNahimicServiceWarning)
+                {
+                    if (ServiceController.GetServices().FirstOrDefault(a =>
+                        (a.ServiceName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true ||
+                         a.DisplayName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true) &&
+                        a.Status != ServiceControllerStatus.Stopped) != null)
+                    {
+                        var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
+                        var dontShowResponse = new MessageBoxOption(LOC.DontShowAgainTitle);
+                        var res = Dialogs.ShowMessage(
+                            LOC.NahimicServiceWarning, "",
+                            MessageBoxImage.Warning,
+                            new List<MessageBoxOption> { okResponse, dontShowResponse });
+                        if (res == dontShowResponse)
+                        {
+                            AppSettings.ShowNahimicServiceWarning = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception nahExc)
+            {
+                // ServiceController.GetServices() can apparently blow up on Win32Exception sometimes
+                logger.Error(nahExc, "Failed to check for Nahimic service.");
+            }
+
+            if (PlayniteEnvironment.IsElevated && AppSettings.ShowElevatedRightsWarning)
+            {
+                var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
+                var dontShowResponse = new MessageBoxOption(LOC.DontShowAgainTitle);
+                var res = Dialogs.ShowMessage(
+                    LOC.ElevatedProcessWarning, "",
+                    MessageBoxImage.Warning,
+                    new List<MessageBoxOption> { okResponse, dontShowResponse });
+                if (res == dontShowResponse)
+                {
+                    AppSettings.ShowElevatedRightsWarning = false;
+                }
             }
         }
 
@@ -617,8 +697,6 @@ namespace Playnite
                 }
 
                 logger.Info("Application already running, shutting down.");
-                resourcesReleased = true;
-                CurrentNative.Shutdown(0);
                 return true;
             }
             else
@@ -630,8 +708,6 @@ namespace Playnite
                 if (processes.Count > 1 && processes.Max(a => a.Id) != curProcess.Id)
                 {
                     logger.Info("Another process instance(s) is already running, shutting down.");
-                    resourcesReleased = true;
-                    CurrentNative.Shutdown(0);
                     return true;
                 }
             }
@@ -662,7 +738,7 @@ namespace Playnite
 
             try
             {
-                CefTools.ConfigureCef();
+                CefTools.ConfigureCef(AppSettings.TraceLogEnabled);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -867,7 +943,16 @@ namespace Playnite
                 }
             });
 
-            pipeServer?.StopServer();
+            try
+            {
+                pipeServer?.StopServer();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                // I have no idea why this fails for some people.
+                logger.Error(e, "Failed to stop pipe server.");
+            }
+
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
             Extensions?.NotifiyOnApplicationStopped();
@@ -942,6 +1027,23 @@ namespace Playnite
 
             try
             {
+                var manifests = ExtensionFactory.GetInstalledManifests();
+                var blackList = ServicesClient.GetAddonBlacklist();
+                var installedList = manifests.Where(a => blackList.Contains(a.Id)).ToList();
+                if (installedList.HasItems())
+                {
+                    Dialogs.ShowMessage(ResourceProvider.GetString(LOC.WarningBlacklistedExtensions).Format(
+                        string.Join(Environment.NewLine, installedList.Select(a => a.Name))),
+                        "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception exc)
+            {
+                logger.Warn(exc, "Failed to process addon blacklist check.");
+            }
+
+            try
+            {
                 var updates = Addons.CheckAddonUpdates(ServicesClient);
                 if (updates.HasItems())
                 {
@@ -992,54 +1094,6 @@ namespace Playnite
                     logger.Warn(exc, "Failed to post user usage data.");
                 }
             });
-        }
-
-        public void DisableDpiAwareness()
-        {
-            if (Computer.WindowsVersion == WindowsVersion.Win10 && Computer.GetWindowsReleaseId() >= 1903)
-            {
-                return;
-            }
-
-            try
-            {
-                logger.Info("Disabling DPI awareness.");
-                // https://stackoverflow.com/questions/13858665/disable-dpi-awareness-for-wpf-application
-                var setDpiHwnd = typeof(HwndTarget).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
-                setDpiHwnd?.SetValue(null, false);
-
-                var setProcessDpiAwareness = typeof(HwndTarget).GetProperty("ProcessDpiAwareness", BindingFlags.Static | BindingFlags.NonPublic);
-
-                // Doesn't work
-                //if (Computer.WindowsVersion == WindowsVersion.Win10 && Computer.GetWindowsReleaseId() >= 1903)
-                //{
-                //    Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName.StartsWith("WindowsBase"));
-                //    var enumType = assembly.GetType("MS.Win32.NativeMethods+PROCESS_DPI_AWARENESS");
-                //    foreach (var enumVal in Enum.GetValues(enumType))
-                //    {
-                //        if (enumVal.ToString() == "PROCESS_SYSTEM_DPI_AWARE")
-                //        {
-                //            setProcessDpiAwareness?.SetValue(null, enumVal, null);
-                //            break;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                    setProcessDpiAwareness?.SetValue(null, 1, null);
-                //}
-
-                var setDpi = typeof(UIElement).GetField("_setDpi", BindingFlags.Static | BindingFlags.NonPublic);
-                setDpi?.SetValue(null, false);
-                var setDpiXValues = (List<double>)typeof(UIElement).GetField("DpiScaleXValues", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
-                setDpiXValues?.Insert(0, 1);
-                var setDpiYValues = (List<double>)typeof(UIElement).GetField("DpiScaleYValues", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
-                setDpiYValues?.Insert(0, 1);
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to disable DPI awarness.");
-            }
         }
 
         public bool MigrateDatabase()

@@ -349,7 +349,7 @@
   Id: xbox
   IgdbId: 11
   Databases: [Microsoft - Xbox]
-  Emulators: [cxbx-reloaded]
+  Emulators: [cxbx-reloaded, xemu]
 
 - Name: Microsoft Xbox 360
   Id: xbox360

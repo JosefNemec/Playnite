@@ -30,9 +30,9 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                     Name = "Test Game"
                 };
 
-                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
+                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
                 game.Icon = origIcon;
                 game.CoverImage = origImage;
                 game.BackgroundImage = origBackground;
@@ -78,9 +78,9 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                     Name = "Test Game"
                 };
 
-                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
+                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
                 game.Icon = origIcon;
                 game.CoverImage = origImage;
                 game.BackgroundImage = origBackground;
@@ -92,9 +92,9 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                     Name = "Test Game 2"
                 };
 
-                origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
-                origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id);
+                origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
                 game.Icon = origIcon;
                 game.CoverImage = origImage;
                 game.BackgroundImage = origBackground;

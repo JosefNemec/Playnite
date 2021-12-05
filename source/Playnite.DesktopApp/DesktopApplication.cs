@@ -1,5 +1,6 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
 using Playnite.API;
+using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Controls;
 using Playnite.Database;
@@ -57,8 +58,8 @@ namespace Playnite.DesktopApp
             get => PlayniteApplication.Current == null ? null : (DesktopApplication)PlayniteApplication.Current;
         }
 
-        public DesktopApplication(App nativeApp, SplashScreen splashScreen, CmdLineOptions cmdLine)
-            : base(nativeApp, ApplicationMode.Desktop, DefaultThemeName, cmdLine)
+        public DesktopApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
+            : base(appInitializer, ApplicationMode.Desktop, DefaultThemeName, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
@@ -74,10 +75,6 @@ namespace Playnite.DesktopApp
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
             ConfigureApplication();
-            if (AppSettings.DisableDpiAwareness)
-            {
-                DisableDpiAwareness();
-            }
 
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
             EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
@@ -228,16 +225,19 @@ namespace Playnite.DesktopApp
 
             if (isFirstStart)
             {
-                await MainModel.UpdateLibrary(false);
+                await MainModel.UpdateLibrary(false, false);
                 await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
                 if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
                 {
-                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport);
+                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
                 }
             }
+
+            // This is most likely safe place to consider application to be started properly
+            FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
         }
 
         private bool ProcessStartupWizard()

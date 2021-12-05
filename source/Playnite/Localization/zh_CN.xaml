@@ -41,6 +41,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">&quot;{0}&quot;扩展产生了一个无法恢复的错误。
 
 我们建议向插件开发者报告该问题。如果问题仍然发生，请禁用该插件。</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">未知的扩展或主题导致了一个无法恢复的错误。</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">发生了不可恢复的错误。
 
 如果您想帮助我们解决此问题，请将诊断信息发给我们。 谢谢！</sys:String>
@@ -83,7 +84,7 @@
     <sys:String x:Key="LOCGameInstallError">无法安装游戏：{0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">无法卸载游戏：{0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">开始游戏操作未配置。</sys:String>
-    <sys:String x:Key="LOCErrorNoInstallAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoInstallAction">安装实现不可用。</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">未安装或启用负责此游戏的库插件。</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">官方资料数据下载不可用。</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">没有选择游戏。</sys:String>
@@ -151,8 +152,8 @@
     <sys:String x:Key="LOCRemoveLabel">移除</sys:String>
     <sys:String x:Key="LOCDownloadLabel">下载</sys:String>
     <sys:String x:Key="LOCSearchLabel">搜索</sys:String>
-    <sys:String x:Key="LOCSearchResolutionLabel"></sys:String>
-    <sys:String x:Key="LOCSearchResolutionAnyLabel"></sys:String>
+    <sys:String x:Key="LOCSearchResolutionLabel">分辨率：</sys:String>
+    <sys:String x:Key="LOCSearchResolutionAnyLabel">任何 </sys:String>
     <sys:String x:Key="LOCZoomLabel">放大</sys:String>
     <sys:String x:Key="LOCListViewLabel">列表视图</sys:String>
     <sys:String x:Key="LOCCoversLabel">封面</sys:String>
@@ -186,7 +187,7 @@
     <sys:String x:Key="LOCColumns">列</sys:String>
     <sys:String x:Key="LOCRow">行</sys:String>
     <sys:String x:Key="LOCRows">行</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">如果启动操作缺失或设置为链接，则无法获取图标</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">无法通过游玩操作获取图标。不存在文件类型的操作。</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">仅下载缺失的资料数据</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">启用该选项会跳过已经含有信息的数据字段的资料数据下载。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">游戏选择</sys:String>
@@ -301,7 +302,6 @@
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">在筛选面板和资源管理面板上只显示分配的字段</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">禁用硬件加速</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">遇到卡顿或类似的用户界面问题时使用</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">禁用DPI缩放</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">在快速启动列表中显示隐藏游戏</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">影响任务栏右键菜单和托盘图标菜单。</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">快速启动列表中项目数量</sys:String>
@@ -429,14 +429,16 @@
  
 注意，您可以随时通过点击在主菜单中的“Playnite”按钮手动添加来自任何平台的任何游戏。</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">游戏库整合</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">自动从以下服务导入游戏。以后的任何更改（安装状态）将在Playnite启动时自动更新或手动触发。选定的设置将影响初始和所有后续的导入。</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">以下是一些Playnite支持集成库的列表。 请选择要安装的。
+
+稍后可以从“插件”菜单中安装更多的集成。</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">配置完成</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初始设置已经完成。稍后你可以在“设置”菜单中修改所有设置。
 
 稍后你也可以通过单击Playnite标志菜单添加其他游戏。</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">一个或多个扩展下载失败。
 
-你可以尝试在第一次运行向导完成后从附加组件菜单中重新下载集成。</sys:String>
+你可以尝试在第一次运行向导完成后从插件菜单中重新下载集成。</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">正在下载{0}集成…</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">配置平台和模拟器</sys:String>
@@ -499,6 +501,9 @@
     <sys:String x:Key="LOCGameTagsTitle">标签</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">发行商</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">安装状态</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">匹配所有筛选器</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">如果启用该选项，只有满足所有筛选项的游戏将被包含在视图中。
+如果禁用该选项，只要满足任意筛选项，游戏就将被包含在视图中。</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安装</sys:String>
@@ -555,6 +560,7 @@
 
 您可以尝试这些方法来解决问题：
   • 检查所有文件是否已正确安装，重新安装可能会有所帮助
+  • 如果您使用的是 Windows 7 或 8 请安装 Visual Studio C++ 2019 redistributables
   • 检查杀毒软件是否屏蔽了Playnite目录中的任何文件
   • 尝试安装在其他位置（路径不要出现中文）</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">未能导入模拟器，因为定义文件缺失或损坏。</sys:String>
@@ -567,6 +573,7 @@
     <sys:String x:Key="LOCAddLinkButton">添加链接</sys:String>
     <sys:String x:Key="LOCAddRom">添加ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">保存更改</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">将字段更改应用于正在编辑的游戏。</sys:String>
     <sys:String x:Key="LOCPlayAction">启动选项</sys:String>
     <sys:String x:Key="LOCAddPlayAction">添加启动选项</sys:String>
     <sys:String x:Key="LOCAddAction">添加操作</sys:String>
@@ -580,6 +587,7 @@
     <sys:String x:Key="LOCOpenPlaynite">打开Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">配置文件设置</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">游戏名称不能为空</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">游戏操作跟踪目录不能为空。</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">搜索资料数据前，游戏名称不能为空</sys:String>
     <sys:String x:Key="LOCInvalidGameData">游戏数据无效</sys:String>
     <sys:String x:Key="LOCURLInputInfo">输入以http：//或https：//开头的有效网址</sys:String>
@@ -655,6 +663,8 @@
     <sys:String x:Key="LOCOther">其他</sys:String>
     <sys:String x:Key="LOCThemes">主题</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">模拟器参数</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">内置参数</sys:String>
+    <sys:String x:Key="LOCCustomArguments">自定义参数</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">其他模拟器参数</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">覆盖模拟器参数</sys:String>
     <sys:String x:Key="LOCIsPlayAction">游玩动作</sys:String>
@@ -680,12 +690,16 @@
     <sys:String x:Key="LOCPreScriptDescription">启动游戏前执行的脚本</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">退出游戏后执行的脚本</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">启动游戏后执行的脚本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">游戏启动前脚本</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">游戏启动后脚本</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">游戏停止脚本</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">执行全局脚本</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全局</sys:String>
     <sys:String x:Key="LOCStatsFiltered">已筛选</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">当前</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">新的</sys:String>
     <sys:String x:Key="LOCTestScript">测试脚本</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">仅显示选中项目。</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">保存为默认</sys:String>
     <sys:String x:Key="LOCFavoriteGame">添加至收藏</sys:String>
@@ -755,13 +769,16 @@
     <sys:String x:Key="LOCGeneralExtensionPackageError">扩展没正确地打包。</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">主题没正确地打包。</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">“{0}”扩展载入失败。</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">无法加载“{0}”扩展，不支持当前的Playnite版本。</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError">“{0}”主题载入失败。</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">扩展载入失败。</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">无法加载“{0}”主题，不支持当前的Playnite版本。</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">扩展载入失败。</sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError">主题载入失败。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">主题/扩展 使用的是不受支持的API版本。</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">安装成功。</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">安装扩展？</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">安装插件？</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">通用</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">“{0}”插件安装失败。</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">安装扩展失败。
 
 {0}</sys:String>
@@ -844,68 +861,68 @@ By {1}
     <sys:String x:Key="LOCItemAlreadyExists">已存在同一个名称的项目。</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">将选择限制为当前过滤器</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">选择另一个</sys:String>
-    <sys:String x:Key="LOCMenuAddons">附加组件…</sys:String>
+    <sys:String x:Key="LOCMenuAddons">插件…</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">已安装</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">扩展设置</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">浏览</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">更新</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">更新{0}</sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo">对已安装的扩展和主题的管理，包括它们的设置，已被移到一个新的 &quot;附加组件 &quot;菜单。</sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">对已安装的扩展和主题的管理，包括它们的设置，已被移到一个新的 &quot;插件 &quot;菜单。</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">可以在此处配置所有当前安装的库集成扩展。
-如果要安装或卸载其他集成，请使用主菜单中的“附加组件”选项。
+如果要安装或卸载其他集成，请使用主菜单中的“插件”选项。
 
 </sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">桌面模式主题</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">全屏模式主题</sys:String>
     <sys:String x:Key="LOCAddonsSearching">正在搜索...</sys:String>
-    <sys:String x:Key="LOCAddonErrorNotCompatible">附加组件与此版本Playnite不兼容。</sys:String>
-    <sys:String x:Key="LOCAddonErrorDownloadFailed">无法下载附加组件安装包。</sys:String>
-    <sys:String x:Key="LOCAddonErrorManifestDownloadError">无法下载附加组件安装清单。</sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible">插件与此版本Playnite不兼容。</sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed">无法下载插件安装包。</sys:String>
+    <sys:String x:Key="LOCAddonErrorManifestDownloadError">无法下载插件安装清单。</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart">更改需在应用重启后才会生效。</sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
-    <sys:String x:Key="LOCAddonInstall"></sys:String>
-    <sys:String x:Key="LOCAddonUninstall"></sys:String>
-    <sys:String x:Key="LOCAddonAlreadyInstalled"></sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
-    <sys:String x:Key="LOCAddonChangelogNotAvailavble"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusFailed"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
-    <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
-    <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
-    <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
-    <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
-    <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
-    <sys:String x:Key="LOCAddonLicenseWindowTitle"></sys:String>
-    <sys:String x:Key="LOCLicenseAccept"></sys:String>
-    <sys:String x:Key="LOCLicenseDecline"></sys:String>
-    <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
-    <sys:String x:Key="LOCSelectActionTitle"></sys:String>
-    <sys:String x:Key="LOCActionTrackingMode"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeScript"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
-    <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">该插件已被计划安装。</sys:String>
+    <sys:String x:Key="LOCAddonInstall">安装</sys:String>
+    <sys:String x:Key="LOCAddonUninstall">卸载</sys:String>
+    <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">未发现新的插件更新。</sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">更新插件</sys:String>
+    <sys:String x:Key="LOCAddonChangelogNotAvailavble">更新日志不可用</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">计划安装</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusFailed">下载失败</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">许可证被拒绝</sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon">正在下载{0}…</sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">寻找插件更新</sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable">有一个或多个插件更新可用。</sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate">选择项目以更新</sys:String>
+    <sys:String x:Key="LOCAddonDevReferenceLoaded">扩展开发实例</sys:String>
+    <sys:String x:Key="LOCAddonLicenseWindowTitle">{0}许可协议</sys:String>
+    <sys:String x:Key="LOCLicenseAccept">接受</sys:String>
+    <sys:String x:Key="LOCLicenseDecline">拒绝</sys:String>
+    <sys:String x:Key="LOCIncludePluginGameActions">包括库集成游戏操作</sys:String>
+    <sys:String x:Key="LOCSelectActionTitle">选择操作</sys:String>
+    <sys:String x:Key="LOCActionTrackingMode">跟踪模式</sys:String>
+    <sys:String x:Key="LOCGameActionTypeLink">链接</sys:String>
+    <sys:String x:Key="LOCGameActionTypeFile">文件</sys:String>
+    <sys:String x:Key="LOCGameActionTypeEmulator">模拟器</sys:String>
+    <sys:String x:Key="LOCGameActionTypeScript">脚本</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDefault">默认</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeProcess">进程</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDirectory">文件夹</sys:String>
+    <sys:String x:Key="LOCDevelTraceLogEnable">记录跟踪消息</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">接下来的变更将覆盖所有选中游戏的数据！</sys:String>    
-    <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeUniform"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
-    <sys:String x:Key="LOCGridViewScrollAmountModifier"></sys:String>
-    <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
-    <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
-    <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGroupingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelSortingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem"></sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
-    <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeNone">无</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeUniform">统一</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">仅限物品</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">仅开始和结束</sys:String>
+    <sys:String x:Key="LOCGridViewScrollAmountModifier">滚动量修饰符</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemTitle">删除项目？</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemMessage">你确定要删除这个项目吗？</sys:String>    
+    <sys:String x:Key="LOCSettingsTopPanelItems">在顶部面板上显示按钮：</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">通用视图设置</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">分组设置</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">排序设置</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">筛选器预设</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">插件项目位置</sys:String>
+    <sys:String x:Key="LOCTopPanelSeparatorWidth">分区条宽度</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">将主菜单按钮移动到侧边栏</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">资源管理面板</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">随机游戏拾取器</sys:String>
@@ -945,7 +962,7 @@ By {1}
     <sys:String x:Key="LOCGameIsStarting">{0}正在启动…
 </sys:String>
     <sys:String x:Key="LOCGameIsRunning">{0}正在运行…</sys:String>
-    <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
+    <sys:String x:Key="LOCTextInputCapitalize">Caps</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode">图像渲染缩放器</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">备选</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced">均衡</sys:String>
@@ -973,30 +990,55 @@ By {1}
     <sys:String x:Key="LOCPlatformSpec">平台格式</sys:String>
     <sys:String x:Key="LOCRegionSpec">地区格式</sys:String>
     <sys:String x:Key="LOCEmulatorPreScriptDescription">启动模拟器前执行</sys:String>
-    <sys:String x:Key="LOCEmulatorPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCEmulatorStartedScriptDescription"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound"></sys:String>
-    <sys:String x:Key="LOCSplitEmuImportSplitGames"></sys:String>
-    <sys:String x:Key="LOCSplitEmuImportMergeGames"></sys:String>
-    <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
-    <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
-    <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
-    <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
-    <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
-    <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
-    <sys:String x:Key="LOCEmuImportProfilesToImportHeader"></sys:String>
-    <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuAddScanner"></sys:String>
-    <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
-    <sys:String x:Key="LOCStartScan"></sys:String>
-    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCEmulatorPostScriptDescription">启动模拟器后执行</sys:String>
+    <sys:String x:Key="LOCEmulatorStartedScriptDescription">退出模拟器后执行</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound">找不到模拟器可执行文件。</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound">找不到模拟器规范。</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound">找不到模拟器启动脚本。</sys:String>
+    <sys:String x:Key="LOCSplitEmuImportSplitGames">拆分为单独的游戏</sys:String>
+    <sys:String x:Key="LOCSplitEmuImportMergeGames">合并为一个游戏
+</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignPlatform">设定平台</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignRegion">设定区域</sys:String>
+    <sys:String x:Key="LOCEmuScanDirectory">扫描文件夹</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">扫描配置</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">从校验和扫描中排除模式
+
+</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">匹配指定模式的文件不会被扫描校验，而是通过文件名进行匹配。更多信息请参见模拟器帮助页面</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">通过模拟器扫描</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">在保存新配置时必须设置名称。</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">未设置模拟器或模拟器配置文件。</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">未指定要扫描的目录或该目录不存在。</sys:String>
+    <sys:String x:Key="LOCScanConfigError">扫描配置设置不正确。</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">包含在批量扫描自动扫描中</sys:String>    
+    <sys:String x:Key="LOCEmulatorScanFailed">无法扫描模拟器文件夹。</sys:String>
+    <sys:String x:Key="LOCEmulatedGameScanFailed">无法扫描模拟游戏文件夹。</sys:String>
+    <sys:String x:Key="LOCEmuScanHideImported">隐藏已导入内容</sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">要导入的配置文件：</sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations">自动扫描配置</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">保存为自动扫描配置</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">保存配置以便以后在库更新时使用。保存的配置可以通过 &quot;配置模拟器 &quot;菜单管理。</sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">添加扫描器</sys:String>
+    <sys:String x:Key="LOCEmuAddSavedScanner">添加已保存的扫描器</sys:String>
+    <sys:String x:Key="LOCStartScan">开始扫描</sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">使用模拟器添加扫描配置以扫描特定文件夹。确保在导入游戏之前正确配置了模拟器（通过库 -&gt; 配置模拟器菜单）。</sys:String>
+    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">分配给新添加游戏的默认状态</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">分配给首次玩游戏的状态</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">初始化PowerShell脚本运行时失败。如果你是Windows 7用户，尝试（重新）安装PowerShell 5.1以解决这个问题。</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">具有指定名称的过滤器预设已存在。是否使用新设置更新预设？</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">已检测到Nahimic服务正在您的系统上运行。此服务会导致Playnite（和其它应用程序）出现渲染问题。
+如果您在Playnite中遇到任何图形损坏或其它渲染问题，我们建议完全禁用或卸载Nahimic服务。
+更多信息请访问https://playnite.link/nahimicsucks。</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">当Playnite以权限提升模式运行时显示警告</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下插件已因潜在问题而被报道，例如严重影响稳定性/性能或安全问题。我们强烈建议您卸载它们：
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">扫描时排除在线文件</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">云端存储的文件如果本地不可用将不能被扫描和导入。
+仅支持：Google Drive、DropBox、OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">只使用简单方法扫描，而不检测文件内容</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">将使用更不准确的方法导入文件，该方法不需要下载文件内容并本地展示</sys:String>
 </ResourceDictionary>

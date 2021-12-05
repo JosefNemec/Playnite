@@ -53,7 +53,6 @@ namespace Playnite.DesktopApp.Controls
                 mainModel = model;
                 InitializeItems();
                 Opened += MainMenu_Opened;
-                Closed += MainMenu_Closed;
             }
 
             Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
@@ -100,7 +99,7 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(addGameItem.Items, "LOCMenuAddGameManual", mainModel.AddCustomGameCommand);
             AddMenuChild(addGameItem.Items, "LOCMenuAddGameInstalled", mainModel.AddInstalledGamesCommand);
             AddMenuChild(addGameItem.Items, "LOCMenuAddGameEmulated", mainModel.AddEmulatedGamesCommand);
-            if (Computer.WindowsVersion == WindowsVersion.Win10)
+            if (Computer.WindowsVersion == WindowsVersion.Win10 || Computer.WindowsVersion == WindowsVersion.Win11)
             {
                 AddMenuChild(addGameItem.Items, "LOCMenuAddWindowsStore", mainModel.AddWindowsStoreGamesCommand);
             }
@@ -213,13 +212,9 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(Items, "LOCExitAppLabel", mainModel.ShutdownCommand, null, "ExitIcon");
         }
 
-        private void MainMenu_Closed(object sender, RoutedEventArgs e)
-        {
-            ClearExtensionItems();
-        }
-
         private void MainMenu_Opened(object sender, RoutedEventArgs e)
         {
+            ClearExtensionItems();
             AddExtensionItems();
             AddToolsItems();
             AddSidebarViewItems();
@@ -307,7 +302,8 @@ namespace Playnite.DesktopApp.Controls
         private void AddExtensionItems()
         {
             extensionsItem.Items.Clear();
-            AddMenuChild(extensionsItem.Items, "LOCReloadScripts", mainModel.ReloadScriptsCommand);
+            AddMenuChild(extensionsItem.Items, LOC.ReloadScripts, mainModel.ReloadScriptsCommand);
+            AddMenuChild(extensionsItem.Items, LOC.StartInteractivePowerShell, mainModel.StartInteractivePowerShellCommand);
             extensionsItem.Items.Add(new Separator());
             var args = new GetMainMenuItemsArgs();
             var toAdd = new List<MainMenuItem>();

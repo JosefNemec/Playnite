@@ -76,5 +76,10 @@ namespace Playnite.Services
         {
             return ExecuteGetRequest<List<AddonManifest>>($"/addons?addonId={addonId}".UrlEncode()).FirstOrDefault();
         }
+
+        public string[] GetAddonBlacklist()
+        {
+            return ExecuteGetRequest<string[]>("/addons/blacklist") ?? new string[0];
+        }
     }
 }

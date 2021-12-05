@@ -45,8 +45,8 @@
   items:
     - name: Introduction
       href: themes/introduction.md
-    - name: Using designer
-      href: themes/usingDesigner.md
+    - name: Using Blend
+      href: themes/usingBlend.md
     - name: Manual editing
       href: themes/manualEditing.md
     - name: Distribution and updates

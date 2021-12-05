@@ -71,7 +71,7 @@ namespace Playnite
         public List<ComputerScreen> AvailableScreens => Computer.GetScreens();
 
         [JsonIgnore]
-        public List<ThemeManifest> AvailableThemes => ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen);
+        public List<ThemeManifest> AvailableThemes => ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
 
         [JsonIgnore]
         public const FullscreenButtonPrompts DefaultButtonPrompts = FullscreenButtonPrompts.Xbox;
@@ -87,8 +87,11 @@ namespace Playnite
 
             set
             {
-                isMusicMuted = value;
-                OnPropertyChanged();
+                if (isMusicMuted != value)
+                {
+                    isMusicMuted = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

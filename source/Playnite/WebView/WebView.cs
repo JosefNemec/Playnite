@@ -19,21 +19,30 @@ namespace Playnite.WebView
         private readonly SynchronizationContext context;
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
         private WebViewWindow window;
+        private readonly string userAgent;
 
         public bool CanExecuteJavascriptInMainFrame => window.Browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 
-        public WebView(int width, int height, bool useCompositionRenderer = false) : this(width, height, Colors.Transparent, useCompositionRenderer)
+        public WebView(int width, int height, bool useCompositionRenderer = false) : this(width, height, Colors.Transparent, "", useCompositionRenderer)
         {
         }
 
-        public WebView(int width, int height, Color background, bool useCompositionRenderer = false)
+        public WebView(int width, int height, Color background, string userAgent, bool useCompositionRenderer = false)
         {
             context = SynchronizationContext.Current;
             window = new WebViewWindow();
             window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;
             window.Browser.TitleChanged += Browser_TitleChanged;
+
+            this.userAgent = userAgent;
+            if (!userAgent.IsNullOrEmpty())
+            {
+                window.Browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
+                window.Browser.RequestHandler = new CustomRequestHandler(userAgent);
+            }
+
             if (useCompositionRenderer)
             {
                 window.Browser.RenderHandler = new CompositionTargetRenderHandler(window.Browser, window.Browser.DpiScaleFactor, window.Browser.DpiScaleFactor);
@@ -43,6 +52,18 @@ namespace Playnite.WebView
             window.Width = width;
             window.Height = height;
             window.PanelContent.Background = new SolidColorBrush(background);
+        }
+
+        private async void Browser_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((e.NewValue is bool init) && init == true && !userAgent.IsNullOrEmpty())
+            {
+                using (var client = window.Browser.GetDevToolsClient())
+                {
+                    await client.Network.SetUserAgentOverrideAsync(userAgent);
+                    await client.Emulation.SetUserAgentOverrideAsync(userAgent);
+                }
+            }
         }
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)

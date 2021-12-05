@@ -129,6 +129,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetToggleFilter(nameof(FilterSettings.IsUnInstalled), nameof(DatabaseStats.UnInstalled), LOC.GameIsUnInstalledTitle);
             SetToggleFilter(nameof(FilterSettings.Hidden), nameof(DatabaseStats.Hidden), LOC.GameHiddenTitle);
             SetToggleFilter(nameof(FilterSettings.Favorite), nameof(DatabaseStats.Favorite), LOC.GameFavoriteTitle);
+            SetToggleFilterWithTooltip(nameof(FilterSettings.UseAndFilteringStyle), LOC.UseFilterStyleAndTitle, LOC.UseFilterStyleAndTooltip);
 
             SetLabelTag(nameof(FilterSettings.Platform), LOC.PlatformTitle);
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform));
@@ -198,6 +199,20 @@ namespace Playnite.DesktopApp.Controls.Views
 
             SetLabelTag(nameof(FilterSettings.Modified), LOC.DateModifiedLabel);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.Modified), typeof(PastTimeSegment));
+        }
+
+        private void SetToggleFilterWithTooltip(string binding, string text, string tooltip)
+        {
+            var elem = new CheckBox();
+            elem.SetResourceReference(CheckBox.StyleProperty, "FilterPanelCheckBox");
+            BindingTools.SetBinding(elem,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.FilterSettings,
+                binding,
+                BindingMode.TwoWay);
+            elem.Content = ResourceProvider.GetString(text);
+            elem.ToolTip = ResourceProvider.GetString(tooltip);
+            PanelItemsHost.Children.Add(elem);
         }
 
         private void SetToggleFilter(string binding, string countBinding, string text)

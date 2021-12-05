@@ -19,6 +19,21 @@ namespace Playnite.Database
 
         public static bool StringEquals(string x, string y)
         {
+            if (x.IsNullOrEmpty() && y.IsNullOrEmpty())
+            {
+                return true;
+            }
+
+            if (!x.IsNullOrEmpty() && y.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            if (x.IsNullOrEmpty() && !y.IsNullOrEmpty())
+            {
+                return false;
+            }
+
             return string.Equals(
                 regex.Replace(x, ""),
                 regex.Replace(y, ""),

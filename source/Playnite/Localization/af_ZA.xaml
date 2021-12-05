@@ -37,6 +37,7 @@ Alternatiewelik, kan jy op die 'Meld crash aan' knoppie klik om 'n nuwe GitHub k
 Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
     <sys:String x:Key="LOCCrashSaveLog"></sys:String>
@@ -291,7 +292,6 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration"></sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
@@ -473,6 +473,8 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCGameTagsTitle"></sys:String>
     <sys:String x:Key="LOCGamePublishersTitle"></sys:String>
     <sys:String x:Key="LOCGameInstallationStatus"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle"></sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle"></sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle"></sys:String>
@@ -533,6 +535,7 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCAddLinkButton"></sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCPlayAction"></sys:String>
     <sys:String x:Key="LOCAddPlayAction"></sys:String>
     <sys:String x:Key="LOCAddAction"></sys:String>
@@ -546,6 +549,7 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCOpenPlaynite"></sys:String>
     <sys:String x:Key="LOCProfileSettings"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameError"></sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError"></sys:String>
     <sys:String x:Key="LOCInvalidGameData"></sys:String>
     <sys:String x:Key="LOCURLInputInfo"></sys:String>
@@ -621,6 +625,8 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCOther"></sys:String>
     <sys:String x:Key="LOCThemes"></sys:String>
     <sys:String x:Key="LOCEmulatorArguments"></sys:String>
+    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
@@ -646,12 +652,16 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
+    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
     <sys:String x:Key="LOCStatsGlobal"></sys:String>
     <sys:String x:Key="LOCStatsFiltered"></sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
     <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame"></sys:String>
@@ -721,13 +731,16 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
@@ -903,9 +916,15 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
     <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>
-    <sys:String x:Key="LOCEmuNoValidConfigSet"></sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
+    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
@@ -919,4 +938,14 @@ Dankie vir jou hulp.</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
 </ResourceDictionary>

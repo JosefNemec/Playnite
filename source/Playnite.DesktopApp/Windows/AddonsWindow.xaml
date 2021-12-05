@@ -42,35 +42,12 @@
 
         <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}"
                 DockPanel.Dock="Left">
-            <TreeView Width="230" BorderThickness="0">
+            <TreeView MinWidth="250" BorderThickness="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectedItemChanged" >
                         <prism:InvokeCommandAction Command="{Binding SectionChangedChangedCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <TreeViewItem Header="{DynamicResource LOCExtensionsInstalled}" IsExpanded="True">
-                    <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="0" />
-                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="1" />
-                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="2" />
-                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesDesktop}" Tag="3" />
-                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesFullscren}" Tag="4" />
-                </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCExtensionsSettings}" IsExpanded="True">
-                    <TreeViewItem Header="{DynamicResource LOCLibraries}" ItemsSource="{Binding Extensions.LibraryPlugins}"
-                                  DisplayMemberPath="Name" />
-                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" ItemsSource="{Binding Extensions.MetadataPlugins}"
-                                  DisplayMemberPath="Name" />
-                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" ItemsSource="{Binding GenericPlugins}"
-                                  DisplayMemberPath="Description.Name"
-                                  Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                </TreeViewItem>
-                <TreeViewItem Header="{DynamicResource LOCExtensionsBrowse}" IsExpanded="True">
-                    <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="5" />
-                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="6" />
-                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="7" />
-                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesDesktop}" Tag="8" />
-                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesFullscren}" Tag="9"/>
-                </TreeViewItem>
                 <TreeViewItem Tag="10" IsSelected="{Binding IsUpdateSectionSelected, Mode=TwoWay}">
                     <TreeViewItem.Style>
                         <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
@@ -84,6 +61,30 @@
                             </Style.Triggers>
                         </Style>
                     </TreeViewItem.Style>
+                </TreeViewItem>
+                <Separator />
+                <TreeViewItem Header="{DynamicResource LOCExtensionsSettings}" IsExpanded="True">
+                    <TreeViewItem Header="{DynamicResource LOCLibraries}" ItemsSource="{Binding Extensions.LibraryPlugins}"
+                                  DisplayMemberPath="Name" />
+                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" ItemsSource="{Binding Extensions.MetadataPlugins}"
+                                  DisplayMemberPath="Name" />
+                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" ItemsSource="{Binding GenericPlugins}"
+                                  DisplayMemberPath="Description.Name"
+                                  Visibility="{Binding AnyGenericPluginSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </TreeViewItem>
+                <TreeViewItem Header="{DynamicResource LOCExtensionsInstalled}" IsExpanded="True">
+                    <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="0" />
+                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="1" />
+                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="2" />
+                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesDesktop}" Tag="3" />
+                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesFullscren}" Tag="4" />
+                </TreeViewItem>
+                <TreeViewItem Header="{DynamicResource LOCExtensionsBrowse}" IsExpanded="True">
+                    <TreeViewItem Header="{DynamicResource LOCLibraries}" Tag="5" />
+                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" Tag="6" />
+                    <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" Tag="7" />
+                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesDesktop}" Tag="8" />
+                    <TreeViewItem Header="{DynamicResource LOCAddonsThemesFullscren}" Tag="9"/>
                 </TreeViewItem>
             </TreeView>
         </Border>

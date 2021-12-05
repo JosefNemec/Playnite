@@ -25,9 +25,23 @@ using System.Drawing.Imaging;
 using Playnite.SDK.Plugins;
 using System.Collections.ObjectModel;
 using Playnite.Scripting.PowerShell;
+using Playnite.Windows;
+using System.Windows.Input;
 
 namespace Playnite
 {
+    public enum GameScriptType
+    {
+        [Description(LOC.ScriptTypeStarting)]
+        Starting,
+        [Description(LOC.ScriptTypeStarted)]
+        Started,
+        [Description(LOC.ScriptTypeExit)]
+        Exit,
+        [Description("")]
+        None
+    }
+
     public class ClientShutdownJob
     {
         public Guid PluginId { get; set; }
@@ -38,6 +52,7 @@ namespace Playnite
     public class GamesEditor : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
+        private static bool showedPowerShellError = false;
         private IResourceProvider resources = new ResourceProvider();
         private GameControllerFactory controllers;
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
@@ -181,12 +196,17 @@ namespace Playnite
                 {
                     scriptRuntimes.TryAdd(game.Id, new PowerShellRuntime($"{game.Name} {game.Id} runtime"));
                 }
-                catch (Exception e)// when (!PlayniteEnvironment.ThrowAllErrors)
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
                     // This should really only happen on Windows 7 without PS 5.1 installed, which is very small percentage of users.
                     // It should not prevent game startup.
                     logger.Error(e, "Failed to create PowerShell runtime.");
-                    Dialogs.ShowErrorMessage(resources.GetString(LOC.PowerShellCreationError) + "\n\n" + e.Message, "");
+                    if (!showedPowerShellError)
+                    {
+                        Dialogs.ShowErrorMessage(resources.GetString(LOC.PowerShellCreationError) + "\n\n" + e.Message, "");
+                        showedPowerShellError = true;
+                    }
+
                     scriptRuntimes.TryAdd(game.Id, new DummyPowerShellRuntime());
                 }
 
@@ -233,7 +253,15 @@ namespace Playnite
                 controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
-                controllers.InvokeOnStarting(this, new SDK.Events.OnGameStartingEventArgs { Game = game.GetClone() });
+
+                var startingArgs = new SDK.Events.OnGameStartingEventArgs
+                {
+                    Game = game.GetClone(),
+                    SourceAction = (playAction as GameAction)?.GetClone(),
+                    SelectedRomFile = (playAction as EmulationPlayAction)?.SelectedRomPath
+                };
+
+                controllers.InvokeOnStarting(this, startingArgs);
 
                 if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
                 {
@@ -242,14 +270,20 @@ namespace Playnite
                     shutdownJobs.TryRemove(game.PluginId, out var _);
                 }
 
-                if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true))
+                var scriptVars = new Dictionary<string, object>
+                {
+                    {  "SourceAction", startingArgs.SourceAction },
+                    {  "SelectedRomFile", startingArgs.SelectedRomFile }
+                };
+
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
                 {
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                     return;
                 }
 
-                if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false))
+                if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false, GameScriptType.Starting, scriptVars))
                 {
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
@@ -268,7 +302,7 @@ namespace Playnite
                     }
                     else if (playAction is GameAction act)
                     {
-                        genCtrl.Start(act);
+                        genCtrl.Start(act, true);
                     }
                     else
                     {
@@ -365,22 +399,7 @@ namespace Playnite
                 }
 
                 installDirectory = game.ExpandVariables(installDirectory);
-                if (AppSettings.DirectoryOpenCommand.IsNullOrWhiteSpace())
-                {
-                    Process.Start(installDirectory);
-                }
-                else
-                {
-                    try
-                    {
-                        ProcessStarter.ShellExecute(AppSettings.DirectoryOpenCommand.Replace("{Dir}", installDirectory));
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Error(e, "Failed to open directory using custom command.");
-                        Process.Start(installDirectory);
-                    }
-                }
+                Commands.GlobalCommands.NavigateDirectoryCommand.Execute(installDirectory);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -861,8 +880,12 @@ namespace Playnite
             ulong ellapsedTime = 0;
             if (gameStartups.TryRemove(game.Id, out var startupTime))
             {
-                ellapsedTime = Convert.ToUInt64((DateTime.Now - startupTime).TotalSeconds);
-                dbGame.Playtime += ellapsedTime;
+                // This shouldn't be a problem, but there was one crash report with startup type being more recent
+                if (startupTime < DateTime.Now)
+                {
+                    ellapsedTime = Convert.ToUInt64((DateTime.Now - startupTime).TotalSeconds);
+                    dbGame.Playtime += ellapsedTime;
+                }
             }
 
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
@@ -931,8 +954,14 @@ namespace Playnite
             UpdateGameState(game.Id, null, true, null, null, false);
             gameStartups.TryAdd(game.Id, DateTime.Now);
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.GameStartedScript, game, game.UseGlobalGameStartedScript, true);
+            var scriptVars = new Dictionary<string, object>
+            {
+                {  "SourceAction", (args.Source as GenericPlayController)?.SourceGameAction?.GetClone() },
+                {  "SelectedRomFile", (args.Source as GenericPlayController)?.SelectedRomPath }
+            };
+
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false, GameScriptType.Started, scriptVars);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.GameStartedScript, game, game.UseGlobalGameStartedScript, true, GameScriptType.Started, scriptVars);
 
             if (Application.Mode == ApplicationMode.Desktop)
             {
@@ -947,14 +976,19 @@ namespace Playnite
             }
             else
             {
+                if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
+                {
+                    Application.Quit();
+                    return;
+                }
+
+                AppSettings.Fullscreen.IsMusicMuted = true;
                 if (AppSettings.Fullscreen.MinimizeAfterGameStartup)
                 {
                     Application.Minimize();
                 }
-                else if (AppSettings.AfterLaunch == AfterLaunchOptions.Close)
-                {
-                    Application.Quit();
-                }
+
+                PlayniteApplication.Current.IsActive = false;
             }
 
             if (AppSettings.DiscordPresenceEnabled)
@@ -985,6 +1019,7 @@ namespace Playnite
             else
             {
                 Application.Restore();
+                AppSettings.Fullscreen.IsMusicMuted = false;
             }
 
             if (AppSettings.DiscordPresenceEnabled)
@@ -992,8 +1027,8 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true);
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit);
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
                 runtime.Dispose();
@@ -1004,6 +1039,10 @@ namespace Playnite
                 if (args.SessionLength <= AppSettings.ClientAutoShutdown.MinimalSessionTime)
                 {
                     logger.Debug("Game session was too short for client to be shutdown.");
+                }
+                else if (Database.Games.Any(x => x.IsRunning && x.PluginId == game.PluginId))
+                {
+                    logger.Debug("Shutdown process canceled because another game from library was detected as running.");
                 }
                 else
                 {
@@ -1099,7 +1138,14 @@ namespace Playnite
             controllers.RemoveController(args.Source);
         }
 
-        public bool ExecuteScriptAction(IPowerShellRuntime runtime, string script, Game game, bool execute, bool global)
+        public bool ExecuteScriptAction(
+            IPowerShellRuntime runtime,
+            string script,
+            Game game,
+            bool execute,
+            bool global,
+            GameScriptType type,
+            Dictionary<string, object> vars = null)
         {
             if (!execute || script.IsNullOrWhiteSpace())
             {
@@ -1124,6 +1170,7 @@ namespace Playnite
                     {  "Game", game.GetClone() }
                 };
 
+                vars?.ForEach(a => scriptVars.AddOrUpdate(a.Key, a.Value));
                 var expandedScript = game.ExpandVariables(script);
                 var dir = game.ExpandVariables(game.InstallDirectory, true);
                 if (!dir.IsNullOrEmpty() && Directory.Exists(dir))
@@ -1141,8 +1188,14 @@ namespace Playnite
             {
                 logger.Error(exc, global ? "Failed to execute global script." : "Failed to execute game script.");
                 logger.Debug(script);
+                var message = type.GetDescription() + Environment.NewLine + exc.Message;
+                if (exc is ScriptRuntimeException scriptExc)
+                {
+                    message = message + Environment.NewLine + Environment.NewLine + scriptExc.ScriptStackTrace;
+                }
+
                 Dialogs.ShowMessage(
-                    exc.Message,
+                    message,
                     resources.GetString(global ? LOC.ErrorGlobalScriptAction : LOC.ErrorGameScriptAction),
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);

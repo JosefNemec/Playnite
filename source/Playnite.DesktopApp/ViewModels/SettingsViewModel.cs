@@ -77,11 +77,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
 
-        public bool ShowDpiSettings
-        {
-            get => Computer.WindowsVersion != WindowsVersion.Win10;
-        }
-
         public List<LoadedPlugin> GenericPlugins
         {
             get; private set;
@@ -89,7 +84,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<ThemeManifest> AvailableThemes
         {
-            get => ThemeManager.GetAvailableThemes(ApplicationMode.Desktop);
+            get => ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
         }
 
         public List<PlayniteLanguage> AvailableLanguages
@@ -516,7 +511,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var expanded = game.ExpandVariables(script);
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true);
+                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true, GameScriptType.None);
                 }
             }
             catch (Exception exc)

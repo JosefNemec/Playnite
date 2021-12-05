@@ -16,9 +16,6 @@ namespace Playnite.Emulators
         [DatProperty("name")]
         public string Name { get; set; }
 
-        [DatProperty("origin")]
-        public string Origin { get; set; }
-
         [DatProperty("region")]
         public string Region { get; set; }
 
@@ -33,22 +30,32 @@ namespace Playnite.Emulators
         [DatProperty("rom.crc")]
         public string RomCrc { get; set; }
 
-        //[DatProperty("rom.md5")]
-        //public string RomMd5 { get; set; }
-
-        //[DatProperty("rom.sha1")]
-        //public string RomSha1 { get; set; }
+        [DatProperty("rom.name")]
+        public string RomName { get; set; }
 
         [YamlIgnore]
         [SQLiteColumn(Ignore = true)]
         [DatProperty("rom.serial")]
         public string RomSerial { get; set; }
 
-        [DatProperty("rom.name")]
-        public string RomName { get; set; }
+        [YamlIgnore]
+        [SQLiteColumn(Ignore = true)]
+        [DatProperty("origin")]
+        public string Origin { get; set; }
+
+        [YamlIgnore]
+        [SQLiteColumn(Ignore = true)]
+        [DatProperty("comment")]
+        public string Comment { get; set; }
 
         //[DatProperty("rom.size")]
         //public long RomSize { get; set; }
+
+        //[DatProperty("rom.md5")]
+        //public string RomMd5 { get; set; }
+
+        //[DatProperty("rom.sha1")]
+        //public string RomSha1 { get; set; }
 
         [YamlIgnore]
         [SQLiteColumn(Ignore = true)]
@@ -66,9 +73,9 @@ namespace Playnite.Emulators
                 target.Name = Name;
             }
 
-            if (!Origin.IsNullOrEmpty() && target.Origin.IsNullOrEmpty())
+            if (!Origin.IsNullOrEmpty() && Region.IsNullOrEmpty() && target.Region.IsNullOrEmpty())
             {
-                target.Origin = Origin;
+                target.Region = Origin;
             }
 
             if (!Region.IsNullOrEmpty() && target.Region.IsNullOrEmpty())
@@ -89,6 +96,24 @@ namespace Playnite.Emulators
             if (!Serial.IsNullOrEmpty() && target.Serial.IsNullOrEmpty())
             {
                 target.Serial = Serial;
+            }
+        }
+
+        public void FixData()
+        {
+            if (Serial.IsNullOrEmpty() && !RomSerial.IsNullOrEmpty())
+            {
+                Serial = RomSerial;
+            }
+
+            if (Region.IsNullOrEmpty() && !Origin.IsNullOrEmpty())
+            {
+                Region = Origin;
+            }
+
+            if (Name.IsNullOrEmpty() && !Comment.IsNullOrEmpty())
+            {
+                Name = Comment;
             }
         }
     }

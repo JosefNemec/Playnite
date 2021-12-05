@@ -3,7 +3,7 @@
 Basics
 ---------------------
 
-This method is generally not recommended and we recommend using [Blend](usingDesigner.md) instead. However for smaller changes this is a usable method.
+This method is generally not recommended and we recommend using [Blend](usingBlend.md) instead. However for smaller changes this is a usable method.
 
 Creating theme
 ---------------------
