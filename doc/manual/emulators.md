@@ -1,7 +1,25 @@
 Emulator support
 =====================
 
-Introduction
+General import guide
+---------------------
+
+General workflow for importing games is:
+
+- Setup an emulator via Library -> Configure Emulators menu.
+  - Playnite can automatically import several well known emulators and will set all emulator properties for you. To import an emulator use `Import` button on configuration window.
+  - See [Emulator support](#emulator-configuration) section for more details about emulator setup.  
+- Import game image(s) (ROMs) via Add Game -> Emulated Game menu.
+  - See [Game import support](#game-import-support) section for more details.  
+  - If you want the same directory to be re-scanned on startup (or manually) enable "Save as auto-scan" option. You can later edit saved scanner from emulator configuration window, "Auto-scan configuration" tab.
+
+> [!NOTE]
+> It's highly recommended to use automatically imported emulators and built-in profiles for better game import experience. Some built-in emulators (for example RPCS3 and ScummVM) use more advanced import mechanism then just matching file names and you won't be able to utilize it with custom profiles.
+
+> [!NOTE]
+> Playnite currently doesn't have built-in support for any arcade emulator. You will have to configure those manually. Built-in support for more well known arcade emulators will be added [in future](https://github.com/JosefNemec/Playnite/issues/2407). If you are having issues with non-arcade emulators, please open GitHub issue (games not being imported or launched properly).
+
+Emulator support
 ---------------------
 
 Playnite has a support for handling and importing of emulated games. The support is implemented in two ways:
@@ -12,8 +30,39 @@ If you think that there's an emulator that should be added to built-in list, ple
 
 `Custom support`: You can manually configure any emulator that provides a way of launching specific games via command line arguments. Automatic game import might not be as accurate as in case of built-in profiles, since custom emulators only provide scanning based on a file name and file extension.
 
+Game import support
+---------------------
+
+To import a game you need configure a scanner first. How games are imported is controller by an emulator and its selected profile. Built-in emulators/profiles use several different method how to detect a game.
+
+Custom profiles primarily match games by specified file extensions. If you want to increase accuracy of the import, make sure you also assign correct platforms to the profile and that those platforms have [platform specification](libraryManager.md#platform-specification) assigned to them.
+
+Playnite by default groups multi-disc games under one game entry. You can alternatively split or merge these via right-click menu after selecting games on import list. Right-click menu also gives you an ability to change platform and region in bulk.
+
+Auto-scan configurations
+---------------------
+
+Scanner configurations can be used to automatically add new games during library import via `Update Game Library` menu. Specific configurations can be excluded from global library update on scanner configurations screen via `Library -> Configure Emulators` menu.
+
+### Exclude patterns
+
+These specify file patterns used during checksum scan. When a file matches specified pattern(s), its checksum won't be calculated and game will be imported based on other ROM properties (mainly file name). This can significantly speed up scanning process but also make import less accurate.
+
+Multiple patterns can be specified by separating the list with comma, for example: `*.chd,*.iso`
+
 > [!NOTE]
-> Playnite currently doesn't have built-in support for any arcade emulator. You will have to configure those manually. Built-in support for more well known arcade emulators will be added [in future](https://github.com/JosefNemec/Playnite/issues/2407). Also please open issue if built-in support for a specific emulator doesn't work as expected (games not being imported or launched properly).
+> `chd` files are excluded by default because there are currently no records for them in emulation database Playnite uses for game matching.
+
+### Exclude online files
+
+Enabling this option will skip scan of files that are stored on cloud storage paths and are not currently downloaded, to prevent files from being downloaded during scanning process. Currently supported platforms are: Google Drive, DropBox and OneDrive.
+
+Launching games
+---------------------
+
+If a game is imported via emulation import dialog, Playnite configures game launch via specific emulator (the one used to scan and import games) automatically. If you add a game manually, you can configure launch via an emulator by adding Emulator type [Play action](gameActions.md).
+
+If a game has multiple ROM files assigned to it (on `Installation` tab while editing a game), Playnite will show selection during during game's startup, to specify which ROM should be passed to an emulator.
 
 Emulator configuration
 ---------------------
@@ -47,8 +96,8 @@ If your profile contains `Startup script` code, Playnite will use that instead o
 
 | Variable | Description |
 | :-- | :-- |
-| Emulator | Emulator selected to launch a game. |
-| EmulatorProfile | Emulator profile selected to launch a game. |
+| Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
+| EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
 | RomPath | ROM path selected to launch. |
 
 ### Custom profile example
@@ -62,40 +111,14 @@ Following example show how to configure `snex9x` emulator:
 > [!NOTE]
 > A lot of arcade emulators require ROM file to be passed via command line argument as a file name without complete path or file name without an extension. In that case you can use `{ImageName}` or `{ImageNameNoExt}` [game variables](gameVariables.md), instead of {ImagePath} which contains full path to a ROM file.
 
-Game import support
----------------------
-
-To import a game you need configure a scanner first. How games are imported is controller by an emulator and its selected profile. Built-in emulators/profiles use several different method how to detect a game.
-
-Custom profiles primarily match games by specified file extensions. If you want to increase accuracy of the import, make sure you also assign correct platforms to the profile and that those platforms have [platform specification](libraryManager.md#platform-specification) assigned to them.
-
-Playnite by default groups multi-disc games under one game entry. You can alternatively split or merge these via right-click menu after selecting games on import list. Right-click menu also gives you an ability to change platform and region in bulk.
-
-Auto-scan configurations
----------------------
-
-Scanner configurations can be used to automatically add new games during library import via `Update Game Library` menu. Specific configurations can be excluded from global library update on scanner configurations screen via `Library -> Configure Emulators` menu.
-
-### Exclude patterns
-
-These specify file patterns used during checksum scan. When a file matches specified pattern(s), its checksum won't be calculated and game will be imported based on other ROM properties (mainly file name). This can significantly speed up scanning process but also make import less accurate.
-
-Multiple patterns can be specified by separating the list with comma: `*.chd,*.iso`
-
-> [!NOTE]
-> `chd` files are excluded by default because there are currently no records for them in emulation database Playnite uses for game matching.
-
-Launching games
----------------------
-
-If a game is imported via emulation import dialog, Playnite configures game launch via specific emulator (the one used to scan and import games) automatically. If you add a game manually, you can configure launch via an emulator by adding Emulator type [Play action](gameActions.md).
-
-If a game has multiple ROM files assigned to it (on `Installation` tab while editing a game), Playnite will show selection during during game's startup, to specify which ROM should be passed to an emulator.
-
 Troubleshooting
 ---------------------
 
 If you encounter any issue when using built-in emulator configurations/profiles, please [open new issue on GitHub](https://github.com/JosefNemec/Playnite/issues/) to let us know and we will fix it.
+
+### Emulator doesn't start
+
+Usually occurs when using custom profile if executable path is not properly configured. Make sure that problematic profile points to an existing file.
 
 ### Emulator is not being imported
 

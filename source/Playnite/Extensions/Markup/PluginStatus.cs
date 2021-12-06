@@ -22,10 +22,6 @@ namespace Playnite.Extensions.Markup
 
         public PluginStatus(string path) : base(path)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                return;
-            }
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)

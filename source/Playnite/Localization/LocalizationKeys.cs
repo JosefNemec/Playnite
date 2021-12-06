@@ -110,7 +110,7 @@ namespace Playnite
         /// </summary>
         public const string ExtCrashDescriptionFS = "LOCExtCrashDescriptionFS";
         /// <summary>
-        /// Uknown extension or a theme caused an unrecoverable error.
+        /// Unknown extension or a theme caused an unrecoverable error.
         /// </summary>
         public const string ExtCrashDescriptionUknown = "LOCExtCrashDescriptionUknown";
         /// <summary>
@@ -666,7 +666,7 @@ namespace Playnite
         /// </summary>
         public const string Rows = "LOCRows";
         /// <summary>
-        /// Cannot get icon if Play action is missing or is set to URL.
+        /// Couldn't get icon from Play action. There's no action of File type present.
         /// </summary>
         public const string ExecIconMissingPlayAction = "LOCExecIconMissingPlayAction";
         /// <summary>
@@ -1113,10 +1113,6 @@ namespace Playnite
         /// Use when experiencing stuttering or similar UI issues
         /// </summary>
         public const string SettingsDisableAccelerationTooltip = "LOCSettingsDisableAccelerationTooltip";
-        /// <summary>
-        /// Disable DPI Scaling
-        /// </summary>
-        public const string SettingsDisableDpiAwareness = "LOCSettingsDisableDpiAwareness";
         /// <summary>
         /// Show hidden games in quick launch lists
         /// </summary>
@@ -1822,6 +1818,14 @@ namespace Playnite
         /// </summary>
         public const string GameInstallationStatus = "LOCGameInstallationStatus";
         /// <summary>
+        /// Match all filters
+        /// </summary>
+        public const string UseFilterStyleAndTitle = "LOCUseFilterStyleAndTitle";
+        /// <summary>
+        /// If enabled, only games that use all the items in all the filters will be included in the view.
+        /// </summary>
+        public const string UseFilterStyleAndTooltip = "LOCUseFilterStyleAndTooltip";
+        /// <summary>
         /// Installed
         /// </summary>
         public const string GameIsInstalledTitle = "LOCGameIsInstalledTitle";
@@ -2106,6 +2110,10 @@ namespace Playnite
         /// </summary>
         public const string EmptyGameNameError = "LOCEmptyGameNameError";
         /// <summary>
+        /// Game action tracking directory cannot be empty.
+        /// </summary>
+        public const string EmptyTrackingFolderError = "LOCEmptyTrackingFolderError";
+        /// <summary>
         /// Game name cannot be empty before searching metadata.
         /// </summary>
         public const string EmptyGameNameMetaSearchError = "LOCEmptyGameNameMetaSearchError";
@@ -2249,6 +2257,10 @@ namespace Playnite
         /// Reload Scripts
         /// </summary>
         public const string ReloadScripts = "LOCReloadScripts";
+        /// <summary>
+        /// Interactive SDK PowerShell
+        /// </summary>
+        public const string StartInteractivePowerShell = "LOCStartInteractivePowerShell";
         /// <summary>
         /// All scripts reloaded successfully.
         /// </summary>
@@ -2406,6 +2418,14 @@ namespace Playnite
         /// </summary>
         public const string EmulatorArguments = "LOCEmulatorArguments";
         /// <summary>
+        /// Built-in Arguments
+        /// </summary>
+        public const string BuiltinArguments = "LOCBuiltinArguments";
+        /// <summary>
+        /// Custom Arguments
+        /// </summary>
+        public const string CustomArguments = "LOCCustomArguments";
+        /// <summary>
         /// Additional Emulator Arguments
         /// </summary>
         public const string AdditionalEmulatorArguments = "LOCAdditionalEmulatorArguments";
@@ -2506,6 +2526,18 @@ namespace Playnite
         /// </summary>
         public const string GameStartedScriptDescription = "LOCGameStartedScriptDescription";
         /// <summary>
+        /// Game starting script
+        /// </summary>
+        public const string ScriptTypeStarting = "LOCScriptTypeStarting";
+        /// <summary>
+        /// Game started script
+        /// </summary>
+        public const string ScriptTypeStarted = "LOCScriptTypeStarted";
+        /// <summary>
+        /// Game stopped script
+        /// </summary>
+        public const string ScriptTypeExit = "LOCScriptTypeExit";
+        /// <summary>
         /// Execute global script
         /// </summary>
         public const string ExecuteGlobalScript = "LOCExecuteGlobalScript";
@@ -2529,6 +2561,10 @@ namespace Playnite
         /// Test script
         /// </summary>
         public const string TestScript = "LOCTestScript";
+        /// <summary>
+        /// Show only selected items.
+        /// </summary>
+        public const string OnlyItemsSelectedTooltip = "LOCOnlyItemsSelectedTooltip";
         /// <summary>
         /// Save as default
         /// </summary>
@@ -2838,6 +2874,10 @@ namespace Playnite
         /// </summary>
         public const string ExtensionGeneric = "LOCExtensionGeneric";
         /// <summary>
+        /// Failed to install "{0}" add-on.
+        /// </summary>
+        public const string AddonInstallFaild = "LOCAddonInstallFaild";
+        /// <summary>
         /// Failed to install extension.
         /// </summary>
         public const string ExtensionInstallFail = "LOCExtensionInstallFail";
@@ -3122,7 +3162,7 @@ namespace Playnite
         /// </summary>
         public const string AddonAlreadyInstalled = "LOCAddonAlreadyInstalled";
         /// <summary>
-        /// No add-on updates available.
+        /// No new add-on updates found.
         /// </summary>
         public const string AddonNoAddonsAvailable = "LOCAddonNoAddonsAvailable";
         /// <summary>
@@ -3558,7 +3598,7 @@ namespace Playnite
         /// </summary>
         public const string ScanConfigNoEmulatorError = "LOCScanConfigNoEmulatorError";
         /// <summary>
-        /// Directory to scan is not specified or it doesn't exists.
+        /// Directory to scan is not specified or it doesn't exist.
         /// </summary>
         public const string ScanConfigDirectoryError = "LOCScanConfigDirectoryError";
         /// <summary>
@@ -3622,12 +3662,44 @@ namespace Playnite
         /// </summary>
         public const string CompletionStatusPlayedStatusDesc = "LOCCompletionStatusPlayedStatusDesc";
         /// <summary>
-        /// Failed to initialize PowerShell script runtime.
+        /// Failed to initialize PowerShell script runtime. If you are Windows 7 user, try (re)installing PowerShell 5.1 to fix the issue.
         /// </summary>
         public const string PowerShellCreationError = "LOCPowerShellCreationError";
         /// <summary>
         /// Filter preset with specified name already exists. Update preset with new settings?
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
+        /// <summary>
+        /// Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
+        /// </summary>
+        public const string NahimicServiceWarning = "LOCNahimicServiceWarning";
+        /// <summary>
+        /// Playnite is running with elevated privileges (as an administrator). This is not recommended since it gives elevated privileges to all installed extensions and all games/apps started from Playnite!
+        /// </summary>
+        public const string ElevatedProcessWarning = "LOCElevatedProcessWarning";
+        /// <summary>
+        /// Show warning if Playnite is running with elevated privileges
+        /// </summary>
+        public const string ElevatedProcessWarningShowOption = "LOCElevatedProcessWarningShowOption";
+        /// <summary>
+        /// Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
+        /// </summary>
+        public const string WarningBlacklistedExtensions = "LOCWarningBlacklistedExtensions";
+        /// <summary>
+        /// Exclude online files from scan
+        /// </summary>
+        public const string EmuExcludeOnlineFiles = "LOCEmuExcludeOnlineFiles";
+        /// <summary>
+        /// Files stored on cloud storage won't be scanned and imported if not available locally.
+        /// </summary>
+        public const string EmuExcludeOnlineFilesTooltip = "LOCEmuExcludeOnlineFilesTooltip";
+        /// <summary>
+        /// Scan but using simplified method without file content
+        /// </summary>
+        public const string EmuUseSimplifiedOnlineFileScan = "LOCEmuUseSimplifiedOnlineFileScan";
+        /// <summary>
+        /// Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.
+        /// </summary>
+        public const string EmuUseSimplifiedOnlineFileScanTooltip = "LOCEmuUseSimplifiedOnlineFileScanTooltip";
     }
 }

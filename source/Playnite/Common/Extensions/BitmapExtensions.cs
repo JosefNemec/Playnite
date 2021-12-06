@@ -279,7 +279,15 @@ namespace System.Drawing.Imaging
 
         public static long GetSizeInMemory(this BitmapImage image)
         {
-            return Convert.ToInt64(image.PixelHeight * image.PixelWidth * 4);
+            try
+            {
+                return Convert.ToInt64(image.PixelHeight * image.PixelWidth * 4);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to get image size from bitmap.");
+                return 0;
+            }
         }
 
         public static BitmapImage TgaToBitmap(TGA tga)

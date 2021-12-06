@@ -532,9 +532,19 @@ namespace Playnite.FullscreenApp.ViewModels
             Logger.Info("Switching to Desktop mode.");
             if (GlobalTaskHandler.IsActive)
             {
-                Dialogs.ActivateGlobalProgress(
-                    (_) => GlobalTaskHandler.CancelAndWait(),
-                    new GlobalProgressOptions("LOCOpeningDesktopModeMessage"));
+                var dialogRes = Dialogs.ActivateGlobalProgress((_) =>
+                    {
+                        var waitRes = GlobalTaskHandler.CancelAndWait(30_000);
+                        if (waitRes == false)
+                        {
+                            Logger.Error("Active global task failed to finish in time when switching to desktop mode.");
+                        }
+                    },
+                    new GlobalProgressOptions(LOC.OpeningDesktopModeMessage));
+                if (dialogRes.Error != null)
+                {
+                    Logger.Error(dialogRes.Error, "Cancelling global task when switching to desktop mode failed.");
+                }
             }
 
             CloseView();

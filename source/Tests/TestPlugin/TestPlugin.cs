@@ -60,11 +60,13 @@ namespace TestPlugin
         public override void OnGameStarted(OnGameStartedEventArgs args)
         {
             logger.Info($"TestPluginDev OnGameStarted {args.Game.Name}");
+            logger.Warn(PlayniteApi.ApplicationSettings.CompletionStatus.PlayedStatus.ToString());
         }
 
         public override void OnGameStarting(OnGameStartingEventArgs args)
         {
             logger.Info($"TestPluginDev OnGameStarting {args.Game.Name}");
+            logger.Warn(args.SourceAction?.Name);
         }
 
         public override void OnGameStopped(OnGameStoppedEventArgs args)
@@ -85,7 +87,7 @@ namespace TestPlugin
 
         public override void OnGameSelected(OnGameSelectedEventArgs args)
         {
-            //logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?[0].Name}");
+            logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?.Count}");
         }
 
         private async void CrashTest()
@@ -125,8 +127,24 @@ namespace TestPlugin
                 Description = "serialization test",
                 Action = (_) =>
                 {
-                    var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
-                    PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
+                    var filtered = PlayniteApi.MainView.FilteredGames;
+                    PlayniteApi.MainView.SelectGame(filtered[1].Id);
+
+                    //var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
+                    //PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
+                }
+            };
+            yield return new MainMenuItem
+            {
+                Description = "filtered item test",
+                Action = (_) =>
+                {
+                    var filtered = PlayniteApi.MainView.FilteredGames;
+                    logger.Warn(filtered.Count.ToString());
+                    if (filtered.Count > 2)
+                    {
+                        PlayniteApi.MainView.SelectGames(filtered.Select(a => a.Id).Take(2));
+                    }
                 }
             };
         }
@@ -227,6 +245,7 @@ namespace TestPlugin
         {
             if (args.Name == "TestUserControl")
             {
+                logger.Warn(PlayniteApi.MainView.ActiveDesktopView.ToString());
                 return new TestPluginUserControl(Settings);
             }
 

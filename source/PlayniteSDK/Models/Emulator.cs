@@ -234,6 +234,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool overrideDefaultArgs;
+        /// <summary>
+        /// Gets or sets value indicating whether built-in arguments should be overriden.
+        /// </summary>
+        public bool OverrideDefaultArgs
+        {
+            get => overrideDefaultArgs;
+            set
+            {
+                overrideDefaultArgs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string customArguments;
+        /// <summary>
+        /// Gets or set custom emulator arguments.
+        /// </summary>
+        public string CustomArguments
+        {
+            get => customArguments;
+            set
+            {
+                customArguments = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Creates new instance of <see cref="BuiltInEmulatorProfile"/>.
         /// </summary>
@@ -271,6 +299,16 @@ namespace Playnite.SDK.Models
             }
 
             if (!string.Equals(PreScript, other.PreScript, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (!string.Equals(CustomArguments, other.CustomArguments, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (OverrideDefaultArgs != other.OverrideDefaultArgs)
             {
                 return false;
             }

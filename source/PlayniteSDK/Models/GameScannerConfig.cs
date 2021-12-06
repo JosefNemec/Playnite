@@ -81,6 +81,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool excludeOnlineFiles = false;
+        /// <summary>
+        /// Gets or sets value indicating whether from cloud storage services should be scanned if not downloaded to a device.
+        /// </summary>
+        public bool ExcludeOnlineFiles
+        {
+            get => excludeOnlineFiles;
+            set
+            {
+                excludeOnlineFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool useSimplifiedOnlineFileScan = false;
+        /// <summary>
+        /// Gets or sets value indicating whether online only cloud files should still be scanned without reading a file.
+        /// </summary>
+        public bool UseSimplifiedOnlineFileScan
+        {
+            get => useSimplifiedOnlineFileScan;
+            set
+            {
+                useSimplifiedOnlineFileScan = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -110,6 +138,16 @@ namespace Playnite.SDK.Models
                 if (!CrcExcludeFileTypes.IsListEqual(tro.CrcExcludeFileTypes))
                 {
                     tro.CrcExcludeFileTypes = CrcExcludeFileTypes;
+                }
+
+                if (ExcludeOnlineFiles != tro.ExcludeOnlineFiles)
+                {
+                    tro.ExcludeOnlineFiles = ExcludeOnlineFiles;
+                }
+
+                if (UseSimplifiedOnlineFileScan != tro.UseSimplifiedOnlineFileScan)
+                {
+                    tro.UseSimplifiedOnlineFileScan = UseSimplifiedOnlineFileScan;
                 }
             }
             else

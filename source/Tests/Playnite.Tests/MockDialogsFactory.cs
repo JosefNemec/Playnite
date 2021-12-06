@@ -60,6 +60,11 @@ namespace Playnite.Tests
             return MessageBoxResult.None;
         }
 
+        public System.Windows.MessageBoxResult ShowErrorMessage(string messageBoxText)
+        {
+            return MessageBoxResult.None;
+        }
+
         public System.Windows.MessageBoxResult ShowMessage(string messageBoxText, string caption, System.Windows.MessageBoxButton button, System.Windows.MessageBoxImage icon)
         {
             return MessageBoxResult.None;

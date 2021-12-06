@@ -1,0 +1,9 @@
+Id: xemu
+Name: Xemu
+Website: 'https://xemu.app/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-dvd_path "{ImagePath}" -full-screen'
+    Platforms: [xbox]
+    ImageExtensions: [iso]
+    StartupExecutable: ^xemu\.exe$

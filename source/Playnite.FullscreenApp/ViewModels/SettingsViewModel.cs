@@ -109,7 +109,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (SelectedSectionView == null)
             {
-                if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
+                if (editedFields?.Any(a => typeof(FullscreenSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true)
                 {
                     if (Dialogs.ShowMessage(
                         LOC.SettingsRestartAskMessage, LOC.SettingsRestartTitle,

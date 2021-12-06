@@ -628,7 +628,19 @@ namespace Playnite.DesktopApp.ViewModels
         public override void SelectGame(Guid id)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
-            SelectedGame = viewEntry;
+            if (viewEntry != null)
+            {
+                SelectedGame = viewEntry;
+            }
+        }
+
+        public void SelectGames(IEnumerable<Guid> gameIds)
+        {
+            var entries = GamesView.Items.Where(a => gameIds.Contains(a.Game.Id));
+            if (entries.HasItems())
+            {
+                SelectedGamesBinder = entries.Cast<object>().ToList();
+            }
         }
 
         protected virtual void OnClosing(CancelEventArgs args)
@@ -686,12 +698,22 @@ namespace Playnite.DesktopApp.ViewModels
                         else
                         {
                             // Other file types to be added in #501
-                            if (!(new List<string>() { ".exe", ".lnk" }).Contains(ext))
+                            if (!(new List<string>() { ".exe", ".lnk", ".url" }).Contains(ext))
                             {
                                 return;
                             }
 
-                            var game = GameExtensions.GetGameFromExecutable(path);
+                            Game game = null;
+                            try
+                            {
+                                game = GameExtensions.GetGameFromExecutable(path);
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                Logger.Error(e, "Failed to get game data from file.");
+                                return;
+                            }
+
                             var icoPath = game.Icon;
                             game.Icon = null;
                             if (icoPath.IsNullOrEmpty())
@@ -703,20 +725,9 @@ namespace Playnite.DesktopApp.ViewModels
                                 }
                             }
 
-                            if (icoPath?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
+                            if (!icoPath.IsNullOrEmpty())
                             {
-                                using (var ms = new MemoryStream())
-                                {
-                                    if (IconExtractor.ExtractMainIconFromFile(icoPath, ms))
-                                    {
-                                        var iconName = Guid.NewGuid().ToString() + ".ico";
-                                        game.Icon = Database.AddFile(iconName, ms.ToArray(), game.Id);
-                                    }
-                                }
-                            }
-                            else if (!icoPath.IsNullOrEmpty())
-                            {
-                                game.Icon = Database.AddFile(icoPath, game.Id);
+                                game.Icon = Database.AddFile(icoPath, game.Id, true);
                             }
 
                             Database.Games.Add(game);
@@ -778,9 +789,19 @@ namespace Playnite.DesktopApp.ViewModels
             Logger.Info("Switching to Fullscreen mode.");
             if (GlobalTaskHandler.IsActive)
             {
-                Dialogs.ActivateGlobalProgress(
-                    (_) => GlobalTaskHandler.CancelAndWait(),
-                    new GlobalProgressOptions("LOCOpeningFullscreenModeMessage"));
+                var dialogRes = Dialogs.ActivateGlobalProgress((_) =>
+                    {
+                        var waitRes = GlobalTaskHandler.CancelAndWait(30_000);
+                        if (waitRes == false)
+                        {
+                            Logger.Error("Active global task failed to finish in time when switching to fullscreen mode.");
+                        }
+                    },
+                    new GlobalProgressOptions(LOC.OpeningFullscreenModeMessage));
+                if (dialogRes.Error != null)
+                {
+                    Logger.Error(dialogRes.Error, "Cancelling global task when switching to fullscreen mode failed.");
+                }
             }
 
             CloseView();

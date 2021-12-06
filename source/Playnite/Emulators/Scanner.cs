@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.Database;
+using Playnite.Native;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -144,22 +145,31 @@ namespace Playnite.Emulators
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static readonly string[] supportedArchiveExt = new string[] { "rar", "7z", "zip", "tar", "bzip2", "gzip", "lzip" };
+        private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
+        private readonly GameScannerConfig scanner;
+        private readonly GameDatabase database;
+        private readonly List<string> importedFiles;
 
-        private static bool IsSupportedArchiveExtension(string extension)
-        {
-            return supportedArchiveExt.ContainsString(extension, StringComparison.OrdinalIgnoreCase);
-        }
-
-        public static List<ScannedGame> Scan(
+        public GameScanner(
             GameScannerConfig scanner,
             GameDatabase database,
-            List<string> importedFiles,
+            List<string> importedFiles)
+        {
+            this.scanner = scanner;
+            this.database = database;
+            this.importedFiles = importedFiles;
+        }
+
+        public List<ScannedGame> Scan(
             CancellationToken cancelToken,
-            List<Platform> newPlatforms,
-            List<Region> newRegions,
+            out List<Platform> newPlatforms,
+            out List<Region> newRegions,
             Action<string> fileScanCallback = null)
         {
             List<ScannedGame> games;
+            newPlatforms = new List<Platform>();
+            newRegions = new List<Region>();
+
             var emulator = database.Emulators[scanner.EmulatorId];
             if (emulator == null)
             {
@@ -169,7 +179,7 @@ namespace Playnite.Emulators
             var globalScanConfig = database.GetGameScannersSettings();
             var crcExclusions = string.Join(";",
                 ListExtensions.Merge(globalScanConfig.CrcExcludeFileTypes, scanner.CrcExcludeFileTypes).
-                Select(a => a.ToLower()).ToHashSet());
+                Select(a => a.ToLower().Trim()).ToHashSet());
 
             var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
@@ -180,8 +190,6 @@ namespace Playnite.Emulators
                     scanner.Directory,
                     emulator,
                     customProfile,
-                    database,
-                    importedFiles,
                     cancelToken,
                     crcExclusions,
                     fileScanCallback);
@@ -192,7 +200,6 @@ namespace Playnite.Emulators
                     scanner.Directory,
                     emulator,
                     builtinProfile,
-                    importedFiles,
                     cancelToken,
                     crcExclusions,
                     fileScanCallback);
@@ -321,11 +328,10 @@ namespace Playnite.Emulators
             return games;
         }
 
-        private static List<ScannedGame> ScanDirectory(
+        private List<ScannedGame> ScanDirectory(
             string directory,
             Emulator emulator,
             BuiltInEmulatorProfile profile,
-            List<string> importedFiles,
             CancellationToken cancelToken,
             string crcExludePatterns,
             Action<string> fileScanCallback = null)
@@ -406,19 +412,16 @@ namespace Playnite.Emulators
                     directory,
                     emuProf.ImageExtensions,
                     emuProf.Platforms,
-                    importedFiles,
                     cancelToken,
                     crcExludePatterns,
                     fileScanCallback);
             }
         }
 
-        private static List<ScannedGame> ScanDirectory(
+        private List<ScannedGame> ScanDirectory(
             string directory,
             Emulator emulator,
             CustomEmulatorProfile profile,
-            GameDatabase database,
-            List<string> importedFiles,
             CancellationToken cancelToken,
             string crcExludePatterns,
             Action<string> fileScanCallback = null)
@@ -438,17 +441,15 @@ namespace Playnite.Emulators
                 directory,
                 profile.ImageExtensions,
                 platforms,
-                importedFiles,
                 cancelToken,
                 crcExludePatterns,
                 fileScanCallback);
         }
 
-        private static List<ScannedGame> ScanDirectory(
+        private List<ScannedGame> ScanDirectory(
             string directory,
             List<string> supportedExtensions,
             List<string> scanPlatforms,
-            List<string> importedFiles,
             CancellationToken cancelToken,
             string crcExludePatterns,
             Action<string> fileScanCallback = null)
@@ -468,7 +469,6 @@ namespace Playnite.Emulators
                     directory,
                     supportedExtensions,
                     emuDbs,
-                    importedFiles,
                     resultRoms,
                     cancelToken,
                     crcExludePatterns,
@@ -482,11 +482,10 @@ namespace Playnite.Emulators
             return resultRoms.Select(a => new ScannedGame { Name = a.Key, Roms = a.Value?.ToObservable() }).ToList();
         }
 
-        private static void ScanDirectoryBase(
+        private void ScanDirectoryBase(
             string directory,
             List<string> supportedExtensions,
             List<EmulationDatabase.EmulationDatabaseReader> databases,
-            List<string> importedFiles,
             Dictionary<string, List<ScannedRom>> resultRoms,
             CancellationToken cancelToken,
             string crcExludePatterns,
@@ -540,20 +539,40 @@ namespace Playnite.Emulators
                         }
 
                         Tuple<DatGame, string> romData = null;
-                        foreach (var bin in bins)
+                        foreach (var binFile in bins)
                         {
                             if (cancelToken.IsCancellationRequested)
                             {
                                 return;
                             }
 
-                            fileScanCallback?.Invoke(bin);
+                            fileScanCallback?.Invoke(binFile);
+                            var crcScan = true;
+                            if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(binFile))
+                            {
+                                if (scanner.UseSimplifiedOnlineFileScan)
+                                {
+                                    crcScan = false;
+                                }
+                                else
+                                {
+                                    logger.Trace($"Skipping scan of {binFile} rom, scan of online files is disabled.");
+                                    continue;
+                                }
+                            }
+
+                            if (crcScan && Paths.MathcesFilePattern(binFile, crcExludePatterns))
+                            {
+                                logger.Trace($"Skipping crc check of {binFile}. Excluded by pattern settings.");
+                                crcScan = false;
+                            }
+
                             romData = LookupGameInDb(
-                                bin,
-                                Path.GetExtension(bin).TrimStart('.'),
+                                binFile,
+                                Path.GetExtension(binFile).TrimStart('.'),
                                 supportedExtensions,
                                 databases,
-                                crcExludePatterns);
+                                crcScan);
                             if (romData != null)
                             {
                                 break;
@@ -606,12 +625,32 @@ namespace Playnite.Emulators
                 try
                 {
                     fileScanCallback?.Invoke(file);
+                    var crcScan = true;
+                    if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(file))
+                    {
+                        if (scanner.UseSimplifiedOnlineFileScan)
+                        {
+                            crcScan = false;
+                        }
+                        else
+                        {
+                            logger.Trace($"Skipping scan of {file} rom, scan of online files is disabled.");
+                            continue;
+                        }
+                    }
+
+                    if (crcScan && Paths.MathcesFilePattern(file, crcExludePatterns))
+                    {
+                        logger.Trace($"Skipping crc check of {file}. Excluded by pattern settings.");
+                        crcScan = false;
+                    }
+
                     var romData = LookupGameInDb(
                         file,
                         ext,
                         supportedExtensions,
                         databases,
-                        crcExludePatterns);
+                        crcScan);
                     if (romData != null)
                     {
                         logger.Trace($"Detected rom with db info:{file}\n{romData.Item1}");
@@ -642,7 +681,6 @@ namespace Playnite.Emulators
                     dir,
                     supportedExtensions,
                     databases,
-                    importedFiles,
                     resultRoms,
                     cancelToken,
                     crcExludePatterns,
@@ -650,12 +688,12 @@ namespace Playnite.Emulators
             }
         }
 
-        private static Tuple<DatGame, string> LookupGameInDb(
+        private Tuple<DatGame, string> LookupGameInDb(
             string file,
             string fileExt,
             List<string> supportedExtensions,
             List<EmulationDatabase.EmulationDatabaseReader> databases,
-            string crcExludePatterns)
+            bool scanCrc)
         {
             if (databases.HasItems())
             {
@@ -663,11 +701,7 @@ namespace Playnite.Emulators
                 string datRecSource = null;
                 List<string> crcs = new List<string>();
 
-                if (Paths.MathcesFilePattern(file, crcExludePatterns))
-                {
-                    logger.Trace($"Skipping crc check of {file}. Excluded by pattern settings.");
-                }
-                else
+                if (scanCrc)
                 {
                     if (IsSupportedArchiveExtension(fileExt))
                     {
@@ -855,6 +889,70 @@ namespace Playnite.Emulators
             }
 
             return new List<ScannedGame>();
+        }
+
+        private static bool IsSupportedArchiveExtension(string extension)
+        {
+            return supportedArchiveExt.ContainsString(extension, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private bool IsFileDataAvailable(string path)
+        {
+            if (!Paths.IsFullPath(path))
+            {
+                path = Path.GetFullPath(path);
+            }
+
+            if (!File.Exists(path))
+            {
+                return false;
+            }
+
+            var longPath = @"\\?\" + path;
+            var att = Kernel32.GetFileAttributesW(longPath);
+            if ((Winnt.FILE_ATTRIBUTE_OFFLINE & att) > 0)
+            {
+                return false;
+            }
+
+            // Used by OneDrive
+            if ((Winnt.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS & att) > 0)
+            {
+                return false;
+            }
+
+            if ((Winnt.FILE_ATTRIBUTE_SPARSE_FILE & att) > 0)
+            {
+                return false;
+            }
+
+            // GoogleDrive file check
+            var driveLetter = Path.GetPathRoot(path);
+            if (!isGoogleDriveCache.TryGetValue(driveLetter, out var isGoogleDrive))
+            {
+                var drive = DriveInfo.GetDrives().First(a => string.Equals(a.Name, driveLetter, StringComparison.OrdinalIgnoreCase));
+                isGoogleDrive = drive.VolumeLabel?.Contains("Google") == true;
+                isGoogleDriveCache.Add(driveLetter, isGoogleDrive);
+            }
+
+            if (isGoogleDrive)
+            {
+                // Based on undocumented file metadata
+                // https://stackoverflow.com/questions/51439810/get-google-drive-files-links-using-drive-file-stream/52107704#52107704
+                longPath = longPath += ":user.drive.itemprotostr";
+                try
+                {
+                    // Downloaded files (even partially) will have "content-entry" property
+                    var fileMetadata = File.ReadAllText(longPath);
+                    return fileMetadata.Contains("key: \"content-entry\"");
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to get file metadata from Google Drive file. {longPath}");
+                }
+            }
+
+            return true;
         }
     }
 

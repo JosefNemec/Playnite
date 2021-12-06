@@ -25,3 +25,15 @@ When the breakpoint is reached, hover over any variable names to see their curre
 Typing into the PowerShell ISE console will evaluate statements in the current context. For example, you can use the `$PlayniteAPI` variable to interactively develop and test code. You may also interactively inspect local variables and their properties.
 
 The Playnite interface will appear frozen while the debugger is paused on a breakpoint.
+
+Interactive PowerShell console
+---------------------
+
+You can start PowerShell instance with pre-loaded Playnite SDK from main menu -> extensions. This will open PowerShell console connected to Playnite process and initialize new runspace for this interactive session.
+
+To get Playnite API object use CTRL-V shortcut and ENTER (there's currently no better way how to do this, sadly). This will initialize two variables:
+
+- `$PlayniteApi` which is an instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI) object.
+- `$PlayniteRunspace` which is PowerShell runspace running in Playnite process dedicated to this interactive "playground".
+
+You can also access runspace of every installed and loaded PowerShell extension via `Get-Runspace` cmdlet.

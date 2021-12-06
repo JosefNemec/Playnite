@@ -12,6 +12,9 @@ using System.IO;
 using Playnite.SDK.Exceptions;
 using Microsoft.PowerShell;
 using Playnite.SDK;
+using System.Diagnostics;
+using Playnite.Native;
+using System.Windows;
 
 namespace Playnite.Scripting.PowerShell
 {
@@ -79,6 +82,9 @@ namespace Playnite.Scripting.PowerShell
 
     public class PowerShellRuntime : IPowerShellRuntime
     {
+        private static PowerShellRuntime interactiveRuntime;
+        private static Process interactiveProcess;
+
         private System.Management.Automation.PowerShell powershell;
         private Runspace runspace;
         private PSModuleInfo module;
@@ -115,6 +121,46 @@ namespace Playnite.Scripting.PowerShell
             IsDisposed = true;
             runspace.Close();
             runspace.Dispose();
+        }
+
+        public static void StartInteractiveSession(Dictionary<string, object> variables = null)
+        {
+            if (interactiveRuntime != null)
+            {
+                throw new Exception("Interactive session is already running");
+            }
+
+            interactiveRuntime = new PowerShellRuntime("PSInteractive");
+            variables?.ForEach(a => interactiveRuntime.SetVariable(a.Key, a.Value));
+            interactiveProcess = new Process();
+            interactiveProcess.StartInfo.FileName = @"c:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe";
+
+            // This is really sad solution, but there's currently no way how to initialize these variables automatically, because:
+            // - Enter-PSHostProcess is blocking so we can't pass any command after it
+            // - We can't redirect stdin because then user wouldn't be able to interact witht the console
+            // - Messages like WM_PASTE don't work on PowerShell console
+            // - Passing CTLR-V and ENTER is not possible, because the only reliable method works globaly and can't be sent directly to window handle
+            interactiveProcess.StartInfo.Arguments = $"-NoExit -Command \"" +
+                $"Write-Host \"`n" +
+                $"`tConnected to Playnite process.`n" +
+                $"`tUse CTLR-V and ENTER to paste commands to initialize basic SDK variables.`n" +
+                $"`tMore information at:`n" +
+                $"`thttps://playnite.link/docs/master/tutorials/extensions/scriptingDebugging.html`n" +
+                $"\" -ForegroundColor Green;" +
+                $"Enter-PSHostProcess -Id {Process.GetCurrentProcess().Id};";
+            interactiveProcess.EnableRaisingEvents = true;
+            interactiveProcess.Exited += (_, __) =>
+            {
+                interactiveProcess.Dispose();
+                interactiveProcess = null;
+                interactiveRuntime.Dispose();
+                interactiveRuntime = null;
+            };
+
+            interactiveProcess.Start();
+            Clipboard.SetText(@"$PlayniteRunspace = Get-Runspace -Name 'PSInteractive'
+$PlayniteApi = $PlayniteRunspace.SessionStateProxy.GetVariable('PlayniteApi')
+");
         }
 
         public void ImportModule(string path)
@@ -219,23 +265,29 @@ namespace Playnite.Scripting.PowerShell
 
         public object InvokeFunction(string name, List<object> arguments)
         {
-            var command = GetFunction(name);
-            powershell.AddCommand(command);
-            foreach (var argument in arguments)
+            try
             {
-                powershell.AddArgument(argument);
-            }
-            var result = powershell.Invoke();
-            powershell.Streams.ClearStreams();
-            powershell.Commands.Clear();
+                var command = GetFunction(name);
+                powershell.AddCommand(command);
+                foreach (var argument in arguments)
+                {
+                    powershell.AddArgument(argument);
+                }
 
-            if (result.Count == 1)
-            {
-                return result[0].BaseObject;
+                var result = powershell.Invoke();
+                if (result.Count == 1)
+                {
+                    return result[0].BaseObject;
+                }
+                else
+                {
+                    return result.Select(a => a?.BaseObject).ToList();
+                }
             }
-            else
+            finally
             {
-                return result.Select(a => a?.BaseObject).ToList();
+                powershell.Streams.ClearStreams();
+                powershell.Commands.Clear();
             }
         }
     }

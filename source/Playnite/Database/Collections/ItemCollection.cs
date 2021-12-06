@@ -14,9 +14,13 @@ using System.Threading.Tasks;
 
 namespace Playnite.Database
 {
+    // We currently use LiteDB for permanent storage.
+    // We don't use latest LiteDB 5, but instead latest LiteDB 4, because V5 has some issues:
+    //  - doesn't allow disabling of memory cache (which in our case just wastes memory)
+    //  - write speeds are slower
     public class ItemCollection<TItem> : IItemCollection<TItem> where TItem : DatabaseObject
     {
-        private ILogger logger = LogManager.GetLogger();
+        private ILogger logger = LogManager.GetLogger(typeof(TItem).Name + "_coll");
         private readonly object collectionLock = new object();
         private string storagePath;
         private readonly Action<TItem> initMethod;
@@ -95,22 +99,85 @@ namespace Playnite.Database
                 File.Delete(storagePath);
             }
 
-            var dpPath = path + ".db";
-            liteDb = new LiteDatabase($"Filename={dpPath};Mode=Exclusive;Cache Size=0", mapper);
-            liteCollection = liteDb.GetCollection<TItem>();
-            liteCollection.EnsureIndex(a => a.Id, true);
+            var dbPath = path + ".db";
+            void openDb()
+            {
+                liteDb = new LiteDatabase($"Filename={dbPath};Mode=Exclusive;Cache Size=0", mapper);
+                liteCollection = liteDb.GetCollection<TItem>();
+                liteCollection.EnsureIndex(a => a.Id, true);
+            }
 
-            Parallel.ForEach(
-                liteCollection.FindAll(),
-                new ParallelOptions { MaxDegreeOfParallelism = 4 },
-                (objectFile) =>
-                {
-                    if (objectFile != null)
+            void loadCollections()
+            {
+                Parallel.ForEach(
+                    liteCollection.FindAll(),
+                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                    (objectFile) =>
                     {
-                        initMethod?.Invoke(objectFile);
-                        Items.TryAdd(objectFile.Id, objectFile);
+                        if (objectFile != null)
+                        {
+                            initMethod?.Invoke(objectFile);
+                            Items.TryAdd(objectFile.Id, objectFile);
+                        }
+                    });
+
+                // Also try to load other collection to see if db is corrupted
+                foreach (var collName in liteDb.GetCollectionNames().Where(a => a != liteCollection.Name))
+                {
+                    var coll = liteDb.GetCollection(collName);
+                    // One these would fail for known corruptions
+                    coll.Count();
+                    coll.FindAll().ToList();
+                }
+            }
+
+            openDb();
+
+            try
+            {
+                loadCollections();
+            }
+            catch (Exception liteEx) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(liteEx, $"DB file {dbPath} is most likely damaged, trying to repair.");
+                Items.Clear();
+                liteDb.Dispose();
+
+                var backupPath = dbPath + ".backup";
+                File.Copy(dbPath, backupPath, true);
+
+                try
+                {
+                    var oldData = new Dictionary<string, List<BsonDocument>>();
+                    using (var dbStream = File.OpenRead(dbPath))
+                    {
+                        var reader = new LiteDBConversion.FileReaderV7(dbStream, null);
+                        foreach (var coll in reader.GetCollections())
+                        {
+                            oldData.Add(coll, reader.GetDocuments(coll).ToList());
+                        }
                     }
-                });
+
+                    File.Delete(dbPath);
+                    using (var db = new LiteDatabase($"Filename={dbPath};Mode=Exclusive;Cache Size=0"))
+                    {
+                        foreach (var collName in oldData.Keys)
+                        {
+                            db.GetCollection(collName).InsertBulk(oldData[collName]);
+                        }
+                    }
+
+                    openDb();
+                    loadCollections();
+                    logger.Debug($"{dbPath} restored successfully.");
+                }
+                catch (Exception resExc)
+                {
+                    logger.Error(resExc, "Failed to restore data from damaged db file.");
+                    File.Delete(dbPath);
+                    File.Move(backupPath, dbPath);
+                }
+            }
         }
 
         internal string GetItemFilePath(Guid id)

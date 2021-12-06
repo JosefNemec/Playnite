@@ -51,7 +51,7 @@ namespace Playnite.Tests
             using (var db = new GameDatabase(temp.TempPath))
             {
                 db.OpenDatabase();
-                var image = db.AddFile("image.png", File.ReadAllBytes(file), Guid.NewGuid());
+                var image = db.AddFile(file, Guid.NewGuid(), true);
                 ImageSourceManager.SetDatabase(db);
                 var result = ImageSourceManager.GetImage(image, false);
                 Assert.AreEqual(typeof(BitmapImage), result.GetType());

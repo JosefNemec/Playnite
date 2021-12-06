@@ -101,5 +101,10 @@ namespace Playnite.Common
                 delay,
                 isAsync);
         }
+
+        public static void ClearBinding(DependencyObject target, DependencyProperty dp)
+        {
+            BindingOperations.ClearBinding(target, dp);
+        }
     }
 }

@@ -12,26 +12,29 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCSelectActionTitle}"
         WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
-        d:DesignHeight="200" d:DesignWidth="350"
+        d:DesignHeight="200" d:DesignWidth="350" MinWidth="300"
         ShowMinimizeButton="False" ShowMaximizeButton="False"
-        AutomationProperties.AutomationId="WindowActionSelection">
+        AutomationProperties.AutomationId="WindowActionSelection"
+        Name="WindowActionSelectionWindow">
 
-    <DockPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="5">
-            <Button Content="{DynamicResource LOCSelect}" Margin="5" MinWidth="100"
-                    Command="{Binding PlayCommand}" IsDefault="True" />
-            <Button Content="{DynamicResource LOCCancelLabel}" Margin="5" MinWidth="100"
-                    Command="{Binding CancelCommand}" IsCancel="True" />
-        </StackPanel>
-        <ItemsControl ItemsSource="{Binding Actions}"                      
-                      Margin="20,15,25,15" DockPanel.Dock="Top">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <RadioButton GroupName="A" Margin="10,10,10,5"
-                                 Content="{Binding Item.Name}"
-                                 IsChecked="{Binding Selected}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </DockPanel>  
+    <controls:WindowBase.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
+    </controls:WindowBase.InputBindings>
+    
+    <ItemsControl ItemsSource="{Binding Actions}" Margin="20,15,25,25">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Button Background="Transparent" HorizontalContentAlignment="Left" BorderThickness="0"
+                        Command="{Binding DataContext.PlaySpecificCommand, ElementName=WindowActionSelectionWindow}"
+                        CommandParameter="{Binding Item}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
+                            <TextBlock Text="&#xec74;" FontFamily="{StaticResource FontIcoFont}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Item.Name}" VerticalAlignment="Center" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>                
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </controls:WindowBase>

@@ -59,7 +59,8 @@ namespace Playnite.Common
         Unknown,
         Win7,
         Win8,
-        Win10
+        Win10,
+        Win11
     }
 
     public enum HwCompany
@@ -89,7 +90,14 @@ namespace Playnite.Common
                 }
                 else if (version.Major == 10)
                 {
-                    return WindowsVersion.Win10;
+                    if (version.Build >= 22000)
+                    {
+                        return WindowsVersion.Win11;
+                    }
+                    else
+                    {
+                        return WindowsVersion.Win10;
+                    }
                 }
                 else
                 {
@@ -250,7 +258,14 @@ namespace Playnite.Common
 
         public static void Shutdown()
         {
-            ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");
+            if (WindowsVersion == WindowsVersion.Win7)
+            {
+                ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");
+            }
+            else
+            {
+                ProcessStarter.StartProcess("shutdown.exe", "-s -hybrid -t 0");
+            }
         }
 
         public static void Restart()

@@ -612,6 +612,25 @@ namespace Playnite
             }
         }
 
+        private bool useAndFilteringStyle;
+        public bool UseAndFilteringStyle
+        {
+            get
+            {
+                return useAndFilteringStyle;
+            }
+
+            set
+            {
+                if (useAndFilteringStyle != value)
+                {
+                    useAndFilteringStyle = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(UseAndFilteringStyle));
+                }
+            }
+        }
+
         private bool isInstalled;
         public bool IsInstalled
         {
@@ -961,6 +980,12 @@ namespace Playnite
                 filterChanges.Add(nameof(Tag));
             }
 
+            if (UseAndFilteringStyle != false)
+            {
+                UseAndFilteringStyle = false;
+                filterChanges.Add(nameof(UseAndFilteringStyle));
+            }
+
             if (IsInstalled != false)
             {
                 IsInstalled = false;
@@ -1080,6 +1105,12 @@ namespace Playnite
         {
             var filterChanges = new List<string>();
             SuppressFilterChanges = true;
+
+            if (UseAndFilteringStyle != settings.UseAndFilteringStyle)
+            {
+                UseAndFilteringStyle = settings.UseAndFilteringStyle;
+                filterChanges.Add(nameof(UseAndFilteringStyle));
+            }
 
             if (Name != settings.Name)
             {

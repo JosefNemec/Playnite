@@ -15,39 +15,46 @@ namespace Playnite.Commands
     public static class GlobalCommands
     {
         private static ILogger logger = LogManager.GetLogger();
+        internal static PlayniteSettings AppSettings { get; set; }
 
-        public static RelayCommand<object> NavigateUrlCommand
+        public static RelayCommand<object> NavigateUrlCommand { get; } = new RelayCommand<object>((url) =>
         {
-            get => new RelayCommand<object>((url) =>
+            try
             {
-                try
-                {
-                    NavigateUrl(url);
-                }
-                catch (Exception e) when (!Debugger.IsAttached)
-                {
-                    logger.Error(e, "Failed to open url.");
-                }
-            });
-        }
+                NavigateUrl(url);
+            }
+            catch (Exception e) when (!Debugger.IsAttached)
+            {
+                logger.Error(e, "Failed to open url.");
+            }
+        });
 
-        public static RelayCommand<string> NavigateDirectoryCommand
+        public static RelayCommand<string> NavigateDirectoryCommand { get; } = new RelayCommand<string>((path) =>
         {
-            get => new RelayCommand<string>((path) =>
+            try
             {
-                try
+                if (AppSettings?.DirectoryOpenCommand?.IsNullOrWhiteSpace() == false)
                 {
-                    if (Directory.Exists(path))
+                    try
                     {
+                        ProcessStarter.ShellExecute(AppSettings.DirectoryOpenCommand.Replace("{Dir}", path));
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to open directory using custom command.");
                         Process.Start(path);
                     }
                 }
-                catch (Exception e) when (!Debugger.IsAttached)
+                else
                 {
-                    logger.Error(e, "Failed to open directory.");
+                    Process.Start(path);
                 }
-            });
-        }
+            }
+            catch (Exception e) when (!Debugger.IsAttached)
+            {
+                logger.Error(e, "Failed to open directory.");
+            }
+        });
 
         public static void NavigateUrl(object url)
         {
@@ -77,9 +84,16 @@ namespace Playnite.Commands
             }
 
             url = url.Replace("{AppBranch}", PlayniteEnvironment.AppBranch);
-            if (!url.IsUri())
+            if (!Regex.IsMatch(url, @"^.*:\/\/"))
             {
-                url = "http://" + url;
+                if (Paths.IsFullPath(url))
+                {
+                    // Do nothing, some people put local file paths to link fields: #2562
+                }
+                else
+                {
+                    url = "http://" + url;
+                }
             }
 
             ProcessStarter.StartUrl(url);

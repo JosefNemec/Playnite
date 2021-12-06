@@ -60,7 +60,8 @@
                 <ScrollViewer>
                     <Grid Grid.Column="0" Grid.Row="0" Margin="10">
                         <Grid.Resources>
-                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
+                            <!--This one has to be specifically referenced otherwise it messes up with search box in dropdown selector-->
+                            <Style x:Key="TextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
                                 <Setter Property="Margin" Value="3" />
                             </Style>
                             <Style TargetType="pctrls:LongNumericBox" BasedOn="{StaticResource {x:Type pctrls:LongNumericBox}}" >
@@ -74,6 +75,7 @@
                             </Style>
                             <Style TargetType="pctrls:DdItemListSelectionBox" BasedOn="{StaticResource {x:Type pctrls:DdItemListSelectionBox}}" >
                                 <Setter Property="Margin" Value="3" />
+                                <Setter Property="ShowSearchBox" Value="True" />
                             </Style>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}" >
                                 <Setter Property="Margin" Value="0,0,0,0" />
@@ -114,7 +116,7 @@
                                     Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding UseNameChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                        <TextBox Grid.Column="2" Grid.Row="0" Name="TextName"
+                        <TextBox Grid.Column="2" Grid.Row="0" Name="TextName" Style="{StaticResource TextBoxStyle}"
                                     Text="{Binding EditingGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!-- Sorting Name -->
@@ -123,7 +125,7 @@
                                     Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding UseSortingNameChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                        <TextBox Grid.Column="2" Grid.Row="1" Name="TextSortingName"
+                        <TextBox Grid.Column="2" Grid.Row="1" Name="TextSortingName" Style="{StaticResource TextBoxStyle}"
                                     Text="{Binding EditingGame.SortingName, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!-- Platform -->
@@ -154,7 +156,6 @@
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddGenreCommand}" />
                             <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
-                                                   ShowSearchBox="True"     
                                                    IsThreeState="{Binding IsMultiGameEdit}"
                                                    ItemsList="{Binding Genres}" />
                         </DockPanel>
@@ -219,7 +220,6 @@
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddFeatureCommand}" />
                             <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
-                                                   ShowSearchBox="True"     
                                                    IsThreeState="{Binding IsMultiGameEdit}"
                                                    ItemsList="{Binding Features}" />
                         </DockPanel>
@@ -236,7 +236,6 @@
                                     Padding="4,2,4,2" Margin="3"
                                     Command="{Binding AddTagCommand}" />
                             <pctrls:DdItemListSelectionBox DockPanel.Dock="Left"
-                                                   ShowSearchBox="True"        
                                                    IsThreeState="{Binding IsMultiGameEdit}"
                                                    ItemsList="{Binding Tags}" />
                         </DockPanel>
@@ -264,7 +263,7 @@
                                     Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     IsChecked="{Binding UseReleaseDateChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                        <TextBox Grid.Column="5" Grid.Row="0"
+                        <TextBox Grid.Column="5" Grid.Row="0" Style="{StaticResource TextBoxStyle}"
                                  ToolTip="{DynamicResource LOCReleaseDateTooltip}"
                                  ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
                             <TextBox.Text>
@@ -351,7 +350,7 @@
                                   Visibility="{Binding ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding UseVersionChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
-                        <TextBox Grid.Column="5" Grid.Row="5"
+                        <TextBox Grid.Column="5" Grid.Row="5" Style="{StaticResource TextBoxStyle}"
                                  Text="{Binding EditingGame.Version, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!-- UserScore -->
@@ -361,6 +360,7 @@
                                   IsChecked="{Binding UseUserScoreChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
                         <TextBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
+                                 Style="{StaticResource TextBoxStyle}"
                                  ToolTip="{DynamicResource LOCDescriptionScoreValues}"
                                  ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
                             <TextBox.Text>
@@ -383,6 +383,7 @@
                                   IsChecked="{Binding UseCriticScoreChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
                         <TextBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
+                                 Style="{StaticResource TextBoxStyle}"
                                  ToolTip="{DynamicResource LOCDescriptionScoreValues}"
                                  ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
                             <TextBox.Text>
@@ -405,6 +406,7 @@
                                   IsChecked="{Binding UseCommunityScoreChanges}"
                                   ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"/>
                         <TextBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
+                                 Style="{StaticResource TextBoxStyle}"
                                  ToolTip="{DynamicResource LOCDescriptionScoreValues}"
                                  ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0">
                             <TextBox.Text>

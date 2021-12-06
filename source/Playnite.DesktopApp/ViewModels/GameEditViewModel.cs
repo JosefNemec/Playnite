@@ -479,6 +479,20 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            if (EditingGame.GameActions.HasItems())
+            {
+                foreach (var action in EditingGame.GameActions)
+                {
+                    if (action.TrackingMode == TrackingMode.Directory && action.TrackingPath.IsNullOrWhiteSpace())
+                    {
+                        dialogs.ShowErrorMessage(
+                            resources.GetString(LOC.EmptyTrackingFolderError),
+                            resources.GetString(LOC.InvalidGameData));
+                        return;
+                    }
+                }
+            }
+
             if (UseNameChanges)
             {
                 if (string.IsNullOrWhiteSpace(EditingGame.Name))
@@ -756,7 +770,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.Icon))
                     {
-                        game.Icon = database.AddFile(EditingGame.Icon, game.Id);
+                        game.Icon = database.AddFile(EditingGame.Icon, game.Id, true);
                     }
                 }
 
@@ -768,7 +782,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.CoverImage))
                     {
-                        game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id);
+                        game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id, true);
                     }
                 }
 
@@ -784,7 +798,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.BackgroundImage))
                     {
-                        game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id);
+                        game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id, true);
                     }
                 }
 
@@ -831,89 +845,29 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private string SaveFileIconToTemp(string exePath)
-        {
-            var tempPath = Path.Combine(PlaynitePaths.TempPath, "tempico.ico");
-            FileSystem.PrepareSaveFile(tempPath);
-            if (IconExtractor.ExtractMainIconFromFile(exePath, tempPath))
-            {
-                return tempPath;
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        private string SaveConvertedTgaToTemp(string tgaPath)
-        {
-            var tempPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".png");
-            FileSystem.PrepareSaveFile(tempPath);
-            File.WriteAllBytes(tempPath, BitmapExtensions.TgaToBitmap(tgaPath).ToPngArray());
-            return tempPath;
-        }
-
         public void UseExeIcon()
         {
-            var playAction = EditingGame.GameActions?.FirstOrDefault(a => a.IsPlayAction);
-            if (playAction == null || playAction.Type == GameActionType.URL)
+            var playAction = EditingGame.GameActions?.FirstOrDefault(a => a.IsPlayAction && a.Type == GameActionType.File);
+            if (playAction == null)
             {
-                dialogs.ShowMessage(resources.GetString("LOCExecIconMissingPlayAction"));
+                dialogs.ShowErrorMessage(LOC.ExecIconMissingPlayAction, "");
                 return;
             }
 
-            var path = Game.GetRawExecutablePath();
+            var path = EditingGame.GetRawExecutablePath();
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
             {
                 logger.Error($"Can't find executable for icon extraction, file {path}");
                 return;
             }
 
-            var icon = SaveFileIconToTemp(path);
+            var icon = ProcessMetadataFile(path, tempIconFileName);
             if (string.IsNullOrEmpty(icon))
             {
                 return;
             }
 
             EditingGame.Icon = icon;
-        }
-
-        public string PrepareImagePath(string path, string tempFileName)
-        {
-            if (!string.IsNullOrEmpty(path))
-            {
-                if (path.IsHttpUrl())
-                {
-                    path = ProcessMetadataFile(new MetadataFile(path), tempFileName);
-                }
-
-                return PrepareImagePath(path);
-            }
-
-            return null;
-        }
-
-        public string PrepareImagePath(string path)
-        {
-            if (!string.IsNullOrEmpty(path))
-            {
-                if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveFileIconToTemp(path);
-                    if (string.IsNullOrEmpty(path))
-                    {
-                        return string.Empty;
-                    }
-                }
-                else if (path.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
-                {
-                    path = SaveConvertedTgaToTemp(path);
-                }
-
-                return path;
-            }
-
-            return null;
         }
 
         public string GetDroppedImage(DragEventArgs args, List<string> compatibleExtensions)
@@ -943,8 +897,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropIcon(DragEventArgs args)
         {
-            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".tga", ".exe", ".tif" };
-            var path = PrepareImagePath(GetDroppedImage(args, compatibleExtensions), tempIconFileName);
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".tga", ".exe", ".tif", ".webp" };
+            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempIconFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.Icon = path;
@@ -954,7 +908,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectIcon()
         {
-            var path = PrepareImagePath(dialogs.SelectIconFile(), tempIconFileName);
+            var path = ProcessMetadataFile(dialogs.SelectIconFile(), tempIconFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.Icon = path;
@@ -964,7 +918,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectCover()
         {
-            var path = PrepareImagePath(dialogs.SelectImagefile(), tempCoverFileName);
+            var path = ProcessMetadataFile(dialogs.SelectImagefile(), tempCoverFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.CoverImage = path;
@@ -974,8 +928,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropCover(DragEventArgs args)
         {
-            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif" };
-            var path = PrepareImagePath(GetDroppedImage(args, compatibleExtensions), tempCoverFileName);
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif", ".webp" };
+            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempCoverFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.CoverImage = path;
@@ -985,7 +939,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectBackground()
         {
-            var path = PrepareImagePath(dialogs.SelectImagefile(), tempBackgroundFileName);
+            var path = ProcessMetadataFile(dialogs.SelectImagefile(), tempBackgroundFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.BackgroundImage = path;
@@ -995,8 +949,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropBackground(DragEventArgs args)
         {
-            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif" };
-            var path = PrepareImagePath(GetDroppedImage(args, compatibleExtensions), tempBackgroundFileName);
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif", ".webp" };
+            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempBackgroundFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.BackgroundImage = path;
@@ -1041,7 +995,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    return PrepareImagePath(url.SelectedString, tempFileName);
+                    return ProcessMetadataFile(url.SelectedString, tempFileName);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -1062,7 +1016,8 @@ namespace Playnite.DesktopApp.ViewModels
 
             var newAction = new GameAction()
             {
-                Name = "New Action"
+                Name = "New Action",
+                IsPlayAction = true
             };
 
             newAction.PropertyChanged += GameAction_PropertyChanged;
@@ -1304,7 +1259,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                var existing = collection.FirstOrDefault(a => a.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase));
+                var existing = collection.FirstOrDefault(a => a.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true);
                 if (existing != null)
                 {
                     return existing;
@@ -1427,7 +1382,7 @@ namespace Playnite.DesktopApp.ViewModels
             var newItem = CreateNewItemInCollection<Company>(Publishers, publisher);
             if (newItem != null)
             {
-                if (!Developers.Any(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase)))
+                if (!Developers.Any(a => a.Item.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true))
                 {
                     Developers.Add(newItem);
                 }
@@ -1451,7 +1406,7 @@ namespace Playnite.DesktopApp.ViewModels
             var newItem = CreateNewItemInCollection<Company>(Developers, developer);
             if (newItem != null)
             {
-                if (!Publishers.Any(a => a.Item.Name.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase)))
+                if (!Publishers.Any(a => a.Item.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true))
                 {
                     Publishers.Add(newItem);
                 }
@@ -1517,7 +1472,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         private bool LooseDbNameComparer(SelectableItem<DatabaseObject> existingItem, string newName)
         {
-            return GameFieldComparer.StringEquals(existingItem.Item.Name, newName);
+            return GameFieldComparer.StringEquals(
+                existingItem.Item.Name ?? string.Empty,
+                newName ?? string.Empty);
         }
 
         private Tuple<string, ImageProperties> GetImageProperties(string image)
@@ -1581,7 +1538,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var expanded = EditingGame.ExpandVariables(script);
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expanded, EditingGame, true, false);
+                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expanded, EditingGame, true, false, GameScriptType.None);
                 }
             }
             catch (Exception exc)

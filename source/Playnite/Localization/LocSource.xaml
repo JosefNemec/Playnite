@@ -188,7 +188,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCColumns">Columns</sys:String>
     <sys:String x:Key="LOCRow">Row</sys:String>
     <sys:String x:Key="LOCRows">Rows</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Cannot get icon if Play action is missing or is set to URL.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Couldn't get icon from Play action. There's no action of File type present.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Only download missing metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Enabling this option will skip downloading metadata for data fields that already contain information.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Games selection</sys:String>
@@ -303,7 +303,6 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Show only assigned fields on filter and explorer panels</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disable hardware acceleration</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Use when experiencing stuttering or similar UI issues</sys:String>
-    <sys:String x:Key="LOCSettingsDisableDpiAwareness">Disable DPI Scaling</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Show hidden games in quick launch lists</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Affects Jump List and tray menu lists.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Number of quick launch items</sys:String>
@@ -500,6 +499,9 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">Tag</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Installation Status</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Match all filters</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">If enabled, only games that use all the items in all the filters will be included in the view.
+If disabled, games that use any item in any filter will be included in the view.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Installed</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Installed</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Not installed</sys:String>
@@ -556,6 +558,7 @@ Please attach the following ID to your issue report:</sys:String>
 
 You can try to resolve the issue:
   • Check that all files are installed correctly. The re-installation could help
+  • Install Visual Studio C++ 2019 redistributables if you are on Windows 7 or 8
   • Make sure your antivirus doesn't block any files in the Playnite folder
   • Choose a different installation location</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Cannot import emulators due to missing or corrupted definition file.</sys:String>
@@ -582,6 +585,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCOpenPlaynite">Open Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profile Settings</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Game name cannot be empty.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Game action tracking directory cannot be empty.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Game name cannot be empty before searching metadata.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Invalid game data</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Enter valid web URL starting with http:// or https://</sys:String>
@@ -618,6 +622,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCExtensions">Extensions</sys:String>
     <sys:String x:Key="LOCExtensionID">Extension ID</sys:String>
     <sys:String x:Key="LOCReloadScripts">Reload Scripts</sys:String>
+    <sys:String x:Key="LOCStartInteractivePowerShell">Interactive SDK PowerShell</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">All scripts reloaded successfully.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">No games found for specified search/filter criteria</sys:String>
     <sys:String x:Key="LOCNoItemsFound">No items found</sys:String>
@@ -657,6 +662,8 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCOther">Other</sys:String>
     <sys:String x:Key="LOCThemes">Themes</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulator Arguments</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Built-in Arguments</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Custom Arguments</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Additional Emulator Arguments</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Override Emulator Arguments</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Play action</sys:String>
@@ -682,6 +689,9 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCPreScriptDescription">Execute before starting a game</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Execute after exiting a game</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Execute after a game is started</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Game starting script</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Game started script</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Game stopped script</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Execute global script</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Global</sys:String>
     <sys:String x:Key="LOCStatsFiltered">Filtered</sys:String>
@@ -767,6 +777,7 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installation was successful.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Install add-on?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Generic</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Failed to install "{0}" add-on.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Failed to install extension.
 
 {0}</sys:String>
@@ -871,7 +882,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCAddonInstall">Install</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Uninstall</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Already installed</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">No add-on updates available.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">No new add-on updates found.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Update add-ons</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Changelog is not available</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Scheduled for installation</sys:String>
@@ -993,7 +1004,7 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuScanEmulator">Scan with emulator</sys:String>    
     <sys:String x:Key="LOCScanConfigNameError">Name has to be set when saving new configuration.</sys:String>
     <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulator or emulator profile is not set.</sys:String>
-    <sys:String x:Key="LOCScanConfigDirectoryError">Directory to scan is not specified or it doesn't exists.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Directory to scan is not specified or it doesn't exist.</sys:String>
     <sys:String x:Key="LOCScanConfigError">Scan configuration is not set properly.</sys:String>    
     <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Include in bulk scan auto-scan</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">Failed to scan folder for emulators.</sys:String>
@@ -1009,6 +1020,24 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Add scan configuration(s) with emulators to scan specific folders. Make sure that emulators are properly configured prior to importing games (via Library -> Configure Emulators menu).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Default status assigned to newly added games</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime.</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime. If you are Windows 7 user, try (re)installing PowerShell 5.1 to fix the issue.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset with specified name already exists. Update preset with new settings?</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
+
+If you encounter any graphics corruption or other rendering issues in Playnite, we recommend disabling or completely uninstalling Nahimic service.
+
+More information at https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite is running with elevated privileges (as an administrator). This is not recommended since it gives elevated privileges to all installed extensions and all games/apps started from Playnite!
+
+More information at https://playnite.link/adminfaq</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Show warning if Playnite is running with elevated privileges</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Exclude online files from scan</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Files stored on cloud storage won't be scanned and imported if not available locally.
+Supported only for: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Scan but using simplified method without file content</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.</sys:String>
 </ResourceDictionary>

@@ -363,8 +363,6 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            newPlatforms = new List<Platform>();
-            newRegions = new List<Region>();
             GameList.Clear();
             var scanString = resources.GetString(LOC.EmuWizardScanningSpecific);
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
@@ -373,13 +371,10 @@ namespace Playnite.DesktopApp.ViewModels
                 foreach (GameScannerConfig config in ScannerConfigs)
                 {
                     args.Text = scanString.Format(config.Directory);
-                    GameList.AddRange(GameScanner.Scan(
-                        config,
-                        database,
-                        existingGame,
+                    GameList.AddRange(new GameScanner(config, database, existingGame).Scan(
                         args.CancelToken,
-                        newPlatforms,
-                        newRegions,
+                        out newPlatforms,
+                        out newRegions,
                         (path) => args.Text = scanString.Format(path)));
                 }
             },
@@ -391,6 +386,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (scanRes.Error != null)
             {
+                logger.Error(scanRes.Error, "Failed to scan emulated folder.");
                 dialogs.ShowErrorMessage(resources.GetString(LOC.EmulatedGameScanFailed) + "\n" + scanRes.Error.Message, "");
                 IsScanSetup = true;
             }
@@ -449,19 +445,25 @@ namespace Playnite.DesktopApp.ViewModels
             var statusSettings = database.GetCompletionStatusSettings();
             using (database.BufferedUpdate())
             {
-                foreach (var newPlat in newPlatforms)
+                if (newPlatforms.HasItems())
                 {
-                    if (GameList.Any(a => a.Platforms?.FirstOrDefault(p => p.Id == newPlat.Id) != null))
+                    foreach (var newPlat in newPlatforms)
                     {
-                        database.Platforms.Add(newPlat);
+                        if (GameList.Any(a => a.Platforms?.FirstOrDefault(p => p.Id == newPlat.Id) != null))
+                        {
+                            database.Platforms.Add(newPlat);
+                        }
                     }
                 }
 
-                foreach (var newReg in newRegions)
+                if (newRegions.HasItems())
                 {
-                    if (GameList.Any(a => a.Regions?.FirstOrDefault(p => p.Id == newReg.Id) != null))
+                    foreach (var newReg in newRegions)
                     {
-                        database.Regions.Add(newReg);
+                        if (GameList.Any(a => a.Regions?.FirstOrDefault(p => p.Id == newReg.Id) != null))
+                        {
+                            database.Regions.Add(newReg);
+                        }
                     }
                 }
 

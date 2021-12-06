@@ -57,7 +57,7 @@ namespace Playnite.FullscreenApp
 
             PlayniteSettings.ConfigureLogger();
             LogManager.GetLogger().Info($"App arguments: '{string.Join(",", args)}'");
-            var app = new FullscreenApplication(new App(), splash, cmdLine);
+            var app = new FullscreenApplication(() => new App(), splash, cmdLine);
             app.Run();
         }
     }

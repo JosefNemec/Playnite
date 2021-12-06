@@ -3,6 +3,23 @@
 @media (min-width:1350px){.container{width:1300px}
 }
 
+body {
+    font-size: 16px;
+}
+
+p {
+    margin: 0 0 20px;
+}
+
+ul {
+    margin-bottom: 20px;
+}
+
+p + ul {
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
 .tabGroup section[role="tabpanel"] > .codeHeader, .tabGroup section[role="tabpanel"] > pre
 {
     border-radius: 0px;
@@ -22,4 +39,8 @@
     color: #333;
     background-color: #d9edf7;
     border-color: #bce8f1;
+}
+
+article h4 {
+    border-bottom: 0px;
 }

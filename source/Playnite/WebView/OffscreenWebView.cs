@@ -16,6 +16,7 @@ namespace Playnite.WebView
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
+        private readonly string userAgent;
 
         public bool CanExecuteJavascriptInMainFrame => browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
@@ -29,10 +30,15 @@ namespace Playnite.WebView
 
         public OffscreenWebView(WebViewSettings settings)
         {
+            this.userAgent = settings.UserAgent;
+            if (!userAgent.IsNullOrEmpty())
+            {
+                browser.RequestHandler = new CustomRequestHandler(userAgent);
+            }
+
             Initialize(new BrowserSettings
             {
-                Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled,
-                ApplicationCache = settings.CacheEnabled ? CefState.Enabled : CefState.Disabled
+                Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled
             });
         }
 
@@ -74,9 +80,17 @@ namespace Playnite.WebView
             JavascriptMessageReceived?.Invoke(this, new WebViewJavascriptMessageReceivedEventArgs { Message = e.Message.ToString() });
         }
 
-        private void Browser_BrowserInitialized(object sender, EventArgs e)
+        private async void Browser_BrowserInitialized(object sender, EventArgs e)
         {
             browserInitializedEvent.Set();
+            if (!userAgent.IsNullOrEmpty())
+            {
+                using (var client = browser.GetDevToolsClient())
+                {
+                    await client.Network.SetUserAgentOverrideAsync(userAgent);
+                    await client.Emulation.SetUserAgentOverrideAsync(userAgent);
+                }
+            }
         }
 
         public void Close()

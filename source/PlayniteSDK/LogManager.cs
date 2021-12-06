@@ -134,15 +134,22 @@ namespace Playnite.SDK
                 throw new ArgumentNullException(nameof(loggerName));
             }
 
-            var asmName = Assembly.GetCallingAssembly().GetName().Name;
-            var isCore = asmName == "Playnite.DesktopApp" || asmName == "Playnite.FullscreenApp" || asmName == "Playnite";
-            if (isCore || loggerName.Contains("#"))
+            if (logManager != null)
             {
-                return logManager.GetLogger(loggerName);
+                var asmName = Assembly.GetCallingAssembly().GetName().Name;
+                var isCore = asmName == "Playnite.DesktopApp" || asmName == "Playnite.FullscreenApp" || asmName == "Playnite";
+                if (isCore || loggerName.Contains("#"))
+                {
+                    return logManager.GetLogger(loggerName);
+                }
+                else
+                {
+                    return logManager.GetLogger($"{asmName}#{loggerName}");
+                }
             }
             else
             {
-                return logManager.GetLogger($"{asmName}#{loggerName}");
+                return new NullLoggger();
             }
         }
     }
