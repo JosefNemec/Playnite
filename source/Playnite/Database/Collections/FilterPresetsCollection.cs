@@ -25,7 +25,7 @@ namespace Playnite.Database
                 Ignore(a => a.IsSet);
             mapper.Entity<EnumFilterItemProperites>().
                 Ignore(a => a.IsSet);
-            mapper.Entity<FilterItemProperites>().
+            mapper.Entity<FilterItemProperties>().
                 Ignore(a => a.IsSet).
                 Ignore(a => a.Texts);
         }

@@ -234,7 +234,7 @@ namespace Playnite
         }
     }
 
-    public class FilterItemProperites : ObservableObject
+    public class FilterItemProperties : ObservableObject
     {
         [JsonIgnore]
         public List<string> Texts { get; private set; }
@@ -277,21 +277,21 @@ namespace Playnite
             }
         }
 
-        public FilterItemProperites()
+        public FilterItemProperties()
         {
         }
 
-        public FilterItemProperites(List<Guid> ids)
+        public FilterItemProperties(List<Guid> ids)
         {
             Ids = ids;
         }
 
-        public FilterItemProperites(Guid id)
+        public FilterItemProperties(Guid id)
         {
             Ids = new List<Guid>() { id };
         }
 
-        public FilterItemProperites(string text)
+        public FilterItemProperties(string text)
         {
             Text = text;
         }
@@ -306,7 +306,7 @@ namespace Playnite
             return Ids.HasItems();
         }
 
-        public bool Equals(FilterItemProperites obj)
+        public bool Equals(FilterItemProperties obj)
         {
             if (obj == null)
             {
@@ -384,8 +384,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites genre;
-        public FilterItemProperites Genre
+        private FilterItemProperties genre;
+        public FilterItemProperties Genre
         {
             get
             {
@@ -403,8 +403,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites platforms;
-        public FilterItemProperites Platform
+        private FilterItemProperties platforms;
+        public FilterItemProperties Platform
         {
             get
             {
@@ -460,8 +460,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites publishers;
-        public FilterItemProperites Publisher
+        private FilterItemProperties publishers;
+        public FilterItemProperties Publisher
         {
             get
             {
@@ -479,8 +479,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites developers;
-        public FilterItemProperites Developer
+        private FilterItemProperties developers;
+        public FilterItemProperties Developer
         {
             get
             {
@@ -498,8 +498,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites categories;
-        public FilterItemProperites Category
+        private FilterItemProperties categories;
+        public FilterItemProperties Category
         {
             get
             {
@@ -517,8 +517,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites tags;
-        public FilterItemProperites Tag
+        private FilterItemProperties tags;
+        public FilterItemProperties Tag
         {
             get
             {
@@ -536,8 +536,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites series;
-        public FilterItemProperites Series
+        private FilterItemProperties series;
+        public FilterItemProperties Series
         {
             get
             {
@@ -555,8 +555,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites region;
-        public FilterItemProperites Region
+        private FilterItemProperties region;
+        public FilterItemProperties Region
         {
             get
             {
@@ -574,8 +574,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites source;
-        public FilterItemProperites Source
+        private FilterItemProperties source;
+        public FilterItemProperties Source
         {
             get
             {
@@ -593,8 +593,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites ageRating;
-        public FilterItemProperites AgeRating
+        private FilterItemProperties ageRating;
+        public FilterItemProperties AgeRating
         {
             get
             {
@@ -707,8 +707,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites library;
-        public FilterItemProperites Library
+        private FilterItemProperties library;
+        public FilterItemProperties Library
         {
             get
             {
@@ -726,8 +726,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites completionStatus;
-        public FilterItemProperites CompletionStatuses
+        private FilterItemProperties completionStatus;
+        public FilterItemProperties CompletionStatuses
         {
             get
             {
@@ -878,8 +878,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites feature;
-        public FilterItemProperites Feature
+        private FilterItemProperties feature;
+        public FilterItemProperties Feature
         {
             get
             {

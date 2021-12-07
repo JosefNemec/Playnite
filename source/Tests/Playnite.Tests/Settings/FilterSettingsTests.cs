@@ -33,18 +33,18 @@ namespace Playnite.Tests.Settings
             StringAssert.DoesNotContain(nameof(FilterSettings.Feature), json);
 
             settings.Name = "test";
-            settings.Series = new FilterItemProperites() { Text = "test" };
-            settings.Source = new FilterItemProperites() { Text = "test" };
-            settings.AgeRating = new FilterItemProperites() { Text = "test" };
-            settings.Region = new FilterItemProperites() { Text = "test" };
-            settings.Genre = new FilterItemProperites() { Text = "test" };
-            settings.Publisher = new FilterItemProperites() { Text = "test" };
-            settings.Developer = new FilterItemProperites() { Text = "test" };
-            settings.Category = new FilterItemProperites() { Text = "test" };
-            settings.Tag = new FilterItemProperites() { Text = "test" };
-            settings.Platform = new FilterItemProperites() { Text = "test" };
-            settings.Library = new FilterItemProperites() { Text = "test" };
-            settings.Feature = new FilterItemProperites() { Text = "test" };
+            settings.Series = new FilterItemProperties() { Text = "test" };
+            settings.Source = new FilterItemProperties() { Text = "test" };
+            settings.AgeRating = new FilterItemProperties() { Text = "test" };
+            settings.Region = new FilterItemProperties() { Text = "test" };
+            settings.Genre = new FilterItemProperties() { Text = "test" };
+            settings.Publisher = new FilterItemProperties() { Text = "test" };
+            settings.Developer = new FilterItemProperties() { Text = "test" };
+            settings.Category = new FilterItemProperties() { Text = "test" };
+            settings.Tag = new FilterItemProperties() { Text = "test" };
+            settings.Platform = new FilterItemProperties() { Text = "test" };
+            settings.Library = new FilterItemProperties() { Text = "test" };
+            settings.Feature = new FilterItemProperties() { Text = "test" };
             json = Serialization.ToJson(settings);
 
             StringAssert.Contains(nameof(FilterSettings.Name), json);

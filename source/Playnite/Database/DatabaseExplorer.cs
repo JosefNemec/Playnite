@@ -500,7 +500,7 @@ namespace Playnite.Database
             return false;
         }
 
-        private FilterItemProperites GetIdFilter(SelectionObject filter)
+        private FilterItemProperties GetIdFilter(SelectionObject filter)
         {
             if (filter?.Value == null)
             {
@@ -512,7 +512,7 @@ namespace Playnite.Database
             }
             else
             {
-                return new FilterItemProperites(((IIdentifiable)filter.Value).Id);
+                return new FilterItemProperties(((IIdentifiable)filter.Value).Id);
             }
         }
 
