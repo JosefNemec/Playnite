@@ -54,7 +54,14 @@ namespace Playnite
             Items = null;
         }
 
-        private bool IsFilterMatching(FilterItemProperites filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has multiple possible values (OR filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="idData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatching(FilterItemProperties filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -98,7 +105,14 @@ namespace Playnite
             }
         }
 
-        private bool IsFilterMatchingSingleOnly(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has 1 possible value (AND filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="idData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatchingSingleOnly(FilterItemProperties filter, Guid idData, DatabaseObject objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -125,7 +139,14 @@ namespace Playnite
             return false;
         }
 
-        private bool IsFilterMatchingList(FilterItemProperites filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has multiple possible values (AND filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="listData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatchingList(FilterItemProperties filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -151,7 +172,14 @@ namespace Playnite
             return true;
         }
 
-        private bool IsFilterMatchingSingle(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has 1 possible value (OR filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="idData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatchingSingle(FilterItemProperties filter, Guid idData, DatabaseObject objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
