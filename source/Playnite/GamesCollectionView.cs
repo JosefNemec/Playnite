@@ -75,14 +75,7 @@ namespace Playnite
                     return false;
                 }
 
-                if (filter.Text.Contains(Common.Constants.ListSeparator))
-                {
-                    return filter.Texts.IntersectsPartiallyWith(objectData?.Select(a => a.Name));
-                }
-                else
-                {
-                    return objectData.Any(a => a.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase));
-                }
+                return filter.Texts.IntersectsPartiallyWith(objectData.Select(a => a.Name));
             }
             else if (filter.Ids.HasItems())
             {
@@ -119,6 +112,15 @@ namespace Playnite
                 return true;
             }
 
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (objectData == null)
+                {
+                    return false;
+                }
+
+                return filter.Texts.All(t => objectData.Name.Contains(t, StringComparison.InvariantCultureIgnoreCase));
+            }
             if (filter.Ids.HasItems())
             {
                 if (filter.Ids.Count != 1)
@@ -153,6 +155,15 @@ namespace Playnite
                 return true;
             }
 
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (objectData == null)
+                {
+                    return false;
+                }
+
+                return filter.Texts.All(t => objectData.Any(o => o.Name.Contains(t, StringComparison.InvariantCultureIgnoreCase)));
+            }
             if (filter.Ids.HasItems())
             {
                 if (listData == null || !listData.HasItems())
@@ -193,14 +204,7 @@ namespace Playnite
                     return false;
                 }
 
-                if (filter.Text.Contains(Common.Constants.ListSeparator))
-                {
-                    return filter.Texts.ContainsPartOfString(objectData.Name);
-                }
-                else
-                {
-                    return objectData.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase);
-                }
+                return filter.Texts.ContainsPartOfString(objectData.Name);
             }
             else if (filter.Ids.HasItems())
             {
