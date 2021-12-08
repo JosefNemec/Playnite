@@ -39,13 +39,13 @@ namespace Playnite
 
         public override string ToString()
         {
-            if (TranslatedPercentage > -1)
+            if (TranslatedPercentage == -1 || TranslatedPercentage == 100)
             {
-                return $"{LocaleString}   ({Id}, {TranslatedPercentage}%)";
+                return LocaleString;
             }
             else
             {
-                return LocaleString;
+                return $"{LocaleString}   ({Id}, {TranslatedPercentage}%)";
             }
         }
     }
