@@ -74,6 +74,7 @@
     <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\AgeRatingOrg.cs" />
     <Compile Include="Models\AppSoftware.cs" />
+    <Compile Include="Models\FilterPreset.cs" />
     <Compile Include="Models\GameRom.cs" />
     <Compile Include="Models\GameScannerConfig.cs" />
     <Compile Include="Models\IIdentifiable.cs" />

@@ -69,5 +69,15 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="gameIds">List of game IDs to select.</param>
         void SelectGames(IEnumerable<Guid> gameIds);
+
+        // TODO add filter methods
+
+        //void ApplyFilterPreset(Guid filterId);
+
+        //void ApplyFilterPreset(FilterPreset preset);
+
+        //Guid GetActiveFilterPreset();
+
+        //FilterPreset GetCurrentFilterSettings(FilterPreset preset);
     }
 }

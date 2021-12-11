@@ -15,132 +15,75 @@ namespace Playnite
 {
     public enum SortOrder
     {
-        [Description("LOCGameNameTitle")]
-        Name,
-        [Description("LOCPlatformTitle")]
-        Platforms,
-        [Description("LOCGameProviderTitle")]
-        Library,
-        [Description("LOCCategoryLabel")]
-        Categories,
-        [Description("LOCGameLastActivityTitle")]
-        LastActivity,
-        [Description("LOCGenreLabel")]
-        Genres,
-        [Description("LOCGameReleaseDateTitle")]
-        ReleaseDate,
-        [Description("LOCDeveloperLabel")]
-        Developers,
-        [Description("LOCPublisherLabel")]
-        Publishers,
-        [Description("LOCTagLabel")]
-        Tags,
-        [Description("LOCSeriesLabel")]
-        Series,
-        [Description("LOCAgeRatingLabel")]
-        AgeRatings,
-        [Description("LOCVersionLabel")]
-        Version,
-        [Description("LOCRegionLabel")]
-        Regions,
-        [Description("LOCSourceLabel")]
-        Source,
-        [Description("LOCPlayCountLabel")]
-        PlayCount,
-        [Description("LOCTimePlayed")]
-        Playtime,
-        [Description("LOCCompletionStatus")]
-        CompletionStatus,
-        [Description("LOCUserScore")]
-        UserScore,
-        [Description("LOCCriticScore")]
-        CriticScore,
-        [Description("LOCCommunityScore")]
-        CommunityScore,
-        [Description("LOCDateAddedLabel")]
-        Added,
-        [Description("LOCDateModifiedLabel")]
-        Modified,
-        [Description("LOCGameInstallationStatus")]
-        IsInstalled,
-        [Description("LOCGameHiddenTitle")]
-        Hidden,
-        [Description("LOCGameFavoriteTitle")]
-        Favorite,
-        [Description("LOCGameInstallDirTitle")]
-        InstallDirectory,
-        [Description("LOCFeatureLabel")]
-        Features
+        [Description("LOCGameNameTitle")] Name = 0,
+        [Description("LOCPlatformTitle")] Platforms = 1,
+        [Description("LOCGameProviderTitle")] Library = 2,
+        [Description("LOCCategoryLabel")] Categories = 3,
+        [Description("LOCGameLastActivityTitle")] LastActivity = 4,
+        [Description("LOCGenreLabel")] Genres = 5,
+        [Description("LOCGameReleaseDateTitle")] ReleaseDate = 6,
+        [Description("LOCDeveloperLabel")] Developers = 7,
+        [Description("LOCPublisherLabel")] Publishers = 8,
+        [Description("LOCTagLabel")] Tags = 9,
+        [Description("LOCSeriesLabel")] Series = 10,
+        [Description("LOCAgeRatingLabel")] AgeRatings = 11,
+        [Description("LOCVersionLabel")] Version = 12,
+        [Description("LOCRegionLabel")] Regions = 13,
+        [Description("LOCSourceLabel")] Source = 14,
+        [Description("LOCPlayCountLabel")] PlayCount = 15,
+        [Description("LOCTimePlayed")] Playtime = 16,
+        [Description("LOCCompletionStatus")] CompletionStatus = 17,
+        [Description("LOCUserScore")] UserScore = 18,
+        [Description("LOCCriticScore")] CriticScore = 19,
+        [Description("LOCCommunityScore")] CommunityScore = 20,
+        [Description("LOCDateAddedLabel")] Added = 21,
+        [Description("LOCDateModifiedLabel")] Modified = 22,
+        [Description("LOCGameInstallationStatus")] IsInstalled = 23,
+        [Description("LOCGameHiddenTitle")] Hidden = 24,
+        [Description("LOCGameFavoriteTitle")] Favorite = 25,
+        [Description("LOCGameInstallDirTitle")] InstallDirectory = 26,
+        [Description("LOCFeatureLabel")] Features = 27
     }
 
     public enum SortOrderDirection
     {
-        [Description("LOCMenuSortAscending")]
-        Ascending,
-        [Description("LOCMenuSortDescending")]
-        Descending
+        [Description("LOCMenuSortAscending")]  Ascending = 0,
+        [Description("LOCMenuSortDescending")] Descending = 1
     }
 
     public enum GroupableField
     {
-        [Description("LOCMenuGroupDont")]
-        None,
-        [Description("LOCPlatformTitle")]
-        Platform,
-        [Description("LOCGameProviderTitle")]
-        Library,
-        [Description("LOCCategoryLabel")]
-        Category,
-        [Description("LOCGameLastActivityTitle")]
-        LastActivity,
-        [Description("LOCGenreLabel")]
-        Genre,
-        [Description("LOCGameReleaseYearTitle")]
-        ReleaseYear,
-        [Description("LOCDeveloperLabel")]
-        Developer,
-        [Description("LOCPublisherLabel")]
-        Publisher,
-        [Description("LOCTagLabel")]
-        Tag,
-        [Description("LOCSeriesLabel")]
-        Series,
-        [Description("LOCAgeRatingLabel")]
-        AgeRating,
-        [Description("LOCRegionLabel")]
-        Region,
-        [Description("LOCSourceLabel")]
-        Source,
-        [Description("LOCTimePlayed")]
-        PlayTime,
-        [Description("LOCCompletionStatus")]
-        CompletionStatus,
-        [Description("LOCUserScore")]
-        UserScore,
-        [Description("LOCCriticScore")]
-        CriticScore,
-        [Description("LOCCommunityScore")]
-        CommunityScore,
-        [Description("LOCDateAddedLabel")]
-        Added,
-        [Description("LOCDateModifiedLabel")]
-        Modified,
-        [Description("LOCFeatureLabel")]
-        Feature,
-        [Description("LOCGameInstallationStatus")]
-        InstallationStatus,
-        [Description("LOCGameNameTitle")]
-        Name
+        [Description("LOCMenuGroupDont")] None = 0,
+        [Description("LOCPlatformTitle")] Platform = 1,
+        [Description("LOCGameProviderTitle")] Library = 2,
+        [Description("LOCCategoryLabel")] Category = 3,
+        [Description("LOCGameLastActivityTitle")] LastActivity = 4,
+        [Description("LOCGenreLabel")] Genre = 5,
+        [Description("LOCGameReleaseYearTitle")] ReleaseYear = 6,
+        [Description("LOCDeveloperLabel")] Developer = 7,
+        [Description("LOCPublisherLabel")] Publisher = 8,
+        [Description("LOCTagLabel")] Tag = 9,
+        [Description("LOCSeriesLabel")] Series = 10,
+        [Description("LOCAgeRatingLabel")] AgeRating = 11,
+        [Description("LOCRegionLabel")] Region = 12,
+        [Description("LOCSourceLabel")] Source = 13,
+        [Description("LOCTimePlayed")] PlayTime = 14,
+        [Description("LOCCompletionStatus")] CompletionStatus = 15,
+        [Description("LOCUserScore")] UserScore = 16,
+        [Description("LOCCriticScore")] CriticScore = 17,
+        [Description("LOCCommunityScore")] CommunityScore = 18,
+        [Description("LOCDateAddedLabel")] Added = 19,
+        [Description("LOCDateModifiedLabel")] Modified = 20,
+        [Description("LOCFeatureLabel")] Feature = 21,
+        [Description("LOCGameInstallationStatus")] InstallationStatus = 22,
+        [Description("LOCGameNameTitle")] Name = 23
     }
 
     public enum ViewType : int
     {
-        [Description("LOCDetailsViewLabel")]
-        Details = 0,
-        [Description("LOCGridViewLabel")]
-        Grid = 1,
-        [Description("LOCListViewLabel")]
-        List = 2
+        [Description("LOCDetailsViewLabel")] Details = 0,
+        [Description("LOCGridViewLabel")] Grid = 1,
+        [Description("LOCListViewLabel")] List = 2
     }
 
     public class ListViewColumnProperty : ObservableObject

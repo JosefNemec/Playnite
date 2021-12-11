@@ -17,6 +17,7 @@ using System.Threading;
 using System.Collections.Concurrent;
 using Playnite.Common.Media.Icons;
 using System.Reflection;
+using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
@@ -529,40 +530,40 @@ namespace Playnite.Database
                 {
                     Name = "All",
                     ShowInFullscreeQuickSelection = true,
-                    GroupingOrder = GroupableField.None,
-                    SortingOrder = SortOrder.Name,
-                    SortingOrderDirection = SortOrderDirection.Ascending,
-                    Settings = new FilterSettings()
+                    GroupingOrder = ViewGroupField.None,
+                    SortingOrder = ViewSortOrder.Name,
+                    SortingOrderDirection = ViewSortOrderDirection.Ascending,
+                    Settings = new FilterPresetSettings()
                 });
 
                 FilterPresets.Add(new FilterPreset
                 {
                     Name = "Recently Played",
                     ShowInFullscreeQuickSelection = true,
-                    GroupingOrder = GroupableField.None,
-                    SortingOrder = SortOrder.LastActivity,
-                    SortingOrderDirection = SortOrderDirection.Descending,
-                    Settings = new FilterSettings { IsInstalled = true }
+                    GroupingOrder = ViewGroupField.None,
+                    SortingOrder = ViewSortOrder.LastActivity,
+                    SortingOrderDirection = ViewSortOrderDirection.Descending,
+                    Settings = new FilterPresetSettings { IsInstalled = true }
                 });
 
                 FilterPresets.Add(new FilterPreset
                 {
                     Name = "Favorites",
                     ShowInFullscreeQuickSelection = true,
-                    GroupingOrder = GroupableField.None,
-                    SortingOrder = SortOrder.Name,
-                    SortingOrderDirection = SortOrderDirection.Ascending,
-                    Settings = new FilterSettings { Favorite = true }
+                    GroupingOrder = ViewGroupField.None,
+                    SortingOrder = ViewSortOrder.Name,
+                    SortingOrderDirection = ViewSortOrderDirection.Ascending,
+                    Settings = new FilterPresetSettings { Favorite = true }
                 });
 
                 FilterPresets.Add(new FilterPreset
                 {
                     Name = "Most Played",
                     ShowInFullscreeQuickSelection = true,
-                    GroupingOrder = GroupableField.None,
-                    SortingOrder = SortOrder.Playtime,
-                    SortingOrderDirection = SortOrderDirection.Descending,
-                    Settings = new FilterSettings()
+                    GroupingOrder = ViewGroupField.None,
+                    SortingOrder = ViewSortOrder.Playtime,
+                    SortingOrderDirection = ViewSortOrderDirection.Descending,
+                    Settings = new FilterPresetSettings()
                 });
 
                 FilterPresets.IsEventsEnabled = true;

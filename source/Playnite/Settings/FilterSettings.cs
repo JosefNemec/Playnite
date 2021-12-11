@@ -8,131 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Playnite.Common;
-using Playnite.SDK.Models;
+using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite
 {
-    public class FilterPreset : DatabaseObject
-    {
-        private FilterSettings settings;
-        public FilterSettings Settings
-        {
-            get => settings;
-            set
-            {
-                settings = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private SortOrder? sortingOrder;
-        public SortOrder? SortingOrder
-        {
-            get
-            {
-                return sortingOrder;
-            }
-
-            set
-            {
-                sortingOrder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private SortOrderDirection? sortingOrderDirection;
-        public SortOrderDirection? SortingOrderDirection
-        {
-            get
-            {
-                return sortingOrderDirection;
-            }
-
-            set
-            {
-                sortingOrderDirection = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private GroupableField? groupingOrder;
-        public GroupableField? GroupingOrder
-        {
-            get
-            {
-                return groupingOrder;
-            }
-
-            set
-            {
-                groupingOrder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool showInFullscreeQuickSelection = true;
-        public bool ShowInFullscreeQuickSelection
-        {
-            get => showInFullscreeQuickSelection;
-            set
-            {
-                showInFullscreeQuickSelection = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool ShouldSerializeGroupingOrder()
-        {
-            return GroupingOrder != null;
-        }
-
-        public bool ShouldSerializeSortingOrderDirection()
-        {
-            return SortingOrderDirection != null;
-        }
-
-        public bool ShouldSerializeSortingOrder()
-        {
-            return SortingOrder != null;
-        }
-
-        public override void CopyDiffTo(object target)
-        {
-            base.CopyDiffTo(target);
-            if (target is FilterPreset tro)
-            {
-                if (!Settings.IsEqualJson(tro.Settings))
-                {
-                    tro.Settings = Settings;
-                }
-
-                if (SortingOrder != tro.SortingOrder)
-                {
-                    tro.SortingOrder = SortingOrder;
-                }
-
-                if (SortingOrderDirection != tro.SortingOrderDirection)
-                {
-                    tro.SortingOrderDirection = SortingOrderDirection;
-                }
-
-                if (GroupingOrder != tro.GroupingOrder)
-                {
-                    tro.GroupingOrder = GroupingOrder;
-                }
-
-                if (ShowInFullscreeQuickSelection != tro.ShowInFullscreeQuickSelection)
-                {
-                    tro.ShowInFullscreeQuickSelection = ShowInFullscreeQuickSelection;
-                }
-            }
-            else
-            {
-                throw new ArgumentException($"Target object has to be of type {GetType().Name}");
-            }
-        }
-    }
-
     public class FilterChangedEventArgs : EventArgs
     {
         public List<string> Fields
@@ -150,7 +29,12 @@ namespace Playnite
         }
     }
 
-    public class StringFilterItemProperites : ObservableObject
+    public abstract class FilterItemPropsBase<TSdkModel> : ObservableObject
+    {
+        public abstract TSdkModel ToSdkModel();
+    }
+
+    public class StringFilterItemProperites : FilterItemPropsBase<SdkModels.StringFilterItemProperites>
     {
         [JsonIgnore]
         public bool IsSet => Values.HasNonEmptyItems();
@@ -190,9 +74,21 @@ namespace Playnite
 
             return Values.IsListEqual(obj?.Values);
         }
+
+        public override SdkModels.StringFilterItemProperites ToSdkModel()
+        {
+            if (Values.HasItems())
+            {
+                return new SdkModels.StringFilterItemProperites(Values);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 
-    public class EnumFilterItemProperites : ObservableObject
+    public class EnumFilterItemProperites : FilterItemPropsBase<SdkModels.EnumFilterItemProperites>
     {
         [JsonIgnore]
         public bool IsSet => Values.HasItems();
@@ -232,9 +128,21 @@ namespace Playnite
 
             return Values.IsListEqual(obj?.Values);
         }
+
+        public override SdkModels.EnumFilterItemProperites ToSdkModel()
+        {
+            if (Values.HasItems())
+            {
+                return new SdkModels.EnumFilterItemProperites(Values);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 
-    public class FilterItemProperites : ObservableObject
+    public class FilterItemProperites : FilterItemPropsBase<SdkModels.IdItemFilterItemProperites>
     {
         [JsonIgnore]
         public List<string> Texts { get; private set; }
@@ -314,6 +222,22 @@ namespace Playnite
             }
 
             return Ids.IsListEqual(obj?.Ids) && Text == obj.Text;
+        }
+
+        public override SdkModels.IdItemFilterItemProperites ToSdkModel()
+        {
+            if (!Text.IsNullOrEmpty())
+            {
+                return new SdkModels.IdItemFilterItemProperites(Text);
+            }
+            else if (Ids.HasItems())
+            {
+                return new SdkModels.IdItemFilterItemProperites(Ids);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -1099,6 +1023,47 @@ namespace Playnite
             {
                 OnFilterChanged(filterChanges);
             }
+        }
+
+        public SdkModels.FilterPresetSettings AsPresetSettings()
+        {
+            var settings = new SdkModels.FilterPresetSettings();
+            settings.UseAndFilteringStyle = UseAndFilteringStyle;
+            settings.IsInstalled = IsInstalled;
+            settings.IsUnInstalled = IsUnInstalled;
+            settings.Hidden = Hidden;
+            settings.Favorite = Favorite;
+            settings.Name = Name;
+            settings.Version = Version;
+            settings.ReleaseYear = ReleaseYear?.ToSdkModel();
+            settings.Genre = Genre?.ToSdkModel();
+            settings.Platform = Platform?.ToSdkModel();
+            sattings.Publisher = Publisher?.ToSdkModel();
+            sattings.Developer = Developer?.ToSdkModel();
+            sattings.Category { get; set; }
+            sattings.Tag { get; set; }
+            sattings.Series { get; set; }
+            sattings.Region { get; set; }
+            sattings.Source { get; set; }
+            sattings.AgeRating { get; set; }
+            sattings.Library { get; set; }
+            sattings.CompletionStatuses { get; set; }
+            sattings.Feature { get; set; }
+            sattings.UserScore { get; set; }
+            sattings.CriticScore { get; set; }
+            sattings.CommunityScore { get; set; }
+            settings.LastActivity { get; set; }
+            settings.Added { get; set; }
+            settings.Modified { get; set; }
+            settings.PlayTime { get; set; }
+            return settings;
+
+            // TODO
+        }
+
+        public void ApplyFilter(SdkModels.FilterPresetSettings settings)
+        {
+            // TODO
         }
 
         public void ApplyFilter(FilterSettings settings)

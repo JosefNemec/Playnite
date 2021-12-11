@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
@@ -271,37 +272,37 @@ namespace Playnite.Database
                         {
                             Name = "All",
                             ShowInFullscreeQuickSelection = true,
-                            GroupingOrder = GroupableField.None,
-                            SortingOrder = SortOrder.Name,
-                            SortingOrderDirection = SortOrderDirection.Ascending,
-                            Settings = new FilterSettings()
+                            GroupingOrder = ViewGroupField.None,
+                            SortingOrder = ViewSortOrder.Name,
+                            SortingOrderDirection = ViewSortOrderDirection.Ascending,
+                            Settings = new FilterPresetSettings()
                         },
                         new FilterPreset
                         {
                             Name = "Recently Played",
                             ShowInFullscreeQuickSelection = true,
-                            GroupingOrder = GroupableField.None,
-                            SortingOrder = SortOrder.LastActivity,
-                            SortingOrderDirection = SortOrderDirection.Descending,
-                            Settings = new FilterSettings { IsInstalled = true }
+                            GroupingOrder = ViewGroupField.None,
+                            SortingOrder = ViewSortOrder.LastActivity,
+                            SortingOrderDirection = ViewSortOrderDirection.Descending,
+                            Settings = new FilterPresetSettings { IsInstalled = true }
                         },
                         new FilterPreset
                         {
                             Name = "Favorites",
                             ShowInFullscreeQuickSelection = true,
-                            GroupingOrder = GroupableField.None,
-                            SortingOrder = SortOrder.Name,
-                            SortingOrderDirection = SortOrderDirection.Ascending,
-                            Settings = new FilterSettings { Favorite = true }
+                            GroupingOrder = ViewGroupField.None,
+                            SortingOrder = ViewSortOrder.Name,
+                            SortingOrderDirection = ViewSortOrderDirection.Ascending,
+                            Settings = new FilterPresetSettings { Favorite = true }
                         },
                         new FilterPreset
                         {
                             Name = "Most Played",
                             ShowInFullscreeQuickSelection = true,
-                            GroupingOrder = GroupableField.None,
-                            SortingOrder = SortOrder.Playtime,
-                            SortingOrderDirection = SortOrderDirection.Descending,
-                            Settings = new FilterSettings()
+                            GroupingOrder = ViewGroupField.None,
+                            SortingOrder = ViewSortOrder.Playtime,
+                            SortingOrderDirection = ViewSortOrderDirection.Descending,
+                            Settings = new FilterPresetSettings()
                         }
                     });
                 }

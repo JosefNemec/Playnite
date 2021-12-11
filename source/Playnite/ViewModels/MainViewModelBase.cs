@@ -269,19 +269,19 @@ namespace Playnite.ViewModels
             var filter = App.Mode == ApplicationMode.Desktop ? AppSettings.FilterSettings : AppSettings.Fullscreen.FilterSettings;
             var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
             filter.ApplyFilter(preset.Settings);
-            if (preset.SortingOrder != null)
+            if (preset.SortingOrder != null && Enum.IsDefined(typeof(SortOrder), (int)preset.SortingOrder.Value))
             {
-                view.SortingOrder = preset.SortingOrder.Value;
+                view.SortingOrder = (SortOrder)preset.SortingOrder.Value;
             }
 
-            if (preset.SortingOrderDirection != null)
+            if (preset.SortingOrderDirection != null && Enum.IsDefined(typeof(SortOrderDirection), (int)preset.SortingOrderDirection.Value))
             {
-                view.SortingOrderDirection = preset.SortingOrderDirection.Value;
+                view.SortingOrderDirection = (SortOrderDirection)preset.SortingOrderDirection.Value;
             }
 
-            if (App.Mode == ApplicationMode.Desktop && preset.GroupingOrder != null)
+            if (App.Mode == ApplicationMode.Desktop && preset.GroupingOrder != null && Enum.IsDefined(typeof(GroupableField), (int)preset.GroupingOrder.Value))
             {
-                AppSettings.ViewSettings.GroupingOrder = preset.GroupingOrder.Value;
+                AppSettings.ViewSettings.GroupingOrder = (GroupableField)preset.GroupingOrder.Value;
             }
 
             if (GamesView != null)
@@ -371,18 +371,18 @@ namespace Playnite.ViewModels
                 var preset = new FilterPreset
                 {
                     Name = res.SelectedString,
-                    Settings = filter.GetClone(),
+                    Settings = filter.AsPresetSettings(),
                     ShowInFullscreeQuickSelection = options[1].Selected
                 };
 
                 if (options[0].Selected)
                 {
                     var view = App.Mode == ApplicationMode.Desktop ? AppSettings.ViewSettings : (ViewSettingsBase)AppSettings.Fullscreen.ViewSettings;
-                    preset.SortingOrder = view.SortingOrder;
-                    preset.SortingOrderDirection = view.SortingOrderDirection;
+                    preset.SortingOrder = (ViewSortOrder)view.SortingOrder;
+                    preset.SortingOrderDirection = (ViewSortOrderDirection)view.SortingOrderDirection;
                     if (App.Mode == ApplicationMode.Desktop)
                     {
-                        preset.GroupingOrder = AppSettings.ViewSettings.GroupingOrder;
+                        preset.GroupingOrder = (ViewGroupField)AppSettings.ViewSettings.GroupingOrder;
                     }
                 }
 
