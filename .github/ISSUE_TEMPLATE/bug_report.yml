@@ -14,7 +14,7 @@ body:
         If an issue is related to library integrations, use separate [extensions repository](https://github.com/JosefNemec/PlayniteExtensions) to file a report.
   - type: textarea
     attributes:
-      label: Describe the bug
+      label: Bug Description
       description: A clear and concise description of what the bug is.
     validations:
       required: true
