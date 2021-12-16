@@ -498,7 +498,7 @@ namespace Playnite.ViewModels
                 }
 
                 return addedGames;
-            }, AppSettings.DownloadMetadataOnImport);
+            }, metaForNewGames);
         }
 
         public async Task UpdateLibrary(LibraryPlugin plugin)
