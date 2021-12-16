@@ -138,6 +138,7 @@ namespace Playnite.FullscreenApp.Windows
 
             if (this != owner)
             {
+                // TODO check
                 Height = owner.ActualHeight;
                 Width = owner.ActualWidth;
                 Owner = owner;

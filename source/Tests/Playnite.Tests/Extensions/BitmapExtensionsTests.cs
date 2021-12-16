@@ -15,12 +15,12 @@ namespace Playnite.Tests.Extensions
         [Test]
         public void BitmapLoadPropertiesEquabilityTest()
         {
-            var np1 = new BitmapLoadProperties(1, 1, new DpiScale(1, 1));
-            var np2 = new BitmapLoadProperties(1, 1, new DpiScale(1, 1));
-            var np3 = new BitmapLoadProperties(2, 2, new DpiScale(2, 2));
+            var np1 = new BitmapLoadProperties(1, 1, 1);
+            var np2 = new BitmapLoadProperties(1, 1, 1);
+            var np3 = new BitmapLoadProperties(2, 2, 2);
             BitmapLoadProperties np4 = null;
-            var np5 = new BitmapLoadProperties(2, 2, new DpiScale(2, 2), ImageLoadScaling.BitmapDotNet);
-            var np6 = new BitmapLoadProperties(2, 2, new DpiScale(2, 2), ImageLoadScaling.None);
+            var np5 = new BitmapLoadProperties(2, 2, 2, ImageLoadScaling.BitmapDotNet);
+            var np6 = new BitmapLoadProperties(2, 2, 2, ImageLoadScaling.None);
 
             Assert.AreEqual(np1, np2);
             Assert.IsTrue(np1 == np2);

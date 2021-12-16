@@ -355,7 +355,7 @@ namespace Playnite.FullscreenApp.ViewModels
             Window = window;
             GamesEditor = gamesEditor;
             AppSettings = settings;
-            IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
+            IsFullScreen = true;// !PlayniteEnvironment.IsDebuggerAttached;
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);
@@ -646,7 +646,6 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Window.Show(this);
             SetViewSizeAndPosition(IsFullScreen);
-            App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
             InitializeView();
         }
@@ -699,21 +698,31 @@ namespace Playnite.FullscreenApp.ViewModels
 
             var ratio = Sizes.GetAspectRatio(screen.Bounds);
             ViewportWidth = ratio.GetWidth(ViewportHeight);
-            var dpi = VisualTreeHelper.GetDpi(Window.Window);
             if (fullscreen)
             {
-                WindowLeft = screen.Bounds.X / dpi.DpiScaleX;
-                WindowTop = screen.Bounds.Y / dpi.DpiScaleY;
-                WindowWidth = screen.Bounds.Width / dpi.DpiScaleX;
-                WindowHeight = screen.Bounds.Height / dpi.DpiScaleY;
+                WindowLeft = screen.Bounds.X / screen.Dpi;
+                WindowTop = screen.Bounds.Y / screen.Dpi;
+                WindowWidth = screen.Bounds.Width / screen.Dpi;
+                WindowHeight = screen.Bounds.Height / screen.Dpi;
+
+                // TODO comment
+                //if (screen.Dpi > 1)
+                //{
+                //    WindowLeft = screen.Bounds.X / screen.Dpi;
+                //    WindowTop = screen.Bounds.Y / screen.Dpi;
+                //    WindowWidth = screen.Bounds.Width / screen.Dpi;
+                //    WindowHeight = screen.Bounds.Height / screen.Dpi;
+                //}
             }
             else
             {
-                WindowWidth = screen.Bounds.Width / 1.5;
-                WindowHeight = screen.Bounds.Height / 1.5;
-                WindowLeft = screen.Bounds.X + ((screen.Bounds.Width - WindowWidth) / 2);
-                WindowTop = screen.Bounds.Y + ((screen.Bounds.Height - WindowHeight) / 2);
+                WindowWidth = (screen.Bounds.Width / screen.Dpi) / 1.5;
+                WindowHeight = (screen.Bounds.Height / screen.Dpi) / 1.5;
+                WindowLeft = (screen.Bounds.X / screen.Dpi) + ((screen.Bounds.Width - WindowWidth) / 2);
+                WindowTop = (screen.Bounds.Y / screen.Dpi) + ((screen.Bounds.Height - WindowHeight) / 2);
             }
+
+            App.UpdateScreenInformation(Window.Window);
         }
 
         protected void InitializeView()
@@ -723,6 +732,7 @@ namespace Playnite.FullscreenApp.ViewModels
             var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
             (_) =>
             {
+                //Thread.Sleep(2000);
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
@@ -852,7 +862,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            App.UpdateScreenInformation(Window.Window);
+            //App.UpdateScreenInformation(Window.Window);
         }
 
         internal void ProcessUriRequest(PlayniteUriEventArgs args)

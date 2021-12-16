@@ -22,13 +22,13 @@ namespace System.Drawing.Imaging
     public class BitmapLoadProperties: IEquatable<BitmapLoadProperties>
     {
         public ImageLoadScaling Scaling { get; set; } = ImageLoadScaling.BitmapDotNet;
-        public DpiScale? DpiScale { get; set; }
+        public double? DpiScale { get; set; }
         public int MaxDecodePixelWidth { get; set; } = 0;
         public int MaxDecodePixelHeight { get; set; } = 0;
         public int DpiAwareMaxDecodePixelWidth =>
-            DpiScale == null ? MaxDecodePixelWidth : (int)Math.Round(MaxDecodePixelWidth * DpiScale.Value.DpiScaleX);
+            DpiScale == null ? MaxDecodePixelWidth : (int)Math.Round(MaxDecodePixelWidth * DpiScale.Value);
         public int DpiAwareMaxDecodePixelHeight =>
-            DpiScale == null ? MaxDecodePixelHeight : (int)Math.Round(MaxDecodePixelHeight * DpiScale.Value.DpiScaleY);
+            DpiScale == null ? MaxDecodePixelHeight : (int)Math.Round(MaxDecodePixelHeight * DpiScale.Value);
         public string Source { get; set; }
 
         public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight)
@@ -37,12 +37,12 @@ namespace System.Drawing.Imaging
             MaxDecodePixelHeight = decodePixelHeight;
         }
 
-        public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight, DpiScale? dpiScale) : this(decodePixelWidth, decodePixelHeight)
+        public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight, double? dpiScale) : this(decodePixelWidth, decodePixelHeight)
         {
             DpiScale = dpiScale;
         }
 
-        public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight, DpiScale? dpiScale, ImageLoadScaling scaling) : this(decodePixelWidth, decodePixelHeight, dpiScale)
+        public BitmapLoadProperties(int decodePixelWidth, int decodePixelHeight, double? dpiScale, ImageLoadScaling scaling) : this(decodePixelWidth, decodePixelHeight, dpiScale)
         {
             Scaling = scaling;
         }
@@ -108,7 +108,7 @@ namespace System.Drawing.Imaging
 
         public override string ToString()
         {
-            return $"{MaxDecodePixelWidth}x{MaxDecodePixelHeight};{DpiScale?.DpiScaleX}x{DpiScale?.DpiScaleY};{Source};{Scaling}";
+            return $"{MaxDecodePixelWidth}x{MaxDecodePixelHeight};{DpiScale};{Source};{Scaling}";
         }
     }
 

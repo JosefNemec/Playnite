@@ -17,7 +17,6 @@ using System.Windows.Shapes;
 
 namespace Playnite.FullscreenApp.Windows
 {
-
     public class MainWindowFactory : WindowFactory
     {
         public override WindowBase CreateNewWindowInstance()
@@ -32,8 +31,17 @@ namespace Playnite.FullscreenApp.Windows
     public partial class MainWindow : WindowBase
     {
         public MainWindow() : base()
-        {            
+        {
             InitializeComponent();
+            this.Activated += MainWindow_Activated;
+        }
+
+        private void MainWindow_Activated(object sender, EventArgs e)
+        {
+            Console.WriteLine($"------------------");
+            Console.WriteLine($"{Left},{Top}");
+            Console.WriteLine($"{Height},{Width}");
+            Console.WriteLine($"{ActualHeight},{ActualWidth}");
         }
     }
 }

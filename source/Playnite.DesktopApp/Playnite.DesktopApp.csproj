@@ -412,7 +412,9 @@
     <Resource Include="..\..\references\Fonts\icofont.ttf">
       <Link>Fonts\icofont.ttf</Link>
     </Resource>
-    <None Include="app.manifest" />
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

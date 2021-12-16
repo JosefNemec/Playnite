@@ -140,7 +140,7 @@ namespace Playnite.Windows
             // Make sure that position is part of at least one connected screen
             foreach (var monitor in Computer.GetScreens())
             {
-                if (monitor.WorkingArea.Contains(x, y))
+                if (monitor.Bounds.Contains(x, y))
                 {
                     window.Left = x;
                     window.Top = y;

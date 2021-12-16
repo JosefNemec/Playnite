@@ -202,6 +202,9 @@
       <HintPath>..\..\references\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsDisplayAPI, Version=1.3.0.13, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsDisplayAPI.1.3.0.13\lib\net45\WindowsDisplayAPI.dll</HintPath>
+    </Reference>
     <Reference Include="XInputDotNetPure">
       <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
     </Reference>

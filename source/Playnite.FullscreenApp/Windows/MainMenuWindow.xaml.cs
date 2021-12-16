@@ -34,5 +34,10 @@ namespace Playnite.FullscreenApp.Windows
             InitializeComponent();
             WindowTools.ConfigureChildWindow(this);
         }
+
+        private void WindowBase_Activated(object sender, EventArgs e)
+        {
+            Console.WriteLine("main active");
+        }
     }
 }

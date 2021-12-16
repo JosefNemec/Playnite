@@ -31,6 +31,11 @@ namespace Playnite
             get; set;
         }
 
+        public Point DpiScale
+        {
+            get; set;
+        }
+
         public System.Windows.WindowState State
         {
             get; set;

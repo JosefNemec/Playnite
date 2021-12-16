@@ -14,6 +14,7 @@
         ShowInTaskbar="False" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         Style="{StaticResource ChildWindowStyle}"
+              Activated="WindowBase_Activated"
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>

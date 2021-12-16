@@ -21,6 +21,12 @@ namespace Playnite.FullscreenApp.Windows
                 {
                     mainGrid.Width = model.ViewportWidth;
                 }
+
+                window.Loaded += (_, __) =>
+                {
+                    window.Left = model.WindowLeft;
+                    window.Top = model.WindowTop;
+                };
             }
         }
     }

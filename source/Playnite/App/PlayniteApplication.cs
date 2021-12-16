@@ -71,7 +71,7 @@ namespace Playnite
         public PlayniteAPI Api { get; set; }
         public GameControllerFactory Controllers { get; set; }
         public CmdLineOptions CmdLine { get; set; }
-        public DpiScale DpiScale { get; set; } = new DpiScale(1, 1);
+        public double DpiScale = 1;
         public ComputerScreen CurrentScreen { get; set; } = Computer.GetPrimaryScreen();
         public DiscordManager Discord { get; set; }
         public SynchronizationContext SyncContext { get; private set; }
@@ -463,6 +463,8 @@ namespace Playnite
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            var screens = Computer.GetAllScreensV2();
+
             logger.Info($"Application started from '{PlaynitePaths.ProgramPath}'");
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
@@ -1126,15 +1128,20 @@ namespace Playnite
         {
             try
             {
-                DpiScale = VisualTreeHelper.GetDpi(window);
                 CurrentScreen = window.GetScreen();
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                DpiScale = new DpiScale(1, 1);
                 CurrentScreen = Computer.GetPrimaryScreen();
                 logger.Error(e, $"Failed to get window information for main {Mode} window.");
             }
+
+            if (CurrentScreen == null)
+            {
+                CurrentScreen = Computer.GetPrimaryScreen();
+            }
+
+            DpiScale = CurrentScreen.Dpi;
         }
 
         public void ShowAddonPerfNotice()

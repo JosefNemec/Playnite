@@ -87,7 +87,7 @@ namespace Playnite.FullscreenApp.Controls
 
         private void ItemsPanel_InternalChildrenGenerated(object sender, InternalChildrenGeneratedArgs e)
         {
-            FocusSelected();
+            //FocusSelected();
         }
 
         private void ListBoxEx_GotFocus(object sender, RoutedEventArgs e)
@@ -102,6 +102,7 @@ namespace Playnite.FullscreenApp.Controls
 
         private void FocusSelected()
         {
+            return;
             if (IsFocused)
             {
                 if (SelectedItem == null && Items.Count > 0)

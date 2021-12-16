@@ -227,7 +227,7 @@ namespace Playnite
                 }
 
                 backgroundImageProperties = new BitmapLoadProperties(
-                    application.CurrentScreen.WorkingArea.Width,
+                    application.CurrentScreen.Bounds.Width,
                     0,
                     application.DpiScale,
                     settings.ImageScalerMode);
@@ -251,12 +251,12 @@ namespace Playnite
             if (settings.Fullscreen.HorizontalLayout)
             {
                 properties.MaxDecodePixelWidth = application.CurrentScreen.Bounds.Width / settings.Fullscreen.Columns;
-                properties.MaxDecodePixelWidth = (int)Math.Round(properties.MaxDecodePixelWidth / dpi.DpiScaleX);
+                properties.MaxDecodePixelWidth = (int)Math.Round(properties.MaxDecodePixelWidth / dpi);
             }
             else
             {
                 properties.MaxDecodePixelHeight = application.CurrentScreen.Bounds.Height / settings.Fullscreen.Rows;
-                properties.MaxDecodePixelHeight = (int)Math.Round(properties.MaxDecodePixelHeight / dpi.DpiScaleY);
+                properties.MaxDecodePixelHeight = (int)Math.Round(properties.MaxDecodePixelHeight / dpi);
             }
 
             return properties;
@@ -312,7 +312,7 @@ namespace Playnite
                 if (e.PropertyName == nameof(PlayniteSettings.ImageScalerMode))
                 {
                     backgroundImageProperties = new BitmapLoadProperties(
-                        application.CurrentScreen.WorkingArea.Width,
+                        application.CurrentScreen.Bounds.Width,
                         0,
                         application.DpiScale,
                         settings.ImageScalerMode);
