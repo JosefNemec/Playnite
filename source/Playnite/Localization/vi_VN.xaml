@@ -687,38 +687,38 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCThemeTestApplySkin">Áp dụng các chủ đề đã chọn</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Xem các thay đổi của tệp</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">Tự động áp dụng chủ đề khi tệp nguồn thay đổi</sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
-    <sys:String x:Key="LOCPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
-    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
-    <sys:String x:Key="LOCExecuteGlobalScript"></sys:String>
-    <sys:String x:Key="LOCStatsGlobal"></sys:String>
-    <sys:String x:Key="LOCStatsFiltered"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
-    <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
-    <sys:String x:Key="LOCTestScript"></sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">Thời gian chạy tập lệnh</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">Thực thi trước khi bắt đầu trò chơi</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">Thực thi sau khi thoát khỏi trò chơi</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">Thực thi sau khi trò chơi được bắt đầu</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">Trò chơi bắt đầu...</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">Trò chơi bắt đầu...</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">Lệnh trò chơi đã dừng</sys:String>
+    <sys:String x:Key="LOCExecuteGlobalScript">Thực thi tập lệnh toàn cầu</sys:String>
+    <sys:String x:Key="LOCStatsGlobal">Toàn cầu</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Bộ lọc</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">Đang tiến hành</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">Mới</sys:String>
+    <sys:String x:Key="LOCTestScript">Tập lệnh thử nghiệm</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Chỉ hiện thị các mục đã được chọn</sys:String>
     <!--Game actions-->
-    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
-    <sys:String x:Key="LOCFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCHideGame"></sys:String>
-    <sys:String x:Key="LOCUnHideGame"></sys:String>
-    <sys:String x:Key="LOCEditGame"></sys:String>
-    <sys:String x:Key="LOCSetGameCategory"></sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
-    <sys:String x:Key="LOCRemoveGame"></sys:String>
-    <sys:String x:Key="LOCPlayGame"></sys:String>
-    <sys:String x:Key="LOCInstallGame"></sys:String>
-    <sys:String x:Key="LOCGameOptions"></sys:String>
-    <sys:String x:Key="LOCGameDetails"></sys:String>
-    <sys:String x:Key="LOCUninstallGame"></sys:String>
-    <sys:String x:Key="LOCOpenGameLocation"></sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut"></sys:String>
-    <sys:String x:Key="LOCOpenGameManual"></sys:String>
+    <sys:String x:Key="LOCSaveAsDefault">Lưu thành mặc định?</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">Thêm vào mục yêu thích</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Loại bỏ khỏi mục ưa thích</sys:String>
+    <sys:String x:Key="LOCHideGame">Ẩn khỏi mục ưa thích</sys:String>
+    <sys:String x:Key="LOCUnHideGame">Xóa khỏi danh sách ẩn</sys:String>
+    <sys:String x:Key="LOCEditGame">chỉnh sửa</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">Đặt danh mục…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">Trạng thái hoàn thành</sys:String>
+    <sys:String x:Key="LOCRemoveGame">Xóa bỏ</sys:String>
+    <sys:String x:Key="LOCPlayGame">Bắt đầu</sys:String>
+    <sys:String x:Key="LOCInstallGame">Cài đặt</sys:String>
+    <sys:String x:Key="LOCGameOptions">Cài đặt game</sys:String>
+    <sys:String x:Key="LOCGameDetails">Thông tin chi tiết</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Gỡ cài đặt</sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">Mở vị trí cài đặt</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">Tạo lối tắt trên Desktop</sys:String>
+    <sys:String x:Key="LOCOpenGameManual">Mở hướng dẫn sử dụng</sys:String>
     <sys:String x:Key="LOCMoreAction">Thêm</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">Được quản lý bởi đầu vào thư viện</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">Quá trình bắt đầu trò chơi sẽ được quản lý bởi plugin thư viện chịu trách nhiệm về trò chơi này.</sys:String>
@@ -769,26 +769,51 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite phải được khởi động lại để hoàn tất quá trình cài đặt. Bạn có muốn khởi động lại bây giờ không?</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">Tiện ích mở rộng không được đóng gói đúng cách.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Chủ đề không được đóng gói đúng cách.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>    
-    <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess"></sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
-    <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle"></sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">Không thể tải đúng tiện ích &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Không thể tải tiện ích mở rộng &quot;{0}&quot;, phiên bản Playnite hiện tại không được hỗ trợ.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">Không thể tải đúng tiện ích &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">Không thể tải giao diện mở rộng &quot;{0}&quot;, phiên bản Playnite hiện tại không được hỗ trợ.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">Không thể tải đúng tiện ích &quot;&quot;.</sys:String>    
+    <sys:String x:Key="LOCGeneralThemeLoadError">Không thể tải đúng tiện ích &quot;&quot;.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Chủ đề / Tiện ích mở rộng đang sử dụng phiên bản API không được hỗ trợ.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Cài đặt thành công</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Cài đặt tiện ích bổ sung</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Cài đặt chung</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Không cài đặt được tiện ích bổ sung &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Không cài đặt được tiện ích mở rộng.
+
+{0}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Bạn có muốn cài đặt một tiện ích mở rộng mới không?
+
+{0}
+Bởi 1}
+Phiên bản {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Bạn có muốn cập nhật tiện ích mở rộng &quot;{0}&quot; không?
+
+Phiên bản hiện tại: {1}
+Phiên bản mới: {2}</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Không cài đặt được tiện ích mở rộng.
+
+{0}</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Bạn có muốn cài đặt một tiện ích mở rộng mới không?
+
+{0}
+Bởi 1}
+Phiên bản {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Bạn có muốn cập nhật tiện ích mở rộng &quot;{0}&quot; không?
+
+Phiên bản hiện tại: {1}
+Phiên bản mới: {2}</sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Bạn sắp rời Playnite và điều hướng đến trang web sau bằng trình duyệt web mặc định của mình. Bạn có muốn tiếp tục?
+
+{0}</sys:String>
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">(Các) hình ảnh đã chọn có thể quá lớn để có hiệu suất tối ưu. Việc sử dụng hình ảnh rất lớn có thể dẫn đến khả năng phản hồi giao diện người dùng kém hơn và tăng mức sử dụng bộ nhớ.
+
+Độ phân giải khuyến nghị tối đa:
+Biểu tượng: {0} mega pixel
+Bìa: {1} mega pixel
+Nền: {2} mega pixel</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">Cảnh báo Hiệu suất</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Không hiện thị lại</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Tệp có phần mở rộng {0} không tương thích.</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Phần mở rộng tập tin không hợp lệ</sys:String>
@@ -811,12 +836,17 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCStatsTopPlayTime">Tổng thời gian chơi</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Tổng quan</sys:String>
     <sys:String x:Key="LOCSidebar">Thanh lệnh bên cạnh</sys:String>
-    <sys:String x:Key="LOCToolsShowOnSidebar"></sys:String>
-    <sys:String x:Key="LOCSettingsReset"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForDevelopers"></sys:String>
-    <sys:String x:Key="LOCSettingsExternalExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsNewExternalExtensionBox"></sys:String>    
+    <sys:String x:Key="LOCToolsShowOnSidebar">Hiển thị thanh tiện ích bên trái</sys:String>
+    <sys:String x:Key="LOCSettingsReset">Đặt lại cài đặt</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">Tất cả cài đặt ứng dụng sẽ được đặt lại về giá trị mặc định, ngoại trừ:
+- Vị trí cơ sở dữ liệu
+- Nhập danh sách loại trừ
+- Cài đặt tiện ích mở rộng, bao gồm cả tích hợp thư viện
+    
+Yêu cầu khởi động lại ứng dụng để kết thúc quá trình. Bạn có muốn đặt lại cài đặt không?</sys:String>
+    <sys:String x:Key="LOCSettingsForDevelopers">Cho các lập trình viên</sys:String>
+    <sys:String x:Key="LOCSettingsExternalExtensions">Phần mở rộng bên ngoài</sys:String>
+    <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Nhập đường dẫn thư mục đầy đủ.</sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements"></sys:String>
     <sys:String x:Key="LOCCommonLinksForum"></sys:String>
@@ -862,56 +892,60 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
-    <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
-    <sys:String x:Key="LOCAddonLicenseWindowTitle"></sys:String>
-    <sys:String x:Key="LOCLicenseAccept"></sys:String>
-    <sys:String x:Key="LOCLicenseDecline"></sys:String>
-    <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
-    <sys:String x:Key="LOCSelectActionTitle"></sys:String>
-    <sys:String x:Key="LOCActionTrackingMode"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeScript"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
-    <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
-    <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
-    <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeUniform"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
-    <sys:String x:Key="LOCGridViewScrollAmountModifier"></sys:String>
-    <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
-    <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
-    <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGroupingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelSortingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem"></sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
-    <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
-    <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
-    <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
-    <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
-    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
-    <sys:String x:Key="LOCInPast7Days"></sys:String>
-    <sys:String x:Key="LOCInPast31Days"></sys:String>
-    <sys:String x:Key="LOCInPast365Days"></sys:String>
-    <sys:String x:Key="LOCMoreThan365DaysAgo"></sys:String>
-    <sys:String x:Key="LOCConfigure"></sys:String>
-    <sys:String x:Key="LOCFilterPresetSave"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSize"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSizeSmall"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCAddonDevReferenceLoaded">Phiên bản phát triển tiện ích mở rộng</sys:String>
+    <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} Điều khoản của thỏa thuận cấp phép</sys:String>
+    <sys:String x:Key="LOCLicenseAccept">Đồng ý</sys:String>
+    <sys:String x:Key="LOCLicenseDecline">Không đồng ý</sys:String>
+    <sys:String x:Key="LOCIncludePluginGameActions">Bao gồm các hành động chơi tích hợp thư viện</sys:String>
+    <sys:String x:Key="LOCSelectActionTitle">Chọn hành động</sys:String>
+    <sys:String x:Key="LOCActionTrackingMode">Trang Theo Dõi</sys:String>
+    <sys:String x:Key="LOCGameActionTypeLink">Đường link</sys:String>
+    <sys:String x:Key="LOCGameActionTypeFile">Tập tin</sys:String>
+    <sys:String x:Key="LOCGameActionTypeEmulator">Các trình giả lập</sys:String>
+    <sys:String x:Key="LOCGameActionTypeScript">Nội dung</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDefault">Mặc định</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeProcess">Tiến trình</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDirectory">Thư mục</sys:String>
+    <sys:String x:Key="LOCDevelTraceLogEnable">Kênh tin nhắn</sys:String>
+    <sys:String x:Key="LOCMultiEditOverwriteWarning">Các thay đổi sau sẽ ghi đè dữ liệu cho tất cả các trò chơi hiện được chọn!</sys:String>    
+    <sys:String x:Key="LOCGridViewSpacingModeNone">Không có</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeUniform">Đồng phục</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Chỉ các mặt hàng</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">Thời gian bắt đầu và kết thúc</sys:String>
+    <sys:String x:Key="LOCGridViewScrollAmountModifier">Công cụ sửa đổi số lượng cuộn</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemTitle">Loại bỏ mục</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemMessage">Bạn có chắc rằng bạn muốn xóa sản phẩm này?</sys:String>    
+    <sys:String x:Key="LOCSettingsTopPanelItems">Hiển thị các nút trên bảng điều khiển trên cùng:</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">Thiết lập chung</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Cài đặt nhóm</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">Cài đặt sắp xếp</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Lọc cài đặt trước</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Vị trí các mục plugin</sys:String>
+    <sys:String x:Key="LOCTopPanelSeparatorWidth">Chiều rộng phân cách phần</sys:String>
+    <sys:String x:Key="LOCTopPanelMainButtonMove">Di chuyển nút menu chính sang thanh bên</sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch">Bảng điều khiển Explorer</sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Bộ chọn trò chơi ngẫu nhiên</sys:String>
+    <sys:String x:Key="LOCFilterPresetSaveViewOptions">Lưu cài đặt nhóm và sắp xếp</sys:String>
+    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Hiển thị dưới dạng bộ lọc nhanh ở chế độ Toàn màn hình</sys:String>
+    <sys:String x:Key="LOCInPast7Days">Trong 7 ngày qua</sys:String>
+    <sys:String x:Key="LOCInPast31Days">Trong 31 ngày gần đây</sys:String>
+    <sys:String x:Key="LOCInPast365Days">Trong 365 ngày qua</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">Hơn 365 ngày trước</sys:String>
+    <sys:String x:Key="LOCConfigure">Đặt lại cấu hình</sys:String>
+    <sys:String x:Key="LOCFilterPresetSave">Lưu cài đặt trước</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Thu nhỏ sau khi bắt đầu trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Thu nhỏ Playnite sau khi trò chơi được bắt đầu.
+
+Việc vô hiệu hóa tính năng này có thể dẫn đến sự cố game không nhận được đầu vào khi khởi động!</sys:String>
+    <sys:String x:Key="LOCSettingsFontSize">Kích cỡ phông chữ</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizeSmall">Kích thước phông chữ nhỏ</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">Hỗ trợ thiết bị XInput</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Nếu bị tắt, Playnite sẽ không chấp nhận bất kỳ đầu vào giao diện XInput nào.
+        
+Tắt nếu bạn sử dụng các công cụ dịch đầu vào XInput thành đầu vào chuột / bàn phím và bạn đang nhận được đầu vào kép trong Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Hiển thị các mục trên menu chính:</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Liên kết nút xem chính X / A đảo ngược</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Hoán đổi các ràng buộc nút để bắt đầu trò chơi và hiển thị trang chi tiết trò chơi trên giao diện chính.</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
@@ -979,7 +1013,11 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Dịch vụ Nahimic đã được phát hiện đang chạy trên hệ thống của bạn. Dịch vụ này được biết là gây ra sự cố hiển thị cho Playnite (và các ứng dụng khác).
+
+Nếu bạn gặp phải bất kỳ lỗi đồ họa nào hoặc các sự cố hiển thị khác trong Playnite, chúng tôi khuyên bạn nên tắt hoặc gỡ cài đặt hoàn toàn dịch vụ Nahimic.
+
+Thông tin thêm tại https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>

@@ -700,7 +700,7 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCMetadataDiffCurrent">Actual</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nuevo</sys:String>
     <sys:String x:Key="LOCTestScript">Probar script</sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Mostrar sólo los elementos seleccionados</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Guardar como predeterminado</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Agregar a Favoritos</sys:String>
@@ -1024,7 +1024,11 @@ Si comienza a experimentar algunos problemas después de instalar un tema o una 
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado asignado a juegos jugados por primera vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Error al inicializar el tiempo de ejecución del script de PowerShell. Si eres usuario de Windows 7, (re)intente instalando PowerShell 5.1 para solucionar el problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">El filtro preestablecido con el nombre especificado ya existe. ¿Actualizar filtro con las nuevas configuraciones?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Se ha detectado que el servicio Nahimic se está ejecutando en su sistema. Se sabe que este servicio causa problemas de renderización en Playnite (y otras aplicaciones).
+
+Si encuentras alguna corrupción de gráficos u otros problemas de renderización en Playnite, se recomienda deshabilitar o desinstalar completamente el servicio Nahimic.
+
+Más información en https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite se está ejecutando con privilegios elevados (como administrador). ¡Esto no se recomienda, ya que da privilegios elevados a todas las extensiones instaladas y todos los juegos/aplicaciones iniciadas desde Playnite!
 
 Más información en https://playnite.link/adminfaq </sys:String>
