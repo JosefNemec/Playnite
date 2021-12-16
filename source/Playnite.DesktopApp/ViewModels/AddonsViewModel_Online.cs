@@ -42,6 +42,35 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private AddonManifest selectedOnlineAddon;
+        public AddonManifest SelectedOnlineAddon
+        {
+            get => selectedOnlineAddon;
+            set
+            {
+                selectedOnlineAddon = value;
+                if (value != null)
+                {
+                    var progressModel = new ProgressViewViewModel(
+                        new Playnite.Windows.ProgressWindowFactory(),
+                            (a) => selectedOnlineAddon.DownloadInstallerManifest(a.CancelToken),
+                            new GlobalProgressOptions("Getting add-on information...", true)) { Indeterminate = true };
+                    var progRes = progressModel.ActivateProgress(1500);
+                    if (progRes.Canceled)
+                    {
+                        selectedOnlineAddon = null;
+                    }
+                    else if (progRes.Error != null)
+                    {
+                        selectedOnlineAddon = null;
+                        SDK.API.Instance.Dialogs.ShowErrorMessage(progRes.Error.Message, "");
+                    }
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
         private int updateAddonCount = 0;
         public int UpdateAddonCount
         {

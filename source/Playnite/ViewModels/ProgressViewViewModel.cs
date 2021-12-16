@@ -134,6 +134,65 @@ namespace Playnite.ViewModels
             wasProcessed = true;
             return new GlobalProgressResult(res, wasCancelled, FailException);
         }
+
+        public GlobalProgressResult ActivateProgress(int delay)
+        {
+            if (wasProcessed)
+            {
+                throw new Exception("Progress can be shown only once per instance.");
+            }
+
+            ProgressArgs = new GlobalProgressActionArgs(
+                PlayniteApplication.Current.SyncContext,
+                PlayniteApplication.CurrentNative.Dispatcher,
+                cancellationToken.Token)
+                {
+                    Text = ProgressText
+                };
+            bool? res = null;
+            var progressTask = Task.Run(() =>
+            {
+                try
+                {
+                    progresAction(ProgressArgs);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    FailException = exc;
+                    if (window.Window?.IsShown == true)
+                    {
+                        window.Close(false);
+                    }
+
+                    res = false;
+                    return;
+                }
+                finally
+                {
+                    cancellationToken.Dispose();
+                }
+
+                if (window.Window?.IsShown == true)
+                {
+                    window.Close(true);
+                }
+
+                res = true;
+            });
+
+            if (!progressTask.Wait(delay))
+            {
+                window.CreateAndOpenDialog(this);
+            }
+
+            if (window.Window?.IsShown == true)
+            {
+                window.Close(true);
+            }
+
+            wasProcessed = true;
+            return new GlobalProgressResult(res, wasCancelled, FailException);
+        }
     }
 
     public class GlobalProgress
