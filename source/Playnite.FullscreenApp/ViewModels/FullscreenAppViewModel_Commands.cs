@@ -75,7 +75,7 @@ namespace Playnite.FullscreenApp.ViewModels
             OpenGameMenuCommand = new RelayCommand<object>((a) =>
             {
                 OpenGameMenu();
-            }, (a) => SelectedGame != null);
+            }, (a) => SelectedGameDetails != null);
 
             ToggleGameDetailsCommand = new RelayCommand<object>((a) =>
             {
