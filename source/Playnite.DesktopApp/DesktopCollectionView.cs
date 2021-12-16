@@ -145,11 +145,20 @@ namespace Playnite.DesktopApp
             }
 
             Logger.Debug("Updating collection view settings.");
-            using (CollectionView.DeferRefresh())
+
+            try
             {
-                CollectionView.SortDescriptions.Clear();
-                CollectionView.GroupDescriptions.Clear();
-                SetViewDescriptions();
+                using (CollectionView.DeferRefresh())
+                {
+                    CollectionView.SortDescriptions.Clear();
+                    CollectionView.GroupDescriptions.Clear();
+                    SetViewDescriptions();
+                }
+            }
+            // DeferRefresh very rarely blows up with connection to VirtualizingStackPanel.ExtendViewport
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "CollectionView.DeferRefresh failed.");
             }
         }
 
