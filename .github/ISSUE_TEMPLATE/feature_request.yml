@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest an idea for this project
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Integration features**
+        If a feature request is related to library integrations, use separate [extensions repository](https://github.com/JosefNemec/PlayniteExtensions) to file a request.
+
+        **Check for existing issue**
+        Please use issue search in the repository if your feature request is something really obvious there's a high change it was already requested.
+  - type: textarea
+    attributes:
+      label: Feature description
+      description: A clear and concise description of feature you want to be added.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain requested changes.
+    validations:
+      required: false

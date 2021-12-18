@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
@@ -84,33 +85,7 @@ namespace Playnite
             {
                 if (installerManifest == null)
                 {
-                    try
-                    {
-                        if (InstallerManifestUrl.IsNullOrEmpty())
-                        {
-                            throw new Exception("No addon manifest installer url.");
-                        }
-
-                        if (InstallerManifestUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
-                        {
-                            installerManifest = Serialization.FromYaml<AddonInstallerManifest>(HttpDownloader.DownloadString(InstallerManifestUrl));
-                        }
-                        else if (File.Exists(InstallerManifestUrl))
-                        {
-                            installerManifest = Serialization.FromYamlFile<AddonInstallerManifest>(InstallerManifestUrl);
-                        }
-                        else
-                        {
-                            throw new Exception($"Uknown installer manifest url format {InstallerManifestUrl}.");
-                        }
-                    }
-                    catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(exc, "Failed to get addon installer manifest data.");
-                        installerManifest = new AddonInstallerManifest();
-                    }
-
-                    installerManifest.AddonType = Type;
+                    DownloadInstallerManifest();
                 }
 
                 return installerManifest;
@@ -243,6 +218,42 @@ namespace Playnite
         public override string ToString()
         {
             return Name;
+        }
+
+        public void DownloadInstallerManifest()
+        {
+            DownloadInstallerManifest(new CancellationToken());
+        }
+
+        public void DownloadInstallerManifest(CancellationToken cancelToken)
+        {
+            try
+            {
+                if (InstallerManifestUrl.IsNullOrEmpty())
+                {
+                    throw new Exception("No addon manifest installer url.");
+                }
+
+                if (InstallerManifestUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                {
+                    installerManifest = Serialization.FromYaml<AddonInstallerManifest>(HttpDownloader.DownloadString(InstallerManifestUrl, cancelToken));
+                }
+                else if (File.Exists(InstallerManifestUrl))
+                {
+                    installerManifest = Serialization.FromYamlFile<AddonInstallerManifest>(InstallerManifestUrl);
+                }
+                else
+                {
+                    throw new Exception($"Uknown installer manifest url format {InstallerManifestUrl}.");
+                }
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(exc, "Failed to get addon installer manifest data.");
+                installerManifest = new AddonInstallerManifest();
+            }
+
+            installerManifest.AddonType = Type;
         }
     }
 }

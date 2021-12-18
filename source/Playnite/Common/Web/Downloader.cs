@@ -68,6 +68,25 @@ namespace Playnite.Common.Web
             return DownloadString(url, Encoding.UTF8);
         }
 
+        public string DownloadString(string url, CancellationToken cancelToken)
+        {
+            logger.Debug($"Downloading string content from {url} using UTF8 encoding.");
+
+            try
+            {
+                using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
+                using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
+                {
+                    return webClient.DownloadStringTaskAsync(url).GetAwaiter().GetResult();
+                }
+            }
+            catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
+            {
+                logger.Warn("Download canceled.");
+                return null;
+            }
+        }
+
         public string DownloadString(string url, Encoding encoding)
         {
             logger.Debug($"Downloading string content from {url} using {encoding} encoding.");

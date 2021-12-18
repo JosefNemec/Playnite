@@ -429,14 +429,16 @@ Esta opção também pode ser alterada nas configurações do aplicativo.</sys:S
 
 Tenha em mente que você pode adicionar qualquer jogo personalizado de qualquer plataforma manualmente através do botão 'Playnite' no menu principal.</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integração com a biblioteca</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Importa automaticamente jogos dos serviços listados abaixo. Qualquer mudança posterior (estado da instalação) será atualizado automaticamente ao iniciar o Playnite ou quando solicitado manualmente. As configurações selecionadas afetará as importações iniciais e subsequentes.</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Abaixo temos uma lista curada de algumas integrações de biblioteca que o Playnite suporta. Por favor selecione as que você deseja instalar.
+
+Mais integrações poderão ser instaladas posteriormente a partir do menu de &quot;Extensões&quot;.</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuração concluída</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">A configuração inicial foi concluída. Lembre-se que você pode alterar várias opções a qualquer momento no menu &quot;Configurações&quot;.
 
 Você também sempre pode adicionar mais jogos clicando no menu no logo do Playnite.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Falha ao baixar uma ou mais extensões.
 
-Você pode tentar baixar novamente as integrações pelo menu de add-ons após o assistente de primeira execução terminar.</sys:String>
+Você pode tentar baixar novamente as integrações pelo menu de extensões após o assistente de primeira execução terminar.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Baixando {0} integrações...</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configurar plataformas e emuladores</sys:String>
@@ -697,7 +699,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCMetadataDiffCurrent">Atual</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Novo</sys:String>
     <sys:String x:Key="LOCTestScript">Testar script</sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Mostrar apenas itens selecionados.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Salvar como padrão</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Adicionar aos favoritos</sys:String>
@@ -776,7 +778,7 @@ Você pode tentar corrigir o problema:
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Instalação bem-sucedida.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Instalar extensão?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Genérico</sys:String>
-    <sys:String x:Key="LOCAddonInstallFaild">Falha ao instalar extensão &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Falha ao instalar a extensão &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Falha ao instalar extensão.
 
 {0}</sys:String>
@@ -860,36 +862,36 @@ O reinicio da aplicação será necessário para terminar o processo. Você dese
     <sys:String x:Key="LOCItemAlreadyExists">Um item com o mesmo nome já existe.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limitar seleção ao filtro atual</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Selecionar outro</sys:String>
-    <sys:String x:Key="LOCMenuAddons">Add-ons...</sys:String>
+    <sys:String x:Key="LOCMenuAddons">Extensões...</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">Instalado</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">Configurações de extensões</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">Navegar</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">Atualizações</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">Atualizações ({0})</sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo">O gerenciamento de extensões e temas instalados, incluindo suas configurações, foi movida para o novo menu de &quot;add-ons&quot;.</sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">O gerenciamento de extensões e temas instalados, incluindo suas configurações, foi movida para o novo menu de &quot;extensões&quot;.</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Todas as integrações de biblioteca atualmente instaladas podem ser configuradas aqui.
 
-Se você deseja instalar ou desinstalar integrações adicionais, use a opção &quot;add-ons&quot; do menu principal.</sys:String>
+Se você deseja instalar ou desinstalar integrações adicionais, use a opção &quot;extensões&quot; do menu principal.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Temas para desktop</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">Temas de tela cheia</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Procurando...</sys:String>
-    <sys:String x:Key="LOCAddonErrorNotCompatible">O add-on não é compatível com essa versão do Playnite.</sys:String>
-    <sys:String x:Key="LOCAddonErrorDownloadFailed">Falha ao baixar o pacote de instalação do add-on.</sys:String>
-    <sys:String x:Key="LOCAddonErrorManifestDownloadError">Falha ao baixar o manifesto de instalação do add-on.</sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible">A extensão não é compatível com essa versão do Playnite.</sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed">Falha ao baixar o pacote de instalação da extensão.</sys:String>
+    <sys:String x:Key="LOCAddonErrorManifestDownloadError">Falha ao baixar o manifesto de instalação da extensão.</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart">O reinício da aplicação é necessário para aplicar as alterações pendentes.</sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall">Este add-on está agendado para instalação.</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">Esta extensão está agendada para instalação.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Já instalado</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nenhuma atualização de extensão foi encontrada.</sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons">Atualizar add-ons</sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">Atualizar extensões</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Registro de mudanças não disponível</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Agendado para instalação</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">O download falhou</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licença rejeitada</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Baixando {0}...</sys:String>
-    <sys:String x:Key="LOCAddonLookingForUpdates">Procurando por atualizações para os add-ons...</sys:String>
-    <sys:String x:Key="LOCAddonUpdatesAvailable">Uma ou mais atualizações de add-ons estão disponíveis.</sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">Procurando por atualizações para as extensões...</sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable">Uma ou mais atualizações de extensões estão disponíveis.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Selecione itens para atualizar</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instância de extensão em desenvolvimento</sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} acordos de licença</sys:String>
@@ -1021,12 +1023,16 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Falha na inicialização da execução do script PowerShell. Se você for usuário Windows 7, tente (re)instalar PowerShell 5.1 para corrigir o problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Já existe uma filtro com o nome especificado. Atualizar com novas configurações? </sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Serviço Nahimic foi detectado rodando em seu sistema. Sabemos que serviço causa problemas de renderização no Playnite (e outros apps).
+
+Se você tiver quaisquer problemas de renderização ou gráficos corrompidos no Playnite, recomendamos desabilitá-lo ou desinstalá-lo completamente o serviço Nahimic.
+
+Mais informações em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite está rodando com privilégios elevados (como administrador). Não é a recomendação já que dá privilégios elevados para todas as extensões instaladas e todos os jogos/apps iniciados pelo Playnite!
 
 Mais informações em https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Mostrar aviso se Playnite estiver rodando com privilégios elevados</sys:String>
-    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Seguintes add-ons foram reportados como potencialmente problemáticos, seja pelo alto impacto na estabilidade/performance ou problemas de segurança. Recomendamos fortemente que os desinstale:
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">As seguintes extensões foram reportados como potencialmente problemáticos, seja pelo alto impacto na estabilidade/performance ou problemas de segurança. Recomendamos fortemente que os desinstale:
         
 {0}
     </sys:String>

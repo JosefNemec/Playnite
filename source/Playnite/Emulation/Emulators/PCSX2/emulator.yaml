@@ -5,5 +5,5 @@ Profiles:
   - Name: Default
     StartupArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
     Platforms: [sony_playstation2]
-    ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso]
+    ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd]
     StartupExecutable: ^pcsx2\.exe$

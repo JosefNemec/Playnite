@@ -76,11 +76,19 @@ foreach ($game in $games)
 
     if (Test-Path -LiteralPath $paramSfoPath -PathType Leaf)
     {
-        $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
-        if ($null -ne $scannedGame.Serial)
+        try
         {
-            $scannedGame.Name = Get-ParamSfoValue $paramSfoPath "TITLE"
-            $scannedGame
+            $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
+            if ($null -ne $scannedGame.Serial)
+            {
+                $scannedGame.Name = Get-ParamSfoValue $paramSfoPath "TITLE"
+                $scannedGame
+            }
+        }
+        catch
+        {
+            $__logger.Error($_.Exception, "Failed to scan PS3 PARAM.SFO file $paramSfoPath")
+            $__logger.Error($_.ScriptStackTrace)
         }
     }
 }

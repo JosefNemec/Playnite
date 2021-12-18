@@ -220,7 +220,7 @@ namespace Playnite.FullscreenApp
 
         public static void PlayNavigateSound()
         {
-            if (Audio == null)
+            if (Audio == null || navigateSound == null)
             {
                 return;
             }
@@ -242,7 +242,7 @@ namespace Playnite.FullscreenApp
 
         public static void PlayActivateSound()
         {
-            if (Audio == null)
+            if (Audio == null || activateSound == null)
             {
                 return;
             }
@@ -344,7 +344,14 @@ namespace Playnite.FullscreenApp
 
             if (!navigationFile.IsNullOrEmpty())
             {
-                navigateSound = new CachedSound(navigationFile);
+                try
+                {
+                    navigateSound = new CachedSound(navigationFile);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to sound file {navigationFile}");
+                }
             }
 
             var activationFile = ThemeFile.GetFilePath(@"audio\activation.wav", true);
@@ -355,7 +362,14 @@ namespace Playnite.FullscreenApp
 
             if (!activationFile.IsNullOrEmpty())
             {
-                activateSound = new CachedSound(activationFile);
+                try
+                {
+                    activateSound = new CachedSound(activationFile);
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to sound file {activateSound}");
+                }
             }
 
             backgroundSoundPath = ThemeFile.GetFilePath(@"audio\background.wma", true);

@@ -700,7 +700,7 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCMetadataDiffCurrent">Aktualny</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nowe</sys:String>
     <sys:String x:Key="LOCTestScript">Testuj skrypt</sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Pokaż tylko wybrane elementy.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Zapisz jako domyślne</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Dodaj do ulubionych</sys:String>
@@ -1025,7 +1025,11 @@ Jeżeli doświadczasz problemów po instalacji motywu lub rozszerzenia, spróbuj
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status przypisany do gier uruchomianych po raz pierwszy</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Nie udało się znacjonalizować skryptu uruchomienia PowerShell. Jeżeli używasz Windows 7, spróbuj przeinstalować PowerShell 5.1 aby naprawić problem.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Szablon filtrowania o podanej nazwie już istnieje. Zaktualizować przy pomocy nowych ustawień?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Wykryto uruchomioną usługę Nahimic na Twoim systemie. Usługa znana jest z tego, że powoduje poważne problemy z renderowaniem w Playnite (i innych aplikacjach).
+
+Jeżeli napotkasz jakiekolwiek problemy z grafiką lub inne problemy z renderowaniem w Playnite, zalecamy wyłączenie lub całkowite odinstalowanie usługi Nahimic.
+
+Więcej informacji na stronie https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite jest uruchomiony z uprawnieniami administratora. Nie jest to zalecane, ponieważ przyznaje to uprawnienia dla wszystkich zainstalowanych rozszerzeń i wszystkich gier/aplikacji uruchamianych z Playnite!
 
 Więcej informacji na https://playnite.link/adminfaq</sys:String>

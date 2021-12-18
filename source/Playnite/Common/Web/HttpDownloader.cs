@@ -27,6 +27,11 @@ namespace Playnite.Common.Web
             return downloader.DownloadString(url);
         }
 
+        public static string DownloadString(string url, CancellationToken cancelToken)
+        {
+            return downloader.DownloadString(url, cancelToken);
+        }
+
         public static string DownloadString(string url, Encoding encoding)
         {
             return downloader.DownloadString(url, encoding);
