@@ -3,8 +3,6 @@ using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
-using Playnite.SDK.Events;
-using Playnite.SDK.Exceptions;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
@@ -13,12 +11,11 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using XInputDotNetPure;
 
 namespace Playnite.Controllers
 {
@@ -41,6 +38,7 @@ namespace Playnite.Controllers
         private Task playTask;
         private bool isDisposed = false;
         private EmulatorProfile currentEmuProfile;
+        private Process process;
         internal string SelectedRomPath { get; private set; }
         internal GameAction SourceGameAction { get; private set; }
 
@@ -215,8 +213,7 @@ namespace Playnite.Controllers
 
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += Monitor_TreeDestroyed;
-                var process = ProcessStarter.StartProcess(path, args, workDir);
-
+                process = ProcessStarter.StartProcess(path, args, workDir);
                 stopWatch = Stopwatch.StartNew();
                 ExecuteEmulatorScript(currentEmuProfile.PostScript);
                 InvokeOnStarted(new GameStartedEventArgs());
@@ -225,10 +222,45 @@ namespace Playnite.Controllers
             else
             {
                 ExecuteEmulatorScript(currentEmuProfile.PostScript);
-                ProcessStarter.StartProcess(path, args, workDir);
+                process = ProcessStarter.StartProcess(path, args, workDir);
                 ExecuteEmulatorScript(currentEmuProfile.PostScript);
                 ExecuteEmulatorScript(currentEmuProfile.ExitScript);
             }
+
+            if (process != null)
+            {
+                StartGamepadPolling();
+            }
+        }
+
+        private void StartGamepadPolling()
+        {
+            Task.Run(async () =>
+            {
+                while (process != null)
+                {
+                    if (isDisposed)
+                    {
+                        return;
+                    }
+
+                    PlayerIndex[] players = { PlayerIndex.One, PlayerIndex.Two, PlayerIndex.Three, PlayerIndex.Four };
+                    foreach(PlayerIndex player in players)
+                    {
+                        var state = GamePad.GetState(player);
+                        if (state.IsConnected)
+                        {
+                            if (state.Buttons.Back == ButtonState.Pressed && state.Buttons.Start == ButtonState.Pressed)
+                            {
+                                process.Kill();
+                                break;
+                            }
+                        }
+                    }
+
+                    await Task.Delay(20);
+                }
+            });
         }
 
         private void ExecuteEmulatorScript(string script)
@@ -550,6 +582,7 @@ namespace Playnite.Controllers
             stopWatch.Stop();
             ExecuteEmulatorScript(currentEmuProfile?.ExitScript);
             InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
+            process = null;
         }
 
         private string CheckPath(string sourcePath, string changeProp, FileSystemItem pathType)
