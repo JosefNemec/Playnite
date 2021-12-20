@@ -16,19 +16,8 @@ using YamlDotNet.Serialization;
 
 namespace Playnite
 {
-    public class AddonInstallerPackage
+    public class AddonInstallerManifest : AddonInstallerManifestBase
     {
-        public Version Version { get; set; }
-        public string PackageUrl { get; set; }
-        public Version RequiredApiVersion { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public List<string> Changelog { get; set; }
-    }
-
-    public class AddonInstallerManifest
-    {
-        public string AddonId { get; set; }
-        public List<AddonInstallerPackage> Packages { get; set; }
         public AddonType AddonType { get; set; }
 
         public AddonInstallerPackage GetLatestCompatiblePackage()

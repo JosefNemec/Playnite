@@ -44,4 +44,19 @@ namespace Playnite
         public AddonUserAgreement UserAgreement { get; set; }
         public string SourceUrl { get; set; }
     }
+
+    public class AddonInstallerPackage
+    {
+        public Version Version { get; set; }
+        public string PackageUrl { get; set; }
+        public Version RequiredApiVersion { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public List<string> Changelog { get; set; }
+    }
+
+    public class AddonInstallerManifestBase
+    {
+        public string AddonId { get; set; }
+        public List<AddonInstallerPackage> Packages { get; set; }
+    }
 }
