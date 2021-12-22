@@ -22,7 +22,6 @@ using Playnite.Windows;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK.Plugins;
-using Playnite.Metadata.Providers;
 using System.Text.RegularExpressions;
 using Playnite.Common.Media.Icons;
 using System.Diagnostics;
