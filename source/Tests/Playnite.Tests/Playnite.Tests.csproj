@@ -142,7 +142,6 @@
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
-    <Compile Include="Metadata\WikipediaMetadataProviderTests.cs" />
     <Compile Include="MockDialogsFactory.cs" />
     <Compile Include="TestResourceProvider.cs" />
     <Compile Include="MockWindowFactory.cs" />
