@@ -77,7 +77,7 @@ namespace Playnite.Common.Web
                 using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
                 using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
-                    return webClient.DownloadStringTaskAsync(url).GetAwaiter().GetResult();
+                    return Task.Run(async () => await webClient.DownloadStringTaskAsync(url)).GetAwaiter().GetResult();
                 }
             }
             catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
