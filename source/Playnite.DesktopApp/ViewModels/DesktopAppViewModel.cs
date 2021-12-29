@@ -269,7 +269,7 @@ namespace Playnite.DesktopApp.ViewModels
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType) &&
-                AppSettings.ViewSettings.GamesViewType == ViewType.Grid &&
+                AppSettings.ViewSettings.GamesViewType == DesktopView.Grid &&
                 AppSettings.GridViewSideBarVisible &&
                 SelectedGameDetails == null &&
                 SelectedGame != null)

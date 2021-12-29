@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,7 +55,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private void SetListGamesBinding()
         {
-            if (mainModel.AppSettings.ViewSettings.GamesViewType == ViewType.List)
+            if (mainModel.AppSettings.ViewSettings.GamesViewType == DesktopView.List)
             {
                 BindingTools.SetBinding(ListGames,
                     GamesGridView.ItemsSourceProperty,

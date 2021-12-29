@@ -92,7 +92,7 @@ namespace Playnite.FullscreenApp.Controls
                         var selected = obj.ItemsList.Where(a => a.Selected == true);
                         if (selected.HasItems())
                         {
-                            obj.FilterProperties = new EnumFilterItemProperites(selected.Select(a => a.Item.Value).ToList());
+                            obj.FilterProperties = new EnumFilterItemProperties(selected.Select(a => a.Item.Value).ToList());
                         }
                         else
                         {
@@ -107,11 +107,11 @@ namespace Playnite.FullscreenApp.Controls
             obj.ItemsList = items;
         }
 
-        public EnumFilterItemProperites FilterProperties
+        public EnumFilterItemProperties FilterProperties
         {
             get
             {
-                return (EnumFilterItemProperites)GetValue(FilterPropertiesProperty);
+                return (EnumFilterItemProperties)GetValue(FilterPropertiesProperty);
             }
 
             set
@@ -122,7 +122,7 @@ namespace Playnite.FullscreenApp.Controls
 
         public static readonly DependencyProperty FilterPropertiesProperty = DependencyProperty.Register(
             nameof(FilterProperties),
-            typeof(EnumFilterItemProperites),
+            typeof(EnumFilterItemProperties),
             typeof(FilterEnumListSelection),
             new PropertyMetadata(null, FilterPropertiesPropertyChangedCallback));
 

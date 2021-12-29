@@ -86,16 +86,16 @@ namespace Playnite.FullscreenApp.Controls
             if (!IgnoreChanges)
             {
                 IgnoreChanges = true;
-                FilterProperties = new StringFilterItemProperites(ItemsList.GetSelectedItems().Select(a => a.Value).ToList());
+                FilterProperties = new StringFilterItemProperties(ItemsList.GetSelectedItems().Select(a => a.Value).ToList());
                 IgnoreChanges = false;
             }
         }
 
-        public StringFilterItemProperites FilterProperties
+        public StringFilterItemProperties FilterProperties
         {
             get
             {
-                return (StringFilterItemProperites)GetValue(FilterPropertiesProperty);
+                return (StringFilterItemProperties)GetValue(FilterPropertiesProperty);
             }
 
             set
@@ -106,7 +106,7 @@ namespace Playnite.FullscreenApp.Controls
 
         public static readonly DependencyProperty FilterPropertiesProperty = DependencyProperty.Register(
             nameof(FilterProperties),
-            typeof(StringFilterItemProperites),
+            typeof(StringFilterItemProperties),
             typeof(FilterStringListSelection),
             new PropertyMetadata(null, FilterPropertiesPropertyChangedCallback));
 

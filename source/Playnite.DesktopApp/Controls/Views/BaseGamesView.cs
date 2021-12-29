@@ -2,6 +2,7 @@
 using Playnite.Common;
 using Playnite.Controls;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,17 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ControlGameView", Type = typeof(Control))]
     public abstract class BaseGamesView : Control
     {
-        internal readonly ViewType viewType;
+        internal readonly DesktopView viewType;
         internal readonly DesktopAppViewModel mainModel;
 
         internal Control ControlGameView;
         internal ExtendedListBox ListGames;
 
-        public BaseGamesView(ViewType viewType) : this(viewType, DesktopApplication.Current?.MainModel)
+        public BaseGamesView(DesktopView viewType) : this(viewType, DesktopApplication.Current?.MainModel)
         {
         }
 
-        public BaseGamesView(ViewType viewType, DesktopAppViewModel mainModel)
+        public BaseGamesView(DesktopView viewType, DesktopAppViewModel mainModel)
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {

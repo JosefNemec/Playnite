@@ -17,6 +17,7 @@ using System.Threading;
 using System.Collections.Concurrent;
 using Playnite.Common.Media.Icons;
 using System.Reflection;
+using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
@@ -121,7 +122,7 @@ namespace Playnite.Database
         public IItemCollection<GameFeature> Features { get; private set; }
         public AppSoftwareCollection SoftwareApps { get; private set; }
         public IItemCollection<GameScannerConfig> GameScanners { get; private set; }
-        public FilterPresetsCollection FilterPresets { get; private set; }
+        public IItemCollection<FilterPreset> FilterPresets { get; private set; }
         public IItemCollection<ImportExclusionItem> ImportExclusions { get; private set; }
         public IItemCollection<CompletionStatus> CompletionStatuses { get; private set; }
 
@@ -227,7 +228,7 @@ namespace Playnite.Database
                 (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
                 (GameScanners as GameScannersCollection).InitializeCollection(GameScannersDirectoryPath);
-                FilterPresets.InitializeCollection(FilterPresetsDirectoryPath);
+                (FilterPresets as FilterPresetsCollection).InitializeCollection(FilterPresetsDirectoryPath);
                 (ImportExclusions as ImportExclusionsCollection).InitializeCollection(ImportExclusionsDirectoryPath);
                 (CompletionStatuses as CompletionStatusesCollection).InitializeCollection(CompletionStatusesDirectoryPath);
 
@@ -524,48 +525,49 @@ namespace Playnite.Database
                 compCol.SetSettings(set);
 
                 // Generate default filter presets
-                FilterPresets.IsEventsEnabled = false;
-                FilterPresets.Add(new FilterPreset
+                var filters = FilterPresets as FilterPresetsCollection;
+                filters.IsEventsEnabled = false;
+                filters.Add(new FilterPreset
                 {
                     Name = "All",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.Name,
                     SortingOrderDirection = SortOrderDirection.Ascending,
-                    Settings = new FilterSettings()
+                    Settings = new FilterPresetSettings()
                 });
 
-                FilterPresets.Add(new FilterPreset
+                filters.Add(new FilterPreset
                 {
                     Name = "Recently Played",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.LastActivity,
                     SortingOrderDirection = SortOrderDirection.Descending,
-                    Settings = new FilterSettings { IsInstalled = true }
+                    Settings = new FilterPresetSettings { IsInstalled = true }
                 });
 
-                FilterPresets.Add(new FilterPreset
+                filters.Add(new FilterPreset
                 {
                     Name = "Favorites",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.Name,
                     SortingOrderDirection = SortOrderDirection.Ascending,
-                    Settings = new FilterSettings { Favorite = true }
+                    Settings = new FilterPresetSettings { Favorite = true }
                 });
 
-                FilterPresets.Add(new FilterPreset
+                filters.Add(new FilterPreset
                 {
                     Name = "Most Played",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.Playtime,
                     SortingOrderDirection = SortOrderDirection.Descending,
-                    Settings = new FilterSettings()
+                    Settings = new FilterPresetSettings()
                 });
 
-                FilterPresets.IsEventsEnabled = true;
+                filters.IsEventsEnabled = true;
             }
 
             IsOpen = true;

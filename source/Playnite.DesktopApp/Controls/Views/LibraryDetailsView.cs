@@ -2,6 +2,7 @@
 using Playnite.Common;
 using Playnite.Controls;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,11 @@ namespace Playnite.DesktopApp.Controls.Views
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LibraryDetailsView), new FrameworkPropertyMetadata(typeof(LibraryDetailsView)));
         }
 
-        public LibraryDetailsView() : base(ViewType.Details)
-        {            
+        public LibraryDetailsView() : base(DesktopView.Details)
+        {
         }
 
-        public LibraryDetailsView(DesktopAppViewModel mainModel) : base (ViewType.Details, mainModel)
+        public LibraryDetailsView(DesktopAppViewModel mainModel) : base (DesktopView.Details, mainModel)
         {
         }
 

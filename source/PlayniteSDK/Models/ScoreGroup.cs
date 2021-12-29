@@ -10,24 +10,24 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Scpecifies game score rating.
     /// </summary>
-    public enum ScoreRating
+    public enum ScoreRating : int
     {
         /// <summary>
         /// No score.
         /// </summary>
-        None,
+        None = 0,
         /// <summary>
         /// Negative rating.
         /// </summary>
-        Negative,
+        Negative = 1,
         /// <summary>
         /// Positive rating.
         /// </summary>
-        Positive,
+        Positive = 2,
         /// <summary>
         /// Mixed rating.
         /// </summary>
-        Mixed
+        Mixed = 3
     }
 
     /// <summary>

@@ -565,9 +565,9 @@ namespace Playnite.DesktopApp.ViewModels
                 a.Command.Execute(null);
             });
 
-            SwitchDetailsViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.Details);
-            SwitchGridViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.Grid);
-            SwitchListViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = ViewType.List);
+            SwitchDetailsViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = DesktopView.Details);
+            SwitchGridViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = DesktopView.Grid);
+            SwitchListViewCommand = new RelayCommand<object>((_) => AppSettings.ViewSettings.GamesViewType = DesktopView.List);
 
             UpdateEmulationDirCommand = new RelayCommand<GameScannerConfig>((a) =>
             {

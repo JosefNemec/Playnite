@@ -61,7 +61,7 @@ namespace Playnite
         /// <param name="idData"></param>
         /// <param name="objectData"></param>
         /// <returns></returns>
-        private bool IsFilterMatching(FilterItemProperties filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
+        private bool IsFilterMatching(IdItemFilterItemProperties filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -105,7 +105,7 @@ namespace Playnite
         /// <param name="idData"></param>
         /// <param name="objectData"></param>
         /// <returns></returns>
-        private bool IsFilterMatchingSingleOnly(FilterItemProperties filter, Guid idData, DatabaseObject objectData)
+        private bool IsFilterMatchingSingleOnly(IdItemFilterItemProperties filter, Guid idData, DatabaseObject objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -148,7 +148,7 @@ namespace Playnite
         /// <param name="listData"></param>
         /// <param name="objectData"></param>
         /// <returns></returns>
-        private bool IsFilterMatchingList(FilterItemProperties filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
+        private bool IsFilterMatchingList(IdItemFilterItemProperties filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -190,7 +190,7 @@ namespace Playnite
         /// <param name="idData"></param>
         /// <param name="objectData"></param>
         /// <returns></returns>
-        private bool IsFilterMatchingSingle(FilterItemProperties filter, Guid idData, DatabaseObject objectData)
+        private bool IsFilterMatchingSingle(IdItemFilterItemProperties filter, Guid idData, DatabaseObject objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -227,12 +227,12 @@ namespace Playnite
             }
         }
 
-        private bool IsScoreFilterMatching(EnumFilterItemProperites filter, ScoreGroup score)
+        private bool IsScoreFilterMatching(EnumFilterItemProperties filter, ScoreGroup score)
         {
             return filter.Values.Contains((int)score);
         }
 
-        private bool IsScoreFilterMatchingSingle(EnumFilterItemProperites filter, ScoreGroup score)
+        private bool IsScoreFilterMatchingSingle(EnumFilterItemProperties filter, ScoreGroup score)
         {
             if (filter.Values.Count != 1)
             {

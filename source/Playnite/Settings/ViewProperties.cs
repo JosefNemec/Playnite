@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Playnite.Database;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Concurrent;
@@ -13,136 +14,6 @@ using System.Windows.Data;
 
 namespace Playnite
 {
-    public enum SortOrder
-    {
-        [Description("LOCGameNameTitle")]
-        Name,
-        [Description("LOCPlatformTitle")]
-        Platforms,
-        [Description("LOCGameProviderTitle")]
-        Library,
-        [Description("LOCCategoryLabel")]
-        Categories,
-        [Description("LOCGameLastActivityTitle")]
-        LastActivity,
-        [Description("LOCGenreLabel")]
-        Genres,
-        [Description("LOCGameReleaseDateTitle")]
-        ReleaseDate,
-        [Description("LOCDeveloperLabel")]
-        Developers,
-        [Description("LOCPublisherLabel")]
-        Publishers,
-        [Description("LOCTagLabel")]
-        Tags,
-        [Description("LOCSeriesLabel")]
-        Series,
-        [Description("LOCAgeRatingLabel")]
-        AgeRatings,
-        [Description("LOCVersionLabel")]
-        Version,
-        [Description("LOCRegionLabel")]
-        Regions,
-        [Description("LOCSourceLabel")]
-        Source,
-        [Description("LOCPlayCountLabel")]
-        PlayCount,
-        [Description("LOCTimePlayed")]
-        Playtime,
-        [Description("LOCCompletionStatus")]
-        CompletionStatus,
-        [Description("LOCUserScore")]
-        UserScore,
-        [Description("LOCCriticScore")]
-        CriticScore,
-        [Description("LOCCommunityScore")]
-        CommunityScore,
-        [Description("LOCDateAddedLabel")]
-        Added,
-        [Description("LOCDateModifiedLabel")]
-        Modified,
-        [Description("LOCGameInstallationStatus")]
-        IsInstalled,
-        [Description("LOCGameHiddenTitle")]
-        Hidden,
-        [Description("LOCGameFavoriteTitle")]
-        Favorite,
-        [Description("LOCGameInstallDirTitle")]
-        InstallDirectory,
-        [Description("LOCFeatureLabel")]
-        Features
-    }
-
-    public enum SortOrderDirection
-    {
-        [Description("LOCMenuSortAscending")]
-        Ascending,
-        [Description("LOCMenuSortDescending")]
-        Descending
-    }
-
-    public enum GroupableField
-    {
-        [Description("LOCMenuGroupDont")]
-        None,
-        [Description("LOCPlatformTitle")]
-        Platform,
-        [Description("LOCGameProviderTitle")]
-        Library,
-        [Description("LOCCategoryLabel")]
-        Category,
-        [Description("LOCGameLastActivityTitle")]
-        LastActivity,
-        [Description("LOCGenreLabel")]
-        Genre,
-        [Description("LOCGameReleaseYearTitle")]
-        ReleaseYear,
-        [Description("LOCDeveloperLabel")]
-        Developer,
-        [Description("LOCPublisherLabel")]
-        Publisher,
-        [Description("LOCTagLabel")]
-        Tag,
-        [Description("LOCSeriesLabel")]
-        Series,
-        [Description("LOCAgeRatingLabel")]
-        AgeRating,
-        [Description("LOCRegionLabel")]
-        Region,
-        [Description("LOCSourceLabel")]
-        Source,
-        [Description("LOCTimePlayed")]
-        PlayTime,
-        [Description("LOCCompletionStatus")]
-        CompletionStatus,
-        [Description("LOCUserScore")]
-        UserScore,
-        [Description("LOCCriticScore")]
-        CriticScore,
-        [Description("LOCCommunityScore")]
-        CommunityScore,
-        [Description("LOCDateAddedLabel")]
-        Added,
-        [Description("LOCDateModifiedLabel")]
-        Modified,
-        [Description("LOCFeatureLabel")]
-        Feature,
-        [Description("LOCGameInstallationStatus")]
-        InstallationStatus,
-        [Description("LOCGameNameTitle")]
-        Name
-    }
-
-    public enum ViewType : int
-    {
-        [Description("LOCDetailsViewLabel")]
-        Details = 0,
-        [Description("LOCGridViewLabel")]
-        Grid = 1,
-        [Description("LOCListViewLabel")]
-        List = 2
-    }
-
     public class ListViewColumnProperty : ObservableObject
     {
         public GameField Field { get; set; }
@@ -649,8 +520,8 @@ namespace Playnite
             }
         }
 
-        private ViewType gamesViewType = ViewType.Details;
-        public ViewType GamesViewType
+        private DesktopView gamesViewType = DesktopView.Details;
+        public DesktopView GamesViewType
         {
             get
             {

@@ -77,7 +77,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     public abstract class GameOverview : Control
     {
-        internal readonly ViewType viewType;
+        internal readonly DesktopView viewType;
         internal readonly DesktopAppViewModel mainModel;
 
         private FrameworkElement ElemPlayTime;
@@ -141,11 +141,11 @@ namespace Playnite.DesktopApp.Controls.Views
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GameOverview), new FrameworkPropertyMetadata(typeof(GameOverview)));
         }
 
-        public GameOverview(ViewType viewType) : this(viewType, DesktopApplication.Current?.MainModel)
+        public GameOverview(DesktopView viewType) : this(viewType, DesktopApplication.Current?.MainModel)
         {
         }
 
-        public GameOverview(ViewType viewType, DesktopAppViewModel mainModel)
+        public GameOverview(DesktopView viewType, DesktopAppViewModel mainModel)
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {

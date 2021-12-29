@@ -227,13 +227,6 @@ namespace Playnite
                 dummyGame.IncludeLibraryPluginAction = firstIncludeLibraryPluginAction;
             }
 
-            // TODO
-            //var firstPlayAction = firstGame.PlayAction;
-            //if (games.All(a => a.PlayAction?.Equals(firstPlayAction) == true))
-            //{
-            //    dummyGame.PlayAction = firstPlayAction;
-            //}
-
             return dummyGame;
         }
     }

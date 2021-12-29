@@ -526,7 +526,7 @@ namespace Playnite.Database
             SelectableDbItemList targetList,
             IItemCollection<T> sourceColletion,
             List<Guid> usedList,
-            FilterItemProperites filter) where T : DatabaseObject
+            IdItemFilterItemProperties filter) where T : DatabaseObject
         {
             if (!settings.UsedFieldsOnlyOnFilterLists)
             {
@@ -547,7 +547,7 @@ namespace Playnite.Database
             SelectableDbItemList targetList,
             ItemCollectionChangedEventArgs<T> args,
             IItemCollection<T> sourceColletion,
-            FilterItemProperites filter) where T : DatabaseObject
+            IdItemFilterItemProperties filter) where T : DatabaseObject
         {
             if (settings.UsedFieldsOnlyOnFilterLists)
             {

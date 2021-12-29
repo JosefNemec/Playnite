@@ -2,6 +2,7 @@
 using Playnite.Converters;
 using Playnite.Extensions.Markup;
 using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.Settings;
 using Playnite.ViewModels;
 using System;
@@ -82,7 +83,7 @@ namespace Playnite.DesktopApp.Controls
             Items.Add(new Separator());
 
             // View Type
-            MenuHelpers.PopulateEnumOptions<ViewType>(Items, nameof(settings.ViewSettings.GamesViewType), settings.ViewSettings);
+            MenuHelpers.PopulateEnumOptions<DesktopView>(Items, nameof(settings.ViewSettings.GamesViewType), settings.ViewSettings);
             Items.Add(new Separator());
 
             // View

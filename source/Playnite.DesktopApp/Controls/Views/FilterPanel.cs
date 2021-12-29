@@ -244,7 +244,7 @@ namespace Playnite.DesktopApp.Controls.Views
             BindingTools.SetBinding(elem,
                 FrameworkElement.TagProperty,
                 mainModel.AppSettings.FilterSettings,
-                bindingName ?? $"{binding}.{nameof(FilterItemProperites.IsSet)}",
+                bindingName ?? $"{binding}.{nameof(IdItemFilterItemProperties.IsSet)}",
                 fallBackValue: false,
                 converter: converter);
             elem.Content = ResourceProvider.GetString(text);

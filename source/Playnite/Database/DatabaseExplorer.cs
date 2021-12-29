@@ -500,7 +500,7 @@ namespace Playnite.Database
             return false;
         }
 
-        private FilterItemProperites GetIdFilter(SelectionObject filter)
+        private IdItemFilterItemProperties GetIdFilter(SelectionObject filter)
         {
             if (filter?.Value == null)
             {
@@ -512,7 +512,7 @@ namespace Playnite.Database
             }
             else
             {
-                return new FilterItemProperites(((IIdentifiable)filter.Value).Id);
+                return new IdItemFilterItemProperties(((IIdentifiable)filter.Value).Id);
             }
         }
 
@@ -536,7 +536,7 @@ namespace Playnite.Database
             }
         }
 
-        private StringFilterItemProperites GetStringListFilter(SelectionObject filter)
+        private StringFilterItemProperties GetStringListFilter(SelectionObject filter)
         {
             if (filter == null)
             {
@@ -548,15 +548,15 @@ namespace Playnite.Database
             }
             else if (filter.Value is DatabaseObject obj && obj.Id == Guid.Empty)
             {
-                return new StringFilterItemProperites(FilterSettings.MissingFieldString);
+                return new StringFilterItemProperties(FilterSettings.MissingFieldString);
             }
             else
             {
-                return new StringFilterItemProperites(filter.Value.ToString());
+                return new StringFilterItemProperties(filter.Value.ToString());
             }
         }
 
-        private EnumFilterItemProperites GetEnumFilter(SelectionObject filter)
+        private EnumFilterItemProperties GetEnumFilter(SelectionObject filter)
         {
             if (filter == null)
             {
@@ -568,7 +568,7 @@ namespace Playnite.Database
             }
             else
             {
-                return new EnumFilterItemProperites((int)filter.Value);
+                return new EnumFilterItemProperties((int)filter.Value);
             }
         }
 

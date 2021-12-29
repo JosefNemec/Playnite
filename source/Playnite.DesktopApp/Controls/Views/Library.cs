@@ -4,6 +4,7 @@ using Playnite.Controls;
 using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.Extensions;
+using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -123,9 +124,9 @@ namespace Playnite.DesktopApp.Controls.Views
             SetBackgroundBinding();
             SetBackgroundEffect();
 
-            SetViewBinding(ref ViewDetails, "PART_ViewDetails", ViewType.Details);
-            SetViewBinding(ref ViewGrid, "PART_ViewGrid", ViewType.Grid);
-            SetViewBinding(ref ViewList, "PART_ViewList", ViewType.List);
+            SetViewBinding(ref ViewDetails, "PART_ViewDetails", DesktopView.Details);
+            SetViewBinding(ref ViewGrid, "PART_ViewGrid", DesktopView.Grid);
+            SetViewBinding(ref ViewList, "PART_ViewList", DesktopView.List);
 
             ControlTemplateTools.InitializePluginControls(
                 mainModel.Extensions,
@@ -136,7 +137,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 $"{nameof(DesktopAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
         }
 
-        private void SetViewBinding(ref Control elem, string partId, ViewType type)
+        private void SetViewBinding(ref Control elem, string partId, DesktopView type)
         {
             elem = Template.FindName(partId, this) as Control;
             if (elem != null)
@@ -164,8 +165,8 @@ namespace Playnite.DesktopApp.Controls.Views
             }
 
             if (mainModel.AppSettings.ShowBackgroundImageOnWindow &&
-                ((mainModel.AppSettings.ShowBackImageOnGridView && mainModel.AppSettings.ViewSettings.GamesViewType == ViewType.Grid) ||
-                mainModel.AppSettings.ViewSettings.GamesViewType == ViewType.Details))
+                ((mainModel.AppSettings.ShowBackImageOnGridView && mainModel.AppSettings.ViewSettings.GamesViewType == DesktopView.Grid) ||
+                mainModel.AppSettings.ViewSettings.GamesViewType == DesktopView.Details))
             {
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,

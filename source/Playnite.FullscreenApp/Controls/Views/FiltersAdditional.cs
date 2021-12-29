@@ -129,7 +129,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 button,
                 ButtonBase.TagProperty,
                 mainModel.AppSettings.Fullscreen.FilterSettings,
-                $"{bindBased}.{nameof(FilterItemProperites.IsSet)}");
+                $"{bindBased}.{nameof(IdItemFilterItemProperties.IsSet)}");
 
             ItemsHost.Items.Add(button);
         }

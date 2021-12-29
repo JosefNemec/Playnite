@@ -247,6 +247,19 @@ namespace Playnite.ViewModels
             }
         }
 
+        public void ApplyFilterPreset(Guid presetId)
+        {
+            var preset = Database.FilterPresets[presetId];
+            if (preset == null)
+            {
+                Logger.Error($"Cannot apply filter, filter preset {presetId} not found.");
+            }
+            else
+            {
+                ActiveFilterPreset = preset;
+            }
+        }
+
         private void ApplyFilterPreset(FilterPreset preset)
         {
             if (preset == null)
@@ -371,7 +384,7 @@ namespace Playnite.ViewModels
                 var preset = new FilterPreset
                 {
                     Name = res.SelectedString,
-                    Settings = filter.GetClone(),
+                    Settings = filter.AsPresetSettings(),
                     ShowInFullscreeQuickSelection = options[1].Selected
                 };
 

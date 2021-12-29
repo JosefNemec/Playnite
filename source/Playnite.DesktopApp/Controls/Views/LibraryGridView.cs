@@ -3,6 +3,8 @@ using Playnite.Common;
 using Playnite.Controls;
 using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,7 +33,7 @@ namespace Playnite.DesktopApp.Controls.Views
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LibraryGridView), new FrameworkPropertyMetadata(typeof(LibraryGridView)));
         }
 
-        public LibraryGridView() : base(ViewType.Grid)
+        public LibraryGridView() : base(DesktopView.Grid)
         {
             Loaded += LibraryGridView_Loaded;
             Unloaded += LibraryGridView_Unloaded;
@@ -39,7 +41,7 @@ namespace Playnite.DesktopApp.Controls.Views
             standardItemsPanel = GetItemsPanelTemplate();
         }
 
-        public LibraryGridView(DesktopAppViewModel mainModel) : base(ViewType.Grid, mainModel)
+        public LibraryGridView(DesktopAppViewModel mainModel) : base(DesktopView.Grid, mainModel)
         {
             Loaded += LibraryGridView_Loaded;
             Unloaded += LibraryGridView_Unloaded;

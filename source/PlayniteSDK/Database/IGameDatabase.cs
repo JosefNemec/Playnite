@@ -168,6 +168,11 @@ namespace Playnite.SDK
         IItemCollection<ImportExclusionItem> ImportExclusions { get; }
 
         /// <summary>
+        /// Gets collection of filter presets.
+        /// </summary>
+        IItemCollection<FilterPreset> FilterPresets { get; }
+
+        /// <summary>
         /// Gets value indicating whether database is opened.
         /// </summary>
         bool IsOpen { get; }

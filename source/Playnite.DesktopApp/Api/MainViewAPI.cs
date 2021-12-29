@@ -30,7 +30,29 @@ namespace Playnite.DesktopApp.API
             }
         }
 
-        public DesktopView ActiveDesktopView => (DesktopView)mainModel.AppSettings.ViewSettings.GamesViewType;
+        public DesktopView ActiveDesktopView
+        {
+            get => mainModel.AppSettings.ViewSettings.GamesViewType;
+            set => mainModel.AppSettings.ViewSettings.GamesViewType = value;
+        }
+
+        public SortOrder SortOrder
+        {
+            get => mainModel.AppSettings.ViewSettings.SortingOrder;
+            set => mainModel.AppSettings.ViewSettings.SortingOrder = value;
+        }
+
+        public SortOrderDirection SortOrderDirection
+        {
+            get => mainModel.AppSettings.ViewSettings.SortingOrderDirection;
+            set => mainModel.AppSettings.ViewSettings.SortingOrderDirection = value;
+        }
+
+        public GroupableField Grouping
+        {
+            get => mainModel.AppSettings.ViewSettings.GroupingOrder;
+            set => mainModel.AppSettings.ViewSettings.GroupingOrder = value;
+        }
 
         public List<Game> FilteredGames => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList();
 
@@ -65,6 +87,26 @@ namespace Playnite.DesktopApp.API
         public void SelectGames(IEnumerable<Guid> gameIds)
         {
             mainModel.SelectGames(gameIds);
+        }
+
+        public void ApplyFilterPreset(Guid filterId)
+        {
+            mainModel.ApplyFilterPreset(filterId);
+        }
+
+        public void ApplyFilterPreset(FilterPreset preset)
+        {
+            mainModel.ActiveFilterPreset = preset;
+        }
+
+        public Guid GetActiveFilterPreset()
+        {
+            return mainModel.AppSettings.SelectedFilterPreset;
+        }
+
+        public FilterPresetSettings GetCurrentFilterSettings()
+        {
+            return mainModel.AppSettings.FilterSettings.AsPresetSettings();
         }
     }
 }

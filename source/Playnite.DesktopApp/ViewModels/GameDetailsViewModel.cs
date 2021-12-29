@@ -394,7 +394,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetFilter(DatabaseObject value, GameField filterField)
         {
-            var filter = new FilterItemProperites() { Ids = new List<Guid> { value.Id } };
+            var filter = new IdItemFilterItemProperties() { Ids = new List<Guid> { value.Id } };
             switch (filterField)
             {
                 case GameField.Platforms:
@@ -444,7 +444,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (date != null)
             {
-                settings.FilterSettings.ReleaseYear = new StringFilterItemProperites(date.Value.Year.ToString());
+                settings.FilterSettings.ReleaseYear = new StringFilterItemProperties(date.Value.Year.ToString());
                 settings.FilterPanelVisible = true;
             }
         }
@@ -460,7 +460,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetLibraryFilter(Guid LibraryId)
         {
-            var filter = new FilterItemProperites() { Ids = new List<Guid> { LibraryId } };
+            var filter = new IdItemFilterItemProperties() { Ids = new List<Guid> { LibraryId } };
             settings.FilterSettings.Library = filter;
             settings.FilterPanelVisible = true;
         }

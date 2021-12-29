@@ -35,6 +35,7 @@ namespace Playnite.API
         public IItemCollection<GameScannerConfig> GameScanners => database.GameScanners;
         public IItemCollection<CompletionStatus> CompletionStatuses => database.CompletionStatuses;
         public IItemCollection<ImportExclusionItem> ImportExclusions => database.ImportExclusions;
+        public IItemCollection<FilterPreset> FilterPresets => database.FilterPresets;
 
         public string DatabasePath
         {

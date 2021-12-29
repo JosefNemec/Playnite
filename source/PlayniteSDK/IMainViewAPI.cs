@@ -1,6 +1,7 @@
 ﻿using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,15 +16,15 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        Details = 0,
+        [Description("LOCDetailsViewLabel")] Details = 0,
         /// <summary>
         ///
         /// </summary>
-        Grid = 1,
+        [Description("LOCGridViewLabel")] Grid = 1,
         /// <summary>
         ///
         /// </summary>
-        List = 2
+        [Description("LOCListViewLabel")] List = 2
     }
 
     /// <summary>
@@ -34,7 +35,13 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets currently active Desktop mode view.
         /// </summary>
-        DesktopView ActiveDesktopView { get; }
+        DesktopView ActiveDesktopView { get; set; }
+
+        SortOrder SortOrder { get; }
+
+        SortOrderDirection SortOrderDirection { get; set; }
+
+        GroupableField Grouping { get; set; }
 
         /// <summary>
         /// Gets list of currently selected games.
@@ -69,5 +76,13 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="gameIds">List of game IDs to select.</param>
         void SelectGames(IEnumerable<Guid> gameIds);
+
+        void ApplyFilterPreset(Guid filterId);
+
+        void ApplyFilterPreset(FilterPreset preset);
+
+        Guid GetActiveFilterPreset();
+
+        FilterPresetSettings GetCurrentFilterSettings();
     }
 }

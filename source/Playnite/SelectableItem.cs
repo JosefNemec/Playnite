@@ -298,7 +298,7 @@ namespace System
             this.includeNoneItem = includeNoneItem;
             if (includeNoneItem)
             {
-                var newItem = new SelectableItem<string>(FilterSettings.MissingFieldString);
+                var newItem = new SelectableItem<string>(Playnite.FilterSettings.MissingFieldString);
                 newItem.PropertyChanged += NewItem_PropertyChanged;
                 Items.Insert(0, newItem);
             }
@@ -317,7 +317,7 @@ namespace System
 
             if (includeNoneItem)
             {
-                var newItem = new SelectableItem<string>(FilterSettings.MissingFieldString);
+                var newItem = new SelectableItem<string>(Playnite.FilterSettings.MissingFieldString);
                 newItem.PropertyChanged += NewItem_PropertyChanged;
                 Items.Add(newItem);
             }
