@@ -28,7 +28,7 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static readonly Company Empty = new Company { Id = Guid.Empty, Name = string.Empty };
     }
@@ -49,9 +49,8 @@ namespace Playnite.SDK.Models
         /// Creates new instance of <see cref="Developer"/>.
         /// </summary>
         /// <param name="name"></param>
-        public Developer(string name) : base()
+        public Developer(string name) : base(name)
         {
-
         }
     }
 
@@ -71,9 +70,8 @@ namespace Playnite.SDK.Models
         /// Creates new instance of <see cref="Publisher"/>.
         /// </summary>
         /// <param name="name"></param>
-        public Publisher(string name) : base()
+        public Publisher(string name) : base(name)
         {
-
         }
     }
 }
