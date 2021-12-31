@@ -113,7 +113,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCDoneCapLabel">OK</sys:String>
     <sys:String x:Key="LOCBackCapLabel">VISSZA</sys:String>
     <sys:String x:Key="LOCClearCapLabel">TÖRÖL</sys:String>
-    <sys:String x:Key="LOCClearLabel">Nincs szűrés</sys:String>
+    <sys:String x:Key="LOCClearLabel">Szűrők törlése</sys:String>
     <sys:String x:Key="LOCDismiss">Mégsem</sys:String>
     <sys:String x:Key="LOCDismissAll">Mindet elutasít</sys:String>
     <sys:String x:Key="LOCImportLabel">Importálás</sys:String>
