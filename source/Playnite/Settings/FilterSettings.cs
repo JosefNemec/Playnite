@@ -268,7 +268,7 @@ namespace Playnite
                 }
                 else
                 {
-                    Texts = null;
+                    Texts = new List<string> { text };
                 }
 
                 OnPropertyChanged();

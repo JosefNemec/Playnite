@@ -54,7 +54,14 @@ namespace Playnite
             Items = null;
         }
 
-        private bool IsFilterMatching(FilterItemProperites filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has multiple possible values (OR filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="idData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatching(FilterItemProperties filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -68,14 +75,7 @@ namespace Playnite
                     return false;
                 }
 
-                if (filter.Text.Contains(Common.Constants.ListSeparator))
-                {
-                    return filter.Texts.IntersectsPartiallyWith(objectData?.Select(a => a.Name));
-                }
-                else
-                {
-                    return objectData.Any(a => a.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase));
-                }
+                return filter.Texts.IntersectsPartiallyWith(objectData.Select(a => a.Name));
             }
             else if (filter.Ids.HasItems())
             {
@@ -98,13 +98,29 @@ namespace Playnite
             }
         }
 
-        private bool IsFilterMatchingSingleOnly(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has 1 possible value (AND filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="idData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatchingSingleOnly(FilterItemProperties filter, Guid idData, DatabaseObject objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
                 return true;
             }
 
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (objectData == null)
+                {
+                    return false;
+                }
+
+                return filter.Texts.All(t => objectData.Name.Contains(t, StringComparison.InvariantCultureIgnoreCase));
+            }
             if (filter.Ids.HasItems())
             {
                 if (filter.Ids.Count != 1)
@@ -125,13 +141,29 @@ namespace Playnite
             return false;
         }
 
-        private bool IsFilterMatchingList(FilterItemProperites filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has multiple possible values (AND filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="listData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatchingList(FilterItemProperties filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
                 return true;
             }
 
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (objectData == null)
+                {
+                    return false;
+                }
+
+                return filter.Texts.All(t => objectData.Any(o => o.Name.Contains(t, StringComparison.InvariantCultureIgnoreCase)));
+            }
             if (filter.Ids.HasItems())
             {
                 if (listData == null || !listData.HasItems())
@@ -151,7 +183,14 @@ namespace Playnite
             return true;
         }
 
-        private bool IsFilterMatchingSingle(FilterItemProperites filter, Guid idData, DatabaseObject objectData)
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has 1 possible value (OR filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="idData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private bool IsFilterMatchingSingle(FilterItemProperties filter, Guid idData, DatabaseObject objectData)
         {
             if (objectData == null && (filter == null || !filter.IsSet))
             {
@@ -165,14 +204,7 @@ namespace Playnite
                     return false;
                 }
 
-                if (filter.Text.Contains(Common.Constants.ListSeparator))
-                {
-                    return filter.Texts.ContainsPartOfString(objectData.Name);
-                }
-                else
-                {
-                    return objectData.Name.Contains(filter.Text, StringComparison.InvariantCultureIgnoreCase);
-                }
+                return filter.Texts.ContainsPartOfString(objectData.Name);
             }
             else if (filter.Ids.HasItems())
             {
