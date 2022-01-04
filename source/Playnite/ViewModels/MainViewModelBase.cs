@@ -656,9 +656,7 @@ namespace Playnite.ViewModels
                     if (addedGames.Any() && AppSettings.GameSortingNameAutofill)
                     {
                         Logger.Info($"Setting Sorting Name for {addedGames.Count} new games.");
-                        ProgressValue = 0;
-                        ProgressTotal = addedGames.Count;
-                        string progressBaseStr = ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
+                        ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
                         var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, batchOperation: addedGames.Count > 20);
                         using (Database.BufferedUpdate())
                         {
@@ -674,8 +672,6 @@ namespace Playnite.ViewModels
                                     game.SortingName = sortingName;
                                     Database.Games.Update(game);
                                 }
-                                ProgressValue++;
-                                ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
                             }
                         }
                     }
