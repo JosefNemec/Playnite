@@ -60,20 +60,24 @@ Regarding code styling, there are only a few major rules:
 - private fields and properties should use camelCase (without underscore)
 - all methods (private and public) should use PascalCase
 - use spaces instead of tabs with 4 spaces width
+- add empty line between code block end `}` and additional expression
 - always encapsulate the code body after *if, for, foreach, while* etc. with curly braces:
 
 ```csharp
 if (true)
 {
-    DoSomething()
+    DoSomething();
 }
+
+DoSomethingElse();
 ```
 
 instead of
 
 ```csharp
 if (true)
-    DoSomething()
+    DoSomething();
+DoSomethingElse();
 ```
 
 Branches
