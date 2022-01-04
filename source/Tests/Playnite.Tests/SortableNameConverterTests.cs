@@ -50,9 +50,21 @@ namespace Playnite.Tests
         [TestCase("Metal Wolf Chaos XD")]
         [TestCase("Prince of Persia: The Two Thrones")]
         [TestCase("AnUsual Game")]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("  ")]
         public void SortableNameIsUnchanged(string input)
         {
             ConvertToSortableNameTest(input, input);
+        }
+
+        [TestCase("The Witcher 3", "The Witcher 03")]
+        [TestCase("A Hat in Time", "A Hat in Time")]
+        public void SortableNameNoArticlesRemovedTest(string input, string expected)
+        {
+            var c = new SortableNameConverter(new string[0]);
+            var output = c.Convert(input);
+            Assert.AreEqual(expected, output);
         }
 
         [TestCase("I", 1)]
