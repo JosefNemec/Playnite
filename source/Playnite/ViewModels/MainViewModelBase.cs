@@ -660,20 +660,23 @@ namespace Playnite.ViewModels
                         ProgressTotal = addedGames.Count;
                         string progressBaseStr = ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
                         var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, batchOperation: addedGames.Count > 20);
-                        foreach (var game in addedGames)
+                        using (Database.BufferedUpdate())
                         {
-                            if (GlobalTaskHandler.CancelToken.Token.IsCancellationRequested)
+                            foreach (var game in addedGames)
                             {
-                                break;
+                                if (GlobalTaskHandler.CancelToken.IsCancellationRequested)
+                                {
+                                    break;
+                                }
+                                string sortingName = c.Convert(game.Name);
+                                if (sortingName != game.Name)
+                                {
+                                    game.SortingName = sortingName;
+                                    Database.Games.Update(game);
+                                }
+                                ProgressValue++;
+                                ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
                             }
-                            string sortingName = c.Convert(game.Name);
-                            if (sortingName != game.Name)
-                            {
-                                game.SortingName = sortingName;
-                                Database.Games.Update(game);
-                            }
-                            ProgressValue++;
-                            ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
                         }
                     }
                 });

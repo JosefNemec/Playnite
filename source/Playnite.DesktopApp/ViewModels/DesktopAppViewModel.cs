@@ -475,49 +475,44 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public async Task SetSortingNames(List<Game> games, bool skipIfOtherTaskIsRunning = false)
+        public async Task SetSortingNames(List<Game> games)
         {
             if (!AppSettings.GameSortingNameAutofill)
             {
                 return;
             }
-            if (skipIfOtherTaskIsRunning && GlobalTaskHandler.ProgressTask?.Status == TaskStatus.Running)
-            {
-                Logger.Warn("Skipping setting Sorting Name for newly added games, some global task is already in progress.");
-                return;
-            }
+
             GameAdditionAllowed = false;
 
             try
             {
                 if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
                 {
-                    GlobalTaskHandler.CancelToken.Cancel();
+                    Logger.Info("Waiting on other global task to complete before setting Sorting Name for newly added games.");
                     await GlobalTaskHandler.ProgressTask;
                 }
 
                 DatabaseFilters.IgnoreDatabaseUpdates = true;
                 GlobalTaskHandler.CancelToken = new CancellationTokenSource();
                 ProgressActive = true;
-                ProgressValue = 0;
-                ProgressTotal = games.Count;
-                string progressBaseStr = ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
+                ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
 
                 var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, batchOperation: games.Count > 20);
-                foreach (var game in games)
+                using (Database.BufferedUpdate())
                 {
-                    if (GlobalTaskHandler.CancelToken.Token.IsCancellationRequested)
+                    foreach (var game in games)
                     {
-                        break;
+                        if (GlobalTaskHandler.CancelToken.Token.IsCancellationRequested)
+                        {
+                            break;
+                        }
+                        string sortingName = c.Convert(game.Name);
+                        if (sortingName != game.Name)
+                        {
+                            game.SortingName = sortingName;
+                            Database.Games.Update(game);
+                        }
                     }
-                    string sortingName = c.Convert(game.Name);
-                    if (sortingName != game.Name)
-                    {
-                        game.SortingName = sortingName;
-                        Database.Games.Update(game);
-                    }
-                    ProgressValue++;
-                    ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
                 }
             }
             finally
@@ -606,7 +601,7 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
-                await SetSortingNames(addedGames, true);
+                await SetSortingNames(addedGames);
             }
         }
 
@@ -626,7 +621,7 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
-                await SetSortingNames(addedGames, true);
+                await SetSortingNames(addedGames);
             }
         }
 
@@ -648,7 +643,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
             }
-            await SetSortingNames(model.ImportedGames, true);
+            await SetSortingNames(model.ImportedGames);
         }
 
         public void OpenAboutWindow(AboutViewModel model)

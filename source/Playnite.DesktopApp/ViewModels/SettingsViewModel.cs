@@ -76,6 +76,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
+        public ObservableCollection<string> SortingNameRemovedArticles { get; }
 
         public List<LoadedPlugin> GenericPlugins
         {
@@ -233,24 +234,24 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> AddSortingNameRemovedArticle
+        public RelayCommand AddSortingNameRemovedArticle
         {
-            get => new RelayCommand<object>(_ =>
+            get => new RelayCommand(() =>
             {
                 var res = dialogs.SelectString(
-                    resources.GetString("LOCEnterName"),
-                    resources.GetString("LOCAddNewItem"),
-                    "");
+                    resources.GetString(LOC.EnterName),
+                    resources.GetString(LOC.AddNewItem),
+                    string.Empty);
                 if (res.Result && !res.SelectedString.IsNullOrEmpty())
                 {
                     if (settings.GameSortingNameRemovedArticles.Any(a => a.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        dialogs.ShowErrorMessage(resources.GetString("LOCItemAlreadyExists"), "");
+                        dialogs.ShowErrorMessage(resources.GetString(LOC.ItemAlreadyExists), string.Empty);
                     }
                     else
                     {
-                        settings.GameSortingNameRemovedArticles.Add(res.SelectedString);
-                        settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles.GetClone();
+                        SortingNameRemovedArticles.Add(res.SelectedString);
+                        settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
                     }
                 }
             });
@@ -262,39 +263,41 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 foreach (string selectedItem in selectedItems)
                 {
-                    settings.GameSortingNameRemovedArticles.Remove(selectedItem);
+                    SortingNameRemovedArticles.Remove(selectedItem);
                 }
-                settings.GameSortingNameRemovedArticles = settings.GameSortingNameRemovedArticles.GetClone();
+                settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
             }, (a) => a?.Count > 0);
         }
 
-        public RelayCommand<object> FillSortingNameForAllGames
+        public RelayCommand FillSortingNameForAllGames
         {
-            get => new RelayCommand<object>(_ =>
+            get => new RelayCommand(() =>
             {
                 dialogs.ActivateGlobalProgress(args =>
                 {
                     args.ProgressMaxValue = database.Games.Count;
-                    var updatedGames = new List<SDK.Models.Game>();
                     var c = new SortableNameConverter(settings.GameSortingNameRemovedArticles, true);
-                    foreach (var game in database.Games)
+                    using (database.BufferedUpdate())
                     {
-                        if (args.CancelToken.IsCancellationRequested)
+                        foreach (var game in database.Games)
                         {
-                            return;
-                        }
-                        if (game.SortingName.IsNullOrEmpty())
-                        {
-                            string sortingName = c.Convert(game.Name);
-                            if (game.Name != sortingName)
+                            if (args.CancelToken.IsCancellationRequested)
                             {
-                                game.SortingName = sortingName;
-                                database.Games.Update(game);
+                                return;
                             }
+                            if (game.SortingName.IsNullOrEmpty())
+                            {
+                                string sortingName = c.Convert(game.Name);
+                                if (game.Name != sortingName)
+                                {
+                                    game.SortingName = sortingName;
+                                    database.Games.Update(game);
+                                }
+                            }
+                            args.CurrentProgressValue++;
                         }
-                        args.CurrentProgressValue++;
                     }
-                }, new GlobalProgressOptions(resources.GetString("LOCSortingNameAutofillProgress"), true));
+                }, new GlobalProgressOptions(resources.GetString(LOC.SortingNameAutofillProgress), true));
             });
         }
 
@@ -357,6 +360,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
+            SortingNameRemovedArticles = new ObservableCollection<string>(settings.GameSortingNameRemovedArticles.OrderBy(a => a));
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)

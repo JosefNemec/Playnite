@@ -1028,7 +1028,7 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Use this for ignoring words at the start of a string for sorting purposes. The default is "The", "An", and "A".</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Fill Sorting Name for games without one</sys:String>
     <sys:String x:Key="LOCSettingsSortingLabel">Sorting</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillProgress">Filling Sorting Name values...</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillProgress">Filling Sorting Name values…</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
 
 If you encounter any graphics corruption or other rendering issues in Playnite, we recommend disabling or completely uninstalling Nahimic service.
