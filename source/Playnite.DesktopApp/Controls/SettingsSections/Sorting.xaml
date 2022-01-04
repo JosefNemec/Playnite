@@ -2,30 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
-             xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
-             xmlns:p="clr-namespace:Playnite;assembly=Playnite"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:sm="clr-namespace:System.Windows.Media;assembly=PresentationCore"
-             xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
-             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
-        <Style TargetType="ContentControl">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ContentControl">
-                        <TextBlock Style="{DynamicResource BaseTextBlockStyle}">
-                            <ContentPresenter />
-                        </TextBlock>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </UserControl.Resources>
 
     <Grid>
