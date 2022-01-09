@@ -6,7 +6,7 @@ Installing Blend
 Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components you might not be interested in, for theme development you only need `.NET Desktop development` workload.
 
 > [!WARNING] 
-> The latest Visual Studio **2022** is currently not supported (live previews will not work)! Use [2019 or 2017 version](https://visualstudio.microsoft.com/vs/older-downloads/) is instead.
+> The latest Visual Studio **2022** is currently not supported (live previews will not work)! Use [2019 or 2017 version](https://visualstudio.microsoft.com/vs/older-downloads/) instead.
 
 Creating new theme
 ---------------------
