@@ -23,7 +23,7 @@ OnDemandMetadataProvider
 
 [OnDemandMetadataProvider](xref:Playnite.SDK.Plugins.OnDemandMetadataProvider) is an object to be returned from `GetMetadataProvider` method. Playnite uses it to request specific metadata fields based on user's metadata download settings. Override specific `Get*` methods based on what your plugin can provide. The class also contains another implementation of `AvailableFields` property, which should return list available fields for specific request.
 
-`OnDemandMetadataProvider` is `IDisposable` and object is disposed automatically once metadata are processes completely for a single game.
+`OnDemandMetadataProvider` is `IDisposable` and object is disposed automatically once metadata are processed completely for a single game.
 
 MetadataRequestOptions
 ---------------------
@@ -46,6 +46,8 @@ Available property types:
 | MetadataIdProperty | Playnite will assign field value based on objects database ID. Use if you want to reference specific object already existing in the game library. |
 | MetadataSpecProperty | Playnite will assign filed value based on specification identifier. Currently only available for [Platforms](https://github.com/JosefNemec/Playnite/blob/devel/source/Playnite/Emulation/Platforms.yaml) and [Regions](https://github.com/JosefNemec/Playnite/blob/devel/source/Playnite/Emulation/Regions.yaml). Identifier matches based on an ID or a Name. |
 
+> [!NOTE]
+> `MetadataIdProperty` should be used **only** when directly referencing existing items from game library. Do not add metadata fields into the library manually and then reference those added items via `MetadataIdProperty`. In majority of cases only `MetadataNameProperty` or `MetadataSpecProperty` should be used. Playnite will automatically add new items to the library when specified items don't exist and will automatically references existing items if specified items already exist, including handling of duplicates and indirect duplicates like "single player" vs "single-player".
 
 Example plugin
 ---------------------

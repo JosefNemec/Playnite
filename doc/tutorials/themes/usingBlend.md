@@ -62,7 +62,7 @@ Toggle design view using `Design` tab button. It is highly recommended to keep X
 
 #### 3) Select style to preview
 
-Since single xaml file can contain multiple styles for multiple views/controls, you need to select style you want to preview first. To do so select line in a text editor starting with with `<Style TargetType=...`.
+Since single xaml file can contain multiple styles for multiple views/controls, you need to select style you want to preview first. To do so select line in a text editor starting with `<Style TargetType=...`.
 
 #### 4) Activate preview
 

@@ -12,12 +12,12 @@ Playnite provides built-in API for message logging. Messages from extensions are
 Scripts
 ---------------------
 
-To write message into Playnite's log files use `__logger` variable which profiles [ILogger](xref:Playnite.SDK.ILogger) interface.
+To write a message use `__logger` variable which provides instance of [ILogger](xref:Playnite.SDK.ILogger).
 
 Plugins
 ---------------------
 
-Use static `GetLogger` method from [LogManager](xref:Playnite.SDK.LogManager) class, to create logger instance.
+Use static `GetLogger` method from [LogManager](xref:Playnite.SDK.LogManager) class, to create [ILogger](xref:Playnite.SDK.ILogger) instance.
 
 Examples
 ---------------------
