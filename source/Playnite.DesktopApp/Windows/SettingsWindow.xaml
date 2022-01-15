@@ -61,6 +61,7 @@
                 </TreeViewItem>
                 <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
                 <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsSortingLabel}" Tag="21" />
                 <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsImportExclusionList}" Tag="14" />

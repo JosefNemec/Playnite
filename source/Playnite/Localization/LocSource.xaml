@@ -1022,6 +1022,13 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime. If you are Windows 7 user, try (re)installing PowerShell 5.1 to fix the issue.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset with specified name already exists. Update preset with new settings?</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Automatically fill sorting name for batch-added games</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">When you add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name, for example "The Witcher 3" will get a Sorting Name of "Witcher 03"</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles">These words will be removed from the start of the automatically filled Sorting Name value:</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Use this for ignoring words at the start of a string for sorting purposes. The default is "The", "An", and "A".</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillButton">Fill Sorting Name for games without one</sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">Sorting</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillProgress">Filling Sorting Name values…</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
 
 If you encounter any graphics corruption or other rendering issues in Playnite, we recommend disabling or completely uninstalling Nahimic service.

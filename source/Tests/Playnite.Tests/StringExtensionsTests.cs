@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Playnite;
+using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +22,6 @@ namespace Playnite.Tests
         {
             string output = StringExtensions.NormalizeGameName(input);
             Assert.AreEqual(expectedOutput, output);
-        }
-
-        [Test]
-        public void ConvertToSortableName()
-        {
-            Assert.AreEqual("Witcher 3", StringExtensions.ConvertToSortableName("The Witcher 3"));
-            Assert.AreEqual("Witcher 3", StringExtensions.ConvertToSortableName("the Witcher 3"));
-            Assert.AreEqual("Game", StringExtensions.ConvertToSortableName("A Game"));
-            Assert.AreEqual("Usual Game", StringExtensions.ConvertToSortableName("An Usual Game"));
-            Assert.AreEqual("AnUsual Game", StringExtensions.ConvertToSortableName("AnUsual Game"));
         }
 
         [Test]

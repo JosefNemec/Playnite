@@ -316,11 +316,6 @@ namespace Playnite.Metadata
                             if (!string.IsNullOrEmpty(gameData?.Name))
                             {
                                 game.Name = StringExtensions.RemoveTrademarks(gameData.Name);
-                                var sortingName = StringExtensions.ConvertToSortableName(game.Name);
-                                if (sortingName != game.Name)
-                                {
-                                    game.SortingName = sortingName;
-                                }
                             }
                         }
 

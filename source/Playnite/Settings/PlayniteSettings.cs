@@ -1695,6 +1695,29 @@ namespace Playnite
             }
         }
 
+        private bool gameSortingNameAutofill = true;
+        public bool GameSortingNameAutofill
+        {
+            get => gameSortingNameAutofill;
+            set
+            {
+                gameSortingNameAutofill = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private List<string> gameSortingNameRemovedArticles = new List<string> { "The", "A", "An" };
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+        public List<string> GameSortingNameRemovedArticles
+        {
+            get => gameSortingNameRemovedArticles;
+            set
+            {
+                gameSortingNameRemovedArticles = value;       
+                OnPropertyChanged();
+            }
+        } 
+        
         private bool showNahimicServiceWarning = true;
         public bool ShowNahimicServiceWarning
         {
@@ -1705,7 +1728,7 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-
+        
         private bool showElevatedRightsWarning = true;
         public bool ShowElevatedRightsWarning
         {

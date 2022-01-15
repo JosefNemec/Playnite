@@ -33,20 +33,6 @@ namespace System
             }
         }
 
-        public static string ConvertToSortableName(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                return string.Empty;
-            }
-
-            var newName = name;
-            newName = Regex.Replace(newName, @"^the\s+", "", RegexOptions.IgnoreCase);
-            newName = Regex.Replace(newName, @"^a\s+", "", RegexOptions.IgnoreCase);
-            newName = Regex.Replace(newName, @"^an\s+", "", RegexOptions.IgnoreCase);
-            return newName;
-        }
-
         public static string RemoveTrademarks(this string str, string remplacement = "")
         {
             if (str.IsNullOrEmpty())

@@ -76,6 +76,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
+        public ObservableCollection<string> SortingNameRemovedArticles { get; }
 
         public List<LoadedPlugin> GenericPlugins
         {
@@ -233,6 +234,72 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand AddSortingNameRemovedArticle
+        {
+            get => new RelayCommand(() =>
+            {
+                var res = dialogs.SelectString(
+                    resources.GetString(LOC.EnterName),
+                    resources.GetString(LOC.AddNewItem),
+                    string.Empty);
+                if (res.Result && !res.SelectedString.IsNullOrEmpty())
+                {
+                    if (SortingNameRemovedArticles.Any(a => a.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        dialogs.ShowErrorMessage(resources.GetString(LOC.ItemAlreadyExists), string.Empty);
+                    }
+                    else
+                    {
+                        SortingNameRemovedArticles.Add(res.SelectedString);
+                    }
+                }
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveSortingNameRemovedArticle
+        {
+            get => new RelayCommand<IList<object>>((selectedItems) =>
+            {
+                var selectedStrings = selectedItems.Cast<string>().ToList();
+                foreach (string selectedItem in selectedStrings)
+                {
+                    SortingNameRemovedArticles.Remove(selectedItem);
+                }
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand FillSortingNameForAllGames
+        {
+            get => new RelayCommand(() =>
+            {
+                dialogs.ActivateGlobalProgress(args =>
+                {
+                    args.ProgressMaxValue = database.Games.Count;
+                    var c = new SortableNameConverter(SortingNameRemovedArticles, true);
+                    using (database.BufferedUpdate())
+                    {
+                        foreach (var game in database.Games)
+                        {
+                            if (args.CancelToken.IsCancellationRequested)
+                            {
+                                return;
+                            }
+                            if (game.SortingName.IsNullOrEmpty())
+                            {
+                                string sortingName = c.Convert(game.Name);
+                                if (game.Name != sortingName)
+                                {
+                                    game.SortingName = sortingName;
+                                    database.Games.Update(game);
+                                }
+                            }
+                            args.CurrentProgressValue++;
+                        }
+                    }
+                }, new GlobalProgressOptions(resources.GetString(LOC.SortingNameAutofillProgress), true));
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -278,7 +345,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
                 { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
                 { 19, new Controls.SettingsSections.Development() { DataContext = this } },
-                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
+                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
+                { 21, new Controls.SettingsSections.Sorting() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -291,6 +359,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
+            SortingNameRemovedArticles = new ObservableCollection<string>(settings.GameSortingNameRemovedArticles.OrderBy(a => a));
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
@@ -342,6 +411,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             var shutdownPlugins = AutoCloseClientsList.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
             Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
+            Settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
             var develExtListUpdated = !Settings.DevelExtenions.IsEqualJson(originalSettings.DevelExtenions);
 
             EndEdit();

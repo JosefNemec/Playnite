@@ -136,6 +136,7 @@
     <Compile Include="Plugins\ExtensionManifestTests.cs" />
     <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="SigningToolsTests.cs" />
+    <Compile Include="SortableNameConverterTests.cs" />
     <Compile Include="TestPlayniteApplication.cs" />
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />

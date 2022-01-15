@@ -475,6 +475,54 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public async Task SetSortingNames(List<Game> games)
+        {
+            if (!AppSettings.GameSortingNameAutofill)
+            {
+                return;
+            }
+
+            GameAdditionAllowed = false;
+
+            try
+            {
+                if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
+                {
+                    Logger.Info("Waiting on other global task to complete before setting Sorting Name for newly added games.");
+                    await GlobalTaskHandler.ProgressTask;
+                }
+
+                DatabaseFilters.IgnoreDatabaseUpdates = true;
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                ProgressActive = true;
+                ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
+
+                var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, batchOperation: games.Count > 20);
+                using (Database.BufferedUpdate())
+                {
+                    foreach (var game in games)
+                    {
+                        if (GlobalTaskHandler.CancelToken.Token.IsCancellationRequested)
+                        {
+                            break;
+                        }
+                        string sortingName = c.Convert(game.Name);
+                        if (sortingName != game.Name)
+                        {
+                            game.SortingName = sortingName;
+                            Database.Games.Update(game);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                ProgressActive = false;
+                GameAdditionAllowed = true;
+                DatabaseFilters.IgnoreDatabaseUpdates = false;
+            }
+        }
+
         public async Task DownloadMetadata(MetadataDownloaderSettings settings)
         {
             List<Game> games = null;
@@ -535,7 +583,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Database.Games.Remove(newGame);
             }
-}
+        }
 
         public async void ImportWindowsStoreGames(InstalledGamesViewModel model)
         {
@@ -553,6 +601,8 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
+
+                await SetSortingNames(addedGames);
             }
         }
 
@@ -572,6 +622,8 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
+
+                await SetSortingNames(addedGames);
             }
         }
 
@@ -593,6 +645,8 @@ namespace Playnite.DesktopApp.ViewModels
                     Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
             }
+
+            await SetSortingNames(model.ImportedGames);
         }
 
         public void OpenAboutWindow(AboutViewModel model)
@@ -902,7 +956,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 ProcessStarter.StartProcess(app.Path, app.Arguments, app.WorkingDir);
             }
-            catch (Exception e)  when (!PlayniteEnvironment.ThrowAllErrors)
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to start app tool.");
                 Dialogs.ShowErrorMessage(
