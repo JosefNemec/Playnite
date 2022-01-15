@@ -601,6 +601,7 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
+
                 await SetSortingNames(addedGames);
             }
         }
@@ -621,6 +622,7 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
                 }
+
                 await SetSortingNames(addedGames);
             }
         }
@@ -643,6 +645,7 @@ namespace Playnite.DesktopApp.ViewModels
                     Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
             }
+
             await SetSortingNames(model.ImportedGames);
         }
 

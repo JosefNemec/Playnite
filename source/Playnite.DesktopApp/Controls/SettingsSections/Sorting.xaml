@@ -19,7 +19,7 @@
             <TextBlock Margin="0,30,0,5" Text="{DynamicResource LOCSortingNameRemovedArticles}" Style="{DynamicResource BaseTextBlockStyle}" TextWrapping="Wrap" ToolTip="{DynamicResource LOCSortingNameRemovedArticlesTooltip}" />
             <ListBox DockPanel.Dock="Top" Name="ListSortingNameRemovedArticles"
                   SelectionMode="Extended" Height="250"
-                  ItemsSource="{Binding Settings.GameSortingNameRemovedArticles}"/>
+                  ItemsSource="{Binding SortingNameRemovedArticles}"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,0" MinWidth="80"
                     Command="{Binding AddSortingNameRemovedArticle}" />

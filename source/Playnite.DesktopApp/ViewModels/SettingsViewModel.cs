@@ -244,14 +244,13 @@ namespace Playnite.DesktopApp.ViewModels
                     string.Empty);
                 if (res.Result && !res.SelectedString.IsNullOrEmpty())
                 {
-                    if (settings.GameSortingNameRemovedArticles.Any(a => a.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                    if (SortingNameRemovedArticles.Any(a => a.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
                     {
                         dialogs.ShowErrorMessage(resources.GetString(LOC.ItemAlreadyExists), string.Empty);
                     }
                     else
                     {
                         SortingNameRemovedArticles.Add(res.SelectedString);
-                        settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
                     }
                 }
             });
@@ -261,11 +260,11 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<IList<object>>((selectedItems) =>
             {
-                foreach (string selectedItem in selectedItems)
+                var selectedStrings = selectedItems.Cast<string>().ToList();
+                foreach (string selectedItem in selectedStrings)
                 {
                     SortingNameRemovedArticles.Remove(selectedItem);
                 }
-                settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
             }, (a) => a?.Count > 0);
         }
 
@@ -276,7 +275,7 @@ namespace Playnite.DesktopApp.ViewModels
                 dialogs.ActivateGlobalProgress(args =>
                 {
                     args.ProgressMaxValue = database.Games.Count;
-                    var c = new SortableNameConverter(settings.GameSortingNameRemovedArticles, true);
+                    var c = new SortableNameConverter(SortingNameRemovedArticles, true);
                     using (database.BufferedUpdate())
                     {
                         foreach (var game in database.Games)
@@ -412,6 +411,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             var shutdownPlugins = AutoCloseClientsList.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
             Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
+            Settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
             var develExtListUpdated = !Settings.DevelExtenions.IsEqualJson(originalSettings.DevelExtenions);
 
             EndEdit();
