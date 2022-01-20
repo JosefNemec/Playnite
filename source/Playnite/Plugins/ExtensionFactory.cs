@@ -419,6 +419,14 @@ namespace Playnite.Plugins
                         logger.Error(e, string.Empty);
                     }
 
+                    if (e is ReflectionTypeLoadException reflectionTypeLoadException)
+                    {
+                        foreach (var loaderException in reflectionTypeLoadException.LoaderExceptions)
+                        {
+                            logger.Error(loaderException, string.Empty);
+                        }
+                    }
+
                     FailedExtensions.Add((desc, AddonLoadError.Uknown));
                 }
             }
