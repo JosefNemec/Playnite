@@ -122,8 +122,19 @@ namespace Playnite.Windows
         public void Close(bool? result)
         {
             logger.Debug($"Closing window {GetType()}, {result}.");
-            context.Send((a) =>
+            context.Send(async (_) =>
             {
+                // This is a workaround for WPF bug which cases deadlock in ShowDialog
+                // if parent of modal window is closed before the child window itself is closed.
+                // To prevent this we need to make sure that window parenting other windows is only
+                // closed after all children are closed.
+                // https://github.com/dotnet/wpf/issues/277
+                // https://stackoverflow.com/questions/40304161/showdialog-method-hangs-without-showing-the-window-deadlock#48208699
+                while (Window.GetHasChild())
+                {
+                    await Task.Delay(100);
+                }
+
                 if (asDialog)
                 {
                     try

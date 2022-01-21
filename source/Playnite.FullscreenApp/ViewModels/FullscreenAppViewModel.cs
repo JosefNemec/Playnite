@@ -532,6 +532,14 @@ namespace Playnite.FullscreenApp.ViewModels
             Logger.Info("Switching to Desktop mode.");
             if (GlobalTaskHandler.IsActive)
             {
+                if (Dialogs.ShowMessage(
+                    Resources.GetString(LOC.BackgroundProgressCancelAskSwitchMode),
+                    Resources.GetString(LOC.BackToDesktopMode),
+                    MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
                 var dialogRes = Dialogs.ActivateGlobalProgress((_) =>
                     {
                         var waitRes = GlobalTaskHandler.CancelAndWait(30_000);

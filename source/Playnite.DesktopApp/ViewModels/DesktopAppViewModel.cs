@@ -789,6 +789,14 @@ namespace Playnite.DesktopApp.ViewModels
             Logger.Info("Switching to Fullscreen mode.");
             if (GlobalTaskHandler.IsActive)
             {
+                if (Dialogs.ShowMessage(
+                    Resources.GetString(LOC.BackgroundProgressCancelAskSwitchMode),
+                    Resources.GetString(LOC.MenuOpenFullscreen),
+                    MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
                 var dialogRes = Dialogs.ActivateGlobalProgress((_) =>
                     {
                         var waitRes = GlobalTaskHandler.CancelAndWait(30_000);

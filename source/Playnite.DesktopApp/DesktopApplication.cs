@@ -76,8 +76,6 @@ namespace Playnite.DesktopApp
             Playnite.Dialogs.SetHandler(Dialogs);
             ConfigureApplication();
 
-            EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
-            EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;
             var isFirstStart = ProcessStartupWizard();
@@ -92,16 +90,6 @@ namespace Playnite.DesktopApp
             ProcessArguments();
             splashScreen?.Close(new TimeSpan(0));
             return true;
-        }
-
-        private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
-        {
-            WindowManager.NotifyChildOwnershipChanges();
-        }
-
-        private void WindowBaseLoadedHandler(object sender, RoutedEventArgs e)
-        {
-            WindowManager.NotifyChildOwnershipChanges();
         }
 
         public override void InitializeNative()

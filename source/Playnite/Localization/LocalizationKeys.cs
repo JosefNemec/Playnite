@@ -2478,13 +2478,17 @@ namespace Playnite
         /// </summary>
         public const string GeneralUpdateFailMessage = "LOCGeneralUpdateFailMessage";
         /// <summary>
-        /// The background task is currently in progress. Do you want to cancel it and proceed with the update?
+        /// Some background task is currently in progress. Do you want to cancel it and proceed with the update?
         /// </summary>
         public const string UpdateProgressCancelAsk = "LOCUpdateProgressCancelAsk";
         /// <summary>
-        /// The background task is currently in progress. Do you want to cancel it and exit Playnite?
+        /// Some background task is currently in progress. Do you want to cancel it and exit Playnite?
         /// </summary>
         public const string BackgroundProgressCancelAskExit = "LOCBackgroundProgressCancelAskExit";
+        /// <summary>
+        /// Some background task is currently in progress. Switching modes will cancel the task, do you want to switch anyways?
+        /// </summary>
+        public const string BackgroundProgressCancelAskSwitchMode = "LOCBackgroundProgressCancelAskSwitchMode";
         /// <summary>
         /// An update for Playnite is available
         /// </summary>
@@ -2557,6 +2561,10 @@ namespace Playnite
         /// Test script
         /// </summary>
         public const string TestScript = "LOCTestScript";
+        /// <summary>
+        /// Show only selected items.
+        /// </summary>
+        public const string OnlyItemsSelectedTooltip = "LOCOnlyItemsSelectedTooltip";
         /// <summary>
         /// Save as default
         /// </summary>
@@ -3662,7 +3670,7 @@ namespace Playnite
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
         /// <summary>
-        /// Nahimic service has been detected to be running on your system. This service is know to cause serious rendering issues to Playnite (and other apps).        
+        /// Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
         /// </summary>
         public const string NahimicServiceWarning = "LOCNahimicServiceWarning";
         /// <summary>
