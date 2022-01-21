@@ -30,11 +30,6 @@ namespace Playnite.WebView
         public OffscreenWebView(WebViewSettings settings)
         {
             this.userAgent = settings.UserAgent;
-            if (!userAgent.IsNullOrEmpty())
-            {
-                browser.RequestHandler = new CustomRequestHandler(userAgent);
-            }
-
             Initialize(new BrowserSettings
             {
                 Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled
@@ -44,6 +39,11 @@ namespace Playnite.WebView
         private void Initialize(BrowserSettings settings = null)
         {
             browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
+            if (!userAgent.IsNullOrEmpty())
+            {
+                browser.RequestHandler = new CustomRequestHandler(userAgent);
+            }
+
             browser.LoadingStateChanged += Browser_LoadingStateChanged;
             browser.BrowserInitialized += Browser_BrowserInitialized;
             if (settings != null)
