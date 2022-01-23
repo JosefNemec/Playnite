@@ -672,7 +672,7 @@ namespace System
         private bool CollectionViewFilter(object item)
         {
             var entry = (SelectableItem<DatabaseObject>)item;
-            return (ShowSelectedOnly ? (bool)entry.Selected : true) && entry.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
+            return (ShowSelectedOnly ? entry.Selected == true : true) && entry.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
         }
 
         public override string ToString()
