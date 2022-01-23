@@ -10,6 +10,11 @@ Game actions can be use either to start a game or to launch additional executabl
 
 Play actions can be also provided by plugins, see [game actions](../tutorials/extensions/gameActions.md) plugin page for more details.
 
+Bulk editing
+---------------------
+
+When editing multiple games at the same time, Playnite won't show currently assigned actions from selected games. What's being assigned while in bulk edit mode will be assigned to all selected games and all existing actions will be removed.
+
 Action properties
 ---------------------
 
