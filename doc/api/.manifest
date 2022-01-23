@@ -1188,6 +1188,7 @@
   "Playnite.SDK.Plugins.ScriptMainMenuItemActionArgs": "Playnite.SDK.Plugins.ScriptMainMenuItemActionArgs.yml",
   "Playnite.SDK.Plugins.ScriptMainMenuItemActionArgs.SourceItem": "Playnite.SDK.Plugins.ScriptMainMenuItemActionArgs.yml",
   "Playnite.SDK.Plugins.SidebarItem": "Playnite.SDK.Plugins.SidebarItem.yml",
+  "Playnite.SDK.Plugins.SidebarItem.#ctor": "Playnite.SDK.Plugins.SidebarItem.yml",
   "Playnite.SDK.Plugins.SidebarItem.Activated": "Playnite.SDK.Plugins.SidebarItem.yml",
   "Playnite.SDK.Plugins.SidebarItem.Closed": "Playnite.SDK.Plugins.SidebarItem.yml",
   "Playnite.SDK.Plugins.SidebarItem.Icon": "Playnite.SDK.Plugins.SidebarItem.yml",
