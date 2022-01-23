@@ -87,7 +87,11 @@ namespace TestPlugin
 
         public override void OnGameSelected(OnGameSelectedEventArgs args)
         {
-            logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?.Count}");
+            //logger.Warn($"TestPluginDev OnGameSelected {args.NewValue?.Count}");
+        }
+
+        public override void OnLibraryUpdated(OnLibraryUpdatedEventArgs args)
+        {
         }
 
         private async void CrashTest()
