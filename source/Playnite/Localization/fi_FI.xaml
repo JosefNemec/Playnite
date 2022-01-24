@@ -670,8 +670,9 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Uuden version tarkistaminen epäonnistui.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Olet ajan tasalla.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Päivityksen lataaminen ja asentaminen epäonnistui.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Taustatehtävä on parhaillaan käynnissä. Haluatko peruuttaa sen ja jatkaa päivitystä?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Taustatehtävä on parhaillaan käynnissä. Haluatko peruuttaa sen ja sulkea Playniten?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playniteen on saatavilla päivitys</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Lataa teemalista uudelleen</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Ota käyttöön valittu teema</sys:String>

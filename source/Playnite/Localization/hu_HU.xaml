@@ -681,6 +681,7 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Frissítés letöltése és telepítése sikertelen.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Egy háttérfolyamat jelenleg is fut. Megszakítod, és folytatod a frissítés telepítését?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Egy háttérfolyamat jelenleg is fut. Megszakítod, és bezárod a Playnite-ot?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Egy háttérfolyamat jelenleg is fut. A módok közötti váltás befelyezi a háttérfolyamatot. Szeretnéd folytatni?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite frissítés elérhető</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Témalista újratöltése</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Kiválasztott téma használata</sys:String>

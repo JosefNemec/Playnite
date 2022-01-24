@@ -655,6 +655,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Update untuk Playnite tidak tersedia</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Muat ulang list tema</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Gunakan tema yang dipilih</sys:String>

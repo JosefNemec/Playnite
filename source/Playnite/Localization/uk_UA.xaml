@@ -681,6 +681,7 @@
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Не вдалося завантажити та інсталювати оновлення.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Наразі виконується фонове завдання. Скасувати його та продовжити з оновленням?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Наразі виконується фонове завдання. Скасувати його і вийти з Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Наразі виконується фонове завдання. Зміна режимів скасує завдання, хочете все одно змінити режим?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Доступне оновлення Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Перезавантажити список тем</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Застосувати вибрану тему</sys:String>

@@ -637,6 +637,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Actualizarea nu a putut fi descărcată și instalată.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Reîncarcă lista de teme</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Aplicați tema selectată</sys:String>

@@ -679,8 +679,9 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Fehler bei der Suche nach Aktualisierungen.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden. Playnite ist aktuell.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Aktualisierung konnte nicht heruntergeladen und installiert werden.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Der Hintergrundprozess wird gerade ausgeführt. Möchtest du ihn abbrechen und mit der Aktualisierung fortfahren?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Der Hintergrundprozess wird gerade ausgeführt. Möchtest du ihn abbrechen und Playnite beenden?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Für Playnite ist eine Aktualisierung verfügbar</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Designliste erneut laden</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Ausgewähltes Design anwenden</sys:String>

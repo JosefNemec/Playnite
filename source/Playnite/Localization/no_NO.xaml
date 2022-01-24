@@ -678,8 +678,9 @@ Du kan prøve dette for å løse problemet:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Oppdateringssjekk mislyktes.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Ingen ny versjon funnet. Du er oppdatert.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Kunne ikke laste ned og installere oppdatering.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Bakgrunnsoppgaven pågår for øyeblikket. Vil du avbryte den og fortsette med oppdateringen?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Bakgrunnsoppgaven kjører for øyeblikket. Vil du avbryte den og lukke Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">En bakgrunnsprosess pågår. Ønsker du å stoppe den og gjennomføre oppdatering?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">En bakgrunnsprosess pågår. Ønsker du å stoppe den og lukke Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">En bakgrunnsprosess pågår. Bytte av modus vil avbryte prosessen. Ønsker du likevel å bytte?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">En oppdatering for Playnite er tilgjengelig</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Last inn temaliste på nytt</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Bruk valgte tema</sys:String>

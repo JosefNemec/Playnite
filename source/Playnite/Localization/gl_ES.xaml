@@ -249,7 +249,7 @@ Actualizar a biblioteca de xogos</sys:String>
 Debuxa o fondo do elemento da reixa</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ancho do bordo do elemento da reixa</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Falta unha fonte de icona do xogo</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">Falta unha fonte da portada do xogo</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Falta unha fonte da careta do xogo</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Falta a fonte de fondo do xogo</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espazamento vertical dos detalles do xogo</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posición de detalles da vista da reixa</sys:String>
@@ -366,112 +366,120 @@ A nova localización da base de datos non se utilizará ata que se reinicie Play
     <sys:String x:Key="LOCSettingsFullscreenLayout">Disposición</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Desprazamento horizontal</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Seleccione unha das subseccións</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable"></sys:String>
-    <sys:String x:Key="LOCSettingsErrorLoadingSettings"></sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode"></sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection"></sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
-    <sys:String x:Key="LOCStrechNone"></sys:String>
-    <sys:String x:Key="LOCStrechFill"></sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
-    <sys:String x:Key="LOCDockLeft"></sys:String>
-    <sys:String x:Key="LOCDockRight"></sys:String>
-    <sys:String x:Key="LOCDockTop"></sys:String>
-    <sys:String x:Key="LOCDockBottom"></sys:String>
-    <sys:String x:Key="LOCImportError"></sys:String>
-    <sys:String x:Key="LOCLoginRequired"></sys:String>
-    <sys:String x:Key="LOCLoginFailed"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">Sen axustes dispoñibles</sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings">Errou o cargar os axustes</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Estos scripts son executados por cada xogo da biblioteca. Os scripts individuais poden ser atribuidos a cada xogo por separado mentras se editan os detalles do xogo.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animar transicións das imaxes de fondo</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">Tamaños de letra</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Auto</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Suavizado</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">Escala de grises</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ideal</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Pantalla</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formato de texto</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderizado de texto</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Os métodos de renderización de texto e formato non se empregan actualmente para as descripcións dos xogos. </sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Precargar imaxes de fondo</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se está activado,  Playnite transferirá as ilustracións de fondo cando descarga os metadados, empregando máis espazo de disco e tornando as ilustracións dispoñíbles sen conexión.
+ 
+Se está desactivado, as ilustracións de fondo serán descargadas só cando se necesiten a primeira vez, usando menos espazo, máis pode ocorrer que haxa atrasos antes de que a ilustración sexa mostrada e algunhas imaxes poden non estar dispoñibles cando non haxa conexión.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Pechar automáticamente o cliente de terceiros despóis de saír do xogo</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Retardo do peche do cliente (en segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Non pechar despóis de sesións de xogo máis curtas que  (en segundos)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Pechar automáticamente os seguintes clientes:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">Pechar clientes automáticamente</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Importar Lista de Exclusión</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Mostra aviso cando se asignen datos de xogos moi grandes</sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Comando de apertura de cartafol</sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Organización de clasificación por edade preferida</sys:String>
+    <sys:String x:Key="LOCStrechNone">Ningún</sys:String>
+    <sys:String x:Key="LOCStrechFill">Encher</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Uniforme</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Uniforme para encher</sys:String>
+    <sys:String x:Key="LOCDockLeft">Esquerda</sys:String>
+    <sys:String x:Key="LOCDockRight">Dereita</sys:String>
+    <sys:String x:Key="LOCDockTop">Arriba</sys:String>
+    <sys:String x:Key="LOCDockBottom">Inferior</sys:String>
+    <sys:String x:Key="LOCImportError">Erro de importación</sys:String>
+    <sys:String x:Key="LOCLoginRequired">Requírese autenticación</sys:String>
+    <sys:String x:Key="LOCLoginFailed">Errou na autenticación</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">Modo de redenderizado da vista web alternativo</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Usar cando se teñan problemas cas vistas web, por exemplo, na integración dos diálogos de autenticación.</sys:String>
     <!--Meta Import-->
-    <sys:String x:Key="LOCMetaImportWindowTitle"></sys:String>
-    <sys:String x:Key="LOCDownloadMetaButton"></sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCMetaImportWindowTitle">Importación de Metadatos</sys:String>
+    <sys:String x:Key="LOCDownloadMetaButton">Descargar metadatos...</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Usar configuración seleccionada para calquer descarga de metadatos futura.
+Tamén pode cambiarse nas opcións do aplicativo.</sys:String>
     <!--Emulator Import-->
-    <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanGames"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonSelectFiles"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
+    <sys:String x:Key="LOCEmuWizardWindowTitle">Asistente de Importación da Emulación</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Este asistente axudarache no proceso de descargar e importar emuladores de consolas e importar xogos emulados.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Ten conta de que sempre podes engadir despóis emuladores adicionáis e/ou xogos a través do menú principal (debaixo do menú  &quot;Bilbioteca&quot; nos axustes do Emulador e no menú &quot;Engadir Xogos&quot; para sogos emulados).</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">A continuación móstrase unha lista de emuladores que Playnite pode recoñecer e configurar automaticamente. Podes descargar instaladores de emuladores dos seus sitios web. Unha vez que teñas os emuladores instalados (manualmente), podes importalos no diálogo de configuración do emulador.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Podes importar calquera emulador que estea instalado no teu PC facendo clic no botón &quot;Detectar automaticamente desde o cartafol...&quot;. Playnite buscará no cartafol seleccionado calquera emulador coñecido e ofrecerá a opción de importalos. Podes usar este botón varias veces para importar emuladores de diferentes cartafoles. Os emuladores engadiranse ao final da lista actual.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Podes importar xogos facendo clic no botón &quot;Escanear cartafol usando emulador&quot;. Ao seleccionar o emulador axeitado, Playnite saberá que tipos de ficheiros quere escanear e importar. Podes usar este botón varias veces para importar xogos de diferentes cartafoles. Os xogos engadiranse ao final da lista actual.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Non hai emuladores seleccionados para importar. Non poderás importar automaticamente ningún xogo emulado sen configurar primeiro os emuladores. Estás seguro de que queres continuar e saír do proceso de importación?</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Non hai emuladores configurados en Playnite. Non podes importar xogos sen antes configurar o emulador e seleccionar os tipos de ficheiro adecuados. Queres engadir algúns emuladores agora?</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames">Escanear cartafol usando Emulador</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Seleccionar ficheiro</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Detecta automaticamente desde o cartafol...</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Configurar emuladores...</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Escaneando…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">Escaneando {0}…</sys:String>
     <!--FirstTime Wizard-->
-    <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
+    <sys:String x:Key="LOCFirstWindowTitle">Primeira configuración</sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Este proceso guiarache a través dunha importación e configuración automáticas de bibliotecas de xogos externas. Playnite pode importar automaticamente xogos de varios servizos de xogos, como Steam ou GOG.
+
+Teña en conta que tamén pode engadir manualmente calquera xogo personalizado ou emulado para calquera plataforma máis tarde desde o menú principal.
+</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">Integración de bibliotecas</sys:String>
     <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">De seguido móstranse algunhas das integracións de bibliotecas que Playnite soporta. Por favor, escolle as que queres instalar.
 
 Podes instalar máis integracións despóis dende o menú de &quot;Complementos&quot;.</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">Configuración finalizada</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">A configuración inicial completouse. Lembra que podes cambiar todas as opcións máis tarde, así como engadir integracións adicionais desde o menú principal.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Errou ó descargar unha ou máis extensións.
 
 Podes tentar de descargar as integración dende o menú de complementos despóis de que o asistente de inicio remate.</sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">Descargando a integración de {0}...</sys:String>
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCPlatformTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorTitle"></sys:String>
-    <sys:String x:Key="LOCAddPlatformTitle"></sys:String>
-    <sys:String x:Key="LOCSelectIconTitle"></sys:String>
-    <sys:String x:Key="LOCSelectCoverTitle"></sys:String>
-    <sys:String x:Key="LOCSelectImageTitle"></sys:String>
-    <sys:String x:Key="LOCSelectItemTitle"></sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle"></sys:String>
-    <sys:String x:Key="LOCSelectFileTitle"></sys:String>
-    <sys:String x:Key="LOCSelectUrlTitle"></sys:String>
-    <sys:String x:Key="LOCAddEmulatorTitle"></sys:String>
-    <sys:String x:Key="LOCSupportedPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle"></sys:String>
-    <sys:String x:Key="LOCExecutableTitle"></sys:String>
-    <sys:String x:Key="LOCArgumentsTitle"></sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle"></sys:String>
-    <sys:String x:Key="LOCSupportedFilesTitle"></sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton"></sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton"></sys:String>
-    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
-    <sys:String x:Key="LOCMenuSortByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuSortAscending"></sys:String>
-    <sys:String x:Key="LOCMenuSortDescending"></sys:String>
-    <sys:String x:Key="LOCMenuGroupDont"></sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider"></sys:String>
-    <sys:String x:Key="LOCMenuGroupCategory"></sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">Configurar plataformas e emuladores</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">Configurar emuladores</sys:String>
+    <sys:String x:Key="LOCPlatformsTitle">Plataformas</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">Plataforma</sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle">Emuladores</sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">Emulador</sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle">Engadir plataforma</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Seleccionar icona</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">Seleccione Portada</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">Seleccionar imaxe</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">Seleccionar elemento</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">Seleccionar imaxe de fondo</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">Seleccionar ficheiro</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">Seleccionar unha URL</sys:String>
+    <sys:String x:Key="LOCAddEmulatorTitle">Engadir emulador</sys:String>
+    <sys:String x:Key="LOCSupportedPlatformsTitle">Plataforma(s) compatibles</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Queres gardar os cambios de plataforma?</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Queres gardar os cambios do emulador?</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">Executábel</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">Argumentos</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">Directorio de traballo</sys:String>
+    <sys:String x:Key="LOCSupportedFilesTitle">Tipos de ficheiros admitidos</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">Importar emuladores...</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">Descargar emuladores...</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">Cargar argumentos predefinidos do perfil do emulador coñecido</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Estás seguro de que queres eliminar o emulador de {0}?
+Actualmente está a ser usado por {1} xogos.</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Estás seguro de que queres eliminar a plataforma {0}?
+Actualmente está a ser usado por {1} xogos e {2} emuladores.</sys:String>
+    <sys:String x:Key="LOCEmulatorSettingsHelp">Axuda de configuración</sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">Ordenar por</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">Agrupar por</sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">Ascendente</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">Descendente</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">Non agrupar</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">Agrupar por biblioteca</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">Agrupar por categoría</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform"></sys:String>
     <sys:String x:Key="LOCViewType"></sys:String>
     <sys:String x:Key="LOCMenuView"></sys:String>
@@ -665,6 +673,7 @@ Podes tentar de descargar as integración dende o menú de complementos despóis
     <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
     <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
@@ -683,7 +692,7 @@ Podes tentar de descargar as integración dende o menú de complementos despóis
     <sys:String x:Key="LOCMetadataDiffCurrent"></sys:String>
     <sys:String x:Key="LOCMetadataDiffNew"></sys:String>
     <sys:String x:Key="LOCTestScript"></sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Mostra só os artigos escollidos</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault"></sys:String>
     <sys:String x:Key="LOCFavoriteGame"></sys:String>
@@ -964,7 +973,11 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Detectouse que o servizo Nahimic estase a executar no teu sistema. Este servizo é coñecido por causar problemas de renderizado no Playnite (e outras aplicacións).
+
+Se atopas algunha corrupción nos gráficos ou outros problemas de renderizado no Playnite, recoméndase deshabilitar ous desinstalar completamente  o servizo de Nahimic.
+
+Máis información en https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Os seguintes complementos foron reportados como potencialmente problemáticos, ben por un alto impacto na estabilidade ou rendemento, ben por problemas de seguridade. Recomendamos fortemente a súa desinstalación:

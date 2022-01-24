@@ -40,7 +40,8 @@
 </sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">تسبب الملحق &quot;{0}&quot; في حدوث خطأ لا يمكن إصلاحه.
 نوصي بالإبلاغ عن المشكلة لمطوّر الامتداد أو الملحق ، إذا أستمرت المشكلة مرة أخرى فقم بتعطيله</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">إضافة غير معروفة أو سمة جمالية &quot;ثيم&quot; قد تسببت بعطل لا يمكن اصلاحه.
+ننصحك بإقاف إضافات الطرف الثالث, وعزل الاضافات التي قد تسبب مشاكل, وإبلاغ مطور الإضافة بالمشكلة.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">حدث خطأ غير قابل للاسترداد.
 
 إذا أردت مساعدتنا في حل هذه المشكلة، فرجاءً قم بإرسال معلومات التّشخيص. شكرا لك.</sys:String>
@@ -92,7 +93,7 @@
     <sys:String x:Key="LOCGameInstallError">تعذّر تثبيت اللعبة:{0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">تعذّر إلغاء تثبيت اللعبة:{0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">لم يتم تكوين إجراء اللعب.</sys:String>
-    <sys:String x:Key="LOCErrorNoInstallAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoInstallAction">المنفذ للتثبيت غير متوفر.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">البرنامج المساعد للمكتبة المسؤول عن هذه اللعبة معطل أو غير مثبت.
 </sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">تحميل بيانات التعريف الرسمية غير متاح.</sys:String>
@@ -213,7 +214,7 @@
     <sys:String x:Key="LOCProgressMetadata">تنزيل بيانات التعريف…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">جاري استيراد الألعاب المثبتة…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">جاري استيراد {0} لعبة…</sys:String>
-    <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
+    <sys:String x:Key="LOCProgressImportinEmulatedGames">إستيراد ألعاب المحاكيات من {0}</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">جاري تحميل تحديثات المكتبة…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">تم الانتهاء من تحديث المكتبة</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">جاري تحرير الموارد…</sys:String>
@@ -428,8 +429,8 @@
     <sys:String x:Key="LOCImportError">خطأ في الاستيراد</sys:String>
     <sys:String x:Key="LOCLoginRequired">يتطلب المصادقة</sys:String>
     <sys:String x:Key="LOCLoginFailed">فشلت المصادقة</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">وضع عرض الويب البديل</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">تستخدم عند مواجة مشاكل مع عرض الويب,على سبيل المثال المصادقة على دمج الحوارات.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">استيراد بيانات التعريف</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">تحميل بيانات التعريف</sys:String>
@@ -450,7 +451,7 @@
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">الكشف تلقائيًا من المجلد…</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">تهيئة المحاكيات…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">جاري الفحص…</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">يتم المسح {0}</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">تهيئة لأول مرة</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve">هذا المعالج سوف يرشدك خلال عملية الاستيراد التلقائي والتكوين لمكتبات الألعاب الخارجية. يمكن لـ Playnite استيراد الألعاب تلقائيًا من خدمات ألعاب متعددة، مثل Steam أو GOG، كما يمكنك أيضًا تحديث مكتبتك عن طريق تحديثها تلقائيًا عند بدء تشغيل التطبيق.
@@ -463,8 +464,9 @@
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">تم الانتهاء من الإعداد الأولي. نذكر أنه يمكنك تغيير جميع الإعدادات لاحقًا في قائمة &quot;الإعدادات&quot;.
 
 يمكنك كذلك إضافة أي لعبة أخرى لاحقًا بالنقر فوق قائمة شعار Playnite</sys:String>
-    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">فشل عملية تحميل واحدة أو أكثر من الإضافات.
+يمكنك إعادة تحميل الإضافات من قائمة الإضافات بعد عملية التثبيت لأول مرة.</sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">تحميل {0} دمج</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">تهيئة المنصات والمحاكيات</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">تهيئة المحاكيات</sys:String>
@@ -526,8 +528,9 @@
     <sys:String x:Key="LOCGameTagsTitle">وسم</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">الناشر</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">حالة التثبيت</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">مطابقة كافة عوامل التصفية</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">اذا تم تفعيله, فقط الألعاب التي تستخدم كل العناصر في كل التصفيات سوف تكون في العرض.
+اذا تم إيقافه, الألعاب التي تستخدم أي عنصر من أي تصفية سوف تكون في العرض.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">مثبت</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">مثبت</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">غير مثبت</sys:String>
@@ -572,7 +575,7 @@
 الرجاء إرفاق المعرف التالي بتقرير المشكلة الخاص بك:</sys:String>
 
     <sys:String x:Key="LOCLibraryImportError">فشل استيراد الألعاب من {0}.</sys:String>
-    <sys:String x:Key="LOCLibraryImportEmulatedError"></sys:String>
+    <sys:String x:Key="LOCLibraryImportEmulatedError">فشلت عملية الإستيراد ألعاب المحاكيات {0}</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">تعذر البحث عن الألعاب من خلال ملف تعريف المحاكي. الملف الشخصي لا يحتوي على أي ملحقات أو منصات.</sys:String>
     <sys:String x:Key="LOCStartGenericError">فشل بدء Playnite. الرجاء إغلاق جميع الحالات الأخرى وحاول مرة أخرى.
 </sys:String>
@@ -582,7 +585,13 @@
     <sys:String x:Key="LOCURLFormatError">لا يمكن فتح الرابط، عنوان URL غير متناسق بشكل صحيح.</sys:String>
     <sys:String x:Key="LOCAppStartupError">فشل بدء التطبيق.
 </sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">فشلت عملية تهيئة مكونات عرض الويب. Playnite لا يمكنه الإستمرار في عملية التثبيت
+
+يمكنك محاولة حل المشكلة:
+  • تحقق من أن جميع الملفات مثبتة بشكل صحيح. إعادة التثبيت يمكن أن يساعد
+  • تثبيت Visual Studio C++ 2019 redistributables اذا كنت تستخدم ويندوز 7 أو 8
+  • تأكد من أن  برنامج مكافحة الفيروسات لا يمنع أي ملفات من مجلدات Playnite
+  • اختيار موقع تثبيت مختلف</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">لا يمكن استيراد برامج محاكاة بسبب ملف تعريف مفقود أو تالف.
 </sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">فشل في تهيئة واجهة XInput</sys:String>
@@ -593,9 +602,9 @@
     <sys:String x:Key="LOCUseExeIcon">من إجراء التشغيل</sys:String>
     <sys:String x:Key="LOCImageURL">عنوان URL الصورة</sys:String>
     <sys:String x:Key="LOCAddLinkButton">إضافة رابط</sys:String>
-    <sys:String x:Key="LOCAddRom"></sys:String>
+    <sys:String x:Key="LOCAddRom">إضافة روم </sys:String>
     <sys:String x:Key="LOCSaveChanges">حفظ التغييرات</sys:String>
-    <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">تطبيق التغيرات على اللعبة/الألعاب قيد التحرير</sys:String>
     <sys:String x:Key="LOCPlayAction">إجراء التشغيل</sys:String>
     <sys:String x:Key="LOCAddPlayAction">إضافة إجراء التشغيل</sys:String>
     <sys:String x:Key="LOCAddAction">إضافة إجراء</sys:String>
@@ -609,7 +618,7 @@
     <sys:String x:Key="LOCOpenPlaynite">فتح Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">إعدادات الملف الشخصي</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">اسم اللعبة لا يمكن أن يكون فارغاً.</sys:String>
-    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">لا يمكن أن يكون مسار تتبع أحداث اللعبة فارغاً</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">اسم اللعبة لا يمكن ان يكون فارغاً قبل البحث عن بيانات التعريف.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">بيانات اللعبة غير صالحة</sys:String>
     <sys:String x:Key="LOCURLInputInfo">أدخل رابط URL صالح يبدأ بhttp:// أو https://</sys:String>
@@ -636,7 +645,7 @@
     <sys:String x:Key="LOCAdvanced">متقدم</sys:String>
     <sys:String x:Key="LOCNever">ابداً</sys:String>
     <sys:String x:Key="LOCCompletionStatus">حالة الاكمال</sys:String>
-    <sys:String x:Key="LOCCompletionStatuses"></sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">حالة الإكتمال</sys:String>
     <sys:String x:Key="LOCUserScore">نقاط المستخدم</sys:String>
     <sys:String x:Key="LOCCriticScore">نقاط النقد</sys:String>
     <sys:String x:Key="LOCCommunityScore">نقاط المجتمع</sys:String>
@@ -674,7 +683,7 @@
     <sys:String x:Key="LOCDefault">افتراضي</sys:String>
     <sys:String x:Key="LOCSelect">تحديد</sys:String>
     <sys:String x:Key="LOCSelectAll">تحديد الكل</sys:String>
-    <sys:String x:Key="LOCDeselectAll"></sys:String>
+    <sys:String x:Key="LOCDeselectAll">إلغاء تحديد الكل</sys:String>
     <sys:String x:Key="LOCFirst">الأول</sys:String>
     <sys:String x:Key="LOCRandom">عشوائي</sys:String>
     <sys:String x:Key="LOCUserSelect">تحديد المستخدم</sys:String>
@@ -687,11 +696,11 @@
     <sys:String x:Key="LOCOther">آخر</sys:String>
     <sys:String x:Key="LOCThemes">ثيمات</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">وسائط المحاكي</sys:String>
-    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
-    <sys:String x:Key="LOCCustomArguments"></sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">القوانين المدمجة</sys:String>
+    <sys:String x:Key="LOCCustomArguments">قوانين مخصصة</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">وسائط إضاقية للمحاكي</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">تجاوز وسائط المحاكي</sys:String>
-    <sys:String x:Key="LOCIsPlayAction"></sys:String>
+    <sys:String x:Key="LOCIsPlayAction">إجراء التشغيل</sys:String>
     <sys:String x:Key="LOCMedataDiffWindowTitle">تحديد بيانات التعريف للاستيراد
 </sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">حدد الألعاب التي تود استيرادها</sys:String>
@@ -704,10 +713,9 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">فشل التحقق من الإصدار الجديد.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">لم يتم العثور على إصدار جديد، التطبيق محدّث مسبقًا.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">فشل تحميل التحديث وتثبيته.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">المهمة قيد التقدم حاليًا في. Background  هل تريد الإلغاء ومتابعة التحديث؟
-
-</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">المهمة قيد التقدم حاليًا في. Background  هل تريد الإلغاء والخروج من Playnite ؟؟</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">يتوفر تحديث لـ Playnite
 </sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">إعادة تحميل قائمة المظاهر</sys:String>

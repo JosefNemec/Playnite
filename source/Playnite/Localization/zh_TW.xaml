@@ -678,8 +678,9 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">無法檢查新版本</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">找不到新版本，您已是最新版本</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">無法下載並安裝更新</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">目前有背景任務正在執行。是否要取消並進行更新?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">目前有背景程式正在執行。是否要取消並進行更新?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">目前有背景程式正在執行，是否要取消並關閉Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">目前有背景程式正在執行，更換模式會取消該程式執行，是否要取消並更換模式?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite有一個可用的更新</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">重新載入佈景主題清單</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">套用選擇的佈景主題</sys:String>

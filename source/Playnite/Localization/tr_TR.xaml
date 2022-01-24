@@ -677,8 +677,9 @@ Sorunu çözmeyi deneyebilirsiniz:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Yeni sürüm kontrol edilemedi.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Şu anda son sürümü kullanıyorsunuz.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Güncelleme indirilemediği için yüklenemedi.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Arka plan görevi şu anda devam ediyor. İptal edip güncellemeye devam etmek istiyor musunuz?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Arka plan görevi şu anda devam ediyor. İptal edip Playnite'tan çıkmak istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite için bir güncelleme mevcut</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Tema listesini yeniden yükle</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Seçilen temayı uygula</sys:String>

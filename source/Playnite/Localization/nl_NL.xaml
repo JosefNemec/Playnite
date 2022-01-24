@@ -590,7 +590,7 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCOpenPlaynite">Open Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profiel Instellingen</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Spelnaam kan niet leeg zijn.</sys:String>
-    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Speeltijd volgmap kan niet leeg zijn.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Spelnaam kan niet leeg zijn bij het zoeken naar metadata.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Ongeldige spel data</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Voer een geldige web URL beginnend met http:// of https:// in</sys:String>
@@ -667,7 +667,7 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCThemes">Thema's</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Emulator Argumenten</sys:String>
     <sys:String x:Key="LOCBuiltinArguments">Ingebouwde argumenten</sys:String>
-    <sys:String x:Key="LOCCustomArguments"></sys:String>
+    <sys:String x:Key="LOCCustomArguments">Aangepaste Argumenten</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Extra Emulator Argumenten</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Overschrijf Emulator Argumenten</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Speel actie</sys:String>
@@ -682,8 +682,9 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Controleren op nieuwe versie mislukt.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Geen nieuwe versie gevonden, u bent up-to-date.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Downloaden en installeren van update mislukt.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">De achtergrondtaak wordt momenteel uitgevoerd. Wil je het annuleren en doorgaan met de update?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">De achtergrondtaak wordt momenteel uitgevoerd. Wil je het annuleren en Playnite afsluiten?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Er is momenteel een achtergrondtaak actief. Wilt u deze annuleren en verdergaan met de update?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Er is momenteel een achtergrondtaak actief. Wilt u deze annuleren en Playnite sluiten?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Er is momenteel een achtergrondtaak actief. Van modus wisselen zal deze taak annuleren. Wil je nog steeds van modus wisselen?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Er is een update voor Playnite beschikbaar.</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Herlaad thema lijst</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Geselecteerd thema toepassen</sys:String>
@@ -1037,7 +1038,7 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Voeg scanconfiguratie(s) met emulators toe om specifieke mappen te scannen. Zorg ervoor dat emulators goed geconfigureerd zijn voordat je spellen importeert (via het Bibliotheek -&gt; Configureer Emulators menu).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Standaardstatus die toegewezen wordt aan nieuwe spellen</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status die toegewezen wordt aan spellen die voor het eerst gespeeld zijn</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Kon de Powershell script runtime niet initializeren. Als u Windows 7 gebruikt, probeer dan PowerShell 5.1 (opnieuw) te installeren om dit op te lossen.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset met de opgegeven naam bestaat al. Preset updaten met nieuwe instellingen?</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic service is gedetecteerd op dit systeem. Van deze service is bekend dat hij rendering problemen bij Playnite (en andere apps) kan veroorzaken.
 
@@ -1053,7 +1054,8 @@ Meer informatie op https://playnite.link/adminfaq</sys:String>
 {0}
 </sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFiles">Online bestanden uitsluiten van scan</sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Bestanden in cloud opslag worden niet gescand en geïmporteerd als deze niet lokaal beschikbaar zijn.
+Alleen ondersteund voor: Google Drive, DropBox, OneDrive </sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Scan met versimpelde methode zonder bestandsinhoud te bekijken</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Bestanden worden geïmporteerd met een minder accurate methode die geen bestandsinhoud op de lokale schijf vereist.</sys:String>
 </ResourceDictionary>

@@ -662,6 +662,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Neuspjelo preuzimanje i instaliranje ažuriranja.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Ponovo učitaj listu tema</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Apliciraj odabranu temu</sys:String>
