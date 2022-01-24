@@ -572,8 +572,6 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCAddRom">Add ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Save Changes</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Apply field changes to game(s) being edited.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Play Action</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Add Play Action</sys:String>
     <sys:String x:Key="LOCAddAction">Add Action</sys:String>
     <sys:String x:Key="LOCDeleteAction">Remove</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Remove Play Action</sys:String>
