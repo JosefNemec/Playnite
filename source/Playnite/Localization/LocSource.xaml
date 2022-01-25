@@ -575,7 +575,6 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCAddAction">Add Action</sys:String>
     <sys:String x:Key="LOCDeleteAction">Remove</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Remove Play Action</sys:String>
-    <sys:String x:Key="LOCOtherActions">Other Actions</sys:String>
     <sys:String x:Key="LOCAddGames">Add Games</sys:String>
     <sys:String x:Key="LOCScanFolder">Scan Folder…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detect Installed</sys:String>

@@ -2070,10 +2070,6 @@ namespace Playnite
         /// </summary>
         public const string RemovePlayAction = "LOCRemovePlayAction";
         /// <summary>
-        /// Other Actions
-        /// </summary>
-        public const string OtherActions = "LOCOtherActions";
-        /// <summary>
         /// Add Games
         /// </summary>
         public const string AddGames = "LOCAddGames";
