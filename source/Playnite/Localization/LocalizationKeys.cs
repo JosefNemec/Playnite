@@ -1018,10 +1018,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsFullscreenLabel = "LOCSettingsFullscreenLabel";
         /// <summary>
-        /// Providers
-        /// </summary>
-        public const string SettingsProvidersLabel = "LOCSettingsProvidersLabel";
-        /// <summary>
         /// Input
         /// </summary>
         public const string SettingsInputLabel = "LOCSettingsInputLabel";
