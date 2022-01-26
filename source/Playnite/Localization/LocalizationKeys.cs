@@ -198,10 +198,6 @@ namespace Playnite
         /// </summary>
         public const string RemoveAskAddToExlusionListYesResponse = "LOCRemoveAskAddToExlusionListYesResponse";
         /// <summary>
-        /// Steam Friends
-        /// </summary>
-        public const string SteamFriendsTooltip = "LOCSteamFriendsTooltip";
-        /// <summary>
         /// There are unsaved changes in this section
         /// </summary>
         public const string GameEditChangeNotif = "LOCGameEditChangeNotif";
