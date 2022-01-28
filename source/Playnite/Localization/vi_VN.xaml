@@ -680,8 +680,9 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Không thể kiểm tra phiên bản mới.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Không tìm thấy phiên bản mới, bạn đã cập nhật.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Không thể tải xuống và cài đặt bản cập nhật.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Nhiệm vụ nền hiện đang được thực hiện. Bạn có muốn hủy và tiếp tục cập nhật không?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Nhiệm vụ nền hiện đang được thực hiện. Bạn có muốn hủy và tiếp tục cập nhật không?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Một số tác vụ hiện đang chạy trong nền. Bạn có muốn hủy bỏ nó và tiếp tục cập nhật không?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Đã có bản cập nhật cho Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Tải lại danh sách chủ đề</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Áp dụng các chủ đề đã chọn</sys:String>

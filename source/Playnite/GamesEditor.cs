@@ -871,6 +871,7 @@ namespace Playnite
         {
             var wasRunning = game.IsRunning;
             controllers.RemoveInstallController(game.Id);
+            controllers.RemoveUninstallController(game.Id);
             controllers.RemovePlayController(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
@@ -1034,6 +1035,7 @@ namespace Playnite
                 runtime.Dispose();
             }
 
+            Extensions.InvokeOnGameStopped(game, args.SessionLength);
             if (AppSettings.ClientAutoShutdown.ShutdownClients && !game.IsCustomGame)
             {
                 if (args.SessionLength <= AppSettings.ClientAutoShutdown.MinimalSessionTime)

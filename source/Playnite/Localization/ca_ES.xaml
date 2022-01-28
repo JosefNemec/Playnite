@@ -93,7 +93,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 o més recent no està instal·lat</sys:String>
-    <sys:String x:Key="LOCErrorStartupNoController"></sys:String>
+    <sys:String x:Key="LOCErrorStartupNoController">No s'ha pogut determinar com obrir el joc.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activat</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Elimina</sys:String>
@@ -122,7 +122,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCLastPlayedLabel">Darrera partida</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Joc més utilitzat</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Nombre de partides</sys:String>
-    <sys:String x:Key="LOCFolderLabel"></sys:String>
+    <sys:String x:Key="LOCFolderLabel">Carpeta</sys:String>
     <sys:String x:Key="LOCNotesLabel">Notes</sys:String>
     <sys:String x:Key="LOCAddedLabel">Afegit</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Data en què es va afegir</sys:String>
@@ -669,8 +669,9 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">No s'ha pogut comprovar la versió nova.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No s’ha trobat cap versió nova, estas al dia.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">No s'ha pogut descarregar i instal·lar l'actualització.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">La tasca de fons s'està executant actualment, vols cancel·lar-la i seguir amb l'actualització?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">La tasca de fons s'està executant actualment, vols cancel·lar-la i sortir de Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Hi ha disponible una actualització per Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Torna a carregar la llista de temes</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Aplica el tema seleccionat</sys:String>

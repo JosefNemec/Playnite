@@ -4,7 +4,7 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">中文（简体）</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite语言</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite 语言</sys:String>
     <sys:String x:Key="LOCExitAppLabel">退出</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">筛选启用</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">筛选停用</sys:String>
@@ -52,7 +52,7 @@
     <sys:String x:Key="LOCCrashRestartPlaynite">重启Playnite</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">以安全模式重启</sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip">停用所有第三方扩展并使用默认主题。</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">退出Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">退出 Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">崩溃前进行的操作（请用英语）：</sys:String>
     <sys:String x:Key="LOCLibraryManager">库管理器</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">删除游戏？</sys:String>
@@ -69,7 +69,7 @@
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">您确定要删除这 {0} 个目前没有使用的条目？</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">没有找到未使用的字段。</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">是（加入排除列表）</sys:String>
-    <sys:String x:Key="LOCSteamFriendsTooltip">Steam好友</sys:String>
+    <sys:String x:Key="LOCSteamFriendsTooltip">Steam 好友</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">此部分上有未保存的更改</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">正在更新游戏库格式…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">数据库更新失败。</sys:String>
@@ -679,8 +679,9 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">检查新版本失败。</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">未发现新版本，你已更新至最新版本。</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">下载并安装更新失败。</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">目前有后台任务正在运行，你想要取消它并继续更新吗？</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">目前有后台任务正在运行，你想要取消它并关闭Playnite吗？</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">有后台任务正在运行。你想要取消它并继续更新吗？</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">有后台任务正在运行。你想要取消它并退出 Playnite 吗？</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">有后台任务正在运行。切换模式将取消该任务，你仍然要切换吗？</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite有一个可用的更新</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">重新加载主题列表</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">应用选定的主题</sys:String>
@@ -861,7 +862,7 @@ By {1}
     <sys:String x:Key="LOCItemAlreadyExists">已存在同一个名称的项目。</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">将选择限制为当前过滤器</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">选择另一个</sys:String>
-    <sys:String x:Key="LOCMenuAddons">插件…</sys:String>
+    <sys:String x:Key="LOCMenuAddons">附加组件…</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">已安装</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">扩展设置</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">浏览</sys:String>
@@ -1030,8 +1031,9 @@ By {1}
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">已检测到Nahimic服务正在您的系统上运行。此服务会导致Playnite（和其它应用程序）出现渲染问题。
 如果您在Playnite中遇到任何图形损坏或其它渲染问题，我们建议完全禁用或卸载Nahimic服务。
 更多信息请访问https://playnite.link/nahimicsucks。</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption">当Playnite以权限提升模式运行时显示警告</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite 正在以高权限（作为管理员）运行。由于这将为所有安装的扩展与所有从 Playnite 启动的游戏/应用（如客户端等）赋予高权限，故不推荐您这么做。
+更多信息参见 https://playnite.link/adminfaq</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">当 Playnite 以高权限运行时显示警告</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">以下插件已因潜在问题而被报道，例如严重影响稳定性/性能或安全问题。我们强烈建议您卸载它们：
         
 {0}

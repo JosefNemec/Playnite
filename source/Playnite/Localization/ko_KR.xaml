@@ -668,8 +668,9 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">새로운 버전 확인에 실패했습니다.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">새로운 버전을 찾지 못했습니다. 최신 버전입니다.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">업데이트 다운로드 및 설치 실패.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">현재 진행 중인 작업이 있습니다. 중지하고 업데이트하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">현재 진행 중인 작업이 있습니다. 중지하고 Playnite를 종료하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite 업데이트 사용 가능</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">테마 이미지 다시 불러오기</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">선택된 테마 적용</sys:String>

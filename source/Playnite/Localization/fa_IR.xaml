@@ -676,8 +676,9 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">بررسی نسخه جدید انجام نشد.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">نسخه جدید یافت نشد، شما به روز هستید.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">بارگیری و نصب بروزرسانی انجام نشد.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">کار پس زمینه در حال انجام است. آیا می خواهید آن را لغو کرده و به روزرسانی را ادامه دهید؟</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">کار پس زمینه در حال انجام است. آیا می خواهید آن را لغو کرده و از Playnite خارج شوید؟</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">به روزرسانی برای Playnite در دسترس است</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">بارگیری لیست تم</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">اعمال تم انتخابی</sys:String>

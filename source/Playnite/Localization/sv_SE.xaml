@@ -43,7 +43,9 @@ Vi rekommenderar att du sparar loggfilen och rapporterar problemet till tillägg
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Tillägget &quot;{0}&quot; orsakade ett oåterkalleligt fel.
 
 Vi rekommenderar att du rapporterar problemet till tilläggets utvecklare. Om problemet fortsätter att återkomma, inaktivera tillägget.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Okänt tillägg eller tema orsakade ett fel som inte kan åtgärdas.
+
+Vi rekommenderar att stänga av tredjeparts-tillägg, isolera den problematiska och rapportera problemet till tilläggets utvecklare.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ett oåterkallelig fel har inträffat.
 
 Om du vill hjälpa oss att lösa problemet, skicka diagnostisk information. Tack.</sys:String>
@@ -665,6 +667,7 @@ Var vänlig bifoga följande ID i din felanmälan: </sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Misslyckades med att ladda ner och installera uppdatering.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">En uppdatering för Playnite finns tillgänglig</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Uppdatera temalista</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Tillämpa valt tema</sys:String>

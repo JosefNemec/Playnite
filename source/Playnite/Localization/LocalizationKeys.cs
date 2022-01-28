@@ -198,10 +198,6 @@ namespace Playnite
         /// </summary>
         public const string RemoveAskAddToExlusionListYesResponse = "LOCRemoveAskAddToExlusionListYesResponse";
         /// <summary>
-        /// Steam Friends
-        /// </summary>
-        public const string SteamFriendsTooltip = "LOCSteamFriendsTooltip";
-        /// <summary>
         /// There are unsaved changes in this section
         /// </summary>
         public const string GameEditChangeNotif = "LOCGameEditChangeNotif";
@@ -1017,10 +1013,6 @@ namespace Playnite
         /// Fullscreen
         /// </summary>
         public const string SettingsFullscreenLabel = "LOCSettingsFullscreenLabel";
-        /// <summary>
-        /// Providers
-        /// </summary>
-        public const string SettingsProvidersLabel = "LOCSettingsProvidersLabel";
         /// <summary>
         /// Input
         /// </summary>
@@ -2058,14 +2050,6 @@ namespace Playnite
         /// </summary>
         public const string GameEditChangeSaveTooltip = "LOCGameEditChangeSaveTooltip";
         /// <summary>
-        /// Play Action
-        /// </summary>
-        public const string PlayAction = "LOCPlayAction";
-        /// <summary>
-        /// Add Play Action
-        /// </summary>
-        public const string AddPlayAction = "LOCAddPlayAction";
-        /// <summary>
         /// Add Action
         /// </summary>
         public const string AddAction = "LOCAddAction";
@@ -2077,10 +2061,6 @@ namespace Playnite
         /// Remove Play Action
         /// </summary>
         public const string RemovePlayAction = "LOCRemovePlayAction";
-        /// <summary>
-        /// Other Actions
-        /// </summary>
-        public const string OtherActions = "LOCOtherActions";
         /// <summary>
         /// Add Games
         /// </summary>
@@ -2482,13 +2462,17 @@ namespace Playnite
         /// </summary>
         public const string GeneralUpdateFailMessage = "LOCGeneralUpdateFailMessage";
         /// <summary>
-        /// The background task is currently in progress. Do you want to cancel it and proceed with the update?
+        /// Some background task is currently in progress. Do you want to cancel it and proceed with the update?
         /// </summary>
         public const string UpdateProgressCancelAsk = "LOCUpdateProgressCancelAsk";
         /// <summary>
-        /// The background task is currently in progress. Do you want to cancel it and exit Playnite?
+        /// Some background task is currently in progress. Do you want to cancel it and exit Playnite?
         /// </summary>
         public const string BackgroundProgressCancelAskExit = "LOCBackgroundProgressCancelAskExit";
+        /// <summary>
+        /// Some background task is currently in progress. Switching modes will cancel the task, do you want to switch anyways?
+        /// </summary>
+        public const string BackgroundProgressCancelAskSwitchMode = "LOCBackgroundProgressCancelAskSwitchMode";
         /// <summary>
         /// An update for Playnite is available
         /// </summary>

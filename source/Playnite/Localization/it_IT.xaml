@@ -685,8 +685,9 @@ Puoi provare a risolvere il problema:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Controllo della nuova versione fallito.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nessuna versione trovata, sei alla versione recente.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Impossibile scaricare e installare l'aggiornamento.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">L'attività di background è la momento in corso. Desidera annullarlo e procedere con l'aggiornamento?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">L'attività di background è la momento in corso. Desidera annullarlo e uscire da Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Un'attività in background è attualmente in corso. Vuoi annullarla e procedere con l'aggiornamento?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Un'attività in background è attualmente in corso. Vuoi annullarla e uscire da Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Un'attività in background è attualmente in corso. Cambiare modalità annullerà il processo, vuoi cambiare comunque?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Un aggiornamento per Playnite è disponibile</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Ricarica la lista dei temi</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Applica il tema selezionato</sys:String>

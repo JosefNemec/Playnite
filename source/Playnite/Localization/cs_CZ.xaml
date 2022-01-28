@@ -678,8 +678,9 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Nepodařilo se zkontrolovat aktualizace.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nebyla nalezena novější verze, vaše verze je aktuální.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Nepodařilo se stáhnout a nainstalovat aktualizaci.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Úloha na pozadí stále běží. Chcete ji zrušit a pokračovat s aktualizací?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Úloha na pozadí stále běží. Chcete jí zrušit a ukončit Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Aktualizace pro Playnite je dostupná</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Obnovit seznam motivů vzhledu</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Použít vybraný motiv vzhledu</sys:String>

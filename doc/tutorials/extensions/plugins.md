@@ -91,4 +91,4 @@ If you want to give user ability to change plugin behavior, you can do that by i
 Examples
 ---------------------
 
-Support for all 3rd part clients in Playnite is implemented fully using plugins so you can use then as a reference when implementing new ones. Source can be found [on GitHub](https://github.com/JosefNemec/Playnite/tree/master/source/Plugins).
+Support for all library integrations in Playnite is implemented via plugins, therefore built-in integrations (those offered during first time startup) can be used as reference examples. Source for "built-in" integrations can be found [on GitHub](https://github.com/JosefNemec/PlayniteExtensions).

@@ -111,7 +111,6 @@ Examples
 ### Starting additional application(s) before game starts and killing it after game exits.
 
 * Edit game and go to `Scripts` tab
-* Change runtime to `PowerShell`
 * Set first script to start your application using [Start-Process](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-5.1) cmdlet
 
 ```powershell

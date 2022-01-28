@@ -477,6 +477,8 @@ namespace Playnite
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
             SDK.Data.SQLite.Init((a,b) => new Sqlite(a, b));
+            EventManager.RegisterClassHandler(typeof(Controls.WindowBase), Controls.WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
+            EventManager.RegisterClassHandler(typeof(Controls.WindowBase), Controls.WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
             if (!Startup())
             {
                 return;
@@ -552,6 +554,16 @@ namespace Playnite
                     AppSettings.ShowElevatedRightsWarning = false;
                 }
             }
+        }
+
+        private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
+        {
+            WindowManager.NotifyChildOwnershipChanges();
+        }
+
+        private void WindowBaseLoadedHandler(object sender, RoutedEventArgs e)
+        {
+            WindowManager.NotifyChildOwnershipChanges();
         }
 
         private void PipeService_CommandExecuted(object sender, CommandExecutedEventArgs args)

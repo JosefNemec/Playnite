@@ -1,5 +1,12 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.2.2
+
+* Fixed
+  * Creating OffscreenWebView with custom user agent fails
+  * Crash when adding sidebar items
+  * OnGameStopped stopped event is called too early
+
 #### 6.2.0
 
 * New

@@ -40,6 +40,14 @@ namespace TestPlugin
         public TestPlugin Plugin { get; set; }
         public TestPluginSettings EditingClone { get; set; }
 
+        public RelayCommand TestCommand => new RelayCommand(() =>
+        {
+            //using (var webview = PlayniteApi.WebViews.CreateOffscreenView())
+            //{
+            //    var cooks = webview.GetCookies();
+            //}
+        });
+
         private TestPluginSettings settings;
         public TestPluginSettings Settings
         {

@@ -11,7 +11,7 @@ $requestHeaders = @{
     "Authorization" = "Bearer $AccessToken"
 }
 
-$locProgressData = @{}
+$locProgressData = New-Object "System.Collections.Specialized.OrderedDictionary"
 $locProgress = Invoke-RestMethod -Headers $requestHeaders -Uri "$urlRoot/projects/$playnitePrjId/languages/progress?limit=100"
 foreach ($lng in $locProgress.data)
 {

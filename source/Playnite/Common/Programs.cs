@@ -58,7 +58,7 @@ namespace Playnite.Common
 
         private static ILogger logger = LogManager.GetLogger();
 
-        public static bool IsPathUninstaller(string path)
+        public static bool IsFileUninstaller(string path)
         {
             return uninstallerMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
         }

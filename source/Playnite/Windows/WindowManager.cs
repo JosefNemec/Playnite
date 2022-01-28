@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Playnite.Windows
 {
-    public class WindowManager
+    public static class WindowManager
     {
         public static Window CurrentWindow
         {
@@ -28,7 +28,7 @@ namespace Playnite.Windows
             }
         }
 
-        public static bool GetHasChild(Window window)
+        public static bool GetHasChild(this Window window)
         {
             return window.OwnedWindows.Count > 0;
         }

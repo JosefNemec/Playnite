@@ -668,8 +668,9 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">Неуспешна провера нових ажурирања.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Нема нових ажурирања, ажурни сте.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Неуспешно преузимање и инсталирање ажурирања.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Задатак у позадини је тренутно у току. Хоћете ли да га прекинете и наставите са ажурирањем?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Задатак у позадини је тренутно у току. Хоћете ли да га прекинете и изађете из Playnite-а?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Ажурирање за Playnite је доступно</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Поново учитај листу тема</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Примени изабрану тему</sys:String>

@@ -653,6 +653,7 @@
     <sys:String x:Key="LOCGeneralUpdateFailMessage">נכשל בהורדה והתקנת עדכון.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">עדכון זמין ל Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">טען רשימת ערכות נושא מחדש</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">הפעל ערכת נושא נבחרת</sys:String>

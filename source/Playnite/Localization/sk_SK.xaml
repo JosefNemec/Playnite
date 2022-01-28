@@ -665,8 +665,9 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Nepodarilo sa skontrolovať aktualizácie.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nenašla sa žiadna nová verzia, Playnite je aktuálny.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Nepodarilo sa prevziať a nainštalovat aktualizáciu.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Momentálne prebieha úloha na pozadí. Chcete ju zrušiť a pokračovať v aktualizácii?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Momentálne prebieha úloha na pozadí. Chcete ju zrušiť a ukončiť Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Je k dispozícii aktualizácia pre Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Obnoviť zoznam motívov vzhľadu</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Použiť vybratý motív vzhľadu</sys:String>

@@ -69,6 +69,11 @@ namespace Playnite.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
+                if (!canCancel)
+                {
+                    return;
+                }
+
                 canCancel = false;
                 wasCancelled = true;
                 cancellationToken.Cancel();
@@ -124,6 +129,7 @@ namespace Playnite.ViewModels
                 }
                 finally
                 {
+                    canCancel = false;
                     cancellationToken.Dispose();
                 }
 
@@ -169,6 +175,7 @@ namespace Playnite.ViewModels
                 }
                 finally
                 {
+                    canCancel = false;
                     cancellationToken.Dispose();
                 }
 

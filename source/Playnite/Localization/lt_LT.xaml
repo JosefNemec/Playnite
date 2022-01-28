@@ -644,6 +644,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Nepavyko atsiųsti ir įdiegti atnaujinimo.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Atnaujinti temų sąrašą</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Pritaikyti pasirinktą temą</sys:String>

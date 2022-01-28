@@ -116,7 +116,7 @@
   Databases: [Mattel - Intellivision]
   Emulators: [bizhawk, retroarch]
 
-- Name: GCE Vectrex]
+- Name: GCE Vectrex
   Id: vectrex
   IgdbId: 67
   Databases: [GCE - Vectrex]

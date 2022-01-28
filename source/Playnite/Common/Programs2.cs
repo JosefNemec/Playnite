@@ -36,7 +36,7 @@ namespace Playnite.Common
                         continue;
                     }
 
-                    if (IsPathUninstaller(file.FullName))
+                    if (IsFileUninstaller(file.Name))
                     {
                         continue;
                     }
@@ -202,7 +202,7 @@ namespace Playnite.Common
                     }
 
                     // Ignore uninstallers
-                    if (IsPathUninstaller(target))
+                    if (IsFileUninstaller(Path.GetFileName(target)))
                     {
                         continue;
                     }

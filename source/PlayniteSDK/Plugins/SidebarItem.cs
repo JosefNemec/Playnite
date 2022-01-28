@@ -103,7 +103,7 @@ namespace Playnite.SDK.Plugins
             }
         }
 
-        private Thickness iconPadding = (Thickness)ResourceProvider.GetResource("SidebarItemPadding");
+        private Thickness iconPadding = new Thickness(8);
         /// <summary>
         /// Gets or sets visual item padding.
         /// </summary>
@@ -132,5 +132,16 @@ namespace Playnite.SDK.Plugins
         /// Called when view is closed.
         /// </summary>
         public Action Closed { get; set; }
+
+        /// <summary>
+        /// Creates new instance of <see cref="SidebarItem"/>.
+        /// </summary>
+        public SidebarItem()
+        {
+            if (ResourceProvider.GetResource("SidebarItemPadding") is Thickness thick)
+            {
+                iconPadding = thick;
+            }
+        }
     }
 }

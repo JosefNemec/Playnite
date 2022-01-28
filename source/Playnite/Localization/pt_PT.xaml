@@ -661,8 +661,9 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Falha ao verificar atualizações.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nenhuma nova versão encontrada, estás atualizado.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Falha ao transferir e instalar atualização.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Uma tarefa em segundo plano encontra-se em progresso. Quer cancelá-la e proceder à atualização?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Uma tarefa em segundo plano está atualmente em execução. Pretendes cancelá-la e fechar o Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Uma tarefa em segundo plano está atualmente em execução. Mudar de modo vai cancelar a tarefa, pretendes mudar de qualquer modo?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody"></sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Recarregar lista de temas</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Aplicar tema selecionado</sys:String>

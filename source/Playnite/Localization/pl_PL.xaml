@@ -680,8 +680,9 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Błąd sprawdzania nowej wersji.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nie znaleziono nowej wersji. Twoja wersja jest aktualna.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Nie udało się pobrać i zainstalować aktualizacji.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">W tle są wciąż aktywne zadania. Czy chcesz je anulować i zainstalować aktualizację?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">W tle są wciąż aktywne zadania. Czy chcesz je anulować i zamknąć Playnite?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">W tle jest wciąż aktywne zadanie. Czy chcesz je anulować i kontynuować aktualizację?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">W tle jest wciąż aktywne zadanie. Czy chcesz je anulować i zamknąć Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">W tle jest wciąż aktywne zadanie. Przełączenie trybu spowoduje anulowanie zadania, czy na pewno chcesz przełączyć?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Dostępna jest aktualizacja Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Przeładuj listę motywów</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Zatwierdź wybrany motyw</sys:String>

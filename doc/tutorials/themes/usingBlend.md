@@ -5,8 +5,8 @@ Installing Blend
 
 Blend is part of [Visual Studio IDE](https://visualstudio.microsoft.com/), which is available for free with Community edition. Visual Studio comes with lot of components you might not be interested in, for theme development you only need `.NET Desktop development` workload.
 
-> [!NOTE] 
-> Couple people reported that live preview doesn't work properly in Visual Studio 2022, therefore 2019 or 2017 version is recommended.
+> [!WARNING] 
+> The latest Visual Studio **2022** is currently not supported (live previews will not work)! Use [2019 or 2017 version](https://visualstudio.microsoft.com/vs/older-downloads/) instead.
 
 Creating new theme
 ---------------------
@@ -62,7 +62,7 @@ Toggle design view using `Design` tab button. It is highly recommended to keep X
 
 #### 3) Select style to preview
 
-Since single xaml file can contain multiple styles for multiple views/controls, you need to select style you want to preview first. To do so select line in a text editor starting with with `<Style TargetType=...`.
+Since single xaml file can contain multiple styles for multiple views/controls, you need to select style you want to preview first. To do so select line in a text editor starting with `<Style TargetType=...`.
 
 #### 4) Activate preview
 

@@ -525,8 +525,6 @@ namespace Playnite.Plugins
                 logger.Error("No game controller information found!");
                 return;
             }
-
-            InvokeOnGameStopped(args.Source.Game, args.SessionLength);
         }
 
         public void InvokeOnGameStopped(Game game, ulong ellapsedTime)

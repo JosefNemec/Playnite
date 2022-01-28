@@ -46,18 +46,31 @@ namespace Playnite
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class PipeService : IPipeService
     {
+        private readonly SynchronizationContext syncContext;
         public event CommandExecutedEventHandler CommandExecuted;
+
+        public PipeService()
+        {
+            syncContext = SynchronizationContext.Current;
+        }
 
         public void InvokeCommand(CmdlineCommand command, string args)
         {
-            CommandExecuted?.Invoke(this, new CommandExecutedEventArgs(command, args));
+            // We don't want to block this call because it causes issues if some sync operation that shuts down server is also called.
+            // For example, mode switch or instance shutdown calls are stopping server,
+            // which results in serviceHost.Close() timeout, since server would be still waiting for InvokeCommand to finish.
+            Task.Run(async () =>
+            {
+                await Task.Delay(100);
+                syncContext.Post(_ => CommandExecuted?.Invoke(this, new CommandExecutedEventArgs(command, args)), null);
+            });
         }
     }
 
     public class PipeServer
     {
         private string endpoint;
-        ServiceHost serviceHost;
+        private ServiceHost serviceHost;
 
         public PipeServer(string endpoint)
         {

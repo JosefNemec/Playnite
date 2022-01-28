@@ -46,7 +46,7 @@ namespace Playnite.WebView
             var cookies = new List<HttpCookie>();
             using (var manager = Cef.GetGlobalCookieManager())
             {
-                manager.VisitAllCookiesAsync().GetAwaiter().GetResult().ForEach(cookie =>
+                Task.Run(async () => await manager.VisitAllCookiesAsync()).GetAwaiter().GetResult().ForEach(cookie =>
                 cookies.Add(new HttpCookie
                 {
                     Name = cookie.Name,
