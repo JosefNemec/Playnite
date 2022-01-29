@@ -3,7 +3,9 @@ using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.Metadata;
 using Playnite.Plugins;
+using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
+using Playnite.SDK.Exceptions;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Playnite.Windows;
@@ -708,6 +710,56 @@ namespace Playnite.ViewModels
 
         public virtual void SelectGame(Guid id)
         {
+        }
+
+        private void RunAppScript(string script, string eventName)
+        {
+            if (script.IsNullOrWhiteSpace())
+            {
+                return;
+            }
+
+            try
+            {
+                if (!PowerShellRuntime.IsInstalled)
+                {
+                    throw new Exception(ResourceProvider.GetString(LOC.ErrorPowerShellNotInstalled));
+                }
+
+                using (var runtime = new PowerShellRuntime($"app {eventName} script"))
+                {
+                    runtime.Execute(
+                        script,
+                        PlaynitePaths.ProgramPath,
+                        new Dictionary<string, object> { { "PlayniteApi", PlayniteApi } });
+                }
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(exc, $"Failed to execute {eventName} script.");
+                Logger.Debug(script);
+                var message = ResourceProvider.GetString(LOC.ErrorApplicationScript) + Environment.NewLine + exc.Message;
+                if (exc is ScriptRuntimeException scriptExc)
+                {
+                    message = message + Environment.NewLine + Environment.NewLine + scriptExc.ScriptStackTrace;
+                }
+
+                Dialogs.ShowMessage(
+                    message,
+                    "",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
+        public void RunStartupScript()
+        {
+            RunAppScript(AppSettings.AppStartupScript, "startup");
+        }
+
+        public void RunShutdowScript()
+        {
+            RunAppScript(AppSettings.AppShutdownScript, "shutdown");
         }
     }
 }

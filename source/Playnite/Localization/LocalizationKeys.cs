@@ -1,4 +1,4 @@
-﻿///
+///
 /// DO NOT MODIFY! Automatically generated via buildLocConstants.ps1 script.
 /// 
 namespace Playnite
@@ -273,6 +273,10 @@ namespace Playnite
         /// Game's script execution failed.
         /// </summary>
         public const string ErrorGameScriptAction = "LOCErrorGameScriptAction";
+        /// <summary>
+        /// Application script execution failed.
+        /// </summary>
+        public const string ErrorApplicationScript = "LOCErrorApplicationScript";
         /// <summary>
         /// Global script execution failed.
         /// </summary>
@@ -2214,6 +2218,14 @@ namespace Playnite
         /// </summary>
         public const string CommunityScore = "LOCCommunityScore";
         /// <summary>
+        /// Game scripts
+        /// </summary>
+        public const string GameScripts = "LOCGameScripts";
+        /// <summary>
+        /// Application scripts
+        /// </summary>
+        public const string ApplicationScripts = "LOCApplicationScripts";
+        /// <summary>
         /// Scripts
         /// </summary>
         public const string Scripts = "LOCScripts";
@@ -2509,6 +2521,14 @@ namespace Playnite
         /// Execute after a game is started
         /// </summary>
         public const string GameStartedScriptDescription = "LOCGameStartedScriptDescription";
+        /// <summary>
+        /// Execute on application start
+        /// </summary>
+        public const string AppScriptStartupDescription = "LOCAppScriptStartupDescription";
+        /// <summary>
+        /// Execute on application shutdown
+        /// </summary>
+        public const string AppScriptShutdownDescription = "LOCAppScriptShutdownDescription";
         /// <summary>
         /// Game starting script
         /// </summary>
@@ -3678,9 +3698,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsSortingLabel = "LOCSettingsSortingLabel";
         /// <summary>
-        /// Filling Sorting Name values...
+        /// Filling Sorting Name values…
         /// </summary>
         public const string SortingNameAutofillProgress = "LOCSortingNameAutofillProgress";
+        /// <summary>
         /// Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
         /// </summary>
         public const string NahimicServiceWarning = "LOCNahimicServiceWarning";

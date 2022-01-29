@@ -89,6 +89,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Official metadata download is not available.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">No game is selected.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Game's script execution failed.</sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript">Application script execution failed.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Global script execution failed.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Emulator script execution failed.</sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction">Play script action execution failed.</sys:String>
@@ -611,6 +612,8 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCUserScore">User Score</sys:String>
     <sys:String x:Key="LOCCriticScore">Critic Score</sys:String>
     <sys:String x:Key="LOCCommunityScore">Community Score</sys:String>
+    <sys:String x:Key="LOCGameScripts">Game scripts</sys:String>
+    <sys:String x:Key="LOCApplicationScripts">Application scripts</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
     <sys:String x:Key="LOCPlugins">Plugins</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metadata Sources</sys:String>
@@ -685,6 +688,8 @@ You can try to resolve the issue:
     <sys:String x:Key="LOCPreScriptDescription">Execute before starting a game</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Execute after exiting a game</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Execute after a game is started</sys:String>
+    <sys:String x:Key="LOCAppScriptStartupDescription">Execute on application start</sys:String>
+    <sys:String x:Key="LOCAppScriptShutdownDescription">Execute on application shutdown</sys:String>
     <sys:String x:Key="LOCScriptTypeStarting">Game starting script</sys:String>
     <sys:String x:Key="LOCScriptTypeStarted">Game started script</sys:String>
     <sys:String x:Key="LOCScriptTypeExit">Game stopped script</sys:String>

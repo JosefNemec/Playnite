@@ -130,6 +130,21 @@ Stop-Process -Name "someapp"
 Start-Process "c:\somepath\someapp.exe" "-some arguments" -WindowStyle Minimized
 ```
 
+### Detecting application mode
+
+If you want to adjust script's behavior based on Playnite's operation mode (Desktop vs Fullscreen), you can get that information from [API object](xref:Playnite.SDK.IPlayniteAPI):
+
+```powershell
+if ($PlayniteApi.ApplicationInfo.Mode -eq "Desktop")
+{
+    # execute when running in Desktop mode
+}
+else
+{
+    # execute when running in Fullscreen mode
+}
+```
+
 Troubleshooting
 ---------------------
 

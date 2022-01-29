@@ -1383,6 +1383,28 @@ namespace Playnite
             }
         }
 
+        private string appStartupScript;
+        public string AppStartupScript
+        {
+            get => appStartupScript;
+            set
+            {
+                appStartupScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string appShutdownScript;
+        public string AppShutdownScript
+        {
+            get => appShutdownScript;
+            set
+            {
+                appShutdownScript = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool downloadBackgroundsImmediately = true;
         public bool DownloadBackgroundsImmediately
         {
@@ -1705,7 +1727,7 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-        
+
         private List<string> gameSortingNameRemovedArticles = new List<string> { "The", "A", "An" };
         [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<string> GameSortingNameRemovedArticles
@@ -1713,11 +1735,11 @@ namespace Playnite
             get => gameSortingNameRemovedArticles;
             set
             {
-                gameSortingNameRemovedArticles = value;       
+                gameSortingNameRemovedArticles = value;
                 OnPropertyChanged();
             }
-        } 
-        
+        }
+
         private bool showNahimicServiceWarning = true;
         public bool ShowNahimicServiceWarning
         {
@@ -1728,7 +1750,7 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
-        
+
         private bool showElevatedRightsWarning = true;
         public bool ShowElevatedRightsWarning
         {

@@ -398,6 +398,7 @@ namespace Playnite.DesktopApp.ViewModels
                 Logger.Error(exc, "Failed to set update JumpList data: ");
             }
 
+            RunStartupScript();
             Extensions.NotifiyOnApplicationStarted();
 
             try

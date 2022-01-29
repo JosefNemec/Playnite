@@ -977,6 +977,7 @@ namespace Playnite
 
             Discord?.Dispose();
             updateCheckTimer?.Dispose();
+            MainModelBase?.RunShutdowScript();
             Extensions?.NotifiyOnApplicationStopped();
             var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), (_) =>
             {

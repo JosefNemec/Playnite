@@ -759,6 +759,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             GameListFocused = true;
             isInitialized = true;
+            RunStartupScript();
             Extensions.NotifiyOnApplicationStarted();
 
             try
