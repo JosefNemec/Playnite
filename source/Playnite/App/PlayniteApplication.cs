@@ -671,6 +671,7 @@ namespace Playnite
 
         public bool CheckOtherInstances()
         {
+            var curProcess = Process.GetCurrentProcess();
             if (Mutex.TryOpenExisting(instanceMuxet, out var mutex))
             {
                 try
@@ -706,7 +707,15 @@ namespace Playnite
                             }
                             else
                             {
-                                client.InvokeCommand(CmdlineCommand.Focus, string.Empty);
+                                var existingProcess = Process.GetProcesses().First(a => a.ProcessName.StartsWith("Playnite.") && a.Id != curProcess.Id);
+                                if (existingProcess.ProcessName == curProcess.ProcessName)
+                                {
+                                    client.InvokeCommand(CmdlineCommand.Focus, string.Empty);
+                                }
+                                else
+                                {
+                                    client.InvokeCommand(CmdlineCommand.SwitchMode, Mode == ApplicationMode.Desktop ? "desktop" : "fullscreen");
+                                }
                             }
                         });
                 }
@@ -723,7 +732,6 @@ namespace Playnite
             }
             else
             {
-                var curProcess = Process.GetCurrentProcess();
                 var processes = Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).ToList();
                 // In case multiple processes end up in this branch,
                 // the process with highest process id gets to live.
