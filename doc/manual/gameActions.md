@@ -52,6 +52,7 @@ Action properties
 | --- | --- |
 | Default | Playnite will try to detect and use the best tracking method automatically. |
 | Process | Playnite will track a game as running as long as original process or any of its child processes are running. |
+| Original process | Playnite will track a game as running as long as originally started process is running, child processes are ignored. |
 | Folder | Playnite will track a game as running as long as some process from `Tracking path` folder is running. |
 
 Troubleshooting

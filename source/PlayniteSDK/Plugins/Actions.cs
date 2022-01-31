@@ -11,16 +11,16 @@ namespace Playnite.SDK.Plugins
     /// <summary>
     /// Type of automatic play action
     /// </summary>
-    public enum AutomaticPlayActionType
+    public enum AutomaticPlayActionType : int
     {
         /// <summary>
         ///
         /// </summary>
-        File,
+        File = 0,
         /// <summary>
         ///
         /// </summary>
-        Url
+        Url = 1
     }
 
     /// <summary>

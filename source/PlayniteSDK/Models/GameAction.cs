@@ -12,23 +12,28 @@ namespace Playnite.SDK.Models
     /// <summary>
     ///
     /// </summary>
-    public enum TrackingMode
+    public enum TrackingMode : int
     {
         /// <summary>
-        ///
+        /// Default tracking mode. Playnite will try to use the best one automatically.
         /// </summary>
         [Description("LOCActionTrackingModeDefault")]
-        Default,
+        Default = 0,
         /// <summary>
-        ///
+        /// Origin process and all started child processes are tracked.
         /// </summary>
         [Description("LOCActionTrackingModeProcess")]
-        Process,
+        Process = 1,
         /// <summary>
-        ///
+        /// Any process from specified directory is tracked.
         /// </summary>
         [Description("LOCActionTrackingModeDirectory")]
-        Directory
+        Directory = 2,
+        /// <summary>
+        /// Only originally started process is being tracked.
+        /// </summary>
+        [Description("LOCActionTrackingOriginalProcess")]
+        OriginalProcess = 3,
     }
 
     /// <summary>

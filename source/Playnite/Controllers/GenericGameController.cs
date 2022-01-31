@@ -504,6 +504,19 @@ namespace Playnite.Controllers
                         InvokeOnStopped(new GameStoppedEventArgs());
                     }
                 }
+                else if (action.TrackingMode == TrackingMode.OriginalProcess)
+                {
+                    if (proc != null)
+                    {
+                        InvokeOnStarted(new GameStartedEventArgs());
+                        stopWatch = Stopwatch.StartNew();
+                        procMon.WatchSingleProcess(proc);
+                    }
+                    else
+                    {
+                        InvokeOnStopped(new GameStoppedEventArgs());
+                    }
+                }
                 else if (action.TrackingMode == TrackingMode.Directory)
                 {
                     var watchDir = action.TrackingPath.IsNullOrEmpty() ? gameClone.InstallDirectory : action.TrackingPath;

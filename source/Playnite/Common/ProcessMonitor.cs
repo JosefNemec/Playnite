@@ -36,6 +36,22 @@ namespace Playnite.Common
             await WatchProcess(process);
         }
 
+        public async void WatchSingleProcess(Process process)
+        {
+            watcherToken = new CancellationTokenSource();
+            while (!process.HasExited)
+            {
+                if (watcherToken.IsCancellationRequested)
+                {
+                    break;
+                }
+
+                await Task.Delay(1000);
+            }
+
+            OnTreeDestroyed();
+        }
+
         public async void WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false)
         {
             logger.Debug($"Watching dir processes {directory}, {alreadyRunning}, {byProcessNames}");
@@ -63,6 +79,7 @@ namespace Playnite.Common
         public void StopWatching()
         {
             watcherToken?.Cancel();
+            watcherToken?.Dispose();
         }
 
         public async void WatchUwpApp(string familyName, bool alreadyRunning)
