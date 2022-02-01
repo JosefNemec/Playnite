@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SdkSerialization = Playnite.SDK.Data.Serialization;
 
 namespace Playnite.Tests
 {
@@ -105,6 +106,133 @@ namespace Playnite.Tests
             Assert.AreEqual(1, obj2.Test1);
             Assert.AreEqual(2, obj2.Test2);
             Assert.AreEqual(3, obj2.Test3);
+        }
+
+        public class SerializationTestObject
+        {
+            public int prop1 { get; set; }
+            public string prop2 { get; set; }
+        }
+
+        [Test]
+        public void JsonDerializationTests()
+        {
+            var validFile = Path.Combine(PlayniteTests.ResourcesPath, "Serialization", "valid.json");
+            var invalidFile = Path.Combine(PlayniteTests.ResourcesPath, "Serialization", "invalid.json");
+            Exception serError = null;
+            var validJson = File.ReadAllText(validFile);
+            var invalidJson = File.ReadAllText(invalidFile);
+
+            // Raw content test
+            var validObj = SdkSerialization.FromJson<SerializationTestObject>(validJson);
+            Assert.AreEqual(666, validObj.prop1);
+            Assert.AreEqual("test", validObj.prop2);
+
+            var success = SdkSerialization.TryFromJson<SerializationTestObject>(validJson, out validObj);
+            Assert.IsTrue(success);
+            Assert.AreEqual(666, validObj.prop1);
+            Assert.AreEqual("test", validObj.prop2);
+
+            success = SdkSerialization.TryFromJson<SerializationTestObject>(validJson, out validObj, out serError);
+            Assert.IsTrue(success);
+            Assert.AreEqual(666, validObj.prop1);
+            Assert.AreEqual("test", validObj.prop2);
+            Assert.IsNull(serError);
+
+            success = SdkSerialization.TryFromJson<SerializationTestObject>(invalidJson, out validObj);
+            Assert.IsFalse(success);
+            Assert.IsNull(validObj);
+
+            success = SdkSerialization.TryFromJson<SerializationTestObject>(invalidJson, out validObj, out serError);
+            Assert.IsFalse(success);
+            Assert.IsNull(validObj);
+            Assert.IsNotNull(serError);
+
+            // File tests
+            validObj = SdkSerialization.FromJsonFile<SerializationTestObject>(validFile);
+            Assert.AreEqual(666, validObj.prop1);
+            Assert.AreEqual("test", validObj.prop2);
+
+            success = SdkSerialization.TryFromJsonFile<SerializationTestObject>(validFile, out validObj);
+            Assert.IsTrue(success);
+            Assert.AreEqual(666, validObj.prop1);
+            Assert.AreEqual("test", validObj.prop2);
+
+            success = SdkSerialization.TryFromJsonFile<SerializationTestObject>(validFile, out validObj, out serError);
+            Assert.IsTrue(success);
+            Assert.AreEqual(666, validObj.prop1);
+            Assert.AreEqual("test", validObj.prop2);
+            Assert.IsNull(serError);
+
+            success = SdkSerialization.TryFromJsonFile<SerializationTestObject>(invalidFile, out validObj);
+            Assert.IsFalse(success);
+            Assert.IsNull(validObj);
+
+            success = SdkSerialization.TryFromJsonFile<SerializationTestObject>(invalidFile, out validObj, out serError);
+            Assert.IsFalse(success);
+            Assert.IsNull(validObj);
+            Assert.IsNotNull(serError);
+
+            // Steam test
+            using (var fs = new FileStream(validFile, FileMode.Open, FileAccess.Read))
+            {
+                validObj = SdkSerialization.FromJsonStream<SerializationTestObject>(fs);
+                Assert.AreEqual(666, validObj.prop1);
+                Assert.AreEqual("test", validObj.prop2);
+            }
+
+            using (var fs = new FileStream(validFile, FileMode.Open, FileAccess.Read))
+            {
+                success = SdkSerialization.TryFromJsonStream<SerializationTestObject>(fs, out validObj);
+                Assert.IsTrue(success);
+                Assert.AreEqual(666, validObj.prop1);
+                Assert.AreEqual("test", validObj.prop2);
+            }
+
+            using (var fs = new FileStream(validFile, FileMode.Open, FileAccess.Read))
+            {
+                success = SdkSerialization.TryFromJsonStream<SerializationTestObject>(fs, out validObj, out serError);
+                Assert.IsTrue(success);
+                Assert.AreEqual(666, validObj.prop1);
+                Assert.AreEqual("test", validObj.prop2);
+            }
+
+            using (var fs = new FileStream(invalidFile, FileMode.Open, FileAccess.Read))
+            {
+                success = SdkSerialization.TryFromJsonStream<SerializationTestObject>(fs, out validObj);
+                Assert.IsFalse(success);
+                Assert.IsNull(validObj);
+            }
+
+            using (var fs = new FileStream(invalidFile, FileMode.Open, FileAccess.Read))
+            {
+                success = SdkSerialization.TryFromJsonStream<SerializationTestObject>(fs, out validObj, out serError);
+                Assert.IsFalse(success);
+                Assert.IsNull(validObj);
+                Assert.IsNotNull(serError);
+            }
+        }
+
+        [Test]
+        public void JsonSerializationTests()
+        {
+            var testObj = new SerializationTestObject
+            {
+                prop1 = 666,
+                prop2 = "test"
+            };
+
+            var json = SdkSerialization.ToJson(testObj, false);
+            Assert.AreEqual(1, json.GetLineCount());
+            var back = SdkSerialization.FromJson<SerializationTestObject>(json);
+            Assert.AreEqual(666, back.prop1);
+            Assert.AreEqual("test", back.prop2);
+
+            json = SdkSerialization.ToJson(testObj, true);
+            Assert.AreEqual(4, json.GetLineCount());
+            back = SdkSerialization.FromJson<SerializationTestObject>(json);
+            Assert.AreEqual(666, back.prop1);
+            Assert.AreEqual("test", back.prop2);
         }
     }
 }

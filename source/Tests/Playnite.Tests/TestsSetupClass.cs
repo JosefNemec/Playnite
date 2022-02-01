@@ -23,6 +23,8 @@ namespace Playnite.Tests
             FileSystem.CreateDirectory(PlayniteTests.TempPath, true);
             NLogLogger.IsTraceEnabled = true;
             PlayniteSettings.ConfigureLogger();
+            SDK.Data.Serialization.Init(new DataSerializer());
+            SDK.Data.SQLite.Init((a, b) => new Sqlite(a, b));
         }
 
         [OneTimeTearDown]

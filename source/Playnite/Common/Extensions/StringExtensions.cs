@@ -189,6 +189,18 @@ namespace System
             return HttpUtility.UrlDecode(str);
         }
 
+        public static int GetLineCount(this string str)
+        {
+            if (str == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Regex.Matches(str, "\n").Count + 1;
+            }
+        }
+
         // Courtesy of https://stackoverflow.com/questions/6275980/string-replace-ignoring-case
         public static string Replace(this string str, string oldValue, string @newValue, StringComparison comparisonType)
         {

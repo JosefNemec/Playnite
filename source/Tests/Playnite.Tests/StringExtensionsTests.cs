@@ -87,5 +87,14 @@ namespace Playnite.Tests
             Assert.IsTrue("test[dasd".ContainsAny(new char[] { ']', '[' }));
             Assert.IsFalse("test dasd".ContainsAny(new char[] { ']', '[' }));
         }
+
+        [Test]
+        public void GetLineCountTest()
+        {
+            Assert.AreEqual(0, ((string)null).GetLineCount());
+            Assert.AreEqual(1, ("").GetLineCount());
+            Assert.AreEqual(2, ("\n").GetLineCount());
+            Assert.AreEqual(3, ("line1\nline2\nline3").GetLineCount());
+        }
     }
 }
