@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
@@ -18,63 +20,60 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </controls:WindowBase.Resources>
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded" >
+            <prism:InvokeCommandAction Command="{Binding WindowOpenedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
-        <Grid IsEnabled="{Binding IsLoading, Converter={StaticResource NegateConverter}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <ListBox Name="ListSearch" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" BorderThickness="0"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5" SelectionMode="Single"
-                     SelectedItem="{Binding SelectedResult, Mode=TwoWay}"
-                     ItemsSource="{Binding SearchResults}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel Background="Transparent">
-                            <TextBlock Text="{Binding Name}" DockPanel.Dock="Top" Margin="5" FontWeight="Bold" />
-                            <TextBlock Text="{Binding Description}" DockPanel.Dock="Top" Margin="5,0,5,5"
-                                       FontStyle="Italic" FontSize="12" TextWrapping="Wrap"
-                                       Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
-                            <DockPanel.InputBindings>
-                                <MouseBinding MouseAction="LeftDoubleClick"
-                                              Command="{Binding DataContext.ItemDoubleClickCommand, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}" />
-                            </DockPanel.InputBindings>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <ListBox Name="ListSearch" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" BorderThickness="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5" SelectionMode="Single"
+                    SelectedItem="{Binding SelectedResult, Mode=TwoWay}"
+                    ItemsSource="{Binding SearchResults}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Background="Transparent">
+                        <TextBlock Text="{Binding Name}" DockPanel.Dock="Top" Margin="5" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Description}" DockPanel.Dock="Top" Margin="5,0,5,5"
+                                    FontStyle="Italic" FontSize="12" TextWrapping="Wrap"
+                                    Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                        <DockPanel.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick"
+                                            Command="{Binding DataContext.ItemDoubleClickCommand, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}" />
+                        </DockPanel.InputBindings>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
-            <Border Padding="10" DockPanel.Dock="Bottom"
-            BorderThickness="0" Grid.Row="1">
-                <DockPanel>
-                    <Button Name="ButtonSearch" Content="{DynamicResource LOCSearchLabel}" Padding="10,5,10,5" DockPanel.Dock="Left"
-                            Command="{Binding SearchCommand}"/>
-                    <TextBox Name="TextSearch" Margin="10,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Center"
-                             Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBox.InputBindings>
-                            <KeyBinding Command="{Binding SearchCommand}" Key="Return" />
-                        </TextBox.InputBindings>
-                    </TextBox>
-                </DockPanel>
-            </Border>
-
-            <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="2" Margin="5,0,5,5">
-                <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding CloseCommand}"/>
-                <Button Name="ButtonOK" Content="{DynamicResource LOCSelect}" DockPanel.Dock="Right"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding ConfirmCommand}"/>
+        <Border Padding="10" DockPanel.Dock="Bottom"
+        BorderThickness="0" Grid.Row="1">
+            <DockPanel>
+                <Button Name="ButtonSearch" Content="{DynamicResource LOCSearchLabel}" Padding="10,5,10,5" DockPanel.Dock="Left"
+                        Command="{Binding SearchCommand}"/>
+                <TextBox Name="TextSearch" Margin="10,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Center"
+                            Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding SearchCommand}" Key="Return" />
+                    </TextBox.InputBindings>
+                </TextBox>
             </DockPanel>
-        </Grid>
+        </Border>
 
-        <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ProgressBar IsIndeterminate="True" Width="350" Height="50" />
-            <TextBlock Text="{DynamicResource LOCLoadingLabel}"
-                       Style="{StaticResource BaseTextBlockStyle}"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
+        <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="2" Margin="5,0,5,5">
+            <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding CloseCommand}"/>
+            <Button Name="ButtonOK" Content="{DynamicResource LOCSelect}" DockPanel.Dock="Right"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ConfirmCommand}"/>
+        </DockPanel>
     </Grid>
 </controls:WindowBase>

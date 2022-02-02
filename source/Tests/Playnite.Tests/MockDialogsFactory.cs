@@ -109,6 +109,11 @@ namespace Playnite.Tests
             return null;
         }
 
+        public GlobalProgressResult ActivateGlobalProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return null;
+        }
+
         public Window CreateWindow(WindowCreationOptions options)
         {
             return null;

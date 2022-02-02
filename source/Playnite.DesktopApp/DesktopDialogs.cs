@@ -175,6 +175,11 @@ namespace Playnite.DesktopApp
             return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
         }
 
+        public GlobalProgressResult ActivateGlobalProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
+        }
+
         public Window CreateWindow(WindowCreationOptions options)
         {
             return new WindowBase()

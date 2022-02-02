@@ -987,7 +987,7 @@ namespace Playnite
             updateCheckTimer?.Dispose();
             MainModelBase?.RunShutdowScript();
             Extensions?.NotifiyOnApplicationStopped();
-            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), (_) =>
+            Dialogs.ActivateGlobalProgress(_ =>
             {
                 try
                 {
@@ -1006,8 +1006,6 @@ namespace Playnite
                     logger.Error(exc, "Failed to dispose Playnite objects.");
                 }
             }, new GlobalProgressOptions("LOCClosingPlaynite"));
-
-            progressModel.ActivateProgress();
 
             // This must run on main thread
             if (releaseCefSharp)
@@ -1131,12 +1129,12 @@ namespace Playnite
         {
             if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))
             {
-                var migrationProgress = new ProgressViewViewModel(new ProgressWindowFactory(), (_) =>
-                {
-                    GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
-                }, new GlobalProgressOptions("LOCDBUpgradeProgress"));
+                var migrationProgress = new ProgressViewViewModel(
+                    new ProgressWindowFactory(),
+                    new GlobalProgressOptions(LOC.DBUpgradeProgress));
 
-                if (migrationProgress.ActivateProgress().Result != true)
+                if (migrationProgress.ActivateProgress(
+                    _ => GameDatabase.MigrateNewDatabaseFormat(GameDatabase.GetFullDbPath(AppSettings.DatabasePath))).Result != true)
                 {
                     logger.Error(migrationProgress.FailException, "Failed to migrate database to new version.");
                     var message = ResourceProvider.GetString("LOCDBUpgradeFail");

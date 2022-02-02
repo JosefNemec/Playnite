@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Playnite.Common;
@@ -14,7 +15,7 @@ namespace Playnite.Tests
         [Test]
         public async Task GetInstalledProgramsTest()
         {
-            var apps = await Programs.GetInstalledPrograms();
+            var apps = await Programs.GetInstalledPrograms(CancellationToken.None);
             Assert.AreNotEqual(apps.Count, 0);
 
             var firstApp = apps.First();
@@ -26,7 +27,7 @@ namespace Playnite.Tests
         [Test]
         public async Task GetExecutablesFromFolderTest()
         {
-            var apps = await Programs.GetExecutablesFromFolder(@"c:\Program Files\", System.IO.SearchOption.AllDirectories);
+            var apps = await Programs.GetExecutablesFromFolder(@"c:\Program Files\", System.IO.SearchOption.AllDirectories, CancellationToken.None);
             Assert.AreNotEqual(apps.Count, 0);
 
             var firstApp = apps.First();

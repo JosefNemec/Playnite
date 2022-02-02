@@ -175,17 +175,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private bool isLoading;
-        public bool IsLoading
-        {
-            get => isLoading;
-            set
-            {
-                isLoading = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool markImportAll;
         public bool MarkImportAll
         {
@@ -201,7 +190,6 @@ namespace Playnite.DesktopApp.ViewModels
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
-        private CancellationTokenSource cancelToken;
 
         public RelayCommand<object> CloseCommand
         {
@@ -240,14 +228,6 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 DetectInstalled();
-            });
-        }
-
-        public RelayCommand<object> CancelProgressCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                CancelProgress();
             });
         }
 
@@ -371,35 +351,31 @@ namespace Playnite.DesktopApp.ViewModels
             SelectedProgram = import;
         }
 
-        public async void DetectInstalled()
+        public void DetectInstalled()
         {
-            IsLoading = true;
-            cancelToken = new CancellationTokenSource();
-
-            try
+            dialogs.ActivateGlobalProgress(async (progArgs) =>
             {
-                var allApps = new List<ImportableProgram>();
-                var installed = await Playnite.Common.Programs.GetInstalledPrograms(cancelToken);
-                if (installed != null)
+                try
                 {
-                    allApps.AddRange(installed.Select(a => new ImportableProgram(a, ProgramType.Win32)));
-
-                    if (Computer.WindowsVersion == WindowsVersion.Win10 || Computer.WindowsVersion == WindowsVersion.Win11)
+                    var allApps = new List<ImportableProgram>();
+                    var installed = await Playnite.Common.Programs.GetInstalledPrograms(progArgs.CancelToken);
+                    if (installed != null)
                     {
-                        allApps.AddRange(Playnite.Common.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP)));
-                    }
+                        allApps.AddRange(installed.Select(a => new ImportableProgram(a, ProgramType.Win32)));
+                        if (Computer.WindowsVersion == WindowsVersion.Win10 || Computer.WindowsVersion == WindowsVersion.Win11)
+                        {
+                            allApps.AddRange(Playnite.Common.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP)));
+                        }
 
-                    Programs = new ObservableCollection<ImportableProgram>(allApps.OrderBy(a => a.Item.Name));
+                        progArgs.MainContext.Send(_ =>
+                            Programs = new ObservableCollection<ImportableProgram>(allApps.OrderBy(a => a.Item.Name)), null);
+                    }
                 }
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to load list of installed apps.");
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to load list of installed apps.");
+                }
+            }, new GlobalProgressOptions(LOC.EmuWizardScanning, true));
         }
 
         public void DetectWindowsStoreApps()
@@ -415,7 +391,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public async void ScanFolder()
+        public void ScanFolder()
         {
             var path = dialogs.SelectFolder();
             if (string.IsNullOrEmpty(path))
@@ -423,36 +399,28 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            await ScanFolder(path);
+            ScanFolder(path);
         }
 
-        public async Task ScanFolder(string path)
+        public void ScanFolder(string path)
         {
-            IsLoading = true;
-            cancelToken = new CancellationTokenSource();
-
-            try
+            dialogs.ActivateGlobalProgress(async (progArgs) =>
             {
-                var executables = await Playnite.Common.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories, cancelToken);
-                if (executables != null)
+                try
                 {
-                    var apps = executables.Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Item.Name);
-                    Programs = new ObservableCollection<ImportableProgram>(apps);
+                    var executables = await Playnite.Common.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories, progArgs.CancelToken);
+                    if (executables != null)
+                    {
+                        var apps = executables.Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Item.Name);
+                        progArgs.MainContext.Send(_ =>
+                            Programs = new ObservableCollection<ImportableProgram>(apps), null);
+                    }
                 }
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to scan folder for executables: " + path);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
-
-        public void CancelProgress()
-        {
-            cancelToken?.Cancel();
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, "Failed to scan folder for executables: " + path);
+                }
+            }, new GlobalProgressOptions(LOC.EmuWizardScanning, true));
         }
 
         public static List<Game> AddImportableGamesToDb(List<GameMetadata> games, GameDatabase database)

@@ -506,6 +506,14 @@ namespace Playnite.SDK
         GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressOptions);
 
         /// <summary>
+        /// Activates progress dialog blocking app interaction until progress is finished or canceled.
+        /// </summary>
+        /// <param name="progresAction">Awaitable function to be executed.</param>
+        /// <param name="progressOptions">Options for progress dialog.</param>
+        /// <returns>Status of the action execution.</returns>
+        GlobalProgressResult ActivateGlobalProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressOptions);
+
+        /// <summary>
         /// Creates new window with Playnite's default styling applied.
         /// </summary>
         /// <param name="options">Custom window options.</param>

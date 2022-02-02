@@ -53,9 +53,10 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     var progressModel = new ProgressViewViewModel(
                         new Playnite.Windows.ProgressWindowFactory(),
-                            (a) => selectedOnlineAddon.DownloadInstallerManifest(a.CancelToken),
                             new GlobalProgressOptions("Getting add-on information...", true)) { Indeterminate = true };
-                    var progRes = progressModel.ActivateProgress(1500);
+                    var progRes = progressModel.ActivateProgress(
+                        (a) => selectedOnlineAddon.DownloadInstallerManifest(a.CancelToken),
+                        1500);
                     if (progRes.Canceled)
                     {
                         selectedOnlineAddon = null;
