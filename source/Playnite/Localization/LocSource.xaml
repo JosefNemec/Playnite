@@ -1049,4 +1049,5 @@ More information at https://playnite.link/adminfaq</sys:String>
 Supported only for: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Scan but using simplified method without file content</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.</sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Apply to all</sys:String>
 </ResourceDictionary>

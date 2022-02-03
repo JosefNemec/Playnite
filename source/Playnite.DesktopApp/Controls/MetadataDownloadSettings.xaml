@@ -3,310 +3,227 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls"
              xmlns:pmp="clr-namespace:Playnite.Metadata;assembly=Playnite"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             
              mc:Ignorable="d"
              d:DesignWidth="600">
 
     <DockPanel DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
-        <Grid DockPanel.Dock="Left" Margin="0,15,0,0">
+        <DockPanel.Resources>
+            <ControlTemplate TargetType="ContentControl" x:Key="SourceSelector">
+                <Border BorderThickness="{DynamicResource ControlBorderThickness}"
+                        CornerRadius="{DynamicResource ControlCornerRadius}"
+                        Style="{DynamicResource HighlightBorder}" Background="Transparent">
+                    <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"
+                                      Focusable="False"
+                                      Foreground="{DynamicResource TextBrush}">
+                        <ToggleButton.Template>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding SelectionText}" TextTrimming="CharacterEllipsis"
+                                                   Grid.Column="0" VerticalAlignment="Center" Margin="4,0,2,0"/>
+                                    <Viewbox Grid.Column="1" Width="20">
+                                        <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
+                                                       VerticalAlignment="Center"/>
+                                    </Viewbox>
+                                    <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
+                                               IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
+                                               MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">
+                                        <Border Background="{DynamicResource PopupBackgroundBrush}"
+                                                    BorderThickness="{DynamicResource PopupBorderThickness}"
+                                                    BorderBrush="{DynamicResource PopupBorderBrush}">
+                                            <ItemsControl ItemsSource="{Binding Sources}"
+                                                          ScrollViewer.CanContentScroll="True"
+                                                          KeyboardNavigation.DirectionalNavigation="Contained"
+                                                          VirtualizingPanel.IsVirtualizing="True"
+                                                          VirtualizingPanel.VirtualizationMode="Recycling">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <DockPanel>
+                                                            <Button Content="6" FontFamily="Marlett" Margin="2,0,2,0"
+                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
+                                                                        Command="{Binding DataContext.MoveSourceDownCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                                                        CommandParameter="{Binding}" />
+                                                            <Button Content="5" FontFamily="Marlett"
+                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
+                                                                        Command="{Binding DataContext.MoveSourceUpCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                                                        CommandParameter="{Binding}" />
+                                                            <CheckBox IsChecked="{Binding Enabled}" DockPanel.Dock="Left"
+                                                                          Content="{Binding Name}"
+                                                                          Margin="3,2,3,2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                                                        </DockPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <VirtualizingStackPanel />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.Template>
+                                                    <ControlTemplate>
+                                                        <ScrollViewer Focusable="False" VerticalScrollBarVisibility="Auto">
+                                                            <ItemsPresenter />
+                                                        </ScrollViewer>
+                                                    </ControlTemplate>
+                                                </ItemsControl.Template>
+                                            </ItemsControl>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                            </ControlTemplate>
+                        </ToggleButton.Template>
+                    </ToggleButton>
+                </Border>
+            </ControlTemplate>
+        </DockPanel.Resources>
+
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <ContentControl DataContext="{Binding AllSettings}"
+                            VerticalAlignment="Center" Width="200"
+                            Template="{StaticResource SourceSelector}"
+                            Margin="00,0,10,0" />
+            <Button Content="{DynamicResource LOCMetadatSetAllFieldsToValue}"
+                    Command="{Binding SetAllPropertiesCommmand}"/>
+            <Button Content="{DynamicResource LOCSelectAll}"
+                    Command="{Binding SelectAllToImportCommand}" Margin="10,0,0,0"/>
+            <Button Content="{DynamicResource LOCDeselectAll}"
+                    Command="{Binding DeselectAllToImportCommand}" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <GridEx AutoLayoutColumns="6" RowCount="10" ColumnCount="6" StarColumns="2,5"
+                DockPanel.Dock="Top">
             <Grid.Resources>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                     <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="Margin" Value="0,5,5,5" />
                 </Style>
-                <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Style x:Key="TextBlockAlt" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="10,5,5,5" />
+                </Style>
+                <Style x:Key="CheckImportStyle" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="HorizontalAlignment" Value="Center" />
-                    <Setter Property="Margin" Value="5" />
-                </Style>
-                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                    <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="Margin" Value="5" />
                 </Style>
                 <Style TargetType="ContentControl">
                     <Setter Property="VerticalAlignment" Value="Center" />
                 </Style>
-                <ControlTemplate TargetType="ContentControl" x:Key="SourceSelector">
-                    <Border BorderThickness="{DynamicResource ControlBorderThickness}"
-                            CornerRadius="{DynamicResource ControlCornerRadius}"
-                            Style="{DynamicResource HighlightBorder}" Background="Transparent">
-                        <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"
-                                      Focusable="False"
-                                      Foreground="{DynamicResource TextBrush}">
-                            <ToggleButton.Template>
-                                <ControlTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding SelectionText}" TextTrimming="CharacterEllipsis"
-                                                   Grid.Column="0" VerticalAlignment="Center" Margin="4,0,2,0"/>
-                                        <Viewbox Grid.Column="1" Width="20">
-                                            <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                       VerticalAlignment="Center"/>
-                                        </Viewbox>
-                                        <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
-                                               IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
-                                               MaxHeight="300" Width="{Binding ActualWidth, ElementName=Toggle}">
-                                            <Border Background="{DynamicResource PopupBackgroundBrush}"
-                                                    BorderThickness="{DynamicResource PopupBorderThickness}"
-                                                    BorderBrush="{DynamicResource PopupBorderBrush}">
-                                                <ItemsControl ItemsSource="{Binding Sources}"
-                                                          ScrollViewer.CanContentScroll="True"
-                                                          KeyboardNavigation.DirectionalNavigation="Contained"
-                                                          VirtualizingPanel.IsVirtualizing="True"
-                                                          VirtualizingPanel.VirtualizationMode="Recycling">
-                                                    <ItemsControl.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <DockPanel>
-                                                                <Button Content="6" FontFamily="Marlett" Margin="2,0,2,0"
-                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
-                                                                        Command="{Binding DataContext.MoveSourceDownCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
-                                                                        CommandParameter="{Binding}" />
-                                                                <Button Content="5" FontFamily="Marlett"
-                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
-                                                                        Command="{Binding DataContext.MoveSourceUpCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
-                                                                        CommandParameter="{Binding}" />
-                                                                <CheckBox IsChecked="{Binding Enabled}" DockPanel.Dock="Left"
-                                                                          Content="{Binding Name}"
-                                                                          Margin="3,2,3,2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                                                            </DockPanel>
-                                                        </DataTemplate>
-                                                    </ItemsControl.ItemTemplate>
-                                                    <ItemsControl.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <VirtualizingStackPanel />
-                                                        </ItemsPanelTemplate>
-                                                    </ItemsControl.ItemsPanel>
-                                                    <ItemsControl.Template>
-                                                        <ControlTemplate>
-                                                            <ScrollViewer Focusable="False" VerticalScrollBarVisibility="Auto">
-                                                                <ItemsPresenter />
-                                                            </ScrollViewer>
-                                                        </ControlTemplate>
-                                                    </ItemsControl.Template>
-                                                </ItemsControl>
-                                            </Border>
-                                        </Popup>
-                                    </Grid>
-                                </ControlTemplate>
-                            </ToggleButton.Template>
-                        </ToggleButton>
-                    </Border>
-                </ControlTemplate>
             </Grid.Resources>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="175" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Text="{DynamicResource LOCImportLabel}"
-                            Grid.Column="1" Grid.Row="0"/>
-            <TextBlock Text="{DynamicResource LOCSourceLabel}"
-                            Grid.Column="2" Grid.Row="0"/>
 
             <!--Name-->
-            <TextBlock Text="{DynamicResource LOCNameLabel}"
-                        Grid.Column="0" Grid.Row="1"/>
-            <CheckBox Grid.Column="1" Grid.Row="1"
-                      IsChecked="{Binding Settings.Name.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="1"
-                            DataContext="{Binding NameSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCNameLabel}"/>
+            <CheckBox IsChecked="{Binding Settings.Name.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding NameSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
-
             <!--Genres-->
-            <TextBlock Text="{DynamicResource LOCGameGenresTitle}"
-                        Grid.Column="0" Grid.Row="2"/>
-            <CheckBox Grid.Column="1" Grid.Row="2"
-                        IsChecked="{Binding Settings.Genre.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="2"
-                            DataContext="{Binding GenresSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameGenresTitle}" Style="{StaticResource TextBlockAlt}"/>
+            <CheckBox IsChecked="{Binding Settings.Genre.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding GenresSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Release Date-->
-             <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
-                        Grid.Column="0" Grid.Row="3"/>
-            <CheckBox Grid.Column="1" Grid.Row="3"
-                        IsChecked="{Binding Settings.ReleaseDate.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="3"
-                            DataContext="{Binding ReleaseDateSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}" />
+            <CheckBox IsChecked="{Binding Settings.ReleaseDate.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding ReleaseDateSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Developers-->
-            <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}"
-                        Grid.Column="0" Grid.Row="4"/>
-            <CheckBox Grid.Column="1" Grid.Row="4"
-                        IsChecked="{Binding Settings.Developer.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="4"
-                            DataContext="{Binding DevelopersSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}" Style="{StaticResource TextBlockAlt}" />
+            <CheckBox IsChecked="{Binding Settings.Developer.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding DevelopersSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Publishers-->
-            <TextBlock Text="{DynamicResource LOCGamePublishersTitle}"
-                        Grid.Column="0" Grid.Row="5"/>
-            <CheckBox Grid.Column="1" Grid.Row="5"
-                        IsChecked="{Binding Settings.Publisher.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="5"
-                            DataContext="{Binding PublishersSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGamePublishersTitle}" />
+            <CheckBox IsChecked="{Binding Settings.Publisher.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding PublishersSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Features-->
-            <TextBlock Text="{DynamicResource LOCFeaturesLabel}"
-                        Grid.Column="0" Grid.Row="6"/>
-            <CheckBox Grid.Column="1" Grid.Row="6"
-                        IsChecked="{Binding Settings.Feature.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="6"
-                            DataContext="{Binding FeaturesSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCFeaturesLabel}" Style="{StaticResource TextBlockAlt}" />
+            <CheckBox IsChecked="{Binding Settings.Feature.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding FeaturesSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Tags-->
-            <TextBlock Text="{DynamicResource LOCTagsLabel}"
-                        Grid.Column="0" Grid.Row="7"/>
-            <CheckBox Grid.Column="1" Grid.Row="7"
-                        IsChecked="{Binding Settings.Tag.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="7"
-                            DataContext="{Binding TagsSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCTagsLabel}" />
+            <CheckBox IsChecked="{Binding Settings.Tag.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding TagsSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Description-->
-            <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}"
-                        Grid.Column="0" Grid.Row="8"/>
-            <CheckBox Grid.Column="1" Grid.Row="8"
-                        IsChecked="{Binding Settings.Description.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="8"
-                            DataContext="{Binding DescriptionSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameDescriptionTitle}" Style="{StaticResource TextBlockAlt}"/>
+            <CheckBox IsChecked="{Binding Settings.Description.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding DescriptionSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Links-->
-            <TextBlock Text="{DynamicResource LOCGameLinksTitle}"
-                        Grid.Column="0" Grid.Row="9"/>
-            <CheckBox Grid.Column="1" Grid.Row="9"
-                        IsChecked="{Binding Settings.Links.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="9"
-                            DataContext="{Binding LinksSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameLinksTitle}" />
+            <CheckBox IsChecked="{Binding Settings.Links.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding LinksSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--CriticScore-->
-            <TextBlock Text="{DynamicResource LOCCriticScore}"
-                        Grid.Column="0" Grid.Row="10"/>
-            <CheckBox Grid.Column="1" Grid.Row="10"
-                        IsChecked="{Binding Settings.CriticScore.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="10"
-                            DataContext="{Binding CriticScoreSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCCriticScore}" Style="{StaticResource TextBlockAlt}" />
+            <CheckBox IsChecked="{Binding Settings.CriticScore.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding CriticScoreSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--CommunityScore-->
-            <TextBlock Text="{DynamicResource LOCCommunityScore}"
-                        Grid.Column="0" Grid.Row="11"/>
-            <CheckBox Grid.Column="1" Grid.Row="11"
-                        IsChecked="{Binding Settings.CommunityScore.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="11"
-                            DataContext="{Binding CommunityScoreSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCCommunityScore}" />
+            <CheckBox IsChecked="{Binding Settings.CommunityScore.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding CommunityScoreSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Age rating-->
-            <TextBlock Text="{DynamicResource LOCAgeRatingLabel}"
-                        Grid.Column="0" Grid.Row="12"/>
-            <CheckBox Grid.Column="1" Grid.Row="12"
-                        IsChecked="{Binding Settings.AgeRating.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="12"
-                            DataContext="{Binding AgeRatingSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCAgeRatingLabel}" Style="{StaticResource TextBlockAlt}" />
+            <CheckBox IsChecked="{Binding Settings.AgeRating.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding AgeRatingSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
             
             <!--Series-->
-            <TextBlock Text="{DynamicResource LOCSeriesLabel}"
-                        Grid.Column="0" Grid.Row="13"/>
-            <CheckBox Grid.Column="1" Grid.Row="13"
-                        IsChecked="{Binding Settings.Series.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="13"
-                            DataContext="{Binding SeriesSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCSeriesLabel}" />
+            <CheckBox IsChecked="{Binding Settings.Series.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding SeriesSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
             <!--Region-->
-            <TextBlock Text="{DynamicResource LOCRegionLabel}"
-                        Grid.Column="0" Grid.Row="14"/>
-            <CheckBox Grid.Column="1" Grid.Row="14"
-                        IsChecked="{Binding Settings.Region.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="14"
-                            DataContext="{Binding RegionSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCRegionLabel}" Style="{StaticResource TextBlockAlt}" />
+            <CheckBox IsChecked="{Binding Settings.Region.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding RegionSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Platform-->
-            <TextBlock Text="{DynamicResource LOCGamePlatformTitle}"
-                        Grid.Column="0" Grid.Row="15"/>
-            <CheckBox Grid.Column="1" Grid.Row="15"
-                        IsChecked="{Binding Settings.Platform.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="15"
-                            DataContext="{Binding PlatformSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGamePlatformTitle}" />
+            <CheckBox IsChecked="{Binding Settings.Platform.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding PlatformSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Cover-->
-            <TextBlock Text="{DynamicResource LOCGameCoverTitle}"
-                        Grid.Column="0" Grid.Row="16"/>
-            <CheckBox Grid.Column="1" Grid.Row="16"
-                        IsChecked="{Binding Settings.CoverImage.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="16"
-                            DataContext="{Binding CoverSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameCoverTitle}" Style="{StaticResource TextBlockAlt}" />
+            <CheckBox IsChecked="{Binding Settings.CoverImage.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding CoverSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--Icon-->
-            <TextBlock Text="{DynamicResource LOCGameIconTitle}"
-                        Grid.Column="0" Grid.Row="17"/>
-            <CheckBox Grid.Column="1" Grid.Row="17"
-                        IsChecked="{Binding Settings.Icon.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="17"
-                            DataContext="{Binding IconSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameIconTitle}" />
+            <CheckBox IsChecked="{Binding Settings.Icon.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding IconSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
 
             <!--BackgroundImage-->
-            <TextBlock Text="{DynamicResource LOCGameBackgroundTitle}"
-                        Grid.Column="0" Grid.Row="18"/>
-            <CheckBox Grid.Column="1" Grid.Row="18"
-                        IsChecked="{Binding Settings.BackgroundImage.Import}"/>
-            <ContentControl Grid.Column="2" Grid.Row="18"
-                            DataContext="{Binding BackgroundImageSettings}" IsTabStop="False"
+            <TextBlock Text="{DynamicResource LOCGameBackgroundTitle}" Style="{StaticResource TextBlockAlt}" />
+            <CheckBox IsChecked="{Binding Settings.BackgroundImage.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding BackgroundImageSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
-        </Grid>
-
-        <StackPanel DockPanel.Dock="Left">
-            <TextBlock Margin="10,10,0,0" HorizontalAlignment="Center">
-            <Hyperlink Command="{x:Static GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://www.igdb.com">
-                    <Image Source="/Resources/igdbicon.png" RenderOptions.BitmapScalingMode="Fant"
-                            Width="64" Height="64" VerticalAlignment="Top"/>
-            </Hyperlink>
-            </TextBlock>
-            <TextBlock Foreground="{DynamicResource TextBrush}" TextWrapping="Wrap" Margin="10" VerticalAlignment="Top"
-                       Style="{DynamicResource BaseTextBlockStyle}"
-                       Text="{DynamicResource LOCMetaIgdbContribNotif}" />
-        </StackPanel>
+        </GridEx>
     </DockPanel>
 </UserControl>
