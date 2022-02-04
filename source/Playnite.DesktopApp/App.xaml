@@ -12,10 +12,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Playnite;component/Localization/LocSource.xaml"/>
                 <ResourceDictionary Source="GlobalResources.xaml" />
+                <ResourceDictionary Source="ControlGalleryView.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Constants.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Common.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Media.xaml" />
-                
+
                 <!--Default Controls-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Border.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TextBlock.xaml" />

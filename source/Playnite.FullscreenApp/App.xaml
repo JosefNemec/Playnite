@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Playnite;component/Localization/LocSource.xaml"/>
                 <ResourceDictionary Source="GlobalResources.xaml" />
+                <ResourceDictionary Source="ControlGalleryView.xaml" />
                 <ResourceDictionary Source="HiddenStyles.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Constants.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Media.xaml" />
