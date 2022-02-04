@@ -57,7 +57,7 @@ namespace Playnite
         public string Notes => Game.Notes;
         public bool IsInstalled => Game.IsInstalled;
         public bool IsInstalling => Game.IsInstalling;
-        public bool IsUnistalling => Game.IsUninstalling;
+        public bool IsUninstalling => Game.IsUninstalling;
         public bool IsLaunching => Game.IsLaunching;
         public bool IsRunning => Game.IsRunning;
         public bool IsCustomGame => Game.IsCustomGame;

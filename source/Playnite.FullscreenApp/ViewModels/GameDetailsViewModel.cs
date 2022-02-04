@@ -44,7 +44,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 {
                     return resources.GetString("LOCSetupRunning");
                 }
-                else if (Game?.IsUnistalling == true)
+                else if (Game?.IsUninstalling == true)
                 {
                     return resources.GetString("LOCUninstalling");
                 }
@@ -103,7 +103,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             ContextActionCommand = new RelayCommand<object>((a) =>
             {
-                if (Game?.IsInstalling == true || Game?.IsUnistalling == true)
+                if (Game?.IsInstalling == true || Game?.IsUninstalling == true)
                 {
                     CheckSetup();
                 }

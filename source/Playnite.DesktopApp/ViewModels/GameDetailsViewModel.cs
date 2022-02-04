@@ -41,7 +41,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return Game != null && Game.IsUnistalling;
+                return Game != null && Game.IsUninstalling;
             }
         }
 
@@ -101,7 +101,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     return resources.GetString("LOCSetupRunning");
                 }
-                else if (Game?.IsUnistalling == true)
+                else if (Game?.IsUninstalling == true)
                 {
                     return resources.GetString("LOCUninstalling");
                 }
@@ -325,7 +325,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditGameCommand = new RelayCommand<object>((a) => EditGame());
             ContextActionCommand = new RelayCommand<object>((a) =>
             {
-                if (Game?.IsInstalling == true || Game?.IsUnistalling == true)
+                if (Game?.IsInstalling == true || Game?.IsUninstalling == true)
                 {
                     CheckSetup();
                 }
