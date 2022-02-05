@@ -128,7 +128,13 @@ namespace Playnite.Toolbox
         public static string PackageExtension(string extDirectory, string targetPath)
         {
             var dirInfo = new DirectoryInfo(extDirectory);
-            var extInfo = ExtensionInstaller.GetExtensionManifest(Path.Combine(extDirectory, PlaynitePaths.ExtensionManifestFileName));
+            var manifestPath = Path.Combine(extDirectory, PlaynitePaths.ExtensionManifestFileName);
+            if (!File.Exists(manifestPath))
+            {
+                throw new Exception($"Manifest file ({PlaynitePaths.ExtensionManifestFileName}) not found!");
+            }
+
+            var extInfo = ExtensionInstaller.GetExtensionManifest(manifestPath);
             if (extInfo.Id.IsNullOrEmpty())
             {
                 throw new Exception("Cannot package extension, ID is missing!");
