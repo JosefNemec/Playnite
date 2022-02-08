@@ -344,13 +344,13 @@ namespace Playnite.Controllers
 
         private void RunStartScriptFile(string runtimeName, string scriptPath, string workDir, Dictionary<string, object> variables, bool asyncExec = true)
         {
-            logger.Debug($"Starting game using emulator script file {scriptPath}");
+            logger.Debug($"Starting game using script file {scriptPath}");
             RunScript(runtimeName, r => r.ExecuteFile(scriptPath, workDir, variables), variables, asyncExec);
         }
 
         private void RunStartScript(string runtimeName, string script, string workDir, Dictionary<string, object> variables, bool asyncExec = true)
         {
-            logger.Debug($"Starting game using emulator script.");
+            logger.Debug($"Starting game using script.");
             logger.Trace(script);
             RunScript(runtimeName, r => r.Execute(script, workDir, variables), variables, asyncExec);
         }
