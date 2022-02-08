@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Playnite.Plugins;
+using System.Threading;
 
 namespace Playnite.API
 {
@@ -21,6 +22,7 @@ namespace Playnite.API
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly GamesEditor gameEditor;
         private readonly ExtensionFactory extensions;
+        private readonly SynchronizationContext execContext;
 
         public PlayniteAPI(
             IGameDatabaseAPI databaseApi,
@@ -53,6 +55,7 @@ namespace Playnite.API
             Emulation = emulation;
             this.extensions = extensions;
             SDK.API.Instance = this;
+            execContext = SynchronizationContext.Current;
         }
 
         public IDialogsFactory Dialogs { get; }
@@ -98,7 +101,9 @@ namespace Playnite.API
             }
             else
             {
-                gameEditor.PlayGame(game);
+                // Run on main thread for edge cases like this:
+                // https://www.reddit.com/r/playnite/comments/slyg99/boot_another_game_as_a_play_action/
+                execContext.Send((_) => gameEditor.PlayGame(game), null);
             }
         }
 
