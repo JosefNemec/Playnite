@@ -293,6 +293,36 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            var oldDetailsListIconProperties = GamesCollectionViewEntry.DetailsListIconProperties;
+            var oldGridViewCoverProperties = GamesCollectionViewEntry.GridViewCoverProperties;
+            if (e.PropertyName == nameof(PlayniteSettings.GridItemWidth) ||
+                e.PropertyName == nameof(PlayniteSettings.CoverAspectRatio) ||
+                e.PropertyName == nameof(PlayniteSettings.CoverArtStretch) ||
+                e.PropertyName == nameof(PlayniteSettings.ImageScalerMode) ||
+                e.PropertyName == nameof(PlayniteSettings.DetailsViewListIconSize))
+            {
+                GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
+            }
+
+            var notifyProps = new List<string>();
+            if (e.PropertyName == nameof(PlayniteSettings.DetailsViewListIconSize) && oldDetailsListIconProperties != GamesCollectionViewEntry.DetailsListIconProperties)
+            {
+                notifyProps.Add(nameof(GamesCollectionViewEntry.DetailsListIconObjectCached));
+                notifyProps.Add(nameof(GamesCollectionViewEntry.DefaultDetailsListIconObjectCached));
+            }
+
+            if ((e.PropertyName == nameof(PlayniteSettings.GridItemWidth) ||
+                e.PropertyName == nameof(PlayniteSettings.CoverAspectRatio) ||
+                e.PropertyName == nameof(PlayniteSettings.CoverArtStretch)) && oldGridViewCoverProperties != GamesCollectionViewEntry.GridViewCoverProperties)
+            {
+                notifyProps.Add(nameof(GamesCollectionViewEntry.GridViewCoverObjectCached));
+                notifyProps.Add(nameof(GamesCollectionViewEntry.DefaultGridViewCoverObjectCached));
+            }
+
+            if (notifyProps.HasItems())
+            {
+                GamesView.NotifyItemPropertyChanges(notifyProps.ToArray());
+            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -349,6 +379,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         protected void InitializeView()
         {
+            GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, PlayniteApi, (g) =>
             {
                 SwitchToLibraryView();

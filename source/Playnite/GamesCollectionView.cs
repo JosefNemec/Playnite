@@ -853,5 +853,20 @@ namespace Playnite
         }
 
         public abstract void RefreshView();
+
+        public void NotifyItemPropertyChanges(params string[] changedProperties)
+        {
+            if (!Items.HasItems())
+            {
+                return;
+            }
+
+            Logger.Trace("NotifyItemPropertyChanges: ");
+            changedProperties.ForEach(prop => Logger.Trace(prop));
+            foreach (var item in Items)
+            {
+                changedProperties.ForEach(prop => item.OnPropertyChanged(prop));
+            }
+        }
     }
 }

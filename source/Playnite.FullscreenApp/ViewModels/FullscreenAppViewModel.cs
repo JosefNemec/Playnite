@@ -487,6 +487,23 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 FullscreenApplication.SetBackgroundSoundVolume(AppSettings.Fullscreen.IsMusicMuted ? 0f : AppSettings.Fullscreen.BackgroundVolume);
             }
+
+            if (e.PropertyName == nameof(FullscreenSettings.HorizontalLayout) ||
+                e.PropertyName == nameof(FullscreenSettings.Columns) ||
+                e.PropertyName == nameof(FullscreenSettings.Rows) ||
+                e.PropertyName == nameof(FullscreenSettings.ImageScalerMode) ||
+                e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay) ||
+                e.PropertyName == nameof(FullscreenSettings.Monitor))
+            {
+                var oldSettings = GamesCollectionViewEntry.FullscreenListCoverProperties;
+                GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
+                if (oldSettings != GamesCollectionViewEntry.FullscreenListCoverProperties)
+                {
+                    GamesView.NotifyItemPropertyChanges(
+                        nameof(GamesCollectionViewEntry.FullscreenListItemCoverObject),
+                        nameof(GamesCollectionViewEntry.DefaultFullscreenListItemCoverObject));
+                }
+            }
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
@@ -726,6 +743,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         protected void InitializeView()
         {
+            GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
             var openProgress = new ProgressViewViewModel(
