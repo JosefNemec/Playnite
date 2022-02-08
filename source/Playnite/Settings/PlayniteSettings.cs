@@ -725,7 +725,7 @@ namespace Playnite
             }
         }
 
-        private bool showGroupCount = false;
+        private bool showGroupCount = true;
         public bool ShowGroupCount
         {
             get
