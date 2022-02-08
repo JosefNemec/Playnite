@@ -56,11 +56,7 @@ namespace Playnite
             }
         }
 
-        public System.Version CurrentVersion
-        {
-            get => Updater.CurrentVersion;
-        }
-
+        public static Version CurrentVersion => Updater.CurrentVersion;
         public event EventHandler ExtensionsLoaded;
         public ApplicationMode Mode { get; }
         public IDialogsFactory Dialogs { get; set; }
