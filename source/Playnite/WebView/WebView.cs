@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows;
 using Playnite.SDK.Events;
 using CefSharp.Wpf.Rendering.Experimental;
+using System.IO;
+using Playnite.Common;
 
 namespace Playnite.WebView
 {
@@ -25,11 +27,11 @@ namespace Playnite.WebView
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 
-        public WebView(int width, int height, bool useCompositionRenderer = false) : this(width, height, Colors.Transparent, "", useCompositionRenderer)
+        public WebView(int width, int height, bool useCompositionRenderer = false, ExtensionManifest extensionOwner = null) : this(width, height, Colors.Transparent, "", useCompositionRenderer, extensionOwner)
         {
         }
 
-        public WebView(int width, int height, Color background, string userAgent, bool useCompositionRenderer = false)
+        public WebView(int width, int height, Color background, string userAgent, bool useCompositionRenderer = false, ExtensionManifest extensionOwner = null)
         {
             context = SynchronizationContext.Current;
             window = new WebViewWindow();
@@ -46,6 +48,17 @@ namespace Playnite.WebView
             if (useCompositionRenderer)
             {
                 window.Browser.RenderHandler = new CompositionTargetRenderHandler(window.Browser, window.Browser.DpiScaleFactor, window.Browser.DpiScaleFactor);
+            }
+
+            if (extensionOwner != null)
+            {
+                var cachePath = Path.Combine(PlaynitePaths.BrowserPluginInstancesCachePath, Paths.GetSafePathName(extensionOwner.Id));
+                FileSystem.CreateDirectory(cachePath, false);
+                window.Browser.RequestContext = new RequestContext(new RequestContextSettings
+                {
+                    CachePath = cachePath,
+                    PersistUserPreferences = true
+                });
             }
 
             window.Owner = WindowManager.CurrentWindow;
@@ -94,6 +107,8 @@ namespace Playnite.WebView
         {
             window?.Close();
             window?.Browser.Dispose();
+            window?.Browser.RenderHandler?.Dispose();
+            window?.Browser.RequestContext?.Dispose();
         }
 
         public string GetCurrentAddress()
@@ -157,6 +172,31 @@ namespace Playnite.WebView
                 Result = res.Result,
                 Success = res.Success
             };
+        }
+
+        public void DeleteDomainCookies(string domain)
+        {
+            DeleteDomainCookiesBase(domain, window.Browser);
+        }
+
+        public void DeleteCookies(string url, string name)
+        {
+            DeleteCookiesBase(url, name, window.Browser);
+        }
+
+        public List<HttpCookie> GetCookies()
+        {
+            return GetCookiesBase(window.Browser);
+        }
+
+        public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
+        {
+            SetCookiesBase(url, domain, name, value, path, expires, window.Browser);
+        }
+
+        public void SetCookies(string url, HttpCookie cookie)
+        {
+            SetCookiesBase(url, cookie, window.Browser);
         }
     }
 }

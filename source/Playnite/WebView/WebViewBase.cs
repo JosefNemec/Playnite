@@ -41,10 +41,10 @@ namespace Playnite.WebView
 
     public class WebViewBase
     {
-        public List<HttpCookie> GetCookies()
+        internal List<HttpCookie> GetCookiesBase(IWebBrowser browser)
         {
             var cookies = new List<HttpCookie>();
-            using (var manager = Cef.GetGlobalCookieManager())
+            using (var manager = browser.GetCookieManager())
             {
                 Task.Run(async () => await manager.VisitAllCookiesAsync()).GetAwaiter().GetResult().ForEach(cookie =>
                 cookies.Add(new HttpCookie
@@ -66,28 +66,28 @@ namespace Playnite.WebView
             return cookies;
         }
 
-        public void DeleteDomainCookies(string domain)
+        internal void DeleteDomainCookiesBase(string domain, IWebBrowser browser)
         {
             using (var destoyer = new CookieDestroyer(domain))
             {
-                using (var manager = Cef.GetGlobalCookieManager())
+                using (var manager = browser.GetCookieManager())
                 {
                     manager.VisitAllCookies(destoyer);
                 }
             }
         }
 
-        public void DeleteCookies(string url, string name)
+        internal void DeleteCookiesBase(string url, string name, IWebBrowser browser)
         {
-            using (var manager = Cef.GetGlobalCookieManager())
+            using (var manager = browser.GetCookieManager())
             {
                 manager.DeleteCookies(url, name);
             }
         }
 
-        public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
+        internal void SetCookiesBase(string url, string domain, string name, string value, string path, DateTime expires, IWebBrowser browser)
         {
-            using (var manager = Cef.GetGlobalCookieManager())
+            using (var manager = browser.GetCookieManager())
             {
                 manager.SetCookie(url, new Cookie()
                 {
@@ -102,9 +102,9 @@ namespace Playnite.WebView
             }
         }
 
-        public void SetCookies(string url, HttpCookie cookie)
+        internal void SetCookiesBase(string url, HttpCookie cookie, IWebBrowser browser)
         {
-            using (var manager = Cef.GetGlobalCookieManager())
+            using (var manager = browser.GetCookieManager())
             {
                 manager.SetCookie(url, new Cookie()
                 {

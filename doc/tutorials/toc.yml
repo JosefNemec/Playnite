@@ -22,6 +22,8 @@
       href: extensions/events.md
     - name: UI Interaction
       href: extensions/ui.md
+    - name: Web views
+      href: extensions/webViews.md
     - name: Custom UI Integration
       href: extensions/customUiIntegration.md
     - name: Menu items

@@ -1,8 +1,10 @@
 ﻿using CefSharp;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,29 +18,41 @@ namespace Playnite.WebView
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
+        private RequestContext requestContext;
         private readonly string userAgent;
 
         public bool CanExecuteJavascriptInMainFrame => browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 
-        public OffscreenWebView()
+        public OffscreenWebView(ExtensionManifest extensionOwner)
         {
-            Initialize();
+            Initialize(null, extensionOwner);
         }
 
-        public OffscreenWebView(WebViewSettings settings)
+        public OffscreenWebView(WebViewSettings settings, ExtensionManifest extensionOwner)
         {
             this.userAgent = settings.UserAgent;
             Initialize(new BrowserSettings
             {
                 Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled
-            });
+            }, extensionOwner);
         }
 
-        private void Initialize(BrowserSettings settings = null)
+        private void Initialize(BrowserSettings settings = null, ExtensionManifest extensionOwner = null)
         {
-            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
+            if (extensionOwner != null)
+            {
+                var cachePath = Path.Combine(PlaynitePaths.BrowserPluginInstancesCachePath, Paths.GetSafePathName(extensionOwner.Id));
+                FileSystem.CreateDirectory(cachePath, false);
+                requestContext = new RequestContext(new RequestContextSettings
+                {
+                    CachePath = cachePath,
+                    PersistUserPreferences = true
+                });
+            }
+
+            browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false, requestContext: requestContext);
             if (!userAgent.IsNullOrEmpty())
             {
                 browser.RequestHandler = new CustomRequestHandler(userAgent);
@@ -92,6 +106,7 @@ namespace Playnite.WebView
         public void Dispose()
         {
             browser?.Dispose();
+            requestContext?.Dispose();
         }
 
         public string GetCurrentAddress()
@@ -149,6 +164,31 @@ namespace Playnite.WebView
                 Result = res.Result,
                 Success = res.Success
             };
+        }
+
+        public void DeleteDomainCookies(string domain)
+        {
+            DeleteDomainCookiesBase(domain, browser);
+        }
+
+        public void DeleteCookies(string url, string name)
+        {
+            DeleteCookiesBase(url, name, browser);
+        }
+
+        public List<HttpCookie> GetCookies()
+        {
+            return GetCookiesBase(browser);
+        }
+
+        public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
+        {
+            SetCookiesBase(url, domain, name, value, path, expires, browser);
+        }
+
+        public void SetCookies(string url, HttpCookie cookie)
+        {
+            SetCookiesBase(url, cookie, browser);
         }
     }
 }

@@ -385,7 +385,7 @@ namespace Playnite.FullscreenApp
                 Resources = new ResourceProvider(),
                 RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
                 UriHandler = UriHandler,
-                WebViews = new WebViewFactory(AppSettings)
+                WebViews = new WebViewFactory(AppSettings, pluginOwner)
             };
         }
 
