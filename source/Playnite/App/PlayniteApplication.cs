@@ -64,7 +64,6 @@ namespace Playnite
         public GamesEditor GamesEditor { get; set; }
         public ExtensionFactory Extensions { get; set; }
         public GameDatabase Database { get; set; }
-        public PlayniteAPI Api { get; set; }
         public GameControllerFactory Controllers { get; set; }
         public CmdLineOptions CmdLine { get; set; }
         public DpiScale DpiScale { get; set; } = new DpiScale(1, 1);
@@ -78,6 +77,9 @@ namespace Playnite
         public static bool SoundsEnabled { get; set; } = true;
         public MainViewModelBase MainModelBase { get; set; }
         public List<ExtensionInstallResult> ExtensionsInstallResult { get; set; }
+        public NotificationsAPI Notifications { get; }
+        public PlayniteUriHandler UriHandler { get; }
+        public PlayniteAPI PlayniteApiGlobal { get; set; }
 
         private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
         public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }
@@ -406,6 +408,9 @@ namespace Playnite
             {
                 Controls.WindowBase.SetTextRenderingOptions(AppSettings.TextFormattingMode, AppSettings.TextRenderingMode);
             }
+
+            Notifications = new NotificationsAPI();
+            UriHandler = new PlayniteUriHandler();
         }
 
         public abstract void InstantiateApp();
@@ -483,7 +488,7 @@ namespace Playnite
             logger.Info($"Application {CurrentVersion} started");
 
             ExtensionsInstallResult?.Where(a => a.InstallError != null).ForEach(ext =>
-                Api.Notifications.Add(new NotificationMessage(
+                Notifications.Add(new NotificationMessage(
                     "inst_err" + ext.PackagePath,
                     ResourceProvider.GetString(LOC.AddonInstallFaild).Format(Path.GetFileNameWithoutExtension(ext.PackagePath)) +
                         "\n" + ext.InstallError.Message,
@@ -491,7 +496,7 @@ namespace Playnite
 
             foreach (var fail in Extensions.FailedExtensions)
             {
-                Api.Notifications.Add(new NotificationMessage(
+                Notifications.Add(new NotificationMessage(
                     fail.manifest.DirectoryPath,
                     fail.error == AddonLoadError.SDKVersion ?
                         ResourceProvider.GetString(LOC.SpecificExtensionLoadSDKError).Format(fail.manifest.Name) :
@@ -501,7 +506,7 @@ namespace Playnite
 
             if (themeLoadError != AddonLoadError.None && customTheme != null)
             {
-                Api.Notifications.Add(new NotificationMessage(
+                Notifications.Add(new NotificationMessage(
                     customTheme.DirectoryPath,
                     themeLoadError == AddonLoadError.SDKVersion ?
                         ResourceProvider.GetString(LOC.SpecificThemeLoadSDKError).Format(customTheme.Name) :
@@ -593,7 +598,7 @@ namespace Playnite
                     break;
 
                 case CmdlineCommand.UriRequest:
-                    (Api.UriHandler as PlayniteUriHandler).ProcessUri(args.Args);
+                    UriHandler.ProcessUri(args.Args);
                     break;
 
                 case CmdlineCommand.ExtensionInstall:
@@ -815,7 +820,7 @@ namespace Playnite
 
         public void ProcessArguments()
         {
-            (Api.UriHandler as PlayniteUriHandler).Handlers.Add("playnite", ProcessUriRequest);
+            UriHandler.Handlers.Add("playnite", ProcessUriRequest);
             if (!CmdLine.Start.IsNullOrEmpty())
             {
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start, CmdLine.Start));
@@ -1072,7 +1077,7 @@ namespace Playnite
                 var updates = Addons.CheckAddonUpdates(ServicesClient);
                 if (updates.HasItems())
                 {
-                    Api.Notifications.Add(MainModelBase.GetAddonUpdatesFoundMessage(updates));
+                    Notifications.Add(MainModelBase.GetAddonUpdatesFoundMessage(updates));
                 }
             }
             catch (Exception exc)
@@ -1357,5 +1362,8 @@ namespace Playnite
             ExtensionsLoaded?.Invoke(this, EventArgs.Empty);
             OnPropertyChanged(nameof(this.ExtensionsStatusBinder));
         }
+
+        public abstract PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner);
+        public abstract PlayniteAPI GetApiInstance();
     }
 }

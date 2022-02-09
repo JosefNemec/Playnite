@@ -59,7 +59,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return DesignIntance?.PlayniteApi.Notifications.Messages[0];
+                return new NotificationMessage("1", "Some testing notification message.", NotificationType.Info);
             }
         }
 
@@ -85,16 +85,12 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings.ShowNameEmptyCover = true;
             AppSettings.ViewSettings.SelectedExplorerField = ExplorerField.LastActivity;
 
-            Extensions = new ExtensionFactory(database, new GameControllerFactory());
+            Extensions = new ExtensionFactory(database, new GameControllerFactory(), null);
             GamesView = new DesktopCollectionView(database, AppSettings, Extensions);
 
             SelectedGame = GamesView.Items[0];
             SelectedGames = new List<GamesCollectionViewEntry>() { SelectedGame };
             SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0], AppSettings);
-
-            PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI(), null, null, null, null, null, null);
-            PlayniteApi.Notifications.Add(new NotificationMessage("1", "Some testing notification message.", NotificationType.Info));
-            PlayniteApi.Notifications.Add(new NotificationMessage("2", "Some really long testing notification message that should be on more lines of text.", NotificationType.Error));
         }
     }
 }

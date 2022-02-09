@@ -60,8 +60,9 @@ namespace Playnite.Plugins
     public class ExtensionFactory : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
-        private IGameDatabase database;
-        private GameControllerFactory controllers;
+        private readonly IGameDatabase database;
+        private readonly GameControllerFactory controllers;
+        private readonly Func<ExtensionManifest, IPlayniteAPI> apiGenerator;
 
         public List<(ExtensionManifest manifest, AddonLoadError error)> FailedExtensions { get; } = new List<(ExtensionManifest manifest, AddonLoadError error)>();
 
@@ -90,10 +91,11 @@ namespace Playnite.Plugins
             get; private set;
         } =  new List<PlayniteScript>();
 
-        public ExtensionFactory(IGameDatabase database, GameControllerFactory controllers)
+        public ExtensionFactory(IGameDatabase database, GameControllerFactory controllers, Func<ExtensionManifest, IPlayniteAPI> apiGenerator)
         {
             this.database = database;
             this.controllers = controllers;
+            this.apiGenerator = apiGenerator;
             controllers.Installed += Controllers_Installed;
             controllers.Starting += Controllers_Starting;
             controllers.Started += Controllers_Started;
@@ -311,7 +313,7 @@ namespace Playnite.Plugins
             return true;
         }
 
-        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
+        public bool LoadScripts(List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             var allSuccess = true;
             DisposeScripts();
@@ -349,7 +351,7 @@ namespace Playnite.Plugins
                     }
 
                     Localization.LoadExtensionsLocalization(desc.DirectoryPath);
-                    script.SetVariable("PlayniteApi", injectingApi);
+                    script.SetVariable("PlayniteApi", apiGenerator(desc));
                     script.SetVariable("CurrentExtensionInstallPath", desc.DirectoryPath);
                     if (!desc.Id.IsNullOrEmpty())
                     {
@@ -373,7 +375,7 @@ namespace Playnite.Plugins
             return allSuccess;
         }
 
-        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
+        public void LoadPlugins(List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             if (Plugins.HasItems())
             {
@@ -398,7 +400,7 @@ namespace Playnite.Plugins
                 try
                 {
                     Localization.LoadExtensionsLocalization(desc.DirectoryPath);
-                    var plugins = LoadPlugins(desc, injectingApi);
+                    var plugins = LoadPlugins(desc, apiGenerator);
                     foreach (var plugin in plugins)
                     {
                         if (Plugins.ContainsKey(plugin.Id))
@@ -432,7 +434,7 @@ namespace Playnite.Plugins
             }
         }
 
-        private IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
+        private IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, Func<ExtensionManifest, IPlayniteAPI> apiGenerator)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
             var asmName = AssemblyName.GetAssemblyName(asmPath);
@@ -453,7 +455,7 @@ namespace Playnite.Plugins
                             var load = Attribute.IsDefined(type, typeof(LoadPluginAttribute));
                             if ((ignore && load) || !ignore)
                             {
-                                yield return (Plugin)Activator.CreateInstance(type, new object[] { injectingApi });
+                                yield return (Plugin)Activator.CreateInstance(type, new object[] { apiGenerator(descriptor) });
                             }
                         }
                     }

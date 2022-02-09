@@ -151,7 +151,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public AddonsViewModel(
             IWindowFactory window,
-            IPlayniteAPI api,
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ServicesClient serviceClient,
@@ -161,7 +160,6 @@ namespace Playnite.DesktopApp.ViewModels
         {
             Init(
                 window,
-                api,
                 dialogs,
                 resources,
                 serviceClient,
@@ -173,7 +171,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public AddonsViewModel(
             IWindowFactory window,
-            IPlayniteAPI api,
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ServicesClient serviceClient,
@@ -184,7 +181,6 @@ namespace Playnite.DesktopApp.ViewModels
         {
             Init(
                 window,
-                api,
                 dialogs,
                 resources,
                 serviceClient,
@@ -199,7 +195,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void Init(
             IWindowFactory window,
-            IPlayniteAPI api,
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ServicesClient serviceClient,
@@ -208,7 +203,6 @@ namespace Playnite.DesktopApp.ViewModels
             PlayniteApplication application)
         {
             this.window = window;
-            this.api = api;
             this.serviceClient = serviceClient;
             this.settings = settings;
             this.application = application;

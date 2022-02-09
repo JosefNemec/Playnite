@@ -129,7 +129,7 @@ namespace Playnite.DesktopApp
             Database = new GameDatabase();
             Database.SetAsSingletonInstance();
             Controllers = new GameControllerFactory(Database);
-            Extensions = new ExtensionFactory(Database, Controllers);
+            Extensions = new ExtensionFactory(Database, Controllers, GetApiInstance);
             GamesEditor = new DesktopGamesEditor(
                 Database,
                 Controllers,
@@ -137,21 +137,6 @@ namespace Playnite.DesktopApp
                 Dialogs,
                 Extensions,
                 this);
-            Api = new PlayniteAPI(
-                new DatabaseAPI(Database),
-                Dialogs,
-                null,
-                new PlayniteInfoAPI(),
-                new PlaynitePathsAPI(),
-                new WebViewFactory(AppSettings),
-                new ResourceProvider(),
-                new NotificationsAPI(),
-                GamesEditor,
-                new PlayniteUriHandler(),
-                new PlayniteSettingsAPI(AppSettings, Database),
-                new AddonsAPI(Extensions, AppSettings),
-                new Emulators.Emulation(),
-                Extensions);
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(
@@ -161,10 +146,10 @@ namespace Playnite.DesktopApp
                 new ResourceProvider(),
                 AppSettings,
                 (DesktopGamesEditor)GamesEditor,
-                Api,
                 Extensions,
                 this);
-            Api.MainView = new MainViewAPI(MainModel);
+            PlayniteApiGlobal = GetApiInstance();
+            SDK.API.Instance = PlayniteApiGlobal;
         }
 
         private void LoadTrayIcon()
@@ -193,10 +178,16 @@ namespace Playnite.DesktopApp
         {
             if (!isFirstStart)
             {
-                Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+                Extensions.LoadPlugins(
+                    AppSettings.DisabledPlugins,
+                    CmdLine.SafeStartup,
+                    AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             }
 
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            Extensions.LoadScripts(
+                AppSettings.DisabledPlugins,
+                CmdLine.SafeStartup,
+                AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             OnExtensionsLoaded();
 
             try
@@ -258,7 +249,6 @@ namespace Playnite.DesktopApp
                     Dialogs,
                     new ResourceProvider(),
                     Extensions,
-                    Api,
                     ServicesClient);
                 if (wizardModel.OpenView() == true)
                 {
@@ -312,6 +302,46 @@ namespace Playnite.DesktopApp
             {
                 Restore();
             }
+        }
+
+        public override PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner)
+        {
+            return new PlayniteAPI
+            {
+                Addons = new AddonsAPI(Extensions, AppSettings),
+                ApplicationInfo = new PlayniteInfoAPI(),
+                ApplicationSettings = new PlayniteSettingsAPI(AppSettings, Database),
+                Database = new DatabaseAPI(Database),
+                Dialogs = Dialogs,
+                Emulation = new Emulators.Emulation(),
+                MainView = new MainViewAPI(MainModel),
+                Notifications = Notifications,
+                Paths = new PlaynitePathsAPI(),
+                Resources = new ResourceProvider(),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                UriHandler = UriHandler,
+                WebViews = new WebViewFactory(AppSettings)
+            };
+        }
+
+        public override PlayniteAPI GetApiInstance()
+        {
+            return new PlayniteAPI
+            {
+                Addons = new AddonsAPI(Extensions, AppSettings),
+                ApplicationInfo = new PlayniteInfoAPI(),
+                ApplicationSettings = new PlayniteSettingsAPI(AppSettings, Database),
+                Database = new DatabaseAPI(Database),
+                Dialogs = Dialogs,
+                Emulation = new Emulators.Emulation(),
+                MainView = new MainViewAPI(MainModel),
+                Notifications = Notifications,
+                Paths = new PlaynitePathsAPI(),
+                Resources = new ResourceProvider(),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                UriHandler = UriHandler,
+                WebViews = new WebViewFactory(AppSettings)
+            };
         }
     }
 }

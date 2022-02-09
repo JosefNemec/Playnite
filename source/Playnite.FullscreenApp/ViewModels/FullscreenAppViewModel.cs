@@ -336,7 +336,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public FullscreenAppViewModel() : base(null, null, null, null, null, null)
+        public FullscreenAppViewModel() : base(null, null, null, null, null)
         {
         }
 
@@ -347,9 +347,8 @@ namespace Playnite.FullscreenApp.ViewModels
             IResourceProvider resources,
             PlayniteSettings settings,
             GamesEditor gamesEditor,
-            PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, app, dialogs, playniteApi, resources, extensions)
+            PlayniteApplication app) : base(database, app, dialogs, resources, extensions)
         {
             context = SynchronizationContext.Current;
             Window = window;
@@ -824,7 +823,6 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 new AddonsViewModel(
                         new AddonsUpdateWindowFactory(),
-                        PlayniteApi,
                         Dialogs,
                         Resources,
                         App.ServicesClient,

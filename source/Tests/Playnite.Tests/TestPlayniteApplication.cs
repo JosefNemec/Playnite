@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Playnite.API;
 using Playnite.SDK;
 
 namespace Playnite.Tests
@@ -12,6 +13,16 @@ namespace Playnite.Tests
     {
         public TestPlayniteApplication()
         {
+        }
+
+        public override PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override PlayniteAPI GetApiInstance()
+        {
+            throw new NotImplementedException();
         }
 
         public override void InitializeNative()

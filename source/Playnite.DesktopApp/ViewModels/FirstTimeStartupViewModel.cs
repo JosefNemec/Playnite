@@ -45,7 +45,6 @@ namespace Playnite.DesktopApp.ViewModels
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
         private ExtensionFactory extensions;
-        private IPlayniteAPI playniteApi;
         private List<PluginSettingsItem> selectedPlugins { get; } = new List<PluginSettingsItem>();
         private int selectedPluginIndex = 0;
         private ServicesClient backendClient;
@@ -164,14 +163,12 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            IPlayniteAPI playniteApi,
             ServicesClient backendClient)
         {
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
             this.extensions = extensions;
-            this.playniteApi = playniteApi;
             this.backendClient = backendClient;
         }
 
@@ -251,7 +248,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
 
                     ExtensionInstaller.InstallExtensionQueue();
-                    extensions.LoadPlugins(playniteApi, null, false, null);
+                    extensions.LoadPlugins(null, false, null);
                     foreach (var lib in extensions.LibraryPlugins)
                     {
                         selectedPlugins.Add(new PluginSettingsItem()

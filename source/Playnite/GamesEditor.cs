@@ -213,7 +213,7 @@ namespace Playnite
                 if (playAction is AutomaticPlayController)
                 {
                     logger.Debug("Using automatic plugin controller to start a game.");
-                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.PlayniteApiGlobal);
                 }
                 else if (playAction is PlayController plugAction)
                 {
@@ -223,12 +223,12 @@ namespace Playnite
                 else if (playAction is EmulationPlayAction)
                 {
                     logger.Debug("Using generic controller to start emulated game.");
-                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.PlayniteApiGlobal);
                 }
                 else if (playAction is GameAction gameAction)
                 {
                     logger.Debug("Using generic controller start a game.");
-                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.PlayniteApiGlobal);
                 }
                 else
                 {
@@ -345,7 +345,7 @@ namespace Playnite
                     case GameActionType.Emulator:
                     case GameActionType.Script:
                         using (var scriptRuntime = new PowerShellRuntime("Custom action runtime"))
-                        using (var controller = new GenericPlayController(Database, game, scriptRuntime, Application.Api))
+                        using (var controller = new GenericPlayController(Database, game, scriptRuntime, Application.PlayniteApiGlobal))
                         {
                             if (action.Type == GameActionType.Emulator)
                             {
@@ -1168,7 +1168,7 @@ namespace Playnite
 
                 var scriptVars = new Dictionary<string, object>
                 {
-                    {  "PlayniteApi", Application.Api },
+                    {  "PlayniteApi", Application.PlayniteApiGlobal },
                     {  "Game", game.GetClone() }
                 };
 

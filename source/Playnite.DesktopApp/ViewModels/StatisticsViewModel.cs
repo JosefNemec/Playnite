@@ -209,7 +209,7 @@ namespace Playnite.DesktopApp.ViewModels
             GameDatabase database,
             ExtensionFactory extensions,
             PlayniteSettings settings,
-            IPlayniteAPI playniteApi,
+            Action switchToLibraryViewAction,
             Action<Game> gameSelectionAction)
         {
             this.database = database;
@@ -219,7 +219,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             NavigateBackCommand = new RelayCommand<object>((a) =>
             {
-                playniteApi.MainView.SwitchToLibraryView();
+                switchToLibraryViewAction();
             });
 
             NavigateToGameCommand = new RelayCommand<Game>((a) =>

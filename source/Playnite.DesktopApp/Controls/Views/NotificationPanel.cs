@@ -69,7 +69,7 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 BindingTools.SetBinding(ItemsMessages,
                     ItemsControl.ItemsSourceProperty,
-                    mainModel.PlayniteApi.Notifications,
+                    mainModel.App.Notifications,
                     nameof(INotificationsAPI.Messages));
             }
         }

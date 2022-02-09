@@ -14,73 +14,39 @@ using System.Threading.Tasks;
 using System.Windows;
 using Playnite.Plugins;
 using System.Threading;
+using Playnite.Database;
 
 namespace Playnite.API
 {
-    public class PlayniteAPI : IPlayniteAPI
+    public interface IPlayniteAPIRoot
+    {
+        string ExpandGameVariables(Game game, string inputString);
+        GameAction ExpandGameVariables(Game game, GameAction action);
+        void StartGame(Guid gameId);
+        void InstallGame(Guid gameId);
+        void UninstallGame(Guid gameId);
+        void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args);
+        void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
+    }
+
+    public class PlayniteApiRoot : IPlayniteAPIRoot
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly GamesEditor gameEditor;
         private readonly ExtensionFactory extensions;
+        private readonly GameDatabase database;
         private readonly SynchronizationContext execContext;
 
-        public PlayniteAPI(
-            IGameDatabaseAPI databaseApi,
-            IDialogsFactory dialogs,
-            IMainViewAPI mainViewApi,
-            IPlayniteInfoAPI infoApi,
-            IPlaynitePathsAPI pathsApi,
-            IWebViewFactory webViewFactory,
-            IResourceProvider resources,
-            INotificationsAPI notifications,
+        public PlayniteApiRoot(
             GamesEditor gameEditor,
-            IUriHandlerAPI uriHandler,
-            IPlayniteSettingsAPI settingsApi,
-            IAddons addonsApi,
-            IEmulationAPI emulation,
-            ExtensionFactory extensions)
+            ExtensionFactory extensions,
+            GameDatabase database)
         {
-            WebViews = webViewFactory;
-            Paths = pathsApi;
-            ApplicationInfo = infoApi;
-            MainView = mainViewApi;
-            Dialogs = dialogs;
-            Database = databaseApi;
-            Resources = resources;
-            Notifications = notifications;
             this.gameEditor = gameEditor;
-            UriHandler = uriHandler;
-            ApplicationSettings = settingsApi;
-            Addons = addonsApi;
-            Emulation = emulation;
             this.extensions = extensions;
-            SDK.API.Instance = this;
+            this.database = database;
             execContext = SynchronizationContext.Current;
         }
-
-        public IDialogsFactory Dialogs { get; }
-
-        public IGameDatabaseAPI Database { get; }
-
-        public IMainViewAPI MainView { get; set; }
-
-        public IPlaynitePathsAPI Paths { get; }
-
-        public IPlayniteInfoAPI ApplicationInfo { get; }
-
-        public IWebViewFactory WebViews { get; }
-
-        public IResourceProvider Resources { get; }
-
-        public INotificationsAPI Notifications { get; }
-
-        public IUriHandlerAPI UriHandler { get; }
-
-        public IPlayniteSettingsAPI ApplicationSettings { get; }
-
-        public IAddons Addons { get; }
-
-        public IEmulationAPI Emulation { get; }
 
         public string ExpandGameVariables(Game game, string inputString)
         {
@@ -94,7 +60,7 @@ namespace Playnite.API
 
         public void StartGame(Guid gameId)
         {
-            var game = Database.Games.Get(gameId);
+            var game = database.Games.Get(gameId);
             if (game == null)
             {
                 logger.Error($"Can't start game, game ID {gameId} not found.");
@@ -109,7 +75,7 @@ namespace Playnite.API
 
         public void InstallGame(Guid gameId)
         {
-            var game = Database.Games.Get(gameId);
+            var game = database.Games.Get(gameId);
             if (game == null)
             {
                 logger.Error($"Can't install game, game ID {gameId} not found.");
@@ -122,7 +88,7 @@ namespace Playnite.API
 
         public void UninstallGame(Guid gameId)
         {
-            var game = Database.Games.Get(gameId);
+            var game = database.Games.Get(gameId);
             if (game == null)
             {
                 logger.Error($"Can't uninstall game, game ID {gameId} not found.");
@@ -141,6 +107,62 @@ namespace Playnite.API
         public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
         {
             extensions.AddSettingsSupport(source, args);
+        }
+    }
+
+    public class PlayniteAPI : IPlayniteAPI
+    {
+        public IPlayniteAPIRoot RootApi { get; set; }
+        public IDialogsFactory Dialogs { get; set; }
+        public IGameDatabaseAPI Database { get; set; }
+        public IMainViewAPI MainView { get; set; }
+        public IPlaynitePathsAPI Paths { get; set; }
+        public IPlayniteInfoAPI ApplicationInfo { get; set; }
+        public IWebViewFactory WebViews { get; set; }
+        public IResourceProvider Resources { get; set; }
+        public INotificationsAPI Notifications { get; set; }
+        public IUriHandlerAPI UriHandler { get; set; }
+        public IPlayniteSettingsAPI ApplicationSettings { get; set; }
+        public IAddons Addons { get; set; }
+        public IEmulationAPI Emulation { get; set; }
+
+        public PlayniteAPI()
+        {
+        }
+
+        public string ExpandGameVariables(Game game, string inputString)
+        {
+            return RootApi.ExpandGameVariables(game, inputString);
+        }
+
+        public GameAction ExpandGameVariables(Game game, GameAction action)
+        {
+            return RootApi.ExpandGameVariables(game, action);
+        }
+
+        public void StartGame(Guid gameId)
+        {
+            RootApi.StartGame(gameId);
+        }
+
+        public void InstallGame(Guid gameId)
+        {
+            InstallGame(gameId);
+        }
+
+        public void UninstallGame(Guid gameId)
+        {
+            RootApi.UninstallGame(gameId);
+        }
+
+        public void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args)
+        {
+            RootApi.AddCustomElementSupport(source, args);
+        }
+
+        public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
+        {
+            RootApi.AddSettingsSupport(source, args);
         }
     }
 }

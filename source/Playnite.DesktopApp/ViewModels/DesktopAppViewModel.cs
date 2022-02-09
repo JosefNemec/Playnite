@@ -223,7 +223,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public DesktopAppViewModel() : base(null, null, null, null, null, null)
+        public DesktopAppViewModel() : base(null, null, null, null, null)
         {
         }
 
@@ -234,15 +234,14 @@ namespace Playnite.DesktopApp.ViewModels
             IResourceProvider resources,
             PlayniteSettings settings,
             DesktopGamesEditor gamesEditor,
-            PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, app, dialogs, playniteApi, resources, extensions)
+            PlayniteApplication app) : base(database, app, dialogs, resources, extensions)
         {
             context = SynchronizationContext.Current;
             Window = window;
             GamesEditor = gamesEditor;
             AppSettings = settings;
-            ((NotificationsAPI)PlayniteApi.Notifications).ActivationRequested += DesktopAppViewModel_ActivationRequested;
+            App.Notifications.ActivationRequested += DesktopAppViewModel_ActivationRequested;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
@@ -261,7 +260,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
         {
-            PlayniteApi.Notifications.Remove(e.Message.Id);
+            App.Notifications.Remove(e.Message.Id);
             AppSettings.NotificationPanelVisible = false;
             e.Message.ActivationAction();
         }
@@ -380,7 +379,7 @@ namespace Playnite.DesktopApp.ViewModels
         protected void InitializeView()
         {
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
-            LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, PlayniteApi, (g) =>
+            LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, SwitchToLibraryView, (g) =>
             {
                 SwitchToLibraryView();
                 SelectedGame = GamesView.Items.FirstOrDefault(a => g.Id == a.Id);
@@ -457,7 +456,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 new AddonsViewModel(
                      new AddonsWindowFactory(),
-                     PlayniteApi,
                      Dialogs,
                      Resources,
                      App.ServicesClient,
@@ -841,7 +839,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ClearMessages()
         {
-            PlayniteApi.Notifications.RemoveAll();
+            App.Notifications.RemoveAll();
             AppSettings.NotificationPanelVisible = false;
         }
 

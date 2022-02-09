@@ -61,7 +61,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             get
             {
-                return DesignIntance?.PlayniteApi.Notifications.Messages[0];
+                return new NotificationMessage("1", "Some testing notification message.", NotificationType.Info);
             }
         }
 
@@ -86,7 +86,7 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesView = new FullscreenCollectionView(
                 database,
                 new PlayniteSettings(),
-                new ExtensionFactory(database, new GameControllerFactory()));
+                new ExtensionFactory(database, new GameControllerFactory(), null));
 
             SelectedGame = GamesView.Items[0];
             SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
@@ -95,9 +95,6 @@ namespace Playnite.FullscreenApp.ViewModels
             AppSettings.Fullscreen.ShowBattery = true;
             AppSettings.Fullscreen.ShowBatteryPercentage = true;
             AppSettings.Fullscreen.ShowClock = true;
-            PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI(), null, null, null, null, null, null);
-            PlayniteApi.Notifications.Add(new NotificationMessage("1", "Some testing notification message.", NotificationType.Info));
-            PlayniteApi.Notifications.Add(new NotificationMessage("2", "Some really long testing notification message that should be on more lines of text.", NotificationType.Error));
         }
     }
 }

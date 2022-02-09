@@ -511,7 +511,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var game = application.Api.MainView.SelectedGames.DefaultIfEmpty(new SDK.Models.Game("Test game")).FirstOrDefault();
+                var game = application.MainModelBase.SelectedGames.FirstOrDefault()?.Game ?? new SDK.Models.Game("Test game");
                 var expanded = game.ExpandVariables(script);
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {

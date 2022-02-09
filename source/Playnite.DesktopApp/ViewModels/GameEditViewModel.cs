@@ -74,7 +74,6 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
-        private IPlayniteAPI playniteApi;
         private GameDatabase database;
         private ExtensionFactory extensions;
         private PlayniteSettings appSettings;
@@ -272,7 +271,6 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            IPlayniteAPI playniteApi,
             PlayniteSettings appSettings)
         {
             Game = game.GetClone();
@@ -281,7 +279,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingGame = game.GetClone();
             ShowCheckBoxes = false;
             ShowMetaDownload = true;
-            Init(database, window, dialogs, resources, extensions, playniteApi, appSettings);
+            Init(database, window, dialogs, resources, extensions, appSettings);
         }
 
         public GameEditViewModel(
@@ -291,7 +289,6 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            IPlayniteAPI playniteApi,
             PlayniteSettings appSettings)
         {
             Games = games.Select(a => a.GetClone()).ToList();
@@ -300,7 +297,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingGame = GameTools.GetMultiGameEditObject(Games);
             ShowCheckBoxes = true;
             ShowMetaDownload = false;
-            Init(database, window, dialogs, resources, extensions, playniteApi, appSettings, EditingGame as MultiEditGame);
+            Init(database, window, dialogs, resources, extensions, appSettings, EditingGame as MultiEditGame);
         }
 
         private void Init(
@@ -309,7 +306,6 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            IPlayniteAPI playniteApi,
             PlayniteSettings appSettings,
             MultiEditGame multiEditData = null)
         {
@@ -318,7 +314,6 @@ namespace Playnite.DesktopApp.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.extensions = extensions;
-            this.playniteApi = playniteApi;
             this.appSettings = appSettings;
 
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
@@ -880,7 +875,7 @@ namespace Playnite.DesktopApp.ViewModels
                     var imageExtension = Path.GetExtension(path).ToLower();
                     if (!compatibleExtensions.Contains(imageExtension))
                     {
-                        playniteApi.Dialogs.ShowErrorMessage(string.Format(
+                        dialogs.ShowErrorMessage(string.Format(
                             resources.GetString("LOCIncompatibleDragAndDropExtensionError"), imageExtension),
                             resources.GetString("LOCIncompatibleDragAndDropExtensionErrorTitle"));
                     }

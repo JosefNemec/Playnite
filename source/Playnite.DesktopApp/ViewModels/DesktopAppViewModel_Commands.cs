@@ -256,7 +256,7 @@ namespace Playnite.DesktopApp.ViewModels
             ClearMessagesCommand = new RelayCommand<object>((a) =>
             {
                 ClearMessages();
-            }, (a) => PlayniteApi?.Notifications?.Count > 0);
+            }, (a) => App?.Notifications?.Count > 0);
 
             DownloadMetadataCommand = new RelayCommand<object>((a) =>
             {
@@ -320,7 +320,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             ReloadScriptsCommand = new RelayCommand<object>((f) =>
             {
-                Extensions.LoadScripts(PlayniteApi, AppSettings.DisabledPlugins, App.CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+                Extensions.LoadScripts(AppSettings.DisabledPlugins, App.CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             }, new KeyGesture(Key.F12));
 
             ShowGameSideBarCommand = new RelayCommand<GamesCollectionViewEntry>((f) =>
@@ -350,7 +350,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 new AddonsViewModel(
                     new AddonsWindowFactory(),
-                    PlayniteApi,
                     Dialogs,
                     Resources,
                     App.ServicesClient,

@@ -22,7 +22,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand CloseCommand => new RelayCommand(() => Close());
         public RelayCommand ClearNotificationsCommand => new RelayCommand(() =>
         {
-            MainModel.PlayniteApi.Notifications.RemoveAll();
+            MainModel.App.Notifications.RemoveAll();
             Close();
         });
 
@@ -36,19 +36,19 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public bool? OpenView()
         {
-            ((NotificationsAPI)MainModel.PlayniteApi.Notifications).ActivationRequested += FullscreenAppViewModel_ActivationRequested;
+            MainModel.App.Notifications.ActivationRequested += FullscreenAppViewModel_ActivationRequested;
             return window.CreateAndOpenDialog(this);
         }
 
         public void Close()
         {
-            ((NotificationsAPI)MainModel.PlayniteApi.Notifications).ActivationRequested -= FullscreenAppViewModel_ActivationRequested;
+            MainModel.App.Notifications.ActivationRequested -= FullscreenAppViewModel_ActivationRequested;
             window.Close(true);
         }
 
         private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
         {
-            MainModel.PlayniteApi.Notifications.Remove(e.Message.Id);
+            MainModel.App.Notifications.Remove(e.Message.Id);
             Close();
             e.Message.ActivationAction();
         }

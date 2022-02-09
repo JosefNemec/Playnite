@@ -146,7 +146,6 @@ namespace Playnite.ViewModels
         public GameDatabase Database { get; }
         public PlayniteApplication App { get; }
         public IDialogsFactory Dialogs { get; }
-        public PlayniteAPI PlayniteApi { get; set; }
         public IResourceProvider Resources { get; }
         public ExtensionFactory Extensions { get; set; }
         public bool IgnoreFilterChanges { get; set; } = false;
@@ -155,14 +154,12 @@ namespace Playnite.ViewModels
             GameDatabase database,
             PlayniteApplication app,
             IDialogsFactory dialogs,
-            PlayniteAPI playniteApi,
             IResourceProvider resources,
             ExtensionFactory extensions)
         {
             Database = database;
             App = app;
             Dialogs = dialogs;
-            PlayniteApi = playniteApi;
             Resources = resources;
             Extensions = extensions;
 
@@ -202,7 +199,7 @@ namespace Playnite.ViewModels
                 {
                     Scripting.PowerShell.PowerShellRuntime.StartInteractiveSession(new Dictionary<string, object>
                     {
-                        { "PlayniteApi", PlayniteApi }
+                        { "PlayniteApi", App.PlayniteApiGlobal }
                     });
                 }
                 catch (Exception e)
@@ -451,7 +448,7 @@ namespace Playnite.ViewModels
                     var updates = Addons.CheckAddonUpdates(App.ServicesClient);
                     if (updates.HasItems())
                     {
-                        PlayniteApi.Notifications.Add(GetAddonUpdatesFoundMessage(updates));
+                        App.Notifications.Add(GetAddonUpdatesFoundMessage(updates));
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -481,12 +478,12 @@ namespace Playnite.ViewModels
             try
             {
                 addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, token));
-                PlayniteApi.Notifications.Remove($"{plugin.Id} - download");
+                App.Notifications.Remove($"{plugin.Id} - download");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, $"Failed to import games from plugin: {plugin.Name}");
-                PlayniteApi.Notifications.Add(new NotificationMessage(
+                App.Notifications.Add(new NotificationMessage(
                     $"{plugin.Id} - download",
                     Resources.GetString(LOC.LibraryImportError).Format(plugin.Name) + $"\n{e.Message}",
                     NotificationType.Error));
@@ -585,12 +582,12 @@ namespace Playnite.ViewModels
                     Database.Games.Add(scanned);
                 }
 
-                PlayniteApi.Notifications.Remove($"{scanConfig.Id} - import");
+                App.Notifications.Remove($"{scanConfig.Id} - import");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, $"Failed to import emulated games from config:\n{scanConfig.Directory}\n{scanConfig.EmulatorId}\n{scanConfig.EmulatorProfileId}");
-                PlayniteApi.Notifications.Add(new NotificationMessage(
+                App.Notifications.Add(new NotificationMessage(
                     $"{scanConfig.Id} - import",
                     Resources.GetString(LOC.LibraryImportEmulatedError).Format(scanConfig.Name) + $"\n{e.Message}",
                     NotificationType.Error));
@@ -731,7 +728,7 @@ namespace Playnite.ViewModels
                     runtime.Execute(
                         script,
                         PlaynitePaths.ProgramPath,
-                        new Dictionary<string, object> { { "PlayniteApi", PlayniteApi } });
+                        new Dictionary<string, object> { { "PlayniteApi", App.PlayniteApiGlobal } });
                 }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
