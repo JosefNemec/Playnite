@@ -23,6 +23,11 @@ namespace Playnite.SDK.Plugins
         public string Description { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        public string Hint { get; set; }
+
+        /// <summary>
         /// Gets or sets meni item menu section.
         /// </summary>
         public string MenuSection { get; set; }
@@ -114,6 +119,8 @@ namespace Playnite.SDK.Plugins
         /// Gets or sets source games for target menu items.
         /// </summary>
         public List<Game> Games { get; set; }
+
+        public bool IsGlobalSearchRequest { get; set; }
     }
 
     #endregion Game menu
@@ -184,6 +191,7 @@ namespace Playnite.SDK.Plugins
     /// </summary>
     public class GetMainMenuItemsArgs
     {
+        public bool IsGlobalSearchRequest { get; set; }
     }
 
     #endregion Main menu

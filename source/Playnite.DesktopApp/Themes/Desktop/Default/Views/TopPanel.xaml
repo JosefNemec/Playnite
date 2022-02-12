@@ -56,6 +56,11 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
+    <DataTemplate x:Key="TopPanelSearchButtonTemplate">
+        <TextBlock Text="&#xed12;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+
     <Style x:Key="TopPanelMenu" TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource PopupBackgroundBrush}" />
@@ -186,7 +191,7 @@
                                         Margin="5,6,0,6" DockPanel.Dock="Left"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
                                         Width="300" />
-                            
+
                             <StackPanel x:Name="PART_PanelMainItems" Orientation="Horizontal"
                                         VerticalAlignment="Stretch" Margin="0,6,0,6"/>
 

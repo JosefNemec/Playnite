@@ -54,4 +54,5 @@
     <pcon:ObjectEqualityToVisibilityConverter x:Key="ObjectEqualityToVisibilityConverter" />
     <pcon:InvertedObjectEqualityToBoolConverter x:Key="InvertedObjectEqualityToBoolConverter" />
     <pcon:InvertedObjectEqualityToVisibilityConverter x:Key="InvertedObjectEqualityToVisibilityConverter" />
+    <pcon:PluginIconSourceToElementConverter x:Key="PluginIconSourceToElementConverter" />
 </ResourceDictionary>

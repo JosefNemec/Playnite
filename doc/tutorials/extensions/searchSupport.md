@@ -1,0 +1,5 @@
+Global search support
+=====================
+
+Introduction
+---------------------

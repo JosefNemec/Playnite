@@ -20,7 +20,7 @@ namespace Playnite.DesktopApp.ViewModels
     {
         private DesktopAppViewModel model;
         public TopPanelItem PanelItem { get; }
-        public RelayCommand<object> Command { get; set; }
+        public RelayCommandBase Command { get; set; }
 
         public string Title
         {
@@ -39,7 +39,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             this.model = model;
             PanelItem = item;
-            Command = new RelayCommand<object>((_) => PanelItem.Activated?.Invoke());
+            Command = new RelayCommand(() => PanelItem.Activated?.Invoke());
             item.PropertyChanged += Item_PropertyChanged;
         }
 

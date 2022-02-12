@@ -111,6 +111,7 @@
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="ArchiveTests.cs" />
     <Compile Include="M3UTests.cs" />
+    <Compile Include="SearchViewModelTests.cs" />
     <Compile Include="_TestTools\GameDbTestWrapper.cs" />
     <Compile Include="GameFieldComparerTests.cs" />
     <Compile Include="GamesEditorTests.cs" />

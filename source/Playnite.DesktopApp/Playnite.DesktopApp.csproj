@@ -156,7 +156,6 @@
     <Compile Include="Controls\LibraryStatistics.xaml.cs">
       <DependentUpon>LibraryStatistics.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MenuHelpers.cs" />
     <Compile Include="Controls\Menus\ViewSelectionMenu.cs" />
     <Compile Include="Controls\Menus\SortSettingsMenu.cs" />
     <Compile Include="Controls\Menus\GroupSettingsMenu.cs" />
@@ -235,6 +234,9 @@
     <Compile Include="Controls\FilterEnumSelectionBox.cs" />
     <Compile Include="Controls\FilterSelectionBox.cs" />
     <Compile Include="Controls\FilterStringSelectionBox.cs" />
+    <Compile Include="Controls\SettingsSections\Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\Updates.xaml.cs">
       <DependentUpon>Updates.xaml</DependentUpon>
     </Compile>
@@ -327,6 +329,9 @@
     </Compile>
     <Compile Include="Windows\LibraryIntegrationsWindow.xaml.cs">
       <DependentUpon>LibraryIntegrationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SearchWindow.xaml.cs">
+      <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ToolsConfigWindow.xaml.cs">
       <DependentUpon>ToolsConfigWindow.xaml</DependentUpon>
@@ -653,6 +658,10 @@
     <Page Include="Controls\SettingsSections\Scripting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\Search.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\Updates.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1030,6 +1039,16 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Themes\Desktop\Default\Views\SearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\HotKeyBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1063,6 +1082,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\LibraryIntegrationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

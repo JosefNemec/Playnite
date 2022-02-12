@@ -11,6 +11,7 @@ namespace Playnite.Native
     {
         public const int GWL_STYLE = -16;
         public const int WS_SYSMENU = 0x80000;
+        public const int WM_HOTKEY = 0x0312;
 
         public static readonly IntPtr INVALID_HANDLE_VALUE = new IntPtr(-1);
         public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
@@ -39,6 +40,12 @@ namespace Playnite.Native
         public const uint MK_MBUTTON = 0x0010;    // The middle mouse button is down.
         public const uint MK_RBUTTON = 0x0002;    // The right mouse button is down.
         public const uint MK_SHIFT = 0x0004;    // The SHIFT key is down.
+
+        public const uint MOD_NONE = 0x0000;    //(none)
+        public const uint MOD_ALT = 0x0001;     //ALT
+        public const uint MOD_CONTROL = 0x0002; //CTRL
+        public const uint MOD_SHIFT = 0x0004;   //SHIFT
+        public const uint MOD_WIN = 0x0008;     //WINDOWS
 
         public const uint WM_KEYDOWN = 0x0100;
         public const uint WM_KEYUP = 0x0101;

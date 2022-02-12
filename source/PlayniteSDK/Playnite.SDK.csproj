@@ -60,6 +60,7 @@
     <Compile Include="Data\MarkupConverter.cs" />
     <Compile Include="Data\DataSerialization.cs" />
     <Compile Include="Data\SQLite.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IEmulationAPI.cs" />
     <Compile Include="Events\ApplicationEvents.cs" />
     <Compile Include="Events\PlayniteUriEventArgs.cs" />

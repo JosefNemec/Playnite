@@ -1,6 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.Converters;
-using Playnite.DesktopApp.Markup;
+using Playnite.Extensions.Markup;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Playnite.DesktopApp.Controls
+namespace Playnite
 {
     public class MenuHelpers
     {

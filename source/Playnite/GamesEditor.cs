@@ -144,6 +144,18 @@ namespace Playnite
             controllers.Stopped -= Controllers_Stopped;
         }
 
+        public void StartContextAction(Game game)
+        {
+            if (game.IsInstalled)
+            {
+                PlayGame(game);
+            }
+            else
+            {
+                InstallGame(game);
+            }
+        }
+
         public void PlayGame(Game game)
         {
             if (!game.IsInstalled)

@@ -94,6 +94,7 @@ namespace Playnite
         public List<Guid> FeatureIds => Game.FeatureIds;
         public Guid CompletionStatusId => Game.CompletionStatusId;
 
+        public object LibraryIcon => GetImageObject(LibraryPlugin?.LibraryIcon, true);
         public object IconObject => GetImageObject(Game.Icon, false);
         public object CoverImageObject => GetImageObject(Game.CoverImage, false);
         public object DefaultIconObject => GetDefaultIcon(false);
@@ -198,13 +199,16 @@ namespace Playnite
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings)
+        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings, bool readOnly = false)
         {
             this.settings = settings;
             LibraryPlugin = plugin;
-            Game = game;
-            Game.PropertyChanged += Game_PropertyChanged;
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
+            Game = game;
+            if (!readOnly)
+            {
+                Game.PropertyChanged += Game_PropertyChanged;
+            }
         }
 
         public static void InitItemViewProperties(PlayniteApplication app, PlayniteSettings settings)

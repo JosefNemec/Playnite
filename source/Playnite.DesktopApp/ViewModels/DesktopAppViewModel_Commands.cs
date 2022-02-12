@@ -3,6 +3,7 @@ using Playnite.SDK;
 using Playnite.SDK.Exceptions;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,12 +50,14 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<GamesCollectionViewEntry> ShowGameSideBarCommand { get; private set; }
         public RelayCommand<object> CloseGameSideBarCommand { get; private set; }
         public RelayCommand<object> OpenSearchCommand { get; private set; }
+        public RelayCommand OpenGlobalSearchCommand { get; private set; }
         public RelayCommand<object> CheckForUpdateCommand { get; private set; }
         public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
         public RelayCommand<object> OpenLibraryIntegrationsConfigCommand { get; private set; }
         public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
         public RelayCommand UpdateEmulationDirsCommand { get; private set; }
         public RelayCommand<GameScannerConfig> UpdateEmulationDirCommand { get; private set; }
+        public RelayCommand<Guid> OpenPluginSettingsCommand { get; private set; }
 
         public RelayCommand<Game> StartGameCommand { get; private set; }
         public RelayCommand<AppSoftware> StartSoftwareToolCommand { get; private set; }
@@ -90,17 +93,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void InitializeCommands()
         {
-            OpenSearchCommand = new RelayCommand<object>((game) =>
-            {
-                if (SearchOpened)
-                {
-                    // The binding sometimes breaks when main window is restored from minimized state.
-                    // This fixes it.
-                    SearchOpened = false;
-                }
-
-                SearchOpened = true;
-            }, new KeyGesture(Key.F, ModifierKeys.Control));
+            OpenSearchCommand = new RelayCommand<object>((_) => OpenSearch(), new KeyGesture(Key.F, ModifierKeys.Control));
+            OpenGlobalSearchCommand = new RelayCommand(() => OpenGlobalSearch());
 
             ToggleExplorerPanelCommand = new RelayCommand<object>((game) =>
             {
@@ -334,14 +328,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             OpenSettingsCommand = new RelayCommand<object>((a) =>
             {
-                OpenSettings(
-                    new SettingsViewModel(Database,
-                    AppSettings,
-                    new SettingsWindowFactory(),
-                    Dialogs,
-                    Resources,
-                    Extensions,
-                    App));
+                OpenSettings();
             }, new KeyGesture(Key.F4));
 
             OpenAddonsCommand = new RelayCommand<object>((a) =>
@@ -360,11 +347,11 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (game != null)
                 {
-                    GamesEditor.PlayGame(game);
+                    StartGame(game);
                 }
                 else if (SelectedGame != null)
                 {
-                    GamesEditor.PlayGame(SelectedGame.Game);
+                    StartGame(SelectedGame.Game);
                 }
             });
 
@@ -440,13 +427,7 @@ namespace Playnite.DesktopApp.ViewModels
             (a) => SelectedGame != null,
             new KeyGesture(Key.Delete));
 
-            EditGameCommand = new RelayCommand<Game>((a) =>
-            {
-                if (GamesEditor.EditGame(a) == true)
-                {
-                    SelectGame(a.Id);
-                }
-            });
+            EditGameCommand = new RelayCommand<Game>((a) => EditGame(a));
 
             EditGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
@@ -491,13 +472,7 @@ namespace Playnite.DesktopApp.ViewModels
                 GamesEditor.ToggleHideGame(a);
             });
 
-            AssignGameCategoryCommand = new RelayCommand<Game>((a) =>
-            {
-                if (GamesEditor.SetGameCategories(a) == true)
-                {
-                    SelectGame(a.Id);
-                }
-            });
+            AssignGameCategoryCommand = new RelayCommand<Game>((a) => AssignCategories(a));
 
             AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
@@ -574,6 +549,8 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateEmulationLibrary();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }, () => GameAdditionAllowed);
+
+            OpenPluginSettingsCommand = new RelayCommand<Guid>((pluginId) => OpenPluginSettings(pluginId));
         }
     }
 }

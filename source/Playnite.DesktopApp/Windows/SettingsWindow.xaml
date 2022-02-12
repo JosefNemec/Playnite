@@ -61,6 +61,7 @@
                     <TreeViewItem Header="{DynamicResource LOCSettingsTopPanelLabel}" Tag="20" />
                 </TreeViewItem>
                 <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
+                <TreeViewItem Header="{DynamicResource LOCSettingsSearch}" Tag="24" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsUpdating}" Tag="22" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsSortingLabel}" Tag="21" />

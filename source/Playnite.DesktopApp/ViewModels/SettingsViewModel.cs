@@ -39,6 +39,23 @@ namespace Playnite.DesktopApp.ViewModels
         }
     }
 
+    public class SearchSupportSettings : SearchSupport
+    {
+        public string SearchId { get; set; }
+        public new string Keyword { get; set; }
+
+        public SearchSupportSettings(LoadedPlugin plugin, SearchSupport support, Dictionary<string, string> customMap)
+        {
+            SearchId = plugin.Description.Id + support.DefaultKeyword;
+            Name = support.Name;
+            DefaultKeyword = support.DefaultKeyword;
+            if (customMap?.ContainsKey(SearchId) == true)
+            {
+                Keyword = customMap[SearchId];
+            }
+        }
+    }
+
     public class SettingsViewModel : ObservableObject
     {
         internal static ILogger logger = LogManager.GetLogger();
@@ -103,6 +120,8 @@ namespace Playnite.DesktopApp.ViewModels
             get;
             private set;
         } = new List<SelectableTrayIcon>();
+
+        public List<SearchSupportSettings> Searches { get; } = new List<SearchSupportSettings>();
 
         private readonly Dictionary<int, UserControl> sectionViews;
 
@@ -347,7 +366,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
                 { 21, new Controls.SettingsSections.Sorting() { DataContext = this } },
                 { 22, new Controls.SettingsSections.Updates() { DataContext = this } },
-                { 23, new Controls.SettingsSections.AppearanceListView() { DataContext = this } }
+                { 23, new Controls.SettingsSections.AppearanceListView() { DataContext = this } },
+                { 24, new Controls.SettingsSections.Search() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -357,6 +377,14 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Selected = settings.ClientAutoShutdown.ShutdownPlugins.Contains(plugin.Id)
                 });
+            }
+
+            foreach (var plugin in extensions.Plugins)
+            {
+                foreach (var search in plugin.Value.Plugin.Searches ?? new List<SearchSupport>())
+                {
+                    Searches.Add(new SearchSupportSettings(plugin.Value, search, Settings.CustomSearchKeywrods));
+                }
             }
 
             ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
@@ -388,6 +416,16 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
+        public bool? OpenView(int viewIndex)
+        {
+            if (sectionViews.ContainsKey(viewIndex))
+            {
+                SelectedSectionView = sectionViews[viewIndex];
+            }
+
+            return window.CreateAndOpenDialog(this);
+        }
+
         public void CloseView()
         {
             closingHanled = true;
@@ -414,6 +452,15 @@ namespace Playnite.DesktopApp.ViewModels
             Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
             Settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
             var develExtListUpdated = !Settings.DevelExtenions.IsEqualJson(originalSettings.DevelExtenions);
+
+            Settings.CustomSearchKeywrods = new Dictionary<string, string>();
+            foreach (var search in Searches)
+            {
+                if (!search.Keyword.IsNullOrWhiteSpace())
+                {
+                    Settings.CustomSearchKeywrods.Add(search.SearchId, search.Keyword);
+                }
+            }
 
             EndEdit();
             originalSettings.SaveSettings();

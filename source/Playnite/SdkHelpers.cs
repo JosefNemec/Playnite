@@ -17,6 +17,8 @@ namespace Playnite
 {
     public class SdkHelpers
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         public static object ResolveUiItemIcon(object icon)
         {
             if (icon == null)
@@ -24,56 +26,69 @@ namespace Playnite
                 return null;
             }
 
-            if (icon is string stringIcon)
+            try
             {
-                var resource = ResourceProvider.GetResource(stringIcon);
-                if (resource != null)
+                if (icon is string stringIcon)
                 {
-                    if (resource is BitmapImage bitmap)
+                    var resource = ResourceProvider.GetResource(stringIcon);
+                    if (resource != null)
                     {
-                        var image = new System.Windows.Controls.Image() { Source = bitmap };
-                        RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(bitmap));
-                        return image;
-                    }
-                    else if (resource is TextBlock textIcon)
-                    {
-                        var text = new TextBlock
+                        if (resource is BitmapImage bitmap)
                         {
-                            Text = textIcon.Text,
-                            FontFamily = textIcon.FontFamily,
-                            FontStyle = textIcon.FontStyle
-                        };
+                            var image = new System.Windows.Controls.Image() { Source = bitmap };
+                            RenderOptions.SetBitmapScalingMode(image, RenderOptions.GetBitmapScalingMode(bitmap));
+                            return image;
+                        }
+                        else if (resource is TextBlock textIcon)
+                        {
+                            var text = new TextBlock
+                            {
+                                Text = textIcon.Text,
+                                FontFamily = textIcon.FontFamily,
+                                FontStyle = textIcon.FontStyle
+                            };
 
-                        if (textIcon.ReadLocalValue(TextBlock.ForegroundProperty) != DependencyProperty.UnsetValue)
+                            if (textIcon.ReadLocalValue(TextBlock.ForegroundProperty) != DependencyProperty.UnsetValue)
+                            {
+                                text.Foreground = textIcon.Foreground;
+                            }
+
+                            return text;
+                        }
+                    }
+                    else if (System.IO.File.Exists(stringIcon))
+                    {
+                        var image =  BitmapExtensions.BitmapFromFile(stringIcon)?.ToImage();
+                        if (image != null)
                         {
-                            text.Foreground = textIcon.Foreground;
+                            RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.Fant);
                         }
 
-                        return text;
+                        return image;
                     }
-                }
-                else if (System.IO.File.Exists(stringIcon))
-                {
-                    return BitmapExtensions.BitmapFromFile(stringIcon)?.ToImage();
+                    else
+                    {
+                        var themeFile = ThemeFile.GetFilePath(stringIcon);
+                        if (themeFile != null)
+                        {
+                            return Images.GetImageFromFile(themeFile, BitmapScalingMode.Fant, double.NaN, double.NaN);
+                        }
+
+                        var dbFile = GameDatabase.Instance.GetFileAsImage(stringIcon);
+                        if (dbFile != null)
+                        {
+                            return dbFile.ToImage();
+                        }
+                    }
                 }
                 else
                 {
-                    var themeFile = ThemeFile.GetFilePath(stringIcon);
-                    if (themeFile != null)
-                    {
-                        return Images.GetImageFromFile(themeFile, BitmapScalingMode.Fant, double.NaN, double.NaN);
-                    }
-
-                    var dbFile = GameDatabase.Instance.GetFileAsImage(stringIcon);
-                    if (dbFile != null)
-                    {
-                        return dbFile.ToImage();
-                    }
+                    return icon;
                 }
             }
-            else
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                return icon;
+                logger.Error(e, "Failed to get icon object.");
             }
 
             return null;

@@ -111,6 +111,7 @@ namespace Playnite.DesktopApp
         public override void ReleaseResources(bool releaseCefSharp = true)
         {
             trayIcon?.Dispose();
+            MainModel?.UnregisterSystemSearchHotkey();
             base.ReleaseResources(releaseCefSharp);
         }
 

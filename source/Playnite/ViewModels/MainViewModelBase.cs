@@ -1,4 +1,5 @@
 ﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.Metadata;
@@ -789,5 +790,39 @@ namespace Playnite.ViewModels
         }
 
         public abstract void CloseView();
+        public virtual IEnumerable<SearchItem> GetSearchCommands()
+        {
+            yield break;
+        }
+
+        public abstract void OpenSettings(int settingsPageIndex);
+        public void StartGame(Game game)
+        {
+            App.GamesEditor.PlayGame(game);
+        }
+
+        public void InstallGame(Game game)
+        {
+            App.GamesEditor.InstallGame(game);
+        }
+
+        public abstract void EditGame(Game game);
+        public abstract void AssignCategories(Game game);
+
+        public void StartSoftwareTool(AppSoftware app)
+        {
+            try
+            {
+                ProcessStarter.StartProcess(app.Path, app.Arguments, app.WorkingDir);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to start app tool.");
+                Dialogs.ShowErrorMessage(
+                    Resources.GetString("LOCAppStartupError") + "\n\n" +
+                    e.Message,
+                    "LOCStartupError");
+            }
+        }
     }
 }

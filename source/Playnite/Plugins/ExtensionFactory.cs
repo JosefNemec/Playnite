@@ -42,11 +42,16 @@ namespace Playnite.Plugins
     {
         public Plugin Plugin { get; }
         public ExtensionManifest Description { get; }
+        public string PluginIcon { get; }
 
         public LoadedPlugin(Plugin plugin, ExtensionManifest description)
         {
             Plugin = plugin;
             Description = description;
+            if (!string.IsNullOrEmpty(description.Icon))
+            {
+                PluginIcon = Path.Combine(Path.GetDirectoryName(description.DescriptionPath), description.Icon);
+            }
         }
     }
 
@@ -776,6 +781,11 @@ namespace Playnite.Plugins
 
         public LibraryPlugin GetLibraryPlugin(Guid pluginId)
         {
+            if (pluginId == Guid.Empty)
+            {
+                return null;
+            }
+
             return LibraryPlugins.FirstOrDefault(a => a.Id == pluginId);
         }
 

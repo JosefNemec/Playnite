@@ -284,6 +284,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performance</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsUpdating">Updating</sys:String>
+    <sys:String x:Key="LOCSettingsSearch">Search</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Account name cannot be empty.</sys:String>
@@ -1081,4 +1082,39 @@ This option may not fully work with plugins that use specific game import method
     <sys:String x:Key="LOCStatsIncludeHidden">Include hidden games</sys:String>
     <sys:String x:Key="LOCMenuSetFields">Edit fields</sys:String>
     <sys:String x:Key="LOCItemSelectionSelectDeselectAll">Select / Deselect all</sys:String>
+    <sys:String x:Key="LOCOpen">Open</sys:String>
+    <sys:String x:Key="LOCActivate">Activate</sys:String>
+    <sys:String x:Key="LOCAssign">Assign</sys:String>
+    <sys:String x:Key="LOCDefaultSearchDescription">Start typing to search for games… [F1] for help</sys:String>
+    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve">Starting with # brings up a list of available commands.
+Starting with / brings up a list of available search providers/plugins.
+Typing search keyword and ending with SPACE switches immediately to that search.
+
+TAB: switch action
+ENTER: activate selected action
+SHIFT-ENTER: open item menu</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalled">Include uninstalled games</sys:String>
+    <sys:String x:Key="LOCSearchFilterHidden">Include hidden games</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledIncluded">Uninstalled games included</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Uninstalled games exclued</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenIncluded">Hidden games included</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">Hidden games exclued</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionPlay">Play or Install</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionSwitchTo">Go to details</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionOpenMenu">Game menu</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit">Edit game</sys:String>
+    <sys:String x:Key="LOCOpenSearch">Open search</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox">Search box</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton">Search button</sys:String>
+
+    <sys:String x:Key="LOCSearchSettingsPrimaryAction">Primary game action</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSecondaryAction">Secondary game action</sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">CTRL-F opens global search instead of focusing search box</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSaveFilter">Save game filter settings between search sessions</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSearchProviders">Search providers</sys:String>
+    <sys:String x:Key="LOCSearchSettingsDefaultKeyword">Default keyword</sys:String>
+    <sys:String x:Key="LOCSearchSettingsCustomKeyword">Custom keyword</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSystemWideShortcut">System wide shortcut</sys:String>
+    <sys:String x:Key="LOCSearchTitle">Playnite search</sys:String>
+    <sys:String x:Key="LOCExtensionSettingsMenu">Extension Settings</sys:String>
 </ResourceDictionary>

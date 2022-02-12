@@ -45,6 +45,7 @@ namespace Playnite.DesktopApp.ViewModels
         private readonly SynchronizationContext context;
         private Controls.LibraryStatistics statsView;
         private Controls.Views.Library libraryView;
+        private SearchViewModel currentGlobalSearch;
 
         public IWindowFactory Window { get; }
         public DesktopGamesEditor GamesEditor { get; }
@@ -324,6 +325,11 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 GamesView.NotifyItemPropertyChanges(notifyProps.ToArray());
             }
+
+            if (e.PropertyName == nameof(PlayniteSettings.SystemSearchHotkey))
+            {
+                RegisterSystemSearchHotkey();
+            }
         }
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -443,6 +449,8 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 ActiveFilterPreset = Database.FilterPresets.FirstOrDefault(a => a.Id == AppSettings.SelectedFilterPreset);
             }
+
+            RegisterSystemSearchHotkey();
         }
 
         public override NotificationMessage GetAddonUpdatesFoundMessage(List<AddonUpdate> updates)
@@ -679,11 +687,6 @@ namespace Playnite.DesktopApp.ViewModels
             model.OpenView();
         }
 
-        public void OpenSettings(SettingsViewModel model)
-        {
-            model.OpenView();
-        }
-
         public void OpenIntegrationSettings(LibraryIntegrationsViewModel model)
         {
             model.OpenView();
@@ -711,6 +714,11 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 SelectedGames = new List<GamesCollectionViewEntry>(1) { viewEntry };
             }
+
+            if (Window?.Window?.IsActive == false)
+            {
+                Window.RestoreWindow();
+            }
         }
 
         public void SelectGames(IEnumerable<Guid> gameIds)
@@ -724,6 +732,11 @@ namespace Playnite.DesktopApp.ViewModels
             if (entries.HasItems())
             {
                 SelectedGames = entries.ToList();
+            }
+
+            if (Window?.Window?.IsActive == false)
+            {
+                Window.RestoreWindow();
             }
         }
 
@@ -984,22 +997,6 @@ namespace Playnite.DesktopApp.ViewModels
             return model.OpenView() ?? false;
         }
 
-        private void StartSoftwareTool(AppSoftware app)
-        {
-            try
-            {
-                ProcessStarter.StartProcess(app.Path, app.Arguments, app.WorkingDir);
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                Logger.Error(e, "Failed to start app tool.");
-                Dialogs.ShowErrorMessage(
-                    Resources.GetString("LOCAppStartupError") + "\n\n" +
-                    e.Message,
-                    "LOCStartupError");
-            }
-        }
-
         public void SwitchToLibraryView()
         {
             SidebarItems.First(a => a.SideItem is MainSidebarViewItem item && item.AppView == ApplicationView.Library).Command.Execute(null);
@@ -1041,6 +1038,200 @@ namespace Playnite.DesktopApp.ViewModels
                 default:
                     Logger.Warn($"Uknown URI command {command}");
                     break;
+            }
+        }
+
+        public override IEnumerable<SearchItem> GetSearchCommands()
+        {
+            SearchItem createItemG<T>(string root, string name, RelayCommand<T> command, T commandParam = null, object icon = null) where T : class
+            {
+                return new SearchItem(
+                    $"{root.GetLocalized()} > {name.GetLocalized()}",
+                    LOC.Open,
+                    () => command.Execute(commandParam),
+                    icon);
+            }
+
+            SearchItem createItem<T>(string root, string name, RelayCommand<T> command, T commandParam, object icon = null)
+            {
+                return new SearchItem(
+                    $"{root.GetLocalized()} > {name.GetLocalized()}",
+                    LOC.Open,
+                    () => command.Execute(commandParam),
+                    icon);
+            }
+
+            // Add game
+            yield return createItemG(LOC.MenuAddGame, LOC.MenuAddGameManual, AddCustomGameCommand);
+            yield return createItemG(LOC.MenuAddGame, LOC.MenuAddGameInstalled, AddInstalledGamesCommand);
+            yield return createItemG(LOC.MenuAddGame, LOC.MenuAddGameEmulated, AddEmulatedGamesCommand);
+            yield return createItemG(LOC.MenuAddGame, LOC.MenuAddWindowsStore, AddWindowsStoreGamesCommand);
+
+            // Library
+            yield return createItemG(LOC.Library, LOC.MenuConfigureIntegrations, OpenLibraryIntegrationsConfigCommand);
+            yield return createItemG(LOC.Library, LOC.MenuLibraryManagerTitle, OpenDbFieldsManagerCommand);
+            yield return createItemG(LOC.Library, LOC.MenuConfigureEmulatorsMenuTitle, OpenEmulatorsCommand);
+            yield return createItemG(LOC.Library, LOC.MenuDownloadMetadata, DownloadMetadataCommand);
+            yield return createItemG(LOC.Library, LOC.MenuSoftwareTools, OpenSoftwareToolsCommand);
+
+            // Library update
+            foreach (var plugin in Extensions.LibraryPlugins)
+            {
+                yield return createItemG(LOC.MenuReloadLibrary, plugin.Name, UpdateLibraryCommand, plugin, plugin.LibraryIcon);
+            }
+
+            // Extensions main menu items
+            foreach (var item in MenuItems.GetSearchExtensionsMainMenuItem(this))
+            {
+                yield return item;
+            }
+
+            // Extensions global commands
+            foreach (var item in MenuItems.GetGlobalPluginCommands(this))
+            {
+                yield return item;
+            }
+
+            // Switch mode
+            yield return new SearchItem(LOC.MenuOpenFullscreen, LOC.Activate, () => SwitchToFullscreenMode(), "FullscreenModeIcon");
+
+            // Settings
+            yield return new SearchItem(LOC.MenuPlayniteSettingsTitle, LOC.Open, () => OpenSettingsCommand.Execute(null), "SettingsIcon");
+
+            // Plugin settings
+            foreach (var plugin in Extensions.Plugins)
+            {
+                yield return createItem(LOC.ExtensionSettingsMenu, plugin.Value.Description.Name, OpenPluginSettingsCommand, plugin.Key, plugin.Value.PluginIcon);
+            }
+
+            // Random game
+            yield return new SearchItem(LOC.MenuSelectRandomGame, LOC.Open, () => SelectRandomGameCommand.Execute(null), "DiceIcon");
+
+            // Addons window
+            yield return new SearchItem(LOC.MenuAddons, LOC.Open, () => OpenAddonsCommand.Execute(null), "AddonsIcon");
+
+            // Open client
+            foreach (var tool in ThirdPartyTools)
+            {
+                yield return createItem(LOC.MenuOpenClient, tool.Name, ThirdPartyToolOpenCommand, tool, tool.Icon);
+            }
+
+            // Check for updates
+            yield return new SearchItem(LOC.CheckForUpdates, LOC.Activate, () => CheckForUpdateCommand.Execute(null));
+
+            // Help
+            yield return new SearchItem(LOC.MenuAbout, LOC.Open, () => OpenAboutCommand.Execute(null), "AboutPlayniteIcon");
+            yield return new SearchItem(LOC.CrashRestartSafe, LOC.Activate, () => RestartInSafeMode.Execute(null));
+
+            // Restore window
+            yield return new SearchItem(LOC.RestoreWindow, LOC.Activate, () => Window.RestoreWindow());
+
+            // Exit
+            yield return new SearchItem(LOC.ExitPlaynite, LOC.Activate, () => ShutdownCommand.Execute(null), "ExitIcon");
+        }
+
+        public override void OpenSettings(int settingsPageIndex)
+        {
+            new SettingsViewModel(Database,
+                AppSettings,
+                new SettingsWindowFactory(),
+                Dialogs,
+                Resources,
+                Extensions,
+                App).OpenView(settingsPageIndex);
+        }
+
+        public void OpenSettings()
+        {
+            OpenSettings(0);
+        }
+
+        public override void EditGame(Game game)
+        {
+            if (GamesEditor.EditGame(game) == true)
+            {
+                SelectGame(game.Id);
+            }
+        }
+
+        public override void AssignCategories(Game game)
+        {
+            if (GamesEditor.SetGameCategories(game) == true)
+            {
+                SelectGame(game.Id);
+            }
+        }
+
+        public void OpenSearch()
+        {
+            if (AppSettings.ShowTopPanelSearchBox && AppSettings.GlobalSearchOpenWithLegacySearch)
+            {
+                OpenGlobalSearch();
+            }
+            else if (AppSettings.ShowTopPanelSearchBox && !AppSettings.GlobalSearchOpenWithLegacySearch)
+            {
+                FocusSearchBox();
+            }
+            else
+            {
+                OpenGlobalSearch();
+            }
+        }
+
+        public void FocusSearchBox()
+        {
+            SearchOpened = false;
+            SearchOpened = true;
+        }
+
+        public void OpenGlobalSearch()
+        {
+            if (currentGlobalSearch != null)
+            {
+                currentGlobalSearch.Focus();
+            }
+            else
+            {
+                currentGlobalSearch = new SearchViewModel(
+                   new SearchWindowFactory(),
+                   Database,
+                   Extensions,
+                   this);
+                currentGlobalSearch.SearchClosed += (_, __) => currentGlobalSearch = null;
+                currentGlobalSearch.OpenSearch();
+            }
+        }
+
+        public void RegisterSystemSearchHotkey()
+        {
+            UnregisterSystemSearchHotkey();
+            if (AppSettings.SystemSearchHotkey == null)
+            {
+                return;
+            }
+
+            try
+            {
+                Window.Window.RegisterHotKeyHandler(1337, AppSettings.SystemSearchHotkey, () =>
+                {
+                    OpenGlobalSearch();
+                });
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to register system search hotkey.");
+            }
+        }
+
+        public void UnregisterSystemSearchHotkey()
+        {
+            try
+            {
+                Window.Window.UnregisterHotKeyHandler(1337);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to unregister system search hotkey.");
             }
         }
     }

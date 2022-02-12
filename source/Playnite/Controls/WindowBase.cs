@@ -1,16 +1,19 @@
-﻿using Playnite.Windows;
+﻿using Playnite.Native;
+using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 
 namespace Playnite.Controls
@@ -45,8 +48,10 @@ namespace Playnite.Controls
     [TemplatePart(Name = "PART_TextTitle", Type = typeof(TextBlock))]
     public class WindowBase : Window, INotifyPropertyChanged
     {
-        private WindowPositionHandler positionHandler;
+        public readonly WindowPositionHandler PositionHandler;
         private readonly EmptyWindowAutomationPeer automationPeer;
+        private HwndSource hwndSource;
+        private readonly Dictionary<int, Action> hotKeyHandlers = new Dictionary<int, Action>();
 
         private Button MinimizeButton;
         private Button MaximizeButton;
@@ -180,6 +185,8 @@ namespace Playnite.Controls
             DependencyProperty.Register(nameof(BlockAltF4), typeof(bool), typeof(WindowBase), new PropertyMetadata(false));
 
         public bool IsShown { get; private set; }
+        public bool WasClosed { get; private set; }
+        public IntPtr Handle { get; private set; }
 
         static WindowBase()
         {
@@ -204,12 +211,17 @@ namespace Playnite.Controls
             TextOptions.SetTextRenderingMode(this, TextRenderingMode);
             Closed += (_, __) =>
             {
+                hwndSource.RemoveHook(HwndHook);
                 IsShown = false;
+                WasClosed = true;
                 RaiseEvent(new RoutedEventArgs(ClosedRoutedEvent));
             };
 
             Loaded += (_, __) =>
             {
+                Handle = new WindowInteropHelper(this).Handle;
+                hwndSource = HwndSource.FromHwnd(Handle);
+                hwndSource.AddHook(HwndHook);
                 IsShown = true;
                 RaiseEvent(new RoutedEventArgs(LoadedRoutedEvent));
             };
@@ -238,11 +250,11 @@ namespace Playnite.Controls
             };
         }
 
-        public WindowBase(string savePositionName) : this()
+        public WindowBase(string savePositionName, bool saveSize = true) : this()
         {
             if (PlayniteApplication.Current.AppSettings != null)
             {
-                positionHandler = new WindowPositionHandler(this, savePositionName, PlayniteApplication.Current.AppSettings.WindowPositions);
+                PositionHandler = new WindowPositionHandler(this, savePositionName, PlayniteApplication.Current.AppSettings.WindowPositions, saveSize);
             }
         }
 
@@ -348,6 +360,57 @@ namespace Playnite.Controls
         public void OnPropertyChanged([CallerMemberName]string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if (msg == Winuser.WM_HOTKEY)
+            {
+                var hotKeyId = wParam.ToInt32();
+                if (hotKeyHandlers.TryGetValue(hotKeyId, out var handler))
+                {
+                    handler();
+                    handled = true;
+                }
+            }
+
+            return IntPtr.Zero;
+        }
+
+        public void RegisterHotKeyHandler(int hotKeyId, HotKey hotKey, Action handler)
+        {
+            var success = User32.RegisterHotKey(Handle, hotKeyId, (uint)hotKey.Modifiers, (uint)KeyInterop.VirtualKeyFromKey(hotKey.Key));
+            if (success)
+            {
+                hotKeyHandlers.AddOrUpdate(hotKeyId, handler);
+            }
+            else
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+        }
+
+        public void UnregisterHotKeyHandler(int hotKeyId)
+        {
+            if (!hotKeyHandlers.ContainsKey(hotKeyId))
+            {
+                return;
+            }
+
+            if (WasClosed)
+            {
+                return;
+            }
+
+            var success = User32.UnregisterHotKey(Handle, hotKeyId);
+            if (success)
+            {
+                hotKeyHandlers.Remove(hotKeyId);
+            }
+            else
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
         }
     }
 }

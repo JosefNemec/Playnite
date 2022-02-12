@@ -23,24 +23,30 @@
     
     <StackPanel Margin="20">
         <TextBlock Text="{DynamicResource LOCSettingsTopPanelItems}" Style="{StaticResource BaseTextBlockStyle}" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelGeneralViewItem}"
-                  Content="{DynamicResource LOCSettingsTopPanelGeneralViewItem}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelGroupingItem}"
-                  Content="{DynamicResource LOCSettingsTopPanelGroupingItem}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelSortingItem}"
-                  Content="{DynamicResource LOCSettingsTopPanelSortingItem}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelFilterPresetsItem}"
-                  Content="{DynamicResource LOCSettingsTopPanelFilterPresetsItem}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelDetailsViewSwitch}"
-                  Content="{DynamicResource LOCDetailsViewLabel}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelGridViewSwitch}"
-                  Content="{DynamicResource LOCGridViewLabel}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelListViewSwitch}"
-                  Content="{DynamicResource LOCListViewLabel}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelExplorerSwitch}"
-                  Content="{DynamicResource LOCTopPanelExplorerSwitch}" Margin="0,15,0,0" />
-        <CheckBox IsChecked="{Binding Settings.ShowTopPanelSelectRandomGameButton}"
-                  Content="{DynamicResource LOCTopPanelSelectRandomGameButton}" Margin="0,15,0,0" />
+        <UniformGrid Columns="3">
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelGeneralViewItem}"
+                  Content="{DynamicResource LOCSettingsTopPanelGeneralViewItem}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelGroupingItem}"
+                  Content="{DynamicResource LOCSettingsTopPanelGroupingItem}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelSortingItem}"
+                  Content="{DynamicResource LOCSettingsTopPanelSortingItem}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelFilterPresetsItem}"
+                  Content="{DynamicResource LOCSettingsTopPanelFilterPresetsItem}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelDetailsViewSwitch}"
+                  Content="{DynamicResource LOCDetailsViewLabel}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelGridViewSwitch}"
+                  Content="{DynamicResource LOCGridViewLabel}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelListViewSwitch}"
+                  Content="{DynamicResource LOCListViewLabel}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelExplorerSwitch}"
+                  Content="{DynamicResource LOCTopPanelExplorerSwitch}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelSelectRandomGameButton}"
+                  Content="{DynamicResource LOCTopPanelSelectRandomGameButton}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelSearchBox}"
+                  Content="{DynamicResource LOCTopPanelSearchBox}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelSearchButton}"
+                  Content="{DynamicResource LOCTopPanelSearchButton}" Margin="5" />
+        </UniformGrid>
 
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCTopPanelPluginPanelPosition}"

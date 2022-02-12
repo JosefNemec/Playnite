@@ -42,6 +42,8 @@
       href: extensions/localizations.md
     - name: Manifest file
       href: extensions/extensionsManifest.md
+    - name: Search support
+      href: extensions/searchSupport.md
 
 - name: Themes
   items:

@@ -27,7 +27,8 @@ namespace Playnite.Common
             string stringFormat = null,
             object fallBackValue = null,
             int delay = 0,
-            bool isAsync = false)
+            bool isAsync = false,
+            object targetNullValue = null)
         {
             var binding = new Binding
             {
@@ -66,6 +67,11 @@ namespace Playnite.Common
             if (fallBackValue != null)
             {
                 binding.FallbackValue = fallBackValue;
+            }
+
+            if (targetNullValue != null)
+            {
+                binding.TargetNullValue = targetNullValue;
             }
 
             if (delay > 0)

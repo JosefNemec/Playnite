@@ -18,11 +18,13 @@ namespace Playnite.Windows
         private readonly string windowName;
         private readonly WindowPositions configuration;
         private bool ignoreChanges = false;
+        private readonly bool saveSize;
 
-        public WindowPositionHandler(Window window, string windowName, WindowPositions settings)
+        public WindowPositionHandler(Window window, string windowName, WindowPositions settings, bool saveSize = true)
         {
             this.window = window;
             this.windowName = windowName;
+            this.saveSize = saveSize;
             configuration = settings;
             window.SizeChanged += Window_SizeChanged;
             window.LocationChanged += Window_LocationChanged;
@@ -99,6 +101,11 @@ namespace Playnite.Windows
 
         private void SaveSize()
         {
+            if (!saveSize)
+            {
+                return;
+            }
+
             if (configuration == null || ignoreChanges)
             {
                 return;
@@ -174,16 +181,19 @@ namespace Playnite.Windows
                     ConstrainWindow((int)data.Position.X, (int)data.Position.Y);
                 }
 
-                if (data.Size != null)
+                if (saveSize)
                 {
-                    if (data.Size.X >= window.MinWidth)
+                    if (data.Size != null)
                     {
-                        window.Width = data.Size.X;
-                    }
+                        if (data.Size.X >= window.MinWidth)
+                        {
+                            window.Width = data.Size.X;
+                        }
 
-                    if (data.Size.Y >= window.MinHeight)
-                    {
-                        window.Height = data.Size.Y;
+                        if (data.Size.Y >= window.MinHeight)
+                        {
+                            window.Height = data.Size.Y;
+                        }
                     }
                 }
 
@@ -193,6 +203,11 @@ namespace Playnite.Windows
             {
                 ignoreChanges = false;
             }
+        }
+
+        public bool HasSavedData()
+        {
+            return configuration.Positions.ContainsKey(windowName);
         }
     }
 }

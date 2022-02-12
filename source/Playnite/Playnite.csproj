@@ -229,8 +229,12 @@
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="Common\M3U.cs" />
     <Compile Include="Common\Network.cs" />
+    <Compile Include="Controls\HotKeyBox.cs" />
     <Compile Include="Converters\TicksToTimeSpanConverter.cs" />
     <Compile Include="DateTimes.cs" />
+    <Compile Include="MenuItems.cs" />
+    <Compile Include="HotKey.cs" />
+    <Compile Include="MenuHelpers.cs" />
     <Compile Include="SortableNameConverter.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />
     <Compile Include="Controls\ExtendedDataGrid.cs" />
@@ -477,6 +481,7 @@
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
     <Compile Include="ViewModels\RandomGameSelectViewModel.cs" />
     <Compile Include="ViewModels\LicenseAgreementViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="WebView\CookieDestroyer.cs" />
     <Compile Include="WebView\OffscreenWebView.cs" />

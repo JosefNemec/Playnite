@@ -104,5 +104,15 @@ namespace Playnite.Native
 
         [DllImport(dllName, CharSet = CharSet.Auto)]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport(dllName, SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+
+        [DllImport(dllName, SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        [DllImport(dllName, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetCursorPos(out POINT lpPoint);
     }
 }

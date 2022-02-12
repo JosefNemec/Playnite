@@ -990,5 +990,17 @@ namespace Playnite.FullscreenApp.ViewModels
                     break;
             }
         }
+
+        public override void OpenSettings(int settingsPageIndex)
+        {
+        }
+
+        public override void EditGame(Game game)
+        {
+        }
+
+        public override void AssignCategories(Game game)
+        {
+        }
     }
 }

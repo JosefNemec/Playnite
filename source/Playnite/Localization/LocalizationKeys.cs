@@ -1038,6 +1038,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsUpdating = "LOCSettingsUpdating";
         /// <summary>
+        /// Search
+        /// </summary>
+        public const string SettingsSearch = "LOCSettingsSearch";
+        /// <summary>
         /// Import changes in library automatically
         /// </summary>
         public const string SettingsImportLabel = "LOCSettingsImportLabel";
@@ -3857,5 +3861,117 @@ namespace Playnite
         /// Select / Deselect all
         /// </summary>
         public const string ItemSelectionSelectDeselectAll = "LOCItemSelectionSelectDeselectAll";
+        /// <summary>
+        /// Open
+        /// </summary>
+        public const string Open = "LOCOpen";
+        /// <summary>
+        /// Activate
+        /// </summary>
+        public const string Activate = "LOCActivate";
+        /// <summary>
+        /// Assign
+        /// </summary>
+        public const string Assign = "LOCAssign";
+        /// <summary>
+        /// Start typing to search for games… [F1] for help
+        /// </summary>
+        public const string DefaultSearchDescription = "LOCDefaultSearchDescription";
+        /// <summary>
+        /// Starting with # brings up a list of available commands.
+        /// </summary>
+        public const string DefaultSearchHint = "LOCDefaultSearchHint";
+        /// <summary>
+        /// Include uninstalled games
+        /// </summary>
+        public const string SearchFilterUninstalled = "LOCSearchFilterUninstalled";
+        /// <summary>
+        /// Include hidden games
+        /// </summary>
+        public const string SearchFilterHidden = "LOCSearchFilterHidden";
+        /// <summary>
+        /// Uninstalled games included
+        /// </summary>
+        public const string SearchFilterUninstalledIncluded = "LOCSearchFilterUninstalledIncluded";
+        /// <summary>
+        /// Uninstalled games exclued
+        /// </summary>
+        public const string SearchFilterUninstalledExcluded = "LOCSearchFilterUninstalledExcluded";
+        /// <summary>
+        /// Hidden games included
+        /// </summary>
+        public const string SearchFilterHiddenIncluded = "LOCSearchFilterHiddenIncluded";
+        /// <summary>
+        /// Hidden games exclued
+        /// </summary>
+        public const string SearchFilterHiddenalledExcluded = "LOCSearchFilterHiddenalledExcluded";
+        /// <summary>
+        /// Play or Install
+        /// </summary>
+        public const string GameSearchItemActionPlay = "LOCGameSearchItemActionPlay";
+        /// <summary>
+        /// Go to details
+        /// </summary>
+        public const string GameSearchItemActionSwitchTo = "LOCGameSearchItemActionSwitchTo";
+        /// <summary>
+        /// Game menu
+        /// </summary>
+        public const string GameSearchItemActionOpenMenu = "LOCGameSearchItemActionOpenMenu";
+        /// <summary>
+        /// Edit game
+        /// </summary>
+        public const string GameSearchItemActionEdit = "LOCGameSearchItemActionEdit";
+        /// <summary>
+        /// Open search
+        /// </summary>
+        public const string OpenSearch = "LOCOpenSearch";
+        /// <summary>
+        /// Search box
+        /// </summary>
+        public const string TopPanelSearchBox = "LOCTopPanelSearchBox";
+        /// <summary>
+        /// Search button
+        /// </summary>
+        public const string TopPanelSearchButton = "LOCTopPanelSearchButton";
+        /// <summary>
+        /// Primary game action
+        /// </summary>
+        public const string SearchSettingsPrimaryAction = "LOCSearchSettingsPrimaryAction";
+        /// <summary>
+        /// Secondary game action
+        /// </summary>
+        public const string SearchSettingsSecondaryAction = "LOCSearchSettingsSecondaryAction";
+        /// <summary>
+        /// CTRL-F opens global search instead of focusing search box
+        /// </summary>
+        public const string SearchSettingsKeyboardOpenSearch = "LOCSearchSettingsKeyboardOpenSearch";
+        /// <summary>
+        /// Save game filter settings between search sessions
+        /// </summary>
+        public const string SearchSettingsSaveFilter = "LOCSearchSettingsSaveFilter";
+        /// <summary>
+        /// Search providers
+        /// </summary>
+        public const string SearchSettingsSearchProviders = "LOCSearchSettingsSearchProviders";
+        /// <summary>
+        /// Default keyword
+        /// </summary>
+        public const string SearchSettingsDefaultKeyword = "LOCSearchSettingsDefaultKeyword";
+        /// <summary>
+        /// Custom keyword
+        /// </summary>
+        public const string SearchSettingsCustomKeyword = "LOCSearchSettingsCustomKeyword";
+        /// <summary>
+        /// System wide shortcut
+        /// </summary>
+        public const string SearchSettingsSystemWideShortcut = "LOCSearchSettingsSystemWideShortcut";
+        /// <summary>
+        /// Playnite search
+        /// </summary>
+        public const string SearchTitle = "LOCSearchTitle";
+        /// <summary>
+        /// Extension Settings
+        /// </summary>
+        public const string ExtensionSettingsMenu = "LOCExtensionSettingsMenu";
     }
 }

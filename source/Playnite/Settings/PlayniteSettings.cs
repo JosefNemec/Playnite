@@ -23,9 +23,24 @@ using Playnite.SDK;
 using Microsoft.Win32;
 using Playnite.SDK.Models;
 using System.Collections.ObjectModel;
+using Playnite.SDK.Plugins;
 
 namespace Playnite
 {
+    public enum GameSearchItemAction
+    {
+        [Description(LOC.GameSearchItemActionPlay)]
+        Play,
+        [Description(LOC.GameSearchItemActionSwitchTo)]
+        SwitchTo,
+        [Description(LOC.GameSearchItemActionOpenMenu)]
+        OpenMenu,
+        [Description(LOC.GameSearchItemActionEdit)]
+        Edit,
+        [Description(LOC.None)]
+        None
+    }
+
     public enum AfterLaunchOptions
     {
         None,
@@ -1722,6 +1737,28 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelSearchButton = true;
+        public bool ShowTopPanelSearchButton
+        {
+            get => showTopPanelSearchButton;
+            set
+            {
+                showTopPanelSearchButton = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelSearchBox = true;
+        public bool ShowTopPanelSearchBox
+        {
+            get => showTopPanelSearchBox;
+            set
+            {
+                showTopPanelSearchBox = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double topPanelSectionSeparatorWidth = 15;
         public double TopPanelSectionSeparatorWidth
         {
@@ -1896,6 +1933,28 @@ namespace Playnite
         public DateTime LastAddonUpdateCheck { get; set; }
         public DateTime LastLibraryUpdateCheck { get; set; }
         public DateTime LastEmuLibraryUpdateCheck { get; set; }
+
+        private GameSearchItemAction primaryGameSearchItemAction = GameSearchItemAction.SwitchTo;
+        public GameSearchItemAction PrimaryGameSearchItemAction { get => primaryGameSearchItemAction; set => SetValue(ref primaryGameSearchItemAction, value); }
+
+        private GameSearchItemAction secondaryGameSearchItemAction = GameSearchItemAction.Play;
+        public GameSearchItemAction SecondaryGameSearchItemAction { get => secondaryGameSearchItemAction; set => SetValue(ref secondaryGameSearchItemAction, value); }
+
+        private bool globalSearchOpenWithLegacySearch = true;
+        public bool GlobalSearchOpenWithLegacySearch { get => globalSearchOpenWithLegacySearch; set => SetValue(ref globalSearchOpenWithLegacySearch, value); }
+
+        private bool saveGlobalSearchFilterSettings = true;
+        public bool SaveGlobalSearchFilterSettings { get => saveGlobalSearchFilterSettings; set => SetValue(ref saveGlobalSearchFilterSettings, value); }
+
+        private Dictionary<string, string> customSearchKeywrods = new Dictionary<string, string>();
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+        public Dictionary<string, string> CustomSearchKeywrods { get => customSearchKeywrods; set => SetValue(ref customSearchKeywrods, value); }
+
+        private GameSearchFilterSettings gameSearchFilterSettings = new GameSearchFilterSettings();
+        public GameSearchFilterSettings GameSearchFilterSettings { get => gameSearchFilterSettings; set => SetValue(ref gameSearchFilterSettings, value); }
+
+        private HotKey systemSearchHotkey;
+        public HotKey SystemSearchHotkey { get => systemSearchHotkey; set => SetValue(ref systemSearchHotkey, value); }
 
         [JsonIgnore]
         public static bool IsPortable
