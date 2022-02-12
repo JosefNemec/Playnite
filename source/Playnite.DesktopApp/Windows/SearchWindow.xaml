@@ -1,0 +1,82 @@
+﻿<c:WindowBase x:Class="Playnite.DesktopApp.Windows.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+        mc:Ignorable="d"
+        Style="{DynamicResource StandardWindowStyle}"
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="True"
+        Width="800" SizeToContent="Height" Topmost="True"
+        ShowMinimizeButton="False" ShowMaximizeButton="False">
+
+    <c:WindowBase.InputBindings>
+        <KeyBinding Command="{Binding CloseCommand}"
+                    Key ="Esc" />
+    </c:WindowBase.InputBindings>    
+
+    <c:WindowBase.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </c:WindowBase.Resources>
+
+    <DockPanel>
+        <TextBox Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"
+                 FontSize="20" DockPanel.Dock="Top"
+                 pbeh:FocusBahaviors.OnVisibilityFocus="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewKeyDown" >
+                    <prism:InvokeCommandAction Command="{Binding TextBoxKeyDownCommand}" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="PreviewKeyUp" >
+                    <prism:InvokeCommandAction Command="{Binding TextBoxKeyUpCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <ListBox DockPanel.Dock="Top" MaxHeight="500"
+                 SelectionMode="Single"
+                 pbeh:ScrollToSelectedBehavior.Enabled="True"
+                 SelectedItem="{Binding SelectedSearchItem, Mode=TwoWay}"
+                 ItemsSource="{Binding SearchResults}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Icon, Converter={StaticResource ImageStringToImageConverter}}" VerticalAlignment="Center"
+                               Height="32" Width="32" />
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!--<ItemsControl DockPanel.Dock="Top" MaxHeight="500"
+                      ItemsSource="{Binding SearchResults}"
+                      ScrollViewer.CanContentScroll="True"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      VirtualizingPanel.VirtualizationMode="Recycling">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Icon, Converter={StaticResource ImageStringToImageConverter}}" VerticalAlignment="Center"
+                               Height="32" Width="32" />
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5,0,0,0"
+                                   Style="{StaticResource BaseTextBlockStyle}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer Focusable="False" VerticalScrollBarVisibility="Auto">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>-->
+    </DockPanel>    
+</c:WindowBase>

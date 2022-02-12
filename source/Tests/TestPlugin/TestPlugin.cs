@@ -27,7 +27,18 @@ namespace TestPlugin
 
         public TestPlugin(IPlayniteAPI api) : base(api)
         {
-            Properties = new GenericPluginProperties { HasSettings = true };
+            Properties = new GenericPluginProperties
+            {
+                HasSettings = true,
+                Searches = new List<SearchSupportProperties>
+                {
+                    new SearchSupportProperties
+                    {
+                        Description = "test description goes here",
+                        Keyword = "test"
+                    }
+                }
+            };
             Settings = new TestPluginSettingsViewModel(this, api);
             AddCustomElementSupport(new AddCustomElementSupportArgs
             {
@@ -274,6 +285,14 @@ namespace TestPlugin
             //    Title = "Steam fields",
             //    Activated = () => Process.Start(@"steam://open/friends")
             //}
+        }
+
+        public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
+        {
+            if (args.Keyword != "test")
+            {
+                yield break;
+            }
         }
     }
 }

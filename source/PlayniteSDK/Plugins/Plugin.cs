@@ -6,12 +6,45 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
 {
+    public class GetSearchResultsArgs
+    {
+        public string Keyword { get; set; }
+        public string SearchTerm { get; set; }
+        public CancellationToken CancelToken { get; set; }
+    }
+
+    public class SearchItemAction
+    {
+        public string Name { get; set; }
+        public Action Action { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public class SearchItem : ObservableObject
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Icon { get; set; }
+        public SearchItemAction PrimaryAction { get; set; }
+        public SearchItemAction SecondaryAction { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
     /// <summary>
     ///
     /// </summary>
@@ -107,6 +140,12 @@ namespace Playnite.SDK.Plugins
         public string SettingsRoot { get; set; }
     }
 
+    public class SearchSupportProperties
+    {
+        public string Keyword { get; set; }
+        public string Description { get; set; }
+    }
+
     /// <summary>
     /// Represents plugin properties.
     /// </summary>
@@ -116,6 +155,8 @@ namespace Playnite.SDK.Plugins
         /// Gets or sets value indicating that the plugin provides user settings view.
         /// </summary>
         public bool HasSettings { get; set; }
+
+        public List<SearchSupportProperties> Searches { get; set; }
     }
 
     /// <summary>
@@ -432,6 +473,11 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <returns></returns>
         public virtual IEnumerable<TopPanelItem> GetTopPanelItems()
+        {
+            yield break;
+        }
+
+        public virtual IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
         {
             yield break;
         }

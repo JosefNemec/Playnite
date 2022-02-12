@@ -3,6 +3,7 @@ using Playnite.SDK;
 using Playnite.SDK.Exceptions;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -93,14 +94,20 @@ namespace Playnite.DesktopApp.ViewModels
         {
             OpenSearchCommand = new RelayCommand<object>((game) =>
             {
-                if (SearchOpened)
-                {
-                    // The binding sometimes breaks when main window is restored from minimized state.
-                    // This fixes it.
-                    SearchOpened = false;
-                }
+                //if (SearchOpened)
+                //{
+                //    // The binding sometimes breaks when main window is restored from minimized state.
+                //    // This fixes it.
+                //    SearchOpened = false;
+                //}
 
-                SearchOpened = true;
+                //SearchOpened = true;
+
+                new SearchViewModel(
+                    new SearchWindowFactory(),
+                    Database,
+                    Extensions,
+                    this).OpenSearch();
             }, new KeyGesture(Key.F, ModifierKeys.Control));
 
             ToggleExplorerPanelCommand = new RelayCommand<object>((game) =>

@@ -326,6 +326,9 @@
     <Compile Include="Windows\LibraryIntegrationsWindow.xaml.cs">
       <DependentUpon>LibraryIntegrationsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\SearchWindow.xaml.cs">
+      <DependentUpon>SearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ToolsConfigWindow.xaml.cs">
       <DependentUpon>ToolsConfigWindow.xaml</DependentUpon>
     </Compile>
@@ -1028,6 +1031,11 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Themes\Desktop\Default\Views\SearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1061,6 +1069,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\LibraryIntegrationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
