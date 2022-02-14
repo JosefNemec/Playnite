@@ -1222,12 +1222,6 @@ namespace Playnite.Database
                                 }
                             }
 
-                            if (!existingGame.GameActions.HasItems() && newGame.GameActions.HasItems())
-                            {
-                                existingGame.GameActions = new ObservableCollection<GameAction>(newGame.GameActions);
-                                existingGameUpdated = true;
-                            }
-
                             if (existingGameUpdated)
                             {
                                 Games.Update(existingGame);
