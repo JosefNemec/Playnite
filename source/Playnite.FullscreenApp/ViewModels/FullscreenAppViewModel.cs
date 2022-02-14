@@ -416,7 +416,14 @@ namespace Playnite.FullscreenApp.ViewModels
             var mouseInput = InputManager.Current?.PrimaryMouseDevice;
             if (mouseInput != null && mouseInput.LeftButton == MouseButtonState.Pressed)
             {
-                return;
+                if (e.OriginalSource is ListBoxItem listItem && listItem.DataContext is GamesCollectionViewEntry)
+                {
+                    // Click selecting a game on the main view is an exception
+                }
+                else
+                {
+                    return;
+                }
             }
 
             if (sender is UIElement elem && elem.IsVisible)
