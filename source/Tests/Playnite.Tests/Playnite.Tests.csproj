@@ -100,13 +100,13 @@
     <Compile Include="Database\EmulatorsCollectionTests.cs" />
     <Compile Include="Emulators\EmulationTests.cs" />
     <Compile Include="Emulators\EmulationDatabaseTests.cs" />
+    <Compile Include="Emulators\ScannerTests.cs" />
     <Compile Include="Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="ArchiveTests.cs" />
-    <Compile Include="GameDbTestWrapper.cs" />
+    <Compile Include="_TestTools\GameDbTestWrapper.cs" />
     <Compile Include="GameFieldComparerTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
-    <Compile Include="GoogleImageDownloaderTests.cs" />
     <Compile Include="ImageSourceManagerTests.cs" />
     <Compile Include="Database\GameDatabaseFileTests.cs" />
     <Compile Include="Database\GameDatabaseMigrationTests.cs" />
@@ -137,17 +137,17 @@
     <Compile Include="ProcessStarterTests.cs" />
     <Compile Include="SigningToolsTests.cs" />
     <Compile Include="SortableNameConverterTests.cs" />
-    <Compile Include="TestPlayniteApplication.cs" />
+    <Compile Include="_TestTools\TestPlayniteApplication.cs" />
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />
     <Compile Include="LocalizationTests.cs" />
     <Compile Include="Metadata\MetadataDownloaderDownloadTests.cs" />
-    <Compile Include="MockDialogsFactory.cs" />
-    <Compile Include="TestResourceProvider.cs" />
-    <Compile Include="MockWindowFactory.cs" />
+    <Compile Include="_TestTools\MockDialogsFactory.cs" />
+    <Compile Include="_TestTools\TestResourceProvider.cs" />
+    <Compile Include="_TestTools\MockWindowFactory.cs" />
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="PathsTests.cs" />
-    <Compile Include="PlayniteTests.cs" />
+    <Compile Include="_TestTools\PlayniteTests.cs" />
     <Compile Include="ProgramsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeFileEnumeratorTests.cs" />
@@ -158,7 +158,7 @@
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="System\ComputerTests.cs" />
     <Compile Include="System\ProcessExtensionsTests.cs" />
-    <Compile Include="TestsSetupClass.cs" />
+    <Compile Include="_TestTools\TestsSetupClass.cs" />
     <Compile Include="TimerTests.cs" />
     <Compile Include="Web\HttpDownloaderTests.cs" />
   </ItemGroup>
