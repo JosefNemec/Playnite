@@ -1125,115 +1125,118 @@ namespace Playnite.Database
 
         public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken)
         {
-            var statusSettings = GetCompletionStatusSettings();
-            bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
+            using (BufferedUpdate())
             {
-                var updated = false;
-                if ((game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus)) &&
-                    game.CompletionStatusId != statusSettings.PlayedStatus)
+                var statusSettings = GetCompletionStatusSettings();
+                bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
                 {
-                    game.CompletionStatusId = statusSettings.PlayedStatus;
-                    updated = true;
-                }
-                else if ((game.Playtime == 0 && game.CompletionStatusId == Guid.Empty) &&
-                    game.CompletionStatusId != statusSettings.DefaultStatus)
-                {
-                    game.CompletionStatusId = statusSettings.DefaultStatus;
-                    updated = true;
-                }
-
-                return updated;
-            }
-
-            if (library.Properties?.HasCustomizedGameImport == true)
-            {
-                var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
-                foreach (var game in importedGames)
-                {
-                    updateCompletionStatus(game, statusSettings);
-                }
-
-                return importedGames;
-            }
-            else
-            {
-                var addedGames = new List<Game>();
-                foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
-                {
-                    if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
+                    var updated = false;
+                    if ((game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus)) &&
+                        game.CompletionStatusId != statusSettings.PlayedStatus)
                     {
-                        logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
-                        continue;
+                        game.CompletionStatusId = statusSettings.PlayedStatus;
+                        updated = true;
+                    }
+                    else if ((game.Playtime == 0 && game.CompletionStatusId == Guid.Empty) &&
+                        game.CompletionStatusId != statusSettings.DefaultStatus)
+                    {
+                        game.CompletionStatusId = statusSettings.DefaultStatus;
+                        updated = true;
                     }
 
-                    var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
-                    if (existingGame == null)
+                    return updated;
+                }
+
+                if (library.Properties?.HasCustomizedGameImport == true)
+                {
+                    var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
+                    foreach (var game in importedGames)
                     {
-                        logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                        try
+                        updateCompletionStatus(game, statusSettings);
+                    }
+
+                    return importedGames;
+                }
+                else
+                {
+                    var addedGames = new List<Game>();
+                    foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
+                    {
+                        if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
                         {
-                            var importedGame = ImportGame(newGame, library.Id);
-                            addedGames.Add(importedGame);
-                            if (updateCompletionStatus(importedGame, statusSettings))
+                            logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
+                            continue;
+                        }
+
+                        var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
+                        if (existingGame == null)
+                        {
+                            logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                            try
                             {
-                                Games.Update(importedGame);
+                                var importedGame = ImportGame(newGame, library.Id);
+                                addedGames.Add(importedGame);
+                                if (updateCompletionStatus(importedGame, statusSettings))
+                                {
+                                    Games.Update(importedGame);
+                                }
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                logger.Error(e, "Failed to import game into database.");
                             }
                         }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                        else
                         {
-                            logger.Error(e, "Failed to import game into database.");
-                        }
-                    }
-                    else
-                    {
-                        var existingGameUpdated = false;
-                        if (existingGame.IsInstalled != newGame.IsInstalled)
-                        {
-                            existingGame.IsInstalled = newGame.IsInstalled;
-                            existingGameUpdated = true;
-                        }
-
-                        if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
-                        {
-                            existingGame.InstallDirectory = newGame.InstallDirectory;
-                            existingGameUpdated = true;
-                        }
-
-                        if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
-                           (newGame.Playtime > 0 && forcePlayTimeSync))
-                        {
-                            if (existingGame.Playtime != newGame.Playtime)
+                            var existingGameUpdated = false;
+                            if (existingGame.IsInstalled != newGame.IsInstalled)
                             {
-                                existingGame.Playtime = newGame.Playtime;
+                                existingGame.IsInstalled = newGame.IsInstalled;
                                 existingGameUpdated = true;
                             }
 
-                            if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                            if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
                             {
-                                existingGame.LastActivity = newGame.LastActivity;
+                                existingGame.InstallDirectory = newGame.InstallDirectory;
                                 existingGameUpdated = true;
                             }
 
-                            if (updateCompletionStatus(existingGame, statusSettings))
+                            if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
+                               (newGame.Playtime > 0 && forcePlayTimeSync))
                             {
+                                if (existingGame.Playtime != newGame.Playtime)
+                                {
+                                    existingGame.Playtime = newGame.Playtime;
+                                    existingGameUpdated = true;
+                                }
+
+                                if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                                {
+                                    existingGame.LastActivity = newGame.LastActivity;
+                                    existingGameUpdated = true;
+                                }
+
+                                if (updateCompletionStatus(existingGame, statusSettings))
+                                {
+                                    existingGameUpdated = true;
+                                }
+                            }
+
+                            if (!existingGame.GameActions.HasItems() && newGame.GameActions.HasItems())
+                            {
+                                existingGame.GameActions = new ObservableCollection<GameAction>(newGame.GameActions);
                                 existingGameUpdated = true;
                             }
-                        }
 
-                        if (!existingGame.GameActions.HasItems() && newGame.GameActions.HasItems())
-                        {
-                            existingGame.GameActions = new ObservableCollection<GameAction>(newGame.GameActions);
-                            existingGameUpdated = true;
-                        }
-
-                        if (existingGameUpdated)
-                        {
-                            Games.Update(existingGame);
+                            if (existingGameUpdated)
+                            {
+                                Games.Update(existingGame);
+                            }
                         }
                     }
-                }
 
-                return addedGames;
+                    return addedGames;
+                }
             }
         }
 
