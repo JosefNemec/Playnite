@@ -482,7 +482,7 @@ namespace Playnite.Emulators
             return resultRoms.Select(a => new ScannedGame { Name = a.Key, Roms = a.Value?.ToObservable() }).ToList();
         }
 
-        private void ScanDirectoryBase(
+        internal void ScanDirectoryBase(
             string directory,
             List<string> supportedExtensions,
             List<EmulationDatabase.EmulationDatabaseReader> databases,
@@ -606,10 +606,25 @@ namespace Playnite.Emulators
                     return;
                 }
 
-                var ext = Path.GetExtension(file).TrimStart('.');
-                if (ext.IsNullOrEmpty())
+                string ext = null;
+                foreach (var supportedExt in supportedExtensions)
                 {
-                    ext = "<none>";
+                    // This is done this way to support nested extensions like PICO-8's .p8.png
+                    if (file.EndsWith("." + supportedExt))
+                    {
+                        ext = supportedExt;
+                        break;
+                    }
+                    else if (supportedExt == "<none>" && Path.GetExtension(file).IsNullOrEmpty())
+                    {
+                        ext = "<none>";
+                        break;
+                    }
+                }
+
+                if (ext == null)
+                {
+                    continue;
                 }
 
                 if (!supportedExtensions.ContainsString(ext, StringComparison.OrdinalIgnoreCase))
@@ -659,7 +674,7 @@ namespace Playnite.Emulators
                     else
                     {
                         logger.Trace($"Detected rom: {file}");
-                        addRom(new ScannedRom(file));
+                        addRom(new ScannedRom(file, ext));
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -1045,6 +1060,20 @@ namespace Playnite.Emulators
             Name = new RomName(System.IO.Path.GetFileNameWithoutExtension(path));
         }
 
+        public ScannedRom(string path, string scannedExtension)
+        {
+            Path = path;
+            if (path.EndsWith("." + scannedExtension))
+            {
+                var fileName = System.IO.Path.GetFileName(path);
+                Name = new RomName(fileName.Substring(0, fileName.LastIndexOf("." + scannedExtension)));
+            }
+            else
+            {
+                Name = new RomName(System.IO.Path.GetFileNameWithoutExtension(path));
+            }
+        }
+
         public ScannedRom(string path, DatGame dbData, string dbDataSource)
         {
             Path = path;
@@ -1125,6 +1154,11 @@ namespace Playnite.Emulators
                 RemoveTrademarks().
                 Replace("_", " ").
                 Trim();
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
