@@ -44,6 +44,12 @@ namespace Playnite
             set
             {
                 width = value;
+                // Don't allow exteremly small size because it could lead to a user accidentely hiding the column by resizing: #2257
+                if (width < 25)
+                {
+                    width = 25;
+                }
+
                 OnPropertyChanged();
             }
         }
