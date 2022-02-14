@@ -4,6 +4,6 @@ Website: 'https://www.pj64-emu.com/'
 Profiles:
   - Name: Default
     StartupArguments: '"{ImagePath}"'
-    ImageExtensions: [rom, n64, v64, z64, jap, pal, usa, zip]
+    ImageExtensions: [rom, n64, v64, z64, jap, pal, usa, zip, 7z]
     Platforms: [nintendo_64]
     StartupExecutable: ^Project64\.exe$
