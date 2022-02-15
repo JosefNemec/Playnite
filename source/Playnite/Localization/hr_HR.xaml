@@ -278,7 +278,6 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCSettingsLayoutLabel">Raspored</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Napredno</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Cijeli zaslon</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Pružatelji</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Unos</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performanse</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metapodaci</sys:String>
@@ -555,12 +554,9 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Sačuvaj promjene</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Radnja za igru</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Dodaj radnju za igru</sys:String>
     <sys:String x:Key="LOCAddAction">Dodaj radnju</sys:String>
     <sys:String x:Key="LOCDeleteAction">Obriši radnju</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Ukloni radnju za igru</sys:String>
-    <sys:String x:Key="LOCOtherActions">Ostale radnje</sys:String>
     <sys:String x:Key="LOCAddGames">Dodaj igre</sys:String>
     <sys:String x:Key="LOCScanFolder">Skeniraj folder…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detektiraj instalirane igre</sys:String>

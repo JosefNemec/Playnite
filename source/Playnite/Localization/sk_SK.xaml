@@ -278,7 +278,6 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsLayoutLabel">Rozloženie</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Pokročilé</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Celá obrazovka</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Poskytovatelia</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Vstup</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Výkon</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadáta</sys:String>
@@ -560,12 +559,9 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Uložiť zmeny</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Akcia hrať</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Pridať akciu Hrať</sys:String>
     <sys:String x:Key="LOCAddAction">Pridať akciu</sys:String>
     <sys:String x:Key="LOCDeleteAction">Vymazať akciu</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Odstrániť akciu Hrať</sys:String>
-    <sys:String x:Key="LOCOtherActions">Ďalšie akcie</sys:String>
     <sys:String x:Key="LOCAddGames">Pridať hry</sys:String>
     <sys:String x:Key="LOCScanFolder">Prehľadať priečinok…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detegovať nainštalované</sys:String>

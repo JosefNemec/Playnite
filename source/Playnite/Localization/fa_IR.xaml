@@ -280,7 +280,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel">چیدمان</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">پیشرفته</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">تمام صفحه</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">تامین کننده ها</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">ورودی</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">عملکرد</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">فراداده</sys:String>
@@ -571,12 +570,9 @@
     <sys:String x:Key="LOCAddRom">اضافه کردن رام</sys:String>
     <sys:String x:Key="LOCSaveChanges">ذخیره تغییرات</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">بازیهای شبیه سازی شده از {0} وارد نشد.</sys:String>
-    <sys:String x:Key="LOCPlayAction">عمل اجرا</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">عمل اضافه کردن اجرا</sys:String>
     <sys:String x:Key="LOCAddAction">عمل افزودن</sys:String>
     <sys:String x:Key="LOCDeleteAction">عمل حذف</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">عمل حذف پخش</sys:String>
-    <sys:String x:Key="LOCOtherActions">دیگر عملیات</sys:String>
     <sys:String x:Key="LOCAddGames">افزودن بازی</sys:String>
     <sys:String x:Key="LOCScanFolder">اسکن پوشه…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">شناسایی نصب شده</sys:String>
@@ -676,9 +672,9 @@
     <sys:String x:Key="LOCUpdateCheckFailMessage">بررسی نسخه جدید انجام نشد.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">نسخه جدید یافت نشد، شما به روز هستید.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">بارگیری و نصب بروزرسانی انجام نشد.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">برخی از کارهای پس زمینه در حال حاضر در حال انجام است. آیا می خواهید آن را لغو کنید و به به روز رسانی ادامه دهید؟</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">برخی از کارهای پس زمینه در حال حاضر در حال انجام است. آیا می خواهید آن را لغو کنید و از Playnite خارج شوید؟</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">برخی از کارهای پس زمینه در حال حاضر در حال انجام است. تغییر حالت کار را لغو می‌کند، آیا می‌خواهید تغییر دهید؟</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">به روزرسانی برای Playnite در دسترس است</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">بارگیری لیست تم</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">اعمال تم انتخابی</sys:String>

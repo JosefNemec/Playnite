@@ -280,7 +280,6 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot; forhindres spille
     <sys:String x:Key="LOCSettingsLayoutLabel">Utforming</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avansert</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullskjerm</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Leverandør</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Inndata</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Ytelse</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -573,12 +572,9 @@ Du kan prøve dette for å løse problemet:
     <sys:String x:Key="LOCAddRom">Legg til ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Lagre endringer</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Gjennomfør endringene i aktiverte felt for spill som redigeres.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Spillhandling</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Legg til spillhandling</sys:String>
     <sys:String x:Key="LOCAddAction">Legg til handling</sys:String>
     <sys:String x:Key="LOCDeleteAction">Slett handling</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Fjern spillhandling</sys:String>
-    <sys:String x:Key="LOCOtherActions">Andre handlinger</sys:String>
     <sys:String x:Key="LOCAddGames">Legg til spill</sys:String>
     <sys:String x:Key="LOCScanFolder">Søk gjennom mappe …</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Oppdag installert</sys:String>

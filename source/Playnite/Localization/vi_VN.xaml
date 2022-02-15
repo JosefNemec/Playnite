@@ -282,7 +282,6 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsLayoutLabel">Bố cục</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Nâng cao</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Toàn màn hình</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Các nhà cung cấp</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Đầu vào</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Hiệu suất</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Siêu dữ liệu</sys:String>
@@ -575,12 +574,9 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCAddRom">Thêm ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Lưu thay đổi</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Áp dụng các thay đổi trường cho trò chơi (đang) đang được chỉnh sửa.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Chơi hành động</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Thêm hành động mới</sys:String>
     <sys:String x:Key="LOCAddAction">Thêm Hành động</sys:String>
     <sys:String x:Key="LOCDeleteAction">Xóa bỏ</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Xóa bỏ hành động</sys:String>
-    <sys:String x:Key="LOCOtherActions">Hành động khác</sys:String>
     <sys:String x:Key="LOCAddGames">Thêm Trò chơi</sys:String>
     <sys:String x:Key="LOCScanFolder">Quét thư mục…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Phát hiện đã cài đặt</sys:String>

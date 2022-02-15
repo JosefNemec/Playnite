@@ -280,7 +280,6 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCSettingsLayoutLabel">Rozložení</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Pokročilé</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Celá Obrazovka</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Poskytovatelé</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Vstup</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Výkon</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -573,12 +572,9 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCAddRom">Přidat ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Uložit Změny</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Aplikovat změny polí pro hru (hry) které jsou upravovány.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Akce Hrát</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Přidat Akci Hrát</sys:String>
     <sys:String x:Key="LOCAddAction">Přidat Akci</sys:String>
     <sys:String x:Key="LOCDeleteAction">Odstranit Akci</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Odstranit Akci Hrát</sys:String>
-    <sys:String x:Key="LOCOtherActions">Ostatní Akce</sys:String>
     <sys:String x:Key="LOCAddGames">Přidat Hry</sys:String>
     <sys:String x:Key="LOCScanFolder">Skenovat Adresář…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detekovat Nainstalované</sys:String>

@@ -278,7 +278,6 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsLayoutLabel">Düzen</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Gelişmiş</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Tam Ekran</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Sağlayıcılar</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Girdi</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performans</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Üst Veri</sys:String>
@@ -572,12 +571,9 @@ Sorunu çözmeyi deneyebilirsiniz:
     <sys:String x:Key="LOCAddRom">ROM ekle</sys:String>
     <sys:String x:Key="LOCSaveChanges">Değişiklikleri Kaydet</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Alan değişikliklerini, düzenlenmekte olan oyun(lar)a uygulayın.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Oyna Eylemi</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Oyna Eylemi Ekle</sys:String>
     <sys:String x:Key="LOCAddAction">Eylem Ekle</sys:String>
     <sys:String x:Key="LOCDeleteAction">Eylemi Sil</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Oyna Eylemini Sil</sys:String>
-    <sys:String x:Key="LOCOtherActions">Diğer Eylemler</sys:String>
     <sys:String x:Key="LOCAddGames">Oyunları Ekle</sys:String>
     <sys:String x:Key="LOCScanFolder">Klasörü Tara…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Kurulu Olanları Algıla</sys:String>
@@ -677,9 +673,9 @@ Sorunu çözmeyi deneyebilirsiniz:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Yeni sürüm kontrol edilemedi.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Şu anda son sürümü kullanıyorsunuz.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Güncelleme indirilemediği için yüklenemedi.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Birkaç arka plan görevi şu anda devam ediyor. İptal edip güncellemeye devam etmek istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Birkaç arka plan görevi şu anda devam ediyor. İptal edip Playnite'tan çıkmak istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Birkaç arka plan görevi şu anda devam ediyor. Modlar arasında geçiş yapmak görevi iptal edecek. Yine de geçiş yapmak istiyor musunuz?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite için bir güncelleme mevcut</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Tema listesini yeniden yükle</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Seçilen temayı uygula</sys:String>

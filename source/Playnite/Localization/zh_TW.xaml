@@ -280,7 +280,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel">版面配置</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">進階設定</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">全螢幕</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">提供商</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">輸入</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">性能</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">元資料</sys:String>
@@ -573,12 +572,9 @@
     <sys:String x:Key="LOCAddRom">新增ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">儲存變更</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">套用已編輯的遊戲資訊欄位</sys:String>
-    <sys:String x:Key="LOCPlayAction">啟動動作</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">新增啟動動作</sys:String>
     <sys:String x:Key="LOCAddAction">新增動作</sys:String>
     <sys:String x:Key="LOCDeleteAction">刪除動作</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">移除啟動動作</sys:String>
-    <sys:String x:Key="LOCOtherActions">其他動作</sys:String>
     <sys:String x:Key="LOCAddGames">新增遊戲</sys:String>
     <sys:String x:Key="LOCScanFolder">掃描資料夾...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">找到已安裝</sys:String>

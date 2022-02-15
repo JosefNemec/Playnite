@@ -280,7 +280,6 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCSettingsLayoutLabel">Układ</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Zaawansowane</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pełny ekran</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Dostawcy</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Wprowadź</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Wydajność</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadane</sys:String>
@@ -575,12 +574,9 @@ Możesz spróbować rozwiązać ten problem:
     <sys:String x:Key="LOCAddRom">Dodaj ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Zapisz zmiany</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Zastosuj zmiany pola edytowanych gier.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Polecenie &quot;Graj&quot;</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Dodaj polecenie &quot;Graj&quot;</sys:String>
     <sys:String x:Key="LOCAddAction">Dodaj polecenie</sys:String>
     <sys:String x:Key="LOCDeleteAction">Usuń polecenie</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Usuń polecenie &quot;Graj&quot;</sys:String>
-    <sys:String x:Key="LOCOtherActions">Pozostałe polecenia</sys:String>
     <sys:String x:Key="LOCAddGames">Dodaj gry</sys:String>
     <sys:String x:Key="LOCScanFolder">Skanuj folder…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Wykryj zainstalowane</sys:String>

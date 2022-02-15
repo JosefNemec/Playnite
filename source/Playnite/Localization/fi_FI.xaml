@@ -279,7 +279,6 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsLayoutLabel">Asettelu</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Lisäasetukset</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Koko näyttö</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Toimittajat</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Syöte</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Suorituskyky</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -565,12 +564,9 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCAddRom">Lisää ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Tallenna muutokset</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Pelaa-toiminto</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Lisää Pelaa-toiminto</sys:String>
     <sys:String x:Key="LOCAddAction">Lisää toiminto</sys:String>
     <sys:String x:Key="LOCDeleteAction">Poista toiminto</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Poista Pelaa-toiminto</sys:String>
-    <sys:String x:Key="LOCOtherActions">Muut toiminnot</sys:String>
     <sys:String x:Key="LOCAddGames">Lisää pelejä</sys:String>
     <sys:String x:Key="LOCScanFolder">Skannaa hakemisto…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Havaitse asennetut</sys:String>

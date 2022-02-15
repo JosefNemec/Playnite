@@ -280,7 +280,6 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avanzate</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Schermo intero</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Provider</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Prestazioni</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadati</sys:String>
@@ -580,12 +579,9 @@ Puoi provare a risolvere il problema:
     <sys:String x:Key="LOCAddRom">Aggiungi ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Salva modifiche</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Applica modifica del campo al gioco/chi modificati.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Azione di avvio</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Aggiungi Azione di avvio</sys:String>
     <sys:String x:Key="LOCAddAction">Aggiungi Azione</sys:String>
     <sys:String x:Key="LOCDeleteAction">Cancella Azione</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Rimuovi Azione di avvio</sys:String>
-    <sys:String x:Key="LOCOtherActions">Altre Azioni</sys:String>
     <sys:String x:Key="LOCAddGames">Aggiungi giochi</sys:String>
     <sys:String x:Key="LOCScanFolder">Scansione cartella…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Rilevazione automatica</sys:String>

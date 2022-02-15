@@ -260,7 +260,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Täpsem</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Täisekraan</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel"></sys:String>
     <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Jõudlus</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metaandmed</sys:String>
@@ -528,12 +527,9 @@
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Salvesta muudatused</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction"></sys:String>
-    <sys:String x:Key="LOCAddPlayAction"></sys:String>
     <sys:String x:Key="LOCAddAction"></sys:String>
     <sys:String x:Key="LOCDeleteAction">Eemalda</sys:String>
     <sys:String x:Key="LOCRemovePlayAction"></sys:String>
-    <sys:String x:Key="LOCOtherActions"></sys:String>
     <sys:String x:Key="LOCAddGames">Lisa mängud</sys:String>
     <sys:String x:Key="LOCScanFolder">Skaneeri kaust…</sys:String>
     <sys:String x:Key="LOCDetectInstalled"></sys:String>

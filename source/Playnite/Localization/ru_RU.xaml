@@ -246,8 +246,8 @@
     <sys:String x:Key="LOCSettingsGridItemSpacing">Расстояние между элементами</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Рисовать фон элемента сетки</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина рамки</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource">Отсутствует источник значка игры</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">Отсутствует источник обложки игры</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Источник при отсутствии иконки игры</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Источник при отсутствии обложки игры</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Источник при отсутствии изображения игры</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Расстояние по вертикали до описания игр</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Сетка просмотра деталей положения</sys:String>
@@ -280,7 +280,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel">Настройка отображения</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Дополнительные</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Полноэкранный режим</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Сторонние клиенты</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Ввод</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Производительность</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Метаданные</sys:String>
@@ -296,7 +295,7 @@
     <sys:String x:Key="LOCSettingsStartInFullscreen">Запуск в полноэкранном режиме</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Асинхронная загрузка изображений</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Улучшает прокрутку игрового списка,но ухудшает скорость загрузки изображений.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры, если обложка отсутствует</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показывать название игры, если отсутствует обложка</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Показывать название игры в режиме обложек</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Затемнять неустановленные игры</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Отображать иконки в режиме списка</sys:String>
@@ -349,7 +348,7 @@
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite будет использовать доступные игровые скриншоты как фон, взамен фоновых изображений из магазина.
 Не применяется ретроспективно к существующим играм.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Принудительная синхронизация сыгранного времени со сторонними библиотеками</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружайте записанное время воспроизведения из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Всегда загружать записанное время игры из удаленной библиотеки во время синхронизации библиотеки, игнорируя время, записанное Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Включить поддержку контроллера в режиме рабочего стола</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Кнопка Guide открывает полноэкранный режим</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Автоматическая загрузка метаданных для недавно импортированных игр.</sys:String>
@@ -389,7 +388,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Автоматически закрывать следующие клиенты:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Авто Закрытие Клиентов</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">Список Исключений</sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Предупреждать при назначении слишком большого медиа игры</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Предупреждать если медиа данные игры слишком большого размера</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Команда открытия директории</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Предпочтительный возрастной рейтинг</sys:String>
     <sys:String x:Key="LOCStrechNone">Нету</sys:String>
@@ -575,12 +574,9 @@
     <sys:String x:Key="LOCAddRom">Добавить ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Сохранить изменения</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Применить изменения в полях к редактируемым играм.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Игровое действие</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Добавить игровое действие</sys:String>
     <sys:String x:Key="LOCAddAction">Добавить действие</sys:String>
     <sys:String x:Key="LOCDeleteAction">Удалить действие</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Удалить игровое действие</sys:String>
-    <sys:String x:Key="LOCOtherActions">Другие действия</sys:String>
     <sys:String x:Key="LOCAddGames">Добавить</sys:String>
     <sys:String x:Key="LOCScanFolder">Сканировать папку...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Из установленных...</sys:String>
@@ -609,9 +605,9 @@
     <sys:String x:Key="LOCInvalidURL">Неверный URL</sys:String>
     <sys:String x:Key="LOCDoNothing">Ничего</sys:String>
     <sys:String x:Key="LOCMinimize">Свернуть</sys:String>
-    <sys:String x:Key="LOCRestoreWindow">Раскрыть окно</sys:String>
+    <sys:String x:Key="LOCRestoreWindow">Развернуть</sys:String>
     <sys:String x:Key="LOCClose">Закрыть</sys:String>
-    <sys:String x:Key="LOCChange">Изменено</sys:String>
+    <sys:String x:Key="LOCChange">Изменить</sys:String>
     <sys:String x:Key="LOCAdvanced">Продвинутый</sys:String>
     <sys:String x:Key="LOCNever">Никогда</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Статус</sys:String>
@@ -1034,7 +1030,7 @@
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite работает с повышенными привилегиями (от имени администратора). Это не рекомендуется, так как это дает повышенные привилегии всем установленным расширениям и всем играм/приложениям, запущенным с Playnite!
 
 Больше информации на: https://playnite.link/adminfaq</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Показывать предупреждение, если Playnite работает с повышенным приоритетом</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Предупреждать, если Playnite работает с повышенными привилегиями</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Следующие дополнения были отмечены как потенциально проблемные либо из-за высокого влияния на стабильность/производительность, либо из-за проблем с безопасностью. Мы настоятельно рекомендуем удалить их:
         
 {0}
