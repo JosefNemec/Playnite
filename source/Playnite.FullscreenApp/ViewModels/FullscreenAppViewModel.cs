@@ -6,6 +6,7 @@ using Playnite.Database;
 using Playnite.FullscreenApp.Controls;
 using Playnite.FullscreenApp.Controls.Views;
 using Playnite.FullscreenApp.Windows;
+using Playnite.Input;
 using Playnite.Metadata;
 using Playnite.Plugins;
 using Playnite.SDK;
@@ -503,6 +504,11 @@ namespace Playnite.FullscreenApp.ViewModels
                         nameof(GamesCollectionViewEntry.FullscreenListItemCoverObject),
                         nameof(GamesCollectionViewEntry.DefaultFullscreenListItemCoverObject));
                 }
+            }
+
+            if (e.PropertyName == nameof(FullscreenSettings.SwapConfirmCancelButtons))
+            {
+                App.UpdateXInputBindings();
             }
         }
 
