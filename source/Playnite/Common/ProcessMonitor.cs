@@ -14,7 +14,12 @@ namespace Playnite.Common
 {
     public class ProcessMonitor : IDisposable
     {
-        public event EventHandler TreeStarted;
+        public class TreeStartedEventArgs
+        {
+            public int StartedId { get; set; }
+        }
+
+        public event EventHandler<TreeStartedEventArgs> TreeStarted;
         public event EventHandler TreeDestroyed;
 
         private SynchronizationContext execContext;
@@ -72,6 +77,7 @@ namespace Playnite.Common
             var startedCalled = false;
             var processStarted = false;
             var processFound = false;
+            var foundProcessId = 0;
             var failCount = 0;
             var matchProcString = familyName.Replace("_", @"_.+__");
 
@@ -94,6 +100,7 @@ namespace Playnite.Common
                             {
                                 processFound = true;
                                 processStarted = true;
+                                foundProcessId = process.Id;
                                 break;
                             }
                         }
@@ -108,7 +115,7 @@ namespace Playnite.Common
 
                 if (!alreadyRunning && processFound && !startedCalled)
                 {
-                    OnTreeStarted();
+                    OnTreeStarted(foundProcessId);
                     startedCalled = true;
                 }
 
@@ -157,6 +164,7 @@ namespace Playnite.Common
             watcherToken = new CancellationTokenSource();
             var startedCalled = false;
             var processStarted = false;
+            var foundProcessId = 0;
             var failCount = 0;
 
             while (true)
@@ -178,6 +186,7 @@ namespace Playnite.Common
                             {
                                 processFound = true;
                                 processStarted = true;
+                                foundProcessId = process.Id;
                                 break;
                             }
                         }
@@ -185,6 +194,7 @@ namespace Playnite.Common
                         {
                             processFound = true;
                             processStarted = true;
+                            foundProcessId = process.Id;
                             break;
                         }
                     }
@@ -198,7 +208,7 @@ namespace Playnite.Common
 
                 if (!alreadyRunning && processFound && !startedCalled)
                 {
-                    OnTreeStarted();
+                    OnTreeStarted(foundProcessId);
                     startedCalled = true;
                 }
 
@@ -222,6 +232,7 @@ namespace Playnite.Common
             watcherToken = new CancellationTokenSource();
             var startedCalled = false;
             var processStarted = false;
+            var foundProcessId = 0;
             var failCount = 0;
 
             while (true)
@@ -243,6 +254,7 @@ namespace Playnite.Common
                             {
                                 processFound = true;
                                 processStarted = true;
+                                foundProcessId = process.Id;
                                 break;
                             }
                         }
@@ -257,7 +269,7 @@ namespace Playnite.Common
 
                 if (!alreadyRunning && processFound && !startedCalled)
                 {
-                    OnTreeStarted();
+                    OnTreeStarted(foundProcessId);
                     startedCalled = true;
                 }
 
@@ -323,9 +335,9 @@ namespace Playnite.Common
             }
         }
 
-        private void OnTreeStarted()
+        private void OnTreeStarted(int processId)
         {
-            execContext.Post((a) => TreeStarted?.Invoke(this, EventArgs.Empty), null);
+            execContext.Post((a) => TreeStarted?.Invoke(this, new TreeStartedEventArgs { StartedId = processId }), null);
         }
 
         private void OnTreeDestroyed()
