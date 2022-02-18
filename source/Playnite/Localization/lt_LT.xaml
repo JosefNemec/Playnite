@@ -268,7 +268,6 @@ Jeigu norite padėti sutaisyti klaidą, atsiųskite diagnostine informaciną.Ač
     <sys:String x:Key="LOCSettingsLayoutLabel">Išdėstymas</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Išplėstiniai</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Viso ekrano rėžimas</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Šaltiniai</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Įvestis</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Efektyvumas</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metaduomenys</sys:String>
@@ -537,12 +536,9 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Išsaugoti pakeitimus</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Žaidimo veiksma</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Pridėti žaidimo veiksmą</sys:String>
     <sys:String x:Key="LOCAddAction">Pridėti veiksmą</sys:String>
     <sys:String x:Key="LOCDeleteAction">Pašalinti veiksmą</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Pašalinti žaidimo veiksmą</sys:String>
-    <sys:String x:Key="LOCOtherActions">Kiti veiksmai</sys:String>
     <sys:String x:Key="LOCAddGames">Pridėti žaidimus</sys:String>
     <sys:String x:Key="LOCScanFolder">Ieškoti aplanke…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Aptikti įrašytus</sys:String>

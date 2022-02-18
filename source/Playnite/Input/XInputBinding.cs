@@ -53,6 +53,31 @@ namespace Playnite.Input
 
     public class XInputGesture : InputGesture
     {
+        public static event EventHandler ConfirmationBindingChanged;
+        public static event EventHandler CancellationBindingChanged;
+
+        private static XInputButton confirmationBinding = XInputButton.A;
+        public static XInputButton ConfirmationBinding
+        {
+            get => confirmationBinding;
+            set
+            {
+                confirmationBinding = value;
+                ConfirmationBindingChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+
+        private static XInputButton cancellationBinding = XInputButton.B;
+        public static XInputButton CancellationBinding
+        {
+            get => cancellationBinding;
+            set
+            {
+                cancellationBinding = value;
+                CancellationBindingChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+
         private XInputButton button;
 
         public XInputGesture(XInputButton button)
@@ -73,6 +98,7 @@ namespace Playnite.Input
         }
     }
 
+    [System.Runtime.InteropServices.Guid("36CB2F69-F227-4165-8CEE-6C10BC575524")]
     public class XInputDevice : IDisposable
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
@@ -263,6 +289,23 @@ namespace Playnite.Input
             isDisposed = true;
         }
 
+        private uint MapPadToKeyboard(XInputButton input)
+        {
+            if (input == XInputGesture.ConfirmationBinding)
+            {
+                return Winuser.VK_RETURN;
+            }
+            else if (input == XInputGesture.CancellationBinding)
+            {
+                // I don't remember anymore why we don't map B to ESC, but it's probably because of some WPF FS mode hack BS
+                return 0;
+            }
+            else
+            {
+                return keyboardMap[input];
+            }
+        }
+
         private void ProcessState(GamePadState state, PlayerIndex playniteIndex)
         {
             lastState = state.PacketNumber;
@@ -365,14 +408,14 @@ namespace Playnite.Input
             {
                 SendXInput(button, true);
                 prevStates[playniteIndex][button] = ButtonState.Pressed;
-                SimulateKeyInput(keyboardMap[button], true);
+                SimulateKeyInput(MapPadToKeyboard(button), true);
             }
             else if (currentState == ButtonState.Released && prevStates[playniteIndex][button] == ButtonState.Pressed)
             {
                 ResetButtonResend(button);
                 SendXInput(button, false);
                 prevStates[playniteIndex][button] = ButtonState.Released;
-                SimulateKeyInput(keyboardMap[button], false);
+                SimulateKeyInput(MapPadToKeyboard(button), false);
             }
         }
 
@@ -384,14 +427,14 @@ namespace Playnite.Input
                 {
                     SendXInput(button, true);
                     prevStates[playniteIndex][button] = ButtonState.Pressed;
-                    SimulateKeyInput(keyboardMap[button], true);
+                    SimulateKeyInput(MapPadToKeyboard(button), true);
                 }
                 else if (currentState < 0.5f && prevStates[playniteIndex][button] == ButtonState.Pressed)
                 {
                     ResetButtonResend(button);
                     SendXInput(button, false);
                     prevStates[playniteIndex][button] = ButtonState.Released;
-                    SimulateKeyInput(keyboardMap[button], false);
+                    SimulateKeyInput(MapPadToKeyboard(button), false);
                 }
             }
             else
@@ -400,14 +443,14 @@ namespace Playnite.Input
                 {
                     SendXInput(button, true);
                     prevStates[playniteIndex][button] = ButtonState.Pressed;
-                    SimulateKeyInput(keyboardMap[button], true);
+                    SimulateKeyInput(MapPadToKeyboard(button), true);
                 }
                 else if (currentState > -0.5f && prevStates[playniteIndex][button] == ButtonState.Pressed)
                 {
                     ResetButtonResend(button);
                     SendXInput(button, false);
                     prevStates[playniteIndex][button] = ButtonState.Released;
-                    SimulateKeyInput(keyboardMap[button], false);
+                    SimulateKeyInput(MapPadToKeyboard(button), false);
                 }
             }
         }

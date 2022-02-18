@@ -280,7 +280,6 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Erweitert</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Vollbild</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Anbieter</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Eingabe</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Leistung</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadaten</sys:String>
@@ -387,7 +386,7 @@ Falls deaktiviert, werden Hintergrundbilder erst dann heruntergeladen, wenn sie 
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Nicht schließen bei Spielsitzungen kürzer als (in Sekunden)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Folgende Clients automatisch schließen:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Clients autom. schließen</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">Ausschlussliste importieren</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Import-Ausschlussliste</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Warnung anzeigen, wenn zu große Medieninhalte zugewiesen werden</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Befehl zum Öffnen von Ordnern</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Bevorzugte Organisation für Alterseinstufung</sys:String>
@@ -574,12 +573,9 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCAddRom">ROM hinzufügen</sys:String>
     <sys:String x:Key="LOCSaveChanges">Änderungen speichern</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Feldänderungen auf bearbeitete(s) Spiel(e) anwenden.</sys:String>
-    <sys:String x:Key="LOCPlayAction">»Spielen«-Aktion</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">»Spielen«-Aktion hinzufügen</sys:String>
     <sys:String x:Key="LOCAddAction">Aktion hinzufügen</sys:String>
     <sys:String x:Key="LOCDeleteAction">Aktion entfernen</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">»Spielen«-Aktion entfernen</sys:String>
-    <sys:String x:Key="LOCOtherActions">Andere Aktionen</sys:String>
     <sys:String x:Key="LOCAddGames">Spiele hinzufügen</sys:String>
     <sys:String x:Key="LOCScanFolder">Ordner durchsuchen …</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Installierte ermitteln</sys:String>
@@ -679,9 +675,9 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Fehler bei der Suche nach Aktualisierungen.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Keine neue Version gefunden. Playnite ist aktuell.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Aktualisierung konnte nicht heruntergeladen und installiert werden.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Ein Hintergrundprozess wird gerade ausgeführt. Möchtest du ihn abbrechen und mit der Aktualisierung fortfahren?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Ein Hintergrundprozess wird gerade ausgeführt. Möchtest du ihn abbrechen und Playnite beenden?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Ein Hintergrundprozess wird gerade ausgeführt. Wenn du den Modus wechselst, wird der Prozess abgebrochen. Möchtest du trotzdem wechseln?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Für Playnite ist eine Aktualisierung verfügbar</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Designliste erneut laden</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Ausgewähltes Design anwenden</sys:String>
@@ -832,7 +828,7 @@ Hintergründe: {2} Megapixel</sys:String>
     <sys:String x:Key="LOCWhatIsThis">Was ist das?</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">Bist du sicher, dass du das tun möchtest?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Gesamtspielzeit</sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime">Durchschnittliche Spielzeit</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">Durchschnittl. Spielzeit</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Höchstspielzeit</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Übersicht</sys:String>
     <sys:String x:Key="LOCSidebar">Seitenleiste</sys:String>

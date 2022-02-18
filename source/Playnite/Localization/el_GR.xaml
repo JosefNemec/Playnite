@@ -270,7 +270,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel"></sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Για Προχωρημένους</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Πλήρης Οθόνη</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Πάροχοι</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel"></sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel"></sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel"></sys:String>
@@ -299,10 +298,10 @@
     <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage"></sys:String>
-    <sys:String x:Key="LOCSettingsBlurHighQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsBlurHighQuality">Υψηλή Ποιότητα</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage"></sys:String>
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView"></sys:String>
-    <sys:String x:Key="LOCSettingsSkin"></sys:String>
+    <sys:String x:Key="LOCSettingsSkin">Θέμα</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Προφίλ Θέματος</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Θέμα Πλήρους Οθόνης</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Προφίλ θέματος πλήρους οθόνης</sys:String>
@@ -323,7 +322,7 @@
     <sys:String x:Key="LOCSettingsCreateThemes">Δημιουργία νέου θέματος</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Λήψη περισσότερων επεκτάσεων</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Δημιουργία νέας επέκτασης</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Βοηθήστε μας να μεταφράσουμε το Playnite</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Επανεκκίνηση Playnite;</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
@@ -539,12 +538,9 @@
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Αποθήκευση Αλλαγών</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction"></sys:String>
-    <sys:String x:Key="LOCAddPlayAction"></sys:String>
     <sys:String x:Key="LOCAddAction">Προσθέστε ενέργεια</sys:String>
     <sys:String x:Key="LOCDeleteAction">Διαγραφή ενέργειας</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Κατάργηση ενέργειας αναπαραγωγής</sys:String>
-    <sys:String x:Key="LOCOtherActions">Άλλες ενέργειες</sys:String>
     <sys:String x:Key="LOCAddGames">Προσθήκη παιχνιδιών</sys:String>
     <sys:String x:Key="LOCScanFolder">Σάρωση Φακέλου...</sys:String>
     <sys:String x:Key="LOCDetectInstalled"></sys:String>

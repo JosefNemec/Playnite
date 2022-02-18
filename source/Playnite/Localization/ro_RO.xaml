@@ -262,7 +262,6 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Orientare</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avansat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Ecran complet</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Furnizori</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Intrare</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performanță</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -530,12 +529,9 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Salvează Modificările</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Buton de Lansare</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Adăugare buton de lansare</sys:String>
     <sys:String x:Key="LOCAddAction">Adaugă Acţiune</sys:String>
     <sys:String x:Key="LOCDeleteAction">Șterge Acțiunea</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Ștergere buton de lansare</sys:String>
-    <sys:String x:Key="LOCOtherActions">Alte Acțiuni</sys:String>
     <sys:String x:Key="LOCAddGames">Adăugare Jocuri</sys:String>
     <sys:String x:Key="LOCScanFolder">Caută Folder-ul...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detectează instalările</sys:String>

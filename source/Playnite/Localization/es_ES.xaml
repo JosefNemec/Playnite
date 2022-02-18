@@ -280,7 +280,6 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCSettingsLayoutLabel">Disposición</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avanzado</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla Completa</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Proveedores</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Rendimiento</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadatos</sys:String>
@@ -575,12 +574,9 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCAddRom">Agregar rom</sys:String>
     <sys:String x:Key="LOCSaveChanges">Guardar Cambios</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Aplicar cambios de campo a los juegos que se están editando.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Acción de Jugar</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Añadir acción de Jugar</sys:String>
     <sys:String x:Key="LOCAddAction">Agregar Acción</sys:String>
     <sys:String x:Key="LOCDeleteAction">Borrar Acción</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Eliminar acción de Jugar</sys:String>
-    <sys:String x:Key="LOCOtherActions">Otras Acciones</sys:String>
     <sys:String x:Key="LOCAddGames">Agregar Juegos</sys:String>
     <sys:String x:Key="LOCScanFolder">Escanear Carpeta…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detectar Instalados</sys:String>

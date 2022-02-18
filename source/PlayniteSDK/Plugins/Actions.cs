@@ -258,6 +258,11 @@ namespace Playnite.SDK.Plugins
         internal PlayController Source { get; set; }
 
         /// <summary>
+        /// Gets or sets started process ID.
+        /// </summary>
+        public int StartedProcessId { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         public GameStartedEventArgs()

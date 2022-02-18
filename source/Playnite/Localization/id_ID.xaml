@@ -278,7 +278,6 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCSettingsLayoutLabel">Tata letak</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Opsi Lanjut</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Fullscreen</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Provider</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performa</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -548,12 +547,9 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Simpan Perubahan</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Tombol Mainkan</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Tambah Tombol Mainkan</sys:String>
     <sys:String x:Key="LOCAddAction">Tambah Aksi</sys:String>
     <sys:String x:Key="LOCDeleteAction">Hapus Aksi</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Hilangkan Tombol Mainkan</sys:String>
-    <sys:String x:Key="LOCOtherActions">Aksi Lainnya</sys:String>
     <sys:String x:Key="LOCAddGames">Tambah Game</sys:String>
     <sys:String x:Key="LOCScanFolder">Pindai Folder...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Deteksi yang Terinstal</sys:String>

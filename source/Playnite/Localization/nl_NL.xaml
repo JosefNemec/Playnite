@@ -282,7 +282,6 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCSettingsLayoutLabel">Opmaak</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Geavanceerd</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Volledig scherm</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Aanbieders</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Invoer</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Prestatie</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -577,12 +576,9 @@ U kunt proberen het probleem op te lossen:
     <sys:String x:Key="LOCAddRom">ROM toevoegen</sys:String>
     <sys:String x:Key="LOCSaveChanges">Sla Wijzigingen Op</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Wijzigingen in dit veld toepassen op spel(len) die bewerkt worden.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Speel Actie</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Voeg Speel Actie Toe</sys:String>
     <sys:String x:Key="LOCAddAction">Voeg Actie Toe</sys:String>
     <sys:String x:Key="LOCDeleteAction">Verwijder Actie</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Verwijder Speel Actie</sys:String>
-    <sys:String x:Key="LOCOtherActions">Andere Acties</sys:String>
     <sys:String x:Key="LOCAddGames">Voeg Spellen Toe</sys:String>
     <sys:String x:Key="LOCScanFolder">Scan Map...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detecteer Geïnstalleerd</sys:String>

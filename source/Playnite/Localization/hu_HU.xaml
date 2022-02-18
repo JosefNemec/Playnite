@@ -281,7 +281,6 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCSettingsLayoutLabel">Kinézet</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Speciális beállítások</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Teljesképernyős mód</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Kliensek</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Bevitel</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Teljesítmény</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metaadatok</sys:String>
@@ -574,12 +573,9 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCAddRom">Játék ROM hozzáadása</sys:String>
     <sys:String x:Key="LOCSaveChanges">Változások mentése</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Szerkesztett játék(ok) módosított mezőinek mentése.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Indítási művelet</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Indítási művelet hozzáadása</sys:String>
     <sys:String x:Key="LOCAddAction">Müvelet hozzáadása</sys:String>
     <sys:String x:Key="LOCDeleteAction">Művelet eltávolítása</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Indítási művelet eltávolítása</sys:String>
-    <sys:String x:Key="LOCOtherActions">Más műveletek</sys:String>
     <sys:String x:Key="LOCAddGames">Játékok hozzáadása</sys:String>
     <sys:String x:Key="LOCScanFolder">Mappa beolvasása...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Telepített játékok importálása</sys:String>

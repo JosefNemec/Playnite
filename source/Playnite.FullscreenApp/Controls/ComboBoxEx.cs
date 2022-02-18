@@ -27,26 +27,25 @@ namespace Playnite.FullscreenApp.Controls
         {
             if (e is XInputEventArgs xinput)
             {
-                switch (xinput.XButton)
+                if (xinput.XButton == XInputGesture.ConfirmationBinding)
                 {
-                    case XInputButton.A:
-                        if (IsDropDownOpen)
-                        {
-                            OnKeyDown(new KeyEventArgs(e.KeyboardDevice, e.InputSource, e.Timestamp, Key.Enter) { RoutedEvent = Keyboard.KeyDownEvent });
-                        }
-                        else
-                        {
-                            OnKeyDown(new KeyEventArgs(e.KeyboardDevice, e.InputSource, e.Timestamp, Key.F4) { RoutedEvent = Keyboard.KeyDownEvent });
-                        }
+                    if (IsDropDownOpen)
+                    {
+                        OnKeyDown(new KeyEventArgs(e.KeyboardDevice, e.InputSource, e.Timestamp, Key.Enter) { RoutedEvent = Keyboard.KeyDownEvent });
+                    }
+                    else
+                    {
+                        OnKeyDown(new KeyEventArgs(e.KeyboardDevice, e.InputSource, e.Timestamp, Key.F4) { RoutedEvent = Keyboard.KeyDownEvent });
+                    }
+                    e.Handled = true;
+                }
+                else if (xinput.XButton == XInputGesture.CancellationBinding)
+                {
+                    if (IsDropDownOpen)
+                    {
+                        OnKeyDown(new KeyEventArgs(e.KeyboardDevice, e.InputSource, e.Timestamp, Key.Escape) { RoutedEvent = Keyboard.KeyDownEvent });
                         e.Handled = true;
-                        break;
-                    case XInputButton.B:
-                        if (IsDropDownOpen)
-                        {
-                            OnKeyDown(new KeyEventArgs(e.KeyboardDevice, e.InputSource, e.Timestamp, Key.Escape) { RoutedEvent = Keyboard.KeyDownEvent });
-                            e.Handled = true;
-                        }
-                        break;
+                    }
                 }
             }
             else if (e.Key == Key.Enter)

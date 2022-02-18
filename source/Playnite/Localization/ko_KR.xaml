@@ -278,7 +278,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel">레이아웃</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">고급 설정</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">전체 화면</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">공급자</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">입력</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">성능</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">메타데이터</sys:String>
@@ -563,12 +562,9 @@
     <sys:String x:Key="LOCAddRom">ROM 추가</sys:String>
     <sys:String x:Key="LOCSaveChanges">변경 사항 저장</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">실행 액션</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">실행 액션 추가</sys:String>
     <sys:String x:Key="LOCAddAction">액션 추가</sys:String>
     <sys:String x:Key="LOCDeleteAction">액션 제거</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">실행 액션 제거</sys:String>
-    <sys:String x:Key="LOCOtherActions">다른 액션</sys:String>
     <sys:String x:Key="LOCAddGames">게임 추가</sys:String>
     <sys:String x:Key="LOCScanFolder">폴더 스캔...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">설치된 프로그램 감지</sys:String>
@@ -944,8 +940,8 @@
     <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalingQuality"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSelectFileTooltip"></sys:String>
-    <sys:String x:Key="LOCSelectDirectoryTooltip"></sys:String>
+    <sys:String x:Key="LOCSelectFileTooltip">파일 선택...</sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip">폴더 선택...</sys:String>
     <sys:String x:Key="LOCStartupScript"></sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart"></sys:String>
@@ -985,14 +981,17 @@
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner"></sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
-    <sys:String x:Key="LOCStartScan"></sys:String>
+    <sys:String x:Key="LOCStartScan">스캔하기</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite가 관리자 권한으로 실행되고 있습니다.
+설치된 확장 프로그램과 게임/앱에 높은 권한을 부여하기 때문에 추천하지 않습니다.
+
+더 많은 정보를 얻고 싶다면 https://playnite.link/adminfaq 를 방문해주세요.</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>

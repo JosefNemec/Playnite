@@ -283,7 +283,6 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avancerat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Helskärm</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Leverantörer</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Inmatning</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Prestanda</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -560,12 +559,9 @@ Var vänlig bifoga följande ID i din felanmälan: </sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Spara Ändringar</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Startalternativ</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Lägg till Startalternativ</sys:String>
     <sys:String x:Key="LOCAddAction">Lägg till Åtgärd</sys:String>
     <sys:String x:Key="LOCDeleteAction">Ta bort Åtgärd</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Ta bort Startalternativ</sys:String>
-    <sys:String x:Key="LOCOtherActions">Andra Åtgärder</sys:String>
     <sys:String x:Key="LOCAddGames">Lägg till Spel</sys:String>
     <sys:String x:Key="LOCScanFolder">Skanna katalog…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Uptäck installerade</sys:String>

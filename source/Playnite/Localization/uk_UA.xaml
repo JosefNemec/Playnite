@@ -279,7 +279,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel">Розташування</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Додатково</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Повноекранний режим</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Сторонні постачальники</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Ввід</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Швидкодія</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Метадані</sys:String>
@@ -574,12 +573,9 @@
     <sys:String x:Key="LOCAddRom">Додати ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Зберегти зміни</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Застосувати зміни поля гри/ігор, що редагуються.</sys:String>
-    <sys:String x:Key="LOCPlayAction">Дія &quot;Грати&quot;</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Додати дію &quot;Грати&quot;</sys:String>
     <sys:String x:Key="LOCAddAction">Додати дію</sys:String>
     <sys:String x:Key="LOCDeleteAction">Видалити дію</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Прибрати дію &quot;Грати&quot;</sys:String>
-    <sys:String x:Key="LOCOtherActions">Інші дії</sys:String>
     <sys:String x:Key="LOCAddGames">Додати Ігри</sys:String>
     <sys:String x:Key="LOCScanFolder">Сканувати теку...</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Виявити встановлені</sys:String>

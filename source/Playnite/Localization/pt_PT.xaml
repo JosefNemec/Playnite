@@ -279,7 +279,6 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsLayoutLabel">Disposição</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avançado</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Ecrã Inteiro</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Provedores</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Desempenho</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadados</sys:String>
@@ -556,12 +555,9 @@ Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Guardar Alterações</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Ação de Jogo</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Adicionar Ação de Jogo</sys:String>
     <sys:String x:Key="LOCAddAction">Adicionar Ação</sys:String>
     <sys:String x:Key="LOCDeleteAction">Apagar Ação</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Remover Ação de Jogo</sys:String>
-    <sys:String x:Key="LOCOtherActions">Outras Ações</sys:String>
     <sys:String x:Key="LOCAddGames">Adicionar Jogos</sys:String>
     <sys:String x:Key="LOCScanFolder">Examinar Pasta…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detetar Instalações</sys:String>

@@ -278,7 +278,6 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCSettingsLayoutLabel">Disposició</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Avançat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">Pantalla completa</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">Proveïdors</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Entrada</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Rendiment</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadades</sys:String>
@@ -564,12 +563,9 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
     <sys:String x:Key="LOCSaveChanges">Guardar canvis</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">Acció de Jugar</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">Afegeix Acció de Jugar</sys:String>
     <sys:String x:Key="LOCAddAction">Afegeix Acció</sys:String>
     <sys:String x:Key="LOCDeleteAction">Eliminar Acció</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Eliminar Acció de Jugar</sys:String>
-    <sys:String x:Key="LOCOtherActions">Altres Accions</sys:String>
     <sys:String x:Key="LOCAddGames">Afegeix jocs</sys:String>
     <sys:String x:Key="LOCScanFolder">Escanejar carpeta…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Detectar instal·lats</sys:String>

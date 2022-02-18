@@ -269,7 +269,6 @@
     <sys:String x:Key="LOCSettingsLayoutLabel">פריסה</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">מתקדם</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">מסך מלא</sys:String>
-    <sys:String x:Key="LOCSettingsProvidersLabel">ספקים</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">קלט</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">ביצועים</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">נתונים</sys:String>
@@ -546,12 +545,9 @@
     <sys:String x:Key="LOCAddRom">הוסף ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">שמור שינויים</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
-    <sys:String x:Key="LOCPlayAction">פעולת משחק</sys:String>
-    <sys:String x:Key="LOCAddPlayAction">הוסף פעולת משחק</sys:String>
     <sys:String x:Key="LOCAddAction">הוסף פעולה</sys:String>
     <sys:String x:Key="LOCDeleteAction">מחק פעולה</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">הסר פעולת משחק</sys:String>
-    <sys:String x:Key="LOCOtherActions">פעולות אחרות</sys:String>
     <sys:String x:Key="LOCAddGames">הוסף משחקים</sys:String>
     <sys:String x:Key="LOCScanFolder">סרוק תיקיה…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">גלה מותקנים</sys:String>
