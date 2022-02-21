@@ -98,6 +98,15 @@ namespace Playnite.FullscreenApp.Controls.Views
             }
 
             this.mainModel.AppSettings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
+            this.mainModel.PropertyChanged += MainModel_PropertyChanged;
+        }
+
+        private void MainModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(FullscreenAppViewModel.GameDetailsVisible))
+            {
+                SetDetailsElemBindings();
+            }
         }
 
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -460,10 +469,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                         mainModel,
                         nameof(FullscreenAppViewModel.GameDetailsVisible),
                         converter: new Converters.BooleanToVisibilityConverter());
-                    BindingTools.SetBinding(ElemGameDetails,
-                        FrameworkElement.DataContextProperty,
-                        mainModel,
-                        nameof(FullscreenAppViewModel.SelectedGame));
+                    SetDetailsElemBindings();
                 }
 
                 ElemGameStatus = Template.FindName("PART_ElemGameStatus", this) as FrameworkElement;
@@ -489,6 +495,26 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ApplicationMode.Fullscreen,
                     mainModel,
                     $"{nameof(FullscreenAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
+            }
+        }
+
+        private void SetDetailsElemBindings()
+        {
+            if (ElemGameDetails == null)
+            {
+                return;
+            }
+
+            if (mainModel.GameDetailsVisible)
+            {
+                BindingTools.SetBinding(ElemGameDetails,
+                    FrameworkElement.DataContextProperty,
+                    mainModel,
+                    nameof(FullscreenAppViewModel.SelectedGame));
+            }
+            else
+            {
+                ElemGameDetails.DataContext = null;
             }
         }
 
