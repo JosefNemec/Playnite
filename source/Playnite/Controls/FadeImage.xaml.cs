@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,6 +34,9 @@ namespace Playnite.Controls
 
         private CurrentImage currentImage = CurrentImage.None;
         private object currentSource = null;
+        private System.Timers.Timer sourceChangeTimer = new System.Timers.Timer() { AutoReset = false };
+        private object newSource;
+        private readonly SynchronizationContext context;
 
         internal Storyboard Image1FadeIn;
         internal Storyboard Image2FadeIn;
@@ -40,6 +44,8 @@ namespace Playnite.Controls
         internal Storyboard Image2FadeOut;
         internal Storyboard stateAnim;
         internal Storyboard BorderDarkenFadeOut;
+
+        public double SourceUpdateDelay { get; set; } = 0;
 
         #region AnimationEnabled
 
@@ -172,6 +178,7 @@ namespace Playnite.Controls
         public FadeImage()
         {
             InitializeComponent();
+            context = SynchronizationContext.Current;
             Image1FadeIn = (Storyboard)TryFindResource("Image1FadeIn");
             Image2FadeIn = (Storyboard)TryFindResource("Image2FadeIn");
             Image1FadeOut = (Storyboard)TryFindResource("Image1FadeOut");
@@ -180,6 +187,12 @@ namespace Playnite.Controls
             Image1FadeOut.Completed += Image1FadeOut_Completed;
             Image2FadeOut.Completed += Image2FadeOut_Completed;
             BorderDarkenFadeOut.Completed += BorderDarkenOut_Completed;
+            sourceChangeTimer.Elapsed += (_, __) => context.Send((___) => LoadNewSource(), null);
+        }
+
+        ~FadeImage()
+        {
+            sourceChangeTimer.Dispose();
         }
 
         private void Image1FadeOut_Completed(object sender, EventArgs e)
@@ -229,21 +242,32 @@ namespace Playnite.Controls
         private static void SourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             var control = (FadeImage)obj;
-            control.LoadNewSource(args.NewValue, args.OldValue);
+            control.newSource = args.NewValue;
+
+            if (control.SourceUpdateDelay > 0)
+            {
+                control.sourceChangeTimer.Enabled = false;
+                control.sourceChangeTimer.Interval = control.SourceUpdateDelay;
+                control.sourceChangeTimer.Enabled = true;
+            }
+            else
+            {
+                control.LoadNewSource();
+            }
         }
 
-        private async void LoadNewSource(object newSource, object oldSource)
+        private async void LoadNewSource()
         {
-            var blurAmount = BlurAmount;
-            var blurEnabled = IsBlurEnabled;
-            var highQuality = HighQualityBlur;
-            BitmapImage image = null;
-
+            sourceChangeTimer.Enabled = false;
             if (newSource?.Equals(currentSource) == true)
             {
                 return;
             }
 
+            var blurAmount = BlurAmount;
+            var blurEnabled = IsBlurEnabled;
+            var highQuality = HighQualityBlur;
+            BitmapImage image = null;
             currentSource = newSource;
             if (newSource != null)
             {

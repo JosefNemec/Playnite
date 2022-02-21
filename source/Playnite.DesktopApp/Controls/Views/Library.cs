@@ -168,6 +168,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 ((mainModel.AppSettings.ShowBackImageOnGridView && mainModel.AppSettings.ViewSettings.GamesViewType == DesktopView.Grid) ||
                 mainModel.AppSettings.ViewSettings.GamesViewType == DesktopView.Details))
             {
+                ImageBackground.SourceUpdateDelay = 300;
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,
                     mainModel,

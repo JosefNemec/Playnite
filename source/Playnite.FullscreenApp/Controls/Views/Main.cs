@@ -147,6 +147,7 @@ namespace Playnite.FullscreenApp.Controls.Views
 
             if (mainModel.AppSettings.Fullscreen.EnableMainBackgroundImage)
             {
+                ImageBackground.SourceUpdateDelay = 300;
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,
                     mainModel,
@@ -238,6 +239,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
                 if (ImageBackground != null)
                 {
+                    ImageBackground.SourceUpdateDelay = 300;
                     SetBackgroundBinding();
                     SetBackgroundEffect();
                 }
