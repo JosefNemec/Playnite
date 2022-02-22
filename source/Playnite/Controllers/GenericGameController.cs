@@ -88,6 +88,7 @@ namespace Playnite.Controllers
             {
                 emulator.InstallDir = Paths.FixSeparators(emulator.InstallDir.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath));
                 emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
+                emulator.InstallDir = emulator.InstallDir.TrimEnd(Path.DirectorySeparatorChar);
             }
 
             SourceGameAction = action;
@@ -96,7 +97,7 @@ namespace Playnite.Controllers
             var startupPath = "";
             var startupArgs = "";
             var startupDir = "";
-            var romPath = Game.ExpandVariables(action.SelectedRomPath, true);
+            var romPath = Game.ExpandVariables(action.SelectedRomPath, true, emulator.InstallDir, null);
             romPath = CheckPath(romPath, "ROM", FileSystemItem.File);
 
             if (currentEmuProfile is CustomEmulatorProfile emuProf)

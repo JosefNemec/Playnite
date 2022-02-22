@@ -173,11 +173,11 @@ namespace Playnite
             return game;
         }
 
-        public static Game ExpandGame(this Game game)
+        public static Game ExpandGame(this Game game, bool fixSeparators = false, string emulatorDir = null, string romPath = null)
         {
             var g = game.GetClone();
-            g.InstallDirectory = g.StringExpand(g.InstallDirectory);
-            g.Roms.ForEach(rom => rom.Path = g.StringExpand(rom.Path));
+            g.InstallDirectory = g.StringExpand(g.InstallDirectory, fixSeparators, emulatorDir, romPath);
+            g.Roms.ForEach(rom => rom.Path = g.StringExpand(rom.Path, fixSeparators, emulatorDir, romPath));
             return g;
         }
 
@@ -191,7 +191,7 @@ namespace Playnite
 
         public static string ExpandVariables(this Game game, string inputString, bool fixSeparators = false, string emulatorDir = null, string romPath = null)
         {
-            var g = game.ExpandGame();
+            var g = game.ExpandGame(fixSeparators, emulatorDir, romPath);
             return StringExpand(g, inputString, fixSeparators, emulatorDir, romPath);
         }
 
