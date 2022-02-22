@@ -44,6 +44,17 @@ namespace Playnite.FullscreenApp.ViewModels
         public ObservableTime CurrentTime { get; } = new ObservableTime();
         public ObservablePowerStatus PowerStatus { get; } = new ObservablePowerStatus();
 
+        private GameStatusViewModel gameStatusView;
+        public GameStatusViewModel GameStatusView
+        {
+            get => gameStatusView;
+            set
+            {
+                gameStatusView = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double windowLeft = 0;
         public double WindowLeft
         {
@@ -216,17 +227,6 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        private string gameStatusText;
-        public string GameStatusText
-        {
-            get => gameStatusText;
-            set
-            {
-                gameStatusText = value;
-                OnPropertyChanged();
-            }
-        }
-
         public bool GameDetailsButtonVisible => GameDetailsVisible == false && SelectedGame != null;
 
         private DatabaseExplorer databaseExplorer;
@@ -387,7 +387,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
             }
 
-            GameStatusText = null;
+            GameStatusView = null;
         }
 
         private void Controllers_Starting(object sender, OnGameStartingEventArgs e)
@@ -401,13 +401,28 @@ namespace Playnite.FullscreenApp.ViewModels
                 GameListFocused = false;
             }
 
+            if (SelectedGame?.Game.Id == e.Game.Id)
+            {
+                GameStatusView = new GameStatusViewModel(SelectedGame);
+            }
+            else
+            {
+                GameStatusView = new GameStatusViewModel(new GamesCollectionViewEntry(
+                    e.Game,
+                    GamesView.GetLibraryPlugin(e.Game),
+                    AppSettings));
+            }
+
             GameStatusVisible = true;
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Game.Name);
+            GameStatusView.GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Game.Name);
         }
 
         private void Controllers_Started(object sender, GameStartedEventArgs e)
         {
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Source.Game.Name);
+            if (GameStatusView != null)
+            {
+                GameStatusView.GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Source.Game.Name);
+            }
         }
 
         private void ElementGotFocusHandler(object sender, RoutedEventArgs e)

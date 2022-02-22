@@ -175,6 +175,7 @@
     <Compile Include="ViewModels\FullscreenAppViewModel_Commands.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameMenuViewModel.cs" />
+    <Compile Include="ViewModels\GameStatusViewModel.cs" />
     <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />

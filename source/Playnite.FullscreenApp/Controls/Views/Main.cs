@@ -483,7 +483,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(ElemGameStatus,
                         FrameworkElement.DataContextProperty,
                         mainModel,
-                        nameof(FullscreenAppViewModel.SelectedGame));
+                        nameof(FullscreenAppViewModel.GameStatusView));
                 }
 
                 SetListCommandBindings();
