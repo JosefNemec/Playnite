@@ -94,6 +94,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TestApp\TestAppProcInfo.cs">
+      <Link>_TestTools\TestAppProcInfo.cs</Link>
+    </Compile>
     <Compile Include="Api\PluginDescriptionTests.cs" />
     <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
@@ -281,6 +284,7 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)\Tests\TestGameLibrary\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\TestGameLibrary\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
-xcopy "$(SolutionDir)\Tests\TestPlugin\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\Tests\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt</PostBuildEvent>
+xcopy "$(SolutionDir)\Tests\TestPlugin\bin\$(ConfigurationName)" "$(TargetDir)\Extensions\Tests\" /e /y /exclude:$(SolutionDir)\..\build\ExtensionsRefIgnoreList.txt
+xcopy "$(SolutionDir)\Tests\TestApp\bin\$(ConfigurationName)" "$(TargetDir)\TestApp\" /e /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

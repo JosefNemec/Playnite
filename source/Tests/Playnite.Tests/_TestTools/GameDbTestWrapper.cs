@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.Database;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,6 +23,7 @@ namespace Playnite.Tests
             tempDir = TempDirectory.Create(true, Paths.GetSafePathName($"{method.DeclaringType.Name}_{method.Name}"));
             DbDirectory = tempDir.TempPath;
             DB = new GameDatabase(DbDirectory);
+            Game.DatabaseReference = DB;
 
             if (openDb)
             {

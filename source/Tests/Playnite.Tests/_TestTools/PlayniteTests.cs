@@ -13,15 +13,21 @@ using System.Threading.Tasks;
 
 namespace Playnite.Tests
 {
+    public static class TestPaths
+    {
+        public static string TestAppDir => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestApp");
+        public const string TestAppExeName = "TestApp.exe";
+        public static string TestAppExePath => Path.Combine(TestAppDir, TestAppExeName);
+        public const string TestAppAppInfoName = "appinfo.json";
+        public static string TestAppAppInfoPath => Path.Combine(TestAppDir, TestAppAppInfoName);
+    }
+
     public static class PlayniteTests
     {
-        public static string ResourcesPath
-        {
-            get
-            {
-                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources");
-            }
-        }
+        private static readonly string randomStringChars = "ABCDEFGHIJKLMNOPQRSTYVWXZabcdefghijklmnopqrstyvwxz0123456789";
+        private static readonly Random randomStringRandom = new Random();
+
+        public static string ResourcesPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources");
 
         public static string TempPath
         {
@@ -77,6 +83,26 @@ namespace Playnite.Tests
             api.Setup(a => a.Resources).Returns(new ResourceProvider());
             api.Setup(a => a.Notifications).Returns(notification.Object);
             return api;
+        }
+
+        public static string GetRandomString(int length)
+        {
+            if (length <= 0)
+            {
+                throw new ArgumentException("0 is not a valid length");
+            }
+
+            var randomSetLeng = randomStringChars.Length - 1;
+            var result = new StringBuilder(length);
+            lock (randomStringRandom)
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    result.Append(randomStringChars[randomStringRandom.Next(0, randomSetLeng)]);
+                }
+
+                return result.ToString();
+            }
         }
     }
 }
