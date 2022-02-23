@@ -93,9 +93,18 @@ namespace Playnite.Common
                 return path;
             }
 
+            var isUnc = path.StartsWith(@"\\");
             var newPath = path.Replace('\\', Path.DirectorySeparatorChar);
             newPath = newPath.Replace('/', Path.DirectorySeparatorChar);
-            return Regex.Replace(newPath, string.Format(@"\{0}+", Path.DirectorySeparatorChar), Path.DirectorySeparatorChar.ToString());
+            newPath = Regex.Replace(newPath, string.Format(@"\{0}+", Path.DirectorySeparatorChar), Path.DirectorySeparatorChar.ToString());
+            if (isUnc && newPath.StartsWith(@"\"))
+            {
+                return @"\" + newPath;
+            }
+            else
+            {
+                return newPath;
+            }
         }
 
         private static string Normalize(string path)
