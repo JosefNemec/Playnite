@@ -12,6 +12,9 @@ namespace Playnite.Common
 {
     public class Paths
     {
+        private const string longPathPrefix = @"\\?\";
+        private const string longPathUncPrefix = @"\\?\UNC\";
+
         public static string GetFinalPathName(string path)
         {
             var h = Kernel32.CreateFile(path,
@@ -214,6 +217,35 @@ namespace Playnite.Common
             {
                 return Shlwapi.PathMatchSpecExW(filePath, pattern, MatchPatternFlags.Normal) == 0;
             }
+        }
+
+        public static string FixPathLength(string path, bool forcePrefix = false)
+        {
+            if (path.IsNullOrWhiteSpace())
+            {
+                return path;
+            }
+
+            // Relative paths don't support long paths
+            // https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=cmd
+            if (!Paths.IsFullPath(path))
+            {
+                return path;
+            }
+
+            if ((path.Length >= 260 || forcePrefix) && !path.StartsWith(longPathPrefix))
+            {
+                if (path.StartsWith(@"\\"))
+                {
+                    return longPathUncPrefix + path.Substring(2);
+                }
+                else
+                {
+                    return longPathPrefix + path;
+                }
+            }
+
+            return path;
         }
     }
 }

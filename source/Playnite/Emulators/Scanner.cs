@@ -98,7 +98,7 @@ namespace Playnite.Emulators
                             {
                                 foreach (var reqFile in defProfile.ProfileFiles)
                                 {
-                                    if (!File.Exists(Path.Combine(currentDir, reqFile)))
+                                    if (!FileSystem.FileExists(Path.Combine(currentDir, reqFile)))
                                     {
                                         reqMet = false;
                                         break;
@@ -455,7 +455,7 @@ namespace Playnite.Emulators
             Action<string> fileScanCallback = null)
         {
             logger.Info($"Scanning emulated directory {directory}.");
-            if (!Directory.Exists(directory))
+            if (!FileSystem.DirectoryExists(directory))
             {
                 throw new Exception($"Can't scan emulation directory, {directory} doesn't exist.");
             }
@@ -918,7 +918,7 @@ namespace Playnite.Emulators
                 path = Path.GetFullPath(path);
             }
 
-            if (!File.Exists(path))
+            if (!FileSystem.FileExists(path))
             {
                 return false;
             }

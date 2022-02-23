@@ -131,5 +131,18 @@ namespace Playnite.Tests
             Assert.IsFalse(Paths.MathcesFilePattern(@"c:\test\aa.txt", @"d:\**\*.txt"));
             Assert.IsTrue(Paths.MathcesFilePattern(@"c:\test\aa.txt", ".doc;*.txt"));
         }
+
+        [Test]
+        public void FixPathLengthTests()
+        {
+            Assert.AreEqual(
+                @"\\?\d:\Users\dasdasdasd_opgjx5r\AppData\Roaming\Playnite\ExtensionsData\00000002-dbd1-46c6-b5d0-b1ba559d10e4\catalogcache\0ded1556336546bf849c9d28878ec86c_e24cb0ee3d1c4279b60100178b73db42_20210929-143303-REL_UPDATE_2_1010972_Shipping_1010972-deploy-20210930-092520.json",
+                Paths.FixPathLength(
+                    @"d:\Users\dasdasdasd_opgjx5r\AppData\Roaming\Playnite\ExtensionsData\00000002-dbd1-46c6-b5d0-b1ba559d10e4\catalogcache\0ded1556336546bf849c9d28878ec86c_e24cb0ee3d1c4279b60100178b73db42_20210929-143303-REL_UPDATE_2_1010972_Shipping_1010972-deploy-20210930-092520.json"));
+            Assert.AreEqual(
+                @"\\?\UNC\server\share\Users\dasdasdasd_opgjx5r\AppData\Roaming\Playnite\ExtensionsData\00000002-dbd1-46c6-b5d0-b1ba559d10e4\catalogcache\0ded1556336546bf849c9d28878ec86c_e24cb0ee3d1c4279b60100178b73db42_20210929-143303-REL_UPDATE_2_1010972_Shipping_1010972-deploy-20210930-092520.json",
+                Paths.FixPathLength(
+                    @"\\server\share\Users\dasdasdasd_opgjx5r\AppData\Roaming\Playnite\ExtensionsData\00000002-dbd1-46c6-b5d0-b1ba559d10e4\catalogcache\0ded1556336546bf849c9d28878ec86c_e24cb0ee3d1c4279b60100178b73db42_20210929-143303-REL_UPDATE_2_1010972_Shipping_1010972-deploy-20210930-092520.json"));
+        }
     }
 }

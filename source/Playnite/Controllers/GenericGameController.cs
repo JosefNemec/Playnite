@@ -151,7 +151,7 @@ namespace Playnite.Controllers
                 if (profileDef.ScriptStartup)
                 {
                     var def = EmulatorDefinition.GetDefition(emulator.BuiltInConfigId);
-                    if (def == null || !File.Exists(def.StartupScriptPath))
+                    if (def == null || !FileSystem.FileExists(def.StartupScriptPath))
                     {
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorStartupScriptNotFound));
                     }
@@ -249,7 +249,7 @@ namespace Playnite.Controllers
 
                 var expandedScript = Game.ExpandVariables(script);
                 var dir = Game.ExpandVariables(Game.InstallDirectory, true);
-                if (!dir.IsNullOrEmpty() && Directory.Exists(dir))
+                if (!dir.IsNullOrEmpty() && FileSystem.DirectoryExists(dir))
                 {
                     scriptRuntime.Execute(expandedScript, dir, scriptVars);
                 }
@@ -456,7 +456,7 @@ namespace Playnite.Controllers
 
                             // TODO switch to WatchUwpApp once we are building as 64bit app
                             //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
-                            if (Directory.Exists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
+                            if (FileSystem.DirectoryExists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
                             {
                                 procMon.WatchDirectoryProcesses(scanDirectory, false, true);
                             }
@@ -480,7 +480,7 @@ namespace Playnite.Controllers
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
+                        if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && FileSystem.DirectoryExists(gameClone.InstallDirectory))
                         {
                             InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc?.Id ?? 0 });
                             stopWatch = Stopwatch.StartNew();
@@ -521,7 +521,7 @@ namespace Playnite.Controllers
                 else if (action.TrackingMode == TrackingMode.Directory)
                 {
                     var watchDir = action.TrackingPath.IsNullOrEmpty() ? gameClone.InstallDirectory : action.TrackingPath;
-                    if (!watchDir.IsNullOrEmpty() && Directory.Exists(watchDir))
+                    if (!watchDir.IsNullOrEmpty() && FileSystem.DirectoryExists(watchDir))
                     {
                         stopWatch = Stopwatch.StartNew();
                         procMon.WatchDirectoryProcesses(watchDir, false);

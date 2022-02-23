@@ -385,7 +385,7 @@ namespace Playnite.Common
 
         public static T FromJsonFile<T>(string filePath) where T : class
         {
-            filePath = FileSystem.FixPathLength(filePath);
+            filePath = Paths.FixPathLength(filePath);
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 return FromJsonStream<T>(fs);
@@ -396,7 +396,7 @@ namespace Playnite.Common
         {
             try
             {
-                filePath = FileSystem.FixPathLength(filePath);
+                filePath = Paths.FixPathLength(filePath);
                 using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
                     deserialized = FromJsonStream<T>(fs);
@@ -415,7 +415,7 @@ namespace Playnite.Common
         {
             try
             {
-                filePath = FileSystem.FixPathLength(filePath);
+                filePath = Paths.FixPathLength(filePath);
                 using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
                     deserialized = FromJsonStream<T>(fs);
