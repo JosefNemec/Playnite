@@ -391,7 +391,7 @@
                         <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
 
                         <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,5,5,0"
-                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="7" StarRows="7"
+                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="8" StarRows="8"
                                      IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
                                      DataContext="{Binding SelectedScanner}">
                             <controls:GridEx.Resources>
@@ -452,6 +452,13 @@
                                       IsEnabled="{Binding IsChecked, ElementName=CheckExcludeOnlineFiles}"
                                       Grid.ColumnSpan="2" Margin="25,10,10,5"
                                       IsChecked="{Binding UseSimplifiedOnlineFileScan}" />
+                            
+                            <!--Use relative paths-->
+                            <CheckBox Content="{DynamicResource LOCEmuImportWithRelativePaths}"
+                                      ToolTip="{DynamicResource LOCEmuImportWithRelativePathsTooltip}"
+                                      ToolTipService.InitialShowDelay="200"
+                                      Grid.ColumnSpan="2" Margin="0,10,10,5"
+                                      IsChecked="{Binding ImportWithRelativePaths}"/>
                         </controls:GridEx>
 
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">

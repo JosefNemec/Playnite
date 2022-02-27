@@ -148,16 +148,14 @@ namespace Playnite.Emulators
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
         private readonly GameDatabase database;
-        private readonly List<string> importedFiles;
+        private List<string> importedFiles;
 
         public GameScanner(
             GameScannerConfig scanner,
-            GameDatabase database,
-            List<string> importedFiles)
+            GameDatabase database)
         {
             this.scanner = scanner;
             this.database = database;
-            this.importedFiles = importedFiles;
         }
 
         public List<ScannedGame> Scan(
@@ -176,6 +174,7 @@ namespace Playnite.Emulators
                 throw new Exception("Emulator not found.");
             }
 
+            importedFiles = database.GetImportedRomFiles(emulator.InstallDir);
             var globalScanConfig = database.GetGameScannersSettings();
             var crcExclusions = string.Join(";",
                 ListExtensions.Merge(globalScanConfig.CrcExcludeFileTypes, scanner.CrcExcludeFileTypes).
@@ -211,6 +210,7 @@ namespace Playnite.Emulators
 
             foreach (var game in games)
             {
+                game.SourceEmulator = emulator;
                 game.SourceConfig = scanner;
                 var assignedRegions = new List<EmulatedRegion>();
                 var assignedPlatforms = new List<EmulatedPlatform>();
@@ -989,6 +989,7 @@ namespace Playnite.Emulators
         private GameScannerConfig sourceConfig;
         private ReleaseDate? releaseDate;
         private ScriptScannedGame scriptSource;
+        private Emulator sourceEmulator;
         #endregion backing fields
 
         public bool Import                              { get => import; set => SetValue(ref import, value); }
@@ -999,6 +1000,7 @@ namespace Playnite.Emulators
         public GameScannerConfig SourceConfig           { get => sourceConfig; set => SetValue(ref sourceConfig, value); }
         public ReleaseDate? ReleaseDate                 { get => releaseDate; set => SetValue(ref releaseDate, value); }
         public ScriptScannedGame ScriptSource           { get => scriptSource; set => SetValue(ref scriptSource, value); }
+        public Emulator SourceEmulator                  { get => sourceEmulator; set => SetValue(ref sourceEmulator, value); }
 
         public Game ToGame()
         {
@@ -1030,16 +1032,38 @@ namespace Playnite.Emulators
             game.GameActions = new ObservableCollection<GameAction> { playAction };
             if (Roms.HasItems())
             {
-                var roms = Roms.Where(a => a.Import).ToList();
-                game.InstallDirectory = Paths.GetCommonDirectory(roms.Select(a => a.Path).ToArray());
+                var commonPath = Paths.GetCommonDirectory(Roms.Select(a => a.Path).ToArray());
                 game.Roms = new ObservableCollection<GameRom>();
-                foreach (var rom in roms)
+
+                var toReplace = string.Empty;
+                var varToReplace = string.Empty;
+                if (sourceConfig.ImportWithRelativePaths)
                 {
-                    var romPath = game.InstallDirectory.IsNullOrEmpty()
-                        ? rom.Path
-                        : rom.Path.Replace(game.InstallDirectory, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar);
-                    game.Roms.Add(new GameRom(rom.Name.DiscName ?? rom.Name.SanitizedName, romPath));
+                    var emuDir = GameExtensions.ExpandVariables(new Game(), SourceEmulator.InstallDir, true);
+                    if (commonPath.StartsWith(emuDir, StringComparison.OrdinalIgnoreCase))
+                    {
+                        varToReplace = ExpandableVariables.EmulatorDirectory + Path.DirectorySeparatorChar;
+                        toReplace = emuDir.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                    }
+                    else if (commonPath.StartsWith(PlaynitePaths.ProgramPath, StringComparison.OrdinalIgnoreCase))
+                    {
+                        varToReplace = ExpandableVariables.PlayniteDirectory + Path.DirectorySeparatorChar;
+                        toReplace = PlaynitePaths.ProgramPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                    }
                 }
+
+                if (sourceConfig.ImportWithRelativePaths && !toReplace.IsNullOrEmpty())
+                {
+                    game.InstallDirectory = commonPath.Replace(toReplace, varToReplace, StringComparison.OrdinalIgnoreCase);
+                }
+                else
+                {
+                    game.InstallDirectory = commonPath;
+                }
+
+                Roms.Where(a => a.Import).ForEach(rom => game.Roms.Add(new GameRom(
+                    rom.Name.DiscName ?? rom.Name.SanitizedName,
+                    commonPath.IsNullOrEmpty() ? rom.Path : rom.Path.Replace(commonPath, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))));
             }
 
             return game;

@@ -514,7 +514,6 @@ namespace Playnite.ViewModels
 
                 if (updateEmu)
                 {
-                    var importedRoms = Database.GetImportedRomFiles();
                     foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate).ToList())
                     {
                         if (token.IsCancellationRequested)
@@ -522,7 +521,7 @@ namespace Playnite.ViewModels
                             return addedGames;
                         }
 
-                        addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                        addedGames.AddRange(ImportEmulatedGames(scanConfig, token));
                     }
                 }
 
@@ -543,7 +542,7 @@ namespace Playnite.ViewModels
             }, AppSettings.DownloadMetadataOnImport);
         }
 
-        private List<Game> ImportEmulatedGames(GameScannerConfig scanConfig, List<string> importedFiles, CancellationToken token)
+        private List<Game> ImportEmulatedGames(GameScannerConfig scanConfig, CancellationToken token)
         {
             var addedGames = new List<Game>();
             if (token.IsCancellationRequested)
@@ -556,7 +555,7 @@ namespace Playnite.ViewModels
 
             try
             {
-                var scanned = new GameScanner(scanConfig, Database, importedFiles).Scan(
+                var scanned = new GameScanner(scanConfig, Database).Scan(
                     token,
                     out var newPlatforms,
                     out var newRegions).Select(a => a.ToGame()).ToList();
@@ -600,7 +599,7 @@ namespace Playnite.ViewModels
         {
             await UpdateLibraryData((token) =>
             {
-                return ImportEmulatedGames(config, Database.GetImportedRomFiles(), token);
+                return ImportEmulatedGames(config, token);
             }, AppSettings.DownloadMetadataOnImport);
         }
 
@@ -609,10 +608,9 @@ namespace Playnite.ViewModels
             await UpdateLibraryData((token) =>
             {
                 var addedGames = new List<Game>();
-                var importedRoms = Database.GetImportedRomFiles();
                 foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate))
                 {
-                    addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                    addedGames.AddRange(ImportEmulatedGames(scanConfig, token));
                 }
 
                 return addedGames;

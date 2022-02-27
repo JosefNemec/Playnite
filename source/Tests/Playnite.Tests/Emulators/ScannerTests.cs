@@ -24,7 +24,7 @@ namespace Playnite.Tests.Emulators
                 FileSystem.CreateFile(path2);
                 FileSystem.CreateFile(Path.Combine(tempPath.TempPath, "game 3.png"));
 
-                var scanner = new GameScanner(new SDK.Models.GameScannerConfig(), null, null);
+                var scanner = new GameScanner(new SDK.Models.GameScannerConfig(), null);
                 var scanResults = new Dictionary<string, List<ScannedRom>>();
                 scanner.ScanDirectoryBase(
                     tempPath.TempPath,

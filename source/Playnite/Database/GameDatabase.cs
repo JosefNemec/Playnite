@@ -1316,7 +1316,7 @@ namespace Playnite.Database
             fileLocks.TryRemove(filePath, out var removed);
         }
 
-        public List<string> GetImportedRomFiles()
+        public List<string> GetImportedRomFiles(string emulatorDir)
         {
             var importedRoms = new List<string>();
             foreach (var game in Games.Where(a => a.Roms.HasItems()))
@@ -1330,7 +1330,7 @@ namespace Playnite.Database
                             continue;
                         }
 
-                        var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
+                        var path = game.ExpandVariables(rom.Path, true, emulatorDir).ToLowerInvariant();
                         string absPath = null;
                         try
                         {

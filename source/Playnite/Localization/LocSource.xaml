@@ -1018,6 +1018,8 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuAutoScanConfigurations">Auto-scan configurations</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig">Save as auto-scan confguration</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Saves configuration for later use during library update. Saved configurations can be managed via "Configure Emulators" menu.</sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePaths">Import using relative paths</sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">If possible import game files using paths relative to Playnite's installation folder or emulator's installation folder.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Add scanner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Add saved scanner</sys:String>
     <sys:String x:Key="LOCStartScan">Start scan</sys:String>

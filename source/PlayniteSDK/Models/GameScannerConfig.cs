@@ -109,6 +109,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool importWithRelativePaths = true;
+        /// <summary>
+        /// Gets or sets value indicating whether game roms should be imported under relative paths if possible.
+        /// </summary>
+        public bool ImportWithRelativePaths
+        {
+            get => importWithRelativePaths;
+            set
+            {
+                importWithRelativePaths = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -148,6 +162,11 @@ namespace Playnite.SDK.Models
                 if (UseSimplifiedOnlineFileScan != tro.UseSimplifiedOnlineFileScan)
                 {
                     tro.UseSimplifiedOnlineFileScan = UseSimplifiedOnlineFileScan;
+                }
+
+                if (ImportWithRelativePaths != tro.ImportWithRelativePaths)
+                {
+                    tro.ImportWithRelativePaths = ImportWithRelativePaths;
                 }
             }
             else

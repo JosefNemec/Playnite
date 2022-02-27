@@ -185,6 +185,10 @@
                                               Margin="20,0,0,0"
                                               IsChecked="{Binding UseSimplifiedOnlineFileScan}" />
                                 </StackPanel>
+                                <CheckBox Content="{DynamicResource LOCEmuImportWithRelativePaths}"
+                                          ToolTip="{DynamicResource LOCEmuImportWithRelativePathsTooltip}"
+                                          ToolTipService.InitialShowDelay="200"
+                                          IsChecked="{Binding ImportWithRelativePaths}"/>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
                                           ToolTip="{DynamicResource LOCEmuSaveScanConfigTooltip}"
                                           ToolTipService.InitialShowDelay="200"

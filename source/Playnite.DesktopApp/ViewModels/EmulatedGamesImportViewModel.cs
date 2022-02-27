@@ -367,11 +367,10 @@ namespace Playnite.DesktopApp.ViewModels
             var scanString = resources.GetString(LOC.EmuWizardScanningSpecific);
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
-                var existingGame = database.GetImportedRomFiles();
                 foreach (GameScannerConfig config in ScannerConfigs)
                 {
                     args.Text = scanString.Format(config.Directory);
-                    GameList.AddRange(new GameScanner(config, database, existingGame).Scan(
+                    GameList.AddRange(new GameScanner(config, database).Scan(
                         args.CancelToken,
                         out newPlatforms,
                         out newRegions,
