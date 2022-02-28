@@ -141,7 +141,7 @@ namespace Playnite.Emulators
         public string Name { get; set; }
         public string Website { get; set; }
         public List<EmulatorDefinitionProfile> Profiles { get; set; }
-        public string DirectoryName { get; set; }
+        internal string DirectoryName { get; set; }
 
         private static readonly ILogger logger = LogManager.GetLogger();
         private static string emulatorDefDir => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Emulators");

@@ -104,6 +104,7 @@
     <Compile Include="Emulators\EmulationTests.cs" />
     <Compile Include="Emulators\EmulationDatabaseTests.cs" />
     <Compile Include="Emulators\ScannedGameTests.cs" />
+    <Compile Include="Emulators\EmulatorScannerTests.cs" />
     <Compile Include="Emulators\ScannerTests.cs" />
     <Compile Include="Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />

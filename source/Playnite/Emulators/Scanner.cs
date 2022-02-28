@@ -124,6 +124,11 @@ namespace Playnite.Emulators
                                     Profiles = new List<ScannedEmulator.ScannedEmulatorProfile>()
                                 };
 
+                                if (currentDir.StartsWith(PlaynitePaths.ProgramPath, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    currentEmulator.InstallDir = currentDir.Replace(PlaynitePaths.ProgramPath, ExpandableVariables.PlayniteDirectory, StringComparison.OrdinalIgnoreCase);
+                                }
+
                                 imported.Add(importId, currentEmulator);
                             }
 
