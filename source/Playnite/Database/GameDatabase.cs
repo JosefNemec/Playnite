@@ -1206,16 +1206,17 @@ namespace Playnite.Database
                                 existingGameUpdated = true;
                             }
 
-                            if (existingGame.LastActivity == null && newGame.LastActivity != null)
-                            {
-                                existingGame.LastActivity = newGame.LastActivity;
-                                existingGameUpdated = true;
-                            }
-
                             if (updateCompletionStatus(existingGame, statusSettings))
                             {
                                 existingGameUpdated = true;
                             }
+                        }
+
+                        if ((newGame.LastActivity != null && existingGame.LastActivity == null) ||
+                            (newGame.LastActivity > existingGame.LastActivity && forcePlayTimeSync))
+                        {
+                            existingGame.LastActivity = newGame.LastActivity;
+                            existingGameUpdated = true;
                         }
 
                         if (existingGameUpdated)
