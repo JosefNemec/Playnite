@@ -12,6 +12,7 @@ namespace Playnite.Tests
 {
     public class GameDbTestWrapper : IDisposable
     {
+        private readonly bool createdTempPath;
         private readonly TempDirectory tempDir;
         public readonly GameDatabase DB;
         public readonly string DbDirectory;
@@ -24,6 +25,20 @@ namespace Playnite.Tests
             DbDirectory = tempDir.TempPath;
             DB = new GameDatabase(DbDirectory);
             Game.DatabaseReference = DB;
+            createdTempPath = true;
+
+            if (openDb)
+            {
+                DB.OpenDatabase();
+            }
+        }
+
+        public GameDbTestWrapper(TempDirectory dbPath, bool openDb = true)
+        {
+            DbDirectory = dbPath.TempPath;
+            DB = new GameDatabase(DbDirectory);
+            Game.DatabaseReference = DB;
+            createdTempPath = false;
 
             if (openDb)
             {
@@ -34,7 +49,10 @@ namespace Playnite.Tests
         public void Dispose()
         {
             DB.Dispose();
-            tempDir.Dispose();
+            if (createdTempPath)
+            {
+                tempDir.Dispose();
+            }
         }
     }
 }

@@ -1044,7 +1044,7 @@ namespace Playnite.Emulators
                 var varToReplace = string.Empty;
                 if (sourceConfig.ImportWithRelativePaths)
                 {
-                    var emuDir = GameExtensions.ExpandVariables(new Game(), SourceEmulator.InstallDir, true);
+                    var emuDir = GameExtensions.ExpandVariables(new Game(), SourceEmulator.InstallDir, true) ?? string.Empty;
                     if (commonPath.StartsWith(emuDir, StringComparison.OrdinalIgnoreCase))
                     {
                         varToReplace = ExpandableVariables.EmulatorDirectory.EndWithDirSeparator();
@@ -1066,9 +1066,36 @@ namespace Playnite.Emulators
                     game.InstallDirectory = commonPath;
                 }
 
-                Roms.Where(a => a.Import).ForEach(rom => game.Roms.Add(new GameRom(
-                    rom.Name.DiscName ?? rom.Name.SanitizedName,
-                    commonPath.IsNullOrEmpty() ? rom.Path : rom.Path.Replace(commonPath, ExpandableVariables.InstallationDirectory.EndWithDirSeparator(), StringComparison.OrdinalIgnoreCase))));
+                foreach (var rom in Roms.Where(a => a.Import))
+                {
+                    var gameRom = new GameRom();
+                    if (rom.Name.DiscName.IsNullOrEmpty())
+                    {
+                        gameRom.Name = rom.Name.SanitizedName;
+                    }
+                    else
+                    {
+                        if (rom.Name.Properties.Count > 1)
+                        {
+                            gameRom.Name = rom.Name.DiscName + " - " + string.Join(" - ", rom.Name.Properties.Where(a => a != rom.Name.DiscName));
+                        }
+                        else
+                        {
+                            gameRom.Name = rom.Name.DiscName;
+                        }
+                    }
+
+                    if (commonPath.IsNullOrEmpty())
+                    {
+                        gameRom.Path = rom.Path;
+                    }
+                    else
+                    {
+                        gameRom.Path = rom.Path.Replace(commonPath, ExpandableVariables.InstallationDirectory.EndWithDirSeparator(), StringComparison.OrdinalIgnoreCase);
+                    }
+
+                    game.Roms.Add(gameRom);
+                }
             }
 
             return game;

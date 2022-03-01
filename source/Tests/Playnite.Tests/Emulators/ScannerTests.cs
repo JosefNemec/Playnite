@@ -1,11 +1,13 @@
 ﻿using NUnit.Framework;
 using Playnite.Common;
 using Playnite.Emulators;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.Tests.Emulators
@@ -39,6 +41,47 @@ namespace Playnite.Tests.Emulators
                 Assert.AreEqual(path1, scanResults["game 1"][0].Path);
                 Assert.AreEqual("game 2", scanResults["game 2"][0].Name.Name);
                 Assert.AreEqual(path2, scanResults["game 2"][0].Path);
+            }
+        }
+
+        [Test]
+        public void MultiDiskRegionTest() // #2573 bug
+        {
+            using (var tempPath = TempDirectory.Create())
+            using (var db = new GameDbTestWrapper(tempPath))
+            {
+                var isos = new List<string>
+                {
+                    Path.Combine(tempPath.TempPath, "test game (Europe) (Disc 1).iso"),
+                    Path.Combine(tempPath.TempPath, "test game (Europe) (Disc 2).iso"),
+                    Path.Combine(tempPath.TempPath, "test game (USA) (Disc 1).iso"),
+                    Path.Combine(tempPath.TempPath, "test game (USA) (Disc 2).iso"),
+                    Path.Combine(tempPath.TempPath, "test game (JP) (EE) (Disc 1).iso"),
+                    Path.Combine(tempPath.TempPath, "test game (JP) (EE) (Disc 2).iso"),
+                };
+
+                isos.ForEach(a => FileSystem.CreateFile(a));
+                var emu = TestAppTools.GetEmulatorObj();
+                db.DB.Emulators.Add(emu);
+                var config = new GameScannerConfig
+                {
+                    EmulatorId = emu.Id,
+                    EmulatorProfileId = emu.CustomProfiles[0].Id,
+                    Directory = tempPath.TempPath
+                };
+
+                var scanner = new GameScanner(config, db.DB);
+                var games = scanner.Scan(CancellationToken.None, out var newPlatforms, out var newRegions);
+
+                Assert.AreEqual(1, games.Count);
+                var game = games[0].ToGame();
+                Assert.AreEqual(6, game.Roms.Count);
+                Assert.AreEqual("Disc 1 - Europe", game.Roms[0].Name);
+                Assert.AreEqual("Disc 2 - Europe", game.Roms[1].Name);
+                Assert.AreEqual("Disc 1 - JP - EE", game.Roms[2].Name);
+                Assert.AreEqual("Disc 2 - JP - EE", game.Roms[3].Name);
+                Assert.AreEqual("Disc 1 - USA", game.Roms[4].Name);
+                Assert.AreEqual("Disc 2 - USA", game.Roms[5].Name);
             }
         }
     }
