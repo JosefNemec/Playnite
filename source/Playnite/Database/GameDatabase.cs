@@ -1209,25 +1209,21 @@ namespace Playnite.Database
 
                             if (playtimeSyncMode == PlaytimeSyncMode.Always)
                             {
-                                if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
-                                    (newGame.Playtime > 0 && forcePlayTimeSync))
+                                if (existingGame.Playtime != newGame.Playtime)
                                 {
-                                    if (existingGame.Playtime != newGame.Playtime)
-                                    {
-                                        existingGame.Playtime = newGame.Playtime;
-                                        existingGameUpdated = true;
-                                    }
+                                    existingGame.Playtime = newGame.Playtime;
+                                    existingGameUpdated = true;
+                                }
 
-                                    if (existingGame.LastActivity == null && newGame.LastActivity != null)
-                                    {
-                                        existingGame.LastActivity = newGame.LastActivity;
-                                        existingGameUpdated = true;
-                                    }
+                                if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                                {
+                                    existingGame.LastActivity = newGame.LastActivity;
+                                    existingGameUpdated = true;
+                                }
 
-                                    if (updateCompletionStatus(existingGame, statusSettings))
-                                    {
-                                        existingGameUpdated = true;
-                                    }
+                                if (updateCompletionStatus(existingGame, statusSettings))
+                                {
+                                    existingGameUpdated = true;
                                 }
                             }
 
