@@ -116,15 +116,9 @@ namespace Playnite.Input
             } = false;
         }
 
-        public bool SimulateNavigationKeys
-        {
-            get; set;
-        } = true;
-
-        public bool SimulateAllKeys
-        {
-            get; set;
-        } = false;
+        public bool SimulateNavigationKeys { get; set; } = true;
+        public bool SimulateAllKeys { get; set; } = false;
+        public bool PrimaryControllerOnly { get; set; } = false;
 
         private int pollingRate = 20;
         private int resendDelay = 700;
@@ -258,25 +252,28 @@ namespace Playnite.Input
                         await Task.Delay(pollingRate);
                     }
 
-                    state = GamePad.GetState(PlayerIndex.Two);
-                    if (state.IsConnected)
+                    if (!PrimaryControllerOnly)
                     {
-                        ProcessState(state, PlayerIndex.Two);
-                        await Task.Delay(pollingRate);
-                    }
+                        state = GamePad.GetState(PlayerIndex.Two);
+                        if (state.IsConnected)
+                        {
+                            ProcessState(state, PlayerIndex.Two);
+                            await Task.Delay(pollingRate);
+                        }
 
-                    state = GamePad.GetState(PlayerIndex.Three);
-                    if (state.IsConnected)
-                    {
-                        ProcessState(state, PlayerIndex.Three);
-                        await Task.Delay(pollingRate);
-                    }
+                        state = GamePad.GetState(PlayerIndex.Three);
+                        if (state.IsConnected)
+                        {
+                            ProcessState(state, PlayerIndex.Three);
+                            await Task.Delay(pollingRate);
+                        }
 
-                    state = GamePad.GetState(PlayerIndex.Four);
-                    if (state.IsConnected)
-                    {
-                        ProcessState(state, PlayerIndex.Four);
-                        await Task.Delay(pollingRate);
+                        state = GamePad.GetState(PlayerIndex.Four);
+                        if (state.IsConnected)
+                        {
+                            ProcessState(state, PlayerIndex.Four);
+                            await Task.Delay(pollingRate);
+                        }
                     }
 
                     await Task.Delay(pollingRate);

@@ -24,5 +24,8 @@
         <pctrls:CheckBoxEx x:Name="ToggleSwapConfirmCancel"
                            Content="{DynamicResource LOCSettingsSwapConfirmCancelButtons}"
                            Tag="{DynamicResource LOCSettingsSwapConfirmCancelButtonsDescriptions}"/>
+        <pctrls:CheckBoxEx x:Name="TogglePrimaryControllerOnly"
+                           Content="{DynamicResource LOCSettingsPrimaryControllerOnly}"
+                           Tag="{DynamicResource LOCSettingsPrimaryControllerOnlyDescription}"/>
     </StackPanel>
 </UserControl>

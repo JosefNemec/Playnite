@@ -63,6 +63,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 nameof(FullscreenSettings.SwapConfirmCancelButtons),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                TogglePrimaryControllerOnly,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.PrimaryControllerOnly),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
     }
 }

@@ -509,6 +509,13 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 FullscreenApplication.SetBackgroundSoundVolume(AppSettings.Fullscreen.IsMusicMuted ? 0f : AppSettings.Fullscreen.BackgroundVolume);
             }
+            else if (e.PropertyName == nameof(FullscreenSettings.PrimaryControllerOnly))
+            {
+                if (App.XInputDevice != null)
+                {
+                    App.XInputDevice.PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly;
+                }
+            }
 
             if (e.PropertyName == nameof(FullscreenSettings.HorizontalLayout) ||
                 e.PropertyName == nameof(FullscreenSettings.Columns) ||

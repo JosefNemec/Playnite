@@ -579,6 +579,21 @@ namespace Playnite
             }
         }
 
+        private bool primaryControllerOnly = false;
+        public bool PrimaryControllerOnly
+        {
+            get
+            {
+                return primaryControllerOnly;
+            }
+
+            set
+            {
+                primaryControllerOnly = value;
+                OnPropertyChanged();
+            }
+        }
+
         private AudioInterfaceApi audioInterfaceApi = AudioInterfaceApi.WASAPI;
         [RequiresRestart]
         public AudioInterfaceApi AudioInterfaceApi

@@ -39,11 +39,12 @@ namespace Playnite
         private bool resourcesReleased = false;
         private PipeService pipeService;
         private PipeServer pipeServer;
-        private XInputDevice xdevice;
         private System.Threading.Timer updateCheckTimer;
         private bool installingAddon = false;
         private AddonLoadError themeLoadError = AddonLoadError.None;
         private ThemeManifest customTheme;
+
+        public XInputDevice XInputDevice { get; private set; }
 
         private bool isActive;
         public bool IsActive
@@ -908,12 +909,13 @@ namespace Playnite
             {
                 try
                 {
-                    if (xdevice == null)
+                    if (XInputDevice == null)
                     {
-                        xdevice = new XInputDevice(InputManager.Current, this)
+                        XInputDevice = new XInputDevice(InputManager.Current, this)
                         {
                             SimulateAllKeys = false,
-                            SimulateNavigationKeys = true
+                            SimulateNavigationKeys = true,
+                            PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly
                         };
                     }
 
@@ -927,10 +929,10 @@ namespace Playnite
             }
             else
             {
-                if (xdevice != null)
+                if (XInputDevice != null)
                 {
-                    xdevice.Dispose();
-                    xdevice = null;
+                    XInputDevice.Dispose();
+                    XInputDevice = null;
                 }
             }
         }
