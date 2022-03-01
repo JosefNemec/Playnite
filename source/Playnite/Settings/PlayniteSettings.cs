@@ -55,6 +55,16 @@ namespace Playnite
         Custom
     }
 
+    public enum PlaytimeSyncMode
+    {
+        [Description(LOC.SettingsPlaytimeSyncModeAlways)]
+        Always,
+        [Description(LOC.SettingsPlaytimeSyncModeNewImportsOnly)]
+        NewImportsOnly,
+        [Description(LOC.SettingsPlaytimeSyncModeNever)]
+        Never
+    }
+
     public enum TrayIconType
     {
         [Description("TrayIcon")]
@@ -1691,6 +1701,17 @@ namespace Playnite
             set
             {
                 imageScalerMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlaytimeSyncMode playtimeSyncMode = PlaytimeSyncMode.NewImportsOnly;
+        public PlaytimeSyncMode PlaytimeSyncMode
+        {
+            get => playtimeSyncMode;
+            set
+            {
+                playtimeSyncMode = value;
                 OnPropertyChanged();
             }
         }

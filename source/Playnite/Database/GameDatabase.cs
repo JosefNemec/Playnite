@@ -1123,7 +1123,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken, PlaytimeSyncMode playtimeSyncMode)
         {
             using (BufferedUpdate())
             {
@@ -1174,6 +1174,12 @@ namespace Playnite.Database
                             logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
                             try
                             {
+                                if ((newGame.Playtime != 0) && (playtimeSyncMode != PlaytimeSyncMode.Always ||
+                                    playtimeSyncMode != PlaytimeSyncMode.NewImportsOnly))
+                                {
+                                    newGame.Playtime = 0;
+                                }
+                                
                                 var importedGame = ImportGame(newGame, library.Id);
                                 addedGames.Add(importedGame);
                                 if (updateCompletionStatus(importedGame, statusSettings))
@@ -1201,24 +1207,27 @@ namespace Playnite.Database
                                 existingGameUpdated = true;
                             }
 
-                            if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
-                               (newGame.Playtime > 0 && forcePlayTimeSync))
+                            if (playtimeSyncMode == PlaytimeSyncMode.Always)
                             {
-                                if (existingGame.Playtime != newGame.Playtime)
+                                if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
+                                    (newGame.Playtime > 0 && forcePlayTimeSync))
                                 {
-                                    existingGame.Playtime = newGame.Playtime;
-                                    existingGameUpdated = true;
-                                }
+                                    if (existingGame.Playtime != newGame.Playtime)
+                                    {
+                                        existingGame.Playtime = newGame.Playtime;
+                                        existingGameUpdated = true;
+                                    }
 
-                                if (existingGame.LastActivity == null && newGame.LastActivity != null)
-                                {
-                                    existingGame.LastActivity = newGame.LastActivity;
-                                    existingGameUpdated = true;
-                                }
+                                    if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                                    {
+                                        existingGame.LastActivity = newGame.LastActivity;
+                                        existingGameUpdated = true;
+                                    }
 
-                                if (updateCompletionStatus(existingGame, statusSettings))
-                                {
-                                    existingGameUpdated = true;
+                                    if (updateCompletionStatus(existingGame, statusSettings))
+                                    {
+                                        existingGameUpdated = true;
+                                    }
                                 }
                             }
 

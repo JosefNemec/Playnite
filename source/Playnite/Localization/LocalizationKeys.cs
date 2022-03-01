@@ -1266,13 +1266,25 @@ namespace Playnite
         /// </summary>
         public const string BackgroundImageScreenOptionTooltip = "LOCBackgroundImageScreenOptionTooltip";
         /// <summary>
-        /// Prioritize play time for supported libraries
+        /// Sync playtime of games in library:
         /// </summary>
-        public const string SettingsForceDownloadPlaynite = "LOCSettingsForceDownloadPlaynite";
+        public const string SettingsPlaytimeSyncMode = "LOCSettingsPlaytimeSyncMode";
         /// <summary>
-        /// Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.
+        /// Configures when should Playnite sync the playtime reported by libraries for games in Playnite database.
         /// </summary>
-        public const string SettingsForceDownloadPlayniteTooltip = "LOCSettingsForceDownloadPlayniteTooltip";
+        public const string SettingsPlaytimeSyncModeTooltip = "LOCSettingsPlaytimeSyncModeTooltip";
+        /// <summary>
+        /// Always
+        /// </summary>
+        public const string SettingsPlaytimeSyncModeAlways = "LOCSettingsPlaytimeSyncModeAlways";
+        /// <summary>
+        /// Only for newly imported games
+        /// </summary>
+        public const string SettingsPlaytimeSyncModeNewImportsOnly = "LOCSettingsPlaytimeSyncModeNewImportsOnly";
+        /// <summary>
+        /// Never
+        /// </summary>
+        public const string SettingsPlaytimeSyncModeNever = "LOCSettingsPlaytimeSyncModeNever";
         /// <summary>
         /// Enable controller support in Desktop Mode
         /// </summary>
@@ -3262,6 +3274,10 @@ namespace Playnite
         /// </summary>
         public const string ActionTrackingModeDirectory = "LOCActionTrackingModeDirectory";
         /// <summary>
+        /// Original process
+        /// </summary>
+        public const string ActionTrackingOriginalProcess = "LOCActionTrackingOriginalProcess";
+        /// <summary>
         /// Log trace messages
         /// </summary>
         public const string DevelTraceLogEnable = "LOCDevelTraceLogEnable";
@@ -3406,6 +3422,22 @@ namespace Playnite
         /// </summary>
         public const string SettingsSwapMainViewXAButtonsDescriptions = "LOCSettingsSwapMainViewXAButtonsDescriptions";
         /// <summary>
+        /// Swap confirmation/cancelation button binding
+        /// </summary>
+        public const string SettingsSwapConfirmCancelButtons = "LOCSettingsSwapConfirmCancelButtons";
+        /// <summary>
+        /// Inverts default A button binding for confirmationa and B for cancellation.
+        /// </summary>
+        public const string SettingsSwapConfirmCancelButtonsDescriptions = "LOCSettingsSwapConfirmCancelButtonsDescriptions";
+        /// <summary>
+        /// Primary controller only
+        /// </summary>
+        public const string SettingsPrimaryControllerOnly = "LOCSettingsPrimaryControllerOnly";
+        /// <summary>
+        /// Only accept inputs from primary controller when enabled.
+        /// </summary>
+        public const string SettingsPrimaryControllerOnlyDescription = "LOCSettingsPrimaryControllerOnlyDescription";
+        /// <summary>
         /// Interface volume
         /// </summary>
         public const string SettingsInterfaceVolume = "LOCSettingsInterfaceVolume";
@@ -3465,6 +3497,10 @@ namespace Playnite
         /// Caps
         /// </summary>
         public const string TextInputCapitalize = "LOCTextInputCapitalize";
+        /// <summary>
+        /// Space
+        /// </summary>
+        public const string TextInputSpace = "LOCTextInputSpace";
         /// <summary>
         /// Image rendering scaler
         /// </summary>
@@ -3642,6 +3678,14 @@ namespace Playnite
         /// </summary>
         public const string EmuSaveScanConfigTooltip = "LOCEmuSaveScanConfigTooltip";
         /// <summary>
+        /// Import using relative paths
+        /// </summary>
+        public const string EmuImportWithRelativePaths = "LOCEmuImportWithRelativePaths";
+        /// <summary>
+        /// If possible import game files using paths relative to Playnite's installation folder or emulator's installation folder.
+        /// </summary>
+        public const string EmuImportWithRelativePathsTooltip = "LOCEmuImportWithRelativePathsTooltip";
+        /// <summary>
         /// Add scanner
         /// </summary>
         public const string EmuAddScanner = "LOCEmuAddScanner";
@@ -3733,5 +3777,9 @@ namespace Playnite
         /// Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.
         /// </summary>
         public const string EmuUseSimplifiedOnlineFileScanTooltip = "LOCEmuUseSimplifiedOnlineFileScanTooltip";
+        /// <summary>
+        /// Apply to all
+        /// </summary>
+        public const string MetadatSetAllFieldsToValue = "LOCMetadatSetAllFieldsToValue";
     }
 }

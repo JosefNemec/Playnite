@@ -37,20 +37,20 @@ namespace Playnite.Tests.Database
             using (var token = new CancellationTokenSource())
             {
                 db.OpenDatabase();
-                db.ImportGames(libPlugin.Object, true, token.Token);
+                db.ImportGames(libPlugin.Object, true, token.Token, PlaytimeSyncMode.Always);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
 
                 timeToImport = 600;
-                db.ImportGames(libPlugin.Object, false, token.Token);
+                db.ImportGames(libPlugin.Object, false, token.Token, PlaytimeSyncMode.Never);
                 Assert.AreEqual(500, db.Games.First().Playtime);
-                db.ImportGames(libPlugin.Object, true, token.Token);
+                db.ImportGames(libPlugin.Object, true, token.Token, PlaytimeSyncMode.Always);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
 
                 var g = db.Games.First();
                 g.Playtime = 0;
                 db.Games.Update(g);
                 Assert.AreEqual(0, db.Games.First().Playtime);
-                db.ImportGames(libPlugin.Object, false, token.Token);
+                db.ImportGames(libPlugin.Object, false, token.Token, PlaytimeSyncMode.Never);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
             }
         }
