@@ -288,7 +288,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var path = program.Item.Path;
                 if (program.Type == ProgramType.Win32 && !string.IsNullOrEmpty(program.Item.WorkDir))
                 {
-                    path = program.Item.Path.Replace(program.Item.WorkDir.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar);
+                    path = program.Item.Path.Replace(program.Item.WorkDir.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator());
                 }
 
                 newGame.GameActions = new List<GameAction>

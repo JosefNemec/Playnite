@@ -103,7 +103,7 @@ namespace Playnite
                     {
                         Type = GameActionType.File,
                         WorkingDir = ExpandableVariables.InstallationDirectory,
-                        Path = fileInfo.FullName.Replace(game.InstallDirectory.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar),
+                        Path = fileInfo.FullName.Replace(game.InstallDirectory.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator()),
                         Arguments = prog.Arguments,
                         IsPlayAction = true,
                         Name = game.Name
@@ -162,7 +162,7 @@ namespace Playnite
                     {
                         Type = GameActionType.File,
                         WorkingDir = ExpandableVariables.InstallationDirectory,
-                        Path = file.FullName.Replace(game.InstallDirectory.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar),
+                        Path = file.FullName.Replace(game.InstallDirectory.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator()),
                         IsPlayAction = true,
                         Name = game.Name
                     }

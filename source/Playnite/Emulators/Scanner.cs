@@ -1047,13 +1047,13 @@ namespace Playnite.Emulators
                     var emuDir = GameExtensions.ExpandVariables(new Game(), SourceEmulator.InstallDir, true);
                     if (commonPath.StartsWith(emuDir, StringComparison.OrdinalIgnoreCase))
                     {
-                        varToReplace = ExpandableVariables.EmulatorDirectory + Path.DirectorySeparatorChar;
-                        toReplace = emuDir.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                        varToReplace = ExpandableVariables.EmulatorDirectory.EndWithDirSeparator();
+                        toReplace = emuDir.EndWithDirSeparator();
                     }
                     else if (commonPath.StartsWith(PlaynitePaths.ProgramPath, StringComparison.OrdinalIgnoreCase))
                     {
-                        varToReplace = ExpandableVariables.PlayniteDirectory + Path.DirectorySeparatorChar;
-                        toReplace = PlaynitePaths.ProgramPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                        varToReplace = ExpandableVariables.PlayniteDirectory.EndWithDirSeparator();
+                        toReplace = PlaynitePaths.ProgramPath.EndWithDirSeparator();
                     }
                 }
 
@@ -1068,7 +1068,7 @@ namespace Playnite.Emulators
 
                 Roms.Where(a => a.Import).ForEach(rom => game.Roms.Add(new GameRom(
                     rom.Name.DiscName ?? rom.Name.SanitizedName,
-                    commonPath.IsNullOrEmpty() ? rom.Path : rom.Path.Replace(commonPath, ExpandableVariables.InstallationDirectory + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))));
+                    commonPath.IsNullOrEmpty() ? rom.Path : rom.Path.Replace(commonPath, ExpandableVariables.InstallationDirectory.EndWithDirSeparator(), StringComparison.OrdinalIgnoreCase))));
             }
 
             return game;

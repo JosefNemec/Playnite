@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -272,6 +273,16 @@ namespace System
             int @charsUntilStringEnd = str.Length - startSearchFromIndex;
             resultStringBuilder.Append(str, startSearchFromIndex, @charsUntilStringEnd);
             return resultStringBuilder.ToString();
+        }
+
+        public static string EndWithDirSeparator(this string source)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                return source;
+            }
+
+            return source.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
         }
     }
 }

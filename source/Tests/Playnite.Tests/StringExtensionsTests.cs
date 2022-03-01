@@ -96,5 +96,15 @@ namespace Playnite.Tests
             Assert.AreEqual(2, ("\n").GetLineCount());
             Assert.AreEqual(3, ("line1\nline2\nline3").GetLineCount());
         }
+
+        [Test]
+        public void EndWithDirSeparatorTest()
+        {
+            Assert.AreEqual(@"", "".EndWithDirSeparator());
+            Assert.IsNull(((string)null).EndWithDirSeparator());
+            Assert.AreEqual(@"test\", "test".EndWithDirSeparator());
+            Assert.AreEqual(@"test\", @"test\".EndWithDirSeparator());
+            Assert.AreEqual(@"test\", @"test\\\".EndWithDirSeparator());
+        }
     }
 }
