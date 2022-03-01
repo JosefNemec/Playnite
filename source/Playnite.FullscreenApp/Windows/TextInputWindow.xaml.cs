@@ -87,6 +87,14 @@ namespace Playnite.FullscreenApp.Windows
             });
         }
 
+        public RelayCommand<object> AddSpaceCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddSpace();
+            });
+        }
+
         private List<MessageBoxToggle> toggleOptions;
         public List<MessageBoxToggle> ToggleOptions
         {
@@ -211,6 +219,11 @@ namespace Playnite.FullscreenApp.Windows
             }
 
             capsEnabled = !capsEnabled;
+        }
+
+        private void AddSpace()
+        {
+            InputText += " ";
         }
     }
 }

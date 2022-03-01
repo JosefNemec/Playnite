@@ -16,6 +16,7 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>
+        <pin:XInputBinding Button="Y" Command="{Binding AddSpaceCommand}" />
         <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
         <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
         <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
@@ -185,8 +186,17 @@
                                 </StackPanel>
                             </pctrls:ButtonEx.Content>
                         </pctrls:ButtonEx>
-                        
-                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="2" Content=" " Grid.ColumnSpan="6" />
+
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="6" Command="{Binding AddSpaceCommand}">
+                            <pctrls:ButtonEx.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptY}"
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{DynamicResource LOCTextInputSpace}"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
 
                         <pctrls:ButtonEx Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding ToggleCapsCommand}">
                             <pctrls:ButtonEx.Content>
