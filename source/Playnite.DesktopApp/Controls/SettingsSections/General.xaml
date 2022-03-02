@@ -129,6 +129,12 @@
             <ComboBox MinWidth="100" VerticalAlignment="Center"
                   SelectedValue="{Binding Settings.PlaytimeSyncMode}"
                   pbeh:SelectorBehaviors.EnumSource="{x:Type p:PlaytimeSyncMode}" />
+            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                           CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Playtime-import">
+                    <Run Text="{DynamicResource LOCMenuHelpTitle}" />
+                </Hyperlink>
+            </TextBlock>
         </StackPanel>
 
     </StackPanel>
