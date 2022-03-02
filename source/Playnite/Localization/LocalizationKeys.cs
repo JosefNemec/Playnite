@@ -1268,23 +1268,23 @@ namespace Playnite
         /// <summary>
         /// Sync playtime of games in library:
         /// </summary>
-        public const string SettingsPlaytimeSyncMode = "LOCSettingsPlaytimeSyncMode";
+        public const string SettingsPlaytimeImportMode = "LOCSettingsPlaytimeImportMode";
         /// <summary>
         /// Configures when should Playnite sync the playtime reported by libraries for games in Playnite database.
         /// </summary>
-        public const string SettingsPlaytimeSyncModeTooltip = "LOCSettingsPlaytimeSyncModeTooltip";
+        public const string SettingsPlaytimeImportModeTooltip = "LOCSettingsPlaytimeImportModeTooltip";
         /// <summary>
         /// Always
         /// </summary>
-        public const string SettingsPlaytimeSyncModeAlways = "LOCSettingsPlaytimeSyncModeAlways";
+        public const string SettingsPlaytimeImportModeAlways = "LOCSettingsPlaytimeImportModeAlways";
         /// <summary>
         /// Only for newly imported games
         /// </summary>
-        public const string SettingsPlaytimeSyncModeNewImportsOnly = "LOCSettingsPlaytimeSyncModeNewImportsOnly";
+        public const string SettingsPlaytimeImportModeNewImportsOnly = "LOCSettingsPlaytimeImportModeNewImportsOnly";
         /// <summary>
         /// Never
         /// </summary>
-        public const string SettingsPlaytimeSyncModeNever = "LOCSettingsPlaytimeSyncModeNever";
+        public const string SettingsPlaytimeImportModeNever = "LOCSettingsPlaytimeImportModeNever";
         /// <summary>
         /// Enable controller support in Desktop Mode
         /// </summary>

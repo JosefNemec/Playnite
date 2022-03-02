@@ -123,12 +123,12 @@
                 IsChecked="{Binding Settings.StartMinimized}"/>
 
         <StackPanel Orientation="Horizontal" Margin="5,15,5,0">
-            <TextBlock Text="{DynamicResource LOCSettingsPlaytimeSyncMode}" Margin="0,0,10,0"
-                       ToolTip="{DynamicResource LOCSettingsPlaytimeSyncModeTooltip}"
+            <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="0,0,10,0"
+                       ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
                        VerticalAlignment="Center" />
             <ComboBox MinWidth="100" VerticalAlignment="Center"
-                  SelectedValue="{Binding Settings.PlaytimeSyncMode}"
-                  pbeh:SelectorBehaviors.EnumSource="{x:Type p:PlaytimeSyncMode}" />
+                  SelectedValue="{Binding Settings.PlaytimeImportMode}"
+                  pbeh:SelectorBehaviors.EnumSource="{x:Type p:PlaytimeImportMode}" />
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                            CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Playtime-import">

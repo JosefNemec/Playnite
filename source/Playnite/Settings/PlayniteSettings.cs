@@ -55,13 +55,13 @@ namespace Playnite
         Custom
     }
 
-    public enum PlaytimeSyncMode
+    public enum PlaytimeImportMode
     {
-        [Description(LOC.SettingsPlaytimeSyncModeAlways)]
+        [Description(LOC.SettingsPlaytimeImportModeAlways)]
         Always,
-        [Description(LOC.SettingsPlaytimeSyncModeNewImportsOnly)]
+        [Description(LOC.SettingsPlaytimeImportModeNewImportsOnly)]
         NewImportsOnly,
-        [Description(LOC.SettingsPlaytimeSyncModeNever)]
+        [Description(LOC.SettingsPlaytimeImportModeNever)]
         Never
     }
 
@@ -1705,13 +1705,13 @@ namespace Playnite
             }
         }
 
-        private PlaytimeSyncMode playtimeSyncMode = PlaytimeSyncMode.NewImportsOnly;
-        public PlaytimeSyncMode PlaytimeSyncMode
+        private PlaytimeImportMode playtimeImportMode = PlaytimeImportMode.NewImportsOnly;
+        public PlaytimeImportMode PlaytimeImportMode
         {
-            get => playtimeSyncMode;
+            get => playtimeImportMode;
             set
             {
-                playtimeSyncMode = value;
+                playtimeImportMode = value;
                 OnPropertyChanged();
             }
         }

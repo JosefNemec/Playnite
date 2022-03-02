@@ -477,7 +477,7 @@ namespace Playnite.ViewModels
 
             try
             {
-                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, token, AppSettings.PlaytimeSyncMode));
+                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, token, AppSettings.PlaytimeImportMode));
                 App.Notifications.Remove($"{plugin.Id} - download");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

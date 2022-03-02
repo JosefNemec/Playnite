@@ -1123,7 +1123,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken, PlaytimeSyncMode playtimeSyncMode)
+        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode)
         {
             using (BufferedUpdate())
             {
@@ -1178,8 +1178,8 @@ namespace Playnite.Database
                                 {
                                     var originalPlaytime = newGame.Playtime;
                                     newGame.Playtime = 0;
-                                    if (playtimeSyncMode == PlaytimeSyncMode.Always ||
-                                        playtimeSyncMode == PlaytimeSyncMode.NewImportsOnly)
+                                    if (playtimeImportMode == PlaytimeImportMode.Always ||
+                                        playtimeImportMode == PlaytimeImportMode.NewImportsOnly)
                                     {
                                         newGame.Playtime = originalPlaytime;
                                     }
@@ -1212,7 +1212,7 @@ namespace Playnite.Database
                                 existingGameUpdated = true;
                             }
 
-                            if (playtimeSyncMode == PlaytimeSyncMode.Always)
+                            if (playtimeImportMode == PlaytimeImportMode.Always)
                             {
                                 if (existingGame.Playtime != newGame.Playtime)
                                 {
