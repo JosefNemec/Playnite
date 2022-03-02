@@ -80,7 +80,6 @@ namespace Playnite.DesktopApp
             AppUriHandler = MainModel.ProcessUriRequest;
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
-            SetupInputs(false);
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
 #pragma warning disable CS4014
@@ -320,7 +319,7 @@ namespace Playnite.DesktopApp
                 Resources = new ResourceProvider(),
                 RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
                 UriHandler = UriHandler,
-                WebViews = new WebViewFactory(AppSettings, pluginOwner)
+                WebViews = new WebViewFactory(AppSettings)
             };
         }
 

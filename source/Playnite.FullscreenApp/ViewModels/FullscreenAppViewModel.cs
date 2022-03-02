@@ -372,6 +372,17 @@ namespace Playnite.FullscreenApp.ViewModels
             app.Controllers.Stopped += Controllers_Stopped;
         }
 
+        private void XInputDevice_ButtonUp(object sender, XInputDevice.ButtonUpEventArgs e)
+        {
+            if (AppSettings.Fullscreen.EnableXinputProcessing &&
+                AppSettings.Fullscreen.GuideButtonFocus &&
+                e.Button == XInputButton.Guide &&
+                !App.IsActive)
+            {
+                WindowManager.LastActiveWindow?.RestoreWindow();
+            }
+        }
+
         private void Controllers_Stopped(object sender, GameStoppedEventArgs e)
         {
             if (GameStatusVisible)
@@ -492,7 +503,10 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.EnableXinputProcessing))
             {
-                App.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+                if (App.XInputDevice != null)
+                {
+                    App.XInputDevice.StandardProcessingEnabled = AppSettings.Fullscreen.EnableXinputProcessing;
+                }
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
@@ -777,6 +791,11 @@ namespace Playnite.FullscreenApp.ViewModels
 
         protected void InitializeView()
         {
+            if (App.XInputDevice != null)
+            {
+                App.XInputDevice.ButtonUp += XInputDevice_ButtonUp;
+            }
+
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);

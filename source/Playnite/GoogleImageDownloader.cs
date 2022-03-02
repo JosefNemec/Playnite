@@ -36,7 +36,7 @@ namespace Playnite
         private readonly OffscreenWebView webView;
         public GoogleImageDownloader()
         {
-            webView = new OffscreenWebView(null);
+            webView = new OffscreenWebView();
         }
 
         public void Dispose()

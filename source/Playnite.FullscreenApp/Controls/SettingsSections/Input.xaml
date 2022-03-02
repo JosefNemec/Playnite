@@ -27,5 +27,7 @@
         <pctrls:CheckBoxEx x:Name="TogglePrimaryControllerOnly"
                            Content="{DynamicResource LOCSettingsPrimaryControllerOnly}"
                            Tag="{DynamicResource LOCSettingsPrimaryControllerOnlyDescription}"/>
+        <pctrls:CheckBoxEx x:Name="ToggleGuideFocus"
+                           Content="{DynamicResource LOCSettingsRefocusOnGuidButton}"/>
     </StackPanel>
 </UserControl>

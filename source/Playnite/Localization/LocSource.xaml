@@ -960,6 +960,7 @@ Disable if you use tools that translate XInput inputs to mouse/keyboards inputs 
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Inverts default A button binding for confirmationa and B for cancellation.</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Primary controller only</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Only accept inputs from primary controller when enabled.</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide button focuses Playnite</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Interface volume</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Background volume</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Mute when in background</sys:String>

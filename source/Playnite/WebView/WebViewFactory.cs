@@ -11,41 +11,35 @@ namespace Playnite.WebView
     public class WebViewFactory : IWebViewFactory
     {
         private PlayniteSettings appSettings;
-        private ExtensionManifest extensionOwner;
 
         public WebViewFactory(PlayniteSettings settings)
         {
             appSettings = settings;
         }
 
-        public WebViewFactory(PlayniteSettings settings, ExtensionManifest extensionOwner) : this(settings)
-        {
-            this.extensionOwner = extensionOwner;
-        }
-
         public IWebView CreateOffscreenView()
         {
-            return new OffscreenWebView(extensionOwner);
+            return new OffscreenWebView();
         }
 
         public IWebView CreateOffscreenView(WebViewSettings settings)
         {
-            return new OffscreenWebView(settings, extensionOwner);
+            return new OffscreenWebView(settings);
         }
 
         public IWebView CreateView(int width, int height)
         {
-            return new WebView(width, height, appSettings.UseCompositionWebViewRenderer, extensionOwner);
+            return new WebView(width, height, appSettings.UseCompositionWebViewRenderer);
         }
 
         public IWebView CreateView(int width, int height, Color background)
         {
-            return new WebView(width, height, background, string.Empty, appSettings.UseCompositionWebViewRenderer, extensionOwner);
+            return new WebView(width, height, background, string.Empty, appSettings.UseCompositionWebViewRenderer);
         }
 
         public IWebView CreateView(WebViewSettings settings)
         {
-            return new WebView(settings.WindowWidth, settings.WindowHeight, settings.WindowBackground, settings.UserAgent, appSettings.UseCompositionWebViewRenderer, extensionOwner);
+            return new WebView(settings.WindowWidth, settings.WindowHeight, settings.WindowBackground, settings.UserAgent, appSettings.UseCompositionWebViewRenderer);
         }
     }
 }

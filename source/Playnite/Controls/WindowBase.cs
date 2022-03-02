@@ -81,6 +81,18 @@ namespace Playnite.Controls
             remove { RemoveHandler(LoadedRoutedEvent, value); }
         }
 
+        public static readonly RoutedEvent ActivatedRoutedEvent = EventManager.RegisterRoutedEvent(
+            "ActivatedRouted",
+            RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler),
+            typeof(WindowBase));
+
+        public event RoutedEventHandler ActivatedRouted
+        {
+            add { AddHandler(ActivatedRoutedEvent, value); }
+            remove { RemoveHandler(ActivatedRoutedEvent, value); }
+        }
+
         protected override AutomationPeer OnCreateAutomationPeer()
         {
             return automationPeer;
@@ -200,6 +212,11 @@ namespace Playnite.Controls
             {
                 IsShown = true;
                 RaiseEvent(new RoutedEventArgs(LoadedRoutedEvent));
+            };
+
+            Activated += (_, __) =>
+            {
+                RaiseEvent(new RoutedEventArgs(ActivatedRoutedEvent));
             };
 
             PreviewKeyDown += (_, e) =>
