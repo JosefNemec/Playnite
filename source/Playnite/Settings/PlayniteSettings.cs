@@ -1110,21 +1110,6 @@ namespace Playnite
             }
         }
 
-        private bool forcePlayTimeSync = false;
-        public bool ForcePlayTimeSync
-        {
-            get
-            {
-                return forcePlayTimeSync;
-            }
-
-            set
-            {
-                forcePlayTimeSync = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool enableControolerInDesktop = false;
         [RequiresRestart]
         public bool EnableControllerInDesktop
