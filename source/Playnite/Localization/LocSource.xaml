@@ -350,8 +350,7 @@ The new database location will not be used until Playnite is restarted. </sys:St
 
 Always: Imports playtime for new imported and existing games in Playnite database.
 Only for newly imported games: Imports playtime only for new imported games.
-Never: Never imports playtime under any circumstance.
-    </sys:String>
+Never: Never imports playtime under any circumstance.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Always</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Only for newly imported games</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Never</sys:String>
