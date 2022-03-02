@@ -1174,10 +1174,15 @@ namespace Playnite.Database
                             logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
                             try
                             {
-                                if ((newGame.Playtime != 0) && (playtimeSyncMode != PlaytimeSyncMode.Always ||
-                                    playtimeSyncMode != PlaytimeSyncMode.NewImportsOnly))
+                                if (newGame.Playtime != 0)
                                 {
+                                    var originalPlaytime = newGame.Playtime;
                                     newGame.Playtime = 0;
+                                    if (playtimeSyncMode == PlaytimeSyncMode.Always ||
+                                        playtimeSyncMode == PlaytimeSyncMode.NewImportsOnly)
+                                    {
+                                        newGame.Playtime = originalPlaytime;
+                                    }
                                 }
                                 
                                 var importedGame = ImportGame(newGame, library.Id);
