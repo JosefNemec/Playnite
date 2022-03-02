@@ -95,6 +95,22 @@ namespace Playnite.FullscreenApp.Windows
             });
         }
 
+        public RelayCommand<KeyEventArgs> PreviewKeyUpDownCommand
+        {
+            get => new RelayCommand<KeyEventArgs>((a) =>
+            {
+                ProcessPreviewKeyUpDown(a);
+            });
+        }
+
+        public RelayCommand<TextCompositionEventArgs> PreviewTextInputCommand
+        {
+            get => new RelayCommand<TextCompositionEventArgs>((a) =>
+            {
+                ProcessTextInput(a);
+            });
+        }
+
         private List<MessageBoxToggle> toggleOptions;
         public List<MessageBoxToggle> ToggleOptions
         {
@@ -200,6 +216,11 @@ namespace Playnite.FullscreenApp.Windows
                 e.Handled = true;
                 return;
             }
+            else if (e.Key == Key.Return)
+            {
+                e.Handled = true;
+                Confirm();
+            }
         }
 
         private void ToggleCaps()
@@ -224,6 +245,30 @@ namespace Playnite.FullscreenApp.Windows
         private void AddSpace()
         {
             InputText += " ";
+        }
+
+        private void ProcessPreviewKeyUpDown(KeyEventArgs a)
+        {
+            if (a.Key == Key.Space)
+            {
+                a.Handled = true;
+                AddSpace();
+            }
+        }
+
+        private void ProcessTextInput(TextCompositionEventArgs a)
+        {
+            if (a.Text == "\b")
+            {
+                BackSpace();
+            }
+            else if (a.Text == "\t")
+            {
+            }
+            else
+            {
+                InputText += a.Text;
+            }
         }
     }
 }

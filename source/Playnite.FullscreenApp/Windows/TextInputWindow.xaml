@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
@@ -74,6 +75,17 @@
             <Border Grid.Row="3" Grid.Column="1"
                     Style="{DynamicResource TextInputKeysBorder}"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewKeyUp" >
+                        <prism:InvokeCommandAction Command="{Binding PreviewKeyUpDownCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewKeyDown" >
+                        <prism:InvokeCommandAction Command="{Binding PreviewKeyUpDownCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewTextInput" >
+                        <prism:InvokeCommandAction Command="{Binding PreviewTextInputCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <StackPanel>
                     <Grid HorizontalAlignment="Center" Name="GridInput">
                         <Grid.ColumnDefinitions>
