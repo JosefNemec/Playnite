@@ -579,7 +579,7 @@ namespace Playnite
             }
         }
 
-        private bool primaryControllerOnly = false;
+        private bool primaryControllerOnly = true;
         public bool PrimaryControllerOnly
         {
             get
@@ -590,6 +590,21 @@ namespace Playnite
             set
             {
                 primaryControllerOnly = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool guideButtonFocus = false;
+        public bool GuideButtonFocus
+        {
+            get
+            {
+                return guideButtonFocus;
+            }
+
+            set
+            {
+                guideButtonFocus = value;
                 OnPropertyChanged();
             }
         }

@@ -903,37 +903,27 @@ namespace Playnite
             }
         }
 
-        public void SetupInputs(bool enableXinput)
+        public void SetupInputs()
         {
-            if (enableXinput)
+            try
             {
-                try
+                if (XInputDevice == null)
                 {
-                    if (XInputDevice == null)
+                    XInputDevice = new XInputDevice(InputManager.Current)
                     {
-                        XInputDevice = new XInputDevice(InputManager.Current, this)
-                        {
-                            SimulateAllKeys = false,
-                            SimulateNavigationKeys = true,
-                            PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly
-                        };
-                    }
+                        SimulateAllKeys = false,
+                        SimulateNavigationKeys = true,
+                        PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly,
+                        StandardProcessingEnabled = AppSettings.Fullscreen.EnableXinputProcessing
+                    };
+                }
 
-                    UpdateXInputBindings();
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    logger.Error(e, "Failed intitialize XInput");
-                    Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCXInputInitErrorMessage"), "");
-                }
+                UpdateXInputBindings();
             }
-            else
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                if (XInputDevice != null)
-                {
-                    XInputDevice.Dispose();
-                    XInputDevice = null;
-                }
+                logger.Error(e, "Failed intitialize XInput");
+                Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCXInputInitErrorMessage"), "");
             }
         }
 

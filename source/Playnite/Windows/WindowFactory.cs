@@ -159,7 +159,7 @@ namespace Playnite.Windows
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public static void RestoreWindow(WindowBase window)
+        public static void RestoreWindow(this Window window)
         {
             try
             {

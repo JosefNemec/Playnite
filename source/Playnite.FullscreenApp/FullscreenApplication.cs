@@ -79,7 +79,7 @@ namespace Playnite.FullscreenApp
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;
             MigrateDatabase();
-            SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+            SetupInputs();
             OpenMainViewAsync();
 #pragma warning disable CS4014
             StartUpdateCheckerAsync();
@@ -130,6 +130,11 @@ namespace Playnite.FullscreenApp
                 else if (AppSettings.Fullscreen.MuteInBackground && IsActive == true)
                 {
                     Audio?.ResumePlayback();
+                }
+
+                if (XInputDevice != null)
+                {
+                    XInputDevice.StandardProcessingEnabled = IsActive;
                 }
             }
         }
