@@ -988,6 +988,7 @@ Better quality, medium speed, low memory usage.</sys:String>
     
 If you start experiencing some issues after installing a theme or an extension, try disabling/uninstalling them first to see if they are root of the issue.</sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">Choose on startup</sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart">Choose on startup</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Built-in profiles</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Built-in profile</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Custom profiles</sys:String>

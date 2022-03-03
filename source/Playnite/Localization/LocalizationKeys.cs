@@ -3262,6 +3262,10 @@ namespace Playnite
         /// </summary>
         public const string ActionTrackingModeDirectory = "LOCActionTrackingModeDirectory";
         /// <summary>
+        /// Original process
+        /// </summary>
+        public const string ActionTrackingOriginalProcess = "LOCActionTrackingOriginalProcess";
+        /// <summary>
         /// Log trace messages
         /// </summary>
         public const string DevelTraceLogEnable = "LOCDevelTraceLogEnable";
@@ -3406,6 +3410,26 @@ namespace Playnite
         /// </summary>
         public const string SettingsSwapMainViewXAButtonsDescriptions = "LOCSettingsSwapMainViewXAButtonsDescriptions";
         /// <summary>
+        /// Swap confirmation/cancelation button binding
+        /// </summary>
+        public const string SettingsSwapConfirmCancelButtons = "LOCSettingsSwapConfirmCancelButtons";
+        /// <summary>
+        /// Inverts default A button binding for confirmationa and B for cancellation.
+        /// </summary>
+        public const string SettingsSwapConfirmCancelButtonsDescriptions = "LOCSettingsSwapConfirmCancelButtonsDescriptions";
+        /// <summary>
+        /// Primary controller only
+        /// </summary>
+        public const string SettingsPrimaryControllerOnly = "LOCSettingsPrimaryControllerOnly";
+        /// <summary>
+        /// Only accept inputs from primary controller when enabled.
+        /// </summary>
+        public const string SettingsPrimaryControllerOnlyDescription = "LOCSettingsPrimaryControllerOnlyDescription";
+        /// <summary>
+        /// Guide button focuses Playnite
+        /// </summary>
+        public const string SettingsRefocusOnGuidButton = "LOCSettingsRefocusOnGuidButton";
+        /// <summary>
         /// Interface volume
         /// </summary>
         public const string SettingsInterfaceVolume = "LOCSettingsInterfaceVolume";
@@ -3466,6 +3490,10 @@ namespace Playnite
         /// </summary>
         public const string TextInputCapitalize = "LOCTextInputCapitalize";
         /// <summary>
+        /// Space
+        /// </summary>
+        public const string TextInputSpace = "LOCTextInputSpace";
+        /// <summary>
         /// Image rendering scaler
         /// </summary>
         public const string SettingsImageScalerMode = "LOCSettingsImageScalerMode";
@@ -3505,6 +3533,10 @@ namespace Playnite
         /// Choose on startup
         /// </summary>
         public const string GameActionSelectOnStart = "LOCGameActionSelectOnStart";
+        /// <summary>
+        /// Choose on startup
+        /// </summary>
+        public const string EmulatorSelectOnStart = "LOCEmulatorSelectOnStart";
         /// <summary>
         /// Built-in profiles
         /// </summary>
@@ -3642,6 +3674,14 @@ namespace Playnite
         /// </summary>
         public const string EmuSaveScanConfigTooltip = "LOCEmuSaveScanConfigTooltip";
         /// <summary>
+        /// Import using relative paths
+        /// </summary>
+        public const string EmuImportWithRelativePaths = "LOCEmuImportWithRelativePaths";
+        /// <summary>
+        /// If possible import game files using paths relative to Playnite's installation folder or emulator's installation folder.
+        /// </summary>
+        public const string EmuImportWithRelativePathsTooltip = "LOCEmuImportWithRelativePathsTooltip";
+        /// <summary>
         /// Add scanner
         /// </summary>
         public const string EmuAddScanner = "LOCEmuAddScanner";
@@ -3733,5 +3773,9 @@ namespace Playnite
         /// Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.
         /// </summary>
         public const string EmuUseSimplifiedOnlineFileScanTooltip = "LOCEmuUseSimplifiedOnlineFileScanTooltip";
+        /// <summary>
+        /// Apply to all
+        /// </summary>
+        public const string MetadatSetAllFieldsToValue = "LOCMetadatSetAllFieldsToValue";
     }
 }
