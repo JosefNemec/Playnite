@@ -262,6 +262,8 @@ namespace Playnite.SDK.Models
                     return $"Url: {Path}";
                 case GameActionType.Emulator:
                     return $"Emulator: {EmulatorId}, {EmulatorProfileId}, {OverrideDefaultArgs}, {AdditionalArguments}";
+                case GameActionType.Script:
+                    return "Script";
                 default:
                     return Path;
             }

@@ -3546,6 +3546,10 @@ namespace Playnite
         /// </summary>
         public const string GameActionSelectOnStart = "LOCGameActionSelectOnStart";
         /// <summary>
+        /// Choose on startup
+        /// </summary>
+        public const string EmulatorSelectOnStart = "LOCEmulatorSelectOnStart";
+        /// <summary>
         /// Built-in profiles
         /// </summary>
         public const string EmulatorBuiltInProfiles = "LOCEmulatorBuiltInProfiles";
