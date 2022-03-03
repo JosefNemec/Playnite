@@ -3438,6 +3438,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsPrimaryControllerOnlyDescription = "LOCSettingsPrimaryControllerOnlyDescription";
         /// <summary>
+        /// Guide button focuses Playnite
+        /// </summary>
+        public const string SettingsRefocusOnGuidButton = "LOCSettingsRefocusOnGuidButton";
+        /// <summary>
         /// Interface volume
         /// </summary>
         public const string SettingsInterfaceVolume = "LOCSettingsInterfaceVolume";
