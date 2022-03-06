@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCSelectActionTitle}"
         WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
-        d:DesignHeight="200" d:DesignWidth="350" MinWidth="300"
+        d:DesignHeight="200" d:DesignWidth="350" MinWidth="300" MaxHeight="700"
         ShowMinimizeButton="False" ShowMaximizeButton="False"
         AutomationProperties.AutomationId="WindowActionSelection"
         Name="WindowActionSelectionWindow">
@@ -36,5 +36,12 @@
                 </Button>                
             </DataTemplate>
         </ItemsControl.ItemTemplate>
+        <ItemsControl.Template>
+            <ControlTemplate>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ItemsPresenter />
+                </ScrollViewer>
+            </ControlTemplate>
+        </ItemsControl.Template>
     </ItemsControl>
 </controls:WindowBase>

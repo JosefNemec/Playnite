@@ -1,12 +1,14 @@
 ﻿using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Database;
+using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -337,6 +339,59 @@ namespace Playnite
                 logger.Error(e, "Failed to get executable from game data.");
                 return null;
             }
+        }
+
+        public static Dictionary<Emulator, List<EmulatorProfile>> GetCompatibleEmulators(this Game game, GameDatabase database)
+        {
+            var emulators = new Dictionary<Emulator, List<EmulatorProfile>>();
+            if (!game.Platforms.HasItems())
+            {
+                return emulators;
+            }
+
+            foreach (var emulator in database.Emulators)
+            {
+                var profiles = game.GetCompatibleProfiles(emulator);
+                if (profiles.HasItems())
+                {
+                    emulators.Add(emulator, new List<EmulatorProfile>(profiles));
+                }
+            }
+
+            return emulators;
+        }
+
+        public static List<EmulatorProfile> GetCompatibleProfiles(this Game game, Emulator emulator)
+        {
+            var profiles = new List<EmulatorProfile>();
+            if (!game.Platforms.HasItems())
+            {
+                return profiles;
+            }
+
+            foreach (var profile in emulator.CustomProfiles ?? new ObservableCollection<CustomEmulatorProfile>())
+            {
+                if (profile.Platforms?.Intersect(game.PlatformIds).HasItems() == true)
+                {
+                    profiles.Add(profile);
+                }
+            }
+
+            foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
+            {
+                var profDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
+                if (profDef == null)
+                {
+                    continue;
+                }
+
+                if (game.Platforms.Where(a => !a.SpecificationId.IsNullOrEmpty()).Any(a => profDef.Platforms.Contains(a.SpecificationId)))
+                {
+                    profiles.Add(profile);
+                }
+            }
+
+            return profiles;
         }
     }
 }

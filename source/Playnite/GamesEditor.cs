@@ -1233,57 +1233,78 @@ namespace Playnite
 
             if (game.GameActions.HasItems())
             {
+                var selectEmuAdded = false;
+                var multipleRoms = game.Roms?.Count > 1;
+                var romList = game.Roms.HasItems() ? game.Roms : new ObservableCollection<GameRom> { new GameRom() };
+
+                void addAction(string name, EmulatorProfile profile, EmulationPlayAction baseData)
+                {
+                    foreach (var rom in romList)
+                    {
+                        var newAction = baseData.GetClone();
+                        newAction.Name = multipleRoms ? $"{name}: {rom.Name}" : name;
+                        newAction.SelectedEmulatorProfile = profile;
+                        newAction.SelectedRomPath = rom.Path;
+                        actions.Add(newAction);
+                    }
+                }
+
                 foreach (var action in game.GameActions.Where(a => a.IsPlayAction))
                 {
                     if (action.Type == GameActionType.Emulator)
                     {
                         if (action.EmulatorId == Guid.Empty)
                         {
-                            continue;
-                        }
-
-                        var emulator = Database.Emulators[action.EmulatorId];
-                        if (emulator == null)
-                        {
-                            continue;
-                        }
-
-                        var multipleRoms = game.Roms?.Count > 1;
-                        var romList = game.Roms.HasItems() ? game.Roms : new ObservableCollection<GameRom> { new GameRom() };
-                        void addAction(string name, EmulatorProfile profile)
-                        {
-                            foreach (var rom in romList)
+                            if (selectEmuAdded)
                             {
-                                var newAction = action.GetClone<GameAction, EmulationPlayAction>();
-                                newAction.Name = multipleRoms ? $"{name}: {rom.Name}" : name;
-                                newAction.SelectedEmulatorProfile = profile;
-                                newAction.SelectedRomPath = rom.Path;
-                                actions.Add(newAction);
-                            }
-                        }
-
-                        if (action.EmulatorProfileId == null)
-                        {
-                            foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
-                            {
-                                addAction($"{action.Name}: {profile.Name}", profile);
+                                continue;
                             }
 
-                            foreach (var profile in emulator.CustomProfiles ?? new ObservableCollection<CustomEmulatorProfile>())
+                            var supportedEmus = game.GetCompatibleEmulators(Database);
+                            if (!supportedEmus.HasItems())
                             {
-                                addAction($"{action.Name}: {profile.Name}", profile);
+                                continue;
+                            }
+
+                            selectEmuAdded = true;
+                            foreach (var emu in supportedEmus.Keys)
+                            {
+                                var profCount = supportedEmus[emu].Count;
+                                foreach (var profile in supportedEmus[emu])
+                                {
+                                    addAction(profCount == 1 ? emu.Name : $"{emu.Name}: {profile.Name}", profile, new EmulationPlayAction
+                                    {
+                                        EmulatorId = emu.Id,
+                                        EmulatorProfileId = profile.Id
+                                    });
+                                }
                             }
                         }
                         else
                         {
-                            var prof = emulator.AllProfiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
-                            if (prof == null)
+                            var emu = Database.Emulators[action.EmulatorId];
+                            if (emu == null)
                             {
-                                logger.Error($"Specified emulator config does't exists {action.EmulatorProfileId}");
+                                continue;
+                            }
+
+                            if (action.EmulatorProfileId == null)
+                            {
+                                var profiles = game.GetCompatibleProfiles(emu);
+                                profiles.ForEach(profile =>
+                                    addAction($"{action.Name}: {profile.Name}", profile, action.GetClone<GameAction, EmulationPlayAction>()));
                             }
                             else
                             {
-                                addAction(action.Name, prof);
+                                var prof = emu.AllProfiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
+                                if (prof == null)
+                                {
+                                    logger.Error($"Specified emulator config does't exists {action.EmulatorProfileId}");
+                                }
+                                else
+                                {
+                                    addAction(action.Name, prof, action.GetClone<GameAction, EmulationPlayAction>());
+                                }
                             }
                         }
                     }

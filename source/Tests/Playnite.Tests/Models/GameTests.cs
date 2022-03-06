@@ -88,5 +88,112 @@ namespace Playnite.Tests.Models
             Assert.IsFalse(string.IsNullOrEmpty(game1.GameId));
             Assert.AreNotEqual(game1.GameId, new Game().GameId);
         }
+
+        [Test]
+        public void GetCompatibleEmulatorsTest()
+        {
+            using (var db = new GameDbTestWrapper())
+            {
+                db.DB.Emulators.Add(new List<Emulator>
+                {
+                    new Emulator("emu1")
+                    {
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Name = "ps",
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "sony_playstation" || a.SpecificationId == "sony_playstation2").Select(a => a.Id).ToList()
+                            },
+                            new CustomEmulatorProfile
+                            {
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "xbox").Select(a => a.Id).ToList()
+                            }
+                        }
+                    },
+                    new Emulator("emu2")
+                    {
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "xbox").Select(a => a.Id).ToList()
+                            }
+                        }
+                    },
+                    new Emulator("emu3")
+                    {
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Name = "test profile"
+                            }
+                        }
+                    },
+                    new Emulator("emu4")
+                    {
+                        BuiltInConfigId = "duckstation",
+                        BuiltinProfiles = new ObservableCollection<BuiltInEmulatorProfile>
+                        {
+                            new BuiltInEmulatorProfile
+                            {
+                                Name = "test",
+                                BuiltInProfileName = "Default"
+                            },
+                        }
+                    },
+                    new Emulator("emu5")
+                    {
+                        BuiltInConfigId = "duckstation",
+                        BuiltinProfiles = new ObservableCollection<BuiltInEmulatorProfile>
+                        {
+                            new BuiltInEmulatorProfile
+                            {
+                                Name = "test",
+                                BuiltInProfileName = "Default"
+                            },
+                        },
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "sony_playstation").Select(a => a.Id).ToList()
+                            }
+                        }
+                    },
+                    new Emulator("emu6")
+                    {
+                        BuiltInConfigId = "melonds",
+                        BuiltinProfiles = new ObservableCollection<BuiltInEmulatorProfile>
+                        {
+                            new BuiltInEmulatorProfile
+                            {
+                                Name = "test",
+                                BuiltInProfileName = "Default"
+                            }
+                        }
+                    }
+                });
+
+                var game = new Game()
+                {
+                    PlatformIds = db.DB.Platforms.Where(a => a.SpecificationId == "sony_playstation").Select(a => a.Id).ToList()
+                };
+
+                var comEmus = game.GetCompatibleEmulators(db.DB).OrderBy(a => a.Key.Name).ToList();
+                Assert.AreEqual(3, comEmus.Count);
+
+                Assert.AreEqual("emu1", comEmus[0].Key.Name);
+                Assert.AreEqual(1, comEmus[0].Value.Count);
+                Assert.AreEqual("ps", comEmus[0].Value[0].Name);
+
+                Assert.AreEqual("emu4", comEmus[1].Key.Name);
+                Assert.AreEqual(1, comEmus[1].Value.Count);
+
+                Assert.AreEqual("emu5", comEmus[2].Key.Name);
+                Assert.AreEqual(2, comEmus[2].Value.Count);
+            }
+        }
     }
 }

@@ -83,7 +83,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCManualOpenError">Failed to open manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Cannot install game: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Cannot un-install game: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction">Play action is not configured.</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">No valid game startup actions found. When using emulator actions, make sure platform definitions match between the game and emulator configuration.</sys:String>
     <sys:String x:Key="LOCErrorNoInstallAction">Installation implementation is not available.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">The library plugin responsible for this game is disabled or not installed.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Official metadata download is not available.</sys:String>

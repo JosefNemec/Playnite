@@ -355,6 +355,7 @@ namespace Playnite.DesktopApp.ViewModels
             CompletionStatuses.Insert(0, new CompletionStatus() { Id = Guid.Empty, Name = string.Empty });
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
+            Emulators.Insert(0, new Emulator(resources.GetString(LOC.EmulatorSelectOnStart)) { Id = Guid.Empty });
 
             if (EditingGame.Links != null)
             {
