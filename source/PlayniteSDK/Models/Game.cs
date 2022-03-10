@@ -1054,13 +1054,13 @@ namespace Playnite.SDK.Models
         /// Gets game's genres.
         /// </summary>
         [DontSerialize]
-        public List<Genre> Genres
+        public ReadOnlyCollection<Genre> Genres
         {
             get
             {
                 if (genreIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Genre>(DatabaseReference?.Genres.Get(genreIds).OrderBy(a => a.Name));
+                    return new List<Genre>(DatabaseReference?.Genres.Get(genreIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1071,13 +1071,13 @@ namespace Playnite.SDK.Models
         /// Gets game's developers.
         /// </summary>
         [DontSerialize]
-        public List<Company> Developers
+        public ReadOnlyCollection<Company> Developers
         {
             get
             {
                 if (developerIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Company>(DatabaseReference?.Companies.Get(developerIds).OrderBy(a => a.Name));
+                    return new List<Company>(DatabaseReference?.Companies.Get(developerIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1088,13 +1088,13 @@ namespace Playnite.SDK.Models
         /// Gets game's publishers.
         /// </summary>
         [DontSerialize]
-        public List<Company> Publishers
+        public ReadOnlyCollection<Company> Publishers
         {
             get
             {
                 if (publisherIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Company>(DatabaseReference?.Companies.Get(publisherIds).OrderBy(a => a.Name));
+                    return new List<Company>(DatabaseReference?.Companies.Get(publisherIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1105,13 +1105,13 @@ namespace Playnite.SDK.Models
         /// Gets game's tags.
         /// </summary>
         [DontSerialize]
-        public List<Tag> Tags
+        public ReadOnlyCollection<Tag> Tags
         {
             get
             {
                 if (tagIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Tag>(DatabaseReference?.Tags.Get(tagIds).OrderBy(a => a.Name));
+                    return new List<Tag>(DatabaseReference?.Tags.Get(tagIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1122,13 +1122,13 @@ namespace Playnite.SDK.Models
         /// Gets game's features.
         /// </summary>
         [DontSerialize]
-        public List<GameFeature> Features
+        public ReadOnlyCollection<GameFeature> Features
         {
             get
             {
                 if (featureIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<GameFeature>(DatabaseReference?.Features.Get(featureIds).OrderBy(a => a.Name));
+                    return new List<GameFeature>(DatabaseReference?.Features.Get(featureIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1139,13 +1139,13 @@ namespace Playnite.SDK.Models
         /// Gets game's categories.
         /// </summary>
         [DontSerialize]
-        public List<Category> Categories
+        public ReadOnlyCollection<Category> Categories
         {
             get
             {
                 if (categoryIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Category>(DatabaseReference?.Categories.Get(categoryIds).OrderBy(a => a.Name));
+                    return new List<Category>(DatabaseReference?.Categories.Get(categoryIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1156,13 +1156,13 @@ namespace Playnite.SDK.Models
         /// Gets game's platform.
         /// </summary>
         [DontSerialize]
-        public List<Platform> Platforms
+        public ReadOnlyCollection<Platform> Platforms
         {
             get
             {
                 if (platformIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Platform>(DatabaseReference?.Platforms.Get(platformIds).OrderBy(a => a.Name));
+                    return new List<Platform>(DatabaseReference?.Platforms.Get(platformIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1173,13 +1173,13 @@ namespace Playnite.SDK.Models
         /// Gets game's series.
         /// </summary>
         [DontSerialize]
-        public List<Series> Series
+        public ReadOnlyCollection<Series> Series
         {
             get
             {
                 if (seriesIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Series>(DatabaseReference?.Series.Get(seriesIds).OrderBy(a => a.Name));
+                    return new List<Series>(DatabaseReference?.Series.Get(seriesIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1190,13 +1190,13 @@ namespace Playnite.SDK.Models
         /// Get game's age rating.
         /// </summary>
         [DontSerialize]
-        public List<AgeRating> AgeRatings
+        public ReadOnlyCollection<AgeRating> AgeRatings
         {
             get
             {
                 if (ageRatingIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<AgeRating>(DatabaseReference?.AgeRatings.Get(ageRatingIds).OrderBy(a => a.Name));
+                    return new List<AgeRating>(DatabaseReference?.AgeRatings.Get(ageRatingIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
@@ -1207,13 +1207,13 @@ namespace Playnite.SDK.Models
         /// Gets game's region.
         /// </summary>
         [DontSerialize]
-        public List<Region> Regions
+        public ReadOnlyCollection<Region> Regions
         {
             get
             {
                 if (regionIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Region>(DatabaseReference?.Regions.Get(regionIds).OrderBy(a => a.Name));
+                    return new List<Region>(DatabaseReference?.Regions.Get(regionIds).OrderBy(a => a.Name)).AsReadOnly();
                 }
 
                 return null;
