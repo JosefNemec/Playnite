@@ -17,7 +17,7 @@
 
     <c:WindowBase.InputBindings>
         <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
-        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
+        <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
         <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
         <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
         <pin:XInputBinding Button="RightStick" Command="{Binding ToggleCapsCommand}" />
@@ -49,7 +49,7 @@
                      Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
                     <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
-                    <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
+                    <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
                     <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
                     <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
                 </TextBox.InputBindings>

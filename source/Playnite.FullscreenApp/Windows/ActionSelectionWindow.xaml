@@ -17,9 +17,9 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         d:DesignWidth="1920" d:DesignHeight="1080"
         Name="WindowActionSelectionWindow">
-
+    
     <c:WindowBase.InputBindings>
-        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
+        <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
     </c:WindowBase.InputBindings>
 

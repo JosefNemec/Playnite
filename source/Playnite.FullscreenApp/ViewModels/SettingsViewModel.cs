@@ -63,11 +63,18 @@ namespace Playnite.FullscreenApp.ViewModels
             });
         }
 
-        public RelayCommand CloseCommand
+        public RelayCommand<object> CloseCommand
         {
-            get => new RelayCommand(() =>
+            get => new RelayCommand<object>((a) =>
             {
                 Close();
+            });
+        }
+
+        public RelayCommand<object> CloseSectionCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
             });
         }
 

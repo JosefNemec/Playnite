@@ -941,8 +941,6 @@ Disable if you use tools that translate XInput inputs to mouse/keyboards inputs 
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Show items on main menu:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Inverted X/A main view button binding</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Swaps button bindings for starting a game and showing game details page on main view.</sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">Swap confirmation/cancelation button binding</sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Inverts default A button binding for confirmationa and B for cancellation.</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Interface volume</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Background volume</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Mute when in background</sys:String>

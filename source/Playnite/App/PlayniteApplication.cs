@@ -897,8 +897,6 @@ namespace Playnite
                             SimulateNavigationKeys = true
                         };
                     }
-
-                    UpdateXInputBindings();
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -914,12 +912,6 @@ namespace Playnite
                     xdevice = null;
                 }
             }
-        }
-
-        public void UpdateXInputBindings()
-        {
-            XInputGesture.ConfirmationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? XInputButton.B : XInputButton.A;
-            XInputGesture.CancellationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? XInputButton.A : XInputButton.B;
         }
 
         public void Quit()

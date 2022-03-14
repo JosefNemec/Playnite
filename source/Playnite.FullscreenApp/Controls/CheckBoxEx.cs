@@ -26,7 +26,7 @@ namespace Playnite.FullscreenApp.Controls
         {
             if (e is XInputEventArgs xinput)
             {
-                if (xinput.XButton == XInputGesture.ConfirmationBinding)
+                if (xinput.XButton == XInputButton.A)
                 {
                     OnClick();
                     e.Handled = true;
