@@ -69,7 +69,6 @@ Plugin dependencies
 You can check list of all Playnite's dependencies here:
 
 - [Playnite](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite/packages.config)
-- [Playnite.Common](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.Common/packages.config)
 - [Playnite.DesktopApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.DesktopApp/packages.config)
 - [Playnite.FullscreenApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.FullscreenApp/packages.config)
 

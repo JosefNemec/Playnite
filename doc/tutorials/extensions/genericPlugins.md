@@ -4,7 +4,7 @@ Generic Plugins
 To implement generic plugin:
 
 * Read the introduction to [extensions](intro.md) and [plugins](plugins.md).
-* Create new public class inheriting from [Plugin](xref:Playnite.SDK.Plugins.Plugin) abstract class.
+* Create new public class inheriting from [GenericPlugin](xref:Playnite.SDK.Plugins.GenericPlugin) abstract class.
 * Add implementation for mandatory abstract members.
 
 Mandatory members
@@ -17,13 +17,13 @@ Mandatory members
 Optional members
 ---------------------
 
-You can implement additional functionality by overriding virtual methods from [Plugin](xref:Playnite.SDK.Plugins.Plugin) base class.
+You can implement additional functionality by overriding virtual methods from [GenericPlugin](xref:Playnite.SDK.Plugins.GenericPlugin) base class.
 
 Example plugin
 ---------------------
 
 ```csharp
-public class TestPlugin : Plugin
+public class TestPlugin : GenericPlugin
 {
     private ILogger logger;
 
