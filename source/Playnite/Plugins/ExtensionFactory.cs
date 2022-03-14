@@ -599,8 +599,7 @@ namespace Playnite.Plugins
             {
                 Game = database.Games[args.Source.Game.Id],
                 SourceAction = (args.Source as GenericPlayController)?.SourceGameAction?.GetClone(),
-                SelectedRomFile = (args.Source as GenericPlayController)?.SelectedRomPath,
-                StartedProcessId = args.StartedProcessId
+                SelectedRomFile = (args.Source as GenericPlayController)?.SelectedRomPath
             };
 
             foreach (var script in Scripts)

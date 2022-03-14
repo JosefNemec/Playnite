@@ -219,7 +219,7 @@ namespace Playnite.Controllers
 
                 stopWatch = Stopwatch.StartNew();
                 ExecuteEmulatorScript(currentEmuProfile.PostScript);
-                InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = process.Id });
+                InvokeOnStarted(new GameStartedEventArgs());
                 procMon.WatchProcessTree(process);
             }
             else
@@ -468,7 +468,7 @@ namespace Playnite.Controllers
                         {
                             if (proc != null)
                             {
-                                InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
+                                InvokeOnStarted(new GameStartedEventArgs());
                                 procMon.WatchProcessTree(proc);
                             }
                             else
@@ -481,7 +481,7 @@ namespace Playnite.Controllers
                     {
                         if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
                         {
-                            InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc?.Id ?? 0 });
+                            InvokeOnStarted(new GameStartedEventArgs());
                             stopWatch = Stopwatch.StartNew();
                             procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
                         }
@@ -495,7 +495,7 @@ namespace Playnite.Controllers
                 {
                     if (proc != null)
                     {
-                        InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
+                        InvokeOnStarted(new GameStartedEventArgs());
                         stopWatch = Stopwatch.StartNew();
                         procMon.WatchProcessTree(proc);
                     }
@@ -540,9 +540,9 @@ namespace Playnite.Controllers
             currentEmuProfile = null;
         }
 
-        private void ProcMon_TreeStarted(object sender, ProcessMonitor.TreeStartedEventArgs args)
+        private void ProcMon_TreeStarted(object sender, EventArgs e)
         {
-            InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = args.StartedId });
+            InvokeOnStarted(new GameStartedEventArgs());
         }
 
         private void Monitor_TreeDestroyed(object sender, EventArgs args)

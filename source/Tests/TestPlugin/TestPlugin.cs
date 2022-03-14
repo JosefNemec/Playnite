@@ -59,7 +59,7 @@ namespace TestPlugin
 
         public override void OnGameStarted(OnGameStartedEventArgs args)
         {
-            logger.Info($"TestPluginDev OnGameStarted {args.Game.Name} {args.StartedProcessId}");
+            logger.Info($"TestPluginDev OnGameStarted {args.Game.Name}");
             logger.Warn(PlayniteApi.ApplicationSettings.CompletionStatus.PlayedStatus.ToString());
         }
 

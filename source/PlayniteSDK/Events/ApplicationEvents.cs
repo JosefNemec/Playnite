@@ -117,11 +117,6 @@ namespace Playnite.SDK.Events
         /// Gets ROM file selected when running a game with multiple ROMs assigned.
         /// </summary>
         public string SelectedRomFile { get; internal set; }
-
-        /// <summary>
-        /// Gets started process ID. Might not be valid for all started games depending on how the game was started.
-        /// </summary>
-        public int StartedProcessId { get; internal set; }
     }
 
     /// <summary>
