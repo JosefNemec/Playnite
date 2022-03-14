@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:p="clr-namespace:Playnite;assembly=Playnite"
@@ -121,9 +122,20 @@
                 Content="{DynamicResource LOCSettingsStartMinimized}"
                 IsChecked="{Binding Settings.StartMinimized}"/>
 
-        <CheckBox Name="CheckAlwaysSyncTime" Margin="5,15,5,5"
-                Content="{DynamicResource LOCSettingsForceDownloadPlaynite}"
-                ToolTip="{DynamicResource LOCSettingsForceDownloadPlayniteTooltip}" ToolTipService.InitialShowDelay="0"
-                IsChecked="{Binding Settings.ForcePlayTimeSync}"/>
+        <StackPanel Orientation="Horizontal" Margin="5,15,5,0">
+            <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="0,0,10,0"
+                       ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
+                       VerticalAlignment="Center" />
+            <ComboBox MinWidth="100" VerticalAlignment="Center"
+                  SelectedValue="{Binding Settings.PlaytimeImportMode}"
+                  pbeh:SelectorBehaviors.EnumSource="{x:Type p:PlaytimeImportMode}" />
+            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                           CommandParameter="https://playnite.link/docs/{AppBranch}/manual/playtimeImport.html">
+                    <Run Text="{DynamicResource LOCMenuHelpTitle}" />
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+
     </StackPanel>
 </UserControl>

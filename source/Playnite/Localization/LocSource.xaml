@@ -345,8 +345,15 @@ The new database location will not be used until Playnite is restarted. </sys:St
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Number of detail view rows</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Show Background Image on Main Screen</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Doesn't apply retrospectively to existing games without re-downloading metadata.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Prioritize play time for supported libraries</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportMode">Import playtime of games in library:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Configures when should Playnite import the playtime reported by library plugins for games in the Playnite database. Support by the library plugins in charge of handling the game(s) is needed to be able to use this feature.
+
+Always: Imports playtime for new imported and existing games in Playnite database.
+Only for newly imported games: Imports playtime only for new imported games.
+Never: Never imports playtime under any circumstance.</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Always</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Only for newly imported games</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Never</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Enable controller support in Desktop Mode</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide button opens Fullscreen mode</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Automatic Metadata download settings for newly imported games.</sys:String>

@@ -1123,7 +1123,7 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken)
+        public List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode)
         {
             using (BufferedUpdate())
             {
@@ -1174,6 +1174,17 @@ namespace Playnite.Database
                             logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
                             try
                             {
+                                if (newGame.Playtime != 0)
+                                {
+                                    var originalPlaytime = newGame.Playtime;
+                                    newGame.Playtime = 0;
+                                    if (playtimeImportMode == PlaytimeImportMode.Always ||
+                                        playtimeImportMode == PlaytimeImportMode.NewImportsOnly)
+                                    {
+                                        newGame.Playtime = originalPlaytime;
+                                    }
+                                }
+                                
                                 var importedGame = ImportGame(newGame, library.Id);
                                 addedGames.Add(importedGame);
                                 if (updateCompletionStatus(importedGame, statusSettings))
@@ -1201,8 +1212,7 @@ namespace Playnite.Database
                                 existingGameUpdated = true;
                             }
 
-                            if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
-                               (newGame.Playtime > 0 && forcePlayTimeSync))
+                            if (playtimeImportMode == PlaytimeImportMode.Always)
                             {
                                 if (existingGame.Playtime != newGame.Playtime)
                                 {

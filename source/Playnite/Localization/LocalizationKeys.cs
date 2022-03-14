@@ -1266,13 +1266,25 @@ namespace Playnite
         /// </summary>
         public const string BackgroundImageScreenOptionTooltip = "LOCBackgroundImageScreenOptionTooltip";
         /// <summary>
-        /// Prioritize play time for supported libraries
+        /// Sync playtime of games in library:
         /// </summary>
-        public const string SettingsForceDownloadPlaynite = "LOCSettingsForceDownloadPlaynite";
+        public const string SettingsPlaytimeImportMode = "LOCSettingsPlaytimeImportMode";
         /// <summary>
-        /// Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.
+        /// Configures when should Playnite sync the playtime reported by libraries for games in Playnite database.
         /// </summary>
-        public const string SettingsForceDownloadPlayniteTooltip = "LOCSettingsForceDownloadPlayniteTooltip";
+        public const string SettingsPlaytimeImportModeTooltip = "LOCSettingsPlaytimeImportModeTooltip";
+        /// <summary>
+        /// Always
+        /// </summary>
+        public const string SettingsPlaytimeImportModeAlways = "LOCSettingsPlaytimeImportModeAlways";
+        /// <summary>
+        /// Only for newly imported games
+        /// </summary>
+        public const string SettingsPlaytimeImportModeNewImportsOnly = "LOCSettingsPlaytimeImportModeNewImportsOnly";
+        /// <summary>
+        /// Never
+        /// </summary>
+        public const string SettingsPlaytimeImportModeNever = "LOCSettingsPlaytimeImportModeNever";
         /// <summary>
         /// Enable controller support in Desktop Mode
         /// </summary>

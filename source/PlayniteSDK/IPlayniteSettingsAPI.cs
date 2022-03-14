@@ -133,11 +133,6 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        bool ForcePlayTimeSync { get; }
-
-        /// <summary>
-        ///
-        /// </summary>
         string FontFamilyName { get; }
 
         /// <summary>

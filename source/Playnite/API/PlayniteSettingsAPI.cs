@@ -61,7 +61,6 @@ namespace Playnite.API
         public string FullscreenTheme => settings.Fullscreen.Theme;
         public bool StartMinimized => settings.StartMinimized;
         public bool StartOnBoot => settings.StartOnBoot;
-        public bool ForcePlayTimeSync => settings.ForcePlayTimeSync;
         public string FontFamilyName => settings.FontFamilyName;
         public bool DiscordPresenceEnabled => settings.DiscordPresenceEnabled;
         public AgeRatingOrg AgeRatingOrgPriority => settings.AgeRatingOrgPriority;

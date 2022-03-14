@@ -55,6 +55,16 @@ namespace Playnite
         Custom
     }
 
+    public enum PlaytimeImportMode
+    {
+        [Description(LOC.SettingsPlaytimeImportModeAlways)]
+        Always,
+        [Description(LOC.SettingsPlaytimeImportModeNewImportsOnly)]
+        NewImportsOnly,
+        [Description(LOC.SettingsPlaytimeImportModeNever)]
+        Never
+    }
+
     public enum TrayIconType
     {
         [Description("TrayIcon")]
@@ -1100,21 +1110,6 @@ namespace Playnite
             }
         }
 
-        private bool forcePlayTimeSync = false;
-        public bool ForcePlayTimeSync
-        {
-            get
-            {
-                return forcePlayTimeSync;
-            }
-
-            set
-            {
-                forcePlayTimeSync = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool enableControolerInDesktop = false;
         [RequiresRestart]
         public bool EnableControllerInDesktop
@@ -1691,6 +1686,17 @@ namespace Playnite
             set
             {
                 imageScalerMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlaytimeImportMode playtimeImportMode = PlaytimeImportMode.NewImportsOnly;
+        public PlaytimeImportMode PlaytimeImportMode
+        {
+            get => playtimeImportMode;
+            set
+            {
+                playtimeImportMode = value;
                 OnPropertyChanged();
             }
         }
