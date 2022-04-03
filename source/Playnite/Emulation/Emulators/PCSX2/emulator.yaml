@@ -7,3 +7,18 @@ Profiles:
     Platforms: [sony_playstation2]
     ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
     StartupExecutable: ^pcsx2\.exe$
+  - Name: x64
+    StartupArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
+    StartupExecutable: ^pcsx2x64\.exe$
+  - Name: x64 AVX2
+    StartupArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
+    StartupExecutable: ^pcsx2x64-avx2\.exe$
+  - Name: Qt x64 AVX2
+    StartupArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
+    StartupExecutable: ^pcsx2-qtx64-avx2\.exe$
