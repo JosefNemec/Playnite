@@ -72,6 +72,8 @@ You can check list of all Playnite's dependencies here:
 - [Playnite.DesktopApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.DesktopApp/packages.config)
 - [Playnite.FullscreenApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.FullscreenApp/packages.config)
 
+Probably the most common case where you might need to add an external dependency is for data serialization, usually JSON one. SDK already provides object serialization [methods](xref:Playnite.SDK.Data.Serialization) which should cover most serialization cases, including [DontSerialize](xref:Playnite.SDK.Data.DontSerializeAttribute) and [SerializationPropertyName](xref:Playnite.SDK.Data.SerializationPropertyNameAttribute) attributes.
+
 Referencing Playnite assemblies
 ---------------------
 

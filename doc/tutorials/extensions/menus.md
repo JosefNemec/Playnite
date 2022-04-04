@@ -21,32 +21,26 @@ When the function associated with the menu item is invoked, it will be passed an
 # [C#](#tab/csharp)
 ```csharp
 // To add new game menu items override GetGameMenuItems
-public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
+public override IEnumerable<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
 {
-    return new List<GameMenuItem>
+    yield return new GameMenuItem
     {
-        new GameMenuItem
+        Description = "Name of game menu item",
+        Action = (args) =>
         {
-            Description = "Name of game menu item",
-            Action = (args) =>
-            {
-                 // use args.Games to get list of games attached to the menu source
-                 Console.WriteLine("Invoked from game menu item!");
-            }
+            // use args.Games to get list of games attached to the menu source
+            Console.WriteLine("Invoked from game menu item!");
         }
     };
 }
 
 // To add new main menu items override GetMainMenuItems
-public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+public override IEnumerable<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
 {
-    return new List<MainMenuItem>
+    yield return new MainMenuItem
     {
-        new MainMenuItem
-        {
-            Description = "Name of main menu item",
-            Action = (args) => Console.WriteLine("Invoked from main menu item!")
-        }
+        Description = "Name of main menu item",
+        Action = (args) => Console.WriteLine("Invoked from main menu item!")
     };
 }
 ```
