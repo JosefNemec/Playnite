@@ -13,7 +13,7 @@ body:
   - type: checkboxes
     id: cbDuplicate
     attributes:
-      label: Duplicate Issues
+      label: Not a duplicate issue
       description: Issue is **not a duplicate** of another [open issue](https://github.com/JosefNemec/Playnite/issues?q=is%3Aopen+is%3Aissue) or [closed issue](https://github.com/JosefNemec/Playnite/issues?q=is%3Aissue+is%3Aclosed)
       options:
         - label: I confirm that I have searched existing issues and that it's not a duplicate
