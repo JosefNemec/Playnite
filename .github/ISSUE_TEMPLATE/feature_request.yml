@@ -10,6 +10,30 @@ body:
 
         **Check for existing issue**
         Please use issue search in the repository if your feature request is something really obvious there's a high change it was already requested.
+  - type: checkboxes
+    id: cbDuplicate
+    attributes:
+      label: Not a duplicate issue
+      description: Issue is **not a duplicate** of another [open issue](https://github.com/JosefNemec/Playnite/issues?q=is%3Aopen+is%3Aissue) or [closed issue](https://github.com/JosefNemec/Playnite/issues?q=is%3Aissue+is%3Aclosed)
+      options:
+        - label: I confirm that I have searched existing issues and that it's not a duplicate
+          required: true
+  - type: checkboxes
+    id: cbNotExtension
+    attributes:
+      label: Not an extension issue
+      description: By submitting this issue, you confirm this issue is about Playnite core functionality and not of an extension
+      options:
+        - label: I confirm that this issue **IS NOT** about about a library plugin or any kind of extension. I am aware that issues with extensions do not belong in this repository.
+          required: true
+  - type: checkboxes
+    id: cbReadInfo
+    attributes:
+      label: Instructions read
+      description: By submitting this issue, you confirm that you have read the instructions carefully
+      options:
+        - label: I confirm that I have read the instructions carefully
+          required: true
   - type: textarea
     attributes:
       label: Feature description
