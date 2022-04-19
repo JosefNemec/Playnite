@@ -18,7 +18,7 @@ namespace Playnite.Common
         public static string GetFinalPathName(string path)
         {
             var h = Kernel32.CreateFile(path,
-                Winnt.FILE_READ_EA,
+                0,
                 FileShare.ReadWrite | FileShare.Delete,
                 IntPtr.Zero,
                 FileMode.Open,
