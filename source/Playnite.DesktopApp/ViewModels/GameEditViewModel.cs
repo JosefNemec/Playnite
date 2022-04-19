@@ -237,6 +237,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => IsMultiGameEdit || !EditingGame.IsCustomGame;
         }
 
+        public bool ShowOverrideInstallStateOption
+        {
+            get => IsMultiGameEdit || !EditingGame.IsCustomGame;
+        }
+
         public bool IsSingleGameEdit
         {
             get;
@@ -800,6 +805,11 @@ namespace Playnite.DesktopApp.ViewModels
                 if (UseIncludeLibraryPluginAction)
                 {
                     game.IncludeLibraryPluginAction = EditingGame.IncludeLibraryPluginAction;
+                }
+
+                if (UseOverrideInstallState)
+                {
+                    game.OverrideInstallState = EditingGame.OverrideInstallState;
                 }
 
                 game.Modified = changeDate;

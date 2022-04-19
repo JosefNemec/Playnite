@@ -1184,7 +1184,7 @@ namespace Playnite.Database
                                         newGame.Playtime = originalPlaytime;
                                     }
                                 }
-                                
+
                                 var importedGame = ImportGame(newGame, library.Id);
                                 addedGames.Add(importedGame);
                                 if (updateCompletionStatus(importedGame, statusSettings))
@@ -1200,16 +1200,19 @@ namespace Playnite.Database
                         else
                         {
                             var existingGameUpdated = false;
-                            if (existingGame.IsInstalled != newGame.IsInstalled)
+                            if (!existingGame.IsCustomGame && !existingGame.OverrideInstallState)
                             {
-                                existingGame.IsInstalled = newGame.IsInstalled;
-                                existingGameUpdated = true;
-                            }
+                                if (existingGame.IsInstalled != newGame.IsInstalled)
+                                {
+                                    existingGame.IsInstalled = newGame.IsInstalled;
+                                    existingGameUpdated = true;
+                                }
 
-                            if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
-                            {
-                                existingGame.InstallDirectory = newGame.InstallDirectory;
-                                existingGameUpdated = true;
+                                if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
+                                {
+                                    existingGame.InstallDirectory = newGame.InstallDirectory;
+                                    existingGameUpdated = true;
+                                }
                             }
 
                             if (playtimeImportMode == PlaytimeImportMode.Always)

@@ -79,6 +79,7 @@ namespace Playnite
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
         public char NameGroup => Game.GetNameGroup();
+        public bool OverrideInstallState => Game.OverrideInstallState;
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;

@@ -1066,4 +1066,8 @@ Supported only for: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Scan but using simplified method without file content</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.</sys:String>
     <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Apply to all</sys:String>
+    <sys:String x:Key="LOCOverrideInstallState">Override installation state</sys:String>
+    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">When set, Playnite will ignore installation state (including installation directory) set by the integration plugin that imports this game.
+        
+This option may not fully work with plugins that use specific game import method unless they also take this override option into account.</sys:String>
 </ResourceDictionary>

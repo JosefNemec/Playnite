@@ -912,6 +912,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <CheckBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,5,0"
@@ -933,6 +934,27 @@
                         <CheckBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,5"
                               VerticalAlignment="Center"
                               IsChecked="{Binding EditingGame.IsInstalled}"/>
+
+                        <CheckBox Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="0,0,5,0"
+                                  ToolTip="{DynamicResource LOCGameEditChangeSaveTooltip}"
+                                  IsChecked="{Binding UseOverrideInstallState}">
+                            <CheckBox.Visibility>
+                                <MultiBinding Converter="{pcon:MultiBooleanToVisibilityConverter}">
+                                    <Binding Path="ShowOverrideInstallStateOption" />
+                                    <Binding Path="ShowCheckBoxes" />
+                                </MultiBinding>
+                            </CheckBox.Visibility>
+                        </CheckBox>
+                        <TextBlock Text="{DynamicResource LOCOverrideInstallState}"
+                                   ToolTip="{DynamicResource LOCOverrideInstallStateTooltip}"
+                                   Visibility="{Binding ShowOverrideInstallStateOption, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   VerticalAlignment="Center"
+                                   Grid.Column="1" Grid.Row="3" Margin="0,5,5,5" />
+                        <CheckBox Grid.Row="3" Grid.Column="2" Margin="5,5,5,5"
+                                  ToolTip="{DynamicResource LOCOverrideInstallStateTooltip}"
+                                  VerticalAlignment="Center"
+                                  Visibility="{Binding ShowOverrideInstallStateOption, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  IsChecked="{Binding EditingGame.OverrideInstallState}"/>
                     </Grid>
 
                     <Button Content="{DynamicResource LOCAddRom}" HorizontalAlignment="Left" Margin="10,0,0,0"

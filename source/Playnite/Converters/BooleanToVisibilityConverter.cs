@@ -33,4 +33,27 @@ namespace Playnite.Converters
             return this;
         }
     }
+
+    public class MultiBooleanToVisibilityConverter : MarkupExtension, IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values == null)
+            {
+                return Visibility.Collapsed;
+            }
+
+            return values.All(a => a is bool val && val == true) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
 }

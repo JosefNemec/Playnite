@@ -169,7 +169,9 @@ namespace Playnite.SDK.Models
         ///
         Platforms = 86,
         ///
-        CompletionStatusId = 87
+        CompletionStatusId = 87,
+        ///
+        OverrideInstallState = 88
     }
 
     /// <summary>
@@ -688,6 +690,20 @@ namespace Playnite.SDK.Models
                 isInstalled = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(InstallationStatus));
+            }
+        }
+
+        private bool overrideInstallState;
+        /// <summary>
+        /// Gets or sets value indicating wheter installation state set by integration plugin should be ignored.
+        /// </summary>
+        public bool OverrideInstallState
+        {
+            get => overrideInstallState;
+            set
+            {
+                overrideInstallState = value;
+                OnPropertyChanged();
             }
         }
 
@@ -1804,6 +1820,11 @@ namespace Playnite.SDK.Models
                 {
                     tro.IncludeLibraryPluginAction = IncludeLibraryPluginAction;
                 }
+
+                if (OverrideInstallState != tro.OverrideInstallState)
+                {
+                    tro.OverrideInstallState = OverrideInstallState;
+                }
             }
             else
             {
@@ -2122,6 +2143,11 @@ namespace Playnite.SDK.Models
             if (IncludeLibraryPluginAction != otherGame.IncludeLibraryPluginAction)
             {
                 changes.Add(GameField.IncludeLibraryPluginAction);
+            }
+
+            if (OverrideInstallState != otherGame.OverrideInstallState)
+            {
+                changes.Add(GameField.OverrideInstallState);
             }
 
             return changes;
