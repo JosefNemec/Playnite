@@ -288,7 +288,6 @@
     <Compile Include="Metadata\MetadataFileExtensions.cs" />
     <Compile Include="Native\Gdi32.cs" />
     <Compile Include="Common\ItemsSource.cs" />
-    <Compile Include="Common\JsonRpcClient.cs" />
     <Compile Include="Common\MarkupConverter.cs" />
     <Compile Include="Common\Media\Icons\IconExtractor.cs" />
     <Compile Include="Common\Media\Icons\IconUtil.cs" />
