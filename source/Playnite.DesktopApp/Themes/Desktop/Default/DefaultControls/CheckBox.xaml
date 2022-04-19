@@ -20,7 +20,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Border x:Name="BulletBorder" CornerRadius="{DynamicResource ControlCornerRadius}"
                                     BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
-                                    Style="{DynamicResource HighlightBorder}" >
+                                    BorderBrush="{TemplateBinding BorderBrush}">
                                 <Grid Width="18" Height="18" Background="{DynamicResource CheckBoxCheckMarkBkBrush}">
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed">
                                         <TextBlock Text="b" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
