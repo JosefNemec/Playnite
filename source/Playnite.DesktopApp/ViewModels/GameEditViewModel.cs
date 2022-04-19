@@ -410,13 +410,6 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                 }
 
-                // Temporarily disabled since there's some issue in fetching images from Wiki.
-                //MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
-                //{
-                //    Downloader = new WikipediaMetadataPlugin(playniteApi),
-                //    Name = "Wikipedia"
-                //});
-
                 LibraryPlugin = extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == Game?.PluginId);
                 try
                 {
