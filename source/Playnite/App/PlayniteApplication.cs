@@ -925,7 +925,17 @@ namespace Playnite
         {
             logger.Info("Shutting down Playnite and starting an app.");
             ReleaseResources();
-            ProcessStarter.StartProcess(path, arguments, asAdmin);
+            try
+            {
+                ProcessStarter.StartProcess(path, arguments, asAdmin);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                // Not sure how this can happen, but there are some "operation cancelled by user" crashes here.
+                // People probably running Playnite as admin and cancelling UAC for new process, or something...
+                logger.Error(e, "Failed to start process on app shutdown.");
+            }
+
             CurrentNative.Shutdown(0);
         }
 
