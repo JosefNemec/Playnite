@@ -12,7 +12,7 @@
         ShowMaximizeButton="False" ShowMinimizeButton="False"
         ResizeMode="NoResize" Width="400"
         SizeToContent="Height"
-        Title="{Binding ProgressText}"
+        Title="{Binding ProgressText}" BlockAltF4="True"
         AutomationProperties.AutomationId="WindowProgress">
 
     <Grid Margin="10,-20,10,5">

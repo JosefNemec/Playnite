@@ -9,6 +9,9 @@ namespace Playnite.Native
 {
     public static class Winuser
     {
+        public const int GWL_STYLE = -16;
+        public const int WS_SYSMENU = 0x80000;
+
         public static readonly IntPtr INVALID_HANDLE_VALUE = new IntPtr(-1);
         public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         public static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
