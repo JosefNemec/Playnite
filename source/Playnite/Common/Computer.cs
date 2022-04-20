@@ -19,6 +19,8 @@ namespace Playnite.Common
 
         public string WindowsVersion { get; set; }
 
+        public string ActualWindowsVersion { get; set; }
+
         public string WindowsEdition { get; set; }
 
         public int WindowsBuildVersion { get; set; }
@@ -179,6 +181,7 @@ namespace Playnite.Common
             {
                 Is64Bit = Environment.Is64BitOperatingSystem,
                 WindowsVersion = Environment.OSVersion.VersionString,
+                ActualWindowsVersion = Computer.WindowsVersion.ToString(),
                 WindowsBuildVersion = GetWindowsReleaseId(),
                 WindowsEdition = GetWindowsProductName()
             };
