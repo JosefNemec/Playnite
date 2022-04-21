@@ -23,6 +23,7 @@ namespace Playnite.Extensions.Markup
 {
     public class ThemeFile : MarkupExtension
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
         private static FileInfo lastUserTheme = null;
         private static bool? lastUserThemeFound = null;
 
@@ -147,7 +148,16 @@ namespace Playnite.Extensions.Markup
             var provider = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
             var type = IProvideValueTargetExtensions.GetTargetType(provider);
             var converter = TypeDescriptor.GetConverter(type);
-            return converter.ConvertFrom(path);
+
+            try
+            {
+                return converter.ConvertFrom(path);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to provide value for theme file {path}");
+                return null;
+            }
         }
     }
 }
