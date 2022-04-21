@@ -20,6 +20,7 @@ namespace Playnite.Common
         private SynchronizationContext execContext;
         private CancellationTokenSource watcherToken;
         private static ILogger logger = LogManager.GetLogger();
+        private const int maxFailCount = 5;
 
         public ProcessMonitor()
         {
@@ -82,6 +83,12 @@ namespace Playnite.Common
                     return;
                 }
 
+                if (failCount == maxFailCount)
+                {
+                    OnTreeDestroyed();
+                    return;
+                }
+
                 try
                 {
                     processFound = false;
@@ -99,11 +106,11 @@ namespace Playnite.Common
                         }
                     }
                 }
-                catch (Exception e) when (failCount < 5)
+                catch (Exception e) when (failCount < maxFailCount)
                 {
                     // This shouldn't happen, but there were some crash reports from Process.GetProcesses
                     failCount++;
-                    logger.Error(e, "Watch process.");
+                    logger.Error(e, "WatchUwpApp failed to check processes.");
                 }
 
                 if (!alreadyRunning && processFound && !startedCalled)
@@ -166,6 +173,12 @@ namespace Playnite.Common
                     return;
                 }
 
+                if (failCount == maxFailCount)
+                {
+                    OnTreeDestroyed();
+                    return;
+                }
+
                 var processFound = false;
                 try
                 {
@@ -189,11 +202,11 @@ namespace Playnite.Common
                         }
                     }
                 }
-                catch (Exception e) when (failCount < 5)
+                catch (Exception e) when (failCount < maxFailCount)
                 {
                     // This shouldn't happen, but there were some crash reports from Process.GetProcesses
                     failCount++;
-                    logger.Error(e, "Watch process.");
+                    logger.Error(e, "WatchDirectoryByProcessNames failed to check processes.");
                 }
 
                 if (!alreadyRunning && processFound && !startedCalled)
@@ -231,6 +244,12 @@ namespace Playnite.Common
                     return;
                 }
 
+                if (failCount == maxFailCount)
+                {
+                    OnTreeDestroyed();
+                    return;
+                }
+
                 var processFound = false;
                 try
                 {
@@ -248,11 +267,11 @@ namespace Playnite.Common
                         }
                     }
                 }
-                catch (Exception e) when (failCount < 5)
+                catch (Exception e) when (failCount < maxFailCount)
                 {
                     // This shouldn't happen, but there were some crash reports from Process.GetProcesses
                     failCount++;
-                    logger.Error(e, "Watch process.");
+                    logger.Error(e, "WatchDirectory failed to check processes.");
                 }
 
                 if (!alreadyRunning && processFound && !startedCalled)
@@ -284,7 +303,7 @@ namespace Playnite.Common
                     return;
                 }
 
-                if (ids.Count == 0)
+                if (ids.Count == 0 || failCount == maxFailCount)
                 {
                     OnTreeDestroyed();
                     return;
@@ -312,11 +331,11 @@ namespace Playnite.Common
 
                     ids = runningIds;
                 }
-                catch (Exception e) when (failCount < 5)
+                catch (Exception e) when (failCount < maxFailCount)
                 {
                     // This shouldn't happen, but there were some crash reports from Process.GetProcesses
                     failCount++;
-                    logger.Error(e, "Watch process.");
+                    logger.Error(e, "WatchProcess failed to check processes.");
                 }
 
                 await Task.Delay(500);
