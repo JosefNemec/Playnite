@@ -32,7 +32,12 @@ namespace Playnite
                 var crashModules = new List<Module>();
                 foreach (var frame in stack.GetFrames())
                 {
-                    var module = frame.GetMethod().Module;
+                    var module = frame.GetMethod()?.Module;
+                    if (module == null)
+                    {
+                        continue;
+                    }
+
                     if (module.Name.StartsWith("Playnite"))
                     {
                         playniteStackCalls++;
@@ -46,7 +51,12 @@ namespace Playnite
                     stack = new StackTrace(exception.InnerException);
                     foreach (var frame in stack.GetFrames())
                     {
-                        var module = frame.GetMethod().Module;
+                        var module = frame.GetMethod()?.Module;
+                        if (module == null)
+                        {
+                            continue;
+                        }
+
                         if (module.Name.StartsWith("Playnite"))
                         {
                             playniteStackCalls++;
