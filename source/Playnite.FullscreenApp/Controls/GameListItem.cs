@@ -52,7 +52,10 @@ namespace Playnite.FullscreenApp.Controls
 
         private void GameListItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            mainModel.OpenGameMenuCommand.Execute(null);
+            if (mainModel.OpenGameMenuCommand.CanExecute())
+            {
+                mainModel.OpenGameMenuCommand.Execute();
+            }
         }
 
         public override void OnApplyTemplate()
