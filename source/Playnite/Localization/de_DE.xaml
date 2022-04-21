@@ -15,7 +15,7 @@
     <sys:String x:Key="LOCSaveChangesAskTitle">Änderungen speichern?</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">Homepage: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Quellcode auf GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Diagnosedaten erstellen</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Diagnosedaten erzeugen</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Diagnosedaten senden</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Über Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">von Josef Němec</sys:String>
@@ -132,14 +132,14 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCDateModifiedLabel">Änderungsdatum</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Website</sys:String>
     <sys:String x:Key="LOCPathLabel">Pfad</sys:String>
-    <sys:String x:Key="LOCOKLabel">O. K.</sys:String>
+    <sys:String x:Key="LOCOKLabel">OK</sys:String>
     <sys:String x:Key="LOCSaveLabel">Speichern</sys:String>
     <sys:String x:Key="LOCCloseLabel">Schließen</sys:String>
     <sys:String x:Key="LOCCancelLabel">Abbrechen</sys:String>
     <sys:String x:Key="LOCYesLabel">Ja</sys:String>
     <sys:String x:Key="LOCNoLabel">Nein</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Willkommen</sys:String>
-    <sys:String x:Key="LOCLocalUserLabel">Lokaler Benutzer</sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">Lokaler Nutzer</sys:String>
     <sys:String x:Key="LOCGeneralLabel">Allgemein</sys:String>
     <sys:String x:Key="LOCMediaLabel">Medieninhalte</sys:String>
     <sys:String x:Key="LOCLinksLabel">Links</sys:String>
@@ -285,7 +285,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadaten</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Bibliotheksänderungen automatisch importieren</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Ungültiger Pfad zur Datenbank.</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidAccountName">Name des Benutzerkontos darf nicht leer sein.</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidAccountName">Name des Nutzerkontos darf nicht leer sein.</sys:String>
     <sys:String x:Key="LOCSettingsUpdateLibStartup">Bibliothek beim Starten aktualisieren</sys:String>
     <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup">Emulierte Ordner durchsuchen</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Metadaten nach Spieleimport herunterladen</sys:String>
@@ -319,7 +319,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsLoginStatus">Anmeldestatus:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite-Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Webcache leeren</sys:String>
-    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Löst eventuell Probleme beim Verknüpfen von Benutzerkonten.</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Löst eventuell Probleme beim Verknüpfen von Nutzerkonten.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Infobereichsymbol anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Playnite in Infobereich minimieren</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Playnite in den Infobereich minimieren, wenn das Anwendungsfenster geschlossen ist</sys:String>
@@ -540,11 +540,11 @@ Falls deaktiviert, werden alle Spiele angezeigt, die zu einem beliebigen Eintrag
     <sys:String x:Key="LOCDatabaseOpenError">Datenbank konnte nicht geöffnet werden.</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">Datenbank ist nicht geöffnet.</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">Kein Zugriff auf Bibliotheksdatenbank: Datei »{0}« wird von einem anderen Prozess verwendet oder befindet sich an einem unerreichbaren Speicherort.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError">Diagnosedaten konnte nicht erstellt werden.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">Diagnosedaten konnten nicht erzeugt werden.</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">Diagnosedaten konnten nicht automatisch hochgeladen werden.</sys:String>
     <sys:String x:Key="LOCDiagPackageSentSuccess">Diagnosedaten wurden erfolgreich versendet.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Die Diagnosedaten wurden erfolgreich erstellt und übermittelt.
-Bitte ergänze deinen Problembericht um die folgende Kennung:</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">Die Diagnosedaten wurden erfolgreich erzeugt und übermittelt.
+Bitte ergänze deinen Problembericht um folgende Kennung:</sys:String>
 
     <sys:String x:Key="LOCLibraryImportError">Spiele von {0} konnten nicht importiert werden.</sys:String>
     <sys:String x:Key="LOCLibraryImportEmulatedError">Emulierte Spiele konnten von {0} nicht importiert werden.</sys:String>
@@ -611,7 +611,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCNever">Nie</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Spielfortschritt</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Spielfortschrittszustände</sys:String>
-    <sys:String x:Key="LOCUserScore">Benutzerwertung</sys:String>
+    <sys:String x:Key="LOCUserScore">Nutzerwertung</sys:String>
     <sys:String x:Key="LOCCriticScore">Expertenwertung</sys:String>
     <sys:String x:Key="LOCCommunityScore">Communitywertung</sys:String>
     <sys:String x:Key="LOCScripts">Skripte</sys:String>
@@ -649,7 +649,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCDeselectAll">Alles abwählen</sys:String>
     <sys:String x:Key="LOCFirst">Erstes</sys:String>
     <sys:String x:Key="LOCRandom">Zufällig</sys:String>
-    <sys:String x:Key="LOCUserSelect">Benutzerauswahl</sys:String>
+    <sys:String x:Key="LOCUserSelect">Nutzerauswahl</sys:String>
     <sys:String x:Key="LOCLoadMore">Mehr laden</sys:String>
     <sys:String x:Key="LOCTransparent">Transparent</sys:String>
     <sys:String x:Key="LOCCollapse">Einklappen</sys:String>
@@ -747,7 +747,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCOpenMetadataFolder">Metadatenverzeichnis öffnen</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0}-Client ist nicht installiert.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Der {0}-Client wird nun gestartet. Bitte melde dich an und schließe danach diese Nachricht.</sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage">Es wird auf die Benutzeranmeldung gewartet. Bitte schließen, sobald du damit fertig bist …</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">Es wird auf die Nutzeranmeldung gewartet. Bitte schließen, sobald du damit fertig bist …</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Installationsverzeichnis des Spiels nicht gefunden.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Ungültige Aktionskonfiguration für dieses Spiel.</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">Problembehebung bei der Kontosynchronisation</sys:String>
@@ -822,7 +822,7 @@ Hintergründe: {2} Megapixel</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Diese Erweiterung wird von dieser Playnite-Version nicht unterstützt.</sys:String>
     <sys:String x:Key="LOCExtensionInstallDir">Installationsverzeichnis</sys:String>
     <sys:String x:Key="LOCExtensionDataDir">Datenverzeichnis</sys:String>
-    <sys:String x:Key="LOCDiagGenerating">Diagnosedaten werden erstellt …</sys:String>
+    <sys:String x:Key="LOCDiagGenerating">Diagnosedaten werden erzeugt …</sys:String>
     <sys:String x:Key="LOCDiagUploading">Diagnosedaten werden hochgeladen …</sys:String>
     <sys:String x:Key="LOCAddFromExe">Datei importieren …</sys:String>
     <sys:String x:Key="LOCWhatIsThis">Was ist das?</sys:String>

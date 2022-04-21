@@ -158,7 +158,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCDownloadLabel">Ladda ner</sys:String>
     <sys:String x:Key="LOCSearchLabel">Sök</sys:String>
     <sys:String x:Key="LOCSearchResolutionLabel">Upplösning:</sys:String>
-    <sys:String x:Key="LOCSearchResolutionAnyLabel"></sys:String>
+    <sys:String x:Key="LOCSearchResolutionAnyLabel">Alla</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
     <sys:String x:Key="LOCListViewLabel">Listvy</sys:String>
     <sys:String x:Key="LOCCoversLabel">Omslag</sys:String>
@@ -223,7 +223,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCMenuSoftwareTools">Programvaruverktyg</sys:String>
     <sys:String x:Key="LOCMenuConfigureIntegrations">Konfigurera integrationer</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Öppna extern Plattform</sys:String>
-    <sys:String x:Key="LOCMenuClients"></sys:String>
+    <sys:String x:Key="LOCMenuClients">Tredjepartsklienter</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Uppdatera Bibliotek</sys:String>
     <sys:String x:Key="LOCMenuCancelLibraryUpdate">Avbryt biblioteksuppdatering</sys:String>
     <sys:String x:Key="LOCMenuUpdateEmulatedDirs">Uppdatera emulerade mappar</sys:String>
@@ -242,12 +242,12 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCMenuRestartSystem">Starta om systemet</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Stäng ner systemet</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sätt systemet i viloläge</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">Viloläge </sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Välj ett Slumpmässigt Spel</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Infofält som visas på detaljpanelen:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Marginal mellan rutorna</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Rutmönstrad bakgrund</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Tjocklek på ram för rutnätet</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Saknar källa för spelikoner</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Saknar källa för spelomslagsbilder</sys:String>
