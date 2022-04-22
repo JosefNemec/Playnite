@@ -20,7 +20,7 @@ foreach (var game in PlayniteApi.Database.Games)
 }
 
 // Get a game with known Id
-var game = $PlayniteApi.Database.Games[SomeGuidId];
+var game = PlayniteApi.Database.Games[SomeGuidId];
 ```
 
 # [PowerShell](#tab/tabpowershell)

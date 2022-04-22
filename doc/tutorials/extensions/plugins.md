@@ -60,6 +60,11 @@ Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. 
 
 Described in [introduction section](intro.md) to extensions.
 
+Accessing Playnite API
+---------------------
+
+Playnite API instance is available via [PlayniteAPI](xref:Playnite.SDK.Plugins.Plugin.PlayniteApi) property on your plugin class, the same instance which is also injected in plugin's constructor. In case you can't for some reason access this property, there's also static singleton instance accessible via [Playnite.SDK.API.Instance](xref:Playnite.SDK.API.Instance).
+
 Plugin dependencies
 ---------------------
 
