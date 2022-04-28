@@ -154,13 +154,23 @@ namespace Playnite.Emulators
         private readonly GameScannerConfig scanner;
         private readonly GameDatabase database;
         private List<string> importedFiles;
+        private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
 
         public GameScanner(
             GameScannerConfig scanner,
-            GameDatabase database)
+            GameDatabase database,
+            Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider = null)
         {
             this.scanner = scanner;
             this.database = database;
+            if (emuDbProvider == null)
+            {
+                this.emuDbProvider = GetEmulationDbs;
+            }
+            else
+            {
+                this.emuDbProvider = emuDbProvider;
+            }
         }
 
         public List<ScannedGame> Scan(
@@ -197,6 +207,7 @@ namespace Playnite.Emulators
                     cancelToken,
                     crcExclusions,
                     scanner.ScanSubfolders,
+                    scanner.ScanInsideArchives,
                     fileScanCallback);
             }
             else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
@@ -208,6 +219,7 @@ namespace Playnite.Emulators
                     cancelToken,
                     crcExclusions,
                     scanner.ScanSubfolders,
+                    scanner.ScanInsideArchives,
                     fileScanCallback);
             }
             else
@@ -342,6 +354,7 @@ namespace Playnite.Emulators
             CancellationToken cancelToken,
             string crcExludePatterns,
             bool scanSubfolders,
+            bool scanArchives,
             Action<string> fileScanCallback = null)
         {
             var emuProf = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
@@ -423,6 +436,7 @@ namespace Playnite.Emulators
                     cancelToken,
                     crcExludePatterns,
                     scanSubfolders,
+                    scanArchives,
                     fileScanCallback);
             }
         }
@@ -434,6 +448,7 @@ namespace Playnite.Emulators
             CancellationToken cancelToken,
             string crcExludePatterns,
             bool scanSubfolders,
+            bool scanArchives,
             Action<string> fileScanCallback = null)
         {
             if (profile == null)
@@ -454,6 +469,7 @@ namespace Playnite.Emulators
                 cancelToken,
                 crcExludePatterns,
                 scanSubfolders,
+                scanArchives,
                 fileScanCallback);
         }
 
@@ -464,6 +480,7 @@ namespace Playnite.Emulators
             CancellationToken cancelToken,
             string crcExludePatterns,
             bool scanSubfolders,
+            bool scanArchives,
             Action<string> fileScanCallback = null)
         {
             logger.Info($"Scanning emulated directory {directory}.");
@@ -472,7 +489,7 @@ namespace Playnite.Emulators
                 throw new Exception($"Can't scan emulation directory, {directory} doesn't exist.");
             }
 
-            var emuDbs = GetEmulationDbs(scanPlatforms);
+            var emuDbs = emuDbProvider(scanPlatforms);
             var resultRoms = new Dictionary<string, List<ScannedRom>>();
 
             try
@@ -485,6 +502,7 @@ namespace Playnite.Emulators
                     cancelToken,
                     crcExludePatterns,
                     scanSubfolders,
+                    scanArchives,
                     fileScanCallback);
             }
             finally
@@ -498,11 +516,12 @@ namespace Playnite.Emulators
         internal void ScanDirectoryBase(
             string directory,
             List<string> supportedExtensions,
-            List<EmulationDatabase.EmulationDatabaseReader> databases,
+            List<EmulationDatabase.IEmulationDatabaseReader> databases,
             Dictionary<string, List<ScannedRom>> resultRoms,
             CancellationToken cancelToken,
             string crcExludePatterns,
             bool scanSubfolders,
+            bool scanArchives,
             Action<string> fileScanCallback = null)
         {
             void addRom(ScannedRom rom)
@@ -586,7 +605,8 @@ namespace Playnite.Emulators
                                 Path.GetExtension(binFile).TrimStart('.'),
                                 supportedExtensions,
                                 databases,
-                                crcScan);
+                                crcScan,
+                                scanArchives);
                             if (romData != null)
                             {
                                 break;
@@ -679,7 +699,8 @@ namespace Playnite.Emulators
                         ext,
                         supportedExtensions,
                         databases,
-                        crcScan);
+                        crcScan,
+                        scanArchives);
                     if (romData != null)
                     {
                         logger.Trace($"Detected rom with db info:{file}\n{romData.Item1}");
@@ -716,6 +737,7 @@ namespace Playnite.Emulators
                         cancelToken,
                         crcExludePatterns,
                         scanSubfolders,
+                        scanArchives,
                         fileScanCallback);
                 }
             }
@@ -725,8 +747,9 @@ namespace Playnite.Emulators
             string file,
             string fileExt,
             List<string> supportedExtensions,
-            List<EmulationDatabase.EmulationDatabaseReader> databases,
-            bool scanCrc)
+            List<EmulationDatabase.IEmulationDatabaseReader> databases,
+            bool scanCrc,
+            bool scanArchives)
         {
             if (databases.HasItems())
             {
@@ -736,7 +759,7 @@ namespace Playnite.Emulators
 
                 if (scanCrc)
                 {
-                    if (IsSupportedArchiveExtension(fileExt))
+                    if (IsSupportedArchiveExtension(fileExt) && scanArchives)
                     {
                         var archFiles = Archive.GetArchiveFiles(file);
                         var supportedFiles = archFiles.Where(a =>
@@ -817,11 +840,11 @@ namespace Playnite.Emulators
             }
         }
 
-        private static List<EmulationDatabase.EmulationDatabaseReader> GetEmulationDbs(List<string> platformIds)
+        private List<EmulationDatabase.IEmulationDatabaseReader> GetEmulationDbs(List<string> platformIds)
         {
-            var supportedPlatforms = Emulation.Platforms.Where(a => platformIds?.Contains(a.Id) == true).ToList();
-            var supportedDatabases = supportedPlatforms.Where(a => a.Databases.HasItems()).SelectMany(a => a.Databases).Distinct().ToList();
-            var emuDbs = new List<EmulationDatabase.EmulationDatabaseReader>();
+            var supportedPlatforms = Emulation.Platforms.Where(a => platformIds?.Contains(a.Id) == true);
+            var supportedDatabases = supportedPlatforms.Where(a => a.Databases.HasItems()).SelectMany(a => a.Databases).Distinct();
+            var emuDbs = new List<EmulationDatabase.IEmulationDatabaseReader>();
             foreach (var supDb in supportedDatabases)
             {
                 var db = EmulationDatabase.GetDatabase(supDb, PlaynitePaths.EmulationDatabasePath);
@@ -836,7 +859,7 @@ namespace Playnite.Emulators
 
         private static ScannedGame ParseScripScannedGame(
             ScriptScannedGame scriptGame,
-            List<EmulationDatabase.EmulationDatabaseReader> emuDbs)
+            List<EmulationDatabase.IEmulationDatabaseReader> emuDbs)
         {
             var game = new ScannedGame();
             game.Name = scriptGame.Name ?? scriptGame.Serial;
@@ -876,7 +899,7 @@ namespace Playnite.Emulators
             return game;
         }
 
-        private static List<ScannedGame> ParseScriptScanResult(
+        private List<ScannedGame> ParseScriptScanResult(
             object scanResult,
             EmulatorDefinitionProfile emuProf)
         {
@@ -898,7 +921,7 @@ namespace Playnite.Emulators
                 }
             }
 
-            var emuDbs = GetEmulationDbs(emuProf.Platforms);
+            var emuDbs = emuDbProvider(emuProf.Platforms);
             try
             {
                 if (scanResult is ScriptScannedGame game)

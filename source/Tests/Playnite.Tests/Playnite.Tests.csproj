@@ -81,6 +81,7 @@
     <Reference Include="System.IO.Abstractions.TestingHelpers, Version=2.1.0.227, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IO.Abstractions.TestingHelpers.2.1.0.227\lib\net40\System.IO.Abstractions.TestingHelpers.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -142,6 +143,7 @@
     <Compile Include="SigningToolsTests.cs" />
     <Compile Include="SortableNameConverterTests.cs" />
     <Compile Include="_TestTools\TestAppTools.cs" />
+    <Compile Include="_TestTools\TestEmulationDatabase.cs" />
     <Compile Include="_TestTools\TestPlayniteApplication.cs" />
     <Compile Include="XmlTests.cs" />
     <Compile Include="SizesTests.cs" />

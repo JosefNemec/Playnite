@@ -5,6 +5,7 @@ using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -35,6 +36,7 @@ namespace Playnite.Tests.Emulators
                     scanResults,
                     new System.Threading.CancellationTokenSource().Token,
                     null,
+                    true,
                     true);
 
                 Assert.AreEqual(2, scanResults.Count);
@@ -87,7 +89,7 @@ namespace Playnite.Tests.Emulators
         }
 
         [Test]
-        public void SubfolderScanTest()
+        public void SubfolderScanOptionTest()
         {
             using (var tempPath = TempDirectory.Create())
             using (var db = new GameDbTestWrapper(tempPath))
@@ -118,6 +120,58 @@ namespace Playnite.Tests.Emulators
                 games = scanner.Scan(CancellationToken.None, out newPlatforms, out newRegions);
                 Assert.AreEqual(1, games.Count);
                 Assert.AreEqual("test root", games[0].Name);
+            }
+        }
+
+        [Test]
+        public void ScanInsideArchivesOptionTest()
+        {
+            using (var tempPath = TempDirectory.Create())
+            using (var db = new GameDbTestWrapper(tempPath))
+            {
+                var archFile = Path.Combine(tempPath.TempPath, "archive", "test.mp3");
+                FileSystem.WriteStringToFile(archFile, "AAA");
+                ZipFile.CreateFromDirectory(Path.Combine(tempPath.TempPath, "archive"), Path.Combine(tempPath.TempPath, "archive.zip"), CompressionLevel.Fastest, false);
+                FileSystem.DeleteFile(archFile);
+                FileSystem.CreateFile(Path.Combine(tempPath.TempPath, "test2.iso"));
+
+                var platform = TestAppTools.GetPlatformObj();
+                db.DB.Platforms.Add(platform);
+                var emu = TestAppTools.GetEmulatorObj();
+                emu.CustomProfiles[0].Platforms = new List<Guid> { platform.Id };
+                db.DB.Emulators.Add(emu);
+
+                var config = new GameScannerConfig
+                {
+                    EmulatorId = emu.Id,
+                    EmulatorProfileId = emu.CustomProfiles[0].Id,
+                    Directory = tempPath.TempPath,
+                    ScanSubfolders = true,
+                    ScanInsideArchives = true
+                };
+
+                var scanner = new GameScanner(config, db.DB,
+                    (platformIds) => platformIds?.Contains(TestAppTools.PlatformSpecId) == true ? new List<EmulationDatabase.IEmulationDatabaseReader>
+                    {
+                        new TestEmulationDatabaseReader(
+                            "test",
+                            // 66A031A7 matches generated test.mp3
+                            (romCrc) => romCrc == "66A031A7" ? new List<DatGame>() { new DatGame { Name = "crc match", RomName = "crc match" } } : new List<DatGame>(),
+                            (__) => new List<DatGame>(),
+                            (__) => new List<DatGame>(),
+                            (__) => new List<DatGame>())
+                    } : new List<EmulationDatabase.IEmulationDatabaseReader>());
+
+                var games = scanner.Scan(CancellationToken.None, out var newPlatforms, out var newRegions);
+                Assert.AreEqual(2, games.Count);
+                Assert.AreEqual("crc match", games[0].Name);
+                Assert.AreEqual("test2", games[1].Name);
+
+                config.ScanInsideArchives = false;
+                games = scanner.Scan(CancellationToken.None, out newPlatforms, out newRegions);
+                Assert.AreEqual(2, games.Count);
+                Assert.AreEqual("archive", games[0].Name);
+                Assert.AreEqual("test2", games[1].Name);
             }
         }
     }

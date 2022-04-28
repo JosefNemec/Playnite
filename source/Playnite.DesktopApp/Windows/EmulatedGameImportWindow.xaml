@@ -191,6 +191,8 @@
                                           IsChecked="{Binding ImportWithRelativePaths}"/>
                                 <CheckBox Content="{DynamicResource LOCEmuImportScanSubfolders}" Margin="0,10,0,0"
                                           IsChecked="{Binding ScanSubfolders}"/>
+                                <CheckBox Content="{DynamicResource LOCEmuImportScanInsideArchives}" Margin="0,10,0,0"
+                                          IsChecked="{Binding ScanInsideArchives}"/>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
                                           ToolTip="{DynamicResource LOCEmuSaveScanConfigTooltip}"
                                           ToolTipService.InitialShowDelay="200" Margin="0,10,0,0"

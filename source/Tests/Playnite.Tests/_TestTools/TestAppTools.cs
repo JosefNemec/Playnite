@@ -11,6 +11,8 @@ namespace Playnite.Tests
 {
     public class TestAppTools
     {
+        public const string PlatformSpecId = "test_app_platform";
+
         public static EmulatorDefinition GetEmulatorDefitionObj()
         {
             return new EmulatorDefinition
@@ -21,7 +23,7 @@ namespace Playnite.Tests
                 {
                     new EmulatorDefinitionProfile
                     {
-                        ImageExtensions = new List<string> { "iso", "mp3" },
+                        ImageExtensions = new List<string> { "iso", "mp3", "zip" },
                         Name = "default",
                         StartupExecutable = @"^TestApp\.exe$",
                         StartupArguments = "some args"
@@ -42,9 +44,18 @@ namespace Playnite.Tests
                         Name = "test profile",
                         Arguments = "{ImagePath}",
                         Executable = "TestPath.exe",
-                        ImageExtensions = new List<string> { "iso", "mp3" }
+                        ImageExtensions = new List<string> { "iso", "mp3", "zip" }
                     }
                 }
+            };
+        }
+
+        public static Platform GetPlatformObj()
+        {
+            return new Platform
+            {
+                Name = "Test App platform",
+                SpecificationId = PlatformSpecId
             };
         }
     }

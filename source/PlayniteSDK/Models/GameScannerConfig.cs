@@ -137,6 +137,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool scanInsideArchives = true;
+        /// <summary>
+        /// Gets or sets value indicating whether file archies should be scanned for content.
+        /// </summary>
+        public bool ScanInsideArchives
+        {
+            get => scanInsideArchives;
+            set
+            {
+                scanInsideArchives = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -186,6 +200,11 @@ namespace Playnite.SDK.Models
                 if (ScanSubfolders != tro.ScanSubfolders)
                 {
                     tro.ScanSubfolders = ScanSubfolders;
+                }
+
+                if (ScanInsideArchives != tro.ScanInsideArchives)
+                {
+                    tro.ScanInsideArchives = ScanInsideArchives;
                 }
             }
             else

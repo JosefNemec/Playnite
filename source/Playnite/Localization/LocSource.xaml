@@ -1033,6 +1033,7 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuImportWithRelativePaths">Import using relative paths</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">If possible import game files using paths relative to Playnite's installation folder or emulator's installation folder.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">Scan subfolders</sys:String>
+    <sys:String x:Key="LOCEmuImportScanInsideArchives">Scan inside archives</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Add scanner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Add saved scanner</sys:String>
     <sys:String x:Key="LOCStartScan">Start scan</sys:String>
