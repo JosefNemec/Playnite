@@ -48,6 +48,7 @@ Playnite provides some built-in global variables that scripts can use to get mor
 | Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
 | SourceAction | Custom [game action](xref:Playnite.SDK.Models.GameAction) used to start a game. |
 | SelectedRomFile | ROM file selected when running a game with multiple ROMs assigned. |
+| StartedProcessId | Process ID of original started process. Might not be available depending on how a game was started. |
 
 Startup script
 ---------------------

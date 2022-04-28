@@ -957,8 +957,9 @@ namespace Playnite
 
             var scriptVars = new Dictionary<string, object>
             {
-                {  "SourceAction", (args.Source as GenericPlayController)?.SourceGameAction?.GetClone() },
-                {  "SelectedRomFile", (args.Source as GenericPlayController)?.SelectedRomPath }
+                { "SourceAction", (args.Source as GenericPlayController)?.SourceGameAction?.GetClone() },
+                { "SelectedRomFile", (args.Source as GenericPlayController)?.SelectedRomPath },
+                { "StartedProcessId", args.StartedProcessId }
             };
 
             ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false, GameScriptType.Started, scriptVars);
