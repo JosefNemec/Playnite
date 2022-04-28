@@ -24,7 +24,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand OpenSettingsCommand => new RelayCommand(() => OpenSettings());
         public RelayCommand SelectRandomGameCommand => new RelayCommand(() => PlayRandomGame(), () => MainModel.Database?.IsOpen == true);
         public RelayCommand OpenPatreonCommand => new RelayCommand(() => OpenPatreon());
-        public RelayCommand SendFeedbackCommand => new RelayCommand(() => SendFeedback());
         public RelayCommand ShutdownSystemCommand => new RelayCommand(() => ShutdownSystem());
         public RelayCommand HibernateSystemCommand => new RelayCommand(() => HibernateSystem());
         public RelayCommand SleepSystemCommand => new RelayCommand(() => SleepSystem());
@@ -35,6 +34,7 @@ namespace Playnite.FullscreenApp.ViewModels
             await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport, true);
         }, () => !MainModel.ProgressActive);
         public RelayCommand CancelProgressCommand => new RelayCommand(() => CancelProgress(), () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
+        public RelayCommand OpenHelpCommand => new RelayCommand(() => OpenHelp());
 
         public MainMenuViewModel(
             IWindowFactory window,
@@ -98,11 +98,13 @@ namespace Playnite.FullscreenApp.ViewModels
             vm.OpenView();
         }
 
-        public void SendFeedback()
+        public void OpenHelp()
         {
             Close();
-            NavigateUrlCommand.Navigate(PlayniteEnvironment.ReleaseChannel == ReleaseChannel.Beta ? UrlConstants.IssuesTesting : UrlConstants.Issues);
+            var vm = new HelpMenuViewModel(new HelpMenuWindowFactory(), MainModel);
+            vm.OpenView();
         }
+
         public void OpenPatreon()
         {
             Close();

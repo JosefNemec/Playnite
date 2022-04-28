@@ -47,6 +47,7 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameStatus.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Main.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MainMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/HelpMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MessageBox.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/NotificationsMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/SettingsMenus.xaml" />

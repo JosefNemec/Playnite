@@ -142,6 +142,7 @@ namespace Playnite.ViewModels
         public RelayCommand CancelProgressCommand { get; private set; }
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
         public RelayCommand StartInteractivePowerShellCommand { get; private set; }
+        public RelayCommand RestartInSafeMode { get; private set; }
 
         public GameDatabase Database { get; }
         public PlayniteApplication App { get; }
@@ -207,6 +208,8 @@ namespace Playnite.ViewModels
                     Dialogs.ShowErrorMessage("Failed to start interactive PowerShell.\n" + e.Message);
                 }
             });
+
+            RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
         }
 
         private PlayniteSettings appSettings;
@@ -756,5 +759,13 @@ namespace Playnite.ViewModels
         {
             RunAppScript(AppSettings.AppShutdownScript, "shutdown");
         }
+
+        public void RestartAppSafe()
+        {
+            CloseView();
+            App.Restart(new CmdLineOptions { SafeStartup = true });
+        }
+
+        public abstract void CloseView();
     }
 }

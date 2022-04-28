@@ -53,7 +53,6 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenDbFieldsManagerCommand { get; private set; }
         public RelayCommand<object> OpenLibraryIntegrationsConfigCommand { get; private set; }
         public RelayCommand<LibraryPlugin> UpdateLibraryCommand { get; private set; }
-        public RelayCommand<object> RestartInSafeMode { get; private set; }
         public RelayCommand UpdateEmulationDirsCommand { get; private set; }
         public RelayCommand<GameScannerConfig> UpdateEmulationDirCommand { get; private set; }
 
@@ -553,11 +552,6 @@ namespace Playnite.DesktopApp.ViewModels
                 PlayRandomGame();
             }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.F6));
-
-            RestartInSafeMode = new RelayCommand<object>((a) =>
-            {
-                RestartAppSafe();
-            });
 
             SelectSidebarViewCommand = new RelayCommand<SidebarWrapperItem>((a) =>
             {

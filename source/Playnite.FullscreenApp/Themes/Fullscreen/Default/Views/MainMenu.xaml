@@ -101,12 +101,13 @@
             <TextBlock Text="{DynamicResource LOCMenuRestartSystem}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>
-    
-    <DataTemplate x:Key="MainMenuFeedbackButtonTemplate">
+
+    <DataTemplate x:Key="MainMenuHelpButtonTemplate">
+
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="&#xeff2;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+            <TextBlock Text="&#xefca;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBlock Text="{DynamicResource LOCMenuIssues}" VerticalAlignment="Center" />
+            <TextBlock Text="{DynamicResource LOCMenuHelpTitle}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>
     

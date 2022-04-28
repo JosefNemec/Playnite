@@ -1,0 +1,59 @@
+﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.HelpMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
+        xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
+        mc:Ignorable="d"
+        ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
+        ShowInTaskbar="False" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Style="{StaticResource ChildWindowStyle}"
+        d:DesignWidth="1920" d:DesignHeight="1080">
+
+    <c:WindowBase.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
+        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
+    </c:WindowBase.InputBindings>
+
+    <Viewbox>
+        <Grid Height="1080" Width="1920" Name="GridMain">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition MinWidth="400" Width="Auto" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="1"
+                    KeyboardNavigation.TabNavigation="Cycle"
+                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                    Style="{DynamicResource HelpMenuBorder}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="pctrls:ButtonEx" BasedOn="{StaticResource HelpMenuButton}" />
+                    </StackPanel.Resources>
+
+                    <ContentControl ContentTemplate="{DynamicResource HelpMenuHeaderTemplate}"
+                                    Focusable="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+                    <pctrls:ButtonEx x:Name="PART_ButtonPickRandomGame"
+                                     ContentTemplate="{DynamicResource HelpMenuSafeModeButtonTemplate}"
+                                     Command="{Binding RestartInSafeModeCommand}"
+                                     pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+
+                    <pctrls:ButtonEx x:Name="PART_ButtonFeedback"
+                                     ContentTemplate="{DynamicResource HelpMenuFeedbackButtonTemplate}"
+                                     Command="{Binding SendFeedbackCommand}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Viewbox>
+</c:WindowBase>

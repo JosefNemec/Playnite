@@ -370,12 +370,6 @@ namespace Playnite.DesktopApp.ViewModels
             App.Quit();
         }
 
-        public void RestartAppSafe()
-        {
-            CloseView();
-            App.Restart(new CmdLineOptions { SafeStartup = true });
-        }
-
         protected void InitializeView()
         {
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
@@ -944,7 +938,7 @@ namespace Playnite.DesktopApp.ViewModels
             InitializeView();
         }
 
-        public virtual void CloseView()
+        public override void CloseView()
         {
             ignoreCloseActions = true;
             Window.Close();

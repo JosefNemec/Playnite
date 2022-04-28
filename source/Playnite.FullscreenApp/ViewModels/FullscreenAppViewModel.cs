@@ -724,7 +724,7 @@ namespace Playnite.FullscreenApp.ViewModels
             InitializeView();
         }
 
-        public void CloseView()
+        public override void CloseView()
         {
             ignoreCloseActions = true;
             Window.Close();
