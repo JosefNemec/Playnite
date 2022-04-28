@@ -397,5 +397,20 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool name = true;
+        public bool Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

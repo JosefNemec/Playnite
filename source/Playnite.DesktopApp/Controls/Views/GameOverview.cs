@@ -75,6 +75,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageIcon", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
+    [TemplatePart(Name = "PART_TextDisplayName", Type = typeof(TextBlock))]
     public abstract class GameOverview : Control
     {
         internal readonly DesktopView viewType;
@@ -104,6 +105,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private FrameworkElement ElemCriticScore;
         private FrameworkElement ElemUserScore;
 
+        private TextBlock TextDisplayName;
         private TextBlock TextPlayTime;
         private TextBlock TextLastActivity;
         private TextBlock TextCommunityScore;
@@ -426,6 +428,10 @@ namespace Playnite.DesktopApp.Controls.Views
                     TextBlock.TagProperty,
                     GetGameBindingPath(nameof(GamesCollectionViewEntry.UserScoreRating)));
             }
+
+            SetGameItemTextBinding(ref TextDisplayName, "PART_TextDisplayName",
+                nameof(GameDetailsViewModel.Game.DisplayName),
+                nameof(GameDetailsViewModel.NameVisibility));
 
             SetItemsControlBinding(ref ItemsGenres, "PART_ItemsGenres",
                 nameof(GameDetailsViewModel.SetGenreFilterCommand),

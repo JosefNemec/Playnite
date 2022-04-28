@@ -248,6 +248,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.UserScore && game.UserScore != null) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility NameVisibility
+        {
+            get => settings.DetailsVisibility.Name ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         private GamesCollectionViewEntry game;
         public GamesCollectionViewEntry Game
         {
