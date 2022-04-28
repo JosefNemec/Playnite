@@ -391,7 +391,7 @@
                         <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
 
                         <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,5,5,0"
-                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="8" StarRows="8"
+                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="9" StarRows="9"
                                      IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
                                      DataContext="{Binding SelectedScanner}">
                             <controls:GridEx.Resources>
@@ -459,6 +459,11 @@
                                       ToolTipService.InitialShowDelay="200"
                                       Grid.ColumnSpan="2" Margin="0,10,10,5"
                                       IsChecked="{Binding ImportWithRelativePaths}"/>
+
+                            <!--Scan subfolders-->
+                            <CheckBox Content="{DynamicResource LOCEmuImportScanSubfolders}"
+                                      Grid.ColumnSpan="2" Margin="0,10,10,5"
+                                      IsChecked="{Binding ScanSubfolders}"/>
                         </controls:GridEx>
 
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">

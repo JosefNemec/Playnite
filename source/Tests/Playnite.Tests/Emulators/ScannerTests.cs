@@ -34,7 +34,8 @@ namespace Playnite.Tests.Emulators
                     null,
                     scanResults,
                     new System.Threading.CancellationTokenSource().Token,
-                    null);
+                    null,
+                    true);
 
                 Assert.AreEqual(2, scanResults.Count);
                 Assert.AreEqual("game 1", scanResults["game 1"][0].Name.Name);
@@ -82,6 +83,41 @@ namespace Playnite.Tests.Emulators
                 Assert.AreEqual("Disc 2 - JP - EE", game.Roms[3].Name);
                 Assert.AreEqual("Disc 1 - USA", game.Roms[4].Name);
                 Assert.AreEqual("Disc 2 - USA", game.Roms[5].Name);
+            }
+        }
+
+        [Test]
+        public void SubfolderScanTest()
+        {
+            using (var tempPath = TempDirectory.Create())
+            using (var db = new GameDbTestWrapper(tempPath))
+            {
+                var isos = new List<string>
+                {
+                    Path.Combine(tempPath.TempPath, "test_root.iso"),
+                    Path.Combine(tempPath.TempPath, "sub", "test_sub.iso"),
+                    Path.Combine(tempPath.TempPath, "sub", "sub2", "test_sub2.iso")
+                };
+
+                isos.ForEach(a => FileSystem.CreateFile(a));
+                var emu = TestAppTools.GetEmulatorObj();
+                db.DB.Emulators.Add(emu);
+                var config = new GameScannerConfig
+                {
+                    EmulatorId = emu.Id,
+                    EmulatorProfileId = emu.CustomProfiles[0].Id,
+                    Directory = tempPath.TempPath,
+                    ScanSubfolders = true
+                };
+
+                var scanner = new GameScanner(config, db.DB);
+                var games = scanner.Scan(CancellationToken.None, out var newPlatforms, out var newRegions);
+                Assert.AreEqual(3, games.Count);
+
+                config.ScanSubfolders = false;
+                games = scanner.Scan(CancellationToken.None, out newPlatforms, out newRegions);
+                Assert.AreEqual(1, games.Count);
+                Assert.AreEqual("test root", games[0].Name);
             }
         }
     }

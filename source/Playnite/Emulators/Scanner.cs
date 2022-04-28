@@ -196,6 +196,7 @@ namespace Playnite.Emulators
                     customProfile,
                     cancelToken,
                     crcExclusions,
+                    scanner.ScanSubfolders,
                     fileScanCallback);
             }
             else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
@@ -206,6 +207,7 @@ namespace Playnite.Emulators
                     builtinProfile,
                     cancelToken,
                     crcExclusions,
+                    scanner.ScanSubfolders,
                     fileScanCallback);
             }
             else
@@ -339,6 +341,7 @@ namespace Playnite.Emulators
             BuiltInEmulatorProfile profile,
             CancellationToken cancelToken,
             string crcExludePatterns,
+            bool scanSubfolders,
             Action<string> fileScanCallback = null)
         {
             var emuProf = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
@@ -419,6 +422,7 @@ namespace Playnite.Emulators
                     emuProf.Platforms,
                     cancelToken,
                     crcExludePatterns,
+                    scanSubfolders,
                     fileScanCallback);
             }
         }
@@ -429,6 +433,7 @@ namespace Playnite.Emulators
             CustomEmulatorProfile profile,
             CancellationToken cancelToken,
             string crcExludePatterns,
+            bool scanSubfolders,
             Action<string> fileScanCallback = null)
         {
             if (profile == null)
@@ -448,6 +453,7 @@ namespace Playnite.Emulators
                 platforms,
                 cancelToken,
                 crcExludePatterns,
+                scanSubfolders,
                 fileScanCallback);
         }
 
@@ -457,6 +463,7 @@ namespace Playnite.Emulators
             List<string> scanPlatforms,
             CancellationToken cancelToken,
             string crcExludePatterns,
+            bool scanSubfolders,
             Action<string> fileScanCallback = null)
         {
             logger.Info($"Scanning emulated directory {directory}.");
@@ -477,6 +484,7 @@ namespace Playnite.Emulators
                     resultRoms,
                     cancelToken,
                     crcExludePatterns,
+                    scanSubfolders,
                     fileScanCallback);
             }
             finally
@@ -494,6 +502,7 @@ namespace Playnite.Emulators
             Dictionary<string, List<ScannedRom>> resultRoms,
             CancellationToken cancelToken,
             string crcExludePatterns,
+            bool scanSubfolders,
             Action<string> fileScanCallback = null)
         {
             void addRom(ScannedRom rom)
@@ -690,21 +699,25 @@ namespace Playnite.Emulators
                 fileScanCallback?.Invoke(directory);
             }
 
-            foreach (var dir in dirs)
+            if (scanSubfolders)
             {
-                if (cancelToken.IsCancellationRequested)
+                foreach (var dir in dirs)
                 {
-                    break;
-                }
+                    if (cancelToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
 
-                ScanDirectoryBase(
-                    dir,
-                    supportedExtensions,
-                    databases,
-                    resultRoms,
-                    cancelToken,
-                    crcExludePatterns,
-                    fileScanCallback);
+                    ScanDirectoryBase(
+                        dir,
+                        supportedExtensions,
+                        databases,
+                        resultRoms,
+                        cancelToken,
+                        crcExludePatterns,
+                        scanSubfolders,
+                        fileScanCallback);
+                }
             }
         }
 

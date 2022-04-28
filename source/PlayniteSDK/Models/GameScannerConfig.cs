@@ -123,6 +123,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool scanSubfolders = true;
+        /// <summary>
+        /// Gets or sets value indicating whether subfolders should be scanned.
+        /// </summary>
+        public bool ScanSubfolders
+        {
+            get => scanSubfolders;
+            set
+            {
+                scanSubfolders = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -167,6 +181,11 @@ namespace Playnite.SDK.Models
                 if (ImportWithRelativePaths != tro.ImportWithRelativePaths)
                 {
                     tro.ImportWithRelativePaths = ImportWithRelativePaths;
+                }
+
+                if (ScanSubfolders != tro.ScanSubfolders)
+                {
+                    tro.ScanSubfolders = ScanSubfolders;
                 }
             }
             else
