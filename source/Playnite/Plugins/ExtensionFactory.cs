@@ -350,7 +350,7 @@ namespace Playnite.Plugins
                         continue;
                     }
 
-                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
+                    Localization.LoadAddonLocalization(desc.DirectoryPath);
                     script.SetVariable("PlayniteApi", apiGenerator(desc));
                     script.SetVariable("CurrentExtensionInstallPath", desc.DirectoryPath);
                     if (!desc.Id.IsNullOrEmpty())
@@ -399,7 +399,7 @@ namespace Playnite.Plugins
 
                 try
                 {
-                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
+                    Localization.LoadAddonLocalization(desc.DirectoryPath);
                     var plugins = LoadPlugins(desc, apiGenerator);
                     foreach (var plugin in plugins)
                     {

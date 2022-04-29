@@ -300,17 +300,6 @@ namespace Playnite
 
             InitializeNative();
 
-            // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
-            if (customTheme != null)
-            {
-                themeLoadError = ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
-                if (themeLoadError != AddonLoadError.None)
-                {
-                    ThemeManager.SetCurrentTheme(null);
-                    logger.Error($"Failed to load theme {customTheme.Name}, {themeLoadError}.");
-                }
-            }
-
             try
             {
                 if (!AppSettings.FirstTimeWizardComplete)
@@ -328,6 +317,17 @@ namespace Playnite
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+            }
+
+            // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
+            if (customTheme != null)
+            {
+                themeLoadError = ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
+                if (themeLoadError != AddonLoadError.None)
+                {
+                    ThemeManager.SetCurrentTheme(null);
+                    logger.Error($"Failed to load theme {customTheme.Name}, {themeLoadError}.");
+                }
             }
 
             if (mode == ApplicationMode.Desktop)

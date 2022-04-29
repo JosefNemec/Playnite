@@ -205,6 +205,16 @@ namespace Playnite
                 }
             }
 
+            try
+            {
+                Localization.LoadAddonLocalization(theme.DirectoryPath);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to load theme's localization files.");
+                return AddonLoadError.Uknown;
+            }
+
             return AddonLoadError.None;
         }
 

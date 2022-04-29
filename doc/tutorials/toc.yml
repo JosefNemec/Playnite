@@ -61,6 +61,8 @@
       href: themes/manifestFile.md
     - name: Extension integrations
       href: themes/extensionIntegration.md
+    - name: String localizations
+      href: extensions/localizations.md
 
 - name: Toolbox utility
   href: toolbox.md
