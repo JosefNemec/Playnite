@@ -98,7 +98,8 @@ namespace Playnite.Controllers
             var startupArgs = "";
             var startupDir = "";
             var romPath = Game.ExpandVariables(action.SelectedRomPath, true, emulator.InstallDir, null);
-            romPath = CheckPath(romPath, "ROM", FileSystemItem.File);
+            // This is later passed to an emulator so it's up to it how it processes long paths.
+            romPath = Paths.TrimLongPathPrefix(CheckPath(romPath, "ROM", FileSystemItem.File));
 
             if (currentEmuProfile is CustomEmulatorProfile emuProf)
             {

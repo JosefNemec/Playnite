@@ -45,13 +45,13 @@ namespace Playnite.Common
                 }
 
                 var targetPath = sb.ToString();
-                if (targetPath.StartsWith(@"\\?\UNC\"))
+                if (targetPath.StartsWith(longPathUncPrefix))
                 {
-                    return targetPath.Replace(@"\\?\UNC\", @"\\");
+                    return targetPath.Replace(longPathUncPrefix, @"\\");
                 }
                 else
                 {
-                    return targetPath.Replace(@"\\?\", string.Empty);
+                    return targetPath.Replace(longPathPrefix, string.Empty);
                 }
             }
             finally
@@ -246,6 +246,23 @@ namespace Playnite.Common
             }
 
             return path;
+        }
+
+        public static string TrimLongPathPrefix(string path)
+        {
+            if (path.IsNullOrWhiteSpace())
+            {
+                return path;
+            }
+
+            if (path.StartsWith(longPathUncPrefix))
+            {
+                return path.Replace(longPathUncPrefix, @"\\");
+            }
+            else
+            {
+                return path.Replace(longPathPrefix, string.Empty);
+            }
         }
     }
 }

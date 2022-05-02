@@ -270,6 +270,8 @@ namespace Playnite.Emulators
                     {
                         assignedPlatforms.AddMissing(Emulation.GetPlatform(builtinProfileDef.Platforms.First()));
                     }
+
+                    rom.Path = Paths.TrimLongPathPrefix(rom.Path);
                 }
 
                 game.Regions = new List<Region>();
@@ -540,6 +542,7 @@ namespace Playnite.Emulators
             string[] dirs;
             try
             {
+                directory = Paths.FixPathLength(directory);
                 files = Directory.GetFiles(directory).ToList();
                 dirs = Directory.GetDirectories(directory);
             }
