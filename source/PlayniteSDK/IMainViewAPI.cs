@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Playnite.SDK
 {
@@ -42,6 +43,8 @@ namespace Playnite.SDK
         SortOrderDirection SortOrderDirection { get; set; }
 
         GroupableField Grouping { get; set; }
+
+        Dispatcher UIDispatcher { get; }
 
         /// <summary>
         /// Gets list of currently selected games.

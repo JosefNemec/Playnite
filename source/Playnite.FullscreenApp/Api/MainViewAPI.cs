@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Playnite.FullscreenApp.API
 {
@@ -55,6 +56,8 @@ namespace Playnite.FullscreenApp.API
         }
 
         public List<Game> FilteredGames => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList();
+
+        public Dispatcher UIDispatcher => PlayniteApplication.CurrentNative.Dispatcher;
 
         public MainViewAPI(FullscreenAppViewModel mainModel)
         {
