@@ -2083,13 +2083,6 @@ namespace Playnite
             }
         }
 
-        [OnError]
-        internal void OnError(StreamingContext context, ErrorContext errorContext)
-        {
-            logger.Error(errorContext.Error, $"Failed to deserialize {errorContext.Path}.");
-            errorContext.Handled = true;
-        }
-
         public static void ConfigureLogger()
         {
             var config = new LoggingConfiguration();
