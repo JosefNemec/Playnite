@@ -197,9 +197,6 @@
     <Compile Include="Controls\SettingsSections\Development.xaml.cs">
       <DependentUpon>Development.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingsSections\AddonsMoveInfo.xaml.cs">
-      <DependentUpon>AddonsMoveInfo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SettingsSections\ImportExlusionList.xaml.cs">
       <DependentUpon>ImportExlusionList.xaml</DependentUpon>
     </Compile>
@@ -214,9 +211,6 @@
     </Compile>
     <Compile Include="Controls\SettingsSections\EmptyParent.xaml.cs">
       <DependentUpon>EmptyParent.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SettingsSections\Extensions.xaml.cs">
-      <DependentUpon>Extensions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsSections\General.xaml.cs">
       <DependentUpon>General.xaml</DependentUpon>
@@ -611,10 +605,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SettingsSections\AddonsMoveInfo.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\SettingsSections\ImportExlusionList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -632,10 +622,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\EmptyParent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SettingsSections\Extensions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

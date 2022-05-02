@@ -338,7 +338,6 @@ namespace Playnite.DesktopApp.ViewModels
                 { 5, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
                 { 6, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
                 { 7, new Controls.SettingsSections.Input() { DataContext = this } },
-                { 8, new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this } },
                 { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
                 { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
                 { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
