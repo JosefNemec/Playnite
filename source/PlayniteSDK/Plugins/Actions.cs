@@ -167,6 +167,14 @@ namespace Playnite.SDK.Plugins
             args.Source = this;
             execContext.Send((a) => Uninstalled?.Invoke(this, args), null);
         }
+
+        /// <summary>
+        /// Invoke to signal that uninstallation completed.
+        /// </summary>
+        protected void InvokeOnUninstalled()
+        {
+            InvokeOnUninstalled(new GameUninstalledEventArgs());
+        }
     }
 
     /// <summary>
@@ -198,6 +206,14 @@ namespace Playnite.SDK.Plugins
         {
             args.Source = this;
             execContext.Send((a) => Started?.Invoke(this, args), null);
+        }
+
+        /// <summary>
+        /// Invoke to signal that game started running.
+        /// </summary>
+        protected void InvokeOnStarted()
+        {
+            InvokeOnStarted(new GameStartedEventArgs());
         }
 
         /// <summary>
