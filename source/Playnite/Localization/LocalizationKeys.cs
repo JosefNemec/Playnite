@@ -250,7 +250,7 @@ namespace Playnite
         /// </summary>
         public const string GameUninstallError = "LOCGameUninstallError";
         /// <summary>
-        /// Play action is not configured.
+        /// No valid game startup actions found. When using emulator actions, make sure platform definitions match between the game and emulator configuration.
         /// </summary>
         public const string ErrorNoPlayAction = "LOCErrorNoPlayAction";
         /// <summary>
@@ -1030,6 +1030,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsMetadataLabel = "LOCSettingsMetadataLabel";
         /// <summary>
+        /// Updating
+        /// </summary>
+        public const string SettingsUpdating = "LOCSettingsUpdating";
+        /// <summary>
         /// Import changes in library automatically
         /// </summary>
         public const string SettingsImportLabel = "LOCSettingsImportLabel";
@@ -1041,14 +1045,6 @@ namespace Playnite
         /// Account name cannot be empty.
         /// </summary>
         public const string SettingsInvalidAccountName = "LOCSettingsInvalidAccountName";
-        /// <summary>
-        /// Update library on startup
-        /// </summary>
-        public const string SettingsUpdateLibStartup = "LOCSettingsUpdateLibStartup";
-        /// <summary>
-        /// Scan emulated folders
-        /// </summary>
-        public const string SettingsUpdateEmulatedLibStartup = "LOCSettingsUpdateEmulatedLibStartup";
         /// <summary>
         /// Download metadata after importing games
         /// </summary>
@@ -1266,11 +1262,11 @@ namespace Playnite
         /// </summary>
         public const string BackgroundImageScreenOptionTooltip = "LOCBackgroundImageScreenOptionTooltip";
         /// <summary>
-        /// Sync playtime of games in library:
+        /// Import playtime of games in library:
         /// </summary>
         public const string SettingsPlaytimeImportMode = "LOCSettingsPlaytimeImportMode";
         /// <summary>
-        /// Configures when should Playnite sync the playtime reported by libraries for games in Playnite database.
+        /// Configures when should Playnite import the playtime reported by library plugins for games in the Playnite database. Support by the library plugins in charge of handling the game(s) is needed to be able to use this feature.
         /// </summary>
         public const string SettingsPlaytimeImportModeTooltip = "LOCSettingsPlaytimeImportModeTooltip";
         /// <summary>
@@ -3694,6 +3690,14 @@ namespace Playnite
         /// </summary>
         public const string EmuImportWithRelativePathsTooltip = "LOCEmuImportWithRelativePathsTooltip";
         /// <summary>
+        /// Scan subfolders
+        /// </summary>
+        public const string EmuImportScanSubfolders = "LOCEmuImportScanSubfolders";
+        /// <summary>
+        /// Scan inside archives
+        /// </summary>
+        public const string EmuImportScanInsideArchives = "LOCEmuImportScanInsideArchives";
+        /// <summary>
         /// Add scanner
         /// </summary>
         public const string EmuAddScanner = "LOCEmuAddScanner";
@@ -3789,5 +3793,45 @@ namespace Playnite
         /// Apply to all
         /// </summary>
         public const string MetadatSetAllFieldsToValue = "LOCMetadatSetAllFieldsToValue";
+        /// <summary>
+        /// Override installation state
+        /// </summary>
+        public const string OverrideInstallState = "LOCOverrideInstallState";
+        /// <summary>
+        /// When set, Playnite will ignore installation state (including installation directory) set by the integration plugin that imports this game.
+        /// </summary>
+        public const string OverrideInstallStateTooltip = "LOCOverrideInstallStateTooltip";
+        /// <summary>
+        /// Only manually
+        /// </summary>
+        public const string OptionOnlyManually = "LOCOptionOnlyManually";
+        /// <summary>
+        /// Once a day
+        /// </summary>
+        public const string OptionOnceADay = "LOCOptionOnceADay";
+        /// <summary>
+        /// Once a week
+        /// </summary>
+        public const string OptionOnceAWeek = "LOCOptionOnceAWeek";
+        /// <summary>
+        /// On every startup
+        /// </summary>
+        public const string OptionOnEveryStartup = "LOCOptionOnEveryStartup";
+        /// <summary>
+        /// Check for program updates
+        /// </summary>
+        public const string CheckProgramUpdates = "LOCCheckProgramUpdates";
+        /// <summary>
+        /// Check for add-on updates
+        /// </summary>
+        public const string CheckAddonUpdates = "LOCCheckAddonUpdates";
+        /// <summary>
+        /// Update libraries
+        /// </summary>
+        public const string CheckLibraryUpdates = "LOCCheckLibraryUpdates";
+        /// <summary>
+        /// Scan emulation folders
+        /// </summary>
+        public const string CheckEmulatedLibraryUpdates = "LOCCheckEmulatedLibraryUpdates";
     }
 }

@@ -238,6 +238,9 @@
     <Compile Include="Controls\FilterEnumSelectionBox.cs" />
     <Compile Include="Controls\FilterSelectionBox.cs" />
     <Compile Include="Controls\FilterStringSelectionBox.cs" />
+    <Compile Include="Controls\SettingsSections\Updates.xaml.cs">
+      <DependentUpon>Updates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\Sorting.xaml.cs">
       <DependentUpon>Sorting.xaml</DependentUpon>
     </Compile>
@@ -655,6 +658,10 @@
     <Page Include="Controls\SettingsSections\Scripting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\Updates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\Sorting.xaml">
       <SubType>Designer</SubType>

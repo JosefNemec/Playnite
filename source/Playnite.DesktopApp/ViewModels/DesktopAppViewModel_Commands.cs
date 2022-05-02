@@ -135,7 +135,7 @@ namespace Playnite.DesktopApp.ViewModels
             UpdateGamesCommand = new RelayCommand<object>((a) =>
             {
 #pragma warning disable CS4014
-                UpdateLibrary(AppSettings.DownloadMetadataOnImport, true);
+                UpdateLibrary(AppSettings.DownloadMetadataOnImport, true, true);
 #pragma warning restore CS4014
             }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.F5));

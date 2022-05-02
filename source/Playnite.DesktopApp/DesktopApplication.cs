@@ -203,15 +203,12 @@ namespace Playnite.DesktopApp
 
             if (isFirstStart)
             {
-                await MainModel.UpdateLibrary(false, false);
+                await MainModel.UpdateLibrary(false, true, false);
                 await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
-                if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
-                {
-                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
-                }
+                await MainModel.ProcessStartupLibUpdate();
             }
 
             // This is most likely safe place to consider application to be started properly

@@ -1024,37 +1024,8 @@ namespace Playnite
             resourcesReleased = true;
         }
 
-        private void UpdateCheckerCallback(object state)
+        private void CheckAddonBlacklist()
         {
-            try
-            {
-                var updater = new Updater(this);
-                if (updater.IsUpdateAvailable)
-                {
-                    var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
-                    var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
-                    if (!Current.IsActive)
-                    {
-                        ShowWindowsNotification(updateTitle, updateBody, () =>
-                        {
-                            Restore();
-                            new UpdateViewModel(
-                                updater,
-                                new UpdateWindowFactory(),
-                                new ResourceProvider(),
-                                Dialogs,
-                                Mode).OpenView();
-                        });
-                    }
-
-                    MainModelBase.UpdatesAvailable = true;
-                }
-            }
-            catch (Exception exc)
-            {
-                logger.Warn(exc, "Failed to process update.");
-            }
-
             try
             {
                 var manifests = ExtensionFactory.GetInstalledManifests();
@@ -1071,19 +1042,67 @@ namespace Playnite
             {
                 logger.Warn(exc, "Failed to process addon blacklist check.");
             }
+        }
 
-            try
+        private void CheckForUpdates(bool checkProgram, bool checkAddons)
+        {
+            if (checkProgram)
             {
-                var updates = Addons.CheckAddonUpdates(ServicesClient);
-                if (updates.HasItems())
+                try
                 {
-                    Notifications.Add(MainModelBase.GetAddonUpdatesFoundMessage(updates));
+                    var updater = new Updater(this);
+                    if (updater.IsUpdateAvailable)
+                    {
+                        var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
+                        var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
+                        if (!Current.IsActive)
+                        {
+                            ShowWindowsNotification(updateTitle, updateBody, () =>
+                            {
+                                Restore();
+                                new UpdateViewModel(
+                                    updater,
+                                    new UpdateWindowFactory(),
+                                    new ResourceProvider(),
+                                    Dialogs,
+                                    Mode).OpenView();
+                            });
+                        }
+
+                        MainModelBase.UpdatesAvailable = true;
+                    }
                 }
+                catch (Exception exc)
+                {
+                    logger.Warn(exc, "Failed to process program update.");
+                }
+
+                AppSettings.LastProgramUpdateCheck = DateTimes.Now;
             }
-            catch (Exception exc)
+
+            if (checkAddons)
             {
-                logger.Warn(exc, "Failed to process addon update check.");
+                try
+                {
+                    var updates = Addons.CheckAddonUpdates(ServicesClient);
+                    if (updates.HasItems())
+                    {
+                        Notifications.Add(MainModelBase.GetAddonUpdatesFoundMessage(updates));
+                    }
+                }
+                catch (Exception exc)
+                {
+                    logger.Warn(exc, "Failed to process addon update check.");
+                }
+
+                AppSettings.LastAddonUpdateCheck = DateTimes.Now;
             }
+        }
+
+        private void UpdateCheckerCallback(object state)
+        {
+            CheckForUpdates(AppSettings.ShouldCheckProgramUpdatePeriodic(), AppSettings.ShouldCheckAddonUpdatePeriodic());
+            CheckAddonBlacklist();
         }
 
         public async Task StartUpdateCheckerAsync()
@@ -1099,10 +1118,16 @@ namespace Playnite
                 await GlobalTaskHandler.ProgressTask;
             }
 
+            await Task.Run(() =>
+            {
+                CheckForUpdates(AppSettings.ShouldCheckProgramUpdateStartup(), AppSettings.ShouldCheckAddonUpdateStartup());
+                CheckAddonBlacklist();
+            });
+
             updateCheckTimer = new System.Threading.Timer(
                 UpdateCheckerCallback,
                 null,
-                0,
+                Common.Timer.HoursToMilliseconds(4),
                 Common.Timer.HoursToMilliseconds(4));
         }
 

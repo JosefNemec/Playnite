@@ -129,6 +129,28 @@ namespace Playnite
         Display = 1
     }
 
+    public enum UpdateCheckFrequency
+    {
+        [Description(LOC.OptionOnEveryStartup)]
+        OnEveryStartup = 0,
+        [Description(LOC.OptionOnceADay)]
+        OnceADay = 1,
+        [Description(LOC.OptionOnceAWeek)]
+        OnceAWeek = 2
+    }
+
+    public enum LibraryUpdateCheckFrequency
+    {
+        [Description(LOC.OptionOnlyManually)]
+        Manually = 0,
+        [Description(LOC.OptionOnEveryStartup)]
+        OnEveryStartup = 1,
+        [Description(LOC.OptionOnceADay)]
+        OnceADay = 2,
+        [Description(LOC.OptionOnceAWeek)]
+        OnceAWeek = 3
+    }
+
     public class PlayniteSettings : ObservableObject
     {
         private static SDK.ILogger logger = SDK.LogManager.GetLogger();
@@ -967,36 +989,6 @@ namespace Playnite
             }
         }
 
-        private bool updateLibStartup = true;
-        public bool UpdateLibStartup
-        {
-            get
-            {
-                return updateLibStartup;
-            }
-
-            set
-            {
-                updateLibStartup = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool updateEmulatedLibStartup = true;
-        public bool UpdateEmulatedLibStartup
-        {
-            get
-            {
-                return updateEmulatedLibStartup;
-            }
-
-            set
-            {
-                updateEmulatedLibStartup = value;
-                OnPropertyChanged();
-            }
-        }
-
         private AfterLaunchOptions afterLaunch = AfterLaunchOptions.Minimize;
         public AfterLaunchOptions AfterLaunch
         {
@@ -1768,6 +1760,55 @@ namespace Playnite
             }
         }
 
+        private UpdateCheckFrequency checkForProgramUpdates = UpdateCheckFrequency.OnEveryStartup;
+        public UpdateCheckFrequency CheckForProgramUpdates
+        {
+            get => checkForProgramUpdates;
+            set
+            {
+                checkForProgramUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private UpdateCheckFrequency checkForAddonUpdates = UpdateCheckFrequency.OnEveryStartup;
+        public UpdateCheckFrequency CheckForAddonUpdates
+        {
+            get => checkForAddonUpdates;
+            set
+            {
+                checkForAddonUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private LibraryUpdateCheckFrequency checkForLibraryUpdates = LibraryUpdateCheckFrequency.OnEveryStartup;
+        public LibraryUpdateCheckFrequency CheckForLibraryUpdates
+        {
+            get => checkForLibraryUpdates;
+            set
+            {
+                checkForLibraryUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private LibraryUpdateCheckFrequency checkForEmulatedLibraryUpdates = LibraryUpdateCheckFrequency.OnEveryStartup;
+        public LibraryUpdateCheckFrequency CheckForEmulatedLibraryUpdates
+        {
+            get => checkForEmulatedLibraryUpdates;
+            set
+            {
+                checkForEmulatedLibraryUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime LastProgramUpdateCheck { get; set; }
+        public DateTime LastAddonUpdateCheck { get; set; }
+        public DateTime LastLibraryUpdateCheck { get; set; }
+        public DateTime LastEmuLibraryUpdateCheck { get; set; }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -2147,6 +2188,94 @@ namespace Playnite
             }
 
             OnPropertyChanged(nameof(GridItemHeight));
+        }
+
+        public bool ShouldCheckProgramUpdatePeriodic()
+        {
+            switch (CheckForProgramUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return false;
+            }
+        }
+
+        public bool ShouldCheckAddonUpdatePeriodic()
+        {
+            switch (CheckForAddonUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return false;
+            }
+        }
+
+        public bool ShouldCheckProgramUpdateStartup()
+        {
+            switch (CheckForProgramUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
+        }
+
+        public bool ShouldCheckAddonUpdateStartup()
+        {
+            switch (CheckForAddonUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
+        }
+
+        public bool ShouldCheckLibraryOnStartup()
+        {
+            switch (CheckForLibraryUpdates)
+            {
+                case LibraryUpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastLibraryUpdateCheck).TotalHours > 23;
+                case LibraryUpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastLibraryUpdateCheck).TotalDays > 6;
+                case LibraryUpdateCheckFrequency.Manually:
+                    return false;
+                case LibraryUpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
+        }
+
+        public bool ShouldCheckEmuLibraryOnStartup()
+        {
+            switch (CheckForEmulatedLibraryUpdates)
+            {
+                case LibraryUpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastEmuLibraryUpdateCheck).TotalHours > 23;
+                case LibraryUpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastEmuLibraryUpdateCheck).TotalDays > 6;
+                case LibraryUpdateCheckFrequency.Manually:
+                    return false;
+                case LibraryUpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
         }
 
         #region Serialization Conditions

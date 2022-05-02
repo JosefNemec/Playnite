@@ -148,11 +148,7 @@ namespace Playnite.FullscreenApp
             splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
-
-            if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
-            {
-                await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
-            }
+            await MainModel.ProcessStartupLibUpdate();
 
             // This is most likely safe place to consider application to be started properly
             FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);

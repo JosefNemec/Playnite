@@ -282,11 +282,10 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performance</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">Updating</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Account name cannot be empty.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Update library on startup</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup">Scan emulated folders</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Download metadata after importing games</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Launch Playnite minimized</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Launch Playnite when you start your computer</sys:String>
@@ -1072,4 +1071,12 @@ Supported only for: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">When set, Playnite will ignore installation state (including installation directory) set by the integration plugin that imports this game.
         
 This option may not fully work with plugins that use specific game import method unless they also take this override option into account.</sys:String>
+    <sys:String x:Key="LOCOptionOnlyManually">Only manually</sys:String>
+    <sys:String x:Key="LOCOptionOnceADay">Once a day</sys:String>
+    <sys:String x:Key="LOCOptionOnceAWeek">Once a week</sys:String>
+    <sys:String x:Key="LOCOptionOnEveryStartup">On every startup</sys:String>
+    <sys:String x:Key="LOCCheckProgramUpdates">Check for program updates</sys:String>
+    <sys:String x:Key="LOCCheckAddonUpdates">Check for add-on updates</sys:String>
+    <sys:String x:Key="LOCCheckLibraryUpdates">Update libraries</sys:String>
+    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">Scan emulation folders</sys:String>
 </ResourceDictionary>

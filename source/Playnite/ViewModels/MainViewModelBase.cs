@@ -495,7 +495,20 @@ namespace Playnite.ViewModels
             return addedGames;
         }
 
-        public async Task UpdateLibrary(bool metaForNewGames, bool updateEmu)
+        public async Task ProcessStartupLibUpdate()
+        {
+            var updateIntegrations = AppSettings.ShouldCheckLibraryOnStartup();
+            var updateEmu = AppSettings.ShouldCheckEmuLibraryOnStartup();
+            if (App.CmdLine.SkipLibUpdate)
+            {
+                updateIntegrations = false;
+                updateEmu = false;
+            }
+
+            await UpdateLibrary(AppSettings.DownloadMetadataOnImport, updateIntegrations, updateEmu);
+        }
+
+        public async Task UpdateLibrary(bool metaForNewGames, bool updateIntegrations, bool updateEmu)
         {
             if (!GameAdditionAllowed)
             {
@@ -505,14 +518,19 @@ namespace Playnite.ViewModels
             await UpdateLibraryData((token) =>
             {
                 var addedGames = new List<Game>();
-                foreach (var plugin in Extensions.LibraryPlugins)
+                if (updateIntegrations)
                 {
-                    if (token.IsCancellationRequested)
+                    foreach (var plugin in Extensions.LibraryPlugins)
                     {
-                        return addedGames;
+                        if (token.IsCancellationRequested)
+                        {
+                            return addedGames;
+                        }
+
+                        addedGames.AddRange(ImportLibraryGames(plugin, token));
                     }
 
-                    addedGames.AddRange(ImportLibraryGames(plugin, token));
+                    AppSettings.LastLibraryUpdateCheck = DateTimes.Now;
                 }
 
                 if (updateEmu)
@@ -526,6 +544,8 @@ namespace Playnite.ViewModels
 
                         addedGames.AddRange(ImportEmulatedGames(scanConfig, token));
                     }
+
+                    AppSettings.LastEmuLibraryUpdateCheck = DateTimes.Now;
                 }
 
                 return addedGames;
