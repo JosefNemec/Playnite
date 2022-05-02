@@ -399,6 +399,12 @@ namespace Playnite.Plugins
                     logger.Error($"Theme package is invalid, includes not allowed theme project files.");
                     throw new LocalizedException(LOC.GeneralThemePackageError);
                 }
+
+                if (zip.Entries.Any(a => a.Name == "Playnite.dll" || a.Name == "Playnite.Common.dll"))
+                {
+                    logger.Error($"Theme package is invalid, includes not allowed Playnite dependencies.");
+                    throw new LocalizedException(LOC.GeneralThemePackageError);
+                }
             }
         }
     }
