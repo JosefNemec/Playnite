@@ -53,7 +53,7 @@
                                      pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
 
                     <ItemsControl Focusable="False"
-                                  ItemsSource="{Binding MainModel.PlayniteApi.Notifications.Messages}">
+                                  ItemsSource="{Binding MainModel.App.Notifications.Messages}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <pctrls:ButtonEx Style="{DynamicResource NotificationsMenuItemButton}"
