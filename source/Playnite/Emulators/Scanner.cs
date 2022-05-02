@@ -826,6 +826,14 @@ namespace Playnite.Emulators
                         datRecSource = db.DatabaseName;
                         break;
                     }
+
+                    // For rare cases where ROM file name is the same as game's serial
+                    datRec = db.GetBySerial(Path.GetFileNameWithoutExtension(file)).FirstOrDefault();
+                    if (datRec != null)
+                    {
+                        datRecSource = db.DatabaseName;
+                        break;
+                    }
                 }
 
                 if (datRec == null)
