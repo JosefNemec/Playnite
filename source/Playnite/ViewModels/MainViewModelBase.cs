@@ -497,15 +497,19 @@ namespace Playnite.ViewModels
 
         public async Task ProcessStartupLibUpdate()
         {
-            var updateIntegrations = AppSettings.ShouldCheckLibraryOnStartup();
-            var updateEmu = AppSettings.ShouldCheckEmuLibraryOnStartup();
             if (App.CmdLine.SkipLibUpdate)
             {
-                updateIntegrations = false;
-                updateEmu = false;
+                Logger.Warn("Startup library update disabled via cmdline.");
+                return;
             }
 
-            await UpdateLibrary(AppSettings.DownloadMetadataOnImport, updateIntegrations, updateEmu);
+            if (!await Common.Network.GetIsConnectedToInternet())
+            {
+                Logger.Warn("Startup library update disabled because of no internet connection.");
+                return;
+            }
+
+            await UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.ShouldCheckLibraryOnStartup(), AppSettings.ShouldCheckEmuLibraryOnStartup());
         }
 
         public async Task UpdateLibrary(bool metaForNewGames, bool updateIntegrations, bool updateEmu)
