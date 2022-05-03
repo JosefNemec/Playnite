@@ -67,18 +67,15 @@ Sidebar items can also show progress indicator, use `ProgressValue` and `Progres
 
 # [C#](#tab/csharp)
 ```csharp
-public override List<SidebarItem> GetSidebarItems()
+public override IEnumerable<SidebarItem> GetSidebarItems()
 {
-    return new List<SidebarItem>
+    yield return new SidebarItem
     {
-        new SidebarItem
-        {
-            Title = "Calculator",            
-            // Loads icon from plugin's installation path
-            Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "icon.png"),
-            ProgressValue = 40,
-            Activated = () => Process.Start("calc")
-        }
+        Title = "Calculator",            
+        // Loads icon from plugin's installation path
+        Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "icon.png"),
+        ProgressValue = 40,
+        Activated = () => Process.Start("calc")
     };
 }
 ```
@@ -96,21 +93,18 @@ To provide new items to the Top panel, override `GetTopPanelItems` method and re
 
 # [C#](#tab/csharp)
 ```csharp
-public override List<TopPanelItem> GetTopPanelItems()
+public override IEnumerable<TopPanelItem> GetTopPanelItems()
 {
-    return new List<TopPanelItem>
+    yield return new TopPanelItem
     {
-        new TopPanelItem
+        Title = "Calculator",
+        Icon = new TextBlock
         {
-            Title = "Calculator",
-            Icon = new TextBlock
-            {
-                Text = char.ConvertFromUtf32(0xeaf1),
-                FontSize = 20,
-                FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
-            },
-            Activated = () => Process.Start("calc")
-        }
+            Text = char.ConvertFromUtf32(0xeaf1),
+            FontSize = 20,
+            FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
+        },
+        Activated = () => Process.Start("calc")
     };
 }
 ```
@@ -121,15 +115,29 @@ public override List<TopPanelItem> GetTopPanelItems()
 ```
 ***
 
-Supported icons formats
+Supported icon formats
 ---------------------
 
-Various objects support icon definitions that doesn't enforce specific format, like Sidebar or Top panel items. Icon is an `object` type and Playnite will interpret as this:
+Various UI objects support icon definitions and icon format is correctly not strictly enforced. Icon is an `object` type and Playnite will interpret it as:
 
 - If `string` is provided, Playnite interprets it in the following order:
-  - If application resource with the name is found it's used.
-  - If a file path is found, Playnite will try to load it as an image.
+  - If application (WPF) resource with specified name is found, then it's used as icon object. WPF resources are objects you can get via [GetResource](xref:Playnite.SDK.ResourceProvider) method.
+  - If absolute file path is found, Playnite will try to load it as an image.
   - If partial file path is found:
-    - Theme file is loaded as an image if found.
-    - Database file is loaded an an image if found.
-- If any other type is found, Playnite assigns that object as icon's content.
+    - Theme file (file relative to currently used theme's folder) is loaded as an image if found.
+    - Database file is loaded as an image if found.
+
+- If any other type is found, Playnite assigns that object as icon's content. Passed icon object is assigned to UI item's `Content` property, so any WPF compatible UI element can be passed.
+
+For example, if you want to use font symbol as an icon, you can assign `TextBlock`:
+
+```csharp
+new TextBlock
+{
+    Text = char.ConvertFromUtf32(0xeaf1),
+    FontSize = 20,
+    FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
+}
+```  
+
+`FontIcoFont` in the example references [Icofont](https://icofont.com) font pack, which is included by default in Playnite, but you can use any symbol font as long as it's installed (for example `Segoe MDL2` comes with Windows) or if you explicitly load custom font file and then reference it.

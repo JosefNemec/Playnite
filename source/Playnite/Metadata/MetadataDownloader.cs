@@ -309,7 +309,7 @@ namespace Playnite.Metadata
                         logger.Debug($"Downloading metadata for {game.Name}, {game.GameId}, {game.PluginId}");
 
                         // Name
-                        if (!game.IsCustomGame && settings.Name.Import)
+                        if (settings.Name.Import)
                         {
                             gameData = ProcessField(game, settings.Name, MetadataField.Name, (a) => a.Name, existingStoreData, existingPluginData, cancelToken);
                             if (!string.IsNullOrEmpty(gameData?.Name))

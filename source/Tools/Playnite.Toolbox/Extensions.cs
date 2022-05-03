@@ -4,6 +4,7 @@ using Playnite.Plugins;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -21,9 +22,55 @@ namespace Playnite.Toolbox
         private const string libraryCsproj = "CustomLibraryPlugin.csproj";
         private const string metadataCsproj = "CustomMetadataPlugin.csproj";
 
+        public static string ConvertToValidIdentifierName(string input)
+        {
+            // https://stackoverflow.com/questions/950616/what-characters-are-allowed-in-c-sharp-class-name
+            bool isValidInIdentifier(char c, bool firstChar = true)
+            {
+                switch (char.GetUnicodeCategory(c))
+                {
+                    case UnicodeCategory.UppercaseLetter:
+                    case UnicodeCategory.LowercaseLetter:
+                    case UnicodeCategory.TitlecaseLetter:
+                    case UnicodeCategory.ModifierLetter:
+                    case UnicodeCategory.OtherLetter:
+                        // Always allowed in C# identifiers
+                        return true;
+
+                    case UnicodeCategory.LetterNumber:
+                    case UnicodeCategory.NonSpacingMark:
+                    case UnicodeCategory.SpacingCombiningMark:
+                    case UnicodeCategory.DecimalDigitNumber:
+                    case UnicodeCategory.ConnectorPunctuation:
+                    case UnicodeCategory.Format:
+                        // Only allowed after first char
+                        return !firstChar;
+                    default:
+                        return false;
+                }
+            }
+
+            if (input.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+
+            var sb = new StringBuilder(input.Length);
+            for (int i = 0; i < input.Length; i++)
+            {
+                var chr = input[i];
+                if (isValidInIdentifier(chr, i == 0))
+                {
+                    sb.Append(chr);
+                }
+            }
+
+            return sb.ToString();
+        }
+
         public static string GenerateScriptExtension(string name, string directory)
         {
-            var normalizedName = Common.Paths.GetSafePathName(name).Replace(" ", string.Empty);
+            var normalizedName = ConvertToValidIdentifierName(name);
             var outDir = Path.Combine(directory, normalizedName);
             if (Directory.Exists(outDir))
             {

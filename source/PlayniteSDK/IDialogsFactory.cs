@@ -521,7 +521,7 @@ namespace Playnite.SDK
         Window CreateWindow(WindowCreationOptions options);
 
         /// <summary>
-        /// Gets a window which currently in use an active.
+        /// Gets currently active window. If no window is active, main window is returned instead.
         /// </summary>
         /// <returns>Window object.</returns>
         Window GetCurrentAppWindow();

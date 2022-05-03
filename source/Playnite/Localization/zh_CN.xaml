@@ -126,9 +126,9 @@
     <sys:String x:Key="LOCPlayCountLabel">游玩次数</sys:String>
     <sys:String x:Key="LOCFolderLabel">文件夹</sys:String>
     <sys:String x:Key="LOCNotesLabel">备注</sys:String>
-    <sys:String x:Key="LOCAddedLabel">已添加</sys:String>
+    <sys:String x:Key="LOCAddedLabel">添加日期</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">添加日期</sys:String>
-    <sys:String x:Key="LOCModifiedLabel">已修改</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">修改日期</sys:String>
     <sys:String x:Key="LOCDateModifiedLabel">修改日期</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">网站</sys:String>
     <sys:String x:Key="LOCPathLabel">路径</sys:String>
@@ -506,9 +506,9 @@
     <sys:String x:Key="LOCGameIsInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">已安装</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安装</sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle">已隐藏</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">隐藏</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">收藏</sys:String>
-    <sys:String x:Key="LOCGameLastActivityTitle">上次游玩时刻</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">上次游玩</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">分类</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">描述</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle">安装目录</sys:String>
@@ -731,7 +731,7 @@
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">正在监测安装状态。您是否要取消监测，并将游戏返回到之前的状态？</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">正在监测运行状态。您是否要取消监测，并将游戏返回到之前的状态？</sys:String>
     <sys:String x:Key="LOCTimePlayed">游玩时间</sys:String>
-    <sys:String x:Key="LOCLastPlayed">上次游玩时刻</sys:String>
+    <sys:String x:Key="LOCLastPlayed">上次游玩</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} 小时  {1} 分钟</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} 分钟</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} 秒</sys:String>

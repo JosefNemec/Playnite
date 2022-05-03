@@ -5,4 +5,4 @@ contact_links:
     about: Official Discord server for general chat and support with Playnite.
   - name: Playnite SDK documentation
     url: https://playnite.link/docs/
-    about: Useful documentation when creating pluings and themes.
+    about: Useful documentation when creating plugins and themes.

@@ -123,7 +123,7 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCVersionLabel">Versión</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">Ultima partida</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Más jugado</sys:String>
-    <sys:String x:Key="LOCPlayCountLabel">Tiempo de juego</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">Veces jugado</sys:String>
     <sys:String x:Key="LOCFolderLabel">Carpeta</sys:String>
     <sys:String x:Key="LOCNotesLabel">Notas</sys:String>
     <sys:String x:Key="LOCAddedLabel">Añadido</sys:String>
@@ -487,7 +487,7 @@ Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:Str
     <sys:String x:Key="LOCGameIconTitle">Icono</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Carátula</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Imágen de Fondo</sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle">Nombre de Ordenado</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">Orden de nombre</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Biblioteca</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Manual</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nombre</sys:String>
@@ -612,8 +612,8 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCNever">Nunca</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Estado de finalización</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Estados de finalización</sys:String>
-    <sys:String x:Key="LOCUserScore">Puntuación de Usuarios</sys:String>
-    <sys:String x:Key="LOCCriticScore">Puntuación de Crítica</sys:String>
+    <sys:String x:Key="LOCUserScore">Puntuación del usuario</sys:String>
+    <sys:String x:Key="LOCCriticScore">Puntuación de la crítica</sys:String>
     <sys:String x:Key="LOCCommunityScore">Puntuación de la Comunidad</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
     <sys:String x:Key="LOCPlugins">Complementos</sys:String>
@@ -733,7 +733,7 @@ Puedes intentar resolver el problema:
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">El monitoreo de la ejecución del juego se está ejecutando actualmente. ¿Quieres cancelar el proceso y devolver el juego al estado anterior?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Tiempo Jugado</sys:String>
     <sys:String x:Key="LOCLastPlayed">Jugado por última vez</sys:String>
-    <sys:String x:Key="LOCPlayedHours">{0}hs {1}ms</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0} h {1} min</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutos</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} segundos</sys:String>
     <sys:String x:Key="LOCPlayedNone">Nunca</sys:String>

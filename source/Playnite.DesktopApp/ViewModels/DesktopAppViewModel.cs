@@ -601,7 +601,7 @@ namespace Playnite.DesktopApp.ViewModels
             Database.Games.Add(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
-                var viewEntry = GamesView.Items.First(a => a.Game.Id == newGame.Id);
+                var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == newGame.Id);
                 SelectedGame = viewEntry;
             }
             else

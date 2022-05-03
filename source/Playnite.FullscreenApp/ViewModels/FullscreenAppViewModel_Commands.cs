@@ -20,7 +20,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<object> ToggleFullscreenCommand { get; private set; }
         public RelayCommand<object> OpenMainMenuCommand { get; private set; }
         public RelayCommand<object> OpenNotificationsMenuCommand { get; private set; }
-        public RelayCommand<object> OpenGameMenuCommand { get; private set; }
+        public RelayCommand OpenGameMenuCommand { get; private set; }
         public RelayCommand<object> ToggleGameDetailsCommand { get; private set; }
         public RelayCommand<object> ToggleFiltersCommand { get; private set; }
         public RelayCommand<GameField> LoadSubFilterCommand { get; private set; }
@@ -72,10 +72,10 @@ namespace Playnite.FullscreenApp.ViewModels
                 ToggleFullscreen();
             });
 
-            OpenGameMenuCommand = new RelayCommand<object>((a) =>
+            OpenGameMenuCommand = new RelayCommand(() =>
             {
                 OpenGameMenu();
-            }, (a) => SelectedGameDetails != null);
+            }, () => SelectedGameDetails != null);
 
             ToggleGameDetailsCommand = new RelayCommand<object>((a) =>
             {

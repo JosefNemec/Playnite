@@ -631,8 +631,8 @@
     <sys:String x:Key="LOCOther">אחר</sys:String>
     <sys:String x:Key="LOCThemes">ערכות נושא</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">ארגומנטים לאמולטור</sys:String>
-    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
-    <sys:String x:Key="LOCCustomArguments"></sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">ארגומנטים מובנים</sys:String>
+    <sys:String x:Key="LOCCustomArguments">ארגומנטים מותאמים אישית</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">ארגומנטים נוספים לאמולטור</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">דרוס ארגומנטים לאמולטור</sys:String>
     <sys:String x:Key="LOCIsPlayAction">פעולת משחק</sys:String>
@@ -659,9 +659,9 @@
     <sys:String x:Key="LOCPreScriptDescription">סקריפט להרצה לפני תחילת המשחק</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">סקריפט להרצה לאחר יציאה מהמשחק</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">סקריפט להרצה אחרי שמשחק מתחיל</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
-    <sys:String x:Key="LOCScriptTypeExit"></sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">סקריפט תחילת משחק</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">סקריפט לאחר תחילת משחק</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">סקריפט לאחר עצירת משחק</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">הרץ סקריפט גלובלי</sys:String>
     <sys:String x:Key="LOCStatsGlobal">גלובלי</sys:String>
     <sys:String x:Key="LOCStatsFiltered">מסונן</sys:String>
@@ -763,7 +763,7 @@
     <sys:String x:Key="LOCPerformanceWarningTitle">אזהרת ביצועים</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">אל תציג שוב</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError"></sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle"></sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">סיומת קובץ לא מתאימה</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">קובץ תמונה שנבחר עשוי להיות גדול מדי לביצועים מיטביים.</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">ערכות נושא מובנות לא ניתנות להסרה.</sys:String>
@@ -787,8 +787,8 @@
     <sys:String x:Key="LOCSettingsReset">אפס הגדרות</sys:String>
     <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">עבור מפתחים</sys:String>
-    <sys:String x:Key="LOCSettingsExternalExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsNewExternalExtensionBox"></sys:String>    
+    <sys:String x:Key="LOCSettingsExternalExtensions">תוספים חיצוניים</sys:String>
+    <sys:String x:Key="LOCSettingsNewExternalExtensionBox">הכנס נתיב תיקיה מלא</sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">הישגים</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">פורום</sys:String>
@@ -813,8 +813,8 @@
     <sys:String x:Key="LOCExtensionsUpdatesCount">עדכונים ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo"></sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren"></sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">ערכות נושא שולחן עבודה</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">ערכות נושא מסך מלא</sys:String>
     <sys:String x:Key="LOCAddonsSearching">מחפש...</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible"></sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed"></sys:String>
@@ -825,22 +825,22 @@
     <sys:String x:Key="LOCAddonUninstall">הסר התקנה</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">כבר מותקן</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">עדכן תוספים</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble"></sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">הורדה נכשלה</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">רישיון נדחה</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle"></sys:String>
-    <sys:String x:Key="LOCLicenseAccept"></sys:String>
-    <sys:String x:Key="LOCLicenseDecline"></sys:String>
+    <sys:String x:Key="LOCLicenseAccept">קבל</sys:String>
+    <sys:String x:Key="LOCLicenseDecline">דחה</sys:String>
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
-    <sys:String x:Key="LOCSelectActionTitle"></sys:String>
-    <sys:String x:Key="LOCActionTrackingMode"></sys:String>
+    <sys:String x:Key="LOCSelectActionTitle">בחר פעולה</sys:String>
+    <sys:String x:Key="LOCActionTrackingMode">מצב מעקב</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">קישור</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">קובץ</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">אמולטור</sys:String>
@@ -853,17 +853,17 @@
     <sys:String x:Key="LOCGridViewSpacingModeNone">ללא</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">אחיד</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">פריטים בלבד</sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">התחלה וסיום בלבד</sys:String>
     <sys:String x:Key="LOCGridViewScrollAmountModifier"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">הסר פריט?</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">הגדרות תצוגה כלליות</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem">הגדרות קיבוץ</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelSortingItem">הגדרות מיון</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">סנן ערכות מוגדרות מראש</sys:String>
     <sys:String x:Key="LOCTopPanelPluginPanelPosition">מיקום פריטי פלאגין</sys:String>
-    <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
+    <sys:String x:Key="LOCTopPanelSeparatorWidth">רוחב מפריד אזורים</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">הזז כפתור תפריט ראשי לסרגל הצד</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">פאנל סייר</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">בוחר משחק אקראי</sys:String>
@@ -888,7 +888,7 @@
     <sys:String x:Key="LOCSettingsMusiVolume">עוצמת רקע</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
     <sys:String x:Key="LOCErrorAudioInterfaceInit"></sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApi"></sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi">API פלט</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">כללי</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionVisuals">חזותי</sys:String>
@@ -908,14 +908,14 @@
     <sys:String x:Key="LOCSelectDirectoryTooltip">בחר תיקיה...</sys:String>
     <sys:String x:Key="LOCStartupScript">תסריט אתחול</sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameActionSelectOnStart"></sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
+    <sys:String x:Key="LOCGameActionSelectOnStart">בחר בעת הפעלה</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfiles">פרופילים מובנים</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfile">פרופיל מובנה</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">פרופילים מותאמים אישית</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
     <sys:String x:Key="LOCEmulatorSpec"></sys:String>
     <sys:String x:Key="LOCPlatformSpec"></sys:String>
-    <sys:String x:Key="LOCRegionSpec"></sys:String>
+    <sys:String x:Key="LOCRegionSpec">מפרט אזור</sys:String>
     <sys:String x:Key="LOCEmulatorPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCEmulatorPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCEmulatorStartedScriptDescription"></sys:String>

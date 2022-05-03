@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PathsTests.cs" />
+    <Compile Include="ExtensionsTests.cs" />
     <Compile Include="ThemesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

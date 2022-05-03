@@ -582,7 +582,7 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCOpenPlaynite">Otevřít Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Natavení Profilu</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Jméno hry nemůže být prázdné.</sys:String>
-    <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">Složka sledování pro akci hry nemůže být prázdná.</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">Před vyhledáním metadat je třeba doplnit název hry.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">Neplatné údaje u hry</sys:String>
     <sys:String x:Key="LOCURLInputInfo">Vložte platný formát adresy URL začínající http:// nebo https://</sys:String>
@@ -674,9 +674,9 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCUpdateCheckFailMessage">Nepodařilo se zkontrolovat aktualizace.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Nebyla nalezena novější verze, vaše verze je aktuální.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Nepodařilo se stáhnout a nainstalovat aktualizaci.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Nějaká úloha na pozadí stále běží. Chcete ji zrušit a pokračovat s aktualizací?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Nějaká úloha na pozadí stále běží. Chcete jí zrušit a ukončit Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Nějaká úloha na pozadí stále běží. Změnou režimu bude zrušena, chcete i přesto změnit režim?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Aktualizace pro Playnite je dostupná</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Obnovit seznam motivů vzhledu</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Použít vybraný motiv vzhledu</sys:String>
@@ -695,7 +695,7 @@ Může zkusit problém vyřešit takto:
     <sys:String x:Key="LOCMetadataDiffCurrent">Současné</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Nové</sys:String>
     <sys:String x:Key="LOCTestScript">Testovat skript</sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip"></sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">Zobrazit pouze zvolené předměty.</sys:String>
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Uložit jako výchozí</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Přidat do Oblíbených</sys:String>
@@ -1019,7 +1019,11 @@ Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Stav nastavený poprvé hraným hrám</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Nepodařilo se inicializovat PowerShell script runtime. Pokud jste uživatel Windows 7, zkuste (pře)instalovat PowerShell 5.1 pro vyřešní problému.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Předvolba filtrů se zadaným jménem již existuje. Aktualizovat předvolbu s novými nastaveními?</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Zjistili jsme, že na Vašem počítači běží služba Nahimic. Tato služba prokazatelně způsobuje vykreslovací problémy nejen aplikaci Playnite.
+
+Pokud se v Playnite setkáte s grafickými potížemi, doporučujeme zakázání či úplné odinstalování služby Nahimic.
+
+Více informací na https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite běží s povýšenými oprávněními (jako administrátor). Toto není doporučeno, protože tato oprávnění poskytuje také všem instalovaným rozšířením a hrám/aplikacím spuštěným z Playnite!
 
 Více informací na https://playnite.link/adminfaq</sys:String>

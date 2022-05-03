@@ -98,5 +98,11 @@ namespace Playnite.Native
             }
             return mi;
         }
+
+        [DllImport(dllName, SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport(dllName, CharSet = CharSet.Auto)]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
     }
 }

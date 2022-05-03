@@ -230,7 +230,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCMenuAddWindowsStore">Microsoft Storen sovellus</sys:String>
     <sys:String x:Key="LOCMenuAbout">Tietoja Playnitesta</sys:String>
     <sys:String x:Key="LOCMenuIssues">Lähetä palautetta</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Käynnistä kokoruudulla</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Vaihda televisiotilaan</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Linkit</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ohjeet</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Tue Patreonissa</sys:String>
@@ -260,7 +260,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Selainpaneelin paikka</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kansitaiteen renderöinti</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Kuvasuhdetavoite</sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Seuraavat asetukset vaikuttavat myös ruutujen esitykseen kokoruututilassa!</sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Seuraavat asetukset vaikuttavat myös ruutujen esitykseen televisiotilassa!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Sovitustapa</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD-laatikko</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
@@ -278,7 +278,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Pelin lisätiedot</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Asettelu</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">Lisäasetukset</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLabel">Koko näyttö</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">Televisiotila</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Syöte</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Suorituskyky</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
@@ -312,8 +312,8 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsShowBackImageOnGridView">Näytä ruudukkonäkymässä</sys:String>
     <sys:String x:Key="LOCSettingsSkin">Teema</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">Teemaprofiili</sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen">Koko näytön teema</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Koko näytön teemaprofiili</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">Televisiotilan teema</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">Televisiotilan teeman profiili</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Tietokannan sijainti</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Kirjautumisen tila:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playniten asetukset</sys:String>
@@ -348,7 +348,7 @@ Tietokannan uusi sijainti ei tule käyttöön ennen kuin Playnite on käynnistet
     <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Käytä kauppapaikan ilmoittamaa peliaikaa paikallisen tiedon sijaan.</sys:String>
     <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Lataa ja käytä pelikaupan ilmoittamaa peliaikaa ja hylkää paikallisesti Playniten laskema peliaika.</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Ota peliohjaintuki käyttöön työpöytätilassa</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Opas-näppäin avaa koko näytön tilan</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Opas-näppäin avaa televisiotila</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Uusien tuotujen pelien metadatan automaattisen latauksen asetukset.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Kohdenäyttö</sys:String>
     <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Käytä aina päänäyttöä</sys:String>
@@ -436,7 +436,7 @@ Muista, että voit aina manuaalisesti lisätä minkä tahansa pelin mille tahans
 
 Voit myöhemmin myös lisätä minkä tahansa pelin painamalla Playnite-logoa.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">Ladataan {0} integraatio</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Määritä alustat ja emulaattorit</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Määritä emulaattorit</sys:String>
@@ -498,7 +498,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCGameTagsTitle">Tunniste</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Julkaisija</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Asennuksen tila</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Käytä kaikkia suodattimia</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Asennettu</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Asennettu</sys:String>
@@ -544,7 +544,7 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
 Lisää oheinen tunniste raporttiisi:</sys:String>
 
     <sys:String x:Key="LOCLibraryImportError">Pelejä ei voitu tuoda sijainnista {0}.</sys:String>
-    <sys:String x:Key="LOCLibraryImportEmulatedError"></sys:String>
+    <sys:String x:Key="LOCLibraryImportEmulatedError">Emuloituja pelejä ei voitu tuoda sijainnista {0}.</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">Ei voida etsiä pelejä valitun emulaattoriprofiilin mukaan. Profiili ei sisällä tiedostopäätteitä tai alustoja.</sys:String>
     <sys:String x:Key="LOCStartGenericError">Playniten käynnistys epäonnistui. Sulje ohjelman kaikki muut esiintymät ja yritä uudelleen.</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">Teeman &quot;{0}&quot; käyttöönotto epäonnistui, väri profiili &quot;{1}&quot;
@@ -728,7 +728,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} sekuntia</sys:String>
     <sys:String x:Key="LOCPlayedNone">Ei pelattu</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Avataan työpöytätilaa…</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Avataan kokoruudun tilaa…</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Avataan televisiotilaan…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Ladataan pelikirjastoa…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Skriptiä ei voitu asentaa.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Skriptin asentaminen onnistui.</sys:String>
@@ -859,7 +859,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCAddonsConfigMoveInfo"></sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Työpöytä-tilan teemat</sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren">Kokonäytön teemat</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Televisiotilan teemat</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Etsitään...</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">Lisäosa ei ole yhteensopiva tämän Playnite-version kanssa</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Lisäosan asennuspaketin lataaminen epäonnistui</sys:String>
@@ -913,11 +913,11 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Selainpaneeli</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
-    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
-    <sys:String x:Key="LOCInPast7Days"></sys:String>
-    <sys:String x:Key="LOCInPast31Days"></sys:String>
-    <sys:String x:Key="LOCInPast365Days"></sys:String>
-    <sys:String x:Key="LOCMoreThan365DaysAgo"></sys:String>
+    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Näytä hakukenttä koko ruudun tilassa</sys:String>
+    <sys:String x:Key="LOCInPast7Days">Viimeisen 7 päivän aikana</sys:String>
+    <sys:String x:Key="LOCInPast31Days">Viimeisen 31 päivän aikana</sys:String>
+    <sys:String x:Key="LOCInPast365Days">Viimeisen 365 päivän aikana</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">Yli 365 päivää sitten</sys:String>
     <sys:String x:Key="LOCConfigure">Konfiguroi</sys:String>
     <sys:String x:Key="LOCFilterPresetSave">Tallenna esiasetus</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Pienennä pelin käynnistämisen jälkeen</sys:String>
@@ -931,12 +931,12 @@ Tämän asetuksen käytöstä pois ottaminen voi johtaa syötön ongelmiin peli�
 
 Poista käytöstä jos käytät työkaluja jotka muuntavat XInput-laitteiden käskyt hiiri- ja näppäimistökäskyiksi ja jos tuplasyöttöä tapahtuu.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Näytä kohteet päävalikossa:</sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Käännetty X/A pää näkymän nappuloiden sitominen</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Vaihda pelin käynnistys ja pelin tiedot sivun napit keskenään.</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceVolume">Käyttöliittymän äänenvoimakkuus</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Tausta-äänenvoimakkuus</sys:String>
-    <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
-    <sys:String x:Key="LOCErrorAudioInterfaceInit"></sys:String>
+    <sys:String x:Key="LOCSettingsMuteBackground">Mykistä kun taustalla</sys:String>
+    <sys:String x:Key="LOCErrorAudioInterfaceInit">Äänijärjestelmää ei voitu käynnistää.</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApi"></sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">Yleiset</sys:String>

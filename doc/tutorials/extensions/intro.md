@@ -62,6 +62,9 @@ Resulting folder structure should look something like this:
 
 See manifest file [documentation page](extensionsManifest.md) for more information about manifest contents.
 
+> [!NOTE]
+> Extensions can be also loaded from an arbitrary location using `For developers` section in application settings.
+
 ### 3. Implementing extension
 
 For scripts see [scripting introduction page](scripting.md).
