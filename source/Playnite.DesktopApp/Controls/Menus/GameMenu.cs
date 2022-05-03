@@ -49,7 +49,6 @@ namespace Playnite.DesktopApp.Controls
                 typeof(bool),
                 typeof(GameMenu));
 
-        private IResourceProvider resources;
         private DesktopAppViewModel model;
 
         private static object startIcon;
@@ -65,16 +64,6 @@ namespace Playnite.DesktopApp.Controls
         private static object editIcon;
         private static object manualIcon;
         private static bool iconsLoaded = false;
-
-        public Game Game
-        {
-            get; set;
-        }
-
-        public List<Game> Games
-        {
-            get;  set;
-        }
 
         static GameMenu()
         {
@@ -93,10 +82,8 @@ namespace Playnite.DesktopApp.Controls
             }
 
             this.model = model;
-            resources = new ResourceProvider();
             Opened += GameMenu_Opened;
             Closed += GameMenu_Closed;
-            DataContextChanged += GameMenu_DataContextChanged;
         }
 
         private void GameMenu_Closed(object sender, RoutedEventArgs e)
@@ -109,59 +96,323 @@ namespace Playnite.DesktopApp.Controls
             InitializeItems();
         }
 
-        private void GameMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (DataContext is GamesCollectionViewEntry entry)
-            {
-                AssignGame(entry.Game);
-            }
-            else if (DataContext is IEnumerable<GamesCollectionViewEntry> entries)
-            {
-                if (entries.Count() > 0)
-                {
-                    AssignGame((entries.First() as GamesCollectionViewEntry).Game);
-                }
-
-                if (entries.Count() == 1)
-                {
-                    Games = null;
-                }
-                else
-                {
-                    Games = entries.Select(a => (a as GamesCollectionViewEntry).Game).ToList();
-                }
-            }
-            else if (DataContext is IList<object> entries2)
-            {
-                if (entries2.Count() > 0)
-                {
-                    AssignGame((entries2.First() as GamesCollectionViewEntry).Game);
-                }
-
-                if (entries2.Count() == 1)
-                {
-                    Games = null;
-                }
-                else
-                {
-                    Games = entries2.Select(a => (a as GamesCollectionViewEntry).Game).ToList();
-                }
-            }
-            else
-            {
-                AssignGame(null);
-                Games = null;
-            }
-        }
-
-        private void AssignGame(Game game)
-        {
-            Game = game;
-        }
-
         public void Deinitialize()
         {
             Items.Clear();
+        }
+
+        private void InitializeItems(Game game)
+        {
+            // Play / Install
+            if (ShowStartSection)
+            {
+                bool added = false;
+                if (game.IsInstalled)
+                {
+                    var playItem = new MenuItem()
+                    {
+                        Header = ResourceProvider.GetString(LOC.PlayGame),
+                        Icon = startIcon,
+                        FontWeight = FontWeights.Bold,
+                        Command = model.StartGameCommand,
+                        CommandParameter = game,
+                        InputGestureText = model.StartSelectedGameCommand.GestureText
+                    };
+
+                    Items.Add(playItem);
+                    added = true;
+                }
+                else if (!game.IsCustomGame)
+                {
+                    var installItem = new MenuItem()
+                    {
+                        Header = ResourceProvider.GetString(LOC.InstallGame),
+                        Icon = installIcon,
+                        FontWeight = FontWeights.Bold,
+                        Command = model.InstallGameCommand,
+                        CommandParameter = game
+                    };
+
+                    Items.Add(installItem);
+                    added = true;
+                }
+
+                if (added)
+                {
+                    Items.Add(new Separator());
+                }
+            }
+
+            // Custom Actions
+            if (game.GameActions.HasItems())
+            {
+                foreach (var task in game.GameActions)
+                {
+                    var taskItem = new MenuItem()
+                    {
+                        Header = task.Name
+                    };
+
+                    taskItem.Click += (s, e) =>
+                    {
+                        model.GamesEditor.ActivateAction(game, task);
+                    };
+
+                    Items.Add(taskItem);
+                }
+
+                Items.Add(new Separator());
+            }
+
+            // Links
+            if (game.Links?.Any() == true)
+            {
+                var linksItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.LinksLabel),
+                    Icon = linksIcon
+                };
+
+                foreach (var link in game.Links)
+                {
+                    if (link != null)
+                    {
+                        linksItem.Items.Add(new MenuItem()
+                        {
+                            Header = link.Name,
+                            Command = new RelayCommand<Link>((_) =>
+                            {
+                                try
+                                {
+                                    GlobalCommands.NavigateUrl(game.ExpandVariables(link.Url));
+                                }
+                                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                                {
+                                    logger.Error(e, "Failed to open url.");
+                                }
+                            })
+                        });
+                    }
+                }
+
+                Items.Add(linksItem);
+                Items.Add(new Separator());
+            }
+
+            // Open Game Location
+            if (game.IsInstalled)
+            {
+                var locationItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.OpenGameLocation),
+                    Icon = browseIcon,
+                    Command = model.OpenGameLocationCommand,
+                    CommandParameter = game
+                };
+
+                Items.Add(locationItem);
+            }
+
+            // Create Desktop Shortcut
+            var shortcutItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.CreateDesktopShortcut),
+                Icon = shortcutIcon,
+                Command = model.CreateDesktopShortcutCommand,
+                CommandParameter = game
+            };
+
+            Items.Add(shortcutItem);
+
+            // Manual
+            if (!game.Manual.IsNullOrEmpty())
+            {
+                Items.Add(new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.OpenGameManual),
+                    Icon = manualIcon,
+                    Command = model.OpenManualCommand,
+                    CommandParameter = game
+                });
+            }
+
+            Items.Add(new Separator());
+
+            // Toggle Favorites
+            var favoriteItem = new MenuItem()
+            {
+                Header = game.Favorite ? ResourceProvider.GetString(LOC.RemoveFavoriteGame) : ResourceProvider.GetString(LOC.FavoriteGame),
+                Icon = game.Favorite ? unFavoriteIcon : favoriteIcon,
+                Command = model.ToggleFavoritesCommand,
+                CommandParameter = game
+            };
+
+            Items.Add(favoriteItem);
+
+            // Toggle Hide
+            var hideItem = new MenuItem()
+            {
+                Header = game.Hidden ? ResourceProvider.GetString(LOC.UnHideGame) : ResourceProvider.GetString(LOC.HideGame),
+                Icon = game.Hidden ? unHideIcon : hideIcon,
+                Command = model.ToggleVisibilityCommand,
+                CommandParameter = game
+            };
+
+            Items.Add(hideItem);
+
+            // Edit
+            var editItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.EditGame),
+                Icon = editIcon,
+                Command = model.EditGameCommand,
+                CommandParameter = game,
+                InputGestureText = model.EditSelectedGamesCommand.GestureText
+            };
+
+            Items.Add(editItem);
+
+            // Set Category
+            var categoryItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.SetGameCategory),
+                //Icon = Images.GetEmptyImage(),
+                Command = model.AssignGameCategoryCommand,
+                CommandParameter = game
+            };
+
+            Items.Add(categoryItem);
+
+            // Set Completion Status
+            Items.Add(LoadCompletionStatusItem(game));
+
+            // Extensions items
+            AddExtensionItems(new List<Game>(1) { game });
+            Items.Add(new Separator());
+
+            // Remove
+            var removeItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.RemoveGame),
+                Icon = removeIcon,
+                Command = model.RemoveGameCommand,
+                CommandParameter = game,
+                InputGestureText = model.RemoveGameCommand.GestureText
+            };
+
+            Items.Add(removeItem);
+
+            // Uninstall
+            if (!game.IsCustomGame && game.IsInstalled)
+            {
+                var uninstallItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.UninstallGame),
+                    //Icon = Images.GetEmptyImage(),
+                    Command = model.UninstallGameCommand,
+                    CommandParameter = game
+                };
+
+                Items.Add(uninstallItem);
+            }
+        }
+
+        private void InitializeItems(List<Game> games)
+        {
+            // Create Desktop Shortcut
+            var shortcutItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.CreateDesktopShortcut),
+                Icon = shortcutIcon,
+                Command = model.CreateDesktopShortcutsCommand,
+                CommandParameter = games
+            };
+
+            Items.Add(shortcutItem);
+
+            // Set Favorites
+            var favoriteItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.FavoriteGame),
+                Icon = favoriteIcon,
+                Command = model.SetAsFavoritesCommand,
+                CommandParameter = games
+            };
+
+            Items.Add(favoriteItem);
+
+            var unFavoriteItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.RemoveFavoriteGame),
+                Icon = unFavoriteIcon,
+                Command = model.RemoveAsFavoritesCommand,
+                CommandParameter = games
+            };
+
+            Items.Add(unFavoriteItem);
+
+            // Set Hide
+            var hideItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.HideGame),
+                Icon = hideIcon,
+                Command = model.SetAsHiddensCommand,
+                CommandParameter = games
+            };
+
+            Items.Add(hideItem);
+
+            var unHideItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.UnHideGame),
+                Icon = unHideIcon,
+                Command = model.RemoveAsHiddensCommand,
+                CommandParameter = games
+            };
+
+            Items.Add(unHideItem);
+
+            // Edit
+            var editItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.EditGame),
+                Icon = editIcon,
+                Command = model.EditGamesCommand,
+                CommandParameter = games,
+                InputGestureText = model.EditSelectedGamesCommand.GestureText
+            };
+
+            Items.Add(editItem);
+
+            // Set Category
+            var categoryItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.SetGameCategory),
+                //Icon = Images.GetEmptyImage(),
+                Command = model.AssignGamesCategoryCommand,
+                CommandParameter = games
+            };
+
+            Items.Add(categoryItem);
+
+            // Set Completion Status
+            Items.Add(LoadCompletionStatusItem(games));
+
+            // Extensions items
+            AddExtensionItems(games);
+            Items.Add(new Separator());
+
+            // Remove
+            var removeItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.RemoveGame),
+                Icon = removeIcon,
+                Command = model.RemoveGamesCommand,
+                CommandParameter = games,
+                InputGestureText = model.RemoveSelectedGamesCommand.GestureText
+            };
+
+            Items.Add(removeItem);
         }
 
         public void InitializeItems()
@@ -186,370 +437,106 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Clear();
 
-            if (Games?.Count == 0 && Game == null)
+            Game game = null;
+            List<Game> games = null;
+
+            if (DataContext is GamesCollectionViewEntry entry)
+            {
+                game = entry.Game;
+            }
+            else if (DataContext is IEnumerable<GamesCollectionViewEntry> entries)
+            {
+                if (entries.Count() > 0)
+                {
+                    game = (entries.First() as GamesCollectionViewEntry).Game;
+                }
+
+                if (entries.Count() == 1)
+                {
+                    games = null;
+                }
+                else
+                {
+                    games = entries.Select(a => (a as GamesCollectionViewEntry).Game).ToList();
+                }
+            }
+            else if (DataContext is IList<object> entries2)
+            {
+                if (entries2.Count() > 0)
+                {
+                    game = (entries2.First() as GamesCollectionViewEntry).Game;
+                }
+
+                if (entries2.Count() == 1)
+                {
+                    games = null;
+                }
+                else
+                {
+                    games = entries2.Select(a => (a as GamesCollectionViewEntry).Game).ToList();
+                }
+            }
+
+            if (games?.Count == 0 && game == null)
             {
                 return;
             }
 
-            if (Games != null)
+            if (games != null)
             {
-                // Create Desktop Shortcut
-                var shortcutItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCCreateDesktopShortcut"),
-                    Icon = shortcutIcon,
-                    Command = model.CreateDesktopShortcutsCommand,
-                    CommandParameter = Games
-                };
-
-                Items.Add(shortcutItem);
-
-                // Set Favorites
-                var favoriteItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCFavoriteGame"),
-                    Icon = favoriteIcon,
-                    Command = model.SetAsFavoritesCommand,
-                    CommandParameter = Games
-                };
-
-                Items.Add(favoriteItem);
-
-                var unFavoriteItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCRemoveFavoriteGame"),
-                    Icon = unFavoriteIcon,
-                    Command = model.RemoveAsFavoritesCommand,
-                    CommandParameter = Games
-                };
-
-                Items.Add(unFavoriteItem);
-
-                // Set Hide
-                var hideItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCHideGame"),
-                    Icon = hideIcon,
-                    Command = model.SetAsHiddensCommand,
-                    CommandParameter = Games
-                };
-
-                Items.Add(hideItem);
-
-                var unHideItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCUnHideGame"),
-                    Icon = unHideIcon,
-                    Command = model.RemoveAsHiddensCommand,
-                    CommandParameter = Games
-                };
-
-                Items.Add(unHideItem);
-
-                // Edit
-                var editItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCEditGame"),
-                    Icon = editIcon,
-                    Command = model.EditGamesCommand,
-                    CommandParameter = Games,
-                    InputGestureText = model.EditSelectedGamesCommand.GestureText
-                };
-
-                Items.Add(editItem);
-
-                // Set Category
-                var categoryItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCSetGameCategory"),
-                    //Icon = Images.GetEmptyImage(),
-                    Command = model.AssignGamesCategoryCommand,
-                    CommandParameter = Games
-                };
-
-                Items.Add(categoryItem);
-
-                // Set Completion Status
-                Items.Add(LoadCompletionStatusItem());
-
-                // Extensions items
-                AddExtensionItems();
-                Items.Add(new Separator());
-
-                // Remove
-                var removeItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCRemoveGame"),
-                    Icon = removeIcon,
-                    Command = model.RemoveGamesCommand,
-                    CommandParameter = Games,
-                    InputGestureText = model.RemoveSelectedGamesCommand.GestureText
-                };
-
-                Items.Add(removeItem);
+                InitializeItems(games);
             }
-            else if (Game != null)
+            else if (game != null)
             {
-                // Play / Install
-                if (ShowStartSection)
-                {
-                    bool added = false;
-                    if (Game.IsInstalled)
-                    {
-                        var playItem = new MenuItem()
-                        {
-                            Header = resources.GetString("LOCPlayGame"),
-                            Icon = startIcon,
-                            FontWeight = FontWeights.Bold,
-                            Command = model.StartGameCommand,
-                            CommandParameter = Game,
-                            InputGestureText = model.StartSelectedGameCommand.GestureText
-                        };
-
-                        Items.Add(playItem);
-                        added = true;
-                    }
-                    else if (!Game.IsCustomGame)
-                    {
-                        var installItem = new MenuItem()
-                        {
-                            Header = resources.GetString("LOCInstallGame"),
-                            Icon = installIcon,
-                            FontWeight = FontWeights.Bold,
-                            Command = model.InstallGameCommand,
-                            CommandParameter = Game
-                        };
-
-                        Items.Add(installItem);
-                        added = true;
-                    }
-
-                    if (added)
-                    {
-                        Items.Add(new Separator());
-                    }
-                }
-
-                // Custom Actions
-                var otherActions = Game.GameActions?.Where(a => !a.IsPlayAction).ToList();
-                if (otherActions.HasItems())
-                {
-                    foreach (var task in otherActions)
-                    {
-                        var taskItem = new MenuItem()
-                        {
-                            Header = task.Name
-                        };
-
-                        taskItem.Click += (s, e) =>
-                        {
-                            model.GamesEditor.ActivateAction(Game, task);
-                        };
-
-                        Items.Add(taskItem);
-                    }
-
-                    Items.Add(new Separator());
-                }
-
-                // Links
-                if (Game.Links?.Any() == true)
-                {
-                    var linksItem = new MenuItem()
-                    {
-                        Header = resources.GetString("LOCLinksLabel"),
-                        Icon = linksIcon
-                    };
-
-                    foreach (var link in Game.Links)
-                    {
-                        if (link != null)
-                        {
-                            linksItem.Items.Add(new MenuItem()
-                            {
-                                Header = link.Name,
-                                Command = new RelayCommand<Link>((_) =>
-                                {
-                                    try
-                                    {
-                                        GlobalCommands.NavigateUrl(Game.ExpandVariables(link.Url));
-                                    }
-                                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                                    {
-                                        logger.Error(e, "Failed to open url.");
-                                    }
-                                })
-                            });
-                        }
-                    }
-
-                    Items.Add(linksItem);
-                    Items.Add(new Separator());
-                }
-
-                // Open Game Location
-                if (Game.IsInstalled)
-                {
-                    var locationItem = new MenuItem()
-                    {
-                        Header = resources.GetString("LOCOpenGameLocation"),
-                        Icon = browseIcon,
-                        Command = model.OpenGameLocationCommand,
-                        CommandParameter = Game
-                    };
-
-                    Items.Add(locationItem);
-                }
-
-                // Create Desktop Shortcut
-                var shortcutItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCCreateDesktopShortcut"),
-                    Icon = shortcutIcon,
-                    Command = model.CreateDesktopShortcutCommand,
-                    CommandParameter = Game
-                };
-
-                Items.Add(shortcutItem);
-
-                // Manual
-                if (!Game.Manual.IsNullOrEmpty())
-                {
-                    Items.Add(new MenuItem()
-                    {
-                        Header = resources.GetString("LOCOpenGameManual"),
-                        Icon = manualIcon,
-                        Command = model.OpenManualCommand,
-                        CommandParameter = Game
-                    });
-                }
-
-                Items.Add(new Separator());
-
-                // Toggle Favorites
-                var favoriteItem = new MenuItem()
-                {
-                    Header = Game.Favorite ? resources.GetString("LOCRemoveFavoriteGame") : resources.GetString("LOCFavoriteGame"),
-                    Icon = Game.Favorite ? unFavoriteIcon : favoriteIcon,
-                    Command = model.ToggleFavoritesCommand,
-                    CommandParameter = Game
-                };
-
-                Items.Add(favoriteItem);
-
-                // Toggle Hide
-                var hideItem = new MenuItem()
-                {
-                    Header = Game.Hidden ? resources.GetString("LOCUnHideGame") : resources.GetString("LOCHideGame"),
-                    Icon = Game.Hidden ? unHideIcon : hideIcon,
-                    Command = model.ToggleVisibilityCommand,
-                    CommandParameter = Game
-                };
-
-                Items.Add(hideItem);
-
-                // Edit
-                var editItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCEditGame"),
-                    Icon = editIcon,
-                    Command = model.EditGameCommand,
-                    CommandParameter = Game,
-                    InputGestureText = model.EditSelectedGamesCommand.GestureText
-                };
-
-                Items.Add(editItem);
-
-                // Set Category
-                var categoryItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCSetGameCategory"),
-                    //Icon = Images.GetEmptyImage(),
-                    Command = model.AssignGameCategoryCommand,
-                    CommandParameter = Game
-                };
-
-                Items.Add(categoryItem);
-
-                // Set Completion Status
-                Items.Add(LoadCompletionStatusItem());
-
-                // Extensions items
-                AddExtensionItems();
-                Items.Add(new Separator());
-
-                // Remove
-                var removeItem = new MenuItem()
-                {
-                    Header = resources.GetString("LOCRemoveGame"),
-                    Icon = removeIcon,
-                    Command = model.RemoveGameCommand,
-                    CommandParameter = Game,
-                    InputGestureText = model.RemoveGameCommand.GestureText
-                };
-
-                Items.Add(removeItem);
-
-                // Uninstall
-                if (!Game.IsCustomGame && Game.IsInstalled)
-                {
-                    var uninstallItem = new MenuItem()
-                    {
-                        Header = resources.GetString("LOCUninstallGame"),
-                        //Icon = Images.GetEmptyImage(),
-                        Command = model.UninstallGameCommand,
-                        CommandParameter = Game
-                    };
-
-                    Items.Add(uninstallItem);
-                }
+                InitializeItems(game);
             }
         }
 
-        private MenuItem LoadCompletionStatusItem()
+        private MenuItem LoadCompletionStatusItem(List<Game> games)
         {
             var completionItem = new MenuItem()
             {
-                Header = resources.GetString("LOCSetCompletionStatus")
+                Header = ResourceProvider.GetString(LOC.SetCompletionStatus)
             };
 
             foreach (var status in model.Database.CompletionStatuses.OrderBy(a => a.Name))
             {
-                if (Games != null)
+                completionItem.Items.Add(new MenuItem
                 {
-                    completionItem.Items.Add(new MenuItem
-                    {
-                        Header = status.Name,
-                        Command = model.SetGamesCompletionStatusCommand,
-                        CommandParameter = new Tuple<IEnumerable<Game>, CompletionStatus>(Games, status)
-                    });
-                }
-                else if (Game != null)
-                {
-                    completionItem.Items.Add(new MenuItem
-                    {
-                        Header = status.Name,
-                        Command = model.SetGameCompletionStatusCommand,
-                        CommandParameter = new Tuple<Game, CompletionStatus>(Game, status)
-                    });
-                }
+                    Header = status.Name,
+                    Command = model.SetGamesCompletionStatusCommand,
+                    CommandParameter = new Tuple<IEnumerable<Game>, CompletionStatus>(games, status)
+                });
             }
 
             return completionItem;
         }
 
-        private void AddExtensionItems()
+        private MenuItem LoadCompletionStatusItem(Game game)
+        {
+            var completionItem = new MenuItem()
+            {
+                Header = ResourceProvider.GetString(LOC.SetCompletionStatus)
+            };
+
+            foreach (var status in model.Database.CompletionStatuses.OrderBy(a => a.Name))
+            {
+                completionItem.Items.Add(new MenuItem
+                {
+                    Header = status.Name,
+                    Command = model.SetGameCompletionStatusCommand,
+                    CommandParameter = new Tuple<Game, CompletionStatus>(game, status)
+                });
+            }
+
+            return completionItem;
+        }
+
+        private void AddExtensionItems(List<Game> games)
         {
             var args = new GetGameMenuItemsArgs();
             var toAdd = new List<GameMenuItem>();
-            if (Games != null)
-            {
-                args.Games = Games;
-            }
-            else
-            {
-                args.Games = new List<Game>(1) { Game };
-            }
+            args.Games = games;
 
             foreach (var plugin in model.Extensions.Plugins.Values)
             {
@@ -637,7 +624,7 @@ namespace Playnite.DesktopApp.Controls
                                 {
                                     logger.Error(e, "Game menu extension action failed.");
                                     Dialogs.ShowErrorMessage(
-                                        ResourceProvider.GetString("LOCMenuActionExecError") +
+                                        ResourceProvider.GetString(LOC.MenuActionExecError) +
                                         Environment.NewLine + Environment.NewLine +
                                         e.Message, "");
                                 }
