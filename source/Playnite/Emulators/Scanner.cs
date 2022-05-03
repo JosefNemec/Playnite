@@ -433,7 +433,7 @@ namespace Playnite.Emulators
             {
                 return ScanDirectory(
                     directory,
-                    emuProf.ImageExtensions,
+                    emuProf.ImageExtensions?.Select(a => a.Trim()).ToList(),
                     emuProf.Platforms,
                     cancelToken,
                     crcExludePatterns,
@@ -466,7 +466,7 @@ namespace Playnite.Emulators
             var platforms = profile.Platforms?.Select(a => database.Platforms[a].SpecificationId).Where(a => !a.IsNullOrEmpty()).ToList();
             return ScanDirectory(
                 directory,
-                profile.ImageExtensions,
+                profile.ImageExtensions.Select(a => a.Trim()).ToList(),
                 platforms,
                 cancelToken,
                 crcExludePatterns,
