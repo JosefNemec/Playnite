@@ -110,6 +110,7 @@
     <Compile Include="Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="ArchiveTests.cs" />
+    <Compile Include="M3UTests.cs" />
     <Compile Include="_TestTools\GameDbTestWrapper.cs" />
     <Compile Include="GameFieldComparerTests.cs" />
     <Compile Include="GamesEditorTests.cs" />
@@ -270,6 +271,9 @@
     <Content Include="Resources\Images\gw2_icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\test.m3u">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Images\NoIcon.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

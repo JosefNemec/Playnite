@@ -227,6 +227,7 @@
     <Compile Include="Common\CueSheet.cs" />
     <Compile Include="Common\Extensions\Dictionary.cs" />
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
+    <Compile Include="Common\M3U.cs" />
     <Compile Include="Common\Network.cs" />
     <Compile Include="DateTimes.cs" />
     <Compile Include="SortableNameConverter.cs" />

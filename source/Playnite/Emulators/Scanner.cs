@@ -554,85 +554,100 @@ namespace Playnite.Emulators
 
             fileScanCallback?.Invoke(directory);
 
+            void processPlayListFile(string filePath, Func<string, List<string>> playListParser)
+            {
+                var fileExt = Path.GetExtension(filePath).TrimStart('.');
+                files.Remove(filePath);
+
+                try
+                {
+                    var childFiles = playListParser(filePath);
+                    if (childFiles.HasItems())
+                    {
+                        childFiles.ForEach(a => files.Remove(a));
+                    }
+
+                    if (importedFiles.ContainsString(filePath, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return;
+                    }
+
+                    Tuple<DatGame, string> romData = null;
+                    foreach (var childPath in childFiles)
+                    {
+                        if (cancelToken.IsCancellationRequested)
+                        {
+                            return;
+                        }
+
+                        fileScanCallback?.Invoke(childPath);
+                        var crcScan = true;
+                        if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(childPath))
+                        {
+                            if (scanner.UseSimplifiedOnlineFileScan)
+                            {
+                                crcScan = false;
+                            }
+                            else
+                            {
+                                logger.Trace($"Skipping scan of {childPath} rom, scan of online files is disabled.");
+                                continue;
+                            }
+                        }
+
+                        if (crcScan && Paths.MathcesFilePattern(childPath, crcExludePatterns))
+                        {
+                            logger.Trace($"Skipping crc check of {childPath}. Excluded by pattern settings.");
+                            crcScan = false;
+                        }
+
+                        romData = LookupGameInDb(
+                            childPath,
+                            Path.GetExtension(childPath).TrimStart('.'),
+                            supportedExtensions,
+                            databases,
+                            crcScan,
+                            scanArchives);
+                        if (romData != null)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (romData != null)
+                    {
+                        logger.Trace($"Detected rom with db info:{filePath}\n{romData.Item1}");
+                        addRom(new ScannedRom(filePath, romData.Item1, romData.Item2));
+                    }
+                    else
+                    {
+                        logger.Trace($"Detected rom: {filePath}");
+                        addRom(new ScannedRom(filePath));
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to process {fileExt} playlist file {filePath}");
+                }
+
+                fileScanCallback?.Invoke(directory);
+            }
+
             // Cue files have priority since they will potentionaliy remove additional .bin files to match
             if (supportedExtensions.ContainsString("cue", StringComparison.OrdinalIgnoreCase))
             {
-                var cueFiles = files.Where(a => a.EndsWith(".cue", StringComparison.OrdinalIgnoreCase)).ToArray();
-                foreach (var cueFile in cueFiles)
+                foreach (var cueFile in files.Where(a => a.EndsWith(".cue", StringComparison.OrdinalIgnoreCase)))
                 {
-                    try
-                    {
-                        files.Remove(cueFile);
-                        var bins = CueSheet.GetFileEntries(cueFile).Select(a => Path.Combine(directory, a.Path)).ToList();
-                        if (bins.HasItems())
-                        {
-                            bins.ForEach(a => files.Remove(a));
-                        }
+                    processPlayListFile(cueFile, (cFile) => CueSheet.GetFileEntries(cFile).Select(a => Path.Combine(directory, a.Path)).ToList());
+                }
+            }
 
-                        if (importedFiles.ContainsString(cueFile, StringComparison.OrdinalIgnoreCase))
-                        {
-                            continue;
-                        }
-
-                        Tuple<DatGame, string> romData = null;
-                        foreach (var binFile in bins)
-                        {
-                            if (cancelToken.IsCancellationRequested)
-                            {
-                                return;
-                            }
-
-                            fileScanCallback?.Invoke(binFile);
-                            var crcScan = true;
-                            if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(binFile))
-                            {
-                                if (scanner.UseSimplifiedOnlineFileScan)
-                                {
-                                    crcScan = false;
-                                }
-                                else
-                                {
-                                    logger.Trace($"Skipping scan of {binFile} rom, scan of online files is disabled.");
-                                    continue;
-                                }
-                            }
-
-                            if (crcScan && Paths.MathcesFilePattern(binFile, crcExludePatterns))
-                            {
-                                logger.Trace($"Skipping crc check of {binFile}. Excluded by pattern settings.");
-                                crcScan = false;
-                            }
-
-                            romData = LookupGameInDb(
-                                binFile,
-                                Path.GetExtension(binFile).TrimStart('.'),
-                                supportedExtensions,
-                                databases,
-                                crcScan,
-                                scanArchives);
-                            if (romData != null)
-                            {
-                                break;
-                            }
-                        }
-
-                        if (romData != null)
-                        {
-                            logger.Trace($"Detected rom with db info:{cueFile}\n{romData.Item1}");
-                            addRom(new ScannedRom(cueFile, romData.Item1, romData.Item2));
-                        }
-                        else
-                        {
-                            logger.Trace($"Detected rom: {cueFile}");
-                            addRom(new ScannedRom(cueFile));
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, $"Failed to process cue file {cueFile}");
-                    }
-
-                    fileScanCallback?.Invoke(directory);
+            // The same as with cue but for m3u playlist
+            if (supportedExtensions.ContainsString("m3u", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var m3uFile in files.Where(a => a.EndsWith(".m3u", StringComparison.OrdinalIgnoreCase)))
+                {
+                    processPlayListFile(m3uFile, (mFile) => M3U.GetEntries(mFile).Select(a => Path.Combine(directory, a.Path)).ToList());
                 }
             }
 
