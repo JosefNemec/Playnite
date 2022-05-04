@@ -288,8 +288,7 @@ namespace Playnite
                 }
                 else
                 {
-                    var libInter = filterSettings.Library.Ids?.Intersect(new List<Guid> { game.PluginId });
-                    if (libInter?.Any() == false)
+                    if (filterSettings.Library.Ids?.Contains(game.PluginId) == false)
                     {
                         return false;
                     }
@@ -591,8 +590,7 @@ namespace Playnite
             bool librariesFilter = false;
             if (filterSettings.Library?.IsSet == true)
             {
-                var libInter = filterSettings.Library.Ids?.Intersect(new List<Guid> { game.PluginId });
-                librariesFilter = libInter?.Any() == true;
+                librariesFilter = filterSettings.Library.Ids?.Contains(game.PluginId) == true;
             }
             else
             {
