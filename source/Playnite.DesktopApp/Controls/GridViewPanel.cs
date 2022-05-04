@@ -201,7 +201,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 var child = InternalChildren[i];
                 var itemIndex = ItemContainerGenerator.IndexFromGeneratorPosition(new GeneratorPosition(i, 0));
-                // Negaitve index items are disconnected items
+                // Negative index means that child is disconnected item
                 if (itemIndex >= 0)
                 {
                     child.Arrange(GetItemRect(itemIndex));
