@@ -201,7 +201,11 @@ namespace Playnite.DesktopApp.Controls
             {
                 var child = InternalChildren[i];
                 var itemIndex = ItemContainerGenerator.IndexFromGeneratorPosition(new GeneratorPosition(i, 0));
-                child.Arrange(GetItemRect(itemIndex));
+                // Negaitve index items are disconnected items
+                if (itemIndex >= 0)
+                {
+                    child.Arrange(GetItemRect(itemIndex));
+                }
             }
 
             return finalSize;
@@ -226,7 +230,7 @@ namespace Playnite.DesktopApp.Controls
 
         private void GetVisibleRange(out int firstIndex, out int lastIndex)
         {
-            if (itemCount == 0 || Viewport.Height < ItemHeight)
+            if (itemCount == 0 || Viewport.Height == 0)
             {
                 firstIndex = -1;
                 lastIndex = -1;
