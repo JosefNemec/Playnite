@@ -49,5 +49,18 @@ namespace Playnite.Tests.Models
             Assert.Throws<ReferenceException>(() => obj1.CopyDiffTo(obj1));
             Assert.Throws<TypeMismatchException>(() => obj1.CopyDiffTo(obj2));
         }
+
+        [Test]
+        public void EqualsTest()
+        {
+            var obj1 = new DatabaseObject();
+            var obj2 = new DatabaseObject() { Id = obj1.Id };
+            var obj3 = new DatabaseObject();
+            Assert.AreEqual(obj1, obj2);
+            Assert.AreNotEqual(obj1, obj3);
+            Assert.IsTrue(obj1.Equals(obj2));
+            Assert.IsFalse(obj1.Equals(obj3));
+            Assert.AreEqual(2, new List<DatabaseObject> { obj1, obj2, obj3 }.Distinct().Count());
+        }
     }
 }
