@@ -614,7 +614,8 @@ namespace Playnite
                 }
             }
 
-            Database.Games.Remove(games);
+            // Distinct is needed in case removal is called on grouped games where one game can be part of multiple groups
+            Database.Games.Remove(games.Distinct());
         }
 
         public void CreateDesktopShortcut(List<Game> games)
