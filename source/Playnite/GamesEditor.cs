@@ -551,6 +551,11 @@ namespace Playnite
 
         public void RemoveGames(List<Game> games)
         {
+            if (!games.HasItems())
+            {
+                return;
+            }
+
             if (games.Exists(a => a.IsInstalling || a.IsRunning || a.IsLaunching || a.IsUninstalling))
             {
                 Dialogs.ShowMessage(
@@ -614,8 +619,7 @@ namespace Playnite
                 }
             }
 
-            // Distinct is needed in case removal is called on grouped games where one game can be part of multiple groups
-            Database.Games.Remove(games.Distinct());
+            Database.Games.Remove(games);
         }
 
         public void CreateDesktopShortcut(List<Game> games)
