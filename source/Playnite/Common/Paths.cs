@@ -14,6 +14,7 @@ namespace Playnite.Common
     {
         private const string longPathPrefix = @"\\?\";
         private const string longPathUncPrefix = @"\\?\UNC\";
+        public static readonly char[] DirectorySeparators = new char[] { '\\', '/' };
 
         public static string GetFinalPathName(string path)
         {

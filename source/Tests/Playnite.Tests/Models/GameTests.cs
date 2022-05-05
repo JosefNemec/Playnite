@@ -51,6 +51,9 @@ namespace Playnite.Tests.Models
             Assert.AreEqual(game.Id.ToString(), game.ExpandVariables("{DatabaseId}"));
             Assert.AreEqual(game.Version, game.ExpandVariables("{Version}"));
             Assert.AreEqual(Path.Combine(dir, "test.iso"), game.ExpandVariables("{ImagePath}"));
+
+            game.InstallDirectory = @"c:\test\test2";
+            Assert.AreEqual("test2", game.ExpandVariables("{InstallDirName}"));
         }
 
         [Test]
