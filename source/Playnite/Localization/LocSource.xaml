@@ -1079,4 +1079,5 @@ This option may not fully work with plugins that use specific game import method
     <sys:String x:Key="LOCCheckAddonUpdates">Check for add-on updates</sys:String>
     <sys:String x:Key="LOCCheckLibraryUpdates">Update libraries</sys:String>
     <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">Scan emulation folders</sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">Include hidden games</sys:String>
 </ResourceDictionary>

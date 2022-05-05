@@ -126,6 +126,9 @@
             <TextBlock Text="{DynamicResource LOCStatistics}" VerticalAlignment="Center"
                         Style="{StaticResource BaseTextBlockStyle}"
                        Margin="10,0,0,0" FontSize="18"/>
+            <CheckBox IsChecked="{Binding IncludeHidden}" Content="{DynamicResource LOCStatsIncludeHidden}"
+                      WindowChrome.IsHitTestVisibleInChrome="True"
+                      Margin="50,0,0,0" VerticalAlignment="Center" />
         </StackPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="10"
                       VerticalScrollBarVisibility="Auto">

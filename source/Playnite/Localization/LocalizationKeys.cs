@@ -3833,5 +3833,9 @@ namespace Playnite
         /// Scan emulation folders
         /// </summary>
         public const string CheckEmulatedLibraryUpdates = "LOCCheckEmulatedLibraryUpdates";
+        /// <summary>
+        /// Include hidden games
+        /// </summary>
+        public const string StatsIncludeHidden = "LOCStatsIncludeHidden";
     }
 }

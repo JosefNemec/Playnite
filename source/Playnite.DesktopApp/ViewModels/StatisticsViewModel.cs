@@ -197,6 +197,18 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool includeHidden;
+        public bool IncludeHidden
+        {
+            get => includeHidden;
+            set
+            {
+                includeHidden = value;
+                OnPropertyChanged();
+                Calculate();
+            }
+        }
+
         public RelayCommand<Game> NavigateToGameCommand { get; }
 
         public RelayCommand<object> NavigateBackCommand { get; }
@@ -312,6 +324,11 @@ namespace Playnite.DesktopApp.ViewModels
             var compStats = new Dictionary<Guid, ulong>();
             foreach (var game in database.Games)
             {
+                if (game.Hidden && !IncludeHidden)
+                {
+                    continue;
+                }
+
                 if (filtered && !PassesFilter(game))
                 {
                     continue;
@@ -367,6 +384,7 @@ namespace Playnite.DesktopApp.ViewModels
                 AvaragePlayTime = total > 0 ? totalPlaytime / total : 0,
                 TopPlayed = database.Games.
                     Where(a => !filtered || PassesFilter(a)).
+                    Where(a => !a.Hidden || (a.Hidden && IncludeHidden)).
                     OrderByDescending(a => a.Playtime).
                     Take(50).
                     Select(a => new BaseStatInfo(a.Name, a.Playtime, totalPlaytime) { Game = a }).ToList()
