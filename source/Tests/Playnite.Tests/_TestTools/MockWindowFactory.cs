@@ -10,7 +10,7 @@ namespace Playnite.Tests
 {
     public class MockWindowFactory : IWindowFactory
     {
-        public bool IsClosed
+        public bool WasClosed
         {
             get;
         }

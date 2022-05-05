@@ -15,7 +15,7 @@ namespace Playnite.Windows
 {
     public interface IWindowFactory
     {
-        bool IsClosed { get; }
+        bool WasClosed { get; }
 
         bool? CreateAndOpenDialog(object dataContext);
 
@@ -35,7 +35,7 @@ namespace Playnite.Windows
         private static ILogger logger = LogManager.GetLogger();
         private readonly SynchronizationContext context;
         private bool asDialog = false;
-        public bool IsClosed { get; private set; } = true;
+        public bool WasClosed { get; private set; } = false;
 
         public WindowBase Window
         {
@@ -75,7 +75,7 @@ namespace Playnite.Windows
                 }
 
                 asDialog = true;
-                IsClosed = false;
+                WasClosed = false;
                 result = Window.ShowDialog();
             }, null);
 
@@ -88,22 +88,28 @@ namespace Playnite.Windows
             context.Send((a) =>
             {
                 asDialog = false;
-                if (IsClosed)
+                if (WasClosed)
                 {
                     logger.Debug($"Opening window that was closed previously {GetType()}");
                     Window = CreateNewWindowInstance();
                     Window.Closed += Window_Closed;
                 }
 
+                if (Window == null)
+                {
+                    Window = CreateNewWindowInstance();
+                    Window.Closed += Window_Closed;
+                }
+
                 Window.DataContext = dataContext;
-                IsClosed = false;
+                WasClosed = false;
                 Window.Show();
             }, null);
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            IsClosed = true;
+            WasClosed = true;
         }
 
         public void RestoreWindow()
