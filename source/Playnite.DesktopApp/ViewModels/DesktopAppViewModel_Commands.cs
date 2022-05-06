@@ -433,7 +433,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (SelectedGames?.Count() > 1)
                 {
-                    GamesEditor.RemoveGames(SelectedGames.Select(g => g.Game).ToList());
+                    GamesEditor.RemoveGames(SelectedGames.Select(g => g.Game).Distinct().ToList());
                 }
                 else
                 {
@@ -525,7 +525,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             RemoveGamesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
-                GamesEditor.RemoveGames(a.ToList());
+                GamesEditor.RemoveGames(a.Distinct().ToList());
             },
             new KeyGesture(Key.Delete));
 

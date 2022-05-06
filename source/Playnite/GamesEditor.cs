@@ -551,6 +551,11 @@ namespace Playnite
 
         public void RemoveGames(List<Game> games)
         {
+            if (!games.HasItems())
+            {
+                return;
+            }
+
             if (games.Exists(a => a.IsInstalling || a.IsRunning || a.IsLaunching || a.IsUninstalling))
             {
                 Dialogs.ShowMessage(
