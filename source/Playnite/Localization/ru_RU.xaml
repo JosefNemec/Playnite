@@ -778,7 +778,7 @@
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Установка прошла успешно.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Установить аддон?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Общие</sys:String>
-    <sys:String x:Key="LOCAddonInstallFaild">Не удалось установить аддон &quot;{0}&quot;.</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">Не удалось установить дополнение &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Не удалось установить расширение
 
 {0}</sys:String>
@@ -863,37 +863,37 @@
     <sys:String x:Key="LOCItemAlreadyExists">Элемент с таким именем уже существует.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Ограничить подбор текущим фильтром</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Подобрать другую</sys:String>
-    <sys:String x:Key="LOCMenuAddons">Аддоны…</sys:String>
+    <sys:String x:Key="LOCMenuAddons">Дополнения...</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">Установленные</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">Настройки расширений</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">Каталог</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">Обновления</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">Обновления ({0})</sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo">Управление установленными расширениями и темами, включая их настройки, перенесено в новое меню «Аддоны».</sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">Управление установленными расширениями и темами, включая их настройки, перенесено в новое меню «Дополнения».</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Здесь можно настроить все установленные интеграции с клиентами.
 
 Если вы хотите установить или удалить другие интеграции, используйте опцию «Аддоны…» в главном меню.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Темы для стандартного режима</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">Темы для полноэкранного режима</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Поиск…</sys:String>
-    <sys:String x:Key="LOCAddonErrorNotCompatible">Аддон не поддерживается в этой версии Playnite.</sys:String>
-    <sys:String x:Key="LOCAddonErrorDownloadFailed">Не удалось загрузить установочные файлы аддона.</sys:String>
-    <sys:String x:Key="LOCAddonErrorManifestDownloadError">Не удалось получить ссылку для установки аддона.</sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible">Дополнение не поддерживается в этой версии Playnite.</sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed">Не удалось загрузить установочные файлы дополнения.</sys:String>
+    <sys:String x:Key="LOCAddonErrorManifestDownloadError">Не удалось получить ссылку для установки дополнения.</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart">Требуется перезапуск приложения для применения изменений.</sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall">Этот аддон запланирован к установке.</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">Это дополнение запланировано к установке.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Установить</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Удалить</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Уже установлено</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Обновления для аддонов не найдены.</sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons">Обновить аддоны</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Обновления для дополнений не найдены.</sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">Обновить дополнения</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Список изменений недоступен</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Запланировано к установке</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">Ошибка загрузки</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Лицензия отклонена</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Загрузка {0}…</sys:String>
-    <sys:String x:Key="LOCAddonLookingForUpdates">Проверка наличия новых версий аддонов…</sys:String>
-    <sys:String x:Key="LOCAddonUpdatesAvailable">Доступны новые версии аддонов.</sys:String>
-    <sys:String x:Key="LOCAddonSelectToUpdate">Что следует обновить</sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">Проверка наличия новых версий дополнений…</sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable">Доступны новые версии дополнений.</sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate">Выберите элементы для обновления</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Экземпляр разработки расширения</sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle">Лицензионное соглашение {0}</sys:String>
     <sys:String x:Key="LOCLicenseAccept">Принять</sys:String>

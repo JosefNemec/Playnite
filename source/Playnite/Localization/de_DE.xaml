@@ -204,7 +204,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <!--Progess string-->
     <sys:String x:Key="LOCProgressMetadata">Metadaten werden heruntergeladen …</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Installierte Spiele werden importiert …</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">{0}-Spiele werden importiert …</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">Spiele von {0} werden importiert …</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Emulierte Spiele werden von {0} importiert …</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Bibliotheksaktualisierungen werden heruntergeladen …</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliotheksaktualisierung abgeschlossen</sys:String>
@@ -610,7 +610,7 @@ Zur Problembehebung kannst du folgende Maßnahmen versuchen:
     <sys:String x:Key="LOCAdvanced">Erweitert</sys:String>
     <sys:String x:Key="LOCNever">Nie</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Spielfortschritt</sys:String>
-    <sys:String x:Key="LOCCompletionStatuses">Spielfortschrittszustände</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">Spielfortschritte</sys:String>
     <sys:String x:Key="LOCUserScore">Nutzerwertung</sys:String>
     <sys:String x:Key="LOCCriticScore">Expertenwertung</sys:String>
     <sys:String x:Key="LOCCommunityScore">Communitywertung</sys:String>
