@@ -82,11 +82,11 @@ namespace Playnite.Common
             get
             {
                 var version = Environment.OSVersion.Version;
-                if (version.Major == 6 && version.Major == 1)
+                if (version.Major == 6 && version.Minor == 1)
                 {
                     return WindowsVersion.Win7;
                 }
-                else if (version.Major == 6 && (version.Major == 2 || version.Major == 3))
+                else if (version.Major == 6 && (version.Minor == 2 || version.Minor == 3))
                 {
                     return WindowsVersion.Win8;
                 }
