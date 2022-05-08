@@ -57,5 +57,30 @@ namespace Playnite.Tests
             Assert.IsTrue(Programs.IsFileUninstaller("setup.exe"));
             Assert.IsFalse(Programs.IsFileUninstaller("test.exe"));
         }
+
+        [Test]
+        public void IsPathConfigOrRedistributableTest()
+        {
+            Assert.IsTrue(Programs.IsFileConfigOrRedistributable("config.exe"));
+            Assert.IsTrue(Programs.IsFileConfigOrRedistributable("aConfigFile.exe"));
+            Assert.IsTrue(Programs.IsFileConfigOrRedistributable("DXSETUP.exe"));
+            Assert.IsTrue(Programs.IsFileConfigOrRedistributable("vc_redist.x64.exe"));
+            Assert.IsTrue(Programs.IsFileConfigOrRedistributable("vc_redist.x86.exe"));
+            Assert.IsFalse(Programs.IsFileConfigOrRedistributable("test.exe"));
+        }
+
+        [Test]
+        public void IsPathEngineExecutableTest()
+        {
+            Assert.IsTrue(Programs.IsFileEngineExecutable("UnityCrashHandler32.exe"));
+            Assert.IsTrue(Programs.IsFileEngineExecutable("UnityCrashHandler64.exe"));
+            Assert.IsTrue(Programs.IsFileEngineExecutable("notification_helper.exe"));
+            Assert.IsTrue(Programs.IsFileEngineExecutable("python.exe"));
+            Assert.IsTrue(Programs.IsFileEngineExecutable("pythonw.exe"));
+            Assert.IsTrue(Programs.IsFileEngineExecutable("zsync.exe"));
+            Assert.IsTrue(Programs.IsFileEngineExecutable("zsyncmake.exe"));
+            Assert.IsFalse(Programs.IsFileEngineExecutable("otherPythonFile.exe"));
+            Assert.IsFalse(Programs.IsFileEngineExecutable("test.exe"));
+        }
     }
 }

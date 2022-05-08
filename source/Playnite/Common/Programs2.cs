@@ -41,6 +41,16 @@ namespace Playnite.Common
                         continue;
                     }
 
+                    if (IsFileConfigOrRedistributable(file.Name))
+                    {
+                        continue;
+                    }
+
+                    if (IsFileEngineExecutable(file.Name))
+                    {
+                        continue;
+                    }
+
                     if (file.Extension.IsNullOrEmpty())
                     {
                         continue;
@@ -202,7 +212,20 @@ namespace Playnite.Common
                     }
 
                     // Ignore uninstallers
-                    if (IsFileUninstaller(Path.GetFileName(target)))
+                    var targetFileName = Path.GetFileName(target);
+                    if (IsFileUninstaller(targetFileName))
+                    {
+                        continue;
+                    }
+
+                    // Ignore config and redistributables executables
+                    if (IsFileConfigOrRedistributable(targetFileName))
+                    {
+                        continue;
+                    }
+
+                    // Ignore crash handlers and game engine executables
+                    if (IsFileEngineExecutable(targetFileName))
                     {
                         continue;
                     }
