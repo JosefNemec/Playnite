@@ -677,8 +677,8 @@ Bạn có thể cố gắng giải quyết vấn đề:
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Không tìm thấy phiên bản mới, bạn đã cập nhật.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Không thể tải xuống và cài đặt bản cập nhật.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Một số tác vụ hiện đang chạy trong nền. Bạn có muốn hủy bỏ nó và tiếp tục cập nhật không?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Một số tác vụ hiện đang chạy trong nền. Bạn có muốn hủy bỏ nó và thoát Playnite không?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Một số tác vụ nền hiện đang được thực hiện. Chuyển đổi chế độ sẽ hủy tác vụ, bạn có muốn chuyển đổi không?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Đã có bản cập nhật cho Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Tải lại danh sách chủ đề</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Áp dụng các chủ đề đã chọn</sys:String>
@@ -855,37 +855,39 @@ Yêu cầu khởi động lại ứng dụng để kết thúc quá trình. Bạ
     <sys:String x:Key="LOCQuickFilterMostPlayed">Được chơi nhiều nhất</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Toàn bộ</sys:String>
     <sys:String x:Key="LOCGameListFiltered">Một số bộ lọc được áp dụng.</sys:String>
-    <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListExtraFiltered">Có các bộ lọc bổ sung được áp dụng</sys:String>
     <sys:String x:Key="LOCGameListSearchResults">Hiển thị kết quả tìm kiếm cho:</sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Một mục có cùng tên đã tồn tại.</sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">Giới hạn lựa chọn đối với bộ lọc hiện tại</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">Chọn cái khác</sys:String>
     <sys:String x:Key="LOCMenuAddons">Tiện ích bổ sung...</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">Đã cài đặt</sys:String>
-    <sys:String x:Key="LOCExtensionsSettings"></sys:String>
+    <sys:String x:Key="LOCExtensionsSettings">Cài đặt phần mở rộng</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">Duyệt</sys:String>
-    <sys:String x:Key="LOCExtensionsUpdates"></sys:String>
-    <sys:String x:Key="LOCExtensionsUpdatesCount"></sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo"></sys:String>
-    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren"></sys:String>
+    <sys:String x:Key="LOCExtensionsUpdates">Cập nhật</sys:String>
+    <sys:String x:Key="LOCExtensionsUpdatesCount">Cập nhật ({0})</sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">Việc quản lý các chủ đề và phần mở rộng đã cài đặt, bao gồm cả cài đặt trong đó, đã được chuyển sang menu &quot;Tiện ích bổ sung&quot;.</sys:String>
+    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Tất cả các phần mở rộng tích hợp thư viện hiện được cài đặt có thể được định cấu hình tại đây.
+
+Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sung, hãy sử dụng tùy chọn &quot;Tiện ích bổ sung&quot; từ menu chính.</sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">Chủ đề Desktop</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Chủ đề Toàn màn hình</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Đang tìm kiếm...</sys:String>
-    <sys:String x:Key="LOCAddonErrorNotCompatible"></sys:String>
-    <sys:String x:Key="LOCAddonErrorDownloadFailed"></sys:String>
-    <sys:String x:Key="LOCAddonErrorManifestDownloadError"></sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
-    <sys:String x:Key="LOCAddonInstall"></sys:String>
-    <sys:String x:Key="LOCAddonUninstall"></sys:String>
-    <sys:String x:Key="LOCAddonAlreadyInstalled"></sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
-    <sys:String x:Key="LOCAddonChangelogNotAvailavble"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible">Tiện ích bổ sung không tương thích với phiên bản Playnite này.</sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed">Không thể tải xuống gói cài đặt tiện ích bổ sung.</sys:String>
+    <sys:String x:Key="LOCAddonErrorManifestDownloadError">Không thể tải xuống tệp kê khai cài đặt tiện ích bổ sung.</sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">Khởi động lại ứng dụng là bắt buộc để áp dụng các thay đổi đang chờ xử lý.</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">Tiện ích bổ sung này được lên lịch cài đặt.</sys:String>
+    <sys:String x:Key="LOCAddonInstall">Cài đặt</sys:String>
+    <sys:String x:Key="LOCAddonUninstall">Gỡ cài đặt</sys:String>
+    <sys:String x:Key="LOCAddonAlreadyInstalled">Đã được cài đặt</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Không tìm thấy bản cập nhật tiện ích bổ sung mới nào.</sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">Cập nhật tiện ích bổ sung</sys:String>
+    <sys:String x:Key="LOCAddonChangelogNotAvailavble">Changelog không khả dụng</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Đã lên lịch để cài đặt</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">Tải xuống thất bại</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
-    <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Giấy phép bị từ chối</sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon">Đang tải xuống {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Tìm kiếm bản cập nhật cho tiện ích bổ sung...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Một hoặc vài bản cập nhật cho tiện ích bổ sung đang khả dụng.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Chọn mục để cập nhật</sys:String>
@@ -943,83 +945,98 @@ Tắt nếu bạn sử dụng các công cụ dịch đầu vào XInput thành �
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Hiển thị các mục trên menu chính:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Liên kết nút xem chính X / A đảo ngược</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Hoán đổi các ràng buộc nút để bắt đầu trò chơi và hiển thị trang chi tiết trò chơi trên giao diện chính.</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceVolume">Giao diện âm thanh</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Âm lượng nền</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Tắt âm thanh khi ở chế độ nền</sys:String>
-    <sys:String x:Key="LOCErrorAudioInterfaceInit"></sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApi"></sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
+    <sys:String x:Key="LOCErrorAudioInterfaceInit">Không thể khởi chạy giao diện âm thanh.</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi">Đầu ra API</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">API được sử dụng cho đầu ra âm thanh. Thay đổi nếu bạn đang gặp sự cố với âm thanh.</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">Tổng quan</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionVisuals">Hình ảnh</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionAudio">Âm thanh</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionLayout">Bố cục</sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionMenus"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSection"></sys:String>
-    <sys:String x:Key="LOCGameIsStarting"></sys:String>
-    <sys:String x:Key="LOCGameIsRunning"></sys:String>
-    <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingAlternative"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingQuality"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSelectFileTooltip"></sys:String>
-    <sys:String x:Key="LOCSelectDirectoryTooltip"></sys:String>
-    <sys:String x:Key="LOCStartupScript"></sys:String>
-    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameActionSelectOnStart"></sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
-    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
-    <sys:String x:Key="LOCEmulatorSpec"></sys:String>
-    <sys:String x:Key="LOCPlatformSpec"></sys:String>
-    <sys:String x:Key="LOCRegionSpec"></sys:String>
-    <sys:String x:Key="LOCEmulatorPreScriptDescription"></sys:String>
-    <sys:String x:Key="LOCEmulatorPostScriptDescription"></sys:String>
-    <sys:String x:Key="LOCEmulatorStartedScriptDescription"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound"></sys:String>
-    <sys:String x:Key="LOCSplitEmuImportSplitGames"></sys:String>
-    <sys:String x:Key="LOCSplitEmuImportMergeGames"></sys:String>
-    <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
-    <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
-    <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
-    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
-    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
-    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
-    <sys:String x:Key="LOCScanConfigError"></sys:String>    
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
-    <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
-    <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
-    <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
-    <sys:String x:Key="LOCEmuImportProfilesToImportHeader"></sys:String>
-    <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuAddScanner"></sys:String>
-    <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
-    <sys:String x:Key="LOCStartScan"></sys:String>
-    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
-    <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionMenus">Bảng chọn</sys:String>
+    <sys:String x:Key="LOCSettingsFSSection">Đầu vào</sys:String>
+    <sys:String x:Key="LOCGameIsStarting">{0} đang bắt đầu…</sys:String>
+    <sys:String x:Key="LOCGameIsRunning">{0} đang chạy…</sys:String>
+    <sys:String x:Key="LOCTextInputCapitalize">Caps</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode">Bộ chia tỷ lệ kết xuất hình ảnh</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingAlternative">Thay thế</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingBalanced">Cân bằng</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingQuality">Chất lượng</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve">Chất lượng:
+Chất lượng hình ảnh tốt nhất, chậm, sử dụng nhiều bộ nhớ.
+    
+Cân bằng:
+Chất lượng tốt, nhanh, sử dụng ít bộ nhớ.
+    
+Thay thế:
+Chất lượng tốt hơn, tốc độ trung bình, sử dụng bộ nhớ thấp.</sys:String>
+    <sys:String x:Key="LOCSelectFileTooltip">Chọn tập tin…</sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip">Chọn thư mục…</sys:String>
+    <sys:String x:Key="LOCStartupScript">Tập lệnh khởi động</sys:String>
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">Xin lưu ý rằng cả phần mở rộng và chủ đề đều có thể ảnh hưởng lớn đến hiệu suất, sự ổn định và bảo mật của Playnite.
+    
+Nếu bạn bắt đầu gặp một số sự cố sau khi cài đặt chủ đề hoặc phần mở rộng, trước tiên hãy thử tắt/gỡ cài đặt chúng để xem chúng có phải là gốc của sự cố hay không.</sys:String>
+    <sys:String x:Key="LOCGameActionSelectOnStart">Chọn khi khởi động</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfiles">Cấu hình tích hợp</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfile">Hồ sơ cài sẵn</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfiles">Hồ sơ tùy chỉnh</sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Được xử lý bởi một tập lệnh cài sẵn</sys:String>
+    <sys:String x:Key="LOCEmulatorSpec">Đặc điểm giả lập</sys:String>
+    <sys:String x:Key="LOCPlatformSpec">Đặc điểm kỹ thuật nền tảng</sys:String>
+    <sys:String x:Key="LOCRegionSpec">Đặc điểm kỹ thuật khu vực</sys:String>
+    <sys:String x:Key="LOCEmulatorPreScriptDescription">Thực thi trước khi bắt đầu trình giả lập</sys:String>
+    <sys:String x:Key="LOCEmulatorPostScriptDescription">Thực thi sau khi trình giả lập được khởi động</sys:String>
+    <sys:String x:Key="LOCEmulatorStartedScriptDescription">Thực thi sau khi thoát trình giả lập</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorExecutableNotFound">Không tìm thấy tệp thực thi giả lập.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound">Không tìm thấy thông số kỹ thuật giả lập.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound">Không tìm thấy tập lệnh khởi động trình giả lập.</sys:String>
+    <sys:String x:Key="LOCSplitEmuImportSplitGames">Chia thành các trò chơi riêng biệt</sys:String>
+    <sys:String x:Key="LOCSplitEmuImportMergeGames">Hợp nhất thành một trò chơi</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignPlatform">Đặt nền tảng</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignRegion">Đặt khu vực</sys:String>
+    <sys:String x:Key="LOCEmuScanDirectory">Quét thư mục</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">Quét cấu hình</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">Loại trừ các mẫu khỏi quá trình quét tổng kiểm tra</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Các tệp khớp với (các) mẫu đã chỉ định sẽ không được quét để kiểm tra tổng và sẽ được khớp theo tên tệp. Xem trang trợ giúp của trình giả lập để biết thêm thông tin.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Quét bằng trình giả lập</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Tên phải được đặt khi lưu cấu hình mới.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Trình giả lập hoặc hồ sơ trình giả lập chưa được đặt.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Thư mục để quét không được chỉ định hoặc nó không tồn tại.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Cấu hình quét không được đặt đúng cách.</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">Bao gồm tự động quét quét hàng loạt</sys:String>    
+    <sys:String x:Key="LOCEmulatorScanFailed">Không quét được thư mục cho trình giả lập.</sys:String>
+    <sys:String x:Key="LOCEmulatedGameScanFailed">Không quét được (các) thư mục cho các trò chơi được mô phỏng.</sys:String>
+    <sys:String x:Key="LOCEmuScanHideImported">Ẩn đã nhập</sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Hồ sơ cần nhập:</sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations">Cấu hình tự động quét</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">Lưu dưới dạng cấu hình tự động quét</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Lưu cấu hình để sử dụng sau này trong quá trình cập nhật thư viện. Các cấu hình đã lưu có thể được quản lý thông qua menu &quot;Định cấu hình trình giả lập&quot;.</sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">Thêm máy quét</sys:String>
+    <sys:String x:Key="LOCEmuAddSavedScanner">Thêm máy quét đã lưu</sys:String>
+    <sys:String x:Key="LOCStartScan">Bắt đầu quét</sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">Thêm (các) cấu hình quét bằng trình giả lập để quét các thư mục cụ thể. Đảm bảo rằng trình giả lập được định cấu hình đúng cách trước khi nhập trò chơi (thông qua menu Thư viện -&gt; Định cấu hình trình giả lập).</sys:String>
+    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Trạng thái mặc định được chỉ định cho các trò chơi mới được thêm vào</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Trạng thái được chỉ định cho các trò chơi được chơi lần đầu tiên</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">Không thể khởi chạy thời gian chạy tập lệnh PowerShell. Nếu bạn là người dùng Windows 7, hãy thử cài đặt (lại) PowerShell 5.1 để khắc phục sự cố.</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Bộ lọc đặt trước với tên được chỉ định đã tồn tại. Cập nhật cài đặt trước với cài đặt mới?</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Dịch vụ Nahimic đã được phát hiện đang chạy trên hệ thống của bạn. Dịch vụ này được biết là gây ra sự cố hiển thị cho Playnite (và các ứng dụng khác).
 
 Nếu bạn gặp phải bất kỳ lỗi đồ họa nào hoặc các sự cố hiển thị khác trong Playnite, chúng tôi khuyên bạn nên tắt hoặc gỡ cài đặt hoàn toàn dịch vụ Nahimic.
 
 Thông tin thêm tại https://playnite.link/nahimicsucks</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
-    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite đang chạy với các đặc quyền nâng cao (với tư cách là quản trị viên). Điều này không được khuyến nghị vì nó cung cấp các đặc quyền nâng cao cho tất cả các phần mở rộng đã cài đặt và tất cả các trò chơi/ứng dụng bắt đầu từ Playnite!
+
+Thêm thông tin tại https://playnite.link/adminfaq</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Hiển thị cảnh báo nếu Playnite đang chạy với các đặc quyền nâng cao</sys:String>
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">(Các) tiện ích bổ sung sau đây đã được báo cáo là có khả năng có vấn đề, do tác động đến độ ổn định/hiệu suất cao hoặc các vấn đề bảo mật. Chúng tôi thực sự khuyên bạn nên gỡ cài đặt chúng:
+        
+{0}
+    </sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">Loại trừ các tệp trực tuyến khỏi quá trình quét</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Các tệp được lưu trữ trên bộ nhớ đám mây sẽ không được quét và nhập nếu không có sẵn cục bộ.
+Chỉ hỗ trợ cho: Google Drive, DropBox, OneDrive</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Quét nhưng sử dụng phương pháp đơn giản hóa mà không có nội dung tệp</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Các tệp sẽ được nhập nhưng sử dụng phương pháp kém chính xác hơn, không yêu cầu nội dung tệp được tải xuống và hiển thị cục bộ.</sys:String>
 </ResourceDictionary>
