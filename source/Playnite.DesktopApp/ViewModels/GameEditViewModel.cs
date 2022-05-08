@@ -553,6 +553,11 @@ namespace Playnite.DesktopApp.ViewModels
                 AddNewItemToDb(Sources, EditingGame.SourceId, database.Sources);
             }
 
+            if (UseCompletionStatusChanges)
+            {
+                AddNewItemToDb(CompletionStatuses, EditingGame.CompletionStatusId, database.CompletionStatuses);
+            }
+
             var changeDate = DateTime.Now;
             var gamesToUpdate = IsMultiGameEdit ? Games : new List<Game> { Game };
             database.Games.BeginBufferUpdate();
@@ -1456,6 +1461,11 @@ namespace Playnite.DesktopApp.ViewModels
         public GameFeature AddNewFeature(string feature = null)
         {
             return CreateNewItemInCollection<GameFeature>(Features, feature, LooseDbNameComparer);
+        }
+
+        public void AddNewCompletionStatus(string status = null)
+        {
+            EditingGame.CompletionStatusId = CreateNewItemInCollection(CompletionStatuses, status)?.Id ?? EditingGame.CompletionStatusId;
         }
 
         public void AddNewFeatures(List<string> features)
