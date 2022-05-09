@@ -370,6 +370,14 @@ namespace Playnite.FullscreenApp.ViewModels
             app.Controllers.Started += Controllers_Started;
             app.Controllers.Starting += Controllers_Starting;
             app.Controllers.Stopped += Controllers_Stopped;
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+        }
+
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            Logger.Info("Detected screen settings changes, adjusting window.");
+            SetViewSizeAndPosition(IsFullScreen);
+            AdjustGameItemsToScreenChanges();
         }
 
         private void XInputDevice_ButtonUp(object sender, XInputDevice.ButtonUpEventArgs e)
@@ -538,14 +546,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay) ||
                 e.PropertyName == nameof(FullscreenSettings.Monitor))
             {
-                var oldSettings = GamesCollectionViewEntry.FullscreenListCoverProperties;
-                GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
-                if (oldSettings != GamesCollectionViewEntry.FullscreenListCoverProperties)
-                {
-                    GamesView.NotifyItemPropertyChanges(
-                        nameof(GamesCollectionViewEntry.FullscreenListItemCoverObject),
-                        nameof(GamesCollectionViewEntry.DefaultFullscreenListItemCoverObject));
-                }
+                AdjustGameItemsToScreenChanges();
             }
 
             if (e.PropertyName == nameof(FullscreenSettings.SwapConfirmCancelButtons))
@@ -563,6 +564,18 @@ namespace Playnite.FullscreenApp.ViewModels
 
             OnPropertyChanged(nameof(IsSearchActive));
             OnPropertyChanged(nameof(IsExtraFilterActive));
+        }
+
+        private void AdjustGameItemsToScreenChanges()
+        {
+            var oldSettings = GamesCollectionViewEntry.FullscreenListCoverProperties;
+            GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
+            if (oldSettings != GamesCollectionViewEntry.FullscreenListCoverProperties)
+            {
+                GamesView.NotifyItemPropertyChanges(
+                    nameof(GamesCollectionViewEntry.FullscreenListItemCoverObject),
+                    nameof(GamesCollectionViewEntry.DefaultFullscreenListItemCoverObject));
+            }
         }
 
         private void UpdateCursorSettings()
@@ -928,6 +941,7 @@ namespace Playnite.FullscreenApp.ViewModels
             IsDisposing = true;
             GamesView?.Dispose();
             Window.Window.LocationChanged -= Window_LocationChanged;
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged -= SystemEvents_DisplaySettingsChanged;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
