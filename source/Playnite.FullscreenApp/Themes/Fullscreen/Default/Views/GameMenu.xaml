@@ -79,4 +79,12 @@
             <TextBlock Text="{Binding}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuCompletionStatusTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="25" Margin="0,0,10,0"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

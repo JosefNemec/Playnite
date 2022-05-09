@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.FullscreenApp.Windows;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Windows;
 using System;
@@ -83,6 +84,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand ToggleFavoritesCommand => new RelayCommand(() => ToggleFavorites());
         public RelayCommand ToggleVisibilityCommand => new RelayCommand(() => ToggleVisibility());
         public RelayCommand RemoveGameCommand => new RelayCommand(() => RemoveGame());
+        public RelayCommand AssignCompletionStatusCommand => new RelayCommand(() => AssignCompletionStatus());
         public RelayCommand<GameAction> ActivateActionCommand => new RelayCommand<GameAction>((a) => ActivateAction(a));
 
         public GameMenuViewModel(
@@ -109,6 +111,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             items.Add(new GameActionItem(ToggleFavoritesCommand, GameDetails.Game.Favorite ? ResourceProvider.GetString(LOC.RemoveFavoriteGame) : ResourceProvider.GetString(LOC.FavoriteGame), "GameMenuFavoriesButtonTemplate"));
             items.Add(new GameActionItem(ToggleVisibilityCommand, GameDetails.Game.Hidden ? ResourceProvider.GetString(LOC.UnHideGame) : ResourceProvider.GetString(LOC.HideGame), "GameMenuVisibilityButtonTemplate"));
+            items.Add(new GameActionItem(AssignCompletionStatusCommand, ResourceProvider.GetString(LOC.SetCompletionStatus), "GameMenuCompletionStatusTemplate"));
             items.Add(new GameActionItem(RemoveGameCommand, ResourceProvider.GetString(LOC.RemoveGame), "GameMenuRemoveButtonTemplate"));
 
             if (!GameDetails.Game.IsCustomGame && GameDetails.Game.IsInstalled)
@@ -169,6 +172,27 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Close();
             gamesEditor.RemoveGame(gameDetails.Game.Game);
+        }
+
+        public void AssignCompletionStatus()
+        {
+            Close();
+            var items = new List<CompletionStatus>()
+            {
+                new CompletionStatus
+                {
+                    Id = Guid.Empty,
+                    Name = ResourceProvider.GetString(LOC.None)
+                }
+            };
+
+            items.AddRange(mainModel.Database.CompletionStatuses.OrderByDescending(a => a.Name));
+            var item = new SingleItemSelectionViewModel<CompletionStatus>(new SingleItemSelectionWindowFactory(), ResourceProvider.GetString(LOC.SetCompletionStatus)).SelectItem(items);
+            if (item != null)
+            {
+                gameDetails.Game.Game.CompletionStatusId = item.Id;
+                mainModel.Database.Games.Update(gameDetails.Game.Game);
+            }
         }
     }
 }
