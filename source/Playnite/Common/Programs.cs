@@ -49,7 +49,7 @@ namespace Playnite.Common
 
     public partial class Programs
     {
-        private static readonly string[] uninstallerMasks = new string[]
+        private static readonly string[] scanFileExclusionMasks = new string[]
         {
             "uninst",
             "setup",
@@ -69,9 +69,9 @@ namespace Playnite.Common
 
         private static ILogger logger = LogManager.GetLogger();
 
-        public static bool IsFileUninstaller(string path)
+        public static bool IsFileScanExcluded(string path)
         {
-            return uninstallerMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
+            return scanFileExclusionMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
         }
 
         public static void CreateUrlShortcut(string url, string iconPath, string shortcutPath)

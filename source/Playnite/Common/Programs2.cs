@@ -36,7 +36,7 @@ namespace Playnite.Common
                         continue;
                     }
 
-                    if (IsFileUninstaller(file.Name))
+                    if (IsFileScanExcluded(file.Name))
                     {
                         continue;
                     }
@@ -202,7 +202,7 @@ namespace Playnite.Common
                     }
 
                     // Ignore uninstallers, config, redistributables and game engine executables
-                    if (IsFileUninstaller(Path.GetFileName(target)))
+                    if (IsFileScanExcluded(Path.GetFileName(target)))
                     {
                         continue;
                     }
