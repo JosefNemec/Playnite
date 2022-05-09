@@ -36,7 +36,7 @@
             <!--TODO update links -->
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://playnite.link/forum/forum-3.html">
+                            CommandParameter="https://playnite.link/addons.html#themesDesktop">
                     <Run Text="{DynamicResource LOCSettingsGetThemes}" />
                 </Hyperlink>
             </TextBlock>
