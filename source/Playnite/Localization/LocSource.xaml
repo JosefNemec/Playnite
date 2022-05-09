@@ -559,13 +559,9 @@ Please attach the following ID to your issue report:</sys:String>
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Cannot open link, URL is not in valid format.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Failed to start the application.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Failed to initialize the WebView component. Playnite cannot continue with the startup process.
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Failed to initialize web view component. Playnite cannot continue with startup process.
 
-You can try to resolve the issue:
-  • Check that all files are installed correctly. The re-installation could help
-  • Install Visual Studio C++ 2019 redistributables if you are on Windows 7 or 8
-  • Make sure your antivirus doesn't block any files in the Playnite folder
-  • Choose a different installation location</sys:String>
+More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Cannot import emulators due to missing or corrupted definition file.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Failed to initialize XInput interface.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Failed to execute menu action.</sys:String>
