@@ -747,7 +747,7 @@ namespace Playnite
             return false;
         }
 
-        public void ConfigureApplication()
+        public bool ConfigureApplication()
         {
             HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
             if (AppSettings.DisableHwAcceleration || CmdLine.ForceSoftwareRender)
@@ -779,7 +779,7 @@ namespace Playnite
                     ResourceProvider.GetString("LOCCefSharpInitError"),
                     ResourceProvider.GetString("LOCStartupError"));
                 Quit();
-                return;
+                return false;
             }
 
             try
@@ -817,6 +817,8 @@ namespace Playnite
             {
                 logger.Error(exc, "Failed to register playnite extensions.");
             }
+
+            return true;
         }
 
         public void ProcessArguments()

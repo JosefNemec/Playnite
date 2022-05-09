@@ -74,7 +74,10 @@ namespace Playnite.DesktopApp
             ActionSelectionWindowFactory.SetWindowType<ActionSelectionWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
-            ConfigureApplication();
+            if (!ConfigureApplication())
+            {
+                return false;
+            }
 
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;

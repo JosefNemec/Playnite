@@ -75,7 +75,11 @@ namespace Playnite.FullscreenApp
                 return false;
             }
 
-            ConfigureApplication();
+            if (!ConfigureApplication())
+            {
+                return false;
+            }
+
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;
             MigrateDatabase();
