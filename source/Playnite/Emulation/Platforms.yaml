@@ -168,13 +168,13 @@
   Id: nintendo_gameboy
   IgdbId: 33
   Databases: [Nintendo - Game Boy]
-  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch]
+  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
 
 - Name: Nintendo Game Boy Color
   Id: nintendo_gameboycolor
   IgdbId: 22
   Databases: [Nintendo - Game Boy Color]
-  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch]
+  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
 
 - Name: Nintendo Game Boy Advance
   Id: nintendo_gameboyadvance
