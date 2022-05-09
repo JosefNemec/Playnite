@@ -902,7 +902,7 @@ namespace Playnite
             Database.Games.Update(dbGame);
             if (wasRunning)
             {
-                Extensions.InvokeOnGameStopped(game, ellapsedTime);
+                Extensions.InvokeOnGameStopped(game, ellapsedTime, true);
             }
 
             if (AppSettings.DiscordPresenceEnabled)
@@ -1041,7 +1041,7 @@ namespace Playnite
                 runtime.Dispose();
             }
 
-            Extensions.InvokeOnGameStopped(game, args.SessionLength);
+            Extensions.InvokeOnGameStopped(game, args.SessionLength, false);
             if (AppSettings.ClientAutoShutdown.ShutdownClients && !game.IsCustomGame)
             {
                 if (args.SessionLength <= AppSettings.ClientAutoShutdown.MinimalSessionTime)

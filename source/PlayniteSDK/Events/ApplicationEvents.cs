@@ -138,6 +138,11 @@ namespace Playnite.SDK.Events
         /// Gets or sets length of the game session in seconds.
         /// </summary>
         public ulong ElapsedSeconds { get; internal set; }
+
+        /// <summary>
+        /// Gets value indicated whether game tracking was manually stopped by a user.
+        /// </summary>
+        public bool ManuallyStopped { get; internal set; }
     }
 
     /// <summary>

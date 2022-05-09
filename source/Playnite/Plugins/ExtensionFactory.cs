@@ -529,12 +529,13 @@ namespace Playnite.Plugins
             }
         }
 
-        public void InvokeOnGameStopped(Game game, ulong ellapsedTime)
+        public void InvokeOnGameStopped(Game game, ulong ellapsedTime, bool manuallyStopped)
         {
             var callbackArgs = new SDK.Events.OnGameStoppedEventArgs
             {
                 Game = database.Games[game.Id],
-                ElapsedSeconds = ellapsedTime
+                ElapsedSeconds = ellapsedTime,
+                ManuallyStopped = manuallyStopped
             };
 
             foreach (var script in Scripts)
