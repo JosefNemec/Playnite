@@ -53,26 +53,18 @@ namespace Playnite.Common
         {
             "uninst",
             "setup",
-            @"unins\d+"
-        };
-
-        private static readonly string[] configAndRedistsExecutablesMasks = new string[]
-        {
+            @"unins\d+",
             "Config",
             "DXSETUP",
             @"vc_redist\.x64",
             @"vc_redist\.x86",
-        };
-
-        private static readonly string[] engineExecutablesMasks = new string[]
-        {
-            "UnityCrashHandler32.exe",
-            "UnityCrashHandler64.exe",
-            "notification_helper.exe",
-            "python.exe",
-            "pythonw.exe",
-            "zsync.exe",
-            "zsyncmake.exe"
+            @"^UnityCrashHandler32\.exe$",
+            @"^UnityCrashHandler64\.exe$",
+            @"^notification_helper\.exe$",
+            @"^python\.exe$",
+            @"^pythonw\.exe$",
+            @"^zsync\.exe$",
+            @"^zsyncmake\.exe$"
         };
 
         private static ILogger logger = LogManager.GetLogger();
@@ -80,16 +72,6 @@ namespace Playnite.Common
         public static bool IsFileUninstaller(string path)
         {
             return uninstallerMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
-        }
-
-        public static bool IsFileConfigOrRedistributable(string path)
-        {
-            return configAndRedistsExecutablesMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
-        }
-
-        public static bool IsFileEngineExecutable(string path)
-        {
-            return engineExecutablesMasks.Any(a => a.Equals(path, StringComparison.OrdinalIgnoreCase));
         }
 
         public static void CreateUrlShortcut(string url, string iconPath, string shortcutPath)
