@@ -182,7 +182,9 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 else
                 {
-                    EditingApps.Add(new AppSoftware(res.SelectedString));
+                    var newApp = new AppSoftware(res.SelectedString);
+                    EditingApps.Add(newApp);
+                    SelectedApp = newApp;
                 }
             }
         }
