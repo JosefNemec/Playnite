@@ -874,7 +874,7 @@ namespace Playnite
 
         public void CancelGameMonitoring(Game game)
         {
-            var wasRunning = game.IsRunning;
+            var wasRunningOrLaunching = game.IsRunning || game.IsLaunching;
             controllers.RemoveInstallController(game.Id);
             controllers.RemoveUninstallController(game.Id);
             controllers.RemovePlayController(game.Id);
@@ -900,7 +900,7 @@ namespace Playnite
             }
 
             Database.Games.Update(dbGame);
-            if (wasRunning)
+            if (wasRunningOrLaunching)
             {
                 Extensions.InvokeOnGameStopped(game, ellapsedTime, true);
             }
