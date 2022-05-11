@@ -110,6 +110,7 @@ namespace Playnite.Windows
         private void Window_Closed(object sender, EventArgs e)
         {
             WasClosed = true;
+            Window.Closed -= Window_Closed;
         }
 
         public void RestoreWindow()
