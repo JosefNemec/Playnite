@@ -39,28 +39,6 @@ namespace Playnite.DesktopApp.Controls
     {
         internal bool ignoreSelectedItemsListChanges = false;
 
-        public object SelectedItem
-        {
-            get
-            {
-                return GetValue(SelectedItemProperty);
-            }
-
-            set
-            {
-                SetValue(SelectedItemProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty SelectedItemProperty =
-           DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(GamesGridView), new PropertyMetadata(null, OnSelectedItemChange));
-
-        private static void OnSelectedItemChange(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var obj = sender as GamesGridView;
-            obj.GridGames.SelectedItem = e.NewValue;
-        }
-
         public IList<object> SelectedItemsList
         {
             get
@@ -369,23 +347,18 @@ namespace Playnite.DesktopApp.Controls
         private void GridGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ignoreSelectedItemsListChanges = true;
-            if (GridGames.SelectedItems?.Count == 1)
-            {
-                SelectedItem = GridGames.SelectedItems[0];
-            }
-
             SelectedItemsList = (IList<object>)GridGames.SelectedItems;
             ignoreSelectedItemsListChanges = false;
         }
 
         private void Grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton != MouseButtonState.Pressed || GridGames.SelectedItem == null)
+            if (e.LeftButton != MouseButtonState.Pressed || GridGames.SelectedItems == null || GridGames.SelectedItems.Count == 0)
             {
                 return;
             }
 
-            var entry = (GamesCollectionViewEntry)GridGames.SelectedItem;
+            var entry = (GamesCollectionViewEntry)GridGames.SelectedItems[0];
             var game = entry.Game;
             if (game.IsInstalled)
             {

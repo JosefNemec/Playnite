@@ -76,6 +76,11 @@ namespace Playnite.DesktopApp.Controls.Views
                         ExtendedListBox.ItemsSourceProperty,
                         mainModel,
                         $"{nameof(mainModel.GamesView)}.{nameof(DesktopCollectionView.CollectionView)}");
+                    BindingTools.SetBinding(ListGames,
+                        ExtendedListBox.SelectedItemsListProperty,
+                        mainModel,
+                        nameof(DesktopAppViewModel.SelectedGamesBinder),
+                        BindingMode.TwoWay);
                 }
 
                 if (ControlGameView != null)
@@ -83,13 +88,15 @@ namespace Playnite.DesktopApp.Controls.Views
                     BindingTools.SetBinding(ControlGameView,
                         Control.DataContextProperty,
                         mainModel,
-                        nameof(DesktopAppViewModel.SelectedGameDetails));
+                        nameof(DesktopAppViewModel.SelectedGameDetails),
+                        mode: BindingMode.OneWay);
                 }
             }
             else
             {
                 if (ListGames != null)
                 {
+                    BindingTools.ClearBinding(ListGames, ExtendedListBox.SelectedItemsListProperty);
                     ListGames.ItemsSource = null;
                 }
 
@@ -109,17 +116,6 @@ namespace Playnite.DesktopApp.Controls.Views
             ListGames = Template.FindName("PART_ListGames", this) as ExtendedListBox;
             if (ListGames != null)
             {
-                BindingTools.SetBinding(ListGames,
-                    ExtendedListBox.SelectedItemProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGame),
-                    BindingMode.TwoWay);
-                BindingTools.SetBinding(ListGames,
-                    ExtendedListBox.SelectedItemsListProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGamesBinder),
-                    BindingMode.TwoWay);
-
                 ScrollToSelectedBehavior.SetEnabled(ListGames, true);
 
                 if (!DesignerProperties.GetIsInDesignMode(this))

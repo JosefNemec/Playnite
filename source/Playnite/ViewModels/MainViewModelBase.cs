@@ -27,7 +27,7 @@ namespace Playnite.ViewModels
         bool ProgressActive { get; set; }
         BaseCollectionView GamesView { get; set; }
         GamesCollectionViewEntry SelectedGame { get; set; }
-        IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
+        List<GamesCollectionViewEntry> SelectedGames { get; set; }
     }
 
     public abstract class MainViewModelBase : ObservableObject, IMainViewModelBase
@@ -122,6 +122,17 @@ namespace Playnite.ViewModels
             }
         }
 
+        private List<GamesCollectionViewEntry> selectedGames;
+        public List<GamesCollectionViewEntry> SelectedGames
+        {
+            get => selectedGames;
+            set
+            {
+                selectedGames = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<FilterPreset> SortedFilterPresets
         {
             get => Database.FilterPresets.OrderBy(a => a.Name).ToList();
@@ -134,7 +145,6 @@ namespace Playnite.ViewModels
 
         public bool IsDisposing { get; set; } = false;
         public GamesCollectionViewEntry SelectedGame { get; set; }
-        public IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
         public RelayCommand<object> AddFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RemoveFilterPresetCommand { get; private set; }

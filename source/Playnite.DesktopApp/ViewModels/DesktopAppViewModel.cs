@@ -77,41 +77,15 @@ namespace Playnite.DesktopApp.ViewModels
             get => selectedGameDetails;
             set
             {
-                selectedGameDetails = value;
-                OnPropertyChanged();
+                if (selectedGameDetails != value)
+                {
+                    selectedGameDetails?.Dispose();
+                    selectedGameDetails = value;
+                }
             }
         }
 
-        private GamesCollectionViewEntry selectedGame;
-        public new GamesCollectionViewEntry SelectedGame
-        {
-            get => selectedGame;
-            set
-            {
-                if (ignoreSelectionChanges)
-                {
-                    return;
-                }
-
-                if (value == selectedGame && SelectedGameDetails?.Game == value)
-                {
-                    return;
-                }
-
-                SelectedGameDetails?.Dispose();
-                if (value == null)
-                {
-                    SelectedGameDetails = null;
-                }
-                else
-                {
-                    SelectedGameDetails = new GameDetailsViewModel(value, AppSettings, GamesEditor, Dialogs, Resources);
-                }
-
-                selectedGame = value;
-                OnPropertyChanged();
-            }
-        }
+        public new GamesCollectionViewEntry SelectedGame { get; private set; }
 
         private List<GamesCollectionViewEntry> selectedGames;
         public new List<GamesCollectionViewEntry> SelectedGames
@@ -119,18 +93,59 @@ namespace Playnite.DesktopApp.ViewModels
             get => selectedGames;
             set
             {
+                if (ignoreSelectionChanges)
+                {
+                    return;
+                }
+
+                Console.WriteLine($"---------------- selecting {value?.Count.ToString() ?? "none"}");
+                var oldValue = value;
                 selectedGames = value;
+                if (selectedGames?.Count >= 1)
+                {
+                    SelectedGame = selectedGames[0];
+                }
+                else
+                {
+                    SelectedGame = null;
+                }
+
+                if (SelectedGameDetails?.Game != SelectedGame)
+                {
+                    if (SelectedGame == null)
+                    {
+                        SelectedGameDetails = null;
+                    }
+                    else
+                    {
+                        SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
+                    }
+                }
+
+                OnPropertyChanged(nameof(SelectedGameDetails));
+                OnPropertyChanged(nameof(SelectedGame));
                 OnPropertyChanged();
+                if (!IsDisposing)
+                {
+                    Extensions.InvokeOnGameSelected(
+                        oldValue?.Select(a => a.Game).ToList(),
+                        SelectedGames?.Select(a => a.Game).ToList());
+                }
+
+                ignoreSelectionChanges = true;
+                SelectedGamesBinder = selectedGames?.Cast<object>().ToList();
+                ignoreSelectionChanges = false;
             }
         }
 
+        /// SelectedGamesBinder is only used as a glue to bind to ListBox because its
+        /// SelectedItems is IList tha can' bind anything else.
         private IList<object> selectedGamesBinder;
         public IList<object> SelectedGamesBinder
         {
             get => selectedGamesBinder;
             set
             {
-                var oldValue = SelectedGames;
                 selectedGamesBinder = value;
                 if (selectedGamesBinder == null)
                 {
@@ -142,12 +157,6 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 OnPropertyChanged();
-                if (!IsDisposing)
-                {
-                    Extensions.InvokeOnGameSelected(
-                        oldValue?.Select(a => a.Game).ToList(),
-                        SelectedGames?.Select(a => a.Game).ToList());
-                }
             }
         }
 
@@ -267,20 +276,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType) &&
-                AppSettings.ViewSettings.GamesViewType == DesktopView.Grid &&
-                AppSettings.GridViewSideBarVisible &&
-                SelectedGameDetails == null &&
-                SelectedGame != null)
-            {
-                SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
-            }
-            else if (e.PropertyName == nameof(AppSettings.ViewSettings.GamesViewType))
-            {
-                SelectedGame = null;
-                SelectedGameDetails = null;
-            }
-
             if (!IgnoreFilterChanges && ActiveFilterPreset != null)
             {
                 if (ActiveFilterPreset.SortingOrder != null)
@@ -343,8 +338,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void RemoveGameSelection()
         {
-            SelectedGame = null;
-            SelectedGamesBinder = null;
+            SelectedGames = null;
         }
 
         public void OpenSteamFriends()
@@ -376,7 +370,7 @@ namespace Playnite.DesktopApp.ViewModels
             LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, SwitchToLibraryView, (g) =>
             {
                 SwitchToLibraryView();
-                SelectedGame = GamesView.Items.FirstOrDefault(a => g.Id == a.Id);
+                SelectGame(g.Id);
             });
 
             LoadSideBarItems();
@@ -411,7 +405,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                SelectedGame = null;
+                SelectedGames = null;
             }
 
             try
@@ -601,8 +595,7 @@ namespace Playnite.DesktopApp.ViewModels
             Database.Games.Add(newGame);
             if (GamesEditor.EditGame(newGame) == true)
             {
-                var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == newGame.Id);
-                SelectedGame = viewEntry;
+                SelectGame(newGame.Id);
             }
             else
             {
@@ -709,16 +702,21 @@ namespace Playnite.DesktopApp.ViewModels
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             if (viewEntry != null)
             {
-                SelectedGame = viewEntry;
+                SelectedGames = new List<GamesCollectionViewEntry>(1) { viewEntry };
             }
         }
 
         public void SelectGames(IEnumerable<Guid> gameIds)
         {
+            if (!gameIds.HasItems())
+            {
+                return;
+            }
+
             var entries = GamesView.Items.Where(a => gameIds.Contains(a.Game.Id));
             if (entries.HasItems())
             {
-                SelectedGamesBinder = entries.Cast<object>().ToList();
+                SelectedGames = entries.ToList();
             }
         }
 
@@ -911,12 +909,8 @@ namespace Playnite.DesktopApp.ViewModels
                 Resources);
             if (model.OpenView() == true && model.SelectedGame != null)
             {
-                var selection = GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
-                if (selection != null)
-                {
-                    SelectedGame = selection;
-                    GamesEditor.PlayGame(selection.Game);
-                }
+                SelectGame(model.SelectedGame.Id);
+                GamesEditor.PlayGame(model.SelectedGame);
             }
         }
 
@@ -1027,7 +1021,7 @@ namespace Playnite.DesktopApp.ViewModels
                         {
                             RestoreWindow();
                             SwitchToLibraryView();
-                            SelectedGame = GamesView.Items.FirstOrDefault(a => game.Id == a.Id);
+                            SelectGame(game.Id);
                         }
                     }
                     else

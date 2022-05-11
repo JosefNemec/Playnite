@@ -15,9 +15,6 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class DesignMainViewModel : DesktopAppViewModel
     {
-        public new GamesCollectionViewEntry SelectedGame { get; set; }
-        public new IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
-
         private static DesignMainViewModel designIntance;
         public static DesignMainViewModel DesignIntance
         {
@@ -87,10 +84,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             Extensions = new ExtensionFactory(database, new GameControllerFactory(), null);
             GamesView = new DesktopCollectionView(database, AppSettings, Extensions);
-
-            SelectedGame = GamesView.Items[0];
-            SelectedGames = new List<GamesCollectionViewEntry>() { SelectedGame };
-            SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0], AppSettings);
+            SelectedGames = new List<GamesCollectionViewEntry>() { GamesView.Items[0] };
         }
     }
 }

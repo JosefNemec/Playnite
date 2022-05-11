@@ -325,7 +325,6 @@ namespace Playnite.DesktopApp.ViewModels
             ShowGameSideBarCommand = new RelayCommand<GamesCollectionViewEntry>((f) =>
             {
                 AppSettings.GridViewSideBarVisible = true;
-                SelectedGame = f;
             });
 
             CloseGameSideBarCommand = new RelayCommand<object>((f) =>
@@ -445,7 +444,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (GamesEditor.EditGame(a) == true)
                 {
-                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                    SelectGame(a.Id);
                 }
             });
 
@@ -496,7 +495,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (GamesEditor.SetGameCategories(a) == true)
                 {
-                    SelectedGame = GamesView.Items.FirstOrDefault(g => g.Id == a.Id);
+                    SelectGame(a.Id);
                 }
             });
 

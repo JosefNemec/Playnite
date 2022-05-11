@@ -61,9 +61,15 @@ namespace Playnite.DesktopApp.Controls.Views
                     GamesGridView.ItemsSourceProperty,
                     mainModel,
                     $"{nameof(mainModel.GamesView)}.{nameof(DesktopCollectionView.CollectionView)}");
+                BindingTools.SetBinding(ListGames,
+                    GamesGridView.SelectedItemsListProperty,
+                    mainModel,
+                    nameof(DesktopAppViewModel.SelectedGamesBinder),
+                    BindingMode.TwoWay);
             }
             else
             {
+                BindingTools.ClearBinding(ListGames, GamesGridView.SelectedItemsListProperty);
                 ListGames.ItemsSource = null;
             }
         }
@@ -76,17 +82,6 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 SetListGamesBinding();
                 ListGames.AppSettings = mainModel.AppSettings;
-
-                BindingTools.SetBinding(ListGames,
-                    GamesGridView.SelectedItemProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGame),
-                    BindingMode.TwoWay);
-                BindingTools.SetBinding(ListGames,
-                    GamesGridView.SelectedItemsListProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGamesBinder),
-                    BindingMode.TwoWay);
             }
 
             ControlTemplateTools.InitializePluginControls(
