@@ -39,7 +39,6 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonTopMenu.xaml" />
 
                 <!--Views-->
-                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/ActionSelection.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersAdditional.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersView.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameDetails.xaml" />

@@ -13,7 +13,7 @@ namespace Playnite.FullscreenApp.ViewModels
         private static readonly ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
 
-        public List<TItem> Items { get; set; }
+        public List<NamedObject<TItem>> Items { get; set; }
         public TItem SelectedItem { get; private set; }
         public string HeaderText { get; set; }
 
@@ -31,7 +31,7 @@ namespace Playnite.FullscreenApp.ViewModels
             });
         }
 
-        public TItem SelectItem(List<TItem> items)
+        public TItem SelectItem(List<NamedObject<TItem>> items)
         {
             Items = items;
             if (window.CreateAndOpenDialog(this) == true)

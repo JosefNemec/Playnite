@@ -177,16 +177,12 @@ namespace Playnite.FullscreenApp.ViewModels
         public void AssignCompletionStatus()
         {
             Close();
-            var items = new List<CompletionStatus>()
+            var items = new List<NamedObject<CompletionStatus>>()
             {
-                new CompletionStatus
-                {
-                    Id = Guid.Empty,
-                    Name = ResourceProvider.GetString(LOC.None)
-                }
+                new NamedObject<CompletionStatus>(new CompletionStatus { Id = Guid.Empty }, ResourceProvider.GetString(LOC.None))
             };
 
-            items.AddRange(mainModel.Database.CompletionStatuses.OrderByDescending(a => a.Name));
+            items.AddRange(mainModel.Database.CompletionStatuses.OrderByDescending(a => a.Name).Select(a => new NamedObject<CompletionStatus>(a, a.Name)));
             var item = new SingleItemSelectionViewModel<CompletionStatus>(new SingleItemSelectionWindowFactory(), ResourceProvider.GetString(LOC.SetCompletionStatus)).SelectItem(items);
             if (item != null)
             {

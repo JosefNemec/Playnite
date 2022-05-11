@@ -48,9 +48,9 @@
                                            ItemsSource="{Binding Items}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <pctrls:ButtonEx Content="{Binding}"
+                                <pctrls:ButtonEx Content="{Binding Name}"
                                                  Command="{Binding DataContext.SelectItemCommand, ElementName=WindowSingleItemSelectionWindow}"
-                                                 CommandParameter="{Binding}"
+                                                 CommandParameter="{Binding Value}"
                                                  Style="{DynamicResource ItemSelectionButton}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

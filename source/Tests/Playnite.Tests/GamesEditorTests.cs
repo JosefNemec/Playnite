@@ -34,7 +34,7 @@ namespace Playnite.Tests
                     InstallDirectory = tempDir.TempPath
                 };
 
-                var editor = new GamesEditor(null, new GameControllerFactory(null), new PlayniteSettings(), null, null, new TestPlayniteApplication());
+                var editor = new GamesEditor(null, new GameControllerFactory(null), new PlayniteSettings(), null, null, new TestPlayniteApplication(), null);
                 editor.ExecuteScriptAction(runtime, script, game, true, false, GameScriptType.None);
                 var testPath = Path.Combine(tempDir.TempPath, executeScriptActionTestFileName);
                 var content = File.ReadAllText(testPath);

@@ -71,7 +71,6 @@ namespace Playnite.DesktopApp
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashHandlerWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
-            ActionSelectionWindowFactory.SetWindowType<ActionSelectionWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
             if (!ConfigureApplication())
@@ -138,7 +137,8 @@ namespace Playnite.DesktopApp
                 AppSettings,
                 Dialogs,
                 Extensions,
-                this);
+                this,
+                new DesktopActionSelector());
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(

@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace Playnite.ViewModels
+namespace Playnite.DesktopApp.ViewModels
 {
     public class ActionSelectionViewModel : ObservableObject
     {
@@ -46,7 +46,7 @@ namespace Playnite.ViewModels
             });
         }
 
-        public ActionSelectionViewModel(ActionSelectionWindowFactory window)
+        public ActionSelectionViewModel(IWindowFactory window)
         {
             this.window = window;
         }

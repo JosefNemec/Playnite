@@ -42,6 +42,13 @@ namespace Playnite
         None
     }
 
+    public interface IActionSelector
+    {
+        object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions);
+        InstallController SelectInstallAction(List<InstallController> pluginActions);
+        UninstallController SelectUninstallAction(List<UninstallController> pluginActions);
+    }
+
     public class ClientShutdownJob
     {
         public Guid PluginId { get; set; }
@@ -58,8 +65,10 @@ namespace Playnite
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
         private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
         private readonly ConcurrentDictionary<Guid, IPowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, IPowerShellRuntime>();
+        private readonly IActionSelector actionSelector;
 
         public PlayniteApplication Application;
+
         public ExtensionFactory Extensions { get; private set; }
         public GameDatabase Database { get; private set; }
         public IDialogsFactory Dialogs { get; private set; }
@@ -91,13 +100,15 @@ namespace Playnite
             PlayniteSettings appSettings,
             IDialogsFactory dialogs,
             ExtensionFactory extensions,
-            PlayniteApplication app)
+            PlayniteApplication app,
+            IActionSelector actionSelector)
         {
             this.Dialogs = dialogs;
             this.Database = database;
             this.AppSettings = appSettings;
             this.Extensions = extensions;
             this.Application = app;
+            this.actionSelector = actionSelector;
             controllers = controllerFactory;
             controllers.Installed += Controllers_Installed;
             controllers.Uninstalled += Controllers_Uninstalled;
@@ -173,7 +184,7 @@ namespace Playnite
                 object playAction = null;
                 if ((gameActions.Item1.Count + gameActions.Item2.Count) > 1)
                 {
-                    playAction = SelectPlayAction(gameActions.Item1, gameActions.Item2);
+                    playAction = actionSelector.SelectPlayAction(gameActions.Item1, gameActions.Item2);
                 }
                 else
                 {
@@ -738,7 +749,7 @@ namespace Playnite
 
                 if (installControllers.Count > 1)
                 {
-                    controller = SelectInstallAction(installControllers);
+                    controller = actionSelector.SelectInstallAction(installControllers);
                 }
                 else
                 {
@@ -792,7 +803,7 @@ namespace Playnite
 
                 if (uninstallControllers.Count > 1)
                 {
-                    controller = SelectUninstallAction(uninstallControllers);
+                    controller = actionSelector.SelectUninstallAction(uninstallControllers);
                 }
                 else
                 {
@@ -1324,11 +1335,6 @@ namespace Playnite
             return new Tuple<List<PlayController>, List<GameAction>>(controllers, actions);
         }
 
-        public object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions)
-        {
-            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectPlayAction(controllers, actions);
-        }
-
         public List<InstallController> GetInstallActions(Game game)
         {
             var allActions = new List<InstallController>();
@@ -1351,11 +1357,6 @@ namespace Playnite
             return allActions;
         }
 
-        public InstallController SelectInstallAction(List<InstallController> actions)
-        {
-            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectInstallAction(actions);
-        }
-
         public List<UninstallController> GetUninstallActions(Game game)
         {
             var allActions = new List<UninstallController>();
@@ -1376,11 +1377,6 @@ namespace Playnite
             }
 
             return allActions;
-        }
-
-        public UninstallController SelectUninstallAction(List<UninstallController> actions)
-        {
-            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectUninstallAction(actions);
         }
     }
 }

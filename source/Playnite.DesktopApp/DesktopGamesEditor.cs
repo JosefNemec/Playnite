@@ -23,13 +23,15 @@ namespace Playnite.DesktopApp
             PlayniteSettings appSettings,
             IDialogsFactory dialogs,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(
+            PlayniteApplication app,
+            IActionSelector actionSelector) : base(
                 database,
                 controllerFactory,
                 appSettings,
                 dialogs,
                 extensions,
-                app)
+                app,
+                actionSelector)
         {
         }
 

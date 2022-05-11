@@ -225,6 +225,12 @@ namespace Playnite.SDK.Plugins
             args.Source = this;
             execContext.Send((a) => Stopped?.Invoke(this, args), null);
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name ?? base.ToString();
+        }
     }
 
     /// <summary>

@@ -471,7 +471,6 @@
     <Compile Include="ObservableTime.cs" />
     <Compile Include="UrlConstants.cs" />
     <Compile Include="ViewModels\AddonsViewModelBase_Online.cs" />
-    <Compile Include="ViewModels\ActionSelectionViewModel.cs" />
     <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelBase.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
@@ -484,7 +483,6 @@
     <Compile Include="WebView\WebViewBase.cs" />
     <Compile Include="WebView\WebViewFactory.cs" />
     <Compile Include="WindowsNotifyIconManager.cs" />
-    <Compile Include="Windows\GameStartSelectionWindowFactory.cs" />
     <Compile Include="Windows\LicenseAgreementWindowFactory.cs" />
     <Compile Include="Windows\ExtensionCrashHandlerWindowFactory.cs" />
     <Compile Include="Windows\CrashHandlerWindowFactory.cs" />
