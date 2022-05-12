@@ -98,7 +98,6 @@ namespace Playnite.DesktopApp.ViewModels
                     return;
                 }
 
-                Console.WriteLine($"---------------- selecting {value?.Count.ToString() ?? "none"}");
                 var oldValue = value;
                 selectedGames = value;
                 if (selectedGames?.Count >= 1)
