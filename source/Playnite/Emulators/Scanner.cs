@@ -152,13 +152,13 @@ namespace Playnite.Emulators
         private static readonly string[] supportedArchiveExt = new string[] { "rar", "7z", "zip", "tar", "bzip2", "gzip", "lzip" };
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
-        private readonly GameDatabase database;
+        private readonly IGameDatabaseMain database;
         private List<string> importedFiles;
         private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
 
         public GameScanner(
             GameScannerConfig scanner,
-            GameDatabase database,
+            IGameDatabaseMain database,
             Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider = null)
         {
             this.scanner = scanner;

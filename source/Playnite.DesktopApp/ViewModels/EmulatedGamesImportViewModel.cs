@@ -47,7 +47,7 @@ namespace Playnite.DesktopApp.ViewModels
         private readonly IWindowFactory window;
         private readonly IDialogsFactory dialogs;
         private readonly IResourceProvider resources;
-        private readonly GameDatabase database;
+        private readonly IGameDatabaseMain database;
         private readonly MenuItem menuSplitItem;
         private readonly MenuItem menuMergeItem;
         private readonly MenuItem menuPlatformsItem;
@@ -191,7 +191,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
 
         public EmulatedGamesImportViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources)

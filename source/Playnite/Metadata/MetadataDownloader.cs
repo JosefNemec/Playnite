@@ -17,11 +17,11 @@ namespace Playnite.Metadata
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        private GameDatabase database;
+        private IGameDatabaseMain database;
         private readonly List<MetadataPlugin> metadataDownloaders;
         private Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders = new Dictionary<Guid, LibraryMetadataProvider>();
 
-        public MetadataDownloader(GameDatabase database, List<MetadataPlugin> metadataDownloaders, List<LibraryPlugin> libraryPlugins)
+        public MetadataDownloader(IGameDatabaseMain database, List<MetadataPlugin> metadataDownloaders, List<LibraryPlugin> libraryPlugins)
         {
             this.database = database;
             this.metadataDownloaders = metadataDownloaders;
@@ -41,7 +41,7 @@ namespace Playnite.Metadata
             }
         }
 
-        public MetadataDownloader(GameDatabase database, List<MetadataPlugin> metadataDownloaders, Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders)
+        public MetadataDownloader(IGameDatabaseMain database, List<MetadataPlugin> metadataDownloaders, Dictionary<Guid, LibraryMetadataProvider> libraryDownloaders)
         {
             this.database = database;
             this.metadataDownloaders = metadataDownloaders;

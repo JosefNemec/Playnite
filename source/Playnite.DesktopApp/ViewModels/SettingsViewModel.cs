@@ -45,7 +45,7 @@ namespace Playnite.DesktopApp.ViewModels
         internal IWindowFactory window;
         internal IResourceProvider resources;
         internal IDialogsFactory dialogs;
-        internal GameDatabase database;
+        internal IGameDatabaseMain database;
         internal PlayniteSettings originalSettings;
         internal PlayniteApplication application;
         internal List<string> editedFields = new List<string>();
@@ -303,7 +303,7 @@ namespace Playnite.DesktopApp.ViewModels
         #endregion Commands
 
         public SettingsViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             PlayniteSettings settings,
             IWindowFactory window,
             IDialogsFactory dialogs,
@@ -511,7 +511,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var game = application.MainModelBase.SelectedGames.FirstOrDefault()?.Game ?? new SDK.Models.Game("Test game");
+                var game = application.PlayniteApiGlobal.MainView.SelectedGames.FirstOrDefault() ?? new SDK.Models.Game("Test game");
                 var expanded = game.ExpandVariables(script);
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {

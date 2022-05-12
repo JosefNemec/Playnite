@@ -25,7 +25,7 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
-        private GameDatabase database;
+        private IGameDatabaseMain database;
 
         public List<EmulatedPlatform> PlatformsSpecifications { get; set; }
         public List<EmulatedRegion> RegionsSpecifications { get; set; }
@@ -574,7 +574,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public DatabaseFieldsManagerViewModel(GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public DatabaseFieldsManagerViewModel(IGameDatabaseMain database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.database = database;
             this.window = window;

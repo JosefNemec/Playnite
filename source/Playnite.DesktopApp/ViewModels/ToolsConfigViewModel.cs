@@ -21,7 +21,7 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
-        private GameDatabase database;
+        private IGameDatabaseMain database;
 
         public ObservableCollection<AppSoftware> EditingApps
         {
@@ -96,7 +96,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public ToolsConfigViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources)

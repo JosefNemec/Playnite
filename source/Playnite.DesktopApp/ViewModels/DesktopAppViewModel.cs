@@ -37,7 +37,7 @@ using Playnite.Emulators;
 
 namespace Playnite.DesktopApp.ViewModels
 {
-    public partial class DesktopAppViewModel : MainViewModelBase, IDisposable
+    public partial class DesktopAppViewModel : MainViewModelBase, IDisposable, IMainViewModelBase
     {
         private static object gamesLock = new object();
         protected bool ignoreCloseActions = false;
@@ -85,10 +85,10 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public new GamesCollectionViewEntry SelectedGame { get; private set; }
+        public GamesCollectionViewEntry SelectedGame { get; private set; }
 
         private List<GamesCollectionViewEntry> selectedGames;
-        public new List<GamesCollectionViewEntry> SelectedGames
+        public List<GamesCollectionViewEntry> SelectedGames
         {
             get => selectedGames;
             set
@@ -232,12 +232,20 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public DesktopAppViewModel() : base(null, null, null, null, null)
+        /// <summary>
+        /// This constructor should be used on from <see cref="DesignMainViewModel"/> for Blend usage!
+        /// </summary>
+        public DesktopAppViewModel(
+            IGameDatabaseMain database,
+            PlayniteApplication app,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ExtensionFactory extensions) : base(database, app, dialogs, resources, extensions)
         {
         }
 
         public DesktopAppViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,

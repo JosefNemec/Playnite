@@ -171,7 +171,7 @@ namespace Playnite.DesktopApp.ViewModels
             public ulong AvaragePlayTime { get; set; }
         }
 
-        private GameDatabase database;
+        private IGameDatabaseMain database;
         private ExtensionFactory extensions;
         private PlayniteSettings settings;
 
@@ -218,7 +218,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public StatisticsViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             ExtensionFactory extensions,
             PlayniteSettings settings,
             Action switchToLibraryViewAction,

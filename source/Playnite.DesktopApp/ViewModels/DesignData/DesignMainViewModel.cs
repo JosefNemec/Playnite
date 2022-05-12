@@ -60,17 +60,16 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public DesignMainViewModel()
+        public DesignMainViewModel() : base(new InMemoryGameDatabase(), null, null, new ResourceProvider(), null)
         {
             ProgressStatus = "Status example in progress...";
             ProgressValue = 50;
             ProgressTotal = 100;
             ProgressActive = true;
 
-            var database = new InMemoryGameDatabase();
-            Game.DatabaseReference = database;
-            GameDatabase.GenerateSampleData(database);
-            var designGame = database.Games.First();
+            Game.DatabaseReference = Database;
+            GameDatabase.GenerateSampleData(Database);
+            var designGame = Database.Games.First();
             designGame.CoverImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignCover.jpg";
             designGame.BackgroundImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignBackground.jpg";
             designGame.Icon = "pack://application:,,,/Playnite;component/Resources/Images/DesignIcon.png";
@@ -82,8 +81,8 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings.ShowNameEmptyCover = true;
             AppSettings.ViewSettings.SelectedExplorerField = ExplorerField.LastActivity;
 
-            Extensions = new ExtensionFactory(database, new GameControllerFactory(), null);
-            GamesView = new DesktopCollectionView(database, AppSettings, Extensions);
+            Extensions = new ExtensionFactory(Database, new GameControllerFactory(), null);
+            GamesView = new DesktopCollectionView(Database, AppSettings, Extensions);
             SelectedGames = new List<GamesCollectionViewEntry>() { GamesView.Items[0] };
         }
     }

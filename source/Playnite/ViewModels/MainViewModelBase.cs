@@ -26,11 +26,11 @@ namespace Playnite.ViewModels
         double ProgressTotal { get; set; }
         bool ProgressActive { get; set; }
         BaseCollectionView GamesView { get; set; }
-        GamesCollectionViewEntry SelectedGame { get; set; }
+        GamesCollectionViewEntry SelectedGame { get; }
         List<GamesCollectionViewEntry> SelectedGames { get; set; }
     }
 
-    public abstract class MainViewModelBase : ObservableObject, IMainViewModelBase
+    public abstract class MainViewModelBase : ObservableObject
     {
         public static ILogger Logger = LogManager.GetLogger();
 
@@ -122,17 +122,6 @@ namespace Playnite.ViewModels
             }
         }
 
-        private List<GamesCollectionViewEntry> selectedGames;
-        public List<GamesCollectionViewEntry> SelectedGames
-        {
-            get => selectedGames;
-            set
-            {
-                selectedGames = value;
-                OnPropertyChanged();
-            }
-        }
-
         public List<FilterPreset> SortedFilterPresets
         {
             get => Database.FilterPresets.OrderBy(a => a.Name).ToList();
@@ -144,7 +133,6 @@ namespace Playnite.ViewModels
         }
 
         public bool IsDisposing { get; set; } = false;
-        public GamesCollectionViewEntry SelectedGame { get; set; }
         public RelayCommand<object> AddFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RemoveFilterPresetCommand { get; private set; }
@@ -154,7 +142,7 @@ namespace Playnite.ViewModels
         public RelayCommand StartInteractivePowerShellCommand { get; private set; }
         public RelayCommand RestartInSafeMode { get; private set; }
 
-        public GameDatabase Database { get; }
+        public IGameDatabaseMain Database { get; }
         public PlayniteApplication App { get; }
         public IDialogsFactory Dialogs { get; }
         public IResourceProvider Resources { get; }
@@ -162,7 +150,7 @@ namespace Playnite.ViewModels
         public bool IgnoreFilterChanges { get; set; } = false;
 
         public MainViewModelBase(
-            GameDatabase database,
+            IGameDatabaseMain database,
             PlayniteApplication app,
             IDialogsFactory dialogs,
             IResourceProvider resources,

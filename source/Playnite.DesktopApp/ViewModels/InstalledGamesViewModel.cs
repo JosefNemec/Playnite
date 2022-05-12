@@ -423,7 +423,7 @@ namespace Playnite.DesktopApp.ViewModels
             }, new GlobalProgressOptions(LOC.EmuWizardScanning, true));
         }
 
-        public static List<Game> AddImportableGamesToDb(List<GameMetadata> games, GameDatabase database)
+        public static List<Game> AddImportableGamesToDb(List<GameMetadata> games, IGameDatabaseMain database)
         {
             var statusSettings = database.GetCompletionStatusSettings();
             using (var buffer = database.BufferedUpdate())

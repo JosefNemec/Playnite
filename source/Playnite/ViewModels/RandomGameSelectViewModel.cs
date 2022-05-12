@@ -17,7 +17,7 @@ namespace Playnite.ViewModels
         private readonly IWindowFactory window;
         private readonly IResourceProvider resources;
         private readonly BaseCollectionView collection;
-        private readonly GameDatabase database;
+        private readonly IGameDatabaseMain database;
 
         private bool isLimitedToFilter = true;
         public bool IsLimitedToFilter
@@ -66,7 +66,7 @@ namespace Playnite.ViewModels
         }
 
         public RandomGameSelectViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             BaseCollectionView collection,
             IWindowFactory window,
             IResourceProvider resources)

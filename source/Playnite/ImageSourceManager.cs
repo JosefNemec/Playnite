@@ -135,11 +135,23 @@ namespace Playnite
 
             if (cached && resource != null)
             {
-                Cache.TryAdd(resourceKey, resource, resource.GetSizeInMemory(),
-                    new Dictionary<string, object>
+                long imageSize = 0;
+                try
+                {
+                    imageSize = resource.GetSizeInMemory();
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to get image memory size: {resourceKey}");
+                }
+
+                if (imageSize > 0)
+                {
+                    Cache.TryAdd(resourceKey, resource, imageSize, new Dictionary<string, object>
                     {
                         { btmpPropsFld, loadProperties }
                     });
+                }
             }
 
             return resource;

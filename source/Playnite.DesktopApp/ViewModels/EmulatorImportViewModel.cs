@@ -28,7 +28,7 @@ namespace Playnite.DesktopApp.ViewModels
         private readonly IWindowFactory window;
         private readonly IDialogsFactory dialogs;
         private readonly IResourceProvider resources;
-        private readonly GameDatabase database;
+        private readonly IGameDatabaseMain database;
         private readonly List<string> importedDirs;
 
         public List<ScannedEmulator> SelectedEmulators;
@@ -87,7 +87,7 @@ namespace Playnite.DesktopApp.ViewModels
                 () => EmulatorList.HasItems());
 
         public EmulatorImportViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources)

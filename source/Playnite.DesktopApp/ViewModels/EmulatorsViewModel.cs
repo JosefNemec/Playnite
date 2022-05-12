@@ -300,12 +300,12 @@ namespace Playnite.DesktopApp.ViewModels
                 (a) => CopyScanConfig(a),
                 (a) => a != null);
 
-        private GameDatabase database;
+        private IGameDatabaseMain database;
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
 
-        public EmulatorsViewModel(GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public EmulatorsViewModel(IGameDatabaseMain database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.window = window;
             this.dialogs = dialogs;

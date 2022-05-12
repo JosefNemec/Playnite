@@ -52,6 +52,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\HtmlRenderer.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="PhotoSauce.MagicScaler">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PhotoSauce.MagicScaler.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

@@ -21,7 +21,60 @@ using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
-    public partial class GameDatabase : IGameDatabase, IDisposable
+    /// Not the greatest way of doing it but it's a superset of SDK exposed IGameDatabase.
+    /// The whole interface should not be exposed in the SDK since it contains a lot of "internal" members.
+    public interface IGameDatabaseMain : IGameDatabase
+    {
+        List<Guid> UsedPlatforms { get; }
+        List<Guid> UsedGenres { get; }
+        List<Guid> UsedDevelopers { get; }
+        List<Guid> UsedPublishers { get; }
+        List<Guid> UsedTags { get; }
+        List<Guid> UsedCategories { get; }
+        List<Guid> UsedSeries { get; }
+        List<Guid> UsedAgeRatings { get; }
+        List<Guid> UsedRegions { get; }
+        List<Guid> UsedSources { get; }
+        List<Guid> UsedFeastures { get; }
+        List<Guid> UsedCompletionStatuses { get; }
+
+        AppSoftwareCollection SoftwareApps { get; }
+
+        event EventHandler<DatabaseFileEventArgs> DatabaseFileChanged;
+        event EventHandler PlatformsInUseUpdated;
+        event EventHandler GenresInUseUpdated;
+        event EventHandler DevelopersInUseUpdated;
+        event EventHandler PublishersInUseUpdated;
+        event EventHandler TagsInUseUpdated;
+        event EventHandler CategoriesInUseUpdated;
+        event EventHandler AgeRatingsInUseUpdated;
+        event EventHandler SeriesInUseUpdated;
+        event EventHandler RegionsInUseUpdated;
+        event EventHandler SourcesInUseUpdated;
+        event EventHandler FeaturesInUseUpdated;
+        event EventHandler CompletionStatusesInUseUpdated;
+
+        void SetDatabasePath(string path);
+        void OpenDatabase();
+        string GetFileStoragePath(Guid parentId);
+        string GetFullFilePath(string dbPath);
+        string AddFile(MetadataFile file, Guid parentId, bool isImage);
+        string AddFile(string path, Guid parentId, bool isImage);
+        void RemoveFile(string dbPath);
+        BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null);
+        void CopyFile(string dbPath, string targetPath);
+        void BeginBufferUpdate();
+        void EndBufferUpdate();
+        IDisposable BufferedUpdate();
+        List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode);
+        CompletionStatusSettings GetCompletionStatusSettings();
+        void SetCompletionStatusSettings(CompletionStatusSettings settings);
+        GameScannersSettings GetGameScannersSettings();
+        void SetGameScannersSettings(GameScannersSettings settings);
+        List<string> GetImportedRomFiles(string emulatorDir);
+    }
+
+    public partial class GameDatabase : IGameDatabaseMain, IDisposable
     {
         public const double MaximumRecommendedIconSize = 0.1;
         public const double MaximumRecommendedCoverSize = 1;

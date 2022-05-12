@@ -31,7 +31,7 @@ using System.Windows.Media;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
-    public partial class FullscreenAppViewModel : MainViewModelBase, IDisposable
+    public partial class FullscreenAppViewModel : MainViewModelBase, IDisposable, IMainViewModelBase
     {
         private static object gamesLock = new object();
         private readonly SynchronizationContext context;
@@ -134,8 +134,24 @@ namespace Playnite.FullscreenApp.ViewModels
 
         internal int LastValidSelectedGameIndex;
 
+        public List<GamesCollectionViewEntry> SelectedGames
+        {
+            get => SelectedGame != null ? null : new List<GamesCollectionViewEntry>(1) { SelectedGame };
+            set
+            {
+                if (SelectedGames.HasItems())
+                {
+                    SelectedGame = value[0];
+                }
+                else
+                {
+                    SelectedGame = null;
+                }
+            }
+        }
+
         private GamesCollectionViewEntry selectedGame;
-        public new GamesCollectionViewEntry SelectedGame
+        public GamesCollectionViewEntry SelectedGame
         {
             get => selectedGame;
             set
@@ -337,8 +353,17 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public FullscreenAppViewModel() : base(null, null, null, null, null)
+        /// <summary>
+        /// This constructor should be used on from <see cref="DesignMainViewModel"/> for Blend usage!
+        /// </summary>
+        public FullscreenAppViewModel(
+            IGameDatabaseMain database,
+            PlayniteApplication app,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ExtensionFactory extensions) : base(database, app, dialogs, resources, extensions)
         {
+            InitializeCommands();
         }
 
         public FullscreenAppViewModel(

@@ -65,7 +65,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public DesignMainViewModel()
+        public DesignMainViewModel() : base(new InMemoryGameDatabase(), null, null, new ResourceProvider(), null)
         {
             GameListVisible = true;
             GameDetailsVisible  = false;
@@ -75,26 +75,22 @@ namespace Playnite.FullscreenApp.ViewModels
             ProgressTotal = 100;
             ProgressActive = true;
 
-            var database = new InMemoryGameDatabase();
-            Game.DatabaseReference = database;
-            GameDatabase.GenerateSampleData(database);
-            var designGame = database.Games.First();
+            Game.DatabaseReference = Database;
+            GameDatabase.GenerateSampleData(Database);
+            var designGame = Database.Games.First();
             designGame.CoverImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignCover.jpg";
             designGame.BackgroundImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignBackground.jpg";
             designGame.Icon = "pack://application:,,,/Playnite;component/Resources/Images/DesignIcon.png";
-
-            GamesView = new FullscreenCollectionView(
-                database,
-                new PlayniteSettings(),
-                new ExtensionFactory(database, new GameControllerFactory(), null));
-
-            SelectedGame = GamesView.Items[0];
-            SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
 
             AppSettings = new PlayniteSettings();
             AppSettings.Fullscreen.ShowBattery = true;
             AppSettings.Fullscreen.ShowBatteryPercentage = true;
             AppSettings.Fullscreen.ShowClock = true;
+
+            Extensions = new ExtensionFactory(Database, new GameControllerFactory(), null);
+            GamesView = new FullscreenCollectionView(Database, AppSettings, Extensions);
+            SelectedGame = GamesView.Items[0];
+            SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
         }
     }
 }
