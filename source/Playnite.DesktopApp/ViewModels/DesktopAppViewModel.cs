@@ -128,8 +128,8 @@ namespace Playnite.DesktopApp.ViewModels
                 if (!IsDisposing)
                 {
                     Extensions.InvokeOnGameSelected(
-                        oldValue?.Select(a => a.Game).ToList(),
-                        SelectedGames?.Select(a => a.Game).ToList());
+                        oldValue?.Select(a => a.Game).Distinct().ToList(),
+                        SelectedGames?.Select(a => a.Game).Distinct().ToList());
                 }
 
                 ignoreSelectionChanges = true;
