@@ -40,7 +40,7 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                 <DockPanel>
                     <ContentControl Focusable="False" DockPanel.Dock="Top"
-                                    Content="{Binding GameDetails.Game}"
+                                    Content="{Binding Game}"
                                     ContentTemplate="{DynamicResource GameMenuHeaderTemplate}" />
                     <pctrls:ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
                                            KeyboardNavigation.DirectionalNavigation="Once"
@@ -58,6 +58,7 @@
                         <ItemsControl.Template>
                             <ControlTemplate>
                                 <ScrollViewer Focusable="False"
+                                              KeyboardNavigation.DirectionalNavigation="None"
                                               HorizontalScrollBarVisibility="Disabled"
                                               VerticalScrollBarVisibility="Auto"
                                               CanContentScroll="True">

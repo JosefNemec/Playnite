@@ -15,37 +15,31 @@ namespace Playnite.FullscreenApp
     {
         public object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions)
         {
-            var allActions = new List<NamedObject<object>>();
+            var allActions = new List<SelectableNamedObject<object>>();
             if (controllers.HasItems())
             {
-                allActions.AddRange(controllers.Select(a => new NamedObject<object>(a, a.Name)));
+                allActions.AddRange(controllers.Select(a => new SelectableNamedObject<object>(a, a.Name)));
             }
 
             if (actions.HasItems())
             {
-                allActions.AddRange(actions.Select(a => new NamedObject<object>(a, a.Name)));
+                allActions.AddRange(actions.Select(a => new SelectableNamedObject<object>(a, a.Name)));
             }
 
-            return new SingleItemSelectionViewModel<object>(
-                new SingleItemSelectionWindowFactory(),
-                ResourceProvider.GetString(LOC.SelectActionTitle)).
-                SelectItem(allActions);
+            ItemSelector.SelectSingle(LOC.SelectActionTitle, allActions, out var selectedItem);
+            return selectedItem;
         }
 
         public InstallController SelectInstallAction(List<InstallController> pluginActions)
         {
-            return new SingleItemSelectionViewModel<InstallController>(
-                new SingleItemSelectionWindowFactory(),
-                ResourceProvider.GetString(LOC.SelectActionTitle)).
-                SelectItem(pluginActions.Select(a => new NamedObject<InstallController>(a, a.Name)).ToList());
+            ItemSelector.SelectSingle(LOC.SelectActionTitle, pluginActions.Select(a => new SelectableNamedObject<InstallController>(a, a.Name)).ToList(), out var selectedItem);
+            return selectedItem;
         }
 
         public UninstallController SelectUninstallAction(List<UninstallController> pluginActions)
         {
-            return new SingleItemSelectionViewModel<UninstallController>(
-                new SingleItemSelectionWindowFactory(),
-                ResourceProvider.GetString(LOC.SelectActionTitle)).
-                SelectItem(pluginActions.Select(a => new NamedObject<UninstallController>(a, a.Name)).ToList());
+            ItemSelector.SelectSingle(LOC.SelectActionTitle, pluginActions.Select(a => new SelectableNamedObject<UninstallController>(a, a.Name)).ToList(), out var selectedItem);
+            return selectedItem;
         }
     }
 }

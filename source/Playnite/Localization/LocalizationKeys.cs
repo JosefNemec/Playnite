@@ -454,6 +454,10 @@ namespace Playnite
         /// </summary>
         public const string CancelLabel = "LOCCancelLabel";
         /// <summary>
+        /// Confirm
+        /// </summary>
+        public const string ConfirmLabel = "LOCConfirmLabel";
+        /// <summary>
         /// Yes
         /// </summary>
         public const string YesLabel = "LOCYesLabel";
@@ -2018,7 +2022,7 @@ namespace Playnite
         /// </summary>
         public const string AppStartupError = "LOCAppStartupError";
         /// <summary>
-        /// Failed to initialize the WebView component. Playnite cannot continue with the startup process.
+        /// Failed to initialize web view component. Playnite cannot continue with startup process.
         /// </summary>
         public const string CefSharpInitError = "LOCCefSharpInitError";
         /// <summary>
@@ -3837,5 +3841,13 @@ namespace Playnite
         /// Include hidden games
         /// </summary>
         public const string StatsIncludeHidden = "LOCStatsIncludeHidden";
+        /// <summary>
+        /// Edit fields
+        /// </summary>
+        public const string MenuSetFields = "LOCMenuSetFields";
+        /// <summary>
+        /// Select / Deselect all
+        /// </summary>
+        public const string ItemSelectionSelectDeselectAll = "LOCItemSelectionSelectDeselectAll";
     }
 }

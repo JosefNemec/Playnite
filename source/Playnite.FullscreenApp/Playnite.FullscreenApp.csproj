@@ -181,7 +181,10 @@
     <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\SingleItemSelectionViewModel.cs" />
+    <Compile Include="ViewModels\ItemSelectionViewModel.cs" />
+    <Compile Include="Windows\MultiItemSelectionWindow.xaml.cs">
+      <DependentUpon>MultiItemSelectionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SingleItemSelectionWindow.xaml.cs">
       <DependentUpon>SingleItemSelectionWindow.xaml</DependentUpon>
     </Compile>
@@ -453,6 +456,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Windows\MultiItemSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\SingleItemSelectionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

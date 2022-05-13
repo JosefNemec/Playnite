@@ -1,4 +1,4 @@
-﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.SingleItemSelectionWindow"
+﻿<c:WindowBase x:Class="Playnite.FullscreenApp.Windows.MultiItemSelectionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,6 +17,7 @@
         Name="WindowSingleItemSelectionWindow">
 
     <c:WindowBase.InputBindings>
+        <pin:XInputBinding Button="Y" Command="{Binding ToggleSelectionCommand}" />
         <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
     </c:WindowBase.InputBindings>
@@ -42,19 +43,43 @@
                     <TextBlock Text="{Binding HeaderText}"
                                Style="{DynamicResource ItemSelectionHeaderText}"
                                DockPanel.Dock="Top"/>
+                    <Border Style="{DynamicResource ItemSelectionFooterBorder}" DockPanel.Dock="Bottom">
+                        <StackPanel>
+                            <pctrls:ButtonEx Command="{Binding ConfirmCommand}"
+                                             Style="{DynamicResource ItemSelectionFooterButton}">
+                                <pctrls:ButtonEx.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentControl ContentTemplate="{DynamicResource ButtonPromptStart}" VerticalAlignment="Center"
+                                                        Focusable="False" Height="22" Margin="0,0,15,0"/>
+                                        <TextBlock Text="{DynamicResource LOCConfirmLabel}" VerticalAlignment="Center"                                           
+                                                   Style="{StaticResource TextBlockBaseStyle}" />
+                                    </StackPanel>
+                                </pctrls:ButtonEx.Content>
+                            </pctrls:ButtonEx>
+                            <pctrls:ButtonEx Command="{Binding ToggleSelectionCommand}"
+                                             Style="{DynamicResource ItemSelectionFooterButton}">
+                                <pctrls:ButtonEx.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentControl ContentTemplate="{DynamicResource ButtonPromptY}" VerticalAlignment="Center"
+                                                        Focusable="False" Height="22" Margin="0,0,15,0"/>
+                                        <TextBlock Text="{DynamicResource LOCItemSelectionSelectDeselectAll}" VerticalAlignment="Center"                                           
+                                                   Style="{StaticResource TextBlockBaseStyle}" />
+                                    </StackPanel>
+                                </pctrls:ButtonEx.Content>
+                            </pctrls:ButtonEx>
+                        </StackPanel>
+                    </Border>
                     <pctrls:ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
                                            KeyboardNavigation.DirectionalNavigation="Once"
-                                           Loaded="PART_ItemsHost_Loaded"
-                                           ItemsSource="{Binding Items}"
-                                           Tag="{Binding StartIndex}">
+                                           pbeh:FocusBahaviors.FocusBinding="True"
+                                           DockPanel.Dock="Top"
+                                           ItemsSource="{Binding Items}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <pctrls:ButtonEx Content="{Binding Name}"
-                                                 MaxWidth="500"
-                                                 Command="{Binding DataContext.SelectItemCommand, ElementName=WindowSingleItemSelectionWindow}"
-                                                 CommandParameter="{Binding}"
-                                                 pbeh:FocusBahaviors.FocusBinding="{Binding Selected}"
-                                                 Style="{DynamicResource ItemSelectionButton}"/>
+                                <pctrls:CheckBoxEx Content="{Binding Name}"
+                                                   MaxWidth="500"
+                                                   IsChecked="{Binding Selected}"
+                                                   Style="{DynamicResource ItemSelectionCheckBox}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.Template>

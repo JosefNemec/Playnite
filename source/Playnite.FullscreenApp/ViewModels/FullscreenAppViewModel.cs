@@ -512,12 +512,12 @@ namespace Playnite.FullscreenApp.ViewModels
         }
         private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
         {
-            ChildOpened = false;
+            ChildOpened = Window.Window.HasChildWindow;
         }
 
         private void WindowBaseLoadedHandler(object sender, RoutedEventArgs e)
         {
-            ChildOpened = true;
+            ChildOpened = Window.Window.HasChildWindow;
         }
 
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -626,7 +626,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void OpenGameMenu()
         {
-            var vm = new GameMenuViewModel(new GameMenuWindowFactory(), this, SelectedGameDetails, GamesEditor);
+            var vm = new GameMenuViewModel(new GameMenuWindowFactory(), this, SelectedGame.Game, GamesEditor);
             vm.OpenView();
         }
 

@@ -15,7 +15,7 @@ using System.Windows.Data;
 
 namespace System
 {
-    public class NamedObject<TItem>
+    public class NamedObject<TItem> : ObservableObject
     {
         public string Name { get; }
         public TItem Value { get; }
@@ -78,6 +78,27 @@ namespace System
         }
     }
 
+    // TODO: refactor this and merge it with NamedObject and SelectableItem
+    public class SelectableNamedObject<TItem> : NamedObject<TItem>
+    {
+        private bool selected = false;
+        public bool Selected { get => selected; set => SetValue(ref selected, value); }
+
+        public SelectableNamedObject(TItem value) : base(value)
+        {
+        }
+
+        public SelectableNamedObject(TItem value, string name) : base(value, name)
+        {
+        }
+
+        public SelectableNamedObject(TItem value, string name, bool selected) : base(value, name)
+        {
+            Selected = selected;
+        }
+    }
+
+    // TODO: refactor this and merge it with NamedObject and SelectableNamedObject
     public class SelectableItem<TItem> : ObservableObject
     {
         private bool? selected = false;

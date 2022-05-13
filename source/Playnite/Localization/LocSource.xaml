@@ -135,6 +135,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSaveLabel">Save</sys:String>
     <sys:String x:Key="LOCCloseLabel">Close</sys:String>
     <sys:String x:Key="LOCCancelLabel">Cancel</sys:String>
+    <sys:String x:Key="LOCConfirmLabel">Confirm</sys:String>
     <sys:String x:Key="LOCYesLabel">Yes</sys:String>
     <sys:String x:Key="LOCNoLabel">No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Welcome</sys:String>
@@ -1076,4 +1077,6 @@ This option may not fully work with plugins that use specific game import method
     <sys:String x:Key="LOCCheckLibraryUpdates">Update libraries</sys:String>
     <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">Scan emulation folders</sys:String>
     <sys:String x:Key="LOCStatsIncludeHidden">Include hidden games</sys:String>
+    <sys:String x:Key="LOCMenuSetFields">Edit fields</sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll">Select / Deselect all</sys:String>
 </ResourceDictionary>
