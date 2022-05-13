@@ -158,7 +158,12 @@ namespace Playnite.FullscreenApp.Controls
                 {
                     MenuHost.InputBindings.Add(new KeyBinding(closeCommand, new KeyGesture(Key.Back)));
                     MenuHost.InputBindings.Add(new KeyBinding(closeCommand, new KeyGesture(Key.Escape)));
-                    MenuHost.InputBindings.Add(new XInputBinding(closeCommand, XInputButton.B));
+                    var backInput = new XInputBinding { Command = closeCommand };
+                    BindingTools.SetBinding(backInput,
+                        XInputBinding.ButtonProperty,
+                        null,
+                        typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+                    MenuHost.InputBindings.Add(backInput);
                 }
 
                 ButtonBack = Template.FindName("PART_ButtonBack", this) as ButtonBase;

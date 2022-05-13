@@ -65,7 +65,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                     MenuHost.InputBindings.Add(new KeyBinding(mainModel.CloseAdditionalFiltersCommand, new KeyGesture(Key.Back)));
                     MenuHost.InputBindings.Add(new KeyBinding(mainModel.CloseAdditionalFiltersCommand, new KeyGesture(Key.Escape)));
                     MenuHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleFiltersCommand, Key = Key.F });
-                    MenuHost.InputBindings.Add(new XInputBinding(mainModel.CloseAdditionalFiltersCommand, XInputButton.B));
+                    var backInput = new XInputBinding { Command = mainModel.CloseAdditionalFiltersCommand };
+                    BindingTools.SetBinding(backInput,
+                        XInputBinding.ButtonProperty,
+                        null,
+                        typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+                    MenuHost.InputBindings.Add(backInput);
                 }
 
                 ButtonBack = Template.FindName("PART_ButtonBack", this) as ButtonBase;

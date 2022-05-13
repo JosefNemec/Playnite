@@ -19,7 +19,7 @@ namespace Playnite.Common
             DependencyObject target,
             DependencyProperty dp,
             object source,
-            string path,
+            object path,
             BindingMode mode = BindingMode.OneWay,
             UpdateSourceTrigger trigger = UpdateSourceTrigger.Default,
             IValueConverter converter = null,
@@ -31,10 +31,22 @@ namespace Playnite.Common
         {
             var binding = new Binding
             {
-                Path = new PropertyPath(path),
                 Mode = mode,
                 UpdateSourceTrigger = trigger
             };
+
+            if (path is string stringPath)
+            {
+                binding.Path = new PropertyPath(stringPath);
+            }
+            else if (path is PropertyPath propPath)
+            {
+                binding.Path = propPath;
+            }
+            else
+            {
+                binding.Path = new PropertyPath(path);
+            }
 
             if (converter != null)
             {

@@ -99,9 +99,15 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = Key.Escape });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectPrevGameCommand, Key = Key.F2 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectNextGameCommand, Key = Key.F3 });
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.ToggleGameDetailsCommand, XInputButton.B));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.SelectPrevGameCommand, XInputButton.LeftShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.SelectNextGameCommand, XInputButton.RightShoulder));
+
+                    var backInput = new XInputBinding { Command = mainModel.ToggleGameDetailsCommand };
+                    BindingTools.SetBinding(backInput,
+                        XInputBinding.ButtonProperty,
+                        null,
+                        typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+                    ViewHost.InputBindings.Add(backInput);
 
                     BindingTools.SetBinding(ViewHost,
                          FocusBahaviors.FocusBindingProperty,
