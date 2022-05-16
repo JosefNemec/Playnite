@@ -346,7 +346,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { 19, new Controls.SettingsSections.Development() { DataContext = this } },
                 { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
                 { 21, new Controls.SettingsSections.Sorting() { DataContext = this } },
-                { 22, new Controls.SettingsSections.Updates() { DataContext = this } }
+                { 22, new Controls.SettingsSections.Updates() { DataContext = this } },
+                { 23, new Controls.SettingsSections.AppearanceListView() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];

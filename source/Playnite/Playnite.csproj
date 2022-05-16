@@ -229,6 +229,7 @@
     <Compile Include="Common\Extensions\KeyExtensions.cs" />
     <Compile Include="Common\M3U.cs" />
     <Compile Include="Common\Network.cs" />
+    <Compile Include="Converters\TicksToTimeSpanConverter.cs" />
     <Compile Include="DateTimes.cs" />
     <Compile Include="SortableNameConverter.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />

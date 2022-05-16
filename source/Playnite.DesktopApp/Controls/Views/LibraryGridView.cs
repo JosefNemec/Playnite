@@ -92,10 +92,20 @@ namespace Playnite.DesktopApp.Controls.Views
             if (ListGames != null)
             {
                 ListGames.ItemsPanel = GetItemsPanelTemplateCache();
+                ScrollViewerBehaviours.SetCustomScrollEnabled(ListGames, true);
                 BindingTools.SetBinding(ListGames,
-                    ScrollViewerBehaviours.ScrollAmountProperty,
+                    ScrollViewerBehaviours.SensitivityProperty,
                     mainModel.AppSettings,
-                    nameof(PlayniteSettings.GridViewScrollModifier));
+                    nameof(PlayniteSettings.GridViewScrollSensitivity));
+                BindingTools.SetBinding(ListGames,
+                    ScrollViewerBehaviours.SpeedProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.GridViewScrollSpeed),
+                    converter: new TicksToTimeSpanConverter());
+                BindingTools.SetBinding(ListGames,
+                    ScrollViewerBehaviours.SmoothScrollEnabledProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.GridViewSmoothScrollEnabled));
             }
 
             if (ControlGameView != null)

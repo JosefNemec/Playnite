@@ -3302,9 +3302,17 @@ namespace Playnite
         /// </summary>
         public const string GridViewSpacingModeStartAndEndOnly = "LOCGridViewSpacingModeStartAndEndOnly";
         /// <summary>
-        /// Scroll amount modifier
+        /// Scrolling sensitivity
         /// </summary>
-        public const string GridViewScrollAmountModifier = "LOCGridViewScrollAmountModifier";
+        public const string ScrollingSensitivity = "LOCScrollingSensitivity";
+        /// <summary>
+        /// Smooth scrolling
+        /// </summary>
+        public const string SmoothScrolling = "LOCSmoothScrolling";
+        /// <summary>
+        /// Animation speed
+        /// </summary>
+        public const string SmoothScrollingSpeed = "LOCSmoothScrollingSpeed";
         /// <summary>
         /// Remove item?
         /// </summary>

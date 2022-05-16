@@ -383,6 +383,7 @@
               ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}"
               VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
               VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
+              VirtualizingPanel.ScrollUnit="Pixel"
               pbeh:ScrollToSelectedBehavior.Enabled="True">
         <ListView.Resources>
             <p:BindingProxy x:Key="SettingsProxy" Data="{Binding}" />

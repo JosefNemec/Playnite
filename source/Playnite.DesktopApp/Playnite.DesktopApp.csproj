@@ -167,6 +167,9 @@
     <Compile Include="Controls\NumericDoubleBox.cs" />
     <Compile Include="Controls\LongNumericBox.cs" />
     <Compile Include="Controls\PathSelectionBox.cs" />
+    <Compile Include="Controls\SettingsSections\AppearanceListView.xaml.cs">
+      <DependentUpon>AppearanceListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\LibrariesConfigWindowInfo.xaml.cs">
       <DependentUpon>LibrariesConfigWindowInfo.xaml</DependentUpon>
     </Compile>
@@ -566,6 +569,10 @@
     <Page Include="Controls\MetadataDownloadSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\AppearanceListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\LibrariesConfigWindowInfo.xaml">
       <Generator>MSBuild:Compile</Generator>

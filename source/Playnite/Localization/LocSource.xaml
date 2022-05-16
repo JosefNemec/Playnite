@@ -917,7 +917,9 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Uniform</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Items only</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">Start and end only</sys:String>
-    <sys:String x:Key="LOCGridViewScrollAmountModifier">Scroll amount modifier</sys:String>
+    <sys:String x:Key="LOCScrollingSensitivity">Scrolling sensitivity</sys:String>
+    <sys:String x:Key="LOCSmoothScrolling">Smooth scrolling</sys:String>
+    <sys:String x:Key="LOCSmoothScrollingSpeed">Animation speed</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">Remove item?</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage">Are you sure you want to remove this item?</sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems">Show buttons on top panel:</sys:String>

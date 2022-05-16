@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Playnite.Behaviors;
+using Playnite.Common;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
 using System;
@@ -82,6 +83,20 @@ namespace Playnite.DesktopApp.Controls.Views
             {
                 SetListGamesBinding();
                 ListGames.AppSettings = mainModel.AppSettings;
+                ScrollViewerBehaviours.SetCustomScrollEnabled(ListGames.GridGames, true);
+                BindingTools.SetBinding(ListGames.GridGames,
+                    ScrollViewerBehaviours.SensitivityProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.ListViewScrollSensitivity));
+                BindingTools.SetBinding(ListGames.GridGames,
+                    ScrollViewerBehaviours.SpeedProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.ListViewScrollSpeed),
+                    converter: new Converters.TicksToTimeSpanConverter());
+                BindingTools.SetBinding(ListGames.GridGames,
+                    ScrollViewerBehaviours.SmoothScrollEnabledProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.ListViewSmoothScrollEnabled));
             }
 
             ControlTemplateTools.InitializePluginControls(
