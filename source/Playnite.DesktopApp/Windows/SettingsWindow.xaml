@@ -56,6 +56,7 @@
                     <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="2" />
                     <TreeViewItem Header="{DynamicResource LOCDetailsViewLabel}" Tag="3" />
                     <TreeViewItem Header="{DynamicResource LOCGridViewLabel}" Tag="4" />
+                    <TreeViewItem Header="{DynamicResource LOCListViewLabel}" Tag="23" />
                     <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="5" />
                     <TreeViewItem Header="{DynamicResource LOCSettingsTopPanelLabel}" Tag="20" />
                 </TreeViewItem>
@@ -75,7 +76,9 @@
 
         <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
                 BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
-            <ContentControl Content="{Binding SelectedSectionView}"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ContentControl Content="{Binding SelectedSectionView}" />
+            </ScrollViewer>
         </Border>
     </DockPanel>
 </controls:WindowBase>

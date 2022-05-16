@@ -10,25 +10,23 @@
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
     </UserControl.Resources>
 
-    <Grid>
-        <StackPanel Margin="15">
-            <CheckBox Content="{DynamicResource LOCSortingNameAutofill}"
-                  ToolTip="{DynamicResource LOCSortingNameAutofillTooltip}"
-                  Name="CheckAsyncImages" IsChecked="{Binding Settings.GameSortingNameAutofill}"/>
-
-            <TextBlock Margin="0,30,0,5" Text="{DynamicResource LOCSortingNameRemovedArticles}" Style="{DynamicResource BaseTextBlockStyle}" TextWrapping="Wrap" ToolTip="{DynamicResource LOCSortingNameRemovedArticlesTooltip}" />
-            <ListBox DockPanel.Dock="Top" Name="ListSortingNameRemovedArticles"
-                  SelectionMode="Extended" Height="250"
-                  ItemsSource="{Binding SortingNameRemovedArticles}"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,0" MinWidth="80"
-                    Command="{Binding AddSortingNameRemovedArticle}" />
-                <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,0,0" MinWidth="80"
-                    Command="{Binding RemoveSortingNameRemovedArticle}" 
-                    CommandParameter="{Binding SelectedItems, ElementName=ListSortingNameRemovedArticles}"/>
-                <Button Content="{DynamicResource LOCSortingNameAutofillButton}" Margin="40,5,0,0" MinWidth="80"
-                    Command="{Binding FillSortingNameForAllGames}" />
-            </StackPanel>
+    <StackPanel Margin="15">
+        <CheckBox Content="{DynamicResource LOCSortingNameAutofill}"
+                ToolTip="{DynamicResource LOCSortingNameAutofillTooltip}"
+                Name="CheckAsyncImages" IsChecked="{Binding Settings.GameSortingNameAutofill}"/>
+        <TextBlock Margin="0,15,0,5" Text="{DynamicResource LOCSortingNameRemovedArticles}"
+                   TextWrapping="Wrap" ToolTip="{DynamicResource LOCSortingNameRemovedArticlesTooltip}" />
+        <ListBox Name="ListSortingNameRemovedArticles"
+                SelectionMode="Extended" Height="250"
+                ItemsSource="{Binding SortingNameRemovedArticles}"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,0" MinWidth="80"
+                Command="{Binding AddSortingNameRemovedArticle}" />
+            <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,0,0" MinWidth="80"
+                Command="{Binding RemoveSortingNameRemovedArticle}" 
+                CommandParameter="{Binding SelectedItems, ElementName=ListSortingNameRemovedArticles}"/>
+            <Button Content="{DynamicResource LOCSortingNameAutofillButton}" Margin="40,5,0,0" MinWidth="80"
+                Command="{Binding FillSortingNameForAllGames}" />
         </StackPanel>
-    </Grid>
+    </StackPanel>
 </UserControl>

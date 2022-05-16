@@ -52,10 +52,8 @@
             <ComboBox SelectedValue="{Binding Settings.AgeRatingOrgPriority}"
                       ItemsSource="{Binding Source={StaticResource AgeRatingOrgValues}}" />
         </StackPanel>
-        
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      DockPanel.Dock="Top" Margin="0,10,0,0">
-            <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
-        </ScrollViewer>
+
+        <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}"
+                                         DockPanel.Dock="Top" Margin="0,10,0,0"/>
     </DockPanel>
 </UserControl>
