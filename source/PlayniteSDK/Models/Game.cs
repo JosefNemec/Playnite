@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using Playnite.SDK.Data;
+using Playnite.SDK.Extensions;
 
 namespace Playnite.SDK.Models
 {
@@ -171,7 +172,9 @@ namespace Playnite.SDK.Models
         ///
         CompletionStatusId = 87,
         ///
-        OverrideInstallState = 88
+        OverrideInstallState = 88,
+        ///
+        SizeOnDisk = 89
     }
 
     /// <summary>
@@ -344,6 +347,30 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private long _sizeOnDisk;
+
+        /// <summary>
+        /// Installation size of the Game in bytes. This value is calculated using the file sizes in
+        /// <see cref="InstallDirectory"/>.
+        /// </summary>
+        public long SizeOnDisk
+        {
+            get => _sizeOnDisk;
+            set
+            {
+                if (_sizeOnDisk == value) return;
+                _sizeOnDisk = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Installation size of the Game in a human readable format (eg: "53.4 MB"). Use <see cref="SizeOnDisk"/>
+        /// if you want the size in bytes.
+        /// </summary>
+        [DontSerialize]
+        public string SizeOnDiskAsFileSize => SizeOnDisk.ToFileSizeString();
+        
         private DateTime? lastActivity;
         /// <summary>
         /// Gets or sets last played date.
@@ -1621,6 +1648,11 @@ namespace Playnite.SDK.Models
                     tro.InstallDirectory = InstallDirectory;
                 }
 
+                if (SizeOnDisk != tro.SizeOnDisk)
+                {
+                    tro.SizeOnDisk = SizeOnDisk;
+                }
+                
                 if (LastActivity != tro.LastActivity)
                 {
                     tro.LastActivity = LastActivity;
@@ -1886,6 +1918,11 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.InstallDirectory);
             }
 
+            if (SizeOnDisk != otherGame.SizeOnDisk)
+            {
+                changes.Add(GameField.SizeOnDisk);
+            }
+            
             if (LastActivity != otherGame.LastActivity)
             {
                 changes.Add(GameField.LastActivity);
