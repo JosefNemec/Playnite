@@ -595,7 +595,6 @@ namespace Playnite.DesktopApp.ViewModels
             var newGame = new Game()
             {
                 Name = "New Game",
-                IsInstalled = true,
                 CompletionStatusId = Database.GetCompletionStatusSettings().DefaultStatus
             };
 
