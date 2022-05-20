@@ -49,18 +49,29 @@ namespace Playnite.Common
 
     public partial class Programs
     {
-        private static readonly string[] uninstallerMasks = new string[]
+        private static readonly string[] scanFileExclusionMasks = new string[]
         {
             "uninst",
             "setup",
-            @"unins\d+"
+            @"unins\d+",
+            "Config",
+            "DXSETUP",
+            @"vc_redist\.x64",
+            @"vc_redist\.x86",
+            @"^UnityCrashHandler32\.exe$",
+            @"^UnityCrashHandler64\.exe$",
+            @"^notification_helper\.exe$",
+            @"^python\.exe$",
+            @"^pythonw\.exe$",
+            @"^zsync\.exe$",
+            @"^zsyncmake\.exe$"
         };
 
         private static ILogger logger = LogManager.GetLogger();
 
-        public static bool IsFileUninstaller(string path)
+        public static bool IsFileScanExcluded(string path)
         {
-            return uninstallerMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
+            return scanFileExclusionMasks.Any(a => Regex.IsMatch(path, a, RegexOptions.IgnoreCase));
         }
 
         public static void CreateUrlShortcut(string url, string iconPath, string shortcutPath)
