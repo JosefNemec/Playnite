@@ -465,9 +465,12 @@ namespace Playnite
 
         public void SetHideGames(List<Game> games, bool state)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                SetHideGame(game, state);
+                foreach (var game in games)
+                {
+                    SetHideGame(game, state);
+                }
             }
         }
 
@@ -479,9 +482,12 @@ namespace Playnite
 
         public void ToggleHideGames(List<Game> games)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                ToggleHideGame(game);
+                foreach (var game in games)
+                {
+                    ToggleHideGame(game);
+                }
             }
         }
 
@@ -493,9 +499,12 @@ namespace Playnite
 
         public void SetFavoriteGames(List<Game> games, bool state)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                SetFavoriteGame(game, state);
+                foreach (var game in games)
+                {
+                    SetFavoriteGame(game, state);
+                }
             }
         }
 
@@ -507,9 +516,12 @@ namespace Playnite
 
         public void ToggleFavoriteGame(List<Game> games)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                ToggleFavoriteGame(game);
+                foreach (var game in games)
+                {
+                    ToggleFavoriteGame(game);
+                }
             }
         }
 
@@ -524,9 +536,12 @@ namespace Playnite
 
         public void SetCompletionStatus(List<Game> games, CompletionStatus status)
         {
-            foreach(var game in games)
+            using (Database.BufferedUpdate())
             {
-                SetCompletionStatus(game, status);
+                foreach (var game in games)
+                {
+                    SetCompletionStatus(game, status);
+                }
             }
         }
 
