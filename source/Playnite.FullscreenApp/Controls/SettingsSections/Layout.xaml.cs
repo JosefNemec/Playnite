@@ -90,6 +90,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 nameof(FullscreenSettings.HorizontalLayout),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToggleSmoothScrolling,
+                CheckBox.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.SmoothScrolling),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
     }
 }

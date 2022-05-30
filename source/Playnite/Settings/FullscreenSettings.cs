@@ -365,7 +365,7 @@ namespace Playnite
             }
         }
 
-        private bool asyncImageLoading = false;
+        private bool asyncImageLoading = true;
         [RequiresRestart]
         public bool AsyncImageLoading
         {
@@ -632,6 +632,17 @@ namespace Playnite
             set
             {
                 imageScalerMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool smoothScrolling = false;
+        public bool SmoothScrolling
+        {
+            get => smoothScrolling;
+            set
+            {
+                smoothScrolling = value;
                 OnPropertyChanged();
             }
         }

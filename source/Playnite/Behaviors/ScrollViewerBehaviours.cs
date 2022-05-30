@@ -25,18 +25,8 @@ namespace Playnite.Behaviors
         {
             this.scroller = scroller;
             ScrollOwner = owner;
-
-            //NameScope.SetNameScope(scroller, new NameScope());
-            //scroller.RegisterName("AnimScrollerTarget", scroller);
-
             Animation = new DoubleAnimation();
             Animation.Completed += Storyboard_Completed;
-
-            //Storyboard.SetTargetName(Animation, "AnimScrollerTarget");
-            //Storyboard.SetTargetProperty(Animation, new PropertyPath(ScrollViewerBehaviours.VerticalOffsetProperty));
-            //Storyboard = new Storyboard();
-            //Storyboard.Completed += Storyboard_Completed;
-            //Storyboard.Children.Add(Animation);
         }
 
         private void Storyboard_Completed(object sender, EventArgs e)
@@ -48,14 +38,10 @@ namespace Playnite.Behaviors
         public void BeginAnimation(double to, TimeSpan speed)
         {
             TargetOffset = to;
-            //Storyboard.Stop(scroller);
-
-            scroller.BeginAnimation(ScrollViewerBehaviours.VerticalOffsetProperty, null);
             Animation.From = scroller.VerticalOffset;
             Animation.To = TargetOffset;
             Animation.Duration = new Duration(speed);
             scroller.BeginAnimation(ScrollViewerBehaviours.VerticalOffsetProperty, Animation);
-            //Storyboard.Begin(scroller, true);
             IsAnimating = true;
         }
     }
@@ -253,17 +239,17 @@ namespace Playnite.Behaviors
                     targetOffset = scroll.VerticalOffset;
                 }
 
-                var newVOffset = targetOffset - (mouseDelta * sensitivity);
-                if (newVOffset < 0)
+                var newOffset = targetOffset - (mouseDelta * sensitivity);
+                if (newOffset < 0)
                 {
-                    newVOffset = 0;
+                    newOffset = 0;
                 }
-                if (newVOffset > scroll.ScrollableHeight)
+                if (newOffset > scroll.ScrollableHeight)
                 {
-                    newVOffset = scroll.ScrollableHeight;
+                    newOffset = scroll.ScrollableHeight;
                 }
 
-                scrollData.BeginAnimation(newVOffset, GetSpeed(scrollData.ScrollOwner));
+                scrollData.BeginAnimation(newOffset, GetSpeed(scrollData.ScrollOwner));
             }
             else
             {

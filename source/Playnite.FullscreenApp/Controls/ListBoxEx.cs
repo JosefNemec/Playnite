@@ -14,6 +14,11 @@ namespace Playnite.FullscreenApp.Controls
     public class ListBoxEx : ListBox
     {
         private FullscreenTilePanel itemsPanel;
+        private bool ignoreKeyRepeat = false;
+        private bool ignoreMouseRepeat = false;
+        private readonly System.Timers.Timer keyRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 200 };
+        private readonly System.Timers.Timer mouseRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 200 };
+
         static ListBoxEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBoxEx), new FrameworkPropertyMetadata(typeof(ListBoxEx)));
@@ -26,6 +31,32 @@ namespace Playnite.FullscreenApp.Controls
             Loaded += ListBoxEx_Loaded;
             Unloaded += ListBoxEx_Unloaded;
             PreviewMouseWheel += ListBoxEx_MouseWheel;
+
+            PreviewKeyDown += ListBoxEx_PreviewKeyDown;
+
+            keyRepeatTimer.Elapsed += (_, __) => ignoreKeyRepeat = false;
+            mouseRepeatTimer.Elapsed += (_, __) => ignoreMouseRepeat = false;
+        }
+
+        private void ListBoxEx_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left ||
+                e.Key == Key.Right ||
+                e.Key == Key.Up ||
+                e.Key == Key.Down  ||
+                e.Key == Key.PageDown ||
+                e.Key == Key.PageUp)
+            {
+                if (ignoreKeyRepeat)
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+                ignoreKeyRepeat = true;
+                keyRepeatTimer.Stop();
+                keyRepeatTimer.Start();
+            }
         }
 
         private void ListBoxEx_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -34,6 +65,16 @@ namespace Playnite.FullscreenApp.Controls
             {
                 return;
             }
+
+            if (ignoreMouseRepeat)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            ignoreMouseRepeat = true;
+            mouseRepeatTimer.Stop();
+            mouseRepeatTimer.Start();
 
             // Not sure how this can happen since it's not null even if no physical keyboard is connected.
             // However there was one crash report with this happening.

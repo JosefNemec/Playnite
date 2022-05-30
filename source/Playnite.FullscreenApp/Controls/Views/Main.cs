@@ -343,7 +343,8 @@ namespace Playnite.FullscreenApp.Controls.Views
                                 new XAttribute(nameof(FullscreenTilePanel.Columns), "{Settings Fullscreen.Columns}"),
                                 new XAttribute(nameof(FullscreenTilePanel.UseHorizontalLayout), "{Settings Fullscreen.HorizontalLayout}"),
                                 new XAttribute(nameof(FullscreenTilePanel.ItemAspectRatio), "{Settings CoverAspectRatio}"),
-                                new XAttribute(nameof(FullscreenTilePanel.ItemSpacing), "{Settings FullscreenItemSpacing}")))
+                                new XAttribute(nameof(FullscreenTilePanel.ItemSpacing), "{Settings FullscreenItemSpacing}"),
+                                new XAttribute(nameof(FullscreenTilePanel.SmoothScrollEnabled), "{Settings Fullscreen.SmoothScrolling}")))
                     ).ToString());
 
                     ListGameItems.ItemTemplate = Xaml.FromString<DataTemplate>(new XDocument(
