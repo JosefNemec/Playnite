@@ -217,12 +217,14 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSearchCommand, Key = Key.Y });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleFiltersCommand, Key = Key.F });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SwitchToDesktopCommand, Key = Key.F11 });
+                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectFilterPresetCommand, Key = Key.R });
 
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.PrevFilterViewCommand, XInputButton.LeftShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.NextFilterViewCommand, XInputButton.RightShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.OpenSearchCommand, XInputButton.Y));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.ToggleFiltersCommand, XInputButton.RightStick));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.OpenMainMenuCommand, XInputButton.Back));
+                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.SelectFilterPresetCommand, XInputButton.LeftStick));
                 }
 
                 MainHost = Template.FindName("PART_MainHost", this) as FrameworkElement;

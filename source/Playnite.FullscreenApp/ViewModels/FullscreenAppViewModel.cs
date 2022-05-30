@@ -1002,5 +1002,16 @@ namespace Playnite.FullscreenApp.ViewModels
         public override void AssignCategories(Game game)
         {
         }
+
+        private void SelectFilterPreset()
+        {
+            if (ItemSelector.SelectSingle<FilterPreset>(
+                LOC.SettingsTopPanelFilterPresetsItem,
+                Database.FilterPresets.Select(a => new SelectableNamedObject<FilterPreset>(a, a.Name)).ToList(),
+                out var selectedPreset))
+            {
+                ActiveFilterPreset = selectedPreset;
+            }
+        }
     }
 }
