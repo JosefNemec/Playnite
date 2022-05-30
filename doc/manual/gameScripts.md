@@ -50,6 +50,11 @@ Playnite provides some built-in global variables that scripts can use to get mor
 | SelectedRomFile | ROM file selected when running a game with multiple ROMs assigned. |
 | StartedProcessId | Process ID of original started process. Might not be available depending on how a game was started. |
 
+Cancelling game startup
+---------------------
+
+Game startup is automatically cancelled if starting script fails with an exception. If you want to manually cancel game startup, set `$StartingArgs.CancelStartup` to `$true`.
+
 Startup script
 ---------------------
 

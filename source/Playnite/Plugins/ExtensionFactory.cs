@@ -575,6 +575,10 @@ namespace Playnite.Plugins
                 try
                 {
                     script.OnGameStarting(args);
+                    if (args.CancelStartup)
+                    {
+                        return;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -587,6 +591,10 @@ namespace Playnite.Plugins
                 try
                 {
                     plugin.Plugin.OnGameStarting(args);
+                    if (args.CancelStartup)
+                    {
+                        return;
+                    }
                 }
                 catch (Exception e)
                 {

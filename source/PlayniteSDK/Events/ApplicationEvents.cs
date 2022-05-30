@@ -96,6 +96,11 @@ namespace Playnite.SDK.Events
         /// Gets ROM file selected when running a game with multiple ROMs assigned.
         /// </summary>
         public string SelectedRomFile { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether game startup should be interrupted.
+        /// </summary>
+        public bool CancelStartup { get; set; }
     }
 
     /// <summary>

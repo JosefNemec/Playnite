@@ -273,6 +273,13 @@ namespace Playnite
                     return;
                 }
 
+                void cancelStartup(string message)
+                {
+                    logger.Warn(message);
+                    controllers.RemovePlayController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, null, false);
+                }
+
                 controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
@@ -285,6 +292,11 @@ namespace Playnite
                 };
 
                 controllers.InvokeOnStarting(this, startingArgs);
+                if (startingArgs.CancelStartup)
+                {
+                    cancelStartup("Game startup cancelled by an extension.");
+                    return;
+                }
 
                 if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
                 {
@@ -295,21 +307,32 @@ namespace Playnite
 
                 var scriptVars = new Dictionary<string, object>
                 {
+                    {  "StartingArgs", startingArgs },
                     {  "SourceAction", startingArgs.SourceAction },
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
                 {
-                    controllers.RemovePlayController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, null, false);
+                    cancelStartup("Game startup cancelled because global game script failed.");
+                    return;
+                }
+
+                if (startingArgs.CancelStartup)
+                {
+                    cancelStartup("Game startup cancelled by global game script.");
                     return;
                 }
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false, GameScriptType.Starting, scriptVars))
                 {
-                    controllers.RemovePlayController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, null, false);
+                    cancelStartup("Game startup cancelled because game script failed.");
+                    return;
+                }
+
+                if (startingArgs.CancelStartup)
+                {
+                    cancelStartup("Game startup cancelled by game script.");
                     return;
                 }
 
