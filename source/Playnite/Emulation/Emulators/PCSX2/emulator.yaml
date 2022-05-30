@@ -18,7 +18,7 @@ Profiles:
     ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
     StartupExecutable: ^pcsx2x64-avx2\.exe$
   - Name: 64bit AVX2 QT
-    StartupArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
+    StartupArguments: '-fullscreen -slowboot -- {ImagePath}'
     Platforms: [sony_playstation2]
     ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
     StartupExecutable: ^pcsx2-qtx64-avx2\.exe$
