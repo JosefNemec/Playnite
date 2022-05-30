@@ -11,18 +11,18 @@
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{DynamicResource LOCAboutWindowTitle}" ResizeMode="NoResize" Height="400" Width="500"
         AutomationProperties.AutomationId="WindowAbout" ShowMinimizeButton="False" ShowMaximizeButton="False">
-
+    
     <DockPanel Margin="5">
-        <DockPanel KeyboardNavigation.TabIndex="3" KeyboardNavigation.TabNavigation="Local" LastChildFill="False" DockPanel.Dock="Bottom">
+        <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
             <Button TabIndex="4" Name="ButtonCreatePackage" Content="{DynamicResource LOCAboutCreateDiagButton}" Style="{StaticResource BottomButton}"
                     Command="{Binding CreateDiagPackageCommand}"/>
-            <Button TabIndex="5" Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True"
+            <Button TabIndex="5" Name="ButtonClose" Content="{DynamicResource LOCCloseLabel}" DockPanel.Dock="Right" IsCancel="True" IsDefault="True"
                     Style="{StaticResource BottomButton}" Command="{Binding CloseCommand}"/>
-            <Button TabIndex="5" Content="{DynamicResource LOCLicenseLabel}" DockPanel.Dock="Left" IsCancel="True"
+            <Button TabIndex="5" Content="{DynamicResource LOCLicenseLabel}" DockPanel.Dock="Left"
                     Style="{StaticResource BottomButton}" Command="{Binding OpenLicensesCommand}"/>
         </DockPanel>
 
-        <GridEx KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top" Margin="10"
+        <GridEx DockPanel.Dock="Top" Margin="10"
                 ColumnCount="3" StarColumns="1">
             <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"
                    Grid.Column="0"  />
@@ -30,22 +30,22 @@
             <StackPanel Margin="15,0,0,0" Grid.Column="1">
                 <Label Name="TextVersionInfo" Content="{Binding VersionInfo}" Foreground="{StaticResource TextBrush}" FontSize="20"/>           
                 <TextBlock Text="{DynamicResource LOCAboutAuthor}" Foreground="LightGray"/>
-                <TextBlock KeyboardNavigation.TabIndex="1">
-                <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
-                           Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                    <Run Text="{DynamicResource LOCAboutHomePageLink}"/>
-                </Hyperlink>
+                <TextBlock>
+                    <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
+                               Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                        <Run Text="{DynamicResource LOCAboutHomePageLink}"/>
+                    </Hyperlink>
                 </TextBlock>
-                <TextBlock KeyboardNavigation.TabIndex="2">
-                <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/"
-                           Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                    <Run Text="{DynamicResource LOCAboutSourceLink}"/>
-                </Hyperlink>
+                <TextBlock>
+                    <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/"
+                               Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                        <Run Text="{DynamicResource LOCAboutSourceLink}"/>
+                    </Hyperlink>
                 </TextBlock>
             </StackPanel>
         </GridEx>
 
-        <TabControl TabIndex="2" KeyboardNavigation.TabNavigation="Local" DockPanel.Dock="Top">
+        <TabControl TabIndex="2" DockPanel.Dock="Top">
             <TabItem Header="{DynamicResource LOCPatronsLabel}">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Text="{DynamicResource LOCPatreonDevelopMessage}"
