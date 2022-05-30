@@ -111,10 +111,18 @@ namespace Playnite
                 }
 
                 var langPath = Path.Combine(path, file);
-                ResourceDictionary res = null;
+                var localeString = "";
                 try
                 {
-                    res = Xaml.FromFile<ResourceDictionary>(langPath);
+                    foreach (var line in File.ReadLines(langPath, Encoding.UTF8))
+                    {
+                        var match = Regex.Match(line, @"LanguageName""\>(.+)\<");
+                        if (match.Success)
+                        {
+                            localeString = match.Groups[1].Value;
+                            break;
+                        }
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -125,7 +133,7 @@ namespace Playnite
                 langs.Add(new PlayniteLanguage()
                 {
                     Id = Path.GetFileNameWithoutExtension(langPath),
-                    LocaleString = res["LanguageName"].ToString(),
+                    LocaleString = localeString,
                     TranslatedPercentage = lngCov
                 });
             }
