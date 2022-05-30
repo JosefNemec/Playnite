@@ -6,6 +6,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBoxEx">
@@ -17,8 +18,9 @@
                             <Grid>
                                 <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Visibility="Hidden"/>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="&#x25CF;" Style="{DynamicResource TextBlockBaseStyle}"
+                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"
+                                               Foreground="{TemplateBinding Foreground}" />
+                                    <TextBlock Text="&#x25CF;" Style="{DynamicResource TextBlockBaseStyle}"                                               
                                                FontSize="12"
                                                HorizontalAlignment="Center"
                                                x:Name="SelectionBullet" Visibility="Hidden"/>
@@ -28,8 +30,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="FontWeight" Value="SemiBold" TargetName="TextContent" />
-                            <Setter Property="Visibility" Value="Visible" TargetName="SelectionBullet" />
+                            <Setter Property="Foreground" Value="{DynamicResource GlyphBrush}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="FontWeight" Value="SemiBold" TargetName="TextContent" />
