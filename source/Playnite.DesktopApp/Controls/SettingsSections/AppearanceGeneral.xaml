@@ -52,14 +52,36 @@
             <ContentControl Content="{DynamicResource LOCSettingsInterfaceFont}" VerticalAlignment="Center"
                             ContentStringFormat="{}{0} *" />
             <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
-                      SelectedValue="{Binding Settings.FontFamilyName}" />
+                      SelectedValue="{Binding Settings.FontFamilyName}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock  Text="{Binding Path='',Mode=OneWay}" FontFamily="{Binding  Path='',Mode=OneWay}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate >
+                        <VirtualizingStackPanel VirtualizationMode="Recycling"/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
             <ContentControl Content="{DynamicResource LOCSettingsInterfaceMonoFont}" VerticalAlignment="Center"
                             ContentStringFormat="{}{0} *" />
             <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
-                      SelectedValue="{Binding Settings.MonospaceFontFamilyName}" />
+                      SelectedValue="{Binding Settings.MonospaceFontFamilyName}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock  Text="{Binding Path='',Mode=OneWay}" FontFamily="{Binding  Path='',Mode=OneWay}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate >
+                        <VirtualizingStackPanel VirtualizationMode="Recycling"/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
         </StackPanel>
 
         <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
