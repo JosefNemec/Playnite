@@ -53,6 +53,13 @@ Multiple patterns can be specified by separating the list with comma, for exampl
 > [!NOTE]
 > `chd` files are excluded by default because there are currently no records for them in emulation database Playnite uses for game matching.
 
+
+### Excluding files and folders from import completely
+
+Scanner configurations allow to specify list of files and folders to be completely ignored during emulation scan. This list can be configured via `Exclusions` tab. Files and folders can be also added directly from scan results, via right-click menu on scanned games/files.
+
+The list should contain relative file/folder paths, relative to scan folder specified in scanner's settings. For example, if you want to exclude `c:\test\dir\somefile.rom` file that is being detected by a scanner set to scan `c:\test\` folder, you would set exclusion to `dir\somefile.rom`. Or just `dir` to exclude the entire `dir` folder and its files from the scan.
+
 ### Exclude online files
 
 Enabling this option will skip scan of files that are stored on cloud storage paths and are not currently downloaded, to prevent files from being downloaded during scanning process. Currently supported platforms are: Google Drive, DropBox and OneDrive.

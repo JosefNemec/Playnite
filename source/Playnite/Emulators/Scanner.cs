@@ -539,12 +539,12 @@ namespace Playnite.Emulators
             }
 
             List<string> files;
-            string[] dirs;
+            List<string> dirs;
             try
             {
                 directory = Paths.FixPathLength(directory);
                 files = Directory.GetFiles(directory).ToList();
-                dirs = Directory.GetDirectories(directory);
+                dirs = Directory.GetDirectories(directory).ToList();
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -553,6 +553,17 @@ namespace Playnite.Emulators
             }
 
             fileScanCallback?.Invoke(directory);
+            if (scanner.ExcludedFiles.HasItems())
+            {
+                foreach (var excFile in scanner.ExcludedFiles.Where(a => !a.IsNullOrWhiteSpace()).Select(a => Path.Combine(directory, a.Trim())))
+                {
+                    var match = files.FirstOrDefault(a => a.Equals(excFile, StringComparison.OrdinalIgnoreCase));
+                    if (match != null)
+                    {
+                        files.Remove(match);
+                    }
+                }
+            }
 
             void processPlayListFile(string filePath, Func<string, List<string>> playListParser)
             {
@@ -582,22 +593,29 @@ namespace Playnite.Emulators
 
                         fileScanCallback?.Invoke(childPath);
                         var crcScan = true;
-                        if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(childPath))
+                        if (databases.HasItems())
                         {
-                            if (scanner.UseSimplifiedOnlineFileScan)
+                            if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(childPath))
                             {
+                                if (scanner.UseSimplifiedOnlineFileScan)
+                                {
+                                    crcScan = false;
+                                }
+                                else
+                                {
+                                    logger.Trace($"Skipping scan of {childPath} rom, scan of online files is disabled.");
+                                    continue;
+                                }
+                            }
+
+                            if (crcScan && Paths.MathcesFilePattern(childPath, crcExludePatterns))
+                            {
+                                logger.Trace($"Skipping crc check of {childPath}. Excluded by pattern settings.");
                                 crcScan = false;
                             }
-                            else
-                            {
-                                logger.Trace($"Skipping scan of {childPath} rom, scan of online files is disabled.");
-                                continue;
-                            }
                         }
-
-                        if (crcScan && Paths.MathcesFilePattern(childPath, crcExludePatterns))
+                        else
                         {
-                            logger.Trace($"Skipping crc check of {childPath}. Excluded by pattern settings.");
                             crcScan = false;
                         }
 
@@ -691,25 +709,36 @@ namespace Playnite.Emulators
 
                 try
                 {
-                    fileScanCallback?.Invoke(file);
                     var crcScan = true;
-                    if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(file))
+                    if (databases.HasItems())
                     {
-                        if (scanner.UseSimplifiedOnlineFileScan)
+                        if (scanner.ExcludeOnlineFiles && !IsFileDataAvailable(file))
                         {
+                            if (scanner.UseSimplifiedOnlineFileScan)
+                            {
+                                crcScan = false;
+                            }
+                            else
+                            {
+                                logger.Trace($"Skipping scan of {file} rom, scan of online files is disabled.");
+                                continue;
+                            }
+                        }
+
+                        if (crcScan && Paths.MathcesFilePattern(file, crcExludePatterns))
+                        {
+                            logger.Trace($"Skipping crc check of {file}. Excluded by pattern settings.");
                             crcScan = false;
                         }
-                        else
-                        {
-                            logger.Trace($"Skipping scan of {file} rom, scan of online files is disabled.");
-                            continue;
-                        }
+                    }
+                    else
+                    {
+                        crcScan = false;
                     }
 
-                    if (crcScan && Paths.MathcesFilePattern(file, crcExludePatterns))
+                    if (crcScan)
                     {
-                        logger.Trace($"Skipping crc check of {file}. Excluded by pattern settings.");
-                        crcScan = false;
+                        fileScanCallback?.Invoke(file);
                     }
 
                     var romData = LookupGameInDb(
@@ -740,6 +769,18 @@ namespace Playnite.Emulators
 
             if (scanSubfolders)
             {
+                if (scanner.ExcludedDirectories.HasItems())
+                {
+                    foreach (var excDir in scanner.ExcludedDirectories.Where(a => !a.IsNullOrWhiteSpace()).Select(a => Path.Combine(directory, a.Trim())))
+                    {
+                        var match = dirs.FirstOrDefault(a => a.TrimEnd(Paths.DirectorySeparators).Equals(excDir.TrimEnd(Paths.DirectorySeparators), StringComparison.OrdinalIgnoreCase));
+                        if (match != null)
+                        {
+                            dirs.Remove(match);
+                        }
+                    }
+                }
+
                 foreach (var dir in dirs)
                 {
                     if (cancelToken.IsCancellationRequested)
@@ -1164,9 +1205,13 @@ namespace Playnite.Emulators
         }
     }
 
-    public class ScannedRom
+    public class ScannedRom : ObservableObject
     {
-        public bool Import { get; set; } = true;
+        #region backing fields
+        private bool import = true;
+        #endregion backing fields
+
+        public bool Import { get => import; set => SetValue(ref import, value); }
         public DatGame DbData { get; set; }
         public RomName Name { get; set; }
         public string Path { get; set; }

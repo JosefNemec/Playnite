@@ -44,7 +44,7 @@
         <controls:ExtendedDataGrid Grid.Row="1" Margin="10,5,10,0"
                   Visibility="{Binding IsScanSetup, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                   CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" GridLinesVisibility="None"
-                  ItemsSource="{Binding CollectionView}" SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}">
+                  ItemsSource="{Binding GameList}" SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="ContextMenuOpening" >
                     <prism:InvokeCommandAction Command="{Binding Data.ContextMenuOpening, Source={StaticResource BindingProxy}}" />
@@ -112,6 +112,18 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                                 <Setter Property="Focusable" Value="false"/>
+                                <Setter Property="ContextMenu">
+                                    <Setter.Value>
+                                        <ContextMenu>
+                                            <MenuItem Header="{DynamicResource LOCEmuImportAddROMExclusionList}"
+                                                      Command="{Binding Data.AddFileToExclusionListCommand, Source={StaticResource BindingProxy}}"
+                                                      CommandParameter="{Binding}"/>
+                                            <MenuItem Header="{DynamicResource LOCEmuImportAddFolderExclusionList}"
+                                                      Command="{Binding Data.AddDirToExclusionListCommand, Source={StaticResource BindingProxy}}"
+                                                      CommandParameter="{Binding}"/>
+                                        </ContextMenu>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.View>

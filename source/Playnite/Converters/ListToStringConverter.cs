@@ -1,6 +1,7 @@
 ﻿using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -143,6 +144,55 @@ namespace Playnite.Converters
                 if (targetType == typeof(ComparableList<string>))
                 {
                     return new ComparableList<string>(converted);
+                }
+                if (targetType == typeof(ObservableCollection<string>))
+                {
+                    return new ObservableCollection<string>(converted);
+                }
+                else
+                {
+                    return converted.ToList();
+                }
+            }
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+
+    public class ListToMultilineStringConverter : MarkupExtension, IValueConverter
+    {
+        private readonly string[] splitter = new string[] { "\n" };
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            return string.Join("\n", (IEnumerable<object>)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var stringVal = (string)value;
+            if (string.IsNullOrEmpty(stringVal))
+            {
+                return null;
+            }
+            else
+            {
+                var converted = stringVal.Split(splitter, StringSplitOptions.None).Select(a => a.Trim('\r')).ToArray();
+                if (targetType == typeof(ComparableList<string>))
+                {
+                    return new ComparableList<string>(converted);
+                }
+                if (targetType == typeof(ObservableCollection<string>))
+                {
+                    return new ObservableCollection<string>(converted);
                 }
                 else
                 {

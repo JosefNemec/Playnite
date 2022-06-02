@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -151,6 +152,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        List<string> excludedFiles;
+        /// <summary>
+        /// Gets or sets list of files excluded from scan.
+        /// </summary>
+        public List<string> ExcludedFiles
+        {
+            get => excludedFiles;
+            set
+            {
+                excludedFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        List<string> excludedDirectories;
+        /// <summary>
+        /// Gets or sets list of foilders excluded from scan.
+        /// </summary>
+        public List<string> ExcludedDirectories
+        {
+            get => excludedDirectories;
+            set
+            {
+                excludedDirectories = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -205,6 +234,16 @@ namespace Playnite.SDK.Models
                 if (ScanInsideArchives != tro.ScanInsideArchives)
                 {
                     tro.ScanInsideArchives = ScanInsideArchives;
+                }
+
+                if (!ExcludedFiles.IsListEqual(tro.ExcludedFiles))
+                {
+                    tro.ExcludedFiles = ExcludedFiles;
+                }
+
+                if (!ExcludedDirectories.IsListEqual(tro.ExcludedDirectories))
+                {
+                    tro.ExcludedDirectories = ExcludedDirectories;
                 }
             }
             else

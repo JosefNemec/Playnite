@@ -390,87 +390,101 @@
 
                         <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
 
-                        <controls:GridEx KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,5,5,0"
-                                     AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="10" StarRows="10"
-                                     IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
-                                     DataContext="{Binding SelectedScanner}">
-                            <controls:GridEx.Resources>
-                                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="Margin" Value="0,10,10,10" />
-                                </Style>
-                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                </Style>
-                                <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                </Style>
-                            </controls:GridEx.Resources>
+                        <TabControl KeyboardNavigation.TabNavigation="Local" Grid.Column="2" Margin="5,0,5,0"
+                                    IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
+                                    DataContext="{Binding SelectedScanner}">
+                            <TabItem Header="{DynamicResource LOCGeneralLabel}">
+                                <GridEx AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="10" StarRows="10"
+                                        Margin="5,5,5,0">
+                                    <controls:GridEx.Resources>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="Margin" Value="0,10,10,10" />
+                                        </Style>
+                                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                        <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}">
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </controls:GridEx.Resources>
 
-                            <!--Name-->
-                            <TextBlock Text="{DynamicResource LOCNameLabel}" />
-                            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <!--Name-->
+                                    <TextBlock Text="{DynamicResource LOCNameLabel}" />
+                                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <!--Directory-->
-                            <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
-                            <pctrls:PathSelectionBox ShowDirectorySelector="True"
-                                                 Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <!--Directory-->
+                                    <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
+                                    <pctrls:PathSelectionBox ShowDirectorySelector="True"
+                                                             Text="{Binding Directory, UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <!--Emulator-->
-                            <TextBlock Text="{DynamicResource LOCEmuScanEmulator}" VerticalAlignment="Center" />
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <ComboBox Width="150" VerticalAlignment="Center" Name="ComboEmulatorList"
-                                      ItemsSource="{Binding Data.EditingEmulators, Source={StaticResource Proxy}}"
-                                      DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}" />
-                                <TextBlock Text="{DynamicResource LOCProfileLabel}" VerticalAlignment="Center" Margin="10,0,10,0"  />
-                                <ComboBox Width="150" VerticalAlignment="Center"
-                                      ItemsSource="{Binding SelectedItem.AllProfiles, ElementName=ComboEmulatorList}"
-                                      DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId, Delay=50}" />
-                            </StackPanel>
+                                    <!--Emulator-->
+                                    <TextBlock Text="{DynamicResource LOCEmuScanEmulator}" VerticalAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <ComboBox Width="150" VerticalAlignment="Center" Name="ComboEmulatorList"
+                                                  ItemsSource="{Binding Data.EditingEmulators, Source={StaticResource Proxy}}"
+                                                  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorId}" />
+                                        <TextBlock Text="{DynamicResource LOCProfileLabel}" VerticalAlignment="Center" Margin="10,0,10,0"  />
+                                        <ComboBox Width="150" VerticalAlignment="Center"
+                                                  ItemsSource="{Binding SelectedItem.AllProfiles, ElementName=ComboEmulatorList}"
+                                                  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId, Delay=50}" />
+                                    </StackPanel>
 
-                            <!--IgnoreTypes-->
-                            <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
-                                       ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
-                            <TextBox Text="{Binding CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
-                                     ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                                    <!--IgnoreTypes-->
+                                    <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
+                                               ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+                                    <TextBox Text="{Binding CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
+                                             ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
 
-                            <!--Startup scan-->
-                            <CheckBox Content="{DynamicResource LOCEmuScanIncludeGlobalUpdate}"
-                                  Grid.ColumnSpan="2" Margin="0,5,10,5"
-                                  IsChecked="{Binding InGlobalUpdate}"/>
+                                    <!--Startup scan-->
+                                    <CheckBox Content="{DynamicResource LOCEmuScanIncludeGlobalUpdate}"
+                                              Grid.ColumnSpan="2" Margin="0,5,10,5"
+                                              IsChecked="{Binding InGlobalUpdate}"/>
 
-                            <!--Exclude online files-->
-                            <CheckBox Content="{DynamicResource LOCEmuExcludeOnlineFiles}"
-                                      ToolTip="{DynamicResource LOCEmuExcludeOnlineFilesTooltip}"
-                                      Name="CheckExcludeOnlineFiles"
-                                      Grid.ColumnSpan="2" Margin="0,10,10,5"
-                                      IsChecked="{Binding ExcludeOnlineFiles}" />
+                                    <!--Exclude online files-->
+                                    <CheckBox Content="{DynamicResource LOCEmuExcludeOnlineFiles}"
+                                              ToolTip="{DynamicResource LOCEmuExcludeOnlineFilesTooltip}"
+                                              Name="CheckExcludeOnlineFiles"
+                                              Grid.ColumnSpan="2" Margin="0,10,10,5"
+                                              IsChecked="{Binding ExcludeOnlineFiles}" />
 
-                            <!--Scan online files by file name-->
-                            <CheckBox Content="{DynamicResource LOCEmuUseSimplifiedOnlineFileScan}"
-                                      ToolTip="{DynamicResource LOCEmuUseSimplifiedOnlineFileScanTooltip}"
-                                      IsEnabled="{Binding IsChecked, ElementName=CheckExcludeOnlineFiles}"
-                                      Grid.ColumnSpan="2" Margin="25,10,10,5"
-                                      IsChecked="{Binding UseSimplifiedOnlineFileScan}" />
-                            
-                            <!--Use relative paths-->
-                            <CheckBox Content="{DynamicResource LOCEmuImportWithRelativePaths}"
-                                      ToolTip="{DynamicResource LOCEmuImportWithRelativePathsTooltip}"
-                                      ToolTipService.InitialShowDelay="200"
-                                      Grid.ColumnSpan="2" Margin="0,10,10,5"
-                                      IsChecked="{Binding ImportWithRelativePaths}"/>
+                                    <!--Scan online files by file name-->
+                                    <CheckBox Content="{DynamicResource LOCEmuUseSimplifiedOnlineFileScan}"
+                                              ToolTip="{DynamicResource LOCEmuUseSimplifiedOnlineFileScanTooltip}"
+                                              IsEnabled="{Binding IsChecked, ElementName=CheckExcludeOnlineFiles}"
+                                              Grid.ColumnSpan="2" Margin="25,10,10,5"
+                                              IsChecked="{Binding UseSimplifiedOnlineFileScan}" />
 
-                            <!--Scan subfolders-->
-                            <CheckBox Content="{DynamicResource LOCEmuImportScanSubfolders}"
-                                      Grid.ColumnSpan="2" Margin="0,10,10,5"
-                                      IsChecked="{Binding ScanSubfolders}"/>
+                                    <!--Use relative paths-->
+                                    <CheckBox Content="{DynamicResource LOCEmuImportWithRelativePaths}"
+                                              ToolTip="{DynamicResource LOCEmuImportWithRelativePathsTooltip}"
+                                              ToolTipService.InitialShowDelay="200"
+                                              Grid.ColumnSpan="2" Margin="0,10,10,5"
+                                              IsChecked="{Binding ImportWithRelativePaths}"/>
 
-                            <!--Archive scan-->
-                            <CheckBox Content="{DynamicResource LOCEmuImportScanInsideArchives}"
-                                      Grid.ColumnSpan="2" Margin="0,10,10,5"
-                                      IsChecked="{Binding ScanInsideArchives}"/>
-                        </controls:GridEx>
+                                    <!--Scan subfolders-->
+                                    <CheckBox Content="{DynamicResource LOCEmuImportScanSubfolders}"
+                                              Grid.ColumnSpan="2" Margin="0,10,10,5"
+                                              IsChecked="{Binding ScanSubfolders}"/>
 
+                                    <!--Archive scan-->
+                                    <CheckBox Content="{DynamicResource LOCEmuImportScanInsideArchives}"
+                                              Grid.ColumnSpan="2" Margin="0,10,10,5"
+                                              IsChecked="{Binding ScanInsideArchives}"/>
+                                </GridEx>
+                            </TabItem>
+                            <TabItem Header="{DynamicResource LOCExclusions}">
+                                <GridEx Margin="5,5,5,0" RowCount="6" StarRows="1,3" ColumnCount="1" AutoLayoutColumns="1" StarColumns="0">
+                                    <TextBlock Text="{DynamicResource LOCEmuScannerExcludedFiles}" Margin="0,5,0,5" />
+                                    <TextBox Text="{Binding ExcludedFiles, Converter={pcon:ListToMultilineStringConverter}}"
+                                             AcceptsReturn="True" />
+                                    <TextBlock Text="{DynamicResource LOCEmuScannerExcludedFolders}" Margin="0,5,0,5" />
+                                    <TextBox Text="{Binding ExcludedDirectories, Converter={pcon:ListToMultilineStringConverter}}"
+                                             AcceptsReturn="True"/>
+                                </GridEx>
+                            </TabItem>
+                        </TabControl>
+                        
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
                             <Button Content="{DynamicResource LOCAddTitle}" Margin="5"
                                 Command="{Binding AddScanConfigCommand}" />

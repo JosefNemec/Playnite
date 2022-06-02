@@ -3973,5 +3973,33 @@ namespace Playnite
         /// Extension Settings
         /// </summary>
         public const string ExtensionSettingsMenu = "LOCExtensionSettingsMenu";
+        /// <summary>
+        /// Exclusions
+        /// </summary>
+        public const string Exclusions = "LOCExclusions";
+        /// <summary>
+        /// Excluded files relative to scan folder
+        /// </summary>
+        public const string EmuScannerExcludedFiles = "LOCEmuScannerExcludedFiles";
+        /// <summary>
+        /// Excluded folders relative to scan folder
+        /// </summary>
+        public const string EmuScannerExcludedFolders = "LOCEmuScannerExcludedFolders";
+        /// <summary>
+        /// Add ROM to exclusion list
+        /// </summary>
+        public const string EmuImportAddROMExclusionList = "LOCEmuImportAddROMExclusionList";
+        /// <summary>
+        /// Add folder to exclusion list
+        /// </summary>
+        public const string EmuImportAddFolderExclusionList = "LOCEmuImportAddFolderExclusionList";
+        /// <summary>
+        /// Exclusions can be only added to saved scanner configurations.
+        /// </summary>
+        public const string EmuExclusionNoConfigError = "LOCEmuExclusionNoConfigError";
+        /// <summary>
+        /// Exclusions added to "{0}" scanner.
+        /// </summary>
+        public const string EmuExclusionAddedMessage = "LOCEmuExclusionAddedMessage";
     }
 }

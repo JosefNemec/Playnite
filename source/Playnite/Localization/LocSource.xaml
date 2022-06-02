@@ -1117,4 +1117,11 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCSearchSettingsSystemWideShortcut">System wide shortcut</sys:String>
     <sys:String x:Key="LOCSearchTitle">Playnite search</sys:String>
     <sys:String x:Key="LOCExtensionSettingsMenu">Extension Settings</sys:String>
+    <sys:String x:Key="LOCExclusions">Exclusions</sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFiles">Excluded files relative to scan folder</sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFolders">Excluded folders relative to scan folder</sys:String>
+    <sys:String x:Key="LOCEmuImportAddROMExclusionList">Add file to exclusion list</sys:String>
+    <sys:String x:Key="LOCEmuImportAddFolderExclusionList">Add folder to exclusion list</sys:String>
+    <sys:String x:Key="LOCEmuExclusionNoConfigError">Exclusions can be only added to saved scanner configurations.</sys:String>
+    <sys:String x:Key="LOCEmuExclusionAddedMessage">Exclusions have been added to "{0}" scanner.</sys:String>
 </ResourceDictionary>
