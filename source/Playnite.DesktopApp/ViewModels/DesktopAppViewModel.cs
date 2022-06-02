@@ -291,6 +291,16 @@ namespace Playnite.DesktopApp.ViewModels
                     ActiveFilterPreset = null;
                 }
             }
+
+            if (e.PropertyName == nameof(ViewSettings.GamesViewType))
+            {
+                // This is done to keep behavior same as in P9 because it could otherwise break some plugins
+                // that set behavior of custom UI elements based on active view and they refresh on game seletion change.
+                if (SelectedGames != null)
+                {
+                    SelectedGames = null;
+                }
+            }
         }
 
         private void AppSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
