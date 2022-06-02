@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Playnite.WebView
 {
@@ -19,6 +20,8 @@ namespace Playnite.WebView
         private readonly string userAgent;
 
         public bool CanExecuteJavascriptInMainFrame => browser.CanExecuteJavascriptInMainFrame;
+        public Window WindowHost { get; }
+
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Playnite.SDK
@@ -182,6 +183,11 @@ namespace Playnite.SDK
         /// <param name="script"></param>
         /// <returns></returns>
         Task<JavaScriptEvaluationResult> EvaluateScriptAsync(string script);
+
+        /// <summary>
+        /// Gets window host for the web view. Doesn't apply to off-screen views.
+        /// </summary>
+        Window WindowHost { get; }
     }
 
     /// <summary>
