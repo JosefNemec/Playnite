@@ -93,6 +93,7 @@ namespace Playnite
         public List<Guid> PlatformIds => Game.PlatformIds;
         public List<Guid> FeatureIds => Game.FeatureIds;
         public Guid CompletionStatusId => Game.CompletionStatusId;
+        public ObservableCollection<GameRom> Roms => Game.Roms;
 
         public object LibraryIcon => GetImageObject(LibraryPlugin?.LibraryIcon, true);
         public object IconObject => GetImageObject(Game.Icon, false);
