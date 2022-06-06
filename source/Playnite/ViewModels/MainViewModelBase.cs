@@ -508,7 +508,14 @@ namespace Playnite.ViewModels
                 return;
             }
 
-            await UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.ShouldCheckLibraryOnStartup(), AppSettings.ShouldCheckEmuLibraryOnStartup());
+            var updateLibs = AppSettings.ShouldCheckLibraryOnStartup();
+            var updateEmu = AppSettings.ShouldCheckEmuLibraryOnStartup();
+            if (!updateLibs && !updateEmu)
+            {
+                return;
+            }
+
+            await UpdateLibrary(AppSettings.DownloadMetadataOnImport, updateLibs, updateEmu);
         }
 
         public async Task UpdateLibrary(bool metaForNewGames, bool updateIntegrations, bool updateEmu)
