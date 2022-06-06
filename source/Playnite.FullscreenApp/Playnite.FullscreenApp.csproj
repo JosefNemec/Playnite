@@ -238,6 +238,10 @@
     <Resource Include="..\..\references\Fonts\*.*">
       <Link>Fonts\%(Filename)%(Extension)</Link>
     </Resource>
+    <None Include="..\Playnite\license.txt">
+      <Link>license.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Themes\Fullscreen\Default\audio\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

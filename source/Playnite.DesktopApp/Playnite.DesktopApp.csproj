@@ -451,6 +451,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\contributors.txt" />
     <SplashScreen Include="SplashScreen.png" />
+    <None Include="..\Playnite\license.txt">
+      <Link>license.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Themes\Desktop\Default\Constants.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
