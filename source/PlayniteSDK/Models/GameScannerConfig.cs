@@ -152,7 +152,7 @@ namespace Playnite.SDK.Models
             }
         }
 
-        List<string> excludedFiles;
+        private List<string> excludedFiles;
         /// <summary>
         /// Gets or sets list of files excluded from scan.
         /// </summary>
@@ -166,7 +166,7 @@ namespace Playnite.SDK.Models
             }
         }
 
-        List<string> excludedDirectories;
+        private List<string> excludedDirectories;
         /// <summary>
         /// Gets or sets list of foilders excluded from scan.
         /// </summary>
@@ -176,6 +176,20 @@ namespace Playnite.SDK.Models
             set
             {
                 excludedDirectories = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Guid overridePlatformId;
+        /// <summary>
+        /// Gets or sets id of default platform to be assigned if auto detection fails.
+        /// </summary>
+        public Guid OverridePlatformId
+        {
+            get => overridePlatformId;
+            set
+            {
+                overridePlatformId = value;
                 OnPropertyChanged();
             }
         }
@@ -244,6 +258,11 @@ namespace Playnite.SDK.Models
                 if (!ExcludedDirectories.IsListEqual(tro.ExcludedDirectories))
                 {
                     tro.ExcludedDirectories = ExcludedDirectories;
+                }
+
+                if (OverridePlatformId != tro.OverridePlatformId)
+                {
+                    tro.OverridePlatformId = OverridePlatformId;
                 }
             }
             else

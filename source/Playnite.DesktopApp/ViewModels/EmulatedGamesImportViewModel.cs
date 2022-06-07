@@ -64,6 +64,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<Emulator> Emulators { get; set; }
         public List<Platform> Platforms { get => platforms; set => SetValue(ref platforms, value); }
+        public List<Platform> OverridePlatforms { get; set; }
         public List<Region> Regions     { get => regions; set => SetValue(ref regions, value); }
         public List<GameScannerConfig> SavedConfigs { get; set; }
         public List<Game> ImportedGames { get; } = new List<Game>();
@@ -202,6 +203,8 @@ namespace Playnite.DesktopApp.ViewModels
             Platforms = database.Platforms.OrderBy(a => a.Name).ToList();
             Regions = database.Regions.OrderBy(a => a.Name).ToList();
             SavedConfigs = database.GameScanners.OrderBy(a => a.Name).ToList();
+            OverridePlatforms = database.Platforms.OrderBy(a => a.Name).ToList();
+            OverridePlatforms.Insert(0, new Platform(LOC.None.GetLocalized()) { Id = Guid.Empty });
 
             menuSplitItem = new MenuItem
             {

@@ -1124,4 +1124,6 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuImportAddFolderExclusionList">Add folder to exclusion list</sys:String>
     <sys:String x:Key="LOCEmuExclusionNoConfigError">Exclusions can be only added to saved scanner configurations.</sys:String>
     <sys:String x:Key="LOCEmuExclusionAddedMessage">Exclusions have been added to "{0}" scanner.</sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatform">Override platform</sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set scanner will assign this platform to all games, ovewritting any automatically detected platforms.</sys:String>
 </ResourceDictionary>

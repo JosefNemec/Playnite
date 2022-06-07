@@ -37,7 +37,9 @@ namespace Playnite.DesktopApp.ViewModels
             public string Website { get; set; }
             public EmulatedPlatform Platform { get; set; }
         }
+
         public List<DownloadEmu> DownloadEmulatorsList { get; set; }
+        public List<Platform> OverridePlatforms { get; set; }
 
         private SelectableDbItemList availablePlatforms;
         public SelectableDbItemList AvailablePlatforms
@@ -321,6 +323,8 @@ namespace Playnite.DesktopApp.ViewModels
             });
 
             AvailablePlatforms = new SelectableDbItemList(database.Platforms);
+            OverridePlatforms = database.Platforms.OrderBy(a => a.Name).ToList();
+            OverridePlatforms.Insert(0, new Platform(LOC.None.GetLocalized()) { Id = Guid.Empty });
             EditingEmulators = database.Emulators.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingScanners = database.GameScanners.GetClone().ToObservable();
             SelectedEmulator = EditingEmulators.Count > 0 ? EditingEmulators[0] : null;

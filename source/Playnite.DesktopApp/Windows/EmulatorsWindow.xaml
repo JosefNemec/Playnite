@@ -394,7 +394,7 @@
                                     IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
                                     DataContext="{Binding SelectedScanner}">
                             <TabItem Header="{DynamicResource LOCGeneralLabel}">
-                                <GridEx AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="10" StarRows="10"
+                                <GridEx AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="11" StarRows="11"
                                         Margin="5,5,5,0">
                                     <controls:GridEx.Resources>
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
@@ -430,11 +430,20 @@
                                                   DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId, Delay=50}" />
                                     </StackPanel>
 
+                                    <!--Preferred platform-->
+                                    <TextBlock Text="{DynamicResource LOCEmuOverridePlatform}"
+                                               ToolTip="{DynamicResource LOCEmuOverridePlatformTooltip}" />
+                                    <ComboBox VerticalAlignment="Center" ToolTip="{DynamicResource LOCEmuOverridePlatformTooltip}"
+                                              SelectedValue="{Binding OverridePlatformId}" SelectedValuePath="Id"
+                                              DisplayMemberPath="Name"
+                                              ItemsSource="{Binding Data.OverridePlatforms, Source={StaticResource Proxy}}"/>
+
                                     <!--IgnoreTypes-->
                                     <TextBlock Text="{DynamicResource LOCEmuCrcExcludeFileTypes}" VerticalAlignment="Center"
                                                ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
                                     <TextBox Text="{Binding CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
                                              ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
+
 
                                     <!--Startup scan-->
                                     <CheckBox Content="{DynamicResource LOCEmuScanIncludeGlobalUpdate}"

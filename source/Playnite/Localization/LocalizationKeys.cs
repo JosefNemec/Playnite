@@ -3986,7 +3986,7 @@ namespace Playnite
         /// </summary>
         public const string EmuScannerExcludedFolders = "LOCEmuScannerExcludedFolders";
         /// <summary>
-        /// Add ROM to exclusion list
+        /// Add file to exclusion list
         /// </summary>
         public const string EmuImportAddROMExclusionList = "LOCEmuImportAddROMExclusionList";
         /// <summary>
@@ -3998,8 +3998,16 @@ namespace Playnite
         /// </summary>
         public const string EmuExclusionNoConfigError = "LOCEmuExclusionNoConfigError";
         /// <summary>
-        /// Exclusions added to "{0}" scanner.
+        /// Exclusions have been added to "{0}" scanner.
         /// </summary>
         public const string EmuExclusionAddedMessage = "LOCEmuExclusionAddedMessage";
+        /// <summary>
+        /// Override platform
+        /// </summary>
+        public const string EmuOverridePlatform = "LOCEmuOverridePlatform";
+        /// <summary>
+        /// When set scanner will assign this platform to all games, ovewritting any automatically detected platforms.
+        /// </summary>
+        public const string EmuOverridePlatformTooltip = "LOCEmuOverridePlatformTooltip";
     }
 }

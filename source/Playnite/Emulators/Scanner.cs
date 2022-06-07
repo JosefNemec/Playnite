@@ -299,39 +299,50 @@ namespace Playnite.Emulators
                 }
 
                 game.Platforms = new List<Platform>();
-                if (builtinProfile != null)
+                if (scanner.OverridePlatformId != Guid.Empty)
                 {
-                    foreach (var asPlatform in assignedPlatforms)
+                    var dbPlatform = database.Platforms[scanner.OverridePlatformId];
+                    if (dbPlatform != null)
                     {
-                        var dbPlatform = database.Platforms.FirstOrDefault(a => a.SpecificationId == asPlatform.Id);
-                        if (dbPlatform != null)
+                        game.Platforms.Add(dbPlatform);
+                    }
+                }
+                else
+                {
+                    if (builtinProfile != null)
+                    {
+                        foreach (var asPlatform in assignedPlatforms)
                         {
-                            game.Platforms.Add(dbPlatform);
-                        }
-                        else
-                        {
-                            var generatedPlat = newPlatforms.FirstOrDefault(a => a.SpecificationId == asPlatform.Id);
-                            if (generatedPlat == null)
+                            var dbPlatform = database.Platforms.FirstOrDefault(a => a.SpecificationId == asPlatform.Id);
+                            if (dbPlatform != null)
                             {
-                                var newPlat = new Platform(asPlatform.Name) { SpecificationId = asPlatform.Id };
-                                newPlatforms.Add(newPlat);
-                                game.Platforms.Add(newPlat);
+                                game.Platforms.Add(dbPlatform);
                             }
                             else
                             {
-                                game.Platforms.Add(generatedPlat);
+                                var generatedPlat = newPlatforms.FirstOrDefault(a => a.SpecificationId == asPlatform.Id);
+                                if (generatedPlat == null)
+                                {
+                                    var newPlat = new Platform(asPlatform.Name) { SpecificationId = asPlatform.Id };
+                                    newPlatforms.Add(newPlat);
+                                    game.Platforms.Add(newPlat);
+                                }
+                                else
+                                {
+                                    game.Platforms.Add(generatedPlat);
+                                }
                             }
                         }
                     }
-                }
-                else if (customProfile.Platforms.HasItems())
-                {
-                    foreach (var asPlatform in customProfile.Platforms)
+                    else if (customProfile.Platforms.HasItems())
                     {
-                        var dbPlatform = database.Platforms[asPlatform];
-                        if (dbPlatform != null)
+                        foreach (var asPlatform in customProfile.Platforms)
                         {
-                            game.Platforms.Add(dbPlatform);
+                            var dbPlatform = database.Platforms[asPlatform];
+                            if (dbPlatform != null)
+                            {
+                                game.Platforms.Add(dbPlatform);
+                            }
                         }
                     }
                 }
