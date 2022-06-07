@@ -217,7 +217,7 @@ namespace Playnite.FullscreenApp.Controls
 
         // This has to be lower than key delay from ListBoxEx, because layout will get desynced otherwise.
         // TODO: fix the desync.
-        private readonly TimeSpan animationLength = new TimeSpan(0, 0, 0, 0, 180);
+        private readonly TimeSpan animationLength = new TimeSpan(0, 0, 0, 0, 140);
         private readonly DoubleAnimation scrollAnimation = new DoubleAnimation();
 
         public FullscreenTilePanel() : base()

@@ -16,8 +16,8 @@ namespace Playnite.FullscreenApp.Controls
         private FullscreenTilePanel itemsPanel;
         private bool ignoreKeyRepeat = false;
         private bool ignoreMouseRepeat = false;
-        private readonly System.Timers.Timer keyRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 200 };
-        private readonly System.Timers.Timer mouseRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 200 };
+        private readonly System.Timers.Timer keyRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 150 };
+        private readonly System.Timers.Timer mouseRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 150 };
 
         static ListBoxEx()
         {
