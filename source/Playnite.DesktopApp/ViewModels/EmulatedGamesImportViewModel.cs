@@ -168,7 +168,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 var items = new List<MenuItem>();
-                if (SelectedGames?.Count == 1)
+                if (SelectedGames?.Count == 1 && SelectedGames.Cast<ScannedGame>().First().Roms.Count > 1)
                 {
                     items.Add(menuSplitItem);
                 }
