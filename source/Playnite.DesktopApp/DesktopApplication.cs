@@ -40,8 +40,6 @@ namespace Playnite.DesktopApp
         public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
 
-        public List<ThirdPartyTool> ThirdPartyTools { get; private set; }
-
         private DesktopAppViewModel mainModel;
         public DesktopAppViewModel MainModel
         {
