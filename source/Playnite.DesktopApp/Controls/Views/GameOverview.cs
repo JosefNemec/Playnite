@@ -76,6 +76,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ImageIcon", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     [TemplatePart(Name = "PART_TextDisplayName", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "PART_ScrollViewHost", Type = typeof(ScrollViewer))]
     public abstract class GameOverview : Control
     {
         internal readonly DesktopView viewType;
@@ -137,6 +138,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private Image ImageCover;
         private Image ImageIcon;
         private FadeImage ImageBackground;
+        private ScrollViewer ScrollViewHost;
 
         static GameOverview()
         {
@@ -162,6 +164,12 @@ namespace Playnite.DesktopApp.Controls.Views
             this.viewType = viewType;
             Loaded += GameOverview_Loaded;
             Unloaded += GameOverview_Unloaded;
+            DataContextChanged += GameOverview_DataContextChanged;
+        }
+
+        private void GameOverview_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ScrollViewHost?.ScrollToTop();
         }
 
         private void GameOverview_Loaded(object sender, RoutedEventArgs e)
@@ -496,6 +504,8 @@ namespace Playnite.DesktopApp.Controls.Views
                 ApplicationMode.Desktop,
                 mainModel,
                 $"{nameof(DesktopAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
+
+            ScrollViewHost = Template.FindName("PART_ScrollViewHost", this) as ScrollViewer;
         }
 
         private void SetBackgroundBinding()

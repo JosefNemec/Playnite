@@ -98,7 +98,8 @@
                                 </Grid>
 
                                 <ScrollViewer DockPanel.Dock="Top" HorizontalAlignment="Stretch"
-                                              HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                              HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+                                              x:Name="PART_ScrollViewHost">
                                     <DockPanel>
                                         <StackPanel DockPanel.Dock="Top" Margin="5,0,0,0">
                                             <StackPanel.Resources>

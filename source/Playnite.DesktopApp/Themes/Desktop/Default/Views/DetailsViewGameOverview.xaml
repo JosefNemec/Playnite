@@ -13,7 +13,8 @@
                                   Style="{DynamicResource DetailsScrollViewer}"
                                   d:DesignWidth="1280"
                                   d:DesignHeight="1280"
-                                  d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}">
+                                  d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}"
+                                  x:Name="PART_ScrollViewHost">
                         <Grid>
                             <FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"
                                        HorizontalAlignment="Center" VerticalAlignment="Top">
