@@ -112,7 +112,8 @@
                                           Margin="5,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
                             </StackPanel>
       
-                            <ScrollViewerEx Margin="0,20,0,0" DockPanel.Dock="Top">
+                            <ScrollViewerEx Margin="0,20,0,0" DockPanel.Dock="Top"
+                                            x:Name="PART_ScrollHtmlDescription">
                                 <HtmlTextView x:Name="PART_HtmlDescription"
                                                 HtmlFontSize="16"
                                                 HtmlForeground="{DynamicResource TextColor}"

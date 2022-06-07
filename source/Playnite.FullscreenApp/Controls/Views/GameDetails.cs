@@ -26,6 +26,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     [TemplatePart(Name = "PART_HtmlDescription", Type = typeof(HtmlTextView))]
+    [TemplatePart(Name = "PART_ScrollHtmlDescription", Type = typeof(ScrollViewer))]
     public class GameDetails : Control
     {
         private FullscreenAppViewModel mainModel;
@@ -35,6 +36,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private Image ImageCover;
         private FadeImage ImageBackground;
         private HtmlTextView HtmlDescription;
+        private ScrollViewer ScrollHtmlDescription;
 
         static GameDetails()
         {
@@ -43,6 +45,13 @@ namespace Playnite.FullscreenApp.Controls.Views
 
         public GameDetails() : this(FullscreenApplication.Current?.MainModel)
         {
+            DataContextChanged += GameDetails_DataContextChanged;
+        }
+
+        private void GameDetails_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            // Scrollview not resseting causes some incidental issues elswhere, see #2663
+            ScrollHtmlDescription?.ScrollToTop();
         }
 
         public GameDetails(FullscreenAppViewModel mainModel) : base()
@@ -179,6 +188,8 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ApplicationMode.Fullscreen,
                     mainModel,
                     $"{nameof(FullscreenAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
+
+                ScrollHtmlDescription = Template.FindName("PART_ScrollHtmlDescription", this) as ScrollViewer;
             }
         }
     }
