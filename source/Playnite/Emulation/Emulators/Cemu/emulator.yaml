@@ -5,5 +5,5 @@ Profiles:
   - Name: Default
     StartupArguments: '-g "{ImagePath}" -f'
     Platforms: [nintendo_wiiu]
-    ImageExtensions: [wud, wux, rpx]
+    ImageExtensions: [wud, wux, rpx, wua]
     StartupExecutable: ^cemu.*\.exe$
