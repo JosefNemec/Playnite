@@ -132,6 +132,7 @@ namespace Playnite.Common
                 try
                 {
                     File.WriteAllBytes(pngPath, BitmapExtensions.TgaToBitmap(imagePath).ToPngArray());
+                    return pngPath;
                 }
                 catch (Exception e)
                 {
