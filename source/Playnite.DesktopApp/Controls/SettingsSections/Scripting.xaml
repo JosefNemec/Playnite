@@ -8,7 +8,7 @@
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite" 
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"          
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="500">
     
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -17,12 +17,12 @@
     <TabControl>
         <TabItem Header="{DynamicResource LOCGameScripts}">
             <GridEx Margin="10" RowCount="7" StarRows="2,4,6" AutoLayoutColumns="1">
-                <DockPanel Margin="0,0,0,10">
+                <DockPanel Margin="0,0,0,10" LastChildFill="False">
                     <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Right"
-                            VerticalAlignment="Center"
+                            VerticalAlignment="Center" Margin="10,0,0,0"
                             Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                             CommandParameter="https://playnite.link/docs/{AppBranch}/manual/gameScripts.html" />
-                    <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}"
+                    <TextBlock Text="{DynamicResource LOCSettingsScriptingNotice}" VerticalAlignment="Center"
                                TextWrapping="Wrap" DockPanel.Dock="Left" />
                 </DockPanel>
 

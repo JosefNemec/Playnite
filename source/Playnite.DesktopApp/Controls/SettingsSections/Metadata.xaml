@@ -53,7 +53,8 @@
                       ItemsSource="{Binding Source={StaticResource AgeRatingOrgValues}}" />
         </StackPanel>
 
-        <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}"
-                                         DockPanel.Dock="Top" Margin="0,10,0,0"/>
+        <ScrollViewer DockPanel.Dock="Top" Margin="0,10,0,0">
+            <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
+        </ScrollViewer>        
     </DockPanel>
 </UserControl>

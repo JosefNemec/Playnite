@@ -139,10 +139,12 @@
                 Content="{DynamicResource LOCSettingsStartMinimized}"
                 IsChecked="{Binding Settings.StartMinimized}"/>
 
+
+        <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
+                   ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
+                   VerticalAlignment="Center" />
+
         <StackPanel Orientation="Horizontal" Margin="5,15,5,0">
-            <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="0,0,10,0"
-                       ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
-                       VerticalAlignment="Center" />
             <ComboBox MinWidth="100" VerticalAlignment="Center"
                   SelectedValue="{Binding Settings.PlaytimeImportMode}"
                   pbeh:SelectorBehaviors.EnumSource="{x:Type p:PlaytimeImportMode}" />
@@ -153,6 +155,5 @@
                 </Hyperlink>
             </TextBlock>
         </StackPanel>
-
     </StackPanel>
 </UserControl>

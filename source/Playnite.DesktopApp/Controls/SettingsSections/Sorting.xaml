@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="500">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -17,16 +17,16 @@
         <TextBlock Margin="0,15,0,5" Text="{DynamicResource LOCSortingNameRemovedArticles}"
                    TextWrapping="Wrap" ToolTip="{DynamicResource LOCSortingNameRemovedArticlesTooltip}" />
         <ListBox Name="ListSortingNameRemovedArticles"
-                SelectionMode="Extended" Height="250"
+                SelectionMode="Extended" MinHeight="250"
                 ItemsSource="{Binding SortingNameRemovedArticles}"/>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,0" MinWidth="80"
+        <DockPanel LastChildFill="False">
+            <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,0" MinWidth="80" DockPanel.Dock="Left"
                 Command="{Binding AddSortingNameRemovedArticle}" />
-            <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,0,0" MinWidth="80"
+            <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,0,0" MinWidth="80" DockPanel.Dock="Left"
                 Command="{Binding RemoveSortingNameRemovedArticle}" 
                 CommandParameter="{Binding SelectedItems, ElementName=ListSortingNameRemovedArticles}"/>
-            <Button Content="{DynamicResource LOCSortingNameAutofillButton}" Margin="40,5,0,0" MinWidth="80"
+            <Button Content="{DynamicResource LOCSortingNameAutofillButton}" Margin="0,5,0,0" DockPanel.Dock="Right"
                 Command="{Binding FillSortingNameForAllGames}" />
-        </StackPanel>
+        </DockPanel>
     </StackPanel>
 </UserControl>

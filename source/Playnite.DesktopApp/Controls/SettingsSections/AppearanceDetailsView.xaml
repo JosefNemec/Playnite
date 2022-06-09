@@ -23,136 +23,138 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Margin="20">
-        <CheckBox Content="{DynamicResource LOCSettingsShowIconList}"
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="20">
+            <CheckBox Content="{DynamicResource LOCSettingsShowIconList}"
                   Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
 
-        <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
-            <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" VerticalAlignment="Center"
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
+                <CheckBox IsChecked="{Binding Settings.IndentGameDetails}" VerticalAlignment="Center"
                       Content="{DynamicResource LOCSettingsIndentGameDetails}" />
-            <pctrls:NullIntNumericBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
+                <pctrls:NullIntNumericBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
                                    Value="{Binding Settings.GameDetailsIndentation}"
                                    IsEnabled="{Binding Settings.IndentGameDetails}" />
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{DynamicResource LOCScrollingSensitivity}" />
-            <Slider Width="200" Minimum="0.5" Maximum="10" SmallChange="0.5" LargeChange="0.5"
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource LOCScrollingSensitivity}" />
+                <Slider Width="200" Minimum="0.5" Maximum="10" SmallChange="0.5" LargeChange="0.5"
                     IsSnapToTickEnabled="True" TickFrequency="0.5"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0"
                     Value="{Binding Settings.DetailsViewScrollSensitivity}" />
-        </StackPanel>
+            </StackPanel>
 
-        <CheckBox Content="{DynamicResource LOCSmoothScrolling}" Margin="0,10,0,0"
+            <CheckBox Content="{DynamicResource LOCSmoothScrolling}" Margin="0,10,0,0"
                   Name="CheckSmoothScroll"
                   IsChecked="{Binding Settings.DetailsViewSmoothScrollEnabled}"/>
 
-        <StackPanel Orientation="Horizontal" Margin="25,10,0,0"
+            <StackPanel Orientation="Horizontal" Margin="25,10,0,0"
                     IsEnabled="{Binding IsChecked, ElementName=CheckSmoothScroll}">
-            <TextBlock Text="{DynamicResource LOCSmoothScrollingSpeed}" />
-            <Slider Width="200" Minimum="1000000" Maximum="10000000" SmallChange="500000" LargeChange="500000"
+                <TextBlock Text="{DynamicResource LOCSmoothScrollingSpeed}" />
+                <Slider Width="200" Minimum="1000000" Maximum="10000000" SmallChange="500000" LargeChange="500000"
                     IsSnapToTickEnabled="True" TickFrequency="500000"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0"
                     Value="{Binding Settings.DetailsViewScrollSpeed}" />
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
-            <TextBlock VerticalAlignment="Center"
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,15">
+                <TextBlock VerticalAlignment="Center"
                        Text="{DynamicResource LOCSettingsGameDetailsCoverHeight}"/>
-            <pctrls:NullIntNumericBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
+                <pctrls:NullIntNumericBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
                                    Value="{Binding Settings.GameDetailsCoverHeight}" />
-        </StackPanel>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-            <TextBlock VerticalAlignment="Center"
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                <TextBlock VerticalAlignment="Center"
                        Text="{DynamicResource LOCSettingsGameDetailsListIconSize}"/>
-            <pctrls:NullIntNumericBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
+                <pctrls:NullIntNumericBox MinValue="0" MaxValue="4096" Width="60" Margin="10,0,0,0"
                                    Value="{Binding Settings.DetailsViewListIconSize}" />
-        </StackPanel>
+            </StackPanel>
 
-        <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
-        <UniformGrid Columns="3" VerticalAlignment="Top">
-            <CheckBox Content="{DynamicResource LOCGameIconTitle}"
+            <TextBlock Text="{DynamicResource LOCSettingsDetailsPanelItems}" />
+            <UniformGrid Columns="3" VerticalAlignment="Top">
+                <CheckBox Content="{DynamicResource LOCGameIconTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Icon}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCGameCoverTitle}"
+                <CheckBox Content="{DynamicResource LOCGameCoverTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CoverImage}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCGameBackgroundTitle}"
+                <CheckBox Content="{DynamicResource LOCGameBackgroundTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.BackgroundImage}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCTimePlayed}"
+                <CheckBox Content="{DynamicResource LOCTimePlayed}"
                                               IsChecked="{Binding Settings.DetailsVisibility.PlayTime}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCGameLastActivityTitle}"
+                <CheckBox Content="{DynamicResource LOCGameLastActivityTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.LastPlayed}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCCompletionStatus}"
+                <CheckBox Content="{DynamicResource LOCCompletionStatus}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CompletionStatus}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCPlatformTitle}"
+                <CheckBox Content="{DynamicResource LOCPlatformTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Platform}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCGameProviderTitle}"
+                <CheckBox Content="{DynamicResource LOCGameProviderTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Library}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCGameGenresTitle}"
+                <CheckBox Content="{DynamicResource LOCGameGenresTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Genres}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCDeveloperLabel}"
+                <CheckBox Content="{DynamicResource LOCDeveloperLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Developers}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCPublisherLabel}"
+                <CheckBox Content="{DynamicResource LOCPublisherLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Publishers}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCGameReleaseDateTitle}"
+                <CheckBox Content="{DynamicResource LOCGameReleaseDateTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.ReleaseDate}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCCategoryLabel}"
+                <CheckBox Content="{DynamicResource LOCCategoryLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Categories}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCFeaturesLabel}"
+                <CheckBox Content="{DynamicResource LOCFeaturesLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Features}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCTagsLabel}"
+                <CheckBox Content="{DynamicResource LOCTagsLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Tags}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCAgeRatingLabel}"
+                <CheckBox Content="{DynamicResource LOCAgeRatingLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.AgeRating}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCSeriesLabel}"
+                <CheckBox Content="{DynamicResource LOCSeriesLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Series}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCRegionLabel}"
+                <CheckBox Content="{DynamicResource LOCRegionLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Region}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCSourceLabel}"
+                <CheckBox Content="{DynamicResource LOCSourceLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Source}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCVersionLabel}"
+                <CheckBox Content="{DynamicResource LOCVersionLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Version}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCCommunityScore}"
+                <CheckBox Content="{DynamicResource LOCCommunityScore}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CommunityScore}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCCriticScore}"
+                <CheckBox Content="{DynamicResource LOCCriticScore}"
                                               IsChecked="{Binding Settings.DetailsVisibility.CriticScore}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCUserScore}"
+                <CheckBox Content="{DynamicResource LOCUserScore}"
                                               IsChecked="{Binding Settings.DetailsVisibility.UserScore}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCLinksLabel}"
+                <CheckBox Content="{DynamicResource LOCLinksLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Links}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCGameDescriptionTitle}"
+                <CheckBox Content="{DynamicResource LOCGameDescriptionTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Description}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCNotesLabel}"
+                <CheckBox Content="{DynamicResource LOCNotesLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Notes}"
                                               Margin="0,10,0,0"/>
-            <CheckBox Content="{DynamicResource LOCNameLabel}"
+                <CheckBox Content="{DynamicResource LOCNameLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.Name}"
                                               Margin="0,10,0,0"/>
-        </UniformGrid>
-    </StackPanel>
+            </UniformGrid>
+        </StackPanel>
+    </ScrollViewer>    
 </UserControl>
