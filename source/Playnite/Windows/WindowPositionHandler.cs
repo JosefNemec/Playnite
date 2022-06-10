@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Playnite;
 using Playnite.Common;
 using Playnite.Settings;
@@ -143,11 +144,12 @@ namespace Playnite.Windows
 
         private void ConstrainWindow(int x, int y)
         {
+            var dpi = VisualTreeHelper.GetDpi(window);
             var positioned = false;
             // Make sure that position is part of at least one connected screen
             foreach (var monitor in Computer.GetScreens())
             {
-                if (monitor.WorkingArea.Contains(x, y))
+                if (monitor.WorkingArea.Contains((int)(x * dpi.DpiScaleX), (int)(y * dpi.DpiScaleY)))
                 {
                     window.Left = x;
                     window.Top = y;
