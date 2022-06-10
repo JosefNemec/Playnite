@@ -27,6 +27,7 @@ namespace Playnite.SDK.Plugins
 
         public string Description { get; set; }
         public string Hint { get; set; }
+        public string Label { get; set; }
         public int Delay { get; set; } = 0;
         public bool UseAutoSearch { get; set; }
 
@@ -35,8 +36,9 @@ namespace Playnite.SDK.Plugins
 
     public class GenericListSearchContext : SearchContext
     {
-        public GenericListSearchContext(List<SearchItem> items)
+        public GenericListSearchContext(List<SearchItem> items, string label)
         {
+            Label = label.GetLocalized();
             AutoSearchCache = items;
             UseAutoSearch = true;
         }

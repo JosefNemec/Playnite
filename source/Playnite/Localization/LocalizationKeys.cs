@@ -4009,5 +4009,13 @@ namespace Playnite
         /// When set scanner will assign this platform to all games, ovewritting any automatically detected platforms.
         /// </summary>
         public const string EmuOverridePlatformTooltip = "LOCEmuOverridePlatformTooltip";
+        /// <summary>
+        /// Include commands in default search
+        /// </summary>
+        public const string SearchIncludeCommandsInDefault = "LOCSearchIncludeCommandsInDefault";
+        /// <summary>
+        /// When disabled commands won't be included in default search until # prefix is used.
+        /// </summary>
+        public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
     }
 }

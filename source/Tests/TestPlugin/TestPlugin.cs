@@ -24,6 +24,7 @@ namespace TestPlugin
         {
             Delay = 500;
             Description = "Default search description";
+            Label = "test search";
         }
 
         public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)

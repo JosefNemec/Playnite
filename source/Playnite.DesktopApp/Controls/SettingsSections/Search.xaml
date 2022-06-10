@@ -33,14 +33,17 @@
                   DockPanel.Dock="Top" Margin="0,15,0,0"
                   IsChecked="{Binding Settings.SaveGlobalSearchFilterSettings}"  />
 
+        <CheckBox Content="{DynamicResource LOCSearchIncludeCommandsInDefault}"
+                  ToolTip="{DynamicResource LOCSearchIncludeCommandsInDefaultTooltip}"
+                  DockPanel.Dock="Top" Margin="0,15,0,0"
+                  IsChecked="{Binding Settings.IncludeCommandsInDefaultSearch}" />
+
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0" DockPanel.Dock="Top" >
             <TextBlock VerticalAlignment="Center" Margin="0,0,10,0"
                        Text="{DynamicResource LOCSearchSettingsSystemWideShortcut}"/>
             <HotKeyBox Width="150" HorizontalAlignment="Left"
                        Hotkey="{Binding Settings.SystemSearchHotkey}" />
         </StackPanel>
-        
-
 
         <TextBlock Text="{DynamicResource LOCSearchSettingsSearchProviders}" DockPanel.Dock="Top" Margin="0,15,0,0"/>
         <ListView DockPanel.Dock="Top" Margin="0,10,0,0"

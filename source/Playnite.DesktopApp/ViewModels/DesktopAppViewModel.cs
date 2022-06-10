@@ -1198,7 +1198,14 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (currentGlobalSearch != null)
             {
-                currentGlobalSearch.Focus();
+                if (currentGlobalSearch.Active)
+                {
+                    currentGlobalSearch.Close();
+                }
+                else
+                {
+                    currentGlobalSearch.Focus();
+                }
             }
             else
             {

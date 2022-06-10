@@ -7,6 +7,7 @@ using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,6 +29,7 @@ namespace Playnite.ViewModels
             this.game = game;
             this.mainModel = mainModel;
             UseAutoSearch = true;
+            Label = game.Name;
         }
 
         public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
@@ -40,12 +42,14 @@ namespace Playnite.ViewModels
     {
         private readonly MainViewModelBase mainModel;
         private readonly List<SearchSupport> searchProviders;
+        private readonly bool commandsInDefault;
         private List<SearchItem> commands;
 
-        public DefaultSearchContext(MainViewModelBase mainModel, List<SearchSupport> searchProviders)
+        public DefaultSearchContext(MainViewModelBase mainModel, List<SearchSupport> searchProviders, bool commandsInDefault)
         {
             this.mainModel = mainModel;
             this.searchProviders = searchProviders;
+            this.commandsInDefault = commandsInDefault;
             Description = ResourceProvider.GetString(LOC.DefaultSearchDescription);
             Hint = ResourceProvider.GetString(LOC.DefaultSearchHint);
         }
@@ -109,18 +113,25 @@ namespace Playnite.ViewModels
 
         public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
         {
-            if (args.SearchTerm.StartsWith("#"))
+            IEnumerable<SearchItem> searchCommnands(string keyword)
             {
-                var commandSearch = args.SearchTerm.Substring(1).Trim();
-                var emptySearch = commandSearch.IsNullOrWhiteSpace();
                 if (commands == null)
                 {
                     commands = mainModel.GetSearchCommands().ToList();
                 }
 
-                foreach (var command in commands.Where(a => SearchViewModel.MatchTextFilter(commandSearch, a.Name)))
+                foreach (var command in commands.Where(a => SearchViewModel.MatchTextFilter(keyword, a.Name)))
                 {
                     yield return command;
+                }
+            }
+
+            if (args.SearchTerm.StartsWith("#"))
+            {
+                var commandSearch = args.SearchTerm.Substring(1).Trim();
+                foreach (var cmd in searchCommnands(commandSearch))
+                {
+                    yield return cmd;
                 }
 
                 yield break;
@@ -156,7 +167,7 @@ namespace Playnite.ViewModels
                 foreach (var game in mainModel.Database.Games.
                     Where(a => a.LastActivity != null && GameFilter(a, string.Empty, args.GameFilterSettings)).
                     OrderByDescending(a => a.LastActivity).
-                    Take(10))
+                    Take(20))
                 {
                     yield return new GameSearchItem(game, GetPrimaryGameAction(game))
                     {
@@ -169,6 +180,14 @@ namespace Playnite.ViewModels
             }
 
             var searchTerm = args.SearchTerm.Trim();
+            if (commandsInDefault)
+            {
+                foreach (var cmd in searchCommnands(searchTerm))
+                {
+                    yield return cmd;
+                }
+            }
+
             foreach (var game in mainModel.Database.Games.
                 Where(g => GameFilter(g, searchTerm, args.GameFilterSettings)).
                 Take(60).
@@ -181,7 +200,7 @@ namespace Playnite.ViewModels
                 };
             }
 
-            foreach (var tool in mainModel.Database.SoftwareApps.Where(a => a.Name.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase)))
+            foreach (var tool in mainModel.Database.SoftwareApps.Where(a => SearchViewModel.MatchTextFilter(searchTerm, a.Name)))
             {
                 yield return new SearchItem(tool.Name, LOC.Open, () => mainModel.StartSoftwareTool(tool), tool.Icon);
             }
@@ -241,6 +260,7 @@ namespace Playnite.ViewModels
         private bool contextHintVisible;
         private bool filterHintVisible = false;
         private string filterHint;
+        private string currentContextLabel;
         #endregion backing fields
 
         private static readonly char[] textMatchSplitter = new char[] { ' ' };
@@ -285,6 +305,7 @@ namespace Playnite.ViewModels
         public string FilterHint { get => filterHint; set => SetValue(ref filterHint, value); }
         public GameSearchFilterSettings GameFilterSettings { get; set; }
         public string CurrentContextHint { get => currentContextHint; set => SetValue(ref currentContextHint, value); }
+        public string CurrentContextLabel { get => currentContextLabel; set => SetValue(ref currentContextLabel, value); }
         public bool ContextHintVisible { get => contextHintVisible; set => SetValue(ref contextHintVisible, value); }
         public bool SlowAnimationActive { get => slowAnimationActive; set => SetValue(ref slowAnimationActive, value); }
         public string CurrentSearchProviderDescription { get => currentSearchProviderDescription; set => SetValue(ref currentSearchProviderDescription, value); }
@@ -303,6 +324,7 @@ namespace Playnite.ViewModels
         public RelayCommand<EventArgs> WindowClosedCommand => new RelayCommand<EventArgs>((_) => WindowClosed(_));
         public RelayCommand ToggleHintCommand => new RelayCommand(() => ToggleHint());
         public RelayCommand OpenSearchSettingsCommand => new RelayCommand(() => OpenSearchSettings());
+        public RelayCommand DeactiveCurrentContextCommand => new RelayCommand(() => DeactiveCurrentContext());
 
         public RelayCommand PrimaryActionCommand { get; }
         public RelayCommand SecondaryActionCommand { get; }
@@ -313,6 +335,7 @@ namespace Playnite.ViewModels
         public ItemAction MenuAction { get => menuAction; set => SetValue(ref menuAction, value); }
 
         public event EventHandler SearchClosed;
+        public bool Active => window.Window.IsActive;
 
         public SearchViewModel(
             IWindowFactory window,
@@ -371,7 +394,7 @@ namespace Playnite.ViewModels
             }
 
             GameFilterSettings.PropertyChanged += GameFilterSettings_PropertyChanged;
-            SetCurrentContext(new DefaultSearchContext(mainModel, searchProviders));
+            SetCurrentContext(new DefaultSearchContext(mainModel, searchProviders, mainModel.AppSettings.IncludeCommandsInDefaultSearch));
         }
 
         private void GameFilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -381,7 +404,7 @@ namespace Playnite.ViewModels
 
         public void OpenSearch()
         {
-            window.CreateAndOpenDialog(this);
+            window.Show(this);
         }
 
         public void Close()
@@ -414,6 +437,14 @@ namespace Playnite.ViewModels
                 ContextHintVisible = false;
                 CurrentContextHint = context.Hint;
                 CurrentSearchProviderDescription = context.Description;
+                if (searchContextStack.Count == 1)
+                {
+                    CurrentContextLabel = null;
+                }
+                else
+                {
+                    CurrentContextLabel = context.Label.IsNullOrEmpty() ? "search" : context.Label;
+                }
 
                 customProviderDeleteAttemps = 0;
                 currentSearchDelay = 0;
@@ -484,7 +515,7 @@ namespace Playnite.ViewModels
             // TODO definitely could use some improvements for better fuzzy results.
             foreach (var word in filterSplit)
             {
-                if (!toMatchSplit.Any(a => a.Contains(word, StringComparison.InvariantCultureIgnoreCase)))
+                if (!toMatchSplit.Any(a => a.ContainsInvariantCulture(word, CompareOptions.IgnoreCase | CompareOptions.IgnoreSymbols | CompareOptions.IgnoreNonSpace)))
                 {
                     allMatch = false;
                     break;

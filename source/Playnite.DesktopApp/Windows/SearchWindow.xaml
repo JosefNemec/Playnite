@@ -14,7 +14,7 @@
         mc:Ignorable="d"
         Style="{DynamicResource SearchWindowStyle}"
         Title="{DynamicResource LOCSearchTitle}" ResizeMode="NoResize"
-        ShowInTaskbar="True" ShowTitle="False"
+        ShowInTaskbar="False" ShowTitle="False"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False">
 
     <c:WindowBase.InputBindings>
@@ -48,6 +48,11 @@
 
     <DockPanel Margin="0,-25,0,0">
         <DockPanel DockPanel.Dock="Top" Margin="10">
+            <Button Style="{DynamicResource SearchWindowSearchLabelButton}"
+                    Content="{Binding CurrentContextLabel}"
+                    Command="{Binding DeactiveCurrentContextCommand}"
+                    Visibility="{Binding CurrentContextLabel, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
                         VerticalAlignment="Center" Margin="5,0,5,0"
                         Visibility="{Binding SlowAnimationActive, Converter={StaticResource BooleanToVisibilityConverter}}"

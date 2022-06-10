@@ -6,7 +6,7 @@
                     mc:Ignorable="d">
 
     <DataTemplate x:Key="SearchWindowGameItemTemplate">
-        <DockPanel Margin="5,4,5,4">
+        <DockPanel Margin="5,5,5,5">
             <Image VerticalAlignment="Center" Height="32" Width="32" DockPanel.Dock="Left"
                    RenderOptions.BitmapScalingMode="Fant">
                 <Image.Source>
@@ -26,42 +26,36 @@
                 </Image.Style>
             </Image>
             
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0,0,5,0">  
-                <TextBlock Text="&#xef22;" FontFamily="{StaticResource FontIcoFont}" FontSize="18" VerticalAlignment="Center"
-                           Visibility="{Binding Game.Hidden, Converter={StaticResource BooleanToVisibilityConverter}}"
-                           Margin="5,0,5,0"/>
-                <TextBlock Text="&#xec74;" FontFamily="{StaticResource FontIcoFont}" VerticalAlignment="Center"
-                           Visibility="{Binding Game.IsInstalled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                           Margin="5,0,5,0"/>
-                <TextBlock Text="&#xef08;" FontFamily="{StaticResource FontIcoFont}" VerticalAlignment="Center"
-                           Visibility="{Binding Game.IsInstalled, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                           Margin="5,0,5,0"/>
-                <Image VerticalAlignment="Center" Height="22" Width="22" DockPanel.Dock="Left"
-                       RenderOptions.BitmapScalingMode="Fant" Margin="5,0,5,0"
-                       Source="{Binding GameView.LibraryIcon, TargetNullValue={StaticResource PlayniteLogo}}" />
-            </StackPanel>
-            
             <StackPanel Margin="10,0,0,0" VerticalAlignment="Center" DockPanel.Dock="Left">
-                <TextBlock Text="{Binding Game.Name}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Game.IsInstalled}" Value="False">
-                                    <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Game.Name}"
+                               FontWeight="SemiBold" FontSize="{DynamicResource FontSizeLarge}"
+                               VerticalAlignment="Center" Margin="0,0,5,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Game.IsInstalled}" Value="False">
+                                        <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Image VerticalAlignment="Center" Height="18" Width="18"
+                           RenderOptions.BitmapScalingMode="Fant" Margin="5,0,5,0"
+                           Source="{Binding GameView.LibraryIcon}"
+                           Visibility="{Binding Source, RelativeSource={RelativeSource Self}, Converter={StaticResource NullToVisibilityConverter}}"/>
+                    <TextBlock Text="&#xef22;" FontFamily="{StaticResource FontIcoFont}" FontSize="16" VerticalAlignment="Center"
+                               Visibility="{Binding Game.Hidden, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               Margin="5,0,5,0"/>
+                </StackPanel>
+
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <TextBlock Text="{Binding Game.Playtime, Converter={StaticResource PlayTimeToStringConverter}}"
-                               FontSize="{StaticResource FontSizeSmall}"
-                               Foreground="{DynamicResource GlyphBrush}" />
-                    <TextBlock Text="{Binding Game.CompletionStatus.Name, StringFormat=' - {0}'}"                               
-                               FontSize="{StaticResource FontSizeSmall}" 
-                               Foreground="{DynamicResource GlyphBrush}" />
+                               Foreground="{DynamicResource TextBrushDarker}" />
+                    <TextBlock Text="{Binding Game.CompletionStatus.Name, StringFormat=' - {0}'}"
+                               Foreground="{DynamicResource TextBrushDarker}" />
                 </StackPanel>
-                
             </StackPanel>
         </DockPanel>
     </DataTemplate>
@@ -73,15 +67,31 @@
                                 VerticalAlignment="Center" Margin="4" />
             </Viewbox>
             <StackPanel Margin="10,0,0,0" VerticalAlignment="Center" >
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"
+                           FontWeight="Normal" FontSize="{DynamicResource FontSizeLarge}" />
                 <TextBlock Text="{Binding Description}"
-                           FontSize="{StaticResource FontSizeSmall}"
-                           Foreground="{DynamicResource GlyphBrush}"
+                           Foreground="{DynamicResource TextBrushDarker}"
                            Margin="0,5,0,0" VerticalAlignment="Center"
                            Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
             </StackPanel>
         </StackPanel>
     </DataTemplate>
+
+    <Style x:Key="SearchWindowSearchLabelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis" MaxWidth="100" Margin="0,0,4,0"/>
+                        <TextBlock Text="&#xeee4;" FontFamily="{StaticResource FontIcoFont}" />
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="SearchWindowActionButton" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />        
@@ -136,7 +146,7 @@
     </Style>
 
     <Style x:Key="SearchWindowSearchDescription" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-        <Setter Property="Margin" Value="10,0,0,0" />
+        <Setter Property="Margin" Value="5,0,0,0" />
         <Setter Property="Foreground" Value="LightGray" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}" />
@@ -150,7 +160,7 @@
 
     <Style x:Key="SearchWindowList" TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="MaxHeight" Value="500" />
+        <Setter Property="MaxHeight" Value="600" />
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ListBoxItem}">

@@ -7,6 +7,7 @@ using Playnite.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Playnite.DesktopApp.Windows
 {
@@ -34,8 +35,9 @@ namespace Playnite.DesktopApp.Windows
             if (!PositionHandler.HasSavedData())
             {
                 var screen = Computer.GetPrimaryScreen();
-                Left = screen.Bounds.X + ((screen.Bounds.Width - Width) / 2);
-                Top = screen.Bounds.Y + ((screen.Bounds.Height - Height) / 2);
+                var dpi = VisualTreeHelper.GetDpi(this);
+                Left = (screen.Bounds.X / dpi.DpiScaleX) + ((screen.Bounds.Width / dpi.DpiScaleX - Width) / 2);
+                Top = ((screen.Bounds.Y / dpi.DpiScaleY) + ((screen.Bounds.Height / 2) - Height - Height)) / dpi.DpiScaleY;
             }
         }
 

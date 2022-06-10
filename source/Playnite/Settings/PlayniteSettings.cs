@@ -1956,6 +1956,9 @@ namespace Playnite
         private HotKey systemSearchHotkey;
         public HotKey SystemSearchHotkey { get => systemSearchHotkey; set => SetValue(ref systemSearchHotkey, value); }
 
+        private bool includeCommandsInDefaultSearch = true;
+        public bool IncludeCommandsInDefaultSearch { get => includeCommandsInDefaultSearch; set => SetValue(ref includeCommandsInDefaultSearch, value); }
+
         [JsonIgnore]
         public static bool IsPortable
         {

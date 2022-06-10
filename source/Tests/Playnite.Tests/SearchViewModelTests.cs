@@ -12,10 +12,12 @@ namespace Playnite.Tests
     public class SearchViewModelTests
     {
         [Test]
+        [SetCulture("en-US")]
         public void MatchTextFilterTest()
         {
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("c", "has chalupa"));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("op stea", "open steam settings"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("op stea", "open settings steam"));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("op STea", "open settings steam"));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("open steam", "open steam settings"));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("", "open steam settings"));
 
@@ -26,6 +28,17 @@ namespace Playnite.Tests
             Assert.IsTrue(SearchViewModel.MatchTextFilter(null, null));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("", null));
             Assert.IsTrue(SearchViewModel.MatchTextFilter(null, ""));
+        }
+
+        [Test]
+        [SetCulture("cs-CZ")]
+        public void CzechCultureMatchTextFilterTest()
+        {
+            // ch is a separate character in Czech so this would fail with wrong culture settings in string comparison
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("c", "has chalupa"));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("cupa", "has chalčupa"));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("čupa", "has chalčupa"));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("cupa", "has chalČupa"));
         }
     }
 }

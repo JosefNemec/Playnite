@@ -209,7 +209,7 @@ namespace Playnite
                     }));
                 }
 
-                items.Add(new SearchItem(LOC.LinksLabel, new ContextSwitchSearchItemAction(LOC.Activate, new GenericListSearchContext(links)), linksIcon));
+                items.Add(new SearchItem(LOC.LinksLabel, new ContextSwitchSearchItemAction(LOC.Activate, new GenericListSearchContext(links, LOC.LinksLabel)), linksIcon));
             }
 
             // Open Game Location
@@ -256,7 +256,7 @@ namespace Playnite
 
             if (complStats.HasItems())
             {
-                items.Add(new SearchItem(LOC.SetCompletionStatus, new ContextSwitchSearchItemAction(LOC.Activate, new GenericListSearchContext(complStats))));
+                items.Add(new SearchItem(LOC.SetCompletionStatus, new ContextSwitchSearchItemAction(LOC.Activate, new GenericListSearchContext(complStats, LOC.CompletionStatus))));
             }
 
             // Extensions items
