@@ -100,11 +100,7 @@ namespace Playnite
                             continue;
                         }
 
-                        if (item.MenuSection == "@")
-                        {
-                            item.MenuSection = "";
-                        }
-
+                        item.MenuSection = item.MenuSection?.TrimStart('@');
                         var description = item.MenuSection.IsNullOrEmpty() ? item.Description : $"{item.MenuSection.Replace("|", " > ")} > {item.Description}";
                         items.Add(new SearchItem(description, LOC.Activate, () => item.Action(new MainMenuItemActionArgs
                         {
@@ -132,11 +128,7 @@ namespace Playnite
                                 continue;
                             }
 
-                            if (item.MenuSection == "@")
-                            {
-                                item.MenuSection = "";
-                            }
-
+                            item.MenuSection = item.MenuSection?.TrimStart('@');
                             var newItem = MainMenuItem.FromScriptMainMenuItem(item);
                             newItem.Action = (a) =>
                             {

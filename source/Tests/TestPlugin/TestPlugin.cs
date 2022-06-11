@@ -230,6 +230,15 @@ namespace TestPlugin
 
             yield return new MainMenuItem
             {
+                MenuSection = "@nested|nested2",
+                Description = "nested test menu menu",
+                Action = (_) =>
+                {
+                }
+            };
+
+            yield return new MainMenuItem
+            {
                 MenuSection = "test|test2",
                 Description = "filtered item test",
                 Action = (_) =>
