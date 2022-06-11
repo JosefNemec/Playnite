@@ -1127,5 +1127,5 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatform">Override platform</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set scanner will assign this platform to all games, ovewritting any automatically detected platforms.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Include commands in default search</sys:String>
-    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled commands won't be included in default search until # prefix is used.</sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled, commands won't be included in default search until # prefix is used.</sys:String>
 </ResourceDictionary>
