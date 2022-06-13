@@ -35,6 +35,12 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public bool SelectItem(List<SelectableNamedObject<TItem>> items, out TItem selected)
         {
+            if (!items.HasItems())
+            {
+                selected = default;
+                return false;
+            }
+
             Items = items;
             // Selected property is actually not used for selection it's setting focus.
             // So some item has to be selected (and have focus) otherwise the view would not be controllable.
