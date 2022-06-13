@@ -36,7 +36,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
-        private IPlayniteAPI api;
         private ServicesClient serviceClient;
         private PlayniteSettings settings;
         private Dictionary<View, UserControl> sectionViews;
