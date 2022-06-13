@@ -500,7 +500,6 @@ namespace Playnite.DesktopApp
 
         private void Database_GameUpdated(object sender, ItemUpdatedEventArgs<Game> args)
         {
-            var resetView = false;
             var refreshList = new List<Game>();
             foreach (var update in args.UpdatedItems)
             {
@@ -513,7 +512,17 @@ namespace Playnite.DesktopApp
                     }
                     else
                     {
-                        resetView = true;
+                        // Forces CollectionView to re-sort items without full list refresh.
+                        try
+                        {
+                            Items.OnItemMoved(existingItem, 0, 0);
+                        }
+                        catch (Exception e)
+                        {
+                            // Another weird and rare "out of range" bug in System.Windows.Data.CollectionView.OnCollectionChanged.
+                            // No idea why it's happening.
+                            Logger.Error(e, "Items.OnItemMoved failed.");
+                        }
                     }
                 }
             }
@@ -521,14 +530,6 @@ namespace Playnite.DesktopApp
             if (refreshList.Count > 0)
             {
                 Database_GamesCollectionChanged(this, new ItemCollectionChangedEventArgs<Game>(refreshList, refreshList));
-            }
-
-            // This really sucks but sending notifications about individual items is not reliable enough (bug in WPFs list handling).
-            // Previously used OnItemMoved just doesn't work in some cases, for example #1995
-            // List range change methods are not supported by list views in WPF :|
-            if (resetView)
-            {
-                Items.OnCollectionChangedPublic(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }
 
