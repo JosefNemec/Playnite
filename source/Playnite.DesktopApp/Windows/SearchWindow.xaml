@@ -44,6 +44,9 @@
         <i:EventTrigger EventName="Closed" >
             <prism:InvokeCommandAction Command="{Binding WindowClosedCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Deactivated" >
+            <prism:InvokeCommandAction Command="{Binding WindowDeactivatedCommand}" />
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <DockPanel Margin="0,-25,0,0">

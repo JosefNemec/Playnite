@@ -276,6 +276,7 @@ namespace Playnite.ViewModels
         private CancellationTokenSource currentSearchToken;
         private int customProviderDeleteAttemps = 0;
         private readonly Stack<SearchContext> searchContextStack = new Stack<SearchContext>();
+        private bool isClosing = false;
 
         private string searchTerm;
         public string SearchTerm
@@ -322,6 +323,7 @@ namespace Playnite.ViewModels
         public RelayCommand<KeyEventArgs> TextBoxKeyDownCommand => new RelayCommand<KeyEventArgs>((keyArgs) => TextBoxKeyDown(keyArgs));
         public RelayCommand<KeyEventArgs> TextBoxKeyUpCommand => new RelayCommand<KeyEventArgs>((keyArgs) => TextBoxKeyUp(keyArgs));
         public RelayCommand<EventArgs> WindowClosedCommand => new RelayCommand<EventArgs>((_) => WindowClosed(_));
+        public RelayCommand<EventArgs> WindowDeactivatedCommand => new RelayCommand<EventArgs>((_) => WindowDeactivated(_));
         public RelayCommand ToggleHintCommand => new RelayCommand(() => ToggleHint());
         public RelayCommand OpenSearchSettingsCommand => new RelayCommand(() => OpenSearchSettings());
         public RelayCommand DeactiveCurrentContextCommand => new RelayCommand(() => DeactiveCurrentContext());
@@ -409,7 +411,20 @@ namespace Playnite.ViewModels
 
         public void Close()
         {
+            // This is used because deactivate event is called before close event
+            // so WindowDeactivated and WindowClosed would conflict.
+            isClosing = true;
             window.Close();
+        }
+
+        private void WindowDeactivated(EventArgs args)
+        {
+            if (isClosing)
+            {
+                return;
+            }
+
+            Close();
         }
 
         private void WindowClosed(EventArgs args)
