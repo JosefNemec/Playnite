@@ -525,7 +525,8 @@ namespace Playnite.DesktopApp.Controls
                 {
                     Header = status.Name,
                     Command = model.SetGameCompletionStatusCommand,
-                    CommandParameter = new Tuple<Game, CompletionStatus>(game, status)
+                    CommandParameter = new Tuple<Game, CompletionStatus>(game, status),
+                    IsChecked = game.CompletionStatusId == status.Id
                 });
             }
 
