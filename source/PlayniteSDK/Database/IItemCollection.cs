@@ -231,6 +231,12 @@ namespace Playnite.SDK
         void Update(IEnumerable<TItem> items);
 
         /// <summary>
+        /// Switches collection to buffered mode. Suppresses all notification events until buffering is stopped.
+        /// </summary>
+        /// <returns>Buffer object.</returns>
+        IDisposable BufferedUpdate();
+
+        /// <summary>
         /// Sets collection into buffered update state.
         /// </summary>
         void BeginBufferUpdate();

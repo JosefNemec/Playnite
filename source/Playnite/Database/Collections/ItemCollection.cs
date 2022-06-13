@@ -20,6 +20,22 @@ namespace Playnite.Database
     //  - write speeds are slower
     public class ItemCollection<TItem> : IItemCollection<TItem> where TItem : DatabaseObject
     {
+        class EventBufferHandler<T> : IDisposable where T : DatabaseObject
+        {
+            private IItemCollection<T> collection;
+
+            public EventBufferHandler(IItemCollection<T> collection)
+            {
+                this.collection = collection;
+                collection.BeginBufferUpdate();
+            }
+
+            public void Dispose()
+            {
+                collection.EndBufferUpdate();
+            }
+        }
+
         private ILogger logger = LogManager.GetLogger(typeof(TItem).Name + "_coll");
         private readonly object collectionLock = new object();
         private string storagePath;
@@ -648,6 +664,11 @@ namespace Playnite.Database
         public IEnumerable<TItem> GetClone()
         {
             return this.Select(a => a.GetClone());
+        }
+
+        public IDisposable BufferedUpdate()
+        {
+            return new EventBufferHandler<TItem>(this);
         }
     }
 }

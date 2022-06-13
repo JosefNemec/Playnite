@@ -45,6 +45,16 @@ namespace Playnite.SDK
         IDisposable BufferedUpdate();
 
         /// <summary>
+        /// Begins buffered update. Suppresses all notification events until buffering is stopped.
+        /// </summary>
+        void BeginBufferUpdate();
+
+        /// <summary>
+        /// Ends buffered update.
+        /// </summary>
+        void EndBufferUpdate();
+
+        /// <summary>
         /// Returns full path to directory storing files for specified parent.
         /// </summary>
         /// <param name="parentId">Id of parent object.</param>

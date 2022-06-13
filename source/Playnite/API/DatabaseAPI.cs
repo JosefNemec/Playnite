@@ -96,5 +96,15 @@ namespace Playnite.API
         {
             return database.ImportGame(game, sourcePlugin.Id);
         }
+
+        public void BeginBufferUpdate()
+        {
+            database.BeginBufferUpdate();
+        }
+
+        public void EndBufferUpdate()
+        {
+            database.EndBufferUpdate();
+        }
     }
 }
