@@ -937,10 +937,16 @@ namespace Playnite.DesktopApp.ViewModels
                 GamesView,
                 new RandomGameSelectWindowFactory(),
                 Resources);
-            if (model.OpenView() == true && model.SelectedGame != null)
+            model.OpenView();
+            if (model.SelectedAction == RandomGameSelectAction.Play)
             {
                 SelectGame(model.SelectedGame.Id);
                 GamesEditor.PlayGame(model.SelectedGame);
+            }
+            else if (model.SelectedAction == RandomGameSelectAction.Navigate)
+            {
+                AppSettings.ViewSettings.GamesViewType = DesktopView.Details;
+                SelectGame(model.SelectedGame.Id);
             }
         }
 

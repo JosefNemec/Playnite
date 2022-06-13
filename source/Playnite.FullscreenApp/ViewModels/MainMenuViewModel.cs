@@ -81,13 +81,16 @@ namespace Playnite.FullscreenApp.ViewModels
                 MainModel.GamesView,
                 new RandomGameSelectWindowFactory(),
                 MainModel.Resources);
-            if (model.OpenView() == true && model.SelectedGame != null)
+            model.OpenView();
+            if (model.SelectedAction == RandomGameSelectAction.Play)
             {
-                var selection = MainModel.GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
-                if (selection != null)
-                {
-                    MainModel.GamesEditor.PlayGame(selection.Game);
-                }
+                MainModel.SelectGame(model.SelectedGame.Id);
+                MainModel.GamesEditor.PlayGame(model.SelectedGame);
+            }
+            else if (model.SelectedAction == RandomGameSelectAction.Navigate)
+            {
+                MainModel.ToggleGameDetailsCommand.Execute(null);
+                MainModel.SelectGame(model.SelectedGame.Id);
             }
         }
 

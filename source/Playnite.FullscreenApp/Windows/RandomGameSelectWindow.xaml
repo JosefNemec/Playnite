@@ -53,14 +53,17 @@
                     <pctrls:CheckBoxEx Content="{DynamicResource LOCRandomGameLimistToFilter}" HorizontalAlignment="Center"
                                 IsChecked="{Binding IsLimitedToFilter}"/>
                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Center">
-                        <pctrls:ButtonEx Content="{DynamicResource LOCPlayGame}"
-                                         x:Name="ButtonPlay"
-                                  Style="{StaticResource MessageBoxButton}"
-                                  Command="{Binding PlayGameCommand}" MinWidth="200" />
+                        <pctrls:ButtonEx Content="{DynamicResource LOCGameSearchItemActionSwitchTo}" MinWidth="200"
+                                         Style="{StaticResource MessageBoxButton}"
+                                         Command="{Binding NavigateToGameCommand}"/>
                         <pctrls:ButtonEx Content="{DynamicResource LOCRandomGamePickAnother}" MinWidth="200"
-                                  Style="{StaticResource MessageBoxButton}"
-                                  Command="{Binding PickAnotherCommand}" />
+                                         Style="{StaticResource MessageBoxButton}"
+                                         Command="{Binding PickAnotherCommand}" />
                     </StackPanel>
+                    <pctrls:ButtonEx Content="{DynamicResource LOCPlayGame}" HorizontalAlignment="Center"
+                                     x:Name="ButtonPlay" Margin="0,10,0,0"
+                                     Style="{StaticResource MessageBoxButton}"
+                                     Command="{Binding PlayGameCommand}" MinWidth="200" />
                 </StackPanel>
             </Border>
         </Grid>
