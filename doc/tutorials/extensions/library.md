@@ -84,6 +84,34 @@ $PlayniteApi.Database.Games.Remove($SomeId)
 ```
 ***
 
+### Bulk updates
+
+Every collection change operation (update, add, remove) generates an event that is sent to all plugins and other parts of Playnite. Therefore it's highly recommend to bulk as much changes as possible together. You can use buffer updates which collect all changes and only generate single event once you commit/end update operation.
+
+# [C#](#tab/csharp)
+```csharp
+using (PlayniteApi.Database.BufferedUpdate())
+{
+    // Any collection changes here don't generate any events
+}
+// Single event is sent here for all changes made in previous using block
+```
+
+# [PowerShell](#tab/tabpowershell)
+```powershell
+$PlayniteApi.Database.BeginBufferUpdate()
+try
+{
+     # Any collection changes here don't generate any events
+}
+finally
+{
+    $PlayniteApi.Database.EndBufferUpdate()
+    # Single event is sent here for all changes made in previous try block
+}
+```
+***
+
 Handling reference fields
 ---------------------
 
