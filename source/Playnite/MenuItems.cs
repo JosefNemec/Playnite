@@ -198,7 +198,10 @@ namespace Playnite
                         {
                             logger.Error(e, "Failed to open url.");
                         }
-                    }));
+                    })
+                    {
+                        Description = link.Url
+                    });
                 }
 
                 items.Add(new SearchItem(LOC.LinksLabel, new ContextSwitchSearchItemAction(LOC.Activate, new GenericListSearchContext(links, LOC.LinksLabel)), linksIcon));
