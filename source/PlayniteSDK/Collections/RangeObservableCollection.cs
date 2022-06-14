@@ -17,6 +17,10 @@ namespace System.Collections.Generic
     {
         private bool suppressNotification = false;
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="e"></param>
         public void OnCollectionChangedPublic(NotifyCollectionChangedEventArgs e)
         {
             OnCollectionChanged(e);

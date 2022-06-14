@@ -13,140 +13,6 @@ using System.Windows.Controls;
 
 namespace Playnite.SDK.Plugins
 {
-    public class SearchSupport
-    {
-        internal string Keyword { get; set; }
-        public string DefaultKeyword { get; set; }
-        public string Name { get; set; }
-        public SearchContext Context { get; set; }
-    }
-
-    public abstract class SearchContext
-    {
-        internal List<SearchItem> AutoSearchCache { get; set; }
-
-        public string Description { get; set; }
-        public string Hint { get; set; }
-        public string Label { get; set; }
-        public int Delay { get; set; } = 0;
-        public bool UseAutoSearch { get; set; }
-
-        public abstract IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args);
-    }
-
-    public class GenericListSearchContext : SearchContext
-    {
-        public GenericListSearchContext(List<SearchItem> items, string label)
-        {
-            Label = label.GetLocalized();
-            AutoSearchCache = items;
-            UseAutoSearch = true;
-        }
-
-        public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
-        {
-            return AutoSearchCache;
-        }
-    }
-
-    public class GameSearchFilterSettings : ObservableObject
-    {
-        private bool uninstalled = true;
-        private bool hidden = false;
-
-        public bool Uninstalled { get => uninstalled; set => SetValue(ref uninstalled, value); }
-        public bool Hidden { get => hidden; set => SetValue(ref hidden, value); }
-    }
-
-    public class GetSearchResultsArgs
-    {
-        internal Action<SearchContext> SwitchContextAction { get; set; }
-
-        public string SearchTerm { get; set; }
-        public CancellationToken CancelToken { get; set; }
-        public GameSearchFilterSettings GameFilterSettings { get; set; }
-
-        public void SwitchContext(SearchContext newContext)
-        {
-            SwitchContextAction(newContext);
-        }
-    }
-
-    public class SearchItemAction
-    {
-        public string Name { get; set; }
-        public Action Action { get; set; }
-        public bool CloseSearch { get; set; } = true;
-
-        public SearchItemAction(string name, Action action)
-        {
-            Name = name.GetLocalized();
-            Action = action;
-        }
-    }
-
-    public class ContextSwitchSearchItemAction : SearchItemAction
-    {
-        public SearchContext Context { get; set; }
-
-        public ContextSwitchSearchItemAction(string name, SearchContext newContext)
-            : base(name, null)
-        {
-            Context = newContext;
-            CloseSearch = false;
-        }
-    }
-
-    public class SearchItem
-    {
-        public SearchItemAction PrimaryAction { get; set; }
-        public SearchItemAction SecondaryAction { get; set; }
-        public ContextSwitchSearchItemAction MenuAction { get; set; }
-
-        public object Icon { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-
-        public SearchItem(string name, SearchItemAction primaryAction)
-        {
-            Name = name.GetLocalized();
-            PrimaryAction = primaryAction;
-        }
-
-        public SearchItem(string name, SearchItemAction primaryAction, object icon)
-            : this (name, primaryAction)
-        {
-            Icon = icon;
-        }
-
-        public SearchItem(string name, string primaryActionName, Action primaryAction)
-            : this(name, new SearchItemAction(primaryActionName, primaryAction))
-        {
-        }
-
-        public SearchItem(string name, string primaryActionName, Action primaryAction, object icon)
-            : this(name, new SearchItemAction(primaryActionName, primaryAction), icon)
-        {
-        }
-    }
-
-    public class GameSearchItem : SearchItem
-    {
-        public Game Game { get; set; }
-
-        public GameSearchItem(Game game, SearchItemAction primaryAction)
-            : base(game.Name, primaryAction)
-        {
-            Game = game;
-        }
-
-        public GameSearchItem(Game game, string primaryActionName, Action primaryAction)
-            : base(game.Name, primaryActionName, primaryAction)
-        {
-            Game = game;
-        }
-    }
-
     /// <summary>
     ///
     /// </summary>
@@ -286,6 +152,9 @@ namespace Playnite.SDK.Plugins
     {
         private const string pluginSettingFileName = "config.json";
 
+        /// <summary>
+        /// Gets or set list of global searches.
+        /// </summary>
         public List<SearchSupport> Searches { get; set; }
 
         /// <summary>
@@ -573,6 +442,10 @@ namespace Playnite.SDK.Plugins
             yield break;
         }
 
+        /// <summary>
+        /// Gets items to be included in default global search.
+        /// </summary>
+        /// <returns></returns>
         public virtual IEnumerable<SearchItem> GetSearchGlobalCommands()
         {
             yield break;

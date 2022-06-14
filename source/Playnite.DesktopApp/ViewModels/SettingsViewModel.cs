@@ -44,11 +44,9 @@ namespace Playnite.DesktopApp.ViewModels
         public string SearchId { get; set; }
         public new string Keyword { get; set; }
 
-        public SearchSupportSettings(LoadedPlugin plugin, SearchSupport support, Dictionary<string, string> customMap)
+        public SearchSupportSettings(LoadedPlugin plugin, SearchSupport support, Dictionary<string, string> customMap) : base(support.DefaultKeyword, support.Name, support.Context)
         {
             SearchId = plugin.Description.Id + support.DefaultKeyword;
-            Name = support.Name;
-            DefaultKeyword = support.DefaultKeyword;
             if (customMap?.ContainsKey(SearchId) == true)
             {
                 Keyword = customMap[SearchId];

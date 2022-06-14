@@ -108,19 +108,8 @@ namespace TestPlugin
 
             Searches = new List<SearchSupport>
             {
-                new SearchSupport
-                {
-                    Name = "Testing plugin search",
-                    DefaultKeyword = "test",
-                    Context = new DefaultSearchContext()
-                },
-
-                new SearchSupport
-                {
-                    Name = "Slow plugin search test",
-                    DefaultKeyword = "slow",
-                    Context = new SlowSearchContext()
-                }
+                new SearchSupport("test", "Testing plugin search", new DefaultSearchContext()),
+                new SearchSupport("slow", "Slow plugin search test", new SlowSearchContext())
             };
         }
 

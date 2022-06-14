@@ -107,63 +107,122 @@ namespace Playnite.SDK.Models
     }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
+    /// <summary>
+    /// Represents filter for ID based fields.
+    /// </summary>
     public class IdItemFilterItemProperties
     {
+        /// <summary>
+        /// Gets or sets list of item IDs to filter.
+        /// </summary>
         public List<Guid> Ids { get; set; }
+
+        /// <summary>
+        ///  Gets or set full text search to filter.
+        /// </summary>
         public string Text { get; set; }
 
+        /// <summary>
+        /// Creates new instance of <see cref="IdItemFilterItemProperties"/>.
+        /// </summary>
         public IdItemFilterItemProperties()
         {
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="IdItemFilterItemProperties"/>.
+        /// </summary>
+        /// <param name="ids"></param>
         public IdItemFilterItemProperties(List<Guid> ids)
         {
             Ids = ids;
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="IdItemFilterItemProperties"/>.
+        /// </summary>
+        /// <param name="id"></param>
         public IdItemFilterItemProperties(Guid id)
         {
             Ids = new List<Guid>() { id };
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="IdItemFilterItemProperties"/>.
+        /// </summary>
+        /// <param name="text"></param>
         public IdItemFilterItemProperties(string text)
         {
             Text = text;
         }
     }
 
+    /// <summary>
+    /// Represents filter for string based fields.
+    /// </summary>
     public class StringFilterItemProperties
     {
+        /// <summary>
+        /// Gets or sets values to filter.
+        /// </summary>
         public List<string> Values { get; set; }
 
+        /// <summary>
+        /// Creates new instance of <see cref="StringFilterItemProperties"/>.
+        /// </summary>
         public StringFilterItemProperties()
         {
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="StringFilterItemProperties"/>.
+        /// </summary>
+        /// <param name="values"></param>
         public StringFilterItemProperties(List<string> values)
         {
             Values = values;
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="StringFilterItemProperties"/>.
+        /// </summary>
+        /// <param name="value"></param>
         public StringFilterItemProperties(string value)
         {
             Values = new List<string>() { value };
         }
     }
 
+    /// <summary>
+    /// Represents filter for enum based fields.
+    /// </summary>
     public class EnumFilterItemProperties
     {
+        /// <summary>
+        /// Gets or sets values to filter.
+        /// </summary>
         public List<int> Values { get; set; }
 
+        /// <summary>
+        /// Creates new instance of <see cref="EnumFilterItemProperties"/>.
+        /// </summary>
         public EnumFilterItemProperties()
         {
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="EnumFilterItemProperties"/>.
+        /// </summary>
+        /// <param name="values"></param>
         public EnumFilterItemProperties(List<int> values)
         {
             Values = values;
         }
 
+        /// <summary>
+        /// Creates new instance of <see cref="EnumFilterItemProperties"/>.
+        /// </summary>
+        /// <param name="value"></param>
         public EnumFilterItemProperties(int value)
         {
             Values = new List<int>() { value };
@@ -171,13 +230,13 @@ namespace Playnite.SDK.Models
     }
 
     /// <summary>
-    ///
+    /// Represents filter preset.
     /// </summary>
     public class FilterPreset : DatabaseObject
     {
         private FilterPresetSettings settings;
         /// <summary>
-        ///
+        /// Gets or sets filter settings.
         /// </summary>
         public FilterPresetSettings Settings
         {
@@ -191,7 +250,7 @@ namespace Playnite.SDK.Models
 
         private SortOrder? sortingOrder;
         /// <summary>
-        ///
+        /// Gets or sets view sorting order.
         /// </summary>
         public SortOrder? SortingOrder
         {
@@ -209,7 +268,7 @@ namespace Playnite.SDK.Models
 
         private SortOrderDirection? sortingOrderDirection;
         /// <summary>
-        ///
+        /// Gets or sets view sorting order direction.
         /// </summary>
         public SortOrderDirection? SortingOrderDirection
         {
@@ -227,7 +286,7 @@ namespace Playnite.SDK.Models
 
         private GroupableField? groupingOrder;
         /// <summary>
-        ///
+        /// Gets or sets view grouping.
         /// </summary>
         public GroupableField? GroupingOrder
         {
@@ -245,7 +304,7 @@ namespace Playnite.SDK.Models
 
         private bool showInFullscreeQuickSelection = true;
         /// <summary>
-        ///
+        /// Gets or sets value indicating whether a filter preset should be shown in FS mode quick filter list.
         /// </summary>
         public bool ShowInFullscreeQuickSelection
         {

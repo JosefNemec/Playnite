@@ -38,12 +38,24 @@ namespace Playnite.SDK
         /// </summary>
         DesktopView ActiveDesktopView { get; set; }
 
+        /// <summary>
+        /// Gets currently active sorting order.
+        /// </summary>
         SortOrder SortOrder { get; }
 
+        /// <summary>
+        /// Gets currently active sorting order direction.
+        /// </summary>
         SortOrderDirection SortOrderDirection { get; set; }
 
+        /// <summary>
+        /// Gets currently active grouping field.
+        /// </summary>
         GroupableField Grouping { get; set; }
 
+        /// <summary>
+        /// Gets UI thread dispatcher.
+        /// </summary>
         Dispatcher UIDispatcher { get; }
 
         /// <summary>
@@ -80,12 +92,28 @@ namespace Playnite.SDK
         /// <param name="gameIds">List of game IDs to select.</param>
         void SelectGames(IEnumerable<Guid> gameIds);
 
+        /// <summary>
+        /// Applies filter preset.
+        /// </summary>
+        /// <param name="filterId">Filter ID.</param>
         void ApplyFilterPreset(Guid filterId);
 
+        /// <summary>
+        /// Applies filter preset.
+        /// </summary>
+        /// <param name="preset">Filter preset.</param>
         void ApplyFilterPreset(FilterPreset preset);
 
+        /// <summary>
+        /// Gets ID of currently active filter preset.
+        /// </summary>
+        /// <returns></returns>
         Guid GetActiveFilterPreset();
 
+        /// <summary>
+        /// Gets current filter settings.
+        /// </summary>
+        /// <returns></returns>
         FilterPresetSettings GetCurrentFilterSettings();
     }
 }

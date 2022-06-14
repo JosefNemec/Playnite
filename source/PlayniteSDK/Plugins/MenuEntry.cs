@@ -120,7 +120,10 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         public List<Game> Games { get; set; }
 
-        public bool IsGlobalSearchRequest { get; set; }
+        /// <summary>
+        ///  Gest or sets value indicating whether the request is for standard game menu or global search menu.
+        /// </summary>
+        public bool IsGlobalSearchRequest { get; set; } = false;
     }
 
     #endregion Game menu
@@ -191,7 +194,10 @@ namespace Playnite.SDK.Plugins
     /// </summary>
     public class GetMainMenuItemsArgs
     {
-        public bool IsGlobalSearchRequest { get; set; }
+        /// <summary>
+        ///  Gest or sets value indicating whether the request is for standard main menu or global search menu.
+        /// </summary>
+        public bool IsGlobalSearchRequest { get; set; } = false;
     }
 
     #endregion Main menu
