@@ -2314,8 +2314,8 @@ namespace Playnite
 
         private Thickness GetFullscreenItemSpacingMargin()
         {
-            int marginX = FullscreenItemSpacing / 2;
-            int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
+            double marginX = FullscreenItemSpacing / 2;
+            double marginY = CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2;
             return new Thickness(marginY / 2, marginX / 2, marginY / 2, marginX / 2);
         }
 
