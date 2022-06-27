@@ -7,6 +7,7 @@
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:p="clr-namespace:Playnite;assembly=Playnite"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
@@ -50,27 +51,26 @@
                         <prism:InvokeCommandAction Command="{Binding SettingsTreeSelectedItemChangedCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True" Tag="0" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsAppearanceLabel}" IsExpanded="True" Tag="1">
-                    <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" Tag="1" />
-                    <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="2" />
-                    <TreeViewItem Header="{DynamicResource LOCDetailsViewLabel}" Tag="3" />
-                    <TreeViewItem Header="{DynamicResource LOCGridViewLabel}" Tag="4" />
-                    <TreeViewItem Header="{DynamicResource LOCListViewLabel}" Tag="23" />
-                    <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="5" />
-                    <TreeViewItem Header="{DynamicResource LOCSettingsTopPanelLabel}" Tag="20" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" IsSelected="True" Tag="{x:Static p:DesktopSettingsPage.General}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsAppearanceLabel}" IsExpanded="True" Tag="{x:Static p:DesktopSettingsPage.AppearanceGeneral}">
+                    <TreeViewItem Header="{DynamicResource LOCSettingsGeneralLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceGeneral}" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceAdvanced}" />
+                    <TreeViewItem Header="{DynamicResource LOCDetailsViewLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceDetailsView}" />
+                    <TreeViewItem Header="{DynamicResource LOCGridViewLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceGridView}" />
+                    <TreeViewItem Header="{DynamicResource LOCListViewLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceListView}" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceLayout}" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsTopPanelLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceTopPanel}" />
                 </TreeViewItem>
-                <!--<TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="7" />-->
-                <TreeViewItem Header="{DynamicResource LOCSettingsSearch}" Tag="24" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsUpdating}" Tag="22" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="9" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsSortingLabel}" Tag="21" />
-                <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="11" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="12" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsImportExclusionList}" Tag="14" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsForDevelopers}" Tag="19" />
-                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="6" IsExpanded="True">
-                    <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="13" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsSearch}" Tag="{x:Static p:DesktopSettingsPage.Search}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsUpdating}" Tag="{x:Static p:DesktopSettingsPage.Updates}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsMetadataLabel}" Tag="{x:Static p:DesktopSettingsPage.Metadata}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsSortingLabel}" Tag="{x:Static p:DesktopSettingsPage.Sorting}" />
+                <TreeViewItem Header="{DynamicResource LOCScripts}" Tag="{x:Static p:DesktopSettingsPage.Scripting}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsAutoCloseSection}" Tag="{x:Static p:DesktopSettingsPage.ClientShutdown}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsImportExclusionList}" Tag="{x:Static p:DesktopSettingsPage.ImportExlusionList}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsForDevelopers}" Tag="{x:Static p:DesktopSettingsPage.Development}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="{x:Static p:DesktopSettingsPage.GeneralAdvanced}" IsExpanded="True">
+                    <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="{x:Static p:DesktopSettingsPage.Performance}" />
                 </TreeViewItem>
             </TreeView>
         </Border>

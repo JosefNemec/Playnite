@@ -27,6 +27,29 @@ using Playnite.SDK.Plugins;
 
 namespace Playnite
 {
+    public enum DesktopSettingsPage
+    {
+        General = 0,
+        AppearanceGeneral = 1,
+        AppearanceAdvanced = 2,
+        AppearanceDetailsView = 3,
+        AppearanceGridView = 4,
+        AppearanceLayout = 5,
+        GeneralAdvanced = 6,
+        Input = 7,
+        Metadata = 9,
+        Scripting = 11,
+        ClientShutdown = 12,
+        Performance = 13,
+        ImportExlusionList = 14,
+        Development = 19,
+        AppearanceTopPanel = 20,
+        Sorting = 21,
+        Updates = 22,
+        AppearanceListView = 23,
+        Search = 24
+    }
+
     public enum GameSearchItemAction
     {
         [Description(LOC.GameSearchItemActionPlay)]

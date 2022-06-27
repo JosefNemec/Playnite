@@ -121,7 +121,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<SearchSupportSettings> Searches { get; } = new List<SearchSupportSettings>();
 
-        private readonly Dictionary<int, UserControl> sectionViews;
+        private readonly Dictionary<DesktopSettingsPage, UserControl> sectionViews;
 
         #region Commands
 
@@ -345,27 +345,27 @@ namespace Playnite.DesktopApp.ViewModels
                 new SelectableTrayIcon(TrayIconType.Dark)
             };
 
-            sectionViews = new Dictionary<int, UserControl>()
+            sectionViews = new Dictionary<DesktopSettingsPage, UserControl>()
             {
-                { 0, new Controls.SettingsSections.General() { DataContext = this } },
-                { 1, new Controls.SettingsSections.AppearanceGeneral() { DataContext = this } },
-                { 2, new Controls.SettingsSections.AppearanceAdvanced() { DataContext = this } },
-                { 3, new Controls.SettingsSections.AppearanceDetailsView() { DataContext = this } },
-                { 4, new Controls.SettingsSections.AppearanceGridView() { DataContext = this } },
-                { 5, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
-                { 6, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
-                { 7, new Controls.SettingsSections.Input() { DataContext = this } },
-                { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
-                { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
-                { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
-                { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
-                { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
-                { 19, new Controls.SettingsSections.Development() { DataContext = this } },
-                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
-                { 21, new Controls.SettingsSections.Sorting() { DataContext = this } },
-                { 22, new Controls.SettingsSections.Updates() { DataContext = this } },
-                { 23, new Controls.SettingsSections.AppearanceListView() { DataContext = this } },
-                { 24, new Controls.SettingsSections.Search() { DataContext = this } }
+                { DesktopSettingsPage.General, new Controls.SettingsSections.General() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceGeneral, new Controls.SettingsSections.AppearanceGeneral() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceAdvanced, new Controls.SettingsSections.AppearanceAdvanced() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceDetailsView, new Controls.SettingsSections.AppearanceDetailsView() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceGridView, new Controls.SettingsSections.AppearanceGridView() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceLayout, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
+                { DesktopSettingsPage.GeneralAdvanced, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
+                { DesktopSettingsPage.Input, new Controls.SettingsSections.Input() { DataContext = this } },
+                { DesktopSettingsPage.Metadata, new Controls.SettingsSections.Metadata() { DataContext = this } },
+                { DesktopSettingsPage.Scripting, new Controls.SettingsSections.Scripting() { DataContext = this } },
+                { DesktopSettingsPage.ClientShutdown, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
+                { DesktopSettingsPage.Performance, new Controls.SettingsSections.Performance() { DataContext = this } },
+                { DesktopSettingsPage.ImportExlusionList, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
+                { DesktopSettingsPage.Development, new Controls.SettingsSections.Development() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceTopPanel, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
+                { DesktopSettingsPage.Sorting, new Controls.SettingsSections.Sorting() { DataContext = this } },
+                { DesktopSettingsPage.Updates, new Controls.SettingsSections.Updates() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceListView, new Controls.SettingsSections.AppearanceListView() { DataContext = this } },
+                { DesktopSettingsPage.Search, new Controls.SettingsSections.Search() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -393,9 +393,8 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (selectedItem.NewValue is TreeViewItem treeItem)
             {
-                if (treeItem.Tag != null)
+                if (treeItem.Tag is DesktopSettingsPage viewIndex && sectionViews.ContainsKey(viewIndex))
                 {
-                    var viewIndex = int.Parse(treeItem.Tag.ToString());
                     SelectedSectionView = sectionViews[viewIndex];
                 }
                 else
@@ -414,7 +413,7 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
-        public bool? OpenView(int viewIndex)
+        public bool? OpenView(DesktopSettingsPage viewIndex)
         {
             if (sectionViews.ContainsKey(viewIndex))
             {

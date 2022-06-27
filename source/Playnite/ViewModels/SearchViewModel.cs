@@ -1007,8 +1007,14 @@ namespace Playnite.ViewModels
         private void OpenSearchSettings()
         {
             Close();
-            // TODO remove magic number
-            mainModel.OpenSettings(24);
+            if (mainModel.App.Mode == ApplicationMode.Desktop)
+            {
+                mainModel.OpenSettings((int)DesktopSettingsPage.Search);
+            }
+            else
+            {
+                throw new NotSupportedInFullscreenException();
+            }
         }
 
         private void ToggleInstalledFilter()

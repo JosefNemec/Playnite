@@ -1152,7 +1152,7 @@ namespace Playnite.DesktopApp.ViewModels
                 Dialogs,
                 Resources,
                 Extensions,
-                App).OpenView(settingsPageIndex);
+                App).OpenView((DesktopSettingsPage)settingsPageIndex);
         }
 
         public void OpenSettings()
