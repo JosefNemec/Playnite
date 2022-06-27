@@ -2316,7 +2316,7 @@ namespace Playnite
         {
             int marginX = FullscreenItemSpacing / 2;
             int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
-            return new Thickness(marginY, marginX, 0, 0);
+            return new Thickness(marginY / 2, marginX / 2, marginY / 2, marginX / 2);
         }
 
         private void UpdateGridItemHeight()

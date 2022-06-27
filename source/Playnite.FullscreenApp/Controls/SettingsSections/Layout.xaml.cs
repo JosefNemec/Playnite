@@ -72,7 +72,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                     new InvertedBoolenConverter());
 
             SliderItemSpacing.Minimum = 0;
-            SliderItemSpacing.Maximum = 40;
+            SliderItemSpacing.Maximum = 200;
             SliderItemSpacing.TickFrequency = 1;
             SliderItemSpacing.IsSnapToTickEnabled = true;
             BindingTools.SetBinding(
