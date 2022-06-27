@@ -48,8 +48,8 @@ namespace Playnite
                 var current = CurrentVersion;
                 if (latest > current)
                 {
-                    // Windows 7 and 8 should no longer update, except for patches
-                    if (Computer.WindowsVersion == WindowsVersion.Win7 || Computer.WindowsVersion == WindowsVersion.Win8)
+                    // Windows 7 and 8 and 32bit systems should no longer update, except for patches
+                    if (Computer.WindowsVersion == WindowsVersion.Win7 || Computer.WindowsVersion == WindowsVersion.Win8 || !Environment.Is64BitOperatingSystem)
                     {
                         return latest.Major == current.Major;
                     }
