@@ -65,6 +65,9 @@ Accessing Playnite API
 
 Playnite API instance is available via [PlayniteAPI](xref:Playnite.SDK.Plugins.Plugin.PlayniteApi) property on your plugin class, the same instance which is also injected in plugin's constructor. In case you can't for some reason access this property, there's also static singleton instance accessible via [Playnite.SDK.API.Instance](xref:Playnite.SDK.API.Instance).
 
+> [!WARNING]
+> Playnite's SDK is not fully thread safe. Meaning that you might occasionally run into a situation where you will access or modify UI object owned by UI thread (which can happen indirectly through events as well) and crash will happen. In that case you need to run affected code on UI thread, which can be achieved by using [UIDispatcher](xref:Playnite.SDK.IMainViewAPI.UIDispatcher) from `MainView` API.
+
 Plugin dependencies
 ---------------------
 

@@ -87,7 +87,7 @@
 
 * New
   * Library plugins can now support extra [capabilities](tutorials/extensions/libraryPlugins.md#capabilities).
-  * Added [ImportGame](xref:Playnite.SDK.IGameDatabase.ImportGame(Playnite.SDK.Models.GameInfo)) methods to more easily add new games to the library.
+  * Added `ImportGame` methods to more easily add new games to the library.
   * Added [OpenPluginSettings](xref:Playnite.SDK.IMainViewAPI.OpenPluginSettings(System.Guid)) method to open view with extension settings (also accessible via `OpenSettingsView` method inherited from `Plugin` class).
   * Added [StartGame](xref:Playnite.SDK.IPlayniteAPI.StartGame(System.Guid)).
   * Added [UriHandler](xref:Playnite.SDK.IPlayniteAPI.UriHandler) for registering of custom [URI method actions](tutorials/extensions/uriSupport.md).
