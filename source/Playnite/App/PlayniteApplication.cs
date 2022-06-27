@@ -619,10 +619,12 @@ namespace Playnite
                     var ext = Path.GetExtension(extPath).ToLower();
                     if (ext.Equals(PlaynitePaths.PackedThemeFileExtention, StringComparison.OrdinalIgnoreCase))
                     {
+                        MainModelBase.Window.RestoreWindow();
                         InstallThemeFile(extPath);
                     }
                     else if (ext.Equals(PlaynitePaths.PackedExtensionFileExtention, StringComparison.OrdinalIgnoreCase))
                     {
+                        MainModelBase.Window.RestoreWindow();
                         InstallExtensionFile(extPath);
                     }
 
