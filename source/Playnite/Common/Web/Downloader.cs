@@ -160,7 +160,7 @@ namespace Playnite.Common.Web
                 using (var webClient = new WebClient())
                 using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
-                    webClient.DownloadFileTaskAsync(new Uri(url), path).GetAwaiter().GetResult();
+                    Task.Run(async () => await webClient.DownloadFileTaskAsync(new Uri(url), path)).Wait();
                 }
             }
             catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
