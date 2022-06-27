@@ -74,13 +74,9 @@ namespace Playnite.DesktopApp.Windows
             {
                 return gameTemplate;
             }
-            else if (item is SearchItem)
-            {
-                return genericTemplate;
-            }
             else
             {
-                return null;
+                return genericTemplate;
             }
         }
     }

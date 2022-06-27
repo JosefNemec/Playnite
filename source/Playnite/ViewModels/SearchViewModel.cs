@@ -709,7 +709,11 @@ namespace Playnite.ViewModels
             {
                 foreach (var item in results.ToList())
                 {
-                    if (item is GameSearchItem gameItem)
+                    if (item is GameSearchItemWrapper || item is SearchItemWrapper)
+                    {
+                        continue;
+                    }
+                    else if (item is GameSearchItem gameItem)
                     {
                         var index = results.IndexOf(item);
                         results[index] = new GameSearchItemWrapper(gameItem, mainModel.Extensions.GetLibraryPlugin(gameItem.Game.PluginId), mainModel.AppSettings);
