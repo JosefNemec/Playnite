@@ -149,19 +149,22 @@ namespace Playnite.ViewModels
         public IResourceProvider Resources { get; }
         public ExtensionFactory Extensions { get; set; }
         public bool IgnoreFilterChanges { get; set; } = false;
+        public IWindowFactory Window { get; }
 
         public MainViewModelBase(
             IGameDatabaseMain database,
             PlayniteApplication app,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            ExtensionFactory extensions)
+            ExtensionFactory extensions,
+            IWindowFactory window)
         {
             Database = database;
             App = app;
             Dialogs = dialogs;
             Resources = resources;
             Extensions = extensions;
+            Window = window;
 
             ApplyFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
             {

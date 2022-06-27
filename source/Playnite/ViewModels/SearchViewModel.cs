@@ -7,12 +7,14 @@ using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -139,7 +141,7 @@ namespace Playnite.ViewModels
 
             if (args.SearchTerm.EndsWith(" "))
             {
-                var providerTest = args.SearchTerm.Trim();
+                var providerTest = args.SearchTerm.Trim().TrimStart('/');
                 var provider = searchProviders.FirstOrDefault(a => a.Keyword.Equals(providerTest, StringComparison.InvariantCultureIgnoreCase));
                 if (provider != null)
                 {
@@ -222,6 +224,63 @@ namespace Playnite.ViewModels
         }
     }
 
+    public class SearchItemWrapper : SearchItem
+    {
+        private readonly SynchronizationContext syncContext;
+
+        public SearchItem Item { get; }
+
+        private object itemIcon = null;
+        public object ItemIcon
+        {
+            get
+            {
+                if (itemIcon != null)
+                {
+                    return itemIcon;
+                }
+
+                if (Item.Icon == null)
+                {
+                    return null;
+                }
+
+                if (Item.Icon is string stringIcon && stringIcon.IsHttpUrl())
+                {
+                    Task.Run(() =>
+                    {
+                        itemIcon = SdkHelpers.ResolveUiItemIcon(Item.Icon, syncContext);
+                        if (itemIcon == null)
+                        {
+                            itemIcon = DependencyProperty.UnsetValue;
+                        }
+                        else
+                        {
+                            syncContext.Send((_) => OnPropertyChanged(nameof(ItemIcon)), null);
+                        }
+                    });
+
+                    return null;
+                }
+                else
+                {
+                    return SdkHelpers.ResolveUiItemIcon(Item.Icon);
+                }
+            }
+        }
+
+        public SearchItemWrapper(SearchItem item, SynchronizationContext syncContext)
+            : base(item.Name, item.PrimaryAction)
+
+        {
+            this.syncContext = syncContext;
+            Item = item;
+            Description = item.Description;
+            MenuAction = item.MenuAction;
+            SecondaryAction = item.SecondaryAction;
+        }
+    }
+
     public class SearchViewModel : ObservableObject
     {
         public class ItemAction : ObservableObject
@@ -261,6 +320,7 @@ namespace Playnite.ViewModels
         private bool filterHintVisible = false;
         private string filterHint;
         private string currentContextLabel;
+        private bool searchEnabled = true;
         #endregion backing fields
 
         private static readonly char[] textMatchSplitter = new char[] { ' ' };
@@ -272,7 +332,7 @@ namespace Playnite.ViewModels
         private int currentSearchDelay = 0;
         private readonly SynchronizationContext syncContext;
         private readonly System.Timers.Timer searchDelayTimer = new System.Timers.Timer { AutoReset = false };
-        private readonly System.Timers.Timer longSearchTimer = new System.Timers.Timer { AutoReset = false, Interval = 1000 };
+        private readonly System.Timers.Timer longSearchTimer = new System.Timers.Timer { AutoReset = false, Interval = 700 };
         private CancellationTokenSource currentSearchToken;
         private int customProviderDeleteAttemps = 0;
         private readonly Stack<SearchContext> searchContextStack = new Stack<SearchContext>();
@@ -302,6 +362,7 @@ namespace Playnite.ViewModels
             }
         }
 
+        public bool SearchEnabled { get => searchEnabled; set => SetValue(ref searchEnabled, value); }
         public bool FilterHintVisible { get => filterHintVisible; set => SetValue(ref filterHintVisible, value); }
         public string FilterHint { get => filterHint; set => SetValue(ref filterHint, value); }
         public GameSearchFilterSettings GameFilterSettings { get; set; }
@@ -350,9 +411,30 @@ namespace Playnite.ViewModels
             this.extensions = extensions;
             this.mainModel = mainModel;
 
-            PrimaryActionCommand = new RelayCommand(() => PrimaryAction.Action());
-            SecondaryActionCommand = new RelayCommand(() => SecondaryAction.Action());
-            OpenMenuCommand = new RelayCommand(() => MenuAction.Action());
+            PrimaryActionCommand = new RelayCommand(() => syncContext.Send(_ =>
+            {
+                if (PrimaryAction.CloseView)
+                {
+                    Close();
+                }
+                PrimaryAction.Action();
+            }, null));
+            SecondaryActionCommand = new RelayCommand(() => syncContext.Send(_ =>
+            {
+                if (SecondaryAction.CloseView)
+                {
+                    Close();
+                }
+                SecondaryAction.Action();
+            }, null));
+            OpenMenuCommand = new RelayCommand(() => syncContext.Send(_ =>
+            {
+                if (MenuAction.CloseView)
+                {
+                    Close();
+                }
+                MenuAction.Action();
+            }, null));
 
             var searchProviders = new List<SearchSupport>();
             foreach (var plugin in extensions.Plugins)
@@ -409,6 +491,21 @@ namespace Playnite.ViewModels
             window.Show(this);
         }
 
+        public void OpenSearch(string search)
+        {
+            window.Show(this);
+            SearchTerm = search;
+        }
+        public void OpenSearch(SearchContext context, string search)
+        {
+            window.Show(this);
+            SetCurrentContext(context);
+            if (!search.IsNullOrEmpty())
+            {
+                SearchTerm = search;
+            }
+        }
+
         public void Close()
         {
             // This is used because deactivate event is called before close event
@@ -419,6 +516,12 @@ namespace Playnite.ViewModels
 
         private void WindowDeactivated(EventArgs args)
         {
+            // The view would get automatically closed once you switch to debugger...
+            if (Debugger.IsAttached)
+            {
+                return;
+            }
+
             if (isClosing)
             {
                 return;
@@ -430,6 +533,7 @@ namespace Playnite.ViewModels
         private void WindowClosed(EventArgs args)
         {
             // Don't call this in Close method because that's not invoked when closing using ALT-F4
+            currentSearchToken?.Cancel();
             searchDelayTimer.Dispose();
             longSearchTimer.Dispose();
             if (mainModel.AppSettings.SaveGlobalSearchFilterSettings)
@@ -548,6 +652,10 @@ namespace Playnite.ViewModels
 
             searchDelayTimer.Stop();
             currentSearchToken?.Cancel();
+            if (currentSearchDelay > 0)
+            {
+                syncContext.Send((_) => SearchEnabled = false, null);
+            }
 
             var searchToken = new CancellationTokenSource();
             currentSearchToken = searchToken;
@@ -606,6 +714,11 @@ namespace Playnite.ViewModels
                         var index = results.IndexOf(item);
                         results[index] = new GameSearchItemWrapper(gameItem, mainModel.Extensions.GetLibraryPlugin(gameItem.Game.PluginId), mainModel.AppSettings);
                     }
+                    else
+                    {
+                        var index = results.IndexOf(item);
+                        results[index] = new SearchItemWrapper(item, syncContext);
+                    }
                 }
 
                 SearchResults = results;
@@ -621,6 +734,10 @@ namespace Playnite.ViewModels
             searchToken.Dispose();
             longSearchTimer.Stop();
             SlowAnimationActive = false;
+            if (currentSearchDelay > 0)
+            {
+                syncContext.Send((_) => SearchEnabled = true, null);
+            }
         }
 
         private void TextBoxKeyDown(KeyEventArgs keyArgs)
@@ -791,33 +908,36 @@ namespace Playnite.ViewModels
         {
             try
             {
-                if (PrimaryAction?.Selected == true)
+                syncContext.Send(_ =>
                 {
-                    if (PrimaryAction.CloseView)
+                    if (PrimaryAction?.Selected == true)
                     {
-                        Close();
-                    }
+                        if (PrimaryAction.CloseView)
+                        {
+                            Close();
+                        }
 
-                    PrimaryAction.Action();
-                }
-                else if (SecondaryAction?.Selected == true)
-                {
-                    if (SecondaryAction.CloseView)
+                        PrimaryAction.Action();
+                    }
+                    else if (SecondaryAction?.Selected == true)
                     {
-                        Close();
-                    }
+                        if (SecondaryAction.CloseView)
+                        {
+                            Close();
+                        }
 
-                    SecondaryAction.Action();
-                }
-                else if (MenuAction?.Selected == true)
-                {
-                    if (MenuAction.CloseView)
+                        SecondaryAction.Action();
+                    }
+                    else if (MenuAction?.Selected == true)
                     {
-                        Close();
-                    }
+                        if (MenuAction.CloseView)
+                        {
+                            Close();
+                        }
 
-                    MenuAction.Action();
-                }
+                        MenuAction.Action();
+                    }
+                }, null);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {

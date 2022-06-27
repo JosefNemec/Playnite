@@ -38,7 +38,6 @@ namespace Playnite.FullscreenApp.ViewModels
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
 
-        public IWindowFactory Window { get; }
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
         public ObservableTime CurrentTime { get; } = new ObservableTime();
@@ -361,7 +360,7 @@ namespace Playnite.FullscreenApp.ViewModels
             PlayniteApplication app,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            ExtensionFactory extensions) : base(database, app, dialogs, resources, extensions)
+            ExtensionFactory extensions) : base(database, app, dialogs, resources, extensions, null)
         {
             InitializeCommands();
         }
@@ -374,10 +373,9 @@ namespace Playnite.FullscreenApp.ViewModels
             PlayniteSettings settings,
             GamesEditor gamesEditor,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, app, dialogs, resources, extensions)
+            PlayniteApplication app) : base(database, app, dialogs, resources, extensions, window)
         {
             context = SynchronizationContext.Current;
-            Window = window;
             GamesEditor = gamesEditor;
             AppSettings = settings;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;

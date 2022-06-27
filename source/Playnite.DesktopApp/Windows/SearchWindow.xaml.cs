@@ -26,6 +26,7 @@ namespace Playnite.DesktopApp.Windows
             InitializeComponent();
             Activated += SearchWindow_Activated;
             Loaded += SearchWindow_Loaded;
+            TextSearchBox.IsEnabledChanged += TextSearchBox_IsEnabledChanged;
         }
 
         private void SearchWindow_Loaded(object sender, RoutedEventArgs e)
@@ -45,6 +46,14 @@ namespace Playnite.DesktopApp.Windows
         {
             this.RestoreWindow();   // Needed in case search is opened while Playnite is not active.
             TextSearchBox.Focus();
+        }
+
+        private void TextSearchBox_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (TextSearchBox.IsEnabled)
+            {
+                TextSearchBox.Focus();
+            }
         }
     }
 

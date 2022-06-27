@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,5 +116,18 @@ namespace Playnite.SDK
         /// </summary>
         /// <returns></returns>
         FilterPresetSettings GetCurrentFilterSettings();
+
+        /// <summary>
+        /// Opens global search view.
+        /// </summary>
+        /// <param name="searchTerm">Default search term.</param>
+        void OpenSearch(string searchTerm);
+
+        /// <summary>
+        /// Opens global search view.
+        /// </summary>
+        /// <param name="context">Search context to be activated after opening the view.</param>
+        /// <param name="searchTerm">Default search term.</param>
+        void OpenSearch(SearchContext context, string searchTerm);
     }
 }

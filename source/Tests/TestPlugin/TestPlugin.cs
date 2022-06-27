@@ -25,6 +25,7 @@ namespace TestPlugin
             Delay = 500;
             Description = "Default search description";
             Label = "test search";
+            Hint = "search hint goes here";
         }
 
         public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
@@ -46,6 +47,14 @@ namespace TestPlugin
                 Description = "test plugin description",
                 SecondaryAction = new SearchItemAction("blow up more", () => { })
             };
+
+            yield return new SearchItem($"icon test", new SearchItemAction("Blow up", () => {
+                API.Instance.Database.ImportGame(new GameMetadata() { Name = "# import from search" });
+            }))
+            {
+                Icon = @"https://cdn.akamai.steamstatic.com/steam/apps/684450/header_292x136.jpg?t=1655395612",
+                Description = "icon test"
+            };
         }
     }
 
@@ -53,7 +62,7 @@ namespace TestPlugin
     {
         public SlowSearchContext()
         {
-            Delay = 100;
+            Delay = 500;
             Description = "Slow search description";
         }
 
@@ -360,7 +369,10 @@ namespace TestPlugin
                     FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                 },
                 Title = "Calculator",
-                Activated = () => Process.Start("calc")
+                Activated = () =>
+                {
+                    PlayniteApi.MainView.OpenSearch(new DefaultSearchContext(), null);
+                }
             };
             //new TopPanelItem()
             //{

@@ -217,7 +217,7 @@ namespace Playnite.SDK.Plugins
     /// <summary>
     /// Represents search item for global search results.
     /// </summary>
-    public class SearchItem
+    public class SearchItem : ObservableObject
     {
         /// <summary>
         /// Gets or sets primary actions.

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,8 +20,13 @@ namespace Playnite
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
-        public static object ResolveUiItemIcon(object icon)
+        public static object ResolveUiItemIcon(object icon, SynchronizationContext syncContext = null)
         {
+            if (syncContext == null)
+            {
+                syncContext = SynchronizationContext.Current;
+            }
+
             if (icon == null)
             {
                 return null;
@@ -56,15 +62,49 @@ namespace Playnite
                             return text;
                         }
                     }
+                    else if (stringIcon.IsHttpUrl())
+                    {
+                        try
+                        {
+                            var cachedFile = HttpFileCache.GetWebFile(stringIcon);
+                            if (string.IsNullOrEmpty(cachedFile))
+                            {
+                                return null;
+                            }
+
+                            var image = BitmapExtensions.BitmapFromFile(cachedFile);
+                            Image imageObj = null;
+                            if (image != null)
+                            {
+                                syncContext.Send(_ =>
+                                {
+                                    imageObj = image.ToImage();
+                                    RenderOptions.SetBitmapScalingMode(imageObj, BitmapScalingMode.Fant);
+                                }, null);
+                            }
+
+                            return imageObj;
+                        }
+                        catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                        {
+                            logger.Error(exc, $"Failed to create bitmap from {stringIcon} file.");
+                            return null;
+                        }
+                    }
                     else if (System.IO.File.Exists(stringIcon))
                     {
-                        var image =  BitmapExtensions.BitmapFromFile(stringIcon)?.ToImage();
+                        var image = BitmapExtensions.BitmapFromFile(stringIcon);
+                        Image imageObj = null;
                         if (image != null)
                         {
-                            RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.Fant);
+                            syncContext.Send(_ =>
+                            {
+                                imageObj = image.ToImage();
+                                RenderOptions.SetBitmapScalingMode(imageObj, BitmapScalingMode.Fant);
+                            }, null);
                         }
 
-                        return image;
+                        return imageObj;
                     }
                     else
                     {

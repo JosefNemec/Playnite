@@ -1,6 +1,7 @@
 ﻿using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -110,6 +111,16 @@ namespace Playnite.DesktopApp.API
         public FilterPresetSettings GetCurrentFilterSettings()
         {
             return mainModel.AppSettings.FilterSettings.AsPresetSettings();
+        }
+
+        public void OpenSearch(string searchTerm)
+        {
+            mainModel.OpenSearch(searchTerm);
+        }
+
+        public void OpenSearch(SearchContext context, string searchTerm)
+        {
+            mainModel.OpenSearch(context, searchTerm);
         }
     }
 }

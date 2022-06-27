@@ -1,6 +1,7 @@
 ﻿using Playnite.FullscreenApp.ViewModels;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -110,6 +111,16 @@ namespace Playnite.FullscreenApp.API
         public FilterPresetSettings GetCurrentFilterSettings()
         {
             return mainModel.AppSettings.Fullscreen.FilterSettings.AsPresetSettings();
+        }
+
+        public void OpenSearch(string searchTerm)
+        {
+            throw new NotSupportedInFullscreenException();
+        }
+
+        public void OpenSearch(SearchContext context, string searchTerm)
+        {
+            throw new NotSupportedInFullscreenException();
         }
     }
 }

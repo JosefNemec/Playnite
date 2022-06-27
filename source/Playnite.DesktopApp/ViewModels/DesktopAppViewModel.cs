@@ -47,7 +47,6 @@ namespace Playnite.DesktopApp.ViewModels
         private Controls.Views.Library libraryView;
         private SearchViewModel currentGlobalSearch;
 
-        public IWindowFactory Window { get; }
         public DesktopGamesEditor GamesEditor { get; }
 
         private Control activeView;
@@ -240,7 +239,7 @@ namespace Playnite.DesktopApp.ViewModels
             PlayniteApplication app,
             IDialogsFactory dialogs,
             IResourceProvider resources,
-            ExtensionFactory extensions) : base(database, app, dialogs, resources, extensions)
+            ExtensionFactory extensions) : base(database, app, dialogs, resources, extensions, null)
         {
         }
 
@@ -252,10 +251,9 @@ namespace Playnite.DesktopApp.ViewModels
             PlayniteSettings settings,
             DesktopGamesEditor gamesEditor,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, app, dialogs, resources, extensions)
+            PlayniteApplication app) : base(database, app, dialogs, resources, extensions, window)
         {
             context = SynchronizationContext.Current;
-            Window = window;
             GamesEditor = gamesEditor;
             AppSettings = settings;
             App.Notifications.ActivationRequested += DesktopAppViewModel_ActivationRequested;
@@ -1215,14 +1213,34 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else
             {
-                currentGlobalSearch = new SearchViewModel(
-                   new SearchWindowFactory(),
-                   Database,
-                   Extensions,
-                   this);
-                currentGlobalSearch.SearchClosed += (_, __) => currentGlobalSearch = null;
+                CreateAndSetGlobalSearchView();
                 currentGlobalSearch.OpenSearch();
             }
+        }
+
+        public void OpenSearch(string searchTerm)
+        {
+            currentGlobalSearch?.Close();
+            CreateAndSetGlobalSearchView();
+            currentGlobalSearch.OpenSearch(searchTerm);
+        }
+
+        public void OpenSearch(SearchContext context, string searchTerm)
+        {
+            currentGlobalSearch?.Close();
+            CreateAndSetGlobalSearchView();
+            currentGlobalSearch.OpenSearch(context, searchTerm);
+        }
+
+        private SearchViewModel CreateAndSetGlobalSearchView()
+        {
+            currentGlobalSearch = new SearchViewModel(
+              new SearchWindowFactory(),
+              Database,
+              Extensions,
+              this);
+            currentGlobalSearch.SearchClosed += (_, __) => currentGlobalSearch = null;
+            return currentGlobalSearch;
         }
 
         public void RegisterSystemSearchHotkey()

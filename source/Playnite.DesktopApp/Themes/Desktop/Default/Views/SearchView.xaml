@@ -11,7 +11,7 @@
                    RenderOptions.BitmapScalingMode="Fant">
                 <Image.Source>
                     <PriorityBinding>
-                        <Binding Path="GameView.IconObject" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}" />
+                        <Binding Path="GameView.IconObject" Converter="{StaticResource NullToDependencyPropertyUnsetConverter}"  />
                         <Binding Path="GameView.DefaultIconObject" />
                     </PriorityBinding>
                 </Image.Source>
@@ -63,16 +63,16 @@
     <DataTemplate x:Key="SearchWindowSearchItemTemplate">
         <StackPanel Orientation="Horizontal" Margin="5,2,5,2">
             <Viewbox Width="32" Height="32" VerticalAlignment="Center">
-                <ContentControl Focusable="False" Content="{Binding Icon, Converter={StaticResource PluginIconSourceToElementConverter}}"
+                <ContentControl Focusable="False" Content="{Binding ItemIcon}"
                                 VerticalAlignment="Center" Margin="4" />
             </Viewbox>
             <StackPanel Margin="10,0,0,0" VerticalAlignment="Center" >
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"
+                <TextBlock Text="{Binding Item.Name}" VerticalAlignment="Center"
                            FontWeight="Normal" FontSize="{DynamicResource FontSizeLarge}" />
-                <TextBlock Text="{Binding Description}"
+                <TextBlock Text="{Binding Item.Description}"
                            Foreground="{DynamicResource TextBrushDarker}"
                            Margin="0,5,0,0" VerticalAlignment="Center"
-                           Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
+                           Visibility="{Binding Item.Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"/>
             </StackPanel>
         </StackPanel>
     </DataTemplate>
