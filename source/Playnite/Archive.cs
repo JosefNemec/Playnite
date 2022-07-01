@@ -5,11 +5,12 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite
 {
-    public class Archive
+    public static class Archive
     {
         public static List<string> GetArchiveFiles(string archivePath)
         {
@@ -30,6 +31,39 @@ namespace Playnite
             }
 
             return new Tuple<Stream, IDisposable>(entry.OpenEntryStream(), archive);
+        }
+
+        public static void CreateEntryFromDirectory(this ZipArchive archive, string directory, string entryName, CancellationToken cancelToken)
+        {
+            if (cancelToken.IsCancellationRequested)
+            {
+                return;
+            }
+
+            foreach (var file in Directory.GetFiles(directory))
+            {
+                if (cancelToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                archive.CreateEntryFromFile(file, Path.Combine(entryName, Path.GetFileName(file)));
+            }
+
+            if (cancelToken.IsCancellationRequested)
+            {
+                return;
+            }
+
+            foreach (var dir in Directory.GetDirectories(directory))
+            {
+                if (cancelToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                CreateEntryFromDirectory(archive, dir, Path.Combine(entryName, Path.GetFileName(dir)), cancelToken);
+            }
         }
     }
 }

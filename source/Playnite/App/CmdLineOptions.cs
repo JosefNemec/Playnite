@@ -47,9 +47,15 @@ namespace Playnite
 
         [Option("resetsettings")]
         public bool ResetSettings { get; set; }
-        
+
         [Option("masterinstance")]
         public bool MasterInstance { get; set; }
+
+        [Option("backup")]
+        public string Backup { get; set; }
+
+        [Option("restorebackup")]
+        public string RestoreBackup { get; set; }
 
         public override string ToString()
         {

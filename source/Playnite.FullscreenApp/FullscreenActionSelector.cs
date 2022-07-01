@@ -26,19 +26,19 @@ namespace Playnite.FullscreenApp
                 allActions.AddRange(actions.Select(a => new SelectableNamedObject<object>(a, a.Name)));
             }
 
-            ItemSelector.SelectSingle(LOC.SelectActionTitle, allActions, out var selectedItem);
+            ItemSelector.SelectSingle(LOC.SelectActionTitle, "", allActions, out var selectedItem);
             return selectedItem;
         }
 
         public InstallController SelectInstallAction(List<InstallController> pluginActions)
         {
-            ItemSelector.SelectSingle(LOC.SelectActionTitle, pluginActions.Select(a => new SelectableNamedObject<InstallController>(a, a.Name)).ToList(), out var selectedItem);
+            ItemSelector.SelectSingle(LOC.SelectActionTitle, "", pluginActions.Select(a => new SelectableNamedObject<InstallController>(a, a.Name)).ToList(), out var selectedItem);
             return selectedItem;
         }
 
         public UninstallController SelectUninstallAction(List<UninstallController> pluginActions)
         {
-            ItemSelector.SelectSingle(LOC.SelectActionTitle, pluginActions.Select(a => new SelectableNamedObject<UninstallController>(a, a.Name)).ToList(), out var selectedItem);
+            ItemSelector.SelectSingle(LOC.SelectActionTitle, "", pluginActions.Select(a => new SelectableNamedObject<UninstallController>(a, a.Name)).ToList(), out var selectedItem);
             return selectedItem;
         }
     }

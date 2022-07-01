@@ -47,7 +47,8 @@ namespace Playnite
         Sorting = 21,
         Updates = 22,
         AppearanceListView = 23,
-        Search = 24
+        Search = 24,
+        Backup = 25
     }
 
     public enum GameSearchItemAction
@@ -187,6 +188,14 @@ namespace Playnite
         OnceADay = 2,
         [Description(LOC.OptionOnceAWeek)]
         OnceAWeek = 3
+    }
+
+    public enum AutoBackupFrequency
+    {
+        [Description(LOC.OptionOnceADay)]
+        OnceADay = 1,
+        [Description(LOC.OptionOnceAWeek)]
+        OnceAWeek = 2
     }
 
     public class PlayniteSettings : ObservableObject
@@ -1956,6 +1965,7 @@ namespace Playnite
         public DateTime LastAddonUpdateCheck { get; set; }
         public DateTime LastLibraryUpdateCheck { get; set; }
         public DateTime LastEmuLibraryUpdateCheck { get; set; }
+        public DateTime LastAutoBackup { get; set; }
 
         private GameSearchItemAction primaryGameSearchItemAction = GameSearchItemAction.SwitchTo;
         public GameSearchItemAction PrimaryGameSearchItemAction { get => primaryGameSearchItemAction; set => SetValue(ref primaryGameSearchItemAction, value); }
@@ -1981,6 +1991,30 @@ namespace Playnite
 
         private bool includeCommandsInDefaultSearch = true;
         public bool IncludeCommandsInDefaultSearch { get => includeCommandsInDefaultSearch; set => SetValue(ref includeCommandsInDefaultSearch, value); }
+
+        private bool autoBackupEnabled = false;
+        public bool AutoBackupEnabled { get => autoBackupEnabled; set => SetValue(ref autoBackupEnabled, value); }
+
+        private AutoBackupFrequency autoBackupFrequency = AutoBackupFrequency.OnceAWeek;
+        public AutoBackupFrequency AutoBackupFrequency { get => autoBackupFrequency; set => SetValue(ref autoBackupFrequency, value); }
+
+        private string autoBackupDir;
+        public string AutoBackupDir { get => autoBackupDir; set => SetValue(ref autoBackupDir, value); }
+
+        private int rotatingBackups;
+        public int RotatingBackups { get => rotatingBackups; set => SetValue(ref rotatingBackups, value); }
+
+        private bool autoBackupIncludeLibFiles = true;
+        public bool AutoBackupIncludeLibFiles { get => autoBackupIncludeLibFiles; set => SetValue(ref autoBackupIncludeLibFiles, value); }
+
+        private bool autoBackupIncludeExtensionsData = true;
+        public bool AutoBackupIncludeExtensionsData { get => autoBackupIncludeExtensionsData; set => SetValue(ref autoBackupIncludeExtensionsData, value); }
+
+        private bool autoBackupIncludeExtensions = false;
+        public bool AutoBackupIncludeExtensions { get => autoBackupIncludeExtensions; set => SetValue(ref autoBackupIncludeExtensions, value); }
+
+        private bool autoBackupIncludeThemes = false;
+        public bool AutoBackupIncludeThemes { get => autoBackupIncludeThemes; set => SetValue(ref autoBackupIncludeThemes, value); }
 
         [JsonIgnore]
         public static bool IsPortable
@@ -2441,6 +2475,24 @@ namespace Playnite
                 case LibraryUpdateCheckFrequency.OnEveryStartup:
                 default:
                     return true;
+            }
+        }
+
+        public bool ShouldDataBackupOnStartup()
+        {
+            if (!AutoBackupEnabled)
+            {
+                return false;
+            }
+
+            switch (AutoBackupFrequency)
+            {
+                case AutoBackupFrequency.OnceADay:
+                    return (DateTimes.Now - LastAutoBackup).TotalHours > 23;
+                case AutoBackupFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastAutoBackup).TotalDays > 6;
+                default:
+                    return false;
             }
         }
 

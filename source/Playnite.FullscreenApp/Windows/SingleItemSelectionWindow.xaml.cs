@@ -17,14 +17,6 @@ using System.Windows.Threading;
 
 namespace Playnite.FullscreenApp.Windows
 {
-    public class SingleItemSelectionWindowFactory : WindowFactory
-    {
-        public override WindowBase CreateNewWindowInstance()
-        {
-            return new SingleItemSelectionWindow();
-        }
-    }
-
     /// <summary>
     /// Interaction logic for UpdateWindow.xaml
     /// </summary>

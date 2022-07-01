@@ -18,3 +18,6 @@
 
 - name: Playtime Import
   href: playtimeImport.md
+
+- name: Backups
+  href: backup.md

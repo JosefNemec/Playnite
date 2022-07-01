@@ -1,5 +1,4 @@
-﻿using Playnite.FullscreenApp.Windows;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.FullscreenApp.ViewModels
+namespace Playnite.ViewModels
 {
     public class SingleItemSelectionViewModel<TItem> : ObservableObject
     {
@@ -18,14 +17,16 @@ namespace Playnite.FullscreenApp.ViewModels
         public List<SelectableNamedObject<TItem>> Items { get; set; }
         public int StartIndex { get; private set; }
         public string HeaderText { get; set; }
+        public string MessageText { get; set; }
 
         public RelayCommand<SelectableNamedObject<TItem>> SelectItemCommand { get; }
         public RelayCommand CancelCommand => new RelayCommand(() => window.Close(null));
 
-        public SingleItemSelectionViewModel(IWindowFactory window, string header)
+        public SingleItemSelectionViewModel(IWindowFactory window, string header, string message)
         {
             this.window = window;
-            HeaderText = header;
+            HeaderText = header?.GetLocalized();
+            MessageText = message?.GetLocalized();
             SelectItemCommand = new RelayCommand<SelectableNamedObject<TItem>>((item) =>
             {
                 selectedItem = item;
@@ -72,15 +73,17 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public List<SelectableNamedObject<TItem>> Items { get; set; }
         public string HeaderText { get; set; }
+        public string MessageText { get; set; }
 
         public RelayCommand CancelCommand => new RelayCommand(() => window.Close(null));
         public RelayCommand ConfirmCommand => new RelayCommand(() => window.Close(true));
         public RelayCommand ToggleSelectionCommand => new RelayCommand(() => ToggleSelection());
 
-        public MultiItemSelectionViewModel(IWindowFactory window, string header)
+        public MultiItemSelectionViewModel(IWindowFactory window, string header, string message)
         {
             this.window = window;
-            HeaderText = header;
+            HeaderText = header?.GetLocalized();
+            MessageText = message?.GetLocalized();
         }
 
         public bool SelectItem(List<SelectableNamedObject<TItem>> items, out List<TItem> selected)
@@ -102,29 +105,6 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             var toggle = !Items[0].Selected;
             Items.ForEach(a => a.Selected = toggle);
-        }
-    }
-
-    public static class ItemSelector
-    {
-        public static bool SelectSingle<TItem>(string header, List<SelectableNamedObject<TItem>> items, out TItem selected)
-        {
-            var result = new SingleItemSelectionViewModel<TItem>(
-                new SingleItemSelectionWindowFactory(),
-                header.StartsWith("LOC") ? ResourceProvider.GetString(header) : header).
-                SelectItem(items, out TItem selectedItem);
-            selected = selectedItem;
-            return result;
-        }
-
-        public static bool SelectMultiple<TItem>(string header, List<SelectableNamedObject<TItem>> items, out List<TItem> selected)
-        {
-            var result = new MultiItemSelectionViewModel<TItem>(
-                new MultiItemSelectionWindowFactory(),
-                header.StartsWith("LOC") ? ResourceProvider.GetString(header) : header).
-                SelectItem(items, out List<TItem> selectedItems);
-            selected = selectedItems;
-            return result;
         }
     }
 }

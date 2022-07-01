@@ -285,6 +285,9 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsUpdating">Updating</sys:String>
     <sys:String x:Key="LOCSettingsSearch">Search</sys:String>
+    <sys:String x:Key="LOCSettingsBackup">Backup</sys:String>
+    <sys:String x:Key="LOCMenuBackupData">Backup Library Data</sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">Restore Data Backup</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import changes in library automatically</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Account name cannot be empty.</sys:String>
@@ -1128,4 +1131,26 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set scanner will assign this platform to all games, ovewritting any automatically detected platforms.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Include commands in default search</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled, commands won't be included in default search until # prefix is used.</sys:String>
+    
+    <sys:String x:Key="LOCBackupCancelled">Data backup was cancelled.</sys:String>
+    <sys:String x:Key="LOCBackupFailed">Data backup failed.</sys:String>
+    <sys:String x:Key="LOCBackupErrorTitle">Data backup error</sys:String>
+    <sys:String x:Key="LOCBackupProgress">Data backup in progress…</sys:String>
+    <sys:String x:Key="LOCBackupRestoreProgress">Restoring data from backup…</sys:String>
+    <sys:String x:Key="LOCBackupRestoreFailed">Failed to restore data from backup.</sys:String>
+    <sys:String x:Key="LOCBackupRestoreCancelled">Data backup was cancelled.</sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings">Settings</sys:String>
+    <sys:String x:Key="LOCBackupOptionLibrary">Game library</sys:String>
+    <sys:String x:Key="LOCBackupOptionGameMedia">Game library media</sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions">Installed extensions</sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensionsData">Extensions data</sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes">Installed themes</sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage">Select data to be restored from specified backup file.</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage">Select items to be included with data backup. Application settings and game library data are included by default.</sys:String>
+    <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Automatic data backup</sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupFrequency">Auto backup frequency</sys:String>
+    <sys:String x:Key="LOCSettingsBackupFolder">Backup folder</sys:String>
+    <sys:String x:Key="LOCSettingsRotatingBackups">Rotating backups</sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">Include additional data:</sys:String>
+    <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError">Backup folder needs to be set if auto backup is enabled.</sys:String>
 </ResourceDictionary>

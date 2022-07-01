@@ -37,7 +37,6 @@ namespace Playnite.FullscreenApp
             }
         }
 
-        public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
         public static AudioPlaybackEngine Audio;
         private static CachedSound navigateSound;
@@ -51,20 +50,26 @@ namespace Playnite.FullscreenApp
         }
 
         public FullscreenApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
-            : base(appInitializer, ApplicationMode.Fullscreen, DefaultThemeName, cmdLine)
+            : base(appInitializer, ApplicationMode.Fullscreen, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
 
-        public override bool Startup()
+        public override void ConfigureViews()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashWindow>();
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashWindow>();
             LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
+            SingleItemSelectionWindowFactory.SetWindowType<SingleItemSelectionWindow>();
+            MultiItemSelectionWindowFactory.SetWindowType<MultiItemSelectionWindow>();
             Dialogs = new FullscreenDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
+        }
+
+        public override bool Startup()
+        {
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCFullscreenFirstTimeError"), "");

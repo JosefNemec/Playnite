@@ -15,6 +15,8 @@ Playnite executable accepts following arguments from command line.
 | --clearwebcache | Clears web (CEF) cache on startup. |
 | --shutdown | Shuts down any existing instances of Playnite. |
 | --safestartup | Start playnite in Safe Mode, only loading built-in extensions and using default theme. |
+| --backup | [Backup Playnite data](backup.md) |
+| --restorebackup | [Restore Playnite data from backup](backup.md) |
 
 URI commands
 ---------------------

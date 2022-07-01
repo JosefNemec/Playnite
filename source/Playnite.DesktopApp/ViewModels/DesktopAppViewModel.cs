@@ -1066,6 +1066,15 @@ namespace Playnite.DesktopApp.ViewModels
                     icon);
             }
 
+            SearchItem createItemH(string root, string name, RelayCommand command, object icon = null)
+            {
+                return new SearchItem(
+                    $"{root.GetLocalized()} > {name.GetLocalized()}",
+                    LOC.Open,
+                    () => command.Execute(),
+                    icon);
+            }
+
             SearchItem createItem<T>(string root, string name, RelayCommand<T> command, T commandParam, object icon = null)
             {
                 return new SearchItem(
@@ -1087,6 +1096,8 @@ namespace Playnite.DesktopApp.ViewModels
             yield return createItemG(LOC.Library, LOC.MenuConfigureEmulatorsMenuTitle, OpenEmulatorsCommand);
             yield return createItemG(LOC.Library, LOC.MenuDownloadMetadata, DownloadMetadataCommand);
             yield return createItemG(LOC.Library, LOC.MenuSoftwareTools, OpenSoftwareToolsCommand);
+            yield return createItemH(LOC.Library, LOC.MenuBackupData, BackupDataCommand, "BackupIcon");
+            yield return createItemH(LOC.Library, LOC.MenuRestoreBackup, RestoreDataBackupCommand, "RestoreBackupIcon");
 
             // Library update
             foreach (var plugin in Extensions.LibraryPlugins)

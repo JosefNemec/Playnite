@@ -28,6 +28,7 @@ namespace Playnite
         public static ThemeManifest DefaultTheme { get; private set; }
         public const string DefaultDesktopThemeId = "Playnite_builtin_DefaultDesktop";
         public const string DefaultFullscreenThemeId = "Playnite_builtin_DefaultFullscreen";
+        public const string DefaultThemeDirName = "Default";
 
         public static System.Version GetApiVersion(ApplicationMode mode)
         {
@@ -179,7 +180,7 @@ namespace Playnite
 
             foreach (var themeXamlFile in acceptableXamls)
             {
-                var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), "Default", themeXamlFile);
+                var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), DefaultThemeDirName, themeXamlFile);
                 var defaultXaml = Xaml.FromFile(defaultPath);
                 if (defaultXaml is ResourceDictionary xamlDir)
                 {

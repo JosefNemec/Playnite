@@ -237,6 +237,9 @@
     <Compile Include="Controls\FilterEnumSelectionBox.cs" />
     <Compile Include="Controls\FilterSelectionBox.cs" />
     <Compile Include="Controls\FilterStringSelectionBox.cs" />
+    <Compile Include="Controls\SettingsSections\Backup.xaml.cs">
+      <DependentUpon>Backup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,12 @@
     <Compile Include="PluginSettingsHelper.cs" />
     <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\ToolsConfigViewModel.cs" />
+    <Compile Include="Windows\SingleItemSelectionWindow.xaml.cs">
+      <DependentUpon>SingleItemSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MultiItemSelectionWindow.xaml.cs">
+      <DependentUpon>MultiItemSelectionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ActionSelectionWindow.xaml.cs">
       <DependentUpon>ActionSelectionWindow.xaml</DependentUpon>
     </Compile>
@@ -665,6 +674,10 @@
     <Page Include="Controls\SettingsSections\Scripting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsSections\Backup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SettingsSections\Search.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1057,6 +1070,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SingleItemSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MultiItemSelectionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

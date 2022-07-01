@@ -92,7 +92,6 @@ namespace Playnite
         public PlayniteApplication(
             Func<Application> appInitializer,
             ApplicationMode mode,
-            string defaultThemeName,
             CmdLineOptions cmdLine)
         {
             if (Current != null)
@@ -173,245 +172,287 @@ namespace Playnite
             AppSettings = PlayniteSettings.LoadSettings();
             Commands.GlobalCommands.AppSettings = AppSettings;
             NLogLogger.IsTraceEnabled = AppSettings.TraceLogEnabled;
-            if (CmdLine.ResetSettings)
+
+            if (AppSettings.ShouldDataBackupOnStartup())
             {
-                var settings = PlayniteSettings.GetDefaultSettings();
-                settings.FirstTimeWizardComplete = true;
-                settings.DatabasePath = AppSettings.DatabasePath;
-                settings.SaveSettings();
-                AppSettings = settings;
+                var backOptions = Backup.GetAutoBackupOptions(AppSettings, PlaynitePaths.ConfigRootPath, GameDatabase.GetFullDbPath(AppSettings.DatabasePath));
+                FileSystem.WriteStringToFile(PlaynitePaths.BackupActionFile, Serialization.ToJson(backOptions));
+                CmdLine.Backup = PlaynitePaths.BackupActionFile;
+                AppSettings.LastAutoBackup = DateTime.Now;
+                AppSettings.SaveSettings();
             }
 
-            var relaunchPath = string.Empty;
-            if (AppSettings.StartInFullscreen && mode == ApplicationMode.Desktop && !CmdLine.StartInDesktop)
+            if (!CmdLine.Backup.IsNullOrEmpty() || !CmdLine.RestoreBackup.IsNullOrEmpty())
             {
-                relaunchPath = PlaynitePaths.FullscreenExecutablePath;
-            }
+                ServicesClient = new ServicesClient();
+                CurrentNative.SessionEnding += Application_SessionEnding;
+                CurrentNative.Exit += Application_Exit;
+                CurrentNative.Startup += Application_Startup;
+                CurrentNative.Activated += Application_Activated;
+                CurrentNative.Deactivated += Application_Deactivated;
 
-            if (CmdLine.StartInDesktop && mode != ApplicationMode.Desktop)
-            {
-                relaunchPath = PlaynitePaths.DesktopExecutablePath;
-            }
-            else if (CmdLine.StartInFullscreen && mode != ApplicationMode.Fullscreen)
-            {
-                relaunchPath = PlaynitePaths.FullscreenExecutablePath;
-            }
-
-            if (!relaunchPath.IsNullOrEmpty())
-            {
-                FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
-                ProcessStarter.StartProcess(relaunchPath, CmdLine.ToString());
-                CurrentNative.Shutdown(0);
-                return;
-            }
-
-            ServicesClient = new ServicesClient();
-            CurrentNative.SessionEnding += Application_SessionEnding;
-            CurrentNative.Exit += Application_Exit;
-            CurrentNative.Startup += Application_Startup;
-            CurrentNative.Activated += Application_Activated;
-            CurrentNative.Deactivated += Application_Deactivated;
-
-            OnPropertyChanged(nameof(AppSettings));
-            var defaultTheme = new ThemeManifest()
-            {
-                DirectoryName = defaultThemeName,
-                DirectoryPath = Path.Combine(PlaynitePaths.ThemesProgramPath, ThemeManager.GetThemeRootDir(Mode), defaultThemeName),
-                Name = defaultThemeName,
-                Id = mode == ApplicationMode.Desktop ? ThemeManager.DefaultDesktopThemeId : ThemeManager.DefaultFullscreenThemeId
-            };
-
-            try
-            {
-                if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
+                var defaultTheme = new ThemeManifest()
                 {
-                    logger.Warn("Multiple Playnite processes detected before installing addons.");
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Thread.Sleep(500);
-                        if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
-                        {
-                            break;
-                        }
-                        else if (i == 9)
-                        {
-                            logger.Warn("Another Playnite instance didn't shutdown in time before addon installation.");
-                        }
-                    }
-                }
+                    DirectoryName = ThemeManager.DefaultThemeDirName,
+                    DirectoryPath = Path.Combine(PlaynitePaths.ThemesProgramPath, ThemeManager.GetThemeRootDir(Mode), ThemeManager.DefaultThemeDirName),
+                    Name = ThemeManager.DefaultThemeDirName,
+                    Id = mode == ApplicationMode.Desktop ? ThemeManager.DefaultDesktopThemeId : ThemeManager.DefaultFullscreenThemeId
+                };
 
-                ExtensionsInstallResult = ExtensionInstaller.InstallExtensionQueue();
-                var installedTheme = ExtensionsInstallResult.FirstOrDefault(a => a.InstalledManifest is ThemeManifest && !a.Updated);
-                if (installedTheme?.InstalledManifest != null)
+                ThemeManager.SetDefaultTheme(defaultTheme);
+                InitializeNative();
+
+                try
                 {
-                    var theme = installedTheme.InstalledManifest as ThemeManifest;
-                    if (theme.Mode == Mode)
-                    {
-                        if (theme.Mode == ApplicationMode.Desktop)
-                        {
-                            AppSettings.Theme = theme.Id;
-                        }
-                        else
-                        {
-                            AppSettings.Fullscreen.Theme = theme.Id;
-                        }
-                    }
+                    Localization.SetLanguage(AppSettings.Language);
                 }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to finish installing extenions.");
-            }
-
-            ThemeManager.SetDefaultTheme(defaultTheme);
-
-            // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
-            customTheme = null;
-            if (CmdLine.ForceDefaultTheme || CmdLine.SafeStartup)
-            {
-                logger.Warn("Default theme forced by cmdline.");
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+                }
             }
             else
             {
-                var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
-                if (theme != ThemeManager.DefaultTheme.Id)
+                if (CmdLine.ResetSettings)
                 {
-                    customTheme = ThemeManager.GetAvailableThemes(mode).Where(a => a.Id == theme).OrderByDescending(a => a.Version).FirstOrDefault();
-                    if (customTheme == null)
-                    {
-                        logger.Error($"Failed to apply theme {theme}, theme not found.");
-                        if (mode == ApplicationMode.Desktop)
-                        {
-                            AppSettings.Theme = ThemeManager.DefaultDesktopThemeId;
-                        }
-                        else
-                        {
-                            AppSettings.Fullscreen.Theme = ThemeManager.DefaultFullscreenThemeId;
-                        }
-
-                        ThemeManager.SetCurrentTheme(defaultTheme);
-                    }
-                    else
-                    {
-                        ThemeManager.SetCurrentTheme(customTheme);
-                    }
-                }
-            }
-
-            InitializeNative();
-
-            try
-            {
-                if (!AppSettings.FirstTimeWizardComplete)
-                {
-                    var cultName = System.Globalization.CultureInfo.CurrentCulture.Name.Replace('-', '_');
-                    var validLang = Localization.AvailableLanguages.FirstOrDefault(a => a.Id == cultName && a.TranslatedPercentage > 75);
-                    if (validLang != null)
-                    {
-                        AppSettings.Language = validLang.Id;
-                    }
+                    var settings = PlayniteSettings.GetDefaultSettings();
+                    settings.FirstTimeWizardComplete = true;
+                    settings.DatabasePath = AppSettings.DatabasePath;
+                    settings.SaveSettings();
+                    AppSettings = settings;
                 }
 
-                Localization.SetLanguage(AppSettings.Language);
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
-            }
-
-            // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
-            if (customTheme != null)
-            {
-                themeLoadError = ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
-                if (themeLoadError != AddonLoadError.None)
+                var relaunchPath = string.Empty;
+                if (AppSettings.StartInFullscreen && mode == ApplicationMode.Desktop && !CmdLine.StartInDesktop)
                 {
-                    ThemeManager.SetCurrentTheme(null);
-                    logger.Error($"Failed to load theme {customTheme.Name}, {themeLoadError}.");
+                    relaunchPath = PlaynitePaths.FullscreenExecutablePath;
                 }
-            }
 
-            if (mode == ApplicationMode.Desktop)
-            {
+                if (CmdLine.StartInDesktop && mode != ApplicationMode.Desktop)
+                {
+                    relaunchPath = PlaynitePaths.DesktopExecutablePath;
+                }
+                else if (CmdLine.StartInFullscreen && mode != ApplicationMode.Fullscreen)
+                {
+                    relaunchPath = PlaynitePaths.FullscreenExecutablePath;
+                }
+
+                if (!relaunchPath.IsNullOrEmpty())
+                {
+                    FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
+                    ProcessStarter.StartProcess(relaunchPath, CmdLine.ToString());
+                    CurrentNative.Shutdown(0);
+                    return;
+                }
+
+                ServicesClient = new ServicesClient();
+                CurrentNative.SessionEnding += Application_SessionEnding;
+                CurrentNative.Exit += Application_Exit;
+                CurrentNative.Startup += Application_Startup;
+                CurrentNative.Activated += Application_Activated;
+                CurrentNative.Deactivated += Application_Deactivated;
+
+                OnPropertyChanged(nameof(AppSettings));
+                var defaultTheme = new ThemeManifest()
+                {
+                    DirectoryName = ThemeManager.DefaultThemeDirName,
+                    DirectoryPath = Path.Combine(PlaynitePaths.ThemesProgramPath, ThemeManager.GetThemeRootDir(Mode), ThemeManager.DefaultThemeDirName),
+                    Name = ThemeManager.DefaultThemeDirName,
+                    Id = mode == ApplicationMode.Desktop ? ThemeManager.DefaultDesktopThemeId : ThemeManager.DefaultFullscreenThemeId
+                };
+
                 try
                 {
-                    if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.FontFamilyName))
+                    if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
                     {
-                        CurrentNative.Resources.Add(
-                            "FontFamily", new FontFamily(AppSettings.FontFamilyName));
-                    }
-                    else
-                    {
-                        logger.Error($"Cannot set font {AppSettings.FontFamilyName}, font not found.");
-                    }
-
-                    if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.MonospaceFontFamilyName))
-                    {
-                        CurrentNative.Resources.Add(
-                            "MonospaceFontFamily", new FontFamily(AppSettings.MonospaceFontFamilyName));
-                    }
-                    else
-                    {
-                        logger.Error($"Cannot set monospace font {AppSettings.MonospaceFontFamilyName}, font not found.");
+                        logger.Warn("Multiple Playnite processes detected before installing addons.");
+                        for (int i = 0; i < 10; i++)
+                        {
+                            Thread.Sleep(500);
+                            if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
+                            {
+                                break;
+                            }
+                            else if (i == 9)
+                            {
+                                logger.Warn("Another Playnite instance didn't shutdown in time before addon installation.");
+                            }
+                        }
                     }
 
-                    if (AppSettings.FontSize > 0)
+                    ExtensionsInstallResult = ExtensionInstaller.InstallExtensionQueue();
+                    var installedTheme = ExtensionsInstallResult.FirstOrDefault(a => a.InstalledManifest is ThemeManifest && !a.Updated);
+                    if (installedTheme?.InstalledManifest != null)
                     {
-                        CurrentNative.Resources.Add(
-                            "FontSize", AppSettings.FontSize);
-                    }
-
-                    if (AppSettings.FontSizeSmall > 0)
-                    {
-                        CurrentNative.Resources.Add(
-                            "FontSizeSmall", AppSettings.FontSizeSmall);
-                    }
-
-                    if (AppSettings.FontSizeLarge > 0)
-                    {
-                        CurrentNative.Resources.Add(
-                            "FontSizeLarge", AppSettings.FontSizeLarge);
-                    }
-
-                    if (AppSettings.FontSizeLarger > 0)
-                    {
-                        CurrentNative.Resources.Add(
-                            "FontSizeLarger", AppSettings.FontSizeLarger);
-                    }
-
-                    if (AppSettings.FontSizeLargest > 0)
-                    {
-                        CurrentNative.Resources.Add(
-                            "FontSizeLargest", AppSettings.FontSizeLargest);
+                        var theme = installedTheme.InstalledManifest as ThemeManifest;
+                        if (theme.Mode == Mode)
+                        {
+                            if (theme.Mode == ApplicationMode.Desktop)
+                            {
+                                AppSettings.Theme = theme.Id;
+                            }
+                            else
+                            {
+                                AppSettings.Fullscreen.Theme = theme.Id;
+                            }
+                        }
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
+                    logger.Error(e, "Failed to finish installing extenions.");
                 }
-            }
-            else
-            {
-                if (AppSettings.Fullscreen.FontSize > 0)
+
+                ThemeManager.SetDefaultTheme(defaultTheme);
+
+                // Theme must be set BEFORE default app resources are initialized for ThemeFile markup to apply custom theme's paths.
+                customTheme = null;
+                if (CmdLine.ForceDefaultTheme || CmdLine.SafeStartup)
                 {
-                    CurrentNative.Resources.Add(
-                        "FontSize", AppSettings.Fullscreen.FontSize);
+                    logger.Warn("Default theme forced by cmdline.");
                 }
-
-                if (AppSettings.Fullscreen.FontSizeSmall > 0)
+                else
                 {
-                    CurrentNative.Resources.Add(
-                        "FontSizeSmall", AppSettings.Fullscreen.FontSizeSmall);
+                    var theme = mode == ApplicationMode.Desktop ? AppSettings.Theme : AppSettings.Fullscreen.Theme;
+                    if (theme != ThemeManager.DefaultTheme.Id)
+                    {
+                        customTheme = ThemeManager.GetAvailableThemes(mode).Where(a => a.Id == theme).OrderByDescending(a => a.Version).FirstOrDefault();
+                        if (customTheme == null)
+                        {
+                            logger.Error($"Failed to apply theme {theme}, theme not found.");
+                            if (mode == ApplicationMode.Desktop)
+                            {
+                                AppSettings.Theme = ThemeManager.DefaultDesktopThemeId;
+                            }
+                            else
+                            {
+                                AppSettings.Fullscreen.Theme = ThemeManager.DefaultFullscreenThemeId;
+                            }
+
+                            ThemeManager.SetCurrentTheme(defaultTheme);
+                        }
+                        else
+                        {
+                            ThemeManager.SetCurrentTheme(customTheme);
+                        }
+                    }
                 }
-            }
 
-            // Only use this for Desktop mode. Non-default options look terrible in Fullscreen because of viewport scaling.
-            if (mode == ApplicationMode.Desktop)
-            {
-                Controls.WindowBase.SetTextRenderingOptions(AppSettings.TextFormattingMode, AppSettings.TextRenderingMode);
-            }
+                InitializeNative();
 
-            Notifications = new NotificationsAPI();
-            UriHandler = new PlayniteUriHandler();
+                try
+                {
+                    if (!AppSettings.FirstTimeWizardComplete)
+                    {
+                        var cultName = System.Globalization.CultureInfo.CurrentCulture.Name.Replace('-', '_');
+                        var validLang = Localization.AvailableLanguages.FirstOrDefault(a => a.Id == cultName && a.TranslatedPercentage > 75);
+                        if (validLang != null)
+                        {
+                            AppSettings.Language = validLang.Id;
+                        }
+                    }
+
+                    Localization.SetLanguage(AppSettings.Language);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(exc, $"Failed to set {AppSettings.Language} langauge.");
+                }
+
+                // Must be applied AFTER default app resources are initialized, otherwise custom resource dictionaries won't be properly added to application scope.
+                if (customTheme != null)
+                {
+                    themeLoadError = ThemeManager.ApplyTheme(CurrentNative, customTheme, Mode);
+                    if (themeLoadError != AddonLoadError.None)
+                    {
+                        ThemeManager.SetCurrentTheme(null);
+                        logger.Error($"Failed to load theme {customTheme.Name}, {themeLoadError}.");
+                    }
+                }
+
+                if (mode == ApplicationMode.Desktop)
+                {
+                    try
+                    {
+                        if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.FontFamilyName))
+                        {
+                            CurrentNative.Resources.Add(
+                                "FontFamily", new FontFamily(AppSettings.FontFamilyName));
+                        }
+                        else
+                        {
+                            logger.Error($"Cannot set font {AppSettings.FontFamilyName}, font not found.");
+                        }
+
+                        if (System.Drawing.FontFamily.Families.Any(a => a.Name == AppSettings.MonospaceFontFamilyName))
+                        {
+                            CurrentNative.Resources.Add(
+                                "MonospaceFontFamily", new FontFamily(AppSettings.MonospaceFontFamilyName));
+                        }
+                        else
+                        {
+                            logger.Error($"Cannot set monospace font {AppSettings.MonospaceFontFamilyName}, font not found.");
+                        }
+
+                        if (AppSettings.FontSize > 0)
+                        {
+                            CurrentNative.Resources.Add(
+                                "FontSize", AppSettings.FontSize);
+                        }
+
+                        if (AppSettings.FontSizeSmall > 0)
+                        {
+                            CurrentNative.Resources.Add(
+                                "FontSizeSmall", AppSettings.FontSizeSmall);
+                        }
+
+                        if (AppSettings.FontSizeLarge > 0)
+                        {
+                            CurrentNative.Resources.Add(
+                                "FontSizeLarge", AppSettings.FontSizeLarge);
+                        }
+
+                        if (AppSettings.FontSizeLarger > 0)
+                        {
+                            CurrentNative.Resources.Add(
+                                "FontSizeLarger", AppSettings.FontSizeLarger);
+                        }
+
+                        if (AppSettings.FontSizeLargest > 0)
+                        {
+                            CurrentNative.Resources.Add(
+                                "FontSizeLargest", AppSettings.FontSizeLargest);
+                        }
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to set font {AppSettings.FontFamilyName}");
+                    }
+                }
+                else
+                {
+                    if (AppSettings.Fullscreen.FontSize > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSize", AppSettings.Fullscreen.FontSize);
+                    }
+
+                    if (AppSettings.Fullscreen.FontSizeSmall > 0)
+                    {
+                        CurrentNative.Resources.Add(
+                            "FontSizeSmall", AppSettings.Fullscreen.FontSizeSmall);
+                    }
+                }
+
+                // Only use this for Desktop mode. Non-default options look terrible in Fullscreen because of viewport scaling.
+                if (mode == ApplicationMode.Desktop)
+                {
+                    Controls.WindowBase.SetTextRenderingOptions(AppSettings.TextFormattingMode, AppSettings.TextRenderingMode);
+                }
+
+                Notifications = new NotificationsAPI();
+                UriHandler = new PlayniteUriHandler();
+            }
         }
 
         public abstract void InstantiateApp();
@@ -425,6 +466,8 @@ namespace Playnite
         public abstract void ShowWindowsNotification(string title, string body, Action action);
 
         public abstract void SwitchAppMode(ApplicationMode mode);
+
+        public abstract void ConfigureViews();
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
@@ -478,11 +521,85 @@ namespace Playnite
             logger.Info($"Application started from '{PlaynitePaths.ProgramPath}'");
             SDK.Data.Markup.Init(new MarkupConverter());
             SDK.Data.Serialization.Init(new DataSerializer());
-            SDK.Data.SQLite.Init((a,b) => new Sqlite(a, b));
+            SDK.Data.SQLite.Init((a, b) => new Sqlite(a, b));
             EventManager.RegisterClassHandler(typeof(Controls.WindowBase), Controls.WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
             EventManager.RegisterClassHandler(typeof(Controls.WindowBase), Controls.WindowBase.LoadedRoutedEvent, new RoutedEventHandler(WindowBaseLoadedHandler));
+            ConfigureViews();
+
+            if (!CmdLine.Backup.IsNullOrEmpty())
+            {
+                BackupOptions backupOptions = null;
+                try
+                {
+                    backupOptions = Serialization.FromJsonFile<BackupOptions>(CmdLine.Backup);
+                    var progRes = Dialogs.ActivateGlobalProgress(
+                        (progArgs) => Backup.BackupData(backupOptions, progArgs.CancelToken),
+                        new GlobalProgressOptions(LOC.BackupProgress, true) { IsIndeterminate = true });
+                    if (progRes.Error != null)
+                    {
+                        throw progRes.Error;
+                    }
+
+                    if (progRes.Canceled)
+                    {
+                        Dialogs.ShowErrorMessage(LOC.BackupCancelled, LOC.BackupErrorTitle);
+                    }
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    Dialogs.ShowErrorMessage(LOC.BackupFailed.GetLocalized() + Environment.NewLine + Environment.NewLine + exc.Message, LOC.BackupErrorTitle);
+                    logger.Error(exc, "Failed to backup data.");
+                }
+                finally
+                {
+                    if (backupOptions == null || !backupOptions.ClosedWhenDone)
+                    {
+                        Restart(new CmdLineOptions { SkipLibUpdate = true });
+                    }
+                }
+
+                Quit();
+                return;
+            }
+            else if (!CmdLine.RestoreBackup.IsNullOrEmpty())
+            {
+                BackupRestoreOptions restoreOptions = null;
+                try
+                {
+                    restoreOptions = Serialization.FromJsonFile<BackupRestoreOptions>(CmdLine.RestoreBackup);
+                    var progRes = Dialogs.ActivateGlobalProgress(
+                        (progArgs) => Backup.RestoreBackup(restoreOptions),
+                        new GlobalProgressOptions(LOC.BackupRestoreProgress, false) { IsIndeterminate = true });
+                    if (progRes.Error != null)
+                    {
+                        throw progRes.Error;
+                    }
+
+                    if (progRes.Canceled)
+                    {
+                        Dialogs.ShowErrorMessage(LOC.BackupRestoreCancelled, LOC.BackupErrorTitle);
+                    }
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    Dialogs.ShowErrorMessage(LOC.BackupRestoreFailed.GetLocalized() + Environment.NewLine + Environment.NewLine + exc.Message, LOC.BackupErrorTitle);
+                    logger.Error(exc, "Failed to restore data from backup.");
+                }
+                finally
+                {
+                    if (restoreOptions == null || !restoreOptions.ClosedWhenDone)
+                    {
+                        Restart(new CmdLineOptions { SkipLibUpdate = true });
+                    }
+                }
+
+                Quit();
+                return;
+            }
+
             if (!Startup())
             {
+                Quit();
                 return;
             }
 
@@ -650,6 +767,48 @@ namespace Playnite
                     Quit();
                     break;
 
+                case CmdlineCommand.BackupData:
+                    if (!File.Exists(args.Args))
+                    {
+                        return;
+                    }
+
+                    var backupOptions = Serialization.FromJsonFile<BackupOptions>(args.Args);
+                    if (backupOptions.CancelIfGameRunning && GamesEditor.RunningGames.HasItems())
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Restart(new CmdLineOptions
+                        {
+                            Backup = args.Args,
+                            SkipLibUpdate = true
+                        });
+                    }
+                    break;
+
+                case CmdlineCommand.RestoreBackup:
+                    if (!File.Exists(args.Args))
+                    {
+                        return;
+                    }
+
+                    var restoreOptions = Serialization.FromJsonFile<BackupRestoreOptions>(args.Args);
+                    if (restoreOptions.CancelIfGameRunning && GamesEditor.RunningGames.HasItems())
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Restart(new CmdLineOptions
+                        {
+                            RestoreBackup = args.Args,
+                            SkipLibUpdate = true
+                        });
+                    }
+                    break;
+
                 default:
                     logger.Warn("Unknown command received");
                     break;
@@ -708,6 +867,14 @@ namespace Playnite
                             else if (CmdLine.Shutdown)
                             {
                                 client.InvokeCommand(CmdlineCommand.Shutdown, null);
+                            }
+                            else if (!CmdLine.Backup.IsNullOrEmpty())
+                            {
+                                client.InvokeCommand(CmdlineCommand.BackupData, CmdLine.Backup);
+                            }
+                            else if (!CmdLine.RestoreBackup.IsNullOrEmpty())
+                            {
+                                client.InvokeCommand(CmdlineCommand.RestoreBackup, CmdLine.RestoreBackup);
                             }
                             else
                             {

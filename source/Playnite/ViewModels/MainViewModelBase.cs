@@ -142,6 +142,8 @@ namespace Playnite.ViewModels
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
         public RelayCommand StartInteractivePowerShellCommand { get; private set; }
         public RelayCommand RestartInSafeMode { get; private set; }
+        public RelayCommand BackupDataCommand { get; private set; }
+        public RelayCommand RestoreDataBackupCommand { get; private set; }
 
         public IGameDatabaseMain Database { get; }
         public PlayniteApplication App { get; }
@@ -212,6 +214,8 @@ namespace Playnite.ViewModels
             });
 
             RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
+            BackupDataCommand = new RelayCommand(() => BackupData());
+            RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
         }
 
         private PlayniteSettings appSettings;
@@ -832,6 +836,82 @@ namespace Playnite.ViewModels
                     Resources.GetString("LOCAppStartupError") + "\n\n" +
                     e.Message,
                     "LOCStartupError");
+            }
+        }
+
+        private void RestoreDataBackup()
+        {
+            var backupFile = Dialogs.SelectFile("Playnite Backup|*.zip");
+            if (backupFile.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            List<BackupDataItem> restoreOptions = null;
+            try
+            {
+                restoreOptions = Backup.GetRestoreSelections(backupFile);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e, $"Failed to read backup file {backupFile}");
+                return;
+            }
+
+            var restoreItems = restoreOptions.Select(a => new SelectableNamedObject<BackupDataItem>(a, a.GetDescription(), true)).ToList();
+            if (ItemSelector.SelectMultiple(
+                LOC.MenuRestoreBackup,
+                LOC.BackupRestoreMessage,
+                restoreItems,
+                out var selectedRestoreItems))
+            {
+                var options = new BackupRestoreOptions
+                {
+                    BackupFile = backupFile,
+                    DataDir = PlaynitePaths.ConfigRootPath,
+                    LibraryDir = GameDatabase.GetFullDbPath(AppSettings.DatabasePath),
+                    RestoreItems = selectedRestoreItems
+                };
+
+                FileSystem.WriteStringToFile(PlaynitePaths.RestoreBackupActionFile, Serialization.ToJson(options));
+                App.Restart(new CmdLineOptions
+                {
+                    RestoreBackup = PlaynitePaths.RestoreBackupActionFile,
+                    SkipLibUpdate = true
+                });
+            }
+        }
+
+        private void BackupData()
+        {
+            var backupFile = Dialogs.SaveFile("Playnite Backup|*.zip", true);
+            if (backupFile.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            List<BackupDataItem> backupOptions = new List<BackupDataItem> { BackupDataItem.LibraryFiles, BackupDataItem.Extensions, BackupDataItem.ExtensionsData, BackupDataItem.Themes };
+            var restoreItems = backupOptions.Select(a => new SelectableNamedObject<BackupDataItem>(a, a.GetDescription(), true)).ToList();
+            if (ItemSelector.SelectMultiple(
+                LOC.MenuBackupData,
+                LOC.BackupDataBackupMessage,
+                restoreItems,
+                out var selectedBackupItems))
+            {
+                var options = new BackupOptions
+                {
+                    OutputFile = backupFile,
+                    DataDir = PlaynitePaths.ConfigRootPath,
+                    LibraryDir = GameDatabase.GetFullDbPath(AppSettings.DatabasePath),
+                    BackupItems = selectedBackupItems
+                };
+
+                FileSystem.WriteStringToFile(PlaynitePaths.BackupActionFile, Serialization.ToJson(options));
+                App.Restart(new CmdLineOptions
+                {
+                    Backup = PlaynitePaths.BackupActionFile,
+                    SkipLibUpdate = true
+                });
             }
         }
     }

@@ -16,14 +16,6 @@ using System.Windows.Shapes;
 
 namespace Playnite.FullscreenApp.Windows
 {
-    public class MultiItemSelectionWindowFactory : WindowFactory
-    {
-        public override WindowBase CreateNewWindowInstance()
-        {
-            return new MultiItemSelectionWindow();
-        }
-    }
-
     /// <summary>
     /// Interaction logic for UpdateWindow.xaml
     /// </summary>

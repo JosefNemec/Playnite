@@ -1042,6 +1042,18 @@ namespace Playnite
         /// </summary>
         public const string SettingsSearch = "LOCSettingsSearch";
         /// <summary>
+        /// Backup
+        /// </summary>
+        public const string SettingsBackup = "LOCSettingsBackup";
+        /// <summary>
+        /// Backup Library Data
+        /// </summary>
+        public const string MenuBackupData = "LOCMenuBackupData";
+        /// <summary>
+        /// Restore Data Backup
+        /// </summary>
+        public const string MenuRestoreBackup = "LOCMenuRestoreBackup";
+        /// <summary>
         /// Import changes in library automatically
         /// </summary>
         public const string SettingsImportLabel = "LOCSettingsImportLabel";
@@ -4014,8 +4026,92 @@ namespace Playnite
         /// </summary>
         public const string SearchIncludeCommandsInDefault = "LOCSearchIncludeCommandsInDefault";
         /// <summary>
-        /// When disabled commands won't be included in default search until # prefix is used.
+        /// When disabled, commands won't be included in default search until # prefix is used.
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
+        /// <summary>
+        /// Data backup was cancelled.
+        /// </summary>
+        public const string BackupCancelled = "LOCBackupCancelled";
+        /// <summary>
+        /// Data backup failed.
+        /// </summary>
+        public const string BackupFailed = "LOCBackupFailed";
+        /// <summary>
+        /// Data backup error
+        /// </summary>
+        public const string BackupErrorTitle = "LOCBackupErrorTitle";
+        /// <summary>
+        /// Data backup in progress…
+        /// </summary>
+        public const string BackupProgress = "LOCBackupProgress";
+        /// <summary>
+        /// Restoring data from backup…
+        /// </summary>
+        public const string BackupRestoreProgress = "LOCBackupRestoreProgress";
+        /// <summary>
+        /// Failed to restore data from backup.
+        /// </summary>
+        public const string BackupRestoreFailed = "LOCBackupRestoreFailed";
+        /// <summary>
+        /// Data backup was cancelled.
+        /// </summary>
+        public const string BackupRestoreCancelled = "LOCBackupRestoreCancelled";
+        /// <summary>
+        /// Settings
+        /// </summary>
+        public const string BackupOptionSettings = "LOCBackupOptionSettings";
+        /// <summary>
+        /// Game library
+        /// </summary>
+        public const string BackupOptionLibrary = "LOCBackupOptionLibrary";
+        /// <summary>
+        /// Game library media
+        /// </summary>
+        public const string BackupOptionGameMedia = "LOCBackupOptionGameMedia";
+        /// <summary>
+        /// Installed extensions
+        /// </summary>
+        public const string BackupOptionExtensions = "LOCBackupOptionExtensions";
+        /// <summary>
+        /// Extensions data
+        /// </summary>
+        public const string BackupOptionExtensionsData = "LOCBackupOptionExtensionsData";
+        /// <summary>
+        /// Installed themes
+        /// </summary>
+        public const string BackupOptionThemes = "LOCBackupOptionThemes";
+        /// <summary>
+        /// Select data to be restored from specified backup file.
+        /// </summary>
+        public const string BackupRestoreMessage = "LOCBackupRestoreMessage";
+        /// <summary>
+        /// Select items to be included with data backup. Application settings and game library data are included by default.
+        /// </summary>
+        public const string BackupDataBackupMessage = "LOCBackupDataBackupMessage";
+        /// <summary>
+        /// Automatic data backup
+        /// </summary>
+        public const string SettingsEnableAutomaticBackup = "LOCSettingsEnableAutomaticBackup";
+        /// <summary>
+        /// Auto backup frequency
+        /// </summary>
+        public const string SettingsAutoBackupFrequency = "LOCSettingsAutoBackupFrequency";
+        /// <summary>
+        /// Backup folder
+        /// </summary>
+        public const string SettingsBackupFolder = "LOCSettingsBackupFolder";
+        /// <summary>
+        /// Rotating backups
+        /// </summary>
+        public const string SettingsRotatingBackups = "LOCSettingsRotatingBackups";
+        /// <summary>
+        /// Include additional data:
+        /// </summary>
+        public const string SettingsAutoBackupIncludeItems = "LOCSettingsAutoBackupIncludeItems";
+        /// <summary>
+        /// Backup folder needs to be set if auto backup is enabled.
+        /// </summary>
+        public const string SettingsNoBackupDirSpecifiedError = "LOCSettingsNoBackupDirSpecifiedError";
     }
 }

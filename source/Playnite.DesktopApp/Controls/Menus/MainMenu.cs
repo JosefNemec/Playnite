@@ -113,6 +113,9 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(libraryItem.Items, "LOCMenuConfigureEmulatorsMenuTitle", mainModel.OpenEmulatorsCommand);
             AddMenuChild(libraryItem.Items, "LOCMenuDownloadMetadata", mainModel.DownloadMetadataCommand);
             AddMenuChild(libraryItem.Items, "LOCMenuSoftwareTools", mainModel.OpenSoftwareToolsCommand);
+            libraryItem.Items.Add(new Separator());
+            AddMenuChild(libraryItem.Items, "LOCMenuBackupData", mainModel.BackupDataCommand, null, "BackupIcon");
+            AddMenuChild(libraryItem.Items, "LOCMenuRestoreBackup", mainModel.RestoreDataBackupCommand, null, "RestoreBackupIcon");
 
             // Update Library
             var updateItem = AddMenuChild(Items, "LOCMenuReloadLibrary", null, null, "UpdateDbIcon");

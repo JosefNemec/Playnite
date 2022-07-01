@@ -37,7 +37,6 @@ namespace Playnite.DesktopApp
     {
         private ILogger logger = LogManager.GetLogger();
         private TaskbarIcon trayIcon;
-        public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
 
         private DesktopAppViewModel mainModel;
@@ -57,20 +56,26 @@ namespace Playnite.DesktopApp
         }
 
         public DesktopApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
-            : base(appInitializer, ApplicationMode.Desktop, DefaultThemeName, cmdLine)
+            : base(appInitializer, ApplicationMode.Desktop, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
 
-        public override bool Startup()
+        public override void ConfigureViews()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashHandlerWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
+            SingleItemSelectionWindowFactory.SetWindowType<SingleItemSelectionWindow>();
+            MultiItemSelectionWindowFactory.SetWindowType<MultiItemSelectionWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
+        }
+
+        public override bool Startup()
+        {
             if (!ConfigureApplication())
             {
                 return false;

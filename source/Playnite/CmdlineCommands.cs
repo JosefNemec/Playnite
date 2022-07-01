@@ -13,6 +13,8 @@ namespace Playnite
         UriRequest = 2,
         ExtensionInstall = 3,
         SwitchMode = 4,
-        Shutdown = 5
+        Shutdown = 5,
+        BackupData = 6,
+        RestoreBackup = 7
     }
 }

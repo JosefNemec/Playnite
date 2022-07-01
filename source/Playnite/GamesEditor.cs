@@ -73,6 +73,7 @@ namespace Playnite
         public GameDatabase Database { get; private set; }
         public IDialogsFactory Dialogs { get; private set; }
         public PlayniteSettings AppSettings { get; private set; }
+        public List<Guid> RunningGames { get; } = new List<Guid>();
 
         public List<Game> QuickLaunchItems
         {
@@ -963,6 +964,7 @@ namespace Playnite
             Database.Games.Update(dbGame);
             if (wasRunningOrLaunching)
             {
+                RunningGames.Remove(game.Id);
                 Extensions.InvokeOnGameStopped(game, ellapsedTime, true);
             }
 
@@ -974,6 +976,15 @@ namespace Playnite
 
         private void UpdateGameState(Guid id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
         {
+            if (running == true || launching == true)
+            {
+                RunningGames.AddMissing(id);
+            }
+            else if (running == false || launching == false)
+            {
+                RunningGames.Remove(id);
+            }
+
             var game = Database.Games.Get(id);
             if (installed != null)
             {
@@ -1070,6 +1081,7 @@ namespace Playnite
             var game = args.Source.Game;
             logger.Info($"Game {game.Name} stopped after {args.SessionLength} seconds.");
 
+            RunningGames.Remove(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
             dbGame.IsLaunching = false;

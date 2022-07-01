@@ -1010,6 +1010,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (ItemSelector.SelectSingle<FilterPreset>(
                 LOC.SettingsTopPanelFilterPresetsItem,
+                "",
                 Database.FilterPresets.Select(a => new SelectableNamedObject<FilterPreset>(a, a.Name)).ToList(),
                 out var selectedPreset))
             {

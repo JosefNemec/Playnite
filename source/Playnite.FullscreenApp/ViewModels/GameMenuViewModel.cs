@@ -160,7 +160,7 @@ namespace Playnite.FullscreenApp.ViewModels
             var items = dbCollection.Select(a => new SelectableNamedObject<T>(a, a.Name)).OrderBy(a => a.Name).ToList();
             items.Insert(0, new SelectableNamedObject<T>(new T() { Id = Guid.Empty }, ResourceProvider.GetString(LOC.None)));
             items.ForEach(a => a.Selected = preselectedItem == a.Value.Id);
-            var passed = ItemSelector.SelectSingle(header, items, out var selectedItem);
+            var passed = ItemSelector.SelectSingle(header, "", items, out var selectedItem);
             if (passed)
             {
                 setter(selectedItem.Id);
@@ -172,6 +172,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             var passed = ItemSelector.SelectMultiple(
                header,
+               "",
                dbCollection.Select(a => new SelectableNamedObject<T>(a, a.Name, preselectedItems?.Contains(a.Id) == true)).OrderByDescending(a => a.Selected).ThenBy(a => a.Name).ToList(),
                out var selectedItems);
             if (passed)
@@ -186,6 +187,7 @@ namespace Playnite.FullscreenApp.ViewModels
             Close();
             var selected = ItemSelector.SelectSingle(
                 LOC.MenuSetFields,
+                "",
                 new List<SelectableNamedObject<GameField>>
                 {
                     new SelectableNamedObject<GameField>(GameField.CompletionStatus, ResourceProvider.GetString(LOC.CompletionStatus)),

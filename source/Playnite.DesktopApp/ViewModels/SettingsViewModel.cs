@@ -365,7 +365,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { DesktopSettingsPage.Sorting, new Controls.SettingsSections.Sorting() { DataContext = this } },
                 { DesktopSettingsPage.Updates, new Controls.SettingsSections.Updates() { DataContext = this } },
                 { DesktopSettingsPage.AppearanceListView, new Controls.SettingsSections.AppearanceListView() { DataContext = this } },
-                { DesktopSettingsPage.Search, new Controls.SettingsSections.Search() { DataContext = this } }
+                { DesktopSettingsPage.Search, new Controls.SettingsSections.Search() { DataContext = this } },
+                { DesktopSettingsPage.Backup, new Controls.SettingsSections.Backup() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -431,6 +432,12 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ConfirmDialog()
         {
+            if (Settings.AutoBackupEnabled && Settings.AutoBackupDir.IsNullOrWhiteSpace())
+            {
+                dialogs.ShowErrorMessage(LOC.SettingsNoBackupDirSpecifiedError);
+                return;
+            }
+
             if (editedFields.Contains(nameof(Settings.StartOnBoot)))
             {
                 try

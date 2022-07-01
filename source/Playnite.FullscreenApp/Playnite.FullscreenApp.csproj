@@ -184,7 +184,6 @@
     <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\ItemSelectionViewModel.cs" />
     <Compile Include="Windows\MultiItemSelectionWindow.xaml.cs">
       <DependentUpon>MultiItemSelectionWindow.xaml</DependentUpon>
     </Compile>

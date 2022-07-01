@@ -69,5 +69,10 @@ namespace Playnite.Tests
         {
             throw new NotImplementedException();
         }
+
+        public override void ConfigureViews()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

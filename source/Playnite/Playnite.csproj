@@ -225,6 +225,7 @@
     <Compile Include="API\PlaynitePathsAPI.cs" />
     <Compile Include="Archive.cs" />
     <Compile Include="Audio.cs" />
+    <Compile Include="Backup.cs" />
     <Compile Include="Behaviors\ScrollViewerBehaviours.cs" />
     <Compile Include="Behaviors\SelectorBehaviors.cs" />
     <Compile Include="Common\CueSheet.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Controls\HotKeyBox.cs" />
     <Compile Include="Converters\TicksToTimeSpanConverter.cs" />
     <Compile Include="DateTimes.cs" />
+    <Compile Include="ItemSelector.cs" />
     <Compile Include="MenuItems.cs" />
     <Compile Include="HotKey.cs" />
     <Compile Include="MenuHelpers.cs" />
@@ -480,6 +482,7 @@
     <Compile Include="UrlConstants.cs" />
     <Compile Include="ViewModels\AddonsViewModelBase_Online.cs" />
     <Compile Include="ViewModels\CrashHandlerViewModel.cs" />
+    <Compile Include="ViewModels\ItemSelectionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelBase.cs" />
     <Compile Include="ViewModels\ProgressViewViewModel.cs" />
     <Compile Include="ViewModels\RandomGameSelectViewModel.cs" />
@@ -495,6 +498,7 @@
     <Compile Include="Windows\LicenseAgreementWindowFactory.cs" />
     <Compile Include="Windows\ExtensionCrashHandlerWindowFactory.cs" />
     <Compile Include="Windows\CrashHandlerWindowFactory.cs" />
+    <Compile Include="Windows\ItemSelectorWindowFactory.cs" />
     <Compile Include="Windows\WebViewWindow.xaml.cs">
       <DependentUpon>WebViewWindow.xaml</DependentUpon>
     </Compile>

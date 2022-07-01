@@ -117,11 +117,11 @@ namespace Playnite.Database
             get; private set;
         }
 
+        internal const string filesDirName = "files";
         private const string settingsFileName = "database.json";
         private const string gamesDirName = "games";
         private const string platformsDirName = "platforms";
         private const string emulatorsDirName = "emulators";
-        private const string filesDirName = "files";
         private const string genresDirName = "genres";
         private const string companiesDirName = "companies";
         private const string tagsDirName = "tags";
