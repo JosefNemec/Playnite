@@ -19,6 +19,7 @@
     <c:WindowBase.InputBindings>
         <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
+        <KeyBinding Key="Backspace" Command="{Binding CancelCommand}" />
     </c:WindowBase.InputBindings>
 
     <Viewbox>
