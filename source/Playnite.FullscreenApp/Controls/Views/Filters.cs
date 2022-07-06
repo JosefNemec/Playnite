@@ -67,16 +67,16 @@ namespace Playnite.FullscreenApp.Controls.Views
                 null,
                 typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
             PanelItemsHost.InputBindings.Add(backInput);
+            BindingTools.SetBinding(PanelItemsHost,
+                FocusBahaviors.FocusBindingProperty,
+                mainModel,
+                nameof(mainModel.FilterPanelVisible));
 
             var ButtonClear = new ButtonEx();
             ButtonClear.Command = mainModel.ClearFiltersCommand;
             ButtonClear.Content = ResourceProvider.GetString(LOC.ClearLabel);
             ButtonClear.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelButtonEx");
             PanelItemsHost.Items.Add(ButtonClear);
-            BindingTools.SetBinding(ButtonClear,
-                    FocusBahaviors.FocusBindingProperty,
-                    mainModel,
-                    nameof(mainModel.FilterPanelVisible));
 
             AssignBoolFilter(nameof(FilterSettings.IsInstalled), LOC.GameIsInstalledTitle);
             AssignBoolFilter(nameof(FilterSettings.IsUnInstalled), LOC.GameIsUnInstalledTitle);
