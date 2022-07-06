@@ -1060,7 +1060,7 @@ namespace Playnite.DesktopApp.ViewModels
             SearchItem createItemG<T>(string root, string name, RelayCommand<T> command, T commandParam = null, object icon = null) where T : class
             {
                 return new SearchItem(
-                    $"{root.GetLocalized()} > {name.GetLocalized()}",
+                    root.IsNullOrEmpty() ? name.GetLocalized() : $"{root.GetLocalized()} > {name.GetLocalized()}",
                     LOC.Open,
                     () => command.Execute(commandParam),
                     icon);
@@ -1069,7 +1069,7 @@ namespace Playnite.DesktopApp.ViewModels
             SearchItem createItemH(string root, string name, RelayCommand command, object icon = null)
             {
                 return new SearchItem(
-                    $"{root.GetLocalized()} > {name.GetLocalized()}",
+                    root.IsNullOrEmpty() ? name.GetLocalized() : $"{root.GetLocalized()} > {name.GetLocalized()}",
                     LOC.Open,
                     () => command.Execute(),
                     icon);
@@ -1078,7 +1078,7 @@ namespace Playnite.DesktopApp.ViewModels
             SearchItem createItem<T>(string root, string name, RelayCommand<T> command, T commandParam, object icon = null)
             {
                 return new SearchItem(
-                    $"{root.GetLocalized()} > {name.GetLocalized()}",
+                    root.IsNullOrEmpty() ? name.GetLocalized() : $"{root.GetLocalized()} > {name.GetLocalized()}",
                     LOC.Open,
                     () => command.Execute(commandParam),
                     icon);
@@ -1147,6 +1147,9 @@ namespace Playnite.DesktopApp.ViewModels
             // Help
             yield return new SearchItem(LOC.MenuAbout, LOC.Open, () => OpenAboutCommand.Execute(null), "AboutPlayniteIcon");
             yield return new SearchItem(LOC.CrashRestartSafe, LOC.Activate, () => RestartInSafeMode.Execute(null));
+            yield return createItemG(LOC.MenuHelpTitle, "Wiki / FAQ", GlobalCommands.NavigateUrlCommand, UrlConstants.Wiki);
+            yield return createItemG(LOC.MenuHelpTitle, LOC.MenuIssues, ReportIssueCommand);
+            yield return createItemG(LOC.MenuHelpTitle, LOC.SDKDocumentation, GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
 
             // Restore window
             yield return new SearchItem(LOC.RestoreWindow, LOC.Activate, () => Window.RestoreWindow());
