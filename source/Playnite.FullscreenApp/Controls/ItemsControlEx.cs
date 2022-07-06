@@ -37,16 +37,18 @@ namespace Playnite.FullscreenApp.Controls
 
         private void ItemsControlEx_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            var focusedElem = Keyboard.FocusedElement as FrameworkElement;
+
             if (HorizontalLayout)
             {
                 if (e.Key == Key.Up)
                 {
-                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
+                    focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
                     e.Handled = true;
                 }
                 else if (e.Key == Key.Down)
                 {
-                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                    focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
                     e.Handled = true;
                 }
                 else if (e.Key == Key.Right && Items.Count > 0)
@@ -62,7 +64,7 @@ namespace Playnite.FullscreenApp.Controls
 
                         if (lastItem == currentElem)
                         {
-                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Right));
+                            focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Right));
                             e.Handled = true;
                         }
                     }
@@ -80,7 +82,7 @@ namespace Playnite.FullscreenApp.Controls
 
                         if (firstElem == currentElem)
                         {
-                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
+                            focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
                             e.Handled = true;
                         }
                     }
@@ -90,12 +92,12 @@ namespace Playnite.FullscreenApp.Controls
             {
                 if (e.Key == Key.Right)
                 {
-                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Right));
+                    focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Right));
                     e.Handled = true;
                 }
                 else if (e.Key == Key.Left)
                 {
-                    MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
+                    focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Left));
                     e.Handled = true;
                 }
                 else if (e.Key == Key.Down && Items.Count > 0)
@@ -111,7 +113,7 @@ namespace Playnite.FullscreenApp.Controls
 
                         if (lastItem == currentElem)
                         {
-                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                            focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
                             e.Handled = true;
                         }
                     }
@@ -129,7 +131,7 @@ namespace Playnite.FullscreenApp.Controls
 
                         if (firstElem == currentElem)
                         {
-                            MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
+                            focusedElem?.MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
                             e.Handled = true;
                         }
                     }

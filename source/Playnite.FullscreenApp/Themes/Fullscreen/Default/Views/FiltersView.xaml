@@ -118,9 +118,27 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Filters}">
-                    <StackPanel x:Name="PART_PanelItemsHost"
-                                MinWidth="{DynamicResource FilterPanelWidth}"
-                                Background="{DynamicResource OverlayMenuBackgroundBrush}" />
+                    <Border Background="{DynamicResource OverlayMenuBackgroundBrush}"
+                            MinWidth="{DynamicResource FilterPanelWidth}">
+                        <ItemsControlEx x:Name="PART_ItemsHost" Focusable="False"
+                                        KeyboardNavigation.DirectionalNavigation="Once">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer Focusable="False"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  CanContentScroll="True">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+                        </ItemsControlEx>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

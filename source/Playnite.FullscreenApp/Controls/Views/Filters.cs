@@ -18,11 +18,11 @@ using System.Windows.Input;
 
 namespace Playnite.FullscreenApp.Controls.Views
 {
-    [TemplatePart(Name = "PART_PanelItemsHost", Type = typeof(Panel))]
+    [TemplatePart(Name = "PART_ItemsHost", Type = typeof(ItemsControl))]
     public class Filters : Control
     {
         private FullscreenAppViewModel mainModel;
-        private Panel PanelItemsHost;
+        private ItemsControl PanelItemsHost;
 
         static Filters()
         {
@@ -53,25 +53,26 @@ namespace Playnite.FullscreenApp.Controls.Views
                 return;
             }
 
-            PanelItemsHost = Template.FindName("PART_PanelItemsHost", this) as Panel;
-            if (PanelItemsHost != null)
+            PanelItemsHost = Template.FindName("PART_ItemsHost", this) as ItemsControl;
+            if (PanelItemsHost == null)
             {
-                PanelItemsHost.Focusable = false;
-                PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Back)));
-                PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Escape)));
-                var backInput = new XInputBinding { Command = mainModel.ToggleFiltersCommand };
-                BindingTools.SetBinding(backInput,
-                    XInputBinding.ButtonProperty,
-                    null,
-                    typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
-                PanelItemsHost.InputBindings.Add(backInput);
+                return;
             }
+
+            PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Back)));
+            PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Escape)));
+            var backInput = new XInputBinding { Command = mainModel.ToggleFiltersCommand };
+            BindingTools.SetBinding(backInput,
+                XInputBinding.ButtonProperty,
+                null,
+                typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+            PanelItemsHost.InputBindings.Add(backInput);
 
             var ButtonClear = new ButtonEx();
             ButtonClear.Command = mainModel.ClearFiltersCommand;
             ButtonClear.Content = ResourceProvider.GetString(LOC.ClearLabel);
             ButtonClear.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelButtonEx");
-            PanelItemsHost.Children.Add(ButtonClear);
+            PanelItemsHost.Items.Add(ButtonClear);
             BindingTools.SetBinding(ButtonClear,
                     FocusBahaviors.FocusBindingProperty,
                     mainModel,
@@ -95,12 +96,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ButtonBase.TagProperty,
                 mainModel.AppSettings.Fullscreen.FilterSettings,
                 nameof(FullscreenFilterSettings.IsSubAdditionalFilterActive));
-            PanelItemsHost.Children.Add(ButtonAdditional);
+            PanelItemsHost.Items.Add(ButtonAdditional);
 
             var desc = new TextBlock();
             desc.Text = ResourceProvider.GetString(LOC.MenuSortByTitle);
             desc.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelText");
-            PanelItemsHost.Children.Add(desc);
+            PanelItemsHost.Items.Add(desc);
 
             var SelectSortBy = new ComboBoxEx();
             SelectSortBy.SetResourceReference(ComboBoxEx.StyleProperty, "FilterPanelComboBoxEx");
@@ -114,7 +115,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 nameof(FullscreenViewSettings.SortingOrder),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
-            PanelItemsHost.Children.Add(SelectSortBy);
+            PanelItemsHost.Items.Add(SelectSortBy);
 
             var SelectSortDirection = new ComboBoxEx();
             SelectSortDirection.SetResourceReference(ComboBoxEx.StyleProperty, "FilterPanelComboBoxEx");
@@ -128,12 +129,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                 nameof(FullscreenViewSettings.SortingOrderDirection),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
-            PanelItemsHost.Children.Add(SelectSortDirection);
+            PanelItemsHost.Items.Add(SelectSortDirection);
 
             desc = new TextBlock();
             desc.Text = ResourceProvider.GetString(LOC.SettingsTopPanelFilterPresetsItem);
             desc.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelText");
-            PanelItemsHost.Children.Add(desc);
+            PanelItemsHost.Items.Add(desc);
 
             var ComboFilterPresets = new ComboBoxEx();
             ComboFilterPresets.SetResourceReference(ComboBoxEx.StyleProperty, "FilterPanelComboBoxEx");
@@ -147,7 +148,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 nameof(mainModel.ActiveFilterPreset),
                 mode: BindingMode.TwoWay);
             ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
-            PanelItemsHost.Children.Add(ComboFilterPresets);
+            PanelItemsHost.Items.Add(ComboFilterPresets);
 
             var ButtonSaveFilter = new ButtonEx();
             BindingTools.SetBinding(ButtonSaveFilter,
@@ -185,7 +186,7 @@ namespace Playnite.FullscreenApp.Controls.Views
             filterButtonGrid.Children.Add(ButtonSaveFilter);
             filterButtonGrid.Children.Add(ButtonRenameFilter);
             filterButtonGrid.Children.Add(ButtonDeleteFilter);
-            PanelItemsHost.Children.Add(filterButtonGrid);
+            PanelItemsHost.Items.Add(filterButtonGrid);
         }
 
         private void AssignBoolFilter(string bindBased, string text)
@@ -200,7 +201,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 bindBased,
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
-            PanelItemsHost.Children.Add(check);
+            PanelItemsHost.Items.Add(check);
         }
 
         private void AssignFilter(GameField field, string bindBased, string text)
@@ -215,7 +216,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ButtonBase.TagProperty,
                 mainModel.AppSettings.Fullscreen.FilterSettings,
                 $"{bindBased}.{nameof(IdItemFilterItemProperties.IsSet)}");
-            PanelItemsHost.Children.Add(button);
+            PanelItemsHost.Items.Add(button);
         }
     }
 }
