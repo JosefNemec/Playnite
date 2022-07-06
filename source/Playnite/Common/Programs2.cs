@@ -384,7 +384,7 @@ namespace Playnite.Common
                     }
                     catch (Exception e)
                     {
-                        logger.Error(e, $"Failed to parse UWP game info.");
+                        logger.Error(e, $"Failed to parse UWP app {package.Id.FullName} info.");
                     }
                 }
             }
