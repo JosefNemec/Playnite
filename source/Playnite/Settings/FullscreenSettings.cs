@@ -636,7 +636,7 @@ namespace Playnite
             }
         }
 
-        private bool smoothScrolling = false;
+        private bool smoothScrolling = true;
         public bool SmoothScrolling
         {
             get => smoothScrolling;

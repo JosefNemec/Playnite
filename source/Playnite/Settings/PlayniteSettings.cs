@@ -1593,7 +1593,7 @@ namespace Playnite
             }
         }
 
-        private bool gridViewSmoothScrollEnabled = true;
+        private bool gridViewSmoothScrollEnabled = false;
         public bool GridViewSmoothScrollEnabled
         {
             get => gridViewSmoothScrollEnabled;
@@ -1626,7 +1626,7 @@ namespace Playnite
             }
         }
 
-        private bool detailsViewSmoothScrollEnabled = true;
+        private bool detailsViewSmoothScrollEnabled = false;
         public bool DetailsViewSmoothScrollEnabled
         {
             get => detailsViewSmoothScrollEnabled;
@@ -1659,7 +1659,7 @@ namespace Playnite
             }
         }
 
-        private bool listViewSmoothScrollEnabled = true;
+        private bool listViewSmoothScrollEnabled = false;
         public bool ListViewSmoothScrollEnabled
         {
             get => listViewSmoothScrollEnabled;
