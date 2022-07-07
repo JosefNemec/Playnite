@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Playnite.Common;
 using Playnite.Database;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;

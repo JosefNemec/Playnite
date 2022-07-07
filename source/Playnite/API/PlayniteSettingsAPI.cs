@@ -68,6 +68,8 @@ namespace Playnite.API
         public Dock SidebarPosition => settings.SidebarPosition;
         public IFullscreenSettingsAPI Fullscreen { get; }
         public ICompletionStatusSettignsApi CompletionStatus { get; }
+        public bool ForcePlayTimeSync => false;
+        public PlaytimeImportMode PlaytimeImportMode => settings.PlaytimeImportMode;
 
         public PlayniteSettingsAPI(PlayniteSettings settings, GameDatabase db)
         {

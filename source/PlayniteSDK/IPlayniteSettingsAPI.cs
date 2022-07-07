@@ -1,6 +1,7 @@
 ﻿using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,28 @@ using System.Windows.Controls;
 
 namespace Playnite.SDK
 {
+    /// <summary>
+    ///
+    /// </summary>
+    public enum PlaytimeImportMode
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCSettingsPlaytimeImportModeAlways")]
+        Always,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCSettingsPlaytimeImportModeNewImportsOnly")]
+        NewImportsOnly,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCSettingsPlaytimeImportModeNever")]
+        Never
+    }
+
     /// <summary>
     /// Describes interface for Fullscreen mode settings.
     /// </summary>
@@ -129,6 +152,17 @@ namespace Playnite.SDK
         ///
         /// </summary>
         bool StartOnBoot { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [Obsolete("Use new PlaytimeImportMode property instead.")]
+        bool ForcePlayTimeSync { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        PlaytimeImportMode PlaytimeImportMode { get; }
 
         /// <summary>
         ///

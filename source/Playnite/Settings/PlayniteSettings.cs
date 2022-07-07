@@ -94,16 +94,6 @@ namespace Playnite
         Custom
     }
 
-    public enum PlaytimeImportMode
-    {
-        [Description(LOC.SettingsPlaytimeImportModeAlways)]
-        Always,
-        [Description(LOC.SettingsPlaytimeImportModeNewImportsOnly)]
-        NewImportsOnly,
-        [Description(LOC.SettingsPlaytimeImportModeNever)]
-        Never
-    }
-
     public enum TrayIconType
     {
         [Description("TrayIcon")]

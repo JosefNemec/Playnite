@@ -23,11 +23,6 @@ namespace Playnite.SDK.Plugins
         public string Description { get; set; }
 
         /// <summary>
-        ///
-        /// </summary>
-        public string Hint { get; set; }
-
-        /// <summary>
         /// Gets or sets meni item menu section.
         /// </summary>
         public string MenuSection { get; set; }
