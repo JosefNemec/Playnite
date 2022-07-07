@@ -14,7 +14,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="Google Images"
         Height="600" Width="830"
-        ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+        ShowInTaskbar="True" WindowStartupLocation="CenterOwner">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >
