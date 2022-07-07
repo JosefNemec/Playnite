@@ -38,10 +38,22 @@
             <BooleanToVisibilityConverter/>
         </pcon:ValueConverterGroup>
         <Style x:Key="SaveChangesCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-            <Setter Property="BorderBrush" Value="Orange" />
             <Setter Property="ToolTip" Value="{DynamicResource LOCGameEditChangeSaveTooltip}" />
             <Setter Property="Visibility" Value="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}" />
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource DataChangeNotifBrush}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
+        <DataTemplate x:Key="SectionHeaderTemplate" x:Shared="False">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text=" ! " Foreground="{StaticResource DataChangeNotifBrush}" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
+                           Visibility="{Binding Tag, RelativeSource={RelativeSource AncestorType=ContentControl}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <TextBlock Text="{Binding Content, RelativeSource={RelativeSource AncestorType=ContentControl}}"
+                           Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
+            </StackPanel>
+        </DataTemplate>
     </controls:WindowBase.Resources>
 
     <Grid Margin="0,5,0,0">
@@ -53,12 +65,9 @@
         <TabControl Name="TabControlMain" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0">
             <TabItem Name="TabGeneral">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
-                                    Visibility="{Binding ShowGeneralChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LOCGeneralLabel}"
-                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
-                    </StackPanel>
+                    <ContentControl ContentTemplate="{StaticResource SectionHeaderTemplate}"
+                                    Content="{DynamicResource LOCGeneralLabel}"
+                                    Tag="{Binding ShowGeneralChangeNotif}" />
                 </TabItem.Header>
                 <ScrollViewer>
                     <Grid Grid.Column="0" Grid.Row="0" Margin="10">
@@ -400,12 +409,9 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
-                                    Visibility="{Binding ShowAdvancedChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LOCAdvanced}"
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
-                    </StackPanel>
+                    <ContentControl ContentTemplate="{StaticResource SectionHeaderTemplate}"
+                                    Content="{DynamicResource LOCAdvanced}"
+                                    Tag="{Binding ShowAdvancedChangeNotif}" />
                 </TabItem.Header>
                 <Grid Margin="10">
                     <Grid.Resources>
@@ -591,13 +597,10 @@
             </TabItem>
 
             <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
-                                   Visibility="{Binding ShowMediaChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LOCMediaLabel}"
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
-                    </StackPanel>
+                <TabItem.Header> 
+                    <ContentControl ContentTemplate="{StaticResource SectionHeaderTemplate}"
+                                    Content="{DynamicResource LOCMediaLabel}"
+                                    Tag="{Binding ShowMediaChangeNotif}" />
                 </TabItem.Header>
                 <DockPanel>
                     <Button Content="{DynamicResource LOCOpenMetadataFolder}" HorizontalAlignment="Left"
@@ -788,12 +791,9 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
-                                   Visibility="{Binding ShowLinksChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LOCLinksLabel}"
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
-                    </StackPanel>
+                    <ContentControl ContentTemplate="{StaticResource SectionHeaderTemplate}"
+                                    Content="{DynamicResource LOCLinksLabel}"
+                                    Tag="{Binding ShowLinksChangeNotif}" />
                 </TabItem.Header>
                 <DockPanel>
                     <TextBlock Visibility="{Binding IsMultiGameEdit,Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -843,12 +843,9 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
-                                   Visibility="{Binding ShowInstallChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LOCInstallationLabel}"
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
-                    </StackPanel>
+                    <ContentControl ContentTemplate="{StaticResource SectionHeaderTemplate}"
+                                    Content="{DynamicResource LOCInstallationLabel}"
+                                    Tag="{Binding ShowInstallChangeNotif}" />
                 </TabItem.Header>
                 <DockPanel>
                     <Grid Margin="10" DockPanel.Dock="Top">
@@ -949,12 +946,9 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
-                                   Visibility="{Binding ShowActionsChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LOCActionsLabel}"
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
-                    </StackPanel>
+                    <ContentControl ContentTemplate="{StaticResource SectionHeaderTemplate}"
+                                    Content="{DynamicResource LOCActionsLabel}"
+                                    Tag="{Binding ShowActionsChangeNotif}" />
                 </TabItem.Header>
                 <DockPanel>
                     <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Bottom" MinWidth="80"
@@ -1014,12 +1008,9 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text=" ! " Foreground="Orange" ToolTip="{DynamicResource LOCGameEditChangeNotif}"
-                                   Visibility="{Binding ShowScriptsChangeNotif,Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{DynamicResource LOCScripts}"
-                                   Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TextBlock}}" />
-                    </StackPanel>
+                    <ContentControl ContentTemplate="{StaticResource SectionHeaderTemplate}"
+                                    Content="{DynamicResource LOCScripts}"
+                                    Tag="{Binding ShowScriptsChangeNotif}" />
                 </TabItem.Header>
                 <DockPanel Margin="10,5,10,5">
                     <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Bottom" MinWidth="80"

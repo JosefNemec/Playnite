@@ -209,8 +209,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void PreviewGameData(ComparableMetadatGameData metadata)
         {
-            ShowCheckBoxes = true;
-
             var diffItems = GetDisplayDiffFields(EditingGame, metadata);
             if (diffItems.HasItems())
             {
@@ -249,6 +247,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void LoadNewMetadata(ComparableMetadatGameData newData)
         {
+            ShowCheckBoxes = true;
             if (!string.IsNullOrEmpty(newData.Name))
             {
                 EditingGame.Name = newData.Name;
