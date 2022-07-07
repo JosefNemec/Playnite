@@ -63,13 +63,8 @@ namespace Playnite
             if (webView.GetCurrentAddress().StartsWith(@"https://consent.google.com", StringComparison.OrdinalIgnoreCase))
             {
                 // This rejects Google's consent form for cookies
-                Task.Run(async () =>
-                {
-                    await webView.EvaluateScriptAsync(
-@"if (document.getElementsByTagName('form').length > 2) {
-document.getElementsByTagName('form')[0].submit(); }");
-                    await Task.Delay(3000);
-                }).GetAwaiter().GetResult();
+                await webView.EvaluateScriptAsync(@"document.getElementsByTagName('form')[0].submit();");
+                await Task.Delay(3000);
                 webView.NavigateAndWait(url.ToString());
             }
 
