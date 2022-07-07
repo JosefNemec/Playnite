@@ -958,7 +958,7 @@ Disable if you use tools that translate XInput inputs to mouse/keyboards inputs 
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Inverted X/A main view button binding</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Swaps button bindings for starting a game and showing game details page on main view.</sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">Swap confirmation/cancelation button binding</sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Inverts default A button binding for confirmationa and B for cancellation.</sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Inverts A/B button bindings for confirmation and cancellation.</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Primary controller only</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Only accept inputs from primary controller when enabled.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide button focuses Playnite</sys:String>
@@ -1099,9 +1099,9 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalled">Include uninstalled games</sys:String>
     <sys:String x:Key="LOCSearchFilterHidden">Include hidden games</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalledIncluded">Uninstalled games included</sys:String>
-    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Uninstalled games exclued</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Uninstalled games excluded</sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenIncluded">Hidden games included</sys:String>
-    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">Hidden games exclued</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">Hidden games excluded</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionPlay">Play or Install</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionSwitchTo">Go to details</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionOpenMenu">Game menu</sys:String>
