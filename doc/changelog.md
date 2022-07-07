@@ -1,5 +1,20 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.3.0
+
+* New
+  * Support for plugins to [provide search results](tutorials/extensions/searchSupport.md) in new global search view.
+  * Filter presets (and associated functionality) completely exposed in the SDK.
+  * Added option for plugins to interrupt game startup by enabling `CancelStartup` property on `OnGameStartingEventArgs` event.
+  * Added `StartedProcessId` property to `OnGameStartedEventArgs`, containing process ID of started game (if startup source sets it).
+  * Added `ManuallyStopped` property to `OnGameStoppedEventArgs`, indicating whether game tracking was manually stopped by a user.
+  * Exposed [UI thread dispatcher](xref:Playnite.SDK.IMainViewAPI.UIDispatcher) in main view API. Read more about thread safety [here](tutorials/extensions/plugins.md#accessing-playnite-api).
+  * Standard web view now has access to hosting window object via `WindowHost` property.
+  * Added `IsGlobalSearchRequest` to `Get*MenuItemsArgs`, to distinguish between menu requests and new global search view requests.
+
+* Fixed
+  * Cases where some UI related events (for example for game selections) were not being called at all or too many times.
+
 #### 6.2.2
 
 * Fixed
