@@ -38,7 +38,10 @@ namespace Playnite
             settings.PersistSessionCookies = true;
             settings.LogFile = Path.Combine(PlaynitePaths.ConfigRootPath, "cef.log");
             settings.LogSeverity = enableLogs ? LogSeverity.Error : LogSeverity.Disable;
-            settings.UserAgent = $"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Playnite/{PlayniteApplication.CurrentVersion.ToString(2)}";
+            // Firefox user agent gives the best compatibility because some websites complain
+            // about unsecure browser if we try to pretend to be Chrome (which is CefSharp's default).
+            // Plugins can change this on an individual level anyways.
+            settings.UserAgent = $"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0 Playnite/{PlayniteApplication.CurrentVersion.ToString(2)}";
             IsInitialized = Cef.Initialize(settings);
         }
 
