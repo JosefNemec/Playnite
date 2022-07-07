@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite
@@ -59,6 +60,19 @@ namespace Playnite
             }
 
             webView.NavigateAndWait(url.ToString());
+            if (webView.GetCurrentAddress().StartsWith(@"https://consent.google.com", StringComparison.OrdinalIgnoreCase))
+            {
+                // This rejects Google's consent form for cookies
+                Task.Run(async () =>
+                {
+                    await webView.EvaluateScriptAsync(
+@"if (document.getElementsByTagName('form').length > 2) {
+document.getElementsByTagName('form')[0].submit(); }");
+                    await Task.Delay(3000);
+                }).GetAwaiter().GetResult();
+                webView.NavigateAndWait(url.ToString());
+            }
+
             var googleContent = await webView.GetPageSourceAsync();
             if (googleContent.Contains(".rg_meta", StringComparison.Ordinal))
             {
