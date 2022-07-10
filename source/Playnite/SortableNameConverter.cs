@@ -59,7 +59,7 @@ namespace Playnite
             }
 
             regex = new Regex(regexStr, options);
-            ignoredEndWordsRegex = new Regex(@":?(\s+([a-z']+\s+(edition|cut)|hd|legacy|collection|remaster(ed)?|remake|ultimate))+$", options | RegexOptions.IgnoreCase);
+            ignoredEndWordsRegex = new Regex(@"(\s*[:-])?(\s+([a-z']+\s+(edition|cut)|hd|collection|remaster(ed)?|remake|ultimate|anthology))+$", options | RegexOptions.IgnoreCase);
         }
 
         public string Convert(string input)
