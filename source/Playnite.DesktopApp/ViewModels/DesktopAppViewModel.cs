@@ -943,7 +943,18 @@ namespace Playnite.DesktopApp.ViewModels
             }
             else if (model.SelectedAction == RandomGameSelectAction.Navigate)
             {
-                AppSettings.ViewSettings.GamesViewType = DesktopView.Details;
+                if (AppSettings.ViewSettings.GamesViewType == DesktopView.List)
+                {
+                    AppSettings.ViewSettings.GamesViewType = DesktopView.Details;
+                }
+                else if (AppSettings.ViewSettings.GamesViewType == DesktopView.Grid)
+                {
+                    if (!AppSettings.GridViewSideBarVisible)
+                    {
+                        AppSettings.GridViewSideBarVisible = true;
+                    }
+                }
+
                 SelectGame(model.SelectedGame.Id);
             }
         }
