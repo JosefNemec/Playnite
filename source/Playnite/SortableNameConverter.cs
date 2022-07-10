@@ -15,8 +15,9 @@ namespace Playnite
         /// </summary>
         private static int numberLength = 2;
 
-        private static string[] excludedRomanNumerals = new[] { "XL", "XD", "XXX", "D", "MII", "MIX", "MX", "MC" };
+        private static string[] excludedRomanNumerals = new[] { "XL", "XD", "DX", "XXX", "L", "C", "D", "M", "MII", "MIX", "MX", "MC", "DC" };
 
+        //Haven't observed game titles with zero, or four and above that would benefit from making those words sortable numbers
         private static Dictionary<string, int> numberWordValues = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase) { { "one", 1 }, { "two", 2 }, { "three", 3 } };
 
         private static Dictionary<char, int> romanNumeralValues = new Dictionary<char, int>
@@ -59,7 +60,7 @@ namespace Playnite
             }
 
             regex = new Regex(regexStr, options);
-            ignoredEndWordsRegex = new Regex(@"(\s*[:-])?(\s+([a-z']+\s+(edition|cut)|hd|collection|remaster(ed)?|remake|ultimate|anthology))+$", options | RegexOptions.IgnoreCase);
+            ignoredEndWordsRegex = new Regex(@"(\s*[:-])?(\s+([a-z']+\s+(edition|cut)|hd|collection|remaster(ed)?|remake|ultimate|anthology|game of the))+$", options | RegexOptions.IgnoreCase);
         }
 
         public string Convert(string input)
