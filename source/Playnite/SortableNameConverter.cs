@@ -8,6 +8,7 @@ namespace Playnite
     public class SortableNameConverter
     {
         private readonly Regex regex;
+        private readonly Regex ignoredEndWordsRegex;
 
         /// <summary>
         /// The minimum string length of numbers. If 4, XXIII or 23 will turn into 0023.
@@ -16,7 +17,6 @@ namespace Playnite
 
         private static string[] excludedRomanNumerals = new[] { "XL", "XD", "XXX", "D", "MII", "MIX", "MX", "MC" };
 
-        //When adding/removing entries here, be sure to update the regex too
         private static Dictionary<string, int> numberWordValues = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase) { { "one", 1 }, { "two", 2 }, { "three", 3 } };
 
         private static Dictionary<char, int> romanNumeralValues = new Dictionary<char, int>
@@ -51,7 +51,7 @@ namespace Playnite
 
             var articlesPattern = string.Join("|", articles.Select(Regex.Escape));
             var articlesGroup = string.IsNullOrEmpty(articlesPattern) ? string.Empty : $@"^(?<article>{articlesPattern})\s+|";
-            var regexStr = $@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i){articlesGroup}\b(?<numberword>one|two|three)\b";
+            var regexStr = $@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i){articlesGroup}\b(?<numberword>{string.Join("|", numberWordValues.Keys)})\b";
             var options = RegexOptions.ExplicitCapture;
             if (batchOperation)
             {
@@ -59,6 +59,7 @@ namespace Playnite
             }
 
             regex = new Regex(regexStr, options);
+            ignoredEndWordsRegex = new Regex(@":?(\s+([a-z']+\s+(edition|cut)|hd|legacy|collection|remaster(ed)?|remake|ultimate))+$", options | RegexOptions.IgnoreCase);
         }
 
         public string Convert(string input)
@@ -68,7 +69,9 @@ namespace Playnite
                 return input;
             }
 
-            return regex.Replace(input, match =>
+            input = StripEdition(input, out string edition);
+
+            string output = regex.Replace(input, match =>
             {
                 if (match.Groups["roman"].Success)
                 {
@@ -77,6 +80,17 @@ namespace Playnite
                         if (MatchComesAfterChapterOrEpisodeOrAtEndOfString(input, match))
                         {
                             return "1".PadLeft(numberLength, '0');
+                        }
+                        else
+                        {
+                            return match.Value;
+                        }
+                    }
+                    else if (match.Value == "X")
+                    {
+                        if (MatchComesAfterChapterOrEpisodeOrAtEndOfString(input, match, maxDistanceFromEnd: 4) && !MatchComesBeforeDashAndWord(input, match))
+                        {
+                            return "10".PadLeft(numberLength, '0');
                         }
                         else
                         {
@@ -110,6 +124,8 @@ namespace Playnite
                 }
                 return match.Value;
             });
+
+            return output + edition;
         }
 
         /// <summary>
@@ -195,13 +211,69 @@ namespace Playnite
             return output;
         }
 
-        private static bool MatchComesAfterChapterOrEpisodeOrAtEndOfString(string input, Match match)
+        private string StripEdition(string input, out string edition)
         {
-            bool matchIsAtEndOfString = match.Index + match.Length == input.Length;
+            var match = ignoredEndWordsRegex.Match(input);
+            if (match.Success)
+            {
+                edition = match.Value;
+                return input.Remove(match.Index);
+            }
+            else
+            {
+                edition = string.Empty;
+                return input;
+            }
+        }
+
+        private static bool MatchComesAfterChapterOrEpisodeOrAtEndOfString(string input, Match match, int maxDistanceFromEnd = 0)
+        {
+            bool matchIsAtEndOfString = MatchIsNearEndOfString(input, match, maxDistanceFromEnd);
             string theBitImmediatelyPriorToTheMatch = input.Substring(Math.Max(0, match.Index - 9), length: Math.Min(9, match.Index));
             return matchIsAtEndOfString
                 || theBitImmediatelyPriorToTheMatch.Contains("chapter", StringComparison.InvariantCultureIgnoreCase)
+                || theBitImmediatelyPriorToTheMatch.Contains("season", StringComparison.InvariantCultureIgnoreCase)
                 || theBitImmediatelyPriorToTheMatch.Contains("episode", StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        private static bool MatchIsNearEndOfString(string input, Match match, int maxDistanceFromEnd)
+        {
+            int distance = input.Length - (match.Index + match.Length);
+            return distance <= maxDistanceFromEnd;
+        }
+
+        private static bool MatchComesBeforeDashAndWord(string input, Match match)
+        {
+            if (MatchIsNearEndOfString(input, match, maxDistanceFromEnd: 1))
+            {
+                return false;
+            }
+
+            char nextChar = input[match.Index + match.Length];
+            if (nextChar != '-')
+            {
+                return false;
+            }
+
+            string nextWord = "";
+
+            for (int i = match.Index + match.Length + 1; i < input.Length; i++)
+            {
+                char c = input[i];
+                if (char.IsWhiteSpace(c))
+                {
+                    break;
+                }
+
+                if (!char.IsLetter(c))
+                {
+                    return false;
+                }
+
+                nextWord += c;
+            }
+
+            return excludedRomanNumerals.Contains(nextWord) || ConvertRomanNumeralToInt(nextWord) == null;
         }
 
         private static bool IsOneOrPowerOfTen(int x)
