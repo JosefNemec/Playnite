@@ -1011,7 +1011,7 @@ namespace Playnite
                 game.IsLaunching = launching.Value;
             }
 
-            if (launching == true)
+            if (running == true)
             {
                 game.LastActivity = DateTime.Now;
                 game.PlayCount += 1;
