@@ -151,7 +151,11 @@ namespace Playnite
             for (int i = input.Length - 1; i >= 0; i--)
             {
                 char c = input[i];
-                int value = romanNumeralValues[c];
+                if (!romanNumeralValues.TryGetValue(c, out int value))
+                {
+                    return null;
+                }
+
                 bool subtract = value < biggestNumberToTheRight;
                 if (subtract)
                 {

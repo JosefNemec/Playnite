@@ -42,6 +42,7 @@ namespace Playnite.Tests
         [TestCase("Unravel Two", "Unravel 02")]
         [TestCase("The Elder Scrolls II: Daggerfall Unity - GOG Cut", "Elder Scrolls 02: Daggerfall Unity - GOG Cut")]
         [TestCase("Metal Slug XX", "Metal Slug 20")]
+        [TestCase("The Uncanny X-Men", "Uncanny X-Men")]
         [TestCase("Test X-", "Test 10-")]
         [TestCase("The Witcher 3", "Witcher 03")]
         [TestCase("the Witcher 3", "Witcher 03")]
@@ -124,6 +125,7 @@ namespace Playnite.Tests
         [TestCase("IIII")]
         [TestCase("XXL")]
         [TestCase("IIX")]
+        [TestCase("asdf")]
         public void ConvertRomanNumeralsToIntRejectsNonsense(string input)
         {
             int? output = SortableNameConverter.ConvertRomanNumeralToInt(input);
