@@ -65,7 +65,18 @@ namespace Playnite.ViewModels
                 case GameSearchItemAction.SwitchTo:
                     return new SearchItemAction(LOC.GameSearchItemActionSwitchTo, () =>
                     {
-                        mainModel.AppSettings.ViewSettings.GamesViewType = DesktopView.Details;
+                        if (mainModel.AppSettings.ViewSettings.GamesViewType == DesktopView.List)
+                        {
+                            mainModel.AppSettings.ViewSettings.GamesViewType = DesktopView.Details;
+                        }
+                        else if (mainModel.AppSettings.ViewSettings.GamesViewType == DesktopView.Grid)
+                        {
+                            if (!mainModel.AppSettings.GridViewSideBarVisible)
+                            {
+                                mainModel.AppSettings.GridViewSideBarVisible = true;
+                            }
+                        }
+
                         mainModel.SelectGame(game.Id);
                     });
                 case GameSearchItemAction.OpenMenu:
