@@ -367,6 +367,7 @@
     <Compile Include="Converters\StringNullOrEmptyToBoolConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\StringNullOrEmptyToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToUpperCaseConverter.cs" />
     <Compile Include="Converters\ValueConverterGroup.cs" />
     <Compile Include="Converters\WidthToFontSizeConverter.cs" />
     <Compile Include="Database\Collections\EmulatorsCollection.cs" />
