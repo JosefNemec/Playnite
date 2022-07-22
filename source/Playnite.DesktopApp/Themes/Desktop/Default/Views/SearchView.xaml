@@ -51,6 +51,9 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <TextBlock Text="{Binding Game.Platforms, Converter={StaticResource ListToStringConverter}, StringFormat='{}{0} - '}"
+                               Visibility="{Binding Game.Platforms, Converter={StaticResource NullToVisibilityConverter}}"
+                               Foreground="{DynamicResource TextBrushDarker}" />
                     <TextBlock Text="{Binding Game.Playtime, Converter={StaticResource PlayTimeToStringConverter}}"
                                Foreground="{DynamicResource TextBrushDarker}" />
                     <TextBlock Text="{Binding Game.CompletionStatus.Name, StringFormat=' - {0}'}"
