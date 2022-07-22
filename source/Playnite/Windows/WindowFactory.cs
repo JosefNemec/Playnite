@@ -52,13 +52,14 @@ namespace Playnite.Windows
 
         public bool? CreateAndOpenDialog(object dataContext)
         {
-            logger.Debug($"Show dialog window {GetType()}");
             bool? result = null;
             context.Send((a) =>
             {
                 Window = CreateNewWindowInstance();
                 Window.Closed += Window_Closed;
                 Window.DataContext = dataContext;
+                logger.Debug($"Show dialog window {GetType()}: {Window.Id}");
+
                 var currentWindow = WindowManager.CurrentWindow;
                 if (currentWindow != null && Window != currentWindow)
                 {
@@ -84,13 +85,12 @@ namespace Playnite.Windows
 
         public void Show(object dataContext)
         {
-            logger.Debug($"Show window {GetType()}");
             context.Send((a) =>
             {
                 asDialog = false;
                 if (WasClosed)
                 {
-                    logger.Debug($"Opening window that was closed previously {GetType()}");
+                    logger.Debug($"Opening window that was closed previously {GetType()}, old Id: {Window.Id}");
                     Window = CreateNewWindowInstance();
                     Window.Closed += Window_Closed;
                 }
@@ -101,6 +101,7 @@ namespace Playnite.Windows
                     Window.Closed += Window_Closed;
                 }
 
+                logger.Debug($"Show window {GetType()}: {Window.Id}");
                 Window.DataContext = dataContext;
                 WasClosed = false;
                 Window.Show();
@@ -128,10 +129,10 @@ namespace Playnite.Windows
 
         public void Close(bool? result)
         {
-            logger.Debug($"Closing window {GetType()}, {result}.");
+            logger.Debug($"Closing window {GetType()}: {Window.Id}, {result}");
             context.Send(async (_) =>
             {
-                // This is a workaround for WPF bug which cases deadlock in ShowDialog
+                // This is a workaround for WPF bug which causes deadlock in ShowDialog
                 // if parent of modal window is closed before the child window itself is closed.
                 // To prevent this we need to make sure that window parenting other windows is only
                 // closed after all children are closed.

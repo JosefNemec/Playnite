@@ -61,6 +61,7 @@ namespace Playnite.Controls
         public static TextFormattingMode TextFormattingMode { get; private set; } = TextFormattingMode.Ideal;
         public static TextRenderingMode TextRenderingMode { get; private set; } = TextRenderingMode.Auto;
         public event PropertyChangedEventHandler PropertyChanged;
+        public readonly Guid Id = Guid.NewGuid();
 
         public static readonly RoutedEvent ClosedRoutedEvent = EventManager.RegisterRoutedEvent(
             "ClosedRouted",
