@@ -1007,7 +1007,7 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuScanHideImported">Hide imported</sys:String>
     <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Profiles to import:</sys:String>
     <sys:String x:Key="LOCEmuAutoScanConfigurations">Auto-scan configurations</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfig">Save as auto-scan confguration</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">Save as auto-scan configuration</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Saves configuration for later use during library update. Saved configurations can be managed via "Configure Emulators" menu.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Add scanner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Add saved scanner</sys:String>
