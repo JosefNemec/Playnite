@@ -483,7 +483,6 @@ namespace Playnite.Controllers
                     {
                         if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && FileSystem.DirectoryExists(gameClone.InstallDirectory))
                         {
-                            InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc?.Id ?? 0 });
                             stopWatch = Stopwatch.StartNew();
                             procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
                         }
