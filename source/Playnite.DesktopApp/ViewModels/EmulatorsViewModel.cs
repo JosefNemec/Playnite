@@ -248,7 +248,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                     var menu = button.ContextMenu;
                     menu.Items.Clear();
-                    foreach (var profile in def.Profiles.Select(p => p.Name))
+                    foreach (var profile in def.Profiles.OrderBy(a => a.Name).Select(p => p.Name))
                     {
                         menu.Items.Add(new MenuItem
                         {
