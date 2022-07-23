@@ -94,7 +94,9 @@ namespace Playnite.WebView
 
         public void Dispose()
         {
-            browser?.Dispose();
+            browser.LoadingStateChanged -= Browser_LoadingStateChanged;
+            browser.BrowserInitialized -= Browser_BrowserInitialized;
+            browser.Dispose();
         }
 
         public string GetCurrentAddress()
