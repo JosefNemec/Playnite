@@ -46,6 +46,7 @@
     <pcon:StrechToStringConverter x:Key="StrechToStringConverter" />
     <pcon:StringNullOrEmptyToBoolConverter x:Key="StringNullOrEmptyToBoolConverter" />
     <pcon:StringNullOrEmptyToVisibilityConverter x:Key="StringNullOrEmptyToVisibilityConverter" />
+    <pcon:StringToUpperCaseConverter x:Key="StringToUpperCaseConverter" />
     <pcon:ValueConverterGroup x:Key="ValueConverterGroup" />
     <pcon:WidthToFontSizeConverter x:Key="WidthToFontSizeConverter" />
     <pcon:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
