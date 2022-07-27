@@ -298,7 +298,7 @@ namespace Playnite.Metadata
                             continue;
                         }
 
-                        if (settings.SkipExistingValues && !isGameMissingMetadata(game, settings))
+                        if (settings.SkipExistingValues && !IsGameMissingMetadata(game, settings))
                         {
                             logger.Warn($"Game {game.Id} is not missing metadata and SkipExistingValues is enabled, skipping metadata download.");
                             continue;
@@ -571,7 +571,7 @@ namespace Playnite.Metadata
             });
         }
 
-        private bool isGameMissingMetadata(Game game, MetadataDownloaderSettings settings)
+        private bool IsGameMissingMetadata(Game game, MetadataDownloaderSettings settings)
         {
             // Name
             if (settings.Name.Import && game.Name.IsNullOrEmpty())
