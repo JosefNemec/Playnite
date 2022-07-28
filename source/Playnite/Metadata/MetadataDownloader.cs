@@ -567,6 +567,5 @@ namespace Playnite.Metadata
                 }
             });
         }
-
     }
 }
