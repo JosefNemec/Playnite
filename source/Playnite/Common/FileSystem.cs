@@ -38,7 +38,7 @@ namespace Playnite.Common
             {
                 if (clean)
                 {
-                    DeleteDirectory(directory);
+                    DeleteDirectory(directory, true);
                 }
                 else
                 {
@@ -130,6 +130,12 @@ namespace Playnite.Common
                     }
 
                     File.Delete(f);
+                }
+
+                var dirAttr = File.GetAttributes(path);
+                if ((dirAttr & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                {
+                    File.SetAttributes(path, dirAttr ^ FileAttributes.ReadOnly);
                 }
 
                 Directory.Delete(path, false);
