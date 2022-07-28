@@ -10,7 +10,7 @@
         x:Name="WindowMessageBox"
         Title="{Binding Caption, ElementName=WindowMessageBox}"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False" MaxWidth="600"
-        ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" WindowStartupLocation="CenterOwner">
+        ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 
     <controls:WindowBase.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
