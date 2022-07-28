@@ -298,12 +298,6 @@ namespace Playnite.Metadata
                             continue;
                         }
 
-                        if (settings.SkipExistingValues && !IsGameMissingMetadata(game, settings))
-                        {
-                            logger.Warn($"Game {game.Id} is not missing metadata and SkipExistingValues is enabled, skipping metadata download.");
-                            continue;
-                        }
-
                         var dataModified = false;
                         game.PropertyChanged += (_, __) => dataModified = true;
 
@@ -317,10 +311,13 @@ namespace Playnite.Metadata
                         // Name
                         if (settings.Name.Import)
                         {
-                            gameData = ProcessField(game, settings.Name, MetadataField.Name, (a) => a.Name, existingStoreData, existingPluginData, cancelToken);
-                            if (!string.IsNullOrEmpty(gameData?.Name))
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Name)))
                             {
-                                game.Name = StringExtensions.RemoveTrademarks(gameData.Name);
+                                gameData = ProcessField(game, settings.Name, MetadataField.Name, (a) => a.Name, existingStoreData, existingPluginData, cancelToken);
+                                if (!string.IsNullOrEmpty(gameData?.Name))
+                                {
+                                    game.Name = StringExtensions.RemoveTrademarks(gameData.Name);
+                                }
                             }
                         }
 
@@ -571,117 +568,5 @@ namespace Playnite.Metadata
             });
         }
 
-        private bool IsGameMissingMetadata(Game game, MetadataDownloaderSettings settings)
-        {
-            // Name
-            if (settings.Name.Import && game.Name.IsNullOrEmpty())
-            {
-                return true;
-            }
-
-            // Genre
-            if (settings.Genre.Import && !game.GenreIds.HasItems())
-            {
-                return true;
-            }
-
-            // Release Date
-            if (settings.ReleaseDate.Import && game.ReleaseDate == null)
-            {
-                return true;
-            }
-
-            // Developer
-            if (settings.Developer.Import && !game.DeveloperIds.HasItems())
-            {
-                return true;
-            }
-
-            // Publisher
-            if (settings.Publisher.Import && !game.PublisherIds.HasItems())
-            {
-                return true;
-            }
-
-            // Tags
-            if (settings.Tag.Import && !game.TagIds.HasItems())
-            {
-                return true;
-            }
-
-            // Features
-            if (settings.Feature.Import && !game.FeatureIds.HasItems())
-            {
-                return true;
-            }
-
-            // Description
-            if (settings.Description.Import && game.Description.IsNullOrEmpty())
-            {
-                return true;
-            }
-
-            // Links
-            if (settings.Links.Import && !game.Links.HasItems())
-            {
-                return true;
-            }
-
-            // Age rating
-            if (settings.AgeRating.Import && !game.AgeRatingIds.HasItems())
-            {
-                return true;
-            }
-
-            // Region
-            if (settings.Region.Import && !game.RegionIds.HasItems())
-            {
-                return true;
-            }
-
-            // Series
-            if (settings.Series.Import && !game.SeriesIds.HasItems())
-            {
-                return true;
-            }
-
-            // Platform
-            if (settings.Platform.Import && !game.PlatformIds.HasItems())
-            {
-                return true;
-            }
-
-            // Critic Score
-            if (settings.CriticScore.Import && game.CriticScore == null)
-            {
-                return true;
-            }
-
-            // Community Score
-            if (settings.CommunityScore.Import && game.CommunityScore == null)
-            {
-                return true;
-            }
-
-            // BackgroundImage
-            if (settings.BackgroundImage.Import && game.BackgroundImage == null)
-            {
-                return true;
-            }
-
-            // Cover
-            if (settings.CoverImage.Import && game.CoverImage == null)
-            {
-                return true;
-            }
-
-            // Icon
-            if (settings.Icon.Import && game.Icon == null)
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }
