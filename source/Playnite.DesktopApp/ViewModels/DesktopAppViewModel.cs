@@ -85,7 +85,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public GamesCollectionViewEntry SelectedGame { get; private set; }
+        public GamesCollectionViewEntry SelectedGame { get => SelectedGames?.Count > 0 ? SelectedGames[0] : null; }
 
         private List<GamesCollectionViewEntry> selectedGames;
         public List<GamesCollectionViewEntry> SelectedGames
@@ -98,26 +98,23 @@ namespace Playnite.DesktopApp.ViewModels
                     return;
                 }
 
-                var oldValue = value;
+                var oldValue = selectedGames;
                 selectedGames = value;
-                if (selectedGames?.Count >= 1)
+                GamesCollectionViewEntry toSelect = null;
+                if (selectedGames?.Count > 0)
                 {
-                    SelectedGame = selectedGames[0];
-                }
-                else
-                {
-                    SelectedGame = null;
+                    toSelect = selectedGames[0];
                 }
 
-                if (SelectedGameDetails?.Game != SelectedGame)
+                if (SelectedGameDetails?.Game != toSelect)
                 {
-                    if (SelectedGame == null)
+                    if (toSelect == null)
                     {
                         SelectedGameDetails = null;
                     }
                     else
                     {
-                        SelectedGameDetails = new GameDetailsViewModel(SelectedGame, AppSettings, GamesEditor, Dialogs, Resources);
+                        SelectedGameDetails = new GameDetailsViewModel(toSelect, AppSettings, GamesEditor, Dialogs, Resources);
                     }
                 }
 
@@ -137,8 +134,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        /// SelectedGamesBinder is only used as a glue to bind to ListBox because its
-        /// SelectedItems is IList tha can' bind anything else.
+        // SelectedGamesBinder is only used as a glue to bind to ListBox because its
+        // SelectedItems is IList which can't bind anything else.
         private IList<object> selectedGamesBinder;
         public IList<object> SelectedGamesBinder
         {
