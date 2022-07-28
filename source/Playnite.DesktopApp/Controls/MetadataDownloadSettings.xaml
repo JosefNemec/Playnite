@@ -11,76 +11,70 @@
     <DockPanel DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}">
         <DockPanel.Resources>
             <ControlTemplate TargetType="ContentControl" x:Key="SourceSelector">
-                <Border BorderThickness="{DynamicResource ControlBorderThickness}"
-                        CornerRadius="{DynamicResource ControlCornerRadius}"
-                        Style="{DynamicResource HighlightBorder}" Background="Transparent">
-                    <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"
-                                      Focusable="False"
-                                      Foreground="{DynamicResource TextBrush}">
-                        <ToggleButton.Template>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="{Binding SelectionText}" TextTrimming="CharacterEllipsis"
-                                                   Grid.Column="0" VerticalAlignment="Center" Margin="4,0,2,0"/>
-                                    <Viewbox Grid.Column="1" Width="20">
-                                        <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
-                                                       VerticalAlignment="Center"/>
-                                    </Viewbox>
-                                    <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
-                                               IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
-                                               MaxHeight="300">
-                                        <Border Background="{DynamicResource PopupBackgroundBrush}"
-                                                    BorderThickness="{DynamicResource PopupBorderThickness}"
-                                                    BorderBrush="{DynamicResource PopupBorderBrush}">
-                                            <ItemsControl ItemsSource="{Binding Sources}"
-                                                          ScrollViewer.CanContentScroll="True"
-                                                          KeyboardNavigation.DirectionalNavigation="Contained"
-                                                          VirtualizingPanel.IsVirtualizing="True"
-                                                          VirtualizingPanel.VirtualizationMode="Recycling">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <DockPanel>
-                                                            <Button Content="6" FontFamily="Marlett" Margin="2,0,2,0"
-                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
-                                                                        Command="{Binding DataContext.MoveSourceDownCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
-                                                                        CommandParameter="{Binding}" />
-                                                            <Button Content="5" FontFamily="Marlett"
-                                                                        DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
-                                                                        Command="{Binding DataContext.MoveSourceUpCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
-                                                                        CommandParameter="{Binding}" />
-                                                            <CheckBox IsChecked="{Binding Enabled}" DockPanel.Dock="Left"
-                                                                          Content="{Binding Name}"
-                                                                          Margin="3,2,3,2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                                                        </DockPanel>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <VirtualizingStackPanel />
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.Template>
-                                                    <ControlTemplate>
-                                                        <ScrollViewer Focusable="False" VerticalScrollBarVisibility="Auto">
-                                                            <ItemsPresenter />
-                                                        </ScrollViewer>
-                                                    </ControlTemplate>
-                                                </ItemsControl.Template>
-                                            </ItemsControl>
-                                        </Border>
-                                    </Popup>
-                                </Grid>
-                            </ControlTemplate>
-                        </ToggleButton.Template>
-                    </ToggleButton>
-                </Border>
+                <ToggleButton Name="Toggle" HorizontalContentAlignment="Stretch"
+                              Focusable="False" Padding="0"
+                              Foreground="{DynamicResource TextBrush}">
+                    <ToggleButton.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding SelectionText}" TextTrimming="CharacterEllipsis"
+                                       Grid.Column="0" VerticalAlignment="Center" Margin="4,0,2,0"/>
+                            <Viewbox Grid.Column="1" Width="20">
+                                <TextBlock Text="6" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
+                                           VerticalAlignment="Center"/>
+                            </Viewbox>
+                            <Popup Placement="Bottom" Focusable="False" AllowsTransparency="True" Name="Popup"
+                                   IsOpen="{Binding IsChecked, ElementName=Toggle, Mode=TwoWay, Delay=100}" StaysOpen="False"
+                                   MaxHeight="300">
+                                <Border Background="{DynamicResource PopupBackgroundBrush}"
+                                        BorderThickness="{DynamicResource PopupBorderThickness}"
+                                        BorderBrush="{DynamicResource PopupBorderBrush}">
+                                    <ItemsControl ItemsSource="{Binding Sources}"
+                                                  ScrollViewer.CanContentScroll="True"
+                                                  KeyboardNavigation.DirectionalNavigation="Contained"
+                                                  VirtualizingPanel.IsVirtualizing="True"
+                                                  VirtualizingPanel.VirtualizationMode="Recycling">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <DockPanel>
+                                                    <Button Content="6" FontFamily="Marlett" Margin="2,0,2,0"
+                                                            DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
+                                                            Command="{Binding DataContext.MoveSourceDownCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                                            CommandParameter="{Binding}" />
+                                                    <Button Content="5" FontFamily="Marlett"
+                                                            DockPanel.Dock="Right" Padding="2" VerticalAlignment="Center"
+                                                            Command="{Binding DataContext.MoveSourceUpCommand, RelativeSource={RelativeSource AncestorType=ToggleButton}}"
+                                                            CommandParameter="{Binding}" />
+                                                    <CheckBox IsChecked="{Binding Enabled}" DockPanel.Dock="Left"
+                                                              Content="{Binding Name}"
+                                                              Margin="3,2,3,2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                                                </DockPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.Template>
+                                            <ControlTemplate>
+                                                <ScrollViewer Focusable="False" VerticalScrollBarVisibility="Auto">
+                                                    <ItemsPresenter />
+                                                </ScrollViewer>
+                                            </ControlTemplate>
+                                        </ItemsControl.Template>
+                                    </ItemsControl>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
             </ControlTemplate>
         </DockPanel.Resources>
 
