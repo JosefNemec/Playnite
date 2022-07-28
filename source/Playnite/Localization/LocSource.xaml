@@ -1138,7 +1138,6 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCBackupProgress">Data backup in progress…</sys:String>
     <sys:String x:Key="LOCBackupRestoreProgress">Restoring data from backup…</sys:String>
     <sys:String x:Key="LOCBackupRestoreFailed">Failed to restore data from backup.</sys:String>
-    <sys:String x:Key="LOCBackupRestoreCancelled">Data backup was cancelled.</sys:String>
     <sys:String x:Key="LOCBackupOptionSettings">Settings</sys:String>
     <sys:String x:Key="LOCBackupOptionLibrary">Game library</sys:String>
     <sys:String x:Key="LOCBackupOptionGameMedia">Game library media</sys:String>

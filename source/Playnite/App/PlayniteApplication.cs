@@ -574,11 +574,6 @@ namespace Playnite
                     {
                         throw progRes.Error;
                     }
-
-                    if (progRes.Canceled)
-                    {
-                        Dialogs.ShowErrorMessage(LOC.BackupRestoreCancelled, LOC.BackupErrorTitle);
-                    }
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
