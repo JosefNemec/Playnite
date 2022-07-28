@@ -319,6 +319,10 @@ namespace Playnite.DesktopApp.ViewModels
             ShowGameSideBarCommand = new RelayCommand<GamesCollectionViewEntry>((f) =>
             {
                 AppSettings.GridViewSideBarVisible = true;
+                if (SelectedGame?.Game.Id != f.Id)
+                {
+                    SelectedGames = new List<GamesCollectionViewEntry> { f };
+                }
             });
 
             CloseGameSideBarCommand = new RelayCommand<object>((f) =>
