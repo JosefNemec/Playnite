@@ -94,9 +94,6 @@
                           IsChecked="{Binding PrimaryAction.Selected, Mode=OneWay}"
                           Visibility="{Binding PrimaryAction, Converter={StaticResource NullToVisibilityConverter}}"/>
             <Grid DockPanel.Dock="Left" VerticalAlignment="Center">
-                <TextBlock Style="{DynamicResource SearchWindowSearchDescription}"
-                           Visibility="{Binding SearchTerm, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}, ConverterParameter=Inverted}"
-                           Text="{Binding CurrentSearchProviderDescription}"/>
                 <TextBox Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"
                          Style="{DynamicResource SearchWindowSearchBox}"
                          IsEnabled="{Binding SearchEnabled}"
@@ -110,6 +107,10 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBox>
+                <TextBlock Style="{DynamicResource SearchWindowSearchDescription}"
+                           IsHitTestVisible="False"
+                           Visibility="{Binding SearchTerm, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}, ConverterParameter=Inverted}"
+                           Text="{Binding CurrentSearchProviderDescription}"/>
                 <ContentControl Focusable="False" Visibility="Collapsed" Template="{DynamicResource SearchWindowFilterNotification}"
                                 pbeh:AnimatedVisibility.Visibility="{Binding FilterHintVisible, Converter={pcon:BooleanToVisibilityConverter}}"
                                 pbeh:AnimatedVisibility.Collapsed="{StaticResource HintVisibilityOff}"
