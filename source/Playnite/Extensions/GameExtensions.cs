@@ -54,24 +54,6 @@ namespace Playnite
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public static string GetDefaultIcon(this Game game, PlayniteSettings settings, GameDatabase database, LibraryPlugin plugin)
-        {
-            if (settings.DefaultIconSource == DefaultIconSourceOptions.None)
-            {
-                return null;
-            }
-            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && plugin?.LibraryIcon.IsNullOrEmpty() == false)
-            {
-                return plugin.LibraryIcon;
-            }
-            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform && game.Platforms?[0].Icon.IsNullOrEmpty() == false)
-            {
-                return database.GetFullFilePath(game.Platforms[0].Icon);
-            }
-
-            return null;
-        }
-
         public static Game GetGameFromExecutable(string path)
         {
             if (!File.Exists(path))
@@ -231,12 +213,17 @@ namespace Playnite
 
             result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             result = result.Replace(ExpandableVariables.Name, game.Name);
-            result = result.Replace(ExpandableVariables.Platform, game.Platforms?[0].Name);
             result = result.Replace(ExpandableVariables.PluginId, game.PluginId.ToString());
             result = result.Replace(ExpandableVariables.GameId, game.GameId);
             result = result.Replace(ExpandableVariables.DatabaseId, game.Id.ToString());
             result = result.Replace(ExpandableVariables.Version, game.Version);
             result = result.Replace(ExpandableVariables.EmulatorDirectory, emulatorDir ?? string.Empty);
+            var plats = game.Platforms;
+            if (plats.HasItems())
+            {
+                result = result.Replace(ExpandableVariables.Platform, plats?[0].Name);
+            }
+
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 

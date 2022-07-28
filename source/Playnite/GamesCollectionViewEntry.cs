@@ -1,4 +1,5 @@
 ﻿using Playnite.Converters;
+using Playnite.Database;
 using Playnite.Extensions.Markup;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -404,26 +405,37 @@ namespace Playnite
 
         public object GetDefaultIcon(bool cached, BitmapLoadProperties loadProperties = null)
         {
+            var icon = GetDefaultIconFile(Game, settings, GameDatabase.Instance, LibraryPlugin);
+            if (icon.IsNullOrEmpty())
+            {
+                return ImageSourceManager.GetResourceImage("DefaultGameIcon", cached, loadProperties);
+            }
+            else
+            {
+                return ImageSourceManager.GetImage(icon, cached);
+            }
+        }
+
+        public static string GetDefaultIconFile(Game game, PlayniteSettings settings, IGameDatabaseMain database, LibraryPlugin plugin)
+        {
             if (settings.DefaultIconSource == DefaultIconSourceOptions.None)
             {
                 return null;
             }
-
-            if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && LibraryPlugin?.LibraryIcon.IsNullOrEmpty() == false)
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && plugin?.LibraryIcon.IsNullOrEmpty() == false)
             {
-                return ImageSourceManager.GetImage(LibraryPlugin.LibraryIcon, cached);
+                return plugin.LibraryIcon;
             }
-
-            if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform)
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform)
             {
-                var plat = Game.Platforms?.FirstOrDefault(a => !a.Icon.IsNullOrEmpty());
+                var plat = game.Platforms?.FirstOrDefault(a => !a.Icon.IsNullOrEmpty());
                 if (plat != null)
                 {
-                    return ImageSourceManager.GetImage(plat.Icon, cached);
+                    return database?.GetFullFilePath(plat.Icon);
                 }
             }
 
-            return ImageSourceManager.GetResourceImage("DefaultGameIcon", cached, loadProperties);
+            return null;
         }
 
         public object GetDefaultCoverImage(bool cached, BitmapLoadProperties loadProperties = null)

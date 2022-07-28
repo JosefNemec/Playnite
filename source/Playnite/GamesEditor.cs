@@ -705,7 +705,7 @@ namespace Playnite
                 }
                 else
                 {
-                    icon = game.GetDefaultIcon(AppSettings, Database, Extensions.GetLibraryPlugin(game.PluginId));
+                    icon = GamesCollectionViewEntry.GetDefaultIconFile(game, AppSettings, Database, Extensions.GetLibraryPlugin(game.PluginId));
                     if (!File.Exists(icon))
                     {
                         icon = string.Empty;
