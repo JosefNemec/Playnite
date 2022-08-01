@@ -1543,10 +1543,23 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var expanded = EditingGame.ExpandVariables(script);
+                var expandedScript = EditingGame.ExpandVariables(script);
+                var startingArgs = new SDK.Events.OnGameStartingEventArgs
+                {
+                    Game = EditingGame,
+                    SelectedRomFile = EditingGame.Roms?.FirstOrDefault()?.Path,
+                    SourceAction = EditingGame.GameActions?.FirstOrDefault()
+                };
+
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expanded, EditingGame, true, false, GameScriptType.None);
+                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expandedScript, EditingGame, true, false, GameScriptType.None,
+                        new Dictionary<string, object>
+                        {
+                            {  "StartingArgs", startingArgs },
+                            {  "SourceAction", startingArgs.SourceAction },
+                            {  "SelectedRomFile", startingArgs.SelectedRomFile }
+                        });
                 }
             }
             catch (Exception exc)

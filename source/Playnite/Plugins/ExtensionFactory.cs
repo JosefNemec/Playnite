@@ -614,8 +614,8 @@ namespace Playnite.Plugins
             var callbackArgs = new OnGameStartedEventArgs
             {
                 Game = database.Games[args.Source.Game.Id],
-                SourceAction = (args.Source as GenericPlayController)?.SourceGameAction?.GetClone(),
-                SelectedRomFile = (args.Source as GenericPlayController)?.SelectedRomPath,
+                SourceAction = (args.Source as GenericPlayController)?.StartingArgs?.SourceAction?.GetClone(),
+                SelectedRomFile = (args.Source as GenericPlayController)?.StartingArgs.SelectedRomFile,
                 StartedProcessId = args.StartedProcessId
             };
 

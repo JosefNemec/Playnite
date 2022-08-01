@@ -41,8 +41,8 @@ namespace Playnite.Controllers
         private Task playTask;
         private bool isDisposed = false;
         private EmulatorProfile currentEmuProfile;
-        internal string SelectedRomPath { get; private set; }
-        internal GameAction SourceGameAction { get; private set; }
+
+        internal OnGameStartingEventArgs StartingArgs { get; private set; }
 
         public GenericPlayController(
             GameDatabase db,
@@ -61,7 +61,7 @@ namespace Playnite.Controllers
             throw new NotSupportedException("This shouldn't be called.");
         }
 
-        public void Start(EmulationPlayAction action, bool asyncExec = true)
+        public void StartEmulator(EmulationPlayAction action, bool asyncExec, OnGameStartingEventArgs startingArgs)
         {
             var emulator = database.Emulators[action.EmulatorId];
             if (emulator == null)
@@ -91,8 +91,7 @@ namespace Playnite.Controllers
                 emulator.InstallDir = emulator.InstallDir.TrimEnd(Path.DirectorySeparatorChar);
             }
 
-            SourceGameAction = action;
-            SelectedRomPath = action.SelectedRomPath;
+            StartingArgs = startingArgs;
 
             var startupPath = "";
             var startupArgs = "";
@@ -138,7 +137,7 @@ namespace Playnite.Controllers
 
                     startupDir = expandedProfile.WorkingDirectory;
                     startupPath = expandedProfile.Executable;
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath);
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec);
                 }
             }
             else if (currentEmuProfile is BuiltInEmulatorProfile builtIn)
@@ -209,7 +208,7 @@ namespace Playnite.Controllers
             }
         }
 
-        private void StartEmulatorProcess(string path, string args, string workDir, string emulatorDir, string romPath, bool asyncExec = true)
+        private void StartEmulatorProcess(string path, string args, string workDir, string emulatorDir, string romPath, bool asyncExec)
         {
             if (asyncExec)
             {
@@ -245,7 +244,10 @@ namespace Playnite.Controllers
                 var scriptVars = new Dictionary<string, object>
                 {
                     {  "PlayniteApi", playniteApi },
-                    {  "Game", Game.GetClone() }
+                    {  "Game", Game.GetClone() },
+                    {  "StartingArgs", StartingArgs },
+                    {  "SourceAction", StartingArgs.SourceAction },
+                    {  "SelectedRomFile", StartingArgs.SelectedRomFile }
                 };
 
                 var expandedScript = Game.ExpandVariables(script, false, emulatorDir, romPath);
@@ -359,7 +361,7 @@ namespace Playnite.Controllers
 
         public void Start(AutomaticPlayController controller)
         {
-            Start(new GameAction
+            var action = new GameAction
             {
                 Type = controller.Type == AutomaticPlayActionType.Url ? GameActionType.URL : GameActionType.File,
                 Arguments = controller.Arguments,
@@ -367,10 +369,16 @@ namespace Playnite.Controllers
                 WorkingDir = controller.WorkingDir,
                 TrackingMode = controller.TrackingMode,
                 TrackingPath = controller.TrackingPath
-            }, true);
+            };
+
+            Start(action, true, new OnGameStartingEventArgs
+            {
+                SourceAction = action,
+                Game = Game
+            });
         }
 
-        public void Start(GameAction playAction, bool asyncExec = false)
+        public void Start(GameAction playAction, bool asyncExec, OnGameStartingEventArgs startingArgs)
         {
             if (playAction == null)
             {
@@ -382,20 +390,9 @@ namespace Playnite.Controllers
                 throw new Exception("Cannot start emulator using this configuration.");
             }
 
-            SourceGameAction = playAction;
+            StartingArgs = startingArgs;
             var gameClone = Game.GetClone();
             var action = playAction.GetClone();
-            if (gameClone.Roms.HasItems())
-            {
-                var romPath = gameClone.Roms[0].Path;
-                SelectedRomPath = romPath;
-                var newPath = CheckPath(romPath, "ROM", FileSystemItem.File);
-                if (newPath != romPath)
-                {
-                    gameClone.Roms = new ObservableCollection<GameRom> { new GameRom("LookupAlternativeFilePath", newPath) };
-                }
-            }
-
             action = action.ExpandVariables(gameClone);
             action.Path = CheckPath(action.Path, nameof(action.Path), FileSystemItem.File);
             action.WorkingDir = CheckPath(action.WorkingDir, nameof(action.WorkingDir), FileSystemItem.Directory);
