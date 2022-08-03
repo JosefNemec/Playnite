@@ -17,8 +17,9 @@
                 <ControlTemplate TargetType="{x:Type CheckBox}">
                     <Border Background="{TemplateBinding Background}"
                             Padding="{TemplateBinding Padding}">
-                        <StackPanel Orientation="Horizontal">
+                        <DockPanel>
                             <Border x:Name="BulletBorder" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                    VerticalAlignment="Center"
                                     BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}">
                                 <Grid Width="18" Height="18" Background="{DynamicResource CheckBoxCheckMarkBkBrush}">
@@ -33,7 +34,7 @@
                                 </Grid>
                             </Border>                            
                             <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        </StackPanel>
+                        </DockPanel>
                     </Border>                    
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
