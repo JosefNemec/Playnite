@@ -44,6 +44,8 @@
       href: extensions/extensionsManifest.md
     - name: Search support
       href: extensions/searchSupport.md
+    - name: VSCode in Windows
+      href: extensions/vscodeWindows.md
 
 - name: Themes
   items:
