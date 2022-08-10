@@ -57,3 +57,5 @@ nuget restore -SolutionDirectory . -Verbosity normal
 8. In VSCode, press `ctrl+shift+P`, type `Tasks: Run Task > publish` and press `Enter`
 9. Output folder should be in `.\bin\Debug\net4.6.2\publish`. Add the full path (including drive letter) to the external extensions list in Playnite, and restart it.
 10. In Playnite, you should see your extension running in the Add-Ons window.
+
+You can use something like [XAML Studio](https://aka.ms/xamlstudio) to edit single XAML files graphically.
