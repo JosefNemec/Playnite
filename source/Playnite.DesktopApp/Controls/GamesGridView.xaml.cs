@@ -122,6 +122,7 @@ namespace Playnite.DesktopApp.Controls
             AppSettings.ViewSettings.ListViewColumns.Name.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.Platform.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.PlayCount.PropertyChanged += ListViewColumn_PropertyChanged;
+            AppSettings.ViewSettings.ListViewColumns.InstallSize.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.Playtime.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.PluginId.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.Publishers.PropertyChanged += ListViewColumn_PropertyChanged;
@@ -268,6 +269,10 @@ namespace Playnite.DesktopApp.Controls
             else if (field == GameField.PlayCount)
             {
                 newColumn = CreateColumn(field, SortOrder.PlayCount, "CellTemplatePlayCount", "HeaderTemplatePlayCount");
+            }
+            else if (field == GameField.InstallSize)
+            {
+                newColumn = CreateColumn(field, SortOrder.InstallSize, "CellTemplateInstallSize", "HeaderTemplateInstallSize");
             }
             else if (field == GameField.CompletionStatus)
             {

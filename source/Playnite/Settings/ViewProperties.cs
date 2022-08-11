@@ -291,6 +291,21 @@ namespace Playnite
             }
         }
 
+        private ListViewColumnProperty installSize = new ListViewColumnProperty(GameField.InstallSize);
+        public ListViewColumnProperty InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                installSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ListViewColumnProperty series = new ListViewColumnProperty(GameField.Series);
         public ListViewColumnProperty Series
         {

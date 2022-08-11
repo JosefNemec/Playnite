@@ -171,7 +171,9 @@ namespace Playnite.SDK.Models
         ///
         CompletionStatusId = 87,
         ///
-        OverrideInstallState = 88
+        OverrideInstallState = 88,
+        ///
+        InstallSize = 89
     }
 
     /// <summary>
@@ -778,6 +780,24 @@ namespace Playnite.SDK.Models
             set
             {
                 playCount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private long? installSize = 0;
+        /// <summary>
+        /// Gets or sets the install size in bits of the game.
+        /// </summary>
+        public long? InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                installSize = value;
                 OnPropertyChanged();
             }
         }
@@ -1736,6 +1756,11 @@ namespace Playnite.SDK.Models
                     tro.PlayCount = PlayCount;
                 }
 
+                if (InstallSize != tro.InstallSize)
+                {
+                    tro.InstallSize = InstallSize;
+                }
+
                 if (!SeriesIds.IsListEqual(tro.SeriesIds))
                 {
                     tro.SeriesIds = SeriesIds;
@@ -2026,6 +2051,11 @@ namespace Playnite.SDK.Models
             if (PlayCount != otherGame.PlayCount)
             {
                 changes.Add(GameField.PlayCount);
+            }
+
+            if (InstallSize != otherGame.InstallSize)
+            {
+                changes.Add(GameField.InstallSize);
             }
 
             if (!SeriesIds.IsListEqual(otherGame.SeriesIds))

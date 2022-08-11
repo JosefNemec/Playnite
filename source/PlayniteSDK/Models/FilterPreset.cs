@@ -37,7 +37,8 @@ namespace Playnite.SDK.Models
         [Description("LOCGameHiddenTitle")] Hidden = 24,
         [Description("LOCGameFavoriteTitle")] Favorite = 25,
         [Description("LOCGameInstallDirTitle")] InstallDirectory = 26,
-        [Description("LOCFeatureLabel")] Features = 27
+        [Description("LOCFeatureLabel")] Features = 27,
+        [Description("LOCInstallSizeLabel")] InstallSize = 28
     }
 
     public enum SortOrderDirection : int

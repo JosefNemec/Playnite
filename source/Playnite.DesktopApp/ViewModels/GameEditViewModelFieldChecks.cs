@@ -362,6 +362,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useInstallSizeChanges;
+        public bool UseInstallSizeChanges
+        {
+            get
+            {
+                return useInstallSizeChanges;
+            }
+
+            set
+            {
+                useInstallSizeChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+            }
+        }
+
         private bool useSeriesChanges;
         public bool UseSeriesChanges
         {
@@ -763,6 +779,7 @@ namespace Playnite.DesktopApp.ViewModels
                     UsePlaytimeChanges ||
                     UseAddedChanges ||
                     UsePlayCountChanges ||
+                    UseInstallSizeChanges ||
                     UseCompletionStatusChanges ||
                     UseNotesChanges ||
                     UseManualChanges);
@@ -1065,6 +1082,16 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UsePlayCountChanges = true;
+                    }
+                    break;
+                case nameof(Game.InstallSize):
+                    if (IsSingleGameEdit)
+                    {
+                        UseInstallSizeChanges = Game.InstallSize != EditingGame.InstallSize;
+                    }
+                    else
+                    {
+                        UseInstallSizeChanges = true;
                     }
                     break;
                 case nameof(Game.SeriesIds):

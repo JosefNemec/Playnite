@@ -658,6 +658,11 @@ namespace Playnite.DesktopApp.ViewModels
                     game.PlayCount = EditingGame.PlayCount;
                 }
 
+                if (UseInstallSizeChanges)
+                {
+                    game.InstallSize = EditingGame.InstallSize;
+                }
+
                 if (UseSeriesChanges)
                 {
                     game.SeriesIds = consolidateIds(Series, game.SeriesIds);

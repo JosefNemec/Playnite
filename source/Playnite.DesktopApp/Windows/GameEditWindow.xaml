@@ -466,6 +466,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -562,15 +563,39 @@
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <TextBlock Grid.Column="2" Grid.Row="10" Margin="3,6,3,6"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>                   
+                             Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
+
+                    <!-- PlayTime -->
+                    <TextBlock Grid.Column="1" Grid.Row="11" Text="{DynamicResource LOCInstallSizeLabel}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="11" Style="{StaticResource SaveChangesCheck}"
+                              IsChecked="{Binding UseInstallSizeChanges}"/>
+                    <DockPanel Grid.Column="2" Grid.Row="11">
+                        <TextBlock Text="{Binding EditingGame.InstallSize, Converter={pcon:NullableLongBytesSizeToStringConverter}}"
+                                   DockPanel.Dock="Right" />
+                        <TextBox ToolTip="{DynamicResource LOCDescriptionSizeBytes}"
+                                 ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
+                                 DockPanel.Dock="Left">
+                            <TextBox.Text>
+                                <Binding Path="EditingGame.InstallSize"
+                                         UpdateSourceTrigger="PropertyChanged" 
+                                         ValidatesOnDataErrors="True"
+                                         NotifyOnValidationError="True"
+                                         Converter="{pcon:NullableLongToStringConverter}">
+                                    <Binding.ValidationRules>
+                                        <pcon:UlongFieldValidation />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </DockPanel>
                     
                     <!-- Notes -->
-                    <TextBlock Grid.Column="1" Grid.Row="11" Text="{DynamicResource LOCNotesLabel}"
+                    <TextBlock Grid.Column="1" Grid.Row="12" Text="{DynamicResource LOCNotesLabel}"
                                VerticalAlignment="Top" Margin="8,16,10,0" />
-                    <CheckBox Grid.Column="0" Grid.Row="11"  Style="{StaticResource SaveChangesCheck}"
+                    <CheckBox Grid.Column="0" Grid.Row="12"  Style="{StaticResource SaveChangesCheck}"
                               VerticalAlignment="Top" Margin="0,15,0,0"
                               IsChecked="{Binding UseNotesChanges}"/>
-                    <TextBox Grid.Column="2" Grid.Row="11" Margin="0,15,0,0"
+                    <TextBox Grid.Column="2" Grid.Row="12" Margin="0,15,0,0"
                              Text="{Binding EditingGame.Notes, UpdateSourceTrigger=PropertyChanged}"
                              Grid.ColumnSpan="4" TextWrapping="Wrap"
                              AcceptsReturn="True" VerticalScrollBarVisibility="Auto"

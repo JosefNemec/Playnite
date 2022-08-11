@@ -234,6 +234,7 @@
     <Compile Include="Common\M3U.cs" />
     <Compile Include="Common\Network.cs" />
     <Compile Include="Controls\HotKeyBox.cs" />
+    <Compile Include="Converters\NullableLongBytesSizeToStringConverter.cs" />
     <Compile Include="Converters\TicksToTimeSpanConverter.cs" />
     <Compile Include="DateTimes.cs" />
     <Compile Include="ItemSelector.cs" />
