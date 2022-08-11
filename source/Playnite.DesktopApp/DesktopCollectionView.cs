@@ -49,7 +49,8 @@ namespace Playnite.DesktopApp
             { GroupableField.PlayTime, nameof(GamesCollectionViewEntry.PlaytimeCategory) },
             { GroupableField.Feature, nameof(GamesCollectionViewEntry.Feature) },
             { GroupableField.InstallationStatus, nameof(GamesCollectionViewEntry.InstallationState) },
-            { GroupableField.Name, nameof(GamesCollectionViewEntry.NameGroup) }
+            { GroupableField.Name, nameof(GamesCollectionViewEntry.NameGroup) },
+            { GroupableField.InstallDrive, nameof(GamesCollectionViewEntry.InstallDriveGroup) }
         };
 
         private Dictionary<GroupableField, Type> groupTypes = new Dictionary<GroupableField, Type>()
@@ -196,8 +197,11 @@ namespace Playnite.DesktopApp
                 case GroupableField.Name:
                     ViewType = GamesViewType.Standard;
                     break;
+                case GroupableField.InstallDrive:
+                    ViewType = GamesViewType.Standard;
+                    break;
                 default:
-                    throw new Exception("Uknown GroupingOrder");
+                    throw new Exception("Unknown GroupingOrder");
             }
 
             currentGrouping = viewSettings.GroupingOrder;
@@ -493,8 +497,10 @@ namespace Playnite.DesktopApp
                     return oldData.IsInstalled != newData.IsInstalled;
                 case GroupableField.Name:
                     return oldData.Name != newData.Name || oldData.SortingName != newData.SortingName;
+                case GroupableField.InstallDrive:
+                    return oldData.IsInstalled != newData.IsInstalled || oldData.InstallDirectory != newData.InstallDirectory;
                 default:
-                    throw new Exception("Uknown GroupableField");
+                    throw new Exception("Unknown GroupableField");
             }
         }
 

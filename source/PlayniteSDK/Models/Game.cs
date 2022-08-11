@@ -1391,6 +1391,15 @@ namespace Playnite.SDK.Models
             get => IsInstalled ? InstallationStatus.Installed : InstallationStatus.Uninstalled;
         }
 
+        /// <summary>
+        /// Gets game installation drive.
+        /// </summary>
+        [DontSerialize]
+        public string InstallDrive
+        {
+            get => GetInstallDrive();
+        }
+
         #endregion Expanded
 
         /// <summary>
@@ -2198,6 +2207,51 @@ namespace Playnite.SDK.Models
             {
                 var firstChar = char.ToUpper(nameMatch[0]);
                 return char.IsLetter(firstChar) ? firstChar : '#';
+            }
+        }
+
+        /// <summary>
+        /// Gets game Install Drive group.
+        /// </summary>
+        public string GetInstallDriveGroup()
+        {
+            var installDrive = GetInstallDrive();
+            if (string.IsNullOrEmpty(installDrive))
+            {
+                return ResourceProvider.GetString("LOCNone");
+            }
+            else
+            {
+                return installDrive;
+            }
+        }
+
+        /// <summary>
+        /// Gets game Install Drive.
+        /// </summary>
+        public string GetInstallDrive()
+        {
+            if (!isInstalled)
+            {
+                return string.Empty;
+            }
+
+            if (string.IsNullOrWhiteSpace(InstallDirectory))
+            {
+                return string.Empty;
+            }
+
+            try
+            {
+                return Path.GetPathRoot(InstallDirectory).ToUpperInvariant();
+            }
+            catch (ArgumentException)
+            {
+                return string.Empty;
+            }
+            catch
+            {
+                throw new Exception($"Failed to get root for path {InstallDirectory}");
             }
         }
     }
