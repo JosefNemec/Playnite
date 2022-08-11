@@ -38,6 +38,21 @@ namespace Playnite
             }
         }
 
+        private bool installSize = true;
+        public bool InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                installSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool lastPlayed = true;
         public bool LastPlayed
         {
