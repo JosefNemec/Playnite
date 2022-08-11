@@ -84,6 +84,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private FrameworkElement ElemPlayTime;
         private FrameworkElement ElemInstallSize;
+        private FrameworkElement ElemInstallDirectory;
         private FrameworkElement ElemLastPlayed;
         private FrameworkElement ElemCompletionStatus;
         private FrameworkElement ElemLibrary;
@@ -111,6 +112,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TextBlock TextPlayTime;
         private TextBlock TextLastActivity;
         private TextBlock TextInstallSize;
+        private TextBlock TextInstallDirectory;
         private TextBlock TextCommunityScore;
         private TextBlock TextCriticScore;
         private TextBlock TextUserScore;
@@ -347,6 +349,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
             SetElemVisibility(ref ElemPlayTime, "PART_ElemPlayTime", nameof(GameDetailsViewModel.PlayTimeVisibility));
             SetElemVisibility(ref ElemInstallSize, "PART_ElemInstallSize", nameof(GameDetailsViewModel.InstallSizeVisibility));
+            SetElemVisibility(ref ElemInstallDirectory, "PART_ElemInstallDirectory", nameof(GameDetailsViewModel.InstallDirectoryVisibility));
             SetElemVisibility(ref ElemLastPlayed, "PART_ElemLastPlayed", nameof(GameDetailsViewModel.LastPlayedVisibility));
             SetElemVisibility(ref ElemCompletionStatus, "PART_ElemCompletionStatus", nameof(GameDetailsViewModel.CompletionStatusVisibility));
             SetElemVisibility(ref ElemLibrary, "PART_ElemLibrary", nameof(GameDetailsViewModel.SourceLibraryVisibility));
@@ -403,6 +406,10 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GameDetailsViewModel.Game.InstallSize),
                 nameof(GameDetailsViewModel.InstallSizeVisibility),
                 new NullableLongBytesSizeToStringConverter());
+
+            SetGameItemTextBinding(ref TextInstallDirectory, "PART_TextInstallDirectory",
+                nameof(GameDetailsViewModel.Game.InstallDirectory),
+                nameof(GameDetailsViewModel.InstallDirectoryVisibility));
 
             SetGameItemTextBinding(ref TextLastActivity, "PART_TextLastActivity",
                 nameof(GameDetailsViewModel.Game.LastActivity),

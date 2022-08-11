@@ -157,6 +157,9 @@
                 <CheckBox Content="{DynamicResource LOCInstallSizeLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.InstallSize}"
                                               Margin="0,10,0,0"/>
+                <CheckBox Content="{DynamicResource LOCGameInstallDirTitle}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.InstallDirectory}"
+                                              Margin="0,10,0,0"/>
             </UniformGrid>
         </StackPanel>
     </ScrollViewer>    

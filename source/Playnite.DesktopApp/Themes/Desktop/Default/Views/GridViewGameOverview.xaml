@@ -116,7 +116,7 @@
 
                                             <GridEx Margin="0,5,0,10"
                                                     ColumnCount="2" StarColumns="1"
-                                                    RowCount="22" AutoLayoutColumns="2">
+                                                    RowCount="23" AutoLayoutColumns="2">
                                                 <Grid.Resources>
                                                     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                                 </Grid.Resources>
@@ -130,6 +130,9 @@
                                                 <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
                                                 <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" />
 
+                                                <Label Name="PART_ElemInstallDirectory" Content="{DynamicResource LOCGameInstallDirTitle}" />
+                                                <TextBlock Name="PART_TextInstallDirectory" VerticalAlignment="Center" />
+                                                
                                                 <Label Name="PART_ElemInstallSize" Content="{DynamicResource LOCInstallSizeLabel}" />
                                                 <TextBlock Name="PART_TextInstallSize" VerticalAlignment="Center" />
                                                 

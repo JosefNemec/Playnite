@@ -53,6 +53,21 @@ namespace Playnite
             }
         }
 
+        private bool installDirectory = true;
+        public bool InstallDirectory
+        {
+            get
+            {
+                return installDirectory;
+            }
+
+            set
+            {
+                installDirectory = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool lastPlayed = true;
         public bool LastPlayed
         {
