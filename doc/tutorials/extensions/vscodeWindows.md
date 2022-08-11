@@ -36,9 +36,7 @@ nuget restore -SolutionDirectory . -Verbosity normal
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Playnite.SDK, Version=6.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\PlayniteSDK.6.2.0\lib\net462\Playnite.SDK.dll</HintPath>
-    </Reference>
+    <PackageReference Include="PlayniteSDK" Version="6.2.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="extension.yaml">
