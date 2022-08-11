@@ -565,7 +565,7 @@
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                              Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
 
-                    <!-- PlayTime -->
+                    <!-- InstallSize -->
                     <TextBlock Grid.Column="1" Grid.Row="11" Text="{DynamicResource LOCInstallSizeLabel}"/>
                     <CheckBox Grid.Column="0" Grid.Row="11" Style="{StaticResource SaveChangesCheck}"
                               IsChecked="{Binding UseInstallSizeChanges}"/>
