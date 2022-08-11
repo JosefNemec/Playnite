@@ -784,9 +784,9 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private long? installSize = 0;
+        private long? installSize = null;
         /// <summary>
-        /// Gets or sets the install size in bits of the game.
+        /// Gets or sets the install size in bytes of the game.
         /// </summary>
         public long? InstallSize
         {
