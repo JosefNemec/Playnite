@@ -131,7 +131,7 @@
                                                 <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" />
 
                                                 <Label Name="PART_ElemInstallDirectory" Content="{DynamicResource LOCGameInstallDirTitle}" />
-                                                <TextBlock Name="PART_TextInstallDirectory" VerticalAlignment="Center" />
+                                                <Button Name="PART_ButtonInstallDirectory" VerticalAlignment="Center" />
                                                 
                                                 <Label Name="PART_ElemInstallSize" Content="{DynamicResource LOCInstallSizeLabel}" />
                                                 <TextBlock Name="PART_TextInstallSize" VerticalAlignment="Center" />

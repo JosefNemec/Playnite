@@ -288,6 +288,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<DatabaseObject> SetSourceFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetRegionFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetCompletionStatusFilterCommand { get; }
+        public RelayCommand<Game> OpenGameLocationCommand { get; }
         public RelayCommand<string> SetVersionFilterCommand { get; }
         public RelayCommand<Link> OpenLinkCommand { get; }
         public RelayCommand<DatabaseObject> PlayCommand { get; }
@@ -356,6 +357,11 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Play();
                 }
+            });
+
+            OpenGameLocationCommand = new RelayCommand<Game>((a) =>
+            {
+                editor.OpenGameLocation(a);
             });
 
             this.resources = resources;

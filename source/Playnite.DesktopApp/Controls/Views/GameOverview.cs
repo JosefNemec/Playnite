@@ -112,7 +112,6 @@ namespace Playnite.DesktopApp.Controls.Views
         private TextBlock TextPlayTime;
         private TextBlock TextLastActivity;
         private TextBlock TextInstallSize;
-        private TextBlock TextInstallDirectory;
         private TextBlock TextCommunityScore;
         private TextBlock TextCriticScore;
         private TextBlock TextUserScore;
@@ -122,6 +121,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private Button ButtonVersion;
         private Button ButtonSource;
         private Button ButtonCompletionStatus;
+        private Button ButtonInstallDirectory;
         private ItemsControl ItemsGenres;
         private ItemsControl ItemsDevelopers;
         private ItemsControl ItemsPublishers;
@@ -407,8 +407,10 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GameDetailsViewModel.InstallSizeVisibility),
                 new NullableLongBytesSizeToStringConverter());
 
-            SetGameItemTextBinding(ref TextInstallDirectory, "PART_TextInstallDirectory",
-                nameof(GameDetailsViewModel.Game.InstallDirectory),
+            SetGameItemButtonBinding(ref ButtonInstallDirectory, "PART_ButtonInstallDirectory",
+                nameof(GameDetailsViewModel.OpenGameLocationCommand),
+                GetGameBindingPath(nameof(GameDetailsViewModel.Game)),
+                GetGameBindingPath(nameof(GamesCollectionViewEntry.InstallDirectory)),
                 nameof(GameDetailsViewModel.InstallDirectoryVisibility));
 
             SetGameItemTextBinding(ref TextLastActivity, "PART_TextLastActivity",
