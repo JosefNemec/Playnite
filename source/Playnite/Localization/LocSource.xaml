@@ -1072,6 +1072,9 @@ More information at https://playnite.link/nahimicsucks</sys:String>
 
 More information at https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Show warning if Playnite is running with elevated privileges</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">Get the real size on drive when calculating the size of games</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">If enabled, scans will be slower and will get the real size that files use in the drive.
+If disabled, scans will be faster and will use the size of the files themselves.</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
         
 {0}

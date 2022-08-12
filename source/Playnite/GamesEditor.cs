@@ -546,14 +546,14 @@ namespace Playnite
             }, new GlobalProgressOptions(textTitle, true) { IsIndeterminate = false });
         }
 
-        private long? GetGameInstallDirSize(Game game, bool getSizeOnDisk = true)
+        private long? GetGameInstallDirSize(Game game)
         {
             if (game.InstallDirectory.IsNullOrEmpty() || !FileSystem.DirectoryExists(game.InstallDirectory))
             {
                 return null;
             }
 
-            if (getSizeOnDisk)
+            if (AppSettings.InstallSizeScanUseSizeOnDisk)
             {
                 return FileSystem.GetDirectorySizeOnDisk(game.InstallDirectory);
             }
@@ -563,7 +563,7 @@ namespace Playnite
             }
         }
 
-        private long? GetGameRomSizes(Game game, bool getSizeOnDisk = true)
+        private long? GetGameRomSizes(Game game)
         {
             if (!game.Roms.HasItems())
             {
@@ -578,7 +578,7 @@ namespace Playnite
                     continue;
                 }
 
-                if (getSizeOnDisk)
+                if (AppSettings.InstallSizeScanUseSizeOnDisk)
                 {
                     size += FileSystem.GetFileSizeOnDisk(rom.Path);
                 }
