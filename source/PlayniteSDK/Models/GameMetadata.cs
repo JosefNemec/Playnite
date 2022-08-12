@@ -336,11 +336,6 @@ namespace Playnite.SDK.Models
         public ulong PlayCount { get; set; }
 
         /// <summary>
-        /// Gets or sets InstallSize.
-        /// </summary>
-        public long? InstallSize { get; set; }
-
-        /// <summary>
         /// Gets or sets LastActivity.
         /// </summary>
         public DateTime? LastActivity { get; set; }
