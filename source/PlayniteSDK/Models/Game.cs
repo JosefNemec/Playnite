@@ -1400,6 +1400,15 @@ namespace Playnite.SDK.Models
             get => GetInstallDrive();
         }
 
+        /// <summary>
+        /// Gets game installation drive group.
+        /// </summary>
+        [DontSerialize]
+        public string InstallDriveGroup
+        {
+            get => GetInstallDriveGroup();
+        }
+
         #endregion Expanded
 
         /// <summary>
