@@ -79,6 +79,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCGameStartError">Cannot start game: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Cannot start action: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Cannot open game location: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Could not detect game install size: {0}</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Failed to create shortcut: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Failed to open manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Cannot install game: {0}</sys:String>
@@ -716,6 +717,10 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCHideGame">Hide this game</sys:String>
     <sys:String x:Key="LOCUnHideGame">Remove from Hidden</sys:String>
     <sys:String x:Key="LOCEditGame">Edit…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">Calculate install size</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">Calculate install size (All games)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">Calculate install size (Only missing data)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">Install size</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Set Category…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Set Completion Status</sys:String>
     <sys:String x:Key="LOCRemoveGame">Remove</sys:String>

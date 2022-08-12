@@ -458,6 +458,104 @@ namespace Playnite
             }
         }
 
+        public void CalculateGameSize(Game game, bool onlyIfDataMissing)
+        {
+            if (!game.IsInstalled)
+            {
+                return;
+            }
+
+            if (game.InstallSize != null && onlyIfDataMissing)
+            {
+                return;
+            }
+
+            var expandedGame = game.ExpandGame();
+            try
+            {
+                var size = GetGameRomSizes(expandedGame);
+                if (size == null)
+                {
+                    size = GetGameInstallDirSize(expandedGame);
+                    if (size == null)
+                    {
+                        return;
+                    }
+                }
+
+                if (size > 0 && game.InstallSize != size)
+                {
+                    game.InstallSize = size;
+                    Database.Games.Update(game);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to get InstallSize from game {game.Name} with install dir {game.InstallDirectory}");
+                Dialogs.ShowMessage(
+                    string.Format(resources.GetString("LOCCalculateGameSizeError"), e.Message),
+                    resources.GetString("LOCGameError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+        }
+
+        public void CalculateGamesSize(List<Game> games, bool onlyIfDataMissing)
+        {
+            using (Database.BufferedUpdate())
+            {
+                foreach (var game in games)
+                {
+                    CalculateGameSize(game, onlyIfDataMissing);
+                }
+            }
+        }
+
+        private long? GetGameInstallDirSize(Game game, bool getSizeOnDisk = true)
+        {
+            if (game.InstallDirectory.IsNullOrEmpty() || !FileSystem.DirectoryExists(game.InstallDirectory))
+            {
+                return null;
+            }
+
+            if (getSizeOnDisk)
+            {
+                return FileSystem.GetDirectorySizeOnDisk(game.InstallDirectory);
+            }
+            else
+            {
+                return FileSystem.GetDirectorySize(game.InstallDirectory);
+            }
+        }
+
+        private long? GetGameRomSizes(Game game, bool getSizeOnDisk = true)
+        {
+            if (!game.Roms.HasItems())
+            {
+                return null;
+            }
+
+            long size = 0;
+            foreach (var rom in game.Roms)
+            {
+                if (rom.Path.IsNullOrWhiteSpace() || !FileSystem.FileExists(rom.Path))
+                {
+                    continue;
+                }
+
+                if (getSizeOnDisk)
+                {
+                    size += FileSystem.GetFileSizeOnDisk(rom.Path);
+                }
+                else
+                {
+                    size += FileSystem.GetFileSize(rom.Path);
+                }
+            }
+
+            return size;
+        }
+
         public void SetHideGame(Game game, bool state)
         {
             game.Hidden = state;

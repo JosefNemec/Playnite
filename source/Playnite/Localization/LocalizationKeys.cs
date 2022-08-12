@@ -1,4 +1,4 @@
-///
+﻿///
 /// DO NOT MODIFY! Automatically generated via buildLocConstants.ps1 script.
 /// 
 namespace Playnite
@@ -234,6 +234,10 @@ namespace Playnite
         /// </summary>
         public const string GameOpenLocationError = "LOCGameOpenLocationError";
         /// <summary>
+        /// Could not detect game install size: {0}
+        /// </summary>
+        public const string CalculateGameSizeError = "LOCCalculateGameSizeError";
+        /// <summary>
         /// Failed to create shortcut: {0}
         /// </summary>
         public const string GameShortcutError = "LOCGameShortcutError";
@@ -405,6 +409,10 @@ namespace Playnite
         /// Play Count
         /// </summary>
         public const string PlayCountLabel = "LOCPlayCountLabel";
+        /// <summary>
+        /// Install Size
+        /// </summary>
+        public const string InstallSizeLabel = "LOCInstallSizeLabel";
         /// <summary>
         /// Folder
         /// </summary>
@@ -1802,6 +1810,10 @@ namespace Playnite
         /// </summary>
         public const string GameNameTitle = "LOCGameNameTitle";
         /// <summary>
+        /// Install Drive
+        /// </summary>
+        public const string InstallDriveTitle = "LOCInstallDriveTitle";
+        /// <summary>
         /// Account Name
         /// </summary>
         public const string GameAccountNameTitle = "LOCGameAccountNameTitle";
@@ -2622,6 +2634,22 @@ namespace Playnite
         /// </summary>
         public const string EditGame = "LOCEditGame";
         /// <summary>
+        /// Calculate install size
+        /// </summary>
+        public const string CalculateInstallSize = "LOCCalculateInstallSize";
+        /// <summary>
+        /// Calculate install size (All games)
+        /// </summary>
+        public const string CalculateGamesAllInstallSize = "LOCCalculateGamesAllInstallSize";
+        /// <summary>
+        /// Calculate install size (Only missing data)
+        /// </summary>
+        public const string CalculateGamesMissingInstallSize = "LOCCalculateGamesMissingInstallSize";
+        /// <summary>
+        /// Install size
+        /// </summary>
+        public const string InstallSizeMenuLabel = "LOCInstallSizeMenuLabel";
+        /// <summary>
         /// Set Category…
         /// </summary>
         public const string SetGameCategory = "LOCSetGameCategory";
@@ -2697,6 +2725,10 @@ namespace Playnite
         /// Game time is recorded in seconds.
         /// </summary>
         public const string DescriptionPlaytimeSeconds = "LOCDescriptionPlaytimeSeconds";
+        /// <summary>
+        /// Install size is indicated in bytes.
+        /// </summary>
+        public const string DescriptionSizeBytes = "LOCDescriptionSizeBytes";
         /// <summary>
         /// Release date must be set in 'year-month-day' format. Month and Day values can be omitted.
         /// </summary>
@@ -3450,7 +3482,7 @@ namespace Playnite
         /// </summary>
         public const string SettingsSwapConfirmCancelButtons = "LOCSettingsSwapConfirmCancelButtons";
         /// <summary>
-        /// Inverts default A button binding for confirmationa and B for cancellation.
+        /// Inverts A/B button bindings for confirmation and cancellation.
         /// </summary>
         public const string SettingsSwapConfirmCancelButtonsDescriptions = "LOCSettingsSwapConfirmCancelButtonsDescriptions";
         /// <summary>
@@ -3702,7 +3734,7 @@ namespace Playnite
         /// </summary>
         public const string EmuAutoScanConfigurations = "LOCEmuAutoScanConfigurations";
         /// <summary>
-        /// Save as auto-scan confguration
+        /// Save as auto-scan configuration
         /// </summary>
         public const string EmuSaveScanConfig = "LOCEmuSaveScanConfig";
         /// <summary>
@@ -3906,7 +3938,7 @@ namespace Playnite
         /// </summary>
         public const string SearchFilterUninstalledIncluded = "LOCSearchFilterUninstalledIncluded";
         /// <summary>
-        /// Uninstalled games exclued
+        /// Uninstalled games excluded
         /// </summary>
         public const string SearchFilterUninstalledExcluded = "LOCSearchFilterUninstalledExcluded";
         /// <summary>
@@ -3914,7 +3946,7 @@ namespace Playnite
         /// </summary>
         public const string SearchFilterHiddenIncluded = "LOCSearchFilterHiddenIncluded";
         /// <summary>
-        /// Hidden games exclued
+        /// Hidden games excluded
         /// </summary>
         public const string SearchFilterHiddenalledExcluded = "LOCSearchFilterHiddenalledExcluded";
         /// <summary>
@@ -4018,7 +4050,7 @@ namespace Playnite
         /// </summary>
         public const string EmuOverridePlatform = "LOCEmuOverridePlatform";
         /// <summary>
-        /// When set scanner will assign this platform to all games, ovewritting any automatically detected platforms.
+        /// When set scanner will assign this platform to all games, overwriting any automatically detected platforms.
         /// </summary>
         public const string EmuOverridePlatformTooltip = "LOCEmuOverridePlatformTooltip";
         /// <summary>
@@ -4053,10 +4085,6 @@ namespace Playnite
         /// Failed to restore data from backup.
         /// </summary>
         public const string BackupRestoreFailed = "LOCBackupRestoreFailed";
-        /// <summary>
-        /// Data backup was cancelled.
-        /// </summary>
-        public const string BackupRestoreCancelled = "LOCBackupRestoreCancelled";
         /// <summary>
         /// Settings
         /// </summary>

@@ -59,6 +59,7 @@ namespace Playnite.DesktopApp.Controls
         private static object hideIcon;
         private static object unHideIcon;
         private static object browseIcon;
+        private static object installSizeIcon;
         private static object shortcutIcon;
         private static object installIcon;
         private static object editIcon;
@@ -224,6 +225,18 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Add(shortcutItem);
 
+            // InstallSize
+            if (game.IsInstalled)
+            {
+                Items.Add(new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.CalculateInstallSize),
+                    Icon = installSizeIcon,
+                    Command = model.CalculateGameInstallSizeCommand,
+                    CommandParameter = game
+                });
+            }
+
             // Manual
             if (!game.Manual.IsNullOrEmpty())
             {
@@ -372,6 +385,32 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Add(unHideItem);
 
+            // InstallSize
+            if (games.Any(x => x.IsInstalled))
+            {
+                var installSizeItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.InstallSizeMenuLabel),
+                    Icon = installSizeIcon
+                };
+
+                installSizeItem.Items.Add(new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.CalculateGamesAllInstallSize),
+                    Command = model.CalculateGamesAllInstallSizeCommand,
+                    CommandParameter = games
+                });
+
+                installSizeItem.Items.Add(new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.CalculateGamesMissingInstallSize),
+                    Command = model.CalculateGamesMissingInstallSizeCommand,
+                    CommandParameter = games
+                });
+
+                Items.Add(installSizeItem);
+            }
+
             // Edit
             var editItem = new MenuItem()
             {
@@ -428,6 +467,7 @@ namespace Playnite.DesktopApp.Controls
                 hideIcon = MenuHelpers.GetIcon("HideIcon");
                 unHideIcon = MenuHelpers.GetIcon("UnHideIcon");
                 browseIcon = MenuHelpers.GetIcon("OpenFolderIcon");
+                installSizeIcon = MenuHelpers.GetIcon("InstallSizeIcon");
                 shortcutIcon = MenuHelpers.GetIcon("DesktopShortcutIcon");
                 installIcon = MenuHelpers.GetIcon("InstallIcon");
                 editIcon = MenuHelpers.GetIcon("EditGameIcon");

@@ -69,6 +69,9 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<Game> EditGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> EditGamesCommand { get; private set; }
         public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
+        public RelayCommand<Game> CalculateGameInstallSizeCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> CalculateGamesAllInstallSizeCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> CalculateGamesMissingInstallSizeCommand { get; private set; }
         public RelayCommand<Game> CreateDesktopShortcutCommand { get; private set; }
         public RelayCommand<List<Game>> CreateDesktopShortcutsCommand { get; private set; }
         public RelayCommand<Game> OpenManualCommand { get; private set; }
@@ -456,6 +459,11 @@ namespace Playnite.DesktopApp.ViewModels
                 GamesEditor.CreateDesktopShortcut(a);
             });
 
+            CalculateGameInstallSizeCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.CalculateGameSize(a, false);
+            });
+
             CreateDesktopShortcutsCommand = new RelayCommand<List<Game>>((a) =>
             {
                 GamesEditor.CreateDesktopShortcut(a);
@@ -513,6 +521,16 @@ namespace Playnite.DesktopApp.ViewModels
             RemoveAsFavoritesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
                 GamesEditor.SetFavoriteGames(a.ToList(), false);
+            });
+
+            CalculateGamesAllInstallSizeCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.CalculateGamesSize(a.ToList(), false);
+            });
+
+            CalculateGamesMissingInstallSizeCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.CalculateGamesSize(a.ToList(), true);
             });
 
             SetAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>
