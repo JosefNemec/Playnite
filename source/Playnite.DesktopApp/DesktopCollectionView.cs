@@ -50,7 +50,8 @@ namespace Playnite.DesktopApp
             { GroupableField.Feature, nameof(GamesCollectionViewEntry.Feature) },
             { GroupableField.InstallationStatus, nameof(GamesCollectionViewEntry.InstallationState) },
             { GroupableField.Name, nameof(GamesCollectionViewEntry.NameGroup) },
-            { GroupableField.InstallDrive, nameof(GamesCollectionViewEntry.InstallDriveGroup) }
+            { GroupableField.InstallDrive, nameof(GamesCollectionViewEntry.InstallDriveGroup) },
+            { GroupableField.InstallSize, nameof(GamesCollectionViewEntry.InstallSizeGroup) }
         };
 
         private Dictionary<GroupableField, Type> groupTypes = new Dictionary<GroupableField, Type>()
@@ -194,6 +195,7 @@ namespace Playnite.DesktopApp
                 case GroupableField.Modified:
                 case GroupableField.PlayTime:
                 case GroupableField.InstallationStatus:
+                case GroupableField.InstallSize:
                 case GroupableField.Name:
                     ViewType = GamesViewType.Standard;
                     break;
@@ -499,6 +501,8 @@ namespace Playnite.DesktopApp
                     return oldData.Name != newData.Name || oldData.SortingName != newData.SortingName;
                 case GroupableField.InstallDrive:
                     return oldData.IsInstalled != newData.IsInstalled || oldData.InstallDirectory != newData.InstallDirectory;
+                case GroupableField.InstallSize:
+                    return oldData.InstallSize != newData.InstallSize;
                 default:
                     throw new Exception("Unknown GroupableField");
             }

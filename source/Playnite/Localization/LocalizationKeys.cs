@@ -642,6 +642,38 @@ namespace Playnite
         /// </summary>
         public const string MoreThenYear = "LOCMoreThenYear";
         /// <summary>
+        /// 0 to 100MB
+        /// </summary>
+        public const string SizeZeroTo100Mb = "LOCSizeZeroTo100Mb";
+        /// <summary>
+        /// 100MB to 1GB
+        /// </summary>
+        public const string Size100MbTo1Gb = "LOCSize100MbTo1Gb";
+        /// <summary>
+        /// 1GB to 5GB
+        /// </summary>
+        public const string Size1GbTo5Gb = "LOCSize1GbTo5Gb";
+        /// <summary>
+        /// 5GB to 10GB
+        /// </summary>
+        public const string Size5GbTo10Gb = "LOCSize5GbTo10Gb";
+        /// <summary>
+        /// 10GB to 20GB
+        /// </summary>
+        public const string Size10GbTo20Gb = "LOCSize10GbTo20Gb";
+        /// <summary>
+        /// 20GB to 40GB
+        /// </summary>
+        public const string Size20GbTo40Gb = "LOCSize20GbTo40Gb";
+        /// <summary>
+        /// 40GB to 100GB
+        /// </summary>
+        public const string Size40GbTo100Gb = "LOCSize40GbTo100Gb";
+        /// <summary>
+        /// 100GB or more
+        /// </summary>
+        public const string SizeMoreThan100Gb = "LOCSizeMoreThan100Gb";
+        /// <summary>
         /// Import completed successfully.
         /// </summary>
         public const string ImportCompleted = "LOCImportCompleted";

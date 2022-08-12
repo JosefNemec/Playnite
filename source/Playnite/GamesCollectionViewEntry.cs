@@ -82,6 +82,7 @@ namespace Playnite
         public InstallationStatus InstallationState => Game.InstallationStatus;
         public char NameGroup => Game.GetNameGroup();
         public string InstallDriveGroup => Game.GetInstallDriveGroup();
+        public InstallSizeGroup InstallSizeGroup => Game.GetInstallSizeGroup();
         public bool OverrideInstallState => Game.OverrideInstallState;
 
         public List<Guid> CategoryIds => Game.CategoryIds;

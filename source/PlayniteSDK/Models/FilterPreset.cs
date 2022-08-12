@@ -73,7 +73,8 @@ namespace Playnite.SDK.Models
         [Description("LOCFeatureLabel")] Feature = 21,
         [Description("LOCGameInstallationStatus")] InstallationStatus = 22,
         [Description("LOCGameNameTitle")] Name = 23,
-        [Description("LOCInstallDriveTitle")] InstallDrive = 24
+        [Description("LOCInstallDriveTitle")] InstallDrive = 24,
+        [Description("LOCInstallSizeLabel")] InstallSize = 25
     }
 
     public class FilterPresetSettings

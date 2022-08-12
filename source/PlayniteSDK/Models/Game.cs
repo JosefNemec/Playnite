@@ -2202,6 +2202,47 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets game Install Size group.
+        /// </summary>
+        public InstallSizeGroup GetInstallSizeGroup()
+        {
+            if (installSize == null || installSize == 0)
+            {
+                return InstallSizeGroup.None;
+            }
+            else if (installSize <= 0x6400000) //100MB
+            {
+                return InstallSizeGroup.S0_0MB_100MB;
+            }
+            else if (installSize <= 0x40000000) //1GB
+            {
+                return InstallSizeGroup.S1_100MB_1GB;
+            }
+            else if (installSize <= 0x140000000) //5GB
+            {
+                return InstallSizeGroup.S2_1GB_5GB;
+            }
+            else if (installSize <= 0x280000000) //10GB
+            {
+                return InstallSizeGroup.S3_5GB_10GB;
+            }
+            else if (installSize <= 0x500000000) //20GB
+            {
+                return InstallSizeGroup.S4_10GB_20GB;
+            }
+            else if (installSize <= 0xA00000000) //40GB
+            {
+                return InstallSizeGroup.S5_20GB_40GB;
+            }
+            else if (installSize <= 0x1900000000) //100GB
+            {
+                return InstallSizeGroup.S6_40GB_100GB;
+            }
+
+            return InstallSizeGroup.S7_100GBPlus;
+        }
+
+        /// <summary>
         /// Gets game Install Drive group.
         /// </summary>
         public string GetInstallDriveGroup()

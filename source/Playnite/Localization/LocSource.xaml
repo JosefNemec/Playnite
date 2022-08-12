@@ -182,6 +182,14 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCPastMonth">Past Month</sys:String>
     <sys:String x:Key="LOCPastYear">Past Year</sys:String>
     <sys:String x:Key="LOCMoreThenYear">More than a year ago</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0 to 100MB</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100MB to 1GB</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1GB to 5GB</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5GB to 10GB</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10GB to 20GB</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20GB to 40GB</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40GB to 100GB</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB or more</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     <sys:String x:Key="LOCAllGames">All Games</sys:String>
     <sys:String x:Key="LOCGameId">Game Id</sys:String>
