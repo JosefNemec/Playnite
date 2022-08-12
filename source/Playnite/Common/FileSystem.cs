@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Playnite.SDK;
 using System.Diagnostics;
+using Playnite.Native;
 
 namespace Playnite.Common
 {
@@ -336,7 +337,89 @@ namespace Playnite.Common
         public static long GetFileSize(string path)
         {
             path = Paths.FixPathLength(path);
-            return new FileInfo(path).Length;
+            return GetFileSize(new FileInfo(path));
+        }
+
+        public static long GetFileSize(FileInfo fi)
+        {
+            return fi.Length;
+        }
+
+        public static long GetDirectorySize(string path)
+        {
+            return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)));
+        }
+
+        private static long GetDirectorySize(DirectoryInfo dir)
+        {
+            try
+            {
+                long size = 0;
+                // Add file sizes.
+                FileInfo[] fis = dir.GetFiles();
+                foreach (FileInfo fi in fis)
+                {
+                    size += GetFileSize(fi);
+                }
+
+                // Add subdirectory sizes.
+                DirectoryInfo[] dis = dir.GetDirectories();
+                foreach (DirectoryInfo di in dis)
+                {
+                    size += GetDirectorySize(di);
+                }
+
+                return size;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public static long GetFileSizeOnDisk(string path)
+        {
+            return GetFileSizeOnDisk(new FileInfo(Paths.FixPathLength(path)));
+        }
+
+        public static long GetFileSizeOnDisk(FileInfo info)
+        {
+            // From https://stackoverflow.com/a/3751135
+            int result = Kernel32.GetDiskFreeSpaceW(info.Directory.Root.FullName, out uint sectorsPerCluster, out uint bytesPerSector, out _, out _);
+            if (result == 0)
+            {
+                throw new System.ComponentModel.Win32Exception();
+            }
+            
+            uint clusterSize = sectorsPerCluster * bytesPerSector;
+            uint losize = Kernel32.GetCompressedFileSizeW(info.FullName, out uint hosize);
+            long size;
+            size = (long)hosize << 32 | losize;
+            return ((size + clusterSize - 1) / clusterSize) * clusterSize;
+        }
+
+        public static long GetDirectorySizeOnDisk(string path)
+        {
+            return GetDirectorySizeOnDisk(new DirectoryInfo(Paths.FixPathLength(path)));
+        }
+
+        public static long GetDirectorySizeOnDisk(DirectoryInfo dirInfo)
+        {
+            long size = 0;
+
+            // Add file sizes.
+            foreach (FileInfo file in dirInfo.GetFiles())
+            {
+                size += GetFileSizeOnDisk(file);
+            }
+
+            // Add subdirectory sizes.
+            foreach (DirectoryInfo directory in dirInfo.GetDirectories())
+            {
+                size += GetDirectorySizeOnDisk(directory);
+            }
+
+            return size;
         }
 
         public static void CopyDirectory(string sourceDirName, string destDirName, bool copySubDirs = true, bool overwrite = true)
