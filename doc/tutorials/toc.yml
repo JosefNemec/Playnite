@@ -40,7 +40,7 @@
       href: extensions/localizations.md
     - name: Manifest file
       href: extensions/extensionsManifest.md
-    - name: VSCode in Windows
+    - name: Plugins in Visual Studio Code
       href: extensions/vscodeWindows.md
 
 - name: Themes

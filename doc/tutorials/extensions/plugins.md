@@ -4,7 +4,7 @@ Plugins Introduction
 Basics
 ---------------------
 
-Plugins can be written in any .NET Framework compatible languages, this includes C#, VB.NET, F# and others, targeting .NET Framework 4.6.
+Plugins can be written in any .NET Framework compatible languages, this includes C#, VB.NET, F# and others, targeting .NET Framework 4.6.2.
 
 Plugin types
 ---------------------
@@ -20,9 +20,10 @@ There are currently two types of plugins:
 Creating plugins
 ---------------------
 
-### Using Toolbox
+> [!NOTE]
+> Although you can technically write Playnite plugins in any IDE which supports .NET Framework 4.6.2 SDK, which includes [Rider](https://www.jetbrains.com/rider) and [Visual Studio Code](vscodeWindows.md), standard Visual Studio (including Community edition) is the preferred IDE, because it has the best .NET Framework support.
 
-#### 1. Generate from template
+### 1. Generate plugin from template
 
 Run [Toolbox](../toolbox.md) with arguments specific to a type of plugin you want to create.
 
@@ -34,31 +35,33 @@ Toolbox.exe new LibraryPlugin "SomeLibrary importer" "d:\somefolder"
 
 This will generate new C# project, with all of required classes already premade.
 
-#### 2. Implement functionality
+### 2. Implement functionality
 
 Don't forget to implement functionality for template methods and properties that by default return `NotImplementedException` exception.
-
-> [!NOTE] 
-If you are having issue compiling plugin created from the template, then make sure that nuget dependencies are downloaded and installed properly. You can do that by using "Manage NuGet Packages" menu after right-clicking on plugin solution/project in solution explorer.
-
-### Manually
-
-#### 1. Create plugin project
-
-Start by creating new `Class Library` project targeting `.NET Framework 4.6.2`. Add [Playnite SDK](https://www.nuget.org/packages/PlayniteSDK/) nuget package reference and set reference to not require specific version (right-click on `Playnite.SDK` reference, choose `Properties` and set `Specific Version` to false).
-
-> [!NOTE] 
-> PlayniteSDK is designed in a way that all versions from one major version branch (for example 1.0, 1.1, 1.2 etc.) are backwards compatible. Therefore plugin written for SDK version 1.0 will also work with Playnite containing all 1.x versions of SDK. When loading plugins Playnite checks all SDK references and won't load plugins referencing incompatible SDK versions.
-
-#### 2. Write a plugin
 
 - `Generic plugins` - see generic plugins [documentation page](genericPlugins.md).
 - `Library plugins` - see library plugins [documentation page](libraryPlugins.md).
 - `Metadata plugins` - see metadata plugins [documentation page](metadataPlugins.md).
 
-#### 3. Create manifest file
+**Note to Visual Studio users:** If you are having issues compiling plugins created from the template, make sure that nuget dependencies are downloaded and installed properly. If you can't for some reason restore SDK nuget package, try following:
 
-Described in [introduction section](intro.md) to extensions.
+- Use "Save all" and save solution file if you are prompted to.
+- Restart Visual Studio and open plugin solution file (.sln).
+- Restore nuget dependencies via right-click menu on the solution item (in solution explorer, using "Restore NuGet packages").
+
+### 3. Make Playnite load new extension
+
+Go to Playnite settings, `For developers` section and add build output folder from the plugin project to `External extensions` list. This will look something like: `c:\plugin_project_folder\bin\Debug\` for debug builds by default. Build output folder can be seen/changed in VS project settings.
+
+### 4. Debugging a plugin
+
+Playnite plugins are standard .NET assemblies and therefore can be debugged in the same way as standard .NET dlls loaded in an external process, which is by default done via `Debug -> Attach to process` menu in Visual Studio. If you want to have an easier time and be able to start Playnite from VS directly with debugger attached to it automatically, do following:
+
+- Open project properties via right-click menu on plugin project in solution explorer.
+- Go to `Debug` section.
+- Switch `Start action` to `Start external program` and set path to Playnite's executable.
+
+Now when you start debugging, Visual Studio will automatically start Playnite process and attach debugger to it.
 
 Accessing Playnite API
 ---------------------
@@ -78,6 +81,9 @@ You can check list of all Playnite's dependencies here:
 - [Playnite.FullscreenApp](https://github.com/JosefNemec/Playnite/blob/master/source/Playnite.FullscreenApp/packages.config)
 
 Probably the most common case where you might need to add an external dependency is for data serialization, usually JSON one. SDK already provides object serialization [methods](xref:Playnite.SDK.Data.Serialization) which should cover most serialization cases, including [DontSerialize](xref:Playnite.SDK.Data.DontSerializeAttribute) and [SerializationPropertyName](xref:Playnite.SDK.Data.SerializationPropertyNameAttribute) attributes.
+
+> [!NOTE] 
+> PlayniteSDK is designed in a way that all versions from one major version branch (for example 1.0, 1.1, 1.2 etc.) are backwards compatible. Therefore plugin written for SDK version 1.0 will also work with Playnite containing all 1.x versions of SDK. When loading plugins Playnite checks all SDK references and won't load plugins referencing incompatible SDK versions.
 
 Referencing Playnite assemblies
 ---------------------

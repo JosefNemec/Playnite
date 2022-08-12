@@ -19,15 +19,18 @@ Prepare your project folder
 2. Open the project folder in VSCode
 3. In VSCode, press `ctrl+shit+P`, type `Terminal: Create New Terminal` and press `Enter`
 4. Create a new `AssemblyInfo.cs` file:
+
 ```powershell
 Get-Content .\Properties\AssemblyInfo.cs | Where-Object {$_ -notmatch '^\[assembly: Assembly.+'} | Set-Content .\AssemblyInfo.cs
 Remove-Item -path .\Properties\ -recurse -force
 ```
 5. Install PlayniteSDK package using `nuget`:
+
 ```shell
 nuget restore -SolutionDirectory . -Verbosity normal
 ```
 6. Replace the csproj file content in your project folder for this:
+
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
