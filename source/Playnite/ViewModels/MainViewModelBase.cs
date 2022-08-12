@@ -565,8 +565,102 @@ namespace Playnite.ViewModels
                     AppSettings.LastEmuLibraryUpdateCheck = DateTimes.Now;
                 }
 
+                // We save the value even if a scan will not be done, to prevent the user
+                // enabling the option afterwards if it was disabled and causing it to
+                // scan a lot of games in the next library update
+                AppSettings.LastInstallSizesUpdateCheck = DateTimes.Now;
+                if (AppSettings.ScanLibInstallSizeOnLibUpdate)
+                {
+                    Logger.Info($"Starting Library Install Size scan");
+                    ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
+
+                    using (Database.Games.BufferedUpdate())
+                    {
+                        foreach (var game in Database.Games)
+                        {
+                            if (token.IsCancellationRequested)
+                            {
+                                return addedGames;
+                            }
+
+                            LibraryUpdateScanGameSize(game);
+                        }
+                    }
+                }
+
                 return addedGames;
             }, metaForNewGames);
+        }
+
+        private void LibraryUpdateScanGameSize(Game game)
+        {
+            if (!game.IsInstalled)
+            {
+                return;
+            }
+            
+            if (game.Roms.HasItems())
+            {
+                if (!game.Roms.Any(x => !x.Path.IsNullOrWhiteSpace() &&
+                    FileSystem.FileExists(x.Path) &&
+                    FileSystem.FileGetLastWriteTime(x.Path) > AppSettings.LastInstallSizesUpdateCheck))
+                {
+                    return;
+                }
+
+                long size = 0;
+                foreach (var rom in game.Roms)
+                {
+                    if (rom.Path.IsNullOrWhiteSpace())
+                    {
+                        continue;
+                    }
+
+                    if (!FileSystem.FileExists(rom.Path))
+                    {
+                        continue;
+                    }
+
+                    if (FileSystem.FileGetLastWriteTime(rom.Path) < AppSettings.LastInstallSizesUpdateCheck)
+                    {
+                        continue;
+                    }
+
+                    if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                    {
+                        size += FileSystem.GetFileSizeOnDisk(rom.Path);
+                    }
+                    else
+                    {
+                        size += FileSystem.GetFileSize(rom.Path);
+                    }
+
+                    if (size != game.InstallSize)
+                    {
+                        game.InstallSize = size;
+                        Database.Games.Update(game);
+                    }
+                }
+            }
+            else if (!game.InstallDirectory.IsNullOrWhiteSpace())
+            {
+                if (!FileSystem.DirectoryExists(game.InstallDirectory))
+                {
+                    return;
+                }
+
+                if (FileSystem.DirectoryGetLastWriteTime(game.InstallDirectory) < AppSettings.LastInstallSizesUpdateCheck)
+                {
+                    return;
+                }
+
+                var size = AppSettings.InstallSizeScanUseSizeOnDisk ? FileSystem.GetDirectorySizeOnDisk(game.InstallDirectory) : FileSystem.GetDirectorySize(game.InstallDirectory);
+                if (size != game.InstallSize)
+                {
+                    game.InstallSize = size;
+                    Database.Games.Update(game);
+                }
+            }
         }
 
         public async Task UpdateLibrary(LibraryPlugin plugin)

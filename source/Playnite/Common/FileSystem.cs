@@ -514,5 +514,15 @@ namespace Playnite.Common
         {
             return File.Exists(Paths.FixPathLength(path));
         }
+
+        public static DateTime DirectoryGetLastWriteTime(string path)
+        {
+            return Directory.GetLastWriteTime(Paths.FixPathLength(path));
+        }
+
+        public static DateTime FileGetLastWriteTime(string path)
+        {
+            return File.GetLastWriteTime(Paths.FixPathLength(path));
+        }
     }
 }

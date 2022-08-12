@@ -746,6 +746,10 @@ namespace Playnite
         /// </summary>
         public const string ProgressLibraryGames = "LOCProgressLibraryGames";
         /// <summary>
+        /// Scanning size of games in library…
+        /// </summary>
+        public const string ProgressScanningGamesInstallSize = "LOCProgressScanningGamesInstallSize";
+        /// <summary>
         /// Library update finished
         /// </summary>
         public const string ProgressLibImportFinish = "LOCProgressLibImportFinish";
@@ -1469,6 +1473,14 @@ namespace Playnite
         /// Preferred age rating organization
         /// </summary>
         public const string SettingsPreferredAgeRatingOrg = "LOCSettingsPreferredAgeRatingOrg";
+        /// <summary>
+        /// Scan modified install size of games on library update
+        /// </summary>
+        public const string SettingsScanLibInstallSizeOnLibUpdate = "LOCSettingsScanLibInstallSizeOnLibUpdate";
+        /// <summary>
+        /// Detects if the files of a game have been modified since the last library update and scans them to get the updated install size
+        /// </summary>
+        public const string SettingsScanLibInstallSizeOnLibUpdateTooltip = "LOCSettingsScanLibInstallSizeOnLibUpdateTooltip";
         /// <summary>
         /// None
         /// </summary>
@@ -2794,6 +2806,14 @@ namespace Playnite
         /// </summary>
         public const string OpeningDatabase = "LOCOpeningDatabase";
         /// <summary>
+        /// Calculating install size…
+        /// </summary>
+        public const string CalculatingInstallSizeMessage = "LOCCalculatingInstallSizeMessage";
+        /// <summary>
+        /// Calculating install size of {0}…
+        /// </summary>
+        public const string CalculatingInstallSizeOfGameMessage = "LOCCalculatingInstallSizeOfGameMessage";
+        /// <summary>
         /// Failed to install script file.
         /// </summary>
         public const string ScriptInstallFail = "LOCScriptInstallFail";
@@ -2817,6 +2837,14 @@ namespace Playnite
         /// Open metadata folder
         /// </summary>
         public const string OpenMetadataFolder = "LOCOpenMetadataFolder";
+        /// <summary>
+        /// Calculate
+        /// </summary>
+        public const string InstallSizeCalculate = "LOCInstallSizeCalculate";
+        /// <summary>
+        /// Automatically calculates the install size using the Roms if the game has any or the installation directory if it has been set
+        /// </summary>
+        public const string InstallSizeCalculateEditButtonTooltip = "LOCInstallSizeCalculateEditButtonTooltip";
         /// <summary>
         /// {0} client is not installed.
         /// </summary>
@@ -3829,6 +3857,14 @@ namespace Playnite
         /// Show warning if Playnite is running with elevated privileges
         /// </summary>
         public const string ElevatedProcessWarningShowOption = "LOCElevatedProcessWarningShowOption";
+        /// <summary>
+        /// Get the real size on drive when calculating the size of games
+        /// </summary>
+        public const string InstallSizeScanUseSizeOnDiskOption = "LOCInstallSizeScanUseSizeOnDiskOption";
+        /// <summary>
+        /// If enabled, scans will be slower and will get the real size that files use in the drive.
+        /// </summary>
+        public const string InstallSizeScanUseSizeOnDiskOptionTooltip = "LOCInstallSizeScanUseSizeOnDiskOptionTooltip";
         /// <summary>
         /// Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
         /// </summary>

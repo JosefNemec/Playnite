@@ -1918,6 +1918,17 @@ namespace Playnite
             }
         }
 
+        private bool scanLibInstallSizeOnLibUpdate = true;
+        public bool ScanLibInstallSizeOnLibUpdate
+        {
+            get => scanLibInstallSizeOnLibUpdate;
+            set
+            {
+                scanLibInstallSizeOnLibUpdate = value;
+                OnPropertyChanged();
+            }
+        }
+
         private UpdateCheckFrequency checkForProgramUpdates = UpdateCheckFrequency.OnEveryStartup;
         public UpdateCheckFrequency CheckForProgramUpdates
         {
@@ -1966,6 +1977,7 @@ namespace Playnite
         public DateTime LastAddonUpdateCheck { get; set; }
         public DateTime LastLibraryUpdateCheck { get; set; }
         public DateTime LastEmuLibraryUpdateCheck { get; set; }
+        public DateTime LastInstallSizesUpdateCheck { get; set; }
         public DateTime LastAutoBackup { get; set; }
 
         private GameSearchItemAction primaryGameSearchItemAction = GameSearchItemAction.SwitchTo;
