@@ -23,13 +23,16 @@ namespace Playnite.Tests.Database
             var gameId = "tesId";
             var libPlugin = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
             ulong timeToImport = 500;
+            long? installSizeToImport = 200;
             libPlugin.Setup(a => a.Id).Returns(Guid.NewGuid());
             libPlugin.Setup(a => a.GetGames(It.IsAny<LibraryGetGamesArgs>())).Returns(() => new List<GameMetadata>
             {
                 new GameMetadata()
                 {
                     GameId = gameId,
-                    Playtime = timeToImport
+                    Playtime = timeToImport,
+                    InstallSize = installSizeToImport,
+                    IsInstalled = true
                 }
             });
 
@@ -63,6 +66,24 @@ namespace Playnite.Tests.Database
 
                 db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
+
+                Assert.AreEqual(installSizeToImport, g.InstallSize);
+                installSizeToImport = 999;
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreNotEqual(installSizeToImport, g.InstallSize);
+                g.IsInstalled = false;
+                g.OverrideInstallState = true;
+                db.Games.Update(g);
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreEqual(installSizeToImport, g.InstallSize);
+                g.OverrideInstallState = false;
+                db.Games.Update(g);
+                installSizeToImport = null;
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreNotEqual(installSizeToImport, g.InstallSize);
+                installSizeToImport = 0;
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreNotEqual(installSizeToImport, g.InstallSize);
             }
         }
     }
