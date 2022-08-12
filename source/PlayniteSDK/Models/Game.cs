@@ -1391,24 +1391,6 @@ namespace Playnite.SDK.Models
             get => IsInstalled ? InstallationStatus.Installed : InstallationStatus.Uninstalled;
         }
 
-        /// <summary>
-        /// Gets game installation drive.
-        /// </summary>
-        [DontSerialize]
-        public string InstallDrive
-        {
-            get => GetInstallDrive();
-        }
-
-        /// <summary>
-        /// Gets game installation drive group.
-        /// </summary>
-        [DontSerialize]
-        public string InstallDriveGroup
-        {
-            get => GetInstallDriveGroup();
-        }
-
         #endregion Expanded
 
         /// <summary>
