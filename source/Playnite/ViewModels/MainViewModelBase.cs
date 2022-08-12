@@ -599,10 +599,11 @@ namespace Playnite.ViewModels
             {
                 return;
             }
-            
+
+            var addedAfterLastCheck = game.Added != null && game.Added > AppSettings.LastInstallSizesUpdateCheck;
             if (game.Roms.HasItems())
             {
-                if (!game.Roms.Any(x => !x.Path.IsNullOrWhiteSpace() &&
+                if (!addedAfterLastCheck && !game.Roms.Any(x => !x.Path.IsNullOrWhiteSpace() &&
                     FileSystem.FileExists(x.Path) &&
                     FileSystem.FileGetLastWriteTime(x.Path) > AppSettings.LastInstallSizesUpdateCheck))
                 {
@@ -651,7 +652,7 @@ namespace Playnite.ViewModels
                     return;
                 }
 
-                if (FileSystem.DirectoryGetLastWriteTime(game.InstallDirectory) < AppSettings.LastInstallSizesUpdateCheck)
+                if (!addedAfterLastCheck && FileSystem.DirectoryGetLastWriteTime(game.InstallDirectory) < AppSettings.LastInstallSizesUpdateCheck)
                 {
                     return;
                 }
