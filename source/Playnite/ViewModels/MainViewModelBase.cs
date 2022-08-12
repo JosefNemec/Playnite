@@ -565,10 +565,6 @@ namespace Playnite.ViewModels
                     AppSettings.LastEmuLibraryUpdateCheck = DateTimes.Now;
                 }
 
-                // We save the value even if a scan will not be done, to prevent the user
-                // enabling the option afterwards if it was disabled and causing it to
-                // scan a lot of games in the next library update
-                AppSettings.LastInstallSizesUpdateCheck = DateTimes.Now;
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
                     Logger.Info($"Starting Library Install Size scan");
@@ -587,6 +583,11 @@ namespace Playnite.ViewModels
                         }
                     }
                 }
+
+                // We save the value even if a scan will not be done, to prevent the user
+                // enabling the option afterwards if it was disabled and causing it to
+                // scan a lot of games in the next library update
+                AppSettings.LastInstallSizesUpdateCheck = DateTimes.Now;
 
                 return addedGames;
             }, metaForNewGames);
