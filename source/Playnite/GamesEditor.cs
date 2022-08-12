@@ -458,7 +458,7 @@ namespace Playnite
             }
         }
 
-        public void CalculateGameSize(Game game, bool onlyIfDataMissing)
+        public void CalculateGameSize(Game game, bool onlyIfDataMissing, bool updateGame = true)
         {
             if (!game.IsInstalled)
             {
@@ -486,7 +486,10 @@ namespace Playnite
                 if (size > 0 && game.InstallSize != size)
                 {
                     game.InstallSize = size;
-                    Database.Games.Update(game);
+                    if (updateGame)
+                    {
+                        Database.Games.Update(game);
+                    }
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

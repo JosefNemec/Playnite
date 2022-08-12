@@ -378,5 +378,13 @@ namespace Playnite.DesktopApp.ViewModels
                 TestScript(a);
             }, (a) => !a.IsNullOrEmpty());
         }
+
+        public RelayCommand CalculateInstallSizeCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                CalculateInstallSize();
+            });
+        }
     }
 }

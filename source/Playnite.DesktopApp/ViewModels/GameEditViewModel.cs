@@ -1569,5 +1569,10 @@ namespace Playnite.DesktopApp.ViewModels
                     MessageBoxImage.Error);
             }
         }
+
+        public void CalculateInstallSize()
+        {
+            PlayniteApplication.Current.GamesEditor.CalculateGameSize(EditingGame, false, false);
+        }
     }
 }

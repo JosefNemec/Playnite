@@ -570,6 +570,13 @@
                     <CheckBox Grid.Column="0" Grid.Row="11" Style="{StaticResource SaveChangesCheck}"
                               IsChecked="{Binding UseInstallSizeChanges}"/>
                     <DockPanel Grid.Column="2" Grid.Row="11">
+                        <Button Content="{DynamicResource LOCInstallSizeCalculate}"
+                                ToolTip="{DynamicResource LOCInstallSizeCalculateEditButtonTooltip}"
+                                ToolTipService.Placement="Top"
+                                VerticalAlignment="Center"
+                                Margin="5,0,0,0" DockPanel.Dock="Right"
+                                Command="{Binding CalculateInstallSizeCommand}"
+                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <TextBlock Text="{Binding EditingGame.InstallSize, Converter={pcon:NullableLongBytesSizeToStringConverter}}"
                                    DockPanel.Dock="Right" />
                         <TextBox ToolTip="{DynamicResource LOCDescriptionSizeBytes}"
