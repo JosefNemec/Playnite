@@ -1570,9 +1570,9 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void CalculateInstallSize()
+        public void CalculateInstallSizeWithDialog()
         {
-            PlayniteApplication.Current.GamesEditor.CalculateGameSize(EditingGame, false, false);
+            PlayniteApplication.Current.GamesEditor.CalculateGameSizeWithDialog(EditingGame, false, false);
         }
     }
 }

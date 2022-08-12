@@ -70,6 +70,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<IEnumerable<Game>> EditGamesCommand { get; private set; }
         public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
         public RelayCommand<Game> CalculateGameInstallSizeCommand { get; private set; }
+        public RelayCommand<Game> CalculateGameInstallSizeWithDialogCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> CalculateGamesAllInstallSizeWithDialogCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> CalculateGamesMissingInstallSizeWithDialogCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> CalculateGamesAllInstallSizeCommand { get; private set; }
@@ -464,6 +465,11 @@ namespace Playnite.DesktopApp.ViewModels
             CalculateGameInstallSizeCommand = new RelayCommand<Game>((a) =>
             {
                 GamesEditor.CalculateGameSize(a, false);
+            });
+
+            CalculateGameInstallSizeWithDialogCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.CalculateGameSizeWithDialog(a, false);
             });
 
             CreateDesktopShortcutsCommand = new RelayCommand<List<Game>>((a) =>

@@ -232,7 +232,7 @@ namespace Playnite.DesktopApp.Controls
                 {
                     Header = ResourceProvider.GetString(LOC.CalculateInstallSize),
                     Icon = installSizeIcon,
-                    Command = model.CalculateGameInstallSizeCommand,
+                    Command = model.CalculateGameInstallSizeWithDialogCommand,
                     CommandParameter = game
                 });
             }

@@ -503,6 +503,15 @@ namespace Playnite
             }
         }
 
+        public void CalculateGameSizeWithDialog(Game game, bool onlyIfDataMissing, bool updateGame = true)
+        {
+            var textTitle = string.Format(ResourceProvider.GetString("LOCCalculatingInstallSizeOfGameMessage"), game.Name);
+            Dialogs.ActivateGlobalProgress((a) =>
+            {
+                CalculateGameSize(game, onlyIfDataMissing, updateGame);
+            }, new GlobalProgressOptions(textTitle, false) { IsIndeterminate = true });
+        }
+
         public void CalculateGamesSize(List<Game> games, bool onlyIfDataMissing)
         {
             using (Database.BufferedUpdate())

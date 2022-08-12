@@ -575,7 +575,7 @@
                                 ToolTipService.Placement="Top"
                                 VerticalAlignment="Center"
                                 Margin="5,0,0,0" DockPanel.Dock="Right"
-                                Command="{Binding CalculateInstallSizeCommand}"
+                                Command="{Binding CalculateInstallSizeWithDialogCommand}"
                                 Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <TextBlock Text="{Binding EditingGame.InstallSize, Converter={pcon:NullableLongBytesSizeToStringConverter}}"
                                    DockPanel.Dock="Right" />

@@ -758,6 +758,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Opening Fullscreen mode…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Loading game library…</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeMessage">Calculating install size…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Calculating install size of {0}…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Failed to install script file.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script installed successfully.</sys:String>
     <sys:String x:Key="LOCInstallScript">Install Script</sys:String>
