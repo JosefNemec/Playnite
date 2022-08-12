@@ -636,9 +636,10 @@ namespace Playnite.ViewModels
                         size += FileSystem.GetFileSize(rom.Path);
                     }
 
-                    if (size != game.InstallSize)
+                    var ulongSize = (ulong)size;
+                    if (ulongSize != game.InstallSize)
                     {
-                        game.InstallSize = size;
+                        game.InstallSize = ulongSize;
                         Database.Games.Update(game);
                     }
                 }
@@ -655,7 +656,7 @@ namespace Playnite.ViewModels
                     return;
                 }
 
-                var size = AppSettings.InstallSizeScanUseSizeOnDisk ? FileSystem.GetDirectorySizeOnDisk(game.InstallDirectory) : FileSystem.GetDirectorySize(game.InstallDirectory);
+                var size = AppSettings.InstallSizeScanUseSizeOnDisk ? (ulong)FileSystem.GetDirectorySizeOnDisk(game.InstallDirectory) : (ulong)FileSystem.GetDirectorySize(game.InstallDirectory);
                 if (size != game.InstallSize)
                 {
                     game.InstallSize = size;

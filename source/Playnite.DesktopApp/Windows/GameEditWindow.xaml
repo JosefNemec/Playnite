@@ -577,7 +577,7 @@
                                 Margin="5,0,0,0" DockPanel.Dock="Right"
                                 Command="{Binding CalculateInstallSizeWithDialogCommand}"
                                 Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        <TextBlock Text="{Binding EditingGame.InstallSize, Converter={pcon:NullableLongBytesSizeToStringConverter}}"
+                        <TextBlock Text="{Binding EditingGame.InstallSize, Converter={pcon:NullableUlongBytesSizeToStringConverter}}"
                                    DockPanel.Dock="Right" />
                         <TextBox ToolTip="{DynamicResource LOCDescriptionSizeBytes}"
                                  ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
@@ -587,9 +587,9 @@
                                          UpdateSourceTrigger="PropertyChanged" 
                                          ValidatesOnDataErrors="True"
                                          NotifyOnValidationError="True"
-                                         Converter="{pcon:NullableLongToStringConverter}">
+                                         Converter="{pcon:NullableUlongToStringConverter}">
                                     <Binding.ValidationRules>
-                                        <pcon:NullableLongFieldValidation />
+                                        <pcon:NullableUlongFieldValidation />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>

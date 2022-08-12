@@ -9,7 +9,7 @@ using System.Windows.Markup;
 
 namespace Playnite.Converters
 {
-    public class NullableLongBytesSizeToStringConverter : MarkupExtension, IValueConverter
+    public class NullableUlongBytesSizeToStringConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -18,39 +18,38 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            var bytes = (long)value;
+            var bytes = (ulong)value;
 
             // From https://stackoverflow.com/a/11124118
 
-            long absolute_i = (bytes < 0 ? -bytes : bytes);
             string suffix;
             double readable;
-            if (absolute_i >= 0x1000000000000000) // Exabyte
+            if (bytes >= 0x1000000000000000) // Exabyte
             {
                 suffix = "EB";
                 readable = (bytes >> 50);
             }
-            else if (absolute_i >= 0x4000000000000) // Petabyte
+            else if (bytes >= 0x4000000000000) // Petabyte
             {
                 suffix = "PB";
                 readable = bytes >> 40;
             }
-            else if (absolute_i >= 0x10000000000) // Terabyte
+            else if (bytes >= 0x10000000000) // Terabyte
             {
                 suffix = "TB";
                 readable = bytes >> 30;
             }
-            else if (absolute_i >= 0x40000000) // Gigabyte
+            else if (bytes >= 0x40000000) // Gigabyte
             {
                 suffix = "GB";
                 readable = bytes >> 20;
             }
-            else if (absolute_i >= 0x100000) // Megabyte
+            else if (bytes >= 0x100000) // Megabyte
             {
                 suffix = "MB";
                 readable = bytes >> 10;
             }
-            else if (absolute_i >= 0x400) // Kilobyte
+            else if (bytes >= 0x400) // Kilobyte
             {
                 suffix = "KB";
                 readable = bytes;

@@ -16,7 +16,7 @@
         <pcon:NiceListToStringConverter x:Key="ListToStringConverter" />
         <pcon:PlayTimeToStringConverter x:Key="PlayTimeToStringConverter" />
         <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
-        <pcon:NullableLongBytesSizeToStringConverter x:Key="NullableLongBytesSizeToStringConverter" />
+        <pcon:NullableUlongBytesSizeToStringConverter x:Key="NullableUlongBytesSizeToStringConverter" />
         <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
         <pcon:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
         <pcon:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
@@ -251,7 +251,7 @@
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplateInstallSize">
-            <TextBlock Text="{Binding InstallSize, Mode=OneWay, Converter={StaticResource NullableLongBytesSizeToStringConverter}}" />
+            <TextBlock Text="{Binding InstallSize, Mode=OneWay, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" />
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplatePlayCount">

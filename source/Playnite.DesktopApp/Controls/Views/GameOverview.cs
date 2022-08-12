@@ -405,7 +405,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetGameItemTextBinding(ref TextInstallSize, "PART_TextInstallSize",
                 nameof(GameDetailsViewModel.Game.InstallSize),
                 nameof(GameDetailsViewModel.InstallSizeVisibility),
-                new NullableLongBytesSizeToStringConverter());
+                new NullableUlongBytesSizeToStringConverter());
 
             SetGameItemButtonBinding(ref ButtonInstallDirectory, "PART_ButtonInstallDirectory",
                 nameof(GameDetailsViewModel.OpenGameLocationCommand),

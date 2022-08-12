@@ -64,7 +64,7 @@ namespace Playnite
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
         public ulong PlayCount => Game.PlayCount;
-        public long? InstallSize => Game.InstallSize;
+        public ulong? InstallSize => Game.InstallSize;
         public string InstallDrive => Game.InstallDrive;
         public string Version => Game.Version;
         public int? UserScore => Game.UserScore;

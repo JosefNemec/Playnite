@@ -784,11 +784,11 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private long? installSize = null;
+        private ulong? installSize = null;
         /// <summary>
         /// Gets or sets the install size in bytes of the game.
         /// </summary>
-        public long? InstallSize
+        public ulong? InstallSize
         {
             get
             {

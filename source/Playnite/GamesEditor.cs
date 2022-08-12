@@ -483,9 +483,10 @@ namespace Playnite
                     }
                 }
 
-                if (size > 0 && game.InstallSize != size)
+                var ulongSize = (ulong)size;
+                if (ulongSize > 0 && game.InstallSize != ulongSize)
                 {
-                    game.InstallSize = size;
+                    game.InstallSize = ulongSize;
                     if (updateGame)
                     {
                         Database.Games.Update(game);

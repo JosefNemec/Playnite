@@ -298,7 +298,7 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Gets or sets install size in bytes of the game.
         /// </summary>
-        public long? InstallSize { get; set; }
+        public ulong? InstallSize { get; set; }
 
         /// <summary>
         /// Gets or sets Sorting Name.
