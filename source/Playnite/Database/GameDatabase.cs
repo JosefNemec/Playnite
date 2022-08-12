@@ -1289,7 +1289,8 @@ namespace Playnite.Database
                                 }
                             }
 
-                            if (!existingGame.IsInstalled && newGame.InstallSize != null && newGame.InstallSize > 0)
+                            if (!existingGame.IsInstalled && newGame.InstallSize != null && newGame.InstallSize > 0 &&
+                                existingGame.InstallSize != newGame.InstallSize)
                             {
                                 existingGame.InstallSize = newGame.InstallSize;
                                 existingGameUpdated = true;
