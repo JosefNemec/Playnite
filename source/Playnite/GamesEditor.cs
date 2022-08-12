@@ -514,6 +514,29 @@ namespace Playnite
             }
         }
 
+        public void CalculateGamesSizeWithDialog(List<Game> games, bool onlyIfDataMissing)
+        {
+            var textTitle = ResourceProvider.GetString("LOCCalculatingInstallSizeMessage");
+            Dialogs.ActivateGlobalProgress((a) =>
+            {
+                a.ProgressMaxValue = games.Count();
+                using (Database.BufferedUpdate())
+                {
+                    foreach (var game in games)
+                    {
+                        if (a.CancelToken.IsCancellationRequested)
+                        {
+                            break;
+                        }
+
+                        a.CurrentProgressValue++;
+                        a.Text = $"{textTitle}\n\n{game.Name}\n{a.CurrentProgressValue}/{a.ProgressMaxValue}";
+                        CalculateGameSize(game, onlyIfDataMissing);
+                    }
+                }
+            }, new GlobalProgressOptions(textTitle, true) { IsIndeterminate = false });
+        }
+
         private long? GetGameInstallDirSize(Game game, bool getSizeOnDisk = true)
         {
             if (game.InstallDirectory.IsNullOrEmpty() || !FileSystem.DirectoryExists(game.InstallDirectory))
