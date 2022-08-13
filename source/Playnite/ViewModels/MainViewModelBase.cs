@@ -623,11 +623,6 @@ namespace Playnite.ViewModels
                         continue;
                     }
 
-                    if (FileSystem.FileGetLastWriteTime(rom.Path) < AppSettings.LastInstallSizesUpdateCheck)
-                    {
-                        continue;
-                    }
-
                     if (AppSettings.InstallSizeScanUseSizeOnDisk)
                     {
                         size += FileSystem.GetFileSizeOnDisk(rom.Path);
