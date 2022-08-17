@@ -201,6 +201,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Please select which fields should be automatically populated by Playnite and which sources should be used to obtain the data from.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Please consider clicking on the logo above and contribute updates to igdb.com database in order to improve data Playnite uses.</sys:String>
+    <sys:String x:Key="LOCShowGameCountInViewLabel">Games in view:</sys:String>
     <!--Progess string-->
     <sys:String x:Key="LOCProgressMetadata">Downloading metadata…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importing installed games…</sys:String>
@@ -292,6 +293,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Invalid database file location, proper file path must be set.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Account name cannot be empty.</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Download metadata after importing games</sys:String>
+    <sys:String x:Key="LOCSettingsShowGamesInViewCountOnFilterPanel">Show count of games in view on filter panel</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Launch Playnite minimized</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Launch Playnite when you start your computer</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Failed to register Playnite to launch when computer starts.</sys:String>

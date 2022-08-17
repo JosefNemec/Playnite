@@ -125,6 +125,26 @@ namespace Playnite.DesktopApp.Controls.Views
                 ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
             }
 
+            if (PanelItemsHost != null)
+            {
+                var gamesCountLabel = new Label();
+                gamesCountLabel.SetResourceReference(Label.StyleProperty, "FilterPanelLabel");
+                BindingTools.SetBinding(gamesCountLabel,
+                    Label.ContentProperty,
+                    mainModel,
+                    $"{nameof(mainModel.GamesView)}.{nameof(BaseCollectionView.CollectionView)}.{nameof(BaseCollectionView.CollectionView.Count)}",
+                    converter: new NullableIntToStringConverter());
+                BindingTools.SetBinding(gamesCountLabel,
+                    Label.VisibilityProperty,
+                    mainModel,
+                    $"{nameof(mainModel.AppSettings)}.{nameof(PlayniteSettings.ShowGamesInViewCountOnFilterPanel)}.",
+                    converter: new Converters.BooleanToVisibilityConverter());
+                
+                gamesCountLabel.ContentStringFormat = ResourceProvider.GetString(LOC.ShowGameCountInViewLabel) + " {0}";
+                gamesCountLabel.Tag = true;
+                PanelItemsHost.Children.Add(gamesCountLabel);
+            }
+
             SetToggleFilter(nameof(FilterSettings.IsInstalled), nameof(DatabaseStats.Installed), LOC.GameIsInstalledTitle);
             SetToggleFilter(nameof(FilterSettings.IsUnInstalled), nameof(DatabaseStats.UnInstalled), LOC.GameIsUnInstalledTitle);
             SetToggleFilter(nameof(FilterSettings.Hidden), nameof(DatabaseStats.Hidden), LOC.GameHiddenTitle);

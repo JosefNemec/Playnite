@@ -718,6 +718,10 @@ namespace Playnite
         /// </summary>
         public const string MetaIgdbContribNotif = "LOCMetaIgdbContribNotif";
         /// <summary>
+        /// Games in view:
+        /// </summary>
+        public const string ShowGameCountInViewLabel = "LOCShowGameCountInViewLabel";
+        /// <summary>
         /// Downloading metadata…
         /// </summary>
         public const string ProgressMetadata = "LOCProgressMetadata";

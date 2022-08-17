@@ -86,6 +86,9 @@
 
         <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
                   Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>
+        <CheckBox Content="{DynamicResource LOCSettingsShowGamesInViewCountOnFilterPanel}" Margin="0,15,0,0"
+                  Name="CheckShowGamesInViewCountOnFilterPanel"
+                  IsChecked="{Binding Settings.ShowGamesInViewCountOnFilterPanel}"/>
         <CheckBox Content="{DynamicResource LOCSettingsUsedFieldsOnlyOnFilterLists}" Margin="0,15,0,0"
                   IsChecked="{Binding Settings.UsedFieldsOnlyOnFilterLists}"/>
         <CheckBox Content="{DynamicResource LOCSettingsShowBackgroundWindowImage}" Margin="0,15,0,0"

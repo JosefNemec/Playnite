@@ -779,6 +779,21 @@ namespace Playnite
             }
         }
 
+        private bool showGamesInViewCountOnFilterPanel = true;
+        public bool ShowGamesInViewCountOnFilterPanel
+        {
+            get
+            {
+                return showGamesInViewCountOnFilterPanel;
+            }
+
+            set
+            {
+                showGamesInViewCountOnFilterPanel = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool showIconsOnList = true;
         public bool ShowIconsOnList
         {
