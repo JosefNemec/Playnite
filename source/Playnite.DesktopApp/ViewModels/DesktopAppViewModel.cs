@@ -958,6 +958,11 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void OpenView()
         {
+            if (App.CmdLine.StartClosedToTray && AppSettings.EnableTray)
+            {
+                Visibility = Visibility.Hidden;
+            }
+
             Window.Show(this);
             App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;

@@ -438,11 +438,12 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            if (editedFields.Contains(nameof(Settings.StartOnBoot)))
+            if (editedFields.Contains(nameof(Settings.StartOnBoot)) ||
+                editedFields.Contains(nameof(Settings.StartOnBootClosedToTray)))
             {
                 try
                 {
-                    SystemIntegration.SetBootupStateRegistration(Settings.StartOnBoot);
+                    SystemIntegration.SetBootupStateRegistration(Settings.StartOnBoot, Settings.StartOnBootClosedToTray);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

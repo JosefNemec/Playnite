@@ -957,7 +957,7 @@ namespace Playnite
 
             try
             {
-                SystemIntegration.SetBootupStateRegistration(AppSettings.StartOnBoot);
+                SystemIntegration.SetBootupStateRegistration(AppSettings.StartOnBoot, AppSettings.StartOnBootClosedToTray);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {

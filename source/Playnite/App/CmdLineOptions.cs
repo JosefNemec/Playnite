@@ -57,6 +57,9 @@ namespace Playnite
         [Option("restorebackup")]
         public string RestoreBackup { get; set; }
 
+        [Option("startclosedtotray")]
+        public bool StartClosedToTray { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

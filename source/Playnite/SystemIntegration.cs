@@ -42,7 +42,7 @@ namespace Playnite
             }
         }
 
-        public static void SetBootupStateRegistration(bool runOnBootup)
+        public static void SetBootupStateRegistration(bool runOnBootup, bool startClosed)
         {
             var startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             var shortcutPath = Path.Combine(startupPath, "Playnite.lnk");
@@ -50,7 +50,8 @@ namespace Playnite
             {
                 var args = new CmdLineOptions()
                 {
-                    HideSplashScreen = true
+                    HideSplashScreen = true,
+                    StartClosedToTray = startClosed
                 }.ToString();
 
                 if (File.Exists(shortcutPath))

@@ -1139,6 +1139,21 @@ namespace Playnite
             }
         }
 
+        private bool startOnBootClosedToTray = false;
+        public bool StartOnBootClosedToTray
+        {
+            get
+            {
+                return startOnBootClosedToTray;
+            }
+
+            set
+            {
+                startOnBootClosedToTray = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool enableControolerInDesktop = false;
         [RequiresRestart]
         public bool EnableControllerInDesktop
