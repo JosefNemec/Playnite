@@ -171,7 +171,9 @@ namespace Playnite.SDK.Models
         ///
         CompletionStatusId = 87,
         ///
-        OverrideInstallState = 88
+        OverrideInstallState = 88,
+        ///
+        RecentActivity = 89
     }
 
     /// <summary>
@@ -360,6 +362,7 @@ namespace Playnite.SDK.Models
                 lastActivity = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(LastActivitySegment));
+                OnPropertyChanged(nameof(RecentActivity));
             }
         }
 
@@ -742,6 +745,7 @@ namespace Playnite.SDK.Models
                 added = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(AddedSegment));
+                OnPropertyChanged(nameof(RecentActivity));
             }
         }
 
@@ -1264,6 +1268,15 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets the most recent date between the last played and added dates.
+        /// </summary>
+        [DontSerialize]
+        public DateTime? RecentActivity
+        {
+            get => GetGameRecentActivity();
+        }
+
+        /// <summary>
         /// Gets game's user score rating.
         /// </summary>
         [DontSerialize]
@@ -1372,6 +1385,26 @@ namespace Playnite.SDK.Models
         }
 
         #endregion Expanded
+
+        /// <summary>
+        /// Gets the most recent date between the last played and added dates.
+        /// </summary>
+        /// <returns></returns>
+        public DateTime? GetGameRecentActivity()
+        {
+            if (lastActivity == null)
+            {
+                return added;
+            }
+            else if (added == null || lastActivity > added)
+            {
+                return lastActivity;
+            }
+            else
+            {
+                return added;
+            }
+        }
 
         /// <summary>
         /// Gets play time category.

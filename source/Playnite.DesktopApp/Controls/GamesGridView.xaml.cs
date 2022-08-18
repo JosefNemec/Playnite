@@ -118,6 +118,7 @@ namespace Playnite.DesktopApp.Controls
             AppSettings.ViewSettings.ListViewColumns.InstallDirectory.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.IsInstalled.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.LastActivity.PropertyChanged += ListViewColumn_PropertyChanged;
+            AppSettings.ViewSettings.ListViewColumns.RecentActivity.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.Modified.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.Name.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.Platform.PropertyChanged += ListViewColumn_PropertyChanged;
@@ -312,6 +313,10 @@ namespace Playnite.DesktopApp.Controls
             else if (field == GameField.CommunityScore)
             {
                 newColumn = CreateColumn(field, SortOrder.CommunityScore, "CellTemplateCommunityScore", "HeaderTemplateCommunityScore");
+            }
+            else if (field == GameField.RecentActivity)
+            {
+                newColumn = CreateColumn(field, SortOrder.RecentActivity, "CellTemplateRecentActivity", "HeaderTemplateRecentActivity");
             }
 
             return newColumn;

@@ -221,6 +221,18 @@
             <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
         </DataTemplate>
 
+        <DataTemplate x:Key="HeaderTemplateRecentActivity">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource LOCRecentActivityLabel}" />
+                <ContentControl Style="{StaticResource SortIndicator}"
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.RecentActivity}}"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="CellTemplateRecentActivity">
+            <TextBlock Text="{Binding RecentActivity, Mode=OneWay, Converter={StaticResource NullableDateToSortableStringConverter}}" />
+        </DataTemplate>
+        
         <DataTemplate x:Key="HeaderTemplatePlaytime">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCTimePlayed}" />
@@ -459,6 +471,8 @@
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.InstallDirectory.Visible}" />
                         <MenuItem Header="{DynamicResource LOCGameLastActivityTitle}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.LastActivity.Visible}" />
+                        <MenuItem Header="{DynamicResource LOCRecentActivityLabel}"
+                                    IsCheckable="True" IsChecked="{Binding ListViewColumns.RecentActivity.Visible}" />
                         <MenuItem Header="{DynamicResource LOCTimePlayed}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.Playtime.Visible}" />
                         <MenuItem Header="{DynamicResource LOCPlayCountLabel}"
