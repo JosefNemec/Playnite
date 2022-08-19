@@ -321,7 +321,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                settings.CustomDateTimeFormat = "d";
+                settings.CustomDateTimeFormat = Constants.DefaultListViewDateTimeFormat;
             });
         }
 

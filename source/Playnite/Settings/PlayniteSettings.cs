@@ -1907,7 +1907,7 @@ namespace Playnite
             }
         }
 
-        private string customDateTimeFormat = "d";
+        private string customDateTimeFormat = Constants.DefaultListViewDateTimeFormat;
         public string CustomDateTimeFormat
         {
             get => customDateTimeFormat;

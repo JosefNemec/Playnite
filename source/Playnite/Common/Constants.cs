@@ -9,6 +9,7 @@ namespace Playnite.Common
 {
     public static class Constants
     {
+        public const string DefaultListViewDateTimeFormat = "d";
         public static string DateUiFormat
         {
             get;
