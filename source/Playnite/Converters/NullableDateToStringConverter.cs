@@ -101,4 +101,70 @@ namespace Playnite.Converters
             return new ValidationResult(true, null);
         }
     }
+
+    public class MultiNullableDateToCustomFormatStringConverter : MarkupExtension, IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Count() != 2)
+            {
+                return string.Empty;
+            }
+
+            if (values[0] == null || values[1] == null)
+            {
+                return string.Empty;
+            }
+
+            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue)
+            {
+                return string.Empty;
+            }
+
+            var date = ((DateTime?)values[0]).Value;
+            if (values[1] is string format)
+            {
+                return date.ToString(format);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+
+    public class DateTimeFormatToStringValidation : ValidationRule
+    {
+        private const string InvalidFormatInput = "Format does not contain a valid custom format pattern!";
+        private const string InvalidArgumentRangeInput = "The date and time is outside the range of dates supported!";
+        private static DateTime TestDate = DateTime.Now;
+
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            var str = (string)value;
+            try
+            {
+                TestDate.ToString(str);
+                return new ValidationResult(true, null);
+            }
+            catch (FormatException)
+            {
+                return new ValidationResult(false, InvalidFormatInput);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return new ValidationResult(false, InvalidArgumentRangeInput);
+            }
+        }
+    }
 }

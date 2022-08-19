@@ -230,7 +230,14 @@
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplateRecentActivity">
-            <TextBlock Text="{Binding RecentActivity, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
+            <TextBlock Tag="{pmrk:Settings CustomDateTimeFormat}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}" Mode="OneWay">
+                        <Binding Path="RecentActivity" Mode="OneWay" />
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </DataTemplate>
         
         <DataTemplate x:Key="HeaderTemplatePlaytime">
@@ -336,11 +343,18 @@
                                 Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Added}}"/>
             </StackPanel>
         </DataTemplate>
-
+        
         <DataTemplate x:Key="CellTemplateAdded">
-            <TextBlock Text="{Binding Added, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
+            <TextBlock Tag="{pmrk:Settings CustomDateTimeFormat}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}" Mode="OneWay">
+                        <Binding Path="Added" Mode="OneWay"/>
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </DataTemplate>
-
+        
         <DataTemplate x:Key="HeaderTemplateModified">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCModifiedLabel}" />
@@ -350,7 +364,14 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateModified">
-            <TextBlock Text="{Binding Modified, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
+            <TextBlock Tag="{pmrk:Settings CustomDateTimeFormat}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}" Mode="OneWay">
+                        <Binding Path="Modified" Mode="OneWay" />
+                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateUserScore">

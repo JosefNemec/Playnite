@@ -1907,6 +1907,17 @@ namespace Playnite
             }
         }
 
+        private string customDateTimeFormat = "d";
+        public string CustomDateTimeFormat
+        {
+            get => customDateTimeFormat;
+            set
+            {
+                customDateTimeFormat = value;
+                OnPropertyChanged();
+            }
+        }
+
         private UpdateCheckFrequency checkForProgramUpdates = UpdateCheckFrequency.OnEveryStartup;
         public UpdateCheckFrequency CheckForProgramUpdates
         {

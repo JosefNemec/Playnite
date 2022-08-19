@@ -317,6 +317,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand ResetDefaultCustomDateTimeFormatCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                settings.CustomDateTimeFormat = "d";
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
