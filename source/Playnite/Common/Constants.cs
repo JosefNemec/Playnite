@@ -14,11 +14,6 @@ namespace Playnite.Common
             get;
         } = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
 
-        public static string SortableDateUiFormat
-        {
-            get;
-        } = "yyyy'-'MM'-'dd HH':'mm':'ss";
-
         public static string TimeUiFormat
         {
             get;

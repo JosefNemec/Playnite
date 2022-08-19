@@ -230,7 +230,7 @@
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplateRecentActivity">
-            <TextBlock Text="{Binding RecentActivity, Mode=OneWay, Converter={StaticResource NullableDateToSortableStringConverter}}" />
+            <TextBlock Text="{Binding RecentActivity, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
         </DataTemplate>
         
         <DataTemplate x:Key="HeaderTemplatePlaytime">

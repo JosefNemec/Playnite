@@ -49,43 +49,6 @@ namespace Playnite.Converters
         }
     }
 
-    public class NullableDateToSortableStringConverter : MarkupExtension, IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value == null)
-            {
-                return string.Empty;
-            }
-
-            var date = ((DateTime?)value).Value;
-            return date.ToString(Common.Constants.SortableDateUiFormat);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (string.IsNullOrEmpty(value as string))
-            {
-                return null;
-            }
-
-            var sucess = DateTime.TryParseExact(value as string, Common.Constants.SortableDateUiFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var newDate);
-            if (sucess)
-            {
-                return newDate;
-            }
-            else
-            {
-                return DependencyProperty.UnsetValue;
-            }
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
-    }
-
     public class ReleaseDateToStringConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
