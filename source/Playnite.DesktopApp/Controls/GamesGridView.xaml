@@ -230,11 +230,11 @@
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplateRecentActivity">
-            <TextBlock Tag="{pmrk:Settings CustomDateTimeFormat}">
+            <TextBlock>
                 <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}" Mode="OneWay">
-                        <Binding Path="RecentActivity" Mode="OneWay" />
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
+                        <Binding Path="Modified" Mode="OneWay" />
+                        <Binding Path="Settings.CustomDateTimeFormat" Mode="OneWay" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
@@ -345,11 +345,11 @@
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplateAdded">
-            <TextBlock Tag="{pmrk:Settings CustomDateTimeFormat}">
+            <TextBlock>
                 <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}" Mode="OneWay">
-                        <Binding Path="Added" Mode="OneWay"/>
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
+                        <Binding Path="Modified" Mode="OneWay" />
+                        <Binding Path="Settings.CustomDateTimeFormat" Mode="OneWay" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
@@ -364,11 +364,11 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateModified">
-            <TextBlock Tag="{pmrk:Settings CustomDateTimeFormat}">
+            <TextBlock>
                 <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}" Mode="OneWay">
+                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
                         <Binding Path="Modified" Mode="OneWay" />
-                        <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                        <Binding Path="Settings.CustomDateTimeFormat" Mode="OneWay" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
