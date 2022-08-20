@@ -1907,13 +1907,50 @@ namespace Playnite
             }
         }
 
-        private string customDateTimeFormat = Constants.DefaultListViewDateTimeFormat;
-        public string CustomDateTimeFormat
+        private string dateTimeFormatAdded = Constants.DefaultDateTimeFormat;
+        [RequiresRestart]
+        public string DateTimeFormatAdded
         {
-            get => customDateTimeFormat;
+            get => dateTimeFormatAdded;
             set
             {
-                customDateTimeFormat = value;
+                dateTimeFormatAdded = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string dateTimeFormatModified = Constants.DefaultDateTimeFormat;
+        [RequiresRestart]
+        public string DateTimeFormatModified
+        {
+            get => dateTimeFormatModified;
+            set
+            {
+                dateTimeFormatModified = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string dateTimeFormatRecentActivity = Constants.DefaultDateTimeFormat;
+        [RequiresRestart]
+        public string DateTimeFormatRecentActivity
+        {
+            get => dateTimeFormatRecentActivity;
+            set
+            {
+                dateTimeFormatRecentActivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string dateTimeFormatReleaseDate = Constants.DefaultDateTimeFormat;
+        [RequiresRestart]
+        public string DateTimeFormatReleaseDate
+        {
+            get => dateTimeFormatReleaseDate;
+            set
+            {
+                dateTimeFormatReleaseDate = value;
                 OnPropertyChanged();
             }
         }

@@ -26,7 +26,6 @@ namespace Playnite
         public static BitmapLoadProperties BackgroundImageProperties { get; private set; }
         public static BitmapLoadProperties FullscreenListCoverProperties { get; private set; }
 
-        public PlayniteSettings Settings => settings;
         public LibraryPlugin LibraryPlugin { get; }
         public Guid Id => Game.Id;
         public Guid PluginId => Game.PluginId;

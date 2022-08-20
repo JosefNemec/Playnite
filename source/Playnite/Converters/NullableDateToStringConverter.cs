@@ -22,7 +22,14 @@ namespace Playnite.Converters
             }
 
             var date = ((DateTime?)value).Value;
-            return date.ToString(Common.Constants.DateUiFormat);
+            if (parameter == null)
+            {
+                return date.ToString(Common.Constants.DateUiFormat);
+            }
+            else
+            {
+                return date.ToString((string)parameter);
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -49,13 +56,61 @@ namespace Playnite.Converters
         }
     }
 
+    public class MultiNullableDateToCustomFormatStringConverter : MarkupExtension, IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Count() != 2)
+            {
+                return string.Empty;
+            }
+
+            if (values[0] == null || values[1] == null)
+            {
+                return string.Empty;
+            }
+
+            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue)
+            {
+                return string.Empty;
+            }
+
+            var date = ((DateTime?)values[0]).Value;
+            if (values[1] is string format)
+            {
+                return date.ToString(format);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+
     public class ReleaseDateToStringConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is ReleaseDate date)
             {
-                return date.Serialize();
+                if (parameter != null && date.Month != null && date.Day != null)
+                {
+                    return DateTime.ParseExact($"{date.Month}/{date.Day}/{date.Year}" ,"d", CultureInfo.InvariantCulture).ToString((string)parameter);
+                }
+                else
+                {
+                    return date.Serialize();
+                }
             }
             else if (value == null)
             {
@@ -99,47 +154,6 @@ namespace Playnite.Converters
             }
 
             return new ValidationResult(true, null);
-        }
-    }
-
-    public class MultiNullableDateToCustomFormatStringConverter : MarkupExtension, IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (values.Count() != 2)
-            {
-                return string.Empty;
-            }
-
-            if (values[0] == null || values[1] == null)
-            {
-                return string.Empty;
-            }
-
-            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue)
-            {
-                return string.Empty;
-            }
-
-            var date = ((DateTime?)values[0]).Value;
-            if (values[1] is string format)
-            {
-                return date.ToString(format);
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
         }
     }
 

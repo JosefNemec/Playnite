@@ -317,11 +317,35 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand ResetDefaultCustomDateTimeFormatCommand
+        public RelayCommand ResetDateTimeFormatAddedCommand
         {
             get => new RelayCommand(() =>
             {
-                settings.CustomDateTimeFormat = Constants.DefaultListViewDateTimeFormat;
+                settings.DateTimeFormatAdded = Constants.DefaultDateTimeFormat;
+            });
+        }
+
+        public RelayCommand ResetDateTimeFormatModifiedCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                settings.DateTimeFormatModified = Constants.DefaultDateTimeFormat;
+            });
+        }
+
+        public RelayCommand ResetDateTimeFormatRecentActivityCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                settings.DateTimeFormatRecentActivity = Constants.DefaultDateTimeFormat;
+            });
+        }
+
+        public RelayCommand ResetDateTimeFormatReleaseDateCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                settings.DateTimeFormatReleaseDate = Constants.DefaultDateTimeFormat;
             });
         }
 

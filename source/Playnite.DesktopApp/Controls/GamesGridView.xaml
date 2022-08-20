@@ -134,7 +134,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateReleaseDate">
-            <TextBlock Text="{Binding ReleaseDate, Mode=OneWay}" />
+            <TextBlock Text="{Binding ReleaseDate, Mode=OneWay, Converter={StaticResource ReleaseDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatReleaseDate, DirectValue=True}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateGenres">
@@ -228,16 +228,9 @@
                                 Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.RecentActivity}}"/>
             </StackPanel>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="CellTemplateRecentActivity">
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                        <Binding Path="Modified" Mode="OneWay" />
-                        <Binding Path="Settings.CustomDateTimeFormat" Mode="OneWay" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+            <TextBlock Text="{Binding RecentActivity, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatRecentActivity, DirectValue=True}}" />
         </DataTemplate>
         
         <DataTemplate x:Key="HeaderTemplatePlaytime">
@@ -345,14 +338,7 @@
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplateAdded">
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                        <Binding Path="Modified" Mode="OneWay" />
-                        <Binding Path="Settings.CustomDateTimeFormat" Mode="OneWay" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+            <TextBlock Text="{Binding Added, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatAdded, DirectValue=True}}" />
         </DataTemplate>
         
         <DataTemplate x:Key="HeaderTemplateModified">
@@ -364,14 +350,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateModified">
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                        <Binding Path="Modified" Mode="OneWay" />
-                        <Binding Path="Settings.CustomDateTimeFormat" Mode="OneWay" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+            <TextBlock Text="{Binding Modified, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatModified, DirectValue=True}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateUserScore">
