@@ -31,268 +31,270 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Margin="20">
-        <controls:GridEx ColumnCount="2" RowCount="3">
-            <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
-                            ContentStringFormat="{}{0} *"
-                            Grid.Column="0" Grid.Row="0"
-                            Margin="0,10,10,10" VerticalAlignment="Center" />
-            <ComboBox SelectedValue="{Binding Settings.DefaultIconSource}"
-                      VerticalAlignment="Center" MinWidth="110"
-                      Grid.Column="1" Grid.Row="0">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:Enum}">
-                        <p:DefaultIconSourceOptions>Library</p:DefaultIconSourceOptions>
-                        <p:DefaultIconSourceOptions>Platform</p:DefaultIconSourceOptions>
-                        <p:DefaultIconSourceOptions>General</p:DefaultIconSourceOptions>
-                        <p:DefaultIconSourceOptions>None</p:DefaultIconSourceOptions>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="20">
+            <controls:GridEx ColumnCount="2" RowCount="3">
+                <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
+                                ContentStringFormat="{}{0} *"
+                                Grid.Column="0" Grid.Row="0"
+                                Margin="0,10,10,10" VerticalAlignment="Center" />
+                <ComboBox SelectedValue="{Binding Settings.DefaultIconSource}"
+                          VerticalAlignment="Center" MinWidth="110"
+                          Grid.Column="1" Grid.Row="0">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:Enum}">
+                            <p:DefaultIconSourceOptions>Library</p:DefaultIconSourceOptions>
+                            <p:DefaultIconSourceOptions>Platform</p:DefaultIconSourceOptions>
+                            <p:DefaultIconSourceOptions>General</p:DefaultIconSourceOptions>
+                            <p:DefaultIconSourceOptions>None</p:DefaultIconSourceOptions>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-            <ContentControl Content="{DynamicResource LOCSettingsDefaulCoverSource}"
-                            ContentStringFormat="{}{0} *"
-                            Grid.Column="0" Grid.Row="1"
-                            Margin="0,10,10,10" VerticalAlignment="Center" />
-            <ComboBox SelectedValue="{Binding Settings.DefaultCoverSource}"
-                      VerticalAlignment="Center"
-                      Grid.Column="1" Grid.Row="1">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:Enum}">
-                        <p:DefaultCoverSourceOptions>Platform</p:DefaultCoverSourceOptions>
-                        <p:DefaultCoverSourceOptions>General</p:DefaultCoverSourceOptions>
-                        <p:DefaultCoverSourceOptions>None</p:DefaultCoverSourceOptions>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                <ContentControl Content="{DynamicResource LOCSettingsDefaulCoverSource}"
+                                ContentStringFormat="{}{0} *"
+                                Grid.Column="0" Grid.Row="1"
+                                Margin="0,10,10,10" VerticalAlignment="Center" />
+                <ComboBox SelectedValue="{Binding Settings.DefaultCoverSource}"
+                          VerticalAlignment="Center"
+                          Grid.Column="1" Grid.Row="1">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:Enum}">
+                            <p:DefaultCoverSourceOptions>Platform</p:DefaultCoverSourceOptions>
+                            <p:DefaultCoverSourceOptions>General</p:DefaultCoverSourceOptions>
+                            <p:DefaultCoverSourceOptions>None</p:DefaultCoverSourceOptions>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-            <ContentControl Content="{DynamicResource LOCSettingsDefaulBackgroundSource}"
-                            ContentStringFormat="{}{0} *"
-                            Grid.Column="0" Grid.Row="2"
-                            Margin="0,10,10,10" VerticalAlignment="Center" />
-            <ComboBox SelectedValue="{Binding Settings.DefaultBackgroundSource}"
-                      VerticalAlignment="Center"
-                      Grid.Column="1" Grid.Row="2">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:Enum}">
-                        <p:DefaultBackgroundSourceOptions>Library</p:DefaultBackgroundSourceOptions>
-                        <p:DefaultBackgroundSourceOptions>Platform</p:DefaultBackgroundSourceOptions>
-                        <p:DefaultBackgroundSourceOptions>Cover</p:DefaultBackgroundSourceOptions>
-                        <p:DefaultBackgroundSourceOptions>None</p:DefaultBackgroundSourceOptions>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </controls:GridEx>
+                <ContentControl Content="{DynamicResource LOCSettingsDefaulBackgroundSource}"
+                                ContentStringFormat="{}{0} *"
+                                Grid.Column="0" Grid.Row="2"
+                                Margin="0,10,10,10" VerticalAlignment="Center" />
+                <ComboBox SelectedValue="{Binding Settings.DefaultBackgroundSource}"
+                          VerticalAlignment="Center"
+                          Grid.Column="1" Grid.Row="2">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:Enum}">
+                            <p:DefaultBackgroundSourceOptions>Library</p:DefaultBackgroundSourceOptions>
+                            <p:DefaultBackgroundSourceOptions>Platform</p:DefaultBackgroundSourceOptions>
+                            <p:DefaultBackgroundSourceOptions>Cover</p:DefaultBackgroundSourceOptions>
+                            <p:DefaultBackgroundSourceOptions>None</p:DefaultBackgroundSourceOptions>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </controls:GridEx>
 
-        <CheckBox Content="{DynamicResource LOCSettingsHiddenInQuickLaunch}" Margin="0,15,0,0"
-                  ToolTip="{DynamicResource LOCSettingsHiddenInQuickLaunchTooltip}"
-                  IsChecked="{Binding Settings.ShowHiddenInQuickLaunch}"/>
+            <CheckBox Content="{DynamicResource LOCSettingsHiddenInQuickLaunch}" Margin="0,15,0,0"
+                      ToolTip="{DynamicResource LOCSettingsHiddenInQuickLaunchTooltip}"
+                      IsChecked="{Binding Settings.ShowHiddenInQuickLaunch}"/>
 
-        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-            <TextBlock Text="{DynamicResource LOCSettingsQuicLaunchItems}"
-                       VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <pctrls:NullIntNumericBox MinValue="0" MaxValue="99" Width="50"
-                                   Value="{Binding Settings.QuickLaunchItems}"/>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <TextBlock Text="{DynamicResource LOCSettingsQuicLaunchItems}"
+                           VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <pctrls:NullIntNumericBox MinValue="0" MaxValue="99" Width="50"
+                                       Value="{Binding Settings.QuickLaunchItems}"/>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal"  Margin="0,25,0,0">
-            <ContentControl Content="{DynamicResource LOCSettingsFontSizes}" Margin="0,0,10,0"
-                            ContentStringFormat="{}{0} *" VerticalAlignment="Top" />
-            <UniformGrid Rows="2">
-                <UniformGrid.Resources>
-                    <Style TargetType="pctrls:NullIntNumericBox" BasedOn="{StaticResource {x:Type pctrls:NullIntNumericBox}}">
-                        <Setter Property="Margin" Value="5,0,5,0" />
-                        <Setter Property="Width" Value="50" />
-                        <Setter Property="MinValue" Value="9" />
-                        <Setter Property="MaxValue" Value="100" />
-                    </Style>
-                </UniformGrid.Resources>
-                <TextBlock Text="{DynamicResource LOCFontSmall}" Margin="5,0,5,0"/>
-                <TextBlock Text="{DynamicResource LOCFontNormal}" Margin="5,0,5,0"/>
-                <TextBlock Text="{DynamicResource LOCFontLarge}" Margin="5,0,5,0"/>
-                <TextBlock Text="{DynamicResource LOCFontLarger}" Margin="5,0,5,0"/>
-                <TextBlock Text="{DynamicResource LOCFontLargest}" Margin="5,0,5,0"/>
+            <StackPanel Orientation="Horizontal"  Margin="0,25,0,0">
+                <ContentControl Content="{DynamicResource LOCSettingsFontSizes}" Margin="0,0,10,0"
+                                ContentStringFormat="{}{0} *" VerticalAlignment="Top" />
+                <UniformGrid Rows="2">
+                    <UniformGrid.Resources>
+                        <Style TargetType="pctrls:NullIntNumericBox" BasedOn="{StaticResource {x:Type pctrls:NullIntNumericBox}}">
+                            <Setter Property="Margin" Value="5,0,5,0" />
+                            <Setter Property="Width" Value="50" />
+                            <Setter Property="MinValue" Value="9" />
+                            <Setter Property="MaxValue" Value="100" />
+                        </Style>
+                    </UniformGrid.Resources>
+                    <TextBlock Text="{DynamicResource LOCFontSmall}" Margin="5,0,5,0"/>
+                    <TextBlock Text="{DynamicResource LOCFontNormal}" Margin="5,0,5,0"/>
+                    <TextBlock Text="{DynamicResource LOCFontLarge}" Margin="5,0,5,0"/>
+                    <TextBlock Text="{DynamicResource LOCFontLarger}" Margin="5,0,5,0"/>
+                    <TextBlock Text="{DynamicResource LOCFontLargest}" Margin="5,0,5,0"/>
 
-                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeSmall}"/>
-                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSize}"/>
-                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLarge}"/>
-                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLarger}"/>
-                <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLargest}"/>
-            </UniformGrid>
+                    <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeSmall}"/>
+                    <pctrls:NullIntNumericBox Value="{Binding Settings.FontSize}"/>
+                    <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLarge}"/>
+                    <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLarger}"/>
+                    <pctrls:NullIntNumericBox Value="{Binding Settings.FontSizeLargest}"/>
+                </UniformGrid>
 
-            <Button Content="{DynamicResource LOCDefault}" VerticalAlignment="Bottom"
-                    Margin="10,0,0,0" Command="{Binding SetDefaultFontSizes}"/>
-        </StackPanel>
+                <Button Content="{DynamicResource LOCDefault}" VerticalAlignment="Bottom"
+                        Margin="10,0,0,0" Command="{Binding SetDefaultFontSizes}"/>
+            </StackPanel>
 
-        <GridEx ColumnCount="2" RowCount="2" Margin="0,20,0,0">
-            <ContentControl Content="{DynamicResource LOCSettingsTextRenderingMode}" Grid.Column="0" Grid.Row="0"
-                            Margin="0,10,10,10" VerticalAlignment="Center"
-                            ContentStringFormat="{}{0} *"/>
-            <ComboBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" MinWidth="100"
-                      SelectedValue="{Binding Settings.TextRenderingMode}">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:Enum}">
-                        <p:TextRenderingModeOptions>Auto</p:TextRenderingModeOptions>
-                        <p:TextRenderingModeOptions>Aliased</p:TextRenderingModeOptions>
-                        <p:TextRenderingModeOptions>Grayscale</p:TextRenderingModeOptions>
-                        <p:TextRenderingModeOptions>ClearType</p:TextRenderingModeOptions>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <GridEx ColumnCount="2" RowCount="2" Margin="0,20,0,0">
+                <ContentControl Content="{DynamicResource LOCSettingsTextRenderingMode}" Grid.Column="0" Grid.Row="0"
+                                Margin="0,10,10,10" VerticalAlignment="Center"
+                                ContentStringFormat="{}{0} *"/>
+                <ComboBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" MinWidth="100"
+                          SelectedValue="{Binding Settings.TextRenderingMode}">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:Enum}">
+                            <p:TextRenderingModeOptions>Auto</p:TextRenderingModeOptions>
+                            <p:TextRenderingModeOptions>Aliased</p:TextRenderingModeOptions>
+                            <p:TextRenderingModeOptions>Grayscale</p:TextRenderingModeOptions>
+                            <p:TextRenderingModeOptions>ClearType</p:TextRenderingModeOptions>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-            <ContentControl Content="{DynamicResource LOCSettingsTextFormattingMode}" Grid.Column="0" Grid.Row="1"
-                            Margin="0,10,10,10" VerticalAlignment="Center"
-                            ContentStringFormat="{}{0} *"/>
-            <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" MinWidth="100"
-                      SelectedValue="{Binding Settings.TextFormattingMode}">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:Enum}">
-                        <p:TextFormattingModeOptions>Ideal</p:TextFormattingModeOptions>
-                        <p:TextFormattingModeOptions>Display</p:TextFormattingModeOptions>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </GridEx>
+                <ContentControl Content="{DynamicResource LOCSettingsTextFormattingMode}" Grid.Column="0" Grid.Row="1"
+                                Margin="0,10,10,10" VerticalAlignment="Center"
+                                ContentStringFormat="{}{0} *"/>
+                <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" MinWidth="100"
+                          SelectedValue="{Binding Settings.TextFormattingMode}">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:Enum}">
+                            <p:TextFormattingModeOptions>Ideal</p:TextFormattingModeOptions>
+                            <p:TextFormattingModeOptions>Display</p:TextFormattingModeOptions>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={pcon:ObjectToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </GridEx>
 
-        <TextBlock Text="{DynamicResource LOCSettingsTextRenderingNotice}"
-                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock Text="{DynamicResource LOCSettingsTextRenderingNotice}"
+                       TextWrapping="Wrap" Margin="0,10,0,0"/>
 
-        <TextBlock Text="{DynamicResource LOCSettingsDatesFormatsLabel}" Margin="0,15,0,0" />
-        <GridEx ColumnCount="4" StarColumns="3" RowCount="4" AutoLayoutColumns="4">
+            <TextBlock Text="{DynamicResource LOCSettingsDatesFormatsLabel}" Margin="0,15,0,0" />
+            <GridEx ColumnCount="4" StarColumns="3" RowCount="4" AutoLayoutColumns="4">
             
-            <!--Added-->
-            <TextBlock Text="{DynamicResource LOCAddedLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
-            <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                <TextBox.Text>
-                    <Binding Path="Settings.DateTimeFormatAdded"
-                             UpdateSourceTrigger="PropertyChanged" 
-                             ValidatesOnDataErrors="True"
-                             NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <pcon:DateTimeFormatToStringValidation />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
-                    Command="{Binding ResetDateTimeFormatAddedCommand}" />
+                <!--Added-->
+                <TextBlock Text="{DynamicResource LOCAddedLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="Settings.DateTimeFormatAdded"
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 ValidatesOnDataErrors="True"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <pcon:DateTimeFormatToStringValidation />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                        Command="{Binding ResetDateTimeFormatAddedCommand}" />
 
-            <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                        <Binding Source="{StaticResource DateTime}" />
-                        <Binding Path="Settings.DateTimeFormatAdded" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
+                            <Binding Source="{StaticResource DateTime}" />
+                            <Binding Path="Settings.DateTimeFormatAdded" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
 
-            <!--Modified-->
-            <TextBlock Text="{DynamicResource LOCModifiedLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
-            <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                <TextBox.Text>
-                    <Binding Path="Settings.DateTimeFormatModified"
-                             UpdateSourceTrigger="PropertyChanged" 
-                             ValidatesOnDataErrors="True"
-                             NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <pcon:DateTimeFormatToStringValidation />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
-                    Command="{Binding ResetDateTimeFormatModifiedCommand}" />
+                <!--Modified-->
+                <TextBlock Text="{DynamicResource LOCModifiedLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="Settings.DateTimeFormatModified"
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 ValidatesOnDataErrors="True"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <pcon:DateTimeFormatToStringValidation />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                        Command="{Binding ResetDateTimeFormatModifiedCommand}" />
 
-            <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                        <Binding Source="{StaticResource DateTime}" />
-                        <Binding Path="Settings.DateTimeFormatModified" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
+                            <Binding Source="{StaticResource DateTime}" />
+                            <Binding Path="Settings.DateTimeFormatModified" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
 
-            <!--RecentActivity-->
-            <TextBlock Text="{DynamicResource LOCRecentActivityLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
-            <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                <TextBox.Text>
-                    <Binding Path="Settings.DateTimeFormatRecentActivity"
-                             UpdateSourceTrigger="PropertyChanged" 
-                             ValidatesOnDataErrors="True"
-                             NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <pcon:DateTimeFormatToStringValidation />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
-                    Command="{Binding ResetDateTimeFormatRecentActivityCommand}" />
+                <!--RecentActivity-->
+                <TextBlock Text="{DynamicResource LOCRecentActivityLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="Settings.DateTimeFormatRecentActivity"
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 ValidatesOnDataErrors="True"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <pcon:DateTimeFormatToStringValidation />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                        Command="{Binding ResetDateTimeFormatRecentActivityCommand}" />
 
-            <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                        <Binding Source="{StaticResource DateTime}" />
-                        <Binding Path="Settings.DateTimeFormatRecentActivity" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
+                            <Binding Source="{StaticResource DateTime}" />
+                            <Binding Path="Settings.DateTimeFormatRecentActivity" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
 
-            <!--ReleaseDate-->
-            <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}" Margin="0,5,0,0" VerticalAlignment="Center" />
-            <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                <TextBox.Text>
-                    <Binding Path="Settings.DateTimeFormatReleaseDate"
-                             UpdateSourceTrigger="PropertyChanged" 
-                             ValidatesOnDataErrors="True"
-                             NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <pcon:DateTimeFormatToStringValidation />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
-                    Command="{Binding ResetDateTimeFormatReleaseDateCommand}" />
+                <!--ReleaseDate-->
+                <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="Settings.DateTimeFormatReleaseDate"
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 ValidatesOnDataErrors="True"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <pcon:DateTimeFormatToStringValidation />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                        Command="{Binding ResetDateTimeFormatReleaseDateCommand}" />
 
-            <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                        <Binding Source="{StaticResource DateTime}" />
-                        <Binding Path="Settings.DateTimeFormatReleaseDate" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-        </GridEx>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
+                            <Binding Source="{StaticResource DateTime}" />
+                            <Binding Path="Settings.DateTimeFormatReleaseDate" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </GridEx>
 
-        <Button Content="{DynamicResource LOCMenuHelpTitle}"
+            <Button Content="{DynamicResource LOCMenuHelpTitle}"
                     Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                     CommandParameter="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings"
                     HorizontalAlignment="Left" Margin="0,10,0,0" />
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
