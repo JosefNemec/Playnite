@@ -372,12 +372,14 @@ namespace Playnite.DesktopApp.Controls.Views
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.PluginId)),
                 GetGameBindingPath($"{nameof(GamesCollectionViewEntry.LibraryPlugin)}.{nameof(GamesCollectionViewEntry.LibraryPlugin.Name)}"),
                 nameof(GameDetailsViewModel.SourceLibraryVisibility));
-
+            
             SetGameItemButtonBinding(ref ButtonReleaseDate, "PART_ButtonReleaseDate",
                 nameof(GameDetailsViewModel.SetReleaseDateFilterCommand),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
-                nameof(GameDetailsViewModel.ReleaseDateVisibility));
+                nameof(GameDetailsViewModel.ReleaseDateVisibility),
+                new ReleaseDateToStringConverter(),
+                mainModel.AppSettings.DateTimeFormatReleaseDate);
 
             SetGameItemButtonBinding(ref ButtonVersion, "PART_ButtonVersion",
                 nameof(GameDetailsViewModel.SetVersionFilterCommand),
@@ -566,7 +568,7 @@ namespace Playnite.DesktopApp.Controls.Views
             }
         }
 
-        private void SetGameItemButtonBinding(ref Button button, string partId, string command, string commandParameter, string content, string visibility, IValueConverter contentConverter = null)
+        private void SetGameItemButtonBinding(ref Button button, string partId, string command, string commandParameter, string content, string visibility, IValueConverter contentConverter = null, object contentConverterParameter = null)
         {
             button = Template.FindName(partId, this) as Button;
             if (button != null)
@@ -580,7 +582,8 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(button,
                     Button.ContentProperty,
                     content,
-                    converter: contentConverter);
+                    converter: contentConverter,
+                    converterParameter: contentConverterParameter);
                 BindingTools.SetBinding(button,
                     Button.VisibilityProperty,
                     visibility);
