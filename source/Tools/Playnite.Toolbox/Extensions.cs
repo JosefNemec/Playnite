@@ -18,9 +18,9 @@ namespace Playnite.Toolbox
         private const string nameReplaceMask = "_name_";
         private const string namespaceReplaceMask = "_namespace_";
         private const string guidReplaceMask = "00000000-0000-0000-0000-000000000001";
-        private const string genericCsproj = "GenericPlugin.csproj";
-        private const string libraryCsproj = "CustomLibraryPlugin.csproj";
-        private const string metadataCsproj = "CustomMetadataPlugin.csproj";
+        private const string genericPluginProjectName = "GenericPlugin";
+        private const string libraryPluginProjectName = "CustomLibraryPlugin";
+        private const string metadataPluginProjectName = "CustomMetadataPlugin";
 
         public static string ConvertToValidIdentifierName(string input)
         {
@@ -156,19 +156,27 @@ namespace Playnite.Toolbox
                 }
             }
 
+            var outProjectFile = Path.Combine(outDir, normalizedName + ".csproj");
+            var outSolutionFile = Path.Combine(outDir, normalizedName + ".sln");
+            var baseProjectName = genericPluginProjectName;
+
             switch (type)
             {
                 case ExtensionType.GenericPlugin:
-                    File.Move(Path.Combine(outDir, genericCsproj), Path.Combine(outDir, $"{normalizedName}.csproj"));
+                    baseProjectName = genericPluginProjectName;
                     break;
                 case ExtensionType.GameLibrary:
-                    File.Move(Path.Combine(outDir, libraryCsproj), Path.Combine(outDir, $"{normalizedName}.csproj"));
+                    baseProjectName = libraryPluginProjectName;
                     break;
                 case ExtensionType.MetadataProvider:
-                    File.Move(Path.Combine(outDir, metadataCsproj), Path.Combine(outDir, $"{normalizedName}.csproj"));
+                    baseProjectName = metadataPluginProjectName;
                     break;
             }
 
+            File.Move(Path.Combine(outDir, baseProjectName + ".csproj"), outProjectFile);
+            File.Move(Path.Combine(outDir, baseProjectName + ".sln"), outSolutionFile);
+            FileSystem.ReplaceStringInFile(outProjectFile, baseProjectName, normalizedName);
+            FileSystem.ReplaceStringInFile(outSolutionFile, baseProjectName, normalizedName);
             return outDir;
         }
 
