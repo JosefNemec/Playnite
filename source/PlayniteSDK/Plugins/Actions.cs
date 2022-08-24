@@ -24,7 +24,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    /// Repsents controller for automatic handling of game startup.
+    /// Represents controller for automatic handling of game startup.
     /// </summary>
     public sealed class AutomaticPlayController : PlayController
     {
@@ -88,7 +88,7 @@ namespace Playnite.SDK.Plugins
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets game attrached to a specific controller operation.
+        /// Gets or sets game attached to a specific controller operation.
         /// </summary>
         public Game Game { get; set; }
 
@@ -115,7 +115,7 @@ namespace Playnite.SDK.Plugins
         internal event EventHandler<GameInstalledEventArgs> Installed;
 
         /// <summary>
-        /// Creantes new instance of <see cref="InstallController"/>.
+        /// Creates new instance of <see cref="InstallController"/>.
         /// </summary>
         /// <param name="game"></param>
         public InstallController(Game game) : base(game)
@@ -260,7 +260,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///  Represents arguments for play action.
+    /// Represents arguments for play action.
     /// </summary>
     public class PlayActionArgs
     {

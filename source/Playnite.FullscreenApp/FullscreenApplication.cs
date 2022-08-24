@@ -191,7 +191,7 @@ namespace Playnite.FullscreenApp
 
         public override void ShowWindowsNotification(string title, string body, Action action)
         {
-            // Fullscreen mode shoulnd't show anything since user has no way how inteact with it
+            // Fullscreen mode shouldn't show anything since user has no way to interact with it
         }
 
         public override void SwitchAppMode(ApplicationMode mode)

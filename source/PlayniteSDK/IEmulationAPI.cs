@@ -18,7 +18,7 @@ namespace Playnite.SDK
         IList<EmulatedPlatform> Platforms { get; }
 
         /// <summary>
-        /// Gets built-in region defitions.
+        /// Gets built-in region definitions.
         /// </summary>
         IList<EmulatedRegion> Regions { get; }
 

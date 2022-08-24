@@ -91,7 +91,7 @@ namespace Playnite.SDK.Plugins
 
         private double progressMaximum = 100;
         /// <summary>
-        /// Gets or sets maximum progress value;
+        /// Gets or sets maximum progress value.
         /// </summary>
         public double ProgressMaximum
         {

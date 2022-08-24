@@ -14,7 +14,7 @@ namespace Playnite.SDK
     public interface IPlayniteAPI
     {
         /// <summary>
-        /// Gest main view API.
+        /// Gets main view API.
         /// </summary>
         IMainViewAPI MainView { get; }
 

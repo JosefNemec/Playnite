@@ -31,7 +31,7 @@ namespace Playnite.SDK.Models
 
         private string path;
         /// <summary>
-        /// Gets rom path.
+        /// Gets ROM path.
         /// </summary>
         public string Path
         {

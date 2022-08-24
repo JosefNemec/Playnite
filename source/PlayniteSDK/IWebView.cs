@@ -234,7 +234,7 @@ namespace Playnite.SDK
     }
 
     /// <summary>
-    /// Represetn web view cookie object.
+    /// Represents web view cookie object.
     /// </summary>
     public class HttpCookie
     {

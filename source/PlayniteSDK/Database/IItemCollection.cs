@@ -199,7 +199,7 @@ namespace Playnite.SDK
         IEnumerable<TItem> Add(List<string> items, Func<TItem, string, bool> existingComparer);
 
         /// <summary>
-        /// Adds itemss to into collection.
+        /// Adds items to collection.
         /// </summary>
         /// <param name="items">Item to be added.</param>
         void Add(IEnumerable<TItem> items);
@@ -247,7 +247,7 @@ namespace Playnite.SDK
         void EndBufferUpdate();
 
         /// <summary>
-        /// Gets clone of an collection.
+        /// Gets clone of a collection.
         /// </summary>
         /// <returns></returns>
         IEnumerable<TItem> GetClone();
