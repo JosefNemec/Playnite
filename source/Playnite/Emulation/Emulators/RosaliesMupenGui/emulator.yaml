@@ -1,0 +1,9 @@
+Id: rosaliesmupengui
+Name: Rosalie's Mupen GUI
+Website: 'https://github.com/Rosalie241/RMG'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    ImageExtensions: [n64, z64, v64, ndd, d64, zip]
+    Platforms: [nintendo_64]
+    StartupExecutable: ^RMG\.exe$
