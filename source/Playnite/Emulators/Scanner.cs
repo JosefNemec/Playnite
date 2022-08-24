@@ -583,14 +583,27 @@ namespace Playnite.Emulators
 
                 try
                 {
+                    if (importedFiles.ContainsString(filePath, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return;
+                    }
+
                     var childFiles = playListParser(filePath);
                     if (childFiles.HasItems())
                     {
-                        childFiles.ForEach(a => files.Remove(a));
+                        foreach (var child in childFiles)
+                        {
+                            var existingFile = files.FirstOrDefault(a => a.Equals(child, StringComparison.OrdinalIgnoreCase));
+                            if (existingFile != null)
+                            {
+                                files.Remove(existingFile);
+                            }
+                        }
                     }
-
-                    if (importedFiles.ContainsString(filePath, StringComparison.OrdinalIgnoreCase))
+                    else
                     {
+                        logger.Trace($"Detected playlist file with no referenced files: {filePath}");
+                        addRom(new ScannedRom(filePath));
                         return;
                     }
 
@@ -665,7 +678,8 @@ namespace Playnite.Emulators
             // Cue files have priority since they will potentionaliy remove additional .bin files to match
             if (supportedExtensions.ContainsString("cue", StringComparison.OrdinalIgnoreCase))
             {
-                foreach (var cueFile in files.Where(a => a.EndsWith(".cue", StringComparison.OrdinalIgnoreCase)))
+                // ToList is needed here because we are potentionally modifing original files collection when playlist files are excluded
+                foreach (var cueFile in files.Where(a => a.EndsWith(".cue", StringComparison.OrdinalIgnoreCase)).ToList())
                 {
                     processPlayListFile(cueFile, (cFile) => CueSheet.GetFileEntries(cFile).Select(a => Path.Combine(directory, a.Path)).ToList());
                 }
@@ -674,7 +688,8 @@ namespace Playnite.Emulators
             // The same as with cue but for m3u playlist
             if (supportedExtensions.ContainsString("m3u", StringComparison.OrdinalIgnoreCase))
             {
-                foreach (var m3uFile in files.Where(a => a.EndsWith(".m3u", StringComparison.OrdinalIgnoreCase)))
+                // ToList is needed here because we are potentionally modifing original files collection when playlist files are excluded
+                foreach (var m3uFile in files.ToList().Where(a => a.EndsWith(".m3u", StringComparison.OrdinalIgnoreCase)).ToList())
                 {
                     processPlayListFile(m3uFile, (mFile) => M3U.GetEntries(mFile).Select(a => Path.Combine(directory, a.Path)).ToList());
                 }
