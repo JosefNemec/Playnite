@@ -22,7 +22,7 @@ Model changes
 Multiple changes have been made to various data models, properties removed, renamed, added. This primarily affects `Game` and `Emulator` objects.
 
 > [!NOTE]
-> Since PowerShell is not statically typed language there's no easy way how to find all model changes you need to fix. Please take care and make sure that you fix  and test your code properly, especially if you are writing data into game library, since you could write bad data it if you don't adjust your scripts properly.
+> Since PowerShell is not a statically typed language there's no easy way how to find all model changes you need to fix. Please take care and make sure that you fix and test your code properly, especially if you are writing data to the game library, since you could write bad data to it if you don't adjust your scripts properly.
 
 File changes:
 
@@ -77,7 +77,7 @@ Metadata sources no longer return data as strings but instead use `MetadataPrope
 Other
 ---------------------
 
-Extensions no longer log into main log file (playnite.log), but use separate file called `extensions.log`.
+Extensions no longer log to main log file (playnite.log), but use a separate file called `extensions.log`.
 
 Themes
 ---------------------

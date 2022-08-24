@@ -9,7 +9,7 @@ using System.Windows.Data;
 namespace System.Collections.Generic
 {
     /// <summary>
-    /// Represent comparable database item collection.
+    /// Represents comparable database item collection.
     /// </summary>
     /// <typeparam name="T">Database object type.</typeparam>
     public class ComparableDbItemList<T> : List<T>, IComparable where T : DatabaseObject

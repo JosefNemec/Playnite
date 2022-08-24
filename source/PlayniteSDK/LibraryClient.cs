@@ -12,7 +12,7 @@ namespace Playnite.SDK
     public abstract class LibraryClient
     {
         /// <summary>
-        /// Gets value indicating wheter the client is installed.
+        /// Gets value indicating whether the client is installed.
         /// </summary>
         public abstract bool IsInstalled { get; }
 

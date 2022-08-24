@@ -67,7 +67,7 @@ namespace Playnite.SDK.Plugins
         public string Label { get; set; }
 
         /// <summary>
-        /// Gets or sets search dealy in milliseconds.
+        /// Gets or sets search delay in milliseconds.
         /// </summary>
         public int Delay { get; set; } = 0;
 
@@ -85,7 +85,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    /// Represents generic list with statis items.
+    /// Represents generic list with static items.
     /// </summary>
     public class GenericListSearchContext : SearchContext
     {
@@ -117,12 +117,12 @@ namespace Playnite.SDK.Plugins
         private bool hidden = false;
 
         /// <summary>
-        /// Gets or set value indicating whther uninstalled games should be included.
+        /// Gets or set value indicating whether uninstalled games should be included.
         /// </summary>
         public bool Uninstalled { get => uninstalled; set => SetValue(ref uninstalled, value); }
 
         /// <summary>
-        /// Gets or set value indicating whther hidden games should be included.
+        /// Gets or set value indicating whether hidden games should be included.
         /// </summary>
         public bool Hidden { get => hidden; set => SetValue(ref hidden, value); }
     }

@@ -153,7 +153,7 @@ namespace Playnite.SDK.Plugins
         private const string pluginSettingFileName = "config.json";
 
         /// <summary>
-        /// Gets or set list of global searches.
+        /// Gets or sets list of global searches.
         /// </summary>
         public List<SearchSupport> Searches { get; set; }
 
@@ -249,14 +249,14 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Called when appliaction is stutting down.
+        /// Called when appliaction is shutting down.
         /// </summary>
         public virtual void OnApplicationStopped(OnApplicationStoppedEventArgs args)
         {
         }
 
         /// <summary>
-        /// Called library update has been finished.
+        /// Called when library update has been finished.
         /// </summary>
         public virtual void OnLibraryUpdated(OnLibraryUpdatedEventArgs args)
         {
@@ -434,7 +434,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        ///Gets top panel items provided by this plugin.
+        /// Gets top panel items provided by this plugin.
         /// </summary>
         /// <returns></returns>
         public virtual IEnumerable<TopPanelItem> GetTopPanelItems()

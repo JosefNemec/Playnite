@@ -62,7 +62,7 @@ namespace Playnite.SDK
         string GetFileStoragePath(Guid parentId);
 
         /// <summary>
-        /// Return full path to a file based on database path.
+        /// Returns full path to a file based on database path.
         /// </summary>
         /// <param name="databasePath">Database path as set to game's field.</param>
         /// <returns>Full path to a file.</returns>

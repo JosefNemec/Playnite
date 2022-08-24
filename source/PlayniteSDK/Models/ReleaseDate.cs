@@ -173,7 +173,7 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
-        /// Get release date serialized to a string.
+        /// Gets release date serialized to a string.
         /// </summary>
         /// <returns></returns>
         public string Serialize()

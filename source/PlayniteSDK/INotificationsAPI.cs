@@ -98,7 +98,7 @@ namespace Playnite.SDK
         /// </summary>
         Info,
         /// <summary>
-        /// Error serverity
+        /// Error severity.
         /// </summary>
         Error
     }
