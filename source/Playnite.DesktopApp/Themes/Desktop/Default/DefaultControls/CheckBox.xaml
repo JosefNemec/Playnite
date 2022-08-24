@@ -18,7 +18,7 @@
                     <Border Background="{TemplateBinding Background}"
                             Padding="{TemplateBinding Padding}">
                         <DockPanel>
-                            <Border x:Name="BulletBorder" CornerRadius="{DynamicResource ControlCornerRadius}"
+                            <Border x:Name="BulletBorder" DockPanel.Dock="Left" CornerRadius="{DynamicResource ControlCornerRadius}"
                                     VerticalAlignment="Center"
                                     BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}">
@@ -32,8 +32,8 @@
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Viewbox>
                                 </Grid>
-                            </Border>                            
-                            <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Border>
+                            <ContentPresenter DockPanel.Dock="Left" RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DockPanel>
                     </Border>                    
                     <ControlTemplate.Triggers>
