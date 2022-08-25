@@ -100,6 +100,20 @@ AddSettingsSupport(new AddSettingsSupportArgs
 
 Themes can then reference settings via `PluginSettings` markup. See [theme integration page](../themes/extensionIntegration.md#extension-settings) for more details.
 
+Custom converters for themes
+---------------------
+
+You can provide custom value converters for themes by calling [AddConvertersSupport](xref:Playnite.SDK.Plugins.Plugin.AddConvertersSupport(Playnite.SDK.Plugins.AddConvertersSupportArgs)) method in plugin's constructor, similarly to how custom element support is done.
+
+`AddConvertersSupport` contains several arguments:
+
+|Property|Description|
+|:---|:---|
+|SourceName| Plugin source name used by themes to reference your plugin. |
+|Converters| List of [IValueConverter](https://docs.microsoft.com/en-us/dotnet/api/system.windows.data.ivalueconverter?view=netframework-4.6.2) objects. |
+
+Themes reference converters by their class names so return only once instance of a converter in the converter list.
+
 Theme integration
 ---------------------
 

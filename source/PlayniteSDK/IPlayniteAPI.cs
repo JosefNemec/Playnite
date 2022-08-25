@@ -120,6 +120,13 @@ namespace Playnite.SDK
         /// <param name="source"></param>
         /// <param name="args"></param>
         void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args);
     }
 
     /// <summary>

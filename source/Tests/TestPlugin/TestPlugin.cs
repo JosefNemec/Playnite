@@ -6,6 +6,7 @@ using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace TestPlugin
@@ -87,6 +89,19 @@ namespace TestPlugin
         }
     }
 
+    public class TestConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value?.ToString() + " converted";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class TestPlugin : GenericPlugin
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -120,6 +135,12 @@ namespace TestPlugin
                 new SearchSupport("test", "Testing plugin search", new DefaultSearchContext()),
                 new SearchSupport("slow", "Slow plugin search test", new SlowSearchContext())
             };
+
+            AddConvertersSupport(new AddConvertersSupportArgs
+            {
+                Converters = new List<IValueConverter> { new TestConverter() },
+                SourceName = "TestPlugin",
+            });
         }
 
         public override ISettings GetSettings(bool firstRunSettings)

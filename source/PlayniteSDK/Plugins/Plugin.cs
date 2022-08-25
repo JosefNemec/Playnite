@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Playnite.SDK.Plugins
 {
@@ -106,6 +107,22 @@ namespace Playnite.SDK.Plugins
         ///
         /// </summary>
         public string SettingsRoot { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class AddConvertersSupportArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public List<IValueConverter> Converters { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string SourceName { get; set; }
     }
 
     /// <summary>
@@ -422,6 +439,15 @@ namespace Playnite.SDK.Plugins
         public void AddSettingsSupport(AddSettingsSupportArgs args)
         {
             PlayniteApi.AddSettingsSupport(this, args);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args"></param>
+        public void AddConvertersSupport(AddConvertersSupportArgs args)
+        {
+            PlayniteApi.AddConvertersSupport(this, args);
         }
 
         /// <summary>

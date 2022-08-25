@@ -823,6 +823,22 @@ namespace Playnite.Plugins
             SettingsSupportList.Add(elemSupport);
         }
 
+        public List<PluginConvertersSupport> ConvertersSupportList = new List<PluginConvertersSupport>();
+        public void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args)
+        {
+            if (ConvertersSupportList.Any(a => a.Source == source))
+            {
+                return;
+            }
+
+            ConvertersSupportList.Add(new PluginConvertersSupport
+            {
+                Source = source,
+                Converters = args.Converters,
+                SourceName = args.SourceName
+            });
+        }
+
         public List<TopPanelItem> GetTopPanelPluginItems()
         {
             var res = new List<TopPanelItem>();
@@ -852,6 +868,11 @@ namespace Playnite.Plugins
     }
 
     public class PluginSettingsSupport : AddSettingsSupportArgs
+    {
+        public Plugin Source { get; set; }
+    }
+
+    public class PluginConvertersSupport : AddConvertersSupportArgs
     {
         public Plugin Source { get; set; }
     }
