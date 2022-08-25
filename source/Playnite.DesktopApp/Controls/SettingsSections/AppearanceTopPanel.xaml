@@ -46,6 +46,8 @@
                   Content="{DynamicResource LOCTopPanelSearchBox}" Margin="5" />
             <CheckBox IsChecked="{Binding Settings.ShowTopPanelSearchButton}"
                   Content="{DynamicResource LOCTopPanelSearchButton}" Margin="5" />
+            <CheckBox IsChecked="{Binding Settings.ShowTopPanelViewSelectRandomGameButton}"
+                  Content="{DynamicResource LOCTopPanelViewSelectRandomGameButton}" Margin="5" />
         </UniformGrid>
 
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">

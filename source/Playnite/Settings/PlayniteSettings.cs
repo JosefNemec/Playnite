@@ -1759,6 +1759,17 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelViewSelectRandomGameButton = true;
+        public bool ShowTopPanelViewSelectRandomGameButton
+        {
+            get => showTopPanelViewSelectRandomGameButton;
+            set
+            {
+                showTopPanelViewSelectRandomGameButton = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool showTopPanelSearchButton = true;
         public bool ShowTopPanelSearchButton
         {

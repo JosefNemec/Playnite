@@ -56,6 +56,11 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
 
+    <DataTemplate x:Key="TopPanelViewSelectRandomGameButtonTemplate">
+        <TextBlock Text="&#xefcf;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </DataTemplate>
+    
     <DataTemplate x:Key="TopPanelSearchButtonTemplate">
         <TextBlock Text="&#xed12;" FontFamily="{DynamicResource FontIcoFont}" FontSize="20"
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>

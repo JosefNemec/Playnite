@@ -20,10 +20,10 @@ namespace Playnite.ViewModels
     public class RandomGameSelectViewModel : ObservableObject
     {
         private static ILogger logger = LogManager.GetLogger();
-        private readonly Random random = new Random();
         private readonly IWindowFactory window;
         private readonly IResourceProvider resources;
         private readonly BaseCollectionView collection;
+        private readonly Random random;
         private readonly IGameDatabaseMain database;
 
         public RandomGameSelectAction SelectedAction { get; private set; } = RandomGameSelectAction.None;
@@ -85,6 +85,7 @@ namespace Playnite.ViewModels
         public RandomGameSelectViewModel(
             IGameDatabaseMain database,
             BaseCollectionView collection,
+            Random random,
             IWindowFactory window,
             IResourceProvider resources)
         {
@@ -92,6 +93,7 @@ namespace Playnite.ViewModels
             this.window = window;
             this.resources = resources;
             this.collection = collection;
+            this.random = random;
         }
 
         public bool? OpenView()

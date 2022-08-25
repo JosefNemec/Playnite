@@ -53,6 +53,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TopPanelWrapperItem ButtonSwitchGridView;
         private TopPanelWrapperItem ButtonSwitchListView;
         private TopPanelWrapperItem ButtonSelectRandomGame;
+        private TopPanelWrapperItem ButtonViewSelectRandomGame;
 
         private Canvas LeftViewSeparator = new Canvas();
         private Canvas RightViewSeparator = new Canvas();
@@ -117,6 +118,7 @@ namespace Playnite.DesktopApp.Controls.Views
             ButtonSwitchGridView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGridViewSwitch;
             ButtonSwitchListView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelListViewSwitch;
             ButtonSelectRandomGame.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelSelectRandomGameButton;
+            ButtonViewSelectRandomGame.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelViewSelectRandomGameButton;
 
             var showSeparators = ButtonSwitchDetailsView.Visible || ButtonSwitchGridView.Visible || ButtonSwitchListView.Visible;
             LeftViewSeparator.Visibility = showSeparators ? Visibility.Visible : Visibility.Collapsed;
@@ -207,6 +209,7 @@ namespace Playnite.DesktopApp.Controls.Views
                     converter: new BooleanToVisibilityConverter());
                 PanelMainItems.Children.Add(updatesButton);
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelSelectRandomGameButtonTemplate", mainModel.SelectRandomGameCommand, ResourceProvider.GetString(LOC.TopPanelSelectRandomGameButton), out ButtonSelectRandomGame));
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelViewSelectRandomGameButtonTemplate", mainModel.ViewSelectRandomGameCommand, ResourceProvider.GetString(LOC.TopPanelViewSelectRandomGameButton), out ButtonViewSelectRandomGame));
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelExplorerSwitchTemplate", mainModel.ToggleExplorerPanelCommand, ResourceProvider.GetString(LOC.TopPanelExplorerSwitch), out ButtonExplorerSwitch));
                 SetButtonVisibility();
             }
