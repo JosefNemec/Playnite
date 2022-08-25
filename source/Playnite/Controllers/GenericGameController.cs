@@ -44,6 +44,12 @@ namespace Playnite.Controllers
 
         internal OnGameStartingEventArgs StartingArgs { get; private set; }
 
+        // These are stored for emulator scripts because they can be executed in non-linear fasion
+        private string startedRomFile;
+        private Emulator startedEmulator;
+        private EmulatorProfile startedEmulatorProfile;
+        private string startedEmulatorDir;
+
         public GenericPlayController(
             GameDatabase db,
             Game game,
@@ -137,7 +143,7 @@ namespace Playnite.Controllers
 
                     startupDir = expandedProfile.WorkingDirectory;
                     startupPath = expandedProfile.Executable;
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec);
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), expandedProfile.GetClone());
                 }
             }
             else if (currentEmuProfile is BuiltInEmulatorProfile builtIn)
@@ -199,7 +205,7 @@ namespace Playnite.Controllers
                         }
                     }
 
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec);
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), currentEmuProfile.GetClone());
                 }
             }
             else
@@ -208,31 +214,36 @@ namespace Playnite.Controllers
             }
         }
 
-        private void StartEmulatorProcess(string path, string args, string workDir, string emulatorDir, string romPath, bool asyncExec)
+        private void StartEmulatorProcess(string path, string args, string workDir, string emulatorDir, string romPath, bool asyncExec, Emulator emulator, EmulatorProfile emuProfile)
         {
+            startedRomFile = romPath;
+            startedEmulator = emulator;
+            startedEmulatorProfile = emuProfile;
+            startedEmulatorDir = emulatorDir;
+
             if (asyncExec)
             {
-                ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath);
+                ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath, emulator, emuProfile);
 
                 procMon = new ProcessMonitor();
                 procMon.TreeDestroyed += Monitor_EmulatedTreeDestroyed;
                 var process = ProcessStarter.StartProcess(path, args, workDir);
 
                 stopWatch = Stopwatch.StartNew();
-                ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath);
+                ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
                 InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = process.Id });
                 procMon.WatchProcessTree(process);
             }
             else
             {
-                ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath);
+                ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath, emulator, emuProfile);
                 ProcessStarter.StartProcess(path, args, workDir);
-                ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath);
-                ExecuteEmulatorScript(currentEmuProfile.ExitScript, emulatorDir, romPath);
+                ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
+                ExecuteEmulatorScript(currentEmuProfile.ExitScript, emulatorDir, romPath, emulator, emuProfile);
             }
         }
 
-        private void ExecuteEmulatorScript(string script, string emulatorDir, string romPath)
+        private void ExecuteEmulatorScript(string script, string emulatorDir, string romPath, Emulator emulator, EmulatorProfile emuProfile)
         {
             if (script.IsNullOrEmpty())
             {
@@ -247,7 +258,9 @@ namespace Playnite.Controllers
                     {  "Game", Game.GetClone() },
                     {  "StartingArgs", StartingArgs },
                     {  "SourceAction", StartingArgs.SourceAction },
-                    {  "SelectedRomFile", StartingArgs.SelectedRomFile }
+                    {  "SelectedRomFile", romPath },
+                    {  "Emulator", emulator },
+                    {  "EmulatorProfile", emuProfile }
                 };
 
                 var expandedScript = Game.ExpandVariables(script, false, emulatorDir, romPath);
@@ -565,7 +578,7 @@ namespace Playnite.Controllers
         private void Monitor_EmulatedTreeDestroyed(object sender, EventArgs args)
         {
             stopWatch.Stop();
-            ExecuteEmulatorScript(currentEmuProfile?.ExitScript, null, null);
+            ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile);
             InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
         }
 
