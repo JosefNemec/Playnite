@@ -254,6 +254,7 @@ namespace Playnite.DesktopApp.ViewModels
             GamesEditor = gamesEditor;
             AppSettings = settings;
             App.Notifications.ActivationRequested += DesktopAppViewModel_ActivationRequested;
+            App.Notifications.CloseRequested += Notifications_CloseRequested;
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
@@ -270,11 +271,20 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
+        private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.MessageEventArgs e)
         {
             App.Notifications.Remove(e.Message.Id);
             AppSettings.NotificationPanelVisible = false;
             e.Message.ActivationAction();
+        }
+
+        private void Notifications_CloseRequested(object sender, NotificationsAPI.MessageEventArgs e)
+        {
+            App.Notifications.Remove(e.Message.Id);
+            if (App.Notifications.Messages.Count == 0)
+            {
+                AppSettings.NotificationPanelVisible = false;
+            }
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)

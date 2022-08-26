@@ -19,10 +19,20 @@ namespace Playnite.SDK
         public event EventHandler Activated;
 
         /// <summary>
+        ///
+        /// </summary>
+        public event EventHandler Closed;
+
+        /// <summary>
         /// Gets command to activate <see cref="ActivationAction"/>.
         /// </summary>
         public ICommand ActivateCommand { get; }
-        
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ICommand CloseCommand { get; }
+
         /// <summary>
         /// Gets action to be invoked when notification is activated.
         /// </summary>
@@ -66,12 +76,17 @@ namespace Playnite.SDK
             Id = id;
             Text = text;
             Type = type;
-            ActivateCommand = new RelayCommand<object>((a) =>
+            ActivateCommand = new RelayCommand(() =>
             {
                 if (ActivationAction != null)
                 {
                     Activated?.Invoke(this, null);
                 }
+            });
+
+            CloseCommand = new RelayCommand(() =>
+            {
+                Closed?.Invoke(this, null);
             });
         }
 

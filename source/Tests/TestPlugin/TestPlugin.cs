@@ -141,6 +141,9 @@ namespace TestPlugin
                 Converters = new List<IValueConverter> { new TestConverter() },
                 SourceName = "TestPlugin",
             });
+
+            api.Notifications.Add("test", "some test ", NotificationType.Info);
+            api.Notifications.Add("test2", "some test longer notification that's overlowing to aa lines aa likely", NotificationType.Error);
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
