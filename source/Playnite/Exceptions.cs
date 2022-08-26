@@ -76,10 +76,18 @@ namespace Playnite
                     }
                 }
 
-                var extDesc = extensions?.Plugins?.FirstOrDefault(a =>
-                    crashModules.FirstOrDefault(m => m.Name ==
-                        a.Value.Description.Module ||
-                        Paths.AreEqual(a.Value.Description.DirectoryPath, Path.GetDirectoryName(m.Assembly.Location))) != null).Value;
+                LoadedPlugin extDesc = null;
+                foreach (var module in crashModules)
+                {
+                    extDesc = extensions?.Plugins?.FirstOrDefault(a =>
+                        module.Name == a.Value.Description.Module ||
+                        Paths.AreEqual(a.Value.Description.DirectoryPath, Path.GetDirectoryName(module.Assembly.Location))).Value;
+                    if (extDesc != null)
+                    {
+                        break;
+                    }
+                }
+
                 if (extDesc != null)
                 {
                     return new ExceptionInfo
