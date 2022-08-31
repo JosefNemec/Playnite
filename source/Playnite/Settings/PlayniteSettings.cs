@@ -2021,6 +2021,9 @@ namespace Playnite
         private bool autoBackupIncludeThemes = false;
         public bool AutoBackupIncludeThemes { get => autoBackupIncludeThemes; set => SetValue(ref autoBackupIncludeThemes, value); }
 
+        private bool updateNotificationOnPatchesOnly = false;
+        public bool UpdateNotificationOnPatchesOnly { get => updateNotificationOnPatchesOnly; set => SetValue(ref updateNotificationOnPatchesOnly, value); }
+
         [JsonIgnore]
         public static bool IsPortable
         {

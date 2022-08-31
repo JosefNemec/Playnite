@@ -1157,4 +1157,7 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCSettingsRotatingBackups">Rotating backups</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">Include additional data:</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError">Backup folder needs to be set if auto backup is enabled.</sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Show notifications for patch releases only</sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">When enabled, only updates available for currently installed major release will result in update notification.
+New major releases will not result in update notification.</sys:String>
 </ResourceDictionary>

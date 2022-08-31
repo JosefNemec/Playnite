@@ -1226,8 +1226,21 @@ namespace Playnite
             {
                 try
                 {
+                    var showNotification = false;
                     var updater = new Updater(this);
                     if (updater.IsUpdateAvailable)
+                    {
+                        if (AppSettings.UpdateNotificationOnPatchesOnly)
+                        {
+                            showNotification = Updater.CurrentVersion.Major == updater.GetLatestVersion().Major;
+                        }
+                        else
+                        {
+                            showNotification = true;
+                        }
+                    }
+
+                    if (showNotification)
                     {
                         var updateTitle = ResourceProvider.GetString("LOCUpdaterWindowTitle");
                         var updateBody = ResourceProvider.GetString("LOCUpdateIsAvailableNotificationBody");
