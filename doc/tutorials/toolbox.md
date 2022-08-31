@@ -3,7 +3,7 @@
 Introduction
 ---------------------
 
-Toolbox is Playnite utility that can be used for various tasks, mainly for creating extensions and themes. Toolbox is distributed with every Playnite installation and can be found in Playnite's installation directory.
+Toolbox is a Playnite utility that can be used for various tasks, mainly for creating extensions and themes. Toolbox is distributed with every Playnite installation and can be found in Playnite's installation directory.
 
 Creating new extensions
 ---------------------

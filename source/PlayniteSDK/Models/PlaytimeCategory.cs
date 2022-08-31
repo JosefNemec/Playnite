@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
-    /// Specifies plat time categories.
+    /// Specifies play time categories.
     /// </summary>
     public enum PlaytimeCategory : int
     {
@@ -19,7 +19,7 @@ namespace Playnite.SDK.Models
         NotPlayed = 0,
 
         /// <summary>
-        /// Less then an hour played.
+        /// Less than an hour played.
         /// </summary>
         [Description("LOCPLaytimeLessThenAnHour")]
         LessThenHour = 1,

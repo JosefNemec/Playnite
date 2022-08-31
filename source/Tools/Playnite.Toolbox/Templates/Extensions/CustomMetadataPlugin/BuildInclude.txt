@@ -1,5 +1,7 @@
 Properties\AssemblyInfo.cs
+Localization\en_US.xaml
 CustomMetadataPlugin.csproj
+CustomMetadataPlugin.sln
 extension.yaml
 icon.png
 packages.config
@@ -8,3 +10,4 @@ _name_Provider.cs
 _name_Settings.cs
 _name_SettingsView.xaml
 _name_SettingsView.xaml.cs
+App.xaml

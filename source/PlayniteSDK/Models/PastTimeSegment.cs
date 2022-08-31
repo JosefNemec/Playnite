@@ -13,43 +13,43 @@ namespace Playnite.SDK.Models
     public enum PastTimeSegment : int
     {
         /// <summary>
-        /// Idicates time occurig today.
+        /// Indicates time occuring today.
         /// </summary>
         [Description("LOCToday")]
         Today = 0,
 
         /// <summary>
-        /// Idicates time occurig yesterday.
+        /// Indicates time occuring yesterday.
         /// </summary>
         [Description("LOCYesterday")]
         Yesterday = 1,
 
         /// <summary>
-        /// Idicates time occurig past week.
+        /// Indicates time occuring past week.
         /// </summary>
         [Description("LOCInPast7Days")]
         PastWeek = 2,
 
         /// <summary>
-        /// Idicates time occurig past month.
+        /// Indicates time occuring past month.
         /// </summary>
         [Description("LOCInPast31Days")]
         PastMonth = 3,
 
         /// <summary>
-        /// Idicates time occurig past year.
+        /// Indicates time occuring past year.
         /// </summary>
         [Description("LOCInPast365Days")]
         PastYear = 4,
 
         /// <summary>
-        /// Idicates time occurig past year.
+        /// Indicates time occuring past year.
         /// </summary>
         [Description("LOCMoreThan365DaysAgo")]
         MoreThenYear = 5,
 
         /// <summary>
-        /// Idicates time that never happened.
+        /// Indicates time that never happened.
         /// </summary>
         [Description("LOCNever")]
         Never = 6

@@ -253,7 +253,7 @@ namespace Playnite.Controls
 
         public WindowBase(string savePositionName, bool saveSize = true) : this()
         {
-            if (PlayniteApplication.Current.AppSettings != null)
+            if (PlayniteApplication.Current?.AppSettings != null)
             {
                 PositionHandler = new WindowPositionHandler(this, savePositionName, PlayniteApplication.Current.AppSettings.WindowPositions, saveSize);
             }

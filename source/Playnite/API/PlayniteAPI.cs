@@ -27,6 +27,7 @@ namespace Playnite.API
         void UninstallGame(Guid gameId);
         void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args);
         void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
+        void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args);
     }
 
     public class PlayniteApiRoot : IPlayniteAPIRoot
@@ -108,6 +109,11 @@ namespace Playnite.API
         {
             extensions.AddSettingsSupport(source, args);
         }
+
+        public void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args)
+        {
+            extensions.AddConvertersSupport(source, args);
+        }
     }
 
     public class PlayniteAPI : IPlayniteAPI
@@ -163,6 +169,11 @@ namespace Playnite.API
         public void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args)
         {
             RootApi.AddSettingsSupport(source, args);
+        }
+
+        public void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args)
+        {
+            RootApi.AddConvertersSupport(source, args);
         }
     }
 }

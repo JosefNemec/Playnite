@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
-    /// Represents built-in region defition.
+    /// Represents built-in region definition.
     /// </summary>
     public class EmulatedRegion : IEquatable<EmulatedRegion>
     {
@@ -89,7 +89,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         public List<string> Databases { get; set; }
         /// <summary>
-        /// Gets liust of emulator IDs supporting this platform.
+        /// Gets list of emulator IDs supporting this platform.
         /// </summary>
         public List<string> Emulators { get; set; }
 

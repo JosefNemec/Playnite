@@ -11,7 +11,7 @@
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              xmlns:sdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="600" d:DesignWidth="600">
     
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -28,6 +28,7 @@
         </Style>
     </UserControl.Resources>
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <StackPanel Margin="20">
         <StackPanel.Resources>
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
@@ -135,6 +136,11 @@
         <CheckBox Name="CheckStartOnBoot" Margin="5,15,5,5"
                 Content="{DynamicResource LOCSettingsStartOnBoot}"
                 IsChecked="{Binding Settings.StartOnBoot}"/>
+        
+        <CheckBox Name="CheckStartOnBootClosedToTray" Margin="25,15,5,5"
+                  IsEnabled="{Binding IsChecked, ElementName=CheckStartOnBoot}"
+                  Content="{DynamicResource LOCSettingsStartOnBootClosedToTray}"
+                  IsChecked="{Binding Settings.StartOnBootClosedToTray}"/>
 
         <CheckBox Name="CheckStartMinimized" Margin="5,15,5,5"
                 Content="{DynamicResource LOCSettingsStartMinimized}"
@@ -149,7 +155,7 @@
                    ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
                    VerticalAlignment="Center" />
 
-        <StackPanel Orientation="Horizontal" Margin="5,15,5,0">
+        <StackPanel Orientation="Horizontal" Margin="5,10,5,0">
             <ComboBox MinWidth="100" VerticalAlignment="Center"
                   SelectedValue="{Binding Settings.PlaytimeImportMode}"
                   pbeh:SelectorBehaviors.EnumSource="{x:Type sdk:PlaytimeImportMode}" />
@@ -161,4 +167,5 @@
             </TextBlock>
         </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

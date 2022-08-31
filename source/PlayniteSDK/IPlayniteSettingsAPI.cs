@@ -43,7 +43,7 @@ namespace Playnite.SDK
     }
 
     /// <summary>
-    /// Describes interafce for completion status related settings.
+    /// Describes interface for completion status related settings.
     /// </summary>
     public interface ICompletionStatusSettignsApi
     {

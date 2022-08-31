@@ -41,7 +41,20 @@ Extension settings
 If an extension provides support for themes to use its settings, then you can use `PluginSettings` markup to reference them:
 
 ```xml
-<TextBlock Text="{PluginSettings Plugin=<SourceName>, Path=CustomOption}" />
+<TextBlock Text="{PluginSettings Plugin=SourceName, Path=CustomOption}" />
 ```
 
-where `SourceName` is the plugin source name and `CustomOption` is the name of a specific settings property (or path in case you want to reference nested properties).
+...where `SourceName` is the plugin source name and `CustomOption` is the name of a specific settings property (or path in case you want to reference nested properties).
+
+Plugin converters
+---------------------
+
+If a plugin provides custom value converters, you can use them via `PluginConverter` markup:
+
+```xml
+<TextBlock Text="{Binding SomeValue, Converter={PluginConverter Plugin=SourceName, Converter=ConverterName}}" />
+```
+
+...where `SourceName` is the plugin source name and `ConverterName` is the name of a specific converter class provided by the plugin.
+
+If referenced plugin isn't installed or specific converter is not provided by the plugin, `PluginConverter` will return [DependencyProperty.UnsetValue](https://docs.microsoft.com/en-us/dotnet/api/system.windows.dependencyproperty.unsetvalue?view=netframework-4.6.2), which means that you can use `FallbackValue` binding property to set specific data when converter is missing.

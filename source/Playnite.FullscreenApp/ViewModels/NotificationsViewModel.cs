@@ -46,7 +46,7 @@ namespace Playnite.FullscreenApp.ViewModels
             window.Close(true);
         }
 
-        private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.ActivationRequestEventArgs e)
+        private void FullscreenAppViewModel_ActivationRequested(object sender, NotificationsAPI.MessageEventArgs e)
         {
             MainModel.App.Notifications.Remove(e.Message.Id);
             Close();

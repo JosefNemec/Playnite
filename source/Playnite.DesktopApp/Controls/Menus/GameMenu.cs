@@ -145,23 +145,17 @@ namespace Playnite.DesktopApp.Controls
             }
 
             // Custom Actions
-            if (game.GameActions.HasItems())
+            var customAdded = false;
+            foreach (var task in game.GameActions?.Where(a => !a.IsPlayAction) ?? Enumerable.Empty<GameAction>())
             {
-                foreach (var task in game.GameActions)
-                {
-                    var taskItem = new MenuItem()
-                    {
-                        Header = task.Name
-                    };
+                var taskItem = new MenuItem { Header = task.Name };
+                taskItem.Click += (s, e) => model.GamesEditor.ActivateAction(game, task);
+                Items.Add(taskItem);
+                customAdded = true;
+            }
 
-                    taskItem.Click += (s, e) =>
-                    {
-                        model.GamesEditor.ActivateAction(game, task);
-                    };
-
-                    Items.Add(taskItem);
-                }
-
+            if (customAdded)
+            {
                 Items.Add(new Separator());
             }
 

@@ -452,6 +452,30 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ConfirmDialog()
         {
+            try
+            {
+                // This absolutely sucks, but it has to be done to fix issues like #3013.
+                // The only other solution would be changing binding update trigger on ALL elements to PropertyChanged
+                // which is probbaly even worse.
+                // Basically, when a window is closed via default command action on Enter, current editing control
+                // doesn't loose focus before closing a window (specifically before executing default command)
+                // and therefore binding for that control is not updated.
+                if (window?.Window != null)
+                {
+                    System.Windows.Input.FocusManager.SetFocusedElement(System.Windows.Input.FocusManager.GetFocusScope(window.Window), null);
+                    System.Windows.Input.Keyboard.ClearFocus();
+                }
+
+                // What sucks even more is that this can't be handled generally in a view via something like OnClosing event,
+                // because these events are executed after default command is executed.
+                // This is therefore an issue on other views as well, not just game edit window.
+                // TODO: Implement custom handling for default commands and solve this somehow globally.
+            }
+            catch
+            {
+                // This can obviously fail in some cases like when running via unit test runner.
+            }
+
             List<Guid> consolidateIds(SelectableDbItemList selectionList, List<Guid> originalIds)
             {
                 var selected = selectionList.GetSelectedIds();
@@ -1548,10 +1572,23 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var expanded = EditingGame.ExpandVariables(script);
+                var expandedScript = EditingGame.ExpandVariables(script);
+                var startingArgs = new SDK.Events.OnGameStartingEventArgs
+                {
+                    Game = EditingGame,
+                    SelectedRomFile = EditingGame.Roms?.FirstOrDefault()?.Path,
+                    SourceAction = EditingGame.GameActions?.FirstOrDefault()
+                };
+
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expanded, EditingGame, true, false, GameScriptType.None);
+                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expandedScript, EditingGame, true, false, GameScriptType.None,
+                        new Dictionary<string, object>
+                        {
+                            {  "StartingArgs", startingArgs },
+                            {  "SourceAction", startingArgs.SourceAction },
+                            {  "SelectedRomFile", startingArgs.SelectedRomFile }
+                        });
                 }
             }
             catch (Exception exc)

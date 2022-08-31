@@ -318,7 +318,7 @@ namespace Playnite.Database
 
         public virtual TItem Add(string itemName)
         {
-            return Add(itemName, (existingItem, newName) => existingItem.Name.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+            return Add(itemName, (existingItem, newName) => existingItem.Name?.Equals(newName, StringComparison.InvariantCultureIgnoreCase) == true);
         }
 
         public virtual IEnumerable<TItem> Add(List<string> itemsToAdd, Func<TItem, string, bool> existingComparer)
@@ -347,7 +347,7 @@ namespace Playnite.Database
 
         public virtual IEnumerable<TItem> Add(List<string> itemsToAdd)
         {
-            return Add(itemsToAdd, (existingItem, newName) => existingItem.Name.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+            return Add(itemsToAdd, (existingItem, newName) => existingItem.Name?.Equals(newName, StringComparison.InvariantCultureIgnoreCase) == true);
         }
 
         public virtual void Add(TItem itemToAdd)

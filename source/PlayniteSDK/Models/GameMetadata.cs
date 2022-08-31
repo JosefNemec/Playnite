@@ -264,7 +264,7 @@ namespace Playnite.SDK.Models
     }
 
     /// <summary>
-    /// Represents based metdata property.
+    /// Represents base metadata property.
     /// </summary>
     public abstract class MetadataProperty
     {
@@ -276,7 +276,7 @@ namespace Playnite.SDK.Models
     public class GameMetadata
     {
         /// <summary>
-        /// Gets or sets name.
+        /// Gets or sets Name.
         /// </summary>
         public string Name { get; set; }
 

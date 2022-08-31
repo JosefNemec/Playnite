@@ -5,5 +5,5 @@ Profiles:
   - Name: Default
     Platforms: [sony_playstation]
     StartupArguments: '-batch -fullscreen "{ImagePath}"'
-    ImageExtensions: [bin, img, exe, chd, psexe, m3u, cue, pbp]
+    ImageExtensions: [bin, img, exe, chd, psexe, m3u, cue, pbp, iso]
     StartupExecutable: ^duckstation-qt-x64-ReleaseLTCG\.exe$

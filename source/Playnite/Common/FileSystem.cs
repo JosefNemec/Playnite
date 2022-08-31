@@ -524,5 +524,12 @@ namespace Playnite.Common
         {
             return File.GetLastWriteTime(Paths.FixPathLength(path));
         }
+
+        public static void ReplaceStringInFile(string path, string oldValue, string newValue, Encoding encoding = null)
+        {
+            encoding = encoding ?? Encoding.UTF8;
+            var fileContent = File.ReadAllText(path, encoding);
+            File.WriteAllText(path, fileContent.Replace(oldValue, newValue), encoding);
+        }
     }
 }

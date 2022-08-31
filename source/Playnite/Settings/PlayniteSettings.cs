@@ -1139,6 +1139,21 @@ namespace Playnite
             }
         }
 
+        private bool startOnBootClosedToTray = false;
+        public bool StartOnBootClosedToTray
+        {
+            get
+            {
+                return startOnBootClosedToTray;
+            }
+
+            set
+            {
+                startOnBootClosedToTray = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool enableControolerInDesktop = false;
         [RequiresRestart]
         public bool EnableControllerInDesktop
@@ -2029,6 +2044,9 @@ namespace Playnite
         private bool autoBackupIncludeThemes = false;
         public bool AutoBackupIncludeThemes { get => autoBackupIncludeThemes; set => SetValue(ref autoBackupIncludeThemes, value); }
 
+        private bool updateNotificationOnPatchesOnly = false;
+        public bool UpdateNotificationOnPatchesOnly { get => updateNotificationOnPatchesOnly; set => SetValue(ref updateNotificationOnPatchesOnly, value); }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -2061,6 +2079,21 @@ namespace Playnite
             set
             {
                 develExtenions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SearchWindowVisibilitySettings searchWindowVisibility = new SearchWindowVisibilitySettings();
+        public SearchWindowVisibilitySettings SearchWindowVisibility
+        {
+            get
+            {
+                return searchWindowVisibility;
+            }
+
+            set
+            {
+                searchWindowVisibility = value;
                 OnPropertyChanged();
             }
         }

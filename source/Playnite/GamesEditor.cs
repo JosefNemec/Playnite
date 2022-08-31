@@ -341,7 +341,7 @@ namespace Playnite
                 {
                     if (playAction is EmulationPlayAction emuAct)
                     {
-                        genCtrl.Start(emuAct);
+                        genCtrl.StartEmulator(emuAct, true, startingArgs);
                     }
                     else if (playAction is AutomaticPlayController autoAction)
                     {
@@ -349,7 +349,7 @@ namespace Playnite
                     }
                     else if (playAction is GameAction act)
                     {
-                        genCtrl.Start(act, true);
+                        genCtrl.Start(act, true, startingArgs);
                     }
                     else
                     {
@@ -406,11 +406,20 @@ namespace Playnite
                                 var newAction = action.GetClone<GameAction, EmulationPlayAction>();
                                 newAction.SelectedEmulatorProfile = prof ?? throw new Exception("Specified emulator config does't exists.");
                                 newAction.SelectedRomPath = game.Roms.HasItems() ? game.Roms[0].Path : string.Empty;
-                                controller.Start(newAction, false);
+                                controller.StartEmulator(newAction, false, new SDK.Events.OnGameStartingEventArgs
+                                {
+                                    Game = game,
+                                    SelectedRomFile = newAction.SelectedRomPath,
+                                    SourceAction = action
+                                });
                             }
                             else
                             {
-                                controller.Start(action, false);
+                                controller.Start(action, false,  new SDK.Events.OnGameStartingEventArgs
+                                {
+                                    Game = game,
+                                    SourceAction = action
+                                });
                             }
                         }
                         break;
@@ -1168,8 +1177,8 @@ namespace Playnite
 
             var scriptVars = new Dictionary<string, object>
             {
-                { "SourceAction", (args.Source as GenericPlayController)?.SourceGameAction?.GetClone() },
-                { "SelectedRomFile", (args.Source as GenericPlayController)?.SelectedRomPath },
+                { "SourceAction", (args.Source as GenericPlayController)?.StartingArgs?.SourceAction?.GetClone() },
+                { "SelectedRomFile", (args.Source as GenericPlayController)?.StartingArgs?.SelectedRomFile },
                 { "StartedProcessId", args.StartedProcessId }
             };
 

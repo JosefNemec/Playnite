@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Playnite.SDK
 {
     /// <summary>
-    /// Describest API for handling playnite:// URI.
+    /// Describes API for handling playnite:// URI.
     /// </summary>
     public interface IUriHandlerAPI
     {

@@ -104,7 +104,7 @@ namespace Playnite.SDK.Events
     }
 
     /// <summary>
-    /// Represents arguments for the event a game starts running.
+    /// Represents arguments for the event when a game starts running.
     /// </summary>
     public class OnGameStartedEventArgs
     {
@@ -130,7 +130,7 @@ namespace Playnite.SDK.Events
     }
 
     /// <summary>
-    /// Reperesents arguments for the event when a game stops running.
+    /// Represents arguments for the event when a game stops running.
     /// </summary>
     public class OnGameStoppedEventArgs
     {

@@ -16,7 +16,7 @@ namespace Playnite.SDK.Plugins
     public class LibraryGetGamesArgs
     {
         /// <summary>
-        /// Gets cancellataion token.
+        /// Gets cancellation token.
         /// </summary>
         public CancellationToken CancelToken { get; internal set; }
     }
@@ -27,7 +27,7 @@ namespace Playnite.SDK.Plugins
     public class LibraryImportGamesArgs
     {
         /// <summary>
-        /// Gets cancellataion token.
+        /// Gets cancellation token.
         /// </summary>
         public CancellationToken CancelToken { get; internal set; }
     }
@@ -67,7 +67,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Gets library name;
+        /// Gets library name.
         /// </summary>
         public abstract string Name { get; }
 
@@ -84,7 +84,7 @@ namespace Playnite.SDK.Plugins
         public virtual string LibraryBackground { get; }
 
         /// <summary>
-        /// Gets library client application or null of no client is associated with this library.
+        /// Gets library client application or null if no client is associated with this library.
         /// </summary>
         public virtual LibraryClient Client { get; }
 

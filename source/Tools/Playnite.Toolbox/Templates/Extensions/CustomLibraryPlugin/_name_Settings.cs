@@ -46,7 +46,7 @@ namespace _namespace_
             // Load saved settings.
             var savedSettings = plugin.LoadPluginSettings<_name_Settings>();
 
-            // LoadPluginSettings returns null if not saved data is available.
+            // LoadPluginSettings returns null if no saved data is available.
             if (savedSettings != null)
             {
                 Settings = savedSettings;
