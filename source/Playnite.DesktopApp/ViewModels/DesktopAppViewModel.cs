@@ -466,6 +466,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             RegisterSystemSearchHotkey();
+            if (Database.IsOpen)
+            {
+                Database.Games.ItemCollectionChanged += Games_ItemCollectionChanged;
+            }
+        }
+
+        private void Games_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<Game> e)
+        {
+            if (e.RemovedItems.HasItems() && SelectedGameDetails != null)
+            {
+                if (e.RemovedItems.Any(a => a.Id == SelectedGameDetails.Game.Id))
+                {
+                    SelectedGameDetails = null;
+                    OnPropertyChanged(nameof(SelectedGameDetails));
+                }
+            }
         }
 
         public override NotificationMessage GetAddonUpdatesFoundMessage(List<AddonUpdate> updates)
