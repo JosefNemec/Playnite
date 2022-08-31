@@ -2057,6 +2057,21 @@ namespace Playnite
             }
         }
 
+        private SearchWindowVisibilitySettings searchWindowVisibility = new SearchWindowVisibilitySettings();
+        public SearchWindowVisibilitySettings SearchWindowVisibility
+        {
+            get
+            {
+                return searchWindowVisibility;
+            }
+
+            set
+            {
+                searchWindowVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         public PlayniteSettings()
         {
             var gpus = Computer.GetGpuVendors();

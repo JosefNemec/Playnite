@@ -1,4 +1,5 @@
-﻿using Playnite.Database;
+﻿using Playnite.Converters;
+using Playnite.Database;
 using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -225,6 +226,7 @@ namespace Playnite.ViewModels
     public class GameSearchItemWrapper : GameSearchItem
     {
         public GamesCollectionViewEntry GameView { get; set; }
+        public List<string> AdditionalInfo { get; set; } = new List<string>();
 
         public GameSearchItemWrapper(GameSearchItem item, LibraryPlugin plugin, PlayniteSettings settings)
             : base(item.Game, item.PrimaryAction)
@@ -232,6 +234,26 @@ namespace Playnite.ViewModels
             GameView = new GamesCollectionViewEntry(item.Game, plugin, settings, true);
             SecondaryAction = item.SecondaryAction;
             MenuAction = item.MenuAction;
+
+            if (settings.SearchWindowVisibility.Platform && item.Game.CompletionStatus != null)
+            {
+                AdditionalInfo.Add(item.Game.CompletionStatus.Name);
+            }
+
+            if (settings.SearchWindowVisibility.PlayTime)
+            {
+                AdditionalInfo.Add(PlayTimeToStringConverter.Instance.Convert(item.Game.Playtime, typeof(string), null, CultureInfo.CurrentCulture) as string);
+            }
+
+            if (settings.SearchWindowVisibility.Platform && item.Game.Platforms.HasItems())
+            {
+                item.Game.Platforms.ForEach(a => AdditionalInfo.Add(a.Name));
+            }
+
+            if (settings.SearchWindowVisibility.ReleaseDate && item.Game.ReleaseDate != null)
+            {
+                AdditionalInfo.Add(item.Game.ReleaseDate.Value.Year.ToString());
+            }
         }
     }
 

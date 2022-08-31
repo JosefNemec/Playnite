@@ -268,6 +268,7 @@
     <Compile Include="Controls\Views\LibraryDetailsView.cs" />
     <Compile Include="Controls\Views\LibraryListView.cs" />
     <Compile Include="Controls\Views\NotificationPanel.cs" />
+    <Compile Include="Controls\Views\SearchWindow.cs" />
     <Compile Include="Controls\Views\Sidebar.cs" />
     <Compile Include="Controls\Views\MainWindow.cs" />
     <Compile Include="Controls\Views\TopPanel.cs" />

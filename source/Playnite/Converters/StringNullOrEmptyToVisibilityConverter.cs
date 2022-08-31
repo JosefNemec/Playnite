@@ -16,6 +16,8 @@ namespace Playnite.Converters
             Normal, Inverted
         }
 
+        public static StringNullOrEmptyToVisibilityConverter Instance { get; } = new StringNullOrEmptyToVisibilityConverter();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var direction = parameter == null ? Parameters.Normal : (Parameters)Enum.Parse(typeof(Parameters), (string)parameter);
