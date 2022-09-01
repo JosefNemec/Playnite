@@ -123,11 +123,37 @@ Start-Process "c:\somepath\someapp.exe" "-some arguments"
 Stop-Process -Name "someapp"
 ```
 
-* If the application requires elevated rights to start then you need to start Playnite as admin too, otherwise the `Stop-Process` will fail due to insufficient privileges.
+* If an application was started with elevated privileges (admin), then stopping it requires elevated privileges too. You can do this by launching a PowerShell session with elevated privileges as shown below, or by starting Playnite as admin. Otherwise, the Stop-Process will fail due to insufficient privileges. The script below will ask for admin privileges to be granted to PowerShell every time that it is run.
+
+```powershell
+Start-Process powershell -Verb runAs -ArgumentList 'Stop-Process -Name "someapp" -Force'
+```
+
 * If you want to start application minimized and application doesn't have native support for it then add `-WindowStyle` argument.
 
 ```powershell
 Start-Process "c:\somepath\someapp.exe" "-some arguments" -WindowStyle Minimized
+```
+
+* Scripts can be run based on some conditions. If you want to launch an application only if it is not already running, then you can use this script:
+
+```powershell
+if (!(Get-Process -Name "someapp" -EA 0))
+{
+  Start-Process "c:\somepath\someapp.exe" "-some arguments"
+}
+```
+
+* Scripts can be set to run globally in Playnite > Settings > Scripts. These scripts can also be set to run only if a game has a certain tag in it.
+
+```powershell
+if ($Game.Tags -like "someTag") 
+{
+  if (!(Get-Process -Name "someapp" -EA 0))
+  {
+    Start-Process "c:\somepath\someapp.exe" "-some arguments"
+  }
+}
 ```
 
 Troubleshooting
