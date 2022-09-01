@@ -133,8 +133,11 @@ namespace Playnite.Toolbox
                 }
 
                 logger.Info($"Created new {options.Type} in \"{outPath}\"");
-                logger.Info($"Don't forget to update manifest file with relevant information.");
-                logger.Info($"Use generated .sln solution file to open plugin source.");
+                logger.Warn($"Don't forget to update manifest file with relevant information.");
+                if (options.Type == ItemType.GenericPlugin || options.Type == ItemType.LibraryPlugin || options.Type == ItemType.MetadataPlugin)
+                {
+                    logger.Warn($"Use generated .sln solution file to open plugin source.");
+                }
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
