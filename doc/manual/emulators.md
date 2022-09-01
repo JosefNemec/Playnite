@@ -64,6 +64,10 @@ The list should contain relative file/folder paths, relative to scan folder spec
 
 Enabling this option will skip scan of files that are stored on cloud storage paths and are not currently downloaded, to prevent files from being downloaded during scanning process. Currently supported platforms are: Google Drive, DropBox and OneDrive.
 
+### Relative path support
+
+If `Import using relative paths` option is enabled, Playnite will try to import emulated games (paths to ROM files specifically) using relative paths. This works by replacing specific parts of the file path with `{PlayniteDir}` or `{EmulatorDir}` variables where possible if ROM location is inside emulator's or Playnite's folder.
+
 Launching games
 ---------------------
 
