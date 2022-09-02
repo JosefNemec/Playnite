@@ -387,6 +387,7 @@
               pbeh:ScrollToSelectedBehavior.Enabled="True">
         <ListView.Resources>
             <p:BindingProxy x:Key="SettingsProxy" Data="{Binding}" />
+            <p:BindingProxy x:Key="GridGamesProxy" Data="{Binding ElementName=GridGames}" />
         </ListView.Resources>
         <ListView.InputBindings>
             <KeyBinding Command="{Binding Data.EditSelectedGamesCommand, Source={StaticResource MainProxy}}"
@@ -399,12 +400,14 @@
                         Key ="{Binding Data.StartSelectedGameCommand.Gesture.Key, Source={StaticResource MainProxy}}"
                         Modifiers="{Binding Data.StartSelectedGameCommand.Gesture.Modifiers, Source={StaticResource MainProxy}}" />
         </ListView.InputBindings>
-        <ListView.ContextMenu>
-            <pc:GameMenu DataContext="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource Self}}"
-                         ShowStartSection="True"/>
-        </ListView.ContextMenu>
         <ListView.ItemContainerStyle>
             <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                <Setter Property="ContextMenu">
+                    <Setter.Value>
+                        <pc:GameMenu DataContext="{Binding Data.SelectedItems, Source={StaticResource GridGamesProxy}}"
+                                     ShowStartSection="True"/>
+                    </Setter.Value>
+                </Setter>
                 <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseDoubleClick" />
                 <Style.Triggers>
                     <MultiDataTrigger>
