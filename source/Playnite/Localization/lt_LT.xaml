@@ -63,7 +63,6 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Ar tikrai norite pašalinti {0} įrašų, kurie šiuo metu nėra nenodojami ?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Nerasta nenaudojamų laukų.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Taip (įtraukti į išimčių sąrašą)</sys:String>
-    <sys:String x:Key="LOCSteamFriendsTooltip">Steam draugai</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Šioje sekcijoje yra neįrašytų pakeitimų</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Atnaujinamas žaidimų bibliotekos formatas...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Duombazės atnaujinimas nepavyko, nepavyko atidaryti duombazės failo.</sys:String>
@@ -77,12 +76,13 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCManualOpenError">Nepavyko atidaryti žaidimo vadovo: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Nepavyko įrašyti žaidimo: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Nepavyko ištrinti žaidimo: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction">Veiksmas &quot;Žaisti&quot; nėra sukonfigūruotas.</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorNoInstallAction">Įdiegimo funkcija nėra prieinama.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bibliotekos įskiepis valdantis šį žaidimą nėra įgalintas ar įdiegtas</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Oficialių metaduomenų atsisiuntimas nėra galimas.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nepasirinktas joks žaidimas</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Žaidimo skripto vykdymas nepavyko.</sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Globalaus skripto vykdymas nepavyko.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Emuliatoriaus skripto vykdymas nepavyko.</sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction">Žaidimo veiksmo skripto vykdymas nepavyko.</sys:String>
@@ -128,6 +128,7 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCSaveLabel">Išsaugoti</sys:String>
     <sys:String x:Key="LOCCloseLabel">Uždaryti</sys:String>
     <sys:String x:Key="LOCCancelLabel">Atšaukti</sys:String>
+    <sys:String x:Key="LOCConfirmLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">Taip</sys:String>
     <sys:String x:Key="LOCNoLabel">Ne</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Sveiki</sys:String>
@@ -275,14 +276,18 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCSettingsInputLabel">Įvestis</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Efektyvumas</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metaduomenys</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating"></sys:String>
+    <sys:String x:Key="LOCSettingsSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsBackup"></sys:String>
+    <sys:String x:Key="LOCMenuBackupData"></sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Įtraukti bibliotekos pakeitimus automatiškai</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Neteisinga duombazės failo vieta, nurtodykite tikslų kelią iki failo.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Vartotojo vardas negali būti tuščias.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Atsisiųti 3-čiųjų šalių bibliotekų atnaujinimus paleidžiant</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Atsisiųsti metaduomenis po žaidimų importavimo</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Paleisti Playnite sumažintą</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nepavyko užregistruoti Playnite paleidimo paleidžiant kompiuterį.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Paleisti viso ekrano rėžime</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asinchroninis paveikslėlių krovimas</sys:String>
@@ -335,8 +340,11 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Rodyti fono paveikslėlį pagrindiniame lange</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Playnite kaip foną naudos turimas žaidimo nuotraukas, o ne paveikslėlius gautus iš duombazės.
 Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Visada ignoruoti Playnite išsaugotą žaidimo laiką ir bibliotekos sinchronizacijos metu atsiųsti įšsaugotą žaidimo laiką iš nuotolinės bibliotekos.</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Įgalinti žaidimų pultelio palaikymą darbalaukio rėžime</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
@@ -461,6 +469,7 @@ Netaikoma žaidimams, kurie jau yra bibliotekoje.</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Filtrų skydelis</sys:String>
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Piktograma</sys:String>
+    <sys:String x:Key="LOCLibraryIconTitle"></sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Viršelis</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Fono paveikslėlis</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Rūšiavimo vardas</sys:String>
@@ -584,12 +593,15 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCUserScore">Vartotojo įvertinimas</sys:String>
     <sys:String x:Key="LOCCriticScore">Kritikų įvertinimas</sys:String>
     <sys:String x:Key="LOCCommunityScore">Žaidėjų įvertinimas</sys:String>
+    <sys:String x:Key="LOCGameScripts"></sys:String>
+    <sys:String x:Key="LOCApplicationScripts"></sys:String>
     <sys:String x:Key="LOCScripts">Skriptai</sys:String>
     <sys:String x:Key="LOCPlugins">Įskiepiai</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metaduomenų šaltiniai</sys:String>
     <sys:String x:Key="LOCExtensions">Plėtiniai</sys:String>
     <sys:String x:Key="LOCExtensionID">Plėtinio ID</sys:String>
     <sys:String x:Key="LOCReloadScripts">Iš naujo paleisti skriptus</sys:String>
+    <sys:String x:Key="LOCStartInteractivePowerShell"></sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Visi skriptai paleisti iš naujo sėkmingai.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nepavyko rasti žaidimų pagal paieškos/filtro kriterijus</sys:String>
     <sys:String x:Key="LOCNoItemsFound">Nerasta elementų</sys:String>
@@ -657,6 +669,8 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Paleisti po žaidimo išjungimo</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Paleisti po žaidimo paleidimo</sys:String>
+    <sys:String x:Key="LOCAppScriptStartupDescription"></sys:String>
+    <sys:String x:Key="LOCAppScriptShutdownDescription"></sys:String>
     <sys:String x:Key="LOCScriptTypeStarting">Žaidimo paleidimo skriptas</sys:String>
     <sys:String x:Key="LOCScriptTypeStarted">Žaidimo paleido skriptą</sys:String>
     <sys:String x:Key="LOCScriptTypeExit">Žaidimas sustabdė skriptą</sys:String>
@@ -847,13 +861,16 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
+    <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Suvienodinti</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly"></sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
-    <sys:String x:Key="LOCGridViewScrollAmountModifier"></sys:String>
+    <sys:String x:Key="LOCScrollingSensitivity"></sys:String>
+    <sys:String x:Key="LOCSmoothScrolling"></sys:String>
+    <sys:String x:Key="LOCSmoothScrollingSpeed"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
@@ -883,6 +900,11 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnly"></sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
@@ -898,6 +920,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCGameIsStarting">{0} paleidžiamas...</sys:String>
     <sys:String x:Key="LOCGameIsRunning"></sys:String>
     <sys:String x:Key="LOCTextInputCapitalize">Didžiosios raidės</sys:String>
+    <sys:String x:Key="LOCTextInputSpace"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">Alternatyvus</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced">Subalansuotas</sys:String>
@@ -908,6 +931,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCStartupScript">Praleidimo skriptas</sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">Pasirinkti paleidžiant</sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart"></sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
@@ -942,6 +966,10 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePaths"></sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner"></sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
     <sys:String x:Key="LOCStartScan"></sys:String>
@@ -950,6 +978,13 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles"></sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillButton"></sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillProgress"></sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
@@ -958,4 +993,83 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue"></sys:String>
+    <sys:String x:Key="LOCOverrideInstallState"></sys:String>
+    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCOptionOnlyManually"></sys:String>
+    <sys:String x:Key="LOCOptionOnceADay"></sys:String>
+    <sys:String x:Key="LOCOptionOnceAWeek"></sys:String>
+    <sys:String x:Key="LOCOptionOnEveryStartup"></sys:String>
+    <sys:String x:Key="LOCCheckProgramUpdates"></sys:String>
+    <sys:String x:Key="LOCCheckAddonUpdates"></sys:String>
+    <sys:String x:Key="LOCCheckLibraryUpdates"></sys:String>
+    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates"></sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
+    <sys:String x:Key="LOCMenuSetFields"></sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
+    <sys:String x:Key="LOCOpen"></sys:String>
+    <sys:String x:Key="LOCActivate"></sys:String>
+    <sys:String x:Key="LOCAssign"></sys:String>
+    <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
+    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalled"></sys:String>
+    <sys:String x:Key="LOCSearchFilterHidden"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledIncluded"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded"></sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenIncluded"></sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionPlay"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionSwitchTo"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionOpenMenu"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit"></sys:String>
+    <sys:String x:Key="LOCOpenSearch"></sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox"></sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton"></sys:String>
+
+    <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSecondaryAction"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSaveFilter"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSearchProviders"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsDefaultKeyword"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsCustomKeyword"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
+    <sys:String x:Key="LOCSearchTitle"></sys:String>
+    <sys:String x:Key="LOCExtensionSettingsMenu"></sys:String>
+    <sys:String x:Key="LOCExclusions"></sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
+    <sys:String x:Key="LOCEmuImportAddROMExclusionList"></sys:String>
+    <sys:String x:Key="LOCEmuImportAddFolderExclusionList"></sys:String>
+    <sys:String x:Key="LOCEmuExclusionNoConfigError"></sys:String>
+    <sys:String x:Key="LOCEmuExclusionAddedMessage"></sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatform"></sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
+    <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
+    <sys:String x:Key="LOCHiddenStatus"></sys:String>
+
+    <sys:String x:Key="LOCBackupCancelled"></sys:String>
+    <sys:String x:Key="LOCBackupFailed"></sys:String>
+    <sys:String x:Key="LOCBackupErrorTitle"></sys:String>
+    <sys:String x:Key="LOCBackupProgress"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreProgress"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreFailed"></sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings"></sys:String>
+    <sys:String x:Key="LOCBackupOptionLibrary"></sys:String>
+    <sys:String x:Key="LOCBackupOptionGameMedia"></sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage"></sys:String>
+    <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
+    <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
+    <sys:String x:Key="LOCSettingsRotatingBackups"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems"></sys:String>
+    <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
 </ResourceDictionary>

@@ -53,7 +53,6 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Nu s-au gasit câmpuri nefolosite</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Da (și adaugă la lista de excluderi)</sys:String>
-    <sys:String x:Key="LOCSteamFriendsTooltip">Prieteni de pe Steam</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Se actualizează formatul librăriei de jocuri...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Update-ul la baza de date a eșuat.</sys:String>
@@ -73,6 +72,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Download-ul oficial pentru informații metadata nu este disponibil.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nu a fost selectat jocul.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript"></sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
@@ -118,6 +118,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCSaveLabel">Salvează</sys:String>
     <sys:String x:Key="LOCCloseLabel">Închide</sys:String>
     <sys:String x:Key="LOCCancelLabel">Anulează</sys:String>
+    <sys:String x:Key="LOCConfirmLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">Da</sys:String>
     <sys:String x:Key="LOCNoLabel">Nu</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Bine ați venit</sys:String>
@@ -265,14 +266,18 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">Intrare</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performanță</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating"></sys:String>
+    <sys:String x:Key="LOCSettingsSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsBackup"></sys:String>
+    <sys:String x:Key="LOCMenuBackupData"></sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importați schimbările în librărie în mod automat</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Locație către baza de date este invalidă, trebuie setată în mod corect.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Numele contului nu poate fi gol.</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Descarcă update-uri la librării terțe la pornire</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup"></sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Descarcă metadata după ce imporți jocurile</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Lansează Playnite la bară</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Lansează Playnite la pornirea calculatorului</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nu s-a putut seta Playnite pentru pornirea deodată cu calculatorul.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Lansează în mod Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading"></sys:String>
@@ -324,8 +329,11 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Număr de rânduri în modul de vizualizare îndetaliat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Arată imaginea de fundal pe ecranul principal</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nu se aplică retroactiv jocurilor existente fără re-descărcarea metadatelor.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite"></sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever"></sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Butonul Guide al gamepad-ului deschide modul Fullscreen</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
@@ -450,6 +458,7 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Panou Filtre</sys:String>
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Iconiță</sys:String>
+    <sys:String x:Key="LOCLibraryIconTitle"></sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Imagine Copertă</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Imagine Fundal</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sortează după Nume</sys:String>
@@ -570,12 +579,15 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCUserScore">Scorul Utilizatorului</sys:String>
     <sys:String x:Key="LOCCriticScore">Scorul Criticilor</sys:String>
     <sys:String x:Key="LOCCommunityScore">Scorul Comunității</sys:String>
+    <sys:String x:Key="LOCGameScripts"></sys:String>
+    <sys:String x:Key="LOCApplicationScripts"></sys:String>
     <sys:String x:Key="LOCScripts">Script-uri</sys:String>
     <sys:String x:Key="LOCPlugins">Plugin-uri</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Surse de metadata</sys:String>
     <sys:String x:Key="LOCExtensions">Extensii</sys:String>
     <sys:String x:Key="LOCExtensionID">ID-ul extensiei</sys:String>
     <sys:String x:Key="LOCReloadScripts">Reîncarcă Scripturile</sys:String>
+    <sys:String x:Key="LOCStartInteractivePowerShell"></sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Toate script-urile au fost reîncărcate cu succes.</sys:String>
     <sys:String x:Key="LOCNoGamesFound"></sys:String>
     <sys:String x:Key="LOCNoItemsFound">Niciun element găsit</sys:String>
@@ -643,6 +655,8 @@ Nedeterminat - Nicio schimbare (când editezi jocuri multiple)</sys:String>
     <sys:String x:Key="LOCPreScriptDescription"></sys:String>
     <sys:String x:Key="LOCPostScriptDescription"></sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription"></sys:String>
+    <sys:String x:Key="LOCAppScriptStartupDescription"></sys:String>
+    <sys:String x:Key="LOCAppScriptShutdownDescription"></sys:String>
     <sys:String x:Key="LOCScriptTypeStarting"></sys:String>
     <sys:String x:Key="LOCScriptTypeStarted"></sys:String>
     <sys:String x:Key="LOCScriptTypeExit"></sys:String>
@@ -834,13 +848,16 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
+    <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform"></sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly"></sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
-    <sys:String x:Key="LOCGridViewScrollAmountModifier"></sys:String>
+    <sys:String x:Key="LOCScrollingSensitivity"></sys:String>
+    <sys:String x:Key="LOCSmoothScrolling"></sys:String>
+    <sys:String x:Key="LOCSmoothScrollingSpeed"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
@@ -870,6 +887,11 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnly"></sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
@@ -885,6 +907,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCGameIsStarting"></sys:String>
     <sys:String x:Key="LOCGameIsRunning"></sys:String>
     <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
+    <sys:String x:Key="LOCTextInputSpace"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
@@ -895,6 +918,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCStartupScript"></sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart"></sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart"></sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
@@ -929,6 +953,10 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePaths"></sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner"></sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
     <sys:String x:Key="LOCStartScan"></sys:String>
@@ -937,6 +965,13 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc"></sys:String>
     <sys:String x:Key="LOCPowerShellCreationError"></sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles"></sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillButton"></sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillProgress"></sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
@@ -945,4 +980,83 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue"></sys:String>
+    <sys:String x:Key="LOCOverrideInstallState"></sys:String>
+    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCOptionOnlyManually"></sys:String>
+    <sys:String x:Key="LOCOptionOnceADay"></sys:String>
+    <sys:String x:Key="LOCOptionOnceAWeek"></sys:String>
+    <sys:String x:Key="LOCOptionOnEveryStartup"></sys:String>
+    <sys:String x:Key="LOCCheckProgramUpdates"></sys:String>
+    <sys:String x:Key="LOCCheckAddonUpdates"></sys:String>
+    <sys:String x:Key="LOCCheckLibraryUpdates"></sys:String>
+    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates"></sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
+    <sys:String x:Key="LOCMenuSetFields"></sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
+    <sys:String x:Key="LOCOpen"></sys:String>
+    <sys:String x:Key="LOCActivate"></sys:String>
+    <sys:String x:Key="LOCAssign"></sys:String>
+    <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
+    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalled"></sys:String>
+    <sys:String x:Key="LOCSearchFilterHidden"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledIncluded"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded"></sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenIncluded"></sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionPlay"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionSwitchTo"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionOpenMenu"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit"></sys:String>
+    <sys:String x:Key="LOCOpenSearch"></sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox"></sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton"></sys:String>
+
+    <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSecondaryAction"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSaveFilter"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSearchProviders"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsDefaultKeyword"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsCustomKeyword"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
+    <sys:String x:Key="LOCSearchTitle"></sys:String>
+    <sys:String x:Key="LOCExtensionSettingsMenu"></sys:String>
+    <sys:String x:Key="LOCExclusions"></sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
+    <sys:String x:Key="LOCEmuImportAddROMExclusionList"></sys:String>
+    <sys:String x:Key="LOCEmuImportAddFolderExclusionList"></sys:String>
+    <sys:String x:Key="LOCEmuExclusionNoConfigError"></sys:String>
+    <sys:String x:Key="LOCEmuExclusionAddedMessage"></sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatform"></sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
+    <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
+    <sys:String x:Key="LOCHiddenStatus"></sys:String>
+
+    <sys:String x:Key="LOCBackupCancelled"></sys:String>
+    <sys:String x:Key="LOCBackupFailed"></sys:String>
+    <sys:String x:Key="LOCBackupErrorTitle"></sys:String>
+    <sys:String x:Key="LOCBackupProgress"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreProgress"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreFailed"></sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings"></sys:String>
+    <sys:String x:Key="LOCBackupOptionLibrary"></sys:String>
+    <sys:String x:Key="LOCBackupOptionGameMedia"></sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage"></sys:String>
+    <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
+    <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
+    <sys:String x:Key="LOCSettingsRotatingBackups"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems"></sys:String>
+    <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
 </ResourceDictionary>
