@@ -142,8 +142,15 @@ Collections from [IDatabaseAPI](xref:Playnite.SDK.IGameDatabaseAPI) provide `Ite
 ```csharp
 PlayniteApi.Database.Games.ItemCollectionChanged += (_, args) =>
 {
-    PlayniteApi.Dialogs.ShowMessage(args.AddedItems.Count + " items have been added into the library.");
+    PlayniteApi.Dialogs.ShowMessage(args.AddedItems.Count + " items added into the library.");
 };
+```
+
+# [PowerShell](#tab/tabpowershell)
+```powershell
+Register-ObjectEvent -InputObject $PlayniteApi.Database.Games -EventName ItemCollectionChanged -Action {
+    $PlayniteApi.Dialogs.ShowMessage("$($EventArgs.AddedItems.Count) items added into the library.");
+}
 ```
 ***
 
