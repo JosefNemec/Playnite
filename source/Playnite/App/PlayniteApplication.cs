@@ -547,6 +547,7 @@ namespace Playnite
                     }
                 }
 
+                FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
                 Quit();
                 return;
             }
@@ -582,6 +583,7 @@ namespace Playnite
                     }
                 }
 
+                FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
                 Quit();
                 return;
             }
