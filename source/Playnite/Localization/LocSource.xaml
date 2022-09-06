@@ -1149,8 +1149,12 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions">Installed extensions</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData">Extensions data</sys:String>
     <sys:String x:Key="LOCBackupOptionThemes">Installed themes</sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage">Select data to be restored from specified backup file.</sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage">Select items to be included with data backup. Application settings and game library data are included by default.</sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve">Select data to be restored from specified backup file.
+    
+Playnite will automatically restart to start backup restore process.</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">Select items to be included with data backup. Application settings and game library data are included by default.
+    
+Playnite will automatically restart to start backup process.</sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Automatic data backup</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency">Auto backup frequency</sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder">Backup folder</sys:String>

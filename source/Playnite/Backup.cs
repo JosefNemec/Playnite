@@ -164,6 +164,7 @@ namespace Playnite
                             foreach (var themeDir in Directory.GetDirectories(modeThemesDir))
                             {
                                 var themeDirName = Path.GetFileName(themeDir);
+                                // Never backup default themes
                                 if (themeDirName == ThemeManager.DefaultThemeDirName)
                                 {
                                     continue;
@@ -274,6 +275,46 @@ namespace Playnite
                     }
                 }
 
+                void unpackThemeBackupDir(bool restore, string outputDir, string dirPrefix)
+                {
+                    dirPrefix = dirPrefix + Path.DirectorySeparatorChar;
+                    if (restore && archive.Entries.Any(a => a.FullName.StartsWith(dirPrefix, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        void cleanThemeModeDir(ApplicationMode mode)
+                        {
+                            var modeDir = Path.Combine(outputDir, ThemeManager.GetThemeRootDir(mode));
+                            foreach (var dir in Directory.GetDirectories(modeDir))
+                            {
+                                // Default themes must not be deleted since they are never included in the backup
+                                if (new DirectoryInfo(dir).Name.Equals(ThemeManager.DefaultThemeDirName, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    continue;
+                                }
+
+                                FileSystem.DeleteDirectory(dir);
+                            }
+
+                            foreach (var file in Directory.GetFiles(modeDir))
+                            {
+                                FileSystem.DeleteFile(file);
+                            }
+                        }
+
+                        FileSystem.CreateDirectory(outputDir, false);
+                        cleanThemeModeDir(ApplicationMode.Desktop);
+                        cleanThemeModeDir(ApplicationMode.Fullscreen);
+                        foreach (var entry in archive.Entries)
+                        {
+                            if (entry.FullName.StartsWith(dirPrefix, StringComparison.OrdinalIgnoreCase))
+                            {
+                                var outFile = Path.Combine(outputDir, entry.FullName.Replace(dirPrefix, ""));
+                                FileSystem.PrepareSaveFile(outFile);
+                                entry.ExtractToFile(outFile);
+                            }
+                        }
+                    }
+                }
+
                 // Library files
                 unpackBackupDir(options.RestoreItems.Contains(BackupDataItem.LibraryFiles), Path.Combine(options.LibraryDir, GameDatabase.filesDirName), libraryFilesEntryRoot);
 
@@ -284,7 +325,7 @@ namespace Playnite
                 unpackBackupDir(options.RestoreItems.Contains(BackupDataItem.ExtensionsData), Path.Combine(options.DataDir, PlaynitePaths.ExtensionsDataDirName), extensionsDataEntryRoot);
 
                 // Themes
-                unpackBackupDir(options.RestoreItems.Contains(BackupDataItem.Themes), Path.Combine(options.DataDir, PlaynitePaths.ThemesDirName), themesEntryRoot);
+                unpackThemeBackupDir(options.RestoreItems.Contains(BackupDataItem.Themes), Path.Combine(options.DataDir, PlaynitePaths.ThemesDirName), themesEntryRoot);
             }
         }
 

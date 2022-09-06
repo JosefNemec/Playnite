@@ -263,23 +263,7 @@ namespace Playnite
 
                 try
                 {
-                    if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
-                    {
-                        logger.Warn("Multiple Playnite processes detected before installing addons.");
-                        for (int i = 0; i < 10; i++)
-                        {
-                            Thread.Sleep(500);
-                            if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
-                            {
-                                break;
-                            }
-                            else if (i == 9)
-                            {
-                                logger.Warn("Another Playnite instance didn't shutdown in time before addon installation.");
-                            }
-                        }
-                    }
-
+                    WaitForOtherInstacesToExit(false);
                     ExtensionsInstallResult = ExtensionInstaller.InstallExtensionQueue();
                     var installedTheme = ExtensionsInstallResult.FirstOrDefault(a => a.InstalledManifest is ThemeManifest && !a.Updated);
                     if (installedTheme?.InstalledManifest != null)
@@ -533,10 +517,15 @@ namespace Playnite
                 {
                     backupOptions = Serialization.FromJsonFile<BackupOptions>(CmdLine.Backup);
                     var progRes = Dialogs.ActivateGlobalProgress(
-                        (progArgs) => Backup.BackupData(backupOptions, progArgs.CancelToken),
+                        (progArgs) =>
+                        {
+                            WaitForOtherInstacesToExit(true);
+                            Backup.BackupData(backupOptions, progArgs.CancelToken);
+                        },
                         new GlobalProgressOptions(LOC.BackupProgress, true) { IsIndeterminate = true });
                     if (progRes.Error != null)
                     {
+                        logger.Error(progRes.Error, "Failed to backup data.");
                         throw progRes.Error;
                     }
 
@@ -568,10 +557,15 @@ namespace Playnite
                 {
                     restoreOptions = Serialization.FromJsonFile<BackupRestoreOptions>(CmdLine.RestoreBackup);
                     var progRes = Dialogs.ActivateGlobalProgress(
-                        (progArgs) => Backup.RestoreBackup(restoreOptions),
+                        (progArgs) =>
+                        {
+                            WaitForOtherInstacesToExit(true);
+                            Backup.RestoreBackup(restoreOptions);
+                        },
                         new GlobalProgressOptions(LOC.BackupRestoreProgress, false) { IsIndeterminate = true });
                     if (progRes.Error != null)
                     {
+                        logger.Error(progRes.Error, "Failed to restore data from backup.");
                         throw progRes.Error;
                     }
                 }
@@ -1575,6 +1569,33 @@ namespace Playnite
         {
             ExtensionsLoaded?.Invoke(this, EventArgs.Empty);
             OnPropertyChanged(nameof(this.ExtensionsStatusBinder));
+        }
+
+        private void WaitForOtherInstacesToExit(bool throwOnTimetout)
+        {
+            if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
+            {
+                logger.Info("Multiple Playnite instances detected, waiting for them to close.");
+                for (int i = 0; i < 10; i++)
+                {
+                    Thread.Sleep(500);
+                    if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
+                    {
+                        break;
+                    }
+                    else if (i == 9)
+                    {
+                        if (throwOnTimetout)
+                        {
+                            throw new Exception("Another Playnite instance didn't shutdown in time.");
+                        }
+                        else
+                        {
+                            logger.Warn("Another Playnite instance didn't shutdown in time.");
+                        }
+                    }
+                }
+            }
         }
 
         public abstract PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner);
