@@ -205,7 +205,7 @@ namespace Playnite.Controllers
                         }
                     }
 
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), currentEmuProfile.GetClone());
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), builtIn.GetClone());
                 }
             }
             else
