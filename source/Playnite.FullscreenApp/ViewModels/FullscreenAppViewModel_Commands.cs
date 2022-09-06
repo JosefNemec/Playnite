@@ -38,6 +38,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand<DragEventArgs> FileDroppedCommand { get; private set; }
         public RelayCommand<object> CloseGameStatusCommand { get; private set; }
         public RelayCommand SwitchToDesktopCommand { get; private set; }
+        public RelayCommand SelectFilterPresetCommand { get; private set; }
 
         private void InitializeCommands()
         {
@@ -333,6 +334,7 @@ namespace Playnite.FullscreenApp.ViewModels
             });
 
             SwitchToDesktopCommand = new RelayCommand(() => SwitchToDesktopMode());
+            SelectFilterPresetCommand = new RelayCommand(() => SelectFilterPreset());
         }
     }
 }

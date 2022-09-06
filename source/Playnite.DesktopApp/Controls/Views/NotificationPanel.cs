@@ -67,10 +67,13 @@ namespace Playnite.DesktopApp.Controls.Views
             ItemsMessages = Template.FindName("PART_ItemsMessages", this) as ItemsControl;
             if (ItemsMessages != null)
             {
-                BindingTools.SetBinding(ItemsMessages,
-                    ItemsControl.ItemsSourceProperty,
-                    mainModel.PlayniteApi.Notifications,
-                    nameof(INotificationsAPI.Messages));
+                if (!DesignerProperties.GetIsInDesignMode(this)) // Because of mainModel.App reference
+                {
+                    BindingTools.SetBinding(ItemsMessages,
+                        ItemsControl.ItemsSourceProperty,
+                        mainModel.App.Notifications,
+                        nameof(INotificationsAPI.Messages));
+                }
             }
         }
     }

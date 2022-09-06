@@ -49,7 +49,6 @@ namespace Playnite.Behaviors
 
         private static void Control_MediaEnded(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("restert");
             var media = (MediaElement)sender;
             media.Position = TimeSpan.Zero;
             media.Play();

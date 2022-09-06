@@ -98,6 +98,28 @@ namespace Playnite.FullscreenApp.Controls.Views
             }
 
             this.mainModel.AppSettings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
+            this.mainModel.PropertyChanged += MainModel_PropertyChanged;
+        }
+
+        private void MainModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(FullscreenAppViewModel.GameDetailsVisible))
+            {
+                SetDetailsElemBindings();
+            }
+
+            if (e.PropertyName == nameof(FullscreenAppViewModel.ActiveFilterPreset))
+            {
+                var panel = ElementTreeHelper.FindVisualChildren<FullscreenTilePanel>(ListGameItems).First();
+                if (panel.UseHorizontalLayout)
+                {
+                    panel.SetHorizontalOffset(0);
+                }
+                else
+                {
+                    panel.SetVerticalOffset(0);
+                }
+            }
         }
 
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -147,6 +169,7 @@ namespace Playnite.FullscreenApp.Controls.Views
 
             if (mainModel.AppSettings.Fullscreen.EnableMainBackgroundImage)
             {
+                ImageBackground.SourceUpdateDelay = 300;
                 BindingTools.SetBinding(ImageBackground,
                     FadeImage.SourceProperty,
                     mainModel,
@@ -207,12 +230,14 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSearchCommand, Key = Key.Y });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleFiltersCommand, Key = Key.F });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SwitchToDesktopCommand, Key = Key.F11 });
+                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectFilterPresetCommand, Key = Key.R });
 
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.PrevFilterViewCommand, XInputButton.LeftShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.NextFilterViewCommand, XInputButton.RightShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.OpenSearchCommand, XInputButton.Y));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.ToggleFiltersCommand, XInputButton.RightStick));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.OpenMainMenuCommand, XInputButton.Back));
+                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.SelectFilterPresetCommand, XInputButton.LeftStick));
                 }
 
                 MainHost = Template.FindName("PART_MainHost", this) as FrameworkElement;
@@ -238,6 +263,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
                 if (ImageBackground != null)
                 {
+                    ImageBackground.SourceUpdateDelay = 300;
                     SetBackgroundBinding();
                     SetBackgroundEffect();
                 }
@@ -332,7 +358,8 @@ namespace Playnite.FullscreenApp.Controls.Views
                                 new XAttribute(nameof(FullscreenTilePanel.Columns), "{Settings Fullscreen.Columns}"),
                                 new XAttribute(nameof(FullscreenTilePanel.UseHorizontalLayout), "{Settings Fullscreen.HorizontalLayout}"),
                                 new XAttribute(nameof(FullscreenTilePanel.ItemAspectRatio), "{Settings CoverAspectRatio}"),
-                                new XAttribute(nameof(FullscreenTilePanel.ItemSpacing), "{Settings FullscreenItemSpacing}")))
+                                new XAttribute(nameof(FullscreenTilePanel.ItemSpacing), "{Settings FullscreenItemSpacing}"),
+                                new XAttribute(nameof(FullscreenTilePanel.SmoothScrollEnabled), "{Settings Fullscreen.SmoothScrolling}")))
                     ).ToString());
 
                     ListGameItems.ItemTemplate = Xaml.FromString<DataTemplate>(new XDocument(
@@ -458,10 +485,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                         mainModel,
                         nameof(FullscreenAppViewModel.GameDetailsVisible),
                         converter: new Converters.BooleanToVisibilityConverter());
-                    BindingTools.SetBinding(ElemGameDetails,
-                        FrameworkElement.DataContextProperty,
-                        mainModel,
-                        nameof(FullscreenAppViewModel.SelectedGame));
+                    SetDetailsElemBindings();
                 }
 
                 ElemGameStatus = Template.FindName("PART_ElemGameStatus", this) as FrameworkElement;
@@ -475,7 +499,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(ElemGameStatus,
                         FrameworkElement.DataContextProperty,
                         mainModel,
-                        nameof(FullscreenAppViewModel.SelectedGame));
+                        nameof(FullscreenAppViewModel.GameStatusView));
                 }
 
                 SetListCommandBindings();
@@ -487,6 +511,26 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ApplicationMode.Fullscreen,
                     mainModel,
                     $"{nameof(FullscreenAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
+            }
+        }
+
+        private void SetDetailsElemBindings()
+        {
+            if (ElemGameDetails == null)
+            {
+                return;
+            }
+
+            if (mainModel.GameDetailsVisible)
+            {
+                BindingTools.SetBinding(ElemGameDetails,
+                    FrameworkElement.DataContextProperty,
+                    mainModel,
+                    nameof(FullscreenAppViewModel.SelectedGame));
+            }
+            else
+            {
+                ElemGameDetails.DataContext = null;
             }
         }
 

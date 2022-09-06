@@ -22,12 +22,13 @@ namespace Playnite
     public class ThemeManager
     {
         private static ILogger logger = LogManager.GetLogger();
-        public static System.Version DesktopApiVersion => new System.Version("2.1.0");
-        public static System.Version FullscreenApiVersion => new System.Version("2.1.0");
+        public static System.Version DesktopApiVersion => new System.Version("2.2.0");
+        public static System.Version FullscreenApiVersion => new System.Version("2.2.0");
         public static ThemeManifest CurrentTheme { get; private set; }
         public static ThemeManifest DefaultTheme { get; private set; }
         public const string DefaultDesktopThemeId = "Playnite_builtin_DefaultDesktop";
         public const string DefaultFullscreenThemeId = "Playnite_builtin_DefaultFullscreen";
+        public const string DefaultThemeDirName = "Default";
 
         public static System.Version GetApiVersion(ApplicationMode mode)
         {
@@ -179,7 +180,7 @@ namespace Playnite
 
             foreach (var themeXamlFile in acceptableXamls)
             {
-                var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), "Default", themeXamlFile);
+                var defaultPath = Path.Combine(PlaynitePaths.ThemesProgramPath, mode.GetDescription(), DefaultThemeDirName, themeXamlFile);
                 var defaultXaml = Xaml.FromFile(defaultPath);
                 if (defaultXaml is ResourceDictionary xamlDir)
                 {
@@ -203,6 +204,16 @@ namespace Playnite
                 {
                     logger.Error($"Skipping theme file {xamlPath}, it's not resource dictionary.");
                 }
+            }
+
+            try
+            {
+                Localization.LoadAddonLocalization(theme.DirectoryPath);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to load theme's localization files.");
+                return AddonLoadError.Uknown;
             }
 
             return AddonLoadError.None;

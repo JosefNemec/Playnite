@@ -23,13 +23,15 @@ namespace Playnite.DesktopApp
             PlayniteSettings appSettings,
             IDialogsFactory dialogs,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(
+            PlayniteApplication app,
+            IActionSelector actionSelector) : base(
                 database,
                 controllerFactory,
                 appSettings,
                 dialogs,
                 extensions,
-                app)
+                app,
+                actionSelector)
         {
         }
 
@@ -54,7 +56,6 @@ namespace Playnite.DesktopApp
                             Dialogs,
                             new ResourceProvider(),
                             Extensions,
-                            Application.Api,
                             AppSettings);
             return model.OpenView();
         }
@@ -68,7 +69,6 @@ namespace Playnite.DesktopApp
                             Dialogs,
                             new ResourceProvider(),
                             Extensions,
-                            Application.Api,
                             AppSettings);
             return model.OpenView();
         }

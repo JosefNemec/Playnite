@@ -22,7 +22,6 @@ using Playnite.Windows;
 using System.Drawing.Imaging;
 using Playnite.DesktopApp.Windows;
 using Playnite.SDK.Plugins;
-using Playnite.Metadata.Providers;
 using System.Text.RegularExpressions;
 using Playnite.Common.Media.Icons;
 using System.Diagnostics;
@@ -75,7 +74,6 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
-        private IPlayniteAPI playniteApi;
         private GameDatabase database;
         private ExtensionFactory extensions;
         private PlayniteSettings appSettings;
@@ -239,6 +237,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => IsMultiGameEdit || !EditingGame.IsCustomGame;
         }
 
+        public bool ShowOverrideInstallStateOption
+        {
+            get => IsMultiGameEdit || !EditingGame.IsCustomGame;
+        }
+
         public bool IsSingleGameEdit
         {
             get;
@@ -273,7 +276,6 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            IPlayniteAPI playniteApi,
             PlayniteSettings appSettings)
         {
             Game = game.GetClone();
@@ -282,7 +284,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingGame = game.GetClone();
             ShowCheckBoxes = false;
             ShowMetaDownload = true;
-            Init(database, window, dialogs, resources, extensions, playniteApi, appSettings);
+            Init(database, window, dialogs, resources, extensions, appSettings);
         }
 
         public GameEditViewModel(
@@ -292,7 +294,6 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            IPlayniteAPI playniteApi,
             PlayniteSettings appSettings)
         {
             Games = games.Select(a => a.GetClone()).ToList();
@@ -301,7 +302,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingGame = GameTools.GetMultiGameEditObject(Games);
             ShowCheckBoxes = true;
             ShowMetaDownload = false;
-            Init(database, window, dialogs, resources, extensions, playniteApi, appSettings, EditingGame as MultiEditGame);
+            Init(database, window, dialogs, resources, extensions, appSettings, EditingGame as MultiEditGame);
         }
 
         private void Init(
@@ -310,7 +311,6 @@ namespace Playnite.DesktopApp.ViewModels
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ExtensionFactory extensions,
-            IPlayniteAPI playniteApi,
             PlayniteSettings appSettings,
             MultiEditGame multiEditData = null)
         {
@@ -319,7 +319,6 @@ namespace Playnite.DesktopApp.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.extensions = extensions;
-            this.playniteApi = playniteApi;
             this.appSettings = appSettings;
 
             EditingGame.PropertyChanged += EditingGame_PropertyChanged;
@@ -361,6 +360,7 @@ namespace Playnite.DesktopApp.ViewModels
             CompletionStatuses.Insert(0, new CompletionStatus() { Id = Guid.Empty, Name = string.Empty });
 
             Emulators = database.Emulators.OrderBy(a => a.Name).ToList();
+            Emulators.Insert(0, new Emulator(resources.GetString(LOC.EmulatorSelectOnStart)) { Id = Guid.Empty });
 
             if (EditingGame.Links != null)
             {
@@ -410,13 +410,6 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                 }
 
-                // Temporarily disabled since there's some issue in fetching images from Wiki.
-                //MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
-                //{
-                //    Downloader = new WikipediaMetadataPlugin(playniteApi),
-                //    Name = "Wikipedia"
-                //});
-
                 LibraryPlugin = extensions?.LibraryPlugins?.FirstOrDefault(a => a.Id == Game?.PluginId);
                 try
                 {
@@ -459,6 +452,30 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ConfirmDialog()
         {
+            try
+            {
+                // This absolutely sucks, but it has to be done to fix issues like #3013.
+                // The only other solution would be changing binding update trigger on ALL elements to PropertyChanged
+                // which is probbaly even worse.
+                // Basically, when a window is closed via default command action on Enter, current editing control
+                // doesn't loose focus before closing a window (specifically before executing default command)
+                // and therefore binding for that control is not updated.
+                if (window?.Window != null)
+                {
+                    System.Windows.Input.FocusManager.SetFocusedElement(System.Windows.Input.FocusManager.GetFocusScope(window.Window), null);
+                    System.Windows.Input.Keyboard.ClearFocus();
+                }
+
+                // What sucks even more is that this can't be handled generally in a view via something like OnClosing event,
+                // because these events are executed after default command is executed.
+                // This is therefore an issue on other views as well, not just game edit window.
+                // TODO: Implement custom handling for default commands and solve this somehow globally.
+            }
+            catch
+            {
+                // This can obviously fail in some cases like when running via unit test runner.
+            }
+
             List<Guid> consolidateIds(SelectableDbItemList selectionList, List<Guid> originalIds)
             {
                 var selected = selectionList.GetSelectedIds();
@@ -558,6 +575,11 @@ namespace Playnite.DesktopApp.ViewModels
             if (UseSourceChanges)
             {
                 AddNewItemToDb(Sources, EditingGame.SourceId, database.Sources);
+            }
+
+            if (UseCompletionStatusChanges)
+            {
+                AddNewItemToDb(CompletionStatuses, EditingGame.CompletionStatusId, database.CompletionStatuses);
             }
 
             var changeDate = DateTime.Now;
@@ -807,6 +829,11 @@ namespace Playnite.DesktopApp.ViewModels
                     game.IncludeLibraryPluginAction = EditingGame.IncludeLibraryPluginAction;
                 }
 
+                if (UseOverrideInstallState)
+                {
+                    game.OverrideInstallState = EditingGame.OverrideInstallState;
+                }
+
                 game.Modified = changeDate;
                 database.Games.Update(game);
             }
@@ -881,7 +908,7 @@ namespace Playnite.DesktopApp.ViewModels
                     var imageExtension = Path.GetExtension(path).ToLower();
                     if (!compatibleExtensions.Contains(imageExtension))
                     {
-                        playniteApi.Dialogs.ShowErrorMessage(string.Format(
+                        dialogs.ShowErrorMessage(string.Format(
                             resources.GetString("LOCIncompatibleDragAndDropExtensionError"), imageExtension),
                             resources.GetString("LOCIncompatibleDragAndDropExtensionErrorTitle"));
                     }
@@ -1460,6 +1487,11 @@ namespace Playnite.DesktopApp.ViewModels
             return CreateNewItemInCollection<GameFeature>(Features, feature, LooseDbNameComparer);
         }
 
+        public void AddNewCompletionStatus(string status = null)
+        {
+            EditingGame.CompletionStatusId = CreateNewItemInCollection(CompletionStatuses, status)?.Id ?? EditingGame.CompletionStatusId;
+        }
+
         public void AddNewFeatures(List<string> features)
         {
             var added = new List<GameFeature>();
@@ -1535,10 +1567,23 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var expanded = EditingGame.ExpandVariables(script);
+                var expandedScript = EditingGame.ExpandVariables(script);
+                var startingArgs = new SDK.Events.OnGameStartingEventArgs
+                {
+                    Game = EditingGame,
+                    SelectedRomFile = EditingGame.Roms?.FirstOrDefault()?.Path,
+                    SourceAction = EditingGame.GameActions?.FirstOrDefault()
+                };
+
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expanded, EditingGame, true, false, GameScriptType.None);
+                    PlayniteApplication.Current.GamesEditor.ExecuteScriptAction(runtime, expandedScript, EditingGame, true, false, GameScriptType.None,
+                        new Dictionary<string, object>
+                        {
+                            {  "StartingArgs", startingArgs },
+                            {  "SourceAction", startingArgs.SourceAction },
+                            {  "SelectedRomFile", startingArgs.SelectedRomFile }
+                        });
                 }
             }
             catch (Exception exc)

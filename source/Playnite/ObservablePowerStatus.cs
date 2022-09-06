@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using Playnite.Common;
+using System.Windows;
 
 namespace Playnite
 {

@@ -1,12 +1,14 @@
 ﻿using Playnite.Common;
 using Playnite.Controllers;
 using Playnite.Database;
+using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -52,24 +54,6 @@ namespace Playnite
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public static string GetDefaultIcon(this Game game, PlayniteSettings settings, GameDatabase database, LibraryPlugin plugin)
-        {
-            if (settings.DefaultIconSource == DefaultIconSourceOptions.None)
-            {
-                return null;
-            }
-            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && plugin?.LibraryIcon.IsNullOrEmpty() == false)
-            {
-                return plugin.LibraryIcon;
-            }
-            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform && game.Platforms?[0].Icon.IsNullOrEmpty() == false)
-            {
-                return database.GetFullFilePath(game.Platforms[0].Icon);
-            }
-
-            return null;
-        }
-
         public static Game GetGameFromExecutable(string path)
         {
             if (!File.Exists(path))
@@ -103,7 +87,7 @@ namespace Playnite
                     {
                         Type = GameActionType.File,
                         WorkingDir = ExpandableVariables.InstallationDirectory,
-                        Path = fileInfo.FullName.Substring(game.InstallDirectory.Length).Trim(Path.DirectorySeparatorChar),
+                        Path = fileInfo.FullName.Replace(game.InstallDirectory.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator()),
                         Arguments = prog.Arguments,
                         IsPlayAction = true,
                         Name = game.Name
@@ -162,7 +146,7 @@ namespace Playnite
                     {
                         Type = GameActionType.File,
                         WorkingDir = ExpandableVariables.InstallationDirectory,
-                        Path = file.Name,
+                        Path = file.FullName.Replace(game.InstallDirectory.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator()),
                         IsPlayAction = true,
                         Name = game.Name
                     }
@@ -173,11 +157,11 @@ namespace Playnite
             return game;
         }
 
-        public static Game ExpandGame(this Game game)
+        public static Game ExpandGame(this Game game, bool fixSeparators = false, string emulatorDir = null, string romPath = null)
         {
             var g = game.GetClone();
-            g.InstallDirectory = g.StringExpand(g.InstallDirectory);
-            g.Roms.ForEach(rom => rom.Path = g.StringExpand(rom.Path));
+            g.InstallDirectory = g.StringExpand(g.InstallDirectory, fixSeparators, emulatorDir, romPath);
+            g.Roms.ForEach(rom => rom.Path = g.StringExpand(rom.Path, fixSeparators, emulatorDir, romPath));
             return g;
         }
 
@@ -191,7 +175,7 @@ namespace Playnite
 
         public static string ExpandVariables(this Game game, string inputString, bool fixSeparators = false, string emulatorDir = null, string romPath = null)
         {
-            var g = game.ExpandGame();
+            var g = game.ExpandGame(fixSeparators, emulatorDir, romPath);
             return StringExpand(g, inputString, fixSeparators, emulatorDir, romPath);
         }
 
@@ -207,7 +191,7 @@ namespace Playnite
             if (!game.InstallDirectory.IsNullOrWhiteSpace())
             {
                 result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
-                result = result.Replace(ExpandableVariables.InstallationDirName, Path.GetFileName(Path.GetDirectoryName(game.InstallDirectory)));
+                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).Last());
             }
 
             if (romPath.IsNullOrEmpty() && game.Roms.HasItems())
@@ -229,12 +213,17 @@ namespace Playnite
 
             result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
             result = result.Replace(ExpandableVariables.Name, game.Name);
-            result = result.Replace(ExpandableVariables.Platform, game.Platforms?[0].Name);
             result = result.Replace(ExpandableVariables.PluginId, game.PluginId.ToString());
             result = result.Replace(ExpandableVariables.GameId, game.GameId);
             result = result.Replace(ExpandableVariables.DatabaseId, game.Id.ToString());
             result = result.Replace(ExpandableVariables.Version, game.Version);
             result = result.Replace(ExpandableVariables.EmulatorDirectory, emulatorDir ?? string.Empty);
+            var plats = game.Platforms;
+            if (plats.HasItems())
+            {
+                result = result.Replace(ExpandableVariables.Platform, plats?[0].Name);
+            }
+
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
 
@@ -255,7 +244,7 @@ namespace Playnite
             if (!game.InstallDirectory.IsNullOrWhiteSpace())
             {
                 result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
-                result = result.Replace(ExpandableVariables.InstallationDirName, Path.GetFileName(Path.GetDirectoryName(game.InstallDirectory)));
+                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).Last());
             }
 
             if (game.Roms.HasItems())
@@ -337,6 +326,59 @@ namespace Playnite
                 logger.Error(e, "Failed to get executable from game data.");
                 return null;
             }
+        }
+
+        public static Dictionary<Emulator, List<EmulatorProfile>> GetCompatibleEmulators(this Game game, GameDatabase database)
+        {
+            var emulators = new Dictionary<Emulator, List<EmulatorProfile>>();
+            if (!game.Platforms.HasItems())
+            {
+                return emulators;
+            }
+
+            foreach (var emulator in database.Emulators)
+            {
+                var profiles = game.GetCompatibleProfiles(emulator);
+                if (profiles.HasItems())
+                {
+                    emulators.Add(emulator, new List<EmulatorProfile>(profiles));
+                }
+            }
+
+            return emulators;
+        }
+
+        public static List<EmulatorProfile> GetCompatibleProfiles(this Game game, Emulator emulator)
+        {
+            var profiles = new List<EmulatorProfile>();
+            if (!game.Platforms.HasItems())
+            {
+                return profiles;
+            }
+
+            foreach (var profile in emulator.CustomProfiles ?? new ObservableCollection<CustomEmulatorProfile>())
+            {
+                if (profile.Platforms?.Intersect(game.PlatformIds).HasItems() == true)
+                {
+                    profiles.Add(profile);
+                }
+            }
+
+            foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
+            {
+                var profDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
+                if (profDef == null)
+                {
+                    continue;
+                }
+
+                if (game.Platforms.Where(a => !a.SpecificationId.IsNullOrEmpty()).Any(a => profDef.Platforms.Contains(a.SpecificationId)))
+                {
+                    profiles.Add(profile);
+                }
+            }
+
+            return profiles;
         }
     }
 }

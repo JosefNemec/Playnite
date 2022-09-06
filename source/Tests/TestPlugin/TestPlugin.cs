@@ -6,17 +6,102 @@ using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace TestPlugin
 {
+    public class DefaultSearchContext : SearchContext
+    {
+        public DefaultSearchContext()
+        {
+            Delay = 500;
+            Description = "Default search description";
+            Label = "test search";
+            Hint = "search hint goes here";
+        }
+
+        public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
+        {
+            var game = API.Instance.Database.Games.First();
+            yield return new GameSearchItem(
+                game,
+                "test",
+                () => API.Instance.Dialogs.ShowErrorMessage(game.Name));
+
+            yield return new SearchItem($"test plugin: {args.SearchTerm}", new SearchItemAction("Blow up", () => { }))
+            {
+                Description = "test plugin description",
+                Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png")
+            };
+
+            yield return new SearchItem($"test plugin #2: {args.SearchTerm}", new SearchItemAction("Blow up", () => { }))
+            {
+                Description = "test plugin description",
+                SecondaryAction = new SearchItemAction("blow up more", () => { })
+            };
+
+            yield return new SearchItem($"icon test", new SearchItemAction("Blow up", () => {
+                API.Instance.Database.ImportGame(new GameMetadata() { Name = "# import from search" });
+            }))
+            {
+                Icon = @"https://cdn.akamai.steamstatic.com/steam/apps/684450/header_292x136.jpg?t=1655395612",
+                Description = "icon test"
+            };
+        }
+    }
+
+    public class SlowSearchContext : SearchContext
+    {
+        public SlowSearchContext()
+        {
+            Delay = 500;
+            Description = "Slow search description";
+        }
+
+        public override IEnumerable<SearchItem> GetSearchResults(GetSearchResultsArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(args.SearchTerm))
+            {
+                yield break;
+            }
+
+            Thread.Sleep(3000);
+            if (args.CancelToken.IsCancellationRequested)
+            {
+                yield break;
+            }
+
+            yield return new SearchItem($"slow result: {args.SearchTerm}", new SearchItemAction("Blow up slowly", () => { }))
+            {
+                Description = "test plugin description",
+                Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png")
+            };
+        }
+    }
+
+    public class TestConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value?.ToString() + " converted";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class TestPlugin : GenericPlugin
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -27,7 +112,11 @@ namespace TestPlugin
 
         public TestPlugin(IPlayniteAPI api) : base(api)
         {
-            Properties = new GenericPluginProperties { HasSettings = true };
+            Properties = new GenericPluginProperties
+            {
+                HasSettings = true
+            };
+
             Settings = new TestPluginSettingsViewModel(this, api);
             AddCustomElementSupport(new AddCustomElementSupportArgs
             {
@@ -40,6 +129,21 @@ namespace TestPlugin
                 SourceName = "TestPlugin",
                 SettingsRoot = $"{nameof(Settings)}.{nameof(Settings.Settings)}"
             });
+
+            Searches = new List<SearchSupport>
+            {
+                new SearchSupport("test", "Testing plugin search", new DefaultSearchContext()),
+                new SearchSupport("slow", "Slow plugin search test", new SlowSearchContext())
+            };
+
+            AddConvertersSupport(new AddConvertersSupportArgs
+            {
+                Converters = new List<IValueConverter> { new TestConverter() },
+                SourceName = "TestPlugin",
+            });
+
+            api.Notifications.Add("test", "some test ", NotificationType.Info);
+            api.Notifications.Add("test2", "some test longer notification that's overlowing to aa lines aa likely", NotificationType.Error);
         }
 
         public override ISettings GetSettings(bool firstRunSettings)
@@ -59,7 +163,7 @@ namespace TestPlugin
 
         public override void OnGameStarted(OnGameStartedEventArgs args)
         {
-            logger.Info($"TestPluginDev OnGameStarted {args.Game.Name}");
+            logger.Info($"TestPluginDev OnGameStarted {args.Game.Name} {args.StartedProcessId}");
             logger.Warn(PlayniteApi.ApplicationSettings.CompletionStatus.PlayedStatus.ToString());
         }
 
@@ -126,6 +230,7 @@ namespace TestPlugin
             {
                 Description = "-"
             };
+
             yield return new MainMenuItem
             {
                 Description = "serialization test",
@@ -133,13 +238,30 @@ namespace TestPlugin
                 {
                     var filtered = PlayniteApi.MainView.FilteredGames;
                     PlayniteApi.MainView.SelectGame(filtered[1].Id);
-
-                    //var obj = new TestPluginSettings { Option1 = "test", Option2 = 2 };
-                    //PlayniteApi.Dialogs.ShowMessage(Serialization.ToJson(obj));
                 }
             };
+
             yield return new MainMenuItem
             {
+                MenuSection = "@",
+                Description = "this is in extension menu",
+                Action = (_) =>
+                {
+                }
+            };
+
+            yield return new MainMenuItem
+            {
+                MenuSection = "@nested|nested2",
+                Description = "nested test menu menu",
+                Action = (_) =>
+                {
+                }
+            };
+
+            yield return new MainMenuItem
+            {
+                MenuSection = "test|test2",
                 Description = "filtered item test",
                 Action = (_) =>
                 {
@@ -157,12 +279,14 @@ namespace TestPlugin
         {
             yield return new GameMenuItem
             {
-                Description = "test plugin root test"
+                Description = "test plugin root test",
+                Action = (_) => PlayniteApi.Dialogs.ShowMessage("test plugin root test")
             };
             yield return new GameMenuItem
             {
                 Description = "window test",
-                MenuSection = "test plugin"
+                MenuSection = "test plugin",
+                Action = (_) => PlayniteApi.Dialogs.ShowMessage("window test")
             };
             yield return new GameMenuItem
             {
@@ -172,7 +296,9 @@ namespace TestPlugin
             yield return new GameMenuItem
             {
                 Description = "serialization test",
-                MenuSection = "test plugin"
+                MenuSection = "test plugin",
+                Action = (_) => PlayniteApi.Dialogs.ShowMessage("serialization test"),
+                Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
             };
         }
 
@@ -267,13 +393,50 @@ namespace TestPlugin
                     FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily
                 },
                 Title = "Calculator",
-                Activated = () => Process.Start("calc")
+                Activated = () =>
+                {
+                    PlayniteApi.MainView.OpenSearch(new DefaultSearchContext(), null);
+                }
             };
             //new TopPanelItem()
             //{
             //    Title = "Steam fields",
             //    Activated = () => Process.Start(@"steam://open/friends")
             //}
+        }
+
+        public override IEnumerable<SearchItem> GetSearchGlobalCommands()
+        {
+            TextBlock icon = null;
+            PlayniteApi.MainView.UIDispatcher.Invoke(() => icon = new TextBlock
+            {
+                Text = char.ConvertFromUtf32(0xef08),
+                FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily,
+                Foreground = Brushes.OrangeRed
+            });
+
+            yield return new SearchItem(
+                "test command",
+                "activate",
+                () =>
+                {
+                    var threadTest = new TextBlock
+                    {
+                        Text = char.ConvertFromUtf32(0xef08),
+                        FontFamily = ResourceProvider.GetResource("FontIcoFont") as FontFamily,
+                        Foreground = Brushes.OrangeRed
+                    };
+                    PlayniteApi.Dialogs.ShowMessage("teste command");
+                },
+                icon)
+            {
+                Description = "some description goes here to describe things"
+            };
+
+            yield return new SearchItem(
+                "test command 2",
+                "activate", () => PlayniteApi.Dialogs.ShowMessage("teste command 2"),
+                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"));
         }
     }
 }

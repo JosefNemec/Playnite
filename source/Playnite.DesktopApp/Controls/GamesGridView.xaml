@@ -8,6 +8,7 @@
              xmlns:pc="clr-namespace:Playnite.DesktopApp.Controls"
              xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
+             xmlns:sdkm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="502.764">
     
@@ -39,9 +40,9 @@
                     <DataTemplate>
                         <Grid>
                             <TextBlock FontFamily="Marlett" Text="5"
-                       Visibility="{pmrk:Settings ViewSettings.SortingOrderDirection, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrderDirection.Ascending}}"/>
+                       Visibility="{pmrk:Settings ViewSettings.SortingOrderDirection, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrderDirection.Ascending}}"/>
                             <TextBlock FontFamily="Marlett" Text="6"
-                       Visibility="{pmrk:Settings ViewSettings.SortingOrderDirection, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrderDirection.Descending}}"/>
+                       Visibility="{pmrk:Settings ViewSettings.SortingOrderDirection, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrderDirection.Descending}}"/>
                         </Grid>
                     </DataTemplate>
                 </Setter.Value>
@@ -68,7 +69,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameNameTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Name}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Name}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -80,7 +81,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGamePlatformTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Platforms}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Platforms}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -92,7 +93,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameProviderTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Library}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Library}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -104,7 +105,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameDevelopersTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Developers}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Developers}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -116,7 +117,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGamePublishersTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Publishers}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Publishers}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -128,7 +129,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.ReleaseDate}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.ReleaseDate}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -140,7 +141,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameGenresTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Genres}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Genres}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -152,7 +153,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameCategoriesTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Categories}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Categories}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -164,7 +165,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCFeaturesLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Features}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Features}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -176,7 +177,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameTagsTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Tags}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Tags}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -188,7 +189,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameIsInstalledTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.IsInstalled}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.IsInstalled}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -200,7 +201,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameInstallDirTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.InstallDirectory}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.InstallDirectory}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -212,7 +213,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCGameLastActivityTitle}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.LastActivity}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.LastActivity}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -224,7 +225,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCTimePlayed}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Playtime}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Playtime}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -236,7 +237,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCPlayCountLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.PlayCount}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.PlayCount}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -248,7 +249,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCCompletionStatus}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CompletionStatus}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.CompletionStatus}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -260,7 +261,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCSeriesLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Series}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Series}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -272,7 +273,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCVersionLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Version}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Version}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -284,7 +285,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCAgeRatingLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.AgeRatings}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.AgeRatings}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -296,7 +297,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCRegionLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Regions}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Regions}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -308,7 +309,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCSourceLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Source}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Source}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -320,7 +321,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCAddedLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Added}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Added}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -332,7 +333,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCModifiedLabel}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.Modified}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Modified}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -344,7 +345,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCUserScore}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.UserScore}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.UserScore}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -356,7 +357,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCCriticScore}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CriticScore}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.CriticScore}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -368,7 +369,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCCommunityScore}" />
                 <ContentControl Style="{StaticResource SortIndicator}"
-                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static p:SortOrder.CommunityScore}}"/>
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.CommunityScore}}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -382,9 +383,11 @@
               ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}"
               VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
               VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.CacheLength="5"
+              VirtualizingPanel.ScrollUnit="Pixel"
               pbeh:ScrollToSelectedBehavior.Enabled="True">
         <ListView.Resources>
             <p:BindingProxy x:Key="SettingsProxy" Data="{Binding}" />
+            <p:BindingProxy x:Key="GridGamesProxy" Data="{Binding ElementName=GridGames}" />
         </ListView.Resources>
         <ListView.InputBindings>
             <KeyBinding Command="{Binding Data.EditSelectedGamesCommand, Source={StaticResource MainProxy}}"
@@ -397,12 +400,14 @@
                         Key ="{Binding Data.StartSelectedGameCommand.Gesture.Key, Source={StaticResource MainProxy}}"
                         Modifiers="{Binding Data.StartSelectedGameCommand.Gesture.Modifiers, Source={StaticResource MainProxy}}" />
         </ListView.InputBindings>
-        <ListView.ContextMenu>
-            <pc:GameMenu DataContext="{Binding PlacementTarget.SelectedItems, RelativeSource={RelativeSource Self}}"
-                         ShowStartSection="True"/>
-        </ListView.ContextMenu>
         <ListView.ItemContainerStyle>
             <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                <Setter Property="ContextMenu">
+                    <Setter.Value>
+                        <pc:GameMenu DataContext="{Binding Data.SelectedItems, Source={StaticResource GridGamesProxy}}"
+                                     ShowStartSection="True"/>
+                    </Setter.Value>
+                </Setter>
                 <EventSetter Event="MouseDoubleClick" Handler="Grid_MouseDoubleClick" />
                 <Style.Triggers>
                     <MultiDataTrigger>

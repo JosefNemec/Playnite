@@ -11,20 +11,20 @@ namespace Playnite.SDK.Plugins
     /// <summary>
     /// Type of automatic play action
     /// </summary>
-    public enum AutomaticPlayActionType
+    public enum AutomaticPlayActionType : int
     {
         /// <summary>
         ///
         /// </summary>
-        File,
+        File = 0,
         /// <summary>
         ///
         /// </summary>
-        Url
+        Url = 1
     }
 
     /// <summary>
-    /// Repsents controller for automatic handling of game startup.
+    /// Represents controller for automatic handling of game startup.
     /// </summary>
     public sealed class AutomaticPlayController : PlayController
     {
@@ -88,7 +88,7 @@ namespace Playnite.SDK.Plugins
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets game attrached to a specific controller operation.
+        /// Gets or sets game attached to a specific controller operation.
         /// </summary>
         public Game Game { get; set; }
 
@@ -115,7 +115,7 @@ namespace Playnite.SDK.Plugins
         internal event EventHandler<GameInstalledEventArgs> Installed;
 
         /// <summary>
-        /// Creantes new instance of <see cref="InstallController"/>.
+        /// Creates new instance of <see cref="InstallController"/>.
         /// </summary>
         /// <param name="game"></param>
         public InstallController(Game game) : base(game)
@@ -167,6 +167,14 @@ namespace Playnite.SDK.Plugins
             args.Source = this;
             execContext.Send((a) => Uninstalled?.Invoke(this, args), null);
         }
+
+        /// <summary>
+        /// Invoke to signal that uninstallation completed.
+        /// </summary>
+        protected void InvokeOnUninstalled()
+        {
+            InvokeOnUninstalled(new GameUninstalledEventArgs());
+        }
     }
 
     /// <summary>
@@ -201,6 +209,14 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Invoke to signal that game started running.
+        /// </summary>
+        protected void InvokeOnStarted()
+        {
+            InvokeOnStarted(new GameStartedEventArgs());
+        }
+
+        /// <summary>
         /// Invoke to signal that game stopped running.
         /// </summary>
         /// <param name="args"></param>
@@ -208,6 +224,12 @@ namespace Playnite.SDK.Plugins
         {
             args.Source = this;
             execContext.Send((a) => Stopped?.Invoke(this, args), null);
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name ?? base.ToString();
         }
     }
 
@@ -238,7 +260,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///  Represents arguments for play action.
+    /// Represents arguments for play action.
     /// </summary>
     public class PlayActionArgs
     {
@@ -256,6 +278,11 @@ namespace Playnite.SDK.Plugins
     public class GameStartedEventArgs
     {
         internal PlayController Source { get; set; }
+
+        /// <summary>
+        /// Gets or sets started process ID.
+        /// </summary>
+        public int StartedProcessId { get; set; }
 
         /// <summary>
         ///

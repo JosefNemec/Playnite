@@ -72,7 +72,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                     new InvertedBoolenConverter());
 
             SliderItemSpacing.Minimum = 0;
-            SliderItemSpacing.Maximum = 40;
+            SliderItemSpacing.Maximum = 200;
             SliderItemSpacing.TickFrequency = 1;
             SliderItemSpacing.IsSnapToTickEnabled = true;
             BindingTools.SetBinding(
@@ -88,6 +88,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 CheckBox.IsCheckedProperty,
                 mainModel.AppSettings.Fullscreen,
                 nameof(FullscreenSettings.HorizontalLayout),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToggleSmoothScrolling,
+                CheckBox.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.SmoothScrolling),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
         }

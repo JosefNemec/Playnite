@@ -39,13 +39,13 @@ namespace Playnite
 
         public override string ToString()
         {
-            if (TranslatedPercentage > -1)
+            if (TranslatedPercentage == -1 || TranslatedPercentage == 100)
             {
-                return $"{LocaleString}   ({Id}, {TranslatedPercentage}%)";
+                return LocaleString;
             }
             else
             {
-                return LocaleString;
+                return $"{LocaleString}   ({Id}, {TranslatedPercentage}%)";
             }
         }
     }
@@ -111,10 +111,18 @@ namespace Playnite
                 }
 
                 var langPath = Path.Combine(path, file);
-                ResourceDictionary res = null;
+                var localeString = "";
                 try
                 {
-                    res = Xaml.FromFile<ResourceDictionary>(langPath);
+                    foreach (var line in File.ReadLines(langPath, Encoding.UTF8))
+                    {
+                        var match = Regex.Match(line, @"LanguageName""\>(.+)\<");
+                        if (match.Success)
+                        {
+                            localeString = match.Groups[1].Value;
+                            break;
+                        }
+                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -125,7 +133,7 @@ namespace Playnite
                 langs.Add(new PlayniteLanguage()
                 {
                     Id = Path.GetFileNameWithoutExtension(langPath),
-                    LocaleString = res["LanguageName"].ToString(),
+                    LocaleString = localeString,
                     TranslatedPercentage = lngCov
                 });
             }
@@ -181,7 +189,7 @@ namespace Playnite
             CurrentLanguage = language;
         }
 
-        public static void LoadExtensionsLocalization(string extensionDir)
+        public static void LoadAddonLocalization(string addonDir)
         {
             var dictionaries = Application.Current.Resources.MergedDictionaries;
             void loadString(string xamlPath)
@@ -215,7 +223,7 @@ namespace Playnite
                 dictionaries.Add(res);
             }
 
-            var localDir = Path.Combine(extensionDir, PlaynitePaths.LocalizationsDirName);
+            var localDir = Path.Combine(addonDir, PlaynitePaths.LocalizationsDirName);
             if (!Directory.Exists(localDir))
             {
                 return;

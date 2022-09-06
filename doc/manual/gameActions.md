@@ -52,9 +52,14 @@ Action properties
 | --- | --- |
 | Default | Playnite will try to detect and use the best tracking method automatically. |
 | Process | Playnite will track a game as running as long as original process or any of its child processes are running. |
+| Original process | Playnite will track a game as running as long as originally started process is running, child processes are ignored. |
 | Folder | Playnite will track a game as running as long as some process from `Tracking path` folder is running. |
 
 Troubleshooting
 ---------------------
 
 In rare cases (depending on an application being started) the application won't start properly unless `Working directory` is not set to application's installation directory. If this happens you need to specify `Working directory` manually to a directory that makes selected application run properly. This is not an issue in Playnite, it's an issue in the started application.
+
+### Using "Choose on startup" option doesn't show all emulators/profiles
+
+This option uses platform field to select compatible emulators and profiles. If some emulators or profile are not shown on startup, make sure you have the same platforms assigned to a game and specific profiles.

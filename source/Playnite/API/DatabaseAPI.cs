@@ -35,6 +35,7 @@ namespace Playnite.API
         public IItemCollection<GameScannerConfig> GameScanners => database.GameScanners;
         public IItemCollection<CompletionStatus> CompletionStatuses => database.CompletionStatuses;
         public IItemCollection<ImportExclusionItem> ImportExclusions => database.ImportExclusions;
+        public IItemCollection<FilterPreset> FilterPresets => database.FilterPresets;
 
         public string DatabasePath
         {
@@ -94,6 +95,16 @@ namespace Playnite.API
         public Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin)
         {
             return database.ImportGame(game, sourcePlugin.Id);
+        }
+
+        public void BeginBufferUpdate()
+        {
+            database.BeginBufferUpdate();
+        }
+
+        public void EndBufferUpdate()
+        {
+            database.EndBufferUpdate();
         }
     }
 }

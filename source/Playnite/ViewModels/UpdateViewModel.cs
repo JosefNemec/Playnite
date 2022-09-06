@@ -102,7 +102,7 @@ namespace Playnite.ViewModels
             {
                 if (dialogs.ShowMessage(resources.GetString("LOCUpdateProgressCancelAsk"), "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), (_) =>
+                    dialogs.ActivateGlobalProgress((_) =>
                     {
                         try
                         {
@@ -114,7 +114,6 @@ namespace Playnite.ViewModels
                             throw;
                         }
                     }, new GlobalProgressOptions("LOCProgressReleasingResources"));
-                    progressModel.ActivateProgress();
                 }
                 else
                 {

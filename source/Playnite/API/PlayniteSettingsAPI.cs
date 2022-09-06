@@ -56,12 +56,11 @@ namespace Playnite.API
         public bool CloseToTray => settings.CloseToTray;
         public bool EnableTray => settings.EnableTray;
         public string Language => settings.Language == "english" ? "en_US" : settings.Language;
-        public bool UpdateLibStartup => settings.UpdateLibStartup;
+        public bool UpdateLibStartup => settings.CheckForLibraryUpdates == LibraryUpdateCheckFrequency.OnEveryStartup;
         public string DesktopTheme => settings.Theme;
         public string FullscreenTheme => settings.Fullscreen.Theme;
         public bool StartMinimized => settings.StartMinimized;
         public bool StartOnBoot => settings.StartOnBoot;
-        public bool ForcePlayTimeSync => settings.ForcePlayTimeSync;
         public string FontFamilyName => settings.FontFamilyName;
         public bool DiscordPresenceEnabled => settings.DiscordPresenceEnabled;
         public AgeRatingOrg AgeRatingOrgPriority => settings.AgeRatingOrgPriority;
@@ -69,6 +68,8 @@ namespace Playnite.API
         public Dock SidebarPosition => settings.SidebarPosition;
         public IFullscreenSettingsAPI Fullscreen { get; }
         public ICompletionStatusSettignsApi CompletionStatus { get; }
+        public bool ForcePlayTimeSync => false;
+        public PlaytimeImportMode PlaytimeImportMode => settings.PlaytimeImportMode;
 
         public PlayniteSettingsAPI(PlayniteSettings settings, GameDatabase db)
         {

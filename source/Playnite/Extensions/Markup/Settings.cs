@@ -1,4 +1,5 @@
 ﻿using Playnite.Converters;
+using Playnite.SDK;
 using Playnite.Settings;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,8 @@ namespace Playnite.Extensions.Markup
 
     public class Settings : BindingExtension
     {
+        private static ILogger logger = LogManager.GetLogger();
+        private static readonly Dictionary<string, PropertyInfo> directValuePropCache = new Dictionary<string, PropertyInfo>();
         public bool DirectValue { get; set; } = false;
 
         public Settings() : this(null)
@@ -42,7 +45,7 @@ namespace Playnite.Extensions.Markup
 
         public Settings(string path) : base(path)
         {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            if (DesignerTools.IsInDesignMode)
             {
                 Source = new PlayniteSettings();
                 PathRoot = null;
@@ -68,14 +71,30 @@ namespace Playnite.Extensions.Markup
 
             if (DirectValue)
             {
-                if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+                // Doesn't support nested properties!
+                var src = Source;
+                if (!DesignerTools.IsInDesignMode)
                 {
-                    return typeof(PlayniteSettings).GetProperty(Path).GetValue(Source, null);
+                    src = PlayniteApplication.Current.AppSettings;
+                }
+
+                if (directValuePropCache.TryGetValue(Path, out var prop))
+                {
+                    return prop?.GetValue(src, null);
                 }
                 else
                 {
-                    var src = ((PlayniteApplication)Source).AppSettings;
-                    return typeof(PlayniteSettings).GetProperty(Path).GetValue(src, null);
+                    var newProp = typeof(PlayniteSettings).GetProperty(Path);
+                    directValuePropCache.Add(Path, newProp);
+                    if (newProp != null)
+                    {
+                        return newProp.GetValue(src, null);
+                    }
+                    else
+                    {
+                        logger.Error($"Failed to get value of \"{Path}\" path from app settings.");
+                        return null;
+                    }
                 }
             }
             else

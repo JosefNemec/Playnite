@@ -77,7 +77,7 @@ namespace System.Collections.Generic
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <param name="items"></param>
-        /// <returns>True if an item was added, false if none item was added.</returns>
+        /// <returns>True if an item was added, false if no item was added.</returns>
         public static bool AddMissing<T>(this IList<T> source, IEnumerable<T> items)
         {
             if (!items.HasItems())
@@ -113,7 +113,7 @@ namespace System.Collections.Generic
         /// <param name="source"></param>
         /// <param name="target"></param>
         /// <param name="comparison"></param>
-        /// <returns>True of target collection contains items that are also part of source collection.</returns>
+        /// <returns>True if target collection contains items that are also part of source collection.</returns>
         public static bool IntersectsPartiallyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             if (source == null && target == null)
@@ -144,7 +144,7 @@ namespace System.Collections.Generic
         /// <param name="source"></param>
         /// <param name="target"></param>
         /// <param name="comparison"></param>
-        /// <returns>True of target collection contains items that are also part of source collection.</returns>
+        /// <returns>True if target collection contains items that are also part of source collection.</returns>
         public static bool IntersectsExactlyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             if (source == null && target == null)
@@ -170,7 +170,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// Checks if source collection constains specified string completely.
+        /// Checks if source collection contains specified string completely.
         /// </summary>
         public static bool ContainsString(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
@@ -186,7 +186,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// Checks if source collection constains part of specified string.
+        /// Checks if source collection contains part of specified string.
         /// </summary>
         public static bool ContainsPartOfString(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
@@ -369,7 +369,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// Merge collection together.
+        /// Merge collections together.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="lists"></param>
@@ -389,7 +389,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// Merge two collection together.
+        /// Merge two collections together.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list1"></param>

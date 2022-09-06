@@ -36,7 +36,7 @@
             <!--TODO update links -->
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://playnite.link/forum/forum-3.html">
+                            CommandParameter="https://playnite.link/addons.html#themesDesktop">
                     <Run Text="{DynamicResource LOCSettingsGetThemes}" />
                 </Hyperlink>
             </TextBlock>
@@ -52,41 +52,37 @@
             <ContentControl Content="{DynamicResource LOCSettingsInterfaceFont}" VerticalAlignment="Center"
                             ContentStringFormat="{}{0} *" />
             <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
-                      SelectedValue="{Binding Settings.FontFamilyName}" />
+                      SelectedValue="{Binding Settings.FontFamilyName}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock  Text="{Binding Path='',Mode=OneWay}" FontFamily="{Binding  Path='',Mode=OneWay}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate >
+                        <VirtualizingStackPanel VirtualizationMode="Recycling"/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
             <ContentControl Content="{DynamicResource LOCSettingsInterfaceMonoFont}" VerticalAlignment="Center"
                             ContentStringFormat="{}{0} *" />
             <ComboBox ItemsSource="{Binding AvailableFonts}" Width="180" Margin="10,0,0,0"
-                      SelectedValue="{Binding Settings.MonospaceFontFamilyName}" />
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Margin="0,20,0,0" >
-            <CheckBox Name="CheckEnableTray" VerticalAlignment="Center"
-                    IsChecked="{Binding Settings.EnableTray}"
-                    Content="{DynamicResource LOCSettingsShowTray}"
-                    ContentStringFormat="{}{0} *" />
-            <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
-                    ItemsSource="{Binding AvailableTrayIcons}"
-                    SelectedValue="{Binding Settings.TrayIcon}"
-                    SelectedValuePath="TrayIcon"
-                    IsEnabled="{Binding Settings.EnableTray}">
+                      SelectedValue="{Binding Settings.MonospaceFontFamilyName}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <Image RenderOptions.BitmapScalingMode="Fant"
-                                VerticalAlignment="Center" Height="16" Margin="5"
-                                Source="{Binding ImageSource}" />
+                        <TextBlock  Text="{Binding Path='',Mode=OneWay}" FontFamily="{Binding  Path='',Mode=OneWay}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate >
+                        <VirtualizingStackPanel VirtualizationMode="Recycling"/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
             </ComboBox>
         </StackPanel>
-        <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="20,10,5,5"
-                IsChecked="{Binding Settings.MinimizeToTray}"
-                IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
-        <CheckBox Name="CheckCloseToTray" Content="{DynamicResource LOCSettingsCloseToTray}" Margin="20,5,5,5"
-                IsChecked="{Binding Settings.CloseToTray}"
-                IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
 
         <CheckBox Content="{DynamicResource LOCSettingsShowGroupCount}" Margin="0,15,0,0"
                   Name="CheckShowGroupCount" IsChecked="{Binding Settings.ShowGroupCount}"/>

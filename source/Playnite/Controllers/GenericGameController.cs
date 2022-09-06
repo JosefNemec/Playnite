@@ -41,8 +41,14 @@ namespace Playnite.Controllers
         private Task playTask;
         private bool isDisposed = false;
         private EmulatorProfile currentEmuProfile;
-        internal string SelectedRomPath { get; private set; }
-        internal GameAction SourceGameAction { get; private set; }
+
+        internal OnGameStartingEventArgs StartingArgs { get; private set; }
+
+        // These are stored for emulator scripts because they can be executed in non-linear fasion
+        private string startedRomFile;
+        private Emulator startedEmulator;
+        private EmulatorProfile startedEmulatorProfile;
+        private string startedEmulatorDir;
 
         public GenericPlayController(
             GameDatabase db,
@@ -61,7 +67,7 @@ namespace Playnite.Controllers
             throw new NotSupportedException("This shouldn't be called.");
         }
 
-        public void Start(EmulationPlayAction action, bool asyncExec = true)
+        public void StartEmulator(EmulationPlayAction action, bool asyncExec, OnGameStartingEventArgs startingArgs)
         {
             var emulator = database.Emulators[action.EmulatorId];
             if (emulator == null)
@@ -88,16 +94,17 @@ namespace Playnite.Controllers
             {
                 emulator.InstallDir = Paths.FixSeparators(emulator.InstallDir.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath));
                 emulator.InstallDir = CheckPath(emulator.InstallDir, nameof(emulator.InstallDir), FileSystemItem.Directory);
+                emulator.InstallDir = emulator.InstallDir.TrimEnd(Path.DirectorySeparatorChar);
             }
 
-            SourceGameAction = action;
-            SelectedRomPath = action.SelectedRomPath;
+            StartingArgs = startingArgs;
 
             var startupPath = "";
             var startupArgs = "";
             var startupDir = "";
-            var romPath = Game.ExpandVariables(action.SelectedRomPath, true);
-            romPath = CheckPath(romPath, "ROM", FileSystemItem.File);
+            var romPath = Game.ExpandVariables(action.SelectedRomPath, true, emulator.InstallDir, null);
+            // This is later passed to an emulator so it's up to it how it processes long paths.
+            romPath = Paths.TrimLongPathPrefix(CheckPath(romPath, "ROM", FileSystemItem.File));
 
             if (currentEmuProfile is CustomEmulatorProfile emuProf)
             {
@@ -136,7 +143,7 @@ namespace Playnite.Controllers
 
                     startupDir = expandedProfile.WorkingDirectory;
                     startupPath = expandedProfile.Executable;
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir);
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), expandedProfile.GetClone());
                 }
             }
             else if (currentEmuProfile is BuiltInEmulatorProfile builtIn)
@@ -150,7 +157,7 @@ namespace Playnite.Controllers
                 if (profileDef.ScriptStartup)
                 {
                     var def = EmulatorDefinition.GetDefition(emulator.BuiltInConfigId);
-                    if (def == null || !File.Exists(def.StartupScriptPath))
+                    if (def == null || !FileSystem.FileExists(def.StartupScriptPath))
                     {
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorStartupScriptNotFound));
                     }
@@ -198,7 +205,7 @@ namespace Playnite.Controllers
                         }
                     }
 
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir, asyncExec);
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), builtIn.GetClone());
                 }
             }
             else
@@ -207,31 +214,36 @@ namespace Playnite.Controllers
             }
         }
 
-        private void StartEmulatorProcess(string path, string args, string workDir, bool asyncExec = true)
+        private void StartEmulatorProcess(string path, string args, string workDir, string emulatorDir, string romPath, bool asyncExec, Emulator emulator, EmulatorProfile emuProfile)
         {
+            startedRomFile = romPath;
+            startedEmulator = emulator;
+            startedEmulatorProfile = emuProfile;
+            startedEmulatorDir = emulatorDir;
+
             if (asyncExec)
             {
-                ExecuteEmulatorScript(currentEmuProfile.PreScript);
+                ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath, emulator, emuProfile);
 
                 procMon = new ProcessMonitor();
-                procMon.TreeDestroyed += Monitor_TreeDestroyed;
+                procMon.TreeDestroyed += Monitor_EmulatedTreeDestroyed;
                 var process = ProcessStarter.StartProcess(path, args, workDir);
 
                 stopWatch = Stopwatch.StartNew();
-                ExecuteEmulatorScript(currentEmuProfile.PostScript);
-                InvokeOnStarted(new GameStartedEventArgs());
+                ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
+                InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = process.Id });
                 procMon.WatchProcessTree(process);
             }
             else
             {
-                ExecuteEmulatorScript(currentEmuProfile.PostScript);
+                ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath, emulator, emuProfile);
                 ProcessStarter.StartProcess(path, args, workDir);
-                ExecuteEmulatorScript(currentEmuProfile.PostScript);
-                ExecuteEmulatorScript(currentEmuProfile.ExitScript);
+                ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
+                ExecuteEmulatorScript(currentEmuProfile.ExitScript, emulatorDir, romPath, emulator, emuProfile);
             }
         }
 
-        private void ExecuteEmulatorScript(string script)
+        private void ExecuteEmulatorScript(string script, string emulatorDir, string romPath, Emulator emulator, EmulatorProfile emuProfile)
         {
             if (script.IsNullOrEmpty())
             {
@@ -243,12 +255,17 @@ namespace Playnite.Controllers
                 var scriptVars = new Dictionary<string, object>
                 {
                     {  "PlayniteApi", playniteApi },
-                    {  "Game", Game.GetClone() }
+                    {  "Game", Game.GetClone() },
+                    {  "StartingArgs", StartingArgs },
+                    {  "SourceAction", StartingArgs.SourceAction },
+                    {  "SelectedRomFile", romPath },
+                    {  "Emulator", emulator },
+                    {  "EmulatorProfile", emuProfile }
                 };
 
-                var expandedScript = Game.ExpandVariables(script);
+                var expandedScript = Game.ExpandVariables(script, false, emulatorDir, romPath);
                 var dir = Game.ExpandVariables(Game.InstallDirectory, true);
-                if (!dir.IsNullOrEmpty() && Directory.Exists(dir))
+                if (!dir.IsNullOrEmpty() && FileSystem.DirectoryExists(dir))
                 {
                     scriptRuntime.Execute(expandedScript, dir, scriptVars);
                 }
@@ -344,20 +361,20 @@ namespace Playnite.Controllers
 
         private void RunStartScriptFile(string runtimeName, string scriptPath, string workDir, Dictionary<string, object> variables, bool asyncExec = true)
         {
-            logger.Debug($"Starting game using emulator script file {scriptPath}");
+            logger.Debug($"Starting game using script file {scriptPath}");
             RunScript(runtimeName, r => r.ExecuteFile(scriptPath, workDir, variables), variables, asyncExec);
         }
 
         private void RunStartScript(string runtimeName, string script, string workDir, Dictionary<string, object> variables, bool asyncExec = true)
         {
-            logger.Debug($"Starting game using emulator script.");
+            logger.Debug($"Starting game using script.");
             logger.Trace(script);
             RunScript(runtimeName, r => r.Execute(script, workDir, variables), variables, asyncExec);
         }
 
         public void Start(AutomaticPlayController controller)
         {
-            Start(new GameAction
+            var action = new GameAction
             {
                 Type = controller.Type == AutomaticPlayActionType.Url ? GameActionType.URL : GameActionType.File,
                 Arguments = controller.Arguments,
@@ -365,10 +382,16 @@ namespace Playnite.Controllers
                 WorkingDir = controller.WorkingDir,
                 TrackingMode = controller.TrackingMode,
                 TrackingPath = controller.TrackingPath
-            }, true);
+            };
+
+            Start(action, true, new OnGameStartingEventArgs
+            {
+                SourceAction = action,
+                Game = Game
+            });
         }
 
-        public void Start(GameAction playAction, bool asyncExec = false)
+        public void Start(GameAction playAction, bool asyncExec, OnGameStartingEventArgs startingArgs)
         {
             if (playAction == null)
             {
@@ -380,20 +403,9 @@ namespace Playnite.Controllers
                 throw new Exception("Cannot start emulator using this configuration.");
             }
 
-            SourceGameAction = playAction;
+            StartingArgs = startingArgs;
             var gameClone = Game.GetClone();
             var action = playAction.GetClone();
-            if (gameClone.Roms.HasItems())
-            {
-                var romPath = gameClone.Roms[0].Path;
-                SelectedRomPath = romPath;
-                var newPath = CheckPath(romPath, "ROM", FileSystemItem.File);
-                if (newPath != romPath)
-                {
-                    gameClone.Roms = new ObservableCollection<GameRom> { new GameRom("LookupAlternativeFilePath", newPath) };
-                }
-            }
-
             action = action.ExpandVariables(gameClone);
             action.Path = CheckPath(action.Path, nameof(action.Path), FileSystemItem.File);
             action.WorkingDir = CheckPath(action.WorkingDir, nameof(action.WorkingDir), FileSystemItem.Directory);
@@ -455,7 +467,7 @@ namespace Playnite.Controllers
 
                             // TODO switch to WatchUwpApp once we are building as 64bit app
                             //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
-                            if (Directory.Exists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
+                            if (FileSystem.DirectoryExists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
                             {
                                 procMon.WatchDirectoryProcesses(scanDirectory, false, true);
                             }
@@ -468,7 +480,7 @@ namespace Playnite.Controllers
                         {
                             if (proc != null)
                             {
-                                InvokeOnStarted(new GameStartedEventArgs());
+                                InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
                                 procMon.WatchProcessTree(proc);
                             }
                             else
@@ -479,9 +491,8 @@ namespace Playnite.Controllers
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && Directory.Exists(gameClone.InstallDirectory))
+                        if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && FileSystem.DirectoryExists(gameClone.InstallDirectory))
                         {
-                            InvokeOnStarted(new GameStartedEventArgs());
                             stopWatch = Stopwatch.StartNew();
                             procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
                         }
@@ -495,9 +506,22 @@ namespace Playnite.Controllers
                 {
                     if (proc != null)
                     {
-                        InvokeOnStarted(new GameStartedEventArgs());
+                        InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
                         stopWatch = Stopwatch.StartNew();
                         procMon.WatchProcessTree(proc);
+                    }
+                    else
+                    {
+                        InvokeOnStopped(new GameStoppedEventArgs());
+                    }
+                }
+                else if (action.TrackingMode == TrackingMode.OriginalProcess)
+                {
+                    if (proc != null)
+                    {
+                        InvokeOnStarted(new GameStartedEventArgs());
+                        stopWatch = Stopwatch.StartNew();
+                        procMon.WatchSingleProcess(proc);
                     }
                     else
                     {
@@ -507,7 +531,7 @@ namespace Playnite.Controllers
                 else if (action.TrackingMode == TrackingMode.Directory)
                 {
                     var watchDir = action.TrackingPath.IsNullOrEmpty() ? gameClone.InstallDirectory : action.TrackingPath;
-                    if (!watchDir.IsNullOrEmpty() && Directory.Exists(watchDir))
+                    if (!watchDir.IsNullOrEmpty() && FileSystem.DirectoryExists(watchDir))
                     {
                         stopWatch = Stopwatch.StartNew();
                         procMon.WatchDirectoryProcesses(watchDir, false);
@@ -540,15 +564,21 @@ namespace Playnite.Controllers
             currentEmuProfile = null;
         }
 
-        private void ProcMon_TreeStarted(object sender, EventArgs e)
+        private void ProcMon_TreeStarted(object sender, ProcessMonitor.TreeStartedEventArgs args)
         {
-            InvokeOnStarted(new GameStartedEventArgs());
+            InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = args.StartedId });
         }
 
         private void Monitor_TreeDestroyed(object sender, EventArgs args)
         {
             stopWatch.Stop();
-            ExecuteEmulatorScript(currentEmuProfile?.ExitScript);
+            InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
+        }
+
+        private void Monitor_EmulatedTreeDestroyed(object sender, EventArgs args)
+        {
+            stopWatch.Stop();
+            ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile);
             InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
         }
 

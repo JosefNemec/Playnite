@@ -1,12 +1,14 @@
 ﻿using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
 using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Playnite.DesktopApp.API
 {
@@ -30,9 +32,33 @@ namespace Playnite.DesktopApp.API
             }
         }
 
-        public DesktopView ActiveDesktopView => (DesktopView)mainModel.AppSettings.ViewSettings.GamesViewType;
+        public DesktopView ActiveDesktopView
+        {
+            get => mainModel.AppSettings.ViewSettings.GamesViewType;
+            set => mainModel.AppSettings.ViewSettings.GamesViewType = value;
+        }
+
+        public SortOrder SortOrder
+        {
+            get => mainModel.AppSettings.ViewSettings.SortingOrder;
+            set => mainModel.AppSettings.ViewSettings.SortingOrder = value;
+        }
+
+        public SortOrderDirection SortOrderDirection
+        {
+            get => mainModel.AppSettings.ViewSettings.SortingOrderDirection;
+            set => mainModel.AppSettings.ViewSettings.SortingOrderDirection = value;
+        }
+
+        public GroupableField Grouping
+        {
+            get => mainModel.AppSettings.ViewSettings.GroupingOrder;
+            set => mainModel.AppSettings.ViewSettings.GroupingOrder = value;
+        }
 
         public List<Game> FilteredGames => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList();
+
+        public Dispatcher UIDispatcher => PlayniteApplication.CurrentNative.Dispatcher;
 
         public MainViewAPI(DesktopAppViewModel mainModel)
         {
@@ -65,6 +91,36 @@ namespace Playnite.DesktopApp.API
         public void SelectGames(IEnumerable<Guid> gameIds)
         {
             mainModel.SelectGames(gameIds);
+        }
+
+        public void ApplyFilterPreset(Guid filterId)
+        {
+            mainModel.ApplyFilterPreset(filterId);
+        }
+
+        public void ApplyFilterPreset(FilterPreset preset)
+        {
+            mainModel.ActiveFilterPreset = preset;
+        }
+
+        public Guid GetActiveFilterPreset()
+        {
+            return mainModel.AppSettings.SelectedFilterPreset;
+        }
+
+        public FilterPresetSettings GetCurrentFilterSettings()
+        {
+            return mainModel.AppSettings.FilterSettings.AsPresetSettings();
+        }
+
+        public void OpenSearch(string searchTerm)
+        {
+            mainModel.OpenSearch(searchTerm);
+        }
+
+        public void OpenSearch(SearchContext context, string searchTerm)
+        {
+            mainModel.OpenSearch(context, searchTerm);
         }
     }
 }

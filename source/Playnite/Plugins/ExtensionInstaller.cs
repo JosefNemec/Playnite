@@ -353,7 +353,7 @@ namespace Playnite.Plugins
                     }
                 }
 
-                if (zip.Entries.Any(a => a.Name == "Playnite.dll" || a.Name == "Playnite.Common.dll"))
+                if (zip.Entries.Any(a => a.Name == "Playnite.dll" || a.Name == "Playnite.Common.dll" || a.Name == "Playnite.SDK.dll"))
                 {
                     logger.Error($"Extension package is invalid, includes not allowed Playnite dependencies.");
                     throw new LocalizedException(LOC.GeneralExtensionPackageError);
@@ -397,6 +397,12 @@ namespace Playnite.Plugins
                     a.Name == PlaynitePaths.AppXamlFileName))
                 {
                     logger.Error($"Theme package is invalid, includes not allowed theme project files.");
+                    throw new LocalizedException(LOC.GeneralThemePackageError);
+                }
+
+                if (zip.Entries.Any(a => a.Name == "Playnite.dll" || a.Name == "Playnite.Common.dll" || a.Name == "Playnite.SDK.dll"))
+                {
+                    logger.Error($"Theme package is invalid, includes not allowed Playnite dependencies.");
                     throw new LocalizedException(LOC.GeneralThemePackageError);
                 }
             }

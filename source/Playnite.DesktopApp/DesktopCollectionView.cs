@@ -4,6 +4,7 @@ using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -526,7 +527,7 @@ namespace Playnite.DesktopApp
                 }
             }
 
-            if (refreshList.Any())
+            if (refreshList.Count > 0)
             {
                 Database_GamesCollectionChanged(this, new ItemCollectionChangedEventArgs<Game>(refreshList, refreshList));
             }

@@ -40,7 +40,7 @@ namespace Playnite.SDK.Data
     public interface IDataSerializer
     {
         /// <summary>
-        /// Serailize an object to YAML string.
+        /// Serialize an object to YAML string.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -55,13 +55,23 @@ namespace Playnite.SDK.Data
         T FromYaml<T>(string yaml) where T : class;
 
         /// <summary>
-        /// Tries to deserialize an object form YAML string.
+        /// Tries to deserialize an object from YAML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="yaml"></param>
         /// <param name="content"></param>
         /// <returns></returns>
         bool TryFromYaml<T>(string yaml, out T content) where T : class;
+
+        /// <summary>
+        /// Tries to deserialize an object from YAML string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="yaml"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        bool TryFromYaml<T>(string yaml, out T content, out Exception error) where T : class;
 
         /// <summary>
         /// Deserialize an object from a file containing YAML string.
@@ -81,7 +91,17 @@ namespace Playnite.SDK.Data
         bool TryFromYamlFile<T>(string filePath, out T content) where T : class;
 
         /// <summary>
-        /// Serailize an object to JSON string.
+        /// Tries to serialize an object to YAML file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        bool TryFromYamlFile<T>(string filePath, out T content, out Exception error) where T : class;
+
+        /// <summary>
+        /// Serialize an object to JSON string.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="formatted"></param>
@@ -114,6 +134,16 @@ namespace Playnite.SDK.Data
         bool TryFromJson<T>(string json, out T content) where T : class;
 
         /// <summary>
+        /// Tries to deserialize an object from JSON string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="json"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        bool TryFromJson<T>(string json, out T content, out Exception error) where T : class;
+
+        /// <summary>
         /// Deserialize an object from JSON data stream.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -129,6 +159,16 @@ namespace Playnite.SDK.Data
         /// <param name="content"></param>
         /// <returns></returns>
         bool TryFromJsonStream<T>(Stream stream, out T content) where T : class;
+
+        /// <summary>
+        /// Tries to deserialize an object from JSON data stream.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="stream"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        bool TryFromJsonStream<T>(Stream stream, out T content, out Exception error) where T : class;
 
         /// <summary>
         /// Deserialize an object from a file containing JSON string.
@@ -148,6 +188,16 @@ namespace Playnite.SDK.Data
         bool TryFromJsonFile<T>(string filePath, out T content) where T : class;
 
         /// <summary>
+        /// Tries to deserialize an object from JSON file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        bool TryFromJsonFile<T>(string filePath, out T content, out Exception error) where T : class;
+
+        /// <summary>
         /// Deserialize an object from TOML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -165,6 +215,16 @@ namespace Playnite.SDK.Data
         bool TryFromToml<T>(string toml, out T content) where T : class;
 
         /// <summary>
+        /// Tries to deserialize an object from TOML string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="toml"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        bool TryFromToml<T>(string toml, out T content, out Exception error) where T : class;
+
+        /// <summary>
         /// Deserialize an object from a file containing TOML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -180,6 +240,16 @@ namespace Playnite.SDK.Data
         /// <param name="content"></param>
         /// <returns></returns>
         bool TryFromTomlFile<T>(string filePath, out T content) where T : class;
+
+        /// <summary>
+        /// Tries to deserialize an object from TOML file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        bool TryFromTomlFile<T>(string filePath, out T content, out Exception error) where T : class;
 
         /// <summary>
         /// Creates clone of an object using json serialization.
@@ -222,7 +292,7 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
-        /// Serailize an object to YAML string.
+        /// Serialize an object to YAML string.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -255,6 +325,19 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
+        /// Tries to deserialize an object from YAML string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="yaml"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static bool TryFromYaml<T>(string yaml, out T content, out Exception error) where T : class
+        {
+            return serializer.TryFromYaml<T>(yaml, out content, out error);
+        }
+
+        /// <summary>
         /// Deserialize an object from a file containing YAML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -278,7 +361,20 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
-        /// Serailize an object to JSON string.
+        /// Tries to deserialize an object from YAML file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static bool TryFromYamlFile<T>(string filePath, out T content, out Exception error) where T : class
+        {
+            return serializer.TryFromYamlFile<T>(filePath, out content, out error);
+        }
+
+        /// <summary>
+        /// Serialize an object to JSON string.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="formatted"></param>
@@ -323,6 +419,19 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
+        /// Tries to deserialize an object from JSON string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="json"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static bool TryFromJson<T>(string json, out T content, out Exception error) where T : class
+        {
+            return serializer.TryFromJson<T>(json, out content, out error);
+        }
+
+        /// <summary>
         /// Deserialize an object from JSON data stream.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -343,6 +452,19 @@ namespace Playnite.SDK.Data
         public static bool TryFromJsonStream<T>(Stream stream, out T content) where T : class
         {
             return serializer.TryFromJsonStream<T>(stream, out content);
+        }
+
+        /// <summary>
+        /// Tries to deserialize an object from JSON data stream.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="stream"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static bool TryFromJsonStream<T>(Stream stream, out T content, out Exception error) where T : class
+        {
+            return serializer.TryFromJsonStream<T>(stream, out content, out error);
         }
 
         /// <summary>
@@ -369,6 +491,19 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
+        /// Tries to deserialize an object from JSON file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static bool TryFromJsonFile<T>(string filePath, out T content, out Exception error) where T : class
+        {
+            return serializer.TryFromJsonFile<T>(filePath, out content, out error);
+        }
+
+        /// <summary>
         /// Deserialize an object from TOML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -392,6 +527,19 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
+        /// Tries to deserialize an object from TOML string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="toml"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static bool TryFromToml<T>(string toml, out T content, out Exception error) where T : class
+        {
+            return serializer.TryFromToml<T>(toml, out content, out error);
+        }
+
+        /// <summary>
         /// Deserialize an object from a file containing TOML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -412,6 +560,19 @@ namespace Playnite.SDK.Data
         public static bool TryFromTomlFile<T>(string filePath, out T content) where T : class
         {
             return serializer.TryFromTomlFile<T>(filePath, out content);
+        }
+
+        /// <summary>
+        /// Tries to deserialize an object from TOML file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static bool TryFromTomlFile<T>(string filePath, out T content, out Exception error) where T : class
+        {
+            return serializer.TryFromTomlFile<T>(filePath, out content, out error);
         }
 
         /// <summary>

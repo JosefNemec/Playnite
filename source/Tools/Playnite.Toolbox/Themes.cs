@@ -28,6 +28,7 @@ namespace Playnite.Toolbox
     {
         private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public const string GlobalResourcesName = "GlobalResources.xaml";
+        public const string ControlGalleryViewName = "ControlGalleryView.xaml";
 
         public static List<string> PackageFileBlackList { get; } = new List<string>
         {
@@ -36,7 +37,8 @@ namespace Playnite.Toolbox
             PlaynitePaths.ThemeSlnFileName,
             PlaynitePaths.AppXamlFileName,
             GlobalResourcesName,
-            PlaynitePaths.EngLocSourceFileName
+            PlaynitePaths.EngLocSourceFileName,
+            ControlGalleryViewName
         };
 
         public static List<FileChange> GetThemeChangelog(Version baseVersion, ApplicationMode mode, string changelogDir)
@@ -157,7 +159,13 @@ namespace Playnite.Toolbox
         public static string PackageTheme(string themeDirectory, string targetPath, ApplicationMode mode)
         {
             var dirInfo = new DirectoryInfo(themeDirectory);
-            var extInfo = ExtensionInstaller.GetThemeManifest(Path.Combine(themeDirectory, PlaynitePaths.ThemeManifestFileName));
+            var manifestPath = Path.Combine(themeDirectory, PlaynitePaths.ThemeManifestFileName);
+            if (!File.Exists(manifestPath))
+            {
+                throw new Exception($"Manifest file ({PlaynitePaths.ThemeManifestFileName}) not found!");
+            }
+
+            var extInfo = ExtensionInstaller.GetThemeManifest(manifestPath);
             if (extInfo.Id.IsNullOrEmpty())
             {
                 throw new Exception("Cannot package theme, ID is missing!");
@@ -184,7 +192,7 @@ namespace Playnite.Toolbox
             {
                 using (var zipFile = new ZipArchive(zipStream, ZipArchiveMode.Create))
                 {
-                    zipFile.CreateEntryFromFile(Path.Combine(themeDirectory, PlaynitePaths.ThemeManifestFileName), PlaynitePaths.ThemeManifestFileName);
+                    zipFile.CreateEntryFromFile(manifestPath, PlaynitePaths.ThemeManifestFileName);
 
                     foreach (var file in Directory.GetFiles(themeDirectory, "*.*", SearchOption.AllDirectories))
                     {
@@ -397,6 +405,15 @@ namespace Playnite.Toolbox
             FileSystem.CopyFile(Paths.GetThemeTemplatePath(PlaynitePaths.EngLocSourceFileName), Path.Combine(outDir, PlaynitePaths.EngLocSourceFileName));
             FileSystem.CopyFile(Paths.GetThemeTemplateFilePath(mode, Themes.GlobalResourcesName), Path.Combine(outDir, Themes.GlobalResourcesName));
             FileSystem.CopyFile(Paths.GetThemeTemplateFilePath(mode, PlaynitePaths.ThemeSlnFileName), Path.Combine(outDir, PlaynitePaths.ThemeSlnFileName));
+
+            var outGalleryFile = Path.Combine(outDir, ControlGalleryViewName);
+            FileSystem.CopyFile(Paths.GetThemeTemplateFilePath(mode, ControlGalleryViewName), outGalleryFile);
+            // We need to modify pctrls namespace in ControlGalleryViewName
+            // because the original version is made in a way to be compatbiel when loaded from Playnite solution
+            File.WriteAllText(outGalleryFile,
+                File.ReadAllText(outGalleryFile).Replace(
+                    $"clr-namespace:Playnite.{mode}App.Controls",
+                    $"clr-namespace:Playnite.{mode}App.Controls;assembly=Playnite.{mode}App"));
 
             var commonFontsDirs = Paths.GetThemeTemplatePath("Fonts");
             if (Directory.Exists(commonFontsDirs))

@@ -42,6 +42,13 @@ namespace Playnite
         None
     }
 
+    public interface IActionSelector
+    {
+        object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions);
+        InstallController SelectInstallAction(List<InstallController> pluginActions);
+        UninstallController SelectUninstallAction(List<UninstallController> pluginActions);
+    }
+
     public class ClientShutdownJob
     {
         public Guid PluginId { get; set; }
@@ -58,12 +65,15 @@ namespace Playnite
         private readonly ConcurrentDictionary<Guid, ClientShutdownJob> shutdownJobs = new ConcurrentDictionary<Guid, ClientShutdownJob>();
         private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
         private readonly ConcurrentDictionary<Guid, IPowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, IPowerShellRuntime>();
+        private readonly IActionSelector actionSelector;
 
         public PlayniteApplication Application;
+
         public ExtensionFactory Extensions { get; private set; }
         public GameDatabase Database { get; private set; }
         public IDialogsFactory Dialogs { get; private set; }
         public PlayniteSettings AppSettings { get; private set; }
+        public List<Guid> RunningGames { get; } = new List<Guid>();
 
         public List<Game> QuickLaunchItems
         {
@@ -91,13 +101,15 @@ namespace Playnite
             PlayniteSettings appSettings,
             IDialogsFactory dialogs,
             ExtensionFactory extensions,
-            PlayniteApplication app)
+            PlayniteApplication app,
+            IActionSelector actionSelector)
         {
             this.Dialogs = dialogs;
             this.Database = database;
             this.AppSettings = appSettings;
             this.Extensions = extensions;
             this.Application = app;
+            this.actionSelector = actionSelector;
             controllers = controllerFactory;
             controllers.Installed += Controllers_Installed;
             controllers.Uninstalled += Controllers_Uninstalled;
@@ -131,6 +143,18 @@ namespace Playnite
             controllers.Uninstalled -= Controllers_Uninstalled;
             controllers.Started -= Controllers_Started;
             controllers.Stopped -= Controllers_Stopped;
+        }
+
+        public void StartContextAction(Game game)
+        {
+            if (game.IsInstalled)
+            {
+                PlayGame(game);
+            }
+            else
+            {
+                InstallGame(game);
+            }
         }
 
         public void PlayGame(Game game)
@@ -173,7 +197,7 @@ namespace Playnite
                 object playAction = null;
                 if ((gameActions.Item1.Count + gameActions.Item2.Count) > 1)
                 {
-                    playAction = SelectPlayAction(gameActions.Item1, gameActions.Item2);
+                    playAction = actionSelector.SelectPlayAction(gameActions.Item1, gameActions.Item2);
                 }
                 else
                 {
@@ -213,7 +237,7 @@ namespace Playnite
                 if (playAction is AutomaticPlayController)
                 {
                     logger.Debug("Using automatic plugin controller to start a game.");
-                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.PlayniteApiGlobal);
                 }
                 else if (playAction is PlayController plugAction)
                 {
@@ -223,12 +247,12 @@ namespace Playnite
                 else if (playAction is EmulationPlayAction)
                 {
                     logger.Debug("Using generic controller to start emulated game.");
-                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.PlayniteApiGlobal);
                 }
                 else if (playAction is GameAction gameAction)
                 {
                     logger.Debug("Using generic controller start a game.");
-                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.Api);
+                    controller = new GenericPlayController(Database, game, scriptRuntimes[game.Id], Application.PlayniteApiGlobal);
                 }
                 else
                 {
@@ -250,6 +274,13 @@ namespace Playnite
                     return;
                 }
 
+                void cancelStartup(string message)
+                {
+                    logger.Warn(message);
+                    controllers.RemovePlayController(game.Id);
+                    UpdateGameState(game.Id, null, null, null, null, false);
+                }
+
                 controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
                 UpdateGameState(game.Id, null, null, null, null, true);
@@ -262,6 +293,11 @@ namespace Playnite
                 };
 
                 controllers.InvokeOnStarting(this, startingArgs);
+                if (startingArgs.CancelStartup)
+                {
+                    cancelStartup("Game startup cancelled by an extension.");
+                    return;
+                }
 
                 if (!game.IsCustomGame && shutdownJobs.TryGetValue(game.PluginId, out var existingJob))
                 {
@@ -272,21 +308,32 @@ namespace Playnite
 
                 var scriptVars = new Dictionary<string, object>
                 {
+                    {  "StartingArgs", startingArgs },
                     {  "SourceAction", startingArgs.SourceAction },
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
                 {
-                    controllers.RemovePlayController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, null, false);
+                    cancelStartup("Game startup cancelled because global game script failed.");
+                    return;
+                }
+
+                if (startingArgs.CancelStartup)
+                {
+                    cancelStartup("Game startup cancelled by global game script.");
                     return;
                 }
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], game.PreScript, game, true, false, GameScriptType.Starting, scriptVars))
                 {
-                    controllers.RemovePlayController(game.Id);
-                    UpdateGameState(game.Id, null, null, null, null, false);
+                    cancelStartup("Game startup cancelled because game script failed.");
+                    return;
+                }
+
+                if (startingArgs.CancelStartup)
+                {
+                    cancelStartup("Game startup cancelled by game script.");
                     return;
                 }
 
@@ -294,7 +341,7 @@ namespace Playnite
                 {
                     if (playAction is EmulationPlayAction emuAct)
                     {
-                        genCtrl.Start(emuAct);
+                        genCtrl.StartEmulator(emuAct, true, startingArgs);
                     }
                     else if (playAction is AutomaticPlayController autoAction)
                     {
@@ -302,7 +349,7 @@ namespace Playnite
                     }
                     else if (playAction is GameAction act)
                     {
-                        genCtrl.Start(act, true);
+                        genCtrl.Start(act, true, startingArgs);
                     }
                     else
                     {
@@ -345,7 +392,7 @@ namespace Playnite
                     case GameActionType.Emulator:
                     case GameActionType.Script:
                         using (var scriptRuntime = new PowerShellRuntime("Custom action runtime"))
-                        using (var controller = new GenericPlayController(Database, game, scriptRuntime, Application.Api))
+                        using (var controller = new GenericPlayController(Database, game, scriptRuntime, Application.PlayniteApiGlobal))
                         {
                             if (action.Type == GameActionType.Emulator)
                             {
@@ -359,11 +406,20 @@ namespace Playnite
                                 var newAction = action.GetClone<GameAction, EmulationPlayAction>();
                                 newAction.SelectedEmulatorProfile = prof ?? throw new Exception("Specified emulator config does't exists.");
                                 newAction.SelectedRomPath = game.Roms.HasItems() ? game.Roms[0].Path : string.Empty;
-                                controller.Start(newAction, false);
+                                controller.StartEmulator(newAction, false, new SDK.Events.OnGameStartingEventArgs
+                                {
+                                    Game = game,
+                                    SelectedRomFile = newAction.SelectedRomPath,
+                                    SourceAction = action
+                                });
                             }
                             else
                             {
-                                controller.Start(action, false);
+                                controller.Start(action, false,  new SDK.Events.OnGameStartingEventArgs
+                                {
+                                    Game = game,
+                                    SourceAction = action
+                                });
                             }
                         }
                         break;
@@ -419,9 +475,12 @@ namespace Playnite
 
         public void SetHideGames(List<Game> games, bool state)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                SetHideGame(game, state);
+                foreach (var game in games)
+                {
+                    SetHideGame(game, state);
+                }
             }
         }
 
@@ -433,9 +492,12 @@ namespace Playnite
 
         public void ToggleHideGames(List<Game> games)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                ToggleHideGame(game);
+                foreach (var game in games)
+                {
+                    ToggleHideGame(game);
+                }
             }
         }
 
@@ -447,9 +509,12 @@ namespace Playnite
 
         public void SetFavoriteGames(List<Game> games, bool state)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                SetFavoriteGame(game, state);
+                foreach (var game in games)
+                {
+                    SetFavoriteGame(game, state);
+                }
             }
         }
 
@@ -461,9 +526,12 @@ namespace Playnite
 
         public void ToggleFavoriteGame(List<Game> games)
         {
-            foreach (var game in games)
+            using (Database.BufferedUpdate())
             {
-                ToggleFavoriteGame(game);
+                foreach (var game in games)
+                {
+                    ToggleFavoriteGame(game);
+                }
             }
         }
 
@@ -478,9 +546,12 @@ namespace Playnite
 
         public void SetCompletionStatus(List<Game> games, CompletionStatus status)
         {
-            foreach(var game in games)
+            using (Database.BufferedUpdate())
             {
-                SetCompletionStatus(game, status);
+                foreach (var game in games)
+                {
+                    SetCompletionStatus(game, status);
+                }
             }
         }
 
@@ -643,7 +714,7 @@ namespace Playnite
                 }
                 else
                 {
-                    icon = game.GetDefaultIcon(AppSettings, Database, Extensions.GetLibraryPlugin(game.PluginId));
+                    icon = GamesCollectionViewEntry.GetDefaultIconFile(game, AppSettings, Database, Extensions.GetLibraryPlugin(game.PluginId));
                     if (!File.Exists(icon))
                     {
                         icon = string.Empty;
@@ -738,7 +809,7 @@ namespace Playnite
 
                 if (installControllers.Count > 1)
                 {
-                    controller = SelectInstallAction(installControllers);
+                    controller = actionSelector.SelectInstallAction(installControllers);
                 }
                 else
                 {
@@ -792,7 +863,7 @@ namespace Playnite
 
                 if (uninstallControllers.Count > 1)
                 {
-                    controller = SelectUninstallAction(uninstallControllers);
+                    controller = actionSelector.SelectUninstallAction(uninstallControllers);
                 }
                 else
                 {
@@ -874,7 +945,7 @@ namespace Playnite
 
         public void CancelGameMonitoring(Game game)
         {
-            var wasRunning = game.IsRunning;
+            var wasRunningOrLaunching = game.IsRunning || game.IsLaunching;
             controllers.RemoveInstallController(game.Id);
             controllers.RemoveUninstallController(game.Id);
             controllers.RemovePlayController(game.Id);
@@ -900,9 +971,10 @@ namespace Playnite
             }
 
             Database.Games.Update(dbGame);
-            if (wasRunning)
+            if (wasRunningOrLaunching)
             {
-                Extensions.InvokeOnGameStopped(game, ellapsedTime);
+                RunningGames.Remove(game.Id);
+                Extensions.InvokeOnGameStopped(game, ellapsedTime, true);
             }
 
             if (AppSettings.DiscordPresenceEnabled)
@@ -913,6 +985,15 @@ namespace Playnite
 
         private void UpdateGameState(Guid id, bool? installed, bool? running, bool? installing, bool? uninstalling, bool? launching)
         {
+            if (running == true || launching == true)
+            {
+                RunningGames.AddMissing(id);
+            }
+            else if (running == false || launching == false)
+            {
+                RunningGames.Remove(id);
+            }
+
             var game = Database.Games.Get(id);
             if (installed != null)
             {
@@ -939,7 +1020,7 @@ namespace Playnite
                 game.IsLaunching = launching.Value;
             }
 
-            if (launching == true)
+            if (running == true)
             {
                 game.LastActivity = DateTime.Now;
                 game.PlayCount += 1;
@@ -962,8 +1043,9 @@ namespace Playnite
 
             var scriptVars = new Dictionary<string, object>
             {
-                {  "SourceAction", (args.Source as GenericPlayController)?.SourceGameAction?.GetClone() },
-                {  "SelectedRomFile", (args.Source as GenericPlayController)?.SelectedRomPath }
+                { "SourceAction", (args.Source as GenericPlayController)?.StartingArgs?.SourceAction?.GetClone() },
+                { "SelectedRomFile", (args.Source as GenericPlayController)?.StartingArgs?.SelectedRomFile },
+                { "StartedProcessId", args.StartedProcessId }
             };
 
             ExecuteScriptAction(scriptRuntimes[game.Id], game.GameStartedScript, game, true, false, GameScriptType.Started, scriptVars);
@@ -1008,6 +1090,7 @@ namespace Playnite
             var game = args.Source.Game;
             logger.Info($"Game {game.Name} stopped after {args.SessionLength} seconds.");
 
+            RunningGames.Remove(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
             dbGame.IsLaunching = false;
@@ -1040,7 +1123,7 @@ namespace Playnite
                 runtime.Dispose();
             }
 
-            Extensions.InvokeOnGameStopped(game, args.SessionLength);
+            Extensions.InvokeOnGameStopped(game, args.SessionLength, false);
             if (AppSettings.ClientAutoShutdown.ShutdownClients && !game.IsCustomGame)
             {
                 if (args.SessionLength <= AppSettings.ClientAutoShutdown.MinimalSessionTime)
@@ -1173,7 +1256,7 @@ namespace Playnite
 
                 var scriptVars = new Dictionary<string, object>
                 {
-                    {  "PlayniteApi", Application.Api },
+                    {  "PlayniteApi", Application.PlayniteApiGlobal },
                     {  "Game", game.GetClone() }
                 };
 
@@ -1238,57 +1321,78 @@ namespace Playnite
 
             if (game.GameActions.HasItems())
             {
+                var selectEmuAdded = false;
+                var multipleRoms = game.Roms?.Count > 1;
+                var romList = game.Roms.HasItems() ? game.Roms : new ObservableCollection<GameRom> { new GameRom() };
+
+                void addAction(string name, EmulatorProfile profile, EmulationPlayAction baseData)
+                {
+                    foreach (var rom in romList)
+                    {
+                        var newAction = baseData.GetClone();
+                        newAction.Name = multipleRoms ? $"{name}: {rom.Name}" : name;
+                        newAction.SelectedEmulatorProfile = profile;
+                        newAction.SelectedRomPath = rom.Path;
+                        actions.Add(newAction);
+                    }
+                }
+
                 foreach (var action in game.GameActions.Where(a => a.IsPlayAction))
                 {
                     if (action.Type == GameActionType.Emulator)
                     {
                         if (action.EmulatorId == Guid.Empty)
                         {
-                            continue;
-                        }
-
-                        var emulator = Database.Emulators[action.EmulatorId];
-                        if (emulator == null)
-                        {
-                            continue;
-                        }
-
-                        var multipleRoms = game.Roms?.Count > 1;
-                        var romList = game.Roms.HasItems() ? game.Roms : new ObservableCollection<GameRom> { new GameRom() };
-                        void addAction(string name, EmulatorProfile profile)
-                        {
-                            foreach (var rom in romList)
+                            if (selectEmuAdded)
                             {
-                                var newAction = action.GetClone<GameAction, EmulationPlayAction>();
-                                newAction.Name = multipleRoms ? $"{name}: {rom.Name}" : name;
-                                newAction.SelectedEmulatorProfile = profile;
-                                newAction.SelectedRomPath = rom.Path;
-                                actions.Add(newAction);
-                            }
-                        }
-
-                        if (action.EmulatorProfileId == null)
-                        {
-                            foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
-                            {
-                                addAction($"{action.Name}: {profile.Name}", profile);
+                                continue;
                             }
 
-                            foreach (var profile in emulator.CustomProfiles ?? new ObservableCollection<CustomEmulatorProfile>())
+                            var supportedEmus = game.GetCompatibleEmulators(Database);
+                            if (!supportedEmus.HasItems())
                             {
-                                addAction($"{action.Name}: {profile.Name}", profile);
+                                continue;
+                            }
+
+                            selectEmuAdded = true;
+                            foreach (var emu in supportedEmus.Keys)
+                            {
+                                var profCount = supportedEmus[emu].Count;
+                                foreach (var profile in supportedEmus[emu])
+                                {
+                                    addAction(profCount == 1 ? emu.Name : $"{emu.Name}: {profile.Name}", profile, new EmulationPlayAction
+                                    {
+                                        EmulatorId = emu.Id,
+                                        EmulatorProfileId = profile.Id
+                                    });
+                                }
                             }
                         }
                         else
                         {
-                            var prof = emulator.AllProfiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
-                            if (prof == null)
+                            var emu = Database.Emulators[action.EmulatorId];
+                            if (emu == null)
                             {
-                                logger.Error($"Specified emulator config does't exists {action.EmulatorProfileId}");
+                                continue;
+                            }
+
+                            if (action.EmulatorProfileId == null)
+                            {
+                                var profiles = game.GetCompatibleProfiles(emu);
+                                profiles.ForEach(profile =>
+                                    addAction($"{action.Name}: {profile.Name}", profile, action.GetClone<GameAction, EmulationPlayAction>()));
                             }
                             else
                             {
-                                addAction(action.Name, prof);
+                                var prof = emu.AllProfiles.FirstOrDefault(a => a.Id == action.EmulatorProfileId);
+                                if (prof == null)
+                                {
+                                    logger.Error($"Specified emulator config does't exists {action.EmulatorProfileId}");
+                                }
+                                else
+                                {
+                                    addAction(action.Name, prof, action.GetClone<GameAction, EmulationPlayAction>());
+                                }
                             }
                         }
                     }
@@ -1300,11 +1404,6 @@ namespace Playnite
             }
 
             return new Tuple<List<PlayController>, List<GameAction>>(controllers, actions);
-        }
-
-        public object SelectPlayAction(List<PlayController> controllers, List<GameAction> actions)
-        {
-            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectPlayAction(controllers, actions);
         }
 
         public List<InstallController> GetInstallActions(Game game)
@@ -1329,11 +1428,6 @@ namespace Playnite
             return allActions;
         }
 
-        public InstallController SelectInstallAction(List<InstallController> actions)
-        {
-            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectInstallAction(actions);
-        }
-
         public List<UninstallController> GetUninstallActions(Game game)
         {
             var allActions = new List<UninstallController>();
@@ -1354,11 +1448,6 @@ namespace Playnite
             }
 
             return allActions;
-        }
-
-        public UninstallController SelectUninstallAction(List<UninstallController> actions)
-        {
-            return new ActionSelectionViewModel(new Windows.ActionSelectionWindowFactory()).SelectUninstallAction(actions);
         }
     }
 }

@@ -42,11 +42,16 @@ namespace Playnite.Plugins
     {
         public Plugin Plugin { get; }
         public ExtensionManifest Description { get; }
+        public string PluginIcon { get; }
 
         public LoadedPlugin(Plugin plugin, ExtensionManifest description)
         {
             Plugin = plugin;
             Description = description;
+            if (!string.IsNullOrEmpty(description.Icon))
+            {
+                PluginIcon = Path.Combine(Path.GetDirectoryName(description.DescriptionPath), description.Icon);
+            }
         }
     }
 
@@ -60,8 +65,9 @@ namespace Playnite.Plugins
     public class ExtensionFactory : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
-        private IGameDatabase database;
-        private GameControllerFactory controllers;
+        private readonly IGameDatabase database;
+        private readonly GameControllerFactory controllers;
+        private readonly Func<ExtensionManifest, IPlayniteAPI> apiGenerator;
 
         public List<(ExtensionManifest manifest, AddonLoadError error)> FailedExtensions { get; } = new List<(ExtensionManifest manifest, AddonLoadError error)>();
 
@@ -90,10 +96,11 @@ namespace Playnite.Plugins
             get; private set;
         } =  new List<PlayniteScript>();
 
-        public ExtensionFactory(IGameDatabase database, GameControllerFactory controllers)
+        public ExtensionFactory(IGameDatabase database, GameControllerFactory controllers, Func<ExtensionManifest, IPlayniteAPI> apiGenerator)
         {
             this.database = database;
             this.controllers = controllers;
+            this.apiGenerator = apiGenerator;
             controllers.Installed += Controllers_Installed;
             controllers.Starting += Controllers_Starting;
             controllers.Started += Controllers_Started;
@@ -311,7 +318,7 @@ namespace Playnite.Plugins
             return true;
         }
 
-        public bool LoadScripts(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
+        public bool LoadScripts(List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             var allSuccess = true;
             DisposeScripts();
@@ -348,8 +355,8 @@ namespace Playnite.Plugins
                         continue;
                     }
 
-                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
-                    script.SetVariable("PlayniteApi", injectingApi);
+                    Localization.LoadAddonLocalization(desc.DirectoryPath);
+                    script.SetVariable("PlayniteApi", apiGenerator(desc));
                     script.SetVariable("CurrentExtensionInstallPath", desc.DirectoryPath);
                     if (!desc.Id.IsNullOrEmpty())
                     {
@@ -373,7 +380,7 @@ namespace Playnite.Plugins
             return allSuccess;
         }
 
-        public void LoadPlugins(IPlayniteAPI injectingApi, List<string> ignoreList, bool builtInOnly, List<string> externals)
+        public void LoadPlugins(List<string> ignoreList, bool builtInOnly, List<string> externals)
         {
             if (Plugins.HasItems())
             {
@@ -397,8 +404,8 @@ namespace Playnite.Plugins
 
                 try
                 {
-                    Localization.LoadExtensionsLocalization(desc.DirectoryPath);
-                    var plugins = LoadPlugins(desc, injectingApi);
+                    Localization.LoadAddonLocalization(desc.DirectoryPath);
+                    var plugins = LoadPlugins(desc, apiGenerator);
                     foreach (var plugin in plugins)
                     {
                         if (Plugins.ContainsKey(plugin.Id))
@@ -432,7 +439,7 @@ namespace Playnite.Plugins
             }
         }
 
-        private IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, IPlayniteAPI injectingApi)
+        private IEnumerable<Plugin> LoadPlugins(ExtensionManifest descriptor, Func<ExtensionManifest, IPlayniteAPI> apiGenerator)
         {
             var asmPath = Path.Combine(Path.GetDirectoryName(descriptor.DescriptionPath), descriptor.Module);
             var asmName = AssemblyName.GetAssemblyName(asmPath);
@@ -453,7 +460,7 @@ namespace Playnite.Plugins
                             var load = Attribute.IsDefined(type, typeof(LoadPluginAttribute));
                             if ((ignore && load) || !ignore)
                             {
-                                yield return (Plugin)Activator.CreateInstance(type, new object[] { injectingApi });
+                                yield return (Plugin)Activator.CreateInstance(type, new object[] { apiGenerator(descriptor) });
                             }
                         }
                     }
@@ -527,12 +534,13 @@ namespace Playnite.Plugins
             }
         }
 
-        public void InvokeOnGameStopped(Game game, ulong ellapsedTime)
+        public void InvokeOnGameStopped(Game game, ulong ellapsedTime, bool manuallyStopped)
         {
             var callbackArgs = new SDK.Events.OnGameStoppedEventArgs
             {
                 Game = database.Games[game.Id],
-                ElapsedSeconds = ellapsedTime
+                ElapsedSeconds = ellapsedTime,
+                ManuallyStopped = manuallyStopped
             };
 
             foreach (var script in Scripts)
@@ -567,6 +575,10 @@ namespace Playnite.Plugins
                 try
                 {
                     script.OnGameStarting(args);
+                    if (args.CancelStartup)
+                    {
+                        return;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -579,6 +591,10 @@ namespace Playnite.Plugins
                 try
                 {
                     plugin.Plugin.OnGameStarting(args);
+                    if (args.CancelStartup)
+                    {
+                        return;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -598,8 +614,9 @@ namespace Playnite.Plugins
             var callbackArgs = new OnGameStartedEventArgs
             {
                 Game = database.Games[args.Source.Game.Id],
-                SourceAction = (args.Source as GenericPlayController)?.SourceGameAction?.GetClone(),
-                SelectedRomFile = (args.Source as GenericPlayController)?.SelectedRomPath
+                SourceAction = (args.Source as GenericPlayController)?.StartingArgs?.SourceAction?.GetClone(),
+                SelectedRomFile = (args.Source as GenericPlayController)?.StartingArgs.SelectedRomFile,
+                StartedProcessId = args.StartedProcessId
             };
 
             foreach (var script in Scripts)
@@ -772,6 +789,11 @@ namespace Playnite.Plugins
 
         public LibraryPlugin GetLibraryPlugin(Guid pluginId)
         {
+            if (pluginId == Guid.Empty)
+            {
+                return null;
+            }
+
             return LibraryPlugins.FirstOrDefault(a => a.Id == pluginId);
         }
 
@@ -799,6 +821,22 @@ namespace Playnite.Plugins
             var elemSupport = args.GetClone<AddSettingsSupportArgs, PluginSettingsSupport>();
             elemSupport.Source = source;
             SettingsSupportList.Add(elemSupport);
+        }
+
+        public List<PluginConvertersSupport> ConvertersSupportList = new List<PluginConvertersSupport>();
+        public void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args)
+        {
+            if (ConvertersSupportList.Any(a => a.Source == source))
+            {
+                return;
+            }
+
+            ConvertersSupportList.Add(new PluginConvertersSupport
+            {
+                Source = source,
+                Converters = args.Converters,
+                SourceName = args.SourceName
+            });
         }
 
         public List<TopPanelItem> GetTopPanelPluginItems()
@@ -830,6 +868,11 @@ namespace Playnite.Plugins
     }
 
     public class PluginSettingsSupport : AddSettingsSupportArgs
+    {
+        public Plugin Source { get; set; }
+    }
+
+    public class PluginConvertersSupport : AddConvertersSupportArgs
     {
         public Plugin Source { get; set; }
     }

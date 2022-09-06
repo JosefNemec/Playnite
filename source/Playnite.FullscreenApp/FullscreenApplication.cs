@@ -37,7 +37,6 @@ namespace Playnite.FullscreenApp
             }
         }
 
-        public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
         public static AudioPlaybackEngine Audio;
         private static CachedSound navigateSound;
@@ -51,21 +50,26 @@ namespace Playnite.FullscreenApp
         }
 
         public FullscreenApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
-            : base(appInitializer, ApplicationMode.Fullscreen, DefaultThemeName, cmdLine)
+            : base(appInitializer, ApplicationMode.Fullscreen, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
 
-        public override bool Startup()
+        public override void ConfigureViews()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashWindow>();
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashWindow>();
             LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
-            ActionSelectionWindowFactory.SetWindowType<ActionSelectionWindow>();
+            SingleItemSelectionWindowFactory.SetWindowType<SingleItemSelectionWindow>();
+            MultiItemSelectionWindowFactory.SetWindowType<MultiItemSelectionWindow>();
             Dialogs = new FullscreenDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
+        }
+
+        public override bool Startup()
+        {
             if (!AppSettings.FirstTimeWizardComplete)
             {
                 Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCFullscreenFirstTimeError"), "");
@@ -75,11 +79,15 @@ namespace Playnite.FullscreenApp
                 return false;
             }
 
-            ConfigureApplication();
+            if (!ConfigureApplication())
+            {
+                return false;
+            }
+
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;
             MigrateDatabase();
-            SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+            SetupInputs();
             OpenMainViewAsync();
 #pragma warning disable CS4014
             StartUpdateCheckerAsync();
@@ -96,29 +104,15 @@ namespace Playnite.FullscreenApp
             Database = new GameDatabase();
             Database.SetAsSingletonInstance();
             Controllers = new GameControllerFactory(Database);
-            Extensions = new ExtensionFactory(Database, Controllers);
+            Extensions = new ExtensionFactory(Database, Controllers, GetApiInstance);
             GamesEditor = new GamesEditor(
                 Database,
                 Controllers,
                 AppSettings,
                 Dialogs,
                 Extensions,
-                this);
-            Api = new PlayniteAPI(
-                new DatabaseAPI(Database),
-                Dialogs,
-                null,
-                new PlayniteInfoAPI(),
-                new PlaynitePathsAPI(),
-                new WebViewFactory(AppSettings),
-                new ResourceProvider(),
-                new NotificationsAPI(),
-                GamesEditor,
-                new PlayniteUriHandler(),
-                new PlayniteSettingsAPI(AppSettings, Database),
-                new AddonsAPI(Extensions, AppSettings),
-                new Emulators.Emulation(),
-                Extensions);
+                this,
+                new FullscreenActionSelector());
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new FullscreenAppViewModel(
@@ -128,10 +122,10 @@ namespace Playnite.FullscreenApp
                 new ResourceProvider(),
                 AppSettings,
                 GamesEditor,
-                Api,
                 Extensions,
                 this);
-            Api.MainView = new MainViewAPI(MainModel);
+            PlayniteApiGlobal = GetApiInstance();
+            SDK.API.Instance = PlayniteApiGlobal;
         }
 
         private void FullscreenApplication_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -146,23 +140,24 @@ namespace Playnite.FullscreenApp
                 {
                     Audio?.ResumePlayback();
                 }
+
+                if (XInputDevice != null)
+                {
+                    XInputDevice.StandardProcessingEnabled = IsActive;
+                }
             }
         }
 
         private async void OpenMainViewAsync()
         {
-            Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            Extensions.LoadPlugins(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            Extensions.LoadScripts(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             OnExtensionsLoaded();
 
             splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
-
-            if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
-            {
-                await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
-            }
+            await MainModel.ProcessStartupLibUpdate();
 
             // This is most likely safe place to consider application to be started properly
             FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
@@ -196,7 +191,7 @@ namespace Playnite.FullscreenApp
 
         public override void ShowWindowsNotification(string title, string body, Action action)
         {
-            // Fullscreen mode shoulnd't show anything since user has no way how inteact with it
+            // Fullscreen mode shouldn't show anything since user has no way to interact with it
         }
 
         public override void SwitchAppMode(ApplicationMode mode)
@@ -382,6 +377,46 @@ namespace Playnite.FullscreenApp
             {
                 PlayBackgroundSound();
             }
+        }
+
+        public override PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner)
+        {
+            return new PlayniteAPI
+            {
+                Addons = new AddonsAPI(Extensions, AppSettings),
+                ApplicationInfo = new PlayniteInfoAPI(),
+                ApplicationSettings = new PlayniteSettingsAPI(AppSettings, Database),
+                Database = new DatabaseAPI(Database),
+                Dialogs = Dialogs,
+                Emulation = new Emulators.Emulation(),
+                MainView = new MainViewAPI(MainModel),
+                Notifications = Notifications,
+                Paths = new PlaynitePathsAPI(),
+                Resources = new ResourceProvider(),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                UriHandler = UriHandler,
+                WebViews = new WebViewFactory(AppSettings)
+            };
+        }
+
+        public override PlayniteAPI GetApiInstance()
+        {
+            return new PlayniteAPI
+            {
+                Addons = new AddonsAPI(Extensions, AppSettings),
+                ApplicationInfo = new PlayniteInfoAPI(),
+                ApplicationSettings = new PlayniteSettingsAPI(AppSettings, Database),
+                Database = new DatabaseAPI(Database),
+                Dialogs = Dialogs,
+                Emulation = new Emulators.Emulation(),
+                MainView = new MainViewAPI(MainModel),
+                Notifications = Notifications,
+                Paths = new PlaynitePathsAPI(),
+                Resources = new ResourceProvider(),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                UriHandler = UriHandler,
+                WebViews = new WebViewFactory(AppSettings)
+            };
         }
     }
 }

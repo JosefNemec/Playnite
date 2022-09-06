@@ -58,17 +58,17 @@ namespace Playnite.DesktopApp.Controls
             if (!IgnoreChanges)
             {
                 IgnoreChanges = true;
-                FilterProperties = new StringFilterItemProperites(ItemsList.GetSelectedItems().Select(a => a.Value).ToList());
+                FilterProperties = new StringFilterItemProperties(ItemsList.GetSelectedItems().Select(a => a.Value).ToList());
                 IgnoreChanges = false;
                 UpdateTextStatus();
             }
         }
 
-        public StringFilterItemProperites FilterProperties
+        public StringFilterItemProperties FilterProperties
         {
             get
             {
-                return (StringFilterItemProperites)GetValue(FilterPropertiesProperty);
+                return (StringFilterItemProperties)GetValue(FilterPropertiesProperty);
             }
 
             set
@@ -79,7 +79,7 @@ namespace Playnite.DesktopApp.Controls
 
         public static readonly DependencyProperty FilterPropertiesProperty = DependencyProperty.Register(
             nameof(FilterProperties),
-            typeof(StringFilterItemProperites),
+            typeof(StringFilterItemProperties),
             typeof(FilterStringSelectionBox),
             new PropertyMetadata(null, FilterPropertiesPropertyChangedCallback));
 

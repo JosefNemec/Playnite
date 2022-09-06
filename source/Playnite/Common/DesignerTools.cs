@@ -5,11 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Playnite.Common
+namespace System.Windows
 {
     public class DesignerTools
     {
-        public static bool IsInDesignMode => DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject());
+        private static bool? inDesignMode = null;
 
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                if (inDesignMode == null)
+                {
+                    inDesignMode = DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject());
+                }
+
+                return inDesignMode.Value;
+            }
+        }
     }
 }

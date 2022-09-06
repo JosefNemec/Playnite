@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace System.Collections.Generic
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class RangeObservableCollection<T> : ObservableCollection<T>
@@ -18,7 +18,16 @@ namespace System.Collections.Generic
         private bool suppressNotification = false;
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        /// <param name="e"></param>
+        public void OnCollectionChangedPublic(NotifyCollectionChangedEventArgs e)
+        {
+            OnCollectionChanged(e);
+        }
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
@@ -30,7 +39,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="index"></param>
@@ -44,7 +53,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="list"></param>
         public void AddRange(IEnumerable<T> list)
@@ -62,11 +71,10 @@ namespace System.Collections.Generic
 
             suppressNotification = false;
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="list"></param>
         public void RemoveRange(IEnumerable<T> list)

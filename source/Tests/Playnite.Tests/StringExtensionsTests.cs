@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Playnite;
+using Playnite.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +22,6 @@ namespace Playnite.Tests
         {
             string output = StringExtensions.NormalizeGameName(input);
             Assert.AreEqual(expectedOutput, output);
-        }
-
-        [Test]
-        public void ConvertToSortableName()
-        {
-            Assert.AreEqual("Witcher 3", StringExtensions.ConvertToSortableName("The Witcher 3"));
-            Assert.AreEqual("Witcher 3", StringExtensions.ConvertToSortableName("the Witcher 3"));
-            Assert.AreEqual("Game", StringExtensions.ConvertToSortableName("A Game"));
-            Assert.AreEqual("Usual Game", StringExtensions.ConvertToSortableName("An Usual Game"));
-            Assert.AreEqual("AnUsual Game", StringExtensions.ConvertToSortableName("AnUsual Game"));
         }
 
         [Test]
@@ -96,6 +86,25 @@ namespace Playnite.Tests
         {
             Assert.IsTrue("test[dasd".ContainsAny(new char[] { ']', '[' }));
             Assert.IsFalse("test dasd".ContainsAny(new char[] { ']', '[' }));
+        }
+
+        [Test]
+        public void GetLineCountTest()
+        {
+            Assert.AreEqual(0, ((string)null).GetLineCount());
+            Assert.AreEqual(1, ("").GetLineCount());
+            Assert.AreEqual(2, ("\n").GetLineCount());
+            Assert.AreEqual(3, ("line1\nline2\nline3").GetLineCount());
+        }
+
+        [Test]
+        public void EndWithDirSeparatorTest()
+        {
+            Assert.AreEqual(@"", "".EndWithDirSeparator());
+            Assert.IsNull(((string)null).EndWithDirSeparator());
+            Assert.AreEqual(@"test\", "test".EndWithDirSeparator());
+            Assert.AreEqual(@"test\", @"test\".EndWithDirSeparator());
+            Assert.AreEqual(@"test\", @"test\\\".EndWithDirSeparator());
         }
     }
 }

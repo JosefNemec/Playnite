@@ -31,17 +31,7 @@
                                    x:Name="PART_ImageBackground" />
 
                         <Border Background="{DynamicResource GameDetailsBackgroundBrush}"
-                                Grid.ColumnSpan="4" Grid.Row="1">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding DisplayBackgroundImage}" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                        </Border>
+                                Grid.ColumnSpan="4" Grid.Row="1" />
 
                         <Border CornerRadius="3" BorderThickness="3" BorderBrush="{DynamicResource ControlBackgroundBrush}"
                                 Margin="14" Grid.Column="1" Grid.Row="1"
@@ -122,7 +112,8 @@
                                           Margin="5,2,2,2" BorderThickness="2" MinWidth="220" HorizontalContentAlignment="Center" />
                             </StackPanel>
       
-                            <ScrollViewerEx Margin="0,20,0,0" DockPanel.Dock="Top">
+                            <ScrollViewerEx Margin="0,20,0,0" DockPanel.Dock="Top"
+                                            x:Name="PART_ScrollHtmlDescription">
                                 <HtmlTextView x:Name="PART_HtmlDescription"
                                                 HtmlFontSize="16"
                                                 HtmlForeground="{DynamicResource TextColor}"

@@ -26,6 +26,7 @@ namespace Playnite.FullscreenApp.Controls.Views
     [TemplatePart(Name = "PART_ImageCover", Type = typeof(Image))]
     [TemplatePart(Name = "PART_ImageBackground", Type = typeof(FadeImage))]
     [TemplatePart(Name = "PART_HtmlDescription", Type = typeof(HtmlTextView))]
+    [TemplatePart(Name = "PART_ScrollHtmlDescription", Type = typeof(ScrollViewer))]
     public class GameDetails : Control
     {
         private FullscreenAppViewModel mainModel;
@@ -35,6 +36,7 @@ namespace Playnite.FullscreenApp.Controls.Views
         private Image ImageCover;
         private FadeImage ImageBackground;
         private HtmlTextView HtmlDescription;
+        private ScrollViewer ScrollHtmlDescription;
 
         static GameDetails()
         {
@@ -43,6 +45,13 @@ namespace Playnite.FullscreenApp.Controls.Views
 
         public GameDetails() : this(FullscreenApplication.Current?.MainModel)
         {
+            DataContextChanged += GameDetails_DataContextChanged;
+        }
+
+        private void GameDetails_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            // Scrollview not resseting causes some incidental issues elswhere, see #2663
+            ScrollHtmlDescription?.ScrollToTop();
         }
 
         public GameDetails(FullscreenAppViewModel mainModel) : base()
@@ -99,9 +108,15 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = Key.Escape });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectPrevGameCommand, Key = Key.F2 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectNextGameCommand, Key = Key.F3 });
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.ToggleGameDetailsCommand, XInputButton.B));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.SelectPrevGameCommand, XInputButton.LeftShoulder));
                     ViewHost.InputBindings.Add(new XInputBinding(mainModel.SelectNextGameCommand, XInputButton.RightShoulder));
+
+                    var backInput = new XInputBinding { Command = mainModel.ToggleGameDetailsCommand };
+                    BindingTools.SetBinding(backInput,
+                        XInputBinding.ButtonProperty,
+                        null,
+                        typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+                    ViewHost.InputBindings.Add(backInput);
 
                     BindingTools.SetBinding(ViewHost,
                          FocusBahaviors.FocusBindingProperty,
@@ -151,6 +166,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 ImageBackground = Template.FindName("PART_ImageBackground", this) as FadeImage;
                 if (ImageBackground != null)
                 {
+                    ImageBackground.SourceUpdateDelay = 100;
                     BindingTools.SetBinding(ImageBackground,
                         FadeImage.SourceProperty,
                         nameof(GamesCollectionViewEntry.DisplayBackgroundImageObject));
@@ -172,6 +188,8 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ApplicationMode.Fullscreen,
                     mainModel,
                     $"{nameof(FullscreenAppViewModel.SelectedGameDetails)}.{nameof(GameDetailsViewModel.Game)}.{nameof(GameDetailsViewModel.Game.Game)}");
+
+                ScrollHtmlDescription = Template.FindName("PART_ScrollHtmlDescription", this) as ScrollViewer;
             }
         }
     }

@@ -12,23 +12,28 @@ namespace Playnite.SDK.Models
     /// <summary>
     ///
     /// </summary>
-    public enum TrackingMode
+    public enum TrackingMode : int
     {
         /// <summary>
-        ///
+        /// Default tracking mode. Playnite will try to use the best one automatically.
         /// </summary>
         [Description("LOCActionTrackingModeDefault")]
-        Default,
+        Default = 0,
         /// <summary>
-        ///
+        /// Origin process and all started child processes are tracked.
         /// </summary>
         [Description("LOCActionTrackingModeProcess")]
-        Process,
+        Process = 1,
         /// <summary>
-        ///
+        /// Any process from specified directory is tracked.
         /// </summary>
         [Description("LOCActionTrackingModeDirectory")]
-        Directory
+        Directory = 2,
+        /// <summary>
+        /// Only originally started process is being tracked.
+        /// </summary>
+        [Description("LOCActionTrackingOriginalProcess")]
+        OriginalProcess = 3,
     }
 
     /// <summary>
@@ -107,7 +112,7 @@ namespace Playnite.SDK.Models
 
         private bool overrideDefaultArgs;
         /// <summary>
-        /// Gets or sets value indicating wheter emulator arguments should be completely overwritten with action arguments.
+        /// Gets or sets value indicating whether emulator arguments should be completely overwritten with action arguments.
         /// Applies only to Emulator action type.
         /// </summary>
         public bool OverrideDefaultArgs
@@ -164,7 +169,7 @@ namespace Playnite.SDK.Models
 
         private bool isPlayAction;
         /// <summary>
-        /// Gets or sets value indicating wheter an action is play action.
+        /// Gets or sets value indicating whether an action is play action.
         /// </summary>
         public bool IsPlayAction
         {
@@ -257,6 +262,8 @@ namespace Playnite.SDK.Models
                     return $"Url: {Path}";
                 case GameActionType.Emulator:
                     return $"Emulator: {EmulatorId}, {EmulatorProfileId}, {OverrideDefaultArgs}, {AdditionalArguments}";
+                case GameActionType.Script:
+                    return "Script";
                 default:
                     return Path;
             }

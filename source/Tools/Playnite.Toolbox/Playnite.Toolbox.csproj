@@ -71,15 +71,15 @@
       <Link>Templates\Themes\Fonts\icofont.ttf</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\..\references\Fonts\TitilliumWeb*.*">    
+    <None Include="..\..\..\references\Fonts\TitilliumWeb*.*">
       <Link>Templates\Themes\Fullscreen\Fonts\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\..\references\Fonts\PlayStation4.*">    
+    <None Include="..\..\..\references\Fonts\PlayStation4.*">
       <Link>Templates\Themes\Fullscreen\Fonts\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\..\references\Fonts\XBOXONE.*">    
+    <None Include="..\..\..\references\Fonts\XBOXONE.*">
       <Link>Templates\Themes\Fullscreen\Fonts\%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -160,6 +160,22 @@
   <ItemGroup>
     <None Include="..\..\..\build\ExtensionsRefIgnoreList.txt">
       <Link>Templates\Extensions\ExtensionsRefIgnoreList.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite.DesktopApp\ControlGalleryView.xaml">
+      <Link>Templates\Themes\Desktop\ControlGalleryView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Playnite.FullscreenApp\ControlGalleryView.xaml">
+      <Link>Templates\Themes\Fullscreen\ControlGalleryView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

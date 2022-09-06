@@ -39,13 +39,28 @@ namespace Playnite.DesktopApp.ViewModels
         }
     }
 
+    public class SearchSupportSettings : SearchSupport
+    {
+        public string SearchId { get; set; }
+        public new string Keyword { get; set; }
+
+        public SearchSupportSettings(LoadedPlugin plugin, SearchSupport support, Dictionary<string, string> customMap) : base(support.DefaultKeyword, support.Name, support.Context)
+        {
+            SearchId = plugin.Description.Id + support.DefaultKeyword;
+            if (customMap?.ContainsKey(SearchId) == true)
+            {
+                Keyword = customMap[SearchId];
+            }
+        }
+    }
+
     public class SettingsViewModel : ObservableObject
     {
         internal static ILogger logger = LogManager.GetLogger();
         internal IWindowFactory window;
         internal IResourceProvider resources;
         internal IDialogsFactory dialogs;
-        internal GameDatabase database;
+        internal IGameDatabaseMain database;
         internal PlayniteSettings originalSettings;
         internal PlayniteApplication application;
         internal List<string> editedFields = new List<string>();
@@ -76,6 +91,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
+        public ObservableCollection<string> SortingNameRemovedArticles { get; }
 
         public List<LoadedPlugin> GenericPlugins
         {
@@ -103,7 +119,9 @@ namespace Playnite.DesktopApp.ViewModels
             private set;
         } = new List<SelectableTrayIcon>();
 
-        private readonly Dictionary<int, UserControl> sectionViews;
+        public List<SearchSupportSettings> Searches { get; } = new List<SearchSupportSettings>();
+
+        private readonly Dictionary<DesktopSettingsPage, UserControl> sectionViews;
 
         #region Commands
 
@@ -233,10 +251,76 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand AddSortingNameRemovedArticle
+        {
+            get => new RelayCommand(() =>
+            {
+                var res = dialogs.SelectString(
+                    resources.GetString(LOC.EnterName),
+                    resources.GetString(LOC.AddNewItem),
+                    string.Empty);
+                if (res.Result && !res.SelectedString.IsNullOrEmpty())
+                {
+                    if (SortingNameRemovedArticles.Any(a => a.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        dialogs.ShowErrorMessage(resources.GetString(LOC.ItemAlreadyExists), string.Empty);
+                    }
+                    else
+                    {
+                        SortingNameRemovedArticles.Add(res.SelectedString);
+                    }
+                }
+            });
+        }
+
+        public RelayCommand<IList<object>> RemoveSortingNameRemovedArticle
+        {
+            get => new RelayCommand<IList<object>>((selectedItems) =>
+            {
+                var selectedStrings = selectedItems.Cast<string>().ToList();
+                foreach (string selectedItem in selectedStrings)
+                {
+                    SortingNameRemovedArticles.Remove(selectedItem);
+                }
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand FillSortingNameForAllGames
+        {
+            get => new RelayCommand(() =>
+            {
+                dialogs.ActivateGlobalProgress(args =>
+                {
+                    args.ProgressMaxValue = database.Games.Count;
+                    var c = new SortableNameConverter(SortingNameRemovedArticles, true);
+                    using (database.BufferedUpdate())
+                    {
+                        foreach (var game in database.Games)
+                        {
+                            if (args.CancelToken.IsCancellationRequested)
+                            {
+                                return;
+                            }
+                            if (game.SortingName.IsNullOrEmpty())
+                            {
+                                string sortingName = c.Convert(game.Name);
+                                if (game.Name != sortingName)
+                                {
+                                    game.SortingName = sortingName;
+                                    database.Games.Update(game);
+                                }
+                            }
+                            args.CurrentProgressValue++;
+                        }
+                    }
+                }, new GlobalProgressOptions(resources.GetString(LOC.SortingNameAutofillProgress), true));
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             PlayniteSettings settings,
             IWindowFactory window,
             IDialogsFactory dialogs,
@@ -261,24 +345,28 @@ namespace Playnite.DesktopApp.ViewModels
                 new SelectableTrayIcon(TrayIconType.Dark)
             };
 
-            sectionViews = new Dictionary<int, UserControl>()
+            sectionViews = new Dictionary<DesktopSettingsPage, UserControl>()
             {
-                { 0, new Controls.SettingsSections.General() { DataContext = this } },
-                { 1, new Controls.SettingsSections.AppearanceGeneral() { DataContext = this } },
-                { 2, new Controls.SettingsSections.AppearanceAdvanced() { DataContext = this } },
-                { 3, new Controls.SettingsSections.AppearanceDetailsView() { DataContext = this } },
-                { 4, new Controls.SettingsSections.AppearanceGridView() { DataContext = this } },
-                { 5, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
-                { 6, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
-                { 7, new Controls.SettingsSections.Input() { DataContext = this } },
-                { 8, new Controls.SettingsSections.AddonsMoveInfo() { DataContext = this } },
-                { 9, new Controls.SettingsSections.Metadata() { DataContext = this } },
-                { 11, new Controls.SettingsSections.Scripting() { DataContext = this } },
-                { 12, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
-                { 13, new Controls.SettingsSections.Performance() { DataContext = this } },
-                { 14, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
-                { 19, new Controls.SettingsSections.Development() { DataContext = this } },
-                { 20, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } }
+                { DesktopSettingsPage.General, new Controls.SettingsSections.General() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceGeneral, new Controls.SettingsSections.AppearanceGeneral() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceAdvanced, new Controls.SettingsSections.AppearanceAdvanced() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceDetailsView, new Controls.SettingsSections.AppearanceDetailsView() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceGridView, new Controls.SettingsSections.AppearanceGridView() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceLayout, new Controls.SettingsSections.AppearanceLayout() { DataContext = this } },
+                { DesktopSettingsPage.GeneralAdvanced, new Controls.SettingsSections.GeneralAdvanced() { DataContext = this } },
+                { DesktopSettingsPage.Input, new Controls.SettingsSections.Input() { DataContext = this } },
+                { DesktopSettingsPage.Metadata, new Controls.SettingsSections.Metadata() { DataContext = this } },
+                { DesktopSettingsPage.Scripting, new Controls.SettingsSections.Scripting() { DataContext = this } },
+                { DesktopSettingsPage.ClientShutdown, new Controls.SettingsSections.ClientShutdown() { DataContext = this } },
+                { DesktopSettingsPage.Performance, new Controls.SettingsSections.Performance() { DataContext = this } },
+                { DesktopSettingsPage.ImportExlusionList, new Controls.SettingsSections.ImportExlusionList() { DataContext = this } },
+                { DesktopSettingsPage.Development, new Controls.SettingsSections.Development() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceTopPanel, new Controls.SettingsSections.AppearanceTopPanel() { DataContext = this } },
+                { DesktopSettingsPage.Sorting, new Controls.SettingsSections.Sorting() { DataContext = this } },
+                { DesktopSettingsPage.Updates, new Controls.SettingsSections.Updates() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceListView, new Controls.SettingsSections.AppearanceListView() { DataContext = this } },
+                { DesktopSettingsPage.Search, new Controls.SettingsSections.Search() { DataContext = this } },
+                { DesktopSettingsPage.Backup, new Controls.SettingsSections.Backup() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -290,16 +378,24 @@ namespace Playnite.DesktopApp.ViewModels
                 });
             }
 
+            foreach (var plugin in extensions.Plugins)
+            {
+                foreach (var search in plugin.Value.Plugin.Searches ?? new List<SearchSupport>())
+                {
+                    Searches.Add(new SearchSupportSettings(plugin.Value, search, Settings.CustomSearchKeywrods));
+                }
+            }
+
             ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
+            SortingNameRemovedArticles = new ObservableCollection<string>(settings.GameSortingNameRemovedArticles.OrderBy(a => a));
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
         {
             if (selectedItem.NewValue is TreeViewItem treeItem)
             {
-                if (treeItem.Tag != null)
+                if (treeItem.Tag is DesktopSettingsPage viewIndex && sectionViews.ContainsKey(viewIndex))
                 {
-                    var viewIndex = int.Parse(treeItem.Tag.ToString());
                     SelectedSectionView = sectionViews[viewIndex];
                 }
                 else
@@ -318,6 +414,16 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
+        public bool? OpenView(DesktopSettingsPage viewIndex)
+        {
+            if (sectionViews.ContainsKey(viewIndex))
+            {
+                SelectedSectionView = sectionViews[viewIndex];
+            }
+
+            return window.CreateAndOpenDialog(this);
+        }
+
         public void CloseView()
         {
             closingHanled = true;
@@ -326,11 +432,18 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void ConfirmDialog()
         {
-            if (editedFields.Contains(nameof(Settings.StartOnBoot)))
+            if (Settings.AutoBackupEnabled && Settings.AutoBackupDir.IsNullOrWhiteSpace())
+            {
+                dialogs.ShowErrorMessage(LOC.SettingsNoBackupDirSpecifiedError);
+                return;
+            }
+
+            if (editedFields.Contains(nameof(Settings.StartOnBoot)) ||
+                editedFields.Contains(nameof(Settings.StartOnBootClosedToTray)))
             {
                 try
                 {
-                    SystemIntegration.SetBootupStateRegistration(Settings.StartOnBoot);
+                    SystemIntegration.SetBootupStateRegistration(Settings.StartOnBoot, Settings.StartOnBootClosedToTray);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -342,7 +455,17 @@ namespace Playnite.DesktopApp.ViewModels
 
             var shutdownPlugins = AutoCloseClientsList.Where(a => a.Selected == true).Select(a => a.Item.Id).ToList();
             Settings.ClientAutoShutdown.ShutdownPlugins = shutdownPlugins;
+            Settings.GameSortingNameRemovedArticles = SortingNameRemovedArticles.ToList();
             var develExtListUpdated = !Settings.DevelExtenions.IsEqualJson(originalSettings.DevelExtenions);
+
+            Settings.CustomSearchKeywrods = new Dictionary<string, string>();
+            foreach (var search in Searches)
+            {
+                if (!search.Keyword.IsNullOrWhiteSpace())
+                {
+                    Settings.CustomSearchKeywrods.Add(search.SearchId, search.Keyword);
+                }
+            }
 
             EndEdit();
             originalSettings.SaveSettings();
@@ -441,11 +564,24 @@ namespace Playnite.DesktopApp.ViewModels
         {
             try
             {
-                var game = application.Api.MainView.SelectedGames.DefaultIfEmpty(new SDK.Models.Game("Test game")).FirstOrDefault();
-                var expanded = game.ExpandVariables(script);
+                var game = application.PlayniteApiGlobal.MainView.SelectedGames.FirstOrDefault() ?? new SDK.Models.Game("Test game");
+                var expandedScript = game.ExpandVariables(script);
+                var startingArgs = new SDK.Events.OnGameStartingEventArgs
+                {
+                    Game = game,
+                    SelectedRomFile = game.Roms?.FirstOrDefault()?.Path,
+                    SourceAction = game.GameActions?.FirstOrDefault()
+                };
+
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true, GameScriptType.None);
+                    application.GamesEditor.ExecuteScriptAction(runtime, expandedScript, game, true, true, GameScriptType.None,
+                        new Dictionary<string, object>
+                        {
+                            {  "StartingArgs", startingArgs },
+                            {  "SourceAction", startingArgs.SourceAction },
+                            {  "SelectedRomFile", startingArgs.SelectedRomFile }
+                        });
                 }
             }
             catch (Exception exc)

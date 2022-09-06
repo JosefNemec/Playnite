@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,7 +70,7 @@ namespace Playnite.SDK.Models
 
         private bool inGlobalUpdate = true;
         /// <summary>
-        /// Gets or sets value indicating whether this configu should be included in global library update.
+        /// Gets or sets value indicating whether this config should be included in global library update.
         /// </summary>
         public bool InGlobalUpdate
         {
@@ -105,6 +106,90 @@ namespace Playnite.SDK.Models
             set
             {
                 useSimplifiedOnlineFileScan = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool importWithRelativePaths = true;
+        /// <summary>
+        /// Gets or sets value indicating whether game ROMs should be imported under relative paths if possible.
+        /// </summary>
+        public bool ImportWithRelativePaths
+        {
+            get => importWithRelativePaths;
+            set
+            {
+                importWithRelativePaths = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool scanSubfolders = true;
+        /// <summary>
+        /// Gets or sets value indicating whether subfolders should be scanned.
+        /// </summary>
+        public bool ScanSubfolders
+        {
+            get => scanSubfolders;
+            set
+            {
+                scanSubfolders = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool scanInsideArchives = true;
+        /// <summary>
+        /// Gets or sets value indicating whether file archives should be scanned for content.
+        /// </summary>
+        public bool ScanInsideArchives
+        {
+            get => scanInsideArchives;
+            set
+            {
+                scanInsideArchives = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> excludedFiles;
+        /// <summary>
+        /// Gets or sets list of files excluded from scan.
+        /// </summary>
+        public List<string> ExcludedFiles
+        {
+            get => excludedFiles;
+            set
+            {
+                excludedFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> excludedDirectories;
+        /// <summary>
+        /// Gets or sets list of folders excluded from scan.
+        /// </summary>
+        public List<string> ExcludedDirectories
+        {
+            get => excludedDirectories;
+            set
+            {
+                excludedDirectories = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Guid overridePlatformId;
+        /// <summary>
+        /// Gets or sets id of default platform to be assigned if auto detection fails.
+        /// </summary>
+        public Guid OverridePlatformId
+        {
+            get => overridePlatformId;
+            set
+            {
+                overridePlatformId = value;
                 OnPropertyChanged();
             }
         }
@@ -148,6 +233,36 @@ namespace Playnite.SDK.Models
                 if (UseSimplifiedOnlineFileScan != tro.UseSimplifiedOnlineFileScan)
                 {
                     tro.UseSimplifiedOnlineFileScan = UseSimplifiedOnlineFileScan;
+                }
+
+                if (ImportWithRelativePaths != tro.ImportWithRelativePaths)
+                {
+                    tro.ImportWithRelativePaths = ImportWithRelativePaths;
+                }
+
+                if (ScanSubfolders != tro.ScanSubfolders)
+                {
+                    tro.ScanSubfolders = ScanSubfolders;
+                }
+
+                if (ScanInsideArchives != tro.ScanInsideArchives)
+                {
+                    tro.ScanInsideArchives = ScanInsideArchives;
+                }
+
+                if (!ExcludedFiles.IsListEqual(tro.ExcludedFiles))
+                {
+                    tro.ExcludedFiles = ExcludedFiles;
+                }
+
+                if (!ExcludedDirectories.IsListEqual(tro.ExcludedDirectories))
+                {
+                    tro.ExcludedDirectories = ExcludedDirectories;
+                }
+
+                if (OverridePlatformId != tro.OverridePlatformId)
+                {
+                    tro.OverridePlatformId = OverridePlatformId;
                 }
             }
             else

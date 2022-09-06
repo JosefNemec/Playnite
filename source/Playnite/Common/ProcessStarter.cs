@@ -95,6 +95,11 @@ namespace Playnite.Common
         public static Process StartProcess(string path, string arguments, string workDir, bool asAdmin = false)
         {
             logger.Debug($"Starting process: {path}, {arguments}, {workDir}, {asAdmin}");
+            if (path.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException("Cannot start process, executable path is specified.");
+            }
+
             var startupPath = path;
             if (path.Contains(".."))
             {
@@ -118,6 +123,11 @@ namespace Playnite.Common
         public static int StartProcessWait(string path, string arguments, string workDir, bool noWindow = false)
         {
             logger.Debug($"Starting process: {path}, {arguments}, {workDir}");
+            if (path.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException("Cannot start process, executable path is specified.");
+            }
+
             var startupPath = path;
             if (path.Contains(".."))
             {
@@ -151,6 +161,11 @@ namespace Playnite.Common
             out string stdError)
         {
             logger.Debug($"Starting process: {path}, {arguments}, {workDir}");
+            if (path.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException("Cannot start process, executable path is specified.");
+            }
+
             var startupPath = path;
             if (path.Contains(".."))
             {

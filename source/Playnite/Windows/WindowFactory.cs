@@ -15,7 +15,7 @@ namespace Playnite.Windows
 {
     public interface IWindowFactory
     {
-        bool IsClosed { get; }
+        bool WasClosed { get; }
 
         bool? CreateAndOpenDialog(object dataContext);
 
@@ -35,7 +35,7 @@ namespace Playnite.Windows
         private static ILogger logger = LogManager.GetLogger();
         private readonly SynchronizationContext context;
         private bool asDialog = false;
-        public bool IsClosed { get; private set; } = true;
+        public bool WasClosed { get; private set; } = false;
 
         public WindowBase Window
         {
@@ -52,13 +52,14 @@ namespace Playnite.Windows
 
         public bool? CreateAndOpenDialog(object dataContext)
         {
-            logger.Debug($"Show dialog window {GetType()}");
             bool? result = null;
             context.Send((a) =>
             {
                 Window = CreateNewWindowInstance();
                 Window.Closed += Window_Closed;
                 Window.DataContext = dataContext;
+                logger.Debug($"Show dialog window {GetType()}: {Window.Id}");
+
                 var currentWindow = WindowManager.CurrentWindow;
                 if (currentWindow != null && Window != currentWindow)
                 {
@@ -75,7 +76,7 @@ namespace Playnite.Windows
                 }
 
                 asDialog = true;
-                IsClosed = false;
+                WasClosed = false;
                 result = Window.ShowDialog();
             }, null);
 
@@ -84,26 +85,33 @@ namespace Playnite.Windows
 
         public void Show(object dataContext)
         {
-            logger.Debug($"Show window {GetType()}");
             context.Send((a) =>
             {
                 asDialog = false;
-                if (IsClosed)
+                if (WasClosed)
                 {
-                    logger.Debug($"Opening window that was closed previously {GetType()}");
+                    logger.Debug($"Opening window that was closed previously {GetType()}, old Id: {Window.Id}");
                     Window = CreateNewWindowInstance();
                     Window.Closed += Window_Closed;
                 }
 
+                if (Window == null)
+                {
+                    Window = CreateNewWindowInstance();
+                    Window.Closed += Window_Closed;
+                }
+
+                logger.Debug($"Show window {GetType()}: {Window.Id}");
                 Window.DataContext = dataContext;
-                IsClosed = false;
+                WasClosed = false;
                 Window.Show();
             }, null);
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            IsClosed = true;
+            WasClosed = true;
+            Window.Closed -= Window_Closed;
         }
 
         public void RestoreWindow()
@@ -121,10 +129,10 @@ namespace Playnite.Windows
 
         public void Close(bool? result)
         {
-            logger.Debug($"Closing window {GetType()}, {result}.");
+            logger.Debug($"Closing window {GetType()}: {Window.Id}, {result}");
             context.Send(async (_) =>
             {
-                // This is a workaround for WPF bug which cases deadlock in ShowDialog
+                // This is a workaround for WPF bug which causes deadlock in ShowDialog
                 // if parent of modal window is closed before the child window itself is closed.
                 // To prevent this we need to make sure that window parenting other windows is only
                 // closed after all children are closed.
@@ -159,7 +167,7 @@ namespace Playnite.Windows
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public static void RestoreWindow(WindowBase window)
+        public static void RestoreWindow(this Window window)
         {
             try
             {

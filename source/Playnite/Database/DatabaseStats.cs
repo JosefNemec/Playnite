@@ -33,11 +33,11 @@ namespace Playnite.Database
                     return database.Games.Count;
                 }
             }
-        }     
+        }
 
-        private GameDatabase database;
+        private IGameDatabaseMain database;
 
-        public DatabaseStats(GameDatabase database)
+        public DatabaseStats(IGameDatabaseMain database)
         {
             this.database = database;
             database.Games.ItemUpdated += Database_GameUpdated;
@@ -72,7 +72,7 @@ namespace Playnite.Database
                 else
                 {
                     UnInstalled++;
-                }                
+                }
 
                 if (game.Hidden)
                 {

@@ -23,9 +23,48 @@ using Playnite.SDK;
 using Microsoft.Win32;
 using Playnite.SDK.Models;
 using System.Collections.ObjectModel;
+using Playnite.SDK.Plugins;
 
 namespace Playnite
 {
+    public enum DesktopSettingsPage
+    {
+        General = 0,
+        AppearanceGeneral = 1,
+        AppearanceAdvanced = 2,
+        AppearanceDetailsView = 3,
+        AppearanceGridView = 4,
+        AppearanceLayout = 5,
+        GeneralAdvanced = 6,
+        Input = 7,
+        Metadata = 9,
+        Scripting = 11,
+        ClientShutdown = 12,
+        Performance = 13,
+        ImportExlusionList = 14,
+        Development = 19,
+        AppearanceTopPanel = 20,
+        Sorting = 21,
+        Updates = 22,
+        AppearanceListView = 23,
+        Search = 24,
+        Backup = 25
+    }
+
+    public enum GameSearchItemAction
+    {
+        [Description(LOC.GameSearchItemActionPlay)]
+        Play,
+        [Description(LOC.GameSearchItemActionSwitchTo)]
+        SwitchTo,
+        [Description(LOC.GameSearchItemActionOpenMenu)]
+        OpenMenu,
+        [Description(LOC.GameSearchItemActionEdit)]
+        Edit,
+        [Description(LOC.None)]
+        None
+    }
+
     public enum AfterLaunchOptions
     {
         None,
@@ -117,6 +156,36 @@ namespace Playnite
         Ideal = 0,
         [Description("LOCSettingsTextFormattingModeOptionDisplay")]
         Display = 1
+    }
+
+    public enum UpdateCheckFrequency
+    {
+        [Description(LOC.OptionOnEveryStartup)]
+        OnEveryStartup = 0,
+        [Description(LOC.OptionOnceADay)]
+        OnceADay = 1,
+        [Description(LOC.OptionOnceAWeek)]
+        OnceAWeek = 2
+    }
+
+    public enum LibraryUpdateCheckFrequency
+    {
+        [Description(LOC.OptionOnlyManually)]
+        Manually = 0,
+        [Description(LOC.OptionOnEveryStartup)]
+        OnEveryStartup = 1,
+        [Description(LOC.OptionOnceADay)]
+        OnceADay = 2,
+        [Description(LOC.OptionOnceAWeek)]
+        OnceAWeek = 3
+    }
+
+    public enum AutoBackupFrequency
+    {
+        [Description(LOC.OptionOnceADay)]
+        OnceADay = 1,
+        [Description(LOC.OptionOnceAWeek)]
+        OnceAWeek = 2
     }
 
     public class PlayniteSettings : ObservableObject
@@ -725,7 +794,7 @@ namespace Playnite
             }
         }
 
-        private bool showGroupCount = false;
+        private bool showGroupCount = true;
         public bool ShowGroupCount
         {
             get
@@ -957,36 +1026,6 @@ namespace Playnite
             }
         }
 
-        private bool updateLibStartup = true;
-        public bool UpdateLibStartup
-        {
-            get
-            {
-                return updateLibStartup;
-            }
-
-            set
-            {
-                updateLibStartup = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool updateEmulatedLibStartup = true;
-        public bool UpdateEmulatedLibStartup
-        {
-            get
-            {
-                return updateEmulatedLibStartup;
-            }
-
-            set
-            {
-                updateEmulatedLibStartup = value;
-                OnPropertyChanged();
-            }
-        }
-
         private AfterLaunchOptions afterLaunch = AfterLaunchOptions.Minimize;
         public AfterLaunchOptions AfterLaunch
         {
@@ -1100,17 +1139,17 @@ namespace Playnite
             }
         }
 
-        private bool forcePlayTimeSync = false;
-        public bool ForcePlayTimeSync
+        private bool startOnBootClosedToTray = false;
+        public bool StartOnBootClosedToTray
         {
             get
             {
-                return forcePlayTimeSync;
+                return startOnBootClosedToTray;
             }
 
             set
             {
-                forcePlayTimeSync = value;
+                startOnBootClosedToTray = value;
                 OnPropertyChanged();
             }
         }
@@ -1383,6 +1422,28 @@ namespace Playnite
             }
         }
 
+        private string appStartupScript;
+        public string AppStartupScript
+        {
+            get => appStartupScript;
+            set
+            {
+                appStartupScript = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string appShutdownScript;
+        public string AppShutdownScript
+        {
+            get => appShutdownScript;
+            set
+            {
+                appShutdownScript = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool downloadBackgroundsImmediately = true;
         public bool DownloadBackgroundsImmediately
         {
@@ -1515,13 +1576,101 @@ namespace Playnite
             }
         }
 
-        private double gridViewScrollModifier = 1.5;
-        public double GridViewScrollModifier
+        private double gridViewScrollSensitivity = 1.5;
+        public double GridViewScrollSensitivity
         {
-            get => gridViewScrollModifier;
+            get => gridViewScrollSensitivity;
             set
             {
-                gridViewScrollModifier = value;
+                gridViewScrollSensitivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private long gridViewScrollSpeed = 250 * TimeSpan.TicksPerMillisecond;
+        public long GridViewScrollSpeed
+        {
+            get => gridViewScrollSpeed;
+            set
+            {
+                gridViewScrollSpeed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool gridViewSmoothScrollEnabled = false;
+        public bool GridViewSmoothScrollEnabled
+        {
+            get => gridViewSmoothScrollEnabled;
+            set
+            {
+                gridViewSmoothScrollEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double detailsViewScrollSensitivity = 1.5;
+        public double DetailsViewScrollSensitivity
+        {
+            get => detailsViewScrollSensitivity;
+            set
+            {
+                detailsViewScrollSensitivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private long detailsViewScrollSpeed = 250 * TimeSpan.TicksPerMillisecond;
+        public long DetailsViewScrollSpeed
+        {
+            get => detailsViewScrollSpeed;
+            set
+            {
+                detailsViewScrollSpeed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool detailsViewSmoothScrollEnabled = false;
+        public bool DetailsViewSmoothScrollEnabled
+        {
+            get => detailsViewSmoothScrollEnabled;
+            set
+            {
+                detailsViewSmoothScrollEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double listViewScrollSensitivity = 1.5;
+        public double ListViewScrollSensitivity
+        {
+            get => listViewScrollSensitivity;
+            set
+            {
+                listViewScrollSensitivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private long listViewScrollSpeed = 250 * TimeSpan.TicksPerMillisecond;
+        public long ListViewScrollSpeed
+        {
+            get => listViewScrollSpeed;
+            set
+            {
+                listViewScrollSpeed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool listViewSmoothScrollEnabled = false;
+        public bool ListViewSmoothScrollEnabled
+        {
+            get => listViewSmoothScrollEnabled;
+            set
+            {
+                listViewSmoothScrollEnabled = value;
                 OnPropertyChanged();
             }
         }
@@ -1625,6 +1774,28 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelSearchButton = true;
+        public bool ShowTopPanelSearchButton
+        {
+            get => showTopPanelSearchButton;
+            set
+            {
+                showTopPanelSearchButton = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool showTopPanelSearchBox = true;
+        public bool ShowTopPanelSearchBox
+        {
+            get => showTopPanelSearchBox;
+            set
+            {
+                showTopPanelSearchBox = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double topPanelSectionSeparatorWidth = 15;
         public double TopPanelSectionSeparatorWidth
         {
@@ -1673,6 +1844,17 @@ namespace Playnite
             }
         }
 
+        private PlaytimeImportMode playtimeImportMode = PlaytimeImportMode.NewImportsOnly;
+        public PlaytimeImportMode PlaytimeImportMode
+        {
+            get => playtimeImportMode;
+            set
+            {
+                playtimeImportMode = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool useCompositionWebViewRenderer = false;
         public bool UseCompositionWebViewRenderer
         {
@@ -1691,6 +1873,29 @@ namespace Playnite
             set
             {
                 addonsPerfNoticeShown = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool gameSortingNameAutofill = true;
+        public bool GameSortingNameAutofill
+        {
+            get => gameSortingNameAutofill;
+            set
+            {
+                gameSortingNameAutofill = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> gameSortingNameRemovedArticles = new List<string> { "The", "A", "An" };
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+        public List<string> GameSortingNameRemovedArticles
+        {
+            get => gameSortingNameRemovedArticles;
+            set
+            {
+                gameSortingNameRemovedArticles = value;
                 OnPropertyChanged();
             }
         }
@@ -1716,6 +1921,108 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private UpdateCheckFrequency checkForProgramUpdates = UpdateCheckFrequency.OnEveryStartup;
+        public UpdateCheckFrequency CheckForProgramUpdates
+        {
+            get => checkForProgramUpdates;
+            set
+            {
+                checkForProgramUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private UpdateCheckFrequency checkForAddonUpdates = UpdateCheckFrequency.OnEveryStartup;
+        public UpdateCheckFrequency CheckForAddonUpdates
+        {
+            get => checkForAddonUpdates;
+            set
+            {
+                checkForAddonUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private LibraryUpdateCheckFrequency checkForLibraryUpdates = LibraryUpdateCheckFrequency.OnEveryStartup;
+        public LibraryUpdateCheckFrequency CheckForLibraryUpdates
+        {
+            get => checkForLibraryUpdates;
+            set
+            {
+                checkForLibraryUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private LibraryUpdateCheckFrequency checkForEmulatedLibraryUpdates = LibraryUpdateCheckFrequency.OnEveryStartup;
+        public LibraryUpdateCheckFrequency CheckForEmulatedLibraryUpdates
+        {
+            get => checkForEmulatedLibraryUpdates;
+            set
+            {
+                checkForEmulatedLibraryUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime LastProgramUpdateCheck { get; set; }
+        public DateTime LastAddonUpdateCheck { get; set; }
+        public DateTime LastLibraryUpdateCheck { get; set; }
+        public DateTime LastEmuLibraryUpdateCheck { get; set; }
+        public DateTime LastAutoBackup { get; set; }
+
+        private GameSearchItemAction primaryGameSearchItemAction = GameSearchItemAction.SwitchTo;
+        public GameSearchItemAction PrimaryGameSearchItemAction { get => primaryGameSearchItemAction; set => SetValue(ref primaryGameSearchItemAction, value); }
+
+        private GameSearchItemAction secondaryGameSearchItemAction = GameSearchItemAction.Play;
+        public GameSearchItemAction SecondaryGameSearchItemAction { get => secondaryGameSearchItemAction; set => SetValue(ref secondaryGameSearchItemAction, value); }
+
+        private bool globalSearchOpenWithLegacySearch = true;
+        public bool GlobalSearchOpenWithLegacySearch { get => globalSearchOpenWithLegacySearch; set => SetValue(ref globalSearchOpenWithLegacySearch, value); }
+
+        private bool saveGlobalSearchFilterSettings = true;
+        public bool SaveGlobalSearchFilterSettings { get => saveGlobalSearchFilterSettings; set => SetValue(ref saveGlobalSearchFilterSettings, value); }
+
+        private Dictionary<string, string> customSearchKeywrods = new Dictionary<string, string>();
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+        public Dictionary<string, string> CustomSearchKeywrods { get => customSearchKeywrods; set => SetValue(ref customSearchKeywrods, value); }
+
+        private GameSearchFilterSettings gameSearchFilterSettings = new GameSearchFilterSettings();
+        public GameSearchFilterSettings GameSearchFilterSettings { get => gameSearchFilterSettings; set => SetValue(ref gameSearchFilterSettings, value); }
+
+        private HotKey systemSearchHotkey;
+        public HotKey SystemSearchHotkey { get => systemSearchHotkey; set => SetValue(ref systemSearchHotkey, value); }
+
+        private bool includeCommandsInDefaultSearch = true;
+        public bool IncludeCommandsInDefaultSearch { get => includeCommandsInDefaultSearch; set => SetValue(ref includeCommandsInDefaultSearch, value); }
+
+        private bool autoBackupEnabled = false;
+        public bool AutoBackupEnabled { get => autoBackupEnabled; set => SetValue(ref autoBackupEnabled, value); }
+
+        private AutoBackupFrequency autoBackupFrequency = AutoBackupFrequency.OnceAWeek;
+        public AutoBackupFrequency AutoBackupFrequency { get => autoBackupFrequency; set => SetValue(ref autoBackupFrequency, value); }
+
+        private string autoBackupDir;
+        public string AutoBackupDir { get => autoBackupDir; set => SetValue(ref autoBackupDir, value); }
+
+        private int rotatingBackups;
+        public int RotatingBackups { get => rotatingBackups; set => SetValue(ref rotatingBackups, value); }
+
+        private bool autoBackupIncludeLibFiles = true;
+        public bool AutoBackupIncludeLibFiles { get => autoBackupIncludeLibFiles; set => SetValue(ref autoBackupIncludeLibFiles, value); }
+
+        private bool autoBackupIncludeExtensionsData = true;
+        public bool AutoBackupIncludeExtensionsData { get => autoBackupIncludeExtensionsData; set => SetValue(ref autoBackupIncludeExtensionsData, value); }
+
+        private bool autoBackupIncludeExtensions = false;
+        public bool AutoBackupIncludeExtensions { get => autoBackupIncludeExtensions; set => SetValue(ref autoBackupIncludeExtensions, value); }
+
+        private bool autoBackupIncludeThemes = false;
+        public bool AutoBackupIncludeThemes { get => autoBackupIncludeThemes; set => SetValue(ref autoBackupIncludeThemes, value); }
+
+        private bool updateNotificationOnPatchesOnly = false;
+        public bool UpdateNotificationOnPatchesOnly { get => updateNotificationOnPatchesOnly; set => SetValue(ref updateNotificationOnPatchesOnly, value); }
 
         [JsonIgnore]
         public static bool IsPortable
@@ -1749,6 +2056,21 @@ namespace Playnite
             set
             {
                 develExtenions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SearchWindowVisibilitySettings searchWindowVisibility = new SearchWindowVisibilitySettings();
+        public SearchWindowVisibilitySettings SearchWindowVisibility
+        {
+            get
+            {
+                return searchWindowVisibility;
+            }
+
+            set
+            {
+                searchWindowVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -1991,13 +2313,6 @@ namespace Playnite
             }
         }
 
-        [OnError]
-        internal void OnError(StreamingContext context, ErrorContext errorContext)
-        {
-            logger.Error(errorContext.Error, $"Failed to deserialize {errorContext.Path}.");
-            errorContext.Handled = true;
-        }
-
         public static void ConfigureLogger()
         {
             var config = new LoggingConfiguration();
@@ -2079,9 +2394,9 @@ namespace Playnite
 
         private Thickness GetFullscreenItemSpacingMargin()
         {
-            int marginX = FullscreenItemSpacing / 2;
-            int marginY = ((int)CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2);
-            return new Thickness(marginY, marginX, 0, 0);
+            double marginX = FullscreenItemSpacing / 2;
+            double marginY = CoverAspectRatio.GetWidth(FullscreenItemSpacing) / 2;
+            return new Thickness(marginY / 2, marginX / 2, marginY / 2, marginX / 2);
         }
 
         private void UpdateGridItemHeight()
@@ -2096,6 +2411,112 @@ namespace Playnite
             }
 
             OnPropertyChanged(nameof(GridItemHeight));
+        }
+
+        public bool ShouldCheckProgramUpdatePeriodic()
+        {
+            switch (CheckForProgramUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return false;
+            }
+        }
+
+        public bool ShouldCheckAddonUpdatePeriodic()
+        {
+            switch (CheckForAddonUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return false;
+            }
+        }
+
+        public bool ShouldCheckProgramUpdateStartup()
+        {
+            switch (CheckForProgramUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
+        }
+
+        public bool ShouldCheckAddonUpdateStartup()
+        {
+            switch (CheckForAddonUpdates)
+            {
+                case UpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalHours > 23;
+                case UpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
+                case UpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
+        }
+
+        public bool ShouldCheckLibraryOnStartup()
+        {
+            switch (CheckForLibraryUpdates)
+            {
+                case LibraryUpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastLibraryUpdateCheck).TotalHours > 23;
+                case LibraryUpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastLibraryUpdateCheck).TotalDays > 6;
+                case LibraryUpdateCheckFrequency.Manually:
+                    return false;
+                case LibraryUpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
+        }
+
+        public bool ShouldCheckEmuLibraryOnStartup()
+        {
+            switch (CheckForEmulatedLibraryUpdates)
+            {
+                case LibraryUpdateCheckFrequency.OnceADay:
+                    return (DateTimes.Now - LastEmuLibraryUpdateCheck).TotalHours > 23;
+                case LibraryUpdateCheckFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastEmuLibraryUpdateCheck).TotalDays > 6;
+                case LibraryUpdateCheckFrequency.Manually:
+                    return false;
+                case LibraryUpdateCheckFrequency.OnEveryStartup:
+                default:
+                    return true;
+            }
+        }
+
+        public bool ShouldDataBackupOnStartup()
+        {
+            if (!AutoBackupEnabled)
+            {
+                return false;
+            }
+
+            switch (AutoBackupFrequency)
+            {
+                case AutoBackupFrequency.OnceADay:
+                    return (DateTimes.Now - LastAutoBackup).TotalHours > 23;
+                case AutoBackupFrequency.OnceAWeek:
+                    return (DateTimes.Now - LastAutoBackup).TotalDays > 6;
+                default:
+                    return false;
+            }
         }
 
         #region Serialization Conditions

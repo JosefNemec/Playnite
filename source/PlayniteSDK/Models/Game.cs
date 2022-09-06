@@ -169,7 +169,9 @@ namespace Playnite.SDK.Models
         ///
         Platforms = 86,
         ///
-        CompletionStatusId = 87
+        CompletionStatusId = 87,
+        ///
+        OverrideInstallState = 88
     }
 
     /// <summary>
@@ -272,7 +274,7 @@ namespace Playnite.SDK.Models
 
         private bool favorite;
         /// <summary>
-        /// Gets or sets avlue indicating if the game is marked as favorite in library.
+        /// Gets or sets value indicating if the game is marked as favorite in library.
         /// </summary>
         public bool Favorite
         {
@@ -622,7 +624,7 @@ namespace Playnite.SDK.Models
 
         private bool isInstalling;
         /// <summary>
-        /// Gets or sets value indicating wheter a game is being installed..
+        /// Gets or sets value indicating whether a game is being installed.
         /// </summary>
         public bool IsInstalling
         {
@@ -636,7 +638,7 @@ namespace Playnite.SDK.Models
 
         private bool isUninstalling;
         /// <summary>
-        /// Gets or sets value indicating wheter a game is being uninstalled.
+        /// Gets or sets value indicating whether a game is being uninstalled.
         /// </summary>
         public bool IsUninstalling
         {
@@ -650,7 +652,7 @@ namespace Playnite.SDK.Models
 
         private bool isLaunching;
         /// <summary>
-        /// Gets or sets value indicating wheter a game is being launched.
+        /// Gets or sets value indicating whether a game is being launched.
         /// </summary>
         public bool IsLaunching
         {
@@ -664,7 +666,7 @@ namespace Playnite.SDK.Models
 
         private bool isRunning;
         /// <summary>
-        /// Gets or sets value indicating wheter a game is currently running.
+        /// Gets or sets value indicating whether a game is currently running.
         /// </summary>
         public bool IsRunning
         {
@@ -678,7 +680,7 @@ namespace Playnite.SDK.Models
 
         private bool isInstalled;
         /// <summary>
-        /// Gets or sets value indicating wheter a game is installed.
+        /// Gets or sets value indicating whether a game is installed.
         /// </summary>
         public bool IsInstalled
         {
@@ -688,6 +690,20 @@ namespace Playnite.SDK.Models
                 isInstalled = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(InstallationStatus));
+            }
+        }
+
+        private bool overrideInstallState;
+        /// <summary>
+        /// Gets or sets value indicating whether installation state set by integration plugin should be ignored.
+        /// </summary>
+        public bool OverrideInstallState
+        {
+            get => overrideInstallState;
+            set
+            {
+                overrideInstallState = value;
+                OnPropertyChanged();
             }
         }
 
@@ -712,7 +728,7 @@ namespace Playnite.SDK.Models
 
         private DateTime? added;
         /// <summary>
-        /// Gets or sets date when game was added into library.
+        /// Gets or sets date when game was added to library.
         /// </summary>
         public DateTime? Added
         {
@@ -1187,7 +1203,7 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
-        /// Get game's age rating.
+        /// Gets game's age rating.
         /// </summary>
         [DontSerialize]
         public List<AgeRating> AgeRatings
@@ -1338,7 +1354,7 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
-        /// Gets value indicating wheter the game is custom game.
+        /// Gets value indicating whether the game is custom game.
         /// </summary>
         [DontSerialize]
         public bool IsCustomGame
@@ -1804,6 +1820,11 @@ namespace Playnite.SDK.Models
                 {
                     tro.IncludeLibraryPluginAction = IncludeLibraryPluginAction;
                 }
+
+                if (OverrideInstallState != tro.OverrideInstallState)
+                {
+                    tro.OverrideInstallState = OverrideInstallState;
+                }
             }
             else
             {
@@ -1812,10 +1833,10 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
-        /// Get differecens in game objects.
+        /// Gets differences in game objects.
         /// </summary>
         /// <param name="otherGame">Game object to compare to.</param>
-        /// <returns>List of field that differ.</returns>
+        /// <returns>List of fields that differ.</returns>
         public List<GameField> GetDifferences(Game otherGame)
         {
             var changes = new List<GameField>();
@@ -2122,6 +2143,11 @@ namespace Playnite.SDK.Models
             if (IncludeLibraryPluginAction != otherGame.IncludeLibraryPluginAction)
             {
                 changes.Add(GameField.IncludeLibraryPluginAction);
+            }
+
+            if (OverrideInstallState != otherGame.OverrideInstallState)
+            {
+                changes.Add(GameField.OverrideInstallState);
             }
 
             return changes;

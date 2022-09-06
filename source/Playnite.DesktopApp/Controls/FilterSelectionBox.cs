@@ -123,17 +123,17 @@ namespace Playnite.DesktopApp.Controls
             if (!IgnoreChanges)
             {
                 IgnoreChanges = true;
-                FilterProperties = new FilterItemProperites { Ids = ItemsList.GetSelectedIds() };
+                FilterProperties = new IdItemFilterItemProperties { Ids = ItemsList.GetSelectedIds() };
                 UpdateTextStatus();
                 IgnoreChanges = false;
             }
         }
 
-        public FilterItemProperites FilterProperties
+        public IdItemFilterItemProperties FilterProperties
         {
             get
             {
-                return (FilterItemProperites)GetValue(FilterPropertiesProperty);
+                return (IdItemFilterItemProperties)GetValue(FilterPropertiesProperty);
             }
 
             set
@@ -144,7 +144,7 @@ namespace Playnite.DesktopApp.Controls
 
         public static readonly DependencyProperty FilterPropertiesProperty = DependencyProperty.Register(
             nameof(FilterProperties),
-            typeof(FilterItemProperites),
+            typeof(IdItemFilterItemProperties),
             typeof(FilterSelectionBox),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, FilterPropertiesPropertyChangedCallback));
 
@@ -194,7 +194,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 if (!IgnoreChanges)
                 {
-                    FilterProperties = new FilterItemProperites() { Text = value };
+                    FilterProperties = new IdItemFilterItemProperties() { Text = value };
                     if (ItemsList != null)
                     {
                         IgnoreChanges = true;

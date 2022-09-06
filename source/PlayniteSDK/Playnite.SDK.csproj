@@ -60,6 +60,7 @@
     <Compile Include="Data\MarkupConverter.cs" />
     <Compile Include="Data\DataSerialization.cs" />
     <Compile Include="Data\SQLite.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IEmulationAPI.cs" />
     <Compile Include="Events\ApplicationEvents.cs" />
     <Compile Include="Events\PlayniteUriEventArgs.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="IUriHandlerAPI.cs" />
     <Compile Include="Models\AgeRatingOrg.cs" />
     <Compile Include="Models\AppSoftware.cs" />
+    <Compile Include="Models\FilterPreset.cs" />
     <Compile Include="Models\GameRom.cs" />
     <Compile Include="Models\GameScannerConfig.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Plugins\Actions.cs" />
     <Compile Include="Plugins\MenuEntry.cs" />
     <Compile Include="Plugins\MetadataPlugin.cs" />
+    <Compile Include="Plugins\Search.cs" />
     <Compile Include="Plugins\SidebarItem.cs" />
     <Compile Include="Plugins\TopPanelItem.cs" />
     <Compile Include="RelayCommand.cs" />

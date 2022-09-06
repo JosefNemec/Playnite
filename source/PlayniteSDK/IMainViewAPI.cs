@@ -1,9 +1,12 @@
 ﻿using Playnite.SDK.Models;
+using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Playnite.SDK
 {
@@ -15,15 +18,15 @@ namespace Playnite.SDK
         /// <summary>
         ///
         /// </summary>
-        Details = 0,
+        [Description("LOCDetailsViewLabel")] Details = 0,
         /// <summary>
         ///
         /// </summary>
-        Grid = 1,
+        [Description("LOCGridViewLabel")] Grid = 1,
         /// <summary>
         ///
         /// </summary>
-        List = 2
+        [Description("LOCListViewLabel")] List = 2
     }
 
     /// <summary>
@@ -34,7 +37,27 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets currently active Desktop mode view.
         /// </summary>
-        DesktopView ActiveDesktopView { get; }
+        DesktopView ActiveDesktopView { get; set; }
+
+        /// <summary>
+        /// Gets currently active sorting order.
+        /// </summary>
+        SortOrder SortOrder { get; }
+
+        /// <summary>
+        /// Gets currently active sorting order direction.
+        /// </summary>
+        SortOrderDirection SortOrderDirection { get; set; }
+
+        /// <summary>
+        /// Gets currently active grouping field.
+        /// </summary>
+        GroupableField Grouping { get; set; }
+
+        /// <summary>
+        /// Gets UI thread dispatcher.
+        /// </summary>
+        Dispatcher UIDispatcher { get; }
 
         /// <summary>
         /// Gets list of currently selected games.
@@ -69,5 +92,42 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="gameIds">List of game IDs to select.</param>
         void SelectGames(IEnumerable<Guid> gameIds);
+
+        /// <summary>
+        /// Applies filter preset.
+        /// </summary>
+        /// <param name="filterId">Filter ID.</param>
+        void ApplyFilterPreset(Guid filterId);
+
+        /// <summary>
+        /// Applies filter preset.
+        /// </summary>
+        /// <param name="preset">Filter preset.</param>
+        void ApplyFilterPreset(FilterPreset preset);
+
+        /// <summary>
+        /// Gets ID of currently active filter preset.
+        /// </summary>
+        /// <returns></returns>
+        Guid GetActiveFilterPreset();
+
+        /// <summary>
+        /// Gets current filter settings.
+        /// </summary>
+        /// <returns></returns>
+        FilterPresetSettings GetCurrentFilterSettings();
+
+        /// <summary>
+        /// Opens global search view.
+        /// </summary>
+        /// <param name="searchTerm">Default search term.</param>
+        void OpenSearch(string searchTerm);
+
+        /// <summary>
+        /// Opens global search view.
+        /// </summary>
+        /// <param name="context">Search context to be activated after opening the view.</param>
+        /// <param name="searchTerm">Default search term.</param>
+        void OpenSearch(SearchContext context, string searchTerm);
     }
 }

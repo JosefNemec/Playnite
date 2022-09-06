@@ -55,12 +55,27 @@
                   Name="CheckDarkenUninstalledCovers" IsChecked="{Binding Settings.DarkenUninstalledGamesGrid}"/>
 
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-            <TextBlock Text="{DynamicResource LOCGridViewScrollAmountModifier}" VerticalAlignment="Center" Margin="0,0,5,0" />
-            <pctrls:DoubleNumericBox MinValue="0" MaxValue="999" Width="40"
-                                     Value="{Binding Settings.GridViewScrollModifier}"/>
+            <TextBlock Text="{DynamicResource LOCScrollingSensitivity}" />
+            <Slider Width="200" Minimum="0.5" Maximum="10" SmallChange="0.5" LargeChange="0.5"
+                    IsSnapToTickEnabled="True" TickFrequency="0.5"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0"
+                    Value="{Binding Settings.GridViewScrollSensitivity}" />
         </StackPanel>
 
-        <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,30,0,0" />        
+        <CheckBox Content="{DynamicResource LOCSmoothScrolling}" Margin="0,10,0,0"
+                  Name="CheckSmoothScroll"
+                  IsChecked="{Binding Settings.GridViewSmoothScrollEnabled}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="25,10,0,0"
+                    IsEnabled="{Binding IsChecked, ElementName=CheckSmoothScroll}">
+            <TextBlock Text="{DynamicResource LOCSmoothScrollingSpeed}" />
+            <Slider Width="200" Minimum="1000000" Maximum="10000000" SmallChange="500000" LargeChange="500000"
+                    IsSnapToTickEnabled="True" TickFrequency="500000"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0"
+                    Value="{Binding Settings.GridViewScrollSpeed}" />
+        </StackPanel>
+
+        <TextBlock Text="{DynamicResource LOCSettingsCoverArtRenderingLabel}" Margin="0,15,0,0" />        
         <Separator />
 
         <controls:GridEx ColumnCount="2" RowCount="6" AutoLayoutColumns="2"

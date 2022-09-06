@@ -10,6 +10,27 @@ namespace Playnite.Windows
 {
     public static class WindowManager
     {
+        static WindowManager()
+        {
+            EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ActivatedRoutedEvent, new RoutedEventHandler(ActivatedRoutedEventHandler));
+            EventManager.RegisterClassHandler(typeof(WindowBase), WindowBase.ClosedRoutedEvent, new RoutedEventHandler(WindowBaseCloseHandler));
+        }
+
+        private static void ActivatedRoutedEventHandler(object sender, RoutedEventArgs e)
+        {
+            LastActiveWindow = (WindowBase)sender;
+        }
+
+        private static void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
+        {
+            if (LastActiveWindow == (WindowBase)sender)
+            {
+                LastActiveWindow = null;
+            }
+        }
+
+        public static WindowBase LastActiveWindow { get; private set; }
+
         public static Window CurrentWindow
         {
             get

@@ -291,7 +291,7 @@ namespace Playnite.SDK
     }
 
     /// <summary>
-    /// Refresents result of selection string dialog operation.
+    /// Represents result of selection string dialog operation.
     /// </summary>
     public class StringSelectionDialogResult
     {
@@ -344,7 +344,14 @@ namespace Playnite.SDK
     public interface IDialogsFactory
     {
         /// <summary>
-        /// Displays errod dialog window with text message.
+        /// Displays error dialog window with text message.
+        /// </summary>
+        /// <param name="messageBoxText">Dialog message text.</param>
+        /// <returns></returns>
+        MessageBoxResult ShowErrorMessage(string messageBoxText);
+
+        /// <summary>
+        /// Displays error dialog window with text message.
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>
@@ -497,6 +504,14 @@ namespace Playnite.SDK
         /// <param name="progressOptions">Options for progress dialog.</param>
         /// <returns>Status of the action execution.</returns>
         GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressOptions);
+
+        /// <summary>
+        /// Activates progress dialog blocking app interaction until progress is finished or canceled.
+        /// </summary>
+        /// <param name="progresAction">Awaitable function to be executed.</param>
+        /// <param name="progressOptions">Options for progress dialog.</param>
+        /// <returns>Status of the action execution.</returns>
+        GlobalProgressResult ActivateGlobalProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressOptions);
 
         /// <summary>
         /// Creates new window with Playnite's default styling applied.

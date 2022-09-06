@@ -37,7 +37,12 @@ namespace Playnite.DesktopApp.Controls
                 }
                 else
                 {
-                    var emu = Emulators.First(a => a.Id == GameTask.EmulatorId);
+                    var emu = Emulators.FirstOrDefault(a => a.Id == GameTask.EmulatorId);
+                    if (emu == null)
+                    {
+                        return false;
+                    }
+
                     var emuProf = emu.BuiltinProfiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
                     if (emuProf != null)
                     {

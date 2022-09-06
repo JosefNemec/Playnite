@@ -18,7 +18,8 @@
 
     <c:WindowBase.InputBindings>
         <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
-        <pin:XInputBinding Button="B" Command="{Binding CloseCommand}" />
+        <KeyBinding Key="Backspace" Command="{Binding CloseCommand}" />
+        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
     </c:WindowBase.InputBindings>
 
     <Viewbox>
@@ -86,8 +87,8 @@
 
                     <Canvas Height="40" />
                     <pctrls:ButtonEx x:Name="PART_ButtonFeedback"
-                                     ContentTemplate="{DynamicResource MainMenuFeedbackButtonTemplate}"
-                                     Command="{Binding SendFeedbackCommand}" />
+                                     ContentTemplate="{DynamicResource MainMenuHelpButtonTemplate}"
+                                     Command="{Binding OpenHelpCommand}" />
                     <pctrls:ButtonEx x:Name="PART_ButtonPatreon"
                                      ContentTemplate="{DynamicResource MainMenuPatreonButtonTemplate}"
                                      Command="{Binding OpenPatreonCommand}" />

@@ -698,6 +698,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useOverrideInstallState;
+        public bool UseOverrideInstallState
+        {
+            get
+            {
+                return useOverrideInstallState;
+            }
+
+            set
+            {
+                useOverrideInstallState = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
+            }
+        }
+
         public bool ShowGeneralChangeNotif
         {
             get
@@ -768,7 +784,8 @@ namespace Playnite.DesktopApp.ViewModels
                 return ShowCheckBoxes &&
                     (UseInstallDirChanges ||
                     UseRomsChanges ||
-                    UseInstallStateChanges);
+                    UseInstallStateChanges ||
+                    UseOverrideInstallState);
             }
         }
 
@@ -1225,6 +1242,9 @@ namespace Playnite.DesktopApp.ViewModels
                     break;
                 case nameof(Game.GameActions):
                     UseGameActionsChanges = true;
+                    break;
+                case nameof(Game.OverrideInstallState):
+                    UseOverrideInstallState = true;
                     break;
             }
         }

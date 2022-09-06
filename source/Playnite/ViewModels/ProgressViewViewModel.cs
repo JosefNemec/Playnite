@@ -14,7 +14,6 @@ namespace Playnite.ViewModels
     {
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
-        private Action<GlobalProgressActionArgs> progresAction;
         private GlobalProgressOptions args;
         private CancellationTokenSource cancellationToken;
         private bool canCancel = false;
@@ -82,10 +81,9 @@ namespace Playnite.ViewModels
 
         public Exception FailException { get; private set; }
 
-        public ProgressViewViewModel(IWindowFactory window, Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions args)
+        public ProgressViewViewModel(IWindowFactory window, GlobalProgressOptions args)
         {
             this.window = window;
-            this.progresAction = progresAction;
             this.args = args;
 
             cancellationToken = new CancellationTokenSource();
@@ -101,7 +99,7 @@ namespace Playnite.ViewModels
             }
         }
 
-        public GlobalProgressResult ActivateProgress()
+        public GlobalProgressResult ActivateProgress(Action<GlobalProgressActionArgs> progresAction)
         {
             if (wasProcessed)
             {
@@ -141,7 +139,48 @@ namespace Playnite.ViewModels
             return new GlobalProgressResult(res, wasCancelled, FailException);
         }
 
-        public GlobalProgressResult ActivateProgress(int delay)
+        public GlobalProgressResult ActivateProgress(Func<GlobalProgressActionArgs, Task> progresAction)
+        {
+            if (wasProcessed)
+            {
+                throw new Exception("Progress can be shown only once per instance.");
+            }
+
+            Task.Run(async () =>
+            {
+                try
+                {
+                    ProgressArgs = new GlobalProgressActionArgs(
+                        PlayniteApplication.Current.SyncContext,
+                        PlayniteApplication.CurrentNative.Dispatcher,
+                        cancellationToken.Token)
+                    {
+                        Text = ProgressText
+                    };
+
+                    await progresAction(ProgressArgs);
+                }
+                catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    FailException = exc;
+                    window.Close(false);
+                    return;
+                }
+                finally
+                {
+                    canCancel = false;
+                    cancellationToken.Dispose();
+                }
+
+                window.Close(true);
+            });
+
+            var res = window.CreateAndOpenDialog(this);
+            wasProcessed = true;
+            return new GlobalProgressResult(res, wasCancelled, FailException);
+        }
+
+        public GlobalProgressResult ActivateProgress(Action<GlobalProgressActionArgs> progresAction, int delay)
         {
             if (wasProcessed)
             {
@@ -206,11 +245,22 @@ namespace Playnite.ViewModels
     {
         public static GlobalProgressResult ActivateProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
         {
-            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progresAction, progressArgs)
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progressArgs)
             {
                 Indeterminate = progressArgs.IsIndeterminate
             };
-            return progressModel.ActivateProgress();
+
+            return progressModel.ActivateProgress(progresAction);
+        }
+
+        public static GlobalProgressResult ActivateProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressArgs)
+        {
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progressArgs)
+            {
+                Indeterminate = progressArgs.IsIndeterminate
+            };
+
+            return progressModel.ActivateProgress(progresAction);
         }
     }
 }

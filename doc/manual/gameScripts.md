@@ -48,6 +48,19 @@ Playnite provides some built-in global variables that scripts can use to get mor
 | Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
 | SourceAction | Custom [game action](xref:Playnite.SDK.Models.GameAction) used to start a game. |
 | SelectedRomFile | ROM file selected when running a game with multiple ROMs assigned. |
+| StartedProcessId | Process ID of original started process. Might not be available depending on how a game was started. |
+
+Emulator scripts have additional variables provided:
+
+| Variable | Description |
+| :-- | :-- |
+| Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
+| EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
+
+Cancelling game startup
+---------------------
+
+Game startup is automatically cancelled if starting script fails with an exception. If you want to manually cancel game startup, set `$StartingArgs.CancelStartup` to `$true`.
 
 Startup script
 ---------------------
@@ -128,6 +141,21 @@ Stop-Process -Name "someapp"
 
 ```powershell
 Start-Process "c:\somepath\someapp.exe" "-some arguments" -WindowStyle Minimized
+```
+
+### Detecting application mode
+
+If you want to adjust script's behavior based on Playnite's operation mode (Desktop vs Fullscreen), you can get that information from [API object](xref:Playnite.SDK.IPlayniteAPI):
+
+```powershell
+if ($PlayniteApi.ApplicationInfo.Mode -eq "Desktop")
+{
+    # execute when running in Desktop mode
+}
+else
+{
+    # execute when running in Fullscreen mode
+}
 ```
 
 Troubleshooting

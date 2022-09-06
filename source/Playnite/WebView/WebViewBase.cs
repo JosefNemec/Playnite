@@ -41,38 +41,43 @@ namespace Playnite.WebView
 
     public class WebViewBase
     {
+        // This needs to be done before calling cookie visit methods because we won't get any callbacks if no cookies exist,
+        // which would lead to a deadlock. There's no way how to tell beforehand if any cookies exist or not.
+        private void MakeSureCookiesExist(ICookieManager manager)
+        {
+            using (var setHandler = new SetCookieHandler())
+            {
+                if (manager.SetCookie("https://playnite.test", new Cookie { Domain = "playnite.test", Name = "playnite.test", Value = "playnite.test" }, setHandler))
+                {
+                    setHandler.Finished.WaitOne();
+                }
+            }
+        }
+
         public List<HttpCookie> GetCookies()
         {
-            var cookies = new List<HttpCookie>();
             using (var manager = Cef.GetGlobalCookieManager())
+            using (var visitor = new StandardCookieVisitor())
             {
-                Task.Run(async () => await manager.VisitAllCookiesAsync()).GetAwaiter().GetResult().ForEach(cookie =>
-                cookies.Add(new HttpCookie
+                MakeSureCookiesExist(manager);
+                if (manager.VisitAllCookies(visitor))
                 {
-                    Name = cookie.Name,
-                    Value = cookie.Value,
-                    Domain = cookie.Domain,
-                    Path = cookie.Path,
-                    Expires = cookie.Expires,
-                    Creation = cookie.Creation,
-                    HttpOnly = cookie.HttpOnly,
-                    LastAccess = cookie.LastAccess,
-                    Priority = (CookiePriority)(int)cookie.Priority,
-                    SameSite = (CookieSameSite)(int)cookie.SameSite,
-                    Secure = cookie.Secure
-                }));
-            }
+                    visitor.Finished.WaitOne();
+                }
 
-            return cookies;
+                return visitor.Cookies;
+            }
         }
 
         public void DeleteDomainCookies(string domain)
         {
+            using (var manager = Cef.GetGlobalCookieManager())
             using (var destoyer = new CookieDestroyer(domain))
             {
-                using (var manager = Cef.GetGlobalCookieManager())
+                MakeSureCookiesExist(manager);
+                if (manager.VisitAllCookies(destoyer))
                 {
-                    manager.VisitAllCookies(destoyer);
+                    destoyer.Finished.WaitOne();
                 }
             }
         }
@@ -80,16 +85,22 @@ namespace Playnite.WebView
         public void DeleteCookies(string url, string name)
         {
             using (var manager = Cef.GetGlobalCookieManager())
+            using (var deleteHandle = new DeleteCookiesHandler())
             {
-                manager.DeleteCookies(url, name);
+                MakeSureCookiesExist(manager);
+                if (manager.DeleteCookies(url, name, deleteHandle))
+                {
+                    deleteHandle.Finished.WaitOne();
+                }
             }
         }
 
         public void SetCookies(string url, string domain, string name, string value, string path, DateTime expires)
         {
             using (var manager = Cef.GetGlobalCookieManager())
+            using (var setHandler = new SetCookieHandler())
             {
-                manager.SetCookie(url, new Cookie()
+                if (manager.SetCookie(url, new Cookie
                 {
                     Domain = domain,
                     Name = name,
@@ -98,15 +109,19 @@ namespace Playnite.WebView
                     HttpOnly = false,
                     Secure = false,
                     Path = path
-                });
+                }, setHandler))
+                {
+                    setHandler.Finished.WaitOne();
+                }
             }
         }
 
         public void SetCookies(string url, HttpCookie cookie)
         {
             using (var manager = Cef.GetGlobalCookieManager())
+            using (var setHandler = new SetCookieHandler())
             {
-                manager.SetCookie(url, new Cookie()
+                if (manager.SetCookie(url, new Cookie()
                 {
                     Domain = cookie.Domain,
                     Expires = cookie.Expires,
@@ -117,7 +132,10 @@ namespace Playnite.WebView
                     Name = cookie.Name,
                     Path = cookie.Path,
                     Value = cookie.Value
-                });
+                }, setHandler))
+                {
+                    setHandler.Finished.WaitOne();
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace Playnite.DesktopApp.Controls.Views
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GridViewGameOverview), new FrameworkPropertyMetadata(typeof(GridViewGameOverview)));
         }
 
-        public GridViewGameOverview() : base(ViewType.Grid)
+        public GridViewGameOverview() : base(DesktopView.Grid)
         {
         }
 
-        public GridViewGameOverview(DesktopAppViewModel mainModel) : base(ViewType.Grid, mainModel)
+        public GridViewGameOverview(DesktopAppViewModel mainModel) : base(DesktopView.Grid, mainModel)
         {
         }
 

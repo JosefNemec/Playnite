@@ -11,7 +11,16 @@ namespace Playnite.Emulators
 {
     public class EmulationDatabase
     {
-        public class EmulationDatabaseReader : IDisposable
+        public interface IEmulationDatabaseReader : IDisposable
+        {
+            string DatabaseName { get; }
+            IEnumerable<DatGame> GetByCrc(string checksum);
+            IEnumerable<DatGame> GetBySerial(string serial);
+            IEnumerable<DatGame> GetByRomName(string romName);
+            IEnumerable<DatGame> GetByRomNamePartial(string romNamePart);
+        }
+
+        public class EmulationDatabaseReader : IEmulationDatabaseReader
         {
             private readonly SQLiteDatabase db;
 

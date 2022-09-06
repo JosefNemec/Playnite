@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace Playnite.FullscreenApp.Controls
 {
@@ -62,6 +63,73 @@ namespace Playnite.FullscreenApp.Controls
             set
             {
                 SetValue(ColumnsProperty, value);
+            }
+        }
+
+        public static DependencyProperty VerticalOffsetProperty = DependencyProperty.RegisterAttached(
+            "VerticalOffset",
+            typeof(double),
+            typeof(FullscreenTilePanel),
+            new PropertyMetadata(0.0, OnVerticalOffsetChanged));
+
+        public static void SetVerticalOffset(FrameworkElement target, double value)
+        {
+            target.SetValue(VerticalOffsetProperty, value);
+        }
+
+        public static double GetVerticalOffset(FrameworkElement target)
+        {
+            return (double)target.GetValue(VerticalOffsetProperty);
+        }
+
+        private static void OnVerticalOffsetChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
+        {
+            if (target is FullscreenTilePanel panel)
+            {
+                panel.SetVerticalOffset((double)e.NewValue);
+            }
+        }
+
+        public static DependencyProperty HorizontalOffsetProperty = DependencyProperty.RegisterAttached(
+            "HorizontalOffset",
+            typeof(double),
+            typeof(FullscreenTilePanel),
+            new PropertyMetadata(0.0, OnHorizontalOffsetChanged));
+
+        public static void SetHorizontalOffset(FrameworkElement target, double value)
+        {
+            target.SetValue(HorizontalOffsetProperty, value);
+        }
+
+        public static double GetHorizontalOffset(FrameworkElement target)
+        {
+            return (double)target.GetValue(HorizontalOffsetProperty);
+        }
+
+        private static void OnHorizontalOffsetChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
+        {
+            if (target is FullscreenTilePanel panel)
+            {
+                panel.SetHorizontalOffset((double)e.NewValue);
+            }
+        }
+
+        public static readonly DependencyProperty SmoothScrollEnabledProperty = DependencyProperty.RegisterAttached(
+            nameof(SmoothScrollEnabled),
+            typeof(bool),
+            typeof(FullscreenTilePanel),
+            new FrameworkPropertyMetadata(false));
+
+        public bool SmoothScrollEnabled
+        {
+            get
+            {
+                return (bool)GetValue(SmoothScrollEnabledProperty);
+            }
+
+            set
+            {
+                SetValue(SmoothScrollEnabledProperty, value);
             }
         }
 
@@ -146,6 +214,11 @@ namespace Playnite.FullscreenApp.Controls
             typeof(int),
             typeof(FullscreenTilePanel),
             new FrameworkPropertyMetadata(10, OnLayoutPropertyChanged));
+
+        // This has to be lower than key delay from ListBoxEx, because layout will get desynced otherwise.
+        // TODO: fix the desync.
+        private readonly TimeSpan animationLength = new TimeSpan(0, 0, 0, 0, 140);
+        private readonly DoubleAnimation scrollAnimation = new DoubleAnimation();
 
         public FullscreenTilePanel() : base()
         {
@@ -498,11 +571,16 @@ namespace Playnite.FullscreenApp.Controls
             }
         }
 
+        public void BeginAnimation(double from, double to, TimeSpan speed, DependencyProperty property)
+        {
+            scrollAnimation.From = from;
+            scrollAnimation.To = to;
+            scrollAnimation.Duration = new Duration(speed);
+            BeginAnimation(property, scrollAnimation);
+        }
+
         public void SetHorizontalOffset(double newOffset)
         {
-            var column = Math.Round(newOffset / itemWidth, MidpointRounding.AwayFromZero);
-            newOffset = column * itemWidth;
-
             if (newOffset < 0 || viewport.Width >= extent.Width)
             {
                 newOffset = 0;
@@ -523,9 +601,6 @@ namespace Playnite.FullscreenApp.Controls
 
         public void SetVerticalOffset(double newOffset)
         {
-            var line = Math.Round(newOffset / itemHeight, MidpointRounding.AwayFromZero);
-            newOffset = line * itemHeight;
-
             if (newOffset < 0 || viewport.Height >= extent.Height)
             {
                 newOffset = 0;
@@ -584,8 +659,6 @@ namespace Playnite.FullscreenApp.Controls
                     LineLeft();
                     return rectangle;
                 }
-
-                SetHorizontalOffset(itemRect.X);
             }
             else
             {
@@ -604,8 +677,6 @@ namespace Playnite.FullscreenApp.Controls
                     LineUp();
                     return rectangle;
                 }
-
-                SetVerticalOffset(itemRect.Y);
             }
 
             return rectangle;
@@ -613,22 +684,50 @@ namespace Playnite.FullscreenApp.Controls
 
         public void LineLeft()
         {
-            SetHorizontalOffset(HorizontalOffset - itemWidth);
+            if (SmoothScrollEnabled)
+            {
+                BeginAnimation(HorizontalOffset, HorizontalOffset - itemWidth, animationLength, HorizontalOffsetProperty);
+            }
+            else
+            {
+                SetHorizontalOffset(HorizontalOffset - itemWidth);
+            }
         }
 
         public void LineRight()
         {
-            SetHorizontalOffset(HorizontalOffset + itemWidth);
+            if (SmoothScrollEnabled)
+            {
+                BeginAnimation(HorizontalOffset, HorizontalOffset + itemWidth, animationLength, HorizontalOffsetProperty);
+            }
+            else
+            {
+                SetHorizontalOffset(HorizontalOffset + itemWidth);
+            }
         }
 
         public void LineUp()
         {
-            SetVerticalOffset(VerticalOffset - itemHeight);
+            if (SmoothScrollEnabled)
+            {
+                BeginAnimation(VerticalOffset, VerticalOffset - itemHeight, animationLength, VerticalOffsetProperty);
+            }
+            else
+            {
+                SetVerticalOffset(VerticalOffset - itemHeight);
+            }
         }
 
         public void LineDown()
         {
-            SetVerticalOffset(VerticalOffset + itemHeight);
+            if (SmoothScrollEnabled)
+            {
+                BeginAnimation(VerticalOffset, VerticalOffset + itemHeight, animationLength, VerticalOffsetProperty);
+            }
+            else
+            {
+                SetVerticalOffset(VerticalOffset + itemHeight);
+            }
         }
 
         public void MouseWheelDown()

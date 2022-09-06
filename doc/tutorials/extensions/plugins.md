@@ -33,7 +33,7 @@ For example, to create new library plugin:
 Toolbox.exe new LibraryPlugin "SomeLibrary importer" "d:\somefolder"
 ```
 
-This will generate new C# project, with all of required classes already premade.
+This will generate new C# project, with all of required classes already premade. Use generated `.sln` solution file to open plugin source code in your IDE.
 
 ### 2. Implement functionality
 
@@ -46,7 +46,7 @@ Don't forget to implement functionality for template methods and properties that
 **Note to Visual Studio users:** If you are having issues compiling plugins created from the template, make sure that nuget dependencies are downloaded and installed properly. If you can't for some reason restore SDK nuget package, try following:
 
 - Use "Save all" and save solution file if you are prompted to.
-- Restart Visual Studio and open plugin solution file (.sln).
+- Restart Visual Studio if new solution file was created.
 - Restore nuget dependencies via right-click menu on the solution item (in solution explorer, using "Restore NuGet packages").
 
 ### 3. Make Playnite load new extension
@@ -67,6 +67,9 @@ Accessing Playnite API
 ---------------------
 
 Playnite API instance is available via [PlayniteAPI](xref:Playnite.SDK.Plugins.Plugin.PlayniteApi) property on your plugin class, the same instance which is also injected in plugin's constructor. In case you can't for some reason access this property, there's also static singleton instance accessible via [Playnite.SDK.API.Instance](xref:Playnite.SDK.API.Instance).
+
+> [!WARNING]
+> Playnite's SDK is not fully thread safe. Meaning that you might occasionally run into a situation where you will access or modify UI object owned by UI thread (which can happen indirectly through events as well) and crash will happen. In that case you need to run affected code on UI thread, which can be achieved by using [UIDispatcher](xref:Playnite.SDK.IMainViewAPI.UIDispatcher) from `MainView` API.
 
 Plugin dependencies
 ---------------------

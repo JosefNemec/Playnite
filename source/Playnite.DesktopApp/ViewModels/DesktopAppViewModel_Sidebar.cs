@@ -254,6 +254,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             Database.SoftwareApps.ItemUpdated += (_, __) => RefreshSoftwareToolsSidebarItems();
+            Database.SoftwareApps.ItemCollectionChanged += (_, __) => RefreshSoftwareToolsSidebarItems();
             foreach (var tool in Database.SoftwareApps.OrderBy(a => a.Name))
             {
                 if (tool.ShowOnSidebar)

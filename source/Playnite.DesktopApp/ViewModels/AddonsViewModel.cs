@@ -36,7 +36,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
-        private IPlayniteAPI api;
         private ServicesClient serviceClient;
         private PlayniteSettings settings;
         private Dictionary<View, UserControl> sectionViews;
@@ -151,7 +150,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public AddonsViewModel(
             IWindowFactory window,
-            IPlayniteAPI api,
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ServicesClient serviceClient,
@@ -161,7 +159,6 @@ namespace Playnite.DesktopApp.ViewModels
         {
             Init(
                 window,
-                api,
                 dialogs,
                 resources,
                 serviceClient,
@@ -173,7 +170,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public AddonsViewModel(
             IWindowFactory window,
-            IPlayniteAPI api,
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ServicesClient serviceClient,
@@ -184,7 +180,6 @@ namespace Playnite.DesktopApp.ViewModels
         {
             Init(
                 window,
-                api,
                 dialogs,
                 resources,
                 serviceClient,
@@ -199,7 +194,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void Init(
             IWindowFactory window,
-            IPlayniteAPI api,
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ServicesClient serviceClient,
@@ -208,7 +202,6 @@ namespace Playnite.DesktopApp.ViewModels
             PlayniteApplication application)
         {
             this.window = window;
-            this.api = api;
             this.serviceClient = serviceClient;
             this.settings = settings;
             this.application = application;

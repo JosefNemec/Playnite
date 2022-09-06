@@ -20,88 +20,72 @@
     </controls:WindowBase.Resources>
 
     <Grid>
-        <Grid IsEnabled="{Binding IsLoading, Converter={StaticResource NegateConverter}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <ListView Grid.Column="0" Grid.Row="0" Name="ListPrograms" SelectionMode="Single" Margin="10,5,10,5"
-                      VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
-                      BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
-                      ItemsSource="{Binding Programs}" SelectedItem="{Binding SelectedProgram, Mode=TwoWay}"
-                      pbeh:ScrollToSelectedBehavior.Enabled="True">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
-                        <Setter Property="AutomationProperties.Name" Value="{Binding Item.Name}" />
-                        <Setter Property="AutomationProperties.HelpText" Value="{Binding DisplayPath}" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn>
-                            <GridViewColumn.Header>
-                                <CheckBox IsChecked="{Binding MarkImportAll}" />
-                            </GridViewColumn.Header>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Import}" HorizontalAlignment="Right" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="{DynamicResource LOCNameLabel}">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding IconSource, Mode=OneWay}"
-                                               RenderOptions.BitmapScalingMode="HighQuality" Width="18"/>
-                                        <TextBlock Text="{Binding Item.Name, Mode=OneWay}" Margin="5,0,0,0" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="{DynamicResource LOCPathLabel}">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="0,1,0,1"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <ListView Grid.Column="0" Grid.Row="0" Name="ListPrograms" SelectionMode="Single" Margin="10,5,10,5"
+                    VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                    BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
+                    ItemsSource="{Binding Programs}" SelectedItem="{Binding SelectedProgram, Mode=TwoWay}"
+                    pbeh:ScrollToSelectedBehavior.Enabled="True">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Setter Property="AutomationProperties.Name" Value="{Binding Item.Name}" />
+                    <Setter Property="AutomationProperties.HelpText" Value="{Binding DisplayPath}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <CheckBox IsChecked="{Binding MarkImportAll}" />
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Import}" HorizontalAlignment="Right" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource LOCNameLabel}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding IconSource, Mode=OneWay}"
+                                            RenderOptions.BitmapScalingMode="HighQuality" Width="18"/>
+                                    <TextBlock Text="{Binding Item.Name, Mode=OneWay}" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource LOCPathLabel}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayPath, Mode=OneWay}" Padding="0,1,0,1"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-            <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="5,0,5,5">
-                <Button TabIndex="1" Name="ButtonBrowse" Content="{DynamicResource LOCBrowse}" DockPanel.Dock="Left"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding SelectExecutableCommand}"/>
-                <Button TabIndex="2" Name="ButtonScan" Content="{DynamicResource LOCScanFolder}" DockPanel.Dock="Left"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding ScanFolderCommand}"/>
-                <Button TabIndex="3" Name="ButtonDetectInstalled" Content="{DynamicResource LOCDetectInstalled}" DockPanel.Dock="Left"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding DetectInstalledCommand}"/>
-                <Button TabIndex="5" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding CloseCommand}"/>
-                <Button TabIndex="4" Name="ButtonOK" Content="{DynamicResource LOCAddGames}" DockPanel.Dock="Right"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding ConfirmCommand}"/>
-            </DockPanel>
-        </Grid>
-        
-        <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
-              Background="#99000000">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid>
-                    <ProgressBar IsIndeterminate="True" Width="350" Height="40" />
-                    <TextBlock Text="{DynamicResource LOCEmuWizardScanning}"
-                               Style="{DynamicResource BaseTextBlockStyle}"   
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-                <Button Content="{DynamicResource LOCCancelLabel}"  Margin="10,0,0,0"
-                        Command="{Binding CancelProgressCommand}"/>
-            </StackPanel>
-        </Grid>
+        <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Grid.Column="0" Grid.Row="1" Margin="5,0,5,5">
+            <Button TabIndex="1" Name="ButtonBrowse" Content="{DynamicResource LOCBrowse}" DockPanel.Dock="Left"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding SelectExecutableCommand}"/>
+            <Button TabIndex="2" Name="ButtonScan" Content="{DynamicResource LOCScanFolder}" DockPanel.Dock="Left"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ScanFolderCommand}"/>
+            <Button TabIndex="3" Name="ButtonDetectInstalled" Content="{DynamicResource LOCDetectInstalled}" DockPanel.Dock="Left"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding DetectInstalledCommand}"/>
+            <Button TabIndex="5" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding CloseCommand}"/>
+            <Button TabIndex="4" Name="ButtonOK" Content="{DynamicResource LOCAddGames}" DockPanel.Dock="Right"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ConfirmCommand}"/>
+        </DockPanel>
     </Grid>
 </controls:WindowBase>

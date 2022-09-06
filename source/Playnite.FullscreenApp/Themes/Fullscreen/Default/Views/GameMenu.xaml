@@ -20,7 +20,7 @@
     </Style>
 
     <DataTemplate x:Key="GameMenuHeaderTemplate">
-        <TextBlock Text="{Binding DisplayName}"
+        <TextBlock Text="{Binding Name}"
                    Style="{DynamicResource GameMenuHeaderText}" />
     </DataTemplate>
 
@@ -76,6 +76,22 @@
         <StackPanel Orientation="Horizontal">
             <TextBlock Width="25" Margin="0,0,10,0"
                        VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuCompletionStatusTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="25" Margin="0,0,10,0"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GameMenuSetFieldsTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xeded;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
             <TextBlock Text="{Binding}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>

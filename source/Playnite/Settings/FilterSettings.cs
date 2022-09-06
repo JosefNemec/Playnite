@@ -8,131 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Playnite.Common;
-using Playnite.SDK.Models;
+using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite
 {
-    public class FilterPreset : DatabaseObject
-    {
-        private FilterSettings settings;
-        public FilterSettings Settings
-        {
-            get => settings;
-            set
-            {
-                settings = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private SortOrder? sortingOrder;
-        public SortOrder? SortingOrder
-        {
-            get
-            {
-                return sortingOrder;
-            }
-
-            set
-            {
-                sortingOrder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private SortOrderDirection? sortingOrderDirection;
-        public SortOrderDirection? SortingOrderDirection
-        {
-            get
-            {
-                return sortingOrderDirection;
-            }
-
-            set
-            {
-                sortingOrderDirection = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private GroupableField? groupingOrder;
-        public GroupableField? GroupingOrder
-        {
-            get
-            {
-                return groupingOrder;
-            }
-
-            set
-            {
-                groupingOrder = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool showInFullscreeQuickSelection = true;
-        public bool ShowInFullscreeQuickSelection
-        {
-            get => showInFullscreeQuickSelection;
-            set
-            {
-                showInFullscreeQuickSelection = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool ShouldSerializeGroupingOrder()
-        {
-            return GroupingOrder != null;
-        }
-
-        public bool ShouldSerializeSortingOrderDirection()
-        {
-            return SortingOrderDirection != null;
-        }
-
-        public bool ShouldSerializeSortingOrder()
-        {
-            return SortingOrder != null;
-        }
-
-        public override void CopyDiffTo(object target)
-        {
-            base.CopyDiffTo(target);
-            if (target is FilterPreset tro)
-            {
-                if (!Settings.IsEqualJson(tro.Settings))
-                {
-                    tro.Settings = Settings;
-                }
-
-                if (SortingOrder != tro.SortingOrder)
-                {
-                    tro.SortingOrder = SortingOrder;
-                }
-
-                if (SortingOrderDirection != tro.SortingOrderDirection)
-                {
-                    tro.SortingOrderDirection = SortingOrderDirection;
-                }
-
-                if (GroupingOrder != tro.GroupingOrder)
-                {
-                    tro.GroupingOrder = GroupingOrder;
-                }
-
-                if (ShowInFullscreeQuickSelection != tro.ShowInFullscreeQuickSelection)
-                {
-                    tro.ShowInFullscreeQuickSelection = ShowInFullscreeQuickSelection;
-                }
-            }
-            else
-            {
-                throw new ArgumentException($"Target object has to be of type {GetType().Name}");
-            }
-        }
-    }
-
     public class FilterChangedEventArgs : EventArgs
     {
         public List<string> Fields
@@ -150,7 +29,7 @@ namespace Playnite
         }
     }
 
-    public class StringFilterItemProperites : ObservableObject
+    public class StringFilterItemProperties : ObservableObject
     {
         [JsonIgnore]
         public bool IsSet => Values.HasNonEmptyItems();
@@ -167,21 +46,21 @@ namespace Playnite
             }
         }
 
-        public StringFilterItemProperites()
+        public StringFilterItemProperties()
         {
         }
 
-        public StringFilterItemProperites(List<string> values)
+        public StringFilterItemProperties(List<string> values)
         {
             Values = values;
         }
 
-        public StringFilterItemProperites(string value)
+        public StringFilterItemProperties(string value)
         {
             Values = new List<string>() { value };
         }
 
-        public bool Equals(StringFilterItemProperites obj)
+        public bool Equals(StringFilterItemProperties obj)
         {
             if (obj == null)
             {
@@ -190,9 +69,44 @@ namespace Playnite
 
             return Values.IsListEqual(obj?.Values);
         }
+
+        public bool Equals(SdkModels.StringFilterItemProperties obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return Values.IsListEqual(obj?.Values);
+        }
+
+        public SdkModels.StringFilterItemProperties ToSdkModel()
+        {
+            if (Values.HasItems())
+            {
+                return new SdkModels.StringFilterItemProperties(Values);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static StringFilterItemProperties FromSdkModel(SdkModels.StringFilterItemProperties sdk)
+        {
+            if (sdk != null)
+            {
+                if (sdk.Values.HasItems())
+                {
+                    return new StringFilterItemProperties(sdk.Values);
+                }
+            }
+
+            return null;
+        }
     }
 
-    public class EnumFilterItemProperites : ObservableObject
+    public class EnumFilterItemProperties : ObservableObject
     {
         [JsonIgnore]
         public bool IsSet => Values.HasItems();
@@ -209,21 +123,21 @@ namespace Playnite
             }
         }
 
-        public EnumFilterItemProperites()
+        public EnumFilterItemProperties()
         {
         }
 
-        public EnumFilterItemProperites(List<int> values)
+        public EnumFilterItemProperties(List<int> values)
         {
             Values = values;
         }
 
-        public EnumFilterItemProperites(int value)
+        public EnumFilterItemProperties(int value)
         {
             Values = new List<int>() { value };
         }
 
-        public bool Equals(EnumFilterItemProperites obj)
+        public bool Equals(EnumFilterItemProperties obj)
         {
             if (obj == null)
             {
@@ -232,9 +146,44 @@ namespace Playnite
 
             return Values.IsListEqual(obj?.Values);
         }
+
+        public bool Equals(SdkModels.EnumFilterItemProperties obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return Values.IsListEqual(obj?.Values);
+        }
+
+        public SdkModels.EnumFilterItemProperties ToSdkModel()
+        {
+            if (Values.HasItems())
+            {
+                return new SdkModels.EnumFilterItemProperties(Values);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static EnumFilterItemProperties FromSdkModel(SdkModels.EnumFilterItemProperties sdk)
+        {
+            if (sdk != null)
+            {
+                if (sdk.Values.HasItems())
+                {
+                    return new EnumFilterItemProperties(sdk.Values);
+                }
+            }
+
+            return null;
+        }
     }
 
-    public class FilterItemProperites : ObservableObject
+    public class IdItemFilterItemProperties : ObservableObject
     {
         [JsonIgnore]
         public List<string> Texts { get; private set; }
@@ -268,7 +217,7 @@ namespace Playnite
                 }
                 else
                 {
-                    Texts = null;
+                    Texts = new List<string> { text };
                 }
 
                 OnPropertyChanged();
@@ -277,21 +226,21 @@ namespace Playnite
             }
         }
 
-        public FilterItemProperites()
+        public IdItemFilterItemProperties()
         {
         }
 
-        public FilterItemProperites(List<Guid> ids)
+        public IdItemFilterItemProperties(List<Guid> ids)
         {
             Ids = ids;
         }
 
-        public FilterItemProperites(Guid id)
+        public IdItemFilterItemProperties(Guid id)
         {
             Ids = new List<Guid>() { id };
         }
 
-        public FilterItemProperites(string text)
+        public IdItemFilterItemProperties(string text)
         {
             Text = text;
         }
@@ -306,7 +255,7 @@ namespace Playnite
             return Ids.HasItems();
         }
 
-        public bool Equals(FilterItemProperites obj)
+        public bool Equals(IdItemFilterItemProperties obj)
         {
             if (obj == null)
             {
@@ -314,6 +263,49 @@ namespace Playnite
             }
 
             return Ids.IsListEqual(obj?.Ids) && Text == obj.Text;
+        }
+
+        public bool Equals(SdkModels.IdItemFilterItemProperties obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            return Ids.IsListEqual(obj?.Ids) && Text == obj.Text;
+        }
+
+        public SdkModels.IdItemFilterItemProperties ToSdkModel()
+        {
+            if (!Text.IsNullOrEmpty())
+            {
+                return new SdkModels.IdItemFilterItemProperties(Text);
+            }
+            else if (Ids.HasItems())
+            {
+                return new SdkModels.IdItemFilterItemProperties(Ids);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static IdItemFilterItemProperties FromSdkModel(SdkModels.IdItemFilterItemProperties sdk)
+        {
+            if (sdk != null)
+            {
+                if (sdk.Ids.HasItems())
+                {
+                    return new IdItemFilterItemProperties(sdk.Ids);
+                }
+                else if (!sdk.Text.IsNullOrEmpty())
+                {
+                    return new IdItemFilterItemProperties(sdk.Text);
+                }
+            }
+
+            return null;
         }
     }
 
@@ -384,8 +376,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites genre;
-        public FilterItemProperites Genre
+        private IdItemFilterItemProperties genre;
+        public IdItemFilterItemProperties Genre
         {
             get
             {
@@ -403,8 +395,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites platforms;
-        public FilterItemProperites Platform
+        private IdItemFilterItemProperties platforms;
+        public IdItemFilterItemProperties Platform
         {
             get
             {
@@ -422,8 +414,8 @@ namespace Playnite
             }
         }
 
-        private StringFilterItemProperites releaseDate;
-        public StringFilterItemProperites ReleaseYear
+        private StringFilterItemProperties releaseDate;
+        public StringFilterItemProperties ReleaseYear
         {
             get
             {
@@ -460,8 +452,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites publishers;
-        public FilterItemProperites Publisher
+        private IdItemFilterItemProperties publishers;
+        public IdItemFilterItemProperties Publisher
         {
             get
             {
@@ -479,8 +471,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites developers;
-        public FilterItemProperites Developer
+        private IdItemFilterItemProperties developers;
+        public IdItemFilterItemProperties Developer
         {
             get
             {
@@ -498,8 +490,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites categories;
-        public FilterItemProperites Category
+        private IdItemFilterItemProperties categories;
+        public IdItemFilterItemProperties Category
         {
             get
             {
@@ -517,8 +509,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites tags;
-        public FilterItemProperites Tag
+        private IdItemFilterItemProperties tags;
+        public IdItemFilterItemProperties Tag
         {
             get
             {
@@ -536,8 +528,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites series;
-        public FilterItemProperites Series
+        private IdItemFilterItemProperties series;
+        public IdItemFilterItemProperties Series
         {
             get
             {
@@ -555,8 +547,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites region;
-        public FilterItemProperites Region
+        private IdItemFilterItemProperties region;
+        public IdItemFilterItemProperties Region
         {
             get
             {
@@ -574,8 +566,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites source;
-        public FilterItemProperites Source
+        private IdItemFilterItemProperties source;
+        public IdItemFilterItemProperties Source
         {
             get
             {
@@ -593,8 +585,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites ageRating;
-        public FilterItemProperites AgeRating
+        private IdItemFilterItemProperties ageRating;
+        public IdItemFilterItemProperties AgeRating
         {
             get
             {
@@ -707,8 +699,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites library;
-        public FilterItemProperites Library
+        private IdItemFilterItemProperties library;
+        public IdItemFilterItemProperties Library
         {
             get
             {
@@ -726,8 +718,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites completionStatus;
-        public FilterItemProperites CompletionStatuses
+        private IdItemFilterItemProperties completionStatus;
+        public IdItemFilterItemProperties CompletionStatuses
         {
             get
             {
@@ -745,8 +737,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites userScore;
-        public EnumFilterItemProperites UserScore
+        private EnumFilterItemProperties userScore;
+        public EnumFilterItemProperties UserScore
         {
             get
             {
@@ -764,8 +756,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites criticScore;
-        public EnumFilterItemProperites CriticScore
+        private EnumFilterItemProperties criticScore;
+        public EnumFilterItemProperties CriticScore
         {
             get
             {
@@ -783,8 +775,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites communityScore;
-        public EnumFilterItemProperites CommunityScore
+        private EnumFilterItemProperties communityScore;
+        public EnumFilterItemProperties CommunityScore
         {
             get
             {
@@ -802,8 +794,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites lastActivity;
-        public EnumFilterItemProperites LastActivity
+        private EnumFilterItemProperties lastActivity;
+        public EnumFilterItemProperties LastActivity
         {
             get
             {
@@ -821,8 +813,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites added;
-        public EnumFilterItemProperites Added
+        private EnumFilterItemProperties added;
+        public EnumFilterItemProperties Added
         {
             get
             {
@@ -840,8 +832,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites modified;
-        public EnumFilterItemProperites Modified
+        private EnumFilterItemProperties modified;
+        public EnumFilterItemProperties Modified
         {
             get
             {
@@ -859,8 +851,8 @@ namespace Playnite
             }
         }
 
-        private EnumFilterItemProperites playTime;
-        public EnumFilterItemProperites PlayTime
+        private EnumFilterItemProperties playTime;
+        public EnumFilterItemProperties PlayTime
         {
             get
             {
@@ -878,8 +870,8 @@ namespace Playnite
             }
         }
 
-        private FilterItemProperites feature;
-        public FilterItemProperites Feature
+        private IdItemFilterItemProperties feature;
+        public IdItemFilterItemProperties Feature
         {
             get
             {
@@ -1099,6 +1091,217 @@ namespace Playnite
             {
                 OnFilterChanged(filterChanges);
             }
+        }
+
+        public SdkModels.FilterPresetSettings AsPresetSettings()
+        {
+            return new SdkModels.FilterPresetSettings
+            {
+                UseAndFilteringStyle = UseAndFilteringStyle,
+                IsInstalled = IsInstalled,
+                IsUnInstalled = IsUnInstalled,
+                Hidden = Hidden,
+                Favorite = Favorite,
+                Name = Name,
+                Version = Version,
+                ReleaseYear = ReleaseYear?.ToSdkModel(),
+                Genre = Genre?.ToSdkModel(),
+                Platform = Platform?.ToSdkModel(),
+                Publisher = Publisher?.ToSdkModel(),
+                Developer = Developer?.ToSdkModel(),
+                Category = Category?.ToSdkModel(),
+                Tag = Tag?.ToSdkModel(),
+                Series = Series?.ToSdkModel(),
+                Region = Region?.ToSdkModel(),
+                Source = Source?.ToSdkModel(),
+                AgeRating = AgeRating?.ToSdkModel(),
+                Library = Library?.ToSdkModel(),
+                CompletionStatuses = CompletionStatuses?.ToSdkModel(),
+                Feature = Feature?.ToSdkModel(),
+                UserScore = UserScore?.ToSdkModel(),
+                CriticScore = CriticScore?.ToSdkModel(),
+                CommunityScore = CommunityScore?.ToSdkModel(),
+                LastActivity = LastActivity?.ToSdkModel(),
+                Added = Added?.ToSdkModel(),
+                Modified = Modified?.ToSdkModel(),
+                PlayTime = PlayTime?.ToSdkModel()
+            };
+        }
+
+        public void ApplyFilter(SdkModels.FilterPresetSettings settings)
+        {
+            var filterChanges = new List<string>();
+            SuppressFilterChanges = true;
+
+            if (UseAndFilteringStyle != settings.UseAndFilteringStyle)
+            {
+                UseAndFilteringStyle = settings.UseAndFilteringStyle;
+                filterChanges.Add(nameof(UseAndFilteringStyle));
+            }
+
+            if (Name != settings.Name)
+            {
+                Name = settings.Name;
+                filterChanges.Add(nameof(Name));
+            }
+
+            if (Genre?.Equals(settings.Genre) != true)
+            {
+                Genre = IdItemFilterItemProperties.FromSdkModel(settings.Genre);
+                filterChanges.Add(nameof(Genre));
+            }
+            if (Platform?.Equals(settings.Platform) != true)
+            {
+                Platform = IdItemFilterItemProperties.FromSdkModel(settings.Platform);
+                filterChanges.Add(nameof(Platform));
+            }
+
+            if (ReleaseYear?.Equals(settings.ReleaseYear) != true)
+            {
+                ReleaseYear = StringFilterItemProperties.FromSdkModel(settings.ReleaseYear);
+                filterChanges.Add(nameof(ReleaseYear));
+            }
+
+            if (Version != settings.Version)
+            {
+                Version = settings.Version;
+                filterChanges.Add(nameof(Version));
+            }
+
+            if (Publisher?.Equals(settings.Publisher) != true)
+            {
+                Publisher = IdItemFilterItemProperties.FromSdkModel(settings.Publisher);
+                filterChanges.Add(nameof(Publisher));
+            }
+
+            if (Developer?.Equals(settings.Developer) != true)
+            {
+                Developer = IdItemFilterItemProperties.FromSdkModel(settings.Developer);
+                filterChanges.Add(nameof(Developer));
+            }
+
+            if (Category?.Equals(settings.Category) != true)
+            {
+                Category = IdItemFilterItemProperties.FromSdkModel(settings.Category);
+                filterChanges.Add(nameof(Category));
+            }
+
+            if (Tag?.Equals(settings.Tag) != true)
+            {
+                Tag = IdItemFilterItemProperties.FromSdkModel(settings.Tag);
+                filterChanges.Add(nameof(Tag));
+            }
+
+            if (IsInstalled != settings.IsInstalled)
+            {
+                IsInstalled = settings.IsInstalled;
+                filterChanges.Add(nameof(IsInstalled));
+            }
+
+            if (IsUnInstalled != settings.IsUnInstalled)
+            {
+                IsUnInstalled = settings.IsUnInstalled;
+                filterChanges.Add(nameof(IsUnInstalled));
+            }
+
+            if (Hidden != settings.Hidden)
+            {
+                Hidden = settings.Hidden;
+                filterChanges.Add(nameof(Hidden));
+            }
+
+            if (Favorite != settings.Favorite)
+            {
+                Favorite = settings.Favorite;
+                filterChanges.Add(nameof(Favorite));
+            }
+
+            if (Series?.Equals(settings.Series) != true)
+            {
+                Series = IdItemFilterItemProperties.FromSdkModel(settings.Series);
+                filterChanges.Add(nameof(Series));
+            }
+
+            if (Region?.Equals(settings.Region) != true)
+            {
+                Region = IdItemFilterItemProperties.FromSdkModel(settings.Region);
+                filterChanges.Add(nameof(Region));
+            }
+
+            if (Source?.Equals(settings.Source) != true)
+            {
+                Source = IdItemFilterItemProperties.FromSdkModel(settings.Source);
+                filterChanges.Add(nameof(Source));
+            }
+
+            if (AgeRating?.Equals(settings.AgeRating) != true)
+            {
+                AgeRating = IdItemFilterItemProperties.FromSdkModel(settings.AgeRating);
+                filterChanges.Add(nameof(AgeRating));
+            }
+
+            if (Library?.Equals(settings.Library) != true)
+            {
+                Library = IdItemFilterItemProperties.FromSdkModel(settings.Library);
+                filterChanges.Add(nameof(Library));
+            }
+
+            if (CompletionStatuses?.Equals(settings.CompletionStatuses) != true)
+            {
+                CompletionStatuses = IdItemFilterItemProperties.FromSdkModel(settings.CompletionStatuses);
+                filterChanges.Add(nameof(CompletionStatuses));
+            }
+
+            if (UserScore?.Equals(settings.UserScore) != true)
+            {
+                UserScore = EnumFilterItemProperties.FromSdkModel(settings.UserScore);
+                filterChanges.Add(nameof(UserScore));
+            }
+
+            if (CriticScore?.Equals(settings.CriticScore) != true)
+            {
+                CriticScore = EnumFilterItemProperties.FromSdkModel(settings.CriticScore);
+                filterChanges.Add(nameof(CriticScore));
+            }
+
+            if (CommunityScore?.Equals(settings.CommunityScore) != true)
+            {
+                CommunityScore = EnumFilterItemProperties.FromSdkModel(settings.CommunityScore);
+                filterChanges.Add(nameof(CommunityScore));
+            }
+
+            if (LastActivity?.Equals(settings.LastActivity) != true)
+            {
+                LastActivity = EnumFilterItemProperties.FromSdkModel(settings.LastActivity);
+                filterChanges.Add(nameof(LastActivity));
+            }
+
+            if (Added?.Equals(settings.Added) != true)
+            {
+                Added = EnumFilterItemProperties.FromSdkModel(settings.Added);
+                filterChanges.Add(nameof(Added));
+            }
+
+            if (Modified?.Equals(settings.Modified) != true)
+            {
+                Modified = EnumFilterItemProperties.FromSdkModel(settings.Modified);
+                filterChanges.Add(nameof(Modified));
+            }
+
+            if (PlayTime?.Equals(settings.PlayTime) != true)
+            {
+                PlayTime = EnumFilterItemProperties.FromSdkModel(settings.PlayTime);
+                filterChanges.Add(nameof(PlayTime));
+            }
+
+            if (Feature?.Equals(settings.Feature) != true)
+            {
+                Feature = IdItemFilterItemProperties.FromSdkModel(settings.Feature);
+                filterChanges.Add(nameof(Feature));
+            }
+
+            SuppressFilterChanges = false;
+            OnFilterChanged(filterChanges);
         }
 
         public void ApplyFilter(FilterSettings settings)

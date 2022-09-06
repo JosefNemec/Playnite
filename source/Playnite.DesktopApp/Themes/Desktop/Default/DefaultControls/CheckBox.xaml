@@ -17,10 +17,11 @@
                 <ControlTemplate TargetType="{x:Type CheckBox}">
                     <Border Background="{TemplateBinding Background}"
                             Padding="{TemplateBinding Padding}">
-                        <StackPanel Orientation="Horizontal">
-                            <Border x:Name="BulletBorder" CornerRadius="{DynamicResource ControlCornerRadius}"
+                        <DockPanel>
+                            <Border x:Name="BulletBorder" DockPanel.Dock="Left" CornerRadius="{DynamicResource ControlCornerRadius}"
+                                    VerticalAlignment="Center"
                                     BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
-                                    Style="{DynamicResource HighlightBorder}" >
+                                    BorderBrush="{TemplateBinding BorderBrush}">
                                 <Grid Width="18" Height="18" Background="{DynamicResource CheckBoxCheckMarkBkBrush}">
                                     <Viewbox x:Name="CheckIcon" Visibility="Collapsed">
                                         <TextBlock Text="b" FontFamily="Marlett" Foreground="{DynamicResource GlyphBrush}"
@@ -31,9 +32,9 @@
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Viewbox>
                                 </Grid>
-                            </Border>                            
-                            <ContentPresenter RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        </StackPanel>
+                            </Border>
+                            <ContentPresenter DockPanel.Dock="Left" RecognizesAccessKey="True" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DockPanel>
                     </Border>                    
                     <ControlTemplate.Triggers>
                         <MultiTrigger>

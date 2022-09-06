@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.Backup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite" 
+             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"       
+             xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"     
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </UserControl.Resources>
+
+    <StackPanel Margin="15">
+        <CheckBox Content="{DynamicResource LOCSettingsEnableAutomaticBackup}" 
+                  Name="CheckAutomaticBackup"
+                  IsChecked="{Binding Settings.AutoBackupEnabled}"/>
+        <StackPanel Margin="25,10,0,0" IsEnabled="{Binding IsChecked, ElementName=CheckAutomaticBackup}">
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource LOCSettingsAutoBackupFrequency}" VerticalAlignment="Center" />
+                <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:AutoBackupFrequency}"
+                          SelectedValue="{Binding Settings.AutoBackupFrequency}"
+                          VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="{DynamicResource LOCSettingsBackupFolder}" VerticalAlignment="Center" />
+                <pctrls:PathSelectionBox MinWidth="400" Margin="10,0,0,0"
+                                         ShowDirectorySelector="True" VerticalAlignment="Center"
+                                         Text="{Binding Settings.AutoBackupDir}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,10">
+                <TextBlock Text="{DynamicResource LOCSettingsRotatingBackups}" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Value, ElementName=SliderRotatingBackup}"
+                           Margin="10,0,10,0" Width="20" VerticalAlignment="Center"/>
+                <Slider Minimum="0" Maximum="10" IsSnapToTickEnabled="True" TickFrequency="1"
+                        Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Name="SliderRotatingBackup"
+                        Value="{Binding Settings.RotatingBackups}"/>
+            </StackPanel>
+
+            <TextBlock Text="{DynamicResource LOCSettingsAutoBackupIncludeItems}" Margin="0,5,0,10" />
+            <CheckBox Content="{DynamicResource LOCBackupOptionGameMedia}" Margin="20,0,0,10"
+                      IsChecked="{Binding Settings.AutoBackupIncludeLibFiles}"/>
+            <CheckBox Content="{DynamicResource LOCBackupOptionExtensions}" Margin="20,0,0,10"
+                      IsChecked="{Binding Settings.AutoBackupIncludeExtensionsData}"/>
+            <CheckBox Content="{DynamicResource LOCBackupOptionThemes}" Margin="20,0,0,10"
+                      IsChecked="{Binding Settings.AutoBackupIncludeExtensions}"/>
+            <CheckBox Content="{DynamicResource LOCBackupOptionExtensionsData}" Margin="20,0,0,10"
+                      IsChecked="{Binding Settings.AutoBackupIncludeThemes}"/>
+        </StackPanel>
+
+        <Button Content="{DynamicResource LOCMenuHelpTitle}"
+                Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                CommandParameter="https://playnite.link/docs/{AppBranch}/manual/backup.html"
+                HorizontalAlignment="Left" Margin="0,20,0,0" MinWidth="80" />
+    </StackPanel>
+</UserControl>

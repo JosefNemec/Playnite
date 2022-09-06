@@ -6,6 +6,7 @@ using Playnite.Database;
 using Playnite.FullscreenApp.Controls;
 using Playnite.FullscreenApp.Controls.Views;
 using Playnite.FullscreenApp.Windows;
+using Playnite.Input;
 using Playnite.Metadata;
 using Playnite.Plugins;
 using Playnite.SDK;
@@ -30,18 +31,28 @@ using System.Windows.Media;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
-    public partial class FullscreenAppViewModel : MainViewModelBase, IDisposable
+    public partial class FullscreenAppViewModel : MainViewModelBase, IDisposable, IMainViewModelBase
     {
         private static object gamesLock = new object();
         private readonly SynchronizationContext context;
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
 
-        public IWindowFactory Window { get; }
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
         public ObservableTime CurrentTime { get; } = new ObservableTime();
         public ObservablePowerStatus PowerStatus { get; } = new ObservablePowerStatus();
+
+        private GameStatusViewModel gameStatusView;
+        public GameStatusViewModel GameStatusView
+        {
+            get => gameStatusView;
+            set
+            {
+                gameStatusView = value;
+                OnPropertyChanged();
+            }
+        }
 
         private double windowLeft = 0;
         public double WindowLeft
@@ -122,8 +133,24 @@ namespace Playnite.FullscreenApp.ViewModels
 
         internal int LastValidSelectedGameIndex;
 
+        public List<GamesCollectionViewEntry> SelectedGames
+        {
+            get => SelectedGame != null ? null : new List<GamesCollectionViewEntry>(1) { SelectedGame };
+            set
+            {
+                if (SelectedGames.HasItems())
+                {
+                    SelectedGame = value[0];
+                }
+                else
+                {
+                    SelectedGame = null;
+                }
+            }
+        }
+
         private GamesCollectionViewEntry selectedGame;
-        public new GamesCollectionViewEntry SelectedGame
+        public GamesCollectionViewEntry SelectedGame
         {
             get => selectedGame;
             set
@@ -211,17 +238,6 @@ namespace Playnite.FullscreenApp.ViewModels
             set
             {
                 gameStatusVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string gameStatusText;
-        public string GameStatusText
-        {
-            get => gameStatusText;
-            set
-            {
-                gameStatusText = value;
                 OnPropertyChanged();
             }
         }
@@ -336,8 +352,17 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public FullscreenAppViewModel() : base(null, null, null, null, null, null)
+        /// <summary>
+        /// This constructor should be used on from <see cref="DesignMainViewModel"/> for Blend usage!
+        /// </summary>
+        public FullscreenAppViewModel(
+            IGameDatabaseMain database,
+            PlayniteApplication app,
+            IDialogsFactory dialogs,
+            IResourceProvider resources,
+            ExtensionFactory extensions) : base(database, app, dialogs, resources, extensions, null)
         {
+            InitializeCommands();
         }
 
         public FullscreenAppViewModel(
@@ -347,12 +372,10 @@ namespace Playnite.FullscreenApp.ViewModels
             IResourceProvider resources,
             PlayniteSettings settings,
             GamesEditor gamesEditor,
-            PlayniteAPI playniteApi,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, app, dialogs, playniteApi, resources, extensions)
+            PlayniteApplication app) : base(database, app, dialogs, resources, extensions, window)
         {
             context = SynchronizationContext.Current;
-            Window = window;
             GamesEditor = gamesEditor;
             AppSettings = settings;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
@@ -370,6 +393,25 @@ namespace Playnite.FullscreenApp.ViewModels
             app.Controllers.Started += Controllers_Started;
             app.Controllers.Starting += Controllers_Starting;
             app.Controllers.Stopped += Controllers_Stopped;
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+        }
+
+        private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            Logger.Info("Detected screen settings changes, adjusting window.");
+            SetViewSizeAndPosition(IsFullScreen);
+            AdjustGameItemsToScreenChanges();
+        }
+
+        private void XInputDevice_ButtonUp(object sender, XInputDevice.ButtonUpEventArgs e)
+        {
+            if (AppSettings.Fullscreen.EnableXinputProcessing &&
+                AppSettings.Fullscreen.GuideButtonFocus &&
+                e.Button == XInputButton.Guide &&
+                !App.IsActive)
+            {
+                WindowManager.LastActiveWindow?.RestoreWindow();
+            }
         }
 
         private void Controllers_Stopped(object sender, GameStoppedEventArgs e)
@@ -387,7 +429,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
             }
 
-            GameStatusText = null;
+            GameStatusView = null;
         }
 
         private void Controllers_Starting(object sender, OnGameStartingEventArgs e)
@@ -401,13 +443,28 @@ namespace Playnite.FullscreenApp.ViewModels
                 GameListFocused = false;
             }
 
+            if (SelectedGame?.Game.Id == e.Game.Id)
+            {
+                GameStatusView = new GameStatusViewModel(SelectedGame);
+            }
+            else
+            {
+                GameStatusView = new GameStatusViewModel(new GamesCollectionViewEntry(
+                    e.Game,
+                    GamesView.GetLibraryPlugin(e.Game),
+                    AppSettings));
+            }
+
             GameStatusVisible = true;
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Game.Name);
+            GameStatusView.GameStatusText = ResourceProvider.GetString(LOC.GameIsStarting).Format(e.Game.Name);
         }
 
         private void Controllers_Started(object sender, GameStartedEventArgs e)
         {
-            GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Source.Game.Name);
+            if (GameStatusView != null)
+            {
+                GameStatusView.GameStatusText = ResourceProvider.GetString(LOC.GameIsRunning).Format(e.Source.Game.Name);
+            }
         }
 
         private void ElementGotFocusHandler(object sender, RoutedEventArgs e)
@@ -417,7 +474,14 @@ namespace Playnite.FullscreenApp.ViewModels
             var mouseInput = InputManager.Current?.PrimaryMouseDevice;
             if (mouseInput != null && mouseInput.LeftButton == MouseButtonState.Pressed)
             {
-                return;
+                if (e.OriginalSource is ListBoxItem listItem && listItem.DataContext is GamesCollectionViewEntry)
+                {
+                    // Click selecting a game on the main view is an exception
+                }
+                else
+                {
+                    return;
+                }
             }
 
             if (sender is UIElement elem && elem.IsVisible)
@@ -446,12 +510,12 @@ namespace Playnite.FullscreenApp.ViewModels
         }
         private void WindowBaseCloseHandler(object sender, RoutedEventArgs e)
         {
-            ChildOpened = false;
+            ChildOpened = Window.Window.HasChildWindow;
         }
 
         private void WindowBaseLoadedHandler(object sender, RoutedEventArgs e)
         {
-            ChildOpened = true;
+            ChildOpened = Window.Window.HasChildWindow;
         }
 
         private void Fullscreen_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -470,7 +534,10 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.EnableXinputProcessing))
             {
-                App.SetupInputs(AppSettings.Fullscreen.EnableXinputProcessing);
+                if (App.XInputDevice != null)
+                {
+                    App.XInputDevice.StandardProcessingEnabled = AppSettings.Fullscreen.EnableXinputProcessing;
+                }
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
@@ -487,6 +554,13 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 FullscreenApplication.SetBackgroundSoundVolume(AppSettings.Fullscreen.IsMusicMuted ? 0f : AppSettings.Fullscreen.BackgroundVolume);
             }
+            else if (e.PropertyName == nameof(FullscreenSettings.PrimaryControllerOnly))
+            {
+                if (App.XInputDevice != null)
+                {
+                    App.XInputDevice.PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly;
+                }
+            }
 
             if (e.PropertyName == nameof(FullscreenSettings.HorizontalLayout) ||
                 e.PropertyName == nameof(FullscreenSettings.Columns) ||
@@ -495,14 +569,12 @@ namespace Playnite.FullscreenApp.ViewModels
                 e.PropertyName == nameof(FullscreenSettings.UsePrimaryDisplay) ||
                 e.PropertyName == nameof(FullscreenSettings.Monitor))
             {
-                var oldSettings = GamesCollectionViewEntry.FullscreenListCoverProperties;
-                GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
-                if (oldSettings != GamesCollectionViewEntry.FullscreenListCoverProperties)
-                {
-                    GamesView.NotifyItemPropertyChanges(
-                        nameof(GamesCollectionViewEntry.FullscreenListItemCoverObject),
-                        nameof(GamesCollectionViewEntry.DefaultFullscreenListItemCoverObject));
-                }
+                AdjustGameItemsToScreenChanges();
+            }
+
+            if (e.PropertyName == nameof(FullscreenSettings.SwapConfirmCancelButtons))
+            {
+                App.UpdateXInputBindings();
             }
         }
 
@@ -515,6 +587,18 @@ namespace Playnite.FullscreenApp.ViewModels
 
             OnPropertyChanged(nameof(IsSearchActive));
             OnPropertyChanged(nameof(IsExtraFilterActive));
+        }
+
+        private void AdjustGameItemsToScreenChanges()
+        {
+            var oldSettings = GamesCollectionViewEntry.FullscreenListCoverProperties;
+            GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
+            if (oldSettings != GamesCollectionViewEntry.FullscreenListCoverProperties)
+            {
+                GamesView.NotifyItemPropertyChanges(
+                    nameof(GamesCollectionViewEntry.FullscreenListItemCoverObject),
+                    nameof(GamesCollectionViewEntry.DefaultFullscreenListItemCoverObject));
+            }
         }
 
         private void UpdateCursorSettings()
@@ -540,7 +624,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void OpenGameMenu()
         {
-            var vm = new GameMenuViewModel(new GameMenuWindowFactory(), this, SelectedGameDetails, GamesEditor);
+            var vm = new GameMenuViewModel(new GameMenuWindowFactory(), this, SelectedGame.Game, GamesEditor);
             vm.OpenView();
         }
 
@@ -676,7 +760,7 @@ namespace Playnite.FullscreenApp.ViewModels
             InitializeView();
         }
 
-        public void CloseView()
+        public override void CloseView()
         {
             ignoreCloseActions = true;
             Window.Close();
@@ -743,20 +827,26 @@ namespace Playnite.FullscreenApp.ViewModels
 
         protected void InitializeView()
         {
+            if (App.XInputDevice != null)
+            {
+                App.XInputDevice.ButtonUp += XInputDevice_ButtonUp;
+            }
+
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
-            var openProgress = new ProgressViewViewModel(new ProgressWindowFactory(),
-            (_) =>
+            var openProgress = new ProgressViewViewModel(
+                new ProgressWindowFactory(),
+                new GlobalProgressOptions(LOC.OpeningDatabase));
+
+            if (openProgress.ActivateProgress(_ =>
             {
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
                     Database.OpenDatabase();
                 }
-            }, new GlobalProgressOptions("LOCOpeningDatabase"));
-
-            if (openProgress.ActivateProgress().Result != true)
+            }).Result != true)
             {
                 Logger.Error(openProgress.FailException, "Failed to open library database.");
                 var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{openProgress.FailException.Message}";
@@ -777,6 +867,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             GameListFocused = true;
             isInitialized = true;
+            RunStartupScript();
             Extensions.NotifiyOnApplicationStarted();
 
             try
@@ -822,7 +913,6 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 new AddonsViewModel(
                         new AddonsUpdateWindowFactory(),
-                        PlayniteApi,
                         Dialogs,
                         Resources,
                         App.ServicesClient,
@@ -861,7 +951,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void RestoreWindow()
         {
-            Window.RestoreWindow();
+            WindowManager.LastActiveWindow?.RestoreWindow();
         }
 
         public void MinimizeWindow()
@@ -874,6 +964,7 @@ namespace Playnite.FullscreenApp.ViewModels
             IsDisposing = true;
             GamesView?.Dispose();
             Window.Window.LocationChanged -= Window_LocationChanged;
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged -= SystemEvents_DisplaySettingsChanged;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
@@ -895,6 +986,35 @@ namespace Playnite.FullscreenApp.ViewModels
                 default:
                     Logger.Warn($"Uknown URI command {command}");
                     break;
+            }
+        }
+
+        public override void OpenSettings(int settingsPageIndex)
+        {
+        }
+
+        public override void EditGame(Game game)
+        {
+        }
+
+        public override void AssignCategories(Game game)
+        {
+        }
+
+        private void SelectFilterPreset()
+        {
+            if (!Database.FilterPresets.HasItems())
+            {
+                return;
+            }
+
+            if (ItemSelector.SelectSingle<FilterPreset>(
+                LOC.SettingsTopPanelFilterPresetsItem,
+                "",
+                Database.FilterPresets.Select(a => new SelectableNamedObject<FilterPreset>(a, a.Name)).ToList(),
+                out var selectedPreset))
+            {
+                ActiveFilterPreset = selectedPreset;
             }
         }
     }

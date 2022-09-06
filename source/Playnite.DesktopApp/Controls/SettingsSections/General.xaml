@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+             xmlns:sdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="600" d:DesignWidth="600">
     
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -26,6 +28,7 @@
         </Style>
     </UserControl.Resources>
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <StackPanel Margin="20">
         <StackPanel.Resources>
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
@@ -96,14 +99,31 @@
                             VerticalAlignment="Center"/>
         </StackPanel>
 
-        <CheckBox Name="CheckUpdateLibStartup" Margin="5,25,5,5"
-                Content="{DynamicResource LOCSettingsUpdateLibStartup}"
-                IsChecked="{Binding Settings.UpdateLibStartup}"/>
-
-        <CheckBox Margin="35,10,5,5"
-                  Content="{DynamicResource LOCSettingsUpdateEmulatedLibStartup}"
-                  IsChecked="{Binding Settings.UpdateEmulatedLibStartup}"
-                  IsEnabled="{Binding IsChecked, ElementName=CheckUpdateLibStartup}"/>
+        <StackPanel Orientation="Horizontal" Margin="5,20,0,0" >
+            <CheckBox Name="CheckEnableTray" VerticalAlignment="Center"
+                    IsChecked="{Binding Settings.EnableTray}"
+                    Content="{DynamicResource LOCSettingsShowTray}"
+                    ContentStringFormat="{}{0} *" />
+            <ComboBox Margin="5,0,0,0" VerticalAlignment="Center"
+                    ItemsSource="{Binding AvailableTrayIcons}"
+                    SelectedValue="{Binding Settings.TrayIcon}"
+                    SelectedValuePath="TrayIcon"
+                    IsEnabled="{Binding Settings.EnableTray}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image RenderOptions.BitmapScalingMode="Fant"
+                                VerticalAlignment="Center" Height="16" Margin="5"
+                                Source="{Binding ImageSource}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <CheckBox Name="CheckMinimizeToTray" Content="{DynamicResource LOCSettingsMinimizeToTray}" Margin="25,10,5,5"
+                IsChecked="{Binding Settings.MinimizeToTray}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
+        <CheckBox Name="CheckCloseToTray" Content="{DynamicResource LOCSettingsCloseToTray}" Margin="25,5,5,5"
+                IsChecked="{Binding Settings.CloseToTray}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
 
         <CheckBox Name="CheckDownloadMetadataOnImport" Margin="5,15,5,5"
                 Content="{DynamicResource LOCSettingsDownloadMetadataOnImport}" 
@@ -116,14 +136,32 @@
         <CheckBox Name="CheckStartOnBoot" Margin="5,15,5,5"
                 Content="{DynamicResource LOCSettingsStartOnBoot}"
                 IsChecked="{Binding Settings.StartOnBoot}"/>
+        
+        <CheckBox Name="CheckStartOnBootClosedToTray" Margin="25,15,5,5"
+                  IsEnabled="{Binding IsChecked, ElementName=CheckStartOnBoot}"
+                  Content="{DynamicResource LOCSettingsStartOnBootClosedToTray}"
+                  IsChecked="{Binding Settings.StartOnBootClosedToTray}"/>
 
         <CheckBox Name="CheckStartMinimized" Margin="5,15,5,5"
                 Content="{DynamicResource LOCSettingsStartMinimized}"
                 IsChecked="{Binding Settings.StartMinimized}"/>
 
-        <CheckBox Name="CheckAlwaysSyncTime" Margin="5,15,5,5"
-                Content="{DynamicResource LOCSettingsForceDownloadPlaynite}"
-                ToolTip="{DynamicResource LOCSettingsForceDownloadPlayniteTooltip}" ToolTipService.InitialShowDelay="0"
-                IsChecked="{Binding Settings.ForcePlayTimeSync}"/>
+
+        <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
+                   ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
+                   VerticalAlignment="Center" />
+
+        <StackPanel Orientation="Horizontal" Margin="5,10,5,0">
+            <ComboBox MinWidth="100" VerticalAlignment="Center"
+                  SelectedValue="{Binding Settings.PlaytimeImportMode}"
+                  pbeh:SelectorBehaviors.EnumSource="{x:Type sdk:PlaytimeImportMode}" />
+            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                           CommandParameter="https://playnite.link/docs/{AppBranch}/manual/playtimeImport.html">
+                    <Run Text="{DynamicResource LOCMenuHelpTitle}" />
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -24,7 +24,6 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand OpenSettingsCommand => new RelayCommand(() => OpenSettings());
         public RelayCommand SelectRandomGameCommand => new RelayCommand(() => PlayRandomGame(), () => MainModel.Database?.IsOpen == true);
         public RelayCommand OpenPatreonCommand => new RelayCommand(() => OpenPatreon());
-        public RelayCommand SendFeedbackCommand => new RelayCommand(() => SendFeedback());
         public RelayCommand ShutdownSystemCommand => new RelayCommand(() => ShutdownSystem());
         public RelayCommand HibernateSystemCommand => new RelayCommand(() => HibernateSystem());
         public RelayCommand SleepSystemCommand => new RelayCommand(() => SleepSystem());
@@ -32,9 +31,10 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
-            await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport, true);
+            await MainModel.UpdateLibrary(MainModel.AppSettings.DownloadMetadataOnImport, true, true);
         }, () => !MainModel.ProgressActive);
         public RelayCommand CancelProgressCommand => new RelayCommand(() => CancelProgress(), () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
+        public RelayCommand OpenHelpCommand => new RelayCommand(() => OpenHelp());
 
         public MainMenuViewModel(
             IWindowFactory window,
@@ -81,13 +81,16 @@ namespace Playnite.FullscreenApp.ViewModels
                 MainModel.GamesView,
                 new RandomGameSelectWindowFactory(),
                 MainModel.Resources);
-            if (model.OpenView() == true && model.SelectedGame != null)
+            model.OpenView();
+            if (model.SelectedAction == RandomGameSelectAction.Play)
             {
-                var selection = MainModel.GamesView.Items.FirstOrDefault(a => a.Id == model.SelectedGame.Id);
-                if (selection != null)
-                {
-                    MainModel.GamesEditor.PlayGame(selection.Game);
-                }
+                MainModel.SelectGame(model.SelectedGame.Id);
+                MainModel.GamesEditor.PlayGame(model.SelectedGame);
+            }
+            else if (model.SelectedAction == RandomGameSelectAction.Navigate)
+            {
+                MainModel.ToggleGameDetailsCommand.Execute(null);
+                MainModel.SelectGame(model.SelectedGame.Id);
             }
         }
 
@@ -98,11 +101,13 @@ namespace Playnite.FullscreenApp.ViewModels
             vm.OpenView();
         }
 
-        public void SendFeedback()
+        public void OpenHelp()
         {
             Close();
-            NavigateUrlCommand.Navigate(PlayniteEnvironment.ReleaseChannel == ReleaseChannel.Beta ? UrlConstants.IssuesTesting : UrlConstants.Issues);
+            var vm = new HelpMenuViewModel(new HelpMenuWindowFactory(), MainModel);
+            vm.OpenView();
         }
+
         public void OpenPatreon()
         {
             Close();

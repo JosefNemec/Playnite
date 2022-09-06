@@ -20,7 +20,6 @@ namespace Playnite.Extensions.Markup
 
         public Api(string path) : base(path)
         {
-
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
                 Source = new DesignPlayniteAPI();
@@ -29,7 +28,7 @@ namespace Playnite.Extensions.Markup
             else
             {
                 Source = PlayniteApplication.Current;
-                PathRoot = nameof(PlayniteApplication.Api);
+                PathRoot = nameof(PlayniteApplication.PlayniteApiGlobal);
             }
 
             if (!path.IsNullOrEmpty())

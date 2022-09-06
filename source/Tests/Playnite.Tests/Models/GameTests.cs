@@ -51,6 +51,9 @@ namespace Playnite.Tests.Models
             Assert.AreEqual(game.Id.ToString(), game.ExpandVariables("{DatabaseId}"));
             Assert.AreEqual(game.Version, game.ExpandVariables("{Version}"));
             Assert.AreEqual(Path.Combine(dir, "test.iso"), game.ExpandVariables("{ImagePath}"));
+
+            game.InstallDirectory = @"c:\test\test2";
+            Assert.AreEqual("test2", game.ExpandVariables("{InstallDirName}"));
         }
 
         [Test]
@@ -90,85 +93,110 @@ namespace Playnite.Tests.Models
         }
 
         [Test]
-        public void CopyDiffToTest()
+        public void GetCompatibleEmulatorsTest()
         {
-            var game = new Game()
+            using (var db = new GameDbTestWrapper())
             {
-                Name = "Name",
-                InstallDirectory = "InstallDirectory",
-                PlatformIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
-                Version = "Version",
-                PluginId = new Guid(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
-                GameId = "GameId",
-                Id = new Guid(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
-                Added = new DateTime(10),
-                AgeRatingIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
-                BackgroundImage = "BackgroundImage",
-                CategoryIds = new List<Guid> { new Guid(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) },
-                CommunityScore = 10,
-                CoverImage = "CoverImage",
-                CriticScore = 20,
-                Description = "Description",
-                DeveloperIds = new List<Guid> { new Guid(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2) },
-                Favorite = false,
-                GenreIds = new List<Guid> { new Guid(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3) },
-                Hidden = false,
-                Icon = "Icon",
-                IsInstalled = false,
-                IsInstalling = false,
-                IsLaunching = false,
-                IsRunning = false,
-                IsUninstalling = false,
-                LastActivity = new DateTime(20),
-                Links = new ObservableCollection<Link> { new Link("1", "2") },
-                Modified = new DateTime(30),
-                PlayCount = 1,
-                Playtime = 10,
-                PublisherIds = new List<Guid> { new Guid(4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4) },
-                RegionIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
-                ReleaseDate = new ReleaseDate(2000),
-                SeriesIds = new List<Guid> { new Guid(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6) },
-                SortingName = "SortingName",
-                SourceId = new Guid(7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7),
-                TagIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
-                FeatureIds = new List<Guid> { new Guid(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5) },
-                UserScore = 30,
-                GameActions = new ObservableCollection<GameAction> { new GameAction() }
-            };
+                db.DB.Emulators.Add(new List<Emulator>
+                {
+                    new Emulator("emu1")
+                    {
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Name = "ps",
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "sony_playstation" || a.SpecificationId == "sony_playstation2").Select(a => a.Id).ToList()
+                            },
+                            new CustomEmulatorProfile
+                            {
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "xbox").Select(a => a.Id).ToList()
+                            }
+                        }
+                    },
+                    new Emulator("emu2")
+                    {
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "xbox").Select(a => a.Id).ToList()
+                            }
+                        }
+                    },
+                    new Emulator("emu3")
+                    {
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Name = "test profile"
+                            }
+                        }
+                    },
+                    new Emulator("emu4")
+                    {
+                        BuiltInConfigId = "duckstation",
+                        BuiltinProfiles = new ObservableCollection<BuiltInEmulatorProfile>
+                        {
+                            new BuiltInEmulatorProfile
+                            {
+                                Name = "test",
+                                BuiltInProfileName = "Default"
+                            },
+                        }
+                    },
+                    new Emulator("emu5")
+                    {
+                        BuiltInConfigId = "duckstation",
+                        BuiltinProfiles = new ObservableCollection<BuiltInEmulatorProfile>
+                        {
+                            new BuiltInEmulatorProfile
+                            {
+                                Name = "test",
+                                BuiltInProfileName = "Default"
+                            },
+                        },
+                        CustomProfiles = new ObservableCollection<CustomEmulatorProfile>
+                        {
+                            new CustomEmulatorProfile
+                            {
+                                Platforms = db.DB.Platforms.Where(a => a.SpecificationId == "sony_playstation").Select(a => a.Id).ToList()
+                            }
+                        }
+                    },
+                    new Emulator("emu6")
+                    {
+                        BuiltInConfigId = "melonds",
+                        BuiltinProfiles = new ObservableCollection<BuiltInEmulatorProfile>
+                        {
+                            new BuiltInEmulatorProfile
+                            {
+                                Name = "test",
+                                BuiltInProfileName = "Default"
+                            }
+                        }
+                    }
+                });
 
-            var changes = 0;
+                var game = new Game()
+                {
+                    PlatformIds = db.DB.Platforms.Where(a => a.SpecificationId == "sony_playstation").Select(a => a.Id).ToList()
+                };
 
-            var game1 = new Game()
-            {
-                GameId = "id",
-                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
-            };
+                var comEmus = game.GetCompatibleEmulators(db.DB).OrderBy(a => a.Key.Name).ToList();
+                Assert.AreEqual(3, comEmus.Count);
 
-            var game2 = new Game()
-            {
-                GameId = "id",
-                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action1" }, new GameAction() { Name = "action2" } }
-            };
+                Assert.AreEqual("emu1", comEmus[0].Key.Name);
+                Assert.AreEqual(1, comEmus[0].Value.Count);
+                Assert.AreEqual("ps", comEmus[0].Value[0].Name);
 
-            var game3 = new Game()
-            {
-                GameId = "id",
-                GameActions = new ObservableCollection<GameAction> { new GameAction() { Name = "action3" }, new GameAction() { Name = "action4" } }
-            };
+                Assert.AreEqual("emu4", comEmus[1].Key.Name);
+                Assert.AreEqual(1, comEmus[1].Value.Count);
 
-            game1.PropertyChanged += (s, e) => changes++;
-            game2.PropertyChanged += (s, e) => changes++;
-            game3.PropertyChanged += (s, e) => changes++;
-
-            game1.CopyDiffTo(game2);
-            Assert.AreEqual(0, changes);
-
-            changes = 0;
-            game1.CopyDiffTo(game3);
-            Assert.AreEqual(2, changes);
-
-            // TODO add check for all fields
-            Assert.Fail();
+                Assert.AreEqual("emu5", comEmus[2].Key.Name);
+                Assert.AreEqual(2, comEmus[2].Value.Count);
+            }
         }
     }
 }

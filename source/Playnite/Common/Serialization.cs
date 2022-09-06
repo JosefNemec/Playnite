@@ -105,9 +105,19 @@ namespace Playnite.Common
             return Serialization.TryFromYaml(yaml, out content);
         }
 
+        public bool TryFromYaml<T>(string yaml, out T content, out Exception error) where T : class
+        {
+            return Serialization.TryFromYaml(yaml, out content, out error);
+        }
+
         public bool TryFromYamlFile<T>(string filePath, out T content) where T : class
         {
             return Serialization.TryFromYamlFile(filePath, out content);
+        }
+
+        public bool TryFromYamlFile<T>(string filePath, out T content, out Exception error) where T : class
+        {
+            return Serialization.TryFromYamlFile(filePath, out content, out error);
         }
 
         public bool TryFromJson<T>(string json, out T content) where T : class
@@ -115,9 +125,19 @@ namespace Playnite.Common
             return Serialization.TryFromJson(json, out content);
         }
 
+        public bool TryFromJson<T>(string json, out T content, out Exception error) where T : class
+        {
+            return Serialization.TryFromJson(json, out content, out error);
+        }
+
         public bool TryFromJsonStream<T>(Stream stream, out T content) where T : class
         {
             return Serialization.TryFromJsonStream(stream, out content);
+        }
+
+        public bool TryFromJsonStream<T>(Stream stream, out T content, out Exception error) where T : class
+        {
+            return Serialization.TryFromJsonStream(stream, out content, out error);
         }
 
         public bool TryFromJsonFile<T>(string filePath, out T content) where T : class
@@ -125,14 +145,29 @@ namespace Playnite.Common
             return Serialization.TryFromJsonFile(filePath, out content);
         }
 
+        public bool TryFromJsonFile<T>(string filePath, out T content, out Exception error) where T : class
+        {
+            return Serialization.TryFromJsonFile(filePath, out content, out error);
+        }
+
         public bool TryFromToml<T>(string toml, out T content) where T : class
         {
             return Serialization.TryFromToml(toml, out content);
         }
 
+        public bool TryFromToml<T>(string toml, out T content, out Exception error) where T : class
+        {
+            return Serialization.TryFromToml(toml, out content, out error);
+        }
+
         public bool TryFromTomlFile<T>(string filePath, out T content) where T : class
         {
             return Serialization.TryFromTomlFile(filePath, out content);
+        }
+
+        public bool TryFromTomlFile<T>(string filePath, out T content, out Exception error) where T : class
+        {
+            return Serialization.TryFromTomlFile(filePath, out content, out error);
         }
 
         public bool AreObjectsEqual(object object1, object object2)
@@ -197,6 +232,23 @@ namespace Playnite.Common
             }
         }
 
+        public static bool TryFromYaml<T>(string yaml, out T deserialized, out Exception error) where T : class
+        {
+            try
+            {
+                var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
+                deserialized = deserializer.Deserialize<T>(yaml);
+                error = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                deserialized = null;
+                error = e;
+                return false;
+            }
+        }
+
         public static T FromYamlFile<T>(string filePath) where T : class
         {
             return FromYaml<T>(FileSystem.ReadStringFromFile(filePath));
@@ -212,6 +264,22 @@ namespace Playnite.Common
             catch
             {
                 deserialized = null;
+                return false;
+            }
+        }
+
+        public static bool TryFromYamlFile<T>(string filePath, out T deserialized, out Exception error) where T : class
+        {
+            try
+            {
+                deserialized = FromYaml<T>(FileSystem.ReadStringFromFile(filePath));
+                error = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                deserialized = null;
+                error = e;
                 return false;
             }
         }
@@ -292,11 +360,32 @@ namespace Playnite.Common
                 deserialized = null;
                 return false;
             }
-}
+        }
+
+        public static bool TryFromJsonStream<T>(Stream stream, out T deserialized, out Exception error) where T : class
+        {
+            try
+            {
+                using (var sr = new StreamReader(stream))
+                using (var reader = new JsonTextReader(sr))
+                {
+                    deserialized = JsonSerializer.Create(jsonDesSettings).Deserialize<T>(reader);
+                }
+
+                error = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                deserialized = null;
+                error = e;
+                return false;
+            }
+        }
 
         public static T FromJsonFile<T>(string filePath) where T : class
         {
-            filePath = FileSystem.FixPathLength(filePath);
+            filePath = Paths.FixPathLength(filePath);
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 return FromJsonStream<T>(fs);
@@ -307,7 +396,7 @@ namespace Playnite.Common
         {
             try
             {
-                filePath = FileSystem.FixPathLength(filePath);
+                filePath = Paths.FixPathLength(filePath);
                 using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
                     deserialized = FromJsonStream<T>(fs);
@@ -322,6 +411,27 @@ namespace Playnite.Common
             }
         }
 
+        public static bool TryFromJsonFile<T>(string filePath, out T deserialized, out Exception error) where T : class
+        {
+            try
+            {
+                filePath = Paths.FixPathLength(filePath);
+                using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    deserialized = FromJsonStream<T>(fs);
+                }
+
+                error = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                deserialized = null;
+                error = e;
+                return false;
+            }
+        }
+
         public static bool TryFromJson<T>(string json, out T deserialized) where T : class
         {
             try
@@ -332,6 +442,22 @@ namespace Playnite.Common
             catch
             {
                 deserialized = null;
+                return false;
+            }
+        }
+
+        public static bool TryFromJson<T>(string json, out T deserialized, out Exception error) where T : class
+        {
+            try
+            {
+                deserialized = JsonConvert.DeserializeObject<T>(json, jsonDesSettings);
+                error = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                deserialized = null;
+                error = e;
                 return false;
             }
         }
@@ -364,6 +490,22 @@ namespace Playnite.Common
             }
         }
 
+        public static bool TryFromToml<T>(string toml, out T deserialized, out Exception error) where T : class
+        {
+            try
+            {
+                deserialized = Toml.ReadString<T>(toml);
+                error = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                deserialized = null;
+                error = e;
+                return false;
+            }
+        }
+
         public static T FromTomlFile<T>(string filePath) where T : class
         {
             return FromToml<T>(FileSystem.ReadStringFromFile(filePath));
@@ -379,6 +521,22 @@ namespace Playnite.Common
             catch
             {
                 deserialized = null;
+                return false;
+            }
+        }
+
+        public static bool TryFromTomlFile<T>(string filePath, out T deserialized, out Exception error) where T : class
+        {
+            try
+            {
+                deserialized = FromToml<T>(FileSystem.ReadStringFromFile(filePath));
+                error = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                deserialized = null;
+                error = e;
                 return false;
             }
         }

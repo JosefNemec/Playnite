@@ -1,7 +1,9 @@
 ﻿using Playnite.Behaviors;
 using Playnite.Common;
 using Playnite.Controls;
+using Playnite.Converters;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,17 +25,35 @@ namespace Playnite.DesktopApp.Controls.Views
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LibraryDetailsView), new FrameworkPropertyMetadata(typeof(LibraryDetailsView)));
         }
 
-        public LibraryDetailsView() : base(ViewType.Details)
-        {            
+        public LibraryDetailsView() : base(DesktopView.Details)
+        {
         }
 
-        public LibraryDetailsView(DesktopAppViewModel mainModel) : base (ViewType.Details, mainModel)
+        public LibraryDetailsView(DesktopAppViewModel mainModel) : base (DesktopView.Details, mainModel)
         {
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
+            if (ListGames != null)
+            {
+                ScrollViewerBehaviours.SetCustomScrollEnabled(ListGames, true);
+                BindingTools.SetBinding(ListGames,
+                    ScrollViewerBehaviours.SensitivityProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.DetailsViewScrollSensitivity));
+                BindingTools.SetBinding(ListGames,
+                    ScrollViewerBehaviours.SpeedProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.DetailsViewScrollSpeed),
+                    converter: new TicksToTimeSpanConverter());
+                BindingTools.SetBinding(ListGames,
+                    ScrollViewerBehaviours.SmoothScrollEnabledProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.DetailsViewSmoothScrollEnabled));
+            }
         }
     }
 }

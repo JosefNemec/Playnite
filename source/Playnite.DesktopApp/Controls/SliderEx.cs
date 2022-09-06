@@ -25,9 +25,7 @@ namespace Playnite.DesktopApp.Controls
                 e.Key == System.Windows.Input.Key.Up ||
                 e.Key == System.Windows.Input.Key.Down)
             {
-                IgnoreChanges = false;
-                FinalValue = Value;
-                IgnoreChanges = true;
+                UpdateFinalValue();
             }
         }
 
@@ -48,9 +46,7 @@ namespace Playnite.DesktopApp.Controls
         protected override void OnThumbDragCompleted(DragCompletedEventArgs e)
         {
             base.OnThumbDragCompleted(e);
-            IgnoreChanges = false;
-            FinalValue = Value;
-            IgnoreChanges = true;
+            UpdateFinalValue();
         }
 
         private static void FinalValueChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -62,6 +58,37 @@ namespace Playnite.DesktopApp.Controls
                 obj.Value = value;
                 obj.FinalValue = value;
             }
+        }
+
+        private void UpdateFinalValue()
+        {
+            IgnoreChanges = false;
+            FinalValue = Value;
+            IgnoreChanges = true;
+        }
+
+        protected override void OnIncreaseLarge()
+        {
+            base.OnIncreaseLarge();
+            UpdateFinalValue();
+        }
+
+        protected override void OnIncreaseSmall()
+        {
+            base.OnIncreaseSmall();
+            UpdateFinalValue();
+        }
+
+        protected override void OnDecreaseLarge()
+        {
+            base.OnDecreaseLarge();
+            UpdateFinalValue();
+        }
+
+        protected override void OnDecreaseSmall()
+        {
+            base.OnDecreaseLarge();
+            UpdateFinalValue();
         }
     }
 }

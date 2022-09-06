@@ -10,6 +10,13 @@ using System.Threading.Tasks;
 
 namespace Playnite.ViewModels
 {
+    public enum RandomGameSelectAction
+    {
+        None,
+        Play,
+        Navigate
+    }
+
     public class RandomGameSelectViewModel : ObservableObject
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -17,7 +24,9 @@ namespace Playnite.ViewModels
         private readonly IWindowFactory window;
         private readonly IResourceProvider resources;
         private readonly BaseCollectionView collection;
-        private readonly GameDatabase database;
+        private readonly IGameDatabaseMain database;
+
+        public RandomGameSelectAction SelectedAction { get; private set; } = RandomGameSelectAction.None;
 
         private bool isLimitedToFilter = true;
         public bool IsLimitedToFilter
@@ -65,8 +74,16 @@ namespace Playnite.ViewModels
             });
         }
 
+        public RelayCommand NavigateToGameCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                NavigateToGame();
+            });
+        }
+
         public RandomGameSelectViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             BaseCollectionView collection,
             IWindowFactory window,
             IResourceProvider resources)
@@ -85,11 +102,19 @@ namespace Playnite.ViewModels
 
         public void PlayGame()
         {
+            SelectedAction = RandomGameSelectAction.Play;
             window.Close(true);
         }
 
         public void CloseView()
         {
+            SelectedAction = RandomGameSelectAction.None;
+            window.Close(false);
+        }
+
+        public void NavigateToGame()
+        {
+            SelectedAction = RandomGameSelectAction.Navigate;
             window.Close(false);
         }
 

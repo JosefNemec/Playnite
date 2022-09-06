@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,20 +32,6 @@ namespace System
             {
                 return provider.ComputeHash(Encoding.UTF8.GetBytes(s));
             }
-        }
-
-        public static string ConvertToSortableName(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                return string.Empty;
-            }
-
-            var newName = name;
-            newName = Regex.Replace(newName, @"^the\s+", "", RegexOptions.IgnoreCase);
-            newName = Regex.Replace(newName, @"^a\s+", "", RegexOptions.IgnoreCase);
-            newName = Regex.Replace(newName, @"^an\s+", "", RegexOptions.IgnoreCase);
-            return newName;
         }
 
         public static string RemoveTrademarks(this string str, string remplacement = "")
@@ -203,6 +190,18 @@ namespace System
             return HttpUtility.UrlDecode(str);
         }
 
+        public static int GetLineCount(this string str)
+        {
+            if (str == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Regex.Matches(str, "\n").Count + 1;
+            }
+        }
+
         // Courtesy of https://stackoverflow.com/questions/6275980/string-replace-ignoring-case
         public static string Replace(this string str, string oldValue, string @newValue, StringComparison comparisonType)
         {
@@ -274,6 +273,26 @@ namespace System
             int @charsUntilStringEnd = str.Length - startSearchFromIndex;
             resultStringBuilder.Append(str, startSearchFromIndex, @charsUntilStringEnd);
             return resultStringBuilder.ToString();
+        }
+
+        public static string EndWithDirSeparator(this string source)
+        {
+            if (source.IsNullOrEmpty())
+            {
+                return source;
+            }
+
+            return source.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+        }
+
+        public static bool ContainsInvariantCulture(this string source, string value, CompareOptions compareOptions)
+        {
+            return CultureInfo.InvariantCulture.CompareInfo.IndexOf(source, value, compareOptions) >= 0;
+        }
+
+        public static bool ContainsCurrentCulture(this string source, string value, CompareOptions compareOptions)
+        {
+            return CultureInfo.CurrentCulture.CompareInfo.IndexOf(source, value, compareOptions) >= 0;
         }
     }
 }

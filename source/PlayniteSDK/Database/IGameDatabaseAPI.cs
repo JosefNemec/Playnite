@@ -45,6 +45,16 @@ namespace Playnite.SDK
         IDisposable BufferedUpdate();
 
         /// <summary>
+        /// Begins buffered update. Suppresses all notification events until buffering is stopped.
+        /// </summary>
+        void BeginBufferUpdate();
+
+        /// <summary>
+        /// Ends buffered update.
+        /// </summary>
+        void EndBufferUpdate();
+
+        /// <summary>
         /// Returns full path to directory storing files for specified parent.
         /// </summary>
         /// <param name="parentId">Id of parent object.</param>
@@ -52,7 +62,7 @@ namespace Playnite.SDK
         string GetFileStoragePath(Guid parentId);
 
         /// <summary>
-        /// Return full path to a file based on database path.
+        /// Returns full path to a file based on database path.
         /// </summary>
         /// <param name="databasePath">Database path as set to game's field.</param>
         /// <returns>Full path to a file.</returns>

@@ -1,0 +1,9 @@
+Id: simple64
+Name: simple64
+Website: 'https://simple64.github.io/'
+Profiles:
+  - Name: Default
+    StartupArguments: '--nogui "{ImagePath}"'
+    ImageExtensions: [n64, v64, z64, rom, zip, 7z]
+    Platforms: [nintendo_64]
+    StartupExecutable: ^simple64-gui\.exe$

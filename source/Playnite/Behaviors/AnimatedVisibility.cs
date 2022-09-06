@@ -9,6 +9,53 @@ using System.Windows.Media.Animation;
 
 namespace Playnite.Behaviors
 {
+    public class AnimationControl
+    {
+        private static readonly DependencyProperty AnimationOnVisibleProperty = DependencyProperty.RegisterAttached(
+            "AnimationOnVisible",
+            typeof(Storyboard),
+            typeof(AnimatedVisibility),
+            new PropertyMetadata(new PropertyChangedCallback(HandleAnimationOnVisibleChanged)));
+
+        public static Storyboard GetAnimationOnVisible(DependencyObject obj)
+        {
+            return (Storyboard)obj.GetValue(AnimationOnVisibleProperty);
+        }
+
+        public static void SetAnimationOnVisible(DependencyObject obj, Storyboard value)
+        {
+            obj.SetValue(AnimationOnVisibleProperty, value);
+        }
+
+        private static void HandleAnimationOnVisibleChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            if (DesignerProperties.GetIsInDesignMode(obj))
+            {
+                return;
+            }
+
+            var control = (FrameworkElement)obj;
+            void handler(object s, DependencyPropertyChangedEventArgs e)
+            {
+                if (control.Visibility == Visibility.Visible)
+                {
+                    GetAnimationOnVisible(control)?.Begin();
+                }
+                else
+                {
+                    GetAnimationOnVisible(control)?.Stop();
+                }
+            }
+
+            control.IsVisibleChanged -= handler;
+            if (args.NewValue != null)
+            {
+                var sb = (Storyboard)args.NewValue;
+                control.IsVisibleChanged += handler;
+            }
+        }
+    }
+
     public class AnimatedVisibility
     {
         #region Visibility

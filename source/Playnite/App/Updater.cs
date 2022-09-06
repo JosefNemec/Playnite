@@ -44,7 +44,22 @@ namespace Playnite
         {
             get
             {
-                return GetLatestVersion().CompareTo(CurrentVersion) > 0;
+                var latest = GetLatestVersion();
+                var current = CurrentVersion;
+                if (latest > current)
+                {
+                    // Windows 7 and 8 and 32bit systems should no longer update, except for patches
+                    if (Computer.WindowsVersion == WindowsVersion.Win7 || Computer.WindowsVersion == WindowsVersion.Win8 || !Environment.Is64BitOperatingSystem)
+                    {
+                        return latest.Major == current.Major;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
 

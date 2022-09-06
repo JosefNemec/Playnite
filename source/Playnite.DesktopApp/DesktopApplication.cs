@@ -37,10 +37,7 @@ namespace Playnite.DesktopApp
     {
         private ILogger logger = LogManager.GetLogger();
         private TaskbarIcon trayIcon;
-        public const string DefaultThemeName = "Default";
         private SplashScreen splashScreen;
-
-        public List<ThirdPartyTool> ThirdPartyTools { get; private set; }
 
         private DesktopAppViewModel mainModel;
         public DesktopAppViewModel MainModel
@@ -59,28 +56,35 @@ namespace Playnite.DesktopApp
         }
 
         public DesktopApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
-            : base(appInitializer, ApplicationMode.Desktop, DefaultThemeName, cmdLine)
+            : base(appInitializer, ApplicationMode.Desktop, cmdLine)
         {
             this.splashScreen = splashScreen;
         }
 
-        public override bool Startup()
+        public override void ConfigureViews()
         {
             ProgressWindowFactory.SetWindowType<ProgressWindow>();
             CrashHandlerWindowFactory.SetWindowType<CrashHandlerWindow>();
             ExtensionCrashHandlerWindowFactory.SetWindowType<ExtensionCrashHandlerWindow>();
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             LicenseAgreementWindowFactory.SetWindowType<LicenseAgreementWindow>();
-            ActionSelectionWindowFactory.SetWindowType<ActionSelectionWindow>();
+            SingleItemSelectionWindowFactory.SetWindowType<SingleItemSelectionWindow>();
+            MultiItemSelectionWindowFactory.SetWindowType<MultiItemSelectionWindow>();
             Dialogs = new DesktopDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
-            ConfigureApplication();
+        }
+
+        public override bool Startup()
+        {
+            if (!ConfigureApplication())
+            {
+                return false;
+            }
 
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
-            SetupInputs(false);
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
 #pragma warning disable CS4014
@@ -110,6 +114,7 @@ namespace Playnite.DesktopApp
         public override void ReleaseResources(bool releaseCefSharp = true)
         {
             trayIcon?.Dispose();
+            MainModel?.UnregisterSystemSearchHotkey();
             base.ReleaseResources(releaseCefSharp);
         }
 
@@ -129,29 +134,15 @@ namespace Playnite.DesktopApp
             Database = new GameDatabase();
             Database.SetAsSingletonInstance();
             Controllers = new GameControllerFactory(Database);
-            Extensions = new ExtensionFactory(Database, Controllers);
+            Extensions = new ExtensionFactory(Database, Controllers, GetApiInstance);
             GamesEditor = new DesktopGamesEditor(
                 Database,
                 Controllers,
                 AppSettings,
                 Dialogs,
                 Extensions,
-                this);
-            Api = new PlayniteAPI(
-                new DatabaseAPI(Database),
-                Dialogs,
-                null,
-                new PlayniteInfoAPI(),
-                new PlaynitePathsAPI(),
-                new WebViewFactory(AppSettings),
-                new ResourceProvider(),
-                new NotificationsAPI(),
-                GamesEditor,
-                new PlayniteUriHandler(),
-                new PlayniteSettingsAPI(AppSettings, Database),
-                new AddonsAPI(Extensions, AppSettings),
-                new Emulators.Emulation(),
-                Extensions);
+                this,
+                new DesktopActionSelector());
             Game.DatabaseReference = Database;
             ImageSourceManager.SetDatabase(Database);
             MainModel = new DesktopAppViewModel(
@@ -161,10 +152,10 @@ namespace Playnite.DesktopApp
                 new ResourceProvider(),
                 AppSettings,
                 (DesktopGamesEditor)GamesEditor,
-                Api,
                 Extensions,
                 this);
-            Api.MainView = new MainViewAPI(MainModel);
+            PlayniteApiGlobal = GetApiInstance();
+            SDK.API.Instance = PlayniteApiGlobal;
         }
 
         private void LoadTrayIcon()
@@ -193,10 +184,16 @@ namespace Playnite.DesktopApp
         {
             if (!isFirstStart)
             {
-                Extensions.LoadPlugins(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+                Extensions.LoadPlugins(
+                    AppSettings.DisabledPlugins,
+                    CmdLine.SafeStartup,
+                    AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             }
 
-            Extensions.LoadScripts(Api, AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
+            Extensions.LoadScripts(
+                AppSettings.DisabledPlugins,
+                CmdLine.SafeStartup,
+                AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             OnExtensionsLoaded();
 
             try
@@ -213,15 +210,12 @@ namespace Playnite.DesktopApp
 
             if (isFirstStart)
             {
-                await MainModel.UpdateLibrary(false, false);
+                await MainModel.UpdateLibrary(false, true, false);
                 await MainModel.DownloadMetadata(AppSettings.MetadataSettings);
             }
             else
             {
-                if (AppSettings.UpdateLibStartup && !CmdLine.SkipLibUpdate)
-                {
-                    await MainModel.UpdateLibrary(AppSettings.DownloadMetadataOnImport, AppSettings.UpdateEmulatedLibStartup);
-                }
+                await MainModel.ProcessStartupLibUpdate();
             }
 
             // This is most likely safe place to consider application to be started properly
@@ -258,7 +252,6 @@ namespace Playnite.DesktopApp
                     Dialogs,
                     new ResourceProvider(),
                     Extensions,
-                    Api,
                     ServicesClient);
                 if (wizardModel.OpenView() == true)
                 {
@@ -312,6 +305,46 @@ namespace Playnite.DesktopApp
             {
                 Restore();
             }
+        }
+
+        public override PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner)
+        {
+            return new PlayniteAPI
+            {
+                Addons = new AddonsAPI(Extensions, AppSettings),
+                ApplicationInfo = new PlayniteInfoAPI(),
+                ApplicationSettings = new PlayniteSettingsAPI(AppSettings, Database),
+                Database = new DatabaseAPI(Database),
+                Dialogs = Dialogs,
+                Emulation = new Emulators.Emulation(),
+                MainView = new MainViewAPI(MainModel),
+                Notifications = Notifications,
+                Paths = new PlaynitePathsAPI(),
+                Resources = new ResourceProvider(),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                UriHandler = UriHandler,
+                WebViews = new WebViewFactory(AppSettings)
+            };
+        }
+
+        public override PlayniteAPI GetApiInstance()
+        {
+            return new PlayniteAPI
+            {
+                Addons = new AddonsAPI(Extensions, AppSettings),
+                ApplicationInfo = new PlayniteInfoAPI(),
+                ApplicationSettings = new PlayniteSettingsAPI(AppSettings, Database),
+                Database = new DatabaseAPI(Database),
+                Dialogs = Dialogs,
+                Emulation = new Emulators.Emulation(),
+                MainView = new MainViewAPI(MainModel),
+                Notifications = Notifications,
+                Paths = new PlaynitePathsAPI(),
+                Resources = new ResourceProvider(),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                UriHandler = UriHandler,
+                WebViews = new WebViewFactory(AppSettings)
+            };
         }
     }
 }

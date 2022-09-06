@@ -99,6 +99,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand<object> AddCompletionStatusCommand
+        {
+            get => new RelayCommand<object>((a) =>
+            {
+                AddNewCompletionStatus();
+            });
+        }
+
         public RelayCommand<object> ConfirmCommand
         {
             get => new RelayCommand<object>((a) =>

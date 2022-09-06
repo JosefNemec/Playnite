@@ -29,7 +29,7 @@ namespace Playnite.Database
         private static object syncLockFeatures = new object();
         private static object syncLockCompletionStatuses = new object();
         private readonly SynchronizationContext context;
-        private readonly GameDatabase database;
+        private readonly IGameDatabaseMain database;
         private readonly FilterSettings filter;
         private readonly PlayniteSettings settings;
 
@@ -201,7 +201,7 @@ namespace Playnite.Database
 
         #endregion Filter lists
 
-        public DatabaseFilter(GameDatabase database, ExtensionFactory extensions, PlayniteSettings settings, FilterSettings filter)
+        public DatabaseFilter(IGameDatabaseMain database, ExtensionFactory extensions, PlayniteSettings settings, FilterSettings filter)
         {
             this.context = SynchronizationContext.Current;
             this.database = database;
@@ -526,7 +526,7 @@ namespace Playnite.Database
             SelectableDbItemList targetList,
             IItemCollection<T> sourceColletion,
             List<Guid> usedList,
-            FilterItemProperites filter) where T : DatabaseObject
+            IdItemFilterItemProperties filter) where T : DatabaseObject
         {
             if (!settings.UsedFieldsOnlyOnFilterLists)
             {
@@ -547,7 +547,7 @@ namespace Playnite.Database
             SelectableDbItemList targetList,
             ItemCollectionChangedEventArgs<T> args,
             IItemCollection<T> sourceColletion,
-            FilterItemProperites filter) where T : DatabaseObject
+            IdItemFilterItemProperties filter) where T : DatabaseObject
         {
             if (settings.UsedFieldsOnlyOnFilterLists)
             {

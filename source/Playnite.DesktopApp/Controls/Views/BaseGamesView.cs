@@ -2,6 +2,7 @@
 using Playnite.Common;
 using Playnite.Controls;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,17 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ControlGameView", Type = typeof(Control))]
     public abstract class BaseGamesView : Control
     {
-        internal readonly ViewType viewType;
+        internal readonly DesktopView viewType;
         internal readonly DesktopAppViewModel mainModel;
 
         internal Control ControlGameView;
         internal ExtendedListBox ListGames;
 
-        public BaseGamesView(ViewType viewType) : this(viewType, DesktopApplication.Current?.MainModel)
+        public BaseGamesView(DesktopView viewType) : this(viewType, DesktopApplication.Current?.MainModel)
         {
         }
 
-        public BaseGamesView(ViewType viewType, DesktopAppViewModel mainModel)
+        public BaseGamesView(DesktopView viewType, DesktopAppViewModel mainModel)
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
@@ -75,6 +76,11 @@ namespace Playnite.DesktopApp.Controls.Views
                         ExtendedListBox.ItemsSourceProperty,
                         mainModel,
                         $"{nameof(mainModel.GamesView)}.{nameof(DesktopCollectionView.CollectionView)}");
+                    BindingTools.SetBinding(ListGames,
+                        ExtendedListBox.SelectedItemsListProperty,
+                        mainModel,
+                        nameof(DesktopAppViewModel.SelectedGamesBinder),
+                        BindingMode.TwoWay);
                 }
 
                 if (ControlGameView != null)
@@ -82,13 +88,15 @@ namespace Playnite.DesktopApp.Controls.Views
                     BindingTools.SetBinding(ControlGameView,
                         Control.DataContextProperty,
                         mainModel,
-                        nameof(DesktopAppViewModel.SelectedGameDetails));
+                        nameof(DesktopAppViewModel.SelectedGameDetails),
+                        mode: BindingMode.OneWay);
                 }
             }
             else
             {
                 if (ListGames != null)
                 {
+                    BindingTools.ClearBinding(ListGames, ExtendedListBox.SelectedItemsListProperty);
                     ListGames.ItemsSource = null;
                 }
 
@@ -108,17 +116,6 @@ namespace Playnite.DesktopApp.Controls.Views
             ListGames = Template.FindName("PART_ListGames", this) as ExtendedListBox;
             if (ListGames != null)
             {
-                BindingTools.SetBinding(ListGames,
-                    ExtendedListBox.SelectedItemProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGame),
-                    BindingMode.TwoWay);
-                BindingTools.SetBinding(ListGames,
-                    ExtendedListBox.SelectedItemsListProperty,
-                    mainModel,
-                    nameof(DesktopAppViewModel.SelectedGamesBinder),
-                    BindingMode.TwoWay);
-
                 ScrollToSelectedBehavior.SetEnabled(ListGames, true);
 
                 if (!DesignerProperties.GetIsInDesignMode(this))

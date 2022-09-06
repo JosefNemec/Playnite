@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
@@ -16,8 +17,9 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>
+        <pin:XInputBinding Button="Y" Command="{Binding AddSpaceCommand}" />
         <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
-        <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
+        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
         <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
         <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
         <pin:XInputBinding Button="RightStick" Command="{Binding ToggleCapsCommand}" />
@@ -49,7 +51,7 @@
                      Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
                     <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
-                    <pin:XInputBinding Button="B" Command="{Binding CancelCommand}" />
+                    <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
                     <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
                     <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
                 </TextBox.InputBindings>
@@ -73,6 +75,17 @@
             <Border Grid.Row="3" Grid.Column="1"
                     Style="{DynamicResource TextInputKeysBorder}"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewKeyUp" >
+                        <prism:InvokeCommandAction Command="{Binding PreviewKeyUpDownCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewKeyDown" >
+                        <prism:InvokeCommandAction Command="{Binding PreviewKeyUpDownCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewTextInput" >
+                        <prism:InvokeCommandAction Command="{Binding PreviewTextInputCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <StackPanel>
                     <Grid HorizontalAlignment="Center" Name="GridInput">
                         <Grid.ColumnDefinitions>
@@ -185,8 +198,17 @@
                                 </StackPanel>
                             </pctrls:ButtonEx.Content>
                         </pctrls:ButtonEx>
-                        
-                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="2" Content=" " Grid.ColumnSpan="6" />
+
+                        <pctrls:ButtonEx Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="6" Command="{Binding AddSpaceCommand}">
+                            <pctrls:ButtonEx.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl ContentTemplate="{DynamicResource ButtonPromptY}"
+                                                    Focusable="False" Height="22" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{DynamicResource LOCTextInputSpace}"
+                                               Style="{StaticResource TextBlockBaseStyle}" />
+                                </StackPanel>
+                            </pctrls:ButtonEx.Content>
+                        </pctrls:ButtonEx>
 
                         <pctrls:ButtonEx Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding ToggleCapsCommand}">
                             <pctrls:ButtonEx.Content>

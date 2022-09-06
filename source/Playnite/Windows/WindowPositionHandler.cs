@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Playnite;
 using Playnite.Common;
 using Playnite.Settings;
@@ -18,11 +19,13 @@ namespace Playnite.Windows
         private readonly string windowName;
         private readonly WindowPositions configuration;
         private bool ignoreChanges = false;
+        private readonly bool saveSize;
 
-        public WindowPositionHandler(Window window, string windowName, WindowPositions settings)
+        public WindowPositionHandler(Window window, string windowName, WindowPositions settings, bool saveSize = true)
         {
             this.window = window;
             this.windowName = windowName;
+            this.saveSize = saveSize;
             configuration = settings;
             window.SizeChanged += Window_SizeChanged;
             window.LocationChanged += Window_LocationChanged;
@@ -99,6 +102,11 @@ namespace Playnite.Windows
 
         private void SaveSize()
         {
+            if (!saveSize)
+            {
+                return;
+            }
+
             if (configuration == null || ignoreChanges)
             {
                 return;
@@ -136,11 +144,12 @@ namespace Playnite.Windows
 
         private void ConstrainWindow(int x, int y)
         {
+            var dpi = VisualTreeHelper.GetDpi(window);
             var positioned = false;
             // Make sure that position is part of at least one connected screen
             foreach (var monitor in Computer.GetScreens())
             {
-                if (monitor.WorkingArea.Contains(x, y))
+                if (monitor.WorkingArea.Contains((int)(x * dpi.DpiScaleX), (int)(y * dpi.DpiScaleY)))
                 {
                     window.Left = x;
                     window.Top = y;
@@ -174,16 +183,19 @@ namespace Playnite.Windows
                     ConstrainWindow((int)data.Position.X, (int)data.Position.Y);
                 }
 
-                if (data.Size != null)
+                if (saveSize)
                 {
-                    if (data.Size.X >= window.MinWidth)
+                    if (data.Size != null)
                     {
-                        window.Width = data.Size.X;
-                    }
+                        if (data.Size.X >= window.MinWidth)
+                        {
+                            window.Width = data.Size.X;
+                        }
 
-                    if (data.Size.Y >= window.MinHeight)
-                    {
-                        window.Height = data.Size.Y;
+                        if (data.Size.Y >= window.MinHeight)
+                        {
+                            window.Height = data.Size.Y;
+                        }
                     }
                 }
 
@@ -193,6 +205,11 @@ namespace Playnite.Windows
             {
                 ignoreChanges = false;
             }
+        }
+
+        public bool HasSavedData()
+        {
+            return configuration.Positions.ContainsKey(windowName);
         }
     }
 }

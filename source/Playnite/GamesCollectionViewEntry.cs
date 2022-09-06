@@ -1,4 +1,5 @@
 ﻿using Playnite.Converters;
+using Playnite.Database;
 using Playnite.Extensions.Markup;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -55,7 +56,7 @@ namespace Playnite
         public string Notes => Game.Notes;
         public bool IsInstalled => Game.IsInstalled;
         public bool IsInstalling => Game.IsInstalling;
-        public bool IsUnistalling => Game.IsUninstalling;
+        public bool IsUninstalling => Game.IsUninstalling;
         public bool IsLaunching => Game.IsLaunching;
         public bool IsRunning => Game.IsRunning;
         public bool IsCustomGame => Game.IsCustomGame;
@@ -79,6 +80,7 @@ namespace Playnite
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
         public char NameGroup => Game.GetNameGroup();
+        public bool OverrideInstallState => Game.OverrideInstallState;
 
         public List<Guid> CategoryIds => Game.CategoryIds;
         public List<Guid> GenreIds => Game.GenreIds;
@@ -92,7 +94,9 @@ namespace Playnite
         public List<Guid> PlatformIds => Game.PlatformIds;
         public List<Guid> FeatureIds => Game.FeatureIds;
         public Guid CompletionStatusId => Game.CompletionStatusId;
+        public ObservableCollection<GameRom> Roms => Game.Roms;
 
+        public object LibraryIcon => GetImageObject(LibraryPlugin?.LibraryIcon, true);
         public object IconObject => GetImageObject(Game.Icon, false);
         public object CoverImageObject => GetImageObject(Game.CoverImage, false);
         public object DefaultIconObject => GetDefaultIcon(false);
@@ -197,13 +201,16 @@ namespace Playnite
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings)
+        public GamesCollectionViewEntry(Game game, LibraryPlugin plugin, PlayniteSettings settings, bool readOnly = false)
         {
             this.settings = settings;
             LibraryPlugin = plugin;
-            Game = game;
-            Game.PropertyChanged += Game_PropertyChanged;
             Library = string.IsNullOrEmpty(plugin?.Name) ? "Playnite" : plugin.Name;
+            Game = game;
+            if (!readOnly)
+            {
+                Game.PropertyChanged += Game_PropertyChanged;
+            }
         }
 
         public static void InitItemViewProperties(PlayniteApplication app, PlayniteSettings settings)
@@ -398,26 +405,37 @@ namespace Playnite
 
         public object GetDefaultIcon(bool cached, BitmapLoadProperties loadProperties = null)
         {
+            var icon = GetDefaultIconFile(Game, settings, GameDatabase.Instance, LibraryPlugin);
+            if (icon.IsNullOrEmpty())
+            {
+                return ImageSourceManager.GetResourceImage("DefaultGameIcon", cached, loadProperties);
+            }
+            else
+            {
+                return ImageSourceManager.GetImage(icon, cached);
+            }
+        }
+
+        public static string GetDefaultIconFile(Game game, PlayniteSettings settings, IGameDatabaseMain database, LibraryPlugin plugin)
+        {
             if (settings.DefaultIconSource == DefaultIconSourceOptions.None)
             {
                 return null;
             }
-
-            if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && LibraryPlugin?.LibraryIcon.IsNullOrEmpty() == false)
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Library && plugin?.LibraryIcon.IsNullOrEmpty() == false)
             {
-                return ImageSourceManager.GetImage(LibraryPlugin.LibraryIcon, cached);
+                return plugin.LibraryIcon;
             }
-
-            if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform)
+            else if (settings.DefaultIconSource == DefaultIconSourceOptions.Platform)
             {
-                var plat = Game.Platforms?.FirstOrDefault(a => !a.Icon.IsNullOrEmpty());
+                var plat = game.Platforms?.FirstOrDefault(a => !a.Icon.IsNullOrEmpty());
                 if (plat != null)
                 {
-                    return ImageSourceManager.GetImage(plat.Icon, cached);
+                    return database?.GetFullFilePath(plat.Icon);
                 }
             }
 
-            return ImageSourceManager.GetResourceImage("DefaultGameIcon", cached, loadProperties);
+            return null;
         }
 
         public object GetDefaultCoverImage(bool cached, BitmapLoadProperties loadProperties = null)

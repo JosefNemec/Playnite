@@ -53,6 +53,31 @@ namespace Playnite.Input
 
     public class XInputGesture : InputGesture
     {
+        public static event EventHandler ConfirmationBindingChanged;
+        public static event EventHandler CancellationBindingChanged;
+
+        private static XInputButton confirmationBinding = XInputButton.A;
+        public static XInputButton ConfirmationBinding
+        {
+            get => confirmationBinding;
+            set
+            {
+                confirmationBinding = value;
+                ConfirmationBindingChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+
+        private static XInputButton cancellationBinding = XInputButton.B;
+        public static XInputButton CancellationBinding
+        {
+            get => cancellationBinding;
+            set
+            {
+                cancellationBinding = value;
+                CancellationBindingChanged?.Invoke(null, EventArgs.Empty);
+            }
+        }
+
         private XInputButton button;
 
         public XInputGesture(XInputButton button)
@@ -73,32 +98,37 @@ namespace Playnite.Input
         }
     }
 
+    [System.Runtime.InteropServices.Guid("36CB2F69-F227-4165-8CEE-6C10BC575524")]
     public class XInputDevice : IDisposable
     {
+        public class ButtonUpEventArgs
+        {
+            public XInputButton Button { get; internal set; }
+        }
+
+        public class ButtonDownEventArgs
+        {
+            public XInputButton Button { get; internal set; }
+        }
+
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public class InputState
         {
-            public Stopwatch Watch
-            {
-                get; set;
-            } = new Stopwatch();
-
-            public bool IsReSending
-            {
-                get; set;
-            } = false;
+            public Stopwatch Watch { get; set; } = new Stopwatch();
+            public bool IsReSending { get; set; } = false;
         }
 
-        public bool SimulateNavigationKeys
-        {
-            get; set;
-        } = true;
+        public bool SimulateNavigationKeys { get; set; } = true;
+        public bool SimulateAllKeys { get; set; } = false;
+        public bool PrimaryControllerOnly { get; set; } = false;
+        public bool StandardProcessingEnabled { get; set; } = true;
 
-        public bool SimulateAllKeys
-        {
-            get; set;
-        } = false;
+        private readonly ButtonUpEventArgs buttonUpEventArgs = new ButtonUpEventArgs();
+        private readonly ButtonDownEventArgs buttonDownEventArgs = new ButtonDownEventArgs();
+
+        public event EventHandler<ButtonUpEventArgs> ButtonUp;
+        public event EventHandler<ButtonDownEventArgs> ButtonDown;
 
         private int pollingRate = 20;
         private int resendDelay = 700;
@@ -166,13 +196,12 @@ namespace Playnite.Input
         };
 
         private readonly SynchronizationContext context;
-        private readonly PlayniteApplication application;
 
         private InputManager inputManager;
         private uint lastState = 0;
         private bool isDisposed = false;
 
-        public XInputDevice(InputManager input, PlayniteApplication app)
+        public XInputDevice(InputManager input)
         {
             foreach (PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
             {
@@ -207,7 +236,6 @@ namespace Playnite.Input
             }
 
             inputManager = input;
-            application = app;
             context = SynchronizationContext.Current;
 
             Task.Run(async () =>
@@ -219,38 +247,31 @@ namespace Playnite.Input
                         return;
                     }
 
-                    if (app.IsActive != true)
-                    {
-                        await Task.Delay(pollingRate);
-                        continue;
-                    }
-
                     var state = GamePad.GetState(PlayerIndex.One);
                     if (state.IsConnected)
                     {
                         ProcessState(state, PlayerIndex.One);
-                        await Task.Delay(pollingRate);
                     }
 
-                    state = GamePad.GetState(PlayerIndex.Two);
-                    if (state.IsConnected)
+                    if (!PrimaryControllerOnly)
                     {
-                        ProcessState(state, PlayerIndex.Two);
-                        await Task.Delay(pollingRate);
-                    }
+                        state = GamePad.GetState(PlayerIndex.Two);
+                        if (state.IsConnected)
+                        {
+                            ProcessState(state, PlayerIndex.Two);
+                        }
 
-                    state = GamePad.GetState(PlayerIndex.Three);
-                    if (state.IsConnected)
-                    {
-                        ProcessState(state, PlayerIndex.Three);
-                        await Task.Delay(pollingRate);
-                    }
+                        state = GamePad.GetState(PlayerIndex.Three);
+                        if (state.IsConnected)
+                        {
+                            ProcessState(state, PlayerIndex.Three);
+                        }
 
-                    state = GamePad.GetState(PlayerIndex.Four);
-                    if (state.IsConnected)
-                    {
-                        ProcessState(state, PlayerIndex.Four);
-                        await Task.Delay(pollingRate);
+                        state = GamePad.GetState(PlayerIndex.Four);
+                        if (state.IsConnected)
+                        {
+                            ProcessState(state, PlayerIndex.Four);
+                        }
                     }
 
                     await Task.Delay(pollingRate);
@@ -261,6 +282,23 @@ namespace Playnite.Input
         public void Dispose()
         {
             isDisposed = true;
+        }
+
+        private uint MapPadToKeyboard(XInputButton input)
+        {
+            if (input == XInputGesture.ConfirmationBinding)
+            {
+                return Winuser.VK_RETURN;
+            }
+            else if (input == XInputGesture.CancellationBinding)
+            {
+                // I don't remember anymore why we don't map B to ESC, but it's probably because of some WPF FS mode hack BS
+                return 0;
+            }
+            else
+            {
+                return keyboardMap[input];
+            }
         }
 
         private void ProcessState(GamePadState state, PlayerIndex playniteIndex)
@@ -365,14 +403,14 @@ namespace Playnite.Input
             {
                 SendXInput(button, true);
                 prevStates[playniteIndex][button] = ButtonState.Pressed;
-                SimulateKeyInput(keyboardMap[button], true);
+                SimulateKeyInput(MapPadToKeyboard(button), true);
             }
             else if (currentState == ButtonState.Released && prevStates[playniteIndex][button] == ButtonState.Pressed)
             {
                 ResetButtonResend(button);
                 SendXInput(button, false);
                 prevStates[playniteIndex][button] = ButtonState.Released;
-                SimulateKeyInput(keyboardMap[button], false);
+                SimulateKeyInput(MapPadToKeyboard(button), false);
             }
         }
 
@@ -384,14 +422,14 @@ namespace Playnite.Input
                 {
                     SendXInput(button, true);
                     prevStates[playniteIndex][button] = ButtonState.Pressed;
-                    SimulateKeyInput(keyboardMap[button], true);
+                    SimulateKeyInput(MapPadToKeyboard(button), true);
                 }
                 else if (currentState < 0.5f && prevStates[playniteIndex][button] == ButtonState.Pressed)
                 {
                     ResetButtonResend(button);
                     SendXInput(button, false);
                     prevStates[playniteIndex][button] = ButtonState.Released;
-                    SimulateKeyInput(keyboardMap[button], false);
+                    SimulateKeyInput(MapPadToKeyboard(button), false);
                 }
             }
             else
@@ -400,14 +438,14 @@ namespace Playnite.Input
                 {
                     SendXInput(button, true);
                     prevStates[playniteIndex][button] = ButtonState.Pressed;
-                    SimulateKeyInput(keyboardMap[button], true);
+                    SimulateKeyInput(MapPadToKeyboard(button), true);
                 }
                 else if (currentState > -0.5f && prevStates[playniteIndex][button] == ButtonState.Pressed)
                 {
                     ResetButtonResend(button);
                     SendXInput(button, false);
                     prevStates[playniteIndex][button] = ButtonState.Released;
-                    SimulateKeyInput(keyboardMap[button], false);
+                    SimulateKeyInput(MapPadToKeyboard(button), false);
                 }
             }
         }
@@ -416,18 +454,37 @@ namespace Playnite.Input
         {
             context.Post((a) =>
             {
-                if (InputManager.Current.PrimaryKeyboardDevice?.ActiveSource == null)
+                if (StandardProcessingEnabled)
                 {
-                    return;
+                    if (InputManager.Current.PrimaryKeyboardDevice?.ActiveSource == null)
+                    {
+                        return;
+                    }
+
+                    var args = new XInputEventArgs(Key.None, pressed ? XInputButtonState.Pressed : XInputButtonState.Released, button);
+                    inputManager.ProcessInput(args);
                 }
 
-                var args = new XInputEventArgs(Key.None, pressed ? XInputButtonState.Pressed : XInputButtonState.Released, button);
-                inputManager.ProcessInput(args);
+                if (pressed)
+                {
+                    buttonDownEventArgs.Button = button;
+                    ButtonDown?.Invoke(null, buttonDownEventArgs);
+                }
+                else
+                {
+                    buttonUpEventArgs.Button = button;
+                    ButtonUp?.Invoke(null, buttonUpEventArgs);
+                }
             }, null);
         }
 
         private void SendKeyInput(uint key, bool pressed)
         {
+            if (!StandardProcessingEnabled)
+            {
+                return;
+            }
+
             if (key == 0)
             {
                 return;
@@ -465,6 +522,11 @@ namespace Playnite.Input
 
         private void SimulateKeyInput(uint key, bool pressed)
         {
+            if (!StandardProcessingEnabled)
+            {
+                return;
+            }
+
             if (SimulateAllKeys || (SimulateNavigationKeys && IsKeysDirectionKey(key)))
             {
                 SendKeyInput(key, pressed);

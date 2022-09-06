@@ -78,7 +78,7 @@
 
             <TabItem Visibility="Collapsed">                
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" Margin="20,10,20,0" TextWrapping="Wrap"
+                    <TextBlock DockPanel.Dock="Top" Margin="15,10,15,10" TextWrapping="Wrap"
                                Text="{DynamicResource LOCMetaDescriptionFields}"/>
                     <CheckBox Content="{DynamicResource LOCSaveAsDefault}"
                               IsChecked="{Binding SaveAsDefault}"
@@ -86,7 +86,7 @@
                               DockPanel.Dock="Bottom" Margin="0,0,20,10"
                               ToolTip="{DynamicResource LOCSaveDefaultTooltip}"
                               ToolTipService.InitialShowDelay="0"/>
-                    <ScrollViewer Margin="10,0,10,10" DockPanel.Dock="Top">
+                    <ScrollViewer Margin="15,0,0,10" DockPanel.Dock="Top">
                         <pctrls:MetadataDownloadSettings Settings="{Binding Settings}" />
                     </ScrollViewer>
                 </DockPanel>

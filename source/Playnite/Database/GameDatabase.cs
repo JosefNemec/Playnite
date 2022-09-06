@@ -17,10 +17,64 @@ using System.Threading;
 using System.Collections.Concurrent;
 using Playnite.Common.Media.Icons;
 using System.Reflection;
+using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
-    public partial class GameDatabase : IGameDatabase, IDisposable
+    /// Not the greatest way of doing it but it's a superset of SDK exposed IGameDatabase.
+    /// The whole interface should not be exposed in the SDK since it contains a lot of "internal" members.
+    public interface IGameDatabaseMain : IGameDatabase
+    {
+        List<Guid> UsedPlatforms { get; }
+        List<Guid> UsedGenres { get; }
+        List<Guid> UsedDevelopers { get; }
+        List<Guid> UsedPublishers { get; }
+        List<Guid> UsedTags { get; }
+        List<Guid> UsedCategories { get; }
+        List<Guid> UsedSeries { get; }
+        List<Guid> UsedAgeRatings { get; }
+        List<Guid> UsedRegions { get; }
+        List<Guid> UsedSources { get; }
+        List<Guid> UsedFeastures { get; }
+        List<Guid> UsedCompletionStatuses { get; }
+
+        AppSoftwareCollection SoftwareApps { get; }
+
+        event EventHandler<DatabaseFileEventArgs> DatabaseFileChanged;
+        event EventHandler PlatformsInUseUpdated;
+        event EventHandler GenresInUseUpdated;
+        event EventHandler DevelopersInUseUpdated;
+        event EventHandler PublishersInUseUpdated;
+        event EventHandler TagsInUseUpdated;
+        event EventHandler CategoriesInUseUpdated;
+        event EventHandler AgeRatingsInUseUpdated;
+        event EventHandler SeriesInUseUpdated;
+        event EventHandler RegionsInUseUpdated;
+        event EventHandler SourcesInUseUpdated;
+        event EventHandler FeaturesInUseUpdated;
+        event EventHandler CompletionStatusesInUseUpdated;
+
+        void SetDatabasePath(string path);
+        void OpenDatabase();
+        string GetFileStoragePath(Guid parentId);
+        string GetFullFilePath(string dbPath);
+        string AddFile(MetadataFile file, Guid parentId, bool isImage);
+        string AddFile(string path, Guid parentId, bool isImage);
+        void RemoveFile(string dbPath);
+        BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null);
+        void CopyFile(string dbPath, string targetPath);
+        void BeginBufferUpdate();
+        void EndBufferUpdate();
+        IDisposable BufferedUpdate();
+        List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode);
+        CompletionStatusSettings GetCompletionStatusSettings();
+        void SetCompletionStatusSettings(CompletionStatusSettings settings);
+        GameScannersSettings GetGameScannersSettings();
+        void SetGameScannersSettings(GameScannersSettings settings);
+        List<string> GetImportedRomFiles(string emulatorDir);
+    }
+
+    public partial class GameDatabase : IGameDatabaseMain, IDisposable
     {
         public const double MaximumRecommendedIconSize = 0.1;
         public const double MaximumRecommendedCoverSize = 1;
@@ -63,11 +117,11 @@ namespace Playnite.Database
             get; private set;
         }
 
+        internal const string filesDirName = "files";
         private const string settingsFileName = "database.json";
         private const string gamesDirName = "games";
         private const string platformsDirName = "platforms";
         private const string emulatorsDirName = "emulators";
-        private const string filesDirName = "files";
         private const string genresDirName = "genres";
         private const string companiesDirName = "companies";
         private const string tagsDirName = "tags";
@@ -121,7 +175,7 @@ namespace Playnite.Database
         public IItemCollection<GameFeature> Features { get; private set; }
         public AppSoftwareCollection SoftwareApps { get; private set; }
         public IItemCollection<GameScannerConfig> GameScanners { get; private set; }
-        public FilterPresetsCollection FilterPresets { get; private set; }
+        public IItemCollection<FilterPreset> FilterPresets { get; private set; }
         public IItemCollection<ImportExclusionItem> ImportExclusions { get; private set; }
         public IItemCollection<CompletionStatus> CompletionStatuses { get; private set; }
 
@@ -227,7 +281,7 @@ namespace Playnite.Database
                 (Games as GamesCollection).InitializeCollection(GamesDirectoryPath);
                 SoftwareApps.InitializeCollection(ToolsDirectoryPath);
                 (GameScanners as GameScannersCollection).InitializeCollection(GameScannersDirectoryPath);
-                FilterPresets.InitializeCollection(FilterPresetsDirectoryPath);
+                (FilterPresets as FilterPresetsCollection).InitializeCollection(FilterPresetsDirectoryPath);
                 (ImportExclusions as ImportExclusionsCollection).InitializeCollection(ImportExclusionsDirectoryPath);
                 (CompletionStatuses as CompletionStatusesCollection).InitializeCollection(CompletionStatusesDirectoryPath);
 
@@ -524,48 +578,49 @@ namespace Playnite.Database
                 compCol.SetSettings(set);
 
                 // Generate default filter presets
-                FilterPresets.IsEventsEnabled = false;
-                FilterPresets.Add(new FilterPreset
+                var filters = FilterPresets as FilterPresetsCollection;
+                filters.IsEventsEnabled = false;
+                filters.Add(new FilterPreset
                 {
                     Name = "All",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.Name,
                     SortingOrderDirection = SortOrderDirection.Ascending,
-                    Settings = new FilterSettings()
+                    Settings = new FilterPresetSettings()
                 });
 
-                FilterPresets.Add(new FilterPreset
+                filters.Add(new FilterPreset
                 {
                     Name = "Recently Played",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.LastActivity,
                     SortingOrderDirection = SortOrderDirection.Descending,
-                    Settings = new FilterSettings { IsInstalled = true }
+                    Settings = new FilterPresetSettings { IsInstalled = true }
                 });
 
-                FilterPresets.Add(new FilterPreset
+                filters.Add(new FilterPreset
                 {
                     Name = "Favorites",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.Name,
                     SortingOrderDirection = SortOrderDirection.Ascending,
-                    Settings = new FilterSettings { Favorite = true }
+                    Settings = new FilterPresetSettings { Favorite = true }
                 });
 
-                FilterPresets.Add(new FilterPreset
+                filters.Add(new FilterPreset
                 {
                     Name = "Most Played",
                     ShowInFullscreeQuickSelection = true,
                     GroupingOrder = GroupableField.None,
                     SortingOrder = SortOrder.Playtime,
                     SortingOrderDirection = SortOrderDirection.Descending,
-                    Settings = new FilterSettings()
+                    Settings = new FilterPresetSettings()
                 });
 
-                FilterPresets.IsEventsEnabled = true;
+                filters.IsEventsEnabled = true;
             }
 
             IsOpen = true;
@@ -1121,112 +1176,127 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, bool forcePlayTimeSync, CancellationToken cancelToken)
+        public List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode)
         {
-            var statusSettings = GetCompletionStatusSettings();
-            bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
+            using (BufferedUpdate())
             {
-                var updated = false;
-                if ((game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus)) &&
-                    game.CompletionStatusId != statusSettings.PlayedStatus)
+                var statusSettings = GetCompletionStatusSettings();
+                bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
                 {
-                    game.CompletionStatusId = statusSettings.PlayedStatus;
-                    updated = true;
-                }
-                else if ((game.Playtime == 0 && game.CompletionStatusId == Guid.Empty) &&
-                    game.CompletionStatusId != statusSettings.DefaultStatus)
-                {
-                    game.CompletionStatusId = statusSettings.DefaultStatus;
-                    updated = true;
-                }
-
-                return updated;
-            }
-
-            if (library.Properties?.HasCustomizedGameImport == true)
-            {
-                var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
-                foreach (var game in importedGames)
-                {
-                    updateCompletionStatus(game, statusSettings);
-                }
-
-                return importedGames;
-            }
-            else
-            {
-                var addedGames = new List<Game>();
-                foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
-                {
-                    if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
+                    var updated = false;
+                    if ((game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus)) &&
+                        game.CompletionStatusId != statusSettings.PlayedStatus)
                     {
-                        logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
-                        continue;
+                        game.CompletionStatusId = statusSettings.PlayedStatus;
+                        updated = true;
+                    }
+                    else if ((game.Playtime == 0 && game.CompletionStatusId == Guid.Empty) &&
+                        game.CompletionStatusId != statusSettings.DefaultStatus)
+                    {
+                        game.CompletionStatusId = statusSettings.DefaultStatus;
+                        updated = true;
                     }
 
-                    var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
-                    if (existingGame == null)
-                    {
-                        logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                        try
-                        {
-                            var importedGame = ImportGame(newGame, library.Id);
-                            addedGames.Add(importedGame);
-                            if (updateCompletionStatus(importedGame, statusSettings))
-                            {
-                                Games.Update(importedGame);
-                            }
-                        }
-                        catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                        {
-                            logger.Error(e, "Failed to import game into database.");
-                        }
-                    }
-                    else
-                    {
-                        var existingGameUpdated = false;
-                        if (existingGame.IsInstalled != newGame.IsInstalled)
-                        {
-                            existingGame.IsInstalled = newGame.IsInstalled;
-                            existingGameUpdated = true;
-                        }
-
-                        if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
-                        {
-                            existingGame.InstallDirectory = newGame.InstallDirectory;
-                            existingGameUpdated = true;
-                        }
-
-                        if ((existingGame.Playtime == 0 && newGame.Playtime > 0) ||
-                           (newGame.Playtime > 0 && forcePlayTimeSync))
-                        {
-                            if (existingGame.Playtime != newGame.Playtime)
-                            {
-                                existingGame.Playtime = newGame.Playtime;
-                                existingGameUpdated = true;
-                            }
-
-                            if (updateCompletionStatus(existingGame, statusSettings))
-                            {
-                                existingGameUpdated = true;
-                            }
-                        }
-
-                        if ((newGame.LastActivity != null && existingGame.LastActivity == null) ||
-                            (newGame.LastActivity > existingGame.LastActivity && forcePlayTimeSync))
-                        {
-                            existingGame.LastActivity = newGame.LastActivity;
-                            existingGameUpdated = true;
-                        }
-
-                        if (existingGameUpdated)
-                        {
-                            Games.Update(existingGame);
-                        }
-                    }
+                    return updated;
                 }
 
-                return addedGames;
+                if (library.Properties?.HasCustomizedGameImport == true)
+                {
+                    var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
+                    foreach (var game in importedGames)
+                    {
+                        updateCompletionStatus(game, statusSettings);
+                    }
+
+                    return importedGames;
+                }
+                else
+                {
+                    var addedGames = new List<Game>();
+                    foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
+                    {
+                        if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
+                        {
+                            logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
+                            continue;
+                        }
+
+                        var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
+                        if (existingGame == null)
+                        {
+                            logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
+                            try
+                            {
+                                if (newGame.Playtime != 0)
+                                {
+                                    var originalPlaytime = newGame.Playtime;
+                                    newGame.Playtime = 0;
+                                    if (playtimeImportMode == PlaytimeImportMode.Always ||
+                                        playtimeImportMode == PlaytimeImportMode.NewImportsOnly)
+                                    {
+                                        newGame.Playtime = originalPlaytime;
+                                    }
+                                }
+
+                                var importedGame = ImportGame(newGame, library.Id);
+                                addedGames.Add(importedGame);
+                                if (updateCompletionStatus(importedGame, statusSettings))
+                                {
+                                    Games.Update(importedGame);
+                                }
+                            }
+                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                            {
+                                logger.Error(e, "Failed to import game into database.");
+                            }
+                        }
+                        else
+                        {
+                            var existingGameUpdated = false;
+                            if (!existingGame.IsCustomGame && !existingGame.OverrideInstallState)
+                            {
+                                if (existingGame.IsInstalled != newGame.IsInstalled)
+                                {
+                                    existingGame.IsInstalled = newGame.IsInstalled;
+                                    existingGameUpdated = true;
+                                }
+
+                                if (string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase) == false)
+                                {
+                                    existingGame.InstallDirectory = newGame.InstallDirectory;
+                                    existingGameUpdated = true;
+                                }
+                            }
+
+                            if (playtimeImportMode == PlaytimeImportMode.Always)
+                            {
+                                if (existingGame.Playtime != newGame.Playtime)
+                                {
+                                    existingGame.Playtime = newGame.Playtime;
+                                    existingGameUpdated = true;
+                                }
+
+                                if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                                {
+                                    existingGame.LastActivity = newGame.LastActivity;
+                                    existingGameUpdated = true;
+                                }
+
+                                if (updateCompletionStatus(existingGame, statusSettings))
+                                {
+                                    existingGameUpdated = true;
+                                }
+                            }
+
+                            if (existingGameUpdated)
+                            {
+                                Games.Update(existingGame);
+                            }
+                        }
+                    }
+
+                    return addedGames;
+                }
             }
         }
 
@@ -1312,7 +1382,7 @@ namespace Playnite.Database
             fileLocks.TryRemove(filePath, out var removed);
         }
 
-        public List<string> GetImportedRomFiles()
+        public List<string> GetImportedRomFiles(string emulatorDir)
         {
             var importedRoms = new List<string>();
             foreach (var game in Games.Where(a => a.Roms.HasItems()))
@@ -1326,7 +1396,7 @@ namespace Playnite.Database
                             continue;
                         }
 
-                        var path = game.ExpandVariables(rom.Path, true).ToLowerInvariant();
+                        var path = game.ExpandVariables(rom.Path, true, emulatorDir).ToLowerInvariant();
                         string absPath = null;
                         try
                         {

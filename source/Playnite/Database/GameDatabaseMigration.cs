@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite.Database
 {
@@ -274,7 +275,7 @@ namespace Playnite.Database
                             GroupingOrder = GroupableField.None,
                             SortingOrder = SortOrder.Name,
                             SortingOrderDirection = SortOrderDirection.Ascending,
-                            Settings = new FilterSettings()
+                            Settings = new FilterPresetSettings()
                         },
                         new FilterPreset
                         {
@@ -283,7 +284,7 @@ namespace Playnite.Database
                             GroupingOrder = GroupableField.None,
                             SortingOrder = SortOrder.LastActivity,
                             SortingOrderDirection = SortOrderDirection.Descending,
-                            Settings = new FilterSettings { IsInstalled = true }
+                            Settings = new FilterPresetSettings { IsInstalled = true }
                         },
                         new FilterPreset
                         {
@@ -292,7 +293,7 @@ namespace Playnite.Database
                             GroupingOrder = GroupableField.None,
                             SortingOrder = SortOrder.Name,
                             SortingOrderDirection = SortOrderDirection.Ascending,
-                            Settings = new FilterSettings { Favorite = true }
+                            Settings = new FilterPresetSettings { Favorite = true }
                         },
                         new FilterPreset
                         {
@@ -301,7 +302,7 @@ namespace Playnite.Database
                             GroupingOrder = GroupableField.None,
                             SortingOrder = SortOrder.Playtime,
                             SortingOrderDirection = SortOrderDirection.Descending,
-                            Settings = new FilterSettings()
+                            Settings = new FilterPresetSettings()
                         }
                     });
                 }

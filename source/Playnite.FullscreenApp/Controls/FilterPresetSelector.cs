@@ -44,7 +44,12 @@ namespace Playnite.FullscreenApp.Controls
 
         private void MainModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (ItemsFilterPresets != null && e.PropertyName == nameof(MainViewModelBase.SortedFilterFullscreenPresets))
+            if (ItemsFilterPresets == null)
+            {
+                return;
+            }
+
+            if (e.PropertyName == nameof(MainViewModelBase.SortedFilterFullscreenPresets))
             {
                 ItemsFilterPresets.Items.Clear();
                 foreach (var preset in mainModel.SortedFilterFullscreenPresets)
@@ -58,13 +63,25 @@ namespace Playnite.FullscreenApp.Controls
                     };
 
                     BindingTools.SetBinding(item,
-                       CheckBox.IsCheckedProperty,
-                       mainModel,
-                       nameof(mainModel.ActiveFilterPreset),
-                       converter: new Converters.ObjectEqualityToBoolConverter(),
-                       converterParameter: preset,
-                       mode: BindingMode.OneWay);
+                        CheckBox.IsCheckedProperty,
+                        mainModel,
+                        nameof(mainModel.ActiveFilterPreset),
+                        converter: new Converters.ObjectEqualityToBoolConverter(),
+                        converterParameter: preset,
+                        mode: BindingMode.OneWay);
                     ItemsFilterPresets.Items.Add(item);
+                }
+            }
+
+            if (e.PropertyName == nameof(MainViewModelBase.ActiveFilterPreset) && mainModel.ActiveFilterPreset != null)
+            {
+                foreach (CheckBoxEx item in ItemsFilterPresets.Items)
+                {
+                    if (item.DataContext == mainModel.ActiveFilterPreset)
+                    {
+                        ItemsFilterPresets.ScrollIntoView(item);
+                        break;
+                    }
                 }
             }
         }

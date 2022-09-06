@@ -21,5 +21,13 @@
         <pctrls:CheckBoxEx x:Name="ToggleSwapXA"
                            Content="{DynamicResource LOCSettingsSwapMainViewXAButtons}"
                            Tag="{DynamicResource LOCSettingsSwapMainViewXAButtonsDescriptions}"/>
+        <pctrls:CheckBoxEx x:Name="ToggleSwapConfirmCancel"
+                           Content="{DynamicResource LOCSettingsSwapConfirmCancelButtons}"
+                           Tag="{DynamicResource LOCSettingsSwapConfirmCancelButtonsDescriptions}"/>
+        <pctrls:CheckBoxEx x:Name="TogglePrimaryControllerOnly"
+                           Content="{DynamicResource LOCSettingsPrimaryControllerOnly}"
+                           Tag="{DynamicResource LOCSettingsPrimaryControllerOnlyDescription}"/>
+        <pctrls:CheckBoxEx x:Name="ToggleGuideFocus"
+                           Content="{DynamicResource LOCSettingsRefocusOnGuidButton}"/>
     </StackPanel>
 </UserControl>

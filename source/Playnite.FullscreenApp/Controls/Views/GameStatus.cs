@@ -79,8 +79,7 @@ namespace Playnite.FullscreenApp.Controls.Views
             {
                 BindingTools.SetBinding(TextStatus,
                      TextBlock.TextProperty,
-                     mainModel,
-                     nameof(mainModel.GameStatusText));
+                     nameof(GameStatusViewModel.GameStatusText));
             }
 
             ImageCover = Template.FindName("PART_ImageCover", this) as Image;
@@ -89,12 +88,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                 var sourceBinding = new PriorityBinding();
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.CoverImageObject)),
+                    Path = new PropertyPath($"{nameof(GameStatusViewModel.Game)}.{nameof(GamesCollectionViewEntry.CoverImageObject)}"),
                     Converter = new NullToDependencyPropertyUnsetConverter()
                 });
                 sourceBinding.Bindings.Add(new Binding()
                 {
-                    Path = new PropertyPath(nameof(GamesCollectionViewEntry.DefaultCoverImageObject)),
+                    Path = new PropertyPath($"{nameof(GameStatusViewModel.Game)}.{nameof(GamesCollectionViewEntry.DefaultCoverImageObject)}"),
                     Converter = new NullToDependencyPropertyUnsetConverter()
                 });
 

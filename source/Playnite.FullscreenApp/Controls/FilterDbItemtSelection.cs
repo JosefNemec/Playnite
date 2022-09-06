@@ -87,16 +87,16 @@ namespace Playnite.FullscreenApp.Controls
             if (!IgnoreChanges)
             {
                 IgnoreChanges = true;
-                FilterProperties = new FilterItemProperites { Ids = ItemsList.GetSelectedIds() };
+                FilterProperties = new IdItemFilterItemProperties { Ids = ItemsList.GetSelectedIds() };
                 IgnoreChanges = false;
             }
         }
 
-        public FilterItemProperites FilterProperties
+        public IdItemFilterItemProperties FilterProperties
         {
             get
             {
-                return (FilterItemProperites)GetValue(FilterPropertiesProperty);
+                return (IdItemFilterItemProperties)GetValue(FilterPropertiesProperty);
             }
 
             set
@@ -107,7 +107,7 @@ namespace Playnite.FullscreenApp.Controls
 
         public static readonly DependencyProperty FilterPropertiesProperty = DependencyProperty.Register(
             nameof(FilterProperties),
-            typeof(FilterItemProperites),
+            typeof(IdItemFilterItemProperties),
             typeof(FilterDbItemtSelection),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, FilterPropertiesPropertyChangedCallback));
 
@@ -173,7 +173,12 @@ namespace Playnite.FullscreenApp.Controls
                 {
                     MenuHost.InputBindings.Add(new KeyBinding(closeCommand, new KeyGesture(Key.Back)));
                     MenuHost.InputBindings.Add(new KeyBinding(closeCommand, new KeyGesture(Key.Escape)));
-                    MenuHost.InputBindings.Add(new XInputBinding(closeCommand, XInputButton.B));
+                    var backInput = new XInputBinding { Command = closeCommand };
+                    BindingTools.SetBinding(backInput,
+                        XInputBinding.ButtonProperty,
+                        null,
+                        typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+                    MenuHost.InputBindings.Add(backInput);
                 }
 
                 ButtonBack = Template.FindName("PART_ButtonBack", this) as ButtonBase;

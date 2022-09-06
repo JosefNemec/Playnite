@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Playnite.Metadata.Providers;
 using Playnite.Windows;
 using Playnite.SDK.Plugins;
 
@@ -17,17 +16,6 @@ namespace Playnite.DesktopApp.ViewModels
     public class ItemSelectionWithSearchViewModel : ObservableObject
     {
         public string WindowTitle { get; set; }
-
-        private bool isLoading;
-        public bool IsLoading
-        {
-            get => isLoading;
-            set
-            {
-                isLoading = value;
-                OnPropertyChanged();
-            }
-        }
 
         private string searchTerm;
         public string SearchTerm
@@ -98,6 +86,11 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand WindowOpenedCommand
+        {
+            get => new RelayCommand(() => Search());
+        }
+
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly IWindowFactory window;
         private readonly Func<string, List<GenericItemOption>> searchFunction;
@@ -123,7 +116,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         public bool? OpenView()
         {
-            Search();
             return window.CreateAndOpenDialog(this);
         }
 
@@ -137,20 +129,11 @@ namespace Playnite.DesktopApp.ViewModels
             CloseView(true);
         }
 
-        public async void Search()
+        public void Search()
         {
-            IsLoading = true;
-            await Task.Run(() =>
-            {
-                try
-                {
-                    SearchResults = SearchForResults(SearchTerm);
-                }
-                finally
-                {
-                    IsLoading = false;
-                }
-            });
+            Dialogs.ActivateGlobalProgress(
+                _ => SearchResults = SearchForResults(SearchTerm),
+                new GlobalProgressOptions(LOC.LoadingLabel, false));
         }
 
         private ObservableCollection<GenericItemOption> SearchForResults(string keyword)

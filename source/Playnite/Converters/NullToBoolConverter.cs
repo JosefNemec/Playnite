@@ -11,6 +11,8 @@ namespace Playnite.Converters
 {
     public class NullToBoolConverter : MarkupExtension, IValueConverter
     {
+        public static NullToBoolConverter Instance { get; } = new NullToBoolConverter();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)

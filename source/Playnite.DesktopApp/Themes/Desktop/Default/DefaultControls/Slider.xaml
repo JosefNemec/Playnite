@@ -35,6 +35,9 @@
                         </Grid.RowDefinitions>
                         <TickBar x:Name="TopTick" Visibility="Collapsed" Height="4" Placement="Top"
                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  Fill="{DynamicResource GlyphBrush}" />
+                        <Border Grid.Row="1" Margin="1" Height="4" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                Background="{DynamicResource HighlightGlyphBrush}" 
+                                Width="{Binding ActualWidth, ElementName=ButtonDecrease}" />
                         <Border x:Name="Border" Grid.Row="1" Margin="0" Height="6" CornerRadius="{DynamicResource ControlCornerRadius}"
                                 Background="{TemplateBinding Background}" BorderBrush="{DynamicResource NormalBorderBrush}"
                                 BorderThickness="{DynamicResource ControlBorderThickness}" />
@@ -43,11 +46,13 @@
                                 <Thumb Width="10" />
                             </Track.Thumb>
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Style="{StaticResource SliderTrackButton}"
+                                <RepeatButton x:Name="ButtonDecrease"
+                                              Style="{StaticResource SliderTrackButton}"
                                               Command="Slider.DecreaseLarge" />
                             </Track.DecreaseRepeatButton>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Style="{StaticResource SliderTrackButton}"
+                                <RepeatButton x:Name="ButtonIncrease"
+                                              Style="{StaticResource SliderTrackButton}"
                                               Command="Slider.IncreaseLarge" />
                             </Track.IncreaseRepeatButton>
                         </Track>

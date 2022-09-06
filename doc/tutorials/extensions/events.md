@@ -21,10 +21,19 @@ Available Events
 | OnApplicationStopped | Playnite is shutting down. | [OnApplicationStoppedEventArgs](xref:Playnite.SDK.Events.OnApplicationStoppedEventArgs) |
 | OnLibraryUpdated | Library was updated. | [OnLibraryUpdatedEventArgs](xref:Playnite.SDK.Events.OnLibraryUpdatedEventArgs) |
 
+Cancelling game startup
+---------------------
+
+If you want to cancel game startup from `OnGameStarting` event, set `CancelStartup` property of [OnGameStartingEventArgs](xref:Playnite.SDK.Events.OnGameStartingEventArgs) to `true`.
+
 Example - Handling start/stop events
 ---------------------
 
 ### Game Starting
+
+Starting event is executed before a game is actually started. Game startup procedure can be cancelled by setting `CancelStartup` property of `OnGameStartingEventArgs` object (passed to an event method) to `true`.
+
+### Game Started
 
 Following example writes name of currently playing game into a text file.
 

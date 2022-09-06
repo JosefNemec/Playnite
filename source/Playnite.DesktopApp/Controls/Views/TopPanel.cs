@@ -47,6 +47,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TopPanelWrapperItem ButtonSortSettings;
         private TopPanelWrapperItem ButtonFilterPresets;
         private TopPanelWrapperItem ButtonExplorerSwitch;
+        private TopPanelWrapperItem ButtonSearch;
 
         private TopPanelWrapperItem ButtonSwitchDetailsView;
         private TopPanelWrapperItem ButtonSwitchGridView;
@@ -110,6 +111,7 @@ namespace Playnite.DesktopApp.Controls.Views
             ButtonSortSettings.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelSortingItem;
             ButtonFilterPresets.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelFilterPresetsItem;
             ButtonExplorerSwitch.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelExplorerSwitch;
+            ButtonSearch.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelSearchButton;
 
             ButtonSwitchDetailsView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelDetailsViewSwitch;
             ButtonSwitchGridView.PanelItem.Visible = mainModel.AppSettings.ShowTopPanelGridViewSwitch;
@@ -123,7 +125,8 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private TopPanelItem AssignPanelButton(string contentTemplate, ContextMenu menu, string tooltip, out TopPanelWrapperItem panelItem)
         {
-            panelItem = new TopPanelWrapperItem(new SDK.Plugins.TopPanelItem { Title = ResourceProvider.GetString(tooltip) }, mainModel);
+            tooltip = tooltip.StartsWith("LOC") ? ResourceProvider.GetString(tooltip) : tooltip;
+            panelItem = new TopPanelWrapperItem(new SDK.Plugins.TopPanelItem { Title = tooltip }, mainModel);
             var item = new TopPanelItem() { DataContext = panelItem };
             item.SetResourceReference(TopPanelItem.ContentTemplateProperty, contentTemplate);
             LeftClickContextMenuBehavior.SetEnabled(item, true);
@@ -132,8 +135,9 @@ namespace Playnite.DesktopApp.Controls.Views
             return item;
         }
 
-        private TopPanelItem AssignPanelButton(string contentTemplate, RelayCommand<object> command, string tooltip, out TopPanelWrapperItem panelItem)
+        private TopPanelItem AssignPanelButton(string contentTemplate, RelayCommandBase command, string tooltip, out TopPanelWrapperItem panelItem)
         {
+            tooltip = tooltip.StartsWith("LOC") ? ResourceProvider.GetString(tooltip) : tooltip;
             panelItem = new TopPanelWrapperItem(new SDK.Plugins.TopPanelItem { Title = tooltip }, mainModel)
             {
                 Command = command
@@ -157,6 +161,7 @@ namespace Playnite.DesktopApp.Controls.Views
             PanelMainItems = Template.FindName("PART_PanelMainItems", this) as Panel;
             if (PanelMainItems != null)
             {
+                PanelMainItems.Children.Add(AssignPanelButton("TopPanelSearchButtonTemplate", mainModel.OpenGlobalSearchCommand, LOC.OpenSearch, out ButtonSearch));
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelGeneralViewSettingsTemplate", new ViewSettingsMenu(mainModel.AppSettings), LOC.SettingsTopPanelGeneralViewItem, out ButtonViewSettings));
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelFilterPresetsSelectionTemplate", new FilterPresetsMenu(mainModel), LOC.SettingsTopPanelFilterPresetsItem, out ButtonFilterPresets));
                 PanelMainItems.Children.Add(AssignPanelButton("TopPanelGroupSettingsTemplate", new GroupSettingsMenu(mainModel.AppSettings), LOC.SettingsTopPanelGroupingItem, out ButtonGroupSettings));
@@ -166,31 +171,31 @@ namespace Playnite.DesktopApp.Controls.Views
                 RightViewSeparator.Width = mainModel.AppSettings.TopPanelSectionSeparatorWidth;
                 PanelMainItems.Children.Add(LeftViewSeparator);
 
-                var detailsButton = AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, ViewType.Details.GetDescription(), out ButtonSwitchDetailsView);
+                var detailsButton = AssignPanelButton("TopPanelSwitchDetailsViewTemplate", mainModel.SwitchDetailsViewCommand, DesktopView.Details.GetDescription(), out ButtonSwitchDetailsView);
                 BindingTools.SetBinding(detailsButton,
                     TopPanelItem.IsToggledProperty,
                     mainModel.AppSettings.ViewSettings,
                     nameof(ViewSettings.GamesViewType),
                     converter: new EnumToBooleanConverter(),
-                    converterParameter: ViewType.Details);
+                    converterParameter: DesktopView.Details);
                 PanelMainItems.Children.Add(detailsButton);
 
-                var gridButton = AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, ViewType.Grid.GetDescription(), out ButtonSwitchGridView);
+                var gridButton = AssignPanelButton("TopPanelSwitchGridViewTemplate", mainModel.SwitchGridViewCommand, DesktopView.Grid.GetDescription(), out ButtonSwitchGridView);
                 BindingTools.SetBinding(gridButton,
                     TopPanelItem.IsToggledProperty,
                     mainModel.AppSettings.ViewSettings,
                     nameof(ViewSettings.GamesViewType),
                     converter: new EnumToBooleanConverter(),
-                    converterParameter: ViewType.Grid);
+                    converterParameter: DesktopView.Grid);
                 PanelMainItems.Children.Add(gridButton);
 
-                var listButton = AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, ViewType.List.GetDescription(), out ButtonSwitchListView);
+                var listButton = AssignPanelButton("TopPanelSwitchListViewTemplate", mainModel.SwitchListViewCommand, DesktopView.List.GetDescription(), out ButtonSwitchListView);
                 BindingTools.SetBinding(listButton,
                     TopPanelItem.IsToggledProperty,
                     mainModel.AppSettings.ViewSettings,
                     nameof(ViewSettings.GamesViewType),
                     converter: new EnumToBooleanConverter(),
-                    converterParameter: ViewType.List);
+                    converterParameter: DesktopView.List);
                 PanelMainItems.Children.Add(listButton);
                 PanelMainItems.Children.Add(RightViewSeparator);
 
@@ -239,6 +244,11 @@ namespace Playnite.DesktopApp.Controls.Views
                     nameof(FilterSettings.Name),
                     BindingMode.TwoWay,
                     delay: 100);
+                BindingTools.SetBinding(TextMainSearch,
+                    SearchBox.VisibilityProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.ShowTopPanelSearchBox),
+                    converter: new BooleanToVisibilityConverter());
                 BindingTools.SetBinding(TextMainSearch,
                     SearchBox.IsFocusedProperty,
                     mainModel,

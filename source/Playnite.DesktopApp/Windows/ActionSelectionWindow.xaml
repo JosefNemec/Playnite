@@ -8,11 +8,12 @@
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
         xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCSelectActionTitle}"
         WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
-        d:DesignHeight="200" d:DesignWidth="350" MinWidth="300"
+        d:DesignHeight="200" d:DesignWidth="350" MinWidth="300" MaxHeight="700"
         ShowMinimizeButton="False" ShowMaximizeButton="False"
         AutomationProperties.AutomationId="WindowActionSelection"
         Name="WindowActionSelectionWindow">
@@ -20,13 +21,15 @@
     <controls:WindowBase.InputBindings>
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
     </controls:WindowBase.InputBindings>
-    
-    <ItemsControl ItemsSource="{Binding Actions}" Margin="20,15,25,25">
+
+    <ItemsControl ItemsSource="{Binding Actions}" Margin="20,15,25,25"
+                  Focusable="False">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <Button Background="Transparent" HorizontalContentAlignment="Left" BorderThickness="0"
                         Command="{Binding DataContext.PlaySpecificCommand, ElementName=WindowActionSelectionWindow}"
-                        CommandParameter="{Binding Item}">
+                        CommandParameter="{Binding Item}"
+                        pbeh:FocusBahaviors.FocusBinding="{Binding Selected, Mode=OneWay}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
                             <TextBlock Text="&#xec74;" FontFamily="{StaticResource FontIcoFont}" VerticalAlignment="Center" />
@@ -36,5 +39,13 @@
                 </Button>                
             </DataTemplate>
         </ItemsControl.ItemTemplate>
+        <ItemsControl.Template>
+            <ControlTemplate>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                              Focusable="False">
+                    <ItemsPresenter />
+                </ScrollViewer>
+            </ControlTemplate>
+        </ItemsControl.Template>
     </ItemsControl>
 </controls:WindowBase>

@@ -10,7 +10,7 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents game installation status.
     /// </summary>
-    public enum InstallationStatus
+    public enum InstallationStatus : int
     {
         /// <summary>
         /// Game is installed.

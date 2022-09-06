@@ -60,8 +60,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private string searchWidth;
-        public string SearchWidth
+        private int? searchWidth;
+        public int? SearchWidth
         {
             get => searchWidth;
             set
@@ -71,8 +71,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private string searchHeight;
-        public string SearchHeight
+        private int? searchHeight;
+        public int? SearchHeight
         {
             get => searchHeight;
             set
@@ -227,7 +227,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             AvailableImages = new List<GoogleImage>();
             var searchTerm = SearchTerm.Replace('-', ' '); // hyphen would exclude results #2595
-            if (!string.IsNullOrEmpty(SearchWidth) && !string.IsNullOrEmpty(SearchHeight))
+            if (SearchWidth != null && SearchHeight != null)
             {
                 searchTerm = $"{searchTerm} imagesize:{SearchWidth}x{SearchHeight}";
             }
@@ -263,15 +263,15 @@ namespace Playnite.DesktopApp.ViewModels
             var regex = Regex.Match(resolution, @"(\d+)x(\d+)");
             if (regex.Success)
             {
-                SearchWidth = regex.Groups[1].Value;
-                SearchHeight = regex.Groups[2].Value;
+                SearchWidth = int.Parse(regex.Groups[1].Value);
+                SearchHeight = int.Parse(regex.Groups[2].Value);
             }
         }
 
         public void ClearSearchResolution()
         {
-            SearchWidth = string.Empty;
-            SearchHeight = string.Empty;
+            SearchWidth = null;
+            SearchHeight = null;
         }
 
         public void LoadMore()

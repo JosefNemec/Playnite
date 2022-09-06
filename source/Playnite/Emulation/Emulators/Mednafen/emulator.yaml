@@ -17,13 +17,13 @@ Profiles:
   - Name: NEC TurboGrafx 16
     StartupArguments: '"{ImagePath}"'
     Platforms: [nec_turbografx_16]
-    ImageExtensions: [pce, zip]
+    ImageExtensions: [pce, zip, m3u]
     StartupExecutable: ^mednafen\.exe$
 
   - Name: NEC TurboGrafx-CD
     StartupArguments: '"{ImagePath}"'
     Platforms: [nec_turbografx_cd]
-    ImageExtensions: [cue, ccd, chd]
+    ImageExtensions: [cue, ccd, chd, m3u]
     StartupExecutable: ^mednafen\.exe$
 
   - Name: NEC PC-FX
@@ -89,7 +89,7 @@ Profiles:
   - Name: Sega Saturn
     StartupArguments: '"{ImagePath}"'
     Platforms: [sega_saturn]
-    ImageExtensions: [chd, iso, bin, cue]
+    ImageExtensions: [chd, iso, bin, cue, m3u]
     StartupExecutable: ^mednafen\.exe$
 
   - Name: SNK Neo Geo Pocket

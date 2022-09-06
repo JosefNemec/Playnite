@@ -94,5 +94,15 @@ namespace Playnite
         {
             DialogsHandler.ShowSelectableString(messageBoxText, caption, defaultInput);
         }
+
+        public static GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressOptions)
+        {
+            return DialogsHandler.ActivateGlobalProgress(progresAction, progressOptions);
+        }
+
+        public static GlobalProgressResult ActivateGlobalProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressOptions)
+        {
+            return DialogsHandler.ActivateGlobalProgress(progresAction, progressOptions);
+        }
     }
 }

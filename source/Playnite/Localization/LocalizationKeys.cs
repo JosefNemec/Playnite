@@ -250,7 +250,7 @@ namespace Playnite
         /// </summary>
         public const string GameUninstallError = "LOCGameUninstallError";
         /// <summary>
-        /// Play action is not configured.
+        /// No valid game startup actions found. When using emulator actions, make sure platform definitions match between the game and emulator configuration.
         /// </summary>
         public const string ErrorNoPlayAction = "LOCErrorNoPlayAction";
         /// <summary>
@@ -273,6 +273,10 @@ namespace Playnite
         /// Game's script execution failed.
         /// </summary>
         public const string ErrorGameScriptAction = "LOCErrorGameScriptAction";
+        /// <summary>
+        /// Application script execution failed.
+        /// </summary>
+        public const string ErrorApplicationScript = "LOCErrorApplicationScript";
         /// <summary>
         /// Global script execution failed.
         /// </summary>
@@ -449,6 +453,10 @@ namespace Playnite
         /// Cancel
         /// </summary>
         public const string CancelLabel = "LOCCancelLabel";
+        /// <summary>
+        /// Confirm
+        /// </summary>
+        public const string ConfirmLabel = "LOCConfirmLabel";
         /// <summary>
         /// Yes
         /// </summary>
@@ -1026,6 +1034,26 @@ namespace Playnite
         /// </summary>
         public const string SettingsMetadataLabel = "LOCSettingsMetadataLabel";
         /// <summary>
+        /// Updating
+        /// </summary>
+        public const string SettingsUpdating = "LOCSettingsUpdating";
+        /// <summary>
+        /// Search
+        /// </summary>
+        public const string SettingsSearch = "LOCSettingsSearch";
+        /// <summary>
+        /// Backup
+        /// </summary>
+        public const string SettingsBackup = "LOCSettingsBackup";
+        /// <summary>
+        /// Backup Library Data
+        /// </summary>
+        public const string MenuBackupData = "LOCMenuBackupData";
+        /// <summary>
+        /// Restore Data Backup
+        /// </summary>
+        public const string MenuRestoreBackup = "LOCMenuRestoreBackup";
+        /// <summary>
         /// Import changes in library automatically
         /// </summary>
         public const string SettingsImportLabel = "LOCSettingsImportLabel";
@@ -1038,14 +1066,6 @@ namespace Playnite
         /// </summary>
         public const string SettingsInvalidAccountName = "LOCSettingsInvalidAccountName";
         /// <summary>
-        /// Update library on startup
-        /// </summary>
-        public const string SettingsUpdateLibStartup = "LOCSettingsUpdateLibStartup";
-        /// <summary>
-        /// Scan emulated folders
-        /// </summary>
-        public const string SettingsUpdateEmulatedLibStartup = "LOCSettingsUpdateEmulatedLibStartup";
-        /// <summary>
         /// Download metadata after importing games
         /// </summary>
         public const string SettingsDownloadMetadataOnImport = "LOCSettingsDownloadMetadataOnImport";
@@ -1057,6 +1077,10 @@ namespace Playnite
         /// Launch Playnite when you start your computer
         /// </summary>
         public const string SettingsStartOnBoot = "LOCSettingsStartOnBoot";
+        /// <summary>
+        /// Start closed to tray
+        /// </summary>
+        public const string SettingsStartOnBootClosedToTray = "LOCSettingsStartOnBootClosedToTray";
         /// <summary>
         /// Failed to register Playnite to launch when computer starts.
         /// </summary>
@@ -1262,13 +1286,25 @@ namespace Playnite
         /// </summary>
         public const string BackgroundImageScreenOptionTooltip = "LOCBackgroundImageScreenOptionTooltip";
         /// <summary>
-        /// Prioritize play time for supported libraries
+        /// Import playtime of games in library:
         /// </summary>
-        public const string SettingsForceDownloadPlaynite = "LOCSettingsForceDownloadPlaynite";
+        public const string SettingsPlaytimeImportMode = "LOCSettingsPlaytimeImportMode";
         /// <summary>
-        /// Always download recorded play time from remote library during library sync, ignoring time recorded by Playnite.
+        /// Configures when should Playnite import the playtime reported by library plugins for games in the Playnite database. Support by the library plugins in charge of handling the game(s) is needed to be able to use this feature.
         /// </summary>
-        public const string SettingsForceDownloadPlayniteTooltip = "LOCSettingsForceDownloadPlayniteTooltip";
+        public const string SettingsPlaytimeImportModeTooltip = "LOCSettingsPlaytimeImportModeTooltip";
+        /// <summary>
+        /// Always
+        /// </summary>
+        public const string SettingsPlaytimeImportModeAlways = "LOCSettingsPlaytimeImportModeAlways";
+        /// <summary>
+        /// Only for newly imported games
+        /// </summary>
+        public const string SettingsPlaytimeImportModeNewImportsOnly = "LOCSettingsPlaytimeImportModeNewImportsOnly";
+        /// <summary>
+        /// Never
+        /// </summary>
+        public const string SettingsPlaytimeImportModeNever = "LOCSettingsPlaytimeImportModeNever";
         /// <summary>
         /// Enable controller support in Desktop Mode
         /// </summary>
@@ -1746,6 +1782,10 @@ namespace Playnite
         /// </summary>
         public const string GameIconTitle = "LOCGameIconTitle";
         /// <summary>
+        /// Library Icon
+        /// </summary>
+        public const string LibraryIconTitle = "LOCLibraryIconTitle";
+        /// <summary>
         /// Cover Image
         /// </summary>
         public const string GameCoverImageTitle = "LOCGameCoverImageTitle";
@@ -2006,7 +2046,7 @@ namespace Playnite
         /// </summary>
         public const string AppStartupError = "LOCAppStartupError";
         /// <summary>
-        /// Failed to initialize the WebView component. Playnite cannot continue with the startup process.
+        /// Failed to initialize web view component. Playnite cannot continue with startup process.
         /// </summary>
         public const string CefSharpInitError = "LOCCefSharpInitError";
         /// <summary>
@@ -2214,6 +2254,14 @@ namespace Playnite
         /// </summary>
         public const string CommunityScore = "LOCCommunityScore";
         /// <summary>
+        /// Game scripts
+        /// </summary>
+        public const string GameScripts = "LOCGameScripts";
+        /// <summary>
+        /// Application scripts
+        /// </summary>
+        public const string ApplicationScripts = "LOCApplicationScripts";
+        /// <summary>
         /// Scripts
         /// </summary>
         public const string Scripts = "LOCScripts";
@@ -2237,6 +2285,10 @@ namespace Playnite
         /// Reload Scripts
         /// </summary>
         public const string ReloadScripts = "LOCReloadScripts";
+        /// <summary>
+        /// Interactive SDK PowerShell
+        /// </summary>
+        public const string StartInteractivePowerShell = "LOCStartInteractivePowerShell";
         /// <summary>
         /// All scripts reloaded successfully.
         /// </summary>
@@ -2505,6 +2557,14 @@ namespace Playnite
         /// Execute after a game is started
         /// </summary>
         public const string GameStartedScriptDescription = "LOCGameStartedScriptDescription";
+        /// <summary>
+        /// Execute on application start
+        /// </summary>
+        public const string AppScriptStartupDescription = "LOCAppScriptStartupDescription";
+        /// <summary>
+        /// Execute on application shutdown
+        /// </summary>
+        public const string AppScriptShutdownDescription = "LOCAppScriptShutdownDescription";
         /// <summary>
         /// Game starting script
         /// </summary>
@@ -3238,6 +3298,10 @@ namespace Playnite
         /// </summary>
         public const string ActionTrackingModeDirectory = "LOCActionTrackingModeDirectory";
         /// <summary>
+        /// Original process
+        /// </summary>
+        public const string ActionTrackingOriginalProcess = "LOCActionTrackingOriginalProcess";
+        /// <summary>
         /// Log trace messages
         /// </summary>
         public const string DevelTraceLogEnable = "LOCDevelTraceLogEnable";
@@ -3262,9 +3326,17 @@ namespace Playnite
         /// </summary>
         public const string GridViewSpacingModeStartAndEndOnly = "LOCGridViewSpacingModeStartAndEndOnly";
         /// <summary>
-        /// Scroll amount modifier
+        /// Scrolling sensitivity
         /// </summary>
-        public const string GridViewScrollAmountModifier = "LOCGridViewScrollAmountModifier";
+        public const string ScrollingSensitivity = "LOCScrollingSensitivity";
+        /// <summary>
+        /// Smooth scrolling
+        /// </summary>
+        public const string SmoothScrolling = "LOCSmoothScrolling";
+        /// <summary>
+        /// Animation speed
+        /// </summary>
+        public const string SmoothScrollingSpeed = "LOCSmoothScrollingSpeed";
         /// <summary>
         /// Remove item?
         /// </summary>
@@ -3382,6 +3454,26 @@ namespace Playnite
         /// </summary>
         public const string SettingsSwapMainViewXAButtonsDescriptions = "LOCSettingsSwapMainViewXAButtonsDescriptions";
         /// <summary>
+        /// Swap confirmation/cancelation button binding
+        /// </summary>
+        public const string SettingsSwapConfirmCancelButtons = "LOCSettingsSwapConfirmCancelButtons";
+        /// <summary>
+        /// Inverts A/B button bindings for confirmation and cancellation.
+        /// </summary>
+        public const string SettingsSwapConfirmCancelButtonsDescriptions = "LOCSettingsSwapConfirmCancelButtonsDescriptions";
+        /// <summary>
+        /// Primary controller only
+        /// </summary>
+        public const string SettingsPrimaryControllerOnly = "LOCSettingsPrimaryControllerOnly";
+        /// <summary>
+        /// Only accept inputs from primary controller when enabled.
+        /// </summary>
+        public const string SettingsPrimaryControllerOnlyDescription = "LOCSettingsPrimaryControllerOnlyDescription";
+        /// <summary>
+        /// Guide button focuses Playnite
+        /// </summary>
+        public const string SettingsRefocusOnGuidButton = "LOCSettingsRefocusOnGuidButton";
+        /// <summary>
         /// Interface volume
         /// </summary>
         public const string SettingsInterfaceVolume = "LOCSettingsInterfaceVolume";
@@ -3442,6 +3534,10 @@ namespace Playnite
         /// </summary>
         public const string TextInputCapitalize = "LOCTextInputCapitalize";
         /// <summary>
+        /// Space
+        /// </summary>
+        public const string TextInputSpace = "LOCTextInputSpace";
+        /// <summary>
         /// Image rendering scaler
         /// </summary>
         public const string SettingsImageScalerMode = "LOCSettingsImageScalerMode";
@@ -3481,6 +3577,10 @@ namespace Playnite
         /// Choose on startup
         /// </summary>
         public const string GameActionSelectOnStart = "LOCGameActionSelectOnStart";
+        /// <summary>
+        /// Choose on startup
+        /// </summary>
+        public const string EmulatorSelectOnStart = "LOCEmulatorSelectOnStart";
         /// <summary>
         /// Built-in profiles
         /// </summary>
@@ -3610,13 +3710,29 @@ namespace Playnite
         /// </summary>
         public const string EmuAutoScanConfigurations = "LOCEmuAutoScanConfigurations";
         /// <summary>
-        /// Save as auto-scan confguration
+        /// Save as auto-scan configuration
         /// </summary>
         public const string EmuSaveScanConfig = "LOCEmuSaveScanConfig";
         /// <summary>
         /// Saves configuration for later use during library update. Saved configurations can be managed via "Configure Emulators" menu.
         /// </summary>
         public const string EmuSaveScanConfigTooltip = "LOCEmuSaveScanConfigTooltip";
+        /// <summary>
+        /// Import using relative paths
+        /// </summary>
+        public const string EmuImportWithRelativePaths = "LOCEmuImportWithRelativePaths";
+        /// <summary>
+        /// If possible import game files using paths relative to Playnite's installation folder or emulator's installation folder.
+        /// </summary>
+        public const string EmuImportWithRelativePathsTooltip = "LOCEmuImportWithRelativePathsTooltip";
+        /// <summary>
+        /// Scan subfolders
+        /// </summary>
+        public const string EmuImportScanSubfolders = "LOCEmuImportScanSubfolders";
+        /// <summary>
+        /// Scan inside archives
+        /// </summary>
+        public const string EmuImportScanInsideArchives = "LOCEmuImportScanInsideArchives";
         /// <summary>
         /// Add scanner
         /// </summary>
@@ -3650,6 +3766,34 @@ namespace Playnite
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
         /// <summary>
+        /// Automatically fill sorting name for batch-added games
+        /// </summary>
+        public const string SortingNameAutofill = "LOCSortingNameAutofill";
+        /// <summary>
+        /// When you add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name, for example "The Witcher 3" will get a Sorting Name of "Witcher 03"
+        /// </summary>
+        public const string SortingNameAutofillTooltip = "LOCSortingNameAutofillTooltip";
+        /// <summary>
+        /// These words will be removed from the start of the automatically filled Sorting Name value:
+        /// </summary>
+        public const string SortingNameRemovedArticles = "LOCSortingNameRemovedArticles";
+        /// <summary>
+        /// Use this for ignoring words at the start of a string for sorting purposes. The default is "The", "An", and "A".
+        /// </summary>
+        public const string SortingNameRemovedArticlesTooltip = "LOCSortingNameRemovedArticlesTooltip";
+        /// <summary>
+        /// Fill Sorting Name for games without one
+        /// </summary>
+        public const string SortingNameAutofillButton = "LOCSortingNameAutofillButton";
+        /// <summary>
+        /// Sorting
+        /// </summary>
+        public const string SettingsSortingLabel = "LOCSettingsSortingLabel";
+        /// <summary>
+        /// Filling Sorting Name values…
+        /// </summary>
+        public const string SortingNameAutofillProgress = "LOCSortingNameAutofillProgress";
+        /// <summary>
         /// Nahimic service has been detected to be running on your system. This service is known to cause rendering issues to Playnite (and other apps).
         /// </summary>
         public const string NahimicServiceWarning = "LOCNahimicServiceWarning";
@@ -3681,5 +3825,313 @@ namespace Playnite
         /// Files will be imported but using less accurate method that doesn't require file content to be downloaded and present locally.
         /// </summary>
         public const string EmuUseSimplifiedOnlineFileScanTooltip = "LOCEmuUseSimplifiedOnlineFileScanTooltip";
+        /// <summary>
+        /// Apply to all
+        /// </summary>
+        public const string MetadatSetAllFieldsToValue = "LOCMetadatSetAllFieldsToValue";
+        /// <summary>
+        /// Override installation state
+        /// </summary>
+        public const string OverrideInstallState = "LOCOverrideInstallState";
+        /// <summary>
+        /// When set, Playnite will ignore installation state (including installation directory) set by the integration plugin that imports this game.
+        /// </summary>
+        public const string OverrideInstallStateTooltip = "LOCOverrideInstallStateTooltip";
+        /// <summary>
+        /// Only manually
+        /// </summary>
+        public const string OptionOnlyManually = "LOCOptionOnlyManually";
+        /// <summary>
+        /// Once a day
+        /// </summary>
+        public const string OptionOnceADay = "LOCOptionOnceADay";
+        /// <summary>
+        /// Once a week
+        /// </summary>
+        public const string OptionOnceAWeek = "LOCOptionOnceAWeek";
+        /// <summary>
+        /// On every startup
+        /// </summary>
+        public const string OptionOnEveryStartup = "LOCOptionOnEveryStartup";
+        /// <summary>
+        /// Check for program updates
+        /// </summary>
+        public const string CheckProgramUpdates = "LOCCheckProgramUpdates";
+        /// <summary>
+        /// Check for add-on updates
+        /// </summary>
+        public const string CheckAddonUpdates = "LOCCheckAddonUpdates";
+        /// <summary>
+        /// Update libraries
+        /// </summary>
+        public const string CheckLibraryUpdates = "LOCCheckLibraryUpdates";
+        /// <summary>
+        /// Scan emulation folders
+        /// </summary>
+        public const string CheckEmulatedLibraryUpdates = "LOCCheckEmulatedLibraryUpdates";
+        /// <summary>
+        /// Include hidden games
+        /// </summary>
+        public const string StatsIncludeHidden = "LOCStatsIncludeHidden";
+        /// <summary>
+        /// Edit fields
+        /// </summary>
+        public const string MenuSetFields = "LOCMenuSetFields";
+        /// <summary>
+        /// Select / Deselect all
+        /// </summary>
+        public const string ItemSelectionSelectDeselectAll = "LOCItemSelectionSelectDeselectAll";
+        /// <summary>
+        /// Open
+        /// </summary>
+        public const string Open = "LOCOpen";
+        /// <summary>
+        /// Activate
+        /// </summary>
+        public const string Activate = "LOCActivate";
+        /// <summary>
+        /// Assign
+        /// </summary>
+        public const string Assign = "LOCAssign";
+        /// <summary>
+        /// Start typing to search for games… [F1] for help
+        /// </summary>
+        public const string DefaultSearchDescription = "LOCDefaultSearchDescription";
+        /// <summary>
+        /// Starting with # brings up a list of available commands.
+        /// </summary>
+        public const string DefaultSearchHint = "LOCDefaultSearchHint";
+        /// <summary>
+        /// Include uninstalled games
+        /// </summary>
+        public const string SearchFilterUninstalled = "LOCSearchFilterUninstalled";
+        /// <summary>
+        /// Include hidden games
+        /// </summary>
+        public const string SearchFilterHidden = "LOCSearchFilterHidden";
+        /// <summary>
+        /// Uninstalled games included
+        /// </summary>
+        public const string SearchFilterUninstalledIncluded = "LOCSearchFilterUninstalledIncluded";
+        /// <summary>
+        /// Uninstalled games excluded
+        /// </summary>
+        public const string SearchFilterUninstalledExcluded = "LOCSearchFilterUninstalledExcluded";
+        /// <summary>
+        /// Hidden games included
+        /// </summary>
+        public const string SearchFilterHiddenIncluded = "LOCSearchFilterHiddenIncluded";
+        /// <summary>
+        /// Hidden games excluded
+        /// </summary>
+        public const string SearchFilterHiddenalledExcluded = "LOCSearchFilterHiddenalledExcluded";
+        /// <summary>
+        /// Play or Install
+        /// </summary>
+        public const string GameSearchItemActionPlay = "LOCGameSearchItemActionPlay";
+        /// <summary>
+        /// Go to details
+        /// </summary>
+        public const string GameSearchItemActionSwitchTo = "LOCGameSearchItemActionSwitchTo";
+        /// <summary>
+        /// Game menu
+        /// </summary>
+        public const string GameSearchItemActionOpenMenu = "LOCGameSearchItemActionOpenMenu";
+        /// <summary>
+        /// Edit game
+        /// </summary>
+        public const string GameSearchItemActionEdit = "LOCGameSearchItemActionEdit";
+        /// <summary>
+        /// Open search
+        /// </summary>
+        public const string OpenSearch = "LOCOpenSearch";
+        /// <summary>
+        /// Search box
+        /// </summary>
+        public const string TopPanelSearchBox = "LOCTopPanelSearchBox";
+        /// <summary>
+        /// Search button
+        /// </summary>
+        public const string TopPanelSearchButton = "LOCTopPanelSearchButton";
+        /// <summary>
+        /// Primary game action
+        /// </summary>
+        public const string SearchSettingsPrimaryAction = "LOCSearchSettingsPrimaryAction";
+        /// <summary>
+        /// Secondary game action
+        /// </summary>
+        public const string SearchSettingsSecondaryAction = "LOCSearchSettingsSecondaryAction";
+        /// <summary>
+        /// CTRL-F opens global search instead of focusing search box
+        /// </summary>
+        public const string SearchSettingsKeyboardOpenSearch = "LOCSearchSettingsKeyboardOpenSearch";
+        /// <summary>
+        /// Save game filter settings between search sessions
+        /// </summary>
+        public const string SearchSettingsSaveFilter = "LOCSearchSettingsSaveFilter";
+        /// <summary>
+        /// Search providers
+        /// </summary>
+        public const string SearchSettingsSearchProviders = "LOCSearchSettingsSearchProviders";
+        /// <summary>
+        /// Default keyword
+        /// </summary>
+        public const string SearchSettingsDefaultKeyword = "LOCSearchSettingsDefaultKeyword";
+        /// <summary>
+        /// Custom keyword
+        /// </summary>
+        public const string SearchSettingsCustomKeyword = "LOCSearchSettingsCustomKeyword";
+        /// <summary>
+        /// System wide shortcut
+        /// </summary>
+        public const string SearchSettingsSystemWideShortcut = "LOCSearchSettingsSystemWideShortcut";
+        /// <summary>
+        /// Playnite search
+        /// </summary>
+        public const string SearchTitle = "LOCSearchTitle";
+        /// <summary>
+        /// Extension Settings
+        /// </summary>
+        public const string ExtensionSettingsMenu = "LOCExtensionSettingsMenu";
+        /// <summary>
+        /// Exclusions
+        /// </summary>
+        public const string Exclusions = "LOCExclusions";
+        /// <summary>
+        /// Excluded files relative to scan folder
+        /// </summary>
+        public const string EmuScannerExcludedFiles = "LOCEmuScannerExcludedFiles";
+        /// <summary>
+        /// Excluded folders relative to scan folder
+        /// </summary>
+        public const string EmuScannerExcludedFolders = "LOCEmuScannerExcludedFolders";
+        /// <summary>
+        /// Add file to exclusion list
+        /// </summary>
+        public const string EmuImportAddROMExclusionList = "LOCEmuImportAddROMExclusionList";
+        /// <summary>
+        /// Add folder to exclusion list
+        /// </summary>
+        public const string EmuImportAddFolderExclusionList = "LOCEmuImportAddFolderExclusionList";
+        /// <summary>
+        /// Exclusions can be only added to saved scanner configurations.
+        /// </summary>
+        public const string EmuExclusionNoConfigError = "LOCEmuExclusionNoConfigError";
+        /// <summary>
+        /// Exclusions have been added to "{0}" scanner.
+        /// </summary>
+        public const string EmuExclusionAddedMessage = "LOCEmuExclusionAddedMessage";
+        /// <summary>
+        /// Override platform
+        /// </summary>
+        public const string EmuOverridePlatform = "LOCEmuOverridePlatform";
+        /// <summary>
+        /// When set scanner will assign this platform to all games, overwriting any automatically detected platforms.
+        /// </summary>
+        public const string EmuOverridePlatformTooltip = "LOCEmuOverridePlatformTooltip";
+        /// <summary>
+        /// Include commands in default search
+        /// </summary>
+        public const string SearchIncludeCommandsInDefault = "LOCSearchIncludeCommandsInDefault";
+        /// <summary>
+        /// When disabled, commands won't be included in default search until # prefix is used.
+        /// </summary>
+        public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
+        /// <summary>
+        /// Fields to be displayed for game results:
+        /// </summary>
+        public const string SearchViewGameFieldOptions = "LOCSearchViewGameFieldOptions";
+        /// <summary>
+        /// Hidden Status
+        /// </summary>
+        public const string HiddenStatus = "LOCHiddenStatus";
+        /// <summary>
+        /// Data backup was cancelled.
+        /// </summary>
+        public const string BackupCancelled = "LOCBackupCancelled";
+        /// <summary>
+        /// Data backup failed.
+        /// </summary>
+        public const string BackupFailed = "LOCBackupFailed";
+        /// <summary>
+        /// Data backup error
+        /// </summary>
+        public const string BackupErrorTitle = "LOCBackupErrorTitle";
+        /// <summary>
+        /// Data backup in progress…
+        /// </summary>
+        public const string BackupProgress = "LOCBackupProgress";
+        /// <summary>
+        /// Restoring data from backup…
+        /// </summary>
+        public const string BackupRestoreProgress = "LOCBackupRestoreProgress";
+        /// <summary>
+        /// Failed to restore data from backup.
+        /// </summary>
+        public const string BackupRestoreFailed = "LOCBackupRestoreFailed";
+        /// <summary>
+        /// Settings
+        /// </summary>
+        public const string BackupOptionSettings = "LOCBackupOptionSettings";
+        /// <summary>
+        /// Game library
+        /// </summary>
+        public const string BackupOptionLibrary = "LOCBackupOptionLibrary";
+        /// <summary>
+        /// Game library media
+        /// </summary>
+        public const string BackupOptionGameMedia = "LOCBackupOptionGameMedia";
+        /// <summary>
+        /// Installed extensions
+        /// </summary>
+        public const string BackupOptionExtensions = "LOCBackupOptionExtensions";
+        /// <summary>
+        /// Extensions data
+        /// </summary>
+        public const string BackupOptionExtensionsData = "LOCBackupOptionExtensionsData";
+        /// <summary>
+        /// Installed themes
+        /// </summary>
+        public const string BackupOptionThemes = "LOCBackupOptionThemes";
+        /// <summary>
+        /// Select data to be restored from specified backup file.
+        /// </summary>
+        public const string BackupRestoreMessage = "LOCBackupRestoreMessage";
+        /// <summary>
+        /// Select items to be included with data backup. Application settings and game library data are included by default.
+        /// </summary>
+        public const string BackupDataBackupMessage = "LOCBackupDataBackupMessage";
+        /// <summary>
+        /// Automatic data backup
+        /// </summary>
+        public const string SettingsEnableAutomaticBackup = "LOCSettingsEnableAutomaticBackup";
+        /// <summary>
+        /// Auto backup frequency
+        /// </summary>
+        public const string SettingsAutoBackupFrequency = "LOCSettingsAutoBackupFrequency";
+        /// <summary>
+        /// Backup folder
+        /// </summary>
+        public const string SettingsBackupFolder = "LOCSettingsBackupFolder";
+        /// <summary>
+        /// Rotating backups
+        /// </summary>
+        public const string SettingsRotatingBackups = "LOCSettingsRotatingBackups";
+        /// <summary>
+        /// Include additional data:
+        /// </summary>
+        public const string SettingsAutoBackupIncludeItems = "LOCSettingsAutoBackupIncludeItems";
+        /// <summary>
+        /// Backup folder needs to be set if auto backup is enabled.
+        /// </summary>
+        public const string SettingsNoBackupDirSpecifiedError = "LOCSettingsNoBackupDirSpecifiedError";
+        /// <summary>
+        /// Show notifications for patch releases only
+        /// </summary>
+        public const string UpdateNotifyOnlyPatches = "LOCUpdateNotifyOnlyPatches";
+        /// <summary>
+        /// When enabled, only updates available for currently installed major release will result in update notification.
+        /// </summary>
+        public const string UpdateNotifyOnlyPatchesToolip = "LOCUpdateNotifyOnlyPatchesToolip";
     }
 }

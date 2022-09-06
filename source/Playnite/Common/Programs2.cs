@@ -17,7 +17,7 @@ namespace Playnite.Common
 {
     public partial class Programs
     {
-        public static async Task<List<Program>> GetExecutablesFromFolder(string path, SearchOption searchOption, CancellationTokenSource cancelToken = null)
+        public static async Task<List<Program>> GetExecutablesFromFolder(string path, SearchOption searchOption, CancellationToken cancelToken)
         {
             return await Task.Run(() =>
             {
@@ -26,7 +26,7 @@ namespace Playnite.Common
 
                 foreach (var file in files)
                 {
-                    if (cancelToken?.IsCancellationRequested == true)
+                    if (cancelToken.IsCancellationRequested == true)
                     {
                         return null;
                     }
@@ -36,7 +36,7 @@ namespace Playnite.Common
                         continue;
                     }
 
-                    if (IsFileUninstaller(file.Name))
+                    if (IsFileScanExcluded(file.Name))
                     {
                         continue;
                     }
@@ -201,8 +201,8 @@ namespace Playnite.Common
                         continue;
                     }
 
-                    // Ignore uninstallers
-                    if (IsFileUninstaller(Path.GetFileName(target)))
+                    // Ignore uninstallers, config, redistributables and game engine executables
+                    if (IsFileScanExcluded(Path.GetFileName(target)))
                     {
                         continue;
                     }
@@ -234,14 +234,14 @@ namespace Playnite.Common
             });
         }
 
-        public static async Task<List<Program>> GetInstalledPrograms(CancellationTokenSource cancelToken = null)
+        public static async Task<List<Program>> GetInstalledPrograms(CancellationToken cancelToken)
         {
             var apps = new List<Program>();
 
             // Get apps from All Users
             var allPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs");
             var allApps = await GetShortcutProgramsFromFolder(allPath);
-            if (cancelToken?.IsCancellationRequested == true)
+            if (cancelToken.IsCancellationRequested == true)
             {
                 return null;
             }
@@ -253,7 +253,7 @@ namespace Playnite.Common
             // Get current user apps
             var userPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs");
             var userApps = await GetShortcutProgramsFromFolder(userPath);
-            if (cancelToken?.IsCancellationRequested == true)
+            if (cancelToken.IsCancellationRequested == true)
             {
                 return null;
             }
@@ -384,7 +384,7 @@ namespace Playnite.Common
                     }
                     catch (Exception e)
                     {
-                        logger.Error(e, $"Failed to parse UWP game info.");
+                        logger.Error(e, $"Failed to parse UWP app {package.Id.FullName} info.");
                     }
                 }
             }

@@ -12,10 +12,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Playnite;component/Localization/LocSource.xaml"/>
                 <ResourceDictionary Source="GlobalResources.xaml" />
+                <ResourceDictionary Source="ControlGalleryView.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Constants.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Common.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Media.xaml" />
-                
+
                 <!--Default Controls-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/Border.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/DefaultControls/TextBlock.xaml" />
@@ -66,6 +67,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/SearchBox.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/TopPanelItem.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/PathSelectionBox.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/CustomControls/HotKeyBox.xaml" />
 
                 <!--Derived Styles-->
                 <ResourceDictionary Source="Themes/Desktop/Default/DerivedStyles/TextBlockGameScore.xaml" />
@@ -102,6 +104,7 @@
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/LibraryListView.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/Library.xaml" />
                 <ResourceDictionary Source="Themes/Desktop/Default/Views/MainWindow.xaml" />
+                <ResourceDictionary Source="Themes/Desktop/Default/Views/SearchView.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

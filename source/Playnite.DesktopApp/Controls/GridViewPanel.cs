@@ -126,6 +126,7 @@ namespace Playnite.DesktopApp.Controls
                 }
             }
 
+            double expanderOffset = 0;
             var groupItem = ItemsOwner as IHierarchicalVirtualizationAndScrollInfo;
             if (groupItem != null)
             {
@@ -143,6 +144,15 @@ namespace Playnite.DesktopApp.Controls
                     UpdateScrollInfo(groupItem.Constraints.Viewport.Size);
                 }
 
+                if (expander != null)
+                {
+                    var toggle = ElementTreeHelper.FindVisualChildren<ToggleButton>(groupItem as GroupItem).FirstOrDefault();
+                    if (toggle != null)
+                    {
+                        expanderOffset = toggle.ActualHeight;
+                    }
+                }
+
                 Offset = groupItem.Constraints.Viewport.Location;
             }
             else
@@ -150,7 +160,7 @@ namespace Playnite.DesktopApp.Controls
                 UpdateScrollInfo(availableSize);
             }
 
-            GetVisibleRange(out var firstItemIndex, out var lastItemIndex);
+            GetVisibleRange(expanderOffset, out var firstItemIndex, out var lastItemIndex);
             if (lastItemIndex < 0)
             {
                 return Extent;
@@ -201,7 +211,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 var child = InternalChildren[i];
                 var itemIndex = ItemContainerGenerator.IndexFromGeneratorPosition(new GeneratorPosition(i, 0));
-                // Negaitve index items are disconnected items
+                // Negative index means that child is disconnected item
                 if (itemIndex >= 0)
                 {
                     child.Arrange(GetItemRect(itemIndex));
@@ -228,7 +238,7 @@ namespace Playnite.DesktopApp.Controls
                 ItemHeight);
         }
 
-        private void GetVisibleRange(out int firstIndex, out int lastIndex)
+        private void GetVisibleRange(double expanderOffset, out int firstIndex, out int lastIndex)
         {
             if (itemCount == 0 || Viewport.Height == 0)
             {
@@ -237,14 +247,14 @@ namespace Playnite.DesktopApp.Controls
                 return;
             }
 
-            var rows = 0;
+            var startRow = 0;
             double totalHeight = 0;
             while (true)
             {
-                if (Offset.Y > totalHeight + ItemHeight)
+                if (Offset.Y - expanderOffset > totalHeight + ItemHeight)
                 {
                     totalHeight += ItemHeight;
-                    rows++;
+                    startRow++;
                 }
                 else
                 {
@@ -252,7 +262,7 @@ namespace Playnite.DesktopApp.Controls
                 }
             }
 
-            firstIndex = (int)((rows == 0 ? rows : rows) * computedColumns);
+            firstIndex = startRow * computedColumns;
             var newRows = (int)Math.Ceiling(Viewport.Height / ItemHeight) + 1;
             lastIndex = firstIndex + (newRows * computedColumns);
             if (lastIndex >= itemCount)

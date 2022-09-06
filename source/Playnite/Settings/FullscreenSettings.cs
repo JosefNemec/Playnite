@@ -365,7 +365,7 @@ namespace Playnite
             }
         }
 
-        private bool asyncImageLoading = false;
+        private bool asyncImageLoading = true;
         [RequiresRestart]
         public bool AsyncImageLoading
         {
@@ -519,6 +519,21 @@ namespace Playnite
             }
         }
 
+        private bool swapConfirmCancelButtons = false;
+        public bool SwapConfirmCancelButtons
+        {
+            get
+            {
+                return swapConfirmCancelButtons;
+            }
+
+            set
+            {
+                swapConfirmCancelButtons = value;
+                OnPropertyChanged();
+            }
+        }
+
         private float interfaceVolume = 0.5f;
         public float InterfaceVolume
         {
@@ -564,6 +579,36 @@ namespace Playnite
             }
         }
 
+        private bool primaryControllerOnly = true;
+        public bool PrimaryControllerOnly
+        {
+            get
+            {
+                return primaryControllerOnly;
+            }
+
+            set
+            {
+                primaryControllerOnly = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool guideButtonFocus = false;
+        public bool GuideButtonFocus
+        {
+            get
+            {
+                return guideButtonFocus;
+            }
+
+            set
+            {
+                guideButtonFocus = value;
+                OnPropertyChanged();
+            }
+        }
+
         private AudioInterfaceApi audioInterfaceApi = AudioInterfaceApi.WASAPI;
         [RequiresRestart]
         public AudioInterfaceApi AudioInterfaceApi
@@ -587,6 +632,17 @@ namespace Playnite
             set
             {
                 imageScalerMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool smoothScrolling = true;
+        public bool SmoothScrolling
+        {
+            get => smoothScrolling;
+            set
+            {
+                smoothScrolling = value;
                 OnPropertyChanged();
             }
         }

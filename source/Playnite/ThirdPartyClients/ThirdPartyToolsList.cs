@@ -27,6 +27,8 @@ namespace Playnite
 
     public class ThirdPartyToolsList
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         public static List<ThirdPartyTool> GetTools(IEnumerable<LibraryPlugin> plugins)
         {
             var tools = new List<ThirdPartyTool>();
@@ -34,24 +36,31 @@ namespace Playnite
             {
                 foreach (var plugin in plugins.OrderBy(a => a.Name))
                 {
-                    if (plugin.Client != null && plugin.Client.IsInstalled)
+                    try
                     {
-                        var tool = new ThirdPartyTool()
+                        if (plugin.Client != null && plugin.Client.IsInstalled)
                         {
-                            Client = plugin.Client,
-                            Name = plugin.Name
-                        };
+                            var tool = new ThirdPartyTool()
+                            {
+                                Client = plugin.Client,
+                                Name = plugin.Name
+                            };
 
-                        if (plugin.Client?.Icon != null && File.Exists(plugin.Client.Icon))
-                        {
-                            tool.Icon = Images.GetImageFromFile(
-                                plugin.Client.Icon,
-                                System.Windows.Media.BitmapScalingMode.Fant,
-                                double.NaN,
-                                double.NaN);
+                            if (plugin.Client?.Icon != null && File.Exists(plugin.Client.Icon))
+                            {
+                                tool.Icon = Images.GetImageFromFile(
+                                    plugin.Client.Icon,
+                                    System.Windows.Media.BitmapScalingMode.Fant,
+                                    double.NaN,
+                                    double.NaN);
+                            }
+
+                            tools.Add(tool);
                         }
-
-                        tools.Add(tool);
+                    }
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, $"Failed to get client info from {plugin.Name}.");
                     }
                 }
             }

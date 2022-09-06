@@ -1,0 +1,135 @@
+﻿<c:WindowBase x:Class="Playnite.DesktopApp.Windows.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+        xmlns:psdk="clr-namespace:Playnite.SDK.Plugins;assembly=Playnite.SDK"
+        xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
+        xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+        xmlns:pwin="clr-namespace:Playnite.DesktopApp.Windows"
+        mc:Ignorable="d"
+        Style="{DynamicResource SearchWindowStyle}"
+        Title="{DynamicResource LOCSearchTitle}" ResizeMode="NoResize"
+        ShowInTaskbar="False" ShowTitle="False"
+        ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False">
+
+    <c:WindowBase.InputBindings>
+        <KeyBinding Key ="Esc" Command="{Binding CloseCommand}" />        
+    </c:WindowBase.InputBindings>
+
+    <c:WindowBase.Resources>
+        <p:BindingProxy x:Key="BindingProxy" Data="{Binding}" />
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+        <Storyboard x:Key="HintVisibilityOff">
+            <DoubleAnimation Duration="0:0:1.0" From="1" To="0"
+                             Storyboard.TargetName="TextFilterHint" Storyboard.TargetProperty="Opacity">
+                <DoubleAnimation.EasingFunction>
+                    <PowerEase EasingMode="EaseIn" Power="10" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="WaitingAnimation" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="Dot1" BeginTime="0:0:0.1" Storyboard.TargetProperty="Opacity" From=".1" To="1" AutoReverse="True" Duration="0:0:0.4"/>
+            <DoubleAnimation Storyboard.TargetName="Dot2" BeginTime="0:0:0.2" Storyboard.TargetProperty="Opacity" From=".1" To="1" AutoReverse="True" Duration="0:0:0.4"/>
+            <DoubleAnimation Storyboard.TargetName="Dot3" BeginTime="0:0:0.3" Storyboard.TargetProperty="Opacity" From=".1" To="1" AutoReverse="True" Duration="0:0:0.4"/>
+        </Storyboard>
+        <pwin:SearchItemTemplateSelector x:Key="SearchItemTemplateSelector" />
+    </c:WindowBase.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed" >
+            <i:InvokeCommandAction Command="{Binding WindowClosedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Deactivated" >
+            <i:InvokeCommandAction Command="{Binding WindowDeactivatedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <DockPanel Margin="0,-25,0,0">
+        <DockPanel DockPanel.Dock="Top" Margin="10">
+            <Button Style="{DynamicResource SearchWindowSearchLabelButton}"
+                    Content="{Binding CurrentContextLabel}"
+                    Command="{Binding DeactiveCurrentContextCommand}"
+                    Visibility="{Binding CurrentContextLabel, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
+                        VerticalAlignment="Center" Margin="5,0,5,0"
+                        Visibility="{Binding SlowAnimationActive, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        pbeh:AnimationControl.AnimationOnVisible="{StaticResource WaitingAnimation}">
+                <Ellipse Name="Dot1" Fill="{StaticResource GlyphBrush}" Opacity=".1" Width="8" Height="8"/>
+                <Ellipse Name="Dot2" Fill="{StaticResource GlyphBrush}" Opacity=".1" Width="8" Height="8" Margin="2,0,0,0"/>
+                <Ellipse Name="Dot3" Fill="{StaticResource GlyphBrush}" Opacity=".1" Width="8" Height="8" Margin="2,0,0,0"/>
+            </StackPanel>
+            <Button DockPanel.Dock="Right" Style="{DynamicResource SearchWindowSettignsButton}"
+                    pbeh:LeftClickContextMenuBehavior.Enabled="True">
+                <Button.ContextMenu>
+                    <ContextMenu Placement="Bottom">
+                        <MenuItem Header="{DynamicResource LOCSearchFilterUninstalled}" HeaderStringFormat="{}{0} [F2]"
+                                  IsCheckable="True" IsChecked="{Binding Data.GameFilterSettings.Uninstalled, Source={StaticResource BindingProxy}}"/>
+                        <MenuItem Header="{DynamicResource LOCSearchFilterHidden}" HeaderStringFormat="{}{0} [F3]"
+                                  IsCheckable="True" IsChecked="{Binding Data.GameFilterSettings.Hidden, Source={StaticResource BindingProxy}}" />
+                        <MenuItem Header="{DynamicResource LOCMenuPlayniteSettingsTitle}" Command="{Binding Data.OpenSearchSettingsCommand, Source={StaticResource BindingProxy}}" />
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+            <Button DockPanel.Dock="Right" Style="{DynamicResource SearchWindowInfoButton}"
+                    Visibility="{Binding CurrentContextHint, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                    Command="{Binding ToggleHintCommand}"/>
+            <ToggleButton DockPanel.Dock="Right" Style="{DynamicResource SearchWindowActionButton}"
+                          Command="{Binding OpenMenuCommand}"
+                          Content="&#xefa2;" FontFamily="{StaticResource FontIcoFont}"
+                          IsChecked="{Binding MenuAction.Selected, Mode=OneWay}"
+                          Visibility="{Binding MenuAction, Converter={StaticResource NullToVisibilityConverter}}" />
+            <ToggleButton DockPanel.Dock="Right" Style="{DynamicResource SearchWindowActionButton}"
+                          Command="{Binding SecondaryActionCommand}"
+                          Content="{Binding SelectedSearchItem.SecondaryAction.Name}"
+                          IsChecked="{Binding SecondaryAction.Selected, Mode=OneWay}"
+                          Visibility="{Binding SecondaryAction, Converter={StaticResource NullToVisibilityConverter}}"/>
+            <ToggleButton DockPanel.Dock="Right" Style="{DynamicResource SearchWindowActionButton}"
+                          Command="{Binding PrimaryActionCommand}"
+                          Content="{Binding SelectedSearchItem.PrimaryAction.Name}"
+                          IsChecked="{Binding PrimaryAction.Selected, Mode=OneWay}"
+                          Visibility="{Binding PrimaryAction, Converter={StaticResource NullToVisibilityConverter}}"/>
+            <Grid DockPanel.Dock="Left" VerticalAlignment="Center">
+                <TextBox Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{DynamicResource SearchWindowSearchBox}"
+                         IsEnabled="{Binding SearchEnabled}"
+                         Name="TextSearchBox">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <i:InvokeCommandAction Command="{Binding TextBoxKeyDownCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="PreviewKeyUp">
+                            <i:InvokeCommandAction Command="{Binding TextBoxKeyUpCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <TextBlock Style="{DynamicResource SearchWindowSearchDescription}"
+                           IsHitTestVisible="False"
+                           Visibility="{Binding SearchTerm, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}, ConverterParameter=Inverted}"
+                           Text="{Binding CurrentSearchProviderDescription}"/>
+                <ContentControl Focusable="False" Visibility="Collapsed" Template="{DynamicResource SearchWindowFilterNotification}"
+                                pbeh:AnimatedVisibility.Visibility="{Binding FilterHintVisible, Converter={pcon:BooleanToVisibilityConverter}}"
+                                pbeh:AnimatedVisibility.Collapsed="{StaticResource HintVisibilityOff}"
+                                Name="TextFilterHint" Content="{Binding FilterHint}"/>
+            </Grid>
+        </DockPanel>
+
+        <TextBlock DockPanel.Dock="Top" 
+                   Style="{DynamicResource SearchWindowSearchHint}"
+                   Text="{Binding CurrentContextHint}"
+                   Visibility="{Binding ContextHintVisible, Converter={pcon:BooleanToVisibilityConverter}}"/>
+
+        <ListBox DockPanel.Dock="Top"
+                 SelectionMode="Single"
+                 pbeh:ScrollToSelectedBehavior.Enabled="True"
+                 Style="{DynamicResource SearchWindowList}"
+                 SelectedItem="{Binding SelectedSearchItem, Mode=TwoWay}"
+                 ItemsSource="{Binding SearchResults}"
+                 ItemTemplateSelector="{StaticResource SearchItemTemplateSelector}">
+        </ListBox>
+    </DockPanel>    
+</c:WindowBase>

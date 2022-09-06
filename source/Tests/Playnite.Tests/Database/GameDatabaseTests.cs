@@ -301,5 +301,21 @@ namespace Playnite.Tests.Database
                 Assert.AreEqual(2, db.Regions.Count);
             }
         }
+
+        [Test]
+        public void GetImportedRomFilesTest()
+        {
+            using (var db = new GameDbTestWrapper())
+            {
+            }
+        }
+
+        [Test]
+        public void GetImportedRomFilesVariableTest()
+        {
+            using (var db = new GameDbTestWrapper())
+            {
+            }
+        }
     }
 }

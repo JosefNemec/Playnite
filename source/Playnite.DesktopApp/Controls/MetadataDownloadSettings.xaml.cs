@@ -1,12 +1,12 @@
 ﻿using Playnite.Metadata;
 using Playnite.SDK;
-using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -472,6 +472,21 @@ namespace Playnite.DesktopApp.Controls
 
         #endregion Properties
 
+        private FieldsSelectionSettings allSettings;
+        public FieldsSelectionSettings AllSettings
+        {
+            get => allSettings;
+            set
+            {
+                allSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RelayCommand SetAllPropertiesCommmand => new RelayCommand(() => SetAllProperties());
+        public RelayCommand SelectAllToImportCommand => new RelayCommand(() => SelectAllSelectionImport(true));
+        public RelayCommand DeselectAllToImportCommand => new RelayCommand(() => SelectAllSelectionImport(false));
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName]string name = null)
@@ -482,6 +497,29 @@ namespace Playnite.DesktopApp.Controls
         public MetadataDownloadSettings()
         {
             InitializeComponent();
+            if (DesignerProperties.GetIsInDesignMode(this))
+            {
+                return;
+            }
+
+            var allSources = new ObservableCollection<MetadataSource> { new MetadataSource
+            {
+                Id = Guid.Empty,
+                Enabled = false,
+                Name = ResourceProvider.GetString(LOC.MetaSourceStore)
+            }};
+
+            foreach (var plugin in PlayniteApplication.Current.Extensions.MetadataPlugins)
+            {
+                allSources.Add(new MetadataSource
+                {
+                    Id = plugin.Id,
+                    Enabled = false,
+                    Name = plugin.Name
+                });
+            }
+
+            AllSettings = new FieldsSelectionSettings(allSources);
         }
 
         internal FieldsSelectionSettings SetupField(
@@ -500,7 +538,7 @@ namespace Playnite.DesktopApp.Controls
                     {
                         Id = Guid.Empty,
                         Enabled = true,
-                        Name = ResourceProvider.GetString("LOCMetaSourceStore")
+                        Name = ResourceProvider.GetString(LOC.MetaSourceStore)
                     });
                 }
                 else
@@ -542,6 +580,39 @@ namespace Playnite.DesktopApp.Controls
             }
 
             return new FieldsSelectionSettings(sources);
+        }
+
+        private void SetAllProperties()
+        {
+            void setSources(FieldsSelectionSettings settings)
+            {
+                settings.Sources.ForEach(a => a.Enabled = AllSettings.Sources.FirstOrDefault(b => a.Id == b.Id)?.Enabled ?? false);
+                foreach (var allSource in AllSettings.Sources.Reverse())
+                {
+                    var toMove = settings.Sources.FirstOrDefault(a => a.Id == allSource.Id);
+                    if (toMove != null)
+                    {
+                        var oldIndex = settings.Sources.IndexOf(toMove);
+                        if (oldIndex != 0)
+                        {
+                            settings.Sources.Move(oldIndex, 0);
+                        }
+                    }
+                }
+            }
+
+            foreach (var prop in GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(a => a.PropertyType == typeof(FieldsSelectionSettings) && a.Name != nameof(AllSettings)))
+            {
+                setSources((FieldsSelectionSettings)prop.GetValue(this));
+            }
+        }
+
+        private void SelectAllSelectionImport(bool select)
+        {
+            foreach (var prop in Settings.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(a => a.PropertyType == typeof(MetadataFieldSettings)))
+            {
+                ((MetadataFieldSettings)prop.GetValue(Settings)).Import = select;
+            }
         }
     }
 }

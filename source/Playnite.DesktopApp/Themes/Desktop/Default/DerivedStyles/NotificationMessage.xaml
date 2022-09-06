@@ -12,10 +12,16 @@
                 <ControlTemplate TargetType="Button">
                     <Border Style="{StaticResource HighlightBorder}" Background="{DynamicResource ButtonBackgroundBrush}"
                             d:DataContext="{x:Static DesignMainViewModel.DesignNotificationIntance}">
-                        <TextBlock Text="{Binding Text}"
-                                   Style="{DynamicResource BaseTextBlockStyle}"
-                                   Margin="6" TextWrapping="Wrap"
-                                   MinHeight="38" />
+                        <DockPanel>
+                            <Button DockPanel.Dock="Right" Padding="6,0,6,0"
+                                    Content="r" FontFamily="Marlett"
+                                    VerticalAlignment="Stretch" BorderThickness="0"
+                                    Command="{Binding CloseCommand}"/>
+                            <TextBlock Text="{Binding Text}"
+                                       Style="{DynamicResource BaseTextBlockStyle}"
+                                       Margin="6,6,0,6" TextWrapping="Wrap"
+                                       MinHeight="38" DockPanel.Dock="Left" />
+                        </DockPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

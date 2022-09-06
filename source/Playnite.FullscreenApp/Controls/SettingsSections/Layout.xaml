@@ -19,6 +19,9 @@
                            Content="{DynamicResource LOCSettingsFullscreenHorizontalScrolling}"
                            pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
 
+        <pctrls:CheckBoxEx x:Name="ToggleSmoothScrolling"
+                           Content="{DynamicResource LOCSmoothScrolling}" />
+
         <DockPanel LastChildFill="False">
             <TextBlock Text="{DynamicResource LOCColumns}"
                        Style="{DynamicResource SettingsSectionText}" />

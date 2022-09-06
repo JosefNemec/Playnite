@@ -40,17 +40,22 @@
                 <ControlTemplate TargetType="Slider">
                     <Grid Background="{TemplateBinding Background}">
                         <Border Height="6" Background="{DynamicResource ControlBackgroundBrush}" />
+                        <Border Height="6" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                Background="{DynamicResource GlyphBrush}" 
+                                Width="{Binding ActualWidth, ElementName=ButtonDecrease}" />
                         <Track Grid.Row="1" x:Name="PART_Track" Margin="0,3,0,3" >
                             <Track.Thumb>
                                 <Thumb Width="8" Foreground="{TemplateBinding Foreground}"
                                        Style="{DynamicResource SliderThumb}"/>
                             </Track.Thumb>
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Style="{DynamicResource SliderTrackButton}"
+                                <RepeatButton x:Name="ButtonDecrease"
+                                              Style="{StaticResource SliderTrackButton}"
                                               Command="Slider.DecreaseLarge" />
                             </Track.DecreaseRepeatButton>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Style="{DynamicResource SliderTrackButton}"
+                                <RepeatButton x:Name="ButtonIncrease"
+                                              Style="{StaticResource SliderTrackButton}"
                                               Command="Slider.IncreaseLarge" />
                             </Track.IncreaseRepeatButton>
                         </Track>

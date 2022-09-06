@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
-    /// Describes fame feature object.
+    /// Describes game feature object.
     /// </summary>
     public class GameFeature : DatabaseObject
     {

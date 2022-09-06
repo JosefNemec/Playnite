@@ -26,6 +26,8 @@
     <TextBlock x:Key="RemoveGameIcon" Text="&#xec53;" FontFamily="{DynamicResource FontIcoFont}" Foreground="OrangeRed" FontWeight="Light"/>
     <TextBlock x:Key="DiceIcon" Text="&#xef03;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
     <TextBlock x:Key="ManualIcon" Text="&#xead1;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
+    <TextBlock x:Key="BackupIcon" Text="&#xeea5;" FontFamily="{DynamicResource FontIcoFont}" />
+    <TextBlock x:Key="RestoreBackupIcon" Text="&#xefd1;" FontFamily="{DynamicResource FontIcoFont}" />
 
     <TextBlock x:Key="ClearTextIcon" Text="&#xef00;" FontFamily="{DynamicResource FontIcoFont}"/>
     <TextBlock x:Key="SearchTextIcon" Text="&#xed11;" FontFamily="{DynamicResource FontIcoFont}" />
@@ -41,6 +43,7 @@
         <TextBlock Text="&#xed11;" FontFamily="{DynamicResource FontIcoFont}" />
     </DataTemplate>
 
+    <BitmapImage x:Key="PlayniteLogo" UriSource="{ThemeFile 'Images/applogo.png'}" popt:Freeze="True" />
     <BitmapImage x:Key="DefaultGameIcon" UriSource="{ThemeFile 'Images/applogo_dark.png'}" popt:Freeze="True" />
     <BitmapImage x:Key="DefaultGameCover" UriSource="{ThemeFile 'Images/custom_cover_background.png'}" popt:Freeze="True" />
 

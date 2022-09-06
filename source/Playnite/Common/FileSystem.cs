@@ -20,8 +20,6 @@ namespace Playnite.Common
     public static partial class FileSystem
     {
         private static ILogger logger = LogManager.GetLogger();
-        private const string longPathPrefix = @"\\?\";
-        private const string longPathUncPrefix = @"\\?\UNC\";
 
         public static void CreateDirectory(string path)
         {
@@ -30,7 +28,7 @@ namespace Playnite.Common
 
         public static void CreateDirectory(string path, bool clean)
         {
-            var directory = FixPathLength(path);
+            var directory = Paths.FixPathLength(path);
             if (string.IsNullOrEmpty(directory))
             {
                 return;
@@ -40,7 +38,7 @@ namespace Playnite.Common
             {
                 if (clean)
                 {
-                    Directory.Delete(directory, true);
+                    DeleteDirectory(directory, true);
                 }
                 else
                 {
@@ -53,7 +51,7 @@ namespace Playnite.Common
 
         public static void PrepareSaveFile(string path)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             CreateDirectory(Path.GetDirectoryName(path));
             if (File.Exists(path))
             {
@@ -63,7 +61,7 @@ namespace Playnite.Common
 
         public static bool IsDirectoryEmpty(string path)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             if (Directory.Exists(path))
             {
                 return !Directory.EnumerateFileSystemEntries(path).Any();
@@ -76,7 +74,7 @@ namespace Playnite.Common
 
         public static void DeleteFile(string path)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -85,14 +83,15 @@ namespace Playnite.Common
 
         public static void CreateFile(string path)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
+            FileSystem.PrepareSaveFile(path);
             File.Create(path).Dispose();
         }
 
         public static void CopyFile(string sourcePath, string targetPath, bool overwrite = true)
         {
-            sourcePath = FixPathLength(sourcePath);
-            targetPath = FixPathLength(targetPath);
+            sourcePath = Paths.FixPathLength(sourcePath);
+            targetPath = Paths.FixPathLength(targetPath);
             logger.Debug($"Copying file {sourcePath} to {targetPath}");
             PrepareSaveFile(targetPath);
             File.Copy(sourcePath, targetPath, overwrite);
@@ -100,7 +99,7 @@ namespace Playnite.Common
 
         public static void DeleteDirectory(string path)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path, true); // we need to force prefix because otherwise recursive delete will fail if some nested path is too long
             if (Directory.Exists(path))
             {
                 Directory.Delete(path, true);
@@ -109,7 +108,7 @@ namespace Playnite.Common
 
         public static void DeleteDirectory(string path, bool includeReadonly)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             if (!Directory.Exists(path))
             {
                 return;
@@ -133,6 +132,12 @@ namespace Playnite.Common
                     File.Delete(f);
                 }
 
+                var dirAttr = File.GetAttributes(path);
+                if ((dirAttr & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                {
+                    File.SetAttributes(path, dirAttr ^ FileAttributes.ReadOnly);
+                }
+
                 Directory.Delete(path, false);
             }
             else
@@ -143,7 +148,7 @@ namespace Playnite.Common
 
         public static bool CanWriteToFolder(string folder)
         {
-            folder = FixPathLength(folder);
+            folder = Paths.FixPathLength(folder);
             try
             {
                 if (!Directory.Exists(folder))
@@ -165,7 +170,7 @@ namespace Playnite.Common
 
         public static string ReadFileAsStringSafe(string path, int retryAttempts = 5)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             IOException ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
@@ -186,7 +191,7 @@ namespace Playnite.Common
 
         public static byte[] ReadFileAsBytesSafe(string path, int retryAttempts = 5)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             IOException ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
@@ -207,7 +212,7 @@ namespace Playnite.Common
 
         public static Stream CreateWriteFileStreamSafe(string path, int retryAttempts = 5)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             IOException ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
@@ -228,7 +233,7 @@ namespace Playnite.Common
 
         public static Stream OpenReadFileStreamSafe(string path, int retryAttempts = 5)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             IOException ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
@@ -249,20 +254,20 @@ namespace Playnite.Common
 
         public static void WriteStringToFile(string path, string content)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             PrepareSaveFile(path);
             File.WriteAllText(path, content);
         }
 
         public static string ReadStringFromFile(string path)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             return File.ReadAllText(path);
         }
 
         public static void WriteStringToFileSafe(string path, string content, int retryAttempts = 5)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             IOException ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
@@ -330,14 +335,14 @@ namespace Playnite.Common
 
         public static long GetFileSize(string path)
         {
-            path = FixPathLength(path);
+            path = Paths.FixPathLength(path);
             return new FileInfo(path).Length;
         }
 
         public static void CopyDirectory(string sourceDirName, string destDirName, bool copySubDirs = true, bool overwrite = true)
         {
-            sourceDirName = FixPathLength(sourceDirName);
-            destDirName = FixPathLength(destDirName);
+            sourceDirName = Paths.FixPathLength(sourceDirName);
+            destDirName = Paths.FixPathLength(destDirName);
             var dir = new DirectoryInfo(sourceDirName);
             if (!dir.Exists)
             {
@@ -381,7 +386,7 @@ namespace Playnite.Common
 
         private static bool PathExistsOnAnyDrive(string originalPath, Predicate<string> predicate, out string existringPath)
         {
-            originalPath = FixPathLength(originalPath);
+            originalPath = Paths.FixPathLength(originalPath);
             existringPath = null;
             try
             {
@@ -419,36 +424,19 @@ namespace Playnite.Common
 
         public static bool DirectoryExists(string path)
         {
-            return Directory.Exists(FixPathLength(path));
+            return Directory.Exists(Paths.FixPathLength(path));
         }
 
         public static bool FileExists(string path)
         {
-            return File.Exists(FixPathLength(path));
+            return File.Exists(Paths.FixPathLength(path));
         }
 
-        public static string FixPathLength(string path)
+        public static void ReplaceStringInFile(string path, string oldValue, string newValue, Encoding encoding = null)
         {
-            // Relative paths don't support long paths
-            // https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=cmd
-            if (!Paths.IsFullPath(path))
-            {
-                return path;
-            }
-
-            if (path.Length >= 260 && !path.StartsWith(longPathPrefix))
-            {
-                if (path.StartsWith(@"\\"))
-                {
-                    return longPathUncPrefix + path.Substring(2);
-                }
-                else
-                {
-                    return longPathPrefix + path;
-                }
-            }
-
-            return path;
+            encoding = encoding ?? Encoding.UTF8;
+            var fileContent = File.ReadAllText(path, encoding);
+            File.WriteAllText(path, fileContent.Replace(oldValue, newValue), encoding);
         }
     }
 }

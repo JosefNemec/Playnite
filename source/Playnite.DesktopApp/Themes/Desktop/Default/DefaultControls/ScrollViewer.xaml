@@ -35,11 +35,11 @@
                             <Thumb Width="8" />
                         </Track.Thumb>
                         <Track.DecreaseRepeatButton>
-                            <RepeatButton Style="{DynamicResource ScrollBarTrackButton}"
+                            <RepeatButton x:Name="UpButton" Style="{DynamicResource ScrollBarTrackButton}"
                                           Command="ScrollBar.PageUpCommand" />
                         </Track.DecreaseRepeatButton>
                         <Track.IncreaseRepeatButton>
-                            <RepeatButton Style="{DynamicResource ScrollBarTrackButton}"
+                            <RepeatButton x:Name="DownButton" Style="{DynamicResource ScrollBarTrackButton}"
                                           Command="ScrollBar.PageDownCommand" />
                         </Track.IncreaseRepeatButton>
                     </Track>
@@ -51,6 +51,8 @@
                                 </Setter.Value>
                             </Setter>
                             <Setter TargetName="PART_Track" Property="Orientation" Value="Vertical" />
+                            <Setter TargetName="UpButton" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                            <Setter TargetName="DownButton" Property="Command" Value="ScrollBar.PageRightCommand" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -73,7 +75,7 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <ScrollContentPresenter Grid.Column="0" Grid.Row="0"
+                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" Grid.Column="0" Grid.Row="0"
                                                 Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"
                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                                 CanContentScroll="{TemplateBinding CanContentScroll}" />

@@ -19,7 +19,7 @@
     <c:WindowBase.InputBindings>
         <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
         <KeyBinding Key="Backspace" Command="{Binding CloseCommand}" />
-        <pin:XInputBinding Button="B" Command="{Binding CloseCommand}" />
+        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
     </c:WindowBase.InputBindings>
 
     <Viewbox>
@@ -53,7 +53,7 @@
                                      pbeh:FocusBahaviors.OnVisibilityFocus="True"/>
 
                     <ItemsControl Focusable="False"
-                                  ItemsSource="{Binding MainModel.PlayniteApi.Notifications.Messages}">
+                                  ItemsSource="{Binding MainModel.App.Notifications.Messages}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <pctrls:ButtonEx Style="{DynamicResource NotificationsMenuItemButton}"

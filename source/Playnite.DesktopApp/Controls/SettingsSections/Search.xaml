@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.Search"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite"             
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </UserControl.Resources>
+
+    <TabControl>
+        <TabItem Header="{DynamicResource LOCGeneralLabel}">
+            <DockPanel Margin="15">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <TextBlock Text="{DynamicResource LOCSearchSettingsPrimaryAction}" VerticalAlignment="Center" Margin="0,0,15,0" />
+                    <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:GameSearchItemAction}"
+                              SelectedValue="{Binding Settings.PrimaryGameSearchItemAction}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,10,0,0">
+                    <TextBlock Text="{DynamicResource LOCSearchSettingsSecondaryAction}" VerticalAlignment="Center" Margin="0,0,15,0" />
+                    <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:GameSearchItemAction}"
+                              SelectedValue="{Binding Settings.SecondaryGameSearchItemAction}" />
+                </StackPanel>
+
+                <CheckBox Content="{DynamicResource LOCSearchSettingsKeyboardOpenSearch}"
+                          DockPanel.Dock="Top" Margin="0,10,0,0"
+                          IsChecked="{Binding Settings.GlobalSearchOpenWithLegacySearch}"  />
+
+                <CheckBox Content="{DynamicResource LOCSearchSettingsSaveFilter}"
+                          DockPanel.Dock="Top" Margin="0,15,0,0"
+                          IsChecked="{Binding Settings.SaveGlobalSearchFilterSettings}"  />
+
+                <CheckBox Content="{DynamicResource LOCSearchIncludeCommandsInDefault}"
+                          ToolTip="{DynamicResource LOCSearchIncludeCommandsInDefaultTooltip}"
+                          DockPanel.Dock="Top" Margin="0,15,0,0"
+                          IsChecked="{Binding Settings.IncludeCommandsInDefaultSearch}" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0" DockPanel.Dock="Top" >
+                    <TextBlock VerticalAlignment="Center" Margin="0,0,10,0"
+                               Text="{DynamicResource LOCSearchSettingsSystemWideShortcut}"/>
+                    <HotKeyBox Width="150" HorizontalAlignment="Left"
+                               Hotkey="{Binding Settings.SystemSearchHotkey}" />
+                </StackPanel>
+
+                <TextBlock Text="{DynamicResource LOCSearchSettingsSearchProviders}" DockPanel.Dock="Top" Margin="0,15,0,0"/>
+                <ListView DockPanel.Dock="Top" Margin="0,10,0,0"
+                          ItemsSource="{Binding Searches}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{DynamicResource LOCNameLabel}" Width="220" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="{DynamicResource LOCSearchSettingsDefaultKeyword}" Width="150" DisplayMemberBinding="{Binding DefaultKeyword}" />
+                            <GridViewColumn Header="{DynamicResource LOCSearchSettingsCustomKeyword}" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Keyword}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="{DynamicResource LOCSettingsAppearanceLabel}">
+            <StackPanel Margin="15">
+                <TextBlock Text="{DynamicResource LOCSearchViewGameFieldOptions}" Margin="0,0,0,5" />
+                <CheckBox Margin="0,7,0,0" Content="{DynamicResource LOCPlatformTitle}"
+                          IsChecked="{Binding Settings.SearchWindowVisibility.Platform}"/>
+                <CheckBox Margin="0,7,0,0" Content="{DynamicResource LOCTimePlayed}"
+                          IsChecked="{Binding Settings.SearchWindowVisibility.PlayTime}"/>
+                <CheckBox Margin="0,7,0,0" Content="{DynamicResource LOCCompletionStatus}"
+                          IsChecked="{Binding Settings.SearchWindowVisibility.CompletionStatus}"/>
+                <CheckBox Margin="0,7,0,0" Content="{DynamicResource LOCGameReleaseDateTitle}"
+                          IsChecked="{Binding Settings.SearchWindowVisibility.ReleaseDate}"/>
+                <CheckBox Margin="0,7,0,0" Content="{DynamicResource LOCGameIconTitle}"
+                          IsChecked="{Binding Settings.SearchWindowVisibility.GameIcon}"/>
+                <CheckBox Margin="0,7,0,0" Content="{DynamicResource LOCLibraryIconTitle}"
+                          IsChecked="{Binding Settings.SearchWindowVisibility.LibraryIcon}"/>
+                <CheckBox Margin="0,7,0,0" Content="{DynamicResource LOCHiddenStatus}"
+                          IsChecked="{Binding Settings.SearchWindowVisibility.HiddenStatus}"/>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

@@ -15,7 +15,6 @@ namespace Playnite.FullscreenApp.ViewModels
     {
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
-        private IPlayniteAPI api;
         private ServicesClient serviceClient;
         private PlayniteSettings settings;
         private PlayniteApplication application;
@@ -52,7 +51,6 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public AddonsViewModel(
             IWindowFactory window,
-            IPlayniteAPI api,
             IDialogsFactory dialogs,
             IResourceProvider resources,
             ServicesClient serviceClient,
@@ -62,7 +60,6 @@ namespace Playnite.FullscreenApp.ViewModels
             List<AddonUpdate> addonUpdates) : base(dialogs, resources)
         {
             this.window = window;
-            this.api = api;
             this.serviceClient = serviceClient;
             this.settings = settings;
             this.application = application;

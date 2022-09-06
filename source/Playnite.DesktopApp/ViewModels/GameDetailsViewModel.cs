@@ -41,7 +41,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return Game != null && Game.IsUnistalling;
+                return Game != null && Game.IsUninstalling;
             }
         }
 
@@ -101,7 +101,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     return resources.GetString("LOCSetupRunning");
                 }
-                else if (Game?.IsUnistalling == true)
+                else if (Game?.IsUninstalling == true)
                 {
                     return resources.GetString("LOCUninstalling");
                 }
@@ -248,6 +248,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.UserScore && game.UserScore != null) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility NameVisibility
+        {
+            get => settings.DetailsVisibility.Name ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         private GamesCollectionViewEntry game;
         public GamesCollectionViewEntry Game
         {
@@ -325,7 +330,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditGameCommand = new RelayCommand<object>((a) => EditGame());
             ContextActionCommand = new RelayCommand<object>((a) =>
             {
-                if (Game?.IsInstalling == true || Game?.IsUnistalling == true)
+                if (Game?.IsInstalling == true || Game?.IsUninstalling == true)
                 {
                     CheckSetup();
                 }
@@ -394,7 +399,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetFilter(DatabaseObject value, GameField filterField)
         {
-            var filter = new FilterItemProperites() { Ids = new List<Guid> { value.Id } };
+            var filter = new IdItemFilterItemProperties() { Ids = new List<Guid> { value.Id } };
             switch (filterField)
             {
                 case GameField.Platforms:
@@ -444,7 +449,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             if (date != null)
             {
-                settings.FilterSettings.ReleaseYear = new StringFilterItemProperites(date.Value.Year.ToString());
+                settings.FilterSettings.ReleaseYear = new StringFilterItemProperties(date.Value.Year.ToString());
                 settings.FilterPanelVisible = true;
             }
         }
@@ -460,7 +465,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetLibraryFilter(Guid LibraryId)
         {
-            var filter = new FilterItemProperites() { Ids = new List<Guid> { LibraryId } };
+            var filter = new IdItemFilterItemProperties() { Ids = new List<Guid> { LibraryId } };
             settings.FilterSettings.Library = filter;
             settings.FilterPanelVisible = true;
         }

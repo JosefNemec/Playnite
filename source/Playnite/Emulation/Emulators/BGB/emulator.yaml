@@ -1,0 +1,24 @@
+Id: bgb
+Name: BGB
+Website: 'https://bgb.bircd.org'
+Profiles:
+  - Name: Game Boy
+    StartupArguments: '-rom "{ImagePath}"'
+    Platforms: [nintendo_gameboy]
+    ImageExtensions: [zip, gb]
+    StartupExecutable: ^bgb\.exe$
+  - Name: Game Boy Color
+    StartupArguments: '-rom "{ImagePath}"'
+    Platforms: [nintendo_gameboycolor]
+    ImageExtensions: [zip, gbc]
+    StartupExecutable: ^bgb\.exe$
+  - Name: Game Boy 64-bit
+    StartupArguments: '-rom "{ImagePath}"'
+    Platforms: [nintendo_gameboy]
+    ImageExtensions: [zip, gb]
+    StartupExecutable: ^bgb64\.exe$
+  - Name: Game Boy Color 64-bit
+    StartupArguments: '-rom "{ImagePath}"'
+    Platforms: [nintendo_gameboycolor]
+    ImageExtensions: [zip, gbc]
+    StartupExecutable: ^bgb64\.exe$

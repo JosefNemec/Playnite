@@ -127,6 +127,11 @@ namespace Playnite.FullscreenApp
             return ShowMessage(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        public MessageBoxResult ShowErrorMessage(string messageBoxText)
+        {
+            return ShowMessage(messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
         public MessageBoxOption ShowMessage(string messageBoxText, string caption, MessageBoxImage icon, List<MessageBoxOption> options)
         {
             return Invoke(() => new MessageBoxWindow().ShowCustom(WindowManager.CurrentWindow, messageBoxText, caption, icon, options));
@@ -143,6 +148,11 @@ namespace Playnite.FullscreenApp
         }
 
         public GlobalProgressResult ActivateGlobalProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
+        {
+            return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
+        }
+
+        public GlobalProgressResult ActivateGlobalProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressArgs)
         {
             return Invoke(() => GlobalProgress.ActivateProgress(progresAction, progressArgs));
         }

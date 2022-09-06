@@ -1,9 +1,12 @@
 ﻿using Playnite.API;
+using Playnite.Common;
 using Playnite.Database;
 using Playnite.Emulators;
 using Playnite.Metadata;
 using Playnite.Plugins;
+using Playnite.Scripting.PowerShell;
 using Playnite.SDK;
+using Playnite.SDK.Exceptions;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using Playnite.Windows;
@@ -24,11 +27,11 @@ namespace Playnite.ViewModels
         double ProgressTotal { get; set; }
         bool ProgressActive { get; set; }
         BaseCollectionView GamesView { get; set; }
-        GamesCollectionViewEntry SelectedGame { get; set; }
-        IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
+        GamesCollectionViewEntry SelectedGame { get; }
+        List<GamesCollectionViewEntry> SelectedGames { get; set; }
     }
 
-    public abstract class MainViewModelBase : ObservableObject, IMainViewModelBase
+    public abstract class MainViewModelBase : ObservableObject
     {
         public static ILogger Logger = LogManager.GetLogger();
 
@@ -131,36 +134,39 @@ namespace Playnite.ViewModels
         }
 
         public bool IsDisposing { get; set; } = false;
-        public GamesCollectionViewEntry SelectedGame { get; set; }
-        public IEnumerable<GamesCollectionViewEntry> SelectedGames { get; set; }
         public RelayCommand<object> AddFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RemoveFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> ApplyFilterPresetCommand { get; private set; }
         public RelayCommand CancelProgressCommand { get; private set; }
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
-        public GameDatabase Database { get; }
+        public RelayCommand StartInteractivePowerShellCommand { get; private set; }
+        public RelayCommand RestartInSafeMode { get; private set; }
+        public RelayCommand BackupDataCommand { get; private set; }
+        public RelayCommand RestoreDataBackupCommand { get; private set; }
+
+        public IGameDatabaseMain Database { get; }
         public PlayniteApplication App { get; }
         public IDialogsFactory Dialogs { get; }
-        public PlayniteAPI PlayniteApi { get; set; }
         public IResourceProvider Resources { get; }
         public ExtensionFactory Extensions { get; set; }
         public bool IgnoreFilterChanges { get; set; } = false;
+        public IWindowFactory Window { get; }
 
         public MainViewModelBase(
-            GameDatabase database,
+            IGameDatabaseMain database,
             PlayniteApplication app,
             IDialogsFactory dialogs,
-            PlayniteAPI playniteApi,
             IResourceProvider resources,
-            ExtensionFactory extensions)
+            ExtensionFactory extensions,
+            IWindowFactory window)
         {
             Database = database;
             App = app;
             Dialogs = dialogs;
-            PlayniteApi = playniteApi;
             Resources = resources;
             Extensions = extensions;
+            Window = window;
 
             ApplyFilterPresetCommand = new RelayCommand<FilterPreset>((a) =>
             {
@@ -191,6 +197,25 @@ namespace Playnite.ViewModels
             {
                 CancelProgress();
             }, () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
+
+            StartInteractivePowerShellCommand = new RelayCommand(() =>
+            {
+                try
+                {
+                    Scripting.PowerShell.PowerShellRuntime.StartInteractiveSession(new Dictionary<string, object>
+                    {
+                        { "PlayniteApi", App.PlayniteApiGlobal }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage("Failed to start interactive PowerShell.\n" + e.Message);
+                }
+            });
+
+            RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
+            BackupDataCommand = new RelayCommand(() => BackupData());
+            RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
         }
 
         private PlayniteSettings appSettings;
@@ -227,6 +252,19 @@ namespace Playnite.ViewModels
 
                 ApplyFilterPreset(value);
                 OnPropertyChanged();
+            }
+        }
+
+        public void ApplyFilterPreset(Guid presetId)
+        {
+            var preset = Database.FilterPresets[presetId];
+            if (preset == null)
+            {
+                Logger.Error($"Cannot apply filter, filter preset {presetId} not found.");
+            }
+            else
+            {
+                ActiveFilterPreset = preset;
             }
         }
 
@@ -354,7 +392,7 @@ namespace Playnite.ViewModels
                 var preset = new FilterPreset
                 {
                     Name = res.SelectedString,
-                    Settings = filter.GetClone(),
+                    Settings = filter.AsPresetSettings(),
                     ShowInFullscreeQuickSelection = options[1].Selected
                 };
 
@@ -419,7 +457,7 @@ namespace Playnite.ViewModels
                     var updates = Addons.CheckAddonUpdates(App.ServicesClient);
                     if (updates.HasItems())
                     {
-                        PlayniteApi.Notifications.Add(GetAddonUpdatesFoundMessage(updates));
+                        App.Notifications.Add(GetAddonUpdatesFoundMessage(updates));
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -448,13 +486,13 @@ namespace Playnite.ViewModels
 
             try
             {
-                addedGames.AddRange(Database.ImportGames(plugin, AppSettings.ForcePlayTimeSync, token));
-                PlayniteApi.Notifications.Remove($"{plugin.Id} - download");
+                addedGames.AddRange(Database.ImportGames(plugin, token, AppSettings.PlaytimeImportMode));
+                App.Notifications.Remove($"{plugin.Id} - download");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, $"Failed to import games from plugin: {plugin.Name}");
-                PlayniteApi.Notifications.Add(new NotificationMessage(
+                App.Notifications.Add(new NotificationMessage(
                     $"{plugin.Id} - download",
                     Resources.GetString(LOC.LibraryImportError).Format(plugin.Name) + $"\n{e.Message}",
                     NotificationType.Error));
@@ -463,7 +501,31 @@ namespace Playnite.ViewModels
             return addedGames;
         }
 
-        public async Task UpdateLibrary(bool metaForNewGames, bool updateEmu)
+        public async Task ProcessStartupLibUpdate()
+        {
+            if (App.CmdLine.SkipLibUpdate)
+            {
+                Logger.Warn("Startup library update disabled via cmdline.");
+                return;
+            }
+
+            if (!await Common.Network.GetIsConnectedToInternet())
+            {
+                Logger.Warn("Startup library update disabled because of no internet connection.");
+                return;
+            }
+
+            var updateLibs = AppSettings.ShouldCheckLibraryOnStartup();
+            var updateEmu = AppSettings.ShouldCheckEmuLibraryOnStartup();
+            if (!updateLibs && !updateEmu)
+            {
+                return;
+            }
+
+            await UpdateLibrary(AppSettings.DownloadMetadataOnImport, updateLibs, updateEmu);
+        }
+
+        public async Task UpdateLibrary(bool metaForNewGames, bool updateIntegrations, bool updateEmu)
         {
             if (!GameAdditionAllowed)
             {
@@ -473,19 +535,23 @@ namespace Playnite.ViewModels
             await UpdateLibraryData((token) =>
             {
                 var addedGames = new List<Game>();
-                foreach (var plugin in Extensions.LibraryPlugins)
+                if (updateIntegrations)
                 {
-                    if (token.IsCancellationRequested)
+                    foreach (var plugin in Extensions.LibraryPlugins)
                     {
-                        return addedGames;
+                        if (token.IsCancellationRequested)
+                        {
+                            return addedGames;
+                        }
+
+                        addedGames.AddRange(ImportLibraryGames(plugin, token));
                     }
 
-                    addedGames.AddRange(ImportLibraryGames(plugin, token));
+                    AppSettings.LastLibraryUpdateCheck = DateTimes.Now;
                 }
 
                 if (updateEmu)
                 {
-                    var importedRoms = Database.GetImportedRomFiles();
                     foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate).ToList())
                     {
                         if (token.IsCancellationRequested)
@@ -493,8 +559,10 @@ namespace Playnite.ViewModels
                             return addedGames;
                         }
 
-                        addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                        addedGames.AddRange(ImportEmulatedGames(scanConfig, token));
                     }
+
+                    AppSettings.LastEmuLibraryUpdateCheck = DateTimes.Now;
                 }
 
                 return addedGames;
@@ -514,7 +582,7 @@ namespace Playnite.ViewModels
             }, AppSettings.DownloadMetadataOnImport);
         }
 
-        private List<Game> ImportEmulatedGames(GameScannerConfig scanConfig, List<string> importedFiles, CancellationToken token)
+        private List<Game> ImportEmulatedGames(GameScannerConfig scanConfig, CancellationToken token)
         {
             var addedGames = new List<Game>();
             if (token.IsCancellationRequested)
@@ -527,7 +595,7 @@ namespace Playnite.ViewModels
 
             try
             {
-                var scanned = new GameScanner(scanConfig, Database, importedFiles).Scan(
+                var scanned = new GameScanner(scanConfig, Database).Scan(
                     token,
                     out var newPlatforms,
                     out var newRegions).Select(a => a.ToGame()).ToList();
@@ -553,12 +621,12 @@ namespace Playnite.ViewModels
                     Database.Games.Add(scanned);
                 }
 
-                PlayniteApi.Notifications.Remove($"{scanConfig.Id} - import");
+                App.Notifications.Remove($"{scanConfig.Id} - import");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, $"Failed to import emulated games from config:\n{scanConfig.Directory}\n{scanConfig.EmulatorId}\n{scanConfig.EmulatorProfileId}");
-                PlayniteApi.Notifications.Add(new NotificationMessage(
+                App.Notifications.Add(new NotificationMessage(
                     $"{scanConfig.Id} - import",
                     Resources.GetString(LOC.LibraryImportEmulatedError).Format(scanConfig.Name) + $"\n{e.Message}",
                     NotificationType.Error));
@@ -571,7 +639,7 @@ namespace Playnite.ViewModels
         {
             await UpdateLibraryData((token) =>
             {
-                return ImportEmulatedGames(config, Database.GetImportedRomFiles(), token);
+                return ImportEmulatedGames(config, token);
             }, AppSettings.DownloadMetadataOnImport);
         }
 
@@ -580,10 +648,9 @@ namespace Playnite.ViewModels
             await UpdateLibraryData((token) =>
             {
                 var addedGames = new List<Game>();
-                var importedRoms = Database.GetImportedRomFiles();
                 foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate))
                 {
-                    addedGames.AddRange(ImportEmulatedGames(scanConfig, importedRoms, token));
+                    addedGames.AddRange(ImportEmulatedGames(scanConfig, token));
                 }
 
                 return addedGames;
@@ -623,16 +690,39 @@ namespace Playnite.ViewModels
                         Logger.Info($"Downloading metadata for {addedGames.Count} new games.");
                         ProgressValue = 0;
                         ProgressTotal = addedGames.Count;
-                        ProgressStatus = Resources.GetString(LOC.ProgressMetadata);
+                        string progressBaseStr = ProgressStatus = Resources.GetString(LOC.ProgressMetadata);
                         using (var downloader = new MetadataDownloader(Database, Extensions.MetadataPlugins, Extensions.LibraryPlugins))
                         {
                             downloader.DownloadMetadataAsync(addedGames, AppSettings.MetadataSettings, AppSettings,
                                 (g, i, t) =>
                                 {
                                     ProgressValue = i + 1;
-                                    ProgressStatus = Resources.GetString(LOC.ProgressMetadata) + $" [{ProgressValue}/{ProgressTotal}]";
+                                    ProgressStatus = $"{progressBaseStr} [{ProgressValue}/{ProgressTotal}]";
                                 },
                                 GlobalTaskHandler.CancelToken.Token).Wait();
+                        }
+                    }
+
+                    if (addedGames.Any() && AppSettings.GameSortingNameAutofill)
+                    {
+                        Logger.Info($"Setting Sorting Name for {addedGames.Count} new games.");
+                        ProgressStatus = Resources.GetString(LOC.SortingNameAutofillProgress);
+                        var c = new SortableNameConverter(AppSettings.GameSortingNameRemovedArticles, batchOperation: addedGames.Count > 20);
+                        using (Database.BufferedUpdate())
+                        {
+                            foreach (var game in addedGames)
+                            {
+                                if (GlobalTaskHandler.CancelToken.IsCancellationRequested)
+                                {
+                                    break;
+                                }
+                                string sortingName = c.Convert(game.Name);
+                                if (sortingName != game.Name)
+                                {
+                                    game.SortingName = sortingName;
+                                    Database.Games.Update(game);
+                                }
+                            }
                         }
                     }
                 });
@@ -655,6 +745,174 @@ namespace Playnite.ViewModels
 
         public virtual void SelectGame(Guid id)
         {
+        }
+
+        private void RunAppScript(string script, string eventName)
+        {
+            if (script.IsNullOrWhiteSpace())
+            {
+                return;
+            }
+
+            try
+            {
+                if (!PowerShellRuntime.IsInstalled)
+                {
+                    throw new Exception(ResourceProvider.GetString(LOC.ErrorPowerShellNotInstalled));
+                }
+
+                using (var runtime = new PowerShellRuntime($"app {eventName} script"))
+                {
+                    runtime.Execute(
+                        script,
+                        PlaynitePaths.ProgramPath,
+                        new Dictionary<string, object> { { "PlayniteApi", App.PlayniteApiGlobal } });
+                }
+            }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(exc, $"Failed to execute {eventName} script.");
+                Logger.Debug(script);
+                var message = ResourceProvider.GetString(LOC.ErrorApplicationScript) + Environment.NewLine + exc.Message;
+                if (exc is ScriptRuntimeException scriptExc)
+                {
+                    message = message + Environment.NewLine + Environment.NewLine + scriptExc.ScriptStackTrace;
+                }
+
+                Dialogs.ShowMessage(
+                    message,
+                    "",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
+        public void RunStartupScript()
+        {
+            RunAppScript(AppSettings.AppStartupScript, "startup");
+        }
+
+        public void RunShutdowScript()
+        {
+            RunAppScript(AppSettings.AppShutdownScript, "shutdown");
+        }
+
+        public void RestartAppSafe()
+        {
+            CloseView();
+            App.Restart(new CmdLineOptions { SafeStartup = true });
+        }
+
+        public abstract void CloseView();
+        public virtual IEnumerable<SearchItem> GetSearchCommands()
+        {
+            yield break;
+        }
+
+        public abstract void OpenSettings(int settingsPageIndex);
+        public void StartGame(Game game)
+        {
+            App.GamesEditor.PlayGame(game);
+        }
+
+        public void InstallGame(Game game)
+        {
+            App.GamesEditor.InstallGame(game);
+        }
+
+        public abstract void EditGame(Game game);
+        public abstract void AssignCategories(Game game);
+
+        public void StartSoftwareTool(AppSoftware app)
+        {
+            try
+            {
+                ProcessStarter.StartProcess(app.Path, app.Arguments, app.WorkingDir);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to start app tool.");
+                Dialogs.ShowErrorMessage(
+                    Resources.GetString("LOCAppStartupError") + "\n\n" +
+                    e.Message,
+                    "LOCStartupError");
+            }
+        }
+
+        private void RestoreDataBackup()
+        {
+            var backupFile = Dialogs.SelectFile("Playnite Backup|*.zip");
+            if (backupFile.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            List<BackupDataItem> restoreOptions = null;
+            try
+            {
+                restoreOptions = Backup.GetRestoreSelections(backupFile);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e, $"Failed to read backup file {backupFile}");
+                return;
+            }
+
+            var restoreItems = restoreOptions.Select(a => new SelectableNamedObject<BackupDataItem>(a, a.GetDescription(), true)).ToList();
+            if (ItemSelector.SelectMultiple(
+                LOC.MenuRestoreBackup,
+                LOC.BackupRestoreMessage,
+                restoreItems,
+                out var selectedRestoreItems))
+            {
+                var options = new BackupRestoreOptions
+                {
+                    BackupFile = backupFile,
+                    DataDir = PlaynitePaths.ConfigRootPath,
+                    LibraryDir = GameDatabase.GetFullDbPath(AppSettings.DatabasePath),
+                    RestoreItems = selectedRestoreItems
+                };
+
+                FileSystem.WriteStringToFile(PlaynitePaths.RestoreBackupActionFile, Serialization.ToJson(options));
+                App.Restart(new CmdLineOptions
+                {
+                    RestoreBackup = PlaynitePaths.RestoreBackupActionFile,
+                    SkipLibUpdate = true
+                });
+            }
+        }
+
+        private void BackupData()
+        {
+            var backupFile = Dialogs.SaveFile("Playnite Backup|*.zip", true);
+            if (backupFile.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            List<BackupDataItem> backupOptions = new List<BackupDataItem> { BackupDataItem.LibraryFiles, BackupDataItem.Extensions, BackupDataItem.ExtensionsData, BackupDataItem.Themes };
+            var restoreItems = backupOptions.Select(a => new SelectableNamedObject<BackupDataItem>(a, a.GetDescription(), true)).ToList();
+            if (ItemSelector.SelectMultiple(
+                LOC.MenuBackupData,
+                LOC.BackupDataBackupMessage,
+                restoreItems,
+                out var selectedBackupItems))
+            {
+                var options = new BackupOptions
+                {
+                    OutputFile = backupFile,
+                    DataDir = PlaynitePaths.ConfigRootPath,
+                    LibraryDir = GameDatabase.GetFullDbPath(AppSettings.DatabasePath),
+                    BackupItems = selectedBackupItems
+                };
+
+                FileSystem.WriteStringToFile(PlaynitePaths.BackupActionFile, Serialization.ToJson(options));
+                App.Restart(new CmdLineOptions
+                {
+                    Backup = PlaynitePaths.BackupActionFile,
+                    SkipLibUpdate = true
+                });
+            }
         }
     }
 }

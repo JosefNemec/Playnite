@@ -96,10 +96,15 @@ namespace Playnite.SDK.Events
         /// Gets ROM file selected when running a game with multiple ROMs assigned.
         /// </summary>
         public string SelectedRomFile { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether game startup should be interrupted.
+        /// </summary>
+        public bool CancelStartup { get; set; }
     }
 
     /// <summary>
-    /// Represents arguments for the event a game starts running.
+    /// Represents arguments for the event when a game starts running.
     /// </summary>
     public class OnGameStartedEventArgs
     {
@@ -117,10 +122,15 @@ namespace Playnite.SDK.Events
         /// Gets ROM file selected when running a game with multiple ROMs assigned.
         /// </summary>
         public string SelectedRomFile { get; internal set; }
+
+        /// <summary>
+        /// Gets started process ID. Might not be valid for all started games depending on how the game was started.
+        /// </summary>
+        public int StartedProcessId { get; internal set; }
     }
 
     /// <summary>
-    /// Reperesents arguments for the event when a game stops running.
+    /// Represents arguments for the event when a game stops running.
     /// </summary>
     public class OnGameStoppedEventArgs
     {
@@ -133,6 +143,11 @@ namespace Playnite.SDK.Events
         /// Gets or sets length of the game session in seconds.
         /// </summary>
         public ulong ElapsedSeconds { get; internal set; }
+
+        /// <summary>
+        /// Gets value indicated whether game tracking was manually stopped by a user.
+        /// </summary>
+        public bool ManuallyStopped { get; internal set; }
     }
 
     /// <summary>

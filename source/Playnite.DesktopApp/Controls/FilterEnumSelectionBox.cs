@@ -94,7 +94,7 @@ namespace Playnite.DesktopApp.Controls
                 var selected = ItemsList.Where(a => a.Selected == true);
                 if (selected.HasItems())
                 {
-                    FilterProperties = new EnumFilterItemProperites(selected.Select(a => a.Item.Value).ToList());
+                    FilterProperties = new EnumFilterItemProperties(selected.Select(a => a.Item.Value).ToList());
                 }
                 else
                 {
@@ -103,11 +103,11 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        public EnumFilterItemProperites FilterProperties
+        public EnumFilterItemProperties FilterProperties
         {
             get
             {
-                return (EnumFilterItemProperites)GetValue(FilterPropertiesProperty);
+                return (EnumFilterItemProperties)GetValue(FilterPropertiesProperty);
             }
 
             set
@@ -118,7 +118,7 @@ namespace Playnite.DesktopApp.Controls
 
         public static readonly DependencyProperty FilterPropertiesProperty = DependencyProperty.Register(
             nameof(FilterProperties),
-            typeof(EnumFilterItemProperites),
+            typeof(EnumFilterItemProperties),
             typeof(FilterEnumSelectionBox),
             new PropertyMetadata(null, FilterPropertiesPropertyChangedCallback));
 

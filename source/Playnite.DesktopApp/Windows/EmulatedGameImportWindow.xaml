@@ -44,7 +44,7 @@
         <controls:ExtendedDataGrid Grid.Row="1" Margin="10,5,10,0"
                   Visibility="{Binding IsScanSetup, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
                   CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" GridLinesVisibility="None"
-                  ItemsSource="{Binding CollectionView}" SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}">
+                  ItemsSource="{Binding GameList}" SelectedItemsList="{Binding SelectedGames, Mode=TwoWay}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="ContextMenuOpening" >
                     <prism:InvokeCommandAction Command="{Binding Data.ContextMenuOpening, Source={StaticResource BindingProxy}}" />
@@ -112,6 +112,18 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                                 <Setter Property="Focusable" Value="false"/>
+                                <Setter Property="ContextMenu">
+                                    <Setter.Value>
+                                        <ContextMenu>
+                                            <MenuItem Header="{DynamicResource LOCEmuImportAddROMExclusionList}"
+                                                      Command="{Binding Data.AddFileToExclusionListCommand, Source={StaticResource BindingProxy}}"
+                                                      CommandParameter="{Binding}"/>
+                                            <MenuItem Header="{DynamicResource LOCEmuImportAddFolderExclusionList}"
+                                                      Command="{Binding Data.AddDirToExclusionListCommand, Source={StaticResource BindingProxy}}"
+                                                      CommandParameter="{Binding}"/>
+                                        </ContextMenu>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.View>
@@ -162,6 +174,15 @@
                                                 ItemsSource="{Binding SelectedItem.AllProfiles, ElementName=ComboEmulatorList}"
                                                 DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding EmulatorProfileId}" />
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                                    <TextBlock Text="{DynamicResource LOCEmuOverridePlatform}" VerticalAlignment="Center"
+                                               ToolTip="{DynamicResource LOCEmuOverridePlatformTooltip}" />
+                                    <ComboBox VerticalAlignment="Center" Margin="10,0,0,0" MinWidth="150"
+                                              ToolTip="{DynamicResource LOCEmuOverridePlatformTooltip}"
+                                              SelectedValue="{Binding OverridePlatformId}" SelectedValuePath="Id"
+                                              DisplayMemberPath="Name"
+                                              ItemsSource="{Binding Data.OverridePlatforms, Source={StaticResource BindingProxy}}"/>
+                                </StackPanel>
                                 <DockPanel Margin="0,10,0,10">
                                     <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
                                     <dctrls:PathSelectionBox Margin="10,0,10,0" ShowDirectorySelector="True"
@@ -185,9 +206,17 @@
                                               Margin="20,0,0,0"
                                               IsChecked="{Binding UseSimplifiedOnlineFileScan}" />
                                 </StackPanel>
+                                <CheckBox Content="{DynamicResource LOCEmuImportWithRelativePaths}"
+                                          ToolTip="{DynamicResource LOCEmuImportWithRelativePathsTooltip}"
+                                          ToolTipService.InitialShowDelay="200"
+                                          IsChecked="{Binding ImportWithRelativePaths}"/>
+                                <CheckBox Content="{DynamicResource LOCEmuImportScanSubfolders}" Margin="0,10,0,0"
+                                          IsChecked="{Binding ScanSubfolders}"/>
+                                <CheckBox Content="{DynamicResource LOCEmuImportScanInsideArchives}" Margin="0,10,0,0"
+                                          IsChecked="{Binding ScanInsideArchives}"/>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
                                           ToolTip="{DynamicResource LOCEmuSaveScanConfigTooltip}"
-                                          ToolTipService.InitialShowDelay="200"
+                                          ToolTipService.InitialShowDelay="200" Margin="0,10,0,0"
                                           IsChecked="{Binding Save}" Name="CheckSaveConfig"
                                           Visibility="{Binding SavedConfig, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
                                 <DockPanel Margin="0,10,0,10" Visibility="{Binding IsChecked, ElementName=CheckSaveConfig, Converter={pcon:BooleanToVisibilityConverter}}">

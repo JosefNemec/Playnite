@@ -33,7 +33,7 @@ namespace Playnite.DesktopApp.ViewModels
         public class MenuItem
         {
             public string Title { get; set; }
-            public RelayCommand<object> Command { get; set; }
+            public RelayCommandBase Command { get; set; }
             public List<MenuItem> Items { get; set; }
 
             public override string ToString()
@@ -42,16 +42,18 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private readonly object listSyncLock = new object();
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly IWindowFactory window;
         private readonly IDialogsFactory dialogs;
         private readonly IResourceProvider resources;
-        private readonly GameDatabase database;
+        private readonly IGameDatabaseMain database;
         private readonly MenuItem menuSplitItem;
         private readonly MenuItem menuMergeItem;
         private readonly MenuItem menuPlatformsItem;
         private readonly MenuItem menuRegionsItem;
+        private readonly MenuItem menuAddFolderToExclusions;
+        private readonly MenuItem menuAddFilesToExclusions;
+
         private List<Platform> newPlatforms;
         private List<Region> newRegions;
 
@@ -62,6 +64,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public List<Emulator> Emulators { get; set; }
         public List<Platform> Platforms { get => platforms; set => SetValue(ref platforms, value); }
+        public List<Platform> OverridePlatforms { get; set; }
         public List<Region> Regions     { get => regions; set => SetValue(ref regions, value); }
         public List<GameScannerConfig> SavedConfigs { get; set; }
         public List<Game> ImportedGames { get; } = new List<Game>();
@@ -77,18 +80,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private ListCollectionView collectionView;
-        public ListCollectionView CollectionView
-        {
-            get => collectionView;
-            private set
-            {
-                collectionView = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<ScannedGame> gameList = new ObservableCollection<ScannedGame>();
+        private ObservableCollection<ScannedGame> gameList;
         public ObservableCollection<ScannedGame> GameList
         {
             get => gameList;
@@ -176,7 +168,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 var items = new List<MenuItem>();
-                if (SelectedGames?.Count == 1)
+                if (SelectedGames?.Count == 1 && SelectedGames.Cast<ScannedGame>().First().Roms.Count > 1)
                 {
                     items.Add(menuSplitItem);
                 }
@@ -187,11 +179,18 @@ namespace Playnite.DesktopApp.ViewModels
 
                 items.Add(menuPlatformsItem);
                 items.Add(menuRegionsItem);
+                items.Add(menuAddFilesToExclusions);
+                items.Add(menuAddFolderToExclusions);
                 MenuItems = items;
             });
 
+        public RelayCommand<ScannedRom> AddFileToExclusionListCommand => new RelayCommand<ScannedRom>((r) => AddFileToExclusionList(r));
+        public RelayCommand<ScannedRom> AddDirToExclusionListCommand => new RelayCommand<ScannedRom>((r) => AddDirToExclusionList(r));
+        public RelayCommand AddFilesToExclusionListCommand => new RelayCommand(() => AddFilesToExclusionList(SelectedGames?.Cast<ScannedGame>()));
+        public RelayCommand AddDirsToExclusionListCommand => new RelayCommand(() => AddDirsToExclusionList(SelectedGames?.Cast<ScannedGame>()));
+
         public EmulatedGamesImportViewModel(
-            GameDatabase database,
+            IGameDatabaseMain database,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources)
@@ -204,9 +203,8 @@ namespace Playnite.DesktopApp.ViewModels
             Platforms = database.Platforms.OrderBy(a => a.Name).ToList();
             Regions = database.Regions.OrderBy(a => a.Name).ToList();
             SavedConfigs = database.GameScanners.OrderBy(a => a.Name).ToList();
-            CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(GameList);
-            CollectionView.Filter = ListFilter;
-            BindingOperations.EnableCollectionSynchronization(GameList, listSyncLock);
+            OverridePlatforms = database.Platforms.OrderBy(a => a.Name).ToList();
+            OverridePlatforms.Insert(0, new Platform(LOC.None.GetLocalized()) { Id = Guid.Empty });
 
             menuSplitItem = new MenuItem
             {
@@ -249,6 +247,18 @@ namespace Playnite.DesktopApp.ViewModels
                 Items = new List<MenuItem>()
             };
 
+            menuAddFilesToExclusions = new MenuItem
+            {
+                Title = resources.GetString(LOC.EmuImportAddROMExclusionList),
+                Command = AddFilesToExclusionListCommand
+            };
+
+            menuAddFolderToExclusions = new MenuItem
+            {
+                Title = resources.GetString(LOC.EmuImportAddFolderExclusionList),
+                Command = AddDirsToExclusionListCommand,
+            };
+
             Regions.ForEach(a => menuRegionsItem.Items.Add(new MenuItem
             {
                 Title = a.Name,
@@ -270,11 +280,6 @@ namespace Playnite.DesktopApp.ViewModels
         public void CloseView(bool? result)
         {
             window.Close(result);
-        }
-
-        private bool ListFilter(object item)
-        {
-            return true;
         }
 
         private void SplitSelectedGames()
@@ -363,15 +368,14 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            GameList.Clear();
+            var tempList = new ObservableCollection<ScannedGame>();
             var scanString = resources.GetString(LOC.EmuWizardScanningSpecific);
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
-                var existingGame = database.GetImportedRomFiles();
                 foreach (GameScannerConfig config in ScannerConfigs)
                 {
                     args.Text = scanString.Format(config.Directory);
-                    GameList.AddRange(new GameScanner(config, database, existingGame).Scan(
+                    tempList.AddRange(new GameScanner(config, database).Scan(
                         args.CancelToken,
                         out newPlatforms,
                         out newRegions,
@@ -438,6 +442,8 @@ namespace Playnite.DesktopApp.ViewModels
 
                 IsScanSetup = false;
             }
+
+            GameList = tempList;
         }
 
         private void ImportGames()
@@ -481,6 +487,116 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             CloseView(true);
+        }
+
+        private void AddFileToExclusionList(ScannedRom rom)
+        {
+            rom.Import = false;
+            var parent = GameList.First(a => a.Roms.Contains(rom));
+            ExcludeFiles(new List<string> { rom.Path }, parent.SourceConfig.Id);
+        }
+
+        private void AddDirToExclusionList(ScannedRom rom)
+        {
+            rom.Import = false;
+            var parent = GameList.First(a => a.Roms.Contains(rom));
+            ExcludeDirectories(new List<string> { rom.Path }, parent.SourceConfig.Id);
+        }
+
+        private void AddFilesToExclusionList(IEnumerable<ScannedGame> games)
+        {
+            games.ForEach(a => a.Import = false);
+            foreach (var scanner in games.GroupBy(a => a.SourceConfig))
+            {
+                ExcludeFiles(scanner.SelectMany(a => a.Roms).Select(a => a.Path), scanner.Key.Id);
+            }
+        }
+
+        private void AddDirsToExclusionList(IEnumerable<ScannedGame> games)
+        {
+            games.ForEach(a => a.Import = false);
+            foreach (var scanner in games.GroupBy(a => a.SourceConfig))
+            {
+                ExcludeDirectories(scanner.SelectMany(a => a.Roms).Select(a => a.Path), scanner.Key.Id);
+            }
+        }
+
+        private void ExcludeFiles(IEnumerable<string> romPaths, Guid scannerId)
+        {
+            var scanner = database.GameScanners[scannerId];
+            if (scanner == null)
+            {
+                dialogs.ShowErrorMessage(LOC.EmuExclusionNoConfigError, "");
+            }
+            else
+            {
+                bool update = false;
+                foreach (var file in romPaths)
+                {
+                    var exFile = file.Replace(scanner.Directory, "").TrimStart(Paths.DirectorySeparators);
+                    if (scanner.ExcludedFiles == null)
+                    {
+                        scanner.ExcludedFiles = new List<string> { exFile };
+                        update = true;
+                    }
+                    else
+                    {
+                        if (!scanner.ExcludedFiles.ContainsString(exFile, StringComparison.OrdinalIgnoreCase))
+                        {
+                            scanner.ExcludedFiles.Add(exFile);
+                            update = true;
+                        }
+                    }
+                }
+
+                if (update)
+                {
+                    dialogs.ShowMessage(LOC.EmuExclusionAddedMessage.GetLocalized().Format(scanner.Name));
+                    database.GameScanners.Update(scanner);
+                }
+            }
+        }
+
+        private void ExcludeDirectories(IEnumerable<string> romPaths, Guid scannerId)
+        {
+            var scanner = database.GameScanners[scannerId];
+            if (scanner == null)
+            {
+                dialogs.ShowErrorMessage(LOC.EmuExclusionNoConfigError, "");
+            }
+            else
+            {
+                bool update = false;
+                foreach (var file in romPaths)
+                {
+                    var dir = Path.GetDirectoryName(file);
+                    var exDir = dir.Replace(scanner.Directory.TrimEnd(Paths.DirectorySeparators), "").TrimStart(Paths.DirectorySeparators);
+                    if (exDir.IsNullOrWhiteSpace())
+                    {
+                        continue;
+                    }
+
+                    if (scanner.ExcludedDirectories == null)
+                    {
+                        scanner.ExcludedDirectories = new List<string> { exDir };
+                        update = true;
+                    }
+                    else
+                    {
+                        if (!scanner.ExcludedDirectories.ContainsString(exDir, StringComparison.OrdinalIgnoreCase))
+                        {
+                            scanner.ExcludedDirectories.Add(exDir);
+                            update = true;
+                        }
+                    }
+                }
+
+                if (update)
+                {
+                    dialogs.ShowMessage(LOC.EmuExclusionAddedMessage.GetLocalized().Format(scanner.Name));
+                    database.GameScanners.Update(scanner);
+                }
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ namespace System.Collections.Concurrent
 
         /// <summary>Event raised when the collection changes.</summary>
         public event NotifyCollectionChangedEventHandler CollectionChanged;
-        /// <summary>Event raised when a property on the collection changes.</summary>
+        /// <summary>Event raised when a property in the collection changes.</summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

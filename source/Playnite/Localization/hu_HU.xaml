@@ -72,7 +72,6 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Biztosan eltávolitasz {0} nem használt játékot?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Nem található üres mező.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Igen (hozzáadás a kivételekhez)</sys:String>
-    <sys:String x:Key="LOCSteamFriendsTooltip">Steam barátok</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Nem mentett változások vannak</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Játékkönyvtár formátumának frissítése...</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Adatbázis frissítése sikertelen.</sys:String>
@@ -86,12 +85,13 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCManualOpenError">Nem sikerült megnyitni {0} kézikönyvét.</sys:String>
     <sys:String x:Key="LOCGameInstallError">{0} játék nem telepíthető</sys:String>
     <sys:String x:Key="LOCGameUninstallError">{0} játék nem eltávolítható</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction">Indítás művelet nincs beállítva.</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Nem találtam indítási műveletet. Amikor emulátor műveleteket használsz, győződj meg róla, hogy a platform definíciók azonosak a játéknál és az emulátor beállításaiban.</sys:String>
     <sys:String x:Key="LOCErrorNoInstallAction">A telepítés funkció nem elérhető.</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Az ehhez a játékhoz tartozó könyvtár beépülők nincsenek bekapcsolva / engedélyezve.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Hivatalos metaadat letöltés nem elérhető.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nincs játék kiválasztva.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">A játék indítószkript végrehajtása sikertelen.</sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript">Hiba a programszkript futtatásában.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Globális indítószkript végrehajtása sikertelen.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Hiba az emulátorszkript futtatásában.</sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction">Indítószkript végrehajtása sikertelen.</sys:String>
@@ -115,7 +115,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCClearCapLabel">TÖRÖL</sys:String>
     <sys:String x:Key="LOCClearLabel">Szűrők törlése</sys:String>
     <sys:String x:Key="LOCDismiss">Mégsem</sys:String>
-    <sys:String x:Key="LOCDismissAll">Mindet elutasít</sys:String>
+    <sys:String x:Key="LOCDismissAll">Inkább mégsem</sys:String>
     <sys:String x:Key="LOCImportLabel">Importálás</sys:String>
     <sys:String x:Key="LOCNameLabel">Név</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Szerző</sys:String>
@@ -137,6 +137,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCSaveLabel">Mentés</sys:String>
     <sys:String x:Key="LOCCloseLabel">Bezárás</sys:String>
     <sys:String x:Key="LOCCancelLabel">Mégse</sys:String>
+    <sys:String x:Key="LOCConfirmLabel">Megerősít</sys:String>
     <sys:String x:Key="LOCYesLabel">Igen</sys:String>
     <sys:String x:Key="LOCNoLabel">Nem</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Üdvözlünk</sys:String>
@@ -284,14 +285,18 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCSettingsInputLabel">Bevitel</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Teljesítmény</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metaadatok</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">Frissítés</sys:String>
+    <sys:String x:Key="LOCSettingsSearch">Keresés</sys:String>
+    <sys:String x:Key="LOCSettingsBackup">Biztonsági mentés</sys:String>
+    <sys:String x:Key="LOCMenuBackupData">Könyvtáradatok mentése</sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">Könyvtáradatok visszaállítása</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Könyvtár változások automatikus követése</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Hibás adatbázis útvonal, helyes fájl útvonal kell legyen megadva.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Fióknév nem lehet üres</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateLibStartup">Külső kliensek könyvtárainak frissítése induláskor</sys:String>
-    <sys:String x:Key="LOCSettingsUpdateEmulatedLibStartup">Emulátorok mappáinak frissítése</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Metaadatok importálása a játékok hozzáadása után</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Playnite indítása kis méretben</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Playnite indítása a Windows indításakor</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">Indítás tálcaikonként</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nem sikerült beállítani a Windows indításakori programindítást.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Indítás teljesképernyős módban</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Nem egyidejű kép betöltés</sys:String>
@@ -347,8 +352,15 @@ Az új adatbázis helye csak újraindítás után lesz alkalmazva. </sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Sorok száma részletes nézetben</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Háttérkép megjelenítése a főképernyőn</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Visszamenőleg nem vonatkozik a meglévő játékokra a metaadatok letöltése nélkül.</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlaynite">Játékidő prioritizálása a támogatott könyvtáraknál</sys:String>
-    <sys:String x:Key="LOCSettingsForceDownloadPlayniteTooltip">Mindig a távoli könyvtárból töltse le a játékidőt szinkronizációnál, ne vegye figyelembe a Playnite-ban rögzítettet.</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportMode">Játékidő importálása az alábbi játékokhoz:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Azt állítja be, hogy a Playnite mikor importálja be a könyvtárbeépülők által megadott játékidőket az adatbázisába. Ehhez a játékokhoz tartozó könyvtárbeépülők támogatása szükséges.
+
+Mindig: mindig beimportálja az új és meglévő játékok játékidejét a Playnite adatbázisba.
+Csak új importált játékokat: csak az újonnan importált játékok idejét adja hozzá.
+Sosem: semmilyen esetben sem importál játékidőt.</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Mindig</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Csak új importált játékokat</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Sosem</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Játékvezérlő támogatása ablakos módban</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">/PS gomb teljesképernyős módra vált</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Automatikus metaadat beállítások új játékok hozzáadásánál.</sys:String>
@@ -484,6 +496,7 @@ Jelenleg {1} játék és {2} emulátor használja.</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Szűrőpanel</sys:String>
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Ikon</sys:String>
+    <sys:String x:Key="LOCLibraryIconTitle">Könyvtár ikon</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Borítókép</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Háttérkép</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Rendezési név</sys:String>
@@ -557,11 +570,7 @@ Kérlek csatold hozzá a a következő ID-t a hibajegyhez:</sys:String>
     <sys:String x:Key="LOCAppStartupError">Nem sikerült az alkalmazás elindítása.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Nem sikerült a webes elem elindítása, a Playnite nem indult el.
 
-A következők segíthetnek a hiba elhárításában:
- • Ellenőrizd, hogy minden fájl megfelelően van-e telepítve; az újratelepítés megoldás lehet
- • Windows 7 és 8 alatt telepítsd a Visual Studio C++ 2019-et
- • Ellenőrizd, hogy a vírusirtód nem blokkolja-e valamelyik fájlt a Playnite mappájában
- • Válassz másik telepítési célmappát</sys:String>
+Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nem sikerült az emulátorok importálása, az emulátorok definíciói hiányoznak vagy sérültek.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Az XInput felületet nem sikerült elindítani.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Menü művelet futtatása nem sikerült.</sys:String>
@@ -614,12 +623,15 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCUserScore">Felhasználó értékelése</sys:String>
     <sys:String x:Key="LOCCriticScore">Kritikusok értékelése</sys:String>
     <sys:String x:Key="LOCCommunityScore">Közösség értékelése</sys:String>
+    <sys:String x:Key="LOCGameScripts">Játékszkriptek</sys:String>
+    <sys:String x:Key="LOCApplicationScripts">Alkalmazásszkriptek</sys:String>
     <sys:String x:Key="LOCScripts">Szkriptek</sys:String>
     <sys:String x:Key="LOCPlugins">Beépülők</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Metaadat források</sys:String>
     <sys:String x:Key="LOCExtensions">Bővítmények</sys:String>
     <sys:String x:Key="LOCExtensionID">Bővítményazonosító</sys:String>
     <sys:String x:Key="LOCReloadScripts">Szkriptek újratöltése</sys:String>
+    <sys:String x:Key="LOCStartInteractivePowerShell">Interaktív SDK PowerShell</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Minden szkript újratöltve.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nem találtam játékot a megadott adatok alapján</sys:String>
     <sys:String x:Key="LOCNoItemsFound">Nincs találat</sys:String>
@@ -687,6 +699,8 @@ A következők segíthetnek a hiba elhárításában:
     <sys:String x:Key="LOCPreScriptDescription">Játék indítása előtt futtatott szkript</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Játékból kilépés után futtatott szkript</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Játék indítása után futtatott szkript</sys:String>
+    <sys:String x:Key="LOCAppScriptStartupDescription">Alkalmazás indításakor futtatandó</sys:String>
+    <sys:String x:Key="LOCAppScriptShutdownDescription">Alkalmazás leállításakor futtatandó</sys:String>
     <sys:String x:Key="LOCScriptTypeStarting">Játék indítása előtti szkript</sys:String>
     <sys:String x:Key="LOCScriptTypeStarted">Játék futása alatti szkript</sys:String>
     <sys:String x:Key="LOCScriptTypeExit">Játékból kilépés utáni szkript</sys:String>
@@ -890,13 +904,16 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCActionTrackingModeDefault">Alapértelmezés</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">Folyamat</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mappa</sys:String>
+    <sys:String x:Key="LOCActionTrackingOriginalProcess">Eredeti folyamat</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Nyomonkövetési üzenetek naplózása</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">A módosítások felülírják az összes kijelölt játék szerkesztett adatát!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Nincs</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Arányos</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Csak az elemek</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">Csak kezdés és befejezés</sys:String>
-    <sys:String x:Key="LOCGridViewScrollAmountModifier">Görgetés mennyisége</sys:String>
+    <sys:String x:Key="LOCScrollingSensitivity">Görgetési érzékenység</sys:String>
+    <sys:String x:Key="LOCSmoothScrolling">Sima görgetés</sys:String>
+    <sys:String x:Key="LOCSmoothScrollingSpeed">Görgetés sebessége</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">Elem eltávolítása?</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage">Biztos, hogy eltávolítod ezt az elemet?</sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems">Gombok a felső panelen:</sys:String>
@@ -930,6 +947,11 @@ Akkor kapcsold ki, ha Xinput -ról billentyű/egér emuláló programokat hszná
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Elemek mutatása a főmenüben:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">X/A gombok funkciójának felcserélése</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">A játékindító X és a játék részletei A gomb funkcionalitását felcseréli.</sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">OK/mégsem gombok funkciójának felcserélése</sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Megfordítja az A/B gombok funkcionailtását, így az alapértelmezett A: OK és B: vissza épp ellenkezőleg fog működni.</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Csak az elsődleges játékvezérlő</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Csak az első játékvezérlővel tudod irányítani a Playnite-ot.</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">/PS gombbal előtérbe kerül a Playnite</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Felület hangerő</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Háttérzene hangerő</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Háttérben némít</sys:String>
@@ -945,6 +967,7 @@ Akkor kapcsold ki, ha Xinput -ról billentyű/egér emuláló programokat hszná
     <sys:String x:Key="LOCGameIsStarting">{0} indul…</sys:String>
     <sys:String x:Key="LOCGameIsRunning">{0} fut…</sys:String>
     <sys:String x:Key="LOCTextInputCapitalize">Nagybetűs</sys:String>
+    <sys:String x:Key="LOCTextInputSpace">Szóköz</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode">Képskálázás módja</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">Alternatív</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced">Kiegyensúlyozott</sys:String>
@@ -964,6 +987,7 @@ Jobb képminőség, közepes sebesség, alacsony memóriahasználat.</sys:String
     
 Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érdemes azt lekapcsolni/eltávolítani, hátha az volt az okozója.</sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">Indításkor választható</sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart">Indításkor választható</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Beépített profilok</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Beépített profil</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Egyéni profilok</sys:String>
@@ -998,6 +1022,10 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCEmuAutoScanConfigurations">Automatikus beolvasás beállítások</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig">Mentse, mint automatikus beolvasás beállítást</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Mentse el a beállítást későbbi használatra könyvtárfrissítéskor. A mentett beállítások később kezelhetők az &quot;Emulátorok beállítása&quot; menüpontból.</sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePaths">Relatív útvonalak használata importáláskor</sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">Ha lehet, akkor a Playnite-ot vagy emulátort tartalmazó mappák relatív útvonalait használja a teljes útvonal helyett.</sys:String>
+    <sys:String x:Key="LOCEmuImportScanSubfolders">Almappák átvizsgálása</sys:String>
+    <sys:String x:Key="LOCEmuImportScanInsideArchives">Tömörített fájlok tartalmát is vizsgálja</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Beolvasó hozzáadása</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Mentett beolvasó hozzáadása</sys:String>
     <sys:String x:Key="LOCStartScan">Beolvasás indítása</sys:String>
@@ -1006,6 +1034,13 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatási hiba. Ha Windows 7 alól tolod, próbáld meg (újra)telepíteni a PowerShell 5.1-et.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Töltse ki automatikusan a rendezési nevet a tömegesen hozzáadott játékoknál</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Ha könyvtárfrissítéssel, emulátor mappa beolvasással, vagy mappabeolvasással adsz hozzá játékokat, automatikusan töltse ki a &quot;Rendezési név&quot; mezőt egy könnyebben sorba rendezhető játéknévvel. Például a &quot;The Witcher 3&quot; a &quot;Witcher 03&quot;-as rendezési nevet fogja kapni.</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles">Ezeket a szavakat automatikusan eltávolítja a rendezési név elejéről:</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Így lehet egyszerűen eltávolítani a rendezési nevek elejéről az extra szavakat. Alapértelmezésben a &quot;The&quot;, az &quot;An&quot; és az &quot;A&quot; kerül eltávolításra.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillButton">Rendezési név mező automatikus kitöltése</sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">Sorbarendezés</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillProgress">Rendezési név értékek kitöltése…</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic észlelve a gépeden. Ez komoly megjelenítésbeli problémákkal járhat a Playnite és más programok esetében.
 
 Azt ajánljuk, hogy tiltsd le vagy távolítsd el a problémák megelőzésére.
@@ -1027,4 +1062,91 @@ Erősen javasoljuk az eltávolításukat:
 Támogatott platformok: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Fájltartalom vizsgálat nélküli, egyszerű beolvasás</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Nem pontos módja a beolvasásnak, ahol a fájlok nem kellenek a gépen letöltve legyenek.</sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Alkalmazás mindre</sys:String>
+    <sys:String x:Key="LOCOverrideInstallState">Telepítési állapot felülbírálása</sys:String>
+    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">Ha be van kapcsolva, a Playnite figyelmen kívül hagyja a beépülő által jelentett telepítési állapotot.
+                
+Bizonyos beépülőknél nem működik teljesen, ahol speciális módon történik a játékimportálás.</sys:String>
+    <sys:String x:Key="LOCOptionOnlyManually">Csak kézzel</sys:String>
+    <sys:String x:Key="LOCOptionOnceADay">Naponta egyszer</sys:String>
+    <sys:String x:Key="LOCOptionOnceAWeek">Hetente egyszer</sys:String>
+    <sys:String x:Key="LOCOptionOnEveryStartup">Minden indításkor</sys:String>
+    <sys:String x:Key="LOCCheckProgramUpdates">Frissítések keresése</sys:String>
+    <sys:String x:Key="LOCCheckAddonUpdates">Bővítmények frissítésének keresése</sys:String>
+    <sys:String x:Key="LOCCheckLibraryUpdates">Játékkönyvtárak frissítése</sys:String>
+    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">Emulátorok mappáinak frissítése</sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">Rejtett játékokat is</sys:String>
+    <sys:String x:Key="LOCMenuSetFields">Mezők szerkesztése</sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll">Összes kijelölése / kijelölés megszüntetése</sys:String>
+    <sys:String x:Key="LOCOpen">Megnyitás</sys:String>
+    <sys:String x:Key="LOCActivate">Aktiválás</sys:String>
+    <sys:String x:Key="LOCAssign">Hozzáadás</sys:String>
+    <sys:String x:Key="LOCDefaultSearchDescription">Kezdj el gépelni a kereséshez… Segítség: [F1] </sys:String>
+    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve">A # megmutatja az elérhető parancsok listáját.
+A / megmutatja a beépülőket/keresőklienseket.
+A keresőszavak utáni szóköz azonnal arra a keresésre áll át.
+
+TAB: művelet váltása
+ENTER: művelet kiválasztása
+SHIFT+ENTER: elem menü megnyitása</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalled">Nem telepített játékokat is</sys:String>
+    <sys:String x:Key="LOCSearchFilterHidden">Rejtett játékokat is</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledIncluded">Eltávolított játékokat is</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Eltávolított játékokat ne</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenIncluded">Rejtett játékokat is</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">Rejtett játékokat ne</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionPlay">Indít vagy telepít</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionSwitchTo">Részletek</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionOpenMenu">Játék menüje</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit">Játék szerkesztése</sys:String>
+    <sys:String x:Key="LOCOpenSearch">Keresés megnyitása</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox">Keresődoboz</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton">Keresőgomb</sys:String>
+
+    <sys:String x:Key="LOCSearchSettingsPrimaryAction">Elsődleges indítási művelet</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSecondaryAction">Másodlagos indítási művelet</sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">CTRL+F a keresést nyitja meg a keresődobozra ugrás helyett</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSaveFilter">Elmenti a szűrőbeállításokat a keresések közt</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSearchProviders">Keresőszolgáltatók</sys:String>
+    <sys:String x:Key="LOCSearchSettingsDefaultKeyword">Alapértelmezett kulcsszó</sys:String>
+    <sys:String x:Key="LOCSearchSettingsCustomKeyword">Egyéni kulcsszó</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSystemWideShortcut">Rendszerszintű gyorsbillentyű</sys:String>
+    <sys:String x:Key="LOCSearchTitle">Playnite keresés</sys:String>
+    <sys:String x:Key="LOCExtensionSettingsMenu">Bővítmény Beállítások</sys:String>
+    <sys:String x:Key="LOCExclusions">Kivételek</sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFiles">Fájlok kizárása a beolvasott mappából</sys:String>
+    <sys:String x:Key="LOCEmuScannerExcludedFolders">Mappák kizárása a beolvasott mappából</sys:String>
+    <sys:String x:Key="LOCEmuImportAddROMExclusionList">Fájl hozzáadása a kivételekhez</sys:String>
+    <sys:String x:Key="LOCEmuImportAddFolderExclusionList">Mappa hozzáadása a kivételekhez</sys:String>
+    <sys:String x:Key="LOCEmuExclusionNoConfigError">A kivételeket csak elmentett beolvasó beállításokhoz lehet hozzáadni.</sys:String>
+    <sys:String x:Key="LOCEmuExclusionAddedMessage">Kivételek hozzáadva a/az {0} beolcasóhoz.</sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatform">Platform felülbírálása</sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatformTooltip">A beolvasó ezt a platformot fogja hozzáadni minden játékhoz, felülírva az automatikusan felismert platformot.</sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Alapértelmezett kereséshez hozzáadott parancsok</sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Ha ki van kapcsolva, az alapértelmezett keresésben nem fog parancsokat használni, csak ha a #-et használod.</sys:String>
+    <sys:String x:Key="LOCSearchViewGameFieldOptions">Minden egyes találatnál megjelenítendő információk kiválasztása</sys:String>
+    <sys:String x:Key="LOCHiddenStatus">Rejtett</sys:String>
+
+    <sys:String x:Key="LOCBackupCancelled">Biztonsági mentés megszakítva.</sys:String>
+    <sys:String x:Key="LOCBackupFailed">Biztonsági mentés sikertelen.</sys:String>
+    <sys:String x:Key="LOCBackupErrorTitle">Biztonsági mentési hiba</sys:String>
+    <sys:String x:Key="LOCBackupProgress">Biztonsági mentés folyamatban…</sys:String>
+    <sys:String x:Key="LOCBackupRestoreProgress">Mentés visszaállítása folyamatban…</sys:String>
+    <sys:String x:Key="LOCBackupRestoreFailed">Mentés visszaállítása nem sikerült.</sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings">Beállításokat</sys:String>
+    <sys:String x:Key="LOCBackupOptionLibrary">Játékkönyvtárat</sys:String>
+    <sys:String x:Key="LOCBackupOptionGameMedia">Játékkönyvtárak médiatartalmát</sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions">Telepített bővítményeket</sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensionsData">Bővítmények adatait</sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes">Telepített témákat</sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage">Válaszd ki a mentés fájlból a visszaállítandó adatokat.</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage">Válaszd ki a biztonsági mentésbe kerülő adatokat. A program beállításai és a játékkönyvtár alapértelmezésben belekerül.</sys:String>
+    <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Automatikus biztonsági mentés</sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupFrequency">Automatikus biztonsági mentés gyakorisága</sys:String>
+    <sys:String x:Key="LOCSettingsBackupFolder">Biztonsági mentés célmappája</sys:String>
+    <sys:String x:Key="LOCSettingsRotatingBackups">Biztonsági mentések számának limitálása</sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">Az alábbi adatok is mentésre kerülnek:</sys:String>
+    <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError">Egy mappa megadása kötelező az automatikus biztonsági mentések tárolására.</sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Csak a hibajavításokról küld értesítést</sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">Bekapcsolása esetén az új nagy verziójú frissítések nem kerülnek telepítésre, csak a jelenlegi hibajavításai.</sys:String>
 </ResourceDictionary>

@@ -37,7 +37,9 @@ namespace Playnite.DesktopApp.ViewModels
             public string Website { get; set; }
             public EmulatedPlatform Platform { get; set; }
         }
+
         public List<DownloadEmu> DownloadEmulatorsList { get; set; }
+        public List<Platform> OverridePlatforms { get; set; }
 
         private SelectableDbItemList availablePlatforms;
         public SelectableDbItemList AvailablePlatforms
@@ -246,7 +248,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                     var menu = button.ContextMenu;
                     menu.Items.Clear();
-                    foreach (var profile in def.Profiles.Select(p => p.Name))
+                    foreach (var profile in def.Profiles.OrderBy(a => a.Name).Select(p => p.Name))
                     {
                         menu.Items.Add(new MenuItem
                         {
@@ -300,12 +302,12 @@ namespace Playnite.DesktopApp.ViewModels
                 (a) => CopyScanConfig(a),
                 (a) => a != null);
 
-        private GameDatabase database;
+        private IGameDatabaseMain database;
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
 
-        public EmulatorsViewModel(GameDatabase database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
+        public EmulatorsViewModel(IGameDatabaseMain database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
             this.window = window;
             this.dialogs = dialogs;
@@ -321,6 +323,8 @@ namespace Playnite.DesktopApp.ViewModels
             });
 
             AvailablePlatforms = new SelectableDbItemList(database.Platforms);
+            OverridePlatforms = database.Platforms.OrderBy(a => a.Name).ToList();
+            OverridePlatforms.Insert(0, new Platform(LOC.None.GetLocalized()) { Id = Guid.Empty });
             EditingEmulators = database.Emulators.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingScanners = database.GameScanners.GetClone().ToObservable();
             SelectedEmulator = EditingEmulators.Count > 0 ? EditingEmulators[0] : null;

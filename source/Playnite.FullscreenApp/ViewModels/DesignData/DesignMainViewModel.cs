@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
@@ -61,11 +62,11 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             get
             {
-                return DesignIntance?.PlayniteApi.Notifications.Messages[0];
+                return new NotificationMessage("1", "Some testing notification message.", NotificationType.Info);
             }
         }
 
-        public DesignMainViewModel()
+        public DesignMainViewModel() : base(new InMemoryGameDatabase(), null, null, new ResourceProvider(), null)
         {
             GameListVisible = true;
             GameDetailsVisible  = false;
@@ -75,29 +76,22 @@ namespace Playnite.FullscreenApp.ViewModels
             ProgressTotal = 100;
             ProgressActive = true;
 
-            var database = new InMemoryGameDatabase();
-            Game.DatabaseReference = database;
-            GameDatabase.GenerateSampleData(database);
-            var designGame = database.Games.First();
+            Game.DatabaseReference = Database;
+            GameDatabase.GenerateSampleData(Database);
+            var designGame = Database.Games.First();
             designGame.CoverImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignCover.jpg";
             designGame.BackgroundImage = "pack://application:,,,/Playnite;component/Resources/Images/DesignBackground.jpg";
             designGame.Icon = "pack://application:,,,/Playnite;component/Resources/Images/DesignIcon.png";
-
-            GamesView = new FullscreenCollectionView(
-                database,
-                new PlayniteSettings(),
-                new ExtensionFactory(database, new GameControllerFactory()));
-
-            SelectedGame = GamesView.Items[0];
-            SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
 
             AppSettings = new PlayniteSettings();
             AppSettings.Fullscreen.ShowBattery = true;
             AppSettings.Fullscreen.ShowBatteryPercentage = true;
             AppSettings.Fullscreen.ShowClock = true;
-            PlayniteApi = new PlayniteAPI(null, null, null, null, null, null, null, new NotificationsAPI(), null, null, null, null, null, null);
-            PlayniteApi.Notifications.Add(new NotificationMessage("1", "Some testing notification message.", NotificationType.Info));
-            PlayniteApi.Notifications.Add(new NotificationMessage("2", "Some really long testing notification message that should be on more lines of text.", NotificationType.Error));
+
+            Extensions = new ExtensionFactory(Database, new GameControllerFactory(), null);
+            GamesView = new FullscreenCollectionView(Database, AppSettings, Extensions);
+            SelectedGame = GamesView.Items[0];
+            SelectedGameDetails = new GameDetailsViewModel(GamesView.Items[0]);
         }
     }
 }

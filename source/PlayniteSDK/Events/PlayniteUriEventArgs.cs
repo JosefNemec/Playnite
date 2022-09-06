@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Events
 {
     /// <summary>
-    /// Respresents arguments for Playnite URI execution event.
+    /// Represents arguments for Playnite URI execution event.
     /// </summary>
     public class PlayniteUriEventArgs
     {

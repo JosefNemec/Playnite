@@ -12,10 +12,14 @@ namespace Playnite.Common
 {
     public class Paths
     {
+        private const string longPathPrefix = @"\\?\";
+        private const string longPathUncPrefix = @"\\?\UNC\";
+        public static readonly char[] DirectorySeparators = new char[] { '\\', '/' };
+
         public static string GetFinalPathName(string path)
         {
             var h = Kernel32.CreateFile(path,
-                Winnt.FILE_READ_EA,
+                0,
                 FileShare.ReadWrite | FileShare.Delete,
                 IntPtr.Zero,
                 FileMode.Open,
@@ -42,13 +46,13 @@ namespace Playnite.Common
                 }
 
                 var targetPath = sb.ToString();
-                if (targetPath.StartsWith(@"\\?\UNC\"))
+                if (targetPath.StartsWith(longPathUncPrefix))
                 {
-                    return targetPath.Replace(@"\\?\UNC\", @"\\");
+                    return targetPath.Replace(longPathUncPrefix, @"\\");
                 }
                 else
                 {
-                    return targetPath.Replace(@"\\?\", string.Empty);
+                    return targetPath.Replace(longPathPrefix, string.Empty);
                 }
             }
             finally
@@ -93,9 +97,18 @@ namespace Playnite.Common
                 return path;
             }
 
+            var isUnc = path.StartsWith(@"\\");
             var newPath = path.Replace('\\', Path.DirectorySeparatorChar);
             newPath = newPath.Replace('/', Path.DirectorySeparatorChar);
-            return Regex.Replace(newPath, string.Format(@"\{0}+", Path.DirectorySeparatorChar), Path.DirectorySeparatorChar.ToString());
+            newPath = Regex.Replace(newPath, string.Format(@"\{0}+", Path.DirectorySeparatorChar), Path.DirectorySeparatorChar.ToString());
+            if (isUnc && newPath.StartsWith(@"\"))
+            {
+                return @"\" + newPath;
+            }
+            else
+            {
+                return newPath;
+            }
         }
 
         private static string Normalize(string path)
@@ -204,6 +217,52 @@ namespace Playnite.Common
             else
             {
                 return Shlwapi.PathMatchSpecExW(filePath, pattern, MatchPatternFlags.Normal) == 0;
+            }
+        }
+
+        public static string FixPathLength(string path, bool forcePrefix = false)
+        {
+            if (path.IsNullOrWhiteSpace())
+            {
+                return path;
+            }
+
+            // Relative paths don't support long paths
+            // https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=cmd
+            if (!Paths.IsFullPath(path))
+            {
+                return path;
+            }
+
+            if ((path.Length >= 260 || forcePrefix) && !path.StartsWith(longPathPrefix))
+            {
+                if (path.StartsWith(@"\\"))
+                {
+                    return longPathUncPrefix + path.Substring(2);
+                }
+                else
+                {
+                    return longPathPrefix + path;
+                }
+            }
+
+            return path;
+        }
+
+        public static string TrimLongPathPrefix(string path)
+        {
+            if (path.IsNullOrWhiteSpace())
+            {
+                return path;
+            }
+
+            if (path.StartsWith(longPathUncPrefix))
+            {
+                return path.Replace(longPathUncPrefix, @"\\");
+            }
+            else
+            {
+                return path.Replace(longPathPrefix, string.Empty);
             }
         }
     }

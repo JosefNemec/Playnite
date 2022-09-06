@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Playnite;component/Localization/LocSource.xaml"/>
                 <ResourceDictionary Source="GlobalResources.xaml" />
+                <ResourceDictionary Source="ControlGalleryView.xaml" />
                 <ResourceDictionary Source="HiddenStyles.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Constants.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Media.xaml" />
@@ -38,7 +39,6 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/DerivedStyles/ButtonTopMenu.xaml" />
 
                 <!--Views-->
-                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/ActionSelection.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersAdditional.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/FiltersView.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameDetails.xaml" />
@@ -46,10 +46,12 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/GameStatus.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/Main.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MainMenu.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/HelpMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/MessageBox.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/NotificationsMenu.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/SettingsMenus.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/TextInput.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/ItemSelection.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
