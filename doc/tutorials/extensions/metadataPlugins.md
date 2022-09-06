@@ -52,4 +52,4 @@ Available property types:
 Example plugin
 ---------------------
 
-Playnite's IGDB integration is implemented as a metadata plugin. You can see the source [on GitHub](https://github.com/JosefNemec/Playnite/tree/devel/source/Plugins/IGDBMetadata).
+Playnite's IGDB integration is implemented as a metadata plugin. You can see the source [on GitHub](https://github.com/JosefNemec/PlayniteExtensions/tree/master/source/Metadata).
