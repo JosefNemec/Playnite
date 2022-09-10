@@ -38,6 +38,8 @@
             <BooleanToVisibilityConverter/>
         </pcon:ValueConverterGroup>
         <Style x:Key="SaveChangesCheck" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolTip" Value="{DynamicResource LOCGameEditChangeSaveTooltip}" />
             <Setter Property="Visibility" Value="{Binding Data.ShowCheckBoxes, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}" />
             <Style.Triggers>
@@ -89,7 +91,7 @@
                                 <Setter Property="Margin" Value="3" />
                                 <Setter Property="ShowSearchBox" Value="True" />
                             </Style>
-                            <Style TargetType="CheckBox" BasedOn="{StaticResource SaveChangesCheck}">
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
                                 <Setter Property="Margin" Value="0,0,0,0" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                             </Style>
@@ -124,21 +126,21 @@
 
                         <!-- Name -->
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="{DynamicResource LOCNameLabel}"/>
-                        <CheckBox Grid.Column="1" Grid.Row="0" Name="CheckName"
+                        <CheckBox Grid.Column="1" Grid.Row="0" Name="CheckName" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseNameChanges}"/>
                         <TextBox Grid.Column="2" Grid.Row="0" Name="TextName" Style="{StaticResource TextBoxStyle}"
                                     Text="{Binding EditingGame.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!-- Sorting Name -->
                         <TextBlock Grid.Column="0" Grid.Row="1" Text="{DynamicResource LOCGameSortingNameTitle}"/>
-                        <CheckBox Grid.Column="1" Grid.Row="1" Name="CheckSortingName"
+                        <CheckBox Grid.Column="1" Grid.Row="1" Name="CheckSortingName" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseSortingNameChanges}"/>
                         <TextBox Grid.Column="2" Grid.Row="1" Name="TextSortingName" Style="{StaticResource TextBoxStyle}"
                                     Text="{Binding EditingGame.SortingName, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!-- Platform -->
                         <TextBlock Grid.Column="0" Grid.Row="2" Text="{DynamicResource LOCGamePlatformTitle}"/>
-                        <CheckBox Grid.Column="1" Grid.Row="2" Name="CheckPlatform"
+                        <CheckBox Grid.Column="1" Grid.Row="2" Name="CheckPlatform" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UsePlatformChanges}"/>
                         <DockPanel Grid.Column="2" Grid.Row="2">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -152,7 +154,7 @@
 
                         <!-- Genres -->
                         <TextBlock Grid.Column="0" Grid.Row="3" Text="{DynamicResource LOCGenresLabel}" />
-                        <CheckBox Grid.Column="1" Grid.Row="3" Name="CheckGenres"
+                        <CheckBox Grid.Column="1" Grid.Row="3" Name="CheckGenres" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseGenresChanges}" />
                         <DockPanel Grid.Column="2" Grid.Row="3">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -166,7 +168,7 @@
 
                         <!-- Developers -->
                         <TextBlock Grid.Column="0" Grid.Row="4" Text="{DynamicResource LOCDevelopersLabel}"/>
-                        <CheckBox Grid.Column="1" Grid.Row="4" Name="CheckDeveloper"
+                        <CheckBox Grid.Column="1" Grid.Row="4" Name="CheckDeveloper" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseDeveloperChanges}"/>
                         <DockPanel Grid.Column="2" Grid.Row="4">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -180,7 +182,7 @@
 
                         <!-- Publishers -->
                         <TextBlock Grid.Column="0" Grid.Row="5" Text="{DynamicResource LOCPublishersLabel}" />
-                        <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckPublisher"
+                        <CheckBox Grid.Column="1" Grid.Row="5" Name="CheckPublisher" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UsePublisherChanges}"/>
                         <DockPanel Grid.Column="2" Grid.Row="5">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -194,7 +196,7 @@
 
                         <!-- Categories -->
                         <TextBlock Grid.Column="0" Grid.Row="6" Text="{DynamicResource LOCCategoriesLabel}" />
-                        <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckCategories"
+                        <CheckBox Grid.Column="1" Grid.Row="6" Name="CheckCategories" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseCategoryChanges}"/>
                         <DockPanel Grid.Column="2" Grid.Row="6">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -208,7 +210,7 @@
 
                         <!-- Features -->
                         <TextBlock Grid.Column="0" Grid.Row="7" Text="{DynamicResource LOCFeaturesLabel}" />
-                        <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckFeature"
+                        <CheckBox Grid.Column="1" Grid.Row="7" Name="CheckFeature" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseFeatureChanges}"/>
                         <DockPanel Grid.Column="2" Grid.Row="7">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -222,7 +224,7 @@
 
                         <!-- Tags -->
                         <TextBlock Grid.Column="0" Grid.Row="8" Text="{DynamicResource LOCTagsLabel}" />
-                        <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckTag"
+                        <CheckBox Grid.Column="1" Grid.Row="8" Name="CheckTag" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseTagChanges}"/>
                         <DockPanel Grid.Column="2" Grid.Row="8">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -237,7 +239,7 @@
                         <!-- Description -->
                         <TextBlock Grid.Column="0" Grid.Row="9" Text="{DynamicResource LOCGameDescriptionTitle}"
                                    VerticalAlignment="Top" Margin="8,6,10,0"/>
-                        <CheckBox Grid.Column="1" Grid.Row="9" Name="CheckDescription"
+                        <CheckBox Grid.Column="1" Grid.Row="9" Name="CheckDescription" Style="{StaticResource SaveChangesCheck}"
                                   VerticalAlignment="Top" Margin="0,5,0,0"
                                     IsChecked="{Binding UseDescriptionChanges}"/>
                         <TextBox Grid.Column="2" Grid.Row="9" Grid.RowSpan="13" Grid.ColumnSpan="6"
@@ -251,7 +253,7 @@
 
                         <!-- Release Date -->
                         <TextBlock Grid.Column="3" Grid.Row="0" Text="{DynamicResource LOCGameReleaseDateTitle}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="0" Name="CheckReleaseDate"
+                        <CheckBox Grid.Column="4" Grid.Row="0" Name="CheckReleaseDate" Style="{StaticResource SaveChangesCheck}"
                                     IsChecked="{Binding UseReleaseDateChanges}"/>
                         <TextBox Grid.Column="5" Grid.Row="0" Style="{StaticResource TextBoxStyle}"
                                  ToolTip="{DynamicResource LOCReleaseDateTooltip}"
@@ -271,7 +273,7 @@
 
                         <!-- Series -->
                         <TextBlock Grid.Column="3" Grid.Row="1" Text="{DynamicResource LOCSeriesLabel}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="1"
+                        <CheckBox Grid.Column="4" Grid.Row="1" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseSeriesChanges}"/>
                         <DockPanel Grid.Column="5" Grid.Row="1">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -285,7 +287,7 @@
 
                         <!-- AgeRating -->
                         <TextBlock Grid.Column="3" Grid.Row="2" Text="{DynamicResource LOCAgeRatingLabel}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="2"
+                        <CheckBox Grid.Column="4" Grid.Row="2" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseAgeRatingChanges}"/>
                         <DockPanel Grid.Column="5" Grid.Row="2">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -299,7 +301,7 @@
 
                         <!-- Region -->
                         <TextBlock Grid.Column="3" Grid.Row="3" Text="{DynamicResource LOCRegionLabel}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="3"
+                        <CheckBox Grid.Column="4" Grid.Row="3" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseRegionChanges}"/>
                         <DockPanel Grid.Column="5" Grid.Row="3">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -313,7 +315,7 @@
 
                         <!-- Source -->
                         <TextBlock Grid.Column="3" Grid.Row="4" Text="{DynamicResource LOCSourceLabel}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="4"
+                        <CheckBox Grid.Column="4" Grid.Row="4" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseSourceChanges}"/>
                         <DockPanel Grid.Column="5" Grid.Row="4">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -328,7 +330,7 @@
 
                         <!-- CompletionStatus -->
                         <TextBlock Grid.Column="3" Grid.Row="5" Text="{DynamicResource LOCCompletionStatus}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="5"
+                        <CheckBox Grid.Column="4" Grid.Row="5" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseCompletionStatusChanges}"/>
                         <DockPanel Grid.Column="5" Grid.Row="5">
                             <Button Content="+" FontWeight="Bold" DockPanel.Dock="Right"
@@ -343,7 +345,7 @@
 
                         <!-- UserScore -->
                         <TextBlock Grid.Column="3" Grid.Row="6" Text="{DynamicResource LOCUserScore}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="6"
+                        <CheckBox Grid.Column="4" Grid.Row="6" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseUserScoreChanges}"/>
                         <TextBox Grid.Column="5" Grid.Row="6" Width="50" HorizontalAlignment="Left"
                                  Style="{StaticResource TextBoxStyle}"
@@ -364,7 +366,7 @@
 
                         <!-- CriticScore -->
                         <TextBlock Grid.Column="3" Grid.Row="7" Text="{DynamicResource LOCCriticScore}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="7"
+                        <CheckBox Grid.Column="4" Grid.Row="7" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseCriticScoreChanges}"/>
                         <TextBox Grid.Column="5" Grid.Row="7" Width="50" HorizontalAlignment="Left"
                                  Style="{StaticResource TextBoxStyle}"
@@ -385,7 +387,7 @@
 
                         <!-- CommunityScore -->
                         <TextBlock Grid.Column="3" Grid.Row="8" Text="{DynamicResource LOCCommunityScore}"/>
-                        <CheckBox Grid.Column="4" Grid.Row="8"
+                        <CheckBox Grid.Column="4" Grid.Row="8" Style="{StaticResource SaveChangesCheck}"
                                   IsChecked="{Binding UseCommunityScoreChanges}"/>
                         <TextBox Grid.Column="5" Grid.Row="8" Width="50" HorizontalAlignment="Left"
                                  Style="{StaticResource TextBoxStyle}"
@@ -431,10 +433,6 @@
                             <Setter Property="Margin" Value="3" />
                         </Style>
                         <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-                            <Setter Property="Margin" Value="0,0,0,0" />
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                        </Style>
-                        <Style x:Key="SaveChangesCheck" TargetType="CheckBox" BasedOn="{StaticResource SaveChangesCheck}">
                             <Setter Property="Margin" Value="0,0,0,0" />
                             <Setter Property="VerticalAlignment" Value="Center" />
                         </Style>
