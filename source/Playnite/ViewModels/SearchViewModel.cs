@@ -235,7 +235,7 @@ namespace Playnite.ViewModels
             SecondaryAction = item.SecondaryAction;
             MenuAction = item.MenuAction;
 
-            if (settings.SearchWindowVisibility.Platform && item.Game.CompletionStatus != null)
+            if (settings.SearchWindowVisibility.CompletionStatus && item.Game.CompletionStatus != null)
             {
                 AdditionalInfo.Add(item.Game.CompletionStatus.Name);
             }
