@@ -153,7 +153,7 @@ namespace Playnite.Emulators
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
         private readonly IGameDatabaseMain database;
-        private List<string> importedFiles;
+        internal List<string> importedFiles;
         private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
 
         public GameScanner(
@@ -583,24 +583,22 @@ namespace Playnite.Emulators
 
                 try
                 {
+                    var childFiles = playListParser(filePath);
+                    foreach (var child in childFiles ?? new List<string>())
+                    {
+                        var existingFile = files.FirstOrDefault(a => a.Equals(child, StringComparison.OrdinalIgnoreCase));
+                        if (existingFile != null)
+                        {
+                            files.Remove(existingFile);
+                        }
+                    }
+
                     if (importedFiles.ContainsString(filePath, StringComparison.OrdinalIgnoreCase))
                     {
                         return;
                     }
 
-                    var childFiles = playListParser(filePath);
-                    if (childFiles.HasItems())
-                    {
-                        foreach (var child in childFiles)
-                        {
-                            var existingFile = files.FirstOrDefault(a => a.Equals(child, StringComparison.OrdinalIgnoreCase));
-                            if (existingFile != null)
-                            {
-                                files.Remove(existingFile);
-                            }
-                        }
-                    }
-                    else
+                    if (!childFiles.HasItems())
                     {
                         logger.Trace($"Detected playlist file with no referenced files: {filePath}");
                         addRom(new ScannedRom(filePath));
