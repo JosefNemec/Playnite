@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using Playnite.SDK;
 using System.Diagnostics;
 using Playnite.Native;
+using System.Runtime.InteropServices;
 
 namespace Playnite.Common
 {
@@ -393,8 +394,13 @@ namespace Playnite.Common
             
             uint clusterSize = sectorsPerCluster * bytesPerSector;
             uint losize = Kernel32.GetCompressedFileSizeW(info.FullName, out uint hosize);
-            long size;
-            size = (long)hosize << 32 | losize;
+            int error = Marshal.GetLastWin32Error();
+            if (losize == 0xFFFFFFFF && error != 0)
+            {
+                throw new System.ComponentModel.Win32Exception(error);
+            }
+
+            var size = (long)hosize << 32 | losize;
             return ((size + clusterSize - 1) / clusterSize) * clusterSize;
         }
 
