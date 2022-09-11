@@ -90,7 +90,9 @@ namespace Playnite.Native
         [DllImport(dllName, SetLastError = true, PreserveSig = true, CharSet = CharSet.Unicode)]
         public static extern int GetDiskFreeSpaceW(
             [In, MarshalAs(UnmanagedType.LPWStr)] string lpRootPathName,
-            out uint lpSectorsPerCluster, out uint lpBytesPerSector, out uint lpNumberOfFreeClusters,
+            out uint lpSectorsPerCluster,
+            out uint lpBytesPerSector,
+            out uint lpNumberOfFreeClusters,
             out uint lpTotalNumberOfClusters);
     }
 }
