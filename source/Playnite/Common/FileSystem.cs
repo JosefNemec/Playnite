@@ -357,17 +357,15 @@ namespace Playnite.Common
             {
                 long size = 0;
                 // Add file sizes.
-                FileInfo[] fis = dir.GetFiles();
-                foreach (FileInfo fi in fis)
+                foreach (FileInfo fi in dir.GetFiles())
                 {
                     size += GetFileSize(fi);
                 }
 
                 // Add subdirectory sizes.
-                DirectoryInfo[] dis = dir.GetDirectories();
-                foreach (DirectoryInfo di in dis)
+                foreach (DirectoryInfo di in dir.GetDirectories())
                 {
-                    size += GetDirectorySize(di);
+                    size += GetDirectorySize(di.FullName);
                 }
 
                 return size;
