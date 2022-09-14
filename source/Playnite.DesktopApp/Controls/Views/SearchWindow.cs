@@ -120,7 +120,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(
                     TextName,
                     TextBlock.TextProperty,
-                    GetBindingPath(nameof(GamesCollectionViewEntry.Name)),
+                    GetBindingPath(nameof(GamesCollectionViewEntry.DisplayName)),
                     BindingMode.OneTime);
             }
 
