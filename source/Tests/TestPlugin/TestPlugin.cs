@@ -54,8 +54,8 @@ namespace TestPlugin
                 API.Instance.Database.ImportGame(new GameMetadata() { Name = "# import from search" });
             }))
             {
-                Icon = @"https://cdn.akamai.steamstatic.com/steam/apps/684450/header_292x136.jpg?t=1655395612",
-                Description = "icon test"
+                Icon = @"https://playnite.link/applogo.png",
+                Description = "http icon test"
             };
         }
     }

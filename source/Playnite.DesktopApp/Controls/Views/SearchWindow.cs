@@ -178,8 +178,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(
                     ContentIcon,
                     ContentControl.ContentProperty,
-                    nameof(SearchItemWrapper.ItemIcon),
-                    BindingMode.OneTime);
+                    nameof(SearchItemWrapper.ItemIcon));
             }
 
             TextName = Template.FindName("PART_TextName", this) as TextBlock;
