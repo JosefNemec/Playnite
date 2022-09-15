@@ -227,7 +227,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             AvailableImages = new List<GoogleImage>();
             var searchTerm = SearchTerm.Replace('-', ' '); // hyphen would exclude results #2595
-            if (SearchWidth != null && SearchHeight != null)
+            if (SearchWidth != null && SearchHeight != null && !searchTerm.Contains("imagesize:"))
             {
                 searchTerm = $"{searchTerm} imagesize:{SearchWidth}x{SearchHeight}";
             }

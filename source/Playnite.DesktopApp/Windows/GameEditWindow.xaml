@@ -638,8 +638,8 @@
                                             Content="&#xec53;"
                                             FontFamily="{DynamicResource FontIcoFont}"
                                             Command="{Binding RemoveIconCommand}" />
-                                    <Button Content="G" Margin="5,0,0,0"
-                                            ToolTip="Google Images"
+                                    <Button Margin="5,0,0,0" ToolTip="{DynamicResource LOCSettingsWebImageSearch}"
+                                            Content="&#xef3e;" FontFamily="{DynamicResource FontIcoFont}"
                                             Command="{Binding SelectGoogleIconCommand}" />
                                     <Button Name="ButtonUseExeIcon"
                                             Content="&#xec74;"
@@ -697,8 +697,8 @@
                                             Content="&#xec53;"
                                             FontFamily="{DynamicResource FontIcoFont}"
                                             Command="{Binding RemoveImageCommand}" />
-                                    <Button Content="G" Margin="5,0,0,0"
-                                            ToolTip="Google Images"
+                                    <Button Margin="5,0,0,0" ToolTip="{DynamicResource LOCSettingsWebImageSearch}"
+                                            Content="&#xef3e;" FontFamily="{DynamicResource FontIcoFont}"
                                             Command="{Binding SelectGoogleCoverCommand}" />
                                 </StackPanel>
                                 <TextBlock Text="{Binding CoverMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0"
@@ -750,8 +750,8 @@
                                             Content="&#xec53;"
                                             FontFamily="{DynamicResource FontIcoFont}"
                                             Command="{Binding RemoveBackgroundCommand}" />
-                                    <Button Content="G" Margin="5,0,0,0"
-                                            ToolTip="Google Images"
+                                    <Button Margin="5,0,0,0" ToolTip="{DynamicResource LOCSettingsWebImageSearch}"
+                                            Content="&#xef3e;" FontFamily="{DynamicResource FontIcoFont}"
                                             Command="{Binding SelectGoogleBackgroundCommand}" />
                                 </StackPanel>
                                 <DockPanel DockPanel.Dock="Top" Margin="5,5,0,5"

@@ -31,30 +31,46 @@
         </ObjectDataProvider>
     </UserControl.Resources>
 
-    <DockPanel Margin="15">
-        <TextBlock Text="{DynamicResource LOCSettingsDefaultMetadataDescription}"
-                   DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0,0,0,10" />
-        <CheckBox Content="{DynamicResource LOCSettingsImmediateBackgroundDownload}"
-                  ToolTipService.InitialShowDelay="0"
-                  ToolTipService.ShowDuration="30000"
-                  IsChecked="{Binding Settings.DownloadBackgroundsImmediately}"
-                  DockPanel.Dock="Top">
-            <CheckBox.ToolTip>
-                <TextBlock MaxWidth="600" TextWrapping="Wrap"
-                           Text="{DynamicResource LOCSettingsImmediateBackgroundDownloadTooltip}" />
-            </CheckBox.ToolTip>
-        </CheckBox>
+    <TabControl>
+        <TabItem Header="{DynamicResource LOCGeneralLabel}">
+            <DockPanel Margin="10">
+                <TextBlock Text="{DynamicResource LOCSettingsDefaultMetadataDescription}"
+                           DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0,0,0,10" />
+                <CheckBox Content="{DynamicResource LOCSettingsImmediateBackgroundDownload}"
+                          ToolTipService.InitialShowDelay="0"
+                          ToolTipService.ShowDuration="30000"
+                          IsChecked="{Binding Settings.DownloadBackgroundsImmediately}"
+                          DockPanel.Dock="Top">
+                    <CheckBox.ToolTip>
+                        <TextBlock MaxWidth="600" TextWrapping="Wrap"
+                                   Text="{DynamicResource LOCSettingsImmediateBackgroundDownloadTooltip}" />
+                    </CheckBox.ToolTip>
+                </CheckBox>
 
-        <StackPanel Margin="0,10,0,0" Orientation="Horizontal"
-                    DockPanel.Dock="Top">
-            <TextBlock Text="{DynamicResource LOCSettingsPreferredAgeRatingOrg}" Margin="0,0,5,0" 
-                       VerticalAlignment="Center"/>
-            <ComboBox SelectedValue="{Binding Settings.AgeRatingOrgPriority}"
-                      ItemsSource="{Binding Source={StaticResource AgeRatingOrgValues}}" />
-        </StackPanel>
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="{DynamicResource LOCSettingsPreferredAgeRatingOrg}" Margin="0,0,5,0" 
+                               VerticalAlignment="Center"/>
+                    <ComboBox SelectedValue="{Binding Settings.AgeRatingOrgPriority}"
+                              ItemsSource="{Binding Source={StaticResource AgeRatingOrgValues}}" />
+                </StackPanel>
 
-        <ScrollViewer DockPanel.Dock="Top" Margin="0,10,0,0">
-            <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
-        </ScrollViewer>        
-    </DockPanel>
+                <ScrollViewer DockPanel.Dock="Top" Margin="0,10,0,0">
+                    <pctrls:MetadataDownloadSettings Settings="{Binding Settings.MetadataSettings}" />
+                </ScrollViewer>
+            </DockPanel>
+        </TabItem>
+
+        <TabItem Header="{DynamicResource LOCSettingsWebImageSearch}">
+            <GridEx ColumnCount="2" RowCount="3" AutoLayoutColumns="2" StarColumns="1"
+                    Margin="10">
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchIconTerm}" />
+                <TextBox Margin="5" Text="{Binding Settings.WebImageSarchIconTerm}" />
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchCoverTerm}" />
+                <TextBox Margin="5" Text="{Binding Settings.WebImageSarchCoverTerm}" />
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchBackground}" />
+                <TextBox Margin="5" Text="{Binding Settings.WebImageSarchBackgroundTerm}" />
+            </GridEx>
+        </TabItem>
+    </TabControl>
 </UserControl>

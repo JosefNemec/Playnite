@@ -1164,4 +1164,10 @@ Playnite will automatically restart to start backup process.</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Show notifications for patch releases only</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">When enabled, only updates available for currently installed major release will result in update notification.
 New major releases will not result in update notification.</sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch">Web image search</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Icon image search string</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover image search string</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground">Background image search string</sys:String>
+        
 </ResourceDictionary>
