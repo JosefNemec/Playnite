@@ -100,6 +100,15 @@ public class DefaultSearchContext : SearchContext
 
 [GenericListSearchContext](xref:Playnite.SDK.Plugins.GenericListSearchContext) can be used if you want to provide simple list of results and use Playnite's built-in item filter. The same functionality can be also achieved by using standard [SearchContext](xref:Playnite.SDK.Plugins.SearchContext) and enabling `UseAutoSearch`. 
 
+### Switching to a specific context
+
+There are two ways how to switch to a specific context from a search item:
+
+1) Return item action as [ContextSwitchSearchItemAction](xref:Playnite.SDK.Plugins.GenericListSearchContext) action object.
+
+2) Use `SwitchContext` method from search arguments [GetSearchResultsArgs](xref:Playnite.SDK.Plugins.GetSearchResultsArgs) object.
+
+
 ### Opening search from SDK
 
 [MainView](xref:Playnite.SDK.IPlayniteAPI.MainView) API provides `OpenSearch` methods that can be used to open global search view with specific context and/or search term.
