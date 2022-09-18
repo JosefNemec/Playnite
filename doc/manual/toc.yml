@@ -21,3 +21,6 @@
 
 - name: Backups
   href: backup.md
+
+- name: Metadata
+  href: metadata.md

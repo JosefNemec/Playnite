@@ -7,6 +7,7 @@
              xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
+             xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
@@ -62,15 +63,21 @@
         </TabItem>
 
         <TabItem Header="{DynamicResource LOCSettingsWebImageSearch}">
-            <GridEx ColumnCount="2" RowCount="3" AutoLayoutColumns="2" StarColumns="1"
-                    Margin="10">
-                <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchIconTerm}" />
-                <TextBox Margin="5" Text="{Binding Settings.WebImageSarchIconTerm}" />
-                <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchCoverTerm}" />
-                <TextBox Margin="5" Text="{Binding Settings.WebImageSarchCoverTerm}" />
-                <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchBackground}" />
-                <TextBox Margin="5" Text="{Binding Settings.WebImageSarchBackgroundTerm}" />
-            </GridEx>
+            <StackPanel>
+                <GridEx ColumnCount="2" RowCount="3" AutoLayoutColumns="2" StarColumns="1"
+                        Margin="10">
+                    <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchIconTerm}" />
+                    <TextBox Margin="5" Text="{Binding Settings.WebImageSarchIconTerm}" />
+                    <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchCoverTerm}" />
+                    <TextBox Margin="5" Text="{Binding Settings.WebImageSarchCoverTerm}" />
+                    <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchBackground}" />
+                    <TextBox Margin="5" Text="{Binding Settings.WebImageSarchBackgroundTerm}" />
+                </GridEx>
+                <Button Content="{DynamicResource LOCMenuHelpTitle}"
+                        Margin="15,10,0,0" HorizontalAlignment="Left"
+                        Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/metadata.html" />
+            </StackPanel>
         </TabItem>
     </TabControl>
 </UserControl>
