@@ -3382,6 +3382,10 @@ namespace Playnite
         /// </summary>
         public const string TopPanelViewSelectRandomGameButton = "LOCTopPanelViewSelectRandomGameButton";
         /// <summary>
+        /// Select random game from the view
+        /// </summary>
+        public const string TopPanelViewSelectRandomGameButtonTooltip = "LOCTopPanelViewSelectRandomGameButtonTooltip";
+        /// <summary>
         /// Save grouping and sorting settings
         /// </summary>
         public const string FilterPresetSaveViewOptions = "LOCFilterPresetSaveViewOptions";

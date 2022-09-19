@@ -936,7 +936,8 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCTopPanelMainButtonMove">Move main menu button to the sidebar</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Explorer panel</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Random game picker</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">View random game selector</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Views random game selector</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Select random game from the view</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Save grouping and sorting settings</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Show as quick filter in Fullscreen mode</sys:String>
     <sys:String x:Key="LOCInPast7Days">In past 7 days</sys:String>
