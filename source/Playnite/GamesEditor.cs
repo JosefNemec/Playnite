@@ -467,7 +467,7 @@ namespace Playnite
             }
         }
 
-        public void CalculateGameSize(Game game, bool onlyIfDataMissing, bool updateGame = true)
+        public void CalculateGameSize(Game game, bool onlyIfDataMissing, bool updateGame = true, bool checkLastScanDate = false)
         {
             if (!game.IsInstalled)
             {
@@ -479,27 +479,82 @@ namespace Playnite
                 return;
             }
 
-            var expandedGame = game.ExpandGame();
             try
             {
-                var size = GetGameRomSizes(expandedGame);
-                if (size == null)
+                long size = 0;
+                if (game.Roms.HasItems())
                 {
-                    size = GetGameInstallDirSize(expandedGame);
-                    if (size == null)
+                    var expandedGame = GetExpandedGameForRomsSizeScan(game);
+                    if (checkLastScanDate)
+                    {
+                        var addedAfterLastCheck = expandedGame.LastSizeScanDate == null || expandedGame.Added != null && expandedGame.Added > expandedGame.LastSizeScanDate;
+                        if (!addedAfterLastCheck && !expandedGame.Roms.Any(x => !x.Path.IsNullOrWhiteSpace()
+                            && FileSystem.FileExists(x.Path) && expandedGame.LastSizeScanDate != null
+                            && FileSystem.FileGetLastWriteTime(x.Path) > expandedGame.LastSizeScanDate))
+                        {
+                            return;
+                        }
+                    }
+
+                    foreach (var rom in expandedGame.Roms)
+                    {
+                        if (rom.Path.IsNullOrWhiteSpace() || !FileSystem.FileExists(rom.Path))
+                        {
+                            continue;
+                        }
+
+                        if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                        {
+                            size += FileSystem.GetFileSizeOnDisk(rom.Path);
+                        }
+                        else
+                        {
+                            size += FileSystem.GetFileSize(rom.Path);
+                        }
+                    }
+                }
+                else
+                {
+                    if (game.InstallDirectory.IsNullOrEmpty())
                     {
                         return;
                     }
+
+                    var expandedGame = game.ExpandGame();
+                    if (!FileSystem.DirectoryExists(expandedGame.InstallDirectory))
+                    {
+                        return;
+                    }
+
+                    if (checkLastScanDate)
+                    {
+                        var addedAfterLastCheck = expandedGame.LastSizeScanDate == null || expandedGame.Added != null && expandedGame.Added > expandedGame.LastSizeScanDate;
+                        if (!addedAfterLastCheck && game.LastSizeScanDate != null && FileSystem.DirectoryGetLastWriteTime(game.InstallDirectory) < game.LastSizeScanDate)
+                        {
+                            return;
+                        }
+                    }
+
+                    if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                    {
+                        size = FileSystem.GetDirectorySizeOnDisk(expandedGame.InstallDirectory);
+                    }
+                    else
+                    {
+                        size = FileSystem.GetDirectorySize(expandedGame.InstallDirectory);
+                    }
                 }
 
+                game.LastSizeScanDate = DateTime.Now;
                 var ulongSize = (ulong)size;
-                if (ulongSize > 0 && game.InstallSize != ulongSize)
+                if (game.InstallSize != ulongSize)
                 {
                     game.InstallSize = ulongSize;
-                    if (updateGame)
-                    {
-                        Database.Games.Update(game);
-                    }
+                }
+
+                if (updateGame)
+                {
+                    Database.Games.Update(game);
                 }
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -511,6 +566,28 @@ namespace Playnite
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+        }
+
+        public Game GetExpandedGameForRomsSizeScan(Game game)
+        {
+            if (game.GameActions == null)
+            {
+                return game.ExpandGame();
+            }
+
+            var emulatorAction = game.GameActions.FirstOrDefault(x => x.Type == GameActionType.Emulator);
+            if (emulatorAction == null)
+            {
+                return game.ExpandGame();
+            }
+
+            var emulator = Database.Emulators[emulatorAction.EmulatorId];
+            if (emulator != null)
+            {
+                return game.ExpandGame(false, emulator.InstallDir);
+            }
+
+            return game.ExpandGame();
         }
 
         public void CalculateGameSizeWithDialog(Game game, bool onlyIfDataMissing, bool updateGame = true)
@@ -543,51 +620,6 @@ namespace Playnite
                     }
                 }
             }, new GlobalProgressOptions(textTitle, true) { IsIndeterminate = false });
-        }
-
-        private long? GetGameInstallDirSize(Game game)
-        {
-            if (game.InstallDirectory.IsNullOrEmpty() || !FileSystem.DirectoryExists(game.InstallDirectory))
-            {
-                return null;
-            }
-
-            if (AppSettings.InstallSizeScanUseSizeOnDisk)
-            {
-                return FileSystem.GetDirectorySizeOnDisk(game.InstallDirectory);
-            }
-            else
-            {
-                return FileSystem.GetDirectorySize(game.InstallDirectory);
-            }
-        }
-
-        private long? GetGameRomSizes(Game game)
-        {
-            if (!game.Roms.HasItems())
-            {
-                return null;
-            }
-
-            long size = 0;
-            foreach (var rom in game.Roms)
-            {
-                if (rom.Path.IsNullOrWhiteSpace() || !FileSystem.FileExists(rom.Path))
-                {
-                    continue;
-                }
-
-                if (AppSettings.InstallSizeScanUseSizeOnDisk)
-                {
-                    size += FileSystem.GetFileSizeOnDisk(rom.Path);
-                }
-                else
-                {
-                    size += FileSystem.GetFileSize(rom.Path);
-                }
-            }
-
-            return size;
         }
 
         public void SetHideGame(Game game, bool state)

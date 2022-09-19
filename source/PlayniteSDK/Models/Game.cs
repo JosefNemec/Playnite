@@ -173,7 +173,9 @@ namespace Playnite.SDK.Models
         ///
         OverrideInstallState = 88,
         ///
-        InstallSize = 89
+        InstallSize = 89,
+        ///
+        LastSizeScanDate = 90
     }
 
     /// <summary>
@@ -798,6 +800,24 @@ namespace Playnite.SDK.Models
             set
             {
                 installSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime? lastSizeScanDate;
+        /// <summary>
+        /// Gets or sets date of last date of install size scan made to a game.
+        /// </summary>
+        public DateTime? LastSizeScanDate
+        {
+            get
+            {
+                return lastSizeScanDate;
+            }
+
+            set
+            {
+                lastSizeScanDate = value;
                 OnPropertyChanged();
             }
         }

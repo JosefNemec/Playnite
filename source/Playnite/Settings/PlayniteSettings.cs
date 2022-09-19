@@ -1992,7 +1992,6 @@ namespace Playnite
         public DateTime LastAddonUpdateCheck { get; set; }
         public DateTime LastLibraryUpdateCheck { get; set; }
         public DateTime LastEmuLibraryUpdateCheck { get; set; }
-        public DateTime LastInstallSizesUpdateCheck { get; set; } = DateTime.Now;
         public DateTime LastAutoBackup { get; set; }
 
         private GameSearchItemAction primaryGameSearchItemAction = GameSearchItemAction.SwitchTo;

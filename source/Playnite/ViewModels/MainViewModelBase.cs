@@ -579,86 +579,13 @@ namespace Playnite.ViewModels
                                 return addedGames;
                             }
 
-                            LibraryUpdateScanGameSize(game);
+                            App.GamesEditor.CalculateGameSize(game, false, true, true);
                         }
                     }
                 }
 
-                // We save the value even if a scan will not be done, to prevent the user
-                // enabling the option afterwards if it was disabled and causing it to
-                // scan a lot of games in the next library update
-                AppSettings.LastInstallSizesUpdateCheck = DateTimes.Now;
-
                 return addedGames;
             }, metaForNewGames);
-        }
-
-        private void LibraryUpdateScanGameSize(Game game)
-        {
-            if (!game.IsInstalled)
-            {
-                return;
-            }
-
-            var addedAfterLastCheck = game.Added != null && game.Added > AppSettings.LastInstallSizesUpdateCheck;
-            if (game.Roms.HasItems())
-            {
-                if (!addedAfterLastCheck && !game.Roms.Any(x => !x.Path.IsNullOrWhiteSpace() &&
-                    FileSystem.FileExists(x.Path) &&
-                    FileSystem.FileGetLastWriteTime(x.Path) > AppSettings.LastInstallSizesUpdateCheck))
-                {
-                    return;
-                }
-
-                long size = 0;
-                foreach (var rom in game.Roms)
-                {
-                    if (rom.Path.IsNullOrWhiteSpace())
-                    {
-                        continue;
-                    }
-
-                    if (!FileSystem.FileExists(rom.Path))
-                    {
-                        continue;
-                    }
-
-                    if (AppSettings.InstallSizeScanUseSizeOnDisk)
-                    {
-                        size += FileSystem.GetFileSizeOnDisk(rom.Path);
-                    }
-                    else
-                    {
-                        size += FileSystem.GetFileSize(rom.Path);
-                    }
-
-                    var ulongSize = (ulong)size;
-                    if (ulongSize != game.InstallSize)
-                    {
-                        game.InstallSize = ulongSize;
-                        Database.Games.Update(game);
-                    }
-                }
-            }
-            else if (!game.InstallDirectory.IsNullOrWhiteSpace())
-            {
-                if (!FileSystem.DirectoryExists(game.InstallDirectory))
-                {
-                    return;
-                }
-
-                if (!addedAfterLastCheck && FileSystem.DirectoryGetLastWriteTime(game.InstallDirectory) < AppSettings.LastInstallSizesUpdateCheck)
-                {
-                    return;
-                }
-
-                var size = AppSettings.InstallSizeScanUseSizeOnDisk ? (ulong)FileSystem.GetDirectorySizeOnDisk(game.InstallDirectory) : (ulong)FileSystem.GetDirectorySize(game.InstallDirectory);
-                if (size != game.InstallSize)
-                {
-                    game.InstallSize = size;
-                    Database.Games.Update(game);
-                }
-            }
         }
 
         public async Task UpdateLibrary(LibraryPlugin plugin)

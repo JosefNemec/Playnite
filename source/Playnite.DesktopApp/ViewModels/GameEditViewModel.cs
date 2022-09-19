@@ -687,6 +687,11 @@ namespace Playnite.DesktopApp.ViewModels
                     game.InstallSize = EditingGame.InstallSize;
                 }
 
+                if (UseLastSizeScanDateChanges)
+                {
+                    game.LastSizeScanDate = EditingGame.LastSizeScanDate;
+                }
+
                 if (UseSeriesChanges)
                 {
                     game.SeriesIds = consolidateIds(Series, game.SeriesIds);
