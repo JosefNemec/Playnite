@@ -18,49 +18,52 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            var bytes = (ulong)value;
+            if (value is ulong bytes)
+            {
+                string suffix;
+                double readable;
+                if (bytes >= 0x1000000000000000) // Exabyte
+                {
+                    suffix = "EB";
+                    readable = (bytes >> 50);
+                }
+                else if (bytes >= 0x4000000000000) // Petabyte
+                {
+                    suffix = "PB";
+                    readable = bytes >> 40;
+                }
+                else if (bytes >= 0x10000000000) // Terabyte
+                {
+                    suffix = "TB";
+                    readable = bytes >> 30;
+                }
+                else if (bytes >= 0x40000000) // Gigabyte
+                {
+                    suffix = "GB";
+                    readable = bytes >> 20;
+                }
+                else if (bytes >= 0x100000) // Megabyte
+                {
+                    suffix = "MB";
+                    readable = bytes >> 10;
+                }
+                else if (bytes >= 0x400) // Kilobyte
+                {
+                    suffix = "KB";
+                    readable = bytes;
+                }
+                else
+                {
+                    return bytes.ToString("0 B"); // Byte
+                }
 
-            // From https://stackoverflow.com/a/11124118
-
-            string suffix;
-            double readable;
-            if (bytes >= 0x1000000000000000) // Exabyte
-            {
-                suffix = "EB";
-                readable = (bytes >> 50);
-            }
-            else if (bytes >= 0x4000000000000) // Petabyte
-            {
-                suffix = "PB";
-                readable = bytes >> 40;
-            }
-            else if (bytes >= 0x10000000000) // Terabyte
-            {
-                suffix = "TB";
-                readable = bytes >> 30;
-            }
-            else if (bytes >= 0x40000000) // Gigabyte
-            {
-                suffix = "GB";
-                readable = bytes >> 20;
-            }
-            else if (bytes >= 0x100000) // Megabyte
-            {
-                suffix = "MB";
-                readable = bytes >> 10;
-            }
-            else if (bytes >= 0x400) // Kilobyte
-            {
-                suffix = "KB";
-                readable = bytes;
+                readable /= 1024;
+                return readable.ToString("0.00# ") + suffix;
             }
             else
             {
-                return bytes.ToString("0 B"); // Byte
+                return string.Empty;
             }
-
-            readable /= 1024;
-            return readable.ToString("0.00# ") + suffix;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
