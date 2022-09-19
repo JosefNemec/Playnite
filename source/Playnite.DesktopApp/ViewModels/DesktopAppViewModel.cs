@@ -43,7 +43,7 @@ namespace Playnite.DesktopApp.ViewModels
         protected bool ignoreCloseActions = false;
         protected bool ignoreSelectionChanges = false;
         private readonly SynchronizationContext context;
-        private readonly Random random = new Random();
+        private static readonly Random random = new Random();
         private Controls.LibraryStatistics statsView;
         private Controls.Views.Library libraryView;
         private SearchViewModel currentGlobalSearch;
