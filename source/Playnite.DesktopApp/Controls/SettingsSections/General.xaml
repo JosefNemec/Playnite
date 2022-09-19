@@ -150,14 +150,10 @@
                 Content="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdate}"
                 ToolTip="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdateTooltip}"
                 IsChecked="{Binding Settings.ScanLibInstallSizeOnLibUpdate}"/>
-
-        <CheckBox IsChecked="{Binding Settings.InstallSizeScanUseSizeOnDisk}" Margin="5,15,5,5"
-                Content="{DynamicResource LOCInstallSizeScanUseSizeOnDiskOption}"
-                ToolTip="{DynamicResource LOCInstallSizeScanUseSizeOnDiskOptionTooltip}"/>
-
+        
         <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
-                ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
-                VerticalAlignment="Center" />
+                   ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
+                   VerticalAlignment="Center" />
 
         <StackPanel Orientation="Horizontal" Margin="5,10,5,0">
             <ComboBox MinWidth="100" VerticalAlignment="Center"
