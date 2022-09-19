@@ -503,13 +503,58 @@ namespace Playnite
                             continue;
                         }
 
-                        if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                        if (rom.Path.EndsWith(".cue", StringComparison.OrdinalIgnoreCase))
                         {
-                            size += FileSystem.GetFileSizeOnDisk(rom.Path);
+                            var baseDir = Path.GetDirectoryName(rom.Path);
+                            var files = CueSheet.GetFileEntries(rom.Path).Select(a => Path.Combine(baseDir, a.Path));
+                            foreach (var file in files)
+                            {
+                                if (!FileSystem.FileExists(file))
+                                {
+                                    continue;
+                                }
+
+                                if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                                {
+                                    size += FileSystem.GetFileSizeOnDisk(file);
+                                }
+                                else
+                                {
+                                    size += FileSystem.GetFileSize(file);
+                                }
+                            }
+                        }
+                        else if (rom.Path.EndsWith(".m3u", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var baseDir = Path.GetDirectoryName(rom.Path);
+                            var files = M3U.GetEntries(rom.Path).Select(a => Path.Combine(baseDir, a.Path));
+                            foreach (var file in files)
+                            {
+                                if (!FileSystem.FileExists(file))
+                                {
+                                    continue;
+                                }
+
+                                if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                                {
+                                    size += FileSystem.GetFileSizeOnDisk(file);
+                                }
+                                else
+                                {
+                                    size += FileSystem.GetFileSize(file);
+                                }
+                            }
                         }
                         else
                         {
-                            size += FileSystem.GetFileSize(rom.Path);
+                            if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                            {
+                                size += FileSystem.GetFileSizeOnDisk(rom.Path);
+                            }
+                            else
+                            {
+                                size += FileSystem.GetFileSize(rom.Path);
+                            }
                         }
                     }
                 }
