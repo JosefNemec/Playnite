@@ -43,7 +43,6 @@ namespace Playnite.DesktopApp.ViewModels
         protected bool ignoreCloseActions = false;
         protected bool ignoreSelectionChanges = false;
         private readonly SynchronizationContext context;
-        private static readonly Random random = new Random();
         private Controls.LibraryStatistics statsView;
         private Controls.Views.Library libraryView;
         private SearchViewModel currentGlobalSearch;
@@ -931,7 +930,6 @@ namespace Playnite.DesktopApp.ViewModels
             var model = new RandomGameSelectViewModel(
                 Database,
                 GamesView,
-                random,
                 new RandomGameSelectWindowFactory(),
                 Resources);
             model.OpenView();
@@ -969,7 +967,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 while (true)
                 {
-                    var index = random.Next(0, count);
+                    var index = GlobalRandom.Next(0, count);
                     var newGame = GamesView.CollectionView.GetItemAt(index) as GamesCollectionViewEntry;
                     if (SelectedGame == null || SelectedGame != newGame)
                     {
