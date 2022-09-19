@@ -522,17 +522,6 @@ namespace Playnite
             }, new GlobalProgressOptions(textTitle, false) { IsIndeterminate = true });
         }
 
-        public void CalculateGamesSize(List<Game> games, bool onlyIfDataMissing)
-        {
-            using (Database.BufferedUpdate())
-            {
-                foreach (var game in games)
-                {
-                    CalculateGameSize(game, onlyIfDataMissing);
-                }
-            }
-        }
-
         public void CalculateGamesSizeWithDialog(List<Game> games, bool onlyIfDataMissing)
         {
             var textTitle = ResourceProvider.GetString("LOCCalculatingInstallSizeMessage");
