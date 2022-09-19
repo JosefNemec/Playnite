@@ -85,6 +85,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<Game> RemoveGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveGamesCommand { get; private set; }
         public RelayCommand<object> SelectRandomGameCommand { get; private set; }
+        public RelayCommand<object> ViewSelectRandomGameCommand { get; private set; }
         public RelayCommand<SidebarWrapperItem> SelectSidebarViewCommand { get; private set; }
 
         public RelayCommand<object> SwitchDetailsViewCommand { get; private set; }
@@ -530,6 +531,12 @@ namespace Playnite.DesktopApp.ViewModels
                 PlayRandomGame();
             }, (a) => Database?.IsOpen == true,
             new KeyGesture(Key.F6));
+
+            ViewSelectRandomGameCommand = new RelayCommand<object>((a) =>
+            {
+                ViewSelectRandomGame();
+            }, (a) => Database?.IsOpen == true,
+            new KeyGesture(Key.F7));
 
             SelectSidebarViewCommand = new RelayCommand<SidebarWrapperItem>((a) =>
             {
