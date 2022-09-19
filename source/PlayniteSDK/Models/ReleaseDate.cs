@@ -15,7 +15,10 @@ namespace Playnite.SDK.Models
     public struct ReleaseDate : IComparable, IComparable<ReleaseDate>, IEquatable<ReleaseDate>, ISerializable
     {
         private static readonly char[] serSplitter = new char[] { '-' };
-        private readonly DateTime date;
+        /// <summary>
+        /// Gets DateTime representation of release date.
+        /// </summary>
+        public readonly DateTime Date;
 
         /// <summary>
         /// Gets empty representation of release date.
@@ -45,14 +48,14 @@ namespace Playnite.SDK.Models
                 Year = default(int);
                 Month = default(int?);
                 Day = default(int?);
-                date = default(DateTime);
+                Date = default(DateTime);
             }
             else
             {
                 Year = year;
                 Day = null;
                 Month = null;
-                date = new DateTime(year, 1, 1);
+                Date = new DateTime(year, 1, 1);
             }
         }
 
@@ -66,7 +69,7 @@ namespace Playnite.SDK.Models
             Year = year;
             Month = month;
             Day = null;
-            date = new DateTime(year, month, 1);
+            Date = new DateTime(year, month, 1);
         }
 
         /// <summary>
@@ -80,7 +83,7 @@ namespace Playnite.SDK.Models
             Year = year;
             Month = month;
             Day = day;
-            date = new DateTime(year, month, day);
+            Date = new DateTime(year, month, day);
         }
 
         /// <summary>
@@ -104,11 +107,11 @@ namespace Playnite.SDK.Models
             Day = serDate.Day;
             if (Year == default(int))
             {
-                date = default(DateTime);
+                Date = default(DateTime);
             }
             else
             {
-                date = new DateTime(Year, Month ?? 1, Day ?? 1);
+                Date = new DateTime(Year, Month ?? 1, Day ?? 1);
             }
         }
 
@@ -128,7 +131,7 @@ namespace Playnite.SDK.Models
         /// <inheritdoc/>
         public int CompareTo(ReleaseDate other)
         {
-            return date.CompareTo(other.date);
+            return Date.CompareTo(other.Date);
         }
 
         /// <inheritdoc/>
@@ -272,11 +275,11 @@ namespace Playnite.SDK.Models
         {
             if (Day != null)
             {
-                return date.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+                return Date.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
             }
             else if (Month != null)
             {
-                return date.ToString(CultureInfo.CurrentCulture.DateTimeFormat.YearMonthPattern);
+                return Date.ToString(CultureInfo.CurrentCulture.DateTimeFormat.YearMonthPattern);
             }
             else
             {

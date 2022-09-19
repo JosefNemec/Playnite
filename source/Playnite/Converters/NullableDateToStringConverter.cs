@@ -105,7 +105,7 @@ namespace Playnite.Converters
             {
                 if (parameter != null && date.Month != null && date.Day != null)
                 {
-                    return DateTime.ParseExact($"{date.Month}/{date.Day}/{date.Year}" ,"d", CultureInfo.InvariantCulture).ToString((string)parameter);
+                    return date.Date.ToString((string)parameter);
                 }
                 else
                 {
