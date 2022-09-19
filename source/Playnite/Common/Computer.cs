@@ -195,12 +195,12 @@ namespace Playnite.Common
                 }
             }
 
-            using (var memory = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory"))
+            using (var memory = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystem"))
             {
                 double totalCapacity = 0;
                 foreach (var obj in memory.Get())
                 {
-                    totalCapacity += Convert.ToDouble(obj["Capacity"]);
+                    totalCapacity += Convert.ToDouble(obj["TotalPhysicalMemory"]);
                 }
 
                 info.Ram = Convert.ToInt32(totalCapacity / 1048576);
