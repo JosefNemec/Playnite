@@ -53,6 +53,21 @@ namespace Playnite
             }
         }
 
+        private bool recentActivity = true;
+        public bool RecentActivity
+        {
+            get
+            {
+                return recentActivity;
+            }
+
+            set
+            {
+                recentActivity = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool completionStatus = false;
         public bool CompletionStatus
         {
