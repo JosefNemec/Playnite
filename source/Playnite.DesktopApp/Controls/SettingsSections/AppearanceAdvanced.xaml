@@ -187,7 +187,9 @@
             <GridEx ColumnCount="4" StarColumns="3" RowCount="4" AutoLayoutColumns="4">
             
                 <!--Added-->
-                <TextBlock Text="{DynamicResource LOCAddedLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <ContentControl Content="{DynamicResource LOCAddedLabel}"
+                                Margin="0,5,0,0" VerticalAlignment="Center"
+                                ContentStringFormat="{}{0} *" />
                 <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
                     <TextBox.Text>
                         <Binding Path="Settings.DateTimeFormatAdded"
@@ -213,7 +215,9 @@
                 </TextBlock>
 
                 <!--Modified-->
-                <TextBlock Text="{DynamicResource LOCModifiedLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <ContentControl Content="{DynamicResource LOCModifiedLabel}"
+                                Margin="0,5,0,0" VerticalAlignment="Center"
+                                ContentStringFormat="{}{0} *" />
                 <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
                     <TextBox.Text>
                         <Binding Path="Settings.DateTimeFormatModified"
@@ -239,7 +243,9 @@
                 </TextBlock>
 
                 <!--RecentActivity-->
-                <TextBlock Text="{DynamicResource LOCRecentActivityLabel}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <ContentControl Content="{DynamicResource LOCRecentActivityLabel}"
+                                Margin="0,5,0,0" VerticalAlignment="Center"
+                                ContentStringFormat="{}{0} *" />
                 <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
                     <TextBox.Text>
                         <Binding Path="Settings.DateTimeFormatRecentActivity"
@@ -265,7 +271,9 @@
                 </TextBlock>
 
                 <!--ReleaseDate-->
-                <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}" Margin="0,5,0,0" VerticalAlignment="Center" />
+                <ContentControl Content="{DynamicResource LOCGameReleaseDateTitle}"
+                                Margin="0,5,0,0" VerticalAlignment="Center"
+                                ContentStringFormat="{}{0} *" />
                 <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
                     <TextBox.Text>
                         <Binding Path="Settings.DateTimeFormatReleaseDate"
