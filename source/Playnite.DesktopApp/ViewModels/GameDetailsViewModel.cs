@@ -135,7 +135,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public Visibility InstallDirectoryVisibility
         {
-            get => (settings.DetailsVisibility.InstallDirectory && !string.IsNullOrWhiteSpace(game.InstallDirectory)) ? Visibility.Visible : Visibility.Collapsed;
+            get => (settings.DetailsVisibility.InstallDirectory && game.IsInstalled && !string.IsNullOrWhiteSpace(game.InstallDirectory)) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility LastPlayedVisibility
