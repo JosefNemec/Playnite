@@ -366,7 +366,7 @@ namespace Playnite
 
             foreach (var profile in emulator.BuiltinProfiles ?? new ObservableCollection<BuiltInEmulatorProfile>())
             {
-                var profDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
+                var profDef = Emulation.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
                 if (profDef == null)
                 {
                     continue;

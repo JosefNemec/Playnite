@@ -197,7 +197,7 @@ namespace Playnite.Emulators
 
             var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
-            var builtinProfileDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
+            var builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
             if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
@@ -370,7 +370,7 @@ namespace Playnite.Emulators
             bool scanArchives,
             Action<string> fileScanCallback = null)
         {
-            var emuProf = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
+            var emuProf = Emulation.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
             if (emuProf == null)
             {
                 throw new Exception($"Emulator {emulator.BuiltInConfigId} and profile {profile.BuiltInProfileName} not found.");
@@ -386,7 +386,7 @@ namespace Playnite.Emulators
                     try
                     {
                         scannedGames = importRuntime.ExecuteFile(
-                            EmulatorDefinition.GetDefition(emulator.BuiltInConfigId).GameImportScriptPath,
+                            Emulation.GetGameImportScriptPath(Emulation.GetDefition(emulator.BuiltInConfigId)),
                             emulator.InstallDir,
                             new Dictionary<string, object>
                             {

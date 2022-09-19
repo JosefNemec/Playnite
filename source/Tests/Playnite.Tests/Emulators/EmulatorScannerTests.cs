@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Playnite.Common;
 using Playnite.Emulators;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;

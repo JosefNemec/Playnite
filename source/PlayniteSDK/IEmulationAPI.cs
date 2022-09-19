@@ -23,6 +23,11 @@ namespace Playnite.SDK
         IList<EmulatedRegion> Regions { get; }
 
         /// <summary>
+        /// Gets list of built-in emulator definitions.
+        /// </summary>
+        IList<EmulatorDefinition> Emulators { get; }
+
+        /// <summary>
         /// Gets specific platform by id.
         /// </summary>
         /// <param name="platformId"></param>
@@ -35,5 +40,12 @@ namespace Playnite.SDK
         /// <param name="regionId"></param>
         /// <returns></returns>
         EmulatedRegion GetRegion(string regionId);
+
+        /// <summary>
+        /// Gets specific built-in emulator definition.
+        /// </summary>
+        /// <param name="emulatorDefinitionId"></param>
+        /// <returns></returns>
+        EmulatorDefinition GetEmulator(string emulatorDefinitionId);
     }
 }
