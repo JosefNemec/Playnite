@@ -1783,7 +1783,7 @@ namespace Playnite.SDK.Models
 
                 if (LastSizeScanDate != tro.lastSizeScanDate)
                 {
-                    tro.lastSizeScanDate = LastSizeScanDate;
+                    tro.LastSizeScanDate = LastSizeScanDate;
                 }
 
                 if (!SeriesIds.IsListEqual(tro.SeriesIds))
