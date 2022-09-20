@@ -14,6 +14,8 @@ namespace Playnite.Converters
 {
     public class NullableDateToStringConverter : MarkupExtension, IValueConverter
     {
+        public static readonly NullableDateToStringConverter Instance = new NullableDateToStringConverter();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
@@ -21,14 +23,18 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            var date = ((DateTime?)value).Value;
-            if (parameter == null)
+            if (value is DateTime date)
             {
+                if (parameter is DateFormattingOptions options)
+                {
+                    return date.ToDisplayString(options);
+                }
+
                 return date.ToString(Common.Constants.DateUiFormat);
             }
             else
             {
-                return date.ToString((string)parameter);
+                return string.Empty;
             }
         }
 
@@ -58,13 +64,20 @@ namespace Playnite.Converters
 
     public class ReleaseDateToStringConverter : MarkupExtension, IValueConverter
     {
+        public static readonly ReleaseDateToStringConverter Instance = new ReleaseDateToStringConverter();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is ReleaseDate date)
             {
                 if (parameter != null && date.Month != null && date.Day != null)
                 {
-                    return date.Date.ToString((string)parameter);
+                    if (parameter is DateFormattingOptions options)
+                    {
+                        return date.Date.ToDisplayString(options);
+                    }
+
+                    return date.Date.ToString(Common.Constants.DateUiFormat);
                 }
                 else
                 {
@@ -73,7 +86,7 @@ namespace Playnite.Converters
             }
             else if (value == null)
             {
-                return null;
+                return string.Empty;
             }
             else
             {

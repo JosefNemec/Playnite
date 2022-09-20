@@ -188,6 +188,25 @@ namespace Playnite
         OnceAWeek = 2
     }
 
+    public class DateFormattingOptions : ObservableObject
+    {
+        private string format;
+        private bool pastWeekRelativeFormat;
+
+        public string Format { get => format; set => SetValue(ref format, value); }
+        public bool PastWeekRelativeFormat { get => pastWeekRelativeFormat; set => SetValue(ref pastWeekRelativeFormat, value); }
+
+        public DateFormattingOptions()
+        {
+        }
+
+        public DateFormattingOptions(string format, bool pastWeekRelativeFormat)
+        {
+            Format = format;
+            PastWeekRelativeFormat = pastWeekRelativeFormat;
+        }
+    }
+
     public class PlayniteSettings : ObservableObject
     {
         private static SDK.ILogger logger = SDK.LogManager.GetLogger();
@@ -1907,9 +1926,9 @@ namespace Playnite
             }
         }
 
-        private string dateTimeFormatAdded = Constants.DefaultDateTimeFormat;
+        private DateFormattingOptions dateTimeFormatAdded = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
         [RequiresRestart]
-        public string DateTimeFormatAdded
+        public DateFormattingOptions DateTimeFormatAdded
         {
             get => dateTimeFormatAdded;
             set
@@ -1919,9 +1938,9 @@ namespace Playnite
             }
         }
 
-        private string dateTimeFormatModified = Constants.DefaultDateTimeFormat;
+        private DateFormattingOptions dateTimeFormatModified = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
         [RequiresRestart]
-        public string DateTimeFormatModified
+        public DateFormattingOptions DateTimeFormatModified
         {
             get => dateTimeFormatModified;
             set
@@ -1931,9 +1950,9 @@ namespace Playnite
             }
         }
 
-        private string dateTimeFormatRecentActivity = Constants.DefaultDateTimeFormat;
+        private DateFormattingOptions dateTimeFormatRecentActivity = new DateFormattingOptions(Constants.DefaultDateTimeFormat, true);
         [RequiresRestart]
-        public string DateTimeFormatRecentActivity
+        public DateFormattingOptions DateTimeFormatRecentActivity
         {
             get => dateTimeFormatRecentActivity;
             set
@@ -1943,9 +1962,9 @@ namespace Playnite
             }
         }
 
-        private string dateTimeFormatReleaseDate = Constants.DefaultDateTimeFormat;
+        private DateFormattingOptions dateTimeFormatReleaseDate = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
         [RequiresRestart]
-        public string DateTimeFormatReleaseDate
+        public DateFormattingOptions DateTimeFormatReleaseDate
         {
             get => dateTimeFormatReleaseDate;
             set
@@ -1955,9 +1974,9 @@ namespace Playnite
             }
         }
 
-        private string dateTimeFormatLastPlayed = null;
+        private DateFormattingOptions dateTimeFormatLastPlayed = new DateFormattingOptions(Constants.DefaultDateTimeFormat, true);
         [RequiresRestart]
-        public string DateTimeFormatLastPlayed
+        public DateFormattingOptions DateTimeFormatLastPlayed
         {
             get => dateTimeFormatLastPlayed;
             set

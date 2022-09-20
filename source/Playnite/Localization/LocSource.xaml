@@ -1155,4 +1155,8 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCSettingsRotatingBackups">Rotating backups</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">Include additional data:</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError">Backup folder needs to be set if auto backup is enabled.</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat">Use relative dates for the past week</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve">Use relative dates in "Today", "Yesterday" etc. format if the date is less than a week old.
+    
+The specified date format will be used for all other dates.</sys:String>
 </ResourceDictionary>

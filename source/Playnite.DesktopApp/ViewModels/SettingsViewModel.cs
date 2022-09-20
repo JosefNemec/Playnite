@@ -24,6 +24,9 @@ using System.Diagnostics;
 using Playnite.SDK.Exceptions;
 using Playnite.Scripting.PowerShell;
 using System.Collections.ObjectModel;
+using Playnite.Converters;
+using System.Globalization;
+using Playnite.SDK.Models;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -321,7 +324,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                settings.DateTimeFormatAdded = Constants.DefaultDateTimeFormat;
+                settings.DateTimeFormatAdded.Format = Constants.DefaultDateTimeFormat;
             });
         }
 
@@ -329,7 +332,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                settings.DateTimeFormatModified = Constants.DefaultDateTimeFormat;
+                settings.DateTimeFormatModified.Format = Constants.DefaultDateTimeFormat;
             });
         }
 
@@ -337,7 +340,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                settings.DateTimeFormatRecentActivity = Constants.DefaultDateTimeFormat;
+                settings.DateTimeFormatRecentActivity.Format = Constants.DefaultDateTimeFormat;
             });
         }
 
@@ -345,7 +348,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                settings.DateTimeFormatReleaseDate = Constants.DefaultDateTimeFormat;
+                settings.DateTimeFormatReleaseDate.Format = Constants.DefaultDateTimeFormat;
             });
         }
 
@@ -353,11 +356,26 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                settings.DateTimeFormatLastPlayed = null;
+                settings.DateTimeFormatLastPlayed.Format = Constants.DefaultDateTimeFormat;
             });
         }
 
         #endregion Commands
+
+        public object DateTimeFormatAddedExample =>
+            NullableDateToStringConverter.Instance.Convert(DateTime.Now, typeof(string), Settings.DateTimeFormatAdded, CultureInfo.CurrentCulture);
+
+        public object DateTimeFormatLastPlayedExample =>
+            DateTimeToLastPlayedConverter.Instance.Convert(DateTime.Now, typeof(string), Settings.DateTimeFormatLastPlayed, CultureInfo.CurrentCulture);
+
+        public object DateTimeFormatModifiedExample =>
+            NullableDateToStringConverter.Instance.Convert(DateTime.Now, typeof(string), Settings.DateTimeFormatModified, CultureInfo.CurrentCulture);
+
+        public object DateTimeFormatRecentActivityExample =>
+            NullableDateToStringConverter.Instance.Convert(DateTime.Now, typeof(string), Settings.DateTimeFormatRecentActivity, CultureInfo.CurrentCulture);
+
+        public object DateTimeFormatReleaseDateExample =>
+            ReleaseDateToStringConverter.Instance.Convert(new ReleaseDate(DateTime.Now), typeof(string), Settings.DateTimeFormatReleaseDate, CultureInfo.CurrentCulture);
 
         public SettingsViewModel(
             IGameDatabaseMain database,
@@ -376,29 +394,36 @@ namespace Playnite.DesktopApp.ViewModels
             originalSettings = settings;
 
             Settings = settings.GetClone();
-            Settings.PropertyChanged += (s, e) =>
+            Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
+
+            Settings.DateTimeFormatAdded.PropertyChanged += (_, __) =>
             {
-                editedFields.AddMissing(e.PropertyName);
-                switch (e.PropertyName)
-                {
-                    case nameof(settings.DateTimeFormatAdded):
+                OnPropertyChanged(nameof(DateTimeFormatAddedExample));
+                editedFields.AddMissing(nameof(Settings.DateTimeFormatAdded));
+            };
 
-                        break;
-                    case nameof(settings.DateTimeFormatLastPlayed):
+            Settings.DateTimeFormatLastPlayed.PropertyChanged += (_, __) =>
+            {
+                OnPropertyChanged(nameof(DateTimeFormatLastPlayedExample));
+                editedFields.AddMissing(nameof(Settings.DateTimeFormatLastPlayed));
+            };
 
-                        break;
-                    case nameof(settings.DateTimeFormatModified):
+            Settings.DateTimeFormatModified.PropertyChanged += (_, __) =>
+            {
+                OnPropertyChanged(nameof(DateTimeFormatModifiedExample));
+                editedFields.AddMissing(nameof(Settings.DateTimeFormatModified));
+            };
 
-                        break;
-                    case nameof(settings.DateTimeFormatRecentActivity):
+            Settings.DateTimeFormatRecentActivity.PropertyChanged += (_, __) =>
+            {
+                OnPropertyChanged(nameof(DateTimeFormatRecentActivityExample));
+                editedFields.AddMissing(nameof(Settings.DateTimeFormatRecentActivity));
+            };
 
-                        break;
-                    case nameof(settings.DateTimeFormatReleaseDate):
-
-                        break;
-                    default:
-                        break;
-                }
+            Settings.DateTimeFormatReleaseDate.PropertyChanged += (_, __) =>
+            {
+                OnPropertyChanged(nameof(DateTimeFormatReleaseDateExample));
+                editedFields.AddMissing(nameof(Settings.DateTimeFormatReleaseDate));
             };
 
             AvailableTrayIcons = new List<SelectableTrayIcon>

@@ -12,7 +12,7 @@
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
              xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="600">
+             d:DesignHeight="800" d:DesignWidth="600">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -181,113 +181,136 @@
             <TextBlock Text="{DynamicResource LOCSettingsTextRenderingNotice}"
                        TextWrapping="Wrap" Margin="0,10,0,0"/>
 
-            <TextBlock Text="{DynamicResource LOCSettingsDatesFormatsLabel}" Margin="0,15,0,0" />
-            <GridEx ColumnCount="4" StarColumns="3" RowCount="5" AutoLayoutColumns="4">
+            <ContentControl Content="{DynamicResource LOCSettingsDatesFormatsLabel}" Margin="0,15,0,5" 
+                            ContentStringFormat="{}{0} *"/>
             
+            <GridEx ColumnCount="4" StarColumns="3" RowCount="5" AutoLayoutColumns="4">            
                 <!--Added-->
-                <ContentControl Content="{DynamicResource LOCAddedLabel}"
-                                Margin="0,5,0,0" VerticalAlignment="Center"
-                                ContentStringFormat="{}{0} *" />
-                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                    <TextBox.Text>
-                        <Binding Path="Settings.DateTimeFormatAdded"
-                                 UpdateSourceTrigger="PropertyChanged" 
-                                 ValidatesOnDataErrors="True"
-                                 NotifyOnValidationError="True">
-                            <Binding.ValidationRules>
-                                <pcon:DateTimeFormatToStringValidation />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                <TextBlock Text="{DynamicResource LOCAddedLabel}"
+                           Margin="0,10,0,0" VerticalAlignment="Top" />
+                <StackPanel Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Top">
+                    <TextBox>
+                        <TextBox.Text>
+                            <Binding Path="Settings.DateTimeFormatAdded.Format"
+                                     UpdateSourceTrigger="PropertyChanged" 
+                                     ValidatesOnDataErrors="True"
+                                     NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <pcon:DateTimeFormatToStringValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <CheckBox Content="{DynamicResource LOCSettingsPastWeekRelativeFormat}" Margin="0,5,0,0"
+                              ToolTip="{DynamicResource LOCSettingsPastWeekRelativeFormatTooltip}"
+                              IsChecked="{Binding Settings.DateTimeFormatAdded.PastWeekRelativeFormat}" />
+                </StackPanel>
+
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0" VerticalAlignment="Top"
                         Command="{Binding ResetDateTimeFormatAddedCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
+                <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatAddedExample}" />
 
                 <!--Modified-->
-                <ContentControl Content="{DynamicResource LOCModifiedLabel}"
-                                Margin="0,5,0,0" VerticalAlignment="Center"
-                                ContentStringFormat="{}{0} *" />
-                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                    <TextBox.Text>
-                        <Binding Path="Settings.DateTimeFormatModified"
-                                 UpdateSourceTrigger="PropertyChanged" 
-                                 ValidatesOnDataErrors="True"
-                                 NotifyOnValidationError="True">
-                            <Binding.ValidationRules>
-                                <pcon:DateTimeFormatToStringValidation />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                <TextBlock Text="{DynamicResource LOCModifiedLabel}"
+                           Margin="0,15,0,0" VerticalAlignment="Top" />
+                <StackPanel Margin="10,10,0,0" MinWidth="150" VerticalAlignment="Top">
+                    <TextBox>
+                        <TextBox.Text>
+                            <Binding Path="Settings.DateTimeFormatModified.Format"
+                                     UpdateSourceTrigger="PropertyChanged" 
+                                     ValidatesOnDataErrors="True"
+                                     NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <pcon:DateTimeFormatToStringValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <CheckBox Content="{DynamicResource LOCSettingsPastWeekRelativeFormat}" Margin="0,5,0,0"
+                              ToolTip="{DynamicResource LOCSettingsPastWeekRelativeFormatTooltip}"
+                              IsChecked="{Binding Settings.DateTimeFormatModified.PastWeekRelativeFormat}" />
+                </StackPanel>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,10,0,0" VerticalAlignment="Top"
                         Command="{Binding ResetDateTimeFormatModifiedCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
-
-                <!--RecentActivity-->
-                <ContentControl Content="{DynamicResource LOCRecentActivityLabel}"
-                                Margin="0,5,0,0" VerticalAlignment="Center"
-                                ContentStringFormat="{}{0} *" />
-                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                    <TextBox.Text>
-                        <Binding Path="Settings.DateTimeFormatRecentActivity"
-                                 UpdateSourceTrigger="PropertyChanged" 
-                                 ValidatesOnDataErrors="True"
-                                 NotifyOnValidationError="True">
-                            <Binding.ValidationRules>
-                                <pcon:DateTimeFormatToStringValidation />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
-                        Command="{Binding ResetDateTimeFormatRecentActivityCommand}" />
-
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
+                <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatModifiedExample}" />
 
                 <!--ReleaseDate-->
-                <ContentControl Content="{DynamicResource LOCGameReleaseDateTitle}"
-                                Margin="0,5,0,0" VerticalAlignment="Center"
-                                ContentStringFormat="{}{0} *" />
-                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                    <TextBox.Text>
-                        <Binding Path="Settings.DateTimeFormatReleaseDate"
+                <TextBlock Text="{DynamicResource LOCGameReleaseDateTitle}"
+                           Margin="0,15,0,0" VerticalAlignment="Top" />
+                <StackPanel Margin="10,10,0,0" MinWidth="150" VerticalAlignment="Top">
+                    <TextBox>
+                        <TextBox.Text>
+                            <Binding Path="Settings.DateTimeFormatReleaseDate.Format"
                                  UpdateSourceTrigger="PropertyChanged" 
                                  ValidatesOnDataErrors="True"
                                  NotifyOnValidationError="True">
-                            <Binding.ValidationRules>
-                                <pcon:DateTimeFormatToStringValidation />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                                <Binding.ValidationRules>
+                                    <pcon:DateTimeFormatToStringValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <CheckBox Content="{DynamicResource LOCSettingsPastWeekRelativeFormat}" Margin="0,5,0,0"
+                              ToolTip="{DynamicResource LOCSettingsPastWeekRelativeFormatTooltip}"
+                              IsChecked="{Binding Settings.DateTimeFormatReleaseDate.PastWeekRelativeFormat}" />
+                </StackPanel>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,10,0,0" VerticalAlignment="Top"
                         Command="{Binding ResetDateTimeFormatReleaseDateCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
+                <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatReleaseDateExample}" />
+
+                <!--RecentActivity-->
+                <TextBlock Text="{DynamicResource LOCRecentActivityLabel}"
+                           Margin="0,15,0,0" VerticalAlignment="Top" />
+                <StackPanel Margin="10,10,0,0" MinWidth="150" VerticalAlignment="Top">
+                    <TextBox>
+                        <TextBox.Text>
+                            <Binding Path="Settings.DateTimeFormatRecentActivity.Format"
+                                     UpdateSourceTrigger="PropertyChanged" 
+                                     ValidatesOnDataErrors="True"
+                                     NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <pcon:DateTimeFormatToStringValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <CheckBox Content="{DynamicResource LOCSettingsPastWeekRelativeFormat}" Margin="0,5,0,0"
+                              ToolTip="{DynamicResource LOCSettingsPastWeekRelativeFormatTooltip}"
+                              IsChecked="{Binding Settings.DateTimeFormatRecentActivity.PastWeekRelativeFormat}" />
+                </StackPanel>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,10,0,0" VerticalAlignment="Top"
+                        Command="{Binding ResetDateTimeFormatRecentActivityCommand}" />
+
+                <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatRecentActivityExample}" />
+
 
                 <!--LastActivity-->
-                <ContentControl Content="{DynamicResource LOCLastPlayedLabel}"
-                                Margin="0,5,0,0" VerticalAlignment="Center"
-                                ContentStringFormat="{}{0} *" />
-                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
-                    <TextBox.Text>
-                        <Binding Path="Settings.DateTimeFormatLastPlayed"
+                <TextBlock Text="{DynamicResource LOCLastPlayedLabel}"
+                           Margin="0,15,0,0" VerticalAlignment="Top" />
+                <StackPanel Margin="10,10,0,0" MinWidth="150" VerticalAlignment="Top">
+                    <TextBox>
+                        <TextBox.Text>
+                            <Binding Path="Settings.DateTimeFormatLastPlayed.Format"
                                  UpdateSourceTrigger="PropertyChanged" 
                                  ValidatesOnDataErrors="True"
                                  NotifyOnValidationError="True">
-                            <Binding.ValidationRules>
-                                <pcon:DateTimeFormatToStringValidation />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                                <Binding.ValidationRules>
+                                    <pcon:DateTimeFormatToStringValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <CheckBox Content="{DynamicResource LOCSettingsPastWeekRelativeFormat}" Margin="0,5,0,0"
+                              ToolTip="{DynamicResource LOCSettingsPastWeekRelativeFormatTooltip}"
+                              IsChecked="{Binding Settings.DateTimeFormatLastPlayed.PastWeekRelativeFormat}" />
+                </StackPanel>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,10,0,0" VerticalAlignment="Top"
                         Command="{Binding ResetDateTimeFormatLastPlayedCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
+                <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatLastPlayedExample}" />
             </GridEx>
 
             <Button Content="{DynamicResource LOCMenuHelpTitle}"
