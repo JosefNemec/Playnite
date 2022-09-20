@@ -226,7 +226,7 @@ namespace Playnite.DesktopApp.Controls
                 {
                     Header = ResourceProvider.GetString(LOC.CalculateInstallSize),
                     Icon = installSizeIcon,
-                    Command = model.CalculateGameInstallSizeWithDialogCommand,
+                    Command = model.UpdateGameInstallSizeWithDialogCommand,
                     CommandParameter = game
                 });
             }
@@ -391,14 +391,14 @@ namespace Playnite.DesktopApp.Controls
                 installSizeItem.Items.Add(new MenuItem()
                 {
                     Header = ResourceProvider.GetString(LOC.CalculateGamesAllInstallSize),
-                    Command = model.CalculateGamesAllInstallSizeWithDialogCommand,
+                    Command = model.UpdateGamesAllInstallSizeWithDialogCommand,
                     CommandParameter = games
                 });
 
                 installSizeItem.Items.Add(new MenuItem()
                 {
                     Header = ResourceProvider.GetString(LOC.CalculateGamesMissingInstallSize),
-                    Command = model.CalculateGamesMissingInstallSizeWithDialogCommand,
+                    Command = model.UpdateGamesMissingInstallSizeWithDialogCommand,
                     CommandParameter = games
                 });
 

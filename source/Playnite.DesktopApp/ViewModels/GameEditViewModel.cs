@@ -1614,7 +1614,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CalculateInstallSizeWithDialog()
         {
-            PlayniteApplication.Current.GamesEditor.CalculateGameSizeWithDialog(EditingGame, false, false);
+            PlayniteApplication.Current.GamesEditor.UpdateGameSizeWithDialog(EditingGame, false, false);
         }
     }
 }

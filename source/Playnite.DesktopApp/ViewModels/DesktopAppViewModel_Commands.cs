@@ -69,9 +69,9 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<Game> EditGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> EditGamesCommand { get; private set; }
         public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
-        public RelayCommand<Game> CalculateGameInstallSizeWithDialogCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> CalculateGamesAllInstallSizeWithDialogCommand { get; private set; }
-        public RelayCommand<IEnumerable<Game>> CalculateGamesMissingInstallSizeWithDialogCommand { get; private set; }
+        public RelayCommand<Game> UpdateGameInstallSizeWithDialogCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> UpdateGamesAllInstallSizeWithDialogCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> UpdateGamesMissingInstallSizeWithDialogCommand { get; private set; }
         public RelayCommand<Game> CreateDesktopShortcutCommand { get; private set; }
         public RelayCommand<List<Game>> CreateDesktopShortcutsCommand { get; private set; }
         public RelayCommand<Game> OpenManualCommand { get; private set; }
@@ -459,9 +459,9 @@ namespace Playnite.DesktopApp.ViewModels
                 GamesEditor.CreateDesktopShortcut(a);
             });
 
-            CalculateGameInstallSizeWithDialogCommand = new RelayCommand<Game>((a) =>
+            UpdateGameInstallSizeWithDialogCommand = new RelayCommand<Game>((a) =>
             {
-                GamesEditor.CalculateGameSizeWithDialog(a, false);
+                GamesEditor.UpdateGameSizeWithDialog(a, false, true);
             });
 
             CreateDesktopShortcutsCommand = new RelayCommand<List<Game>>((a) =>
@@ -523,14 +523,14 @@ namespace Playnite.DesktopApp.ViewModels
                 GamesEditor.SetFavoriteGames(a.ToList(), false);
             });
 
-            CalculateGamesAllInstallSizeWithDialogCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            UpdateGamesAllInstallSizeWithDialogCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
-                GamesEditor.CalculateGamesSizeWithDialog(a.ToList(), false);
+                GamesEditor.UpdateGamesSizeWithDialog(a.ToList(), false);
             });
 
-            CalculateGamesMissingInstallSizeWithDialogCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            UpdateGamesMissingInstallSizeWithDialogCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
-                GamesEditor.CalculateGamesSizeWithDialog(a.ToList(), true);
+                GamesEditor.UpdateGamesSizeWithDialog(a.ToList(), true);
             });
 
             SetAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>

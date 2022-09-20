@@ -579,7 +579,7 @@ namespace Playnite.ViewModels
                                 return addedGames;
                             }
 
-                            App.GamesEditor.CalculateGameSize(game, false, true, true);
+                            App.GamesEditor.UpdateGameSize(game, false, true, true);
                         }
                     }
                 }
