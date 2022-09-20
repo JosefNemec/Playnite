@@ -484,14 +484,10 @@ namespace Playnite
             {
                 scanSize = CalculateGameSize(game, checkLastScanDate);
             }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            catch (Exception e)
             {
                 logger.Error(e, $"Failed to get InstallSize from game {game.Name} with install dir {game.InstallDirectory}");
-                Dialogs.ShowMessage(
-                    string.Format(resources.GetString("LOCCalculateGameSizeError"), e.Message),
-                    resources.GetString("LOCGameError"),
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                throw e;
             }
 
             if (scanSize == null)
@@ -653,13 +649,26 @@ namespace Playnite
             var textTitle = string.Format(ResourceProvider.GetString("LOCCalculatingInstallSizeOfGameMessage"), game.Name);
             Dialogs.ActivateGlobalProgress((a) =>
             {
-                UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, false);
+                try
+                {
+                    UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, false);
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowMessage(
+                        string.Format(resources.GetString("LOCCalculateGameSizeError"), e.Message),
+                        resources.GetString("LOCCalculateGameSizeErrorCaption"),
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
             }, new GlobalProgressOptions(textTitle, false) { IsIndeterminate = true });
         }
 
         public void UpdateGamesSizeWithDialog(List<Game> games, bool onlyIfDataMissing)
         {
             var textTitle = ResourceProvider.GetString("LOCCalculatingInstallSizeMessage");
+            var errorStrings = new List<string>();
+            var errorsCount = 0;
             Dialogs.ActivateGlobalProgress((a) =>
             {
                 a.ProgressMaxValue = games.Count();
@@ -674,10 +683,37 @@ namespace Playnite
 
                         a.CurrentProgressValue++;
                         a.Text = $"{textTitle}\n\n{game.Name}\n{a.CurrentProgressValue}/{a.ProgressMaxValue}";
-                        UpdateGameSize(game, onlyIfDataMissing, true, false);
+
+                        try
+                        {
+                            UpdateGameSize(game, onlyIfDataMissing, true, false);
+                        }
+                        catch (Exception e)
+                        {
+                            errorsCount++;
+                            if (errorStrings.Count < 10)
+                            {
+                                errorStrings.Add($"{game.Name}: {e.Message}");
+                            }
+                        }
                     }
                 }
             }, new GlobalProgressOptions(textTitle, true) { IsIndeterminate = false });
+            
+            if (errorsCount > 0)
+            {
+                var errorMessage = ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount)
+                    + $"\n\n" + string.Join("\n", errorStrings);
+                if (errorsCount > 10)
+                {
+                    errorMessage += "\n...";
+                }
+
+                Dialogs.ShowMessage(
+                    errorMessage,
+                    resources.GetString("LOCCalculateGameSizeErrorCaption"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void SetHideGame(Game game, bool state)

@@ -579,7 +579,17 @@ namespace Playnite.ViewModels
                                 return addedGames;
                             }
 
-                            App.GamesEditor.UpdateGameSize(game, false, true, true);
+                            try
+                            {
+                                App.GamesEditor.UpdateGameSize(game, false, true, true);
+                            }
+                            catch (Exception e)
+                            {
+                                App.Notifications.Add(new NotificationMessage(
+                                    $"LibUpdateScanSizeError - {game.Id}",
+                                    Resources.GetString(LOC.CalculateGameSizeNotificationError).Format(game.Name, e.Message),
+                                    NotificationType.Error));
+                            }
                         }
                     }
                 }
