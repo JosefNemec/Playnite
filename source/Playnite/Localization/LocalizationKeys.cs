@@ -238,10 +238,6 @@ namespace Playnite
         /// </summary>
         public const string CalculateGameSizeError = "LOCCalculateGameSizeError";
         /// <summary>
-        /// Could not detect game install size of game "{0}". Error: {1}
-        /// </summary>
-        public const string CalculateGameSizeNotificationError = "LOCCalculateGameSizeNotificationError";
-        /// <summary>
         /// Failed to create shortcut: {0}
         /// </summary>
         public const string GameShortcutError = "LOCGameShortcutError";

@@ -570,6 +570,8 @@ namespace Playnite.ViewModels
                     Logger.Info($"Starting Library Install Size scan");
                     ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
 
+                    var errorStrings = new List<string>();
+                    var errorsCount = 0;
                     using (Database.Games.BufferedUpdate())
                     {
                         foreach (var game in Database.Games)
@@ -585,12 +587,37 @@ namespace Playnite.ViewModels
                             }
                             catch (Exception e)
                             {
-                                App.Notifications.Add(new NotificationMessage(
-                                    $"LibUpdateScanSizeError - {game.Id}",
-                                    Resources.GetString(LOC.CalculateGameSizeNotificationError).Format(game.Name, e.Message),
-                                    NotificationType.Error));
+                                errorsCount++;
+                                if (errorStrings.Count < 10)
+                                {
+                                    errorStrings.Add($"{game.Name}: {e.Message}");
+                                }
                             }
                         }
+                    }
+
+                    if (errorsCount > 0)
+                    {
+                        var errorMessage = ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount)
+                            + $"\n\n" + string.Join("\n", errorStrings);
+                        if (errorsCount > 10)
+                        {
+                            errorMessage += "\n...";
+                        }
+
+                        App.Notifications.Add(new NotificationMessage(
+                                $"LibUpdateScanSizeError - {DateTime.Now}",
+                                ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount),
+                                NotificationType.Error,
+                                () =>
+                                {
+                                    Dialogs.ShowMessage(
+                                        errorMessage,
+                                        Resources.GetString("LOCCalculateGameSizeErrorCaption"),
+                                        MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                            )
+                        );
                     }
                 }
 
