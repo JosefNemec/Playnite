@@ -574,7 +574,7 @@ namespace Playnite
                     if (checkLastScanDate)
                     {
                         var addedAfterLastCheck = expandedGame.LastSizeScanDate == null || expandedGame.Added != null && expandedGame.Added > expandedGame.LastSizeScanDate;
-                        if (!addedAfterLastCheck && game.LastSizeScanDate != null && FileSystem.DirectoryGetLastWriteTime(game.InstallDirectory) < game.LastSizeScanDate)
+                        if (!addedAfterLastCheck && expandedGame.LastSizeScanDate != null && FileSystem.DirectoryGetLastWriteTime(expandedGame.InstallDirectory) < expandedGame.LastSizeScanDate)
                         {
                             return;
                         }
