@@ -1781,6 +1781,11 @@ namespace Playnite.SDK.Models
                     tro.InstallSize = InstallSize;
                 }
 
+                if (LastSizeScanDate != tro.lastSizeScanDate)
+                {
+                    tro.lastSizeScanDate = LastSizeScanDate;
+                }
+
                 if (!SeriesIds.IsListEqual(tro.SeriesIds))
                 {
                     tro.SeriesIds = SeriesIds;
@@ -2076,6 +2081,11 @@ namespace Playnite.SDK.Models
             if (InstallSize != otherGame.InstallSize)
             {
                 changes.Add(GameField.InstallSize);
+            }
+
+            if (LastSizeScanDate != otherGame.LastSizeScanDate)
+            {
+                changes.Add(GameField.LastSizeScanDate);
             }
 
             if (!SeriesIds.IsListEqual(otherGame.SeriesIds))
