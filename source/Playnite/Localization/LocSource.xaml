@@ -413,8 +413,8 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Folder open command</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Preferred age rating organization</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Scan modified install size of games on library update</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Detects if the files of a game have been modified since the last library update and scans them to get the updated install size</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Update install size of games on library update</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Scans and updates the install size of games if it is detected that their files have been modified since the last scan</sys:String>
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniform</sys:String>
