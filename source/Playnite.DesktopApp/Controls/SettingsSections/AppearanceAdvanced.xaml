@@ -13,10 +13,8 @@
              xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="600">
-    
+
     <UserControl.Resources>
-        <sys:DateTime x:Key="DateTime">2022-12-22 12:54</sys:DateTime>
-        <pcon:MultiNullableDateToCustomFormatStringConverter x:Key="MultiNullableDateToCustomFormatStringConverter" />
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
         <Style TargetType="ContentControl">
             <Setter Property="Template">
@@ -184,7 +182,7 @@
                        TextWrapping="Wrap" Margin="0,10,0,0"/>
 
             <TextBlock Text="{DynamicResource LOCSettingsDatesFormatsLabel}" Margin="0,15,0,0" />
-            <GridEx ColumnCount="4" StarColumns="3" RowCount="4" AutoLayoutColumns="4">
+            <GridEx ColumnCount="4" StarColumns="3" RowCount="5" AutoLayoutColumns="4">
             
                 <!--Added-->
                 <ContentControl Content="{DynamicResource LOCAddedLabel}"
@@ -205,14 +203,7 @@
                 <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
                         Command="{Binding ResetDateTimeFormatAddedCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                            <Binding Source="{StaticResource DateTime}" />
-                            <Binding Path="Settings.DateTimeFormatAdded" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
 
                 <!--Modified-->
                 <ContentControl Content="{DynamicResource LOCModifiedLabel}"
@@ -233,14 +224,7 @@
                 <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
                         Command="{Binding ResetDateTimeFormatModifiedCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                            <Binding Source="{StaticResource DateTime}" />
-                            <Binding Path="Settings.DateTimeFormatModified" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
 
                 <!--RecentActivity-->
                 <ContentControl Content="{DynamicResource LOCRecentActivityLabel}"
@@ -261,14 +245,7 @@
                 <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
                         Command="{Binding ResetDateTimeFormatRecentActivityCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                            <Binding Source="{StaticResource DateTime}" />
-                            <Binding Path="Settings.DateTimeFormatRecentActivity" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
 
                 <!--ReleaseDate-->
                 <ContentControl Content="{DynamicResource LOCGameReleaseDateTitle}"
@@ -289,14 +266,28 @@
                 <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
                         Command="{Binding ResetDateTimeFormatReleaseDateCommand}" />
 
-                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource MultiNullableDateToCustomFormatStringConverter}">
-                            <Binding Source="{StaticResource DateTime}" />
-                            <Binding Path="Settings.DateTimeFormatReleaseDate" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
+
+                <!--LastActivity-->
+                <ContentControl Content="{DynamicResource LOCLastPlayedLabel}"
+                                Margin="0,5,0,0" VerticalAlignment="Center"
+                                ContentStringFormat="{}{0} *" />
+                <TextBox Margin="10,5,0,0" MinWidth="150" VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="Settings.DateTimeFormatLastPlayed"
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 ValidatesOnDataErrors="True"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <pcon:DateTimeFormatToStringValidation />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,5,0,0"
+                        Command="{Binding ResetDateTimeFormatLastPlayedCommand}" />
+
+                <TextBlock Margin="10,5,0,0" VerticalAlignment="Center" Text="Test" />
             </GridEx>
 
             <Button Content="{DynamicResource LOCMenuHelpTitle}"

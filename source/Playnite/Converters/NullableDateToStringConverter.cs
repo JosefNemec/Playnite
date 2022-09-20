@@ -56,47 +56,6 @@ namespace Playnite.Converters
         }
     }
 
-    public class MultiNullableDateToCustomFormatStringConverter : MarkupExtension, IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (values.Count() != 2)
-            {
-                return string.Empty;
-            }
-
-            if (values[0] == null || values[1] == null)
-            {
-                return string.Empty;
-            }
-
-            if (values[0] == DependencyProperty.UnsetValue || values[1] == DependencyProperty.UnsetValue)
-            {
-                return string.Empty;
-            }
-
-            var date = ((DateTime?)values[0]).Value;
-            if (values[1] is string format)
-            {
-                return date.ToString(format);
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
-    }
-
     public class ReleaseDateToStringConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

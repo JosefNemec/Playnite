@@ -1955,6 +1955,18 @@ namespace Playnite
             }
         }
 
+        private string dateTimeFormatLastPlayed = null;
+        [RequiresRestart]
+        public string DateTimeFormatLastPlayed
+        {
+            get => dateTimeFormatLastPlayed;
+            set
+            {
+                dateTimeFormatLastPlayed = value;
+                OnPropertyChanged();
+            }
+        }
+
         private UpdateCheckFrequency checkForProgramUpdates = UpdateCheckFrequency.OnEveryStartup;
         public UpdateCheckFrequency CheckForProgramUpdates
         {

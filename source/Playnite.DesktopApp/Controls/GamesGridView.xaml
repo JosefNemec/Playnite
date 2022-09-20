@@ -218,7 +218,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateLastActivity">
-            <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
+            <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource DateTimeToLastPlayedConverter}, ConverterParameter={pmrk:Settings DateTimeFormatLastPlayed, DirectValue=True}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateRecentActivity">

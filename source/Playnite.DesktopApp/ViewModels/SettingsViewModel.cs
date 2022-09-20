@@ -349,6 +349,14 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand ResetDateTimeFormatLastPlayedCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                settings.DateTimeFormatLastPlayed = null;
+            });
+        }
+
         #endregion Commands
 
         public SettingsViewModel(
@@ -368,7 +376,30 @@ namespace Playnite.DesktopApp.ViewModels
             originalSettings = settings;
 
             Settings = settings.GetClone();
-            Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
+            Settings.PropertyChanged += (s, e) =>
+            {
+                editedFields.AddMissing(e.PropertyName);
+                switch (e.PropertyName)
+                {
+                    case nameof(settings.DateTimeFormatAdded):
+
+                        break;
+                    case nameof(settings.DateTimeFormatLastPlayed):
+
+                        break;
+                    case nameof(settings.DateTimeFormatModified):
+
+                        break;
+                    case nameof(settings.DateTimeFormatRecentActivity):
+
+                        break;
+                    case nameof(settings.DateTimeFormatReleaseDate):
+
+                        break;
+                    default:
+                        break;
+                }
+            };
 
             AvailableTrayIcons = new List<SelectableTrayIcon>
             {

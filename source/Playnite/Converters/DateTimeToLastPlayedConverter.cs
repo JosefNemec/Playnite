@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -19,7 +20,8 @@ namespace Playnite.Converters
             {
                 return ResourceProvider.GetString("LOCNever");
             }
-            else
+
+            if (parameter == null)
             {
                 if (lastPlayed.Value.Date == DateTime.Today)
                 {
@@ -59,6 +61,14 @@ namespace Playnite.Converters
                 {
                     return lastPlayed.Value.ToString(Common.Constants.DateUiFormat);
                 }
+            }
+            else if (parameter is string dateFormat)
+            {
+                return ((DateTime)lastPlayed).ToString(dateFormat);
+            }
+            else
+            {
+                return lastPlayed.Value.ToString(Common.Constants.DateUiFormat);
             }
         }
 

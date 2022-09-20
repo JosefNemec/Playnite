@@ -404,7 +404,8 @@ namespace Playnite.DesktopApp.Controls.Views
             SetGameItemTextBinding(ref TextLastActivity, "PART_TextLastActivity",
                 nameof(GameDetailsViewModel.Game.LastActivity),
                 nameof(GameDetailsViewModel.LastPlayedVisibility),
-                new DateTimeToLastPlayedConverter());
+                new DateTimeToLastPlayedConverter(),
+                mainModel.AppSettings.DateTimeFormatLastPlayed);
 
             SetGameItemTextBinding(ref TextLastActivity, "PART_TextRecentActivity",
                 nameof(GameDetailsViewModel.Game.RecentActivity),
