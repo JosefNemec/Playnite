@@ -72,23 +72,24 @@ namespace Playnite.Tests
         [Test]
         public void DirectorySizeScanTest()
         {
-            var testDir = Path.Combine(PlayniteTests.TempPath, "TestDir");
-            FileSystem.CreateDirectory(testDir);
-            var filePath = Path.Combine(testDir, "DummyFile");
-            FileSystem.DeleteFile(filePath);
-            var dummyFileLenght = 1024;
-            using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (var tempPath = TempDirectory.Create())
             {
-                fileStream.SetLength(dummyFileLenght);
+                var filePath = Path.Combine(tempPath.TempPath, "DummyFile");
+                FileSystem.DeleteFile(filePath);
+                var dummyFileLenght = 1024;
+                using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    fileStream.SetLength(dummyFileLenght);
+                }
+
+                // We can't check the exact size because it will vary depending on drive
+                // cluster size so we only check if value is higher than zero
+                var dirSizeOnDisk = FileSystem.GetDirectorySizeOnDisk(tempPath.TempPath);
+                Assert.Greater(dirSizeOnDisk, 0);
+
+                var dirSize = FileSystem.GetDirectorySize(tempPath.TempPath);
+                Assert.AreEqual(dummyFileLenght, dirSize);
             }
-
-            var dirSizeOnDisk = FileSystem.GetDirectorySizeOnDisk(testDir);
-            Assert.Greater(dirSizeOnDisk, 0);
-
-            var dirSize = FileSystem.GetDirectorySize(testDir);
-            Assert.AreEqual(dummyFileLenght, dirSize);
-
-            FileSystem.DeleteDirectory(testDir);
         }
     }
 }
