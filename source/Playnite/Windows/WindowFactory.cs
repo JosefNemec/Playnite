@@ -35,6 +35,7 @@ namespace Playnite.Windows
         private static ILogger logger = LogManager.GetLogger();
         private readonly SynchronizationContext context;
         private bool asDialog = false;
+        private AutoResetEvent initFinishedEvent { get; } = new AutoResetEvent(false);
         public bool WasClosed { get; private set; } = false;
 
         public WindowBase Window
@@ -77,6 +78,7 @@ namespace Playnite.Windows
 
                 asDialog = true;
                 WasClosed = false;
+                initFinishedEvent.Set();
                 result = Window.ShowDialog();
             }, null);
 
@@ -104,6 +106,7 @@ namespace Playnite.Windows
                 logger.Debug($"Show window {GetType()}: {Window.Id}");
                 Window.DataContext = dataContext;
                 WasClosed = false;
+                initFinishedEvent.Set();
                 Window.Show();
             }, null);
         }
@@ -129,6 +132,10 @@ namespace Playnite.Windows
 
         public void Close(bool? result)
         {
+            // This needs to be here in case Close is called too early.
+            // This can happen in async scenarios like with ProgressViewViewModel and progress dialogs if progress code is too fast to complete.
+            initFinishedEvent.WaitOne();
+
             logger.Debug($"Closing window {GetType()}: {Window.Id}, {result}");
             context.Send(async (_) =>
             {
