@@ -28,7 +28,7 @@ namespace Playnite.Tests
             var gamesEditor = new GamesEditor(null, new GameControllerFactory(null), playniteSettings, null, null, new TestPlayniteApplication(), null);
             var game = new Game("Test game")
             {
-                IsInstalled = false,
+                IsInstalled = true,
                 InstallDirectory = resourcesRootDir,
                 Roms = new System.Collections.ObjectModel.ObservableCollection<GameRom>()
             };
@@ -47,6 +47,7 @@ namespace Playnite.Tests
             Assert.AreEqual(null, game.LastSizeScanDate);
 
             // Not installed games shouldn't be scanned
+            game.IsInstalled = false;
             game.Roms[0].Path = @"{InstallDir}\CueTestFiles.cue";
             gamesEditor.UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, checkLastScanDate);
             Assert.AreEqual(null, game.InstallSize);
