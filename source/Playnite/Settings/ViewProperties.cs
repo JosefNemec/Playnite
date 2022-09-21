@@ -186,6 +186,21 @@ namespace Playnite
             }
         }
 
+        private ListViewColumnProperty recentActivity = new ListViewColumnProperty(GameField.RecentActivity);
+        public ListViewColumnProperty RecentActivity
+        {
+            get
+            {
+                return recentActivity;
+            }
+
+            set
+            {
+                recentActivity = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ListViewColumnProperty isInstalled = new ListViewColumnProperty(GameField.IsInstalled);
         public ListViewColumnProperty IsInstalled
         {

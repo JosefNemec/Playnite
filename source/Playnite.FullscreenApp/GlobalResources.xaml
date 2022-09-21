@@ -48,6 +48,7 @@
     <pcon:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <pcon:ObjectToStringConverter x:Key="ObjectToStringConverter" />
     <pcon:OpacityBoolConverter x:Key="OpacityBoolConverter" />
+    <pcon:ReleaseDateToStringConverter x:Key="ReleaseDateToStringConverter" />
     <pcon:SortingOrderToStringConverter x:Key="SortingOrderToStringConverter" />
     <pcon:StrechToStringConverter x:Key="StrechToStringConverter" />
     <pcon:StringNullOrEmptyToBoolConverter x:Key="StringNullOrEmptyToBoolConverter" />

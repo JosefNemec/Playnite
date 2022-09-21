@@ -24,6 +24,7 @@ namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ElemPlayTime", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemLastPlayed", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ElemRecentActivity", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemCompletionStatus", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemLibrary", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemPlatform", Type = typeof(FrameworkElement))]
@@ -47,6 +48,7 @@ namespace Playnite.DesktopApp.Controls.Views
     [TemplatePart(Name = "PART_ElemUserScore", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_TextPlayTime", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_TextLastActivity", Type = typeof(TextBlock))]
+    [TemplatePart(Name = "PART_TextRecentActivity", Type = typeof(TextBlock))]
     [TemplatePart(Name = "PART_ButtonCompletionStatus", Type = typeof(Button))]
     [TemplatePart(Name = "PART_TextNotes", Type = typeof(TextBox))]
     [TemplatePart(Name = "PART_TextCommunityScore", Type = typeof(TextBlock))]
@@ -351,6 +353,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetElemVisibility(ref ElemInstallSize, "PART_ElemInstallSize", nameof(GameDetailsViewModel.InstallSizeVisibility));
             SetElemVisibility(ref ElemInstallDirectory, "PART_ElemInstallDirectory", nameof(GameDetailsViewModel.InstallDirectoryVisibility));
             SetElemVisibility(ref ElemLastPlayed, "PART_ElemLastPlayed", nameof(GameDetailsViewModel.LastPlayedVisibility));
+            SetElemVisibility(ref ElemLastPlayed, "PART_ElemRecentActivity", nameof(GameDetailsViewModel.RecentActivityVisibility));
             SetElemVisibility(ref ElemCompletionStatus, "PART_ElemCompletionStatus", nameof(GameDetailsViewModel.CompletionStatusVisibility));
             SetElemVisibility(ref ElemLibrary, "PART_ElemLibrary", nameof(GameDetailsViewModel.SourceLibraryVisibility));
             SetElemVisibility(ref ElemPlatform, "PART_ElemPlatform", nameof(GameDetailsViewModel.PlatformVisibility));
@@ -378,12 +381,14 @@ namespace Playnite.DesktopApp.Controls.Views
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.PluginId)),
                 GetGameBindingPath($"{nameof(GamesCollectionViewEntry.LibraryPlugin)}.{nameof(GamesCollectionViewEntry.LibraryPlugin.Name)}"),
                 nameof(GameDetailsViewModel.SourceLibraryVisibility));
-
+            
             SetGameItemButtonBinding(ref ButtonReleaseDate, "PART_ButtonReleaseDate",
                 nameof(GameDetailsViewModel.SetReleaseDateFilterCommand),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
-                nameof(GameDetailsViewModel.ReleaseDateVisibility));
+                nameof(GameDetailsViewModel.ReleaseDateVisibility),
+                new ReleaseDateToStringConverter(),
+                mainModel.AppSettings.DateTimeFormatReleaseDate);
 
             SetGameItemButtonBinding(ref ButtonVersion, "PART_ButtonVersion",
                 nameof(GameDetailsViewModel.SetVersionFilterCommand),
@@ -416,7 +421,14 @@ namespace Playnite.DesktopApp.Controls.Views
             SetGameItemTextBinding(ref TextLastActivity, "PART_TextLastActivity",
                 nameof(GameDetailsViewModel.Game.LastActivity),
                 nameof(GameDetailsViewModel.LastPlayedVisibility),
-                new DateTimeToLastPlayedConverter());
+                new DateTimeToLastPlayedConverter(),
+                mainModel.AppSettings.DateTimeFormatLastPlayed);
+
+            SetGameItemTextBinding(ref TextLastActivity, "PART_TextRecentActivity",
+                nameof(GameDetailsViewModel.Game.RecentActivity),
+                nameof(GameDetailsViewModel.RecentActivityVisibility),
+                new NullableDateToStringConverter(),
+                mainModel.AppSettings.DateTimeFormatRecentActivity);
 
             SetGameItemButtonBinding(ref ButtonCompletionStatus, "PART_ButtonCompletionStatus",
                 nameof(GameDetailsViewModel.SetCompletionStatusFilterCommand),
@@ -568,7 +580,7 @@ namespace Playnite.DesktopApp.Controls.Views
             }
         }
 
-        private void SetGameItemTextBinding(ref TextBlock text, string partId, string textContent, string visibility, IValueConverter converter = null)
+        private void SetGameItemTextBinding(ref TextBlock text, string partId, string textContent, string visibility, IValueConverter converter = null, object converterParameter = null)
         {
             text = Template.FindName(partId, this) as TextBlock;
             if (text != null)
@@ -576,14 +588,15 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(text,
                     TextBlock.TextProperty,
                     GetGameBindingPath(textContent),
-                    converter: converter);
+                    converter: converter,
+                    converterParameter: converterParameter);
                 BindingTools.SetBinding(text,
                     TextBlock.VisibilityProperty,
                     visibility);
             }
         }
 
-        private void SetGameItemButtonBinding(ref Button button, string partId, string command, string commandParameter, string content, string visibility, IValueConverter contentConverter = null)
+        private void SetGameItemButtonBinding(ref Button button, string partId, string command, string commandParameter, string content, string visibility, IValueConverter contentConverter = null, object contentConverterParameter = null)
         {
             button = Template.FindName(partId, this) as Button;
             if (button != null)
@@ -597,7 +610,8 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(button,
                     Button.ContentProperty,
                     content,
-                    converter: contentConverter);
+                    converter: contentConverter,
+                    converterParameter: contentConverterParameter);
                 BindingTools.SetBinding(button,
                     Button.VisibilityProperty,
                     visibility);

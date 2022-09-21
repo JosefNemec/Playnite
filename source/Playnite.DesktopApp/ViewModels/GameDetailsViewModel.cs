@@ -143,6 +143,11 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.LastPlayed) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility RecentActivityVisibility
+        {
+            get => (settings.DetailsVisibility.RecentActivity && (game.LastActivity != null || game.Added != null)) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility CompletionStatusVisibility
         {
             get => (settings.DetailsVisibility.CompletionStatus && game.CompletionStatus.Id != Guid.Empty) ? Visibility.Visible : Visibility.Collapsed;

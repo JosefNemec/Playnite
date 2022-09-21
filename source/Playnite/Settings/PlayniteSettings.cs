@@ -188,6 +188,25 @@ namespace Playnite
         OnceAWeek = 2
     }
 
+    public class DateFormattingOptions : ObservableObject
+    {
+        private string format;
+        private bool pastWeekRelativeFormat;
+
+        public string Format { get => format; set => SetValue(ref format, value); }
+        public bool PastWeekRelativeFormat { get => pastWeekRelativeFormat; set => SetValue(ref pastWeekRelativeFormat, value); }
+
+        public DateFormattingOptions()
+        {
+        }
+
+        public DateFormattingOptions(string format, bool pastWeekRelativeFormat)
+        {
+            Format = format;
+            PastWeekRelativeFormat = pastWeekRelativeFormat;
+        }
+    }
+
     public class PlayniteSettings : ObservableObject
     {
         private static SDK.ILogger logger = SDK.LogManager.GetLogger();
@@ -1929,6 +1948,66 @@ namespace Playnite
             set
             {
                 showElevatedRightsWarning = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatAdded = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatAdded
+        {
+            get => dateTimeFormatAdded;
+            set
+            {
+                dateTimeFormatAdded = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatModified = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatModified
+        {
+            get => dateTimeFormatModified;
+            set
+            {
+                dateTimeFormatModified = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatRecentActivity = new DateFormattingOptions(Constants.DefaultDateTimeFormat, true);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatRecentActivity
+        {
+            get => dateTimeFormatRecentActivity;
+            set
+            {
+                dateTimeFormatRecentActivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatReleaseDate = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatReleaseDate
+        {
+            get => dateTimeFormatReleaseDate;
+            set
+            {
+                dateTimeFormatReleaseDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatLastPlayed = new DateFormattingOptions(Constants.DefaultDateTimeFormat, true);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatLastPlayed
+        {
+            get => dateTimeFormatLastPlayed;
+            set
+            {
+                dateTimeFormatLastPlayed = value;
                 OnPropertyChanged();
             }
         }

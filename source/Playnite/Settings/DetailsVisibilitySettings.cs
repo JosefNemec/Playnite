@@ -68,7 +68,7 @@ namespace Playnite
             }
         }
 
-        private bool lastPlayed = true;
+        private bool lastPlayed = false;
         public bool LastPlayed
         {
             get
@@ -79,6 +79,21 @@ namespace Playnite
             set
             {
                 lastPlayed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool recentActivity = true;
+        public bool RecentActivity
+        {
+            get
+            {
+                return recentActivity;
+            }
+
+            set
+            {
+                recentActivity = value;
                 OnPropertyChanged();
             }
         }

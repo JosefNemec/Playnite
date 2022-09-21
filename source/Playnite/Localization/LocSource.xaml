@@ -141,6 +141,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCCloseLabel">Close</sys:String>
     <sys:String x:Key="LOCCancelLabel">Cancel</sys:String>
     <sys:String x:Key="LOCConfirmLabel">Confirm</sys:String>
+    <sys:String x:Key="LOCResetLabel">Reset</sys:String>
     <sys:String x:Key="LOCYesLabel">Yes</sys:String>
     <sys:String x:Key="LOCNoLabel">No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Welcome</sys:String>
@@ -343,6 +344,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsCloseToTray">Minimize Playnite to system tray when the application window is closed</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">When game starts:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">After game closes:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Dates formats:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">This will log you out of all linked services. Application restart is required, do you want to proceed?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Clear Cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite restart is required to apply new theme</sys:String>
@@ -563,6 +565,7 @@ If disabled, games that use any item in any filter will be included in the view.
     <sys:String x:Key="LOCRegionsLabel">Regions</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Sources</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Recent Activity</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Database Error</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Failed to open library database.</sys:String>
@@ -1194,4 +1197,8 @@ Playnite will automatically restart to start backup process.</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Show notifications for patch releases only</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">When enabled, only updates available for currently installed major release will result in update notification.
 New major releases will not result in update notification.</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat">Use relative dates for the past week</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve">Use relative dates in "Today", "Yesterday" etc. format if the date is less than a week old.
+    
+The specified date format will be used for all other dates.</sys:String>
 </ResourceDictionary>
