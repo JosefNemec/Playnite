@@ -313,7 +313,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Gets community score.
+        /// Gets install size.
         /// </summary>
         /// <returns></returns>
         public virtual ulong? GetInstallSize(GetMetadataFieldArgs args)
