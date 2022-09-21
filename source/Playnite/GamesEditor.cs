@@ -594,7 +594,6 @@ namespace Playnite
                 }
             }
 
-            game.LastSizeScanDate = DateTime.Now;
             return (ulong)size;
         }
 
