@@ -584,7 +584,6 @@ namespace Playnite.ViewModels
             await UpdateLibraryData((token) =>
             {
                 var addedGames = ImportLibraryGames(plugin, token);
-
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
                     UpdateLibraryInstallSizes(token);
