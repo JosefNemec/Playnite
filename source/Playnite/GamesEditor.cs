@@ -535,6 +535,11 @@ namespace Playnite
                     }
                 }
 
+                if (!romsFilesPaths.HasItems())
+                {
+                    return null;
+                }
+
                 if (checkLastScanDate)
                 {
                     var addedAfterLastCheck = expandedGame.LastSizeScanDate == null || expandedGame.Added != null && expandedGame.Added > expandedGame.LastSizeScanDate;
