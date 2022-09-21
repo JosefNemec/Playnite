@@ -34,16 +34,16 @@
                        Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" />
                 <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False"
                                 Height="38" Width="38"
-                                Visibility="{Binding Indeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 <TextBlock Text="{Binding ProgressArgs.Text}"
                            HorizontalAlignment="Center" Margin="0,20,0,0"
                            Style="{StaticResource TextBlockBaseStyle}" />
 
                 <ProgressBar Height="40" Margin="0,20,0,0"
-                             IsIndeterminate="{Binding Indeterminate}"
+                             IsIndeterminate="{Binding ProgressArgs.IsIndeterminate}"
                              Value="{Binding ProgressArgs.CurrentProgressValue}"
                              Maximum="{Binding ProgressArgs.ProgressMaxValue}"
-                             Visibility="{Binding Indeterminate, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                             Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
 
                 <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}"
                                  HorizontalAlignment="Center" MinWidth="180"

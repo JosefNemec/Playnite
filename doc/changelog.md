@@ -1,5 +1,11 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.4.0
+
+* New
+  * Built-in emulator profiles exposed in [Emulation](xref:Playnite.SDK.IEmulationAPI) API.
+  * Added an option to switch progress bar mode from inside `ActivateGlobalProgress` dialog function while progress dialog is already opened.
+
 #### 6.3.0
 
 * New

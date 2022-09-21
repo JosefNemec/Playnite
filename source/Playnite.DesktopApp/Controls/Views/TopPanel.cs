@@ -271,6 +271,7 @@ namespace Playnite.DesktopApp.Controls.Views
                     ToggleButton.TagProperty,
                     mainModel.AppSettings.FilterSettings,
                     nameof(FilterSettings.IsActive));
+                ToggleFilter.MouseRightButtonUp += (_, __) => mainModel.ClearFilters();
             }
 
             ToggleNotifications = Template.FindName("PART_ToggleNotifications", this) as ToggleButton;

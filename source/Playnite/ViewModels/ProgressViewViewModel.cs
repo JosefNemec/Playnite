@@ -31,17 +31,6 @@ namespace Playnite.ViewModels
             }
         }
 
-        private bool indeterminate = true;
-        public bool Indeterminate
-        {
-            get => indeterminate;
-            set
-            {
-                indeterminate = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool cancelable;
         public bool Cancelable
         {
@@ -49,17 +38,6 @@ namespace Playnite.ViewModels
             set
             {
                 cancelable = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string progressText;
-        public string ProgressText
-        {
-            get => progressText;
-            set
-            {
-                progressText = value;
                 OnPropertyChanged();
             }
         }
@@ -89,14 +67,14 @@ namespace Playnite.ViewModels
             cancellationToken = new CancellationTokenSource();
             Cancelable = args.Cancelable;
             canCancel = Cancelable;
-            if (args.Text?.StartsWith("LOC") == true)
+            ProgressArgs = new GlobalProgressActionArgs(
+                PlayniteApplication.Current.SyncContext,
+                PlayniteApplication.CurrentNative.Dispatcher,
+                cancellationToken.Token)
             {
-                ProgressText = ResourceProvider.GetString(args.Text);
-            }
-            else
-            {
-                ProgressText = args.Text;
-            }
+                Text = args.Text,
+                IsIndeterminate = args.IsIndeterminate
+            };
         }
 
         public GlobalProgressResult ActivateProgress(Action<GlobalProgressActionArgs> progresAction)
@@ -110,13 +88,6 @@ namespace Playnite.ViewModels
             {
                 try
                 {
-                    ProgressArgs = new GlobalProgressActionArgs(
-                        PlayniteApplication.Current.SyncContext,
-                        PlayniteApplication.CurrentNative.Dispatcher,
-                        cancellationToken.Token)
-                    {
-                        Text = ProgressText
-                    };
                     progresAction(ProgressArgs);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -150,14 +121,6 @@ namespace Playnite.ViewModels
             {
                 try
                 {
-                    ProgressArgs = new GlobalProgressActionArgs(
-                        PlayniteApplication.Current.SyncContext,
-                        PlayniteApplication.CurrentNative.Dispatcher,
-                        cancellationToken.Token)
-                    {
-                        Text = ProgressText
-                    };
-
                     await progresAction(ProgressArgs);
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -187,13 +150,6 @@ namespace Playnite.ViewModels
                 throw new Exception("Progress can be shown only once per instance.");
             }
 
-            ProgressArgs = new GlobalProgressActionArgs(
-                PlayniteApplication.Current.SyncContext,
-                PlayniteApplication.CurrentNative.Dispatcher,
-                cancellationToken.Token)
-                {
-                    Text = ProgressText
-                };
             bool? res = null;
             var progressTask = Task.Run(() =>
             {
@@ -245,21 +201,13 @@ namespace Playnite.ViewModels
     {
         public static GlobalProgressResult ActivateProgress(Action<GlobalProgressActionArgs> progresAction, GlobalProgressOptions progressArgs)
         {
-            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progressArgs)
-            {
-                Indeterminate = progressArgs.IsIndeterminate
-            };
-
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progressArgs);
             return progressModel.ActivateProgress(progresAction);
         }
 
         public static GlobalProgressResult ActivateProgress(Func<GlobalProgressActionArgs, Task> progresAction, GlobalProgressOptions progressArgs)
         {
-            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progressArgs)
-            {
-                Indeterminate = progressArgs.IsIndeterminate
-            };
-
+            var progressModel = new ProgressViewViewModel(new ProgressWindowFactory(), progressArgs);
             return progressModel.ActivateProgress(progresAction);
         }
     }

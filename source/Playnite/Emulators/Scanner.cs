@@ -153,7 +153,7 @@ namespace Playnite.Emulators
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
         private readonly IGameDatabaseMain database;
-        private List<string> importedFiles;
+        internal List<string> importedFiles;
         private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
 
         public GameScanner(
@@ -197,7 +197,7 @@ namespace Playnite.Emulators
 
             var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
-            var builtinProfileDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
+            var builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
             if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
@@ -370,7 +370,7 @@ namespace Playnite.Emulators
             bool scanArchives,
             Action<string> fileScanCallback = null)
         {
-            var emuProf = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
+            var emuProf = Emulation.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
             if (emuProf == null)
             {
                 throw new Exception($"Emulator {emulator.BuiltInConfigId} and profile {profile.BuiltInProfileName} not found.");
@@ -386,7 +386,7 @@ namespace Playnite.Emulators
                     try
                     {
                         scannedGames = importRuntime.ExecuteFile(
-                            EmulatorDefinition.GetDefition(emulator.BuiltInConfigId).GameImportScriptPath,
+                            Emulation.GetGameImportScriptPath(Emulation.GetDefition(emulator.BuiltInConfigId)),
                             emulator.InstallDir,
                             new Dictionary<string, object>
                             {
@@ -583,24 +583,22 @@ namespace Playnite.Emulators
 
                 try
                 {
+                    var childFiles = playListParser(filePath);
+                    foreach (var child in childFiles ?? new List<string>())
+                    {
+                        var existingFile = files.FirstOrDefault(a => a.Equals(child, StringComparison.OrdinalIgnoreCase));
+                        if (existingFile != null)
+                        {
+                            files.Remove(existingFile);
+                        }
+                    }
+
                     if (importedFiles.ContainsString(filePath, StringComparison.OrdinalIgnoreCase))
                     {
                         return;
                     }
 
-                    var childFiles = playListParser(filePath);
-                    if (childFiles.HasItems())
-                    {
-                        foreach (var child in childFiles)
-                        {
-                            var existingFile = files.FirstOrDefault(a => a.Equals(child, StringComparison.OrdinalIgnoreCase));
-                            if (existingFile != null)
-                            {
-                                files.Remove(existingFile);
-                            }
-                        }
-                    }
-                    else
+                    if (!childFiles.HasItems())
                     {
                         logger.Trace($"Detected playlist file with no referenced files: {filePath}");
                         addRom(new ScannedRom(filePath));

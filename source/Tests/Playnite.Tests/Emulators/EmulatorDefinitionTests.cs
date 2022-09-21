@@ -14,7 +14,7 @@ namespace Playnite.Tests.Emulators
         [Test]
         public void GetDefinitionsTest()
         {
-            CollectionAssert.IsNotEmpty(EmulatorDefinition.Definitions);
+            CollectionAssert.IsNotEmpty(Emulation.Definitions);
         }
     }
 }

@@ -133,7 +133,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             var scanRes = dialogs.ActivateGlobalProgress((args) =>
             {
-                var emulators = EmulatorScanner.SearchForEmulators(dirToScan, EmulatorDefinition.Definitions, args.CancelToken);
+                var emulators = EmulatorScanner.SearchForEmulators(dirToScan, Emulation.Definitions, args.CancelToken);
                 window.Window.Dispatcher.Invoke(() => EmulatorList.AddRange(emulators));
             },
             new GlobalProgressOptions(LOC.EmuWizardScanning)

@@ -19,10 +19,10 @@ namespace Playnite.Tests
             var notepad = ProcessStarter.StartProcess("notepad");
             Assert.AreEqual(1, Process.GetProcessesByName("notepad").Count());
 
-            var ivalidRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, "/pid 999999", null, true);
+            var ivalidRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, "/f /pid 999999", null, true);
             Assert.AreEqual(128, ivalidRes);
 
-            var validRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, $"/pid {notepad.Id}", null, true);
+            var validRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, $"/f /pid {notepad.Id}", null, true);
             Assert.AreEqual(0, validRes);
             Thread.Sleep(200);
             Assert.AreEqual(0, Process.GetProcessesByName("notepad").Count());
@@ -34,7 +34,7 @@ namespace Playnite.Tests
             var procid = ProcessStarter.ShellExecute(@"notepad");
             Assert.AreNotEqual(0, procid);
             Assert.AreEqual(1, Process.GetProcessesByName("notepad").Count());
-            var validRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, $"/pid {procid}", null, true);
+            ProcessStarter.ShellExecute($"{CmdLineTools.TaskKill} /f /pid {procid}");
             Thread.Sleep(200);
             Assert.AreEqual(0, Process.GetProcessesByName("notepad").Count());
         }

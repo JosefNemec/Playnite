@@ -218,6 +218,21 @@ namespace Playnite.Tests.Emulators
 
                 Assert.AreEqual(1, scanResults.Count);
                 Assert.IsTrue(scanResults.ContainsKey("cuefile"));
+
+                // Playlist already imported test
+                scanResults = new Dictionary<string, List<ScannedRom>>();
+                scanner.importedFiles = new List<string> { cuePath };
+                scanner.ScanDirectoryBase(
+                  tempPath.TempPath,
+                  new List<string> { "bin", "cue" },
+                  null,
+                  scanResults,
+                  CancellationToken.None,
+                  null,
+                  true,
+                  true);
+
+                Assert.AreEqual(0, scanResults.Count);
             }
         }
     }

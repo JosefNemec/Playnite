@@ -235,7 +235,7 @@ namespace Playnite.ViewModels
             SecondaryAction = item.SecondaryAction;
             MenuAction = item.MenuAction;
 
-            if (settings.SearchWindowVisibility.Platform && item.Game.CompletionStatus != null)
+            if (settings.SearchWindowVisibility.CompletionStatus && item.Game.CompletionStatus != null)
             {
                 AdditionalInfo.Add(item.Game.CompletionStatus.Name);
             }
@@ -603,7 +603,14 @@ namespace Playnite.ViewModels
                 searchDelayTimer.Stop();
                 longSearchTimer.Stop();
                 SlowAnimationActive = false;
-                SearchResults = null;
+
+                // Not clearing results immediately will prevent "flashing" when switching contexts
+                // because results list is being cleared completely and then populated again.
+                if (context.Delay > 0)
+                {
+                    SearchResults = null;
+                }
+
                 SearchTerm = string.Empty;
 
                 // This is called AFTER initial search is set for case where's there's a delay set by search provider.

@@ -148,7 +148,7 @@ namespace Playnite.Controllers
             }
             else if (currentEmuProfile is BuiltInEmulatorProfile builtIn)
             {
-                var profileDef = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtIn.BuiltInProfileName);
+                var profileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtIn.BuiltInProfileName);
                 if (profileDef == null)
                 {
                     throw new Exception($"Can't find built-in {builtIn.BuiltInProfileName} emulator profile.");
@@ -156,15 +156,15 @@ namespace Playnite.Controllers
 
                 if (profileDef.ScriptStartup)
                 {
-                    var def = EmulatorDefinition.GetDefition(emulator.BuiltInConfigId);
-                    if (def == null || !FileSystem.FileExists(def.StartupScriptPath))
+                    var def = Emulation.GetDefition(emulator.BuiltInConfigId);
+                    if (def == null || !FileSystem.FileExists(Emulation.GetStartupScriptPath(def)))
                     {
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorStartupScriptNotFound));
                     }
 
                     RunStartScriptFile(
                         $"{emulator.Name} runtime for {Game.Name}",
-                        def.StartupScriptPath,
+                        Emulation.GetStartupScriptPath(def),
                         emulator.InstallDir,
                         new Dictionary<string, object>
                         {
@@ -178,7 +178,7 @@ namespace Playnite.Controllers
                 {
                     builtIn = builtIn.GetClone();
                     startupDir = emulator.InstallDir;
-                    startupPath = EmulatorDefinition.GetExecutable(emulator.InstallDir, profileDef, true);
+                    startupPath = Emulation.GetExecutable(emulator.InstallDir, profileDef, true);
                     if (startupPath.IsNullOrEmpty())
                     {
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound));
