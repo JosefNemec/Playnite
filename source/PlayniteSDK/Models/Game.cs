@@ -1380,6 +1380,15 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets time segment for games recent activity.
+        /// </summary>
+        [DontSerialize]
+        public PastTimeSegment RecentActivitySegment
+        {
+            get => GetPastTimeSegment(RecentActivity);
+        }
+
+        /// <summary>
         /// Gets time segment for games added date.
         /// </summary>
         [DontSerialize]

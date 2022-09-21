@@ -105,6 +105,7 @@ namespace Playnite.SDK.Models
         public EnumFilterItemProperties CriticScore { get; set; }
         public EnumFilterItemProperties CommunityScore { get; set; }
         public EnumFilterItemProperties LastActivity { get; set; }
+        public EnumFilterItemProperties RecentActivity { get; set; }
         public EnumFilterItemProperties Added { get; set; }
         public EnumFilterItemProperties Modified { get; set; }
         public EnumFilterItemProperties PlayTime { get; set; }

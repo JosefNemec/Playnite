@@ -26,6 +26,8 @@ namespace Playnite.Database
         Category,
         [Description(LOC.GameLastActivityTitle)]
         LastActivity,
+        [Description(LOC.RecentActivityLabel)]
+        RecentActivity,
         [Description(LOC.GenreLabel)]
         Genre,
         [Description(LOC.GameReleaseYearTitle)]
@@ -634,6 +636,9 @@ namespace Playnite.Database
                 case ExplorerField.LastActivity:
                     filters.LastActivity = GetEnumFilter(filter);
                     break;
+                case ExplorerField.RecentActivity:
+                    filters.RecentActivity = GetEnumFilter(filter);
+                    break;
                 case ExplorerField.Added:
                     filters.Added = GetEnumFilter(filter);
                     break;
@@ -834,6 +839,7 @@ namespace Playnite.Database
                     values.AddRange(GenerateEnumValues(typeof(ScoreGroup)));
                     break;
                 case ExplorerField.LastActivity:
+                case ExplorerField.RecentActivity:
                 case ExplorerField.Added:
                 case ExplorerField.Modified:
                     values.AddRange(GenerateEnumValues(typeof(PastTimeSegment)));

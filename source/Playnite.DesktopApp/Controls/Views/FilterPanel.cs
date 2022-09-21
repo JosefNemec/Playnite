@@ -197,6 +197,9 @@ namespace Playnite.DesktopApp.Controls.Views
             SetLabelTag(nameof(FilterSettings.LastActivity), LOC.GameLastActivityTitle);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.LastActivity), typeof(PastTimeSegment));
 
+            SetLabelTag(nameof(FilterSettings.RecentActivity), LOC.RecentActivityLabel);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.RecentActivity), typeof(PastTimeSegment));
+
             SetLabelTag(nameof(FilterSettings.Added), LOC.DateAddedLabel);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.Added), typeof(PastTimeSegment));
 

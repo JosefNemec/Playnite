@@ -347,6 +347,7 @@ namespace Playnite
                     CriticScore?.IsSet == true ||
                     CommunityScore?.IsSet == true ||
                     LastActivity?.IsSet == true ||
+                    RecentActivity?.IsSet == true ||
                     Added?.IsSet == true ||
                     Modified?.IsSet == true ||
                     ReleaseYear?.IsSet == true ||
@@ -814,6 +815,25 @@ namespace Playnite
             }
         }
 
+        private EnumFilterItemProperties recentActivity;
+        public EnumFilterItemProperties RecentActivity
+        {
+            get
+            {
+                return recentActivity;
+            }
+
+            set
+            {
+                if (recentActivity != value)
+                {
+                    recentActivity = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(RecentActivity));
+                }
+            }
+        }
+
         private EnumFilterItemProperties added;
         public EnumFilterItemProperties Added
         {
@@ -1082,6 +1102,12 @@ namespace Playnite
                 filterChanges.Add(nameof(LastActivity));
             }
 
+            if (RecentActivity != null)
+            {
+                RecentActivity = null;
+                filterChanges.Add(nameof(RecentActivity));
+            }
+
             if (Added != null)
             {
                 Added = null;
@@ -1148,6 +1174,7 @@ namespace Playnite
                 CriticScore = CriticScore?.ToSdkModel(),
                 CommunityScore = CommunityScore?.ToSdkModel(),
                 LastActivity = LastActivity?.ToSdkModel(),
+                RecentActivity = RecentActivity?.ToSdkModel(),
                 Added = Added?.ToSdkModel(),
                 Modified = Modified?.ToSdkModel(),
                 PlayTime = PlayTime?.ToSdkModel(),
@@ -1301,6 +1328,12 @@ namespace Playnite
             {
                 LastActivity = EnumFilterItemProperties.FromSdkModel(settings.LastActivity);
                 filterChanges.Add(nameof(LastActivity));
+            }
+
+            if (RecentActivity?.Equals(settings.RecentActivity) != true)
+            {
+                RecentActivity = EnumFilterItemProperties.FromSdkModel(settings.RecentActivity);
+                filterChanges.Add(nameof(RecentActivity));
             }
 
             if (Added?.Equals(settings.Added) != true)
@@ -1486,6 +1519,12 @@ namespace Playnite
                 filterChanges.Add(nameof(LastActivity));
             }
 
+            if (RecentActivity?.Equals(settings.RecentActivity) != true)
+            {
+                RecentActivity = settings.RecentActivity;
+                filterChanges.Add(nameof(RecentActivity));
+            }
+
             if (Added?.Equals(settings.Added) != true)
             {
                 Added = settings.Added;
@@ -1615,6 +1654,11 @@ namespace Playnite
         public bool ShouldSerializeLastActivity()
         {
             return LastActivity?.IsSet == true;
+        }
+
+        public bool ShouldSerializeRecentActivity()
+        {
+            return RecentActivity?.IsSet == true;
         }
 
         public bool ShouldSerializeAdded()

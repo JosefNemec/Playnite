@@ -382,6 +382,19 @@ namespace Playnite
                 }
             }
 
+            // ------------------ Recent Activity
+            if (filterSettings.RecentActivity?.IsSet == true)
+            {
+                if (filterSettings.RecentActivity.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (!filterSettings.RecentActivity.Values.Contains((int)game.RecentActivitySegment))
+                {
+                    return false;
+                }
+            }
+
             // ------------------ Added
             if (filterSettings.Added?.IsSet == true)
             {
@@ -677,6 +690,12 @@ namespace Playnite
 
             // ------------------ Last Activity
             if (filterSettings.LastActivity?.IsSet == true && !filterSettings.LastActivity.Values.Contains((int)game.LastActivitySegment))
+            {
+                return false;
+            }
+
+            // ------------------ Recent Activity
+            if (filterSettings.RecentActivity?.IsSet == true && !filterSettings.RecentActivity.Values.Contains((int)game.RecentActivitySegment))
             {
                 return false;
             }

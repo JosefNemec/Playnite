@@ -2042,6 +2042,10 @@ namespace Playnite
         /// </summary>
         public const string SourcesLabel = "LOCSourcesLabel";
         /// <summary>
+        /// Recent Activity
+        /// </summary>
+        public const string RecentActivityLabel = "LOCRecentActivityLabel";
+        /// <summary>
         /// Database Error
         /// </summary>
         public const string DatabaseErroTitle = "LOCDatabaseErroTitle";
