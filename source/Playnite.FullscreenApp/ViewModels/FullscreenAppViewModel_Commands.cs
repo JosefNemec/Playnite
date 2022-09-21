@@ -132,6 +132,9 @@ namespace Playnite.FullscreenApp.ViewModels
                     case GameField.Playtime:
                         OpenSubEnumFilter("LOCTimePlayed", typeof(PlaytimeCategory), nameof(FilterSettings.PlayTime));
                         break;
+                    case GameField.InstallSize:
+                        OpenSubEnumFilter("LOCInstallSizeLabel", typeof(InstallSizeGroup), nameof(FilterSettings.InstallSize));
+                        break;
                     case GameField.Series:
                         OpenSubFilter("LOCSeriesLabel", nameof(DatabaseFilter.Series), nameof(FilterSettings.Series));
                         break;
