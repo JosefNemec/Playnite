@@ -68,5 +68,27 @@ namespace Playnite.Tests
             StringAssert.AreEqualIgnoringCase("46fcb37aa8e69b4ead0d702fd459299d", FileSystem.GetMD5(testFile));
             StringAssert.AreEqualIgnoringCase("D8B22F5D", FileSystem.GetCRC32(testFile));
         }
+
+        [Test]
+        public void DirectorySizeScanTest()
+        {
+            var testDir = Path.Combine(PlayniteTests.TempPath, "TestDir");
+            FileSystem.CreateDirectory(testDir);
+            var filePath = Path.Combine(testDir, "DummyFile");
+            FileSystem.DeleteFile(filePath);
+            var dummyFileLenght = 1024;
+            using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                fileStream.SetLength(dummyFileLenght);
+            }
+
+            var dirSizeOnDisk = FileSystem.GetDirectorySizeOnDisk(testDir);
+            Assert.Greater(dirSizeOnDisk, 0);
+
+            var dirSize = FileSystem.GetDirectorySize(testDir);
+            Assert.AreEqual(dummyFileLenght, dirSize);
+
+            FileSystem.DeleteDirectory(testDir);
+        }
     }
 }
