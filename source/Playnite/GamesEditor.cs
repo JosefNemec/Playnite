@@ -605,7 +605,7 @@ namespace Playnite
             (
                 playlistChildren
                 .Select(a => Path.Combine(rootDir, a))
-                .Where(x => !x.IsNullOrWhiteSpace() && FileSystem.FileExists(x))
+                .Where(x => FileSystem.FileExists(x))
              );
         }
 
