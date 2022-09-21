@@ -236,6 +236,9 @@ namespace Playnite.Metadata
                             case MetadataField.Platform:
                                 metadata.Platforms = provider.GetPlatforms(getFieldArgs)?.Where(a => a != null).ToHashSet();
                                 break;
+                            case MetadataField.InstallSize:
+                                metadata.InstallSize = provider.GetInstallSize(getFieldArgs);
+                                break;
                             default:
                                 throw new NotImplementedException();
                         }
@@ -536,6 +539,16 @@ namespace Playnite.Metadata
                                 {
                                     game.Icon = database.AddFile(gameData.Icon, game.Id, true);
                                 }
+                            }
+                        }
+
+                        // InstallSize
+                        if (settings.InstallSize.Import)
+                        {
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.InstallSize == null))
+                            {
+                                gameData = ProcessField(game, settings.InstallSize, MetadataField.InstallSize, (a) => a.InstallSize, existingStoreData, existingPluginData, cancelToken);
+                                game.InstallSize = gameData?.InstallSize == null ? game.InstallSize : gameData.InstallSize;
                             }
                         }
 

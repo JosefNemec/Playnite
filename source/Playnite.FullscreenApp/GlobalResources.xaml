@@ -42,6 +42,7 @@
     <pcon:NegateConverter x:Key="NegateConverter" />
     <pcon:NotificationIconConverter x:Key="NotificationIconConverter" />
     <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+    <pcon:NullableUlongBytesSizeToStringConverter x:Key="NullableUlongBytesSizeToStringConverter" />
     <pcon:NullToBoolConverter x:Key="NullToBoolConverter" />
     <pcon:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
     <pcon:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />

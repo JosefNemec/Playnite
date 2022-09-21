@@ -37,7 +37,8 @@ namespace Playnite.SDK.Models
         [Description("LOCGameHiddenTitle")] Hidden = 24,
         [Description("LOCGameFavoriteTitle")] Favorite = 25,
         [Description("LOCGameInstallDirTitle")] InstallDirectory = 26,
-        [Description("LOCFeatureLabel")] Features = 27
+        [Description("LOCFeatureLabel")] Features = 27,
+        [Description("LOCInstallSizeLabel")] InstallSize = 28
     }
 
     public enum SortOrderDirection : int
@@ -71,7 +72,9 @@ namespace Playnite.SDK.Models
         [Description("LOCDateModifiedLabel")] Modified = 20,
         [Description("LOCFeatureLabel")] Feature = 21,
         [Description("LOCGameInstallationStatus")] InstallationStatus = 22,
-        [Description("LOCGameNameTitle")] Name = 23
+        [Description("LOCGameNameTitle")] Name = 23,
+        [Description("LOCInstallDriveTitle")] InstallDrive = 24,
+        [Description("LOCInstallSizeLabel")] InstallSize = 25
     }
 
     public class FilterPresetSettings

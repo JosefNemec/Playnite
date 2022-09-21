@@ -146,7 +146,11 @@
                 Content="{DynamicResource LOCSettingsStartMinimized}"
                 IsChecked="{Binding Settings.StartMinimized}"/>
 
-
+        <CheckBox Name="CheckScanLibInstallSizeOnLibUpdate" Margin="5,15,5,5"
+                Content="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdate}"
+                ToolTip="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdateTooltip}"
+                IsChecked="{Binding Settings.ScanLibInstallSizeOnLibUpdate}"/>
+        
         <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
                    ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
                    VerticalAlignment="Center" />

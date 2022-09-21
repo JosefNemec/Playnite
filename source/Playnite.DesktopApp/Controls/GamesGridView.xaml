@@ -16,6 +16,7 @@
         <pcon:NiceListToStringConverter x:Key="ListToStringConverter" />
         <pcon:PlayTimeToStringConverter x:Key="PlayTimeToStringConverter" />
         <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+        <pcon:NullableUlongBytesSizeToStringConverter x:Key="NullableUlongBytesSizeToStringConverter" />
         <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
         <pcon:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
         <pcon:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
@@ -240,7 +241,19 @@
                                 Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.PlayCount}}"/>
             </StackPanel>
         </DataTemplate>
-
+        
+        <DataTemplate x:Key="HeaderTemplateInstallSize">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource LOCInstallSizeLabel}" />
+                <ContentControl Style="{StaticResource SortIndicator}"
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.InstallSize}}"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="CellTemplateInstallSize">
+            <TextBlock Text="{Binding InstallSize, Mode=OneWay, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" />
+        </DataTemplate>
+        
         <DataTemplate x:Key="CellTemplatePlayCount">
             <TextBlock Text="{Binding PlayCount, Mode=OneWay}" />
         </DataTemplate>
@@ -460,6 +473,8 @@
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.IsInstalled.Visible}" />
                         <MenuItem Header="{DynamicResource LOCGameInstallDirTitle}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.InstallDirectory.Visible}" />
+                        <MenuItem Header="{DynamicResource LOCInstallSizeLabel}"
+                                    IsCheckable="True" IsChecked="{Binding ListViewColumns.InstallSize.Visible}" />
                         <MenuItem Header="{DynamicResource LOCGameLastActivityTitle}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.LastActivity.Visible}" />
                         <MenuItem Header="{DynamicResource LOCTimePlayed}"

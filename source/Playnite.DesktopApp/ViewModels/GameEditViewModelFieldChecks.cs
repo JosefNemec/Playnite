@@ -10,6 +10,7 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public partial class GameEditViewModel
     {
+        private bool updateLastScanDate;
         private bool useNameChanges;
         public bool UseNameChanges
         {
@@ -357,6 +358,22 @@ namespace Playnite.DesktopApp.ViewModels
             set
             {
                 usePlayCountChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+            }
+        }
+
+        private bool useInstallSizeChanges;
+        public bool UseInstallSizeChanges
+        {
+            get
+            {
+                return useInstallSizeChanges;
+            }
+
+            set
+            {
+                useInstallSizeChanges = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
             }
@@ -763,6 +780,7 @@ namespace Playnite.DesktopApp.ViewModels
                     UsePlaytimeChanges ||
                     UseAddedChanges ||
                     UsePlayCountChanges ||
+                    UseInstallSizeChanges ||
                     UseCompletionStatusChanges ||
                     UseNotesChanges ||
                     UseManualChanges);
@@ -1065,6 +1083,26 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UsePlayCountChanges = true;
+                    }
+                    break;
+                case nameof(Game.InstallSize):
+                    if (IsSingleGameEdit)
+                    {
+                        UseInstallSizeChanges = Game.InstallSize != EditingGame.InstallSize;
+                    }
+                    else
+                    {
+                        UseInstallSizeChanges = true;
+                    }
+                    break;
+                case nameof(Game.LastSizeScanDate):
+                    if (IsSingleGameEdit)
+                    {
+                        updateLastScanDate = Game.LastSizeScanDate != EditingGame.LastSizeScanDate;
+                    }
+                    else
+                    {
+                        updateLastScanDate = true;
                     }
                     break;
                 case nameof(Game.SeriesIds):

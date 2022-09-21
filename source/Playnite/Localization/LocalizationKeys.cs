@@ -1,4 +1,4 @@
-///
+﻿///
 /// DO NOT MODIFY! Automatically generated via buildLocConstants.ps1 script.
 /// 
 namespace Playnite
@@ -234,6 +234,10 @@ namespace Playnite
         /// </summary>
         public const string GameOpenLocationError = "LOCGameOpenLocationError";
         /// <summary>
+        /// Could not detect game install size: {0}
+        /// </summary>
+        public const string CalculateGameSizeError = "LOCCalculateGameSizeError";
+        /// <summary>
         /// Failed to create shortcut: {0}
         /// </summary>
         public const string GameShortcutError = "LOCGameShortcutError";
@@ -405,6 +409,10 @@ namespace Playnite
         /// Play Count
         /// </summary>
         public const string PlayCountLabel = "LOCPlayCountLabel";
+        /// <summary>
+        /// Install Size
+        /// </summary>
+        public const string InstallSizeLabel = "LOCInstallSizeLabel";
         /// <summary>
         /// Folder
         /// </summary>
@@ -634,6 +642,38 @@ namespace Playnite
         /// </summary>
         public const string MoreThenYear = "LOCMoreThenYear";
         /// <summary>
+        /// 0 to 100MB
+        /// </summary>
+        public const string SizeZeroTo100Mb = "LOCSizeZeroTo100Mb";
+        /// <summary>
+        /// 100MB to 1GB
+        /// </summary>
+        public const string Size100MbTo1Gb = "LOCSize100MbTo1Gb";
+        /// <summary>
+        /// 1GB to 5GB
+        /// </summary>
+        public const string Size1GbTo5Gb = "LOCSize1GbTo5Gb";
+        /// <summary>
+        /// 5GB to 10GB
+        /// </summary>
+        public const string Size5GbTo10Gb = "LOCSize5GbTo10Gb";
+        /// <summary>
+        /// 10GB to 20GB
+        /// </summary>
+        public const string Size10GbTo20Gb = "LOCSize10GbTo20Gb";
+        /// <summary>
+        /// 20GB to 40GB
+        /// </summary>
+        public const string Size20GbTo40Gb = "LOCSize20GbTo40Gb";
+        /// <summary>
+        /// 40GB to 100GB
+        /// </summary>
+        public const string Size40GbTo100Gb = "LOCSize40GbTo100Gb";
+        /// <summary>
+        /// 100GB or more
+        /// </summary>
+        public const string SizeMoreThan100Gb = "LOCSizeMoreThan100Gb";
+        /// <summary>
         /// Import completed successfully.
         /// </summary>
         public const string ImportCompleted = "LOCImportCompleted";
@@ -737,6 +777,10 @@ namespace Playnite
         /// Downloading library updates…
         /// </summary>
         public const string ProgressLibraryGames = "LOCProgressLibraryGames";
+        /// <summary>
+        /// Scanning size of games in library…
+        /// </summary>
+        public const string ProgressScanningGamesInstallSize = "LOCProgressScanningGamesInstallSize";
         /// <summary>
         /// Library update finished
         /// </summary>
@@ -1466,6 +1510,14 @@ namespace Playnite
         /// </summary>
         public const string SettingsPreferredAgeRatingOrg = "LOCSettingsPreferredAgeRatingOrg";
         /// <summary>
+        /// Scan modified install size of games on library update
+        /// </summary>
+        public const string SettingsScanLibInstallSizeOnLibUpdate = "LOCSettingsScanLibInstallSizeOnLibUpdate";
+        /// <summary>
+        /// Detects if the files of a game have been modified since the last library update and scans them to get the updated install size
+        /// </summary>
+        public const string SettingsScanLibInstallSizeOnLibUpdateTooltip = "LOCSettingsScanLibInstallSizeOnLibUpdateTooltip";
+        /// <summary>
         /// None
         /// </summary>
         public const string StrechNone = "LOCStrechNone";
@@ -1809,6 +1861,10 @@ namespace Playnite
         /// Name
         /// </summary>
         public const string GameNameTitle = "LOCGameNameTitle";
+        /// <summary>
+        /// Install Drive
+        /// </summary>
+        public const string InstallDriveTitle = "LOCInstallDriveTitle";
         /// <summary>
         /// Account Name
         /// </summary>
@@ -2630,6 +2686,22 @@ namespace Playnite
         /// </summary>
         public const string EditGame = "LOCEditGame";
         /// <summary>
+        /// Calculate install size
+        /// </summary>
+        public const string CalculateInstallSize = "LOCCalculateInstallSize";
+        /// <summary>
+        /// Calculate install size (All games)
+        /// </summary>
+        public const string CalculateGamesAllInstallSize = "LOCCalculateGamesAllInstallSize";
+        /// <summary>
+        /// Calculate install size (Only missing data)
+        /// </summary>
+        public const string CalculateGamesMissingInstallSize = "LOCCalculateGamesMissingInstallSize";
+        /// <summary>
+        /// Install size
+        /// </summary>
+        public const string InstallSizeMenuLabel = "LOCInstallSizeMenuLabel";
+        /// <summary>
         /// Set Category…
         /// </summary>
         public const string SetGameCategory = "LOCSetGameCategory";
@@ -2706,6 +2778,10 @@ namespace Playnite
         /// </summary>
         public const string DescriptionPlaytimeSeconds = "LOCDescriptionPlaytimeSeconds";
         /// <summary>
+        /// Install size is indicated in bytes.
+        /// </summary>
+        public const string DescriptionSizeBytes = "LOCDescriptionSizeBytes";
+        /// <summary>
         /// Release date must be set in 'year-month-day' format. Month and Day values can be omitted.
         /// </summary>
         public const string ReleaseDateTooltip = "LOCReleaseDateTooltip";
@@ -2770,6 +2846,14 @@ namespace Playnite
         /// </summary>
         public const string OpeningDatabase = "LOCOpeningDatabase";
         /// <summary>
+        /// Calculating install size…
+        /// </summary>
+        public const string CalculatingInstallSizeMessage = "LOCCalculatingInstallSizeMessage";
+        /// <summary>
+        /// Calculating install size of {0}…
+        /// </summary>
+        public const string CalculatingInstallSizeOfGameMessage = "LOCCalculatingInstallSizeOfGameMessage";
+        /// <summary>
         /// Failed to install script file.
         /// </summary>
         public const string ScriptInstallFail = "LOCScriptInstallFail";
@@ -2793,6 +2877,14 @@ namespace Playnite
         /// Open metadata folder
         /// </summary>
         public const string OpenMetadataFolder = "LOCOpenMetadataFolder";
+        /// <summary>
+        /// Calculate
+        /// </summary>
+        public const string InstallSizeCalculate = "LOCInstallSizeCalculate";
+        /// <summary>
+        /// Automatically calculates the install size using the Roms if the game has any or the installation directory if it has been set
+        /// </summary>
+        public const string InstallSizeCalculateEditButtonTooltip = "LOCInstallSizeCalculateEditButtonTooltip";
         /// <summary>
         /// {0} client is not installed.
         /// </summary>
@@ -3813,6 +3905,14 @@ namespace Playnite
         /// Show warning if Playnite is running with elevated privileges
         /// </summary>
         public const string ElevatedProcessWarningShowOption = "LOCElevatedProcessWarningShowOption";
+        /// <summary>
+        /// Get the real size on drive when calculating the size of games
+        /// </summary>
+        public const string InstallSizeScanUseSizeOnDiskOption = "LOCInstallSizeScanUseSizeOnDiskOption";
+        /// <summary>
+        /// If enabled, scans will be slower and will get the real size that files use in the drive.
+        /// </summary>
+        public const string InstallSizeScanUseSizeOnDiskOptionTooltip = "LOCInstallSizeScanUseSizeOnDiskOptionTooltip";
         /// <summary>
         /// Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
         /// </summary>

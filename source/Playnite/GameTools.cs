@@ -125,6 +125,12 @@ namespace Playnite
                 dummyGame.PlayCount = firstPlayCount;
             }
 
+            var firstInstallSize = firstGame.InstallSize;
+            if (games.All(a => a.InstallSize == firstInstallSize) == true)
+            {
+                dummyGame.InstallSize = firstInstallSize;
+            }
+
             var firstVersion = firstGame.Version;
             if (games.All(a => a.Version == firstVersion) == true)
             {

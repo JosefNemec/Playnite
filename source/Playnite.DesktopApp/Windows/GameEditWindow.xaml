@@ -562,8 +562,8 @@
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <TextBlock Grid.Column="2" Grid.Row="10" Margin="3,6,3,6"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>                   
-                    
+                               Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
+
                     <!-- Notes -->
                     <TextBlock Grid.Column="1" Grid.Row="11" Text="{DynamicResource LOCNotesLabel}"
                                VerticalAlignment="Top" Margin="8,16,10,0" />
@@ -859,6 +859,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <CheckBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,5,0"
@@ -899,6 +900,41 @@
                                   VerticalAlignment="Center"
                                   Visibility="{Binding ShowOverrideInstallStateOption, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding EditingGame.OverrideInstallState}"/>
+                        
+                        <!-- InstallSize -->
+                        <CheckBox Grid.Column="0" Grid.Row="4" Style="{StaticResource SaveChangesCheck}"
+                                  VerticalAlignment="Center"
+                                  IsChecked="{Binding UseInstallSizeChanges}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="411" Text="{DynamicResource LOCInstallSizeLabel}"
+                                   VerticalAlignment="Center" />
+                        <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal">
+                            <Button Content="{DynamicResource LOCInstallSizeCalculate}"
+                                    ToolTip="{DynamicResource LOCInstallSizeCalculateEditButtonTooltip}"
+                                    ToolTipService.Placement="Top"
+                                    VerticalAlignment="Center"
+                                    Margin="5" DockPanel.Dock="Right"
+                                    Command="{Binding CalculateInstallSizeWithDialogCommand}"
+                                    Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox ToolTip="{DynamicResource LOCDescriptionSizeBytes}"
+                                     VerticalAlignment="Center"
+                                     Margin="5"
+                                     ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
+                                     MinWidth="120">
+                                <TextBox.Text>
+                                    <Binding Path="EditingGame.InstallSize"
+                                             UpdateSourceTrigger="PropertyChanged" 
+                                             ValidatesOnDataErrors="True"
+                                             NotifyOnValidationError="True"
+                                             Converter="{pcon:NullableUlongToStringConverter}">
+                                        <Binding.ValidationRules>
+                                            <pcon:NullableUlongFieldValidation />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBlock VerticalAlignment="Center" Margin="5"
+                                       Text="{Binding EditingGame.InstallSize, Converter={pcon:NullableUlongBytesSizeToStringConverter}}" />
+                        </StackPanel>
                     </Grid>
 
                     <Button Content="{DynamicResource LOCAddRom}" HorizontalAlignment="Left" Margin="10,0,0,0"

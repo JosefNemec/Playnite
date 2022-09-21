@@ -69,6 +69,9 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<Game> EditGameCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> EditGamesCommand { get; private set; }
         public RelayCommand<Game> OpenGameLocationCommand { get; private set; }
+        public RelayCommand<Game> UpdateGameInstallSizeWithDialogCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> UpdateGamesAllInstallSizeWithDialogCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> UpdateGamesMissingInstallSizeWithDialogCommand { get; private set; }
         public RelayCommand<Game> CreateDesktopShortcutCommand { get; private set; }
         public RelayCommand<List<Game>> CreateDesktopShortcutsCommand { get; private set; }
         public RelayCommand<Game> OpenManualCommand { get; private set; }
@@ -457,6 +460,11 @@ namespace Playnite.DesktopApp.ViewModels
                 GamesEditor.CreateDesktopShortcut(a);
             });
 
+            UpdateGameInstallSizeWithDialogCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.UpdateGameSizeWithDialog(a, false, true);
+            });
+
             CreateDesktopShortcutsCommand = new RelayCommand<List<Game>>((a) =>
             {
                 GamesEditor.CreateDesktopShortcut(a);
@@ -514,6 +522,16 @@ namespace Playnite.DesktopApp.ViewModels
             RemoveAsFavoritesCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
                 GamesEditor.SetFavoriteGames(a.ToList(), false);
+            });
+
+            UpdateGamesAllInstallSizeWithDialogCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.UpdateGamesSizeWithDialog(a.ToList(), false);
+            });
+
+            UpdateGamesMissingInstallSizeWithDialogCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.UpdateGamesSizeWithDialog(a.ToList(), true);
             });
 
             SetAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>

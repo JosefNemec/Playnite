@@ -149,4 +149,74 @@ namespace Playnite.Converters
     }
 
     #endregion null int
+
+    #region null ulong
+
+    public class NullableUlongToStringConverter : MarkupExtension, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+            else if (value is ulong num)
+            {
+                return num.ToString();
+            }
+
+            throw new NotSupportedException();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var str = (string)value;
+            if (str.IsNullOrEmpty())
+            {
+                return null;
+            }
+            else
+            {
+                return ulong.Parse(str);
+            }
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+
+    public class NullableUlongFieldValidation : ValidationRule
+    {
+        private string invalidInput => $"Not a long value in {MinValue} to {MaxValue} range!";
+
+        public ulong MinValue { get; set; } = ulong.MinValue;
+        public ulong MaxValue { get; set; } = ulong.MaxValue;
+
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            if (value == null)
+            {
+                return new ValidationResult(true, null);
+            }
+            else
+            {
+                var str = (string)value;
+                if (str.IsNullOrEmpty())
+                {
+                    return new ValidationResult(true, null);
+                }
+
+                if (ulong.TryParse(str, out var ulongVal) && ulongVal >= MinValue && ulongVal <= MaxValue)
+                {
+                    return new ValidationResult(true, null);
+                }
+
+                return new ValidationResult(false, invalidInput);
+            }
+        }
+    }
+
+    #endregion null ulong
 }

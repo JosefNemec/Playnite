@@ -28,6 +28,9 @@
                   IsChecked="{Binding Settings.DiscordPresenceEnabled}" />
         <CheckBox IsChecked="{Binding Settings.ShowElevatedRightsWarning}" Margin="0,15,0,0"
                   Content="{DynamicResource LOCElevatedProcessWarningShowOption}"/>
+        <CheckBox IsChecked="{Binding Settings.InstallSizeScanUseSizeOnDisk}" Margin="0,15,0,0"
+                  Content="{DynamicResource LOCInstallSizeScanUseSizeOnDiskOption}"
+                  ToolTip="{DynamicResource LOCInstallSizeScanUseSizeOnDiskOptionTooltip}"/>
         <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
             <TextBlock Text="{DynamicResource LOCOpenDirectoryCommand}" VerticalAlignment="Center"/>
             <TextBox Text="{Binding Settings.DirectoryOpenCommand}"

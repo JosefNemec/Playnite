@@ -89,6 +89,7 @@ namespace Playnite.DesktopApp.Tests
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
+                    InstallSize = 24354657,
                     SeriesIds = new List<Guid>{ series[0] },
                     Version = "Version 3",
                     AgeRatingIds = new List<Guid>{ ratings[0] },
@@ -121,6 +122,7 @@ namespace Playnite.DesktopApp.Tests
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
+                    InstallSize = 24354657,
                     Version = "Version 3",
                     CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
@@ -145,6 +147,7 @@ namespace Playnite.DesktopApp.Tests
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
+                    InstallSize = 24354657,
                     SeriesIds = new List<Guid>{ series[0] },
                     Version = "Version 3",
                     AgeRatingIds = new List<Guid>{ ratings[0] },
@@ -175,6 +178,7 @@ namespace Playnite.DesktopApp.Tests
             Assert.AreEqual(firstGame.Added, gameCommon.Added);
             Assert.AreEqual(firstGame.Playtime, gameCommon.Playtime);
             Assert.AreEqual(firstGame.PlayCount, gameCommon.PlayCount);
+            Assert.AreEqual(firstGame.InstallSize, gameCommon.InstallSize);
             CollectionAssert.AreEqual(firstGame.SeriesIds, gameCommon.SeriesIds);
             Assert.AreEqual(firstGame.Version, gameCommon.Version);
             CollectionAssert.AreEqual(firstGame.AgeRatingIds, gameCommon.AgeRatingIds);
@@ -210,6 +214,7 @@ namespace Playnite.DesktopApp.Tests
                     Added = new DateTime(2012,1,1),
                     Playtime = 1,
                     PlayCount = 1,
+                    InstallSize = 34354657,
                     Version = "Version 1",
                     CompletionStatusId = completionStatuses[0],
                     UserScore = 1,
@@ -238,6 +243,7 @@ namespace Playnite.DesktopApp.Tests
                     Added = new DateTime(2012,1,2),
                     Playtime = 2,
                     PlayCount = 2,
+                    InstallSize = 44354657,
                     Version = "Version 2",
                     CompletionStatusId = completionStatuses[1],
                     UserScore = 2,
@@ -266,6 +272,7 @@ namespace Playnite.DesktopApp.Tests
                     Added = new DateTime(2012,1,3),
                     Playtime = 3,
                     PlayCount = 3,
+                    InstallSize = 24354657,
                     Version = "Version 3",
                     CompletionStatusId = completionStatuses[2],
                     UserScore = 3,
@@ -297,6 +304,7 @@ namespace Playnite.DesktopApp.Tests
             CollectionAssert.IsEmpty(gameNoCommon.RegionIds);
             Assert.AreEqual(Guid.Empty, gameNoCommon.SourceId);
             Assert.AreEqual(Guid.Empty, gameNoCommon.CompletionStatusId);
+            Assert.IsNull(gameNoCommon.InstallSize);
             Assert.IsNull(gameNoCommon.UserScore);
             Assert.IsNull(gameNoCommon.CriticScore);
             Assert.IsNull(gameNoCommon.CommunityScore);

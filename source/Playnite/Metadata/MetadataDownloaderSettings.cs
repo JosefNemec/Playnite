@@ -288,6 +288,17 @@ namespace Playnite.Metadata
             }
         }
 
+        private MetadataFieldSettings installSize = new MetadataFieldSettings();
+        public MetadataFieldSettings InstallSize
+        {
+            get => installSize;
+            set
+            {
+                installSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MetadataDownloaderSettings()
         {
         }
@@ -325,6 +336,7 @@ namespace Playnite.Metadata
             Platform = new MetadataFieldSettings(import, sources);
             Series = new MetadataFieldSettings(import, sources);
             Region = new MetadataFieldSettings(import, sources);
+            InstallSize = new MetadataFieldSettings(import, sources);
         }
     }
 }

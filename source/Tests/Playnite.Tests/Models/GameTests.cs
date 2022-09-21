@@ -198,5 +198,39 @@ namespace Playnite.Tests.Models
                 Assert.AreEqual(2, comEmus[2].Value.Count);
             }
         }
+
+        [Test]
+        public void InstallDriveTest()
+        {
+            var database = new InMemoryGameDatabase();
+            Game.DatabaseReference = database;
+            GameDatabase.GenerateSampleData(database);
+
+            var dir = @"C:\test\test2\";
+            var game = new Game()
+            {
+                Name = "test game",
+                InstallDirectory = dir,
+                IsInstalled = true
+            };
+
+            Assert.AreEqual(@"C:\", game.GetInstallDrive());
+            game.InstallDirectory = @"c:\test\test2\";
+            Assert.AreEqual(@"C:\", game.GetInstallDrive());
+            game.IsInstalled = false;
+            Assert.AreEqual(string.Empty, game.GetInstallDrive());
+
+            game.IsInstalled = true;
+            game.InstallDirectory = @" ";
+            Assert.AreEqual(string.Empty, game.GetInstallDrive());
+            game.InstallDirectory = @"";
+            Assert.AreEqual(string.Empty, game.GetInstallDrive());
+            game.InstallDirectory = null;
+            Assert.AreEqual(string.Empty, game.GetInstallDrive());
+            game.InstallDirectory = @"c:\test\<>:""/\|?*\test2\";
+            Assert.AreEqual(string.Empty, game.GetInstallDrive());
+            game.InstallDirectory = @"SomeString";
+            Assert.AreEqual(string.Empty, game.GetInstallDrive());
+        }
     }
 }

@@ -1933,6 +1933,28 @@ namespace Playnite
             }
         }
 
+        private bool installSizeScanUseSizeOnDisk = true;
+        public bool InstallSizeScanUseSizeOnDisk
+        {
+            get => installSizeScanUseSizeOnDisk;
+            set
+            {
+                installSizeScanUseSizeOnDisk = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool scanLibInstallSizeOnLibUpdate = true;
+        public bool ScanLibInstallSizeOnLibUpdate
+        {
+            get => scanLibInstallSizeOnLibUpdate;
+            set
+            {
+                scanLibInstallSizeOnLibUpdate = value;
+                OnPropertyChanged();
+            }
+        }
+
         private UpdateCheckFrequency checkForProgramUpdates = UpdateCheckFrequency.OnEveryStartup;
         public UpdateCheckFrequency CheckForProgramUpdates
         {

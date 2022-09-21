@@ -64,6 +64,7 @@ namespace Playnite
         public DateTime? Added => Game.Added;
         public DateTime? Modified => Game.Modified;
         public ulong PlayCount => Game.PlayCount;
+        public ulong? InstallSize => Game.InstallSize;
         public string Version => Game.Version;
         public int? UserScore => Game.UserScore;
         public int? CriticScore => Game.CriticScore;
@@ -80,6 +81,8 @@ namespace Playnite
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
         public char NameGroup => Game.GetNameGroup();
+        public string InstallDriveGroup => Game.GetInstallDriveGroup();
+        public InstallSizeGroup InstallSizeGroup => Game.GetInstallSizeGroup();
         public bool OverrideInstallState => Game.OverrideInstallState;
 
         public List<Guid> CategoryIds => Game.CategoryIds;
