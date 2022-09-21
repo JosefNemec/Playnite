@@ -75,7 +75,6 @@ namespace Playnite.Tests
             using (var tempPath = TempDirectory.Create())
             {
                 var filePath = Path.Combine(tempPath.TempPath, "DummyFile");
-                FileSystem.DeleteFile(filePath);
                 var dummyFileLenght = 1024;
                 using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
