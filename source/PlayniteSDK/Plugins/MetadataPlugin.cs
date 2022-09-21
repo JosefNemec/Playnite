@@ -84,7 +84,11 @@ namespace Playnite.SDK.Plugins
         /// <summary>
         /// Platform can be provided.
         /// </summary>
-        Platform
+        Platform,
+        /// <summary>
+        /// Install Size can be provided.
+        /// </summary>
+        InstallSize
     }
 
     /// <summary>
@@ -304,6 +308,15 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         /// <returns></returns>
         public virtual IEnumerable<MetadataProperty> GetPlatforms(GetMetadataFieldArgs args)
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Gets community score.
+        /// </summary>
+        /// <returns></returns>
+        public virtual ulong? GetInstallSize(GetMetadataFieldArgs args)
         {
             return null;
         }

@@ -327,6 +327,17 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
+        private FieldsSelectionSettings installSizeSettings;
+        public FieldsSelectionSettings InstallSizeSettings
+        {
+            get => installSizeSettings;
+            set
+            {
+                installSizeSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion Setting fields
 
         #region Properties
@@ -467,6 +478,12 @@ namespace Playnite.DesktopApp.Controls
             control.PlatformSettings.SettingsChanged += (_, __) =>
             {
                 control.Settings.Platform.Sources = control.PlatformSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
+            };
+
+            control.InstallSizeSettings = control.SetupField(settings.InstallSize, MetadataField.InstallSize, plugins);
+            control.InstallSizeSettings.SettingsChanged += (_, __) =>
+            {
+                control.Settings.InstallSize.Sources = control.InstallSizeSettings.Sources.Where(a => a.Enabled).Select(a => a.Id).ToList();
             };
         }
 
