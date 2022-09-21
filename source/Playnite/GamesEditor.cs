@@ -487,7 +487,7 @@ namespace Playnite
             catch (Exception e)
             {
                 logger.Error(e, $"Failed to get InstallSize from game {game.Name} with install dir {game.InstallDirectory}");
-                throw e;
+                throw;
             }
 
             if (scanSize == null)
