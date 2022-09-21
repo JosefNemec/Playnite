@@ -118,6 +118,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     AssignFilter("LOCCommunityScore", "PART_ButtonCommunityScore", GameField.CommunityScore, nameof(FilterSettings.CommunityScore));
                     AssignFilter("LOCCriticScore", "PART_ButtonCriticScore", GameField.CriticScore, nameof(FilterSettings.CriticScore));
                     AssignFilter("LOCGameLastActivityTitle", "PART_ButtonLastActivity", GameField.LastActivity, nameof(FilterSettings.LastActivity));
+                    AssignFilter("LOCRecentActivityLabel", "PART_ButtonRecentActivity", GameField.RecentActivity, nameof(FilterSettings.RecentActivity));
                     AssignFilter("LOCAddedLabel", "PART_ButtonAdded", GameField.Added, nameof(FilterSettings.Added));
                     AssignFilter("LOCModifiedLabel", "PART_ButtonModified", GameField.Modified, nameof(FilterSettings.Modified));
                 }
