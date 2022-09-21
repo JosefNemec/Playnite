@@ -46,6 +46,8 @@ namespace Playnite.Database
         Source,
         [Description(LOC.TimePlayed)]
         PlayTime,
+        [Description(LOC.InstallSizeLabel)]
+        InstallSize,
         [Description(LOC.CompletionStatus)]
         CompletionStatus,
         [Description(LOC.UserScore)]
@@ -641,6 +643,9 @@ namespace Playnite.Database
                 case ExplorerField.PlayTime:
                     filters.PlayTime = GetEnumFilter(filter);
                     break;
+                case ExplorerField.InstallSize:
+                    filters.InstallSize = GetEnumFilter(filter);
+                    break;
                 case ExplorerField.Feature:
                     filters.Feature = GetIdFilter(filter);
                     break;
@@ -835,6 +840,9 @@ namespace Playnite.Database
                     break;
                 case ExplorerField.PlayTime:
                     values.AddRange(GenerateEnumValues(typeof(PlaytimeCategory)));
+                    break;
+                case ExplorerField.InstallSize:
+                    values.AddRange(GenerateEnumValues(typeof(InstallSizeGroup)));
                     break;
                 case ExplorerField.Feature:
                     values.Add(noneDbObject);

@@ -351,6 +351,7 @@ namespace Playnite
                     Modified?.IsSet == true ||
                     ReleaseYear?.IsSet == true ||
                     PlayTime?.IsSet == true ||
+                    InstallSize?.IsSet == true ||
                     Feature?.IsSet == true;
             }
         }
@@ -870,6 +871,25 @@ namespace Playnite
             }
         }
 
+        private EnumFilterItemProperties installSize;
+        public EnumFilterItemProperties InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                if (installSize != value)
+                {
+                    installSize = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(InstallSize));
+                }
+            }
+        }
+
         private IdItemFilterItemProperties feature;
         public IdItemFilterItemProperties Feature
         {
@@ -1080,6 +1100,12 @@ namespace Playnite
                 filterChanges.Add(nameof(PlayTime));
             }
 
+            if (InstallSize != null)
+            {
+                InstallSize = null;
+                filterChanges.Add(nameof(InstallSize));
+            }
+
             if (Feature?.IsSet == true)
             {
                 Feature = null;
@@ -1124,7 +1150,8 @@ namespace Playnite
                 LastActivity = LastActivity?.ToSdkModel(),
                 Added = Added?.ToSdkModel(),
                 Modified = Modified?.ToSdkModel(),
-                PlayTime = PlayTime?.ToSdkModel()
+                PlayTime = PlayTime?.ToSdkModel(),
+                InstallSize = InstallSize?.ToSdkModel()
             };
         }
 
@@ -1292,6 +1319,12 @@ namespace Playnite
             {
                 PlayTime = EnumFilterItemProperties.FromSdkModel(settings.PlayTime);
                 filterChanges.Add(nameof(PlayTime));
+            }
+
+            if (InstallSize?.Equals(settings.InstallSize) != true)
+            {
+                InstallSize = EnumFilterItemProperties.FromSdkModel(settings.InstallSize);
+                filterChanges.Add(nameof(InstallSize));
             }
 
             if (Feature?.Equals(settings.Feature) != true)
@@ -1471,6 +1504,12 @@ namespace Playnite
                 filterChanges.Add(nameof(PlayTime));
             }
 
+            if (InstallSize?.Equals(settings.InstallSize) != true)
+            {
+                InstallSize = settings.InstallSize;
+                filterChanges.Add(nameof(InstallSize));
+            }
+
             if (Feature?.Equals(settings.Feature) != true)
             {
                 Feature = settings.Feature;
@@ -1591,6 +1630,11 @@ namespace Playnite
         public bool ShouldSerializePlayTime()
         {
             return PlayTime?.IsSet == true;
+        }
+
+        public bool ShouldSerializeInstallSize()
+        {
+            return InstallSize?.IsSet == true;
         }
 
         public bool ShouldSerializeFeature()

@@ -164,6 +164,9 @@ namespace Playnite.DesktopApp.Controls.Views
             SetLabelTag(nameof(FilterSettings.PlayTime), LOC.TimePlayed);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.PlayTime), typeof(PlaytimeCategory));
 
+            SetLabelTag(nameof(FilterSettings.InstallSize), LOC.InstallSizeLabel);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.InstallSize), typeof(InstallSizeGroup));
+
             SetLabelTag(nameof(FilterSettings.CompletionStatuses), LOC.CompletionStatus);
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.CompletionStatuses), nameof(FilterSettings.CompletionStatuses));
 

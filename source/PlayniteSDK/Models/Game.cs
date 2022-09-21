@@ -1407,6 +1407,15 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets game's install size group.
+        /// </summary>
+        [DontSerialize]
+        public InstallSizeGroup InstallSizeGroup
+        {
+            get => GetInstallSizeGroup();
+        }
+
+        /// <summary>
         /// Gets value indicating whether the game is custom game.
         /// </summary>
         [DontSerialize]

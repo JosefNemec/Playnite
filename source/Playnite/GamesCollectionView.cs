@@ -341,6 +341,19 @@ namespace Playnite
                 }
             }
 
+            // ------------------ InstallSize
+            if (filterSettings.InstallSize?.IsSet == true)
+            {
+                if (filterSettings.InstallSize.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (filterSettings.InstallSize.Values.First() == ((int)game.InstallSizeGroup) == false)
+                {
+                    return false;
+                }
+            }
+
             // ------------------ Version
             if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) != true)
             {
@@ -637,6 +650,12 @@ namespace Playnite
 
             // ------------------ Playtime
             if (filterSettings.PlayTime?.IsSet == true && !filterSettings.PlayTime.Values.Contains((int)game.PlaytimeCategory))
+            {
+                return false;
+            }
+
+            // ------------------ InstallSize
+            if (filterSettings.InstallSize?.IsSet == true && !filterSettings.InstallSize.Values.Contains((int)game.InstallSizeGroup))
             {
                 return false;
             }
