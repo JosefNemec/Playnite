@@ -23,7 +23,7 @@ namespace Playnite.SDK.Plugins
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets meni item menu section.
+        /// Gets or sets menu item menu section.
         /// </summary>
         public string MenuSection { get; set; }
 
@@ -116,7 +116,7 @@ namespace Playnite.SDK.Plugins
         public List<Game> Games { get; set; }
 
         /// <summary>
-        ///  Gest or sets value indicating whether the request is for standard game menu or global search menu.
+        /// Gets or sets value indicating whether the request is for standard game menu or global search menu.
         /// </summary>
         public bool IsGlobalSearchRequest { get; set; } = false;
     }
@@ -174,7 +174,7 @@ namespace Playnite.SDK.Plugins
     }
 
     /// <summary>
-    ///  Represents script main menu item.
+    /// Represents script main menu item.
     /// </summary>
     public class ScriptMainMenuItem : PluginMenuItem
     {
@@ -190,7 +190,7 @@ namespace Playnite.SDK.Plugins
     public class GetMainMenuItemsArgs
     {
         /// <summary>
-        ///  Gest or sets value indicating whether the request is for standard main menu or global search menu.
+        /// Gets or sets value indicating whether the request is for standard main menu or global search menu.
         /// </summary>
         public bool IsGlobalSearchRequest { get; set; } = false;
     }

@@ -1,5 +1,11 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.4.0
+
+* New
+  * Built-in emulator profiles exposed in [Emulation](xref:Playnite.SDK.IEmulationAPI) API.
+  * Added an option to switch progress bar mode from inside `ActivateGlobalProgress` dialog function while progress dialog is already opened.
+
 #### 6.3.0
 
 * New
@@ -11,6 +17,7 @@
   * Exposed [UI thread dispatcher](xref:Playnite.SDK.IMainViewAPI.UIDispatcher) in main view API. Read more about thread safety [here](tutorials/extensions/plugins.md#accessing-playnite-api).
   * Standard web view now has access to hosting window object via `WindowHost` property.
   * Added `IsGlobalSearchRequest` to `Get*MenuItemsArgs`, to distinguish between menu requests and new global search view requests.
+  * Added [AddConvertersSupport](tutorials/extensions/customUiIntegration.md#custom-converters-for-themes) method for plugins to supply themes with custom value converters.
 
 * Fixed
   * Cases where some UI related events (for example for game selections) were not being called at all or too many times.

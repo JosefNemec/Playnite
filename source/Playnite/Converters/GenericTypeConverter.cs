@@ -14,32 +14,40 @@ namespace Playnite.Converters
 {
     public class GenericTypeConverter : MarkupExtension, IValueConverter
     {
+        public IValueConverter CustomConverter { get; set; }
         public string StringFormat { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var converter = TypeDescriptor.GetConverter(targetType);
-            if (StringFormat.IsNullOrEmpty())
+            try
             {
-                try
+                if (CustomConverter != null)
                 {
-                    return converter.ConvertFrom(value);
+                    if (StringFormat.IsNullOrEmpty())
+                    {
+                        return CustomConverter.Convert(value, targetType, parameter, culture);
+                    }
+                    else
+                    {
+                        return CustomConverter.Convert(string.Format(StringFormat, value), targetType, parameter, culture);
+                    }
                 }
-                catch
+                else
                 {
-                    return DependencyProperty.UnsetValue;
+                    var converter = TypeDescriptor.GetConverter(targetType);
+                    if (StringFormat.IsNullOrEmpty())
+                    {
+                        return converter.ConvertFrom(value);
+                    }
+                    else
+                    {
+                        return converter.ConvertFrom(string.Format(StringFormat, value));
+                    }
                 }
             }
-            else
+            catch
             {
-                try
-                {
-                    return converter.ConvertFrom(string.Format(StringFormat, value));
-                }
-                catch
-                {
-                    return DependencyProperty.UnsetValue;
-                }
+                return DependencyProperty.UnsetValue;
             }
         }
 

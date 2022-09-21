@@ -1158,6 +1158,21 @@ namespace Playnite
             }
         }
 
+        private bool startOnBootClosedToTray = false;
+        public bool StartOnBootClosedToTray
+        {
+            get
+            {
+                return startOnBootClosedToTray;
+            }
+
+            set
+            {
+                startOnBootClosedToTray = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool enableControolerInDesktop = false;
         [RequiresRestart]
         public bool EnableControllerInDesktop
@@ -2085,6 +2100,18 @@ namespace Playnite
         private bool autoBackupIncludeThemes = false;
         public bool AutoBackupIncludeThemes { get => autoBackupIncludeThemes; set => SetValue(ref autoBackupIncludeThemes, value); }
 
+        private bool updateNotificationOnPatchesOnly = false;
+        public bool UpdateNotificationOnPatchesOnly { get => updateNotificationOnPatchesOnly; set => SetValue(ref updateNotificationOnPatchesOnly, value); }
+
+        private string webImageSarchIconTerm = "{Name} icon";
+        public string WebImageSarchIconTerm { get => webImageSarchIconTerm; set => SetValue(ref webImageSarchIconTerm, value); }
+
+        private string webImageSarchCoverTerm = "{Name} cover";
+        public string WebImageSarchCoverTerm { get => webImageSarchCoverTerm; set => SetValue(ref webImageSarchCoverTerm, value); }
+
+        private string webImageSarchBackgroundTerm = "{Name} wallpaper";
+        public string WebImageSarchBackgroundTerm { get => webImageSarchBackgroundTerm; set => SetValue(ref webImageSarchBackgroundTerm, value); }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -2117,6 +2144,21 @@ namespace Playnite
             set
             {
                 develExtenions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private SearchWindowVisibilitySettings searchWindowVisibility = new SearchWindowVisibilitySettings();
+        public SearchWindowVisibilitySettings SearchWindowVisibility
+        {
+            get
+            {
+                return searchWindowVisibility;
+            }
+
+            set
+            {
+                searchWindowVisibility = value;
                 OnPropertyChanged();
             }
         }

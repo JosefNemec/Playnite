@@ -12,11 +12,11 @@ namespace Playnite.API
 {
     public class NotificationsAPI : ObservableObject, INotificationsAPI
     {
-        public class ActivationRequestEventArgs : EventArgs
+        public class MessageEventArgs : EventArgs
         {
             public NotificationMessage Message { get; }
 
-            public ActivationRequestEventArgs(NotificationMessage message)
+            public MessageEventArgs(NotificationMessage message)
             {
                 Message = message;
             }
@@ -24,7 +24,8 @@ namespace Playnite.API
 
         private readonly SynchronizationContext context;
 
-        public event EventHandler<ActivationRequestEventArgs> ActivationRequested;
+        public event EventHandler<MessageEventArgs> ActivationRequested;
+        public event EventHandler<MessageEventArgs> CloseRequested;
 
         public ObservableCollection<NotificationMessage> Messages
         {
@@ -44,7 +45,12 @@ namespace Playnite.API
 
         private void Message_Activated(object sender, EventArgs e)
         {
-            ActivationRequested(this, new ActivationRequestEventArgs(sender as NotificationMessage));
+            ActivationRequested(this, new MessageEventArgs(sender as NotificationMessage));
+        }
+
+        private void Message_Closed(object sender, EventArgs e)
+        {
+            CloseRequested(this, new MessageEventArgs(sender as NotificationMessage));
         }
 
         public void Add(NotificationMessage message)
@@ -54,6 +60,7 @@ namespace Playnite.API
                 if (!Messages.Any(a => a.Id == message.Id))
                 {
                     message.Activated += Message_Activated;
+                    message.Closed += Message_Closed;
                     Messages.Add(message);
                     OnPropertyChanged(nameof(Count));
                 }
@@ -79,6 +86,7 @@ namespace Playnite.API
                 if (message != null)
                 {
                     message.Activated -= Message_Activated;
+                    message.Closed -= Message_Closed;
                     Messages.Remove(message);
                     OnPropertyChanged(nameof(Count));
                 }
@@ -92,6 +100,7 @@ namespace Playnite.API
                 foreach (var message in Messages)
                 {
                     message.Activated -= Message_Activated;
+                    message.Closed -= Message_Closed;
                 }
 
                 Messages.Clear();

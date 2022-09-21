@@ -40,5 +40,10 @@ namespace Playnite.Common
                 FileSystem.DeleteDirectory(TempPath);
             }
         }
+
+        public override string ToString()
+        {
+            return TempPath;
+        }
     }
 }

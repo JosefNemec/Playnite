@@ -27,7 +27,7 @@ namespace Playnite.Common
 
         public static void NextBytes(byte[] buffer)
         {
-            NextBytes(buffer);
+            generator.NextBytes(buffer);
         }
 
         public static double NextDouble()

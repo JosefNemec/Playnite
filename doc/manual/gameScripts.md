@@ -50,6 +50,13 @@ Playnite provides some built-in global variables that scripts can use to get mor
 | SelectedRomFile | ROM file selected when running a game with multiple ROMs assigned. |
 | StartedProcessId | Process ID of original started process. Might not be available depending on how a game was started. |
 
+Emulator scripts have additional variables provided:
+
+| Variable | Description |
+| :-- | :-- |
+| Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
+| EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
+
 Cancelling game startup
 ---------------------
 

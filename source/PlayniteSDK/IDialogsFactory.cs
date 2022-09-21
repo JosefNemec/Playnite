@@ -136,7 +136,21 @@ namespace Playnite.SDK
             get => text;
             set
             {
-                text = value;
+                text = value?.GetLocalized();
+                MainDispatcher?.Invoke(() => OnPropertyChanged(), DispatcherPriority.Send);
+            }
+        }
+
+        private bool isIndeterminate;
+        /// <summary>
+        /// Gets or sets progress text.
+        /// </summary>
+        public bool IsIndeterminate
+        {
+            get => isIndeterminate;
+            set
+            {
+                isIndeterminate = value;
                 MainDispatcher?.Invoke(() => OnPropertyChanged(), DispatcherPriority.Send);
             }
         }
@@ -291,7 +305,7 @@ namespace Playnite.SDK
     }
 
     /// <summary>
-    /// Refresents result of selection string dialog operation.
+    /// Represents result of selection string dialog operation.
     /// </summary>
     public class StringSelectionDialogResult
     {
@@ -344,14 +358,14 @@ namespace Playnite.SDK
     public interface IDialogsFactory
     {
         /// <summary>
-        /// Displays errod dialog window with text message.
+        /// Displays error dialog window with text message.
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <returns></returns>
         MessageBoxResult ShowErrorMessage(string messageBoxText);
 
         /// <summary>
-        /// Displays errod dialog window with text message.
+        /// Displays error dialog window with text message.
         /// </summary>
         /// <param name="messageBoxText">Dialog message text.</param>
         /// <param name="caption">Dialog window caption.</param>

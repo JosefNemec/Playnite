@@ -1,4 +1,5 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿
+    <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
@@ -295,6 +296,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Download metadata after importing games</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Launch Playnite minimized</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Launch Playnite when you start your computer</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">Start closed to tray</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Failed to register Playnite to launch when computer starts.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Launch in Fullscreen Mode</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchronous image loading</sys:String>
@@ -495,6 +497,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Filter Panel</sys:String>
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Icon</sys:String>
+    <sys:String x:Key="LOCLibraryIconTitle">Library Icon</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Cover Image</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Background Image</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sorting Name</sys:String>
@@ -1134,7 +1137,9 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set scanner will assign this platform to all games, overwriting any automatically detected platforms.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Include commands in default search</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled, commands won't be included in default search until # prefix is used.</sys:String>
-    
+    <sys:String x:Key="LOCSearchViewGameFieldOptions">Fields to be displayed for game results:</sys:String>
+    <sys:String x:Key="LOCHiddenStatus">Hidden Status</sys:String>
+
     <sys:String x:Key="LOCBackupCancelled">Data backup was cancelled.</sys:String>
     <sys:String x:Key="LOCBackupFailed">Data backup failed.</sys:String>
     <sys:String x:Key="LOCBackupErrorTitle">Data backup error</sys:String>
@@ -1147,8 +1152,12 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions">Installed extensions</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData">Extensions data</sys:String>
     <sys:String x:Key="LOCBackupOptionThemes">Installed themes</sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage">Select data to be restored from specified backup file.</sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage">Select items to be included with data backup. Application settings and game library data are included by default.</sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve">Select data to be restored from specified backup file.
+    
+Playnite will automatically restart to start backup restore process.</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">Select items to be included with data backup. Application settings and game library data are included by default.
+    
+Playnite will automatically restart to start backup process.</sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Automatic data backup</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency">Auto backup frequency</sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder">Backup folder</sys:String>
@@ -1159,4 +1168,11 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve">Use relative dates in "Today", "Yesterday" etc. format if the date is less than a week old.
     
 The specified date format will be used for all other dates.</sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Show notifications for patch releases only</sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">When enabled, only updates available for currently installed major release will result in update notification.
+New major releases will not result in update notification.</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearch">Web image search</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Icon image search string</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover image search string</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground">Background image search string</sys:String>
 </ResourceDictionary>

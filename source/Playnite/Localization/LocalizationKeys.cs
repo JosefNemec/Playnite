@@ -1078,6 +1078,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsStartOnBoot = "LOCSettingsStartOnBoot";
         /// <summary>
+        /// Start closed to tray
+        /// </summary>
+        public const string SettingsStartOnBootClosedToTray = "LOCSettingsStartOnBootClosedToTray";
+        /// <summary>
         /// Failed to register Playnite to launch when computer starts.
         /// </summary>
         public const string SettingsStartOnBootRegistrationError = "LOCSettingsStartOnBootRegistrationError";
@@ -1777,6 +1781,10 @@ namespace Playnite
         /// Icon
         /// </summary>
         public const string GameIconTitle = "LOCGameIconTitle";
+        /// <summary>
+        /// Library Icon
+        /// </summary>
+        public const string LibraryIconTitle = "LOCLibraryIconTitle";
         /// <summary>
         /// Cover Image
         /// </summary>
@@ -3450,7 +3458,7 @@ namespace Playnite
         /// </summary>
         public const string SettingsSwapConfirmCancelButtons = "LOCSettingsSwapConfirmCancelButtons";
         /// <summary>
-        /// Inverts default A button binding for confirmationa and B for cancellation.
+        /// Inverts A/B button bindings for confirmation and cancellation.
         /// </summary>
         public const string SettingsSwapConfirmCancelButtonsDescriptions = "LOCSettingsSwapConfirmCancelButtonsDescriptions";
         /// <summary>
@@ -3702,7 +3710,7 @@ namespace Playnite
         /// </summary>
         public const string EmuAutoScanConfigurations = "LOCEmuAutoScanConfigurations";
         /// <summary>
-        /// Save as auto-scan confguration
+        /// Save as auto-scan configuration
         /// </summary>
         public const string EmuSaveScanConfig = "LOCEmuSaveScanConfig";
         /// <summary>
@@ -3906,7 +3914,7 @@ namespace Playnite
         /// </summary>
         public const string SearchFilterUninstalledIncluded = "LOCSearchFilterUninstalledIncluded";
         /// <summary>
-        /// Uninstalled games exclued
+        /// Uninstalled games excluded
         /// </summary>
         public const string SearchFilterUninstalledExcluded = "LOCSearchFilterUninstalledExcluded";
         /// <summary>
@@ -3914,7 +3922,7 @@ namespace Playnite
         /// </summary>
         public const string SearchFilterHiddenIncluded = "LOCSearchFilterHiddenIncluded";
         /// <summary>
-        /// Hidden games exclued
+        /// Hidden games excluded
         /// </summary>
         public const string SearchFilterHiddenalledExcluded = "LOCSearchFilterHiddenalledExcluded";
         /// <summary>
@@ -4018,7 +4026,7 @@ namespace Playnite
         /// </summary>
         public const string EmuOverridePlatform = "LOCEmuOverridePlatform";
         /// <summary>
-        /// When set scanner will assign this platform to all games, ovewritting any automatically detected platforms.
+        /// When set scanner will assign this platform to all games, overwriting any automatically detected platforms.
         /// </summary>
         public const string EmuOverridePlatformTooltip = "LOCEmuOverridePlatformTooltip";
         /// <summary>
@@ -4029,6 +4037,14 @@ namespace Playnite
         /// When disabled, commands won't be included in default search until # prefix is used.
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
+        /// <summary>
+        /// Fields to be displayed for game results:
+        /// </summary>
+        public const string SearchViewGameFieldOptions = "LOCSearchViewGameFieldOptions";
+        /// <summary>
+        /// Hidden Status
+        /// </summary>
+        public const string HiddenStatus = "LOCHiddenStatus";
         /// <summary>
         /// Data backup was cancelled.
         /// </summary>
@@ -4053,10 +4069,6 @@ namespace Playnite
         /// Failed to restore data from backup.
         /// </summary>
         public const string BackupRestoreFailed = "LOCBackupRestoreFailed";
-        /// <summary>
-        /// Data backup was cancelled.
-        /// </summary>
-        public const string BackupRestoreCancelled = "LOCBackupRestoreCancelled";
         /// <summary>
         /// Settings
         /// </summary>
@@ -4113,5 +4125,13 @@ namespace Playnite
         /// Backup folder needs to be set if auto backup is enabled.
         /// </summary>
         public const string SettingsNoBackupDirSpecifiedError = "LOCSettingsNoBackupDirSpecifiedError";
+        /// <summary>
+        /// Show notifications for patch releases only
+        /// </summary>
+        public const string UpdateNotifyOnlyPatches = "LOCUpdateNotifyOnlyPatches";
+        /// <summary>
+        /// When enabled, only updates available for currently installed major release will result in update notification.
+        /// </summary>
+        public const string UpdateNotifyOnlyPatchesToolip = "LOCUpdateNotifyOnlyPatchesToolip";
     }
 }

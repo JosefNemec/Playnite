@@ -526,11 +526,12 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            if (editedFields.Contains(nameof(Settings.StartOnBoot)))
+            if (editedFields.Contains(nameof(Settings.StartOnBoot)) ||
+                editedFields.Contains(nameof(Settings.StartOnBootClosedToTray)))
             {
                 try
                 {
-                    SystemIntegration.SetBootupStateRegistration(Settings.StartOnBoot);
+                    SystemIntegration.SetBootupStateRegistration(Settings.StartOnBoot, Settings.StartOnBootClosedToTray);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -652,10 +653,23 @@ namespace Playnite.DesktopApp.ViewModels
             try
             {
                 var game = application.PlayniteApiGlobal.MainView.SelectedGames.FirstOrDefault() ?? new SDK.Models.Game("Test game");
-                var expanded = game.ExpandVariables(script);
+                var expandedScript = game.ExpandVariables(script);
+                var startingArgs = new SDK.Events.OnGameStartingEventArgs
+                {
+                    Game = game,
+                    SelectedRomFile = game.Roms?.FirstOrDefault()?.Path,
+                    SourceAction = game.GameActions?.FirstOrDefault()
+                };
+
                 using (var runtime = new PowerShellRuntime($"test script runtime"))
                 {
-                    application.GamesEditor.ExecuteScriptAction(runtime, expanded, game, true, true, GameScriptType.None);
+                    application.GamesEditor.ExecuteScriptAction(runtime, expandedScript, game, true, true, GameScriptType.None,
+                        new Dictionary<string, object>
+                        {
+                            {  "StartingArgs", startingArgs },
+                            {  "SourceAction", startingArgs.SourceAction },
+                            {  "SelectedRomFile", startingArgs.SelectedRomFile }
+                        });
                 }
             }
             catch (Exception exc)

@@ -251,7 +251,6 @@ namespace Playnite.Input
                     if (state.IsConnected)
                     {
                         ProcessState(state, PlayerIndex.One);
-                        await Task.Delay(pollingRate);
                     }
 
                     if (!PrimaryControllerOnly)
@@ -260,21 +259,18 @@ namespace Playnite.Input
                         if (state.IsConnected)
                         {
                             ProcessState(state, PlayerIndex.Two);
-                            await Task.Delay(pollingRate);
                         }
 
                         state = GamePad.GetState(PlayerIndex.Three);
                         if (state.IsConnected)
                         {
                             ProcessState(state, PlayerIndex.Three);
-                            await Task.Delay(pollingRate);
                         }
 
                         state = GamePad.GetState(PlayerIndex.Four);
                         if (state.IsConnected)
                         {
                             ProcessState(state, PlayerIndex.Four);
-                            await Task.Delay(pollingRate);
                         }
                     }
 

@@ -44,6 +44,8 @@
       href: extensions/extensionsManifest.md
     - name: Search support
       href: extensions/searchSupport.md
+    - name: Plugins in Visual Studio Code
+      href: extensions/vscodeWindows.md
 
 - name: Themes
   items:
@@ -64,7 +66,7 @@
     - name: Extension integrations
       href: themes/extensionIntegration.md
     - name: String localizations
-      href: extensions/localizations.md
+      href: themes/localizations.md
 
 - name: Toolbox utility
   href: toolbox.md

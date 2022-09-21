@@ -145,7 +145,7 @@ namespace Playnite.DesktopApp.ViewModels
                     return null;
                 }
 
-                return EmulatorDefinition.GetProfile(SelectedEmulator.BuiltInConfigId, SelectedBuiltinProfile.BuiltInProfileName);
+                return Emulation.GetProfile(SelectedEmulator.BuiltInConfigId, SelectedBuiltinProfile.BuiltInProfileName);
             }
         }
 
@@ -158,7 +158,7 @@ namespace Playnite.DesktopApp.ViewModels
                     return string.Empty;
                 }
 
-                var profile = EmulatorDefinition.GetProfile(SelectedEmulator.BuiltInConfigId, SelectedBuiltinProfile.BuiltInProfileName);
+                var profile = Emulation.GetProfile(SelectedEmulator.BuiltInConfigId, SelectedBuiltinProfile.BuiltInProfileName);
                 if (profile == null)
                 {
                     return string.Empty;
@@ -239,7 +239,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (!SelectedEmulator.BuiltInConfigId.IsNullOrEmpty())
                 {
-                    var def = EmulatorDefinition.GetDefition(SelectedEmulator.BuiltInConfigId);
+                    var def = Emulation.GetDefition(SelectedEmulator.BuiltInConfigId);
                     if (def == null)
                     {
                         logger.Error($"Trying to add built-in emulator profile to uknown emulator def {SelectedEmulator.BuiltInConfigId}");
@@ -314,8 +314,8 @@ namespace Playnite.DesktopApp.ViewModels
             this.resources = resources;
             this.database = database;
 
-            EmulatorDefinitions = EmulatorDefinition.Definitions;
-            SelectableEmulatorDefinitions = EmulatorDefinition.Definitions.ToList();
+            EmulatorDefinitions = Emulation.Definitions;
+            SelectableEmulatorDefinitions = Emulation.Definitions.ToList();
             SelectableEmulatorDefinitions.Insert(0, new EmulatorDefinition
             {
                 Name = ResourceProvider.GetString(LOC.None),
@@ -521,7 +521,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Id = a.Id,
                 Name = a.Name,
-                Emulators = a.Emulators.Select(p => EmulatorDefinition.GetDefition(p)).ToList()
+                Emulators = a.Emulators.Select(p => Emulation.GetDefition(p)).ToList()
             });
             DownloadEmulatorsList = plats.SelectMany(a => a.Emulators.Where(e => e != null).Select(b => new DownloadEmu
             {
@@ -591,7 +591,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             SelectedEmulatorBuiltInProfiles =
-                EmulatorDefinition.GetDefition(SelectedEmulator.BuiltInConfigId)?.Profiles.Select(a => a.Name).ToList();
+                Emulation.GetDefition(SelectedEmulator.BuiltInConfigId)?.Profiles.Select(a => a.Name).ToList();
         }
 
         private void AddNewScannerConfig()

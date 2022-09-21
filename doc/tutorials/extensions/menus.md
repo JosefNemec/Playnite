@@ -93,6 +93,42 @@ To add nested sections, separate definition with pipes: `Section name|Sub sectio
 
 To add items under "Extensions" main menu section, add `@` to the beginning of the section definition.
 
+# [C#](#tab/csharp)
+```csharp
+public override IEnumerable<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+{
+    // Added into "Extensions" menu
+    yield return new MainMenuItem
+    {
+        MenuSection = "@"
+    };
+
+    // Added into "Extensions -> submenu" menu
+    yield return new MainMenuItem
+    {
+        MenuSection = "@submenu"
+    };
+
+    // Added into "Extensions -> submenu -> submenu2" menu
+    yield return new MainMenuItem
+    {
+        MenuSection = "@submenu|submenu2"
+    };
+
+    // Added into "submenu -> submenu2" menu
+    yield return new MainMenuItem
+    {
+        MenuSection = "submenu|submenu2"
+    };
+}
+```
+
+# [PowerShell](#tab/tabpowershell)
+```powershell
+# See C# examples for MenuSection definition
+```
+***
+
 Icons
 ---------------------
 

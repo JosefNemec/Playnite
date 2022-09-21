@@ -112,7 +112,7 @@ namespace Playnite.SDK.Models
 
         private bool overrideDefaultArgs;
         /// <summary>
-        /// Gets or sets value indicating wheter emulator arguments should be completely overwritten with action arguments.
+        /// Gets or sets value indicating whether emulator arguments should be completely overwritten with action arguments.
         /// Applies only to Emulator action type.
         /// </summary>
         public bool OverrideDefaultArgs
@@ -169,7 +169,7 @@ namespace Playnite.SDK.Models
 
         private bool isPlayAction;
         /// <summary>
-        /// Gets or sets value indicating wheter an action is play action.
+        /// Gets or sets value indicating whether an action is play action.
         /// </summary>
         public bool IsPlayAction
         {

@@ -13,6 +13,8 @@ namespace Playnite.Converters
     [ValueConversion(typeof(bool), typeof(Visibility))]
     public class BooleanToVisibilityConverter : MarkupExtension, IValueConverter
     {
+        public static BooleanToVisibilityConverter Instance { get; } = new BooleanToVisibilityConverter();
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
@@ -36,6 +38,8 @@ namespace Playnite.Converters
 
     public class MultiBooleanToVisibilityConverter : MarkupExtension, IMultiValueConverter
     {
+        public static MultiBooleanToVisibilityConverter Instance { get; } = new MultiBooleanToVisibilityConverter();
+
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values == null)

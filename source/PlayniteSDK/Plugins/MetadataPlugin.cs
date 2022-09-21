@@ -22,7 +22,7 @@ namespace Playnite.SDK.Plugins
         /// </summary>
         Genres,
         /// <summary>
-        /// Release Data can be provided.
+        /// Release Date can be provided.
         /// </summary>
         ReleaseDate,
         /// <summary>
@@ -93,7 +93,7 @@ namespace Playnite.SDK.Plugins
     public class MetadataRequestOptions
     {
         /// <summary>
-        /// Gets or sets game data are being requested for.
+        /// Gets or sets game data being requested for.
         /// </summary>
         public Game GameData
         {
@@ -137,7 +137,7 @@ namespace Playnite.SDK.Plugins
     public abstract class OnDemandMetadataProvider : IDisposable
     {
         /// <summary>
-        ///  Gets currently available fields.
+        /// Gets currently available fields.
         /// </summary>
         public abstract List<MetadataField> AvailableFields { get; }
 
@@ -165,7 +165,7 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
-        /// Gets relese date.
+        /// Gets release date.
         /// </summary>
         /// <returns></returns>
         public virtual ReleaseDate? GetReleaseDate(GetMetadataFieldArgs args)

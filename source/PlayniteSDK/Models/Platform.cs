@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
-    /// Represents game's platfom.
+    /// Represents game's platform.
     /// </summary>
     public class Platform : DatabaseObject
     {

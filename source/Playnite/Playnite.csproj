@@ -236,10 +236,12 @@
     <Compile Include="Controls\HotKeyBox.cs" />
     <Compile Include="Converters\TicksToTimeSpanConverter.cs" />
     <Compile Include="DateTimes.cs" />
+    <Compile Include="Extensions\Markup\PluginConverter.cs" />
     <Compile Include="ItemSelector.cs" />
     <Compile Include="MenuItems.cs" />
     <Compile Include="HotKey.cs" />
     <Compile Include="MenuHelpers.cs" />
+    <Compile Include="Settings\SearchWindowVisibilitySettings.cs" />
     <Compile Include="SortableNameConverter.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />
     <Compile Include="Controls\ExtendedDataGrid.cs" />

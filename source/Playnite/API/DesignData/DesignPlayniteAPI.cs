@@ -79,5 +79,10 @@ namespace Playnite.API.DesignData
         {
             throw new NotImplementedException();
         }
+
+        public void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -13,7 +13,7 @@
     </UserControl.Resources>
 
     <GridEx Margin="15"
-            AutoLayoutColumns="2" ColumnCount="2" RowCount="4" StarRows="4">
+            AutoLayoutColumns="2" ColumnCount="2" RowCount="5" StarRows="5">
         <GridEx.Resources>
             <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                 <Setter Property="VerticalAlignment" Value="Center" />
@@ -34,12 +34,17 @@
         <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:LibraryUpdateCheckFrequency}"
                   SelectedValue="{Binding Settings.CheckForEmulatedLibraryUpdates}" />
 
+        <TextBlock Text="{DynamicResource LOCCheckAddonUpdates}" />
+        <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:UpdateCheckFrequency}"
+                  SelectedValue="{Binding Settings.CheckForAddonUpdates}" />
+
         <TextBlock Text="{DynamicResource LOCCheckProgramUpdates}" />
         <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:UpdateCheckFrequency}"
                   SelectedValue="{Binding Settings.CheckForProgramUpdates}" />
 
-        <TextBlock Text="{DynamicResource LOCCheckAddonUpdates}" />
-        <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:UpdateCheckFrequency}"
-                  SelectedValue="{Binding Settings.CheckForAddonUpdates}" />
+        <CheckBox Content="{DynamicResource LOCUpdateNotifyOnlyPatches}"
+                  ToolTip="{DynamicResource LOCUpdateNotifyOnlyPatchesToolip}"
+                  IsChecked="{Binding Settings.UpdateNotificationOnPatchesOnly}"
+                  Grid.ColumnSpan="2" Margin="0,10,0,0"/>
     </GridEx>
 </UserControl>

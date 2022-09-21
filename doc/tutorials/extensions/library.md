@@ -133,6 +133,29 @@ To assign completely new series to a game:
 
 Some fields allow you to assign more items to a game. For example you can assign multiple tags to a game. In that case you need to assign [List](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1) of IDs to `TagIds` property.
 
+Handling data changes
+---------------------
+
+Collections from [IDatabaseAPI](xref:Playnite.SDK.IGameDatabaseAPI) provide `ItemCollectionChanged` and `ItemUpdated` events which you can use to react to data changes in the game library.
+
+# [C#](#tab/csharp)
+```csharp
+PlayniteApi.Database.Games.ItemCollectionChanged += (_, args) =>
+{
+    PlayniteApi.Dialogs.ShowMessage(args.AddedItems.Count + " items added into the library.");
+};
+```
+
+# [PowerShell](#tab/tabpowershell)
+```powershell
+Register-ObjectEvent -InputObject $PlayniteApi.Database.Games -EventName ItemCollectionChanged -Action {
+    $PlayniteApi.Dialogs.ShowMessage("$($EventArgs.AddedItems.Count) items added into the library.");
+}
+```
+***
+
+If you want to specifically execute code after game library update (automatic one on startup or manual one from main menu), use [OnLibraryUpdated](events.md) plugin event. `OnLibraryUpdated` is called after all library plugins finish with their game library updates.
+
 Handling Files
 ---------------------
 

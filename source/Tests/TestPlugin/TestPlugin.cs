@@ -6,6 +6,7 @@ using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace TestPlugin
@@ -52,8 +54,8 @@ namespace TestPlugin
                 API.Instance.Database.ImportGame(new GameMetadata() { Name = "# import from search" });
             }))
             {
-                Icon = @"https://cdn.akamai.steamstatic.com/steam/apps/684450/header_292x136.jpg?t=1655395612",
-                Description = "icon test"
+                Icon = @"https://playnite.link/applogo.png",
+                Description = "http icon test"
             };
         }
     }
@@ -84,6 +86,19 @@ namespace TestPlugin
                 Description = "test plugin description",
                 Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png")
             };
+        }
+    }
+
+    public class TestConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value?.ToString() + " converted";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -120,6 +135,15 @@ namespace TestPlugin
                 new SearchSupport("test", "Testing plugin search", new DefaultSearchContext()),
                 new SearchSupport("slow", "Slow plugin search test", new SlowSearchContext())
             };
+
+            AddConvertersSupport(new AddConvertersSupportArgs
+            {
+                Converters = new List<IValueConverter> { new TestConverter() },
+                SourceName = "TestPlugin",
+            });
+
+            api.Notifications.Add("test", "some test ", NotificationType.Info);
+            api.Notifications.Add("test2", "some test longer notification that's overlowing to aa lines aa likely", NotificationType.Error);
         }
 
         public override ISettings GetSettings(bool firstRunSettings)

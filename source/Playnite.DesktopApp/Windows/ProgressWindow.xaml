@@ -12,7 +12,7 @@
         ShowMaximizeButton="False" ShowMinimizeButton="False"
         ResizeMode="NoResize" Width="400"
         SizeToContent="Height"
-        Title="{Binding ProgressText}" BlockAltF4="True"
+        Title="{Binding ProgressArgs.Text}" BlockAltF4="True"
         AutomationProperties.AutomationId="WindowProgress">
 
     <Grid Margin="10,-20,10,5">
@@ -25,7 +25,8 @@
                    Grid.Row="0" TextWrapping="Wrap" Margin="0,10,0,5"
                    Style="{DynamicResource BaseTextBlockStyle}"                   
                    Text="{Binding ProgressArgs.Text}"/>
-        <ProgressBar Height="25" IsIndeterminate="{Binding Indeterminate}" Grid.Row="1"
+        <ProgressBar Height="25"  Grid.Row="1"
+                     IsIndeterminate="{Binding ProgressArgs.IsIndeterminate}"
                      Value="{Binding ProgressArgs.CurrentProgressValue}"
                      Maximum="{Binding ProgressArgs.ProgressMaxValue}"
                      Margin="0,5,0,5"/>

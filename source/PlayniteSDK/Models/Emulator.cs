@@ -10,7 +10,98 @@ using System.Threading.Tasks;
 namespace Playnite.SDK.Models
 {
     /// <summary>
-    /// Represents built-in region defition.
+    ///
+    /// </summary>
+    public class EmulatorDefinitionProfile
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> Platforms { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> ImageExtensions { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> ProfileFiles { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string InstallationFile { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string StartupArguments { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string StartupExecutable { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool ScriptStartup { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool ScriptGameImport { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class EmulatorDefinition
+    {
+        internal string DirectoryName { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string Website { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public List<EmulatorDefinitionProfile> Profiles { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    /// <summary>
+    /// Represents built-in region definition.
     /// </summary>
     public class EmulatedRegion : IEquatable<EmulatedRegion>
     {
@@ -89,7 +180,7 @@ namespace Playnite.SDK.Models
         /// </summary>
         public List<string> Databases { get; set; }
         /// <summary>
-        /// Gets liust of emulator IDs supporting this platform.
+        /// Gets list of emulator IDs supporting this platform.
         /// </summary>
         public List<string> Emulators { get; set; }
 

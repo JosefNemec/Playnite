@@ -174,5 +174,66 @@ namespace Playnite.Tests.Emulators
                 Assert.AreEqual("test2", games[1].Name);
             }
         }
+
+        [Test]
+        public void PlaylistImportTest()
+        {
+            using (var tempPath = TempDirectory.Create())
+            using (var db = new GameDbTestWrapper(tempPath))
+            {
+                var scanner = new GameScanner(new GameScannerConfig(), null);
+                var cuePath = Path.Combine(tempPath.TempPath, "cuefile.cue");
+                var binPath = Path.Combine(tempPath.TempPath, "binfile.bin");
+
+                // Normal import
+                FileSystem.WriteStringToFile(cuePath, @"FILE ""binfile.bin"" BINARY");
+                FileSystem.CreateFile(binPath);
+
+                var scanResults = new Dictionary<string, List<ScannedRom>>();
+                scanner.ScanDirectoryBase(
+                    tempPath.TempPath,
+                    new List<string> { "bin", "cue" },
+                    null,
+                    scanResults,
+                    CancellationToken.None,
+                    null,
+                    true,
+                    true);
+
+                Assert.AreEqual(1, scanResults.Count);
+                Assert.IsTrue(scanResults.ContainsKey("cuefile"));
+
+                // Case sensitivity test
+                FileSystem.WriteStringToFile(cuePath, @"FILE ""BINFILE.BIN"" BINARY");
+                scanResults = new Dictionary<string, List<ScannedRom>>();
+                scanner.ScanDirectoryBase(
+                    tempPath.TempPath,
+                    new List<string> { "bin", "cue" },
+                    null,
+                    scanResults,
+                    CancellationToken.None,
+                    null,
+                    true,
+                    true);
+
+                Assert.AreEqual(1, scanResults.Count);
+                Assert.IsTrue(scanResults.ContainsKey("cuefile"));
+
+                // Playlist already imported test
+                scanResults = new Dictionary<string, List<ScannedRom>>();
+                scanner.importedFiles = new List<string> { cuePath };
+                scanner.ScanDirectoryBase(
+                  tempPath.TempPath,
+                  new List<string> { "bin", "cue" },
+                  null,
+                  scanResults,
+                  CancellationToken.None,
+                  null,
+                  true,
+                  true);
+
+                Assert.AreEqual(0, scanResults.Count);
+            }
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace Playnite.SDK.Data
     public interface IDataSerializer
     {
         /// <summary>
-        /// Serailize an object to YAML string.
+        /// Serialize an object to YAML string.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Playnite.SDK.Data
         T FromYaml<T>(string yaml) where T : class;
 
         /// <summary>
-        /// Tries to deserialize an object form YAML string.
+        /// Tries to deserialize an object from YAML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="yaml"></param>
@@ -64,7 +64,7 @@ namespace Playnite.SDK.Data
         bool TryFromYaml<T>(string yaml, out T content) where T : class;
 
         /// <summary>
-        /// Tries to deserialize an object form YAML string.
+        /// Tries to deserialize an object from YAML string.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="yaml"></param>
@@ -101,7 +101,7 @@ namespace Playnite.SDK.Data
         bool TryFromYamlFile<T>(string filePath, out T content, out Exception error) where T : class;
 
         /// <summary>
-        /// Serailize an object to JSON string.
+        /// Serialize an object to JSON string.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="formatted"></param>
@@ -292,7 +292,7 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
-        /// Serailize an object to YAML string.
+        /// Serialize an object to YAML string.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -374,7 +374,7 @@ namespace Playnite.SDK.Data
         }
 
         /// <summary>
-        /// Serailize an object to JSON string.
+        /// Serialize an object to JSON string.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="formatted"></param>

@@ -177,7 +177,7 @@ namespace Playnite
             }
 
             // Custom Actions
-            foreach (var task in game.GameActions ?? new ObservableCollection<GameAction>())
+            foreach (var task in game.GameActions?.Where(a => !a.IsPlayAction) ?? Enumerable.Empty<GameAction>())
             {
                 items.Add(new SearchItem(task.Name, LOC.Activate, () => model.App.GamesEditor.ActivateAction(game, task)));
             }

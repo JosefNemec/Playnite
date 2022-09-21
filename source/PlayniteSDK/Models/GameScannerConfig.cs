@@ -70,7 +70,7 @@ namespace Playnite.SDK.Models
 
         private bool inGlobalUpdate = true;
         /// <summary>
-        /// Gets or sets value indicating whether this configu should be included in global library update.
+        /// Gets or sets value indicating whether this config should be included in global library update.
         /// </summary>
         public bool InGlobalUpdate
         {
@@ -112,7 +112,7 @@ namespace Playnite.SDK.Models
 
         private bool importWithRelativePaths = true;
         /// <summary>
-        /// Gets or sets value indicating whether game roms should be imported under relative paths if possible.
+        /// Gets or sets value indicating whether game ROMs should be imported under relative paths if possible.
         /// </summary>
         public bool ImportWithRelativePaths
         {
@@ -140,7 +140,7 @@ namespace Playnite.SDK.Models
 
         private bool scanInsideArchives = true;
         /// <summary>
-        /// Gets or sets value indicating whether file archies should be scanned for content.
+        /// Gets or sets value indicating whether file archives should be scanned for content.
         /// </summary>
         public bool ScanInsideArchives
         {
@@ -168,7 +168,7 @@ namespace Playnite.SDK.Models
 
         private List<string> excludedDirectories;
         /// <summary>
-        /// Gets or sets list of foilders excluded from scan.
+        /// Gets or sets list of folders excluded from scan.
         /// </summary>
         public List<string> ExcludedDirectories
         {

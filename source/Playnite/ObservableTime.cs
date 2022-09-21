@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using Playnite.Common;
+using System.Windows;
 
 namespace Playnite
 {

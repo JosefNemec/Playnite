@@ -119,7 +119,7 @@ namespace Playnite.SDK.Models
         public List<Guid> Ids { get; set; }
 
         /// <summary>
-        ///  Gets or set full text search to filter.
+        /// Gets or sets full text search to filter.
         /// </summary>
         public string Text { get; set; }
 

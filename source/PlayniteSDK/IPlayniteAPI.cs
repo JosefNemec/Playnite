@@ -14,7 +14,7 @@ namespace Playnite.SDK
     public interface IPlayniteAPI
     {
         /// <summary>
-        /// Gest main view API.
+        /// Gets main view API.
         /// </summary>
         IMainViewAPI MainView { get; }
 
@@ -120,6 +120,13 @@ namespace Playnite.SDK
         /// <param name="source"></param>
         /// <param name="args"></param>
         void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args);
     }
 
     /// <summary>

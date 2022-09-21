@@ -16,20 +16,32 @@ namespace Playnite.Emulators
         private static readonly ILogger logger = LogManager.GetLogger();
         private static string platformsFile => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Platforms.yaml");
         private static string regionsFile => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Regions.yaml");
+        private static string emulatorDefDir => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Emulators");
+
+        public const string StartupScriptFileName = "startGame.ps1";
+        public const string GameImportScriptFileName = "importGames.ps1";
 
         #region IEmulationAPI
-        IList<EmulatedPlatform> IEmulationAPI.Platforms => Platforms;
-        IList<EmulatedRegion> IEmulationAPI.Regions => Regions;
+
+        IList<EmulatedPlatform> IEmulationAPI.Platforms => Platforms.GetClone();
+        IList<EmulatedRegion> IEmulationAPI.Regions => Regions.GetClone();
+        IList<EmulatorDefinition> IEmulationAPI.Emulators => Definitions.GetClone();
 
         EmulatedPlatform IEmulationAPI.GetPlatform(string platformsId)
         {
-            return GetPlatform(platformsId);
+            return GetPlatform(platformsId).GetClone();
         }
 
         EmulatedRegion IEmulationAPI.GetRegion(string regionId)
         {
-            return GetRegion(regionId);
+            return GetRegion(regionId).GetClone();
         }
+
+        EmulatorDefinition IEmulationAPI.GetEmulator(string emulatorDefinitionId)
+        {
+            return GetDefition(emulatorDefinitionId).GetClone();
+        }
+
         #endregion IEmulationAPI
 
         private static List<EmulatedPlatform> platforms;
@@ -115,41 +127,6 @@ namespace Playnite.Emulators
         {
             return Regions.FirstOrDefault(a => a.Codes.ContainsString(code, StringComparison.OrdinalIgnoreCase));
         }
-    }
-
-    public class EmulatorDefinitionProfile
-    {
-        public string Name { get; set; }
-        public List<string> Platforms { get; set; }
-        public List<string> ImageExtensions { get; set; }
-        public List<string> ProfileFiles { get; set; }
-        public string InstallationFile { get; set; }
-        public string StartupArguments { get; set; }
-        public string StartupExecutable { get; set; }
-        public bool ScriptStartup { get; set; }
-        public bool ScriptGameImport { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
-    public class EmulatorDefinition
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Website { get; set; }
-        public List<EmulatorDefinitionProfile> Profiles { get; set; }
-        internal string DirectoryName { get; set; }
-
-        private static readonly ILogger logger = LogManager.GetLogger();
-        private static string emulatorDefDir => Path.Combine(PlaynitePaths.ProgramPath, "Emulation", "Emulators");
-        public const string StartupScriptFileName = "startGame.ps1";
-        public const string GameImportScriptFileName = "importGames.ps1";
-
-        public string StartupScriptPath => Path.Combine(emulatorDefDir, DirectoryName, "startGame.ps1");
-        public string GameImportScriptPath => Path.Combine(emulatorDefDir, DirectoryName, "importGames.ps1");
 
         private static List<EmulatorDefinition> definitions;
         public static IList<EmulatorDefinition> Definitions
@@ -259,9 +236,14 @@ namespace Playnite.Emulators
             return null;
         }
 
-        public override string ToString()
+        public static string GetStartupScriptPath(EmulatorDefinition emulator)
         {
-            return Name;
+            return Path.Combine(emulatorDefDir, emulator.DirectoryName, "startGame.ps1");
+        }
+
+        public static string GetGameImportScriptPath(EmulatorDefinition emulator)
+        {
+            return Path.Combine(emulatorDefDir, emulator.DirectoryName, "importGames.ps1");
         }
     }
 }

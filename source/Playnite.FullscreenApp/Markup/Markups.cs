@@ -89,4 +89,8 @@ namespace Playnite.FullscreenApp.Markup
         {
         }
     }
+
+    public class PluginConverter : Extensions.Markup.PluginConverter
+    {
+    }
 }

@@ -567,9 +567,17 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private string ReplaceImageSearchVariables(string input)
+        {
+            input = input.Replace("{Name}", editingGame.Name, StringComparison.OrdinalIgnoreCase);
+            return input.Replace("{Platform}", editingGame.Platforms?.FirstOrDefault()?.Name, StringComparison.OrdinalIgnoreCase);
+        }
+
         public void SelectGoogleIcon()
         {
-            var image = SelectGoogleImage($"{EditingGame.Name} icon", tempIconFileName, 128, 128);
+            var searchTerm = appSettings.WebImageSarchIconTerm.IsNullOrWhiteSpace() ? $"{EditingGame.Name} icon" : appSettings.WebImageSarchIconTerm;
+            searchTerm = ReplaceImageSearchVariables(searchTerm);
+            var image = SelectGoogleImage(searchTerm, tempIconFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.Icon = image;
@@ -578,7 +586,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectGoogleCover()
         {
-            var image = SelectGoogleImage($"{EditingGame.Name} cover", tempCoverFileName);
+            var searchTerm = appSettings.WebImageSarchCoverTerm.IsNullOrWhiteSpace() ? $"{EditingGame.Name} cover" : appSettings.WebImageSarchCoverTerm;
+            searchTerm = ReplaceImageSearchVariables(searchTerm);
+            var image = SelectGoogleImage(searchTerm, tempCoverFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.CoverImage = image;
@@ -587,7 +597,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectGoogleBackground()
         {
-            var image = SelectGoogleImage($"{EditingGame.Name} wallpaper", tempBackgroundFileName);
+            var searchTerm = appSettings.WebImageSarchBackgroundTerm.IsNullOrWhiteSpace() ? $"{EditingGame.Name} wallpaper" : appSettings.WebImageSarchBackgroundTerm;
+            searchTerm = ReplaceImageSearchVariables(searchTerm);
+            var image = SelectGoogleImage(searchTerm, tempBackgroundFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = image;

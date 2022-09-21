@@ -342,7 +342,7 @@ namespace Playnite
             }
 
             // ------------------ Version
-            if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version) != true)
+            if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) != true)
             {
                 return false;
             }
@@ -642,7 +642,7 @@ namespace Playnite
             }
 
             // ------------------ Version
-            if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version) != true)
+            if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) != true)
             {
                 return false;
             }

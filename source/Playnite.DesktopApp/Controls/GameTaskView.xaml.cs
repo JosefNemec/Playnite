@@ -46,7 +46,7 @@ namespace Playnite.DesktopApp.Controls
                     var emuProf = emu.BuiltinProfiles?.FirstOrDefault(a => a.Id == GameTask.EmulatorProfileId);
                     if (emuProf != null)
                     {
-                        var def = EmulatorDefinition.GetProfile(emu.BuiltInConfigId, emuProf.BuiltInProfileName);
+                        var def = Emulation.GetProfile(emu.BuiltInConfigId, emuProf.BuiltInProfileName);
                         if (def?.ScriptStartup == false)
                         {
                             return true;
@@ -406,7 +406,7 @@ namespace Playnite.DesktopApp.Controls
                         }
                         else
                         {
-                            var def = EmulatorDefinition.GetProfile(emulator.BuiltInConfigId, builtInProfile.BuiltInProfileName);
+                            var def = Emulation.GetProfile(emulator.BuiltInConfigId, builtInProfile.BuiltInProfileName);
                             if (def?.ScriptStartup == false)
                             {
                                 SelectedEmulatorArguments = def.StartupArguments;
