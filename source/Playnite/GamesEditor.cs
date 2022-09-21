@@ -513,17 +513,7 @@ namespace Playnite
             if (game.Roms.HasItems())
             {
                 var expandedGame = GetExpandedGameForRomsSizeScan(game);
-                if (checkLastScanDate)
-                {
-                    var addedAfterLastCheck = expandedGame.LastSizeScanDate == null || expandedGame.Added != null && expandedGame.Added > expandedGame.LastSizeScanDate;
-                    if (!addedAfterLastCheck && !expandedGame.Roms.Any(x => !x.Path.IsNullOrWhiteSpace()
-                        && FileSystem.FileExists(x.Path) && expandedGame.LastSizeScanDate != null
-                        && FileSystem.FileGetLastWriteTime(x.Path) > expandedGame.LastSizeScanDate))
-                    {
-                        return null;
-                    }
-                }
-
+                var romsFilesPaths = new List<string>();
                 foreach (var rom in expandedGame.Roms)
                 {
                     if (rom.Path.IsNullOrWhiteSpace() || !FileSystem.FileExists(rom.Path))
@@ -533,56 +523,37 @@ namespace Playnite
 
                     if (rom.Path.EndsWith(".cue", StringComparison.OrdinalIgnoreCase))
                     {
-                        var baseDir = Path.GetDirectoryName(rom.Path);
-                        var files = CueSheet.GetFileEntries(rom.Path).Select(a => Path.Combine(baseDir, a.Path));
-                        foreach (var file in files)
-                        {
-                            if (!FileSystem.FileExists(file))
-                            {
-                                continue;
-                            }
-
-                            if (AppSettings.InstallSizeScanUseSizeOnDisk)
-                            {
-                                size += FileSystem.GetFileSizeOnDisk(file);
-                            }
-                            else
-                            {
-                                size += FileSystem.GetFileSize(file);
-                            }
-                        }
+                        AddPlaylistRomFilesPathsToList(rom, romsFilesPaths, CueSheet.GetFileEntries(rom.Path).Select(a => a.Path));
                     }
                     else if (rom.Path.EndsWith(".m3u", StringComparison.OrdinalIgnoreCase))
                     {
-                        var baseDir = Path.GetDirectoryName(rom.Path);
-                        var files = M3U.GetEntries(rom.Path).Select(a => Path.Combine(baseDir, a.Path));
-                        foreach (var file in files)
-                        {
-                            if (!FileSystem.FileExists(file))
-                            {
-                                continue;
-                            }
-
-                            if (AppSettings.InstallSizeScanUseSizeOnDisk)
-                            {
-                                size += FileSystem.GetFileSizeOnDisk(file);
-                            }
-                            else
-                            {
-                                size += FileSystem.GetFileSize(file);
-                            }
-                        }
+                        AddPlaylistRomFilesPathsToList(rom, romsFilesPaths, M3U.GetEntries(rom.Path).Select(a => a.Path));
                     }
                     else
                     {
-                        if (AppSettings.InstallSizeScanUseSizeOnDisk)
-                        {
-                            size += FileSystem.GetFileSizeOnDisk(rom.Path);
-                        }
-                        else
-                        {
-                            size += FileSystem.GetFileSize(rom.Path);
-                        }
+                        romsFilesPaths.Add(rom.Path);
+                    }
+                }
+
+                if (checkLastScanDate)
+                {
+                    var addedAfterLastCheck = expandedGame.LastSizeScanDate == null || expandedGame.Added != null && expandedGame.Added > expandedGame.LastSizeScanDate;
+                    if (!addedAfterLastCheck && expandedGame.LastSizeScanDate != null
+                        && !romsFilesPaths.Any(x => FileSystem.FileGetLastWriteTime(x) > expandedGame.LastSizeScanDate))
+                    {
+                        return null;
+                    }
+                }
+
+                foreach (var romFilePath in romsFilesPaths)
+                {
+                    if (AppSettings.InstallSizeScanUseSizeOnDisk)
+                    {
+                        size += FileSystem.GetFileSizeOnDisk(romFilePath);
+                    }
+                    else
+                    {
+                        size += FileSystem.GetFileSize(romFilePath);
                     }
                 }
             }
@@ -620,6 +591,22 @@ namespace Playnite
 
             game.LastSizeScanDate = DateTime.Now;
             return (ulong)size;
+        }
+
+        private void AddPlaylistRomFilesPathsToList(GameRom rom, List<string> pathsList, IEnumerable<string> playlistChildren)
+        {
+            if (!playlistChildren.HasItems())
+            {
+                return;
+            }
+            
+            var rootDir = Path.GetDirectoryName(rom.Path);
+            pathsList.AddRange
+            (
+                playlistChildren
+                .Select(a => Path.Combine(rootDir, a))
+                .Where(x => !x.IsNullOrWhiteSpace() && FileSystem.FileExists(x))
+             );
         }
 
         public Game GetExpandedGameForRomsSizeScan(Game game)
