@@ -12,7 +12,7 @@
         xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
         mc:Ignorable="d"
         Title="Playnite" ShowTitle="False"
-        Width="1280" Height="900"
+        Width="1360" Height="900"
         MinWidth="640" MinHeight="480"
         WindowStartupLocation="CenterScreen"
         Visibility="{Binding Visibility, Mode=TwoWay}"
