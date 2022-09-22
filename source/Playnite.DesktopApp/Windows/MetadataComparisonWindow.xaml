@@ -386,14 +386,14 @@
                              IsChecked="{Binding InstallSize.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
                              GroupName="InstallSize">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding CurrentGame.InstallSize}" />
+                        <TextBlock Text="{Binding CurrentGame.InstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" />
                     </RadioButton.Content>
                 </RadioButton>
                 <RadioButton Visibility="{Binding InstallSize.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                              IsChecked="{Binding InstallSize.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
                              GroupName="CommunityScore">
                     <RadioButton.Content>
-                        <TextBlock Text="{Binding NewGame.InstallSize}"  />
+                        <TextBlock Text="{Binding NewGame.InstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}"  />
                     </RadioButton.Content>
                 </RadioButton>
                 
