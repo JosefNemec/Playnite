@@ -595,59 +595,71 @@ namespace Playnite.ViewModels
 
         public void UpdateLibraryInstallSizes(CancellationToken token)
         {
-            Logger.Info($"Starting Library Install Size scan");
-            ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
-
-            var errorStrings = new List<string>();
-            var errorsCount = 0;
-            using (Database.Games.BufferedUpdate())
+            try
             {
-                foreach (var game in Database.Games)
+                ProgressActive = true;
+                ProgressValue = 0;
+                ProgressTotal = Database.Games.Count + 1;
+
+                Logger.Info($"Starting Library Install Size scan");
+                ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
+                var errorStrings = new List<string>();
+                var errorsCount = 0;
+                using (Database.Games.BufferedUpdate())
                 {
-                    if (token.IsCancellationRequested)
+                    foreach (var game in Database.Games)
                     {
-                        Logger.Info($"Library Install Size scan was cancelled");
-                        return;
+                        if (token.IsCancellationRequested)
+                        {
+                            Logger.Info($"Library Install Size scan was cancelled");
+                            return;
+                        }
+
+                        try
+                        {
+                            App.GamesEditor.UpdateGameSize(game, false, true, true);
+                        }
+                        catch (Exception e)
+                        {
+                            errorsCount++;
+                            if (errorStrings.Count < 10)
+                            {
+                                errorStrings.Add($"{game.Name}: {e.Message}");
+                            }
+                        }
+
+                        ProgressValue++;
+                    }
+                }
+
+                Logger.Info($"Finished Library Install Size scan");
+                if (errorsCount > 0)
+                {
+                    var errorMessage = ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount)
+                        + $"\n\n" + string.Join("\n", errorStrings);
+                    if (errorsCount > 10)
+                    {
+                        errorMessage += "\n...";
                     }
 
-                    try
-                    {
-                        App.GamesEditor.UpdateGameSize(game, false, true, true);
-                    }
-                    catch (Exception e)
-                    {
-                        errorsCount++;
-                        if (errorStrings.Count < 10)
-                        {
-                            errorStrings.Add($"{game.Name}: {e.Message}");
-                        }
-                    }
+                    App.Notifications.Add(new NotificationMessage(
+                            $"LibUpdateScanSizeError - {DateTime.Now}",
+                            ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount),
+                            NotificationType.Error,
+                            () =>
+                            {
+                                Dialogs.ShowMessage(
+                                    errorMessage,
+                                    Resources.GetString("LOCCalculateGameSizeErrorCaption"),
+                                    MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        )
+                    );
                 }
             }
-
-            Logger.Info($"Finished Library Install Size scan");
-            if (errorsCount > 0)
+            finally
             {
-                var errorMessage = ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount)
-                    + $"\n\n" + string.Join("\n", errorStrings);
-                if (errorsCount > 10)
-                {
-                    errorMessage += "\n...";
-                }
-
-                App.Notifications.Add(new NotificationMessage(
-                        $"LibUpdateScanSizeError - {DateTime.Now}",
-                        ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount),
-                        NotificationType.Error,
-                        () =>
-                        {
-                            Dialogs.ShowMessage(
-                                errorMessage,
-                                Resources.GetString("LOCCalculateGameSizeErrorCaption"),
-                                MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    )
-                );
+                ProgressActive = false;
             }
         }
 
