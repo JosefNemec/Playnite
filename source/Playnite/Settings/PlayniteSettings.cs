@@ -214,7 +214,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 6;
+        } = 7;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -2375,6 +2375,30 @@ namespace Playnite
                 settings.ViewSettings.ListViewColumns.Series.Field = GameField.Series;
                 settings.ViewSettings.ListViewColumns.Region.Field = GameField.Regions;
                 settings.Version = 6;
+            }
+
+            if (settings.Version == 6)
+            {
+                var oldSettings = LoadSettingFile<Dictionary<string, object>>(PlaynitePaths.ConfigFilePath);
+                if (oldSettings != null)
+                {
+                    if (oldSettings.TryGetValue("UpdateLibStartup", out var oldUpdateLibStartup) && (bool)oldUpdateLibStartup == false)
+                    {
+                        settings.CheckForLibraryUpdates = LibraryUpdateCheckFrequency.Manually;
+                    }
+
+                    if (oldSettings.TryGetValue("UpdateEmulatedLibStartup", out var oldUpdateEmulatedLibStartup) && (bool)oldUpdateEmulatedLibStartup == false)
+                    {
+                        settings.CheckForEmulatedLibraryUpdates = LibraryUpdateCheckFrequency.Manually;
+                    }
+
+                    if (oldSettings.TryGetValue("ForcePlayTimeSync", out var oldForcePlayTimeSync) && (bool)oldForcePlayTimeSync == true)
+                    {
+                        settings.PlaytimeImportMode = PlaytimeImportMode.Always;
+                    }
+                }
+
+                settings.Version = 7;
             }
 
             settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);

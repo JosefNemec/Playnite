@@ -1,4 +1,4 @@
-﻿///
+///
 /// DO NOT MODIFY! Automatically generated via buildLocConstants.ps1 script.
 /// 
 namespace Playnite
@@ -238,6 +238,14 @@ namespace Playnite
         /// </summary>
         public const string CalculateGameSizeError = "LOCCalculateGameSizeError";
         /// <summary>
+        /// Install size scan error
+        /// </summary>
+        public const string CalculateGameSizeErrorCaption = "LOCCalculateGameSizeErrorCaption";
+        /// <summary>
+        /// There were {0} errors during install size scan
+        /// </summary>
+        public const string CalculateGamesSizeErrorMessage = "LOCCalculateGamesSizeErrorMessage";
+        /// <summary>
         /// Failed to create shortcut: {0}
         /// </summary>
         public const string GameShortcutError = "LOCGameShortcutError";
@@ -465,6 +473,10 @@ namespace Playnite
         /// Confirm
         /// </summary>
         public const string ConfirmLabel = "LOCConfirmLabel";
+        /// <summary>
+        /// Reset
+        /// </summary>
+        public const string ResetLabel = "LOCResetLabel";
         /// <summary>
         /// Yes
         /// </summary>
@@ -1262,6 +1274,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsAfterGameClose = "LOCSettingsAfterGameClose";
         /// <summary>
+        /// Dates formats:
+        /// </summary>
+        public const string SettingsDatesFormatsLabel = "LOCSettingsDatesFormatsLabel";
+        /// <summary>
         /// This will log you out of all linked services. Application restart is required, do you want to proceed?
         /// </summary>
         public const string SettingsClearCacheWarn = "LOCSettingsClearCacheWarn";
@@ -1510,11 +1526,11 @@ namespace Playnite
         /// </summary>
         public const string SettingsPreferredAgeRatingOrg = "LOCSettingsPreferredAgeRatingOrg";
         /// <summary>
-        /// Scan modified install size of games on library update
+        /// Update install size of games on library update
         /// </summary>
         public const string SettingsScanLibInstallSizeOnLibUpdate = "LOCSettingsScanLibInstallSizeOnLibUpdate";
         /// <summary>
-        /// Detects if the files of a game have been modified since the last library update and scans them to get the updated install size
+        /// Scans and updates the install size of games if it is detected that their files have been modified since the last scan
         /// </summary>
         public const string SettingsScanLibInstallSizeOnLibUpdateTooltip = "LOCSettingsScanLibInstallSizeOnLibUpdateTooltip";
         /// <summary>
@@ -2041,6 +2057,10 @@ namespace Playnite
         /// Sources
         /// </summary>
         public const string SourcesLabel = "LOCSourcesLabel";
+        /// <summary>
+        /// Recent Activity
+        /// </summary>
+        public const string RecentActivityLabel = "LOCRecentActivityLabel";
         /// <summary>
         /// Database Error
         /// </summary>
@@ -3478,7 +3498,7 @@ namespace Playnite
         /// </summary>
         public const string TopPanelSelectRandomGameButton = "LOCTopPanelSelectRandomGameButton";
         /// <summary>
-        /// View random game selector
+        /// Views random game selector
         /// </summary>
         public const string TopPanelViewSelectRandomGameButton = "LOCTopPanelViewSelectRandomGameButton";
         /// <summary>
@@ -4241,5 +4261,29 @@ namespace Playnite
         /// When enabled, only updates available for currently installed major release will result in update notification.
         /// </summary>
         public const string UpdateNotifyOnlyPatchesToolip = "LOCUpdateNotifyOnlyPatchesToolip";
+        /// <summary>
+        /// Use relative dates for the past week
+        /// </summary>
+        public const string SettingsPastWeekRelativeFormat = "LOCSettingsPastWeekRelativeFormat";
+        /// <summary>
+        /// Use relative dates in "Today", "Yesterday" etc. format if the date is less than a week old.
+        /// </summary>
+        public const string SettingsPastWeekRelativeFormatTooltip = "LOCSettingsPastWeekRelativeFormatTooltip";
+        /// <summary>
+        /// Web image search
+        /// </summary>
+        public const string SettingsWebImageSearch = "LOCSettingsWebImageSearch";
+        /// <summary>
+        /// Icon image search string
+        /// </summary>
+        public const string SettingsWebImageSearchIconTerm = "LOCSettingsWebImageSearchIconTerm";
+        /// <summary>
+        /// Cover image search string
+        /// </summary>
+        public const string SettingsWebImageSearchCoverTerm = "LOCSettingsWebImageSearchCoverTerm";
+        /// <summary>
+        /// Background image search string
+        /// </summary>
+        public const string SettingsWebImageSearchBackground = "LOCSettingsWebImageSearchBackground";
     }
 }

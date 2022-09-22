@@ -80,6 +80,9 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCGameStartError">Nelze spustit hru: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Nelze spustit akci: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Nelze otevřít umístění hry: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">Nepodařilo se vytvořit zástupce: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Selhalo otevření Příručky: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Nelze nainstalovat hru: {0}</sys:String>
@@ -124,6 +127,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCLastPlayedLabel">Naposledy Hráno</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Nejvíce Hráno</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Počet Zahrání</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
     <sys:String x:Key="LOCFolderLabel">Složka</sys:String>
     <sys:String x:Key="LOCNotesLabel">Poznámky</sys:String>
     <sys:String x:Key="LOCAddedLabel">Přidáno</sys:String>
@@ -137,6 +141,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCCloseLabel">Zavřít</sys:String>
     <sys:String x:Key="LOCCancelLabel">Zrušit</sys:String>
     <sys:String x:Key="LOCConfirmLabel">Potvrdit</sys:String>
+    <sys:String x:Key="LOCResetLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">Ano</sys:String>
     <sys:String x:Key="LOCNoLabel">Ne</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Vítejte</sys:String>
@@ -181,6 +186,14 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCPastMonth">Minulý Měsíc</sys:String>
     <sys:String x:Key="LOCPastYear">Za poslední Rok</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Před více než rokem</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Import úspěšně dokončen.</sys:String>
     <sys:String x:Key="LOCAllGames">Všechny Hry</sys:String>
     <sys:String x:Key="LOCGameId">ID Hry</sys:String>
@@ -202,12 +215,13 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Prosím vyberte, která pole by měl Playnite automaticky doplnit a které zdroje by měly být použity k získání těchto údajů.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Prosím zvažte přispění aktualizacemi do databáze igdb.com (kliknutím na logo výše), čímž zlepšíte data, která Playnite používá.</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">Stahují se metadata…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importují se instalované hry…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">Importují se hry z platformy {0}…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importují se emulované hry z {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Stahují se aktualizace knihoven…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Aktualizace knihovny dokončena</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Uvolňují se zdroje…</sys:String>
     <!--Menu-->
@@ -330,6 +344,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCSettingsCloseToTray">Minimalizovat Playnite do systémové lišty když je okno aplikace uzavřeno</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Při spuštění hry:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Po ukončení hry:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Tato akce Vás odhlásí ze všech propojených služeb. Je vyžadován restart aplikace. Chcete pokračovat?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Vyčistit Mezipaměť?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Pro změnu vzhledu je třeba restartovat Playnite</sys:String>
@@ -402,6 +417,8 @@ Pokud není povoleno, obrázky na pozadí jsou staženy jen když jsou potřeba.
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Zobrazit varování při přidávání extrémně velkých herních medií</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Příkaz pro otevření adresáře</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Preferovaná organizace věkového omezení</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">Žádný</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplnit</sys:String>
     <sys:String x:Key="LOCStrechUniform">Jednotně</sys:String>
@@ -502,6 +519,7 @@ Současně ji využívá {1} her a {2} emulátorů.</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Knihovna</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Příručka</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Jméno</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Název Účtu</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platforma</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategorie</sys:String>
@@ -547,6 +565,7 @@ Je-li vypnuto, budou zobrazeny položky, které splňují alespoň jeden filtr.<
     <sys:String x:Key="LOCRegionsLabel">Regiony</sys:String>
     <sys:String x:Key="LOCSourceLabel">Zdroj</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Zdroje</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Chyba databáze</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Nepodařilo se otevřít databázi knihovny.</sys:String>
@@ -717,6 +736,10 @@ Pro více informací navštivte: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCHideGame">Skrýt tuto hru</sys:String>
     <sys:String x:Key="LOCUnHideGame">Odstranit ze Skrytých</sys:String>
     <sys:String x:Key="LOCEditGame">Upravit…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
     <sys:String x:Key="LOCSetGameCategory">Nastavit Kategorii…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Nastavit Stav Dokončení</sys:String>
     <sys:String x:Key="LOCRemoveGame">Odstranit</sys:String>
@@ -736,6 +759,7 @@ Pro více informací navštivte: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Není dostupné když probíhají jiné akce.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">V popisku lze uplatnit značky HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Herní čas je počítán v sekundách.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Datum vydání musí být ve formátu 'rok-měsíc-den'. Hodnoty pro měsíc a den můžou být vynechány.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Hodnoty od 0 do 100, případně prázdné pokud skóre není.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Vývoj Playnite podporují tito patroni:</sys:String>
@@ -752,12 +776,16 @@ Pro více informací navštivte: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Otevírání režimu Plochy…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Otevírání režimu Celé Obrazovky…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Načítání herní knihovny…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Instalace souboru skriptu se nepodařila.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Skript byl úspěšně nainstalován.</sys:String>
     <sys:String x:Key="LOCInstallScript">Nainstalovat Skript</sys:String>
     <sys:String x:Key="LOCScriptError">Chyba Skriptu</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Nepodařilo se spustit funkci rozšíření.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Otevřít složku metadat</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">Klient {0} není nainstalován.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Klient {0} bude nyní otevřen, prosím přihlaste se a poté tuto zprávu zavřete.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Čekám na přihlášení uživatele, zavřete prosím toto okno, až budete hotovi...</sys:String>
@@ -939,6 +967,8 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCTopPanelMainButtonMove">Přesunout tlačítko hlavního menu do postranního panelu</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Panel průzkumníka</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Vybírač náhodných her</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Uložit nastavení seskupování a řazení</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Zobrazit jako rychlý filtr v režimu Celé Obrazovky</sys:String>
     <sys:String x:Key="LOCInPast7Days">Za posledních 7 dní</sys:String>
@@ -1063,6 +1093,8 @@ Více informací na https://playnite.link/nahimicsucks</sys:String>
 
 Více informací na https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Zobrazit varování pokud Playnite běží s povýšenými oprávněními</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Následující rozšíření byla nahlášena jako potenciálně problematická, buď kvůli vysokému dopadu na stabilitu/výkon nebo bezpečnostním potížím. Důrazně doporučujeme, abyste je odinstalovali:
         
 {0}
@@ -1141,8 +1173,8 @@ Podporováno pouze pro: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
     <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage"></sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
@@ -1151,4 +1183,12 @@ Podporováno pouze pro: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
+        
 </ResourceDictionary>

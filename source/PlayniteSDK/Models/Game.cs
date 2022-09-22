@@ -175,7 +175,7 @@ namespace Playnite.SDK.Models
         ///
         InstallSize = 89,
         ///
-        LastSizeScanDate = 90,        
+        LastSizeScanDate = 90,
         ///
         RecentActivity = 91
     }
@@ -2340,13 +2340,9 @@ namespace Playnite.SDK.Models
             {
                 return Path.GetPathRoot(InstallDirectory).ToUpperInvariant();
             }
-            catch (ArgumentException)
-            {
-                return string.Empty;
-            }
             catch
             {
-                throw new Exception($"Failed to get root for path {InstallDirectory}");
+                return string.Empty;
             }
         }
     }
