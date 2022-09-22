@@ -80,6 +80,9 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCGameStartError">No es pot iniciar el joc: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">No es pot iniciar l’acció: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">No es pot obrir la ubicació del joc: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">No s’ha pogut crear la drecera: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">No s'ha pogut obrir el manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">No es pot instal·lar el joc: {0}</sys:String>
@@ -124,6 +127,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCLastPlayedLabel">Darrera partida</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Joc més utilitzat</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Nombre de partides</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
     <sys:String x:Key="LOCFolderLabel">Carpeta</sys:String>
     <sys:String x:Key="LOCNotesLabel">Notes</sys:String>
     <sys:String x:Key="LOCAddedLabel">Afegit</sys:String>
@@ -137,6 +141,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCCloseLabel">Tanca</sys:String>
     <sys:String x:Key="LOCCancelLabel">Cancel·la</sys:String>
     <sys:String x:Key="LOCConfirmLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">Sí</sys:String>
     <sys:String x:Key="LOCNoLabel">No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Benvingut</sys:String>
@@ -181,6 +186,14 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCPastMonth">El mes passat</sys:String>
     <sys:String x:Key="LOCPastYear">L'any passat</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Fa més d'un any</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
     <sys:String x:Key="LOCImportCompleted">La importació s'ha completat correctament.</sys:String>
     <sys:String x:Key="LOCAllGames">Tots els jocs</sys:String>
     <sys:String x:Key="LOCGameId">Id del joc</sys:String>
@@ -202,12 +215,13 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Seleccioneu quins camps ha d'emplenar automàticament Playnite i quines fonts s’utilitzaran per obtenir les dades.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Podeu fer clic al logo de dalt i contribuir a la base de dades d'igdb.com per a millorar les dades que utilitza Playnite.</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">S'estan baixant les metadades…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">S'estan important els jocs instal·lats…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">S'estan important {0} jocs…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">S'estan important jocs emulats de {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">S'estan baixant les actualitzacions de la biblioteca…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">S'ha acabat l’actualització de la biblioteca</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">S'estan alliberant els recursos…</sys:String>
     <!--Menu-->
@@ -330,6 +344,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCSettingsCloseToTray">Minimitzeu Playnite a la safata del sistema quan la finestra de l’aplicació estigui tancada</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Quan el joc comença:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Després de tancar el joc:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Això us retirarà l'accés a tots els serveis enllaçats. Cal reiniciar l’aplicació, voleu continuar?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Eliminar Cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Es requereix reiniciar Playnite per a aplicar el tema nou</sys:String>
@@ -399,6 +414,8 @@ Si desactivat, les imatges d'art de fons seran descarregades només quan es nece
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Mostrar avís quan s'assignin medis del joc molt grans</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Ordre d’obertura de directori</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Organització de classificació per edat preferida</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">Cap</sys:String>
     <sys:String x:Key="LOCStrechFill">Omplir</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniforme</sys:String>
@@ -500,6 +517,7 @@ Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Biblioteca</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Manual</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nom</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nom del compte</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plataforma</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Catgeoria(es)</sys:String>
@@ -545,6 +563,7 @@ Si està desactivat, els jocs que utilitzen qualsevol element en qualsevol filtr
     <sys:String x:Key="LOCRegionsLabel">Regions</sys:String>
     <sys:String x:Key="LOCSourceLabel">Font</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Fonts</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Error de la base de dades</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">No s’ha pogut obrir la base de dades de la biblioteca.</sys:String>
@@ -713,6 +732,10 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCHideGame">Amaga aquest joc</sys:String>
     <sys:String x:Key="LOCUnHideGame">Treu de Amagats</sys:String>
     <sys:String x:Key="LOCEditGame">Edita…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
     <sys:String x:Key="LOCSetGameCategory">Afegeix Categoria…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Estat de acabament</sys:String>
     <sys:String x:Key="LOCRemoveGame">Eliminar</sys:String>
@@ -732,6 +755,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">No està disponible quan hi ha alguna acció en curs.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">El text de descripció és sensible a la sintaxi HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">El temps de joc s'enregistra en segons.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">La data de llançament s'ha d'establir en format &quot;any-mes-dia&quot;. Els valors del mes i el dia es poden ometre.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valors de 0 a 100 o buits sense puntuació.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">El desenvolupament de Playnite és possible gràcies aquests usuaris:</sys:String>
@@ -748,12 +772,16 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Obrint mode d'escriptori…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Obrint mode de pantalla completa…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Carregant la biblioteca de jocs…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">No s’ha pogut instal·lar l'Script.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script instal·lat correctament.</sys:String>
     <sys:String x:Key="LOCInstallScript">Instal·lar Script</sys:String>
     <sys:String x:Key="LOCScriptError">Error d'Script</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">No s’ha pogut executar la funció d’extensió.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Obre la carpeta de base de dades</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">El client de {0} no està instal·lat.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Ara s'obrirà el client de {0}. Inicia sessió i tanca aquest missatge.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Esperant que l'usuari iniciï la sessió. Si us plau, tanca aquest missatge quan ho hagis fet…</sys:String>
@@ -927,6 +955,8 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
     <sys:String x:Key="LOCInPast7Days"></sys:String>
@@ -1032,6 +1062,8 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
@@ -1106,8 +1138,8 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
     <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage"></sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
@@ -1116,4 +1148,12 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
+        
 </ResourceDictionary>

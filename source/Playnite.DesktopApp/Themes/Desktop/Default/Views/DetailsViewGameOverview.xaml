@@ -107,7 +107,7 @@
                                             
                                         <GridEx Margin="0,5,0,10"
                                                 ColumnCount="2" StarColumns="1"
-                                                RowCount="21" AutoLayoutColumns="2">
+                                                RowCount="24" AutoLayoutColumns="2">
                                             <Grid.Resources>
                                                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                             </Grid.Resources>
@@ -118,9 +118,18 @@
                                             <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" />
                                             <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center" />
 
+                                            <Label Name="PART_ElemRecentActivity" Content="{DynamicResource LOCRecentActivityLabel}" />
+                                            <TextBlock Name="PART_TextRecentActivity" VerticalAlignment="Center" />
+                                            
                                             <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
                                             <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" />
 
+                                            <Label Name="PART_ElemInstallDirectory" Content="{DynamicResource LOCGameInstallDirTitle}" />
+                                            <Button Name="PART_ButtonInstallDirectory" VerticalAlignment="Center" />
+
+                                            <Label Name="PART_ElemInstallSize" Content="{DynamicResource LOCInstallSizeLabel}" />
+                                            <TextBlock Name="PART_TextInstallSize" VerticalAlignment="Center" />
+                                            
                                             <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                             <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />
 

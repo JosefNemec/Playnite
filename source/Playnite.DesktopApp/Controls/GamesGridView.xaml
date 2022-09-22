@@ -16,6 +16,7 @@
         <pcon:NiceListToStringConverter x:Key="ListToStringConverter" />
         <pcon:PlayTimeToStringConverter x:Key="PlayTimeToStringConverter" />
         <pcon:NullableDateToStringConverter x:Key="NullableDateToStringConverter" />
+        <pcon:NullableUlongBytesSizeToStringConverter x:Key="NullableUlongBytesSizeToStringConverter" />
         <pcon:DateTimeToLastPlayedConverter x:Key="DateTimeToLastPlayedConverter" />
         <pcon:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
         <pcon:BoolToAutoWidthConverter x:Key="BoolToAutoWidthConverter" />        
@@ -134,7 +135,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateReleaseDate">
-            <TextBlock Text="{Binding ReleaseDate, Mode=OneWay}" />
+            <TextBlock Text="{Binding ReleaseDate, Mode=OneWay, Converter={StaticResource ReleaseDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatReleaseDate, DirectValue=True}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateGenres">
@@ -218,9 +219,21 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateLastActivity">
-            <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource DateTimeToLastPlayedConverter}}" />
+            <TextBlock Text="{Binding LastActivity, Mode=OneWay, Converter={StaticResource DateTimeToLastPlayedConverter}, ConverterParameter={pmrk:Settings DateTimeFormatLastPlayed, DirectValue=True}}" />
         </DataTemplate>
 
+        <DataTemplate x:Key="HeaderTemplateRecentActivity">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource LOCRecentActivityLabel}" />
+                <ContentControl Style="{StaticResource SortIndicator}"
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.RecentActivity}}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CellTemplateRecentActivity">
+            <TextBlock Text="{Binding RecentActivity, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatRecentActivity, DirectValue=True}}" />
+        </DataTemplate>
+        
         <DataTemplate x:Key="HeaderTemplatePlaytime">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCTimePlayed}" />
@@ -240,7 +253,19 @@
                                 Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.PlayCount}}"/>
             </StackPanel>
         </DataTemplate>
-
+        
+        <DataTemplate x:Key="HeaderTemplateInstallSize">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource LOCInstallSizeLabel}" />
+                <ContentControl Style="{StaticResource SortIndicator}"
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.InstallSize}}"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="CellTemplateInstallSize">
+            <TextBlock Text="{Binding InstallSize, Mode=OneWay, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" />
+        </DataTemplate>
+        
         <DataTemplate x:Key="CellTemplatePlayCount">
             <TextBlock Text="{Binding PlayCount, Mode=OneWay}" />
         </DataTemplate>
@@ -324,11 +349,11 @@
                                 Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.Added}}"/>
             </StackPanel>
         </DataTemplate>
-
+        
         <DataTemplate x:Key="CellTemplateAdded">
-            <TextBlock Text="{Binding Added, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
+            <TextBlock Text="{Binding Added, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatAdded, DirectValue=True}}" />
         </DataTemplate>
-
+        
         <DataTemplate x:Key="HeaderTemplateModified">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{DynamicResource LOCModifiedLabel}" />
@@ -338,7 +363,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplateModified">
-            <TextBlock Text="{Binding Modified, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}}" />
+            <TextBlock Text="{Binding Modified, Mode=OneWay, Converter={StaticResource NullableDateToStringConverter}, ConverterParameter={pmrk:Settings DateTimeFormatModified, DirectValue=True}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateUserScore">
@@ -460,8 +485,12 @@
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.IsInstalled.Visible}" />
                         <MenuItem Header="{DynamicResource LOCGameInstallDirTitle}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.InstallDirectory.Visible}" />
+                        <MenuItem Header="{DynamicResource LOCInstallSizeLabel}"
+                                    IsCheckable="True" IsChecked="{Binding ListViewColumns.InstallSize.Visible}" />
                         <MenuItem Header="{DynamicResource LOCGameLastActivityTitle}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.LastActivity.Visible}" />
+                        <MenuItem Header="{DynamicResource LOCRecentActivityLabel}"
+                                    IsCheckable="True" IsChecked="{Binding ListViewColumns.RecentActivity.Visible}" />
                         <MenuItem Header="{DynamicResource LOCTimePlayed}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.Playtime.Visible}" />
                         <MenuItem Header="{DynamicResource LOCPlayCountLabel}"

@@ -1,4 +1,5 @@
-﻿using Playnite.Database;
+﻿using Playnite.Common;
+using Playnite.Database;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.Windows;
@@ -20,7 +21,6 @@ namespace Playnite.ViewModels
     public class RandomGameSelectViewModel : ObservableObject
     {
         private static ILogger logger = LogManager.GetLogger();
-        private readonly Random random = new Random();
         private readonly IWindowFactory window;
         private readonly IResourceProvider resources;
         private readonly BaseCollectionView collection;
@@ -133,7 +133,7 @@ namespace Playnite.ViewModels
                     var newSelection = lastSelection;
                     while (newSelection == lastSelection)
                     {
-                        var index = random.Next(0, count);
+                        var index = GlobalRandom.Next(0, count);
                         newSelection = (collection.CollectionView.GetItemAt(index) as GamesCollectionViewEntry).Game;
                     }
 
@@ -156,7 +156,7 @@ namespace Playnite.ViewModels
                     var newSelection = lastSelection;
                     while (newSelection == lastSelection)
                     {
-                        var index = random.Next(0, count);
+                        var index = GlobalRandom.Next(0, count);
                         newSelection = database.Games.ElementAt(index);
                     }
 

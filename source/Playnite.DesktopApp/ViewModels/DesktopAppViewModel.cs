@@ -982,6 +982,28 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public void ViewSelectRandomGame()
+        {
+            var count = GamesView.CollectionView.Count;
+            if (count == 1)
+            {
+                SelectGame((GamesView.CollectionView.GetItemAt(0) as GamesCollectionViewEntry).Id);
+            }
+            else if (count > 1)
+            {
+                while (true)
+                {
+                    var index = GlobalRandom.Next(0, count);
+                    var newGame = GamesView.CollectionView.GetItemAt(index) as GamesCollectionViewEntry;
+                    if (SelectedGame == null || SelectedGame != newGame)
+                    {
+                        SelectGame(newGame.Id);
+                        break;
+                    }
+                }
+            }
+        }
+
         public void OpenView()
         {
             if (App.CmdLine.StartClosedToTray && AppSettings.EnableTray)

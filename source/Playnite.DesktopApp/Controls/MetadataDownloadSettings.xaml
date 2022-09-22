@@ -215,6 +215,12 @@
             <CheckBox IsChecked="{Binding Settings.BackgroundImage.Import}" Style="{StaticResource CheckImportStyle}"/>
             <ContentControl DataContext="{Binding BackgroundImageSettings}" IsTabStop="False"
                             Template="{StaticResource SourceSelector}" />
+
+            <!--InstallSize-->
+            <TextBlock Text="{DynamicResource LOCInstallSizeLabel}"  />
+            <CheckBox IsChecked="{Binding Settings.InstallSize.Import}" Style="{StaticResource CheckImportStyle}"/>
+            <ContentControl DataContext="{Binding InstallSizeSettings}" IsTabStop="False"
+                            Template="{StaticResource SourceSelector}" />
         </GridEx>
     </DockPanel>
 </UserControl>

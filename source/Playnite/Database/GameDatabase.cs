@@ -1076,7 +1076,8 @@ namespace Playnite.Database
                 CriticScore = game.CriticScore,
                 CommunityScore = game.CommunityScore,
                 Hidden = game.Hidden,
-                Favorite = game.Favorite
+                Favorite = game.Favorite,
+                InstallSize = game.InstallSize
             };
 
             if (game.Platforms?.Any() == true)
@@ -1286,6 +1287,13 @@ namespace Playnite.Database
                                 {
                                     existingGameUpdated = true;
                                 }
+                            }
+
+                            if (!existingGame.IsInstalled && newGame.InstallSize != null && newGame.InstallSize > 0 &&
+                                existingGame.InstallSize != newGame.InstallSize)
+                            {
+                                existingGame.InstallSize = newGame.InstallSize;
+                                existingGameUpdated = true;
                             }
 
                             if (existingGameUpdated)

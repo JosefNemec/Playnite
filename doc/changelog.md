@@ -5,6 +5,7 @@
 * New
   * Built-in emulator profiles exposed in [Emulation](xref:Playnite.SDK.IEmulationAPI) API.
   * Added an option to switch progress bar mode from inside `ActivateGlobalProgress` dialog function while progress dialog is already opened.
+  * Metadata plugins can provide data for new `InstallSize` field.
 
 #### 6.3.0
 

@@ -188,6 +188,25 @@ namespace Playnite
         OnceAWeek = 2
     }
 
+    public class DateFormattingOptions : ObservableObject
+    {
+        private string format;
+        private bool pastWeekRelativeFormat;
+
+        public string Format { get => format; set => SetValue(ref format, value); }
+        public bool PastWeekRelativeFormat { get => pastWeekRelativeFormat; set => SetValue(ref pastWeekRelativeFormat, value); }
+
+        public DateFormattingOptions()
+        {
+        }
+
+        public DateFormattingOptions(string format, bool pastWeekRelativeFormat)
+        {
+            Format = format;
+            PastWeekRelativeFormat = pastWeekRelativeFormat;
+        }
+    }
+
     public class PlayniteSettings : ObservableObject
     {
         private static SDK.ILogger logger = SDK.LogManager.GetLogger();
@@ -195,7 +214,7 @@ namespace Playnite
         public int Version
         {
             get; set;
-        } = 6;
+        } = 7;
 
         private DetailsVisibilitySettings detailsVisibility = new DetailsVisibilitySettings();
         public DetailsVisibilitySettings DetailsVisibility
@@ -1774,6 +1793,17 @@ namespace Playnite
             }
         }
 
+        private bool showTopPanelViewSelectRandomGameButton = true;
+        public bool ShowTopPanelViewSelectRandomGameButton
+        {
+            get => showTopPanelViewSelectRandomGameButton;
+            set
+            {
+                showTopPanelViewSelectRandomGameButton = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool showTopPanelSearchButton = true;
         public bool ShowTopPanelSearchButton
         {
@@ -1918,6 +1948,88 @@ namespace Playnite
             set
             {
                 showElevatedRightsWarning = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatAdded = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatAdded
+        {
+            get => dateTimeFormatAdded;
+            set
+            {
+                dateTimeFormatAdded = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatModified = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatModified
+        {
+            get => dateTimeFormatModified;
+            set
+            {
+                dateTimeFormatModified = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatRecentActivity = new DateFormattingOptions(Constants.DefaultDateTimeFormat, true);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatRecentActivity
+        {
+            get => dateTimeFormatRecentActivity;
+            set
+            {
+                dateTimeFormatRecentActivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatReleaseDate = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatReleaseDate
+        {
+            get => dateTimeFormatReleaseDate;
+            set
+            {
+                dateTimeFormatReleaseDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateFormattingOptions dateTimeFormatLastPlayed = new DateFormattingOptions(Constants.DefaultDateTimeFormat, true);
+        [RequiresRestart]
+        public DateFormattingOptions DateTimeFormatLastPlayed
+        {
+            get => dateTimeFormatLastPlayed;
+            set
+            {
+                dateTimeFormatLastPlayed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool installSizeScanUseSizeOnDisk = true;
+        public bool InstallSizeScanUseSizeOnDisk
+        {
+            get => installSizeScanUseSizeOnDisk;
+            set
+            {
+                installSizeScanUseSizeOnDisk = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool scanLibInstallSizeOnLibUpdate = true;
+        public bool ScanLibInstallSizeOnLibUpdate
+        {
+            get => scanLibInstallSizeOnLibUpdate;
+            set
+            {
+                scanLibInstallSizeOnLibUpdate = value;
                 OnPropertyChanged();
             }
         }
@@ -2263,6 +2375,30 @@ namespace Playnite
                 settings.ViewSettings.ListViewColumns.Series.Field = GameField.Series;
                 settings.ViewSettings.ListViewColumns.Region.Field = GameField.Regions;
                 settings.Version = 6;
+            }
+
+            if (settings.Version == 6)
+            {
+                var oldSettings = LoadSettingFile<Dictionary<string, object>>(PlaynitePaths.ConfigFilePath);
+                if (oldSettings != null)
+                {
+                    if (oldSettings.TryGetValue("UpdateLibStartup", out var oldUpdateLibStartup) && (bool)oldUpdateLibStartup == false)
+                    {
+                        settings.CheckForLibraryUpdates = LibraryUpdateCheckFrequency.Manually;
+                    }
+
+                    if (oldSettings.TryGetValue("UpdateEmulatedLibStartup", out var oldUpdateEmulatedLibStartup) && (bool)oldUpdateEmulatedLibStartup == false)
+                    {
+                        settings.CheckForEmulatedLibraryUpdates = LibraryUpdateCheckFrequency.Manually;
+                    }
+
+                    if (oldSettings.TryGetValue("ForcePlayTimeSync", out var oldForcePlayTimeSync) && (bool)oldForcePlayTimeSync == true)
+                    {
+                        settings.PlaytimeImportMode = PlaytimeImportMode.Always;
+                    }
+                }
+
+                settings.Version = 7;
             }
 
             settings.WindowPositions = LoadExternalConfig<WindowPositions>(PlaynitePaths.WindowPositionsPath, PlaynitePaths.BackupWindowPositionsPath);

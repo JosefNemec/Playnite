@@ -50,6 +50,8 @@ namespace Playnite.API
         public bool DisableHwAcceleration => settings.DisableHwAcceleration;
         public bool AsyncImageLoading => settings.AsyncImageLoading;
         public bool DownloadMetadataOnImport => settings.DownloadMetadataOnImport;
+        public bool InstallSizeScanUseSizeOnDisk => settings.InstallSizeScanUseSizeOnDisk;
+        public bool ScanLibInstallSizeOnLibUpdate => settings.ScanLibInstallSizeOnLibUpdate;
         public bool StartInFullscreen => settings.StartInFullscreen;
         public string DatabasePath => settings.DatabasePath;
         public bool MinimizeToTray => settings.MinimizeToTray;

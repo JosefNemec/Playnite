@@ -124,6 +124,11 @@ namespace Playnite.Tests.Metadata
             {
                 return metadata.Series;
             }
+
+            public override ulong? GetInstallSize(GetMetadataFieldArgs args)
+            {
+                return metadata.InstallSize;
+            }
         }
 
         public class TestMetadataPlugin : MetadataPlugin
@@ -358,7 +363,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Tags,
                 MetadataField.Genres,
                 MetadataField.ReleaseDate,
-                MetadataField.Features
+                MetadataField.Features,
+                MetadataField.InstallSize
             });
 
             List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
@@ -388,7 +394,8 @@ namespace Playnite.Tests.Metadata
                     Tags = new HashSet<MetadataProperty> { new MetadataNameProperty("Tag") },
                     Features = new HashSet<MetadataProperty> { new MetadataNameProperty("Feature") },
                     Description = "Description",
-                    Links = new List<Link> { new Link() }
+                    Links = new List<Link> { new Link() },
+                    InstallSize = 1000
                 });
 
                 importedGame.PluginId = storeId;
@@ -423,6 +430,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("Tag", game.Tags[0].Name);
                 Assert.AreEqual("Feature", game.Features[0].Name);
                 Assert.AreEqual(2012, game.ReleaseDate.Value.Year);
+                Assert.AreEqual(1000, game.InstallSize);
             }
         }
 
@@ -443,7 +451,8 @@ namespace Playnite.Tests.Metadata
                 MetadataField.Tags,
                 MetadataField.Genres,
                 MetadataField.ReleaseDate,
-                MetadataField.Features
+                MetadataField.Features,
+                MetadataField.InstallSize
             });
 
             var gameId = "Game1";
@@ -463,7 +472,8 @@ namespace Playnite.Tests.Metadata
                 Features = new HashSet<MetadataProperty> { new MetadataNameProperty($"IGDB Feature {gameId}") },
                 Icon = icon,
                 BackgroundImage = background,
-                CoverImage = image
+                CoverImage = image,
+                InstallSize = 2000
             };
 
             List<MetadataPlugin> metadataDownloaders = new List<MetadataPlugin>()
@@ -490,7 +500,8 @@ namespace Playnite.Tests.Metadata
                     Features = new HashSet<MetadataProperty> { new MetadataNameProperty("Features") },
                     UserScore = 1,
                     CommunityScore = 2,
-                    CriticScore = 3
+                    CriticScore = 3,
+                    InstallSize = 1000
                 });
 
                 addedGame.Icon = "Icon";
@@ -518,6 +529,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("Tags", game1.Tags[0].Name);
                 Assert.AreEqual("Features", game1.Features[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
+                Assert.AreEqual(1000, game1.InstallSize);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
                 Assert.IsNotEmpty(game1.CoverImage);
@@ -540,6 +552,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
                 Assert.AreEqual("IGDB Feature Game1", game1.Features[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
+                Assert.AreEqual(2000, game1.InstallSize);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
                 Assert.IsNotEmpty(game1.CoverImage);
@@ -566,6 +579,7 @@ namespace Playnite.Tests.Metadata
                 Assert.AreEqual("IGDB Tag Game1", game1.Tags[0].Name);
                 Assert.AreEqual("IGDB Feature Game1", game1.Features[0].Name);
                 Assert.AreEqual(2012, game1.ReleaseDate.Value.Year);
+                Assert.AreEqual(2000, game1.InstallSize);
                 Assert.IsNotEmpty(game1.BackgroundImage);
                 Assert.IsNotEmpty(game1.Icon);
                 Assert.IsNotEmpty(game1.CoverImage);

@@ -80,6 +80,9 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCGameStartError">Cannot start game: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Cannot start action: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Cannot open game location: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Could not detect game install size: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Install size scan error</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">There were {0} errors during install size scan</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Failed to create shortcut: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Failed to open manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Cannot install game: {0}</sys:String>
@@ -124,6 +127,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCLastPlayedLabel">Last Played</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Most Played</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Play Count</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">Install Size</sys:String>
     <sys:String x:Key="LOCFolderLabel">Folder</sys:String>
     <sys:String x:Key="LOCNotesLabel">Notes</sys:String>
     <sys:String x:Key="LOCAddedLabel">Added</sys:String>
@@ -137,6 +141,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCCloseLabel">Close</sys:String>
     <sys:String x:Key="LOCCancelLabel">Cancel</sys:String>
     <sys:String x:Key="LOCConfirmLabel">Confirm</sys:String>
+    <sys:String x:Key="LOCResetLabel">Reset</sys:String>
     <sys:String x:Key="LOCYesLabel">Yes</sys:String>
     <sys:String x:Key="LOCNoLabel">No</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Welcome</sys:String>
@@ -181,6 +186,14 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCPastMonth">Past Month</sys:String>
     <sys:String x:Key="LOCPastYear">Past Year</sys:String>
     <sys:String x:Key="LOCMoreThenYear">More than a year ago</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0 to 100MB</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100MB to 1GB</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1GB to 5GB</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5GB to 10GB</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10GB to 20GB</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20GB to 40GB</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40GB to 100GB</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB or more</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import completed successfully.</sys:String>
     <sys:String x:Key="LOCAllGames">All Games</sys:String>
     <sys:String x:Key="LOCGameId">Game Id</sys:String>
@@ -202,12 +215,13 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Please select which fields should be automatically populated by Playnite and which sources should be used to obtain the data from.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Please consider clicking on the logo above and contribute updates to igdb.com database in order to improve data Playnite uses.</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">Downloading metadata…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importing installed games…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">Importing {0} games…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importing emulated games from {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Downloading library updates…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Scanning size of games in library…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Library update finished</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Releasing resources…</sys:String>
     <!--Menu-->
@@ -330,6 +344,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsCloseToTray">Minimize Playnite to system tray when the application window is closed</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">When game starts:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">After game closes:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Dates formats:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">This will log you out of all linked services. Application restart is required, do you want to proceed?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Clear Cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite restart is required to apply new theme</sys:String>
@@ -402,6 +417,8 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Display warning when assigning too large game media</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Folder open command</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Preferred age rating organization</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Update install size of games on library update</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Scans and updates the install size of games if it is detected that their files have been modified since the last scan</sys:String>
     <sys:String x:Key="LOCStrechNone">None</sys:String>
     <sys:String x:Key="LOCStrechFill">Fill</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniform</sys:String>
@@ -502,6 +519,7 @@ It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Library</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Manual</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Name</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">Install Drive</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Account Name</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Category</sys:String>
@@ -547,6 +565,7 @@ If disabled, games that use any item in any filter will be included in the view.
     <sys:String x:Key="LOCRegionsLabel">Regions</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Sources</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Recent Activity</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Database Error</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Failed to open library database.</sys:String>
@@ -717,6 +736,10 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCHideGame">Hide this game</sys:String>
     <sys:String x:Key="LOCUnHideGame">Remove from Hidden</sys:String>
     <sys:String x:Key="LOCEditGame">Edit…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">Calculate install size</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">Calculate install size (All games)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">Calculate install size (Only missing data)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">Install size</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Set Category…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Set Completion Status</sys:String>
     <sys:String x:Key="LOCRemoveGame">Remove</sys:String>
@@ -736,6 +759,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Not available when some action is in progress.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Description text is HTML syntax sensitive</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Game time is recorded in seconds.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">Install size is indicated in bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Release date must be set in 'year-month-day' format. Month and Day values can be omitted.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Values from 0 to 100 or empty for no score.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
@@ -752,12 +776,16 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Opening Desktop mode…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Opening Fullscreen mode…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Loading game library…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">Calculating install size…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Calculating install size of {0}…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Failed to install script file.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script installed successfully.</sys:String>
     <sys:String x:Key="LOCInstallScript">Install Script</sys:String>
     <sys:String x:Key="LOCScriptError">Script error</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Failed to execute extension function.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Open metadata folder</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">Calculate</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">Automatically calculates the install size using the Roms if the game has any or the installation directory if it has been set</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} client is not installed.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} client will now open. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Waiting for user to sign in, please close this when you're done…</sys:String>
@@ -939,6 +967,8 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCTopPanelMainButtonMove">Move main menu button to the sidebar</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Explorer panel</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Random game picker</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Views random game selector</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Select random game from the view</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Save grouping and sorting settings</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Show as quick filter in Fullscreen mode</sys:String>
     <sys:String x:Key="LOCInPast7Days">In past 7 days</sys:String>
@@ -1063,6 +1093,9 @@ More information at https://playnite.link/nahimicsucks</sys:String>
 
 More information at https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Show warning if Playnite is running with elevated privileges</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">Get the real size on drive when calculating the size of games</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">If enabled, scans will be slower and will get the real size that files use in the drive.
+If disabled, scans will be faster and will use the size of the files themselves.</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Following add-on(s) have been reported as potentially problematic, either due to high stability/performance impact or security issues. We strongly recommend that you uninstall them:
         
 {0}
@@ -1164,6 +1197,10 @@ Playnite will automatically restart to start backup process.</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Show notifications for patch releases only</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">When enabled, only updates available for currently installed major release will result in update notification.
 New major releases will not result in update notification.</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat">Use relative dates for the past week</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve">Use relative dates in "Today", "Yesterday" etc. format if the date is less than a week old.
+    
+The specified date format will be used for all other dates.</sys:String>
 
     <sys:String x:Key="LOCSettingsWebImageSearch">Web image search</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Icon image search string</sys:String>

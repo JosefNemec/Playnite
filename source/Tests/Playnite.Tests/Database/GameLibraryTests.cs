@@ -65,5 +65,53 @@ namespace Playnite.Tests.Database
                 Assert.AreEqual(timeToImport, db.Games.First().Playtime);
             }
         }
+
+        [Test]
+        public void InstallSizeImportTest()
+        {
+            var gameId = "testId";
+            var libPlugin = new Mock<LibraryPlugin>(MockBehavior.Loose, null);
+            ulong? installSizeToImport = 200;
+            libPlugin.Setup(a => a.Id).Returns(Guid.NewGuid());
+            libPlugin.Setup(a => a.GetGames(It.IsAny<LibraryGetGamesArgs>())).Returns(() => new List<GameMetadata>
+            {
+                new GameMetadata()
+                {
+                    GameId = gameId,
+                    InstallSize = installSizeToImport,
+                    IsInstalled = true
+                }
+            });
+
+            using (var temp = TempDirectory.Create())
+            using (var db = new GameDatabase(temp.TempPath))
+            using (var token = new CancellationTokenSource())
+            {
+                db.OpenDatabase();
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.NewImportsOnly);
+                var g = db.Games.First();
+                Assert.AreEqual(installSizeToImport, g.InstallSize);
+                
+                installSizeToImport = 999;
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreNotEqual(installSizeToImport, g.InstallSize);
+                
+                g.IsInstalled = false;
+                g.OverrideInstallState = true;
+                db.Games.Update(g);
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreEqual(installSizeToImport, g.InstallSize);
+
+                g.OverrideInstallState = false;
+                db.Games.Update(g);
+                installSizeToImport = null;
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreNotEqual(installSizeToImport, g.InstallSize);
+
+                installSizeToImport = 0;
+                db.ImportGames(libPlugin.Object, token.Token, PlaytimeImportMode.Always);
+                Assert.AreNotEqual(installSizeToImport, g.InstallSize);
+            }
+        }
     }
 }

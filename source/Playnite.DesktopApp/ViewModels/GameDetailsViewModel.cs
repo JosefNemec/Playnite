@@ -128,9 +128,24 @@ namespace Playnite.DesktopApp.ViewModels
             get => (settings.DetailsVisibility.PlayTime) ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility InstallSizeVisibility
+        {
+            get => (settings.DetailsVisibility.InstallSize && game.InstallSize != null) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility InstallDirectoryVisibility
+        {
+            get => (settings.DetailsVisibility.InstallDirectory && game.IsInstalled && !string.IsNullOrWhiteSpace(game.InstallDirectory)) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility LastPlayedVisibility
         {
             get => (settings.DetailsVisibility.LastPlayed) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public Visibility RecentActivityVisibility
+        {
+            get => (settings.DetailsVisibility.RecentActivity && (game.LastActivity != null || game.Added != null)) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public Visibility CompletionStatusVisibility
@@ -278,6 +293,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<DatabaseObject> SetSourceFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetRegionFilterCommand { get; }
         public RelayCommand<DatabaseObject> SetCompletionStatusFilterCommand { get; }
+        public RelayCommand<Game> OpenGameLocationCommand { get; }
         public RelayCommand<string> SetVersionFilterCommand { get; }
         public RelayCommand<Link> OpenLinkCommand { get; }
         public RelayCommand<DatabaseObject> PlayCommand { get; }
@@ -346,6 +362,11 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Play();
                 }
+            });
+
+            OpenGameLocationCommand = new RelayCommand<Game>((a) =>
+            {
+                editor.OpenGameLocation(a);
             });
 
             this.resources = resources;

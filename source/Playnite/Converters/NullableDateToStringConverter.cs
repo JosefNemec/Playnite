@@ -14,6 +14,8 @@ namespace Playnite.Converters
 {
     public class NullableDateToStringConverter : MarkupExtension, IValueConverter
     {
+        public static readonly NullableDateToStringConverter Instance = new NullableDateToStringConverter();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
@@ -21,8 +23,19 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            var date = ((DateTime?)value).Value;
-            return date.ToString(Common.Constants.DateUiFormat);
+            if (value is DateTime date)
+            {
+                if (parameter is DateFormattingOptions options)
+                {
+                    return date.ToDisplayString(options);
+                }
+
+                return date.ToString(Common.Constants.DateUiFormat);
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -51,15 +64,29 @@ namespace Playnite.Converters
 
     public class ReleaseDateToStringConverter : MarkupExtension, IValueConverter
     {
+        public static readonly ReleaseDateToStringConverter Instance = new ReleaseDateToStringConverter();
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is ReleaseDate date)
             {
-                return date.Serialize();
+                if (parameter != null && date.Month != null && date.Day != null)
+                {
+                    if (parameter is DateFormattingOptions options)
+                    {
+                        return date.Date.ToDisplayString(options);
+                    }
+
+                    return date.Date.ToString(Common.Constants.DateUiFormat);
+                }
+                else
+                {
+                    return date.Serialize();
+                }
             }
             else if (value == null)
             {
-                return null;
+                return string.Empty;
             }
             else
             {
@@ -99,6 +126,31 @@ namespace Playnite.Converters
             }
 
             return new ValidationResult(true, null);
+        }
+    }
+
+    public class DateTimeFormatToStringValidation : ValidationRule
+    {
+        private const string InvalidFormatInput = "Format does not contain a valid custom format pattern!";
+        private const string InvalidArgumentRangeInput = "The date and time is outside the range of dates supported!";
+        private static DateTime TestDate = DateTime.Now;
+
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            var str = (string)value;
+            try
+            {
+                TestDate.ToString(str);
+                return new ValidationResult(true, null);
+            }
+            catch (FormatException)
+            {
+                return new ValidationResult(false, InvalidFormatInput);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return new ValidationResult(false, InvalidArgumentRangeInput);
+            }
         }
     }
 }

@@ -186,6 +186,21 @@ namespace Playnite
             }
         }
 
+        private ListViewColumnProperty recentActivity = new ListViewColumnProperty(GameField.RecentActivity);
+        public ListViewColumnProperty RecentActivity
+        {
+            get
+            {
+                return recentActivity;
+            }
+
+            set
+            {
+                recentActivity = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ListViewColumnProperty isInstalled = new ListViewColumnProperty(GameField.IsInstalled);
         public ListViewColumnProperty IsInstalled
         {
@@ -287,6 +302,21 @@ namespace Playnite
             set
             {
                 playCount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ListViewColumnProperty installSize = new ListViewColumnProperty(GameField.InstallSize);
+        public ListViewColumnProperty InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                installSize = value;
                 OnPropertyChanged();
             }
         }

@@ -43,5 +43,51 @@ namespace Playnite
         {
             return new TempDateTime(dates);
         }
+
+        public static string ToDisplayString(this DateTime date, DateFormattingOptions options = null)
+        {
+            if (options == null)
+            {
+                return date.ToString(Common.Constants.DateUiFormat);
+            }
+
+            if (options.PastWeekRelativeFormat)
+            {
+                if (date.Date == DateTime.Today)
+                {
+                    return LOC.Today.GetLocalized();
+                }
+
+                if (date.Date.AddDays(1) == DateTime.Today)
+                {
+                    return LOC.Yesterday.GetLocalized();
+                }
+
+                var currentDate = DateTime.Now;
+                var diff = currentDate - date;
+                if (diff.TotalDays < 7)
+                {
+                    switch (date.DayOfWeek)
+                    {
+                        case DayOfWeek.Sunday:
+                            return LOC.Sunday.GetLocalized();
+                        case DayOfWeek.Monday:
+                            return LOC.Monday.GetLocalized();
+                        case DayOfWeek.Tuesday:
+                            return LOC.Tuesday.GetLocalized();
+                        case DayOfWeek.Wednesday:
+                            return LOC.Wednesday.GetLocalized();
+                        case DayOfWeek.Thursday:
+                            return LOC.Thursday.GetLocalized();
+                        case DayOfWeek.Friday:
+                            return LOC.Friday.GetLocalized();
+                        case DayOfWeek.Saturday:
+                            return LOC.Saturday.GetLocalized();
+                    }
+                }
+            }
+
+            return date.ToString(options.Format ?? Common.Constants.DateUiFormat);
+        }
     }
 }

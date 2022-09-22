@@ -565,6 +565,11 @@ namespace Playnite.ViewModels
                     AppSettings.LastEmuLibraryUpdateCheck = DateTimes.Now;
                 }
 
+                if (AppSettings.ScanLibInstallSizeOnLibUpdate)
+                {
+                    UpdateLibraryInstallSizes(token);
+                }
+
                 return addedGames;
             }, metaForNewGames);
         }
@@ -578,8 +583,84 @@ namespace Playnite.ViewModels
 
             await UpdateLibraryData((token) =>
             {
-                return ImportLibraryGames(plugin, token);
+                var addedGames = ImportLibraryGames(plugin, token);
+                if (AppSettings.ScanLibInstallSizeOnLibUpdate)
+                {
+                    UpdateLibraryInstallSizes(token);
+                }
+
+                return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
+        }
+
+        public void UpdateLibraryInstallSizes(CancellationToken token)
+        {
+            try
+            {
+                ProgressActive = true;
+                ProgressValue = 0;
+                ProgressTotal = Database.Games.Count + 1;
+
+                Logger.Info($"Starting Library Install Size scan");
+                ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
+                var errorStrings = new List<string>();
+                var errorsCount = 0;
+                using (Database.Games.BufferedUpdate())
+                {
+                    foreach (var game in Database.Games)
+                    {
+                        if (token.IsCancellationRequested)
+                        {
+                            Logger.Info($"Library Install Size scan was cancelled");
+                            return;
+                        }
+
+                        try
+                        {
+                            App.GamesEditor.UpdateGameSize(game, false, true, true);
+                        }
+                        catch (Exception e)
+                        {
+                            errorsCount++;
+                            if (errorStrings.Count < 10)
+                            {
+                                errorStrings.Add($"{game.Name}: {e.Message}");
+                            }
+                        }
+
+                        ProgressValue++;
+                    }
+                }
+
+                Logger.Info($"Finished Library Install Size scan");
+                if (errorsCount > 0)
+                {
+                    var errorMessage = ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount)
+                        + $"\n\n" + string.Join("\n", errorStrings);
+                    if (errorsCount > 10)
+                    {
+                        errorMessage += "\n...";
+                    }
+
+                    App.Notifications.Add(new NotificationMessage(
+                            $"LibUpdateScanSizeError - {DateTime.Now}",
+                            ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount),
+                            NotificationType.Error,
+                            () =>
+                            {
+                                Dialogs.ShowMessage(
+                                    errorMessage,
+                                    Resources.GetString("LOCCalculateGameSizeErrorCaption"),
+                                    MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        )
+                    );
+                }
+            }
+            finally
+            {
+                ProgressActive = false;
+            }
         }
 
         private List<Game> ImportEmulatedGames(GameScannerConfig scanConfig, CancellationToken token)

@@ -171,7 +171,13 @@ namespace Playnite.SDK.Models
         ///
         CompletionStatusId = 87,
         ///
-        OverrideInstallState = 88
+        OverrideInstallState = 88,
+        ///
+        InstallSize = 89,
+        ///
+        LastSizeScanDate = 90,
+        ///
+        RecentActivity = 91
     }
 
     /// <summary>
@@ -360,6 +366,7 @@ namespace Playnite.SDK.Models
                 lastActivity = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(LastActivitySegment));
+                OnPropertyChanged(nameof(RecentActivity));
             }
         }
 
@@ -742,6 +749,7 @@ namespace Playnite.SDK.Models
                 added = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(AddedSegment));
+                OnPropertyChanged(nameof(RecentActivity));
             }
         }
 
@@ -778,6 +786,42 @@ namespace Playnite.SDK.Models
             set
             {
                 playCount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ulong? installSize = null;
+        /// <summary>
+        /// Gets or sets the install size in bytes of the game.
+        /// </summary>
+        public ulong? InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                installSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime? lastSizeScanDate;
+        /// <summary>
+        /// Gets or sets date of last date of install size scan made to a game.
+        /// </summary>
+        public DateTime? LastSizeScanDate
+        {
+            get
+            {
+                return lastSizeScanDate;
+            }
+
+            set
+            {
+                lastSizeScanDate = value;
                 OnPropertyChanged();
             }
         }
@@ -1264,6 +1308,15 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets the most recent date between the last played and added dates.
+        /// </summary>
+        [DontSerialize]
+        public DateTime? RecentActivity
+        {
+            get => GetGameRecentActivity();
+        }
+
+        /// <summary>
         /// Gets game's user score rating.
         /// </summary>
         [DontSerialize]
@@ -1372,6 +1425,26 @@ namespace Playnite.SDK.Models
         }
 
         #endregion Expanded
+
+        /// <summary>
+        /// Gets the most recent date between the last played and added dates.
+        /// </summary>
+        /// <returns></returns>
+        public DateTime? GetGameRecentActivity()
+        {
+            if (lastActivity == null)
+            {
+                return added;
+            }
+            else if (added == null || lastActivity > added)
+            {
+                return lastActivity;
+            }
+            else
+            {
+                return added;
+            }
+        }
 
         /// <summary>
         /// Gets play time category.
@@ -1736,6 +1809,16 @@ namespace Playnite.SDK.Models
                     tro.PlayCount = PlayCount;
                 }
 
+                if (InstallSize != tro.InstallSize)
+                {
+                    tro.InstallSize = InstallSize;
+                }
+
+                if (LastSizeScanDate != tro.lastSizeScanDate)
+                {
+                    tro.LastSizeScanDate = LastSizeScanDate;
+                }
+
                 if (!SeriesIds.IsListEqual(tro.SeriesIds))
                 {
                     tro.SeriesIds = SeriesIds;
@@ -2028,6 +2111,16 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.PlayCount);
             }
 
+            if (InstallSize != otherGame.InstallSize)
+            {
+                changes.Add(GameField.InstallSize);
+            }
+
+            if (LastSizeScanDate != otherGame.LastSizeScanDate)
+            {
+                changes.Add(GameField.LastSizeScanDate);
+            }
+
             if (!SeriesIds.IsListEqual(otherGame.SeriesIds))
             {
                 changes.Add(GameField.SeriesIds);
@@ -2168,6 +2261,88 @@ namespace Playnite.SDK.Models
             {
                 var firstChar = char.ToUpper(nameMatch[0]);
                 return char.IsLetter(firstChar) ? firstChar : '#';
+            }
+        }
+
+        /// <summary>
+        /// Gets game Install Size group.
+        /// </summary>
+        public InstallSizeGroup GetInstallSizeGroup()
+        {
+            if (installSize == null || installSize == 0)
+            {
+                return InstallSizeGroup.None;
+            }
+            else if (installSize <= 0x6400000) //100MB
+            {
+                return InstallSizeGroup.S0_0MB_100MB;
+            }
+            else if (installSize <= 0x40000000) //1GB
+            {
+                return InstallSizeGroup.S1_100MB_1GB;
+            }
+            else if (installSize <= 0x140000000) //5GB
+            {
+                return InstallSizeGroup.S2_1GB_5GB;
+            }
+            else if (installSize <= 0x280000000) //10GB
+            {
+                return InstallSizeGroup.S3_5GB_10GB;
+            }
+            else if (installSize <= 0x500000000) //20GB
+            {
+                return InstallSizeGroup.S4_10GB_20GB;
+            }
+            else if (installSize <= 0xA00000000) //40GB
+            {
+                return InstallSizeGroup.S5_20GB_40GB;
+            }
+            else if (installSize <= 0x1900000000) //100GB
+            {
+                return InstallSizeGroup.S6_40GB_100GB;
+            }
+
+            return InstallSizeGroup.S7_100GBPlus;
+        }
+
+        /// <summary>
+        /// Gets game Install Drive group.
+        /// </summary>
+        public string GetInstallDriveGroup()
+        {
+            var installDrive = GetInstallDrive();
+            if (string.IsNullOrEmpty(installDrive))
+            {
+                return ResourceProvider.GetString("LOCNone");
+            }
+            else
+            {
+                return installDrive;
+            }
+        }
+
+        /// <summary>
+        /// Gets game Install Drive.
+        /// </summary>
+        public string GetInstallDrive()
+        {
+            if (!isInstalled)
+            {
+                return string.Empty;
+            }
+
+            if (string.IsNullOrWhiteSpace(InstallDirectory))
+            {
+                return string.Empty;
+            }
+
+            try
+            {
+                return Path.GetPathRoot(InstallDirectory).ToUpperInvariant();
+            }
+            catch
+            {
+                return string.Empty;
             }
         }
     }

@@ -78,6 +78,9 @@
     <sys:String x:Key="LOCGameStartError">Не може да се покрене игра: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Не може да се уради радња: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Не може да се отвори локација игре: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">Неуспешно прављење пречице: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Неуспешно отварање упутсва за коришћење: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Не може да се инсталира игра: {0}</sys:String>
@@ -122,6 +125,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">Последњи пут играно</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Највише играно</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Време играња</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
     <sys:String x:Key="LOCFolderLabel">Фолдер</sys:String>
     <sys:String x:Key="LOCNotesLabel">Напомене</sys:String>
     <sys:String x:Key="LOCAddedLabel">Додато</sys:String>
@@ -135,6 +139,7 @@
     <sys:String x:Key="LOCCloseLabel">Затвори</sys:String>
     <sys:String x:Key="LOCCancelLabel">Откажи</sys:String>
     <sys:String x:Key="LOCConfirmLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">Да</sys:String>
     <sys:String x:Key="LOCNoLabel">Не</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Добродошли</sys:String>
@@ -179,6 +184,14 @@
     <sys:String x:Key="LOCPastMonth">Претходни месец</sys:String>
     <sys:String x:Key="LOCPastYear">Претходна година</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Пре више од годину дана</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Увоз је успешно завршен.</sys:String>
     <sys:String x:Key="LOCAllGames">Све игре</sys:String>
     <sys:String x:Key="LOCGameId">ID игре</sys:String>
@@ -200,12 +213,13 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Молимо изаберите која поља ће се аутоматски попунити од стране Playnite-а и који извори ће се користити да се добију информације.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Молимо ако желите кликните на логотип горе и допринесите ажурирања сајту igdb.com да бисте побољшали податке које Playnite користи.</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">Преузимање метаподатака…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Увођење инсталираних игара…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">Увођење {0} игара…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Увоз емулираних игара из {0}...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Преузимање ажурирања библиотеке…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Завршено ажурирање библиотеке</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Ослобађање ресурса…</sys:String>
     <!--Menu-->
@@ -328,6 +342,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">Минимизирај Playnite на траку са алатима када је апликацијски прозор затворен</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Када се игра покрене:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Након што се игра затвори:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Ово ће вас одјавити од свих повезаних сервиса. Рестартовање апликације је потребно за ово, хоћете ли да наставите?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Очисти кеширане податке?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite треба да се рестартује да би се применила нова тема</sys:String>
@@ -396,6 +411,8 @@
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Прикажи упозорење када се додељују превелики фајлови за игру</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Команда за отварање директоријума</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Преферирана организација за старосна доба</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">Ништа</sys:String>
     <sys:String x:Key="LOCStrechFill">Попуни</sys:String>
     <sys:String x:Key="LOCStrechUniform">Униформа</sys:String>
@@ -495,6 +512,7 @@
     <sys:String x:Key="LOCGameProviderTitle">Библиотека</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Упутство за коришћење</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Назив</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Назив налога</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Платформа</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Категорија</sys:String>
@@ -539,6 +557,7 @@
     <sys:String x:Key="LOCRegionsLabel">Региони</sys:String>
     <sys:String x:Key="LOCSourceLabel">Извор</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Извори</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Грешка у бази података</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Неуспешно отварање базе података библиотеке.</sys:String>
@@ -707,6 +726,10 @@
     <sys:String x:Key="LOCHideGame">Сакриј ову игру</sys:String>
     <sys:String x:Key="LOCUnHideGame">Уклони из скривених игара</sys:String>
     <sys:String x:Key="LOCEditGame">Измени…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
     <sys:String x:Key="LOCSetGameCategory">Подеси категорију…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Подеси статус завршености</sys:String>
     <sys:String x:Key="LOCRemoveGame">Обриши</sys:String>
@@ -726,6 +749,7 @@
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Није доступно када је нека радња у току.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Описни текст је сензитиван на HTML синтаксе.</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Време играња се бележи у секундама.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Датум објаве мора бити у формату година-месец-дан. Месец и дан се могу изоставити.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Бројеви од 0 до 100 или празно да би остало без оцене.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Развој Playnite-а је подржан од стране следећих патрона:</sys:String>
@@ -742,12 +766,16 @@
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Отварање десктоп мода…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Отварање мода целог екрана…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Учитавање библиотеке игара…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Неуспешно инсталирање фајла скрипте.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Скрипта успешно инсталирана.</sys:String>
     <sys:String x:Key="LOCInstallScript">Инсталирај скрипту</sys:String>
     <sys:String x:Key="LOCScriptError">Грешка у скрипти</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Неуспешно покретање функције екстензије.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Отвори фолдер метаподатака</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} клијент није инсталиран.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} клијент ће се сада отворити. Молимо пријавите се и затворите ову поруку.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Чекање да се корисник пријави, молимо затворите ову поруку када сте готови…</sys:String>
@@ -922,6 +950,8 @@
     <sys:String x:Key="LOCTopPanelMainButtonMove">Помери дугме за главни мени у бочни мени.</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Претраживач панел</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Бирач насумичне игре</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Сачувеј подешавања за груписање и сортирање</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Прикажи као брзи филтер у приказу целог екрана</sys:String>
     <sys:String x:Key="LOCInPast7Days">Последњих 7 дана</sys:String>
@@ -1038,6 +1068,8 @@
 
 Више информација на https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Прикажи упозорење ако апликација ради са повишеним привилегијама</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Следећи додаци су пријављени као можда проблематични, или због високог утицаја на стабилност/перформансе, или због сигурности. Топло препоручујемо да их уклоните:
         
 {0}
@@ -1116,8 +1148,8 @@
     <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
     <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage"></sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
@@ -1126,4 +1158,12 @@
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
+        
 </ResourceDictionary>

@@ -38,7 +38,37 @@ namespace Playnite
             }
         }
 
-        private bool lastPlayed = true;
+        private bool installSize = true;
+        public bool InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                installSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool installDirectory = true;
+        public bool InstallDirectory
+        {
+            get
+            {
+                return installDirectory;
+            }
+
+            set
+            {
+                installDirectory = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool lastPlayed = false;
         public bool LastPlayed
         {
             get
@@ -49,6 +79,21 @@ namespace Playnite
             set
             {
                 lastPlayed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool recentActivity = true;
+        public bool RecentActivity
+        {
+            get
+            {
+                return recentActivity;
+            }
+
+            set
+            {
+                recentActivity = value;
                 OnPropertyChanged();
             }
         }

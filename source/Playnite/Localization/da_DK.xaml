@@ -74,6 +74,9 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCGameStartError">Kan ikke starte spillet: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Kan ikke gennemføre handling: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan ikke åbne spil-placering: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">Fejl ved oprettelse af genvej: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Kunne ikke åbne manual: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan ikke installere spil: {0}</sys:String>
@@ -118,6 +121,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCLastPlayedLabel">Sidst spillet</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Mest spillede</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Antal afspilninger</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
     <sys:String x:Key="LOCFolderLabel"></sys:String>
     <sys:String x:Key="LOCNotesLabel"></sys:String>
     <sys:String x:Key="LOCAddedLabel">Tilføjet</sys:String>
@@ -131,6 +135,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCCloseLabel">Luk</sys:String>
     <sys:String x:Key="LOCCancelLabel">Annullér</sys:String>
     <sys:String x:Key="LOCConfirmLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">Ja</sys:String>
     <sys:String x:Key="LOCNoLabel">Nej</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Velkommen</sys:String>
@@ -175,6 +180,14 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCPastMonth">Sidste måned</sys:String>
     <sys:String x:Key="LOCPastYear">Sidste år</sys:String>
     <sys:String x:Key="LOCMoreThenYear">For mere end et år siden</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Import lykkedes.</sys:String>
     <sys:String x:Key="LOCAllGames">Alle spil</sys:String>
     <sys:String x:Key="LOCGameId">Spil ID</sys:String>
@@ -196,12 +209,13 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCMetaSourceIGDB"></sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">Henter metadata...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames"></sys:String>
     <sys:String x:Key="LOCProgressImportinGames"></sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish"></sys:String>
     <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
     <!--Menu-->
@@ -324,6 +338,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Ryd cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart"></sys:String>
@@ -386,6 +401,8 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">Ingen</sys:String>
     <sys:String x:Key="LOCStrechFill">Udfyld</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniform</sys:String>
@@ -477,6 +494,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCGameProviderTitle">Bibliotek</sys:String>
     <sys:String x:Key="LOCGameManualTitle"></sys:String>
     <sys:String x:Key="LOCGameNameTitle">Navn</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Kontonavn</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategori</sys:String>
@@ -521,6 +539,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCRegionsLabel"></sys:String>
     <sys:String x:Key="LOCSourceLabel">Kilde</sys:String>
     <sys:String x:Key="LOCSourcesLabel"></sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle"></sys:String>
     <sys:String x:Key="LOCDatabaseOpenError"></sys:String>
@@ -686,6 +705,10 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCHideGame"></sys:String>
     <sys:String x:Key="LOCUnHideGame"></sys:String>
     <sys:String x:Key="LOCEditGame"></sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
     <sys:String x:Key="LOCSetGameCategory">Sæt kategori…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
     <sys:String x:Key="LOCRemoveGame">Fjern</sys:String>
@@ -705,6 +728,7 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds"></sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
@@ -721,12 +745,16 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCOpeningDesktopModeMessage"></sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage"></sys:String>
     <sys:String x:Key="LOCOpeningDatabase"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail"></sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
     <sys:String x:Key="LOCInstallScript"></sys:String>
     <sys:String x:Key="LOCScriptError"></sys:String>
     <sys:String x:Key="LOCScriptExecutionError"></sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
     <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
@@ -876,6 +904,8 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
     <sys:String x:Key="LOCInPast7Days"></sys:String>
@@ -981,6 +1011,8 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
@@ -1055,8 +1087,8 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
     <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage"></sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
@@ -1065,4 +1097,12 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
+        
 </ResourceDictionary>

@@ -682,6 +682,16 @@ namespace Playnite.DesktopApp.ViewModels
                     game.PlayCount = EditingGame.PlayCount;
                 }
 
+                if (UseInstallSizeChanges)
+                {
+                    game.InstallSize = EditingGame.InstallSize;
+                }
+
+                if (updateLastScanDate)
+                {
+                    game.LastSizeScanDate = EditingGame.LastSizeScanDate;
+                }
+
                 if (UseSeriesChanges)
                 {
                     game.SeriesIds = consolidateIds(Series, game.SeriesIds);
@@ -1600,6 +1610,11 @@ namespace Playnite.DesktopApp.ViewModels
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
+        }
+
+        public void CalculateInstallSizeWithDialog()
+        {
+            PlayniteApplication.Current.GamesEditor.UpdateGameSizeWithDialog(EditingGame, false, false);
         }
     }
 }
