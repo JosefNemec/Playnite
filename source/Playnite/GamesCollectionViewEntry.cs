@@ -78,6 +78,7 @@ namespace Playnite
         public PastTimeSegment LastActivitySegment => Game.LastActivitySegment;
         public PastTimeSegment AddedSegment => Game.AddedSegment;
         public PastTimeSegment ModifiedSegment => Game.ModifiedSegment;
+        public PastTimeSegment RecentActivitySegment => Game.RecentActivitySegment;
         public PlaytimeCategory PlaytimeCategory => Game.PlaytimeCategory;
         public InstallationStatus InstallationState => Game.InstallationStatus;
         public char NameGroup => Game.GetNameGroup();
