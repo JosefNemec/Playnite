@@ -78,6 +78,9 @@
     <sys:String x:Key="LOCGameStartError">게임을 시작할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">액션을 시작할 수 없습니다: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">게임 위치를 열 수 없습니다: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">바로가기를 생성하지 못했습니다: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">수동 열기 실패: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">게임을 설치할 수 없습니다: {0}</sys:String>
@@ -122,6 +125,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">최근 플레이</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">가장 많이 플레이</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">플레이 횟수</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
     <sys:String x:Key="LOCFolderLabel">폴더</sys:String>
     <sys:String x:Key="LOCNotesLabel">메모</sys:String>
     <sys:String x:Key="LOCAddedLabel">추가일</sys:String>
@@ -135,6 +139,7 @@
     <sys:String x:Key="LOCCloseLabel">닫기</sys:String>
     <sys:String x:Key="LOCCancelLabel">취소</sys:String>
     <sys:String x:Key="LOCConfirmLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">예</sys:String>
     <sys:String x:Key="LOCNoLabel">아니오</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">환영합니다</sys:String>
@@ -179,6 +184,14 @@
     <sys:String x:Key="LOCPastMonth">지난 달</sys:String>
     <sys:String x:Key="LOCPastYear">지난 해</sys:String>
     <sys:String x:Key="LOCMoreThenYear">1년 이상</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
     <sys:String x:Key="LOCImportCompleted">가져오기를 성공적으로 완료했습니다.</sys:String>
     <sys:String x:Key="LOCAllGames">모든 게임</sys:String>
     <sys:String x:Key="LOCGameId">게임 Id</sys:String>
@@ -200,12 +213,13 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 필드를 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하세요.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">위의 로고를 클릭하여 Playnite가 사용하는 igdb.com의 데이터 베이스 강화에 기여해주십시오.</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">메타데이터 다운로드 중...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">설치된 게임 가져오는 중…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">{0} 개의 게임을 가져오는 중…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">라이브러리 업데이트 중…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">라이브러리 업데이트 완료</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">리소스 해제 중...</sys:String>
     <!--Menu-->
@@ -328,6 +342,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">애플리케이션 창을 닫았을 때 알림 영역으로 Playnite 최소화</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">게임을 시작할 시:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">게임을 종료할 시:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">연동된 모든 서비스를 로그아웃시킵니다. 응용 프로그램을 재시작해야합니다. 계속하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">캐시를 삭제하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">새로운 테마를 적용하기 위해선 Playnite를 재시작해야합니다</sys:String>
@@ -396,6 +411,8 @@
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">너무 큰 게임 미디어를 지정할 때 경고 표시하기</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">경로 열기 명령어</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">선호하는 등급 분류 기구</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">적용 안함</sys:String>
     <sys:String x:Key="LOCStrechFill">채우기</sys:String>
     <sys:String x:Key="LOCStrechUniform">원본 비율로 크기에 맞추기</sys:String>
@@ -495,6 +512,7 @@
     <sys:String x:Key="LOCGameProviderTitle">라이브러리</sys:String>
     <sys:String x:Key="LOCGameManualTitle">수동</sys:String>
     <sys:String x:Key="LOCGameNameTitle">이름</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">계정이름</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">플랫폼</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">카테고리</sys:String>
@@ -539,6 +557,7 @@
     <sys:String x:Key="LOCRegionsLabel">지역</sys:String>
     <sys:String x:Key="LOCSourceLabel">소스</sys:String>
     <sys:String x:Key="LOCSourcesLabel">소스</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">데이터베이스 오류</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">라이브러리 데이터 베이스 열기 실패</sys:String>
@@ -707,6 +726,10 @@
     <sys:String x:Key="LOCHideGame">이 게임 숨기기</sys:String>
     <sys:String x:Key="LOCUnHideGame">숨김에서 제거</sys:String>
     <sys:String x:Key="LOCEditGame">편집...</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
     <sys:String x:Key="LOCSetGameCategory">카테고리 설정...</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">완료 상황 설정</sys:String>
     <sys:String x:Key="LOCRemoveGame">제거</sys:String>
@@ -726,6 +749,7 @@
     <sys:String x:Key="LOCProgreessAvailabilityMessage">다른 절차가 진행중일 경우 사용할 수 없습니다.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">설명은 html 구문에 민감합니다.</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">게임 시간은 초 단위로 기록됩니다.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">출시 날짜는 '년-월-일' 형식으로 작성되어야 합니다. 월, 일은 생략할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0에서 100사이의 값 또는 점수가 없으면 빈칸.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 개발은 다음의 후원자에 지원을 받습니다.</sys:String>
@@ -742,12 +766,16 @@
     <sys:String x:Key="LOCOpeningDesktopModeMessage">데스크탑 모드 실행...</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">전체화면 실행...</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">게임 라이브러리 불러오는중...</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">스크립트 파일 설치 실패.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">스크립트 설치 성공.</sys:String>
     <sys:String x:Key="LOCInstallScript">스크립트 설치</sys:String>
     <sys:String x:Key="LOCScriptError">스크립트 오류</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">확장기능을 수행하는데 실패하였습니다.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">메타데이터 폴더 열기</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} 클라이언트가 설치되지 않았습니다.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} 클라이언트가 실행됩니다. 로그인후 이 메세지를 닫아주세요.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">로그인을 기다리고 있습니다. 로그인 후 이 창을 닫아주십시오...</sys:String>
@@ -918,6 +946,8 @@
     <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">탐색기 패널</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
     <sys:String x:Key="LOCInPast7Days">지난 7일</sys:String>
@@ -1028,6 +1058,8 @@
 
 더 많은 정보를 얻고 싶다면 https://playnite.link/adminfaq 를 방문해주세요.</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
@@ -1102,8 +1134,8 @@
     <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
     <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage"></sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
@@ -1112,4 +1144,12 @@
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
+        
 </ResourceDictionary>

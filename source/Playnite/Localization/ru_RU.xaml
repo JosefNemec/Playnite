@@ -80,6 +80,9 @@
     <sys:String x:Key="LOCGameStartError">Не удалось запустить игру: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Не удалось начать действие: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Не удалось открыть расположение игры: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">Не удалось создать ярлык: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Не удалось открыть руководство: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Не удалось установить игру: {0}</sys:String>
@@ -124,6 +127,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">Запускалась</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Самая запускаемая</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Запускалась раз(а)</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
     <sys:String x:Key="LOCFolderLabel">Папка</sys:String>
     <sys:String x:Key="LOCNotesLabel">Заметки</sys:String>
     <sys:String x:Key="LOCAddedLabel">Добавлено</sys:String>
@@ -137,6 +141,7 @@
     <sys:String x:Key="LOCCloseLabel">Закрыть</sys:String>
     <sys:String x:Key="LOCCancelLabel">Отменить</sys:String>
     <sys:String x:Key="LOCConfirmLabel">Подтвердить</sys:String>
+    <sys:String x:Key="LOCResetLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">Да</sys:String>
     <sys:String x:Key="LOCNoLabel">Нет</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Добро пожаловать</sys:String>
@@ -181,6 +186,14 @@
     <sys:String x:Key="LOCPastMonth">В прошлом месяце</sys:String>
     <sys:String x:Key="LOCPastYear">В прошлом году</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Больше года назад</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
     <sys:String x:Key="LOCImportCompleted">Импорт успешно завершен.</sys:String>
     <sys:String x:Key="LOCAllGames">Все игры</sys:String>
     <sys:String x:Key="LOCGameId">ID игры</sys:String>
@@ -202,12 +215,13 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Выберите, какие поля должны быть автоматически заполнены Playnite и какие источники должны использоваться для получения данных.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Пожалуйста, нажмите на логотип выше и внесите изменения в базу данных IGDB.com, чтобы улучшить данные, используемые Playnite.</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">Загружаем метаданные...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Импортируем установленные игры…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">Импортируем игры из {0}…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Импортируем эмулированные игры из {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Загружаем обновления библиотеки…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Обновление библиотеки завершено</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Освобождаем ресурсы…</sys:String>
     <!--Menu-->
@@ -330,6 +344,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">Сворачивать Playnite в трей при закрытии окна приложения</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">При запуске игры:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">После закрытия игры:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">После этого вы выйдете из всех связанных служб. Требуется перезапуск программы, продолжить?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Очистить кэш?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Для применения новой темы требуется перезапуск Playnite</sys:String>
@@ -404,6 +419,8 @@
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Предупреждать, если медиаданные игры много весят</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Команда открытия папки</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Предпочт-я организация, определ. возрастные рамки</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">Нет</sys:String>
     <sys:String x:Key="LOCStrechFill">Растянуть</sys:String>
     <sys:String x:Key="LOCStrechUniform">По размеру</sys:String>
@@ -506,6 +523,7 @@
     <sys:String x:Key="LOCGameProviderTitle">Сторонний клиент</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Руководство пользователя</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Название игры</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Имя пользователя</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Платформа</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Категория</sys:String>
@@ -551,6 +569,7 @@
     <sys:String x:Key="LOCRegionsLabel">Регионы</sys:String>
     <sys:String x:Key="LOCSourceLabel">Источник</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Источники</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Ошибка базы данных</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Не удалось открыть базу данных библиотеки.</sys:String>
@@ -721,6 +740,10 @@
     <sys:String x:Key="LOCHideGame">Скрыть эту игру</sys:String>
     <sys:String x:Key="LOCUnHideGame">Убрать из скрытых</sys:String>
     <sys:String x:Key="LOCEditGame">Изменить…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
     <sys:String x:Key="LOCSetGameCategory">Выбрать категорию…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Статус игры</sys:String>
     <sys:String x:Key="LOCRemoveGame">Убрать из списка</sys:String>
@@ -740,6 +763,7 @@
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Недоступно, когда выполняется какое-либо действие.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Текст описания опирается на синтаксис HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Время в игре записывается в секундах.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Дата выхода должна быть установлена в формате &quot;год-месяц-день&quot;. Значения месяца и дня могут быть пропущены.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Введите значение от 0 до 100, либо оставьте без оценки.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite возможна 
@@ -758,12 +782,16 @@
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Переход в обычный режим…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Переход в полноэкранный режим…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Загрузка библиотеки игр…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Не удалось установить файл скрипта.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Скрипт успешно установлен.</sys:String>
     <sys:String x:Key="LOCInstallScript">Установить скрипт</sys:String>
     <sys:String x:Key="LOCScriptError">Ошибка скрипта</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Не удалось выполнить функцию расширения.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Открыть папку метаданных</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">Клиент {0} не установлен.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Клиент {0} сейчас будет открыт. Войдите в свою учетную запись и закройте это сообщение.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Ожидание входа в учетную запись, закройте сообщение, когда завершите процедуру…</sys:String>
@@ -946,6 +974,8 @@
     <sys:String x:Key="LOCTopPanelMainButtonMove">Отображать кнопку главного меню на боковой панели</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Панель проводника</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Подбор случайной игры</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Сохранить настройки группировки и сортировки</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Показывать как быстрый фильтр в полноэкранном режиме</sys:String>
     <sys:String x:Key="LOCInPast7Days">За последние 7 дней</sys:String>
@@ -1071,6 +1101,8 @@
 
 Подробнее на https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Предупреждать о запуске Playnite с повышенными правами доступа</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Аддон(ы) из списка ниже помечены как потенциально проблемные либо из-за большой нагрузки на железо и нестабильной работы, либо из-за проблем с безопасностью. Мы настоятельно рекомендуем удалить их:
         
 {0}
@@ -1157,8 +1189,12 @@ SHIFT-ENTER: открыть меню элементов</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions">Установленные расширения</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData">Данные расширений</sys:String>
     <sys:String x:Key="LOCBackupOptionThemes">Установленные темы</sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage">Выберите данные для восстановления из указанного файла резервной копии.</sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage">Выберите элементы, которые будут включены в резервную копию. Настройки приложения и данные игровой библиотеки присутствуют там по умолчанию.</sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve">Выберите данные, которые будут восстановлены из указанного файла резервной копии.
+    
+Playnite будет автоматически перезапущен для начала процесса восстановления резервной копии.</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">Выберите элементы, которые будут включены в резервную копию. Настройки приложения и данные игровой библиотеки включены по умолчанию.
+    
+Playnite будет автоматически перезапущен для начала процесса резервного копирования.</sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Автоматическое резервное копирование данных</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency">Частота автоматического резервного копирования</sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder">Папка резервного копирования</sys:String>
@@ -1168,4 +1204,12 @@ SHIFT-ENTER: открыть меню элементов</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Уведомлять только о вышедших патчах</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">Если включено, то в уведомлении придут только обновления для текущего установленного релиза.
 Новые крупные релизы будут проигнорированы.</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
+        
 </ResourceDictionary>

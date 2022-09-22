@@ -80,6 +80,9 @@
     <sys:String x:Key="LOCGameStartError">ゲームを開始できませんでした: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">アクションを開始できませんでした: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">ゲームのインストール先を開くことができません: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">ショートカットを作成できません: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">マニュアルを開けませんでした：{0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">ゲームをインストールできません: {0}</sys:String>
@@ -124,6 +127,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">最後のプレイ</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">最もプレイされたゲーム</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">プレイ回数</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
     <sys:String x:Key="LOCFolderLabel">フォルダー</sys:String>
     <sys:String x:Key="LOCNotesLabel">備考</sys:String>
     <sys:String x:Key="LOCAddedLabel">追加日</sys:String>
@@ -137,6 +141,7 @@
     <sys:String x:Key="LOCCloseLabel">閉じる</sys:String>
     <sys:String x:Key="LOCCancelLabel">キャンセル</sys:String>
     <sys:String x:Key="LOCConfirmLabel">確認</sys:String>
+    <sys:String x:Key="LOCResetLabel"></sys:String>
     <sys:String x:Key="LOCYesLabel">はい</sys:String>
     <sys:String x:Key="LOCNoLabel">いいえ</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">ようこそ</sys:String>
@@ -181,6 +186,14 @@
     <sys:String x:Key="LOCPastMonth">過去 1 ヶ月間</sys:String>
     <sys:String x:Key="LOCPastYear">過去 1 年間</sys:String>
     <sys:String x:Key="LOCMoreThenYear">1 年以上前</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
     <sys:String x:Key="LOCImportCompleted">インポート完了</sys:String>
     <sys:String x:Key="LOCAllGames">全てのゲーム</sys:String>
     <sys:String x:Key="LOCGameId">ゲームID</sys:String>
@@ -202,12 +215,13 @@
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Playniteによって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Playniteが使用するデータを改善するために、上のロゴをクリックしてigdb.comデータベースの更新に貢献することを検討してください。</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">メタデーターを取得中...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">インストール済のゲームをインポート中...</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">{0} のゲームをインポート中...</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">{0} からエミュレートゲームをインポートしています...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">ライブラリの更新をダウンロード中...</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">ライブラリの更新完了</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">リソースを解放中...</sys:String>
     <!--Menu-->
@@ -330,6 +344,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">アプリウィンドウが閉じられたときにPlayniteをシステムトレイに最小化</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">ゲーム起動時：</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">ゲーム終了後:</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">これにより、リンクされているすべてのサービスからログアウトします。 アプリケーションの再起動が必要です。続行しますか？</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">キャッシュをクリアしますか？</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">新しいテーマを適用するにはPlayniteの再起動が必要です。</sys:String>
@@ -398,6 +413,8 @@
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">大きすぎるゲームメディアを割り当てるときに警告を表示する</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">ディレクトリを開くコマンド</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">年齢制限機関の設定</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">無し</sys:String>
     <sys:String x:Key="LOCStrechFill">埋める</sys:String>
     <sys:String x:Key="LOCStrechUniform">均等</sys:String>
@@ -501,6 +518,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCGameProviderTitle">ライブラリ</sys:String>
     <sys:String x:Key="LOCGameManualTitle">マニュアル</sys:String>
     <sys:String x:Key="LOCGameNameTitle">タイトル</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">アカウント名</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">プラットフォーム</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">カテゴリー</sys:String>
@@ -546,6 +564,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCRegionsLabel">地域</sys:String>
     <sys:String x:Key="LOCSourceLabel">データ元</sys:String>
     <sys:String x:Key="LOCSourcesLabel">ソース</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">データベースエラー</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">ライブラリデータベースのオープンに失敗しました。</sys:String>
@@ -716,6 +735,10 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCHideGame">このゲームを非表示</sys:String>
     <sys:String x:Key="LOCUnHideGame">隠しから削除</sys:String>
     <sys:String x:Key="LOCEditGame">編集</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
     <sys:String x:Key="LOCSetGameCategory">カテゴリーを設定</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">進行状況</sys:String>
     <sys:String x:Key="LOCRemoveGame">削除</sys:String>
@@ -735,6 +758,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCProgreessAvailabilityMessage">何らかのアクションが進行中のときは利用できません。</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">説明テキストはHTML構文に依存します</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">ゲーム時間は秒で記録されます。</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">発売日は「年-月-日」形式で設定する必要があります。月と日の値は省略可能です。</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0から100までの値、またはスコアなしの場合は空です。</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playniteの開発はこれらの利用者によって支えられています:</sys:String>
@@ -751,12 +775,16 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCOpeningDesktopModeMessage">デスクトップモードへ切り替え中</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">フルスクリーンモードへ切り替え中</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">ゲームライブラリをロード中</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">スクリプトファイルのインストールに失敗しました。</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">スクリプトは正常にインストールされました。</sys:String>
     <sys:String x:Key="LOCInstallScript">スクリプトのインストール</sys:String>
     <sys:String x:Key="LOCScriptError">スクリプトエラー</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">拡張機能の実行に失敗しました。</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">メタデータフォルダを開く</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} クライアントがインストールされていません。</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">クライアントが開きます。サインインしてからこのメッセージを閉じてください。</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">ユーザーがログインするのを待っています。完了したら閉じてください。</sys:String>
@@ -940,6 +968,8 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">メインメニューボタンをサイドバーに移動</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">エクスプローラーパネル</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">ランダムゲームピッカー</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">グループ化と並べ替えの設定を保存する</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">フルスクリーンモードでクイックフィルターとして表示する</sys:String>
     <sys:String x:Key="LOCInPast7Days">過去7日間</sys:String>
@@ -1067,6 +1097,8 @@ https://playnite.link/nahimicsucks</sys:String>
 詳細については以下のURLを参照してください。
 https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Playniteが管理者権限で実行されている場合に警告を表示する</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">次のアドオンは、高い安定性/パフォーマンスへの影響またはセキュリティの問題のいずれかが原因で、潜在的に問題があると報告されています。 アンインストールすることを強くお勧めします。
         
 {0}
@@ -1145,8 +1177,8 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions">インストールされている拡張機能</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData">拡張機能データ</sys:String>
     <sys:String x:Key="LOCBackupOptionThemes">インストールされているテーマ</sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage">指定したバックアップファイルから復元するデータを選択します。</sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage">データバックアップに含める項目を選択します。アプリケーションの設定とゲームライブラリのデータは、デフォルトで含まれます。</sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">データの自動バックアップ</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency">自動バックアップ間隔</sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder">バックアップフォルダ</sys:String>
@@ -1155,4 +1187,12 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError">自動バックアップが有効な場合は、バックアップフォルダを設定する必要があります。</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
+        
 </ResourceDictionary>

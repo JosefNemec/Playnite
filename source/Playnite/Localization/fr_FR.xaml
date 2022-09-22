@@ -80,6 +80,9 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCGameStartError">Impossible de démarrer le jeu : {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Impossible d'exécuter l'action : {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Erreur : Impossible d'ouvrir l'emplacement du jeu : {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Impossible de détecter la taille de l'installation du jeu : {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Erreur lors de l'installation du scan de taille</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Il y a eu {0} erreurs lors de l'analyse de la taille de l'installation</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Impossible de créer un raccourci : {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Impossible d'ouvrir le manuel : {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Erreur : Impossible d'installer le jeu : {0}</sys:String>
@@ -124,6 +127,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCLastPlayedLabel">Dernière session</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Temps de jeu</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Nombre de sessions</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">Installer la taille</sys:String>
     <sys:String x:Key="LOCFolderLabel">Dossier</sys:String>
     <sys:String x:Key="LOCNotesLabel">Notes</sys:String>
     <sys:String x:Key="LOCAddedLabel">Ajouté le</sys:String>
@@ -137,6 +141,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCCloseLabel">Fermer</sys:String>
     <sys:String x:Key="LOCCancelLabel">Annuler</sys:String>
     <sys:String x:Key="LOCConfirmLabel">Confirmer</sys:String>
+    <sys:String x:Key="LOCResetLabel">Réinitialiser</sys:String>
     <sys:String x:Key="LOCYesLabel">Oui</sys:String>
     <sys:String x:Key="LOCNoLabel">Non</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Bienvenue</sys:String>
@@ -181,6 +186,14 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCPastMonth">Mois dernier</sys:String>
     <sys:String x:Key="LOCPastYear">Cette année</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Il y a plus d'un an</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0Mo à 100Mo</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100 Mo à 1 Go</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1 Go à 5 Go</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5 Go à 10 Go</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10 Go à 20 Go</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20 Go à 40 Go</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40 Go à 100 Go</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100Go ou plus</sys:String>
     <sys:String x:Key="LOCImportCompleted">Les informations ont été importées avec succès.</sys:String>
     <sys:String x:Key="LOCAllGames">Tous</sys:String>
     <sys:String x:Key="LOCGameId">Id jeu</sys:String>
@@ -202,12 +215,13 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement remplis par Playnite et les sources à utiliser pour obtenir les données.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">Vous pouvez cliquer sur le logo ci-dessus et contribuer à la mise à jour de la base de données igdb.com afin d'améliorer les données utilisées par Playnite.</sys:String>
-    <!--Progess string-->
+    <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">Téléchargement des métadonnées...</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importation des jeux installés…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">Importation depuis {0}…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importation des jeux émulés depuis {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Téléchargement des mises à jour de la bibliothèque…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Analyse de la taille des jeux dans la bibliothèque…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Mise à jour de bibliothèque terminée</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Rechargement des ressources…</sys:String>
     <!--Menu-->
@@ -330,6 +344,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCSettingsCloseToTray">Lorsque la fenêtre est fermée</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Lorsque le jeu démarre :</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Lorsque le jeu se ferme :</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Formats des dates :</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Cela vous déconnectera de tous les services liés. Le redémarrage de l'application est requis, voulez-vous continuer ?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Vider le cache ?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Redémarrage nécessaire pour appliquer un nouveau thème</sys:String>
@@ -400,6 +415,8 @@ Si cette option est désactivée, les images de fond ne seront téléchargées q
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Avertissement lorsqu'une image dépasse la taille recommandée</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Ouverture des répertoires par invite de commande</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Système d'évaluation d'âge requis par défaut</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Mettre à jour la taille d'installation des jeux lors de l'actualisation de la bibliothèque</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Analyse et met à jour la taille d'installation des jeux s'il est détecté que leurs fichiers ont été modifiés depuis la dernière analyse</sys:String>
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
     <sys:String x:Key="LOCStrechUniform">Préserver le rapport largeur/hauteur</sys:String>
@@ -500,6 +517,7 @@ Elle est actuellement associée à {1} jeu(x) et {2} émulateur(s).</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Bibliothèque</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Manuel</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Nom</sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">Installer le lecteur</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Nom du compte</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Plateforme</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Catégorie(s)</sys:String>
@@ -545,6 +563,7 @@ Si désactivé, les jeux correspondant à au moins un élément de filtres seron
     <sys:String x:Key="LOCRegionsLabel">Régions</sys:String>
     <sys:String x:Key="LOCSourceLabel">Source</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Sources</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Activité récente</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Erreur de la Base de Données</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Erreur : Impossible d'ouvrir la base de données de la bibliothèque.</sys:String>
@@ -714,6 +733,10 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCHideGame">Masquer la sélection</sys:String>
     <sys:String x:Key="LOCUnHideGame">Afficher dans la bibliothèque</sys:String>
     <sys:String x:Key="LOCEditGame">Modifier les propriétés…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">Calculer la taille de l'installation</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">Calculer la taille de l'installation (Tous les jeux)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">Calculer la taille de l'installation (uniquement les données manquantes)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">Installer la taille</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Définir des catégories…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Déterminer la progression</sys:String>
     <sys:String x:Key="LOCRemoveGame">Supprimer</sys:String>
@@ -733,6 +756,7 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Indisponible lorsqu'une action est en cours.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Le texte de description est sensible à la syntaxe HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Le temps de jeu est indiqué en secondes.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">La taille de l'installation est indiquée en octets.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">La date de sortie doit être indiquée selon le format &quot;année-mois-jour&quot;. L'indication du mois et du jour ne sont pas nécessaires.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Note entre 0 et 100.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Le développement de Playnite est soutenu par ces patrons :</sys:String>
@@ -749,12 +773,16 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Retour au bureau…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Ouverture du mode plein écran…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Chargement de la bibliothèque…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">Calcul de la taille d'installation…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Calcul de la taille d'installation de {0}…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Impossible d'installer le script.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Le script a été installé avec succès.</sys:String>
     <sys:String x:Key="LOCInstallScript">Installer un script</sys:String>
     <sys:String x:Key="LOCScriptError">Erreur de script</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Impossible d'exécuter la fonction.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Ouvrir dossier de métadonnées</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">Calculer</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">Calcule automatiquement la taille de l'installation en utilisant les Roms si le jeu a un ou le répertoire d'installation s'il a été défini</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} le client n'est pas installé.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} Le client va maintenant démarrer. Veuillez vous identifier avant de fermer la fenêtre de connexion.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">(Fermer cette fenêtre une fois la connexion établie)</sys:String>
@@ -936,6 +964,8 @@ Pour installer ou désinstaller des intégrations, utilisez l'option &quot;Exten
     <sys:String x:Key="LOCTopPanelMainButtonMove">Déplacer le bouton du menu principal vers la barre latérale</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Explorateur</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Jeu aléatoire</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Vues sélecteur de jeu aléatoire</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Sélectionner un jeu aléatoire depuis la vue</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Enregistrer les paramètres de tri et de regroupement</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Afficher comme filtre rapide en mode Plein Écran </sys:String>
     <sys:String x:Key="LOCInPast7Days">Ces sept derniers jours</sys:String>
@@ -1061,6 +1091,9 @@ Plus d'informations sur https://playnite.link/nahimicsucks</sys:String>
 
 Pour plus d'informations : https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Afficher un avertissement lorsque Playnite est exécuté en mode Administrateur</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">Obtenez la taille réelle lors du calcul de la taille des jeux</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">Si activé, les scans seront plus lents et auront la taille réelle que les fichiers utilisent dans le lecteur.
+Si désactivé, les scans seront plus rapides et utiliseront la taille des fichiers eux-mêmes.</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Les extensions suivantes ont été signalées comme potentiellement problématiques, soit en raison d'un fort impact sur la stabilité/les performances, soit en raison de problèmes de sécurité. Nous vous recommandons fortement de les désinstaller :
         
 {0}
@@ -1148,8 +1181,12 @@ MAJ-ENTREE : ouvrir le menu de l'élément</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions">Extensions installées</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData">Données des extensions</sys:String>
     <sys:String x:Key="LOCBackupOptionThemes">Thèmes installés</sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage">Sélectionnez les données à restaurer à partir du fichier de sauvegarde spécifié.</sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage">Sélectionnez les éléments à inclure avec la sauvegarde des données. Les paramètres de l'application et les données de la bibliothèque de jeu sont inclus par défaut.</sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve">Sélectionnez les données à restaurer à partir du fichier de sauvegarde spécifié.
+    
+Playnite redémarrera automatiquement pour démarrer le processus de restauration de sauvegarde.</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">Sélectionnez les éléments à inclure avec la sauvegarde des données. Les paramètres de l'application et les données de la bibliothèque de jeu sont inclus par défaut.
+    
+Playnite redémarrera automatiquement pour démarrer le processus de sauvegarde.</sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Sauvegarde automatique du système</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency">Fréquence de sauvegarde automatique</sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder">Répertoire de sauvegarde</sys:String>
@@ -1159,4 +1196,14 @@ MAJ-ENTREE : ouvrir le menu de l'élément</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Afficher uniquement les notifications de correctifs</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">Lorsque cette option est activée, seules les mises à jour disponibles pour la version majeure actuellement installée entraîneront une notification.
 Les nouvelles versions majeures ne seront pas afffichées par une notification de mise à jour.</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat">Utiliser les dates relatives pour la semaine passée</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve">Utilisez des dates relatives au format &quot;Aujourd'hui&quot;, &quot;Hier&quot;, etc. si la date est inférieure à une semaine.
+    
+Le format de date spécifié sera utilisé pour toutes les autres dates.</sys:String>
+
+    <sys:String x:Key="LOCSettingsWebImageSearch">Recherche d'images Web</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Chaîne de recherche d'image de l'icône</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Chaîne de recherche d'image de couverture</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground">Chaîne de recherche d'image d'arrière-plan</sys:String>
+        
 </ResourceDictionary>
