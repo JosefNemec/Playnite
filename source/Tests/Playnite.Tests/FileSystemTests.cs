@@ -74,9 +74,15 @@ namespace Playnite.Tests
         {
             using (var tempPath = TempDirectory.Create())
             {
-                var filePath = Path.Combine(tempPath.TempPath, "DummyFile");
+                // Subdirectory is used to verify that called methods work correctly in long paths
+                var subDirName = new string('a', 255);
+                var subDirName2 = new string('b', 30);
+                var subdirPath = Path.Combine(tempPath.TempPath, subDirName, subDirName2);
+                FileSystem.CreateDirectory(subdirPath);
+
+                var filePath = Path.Combine(subdirPath, "DummyFile");
                 var dummyFileLenght = 1024;
-                using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (var fileStream = new FileStream(Paths.FixPathLength(filePath), FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     fileStream.SetLength(dummyFileLenght);
                 }
