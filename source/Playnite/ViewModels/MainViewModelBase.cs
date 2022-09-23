@@ -567,7 +567,7 @@ namespace Playnite.ViewModels
 
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateLibraryInstallSizes(token);
+                    UpdateGamesInstallSizes(token, Database.Games.ToList());
                 }
 
                 return addedGames;
@@ -586,20 +586,20 @@ namespace Playnite.ViewModels
                 var addedGames = ImportLibraryGames(plugin, token);
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateLibraryInstallSizes(token);
+                    UpdateGamesInstallSizes(token, Database.Games.ToList());
                 }
 
                 return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
 
-        public void UpdateLibraryInstallSizes(CancellationToken token)
+        public void UpdateGamesInstallSizes(CancellationToken token, List<Game> games)
         {
             try
             {
                 ProgressActive = true;
                 ProgressValue = 0;
-                ProgressTotal = Database.Games.Count + 1;
+                ProgressTotal = games.Count + 1;
 
                 Logger.Info($"Starting Library Install Size scan");
                 ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
@@ -607,7 +607,7 @@ namespace Playnite.ViewModels
                 var errorsCount = 0;
                 using (Database.Games.BufferedUpdate())
                 {
-                    foreach (var game in Database.Games)
+                    foreach (var game in games)
                     {
                         if (token.IsCancellationRequested)
                         {
@@ -720,7 +720,13 @@ namespace Playnite.ViewModels
         {
             await UpdateLibraryData((token) =>
             {
-                return ImportEmulatedGames(config, token);
+                var addedGames = ImportEmulatedGames(config, token);
+                if (AppSettings.ScanLibInstallSizeOnLibUpdate)
+                {
+                    UpdateGamesInstallSizes(token, addedGames);
+                }
+
+                return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
 
@@ -732,6 +738,11 @@ namespace Playnite.ViewModels
                 foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate))
                 {
                     addedGames.AddRange(ImportEmulatedGames(scanConfig, token));
+                }
+
+                if (AppSettings.ScanLibInstallSizeOnLibUpdate)
+                {
+                    UpdateGamesInstallSizes(token, addedGames);
                 }
 
                 return addedGames;
