@@ -351,19 +351,24 @@ namespace Playnite.Common
             return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)));
         }
 
-        private static long GetDirectorySize(DirectoryInfo dir)
+        private static long GetDirectorySize(DirectoryInfo dirInfo)
         {
             long size = 0;
             // Add file sizes.
-            foreach (FileInfo fi in dir.GetFiles())
+            foreach (FileInfo fileInfo in dirInfo.GetFiles())
             {
-                size += GetFileSize(fi);
+                size += GetFileSize(fileInfo);
             }
 
             // Add subdirectory sizes.
-            foreach (DirectoryInfo di in dir.GetDirectories())
+            foreach (DirectoryInfo subdirInfo in dirInfo.GetDirectories())
             {
-                size += GetDirectorySize(di.FullName);
+                if (!IsDirectorySubdirSafeToRecurse(subdirInfo))
+                {
+                    continue;
+                }
+
+                size += GetDirectorySize(subdirInfo.FullName);
             }
 
             return size;
@@ -405,18 +410,35 @@ namespace Playnite.Common
             long size = 0;
 
             // Add file sizes.
-            foreach (FileInfo file in dirInfo.GetFiles())
+            foreach (FileInfo fileInfo in dirInfo.GetFiles())
             {
-                size += GetFileSizeOnDisk(file);
+                size += GetFileSizeOnDisk(fileInfo);
             }
 
             // Add subdirectory sizes.
-            foreach (DirectoryInfo directory in dirInfo.GetDirectories())
+            foreach (DirectoryInfo subdirInfo in dirInfo.GetDirectories())
             {
-                size += GetDirectorySizeOnDisk(directory.FullName);
+                if (!IsDirectorySubdirSafeToRecurse(subdirInfo))
+                {
+                    continue;
+                }
+                
+                size += GetDirectorySizeOnDisk(subdirInfo.FullName);
             }
 
             return size;
+        }
+
+        private static bool IsDirectorySubdirSafeToRecurse(DirectoryInfo childDirectory)
+        {
+            // Whitespace characters can cause confusion in methods, causing them to process
+            // the parent directory instead and causing an infinite loop
+            if (childDirectory.Name.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static void CopyDirectory(string sourceDirName, string destDirName, bool copySubDirs = true, bool overwrite = true)
