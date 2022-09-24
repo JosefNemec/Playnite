@@ -1269,7 +1269,7 @@ namespace Playnite.Database
                                 }
                             }
 
-                            if (playtimeImportMode == PlaytimeImportMode.Always)
+                            if (playtimeImportMode == PlaytimeImportMode.Always && newGame.Playtime > 0)
                             {
                                 if (existingGame.Playtime != newGame.Playtime)
                                 {
