@@ -567,7 +567,7 @@ namespace Playnite.ViewModels
 
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateGamesInstallSizes(token, Database.Games.ToList());
+                    UpdateGamesInstallSizes(token, Database.Games.ToList(), LOC.ProgressScanningGamesInstallSize);
                 }
 
                 return addedGames;
@@ -586,14 +586,14 @@ namespace Playnite.ViewModels
                 var addedGames = ImportLibraryGames(plugin, token);
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateGamesInstallSizes(token, Database.Games.ToList());
+                    UpdateGamesInstallSizes(token, Database.Games.ToList(), LOC.ProgressScanningGamesInstallSize);
                 }
 
                 return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
 
-        public void UpdateGamesInstallSizes(CancellationToken token, List<Game> games)
+        public void UpdateGamesInstallSizes(CancellationToken token, List<Game> games, string progressMessageLocKey)
         {
             try
             {
@@ -602,7 +602,7 @@ namespace Playnite.ViewModels
                 ProgressTotal = games.Count + 1;
 
                 Logger.Info($"Starting Library Install Size scan");
-                ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
+                ProgressStatus = Resources.GetString(progressMessageLocKey);
                 var errorStrings = new List<string>();
                 var errorsCount = 0;
                 using (Database.Games.BufferedUpdate())
@@ -723,7 +723,7 @@ namespace Playnite.ViewModels
                 var addedGames = ImportEmulatedGames(config, token);
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateGamesInstallSizes(token, addedGames);
+                    UpdateGamesInstallSizes(token, addedGames, LOC.ProgressScanningEmulatedGamesInstallSize);
                 }
 
                 return addedGames;
@@ -742,7 +742,7 @@ namespace Playnite.ViewModels
 
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateGamesInstallSizes(token, addedGames);
+                    UpdateGamesInstallSizes(token, addedGames, LOC.ProgressScanningEmulatedGamesInstallSize);
                 }
 
                 return addedGames;
