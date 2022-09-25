@@ -347,10 +347,12 @@ namespace Playnite
                     CriticScore?.IsSet == true ||
                     CommunityScore?.IsSet == true ||
                     LastActivity?.IsSet == true ||
+                    RecentActivity?.IsSet == true ||
                     Added?.IsSet == true ||
                     Modified?.IsSet == true ||
                     ReleaseYear?.IsSet == true ||
                     PlayTime?.IsSet == true ||
+                    InstallSize?.IsSet == true ||
                     Feature?.IsSet == true;
             }
         }
@@ -813,6 +815,25 @@ namespace Playnite
             }
         }
 
+        private EnumFilterItemProperties recentActivity;
+        public EnumFilterItemProperties RecentActivity
+        {
+            get
+            {
+                return recentActivity;
+            }
+
+            set
+            {
+                if (recentActivity != value)
+                {
+                    recentActivity = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(RecentActivity));
+                }
+            }
+        }
+
         private EnumFilterItemProperties added;
         public EnumFilterItemProperties Added
         {
@@ -866,6 +887,25 @@ namespace Playnite
                     playTime = value;
                     OnPropertyChanged();
                     OnFilterChanged(nameof(PlayTime));
+                }
+            }
+        }
+
+        private EnumFilterItemProperties installSize;
+        public EnumFilterItemProperties InstallSize
+        {
+            get
+            {
+                return installSize;
+            }
+
+            set
+            {
+                if (installSize != value)
+                {
+                    installSize = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(InstallSize));
                 }
             }
         }
@@ -1062,6 +1102,12 @@ namespace Playnite
                 filterChanges.Add(nameof(LastActivity));
             }
 
+            if (RecentActivity != null)
+            {
+                RecentActivity = null;
+                filterChanges.Add(nameof(RecentActivity));
+            }
+
             if (Added != null)
             {
                 Added = null;
@@ -1078,6 +1124,12 @@ namespace Playnite
             {
                 PlayTime = null;
                 filterChanges.Add(nameof(PlayTime));
+            }
+
+            if (InstallSize != null)
+            {
+                InstallSize = null;
+                filterChanges.Add(nameof(InstallSize));
             }
 
             if (Feature?.IsSet == true)
@@ -1122,9 +1174,11 @@ namespace Playnite
                 CriticScore = CriticScore?.ToSdkModel(),
                 CommunityScore = CommunityScore?.ToSdkModel(),
                 LastActivity = LastActivity?.ToSdkModel(),
+                RecentActivity = RecentActivity?.ToSdkModel(),
                 Added = Added?.ToSdkModel(),
                 Modified = Modified?.ToSdkModel(),
-                PlayTime = PlayTime?.ToSdkModel()
+                PlayTime = PlayTime?.ToSdkModel(),
+                InstallSize = InstallSize?.ToSdkModel()
             };
         }
 
@@ -1276,6 +1330,12 @@ namespace Playnite
                 filterChanges.Add(nameof(LastActivity));
             }
 
+            if (RecentActivity?.Equals(settings.RecentActivity) != true)
+            {
+                RecentActivity = EnumFilterItemProperties.FromSdkModel(settings.RecentActivity);
+                filterChanges.Add(nameof(RecentActivity));
+            }
+
             if (Added?.Equals(settings.Added) != true)
             {
                 Added = EnumFilterItemProperties.FromSdkModel(settings.Added);
@@ -1292,6 +1352,12 @@ namespace Playnite
             {
                 PlayTime = EnumFilterItemProperties.FromSdkModel(settings.PlayTime);
                 filterChanges.Add(nameof(PlayTime));
+            }
+
+            if (InstallSize?.Equals(settings.InstallSize) != true)
+            {
+                InstallSize = EnumFilterItemProperties.FromSdkModel(settings.InstallSize);
+                filterChanges.Add(nameof(InstallSize));
             }
 
             if (Feature?.Equals(settings.Feature) != true)
@@ -1453,6 +1519,12 @@ namespace Playnite
                 filterChanges.Add(nameof(LastActivity));
             }
 
+            if (RecentActivity?.Equals(settings.RecentActivity) != true)
+            {
+                RecentActivity = settings.RecentActivity;
+                filterChanges.Add(nameof(RecentActivity));
+            }
+
             if (Added?.Equals(settings.Added) != true)
             {
                 Added = settings.Added;
@@ -1469,6 +1541,12 @@ namespace Playnite
             {
                 PlayTime = settings.PlayTime;
                 filterChanges.Add(nameof(PlayTime));
+            }
+
+            if (InstallSize?.Equals(settings.InstallSize) != true)
+            {
+                InstallSize = settings.InstallSize;
+                filterChanges.Add(nameof(InstallSize));
             }
 
             if (Feature?.Equals(settings.Feature) != true)
@@ -1578,6 +1656,11 @@ namespace Playnite
             return LastActivity?.IsSet == true;
         }
 
+        public bool ShouldSerializeRecentActivity()
+        {
+            return RecentActivity?.IsSet == true;
+        }
+
         public bool ShouldSerializeAdded()
         {
             return Added?.IsSet == true;
@@ -1591,6 +1674,11 @@ namespace Playnite
         public bool ShouldSerializePlayTime()
         {
             return PlayTime?.IsSet == true;
+        }
+
+        public bool ShouldSerializeInstallSize()
+        {
+            return InstallSize?.IsSet == true;
         }
 
         public bool ShouldSerializeFeature()

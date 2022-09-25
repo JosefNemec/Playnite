@@ -1380,6 +1380,15 @@ namespace Playnite.SDK.Models
         }
 
         /// <summary>
+        /// Gets time segment for games recent activity.
+        /// </summary>
+        [DontSerialize]
+        public PastTimeSegment RecentActivitySegment
+        {
+            get => GetPastTimeSegment(RecentActivity);
+        }
+
+        /// <summary>
         /// Gets time segment for games added date.
         /// </summary>
         [DontSerialize]
@@ -1404,6 +1413,15 @@ namespace Playnite.SDK.Models
         public PlaytimeCategory PlaytimeCategory
         {
             get => GetPlayTimeCategory(Playtime);
+        }
+
+        /// <summary>
+        /// Gets game's install size group.
+        /// </summary>
+        [DontSerialize]
+        public InstallSizeGroup InstallSizeGroup
+        {
+            get => GetInstallSizeGroup();
         }
 
         /// <summary>

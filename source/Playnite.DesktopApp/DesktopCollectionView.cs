@@ -44,6 +44,7 @@ namespace Playnite.DesktopApp
             { GroupableField.CommunityScore, nameof(GamesCollectionViewEntry.CommunityScoreGroup) },
             { GroupableField.CriticScore, nameof(GamesCollectionViewEntry.CriticScoreGroup) },
             { GroupableField.LastActivity, nameof(GamesCollectionViewEntry.LastActivitySegment) },
+            { GroupableField.RecentActivity, nameof(GamesCollectionViewEntry.RecentActivitySegment) },
             { GroupableField.Added, nameof(GamesCollectionViewEntry.AddedSegment) },
             { GroupableField.Modified, nameof(GamesCollectionViewEntry.ModifiedSegment) },
             { GroupableField.PlayTime, nameof(GamesCollectionViewEntry.PlaytimeCategory) },
@@ -191,6 +192,7 @@ namespace Playnite.DesktopApp
                 case GroupableField.CriticScore:
                 case GroupableField.CommunityScore:
                 case GroupableField.LastActivity:
+                case GroupableField.RecentActivity:
                 case GroupableField.Added:
                 case GroupableField.Modified:
                 case GroupableField.PlayTime:
@@ -489,6 +491,8 @@ namespace Playnite.DesktopApp
                     return oldData.CommunityScore != newData.CommunityScore;
                 case GroupableField.LastActivity:
                     return oldData.LastActivity != newData.LastActivity;
+                case GroupableField.RecentActivity:
+                    return oldData.RecentActivity != newData.RecentActivity;
                 case GroupableField.Added:
                     return oldData.Added != newData.Added;
                 case GroupableField.Modified:

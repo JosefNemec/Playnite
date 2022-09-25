@@ -108,6 +108,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     AssignFilter("LOCFeatureLabel", "PART_ButtonFeature", GameField.Features, nameof(FilterSettings.Feature));
                     AssignFilter("LOCTagLabel", "PART_ButtonTag", GameField.Tags, nameof(FilterSettings.Tag));
                     AssignFilter("LOCTimePlayed", "PART_ButtonPlayTime", GameField.Playtime, nameof(FilterSettings.PlayTime));
+                    AssignFilter("LOCInstallSizeLabel", "PART_ButtonInstallSize", GameField.InstallSize, nameof(FilterSettings.InstallSize));
                     AssignFilter("LOCCompletionStatus", "PART_ButtonCompletionStatus", GameField.CompletionStatus, nameof(FilterSettings.CompletionStatuses));
                     AssignFilter("LOCSeriesLabel", "PART_ButtonSeries", GameField.Series, nameof(FilterSettings.Series));
                     AssignFilter("LOCRegionLabel", "PART_ButtonRegion", GameField.Regions, nameof(FilterSettings.Region));
@@ -117,6 +118,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     AssignFilter("LOCCommunityScore", "PART_ButtonCommunityScore", GameField.CommunityScore, nameof(FilterSettings.CommunityScore));
                     AssignFilter("LOCCriticScore", "PART_ButtonCriticScore", GameField.CriticScore, nameof(FilterSettings.CriticScore));
                     AssignFilter("LOCGameLastActivityTitle", "PART_ButtonLastActivity", GameField.LastActivity, nameof(FilterSettings.LastActivity));
+                    AssignFilter("LOCRecentActivityLabel", "PART_ButtonRecentActivity", GameField.RecentActivity, nameof(FilterSettings.RecentActivity));
                     AssignFilter("LOCAddedLabel", "PART_ButtonAdded", GameField.Added, nameof(FilterSettings.Added));
                     AssignFilter("LOCModifiedLabel", "PART_ButtonModified", GameField.Modified, nameof(FilterSettings.Modified));
                 }
