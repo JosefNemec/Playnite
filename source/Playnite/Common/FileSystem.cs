@@ -429,6 +429,43 @@ namespace Playnite.Common
             return size;
         }
 
+        public static long GetDirectorySizeOnDiskParallel(string directoryPath)
+        {
+            return GetDirectoryFiles(directoryPath)
+                    .AsParallel()
+                    .Sum(file => GetFileSizeOnDisk(file));
+        }
+
+        private static List<FileInfo> GetDirectoryFiles(string directoryPath)
+        {
+            var filesList = new List<FileInfo>();
+            GetDirectoryFiles(filesList, directoryPath);
+            return filesList;
+        }
+
+        private static void GetDirectoryFiles(List<FileInfo> filesList, string directoryPath)
+        {
+            GetDirectoryFiles(filesList, new DirectoryInfo(Paths.FixPathLength(directoryPath)));
+        }
+
+        private static void GetDirectoryFiles(List<FileInfo> filesList, DirectoryInfo dirInfo)
+        {
+            foreach (FileInfo fileInfo in dirInfo.GetFiles())
+            {
+                filesList.Add(fileInfo);
+            }
+
+            foreach (DirectoryInfo subdirInfo in dirInfo.GetDirectories())
+            {
+                if (!IsDirectorySubdirSafeToRecurse(subdirInfo))
+                {
+                    continue;
+                }
+
+                GetDirectoryFiles(filesList, subdirInfo.FullName);
+            }
+        }
+
         private static bool IsDirectorySubdirSafeToRecurse(DirectoryInfo childDirectory)
         {
             // Whitespace characters can cause confusion in methods, causing them to process

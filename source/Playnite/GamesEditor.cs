@@ -586,7 +586,7 @@ namespace Playnite
 
                 if (AppSettings.InstallSizeScanUseSizeOnDisk)
                 {
-                    size = FileSystem.GetDirectorySizeOnDisk(expandedGame.InstallDirectory);
+                    size = FileSystem.GetDirectorySizeOnDiskParallel(expandedGame.InstallDirectory);
                 }
                 else
                 {
