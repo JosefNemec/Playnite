@@ -738,7 +738,7 @@ namespace Playnite.DesktopApp.ViewModels
             model.OpenView();
         }
 
-        public override void SelectGame(Guid id)
+        public override void SelectGame(Guid id, bool restoreView = false)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             if (viewEntry != null)
@@ -746,13 +746,13 @@ namespace Playnite.DesktopApp.ViewModels
                 SelectedGames = new List<GamesCollectionViewEntry>(1) { viewEntry };
             }
 
-            if (Window?.Window?.IsActive == false)
+            if (restoreView && Window?.Window?.IsActive == false)
             {
                 Window.RestoreWindow();
             }
         }
 
-        public void SelectGames(IEnumerable<Guid> gameIds)
+        public void SelectGames(IEnumerable<Guid> gameIds, bool restoreView = false)
         {
             if (!gameIds.HasItems())
             {
@@ -765,7 +765,7 @@ namespace Playnite.DesktopApp.ViewModels
                 SelectedGames = entries.ToList();
             }
 
-            if (Window?.Window?.IsActive == false)
+            if (restoreView && Window?.Window?.IsActive == false)
             {
                 Window.RestoreWindow();
             }

@@ -78,7 +78,7 @@ namespace Playnite.ViewModels
                             }
                         }
 
-                        mainModel.SelectGame(game.Id);
+                        mainModel.SelectGame(game.Id, true);
                     });
                 case GameSearchItemAction.OpenMenu:
                     return new ContextSwitchSearchItemAction(LOC.GameSearchItemActionOpenMenu, new GameMenuContext(game, mainModel));

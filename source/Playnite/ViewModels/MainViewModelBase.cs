@@ -824,7 +824,7 @@ namespace Playnite.ViewModels
             await GlobalTaskHandler.CancelAndWaitAsync();
         }
 
-        public virtual void SelectGame(Guid id)
+        public virtual void SelectGame(Guid id, bool restoreView = false)
         {
         }
 
