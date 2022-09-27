@@ -19,6 +19,7 @@
     <c:WindowBase.InputBindings>
         <pin:XInputBinding Button="Y" Command="{Binding ToggleSelectionCommand}" />
         <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
+        <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
         <KeyBinding Key="Backspace" Command="{Binding CancelCommand}" />
     </c:WindowBase.InputBindings>
