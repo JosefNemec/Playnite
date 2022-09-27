@@ -176,6 +176,7 @@ namespace Playnite.Plugins
             }
 
             File.Delete(PlaynitePaths.ExtensionQueueFilePath);
+            currentQueue = new List<ExtensionInstallQueueItem>();
             return installedExts;
         }
 
