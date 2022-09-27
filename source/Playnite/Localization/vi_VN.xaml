@@ -141,7 +141,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCCloseLabel">Đóng</sys:String>
     <sys:String x:Key="LOCCancelLabel">Hủy bỏ</sys:String>
     <sys:String x:Key="LOCConfirmLabel">Xác nhận</sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel">Thiết lập lại</sys:String>
     <sys:String x:Key="LOCYesLabel">Có</sys:String>
     <sys:String x:Key="LOCNoLabel">Không</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Chào mừng</sys:String>
@@ -186,14 +186,14 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCPastMonth">Một tháng qua</sys:String>
     <sys:String x:Key="LOCPastYear">Một năm qua</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Cách đây nhiều hơn một năm trước</sys:String>
-    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
-    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
-    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
-    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
-    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
-    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
-    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
-    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0 tới 100MB</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100MB tới 1GB</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1GB tới 5GB</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5GB tới 10GB</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10GB tới 20GB</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20GB tới 40GB</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40GB tới 100GB</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB hoặc nhiều hơn</sys:String>
     <sys:String x:Key="LOCImportCompleted">Đã nhập thành công.</sys:String>
     <sys:String x:Key="LOCAllGames">Tất cả Trò chơi</sys:String>
     <sys:String x:Key="LOCGameId">ID Trò chơi</sys:String>
@@ -221,7 +221,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCProgressImportinGames">Đang nhập {0} các trò chơi...</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Đang nhập các trò chơi giả lập từ {0}</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Đang tải xuống các bản cập nhập thư viện...</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Đang quét dung lượng trò chơi trong thư viện...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Cập nhật thư viện thành công</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Đang thả ra các tài nguyên</sys:String>
     <!--Menu-->
@@ -346,7 +346,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsCloseToTray">Thu nhỏ Playnite vào khay hệ thống khi đóng cửa sổ ứng dụng</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Khi trò chơi bắt đầu:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Sau khi trò chơi kết thúc:</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Định dạng ngày tháng:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Điều này sẽ đăng xuất bạn khỏi tất cả các dịch vụ được liên kết. Khởi động lại ứng dụng là bắt buộc, bạn có muốn tiếp tục không?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Xóa bộ nhớ cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Bắt buộc phải khởi động lại Playnite để áp dụng chủ đề mới</sys:String>
@@ -416,7 +416,7 @@ Nếu bị tắt, tác phẩm nền chỉ được tải xuống khi cần thi�
     <sys:String x:Key="LOCOpenDirectoryCommand">Lệnh mở thư mục</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Tổ chức xếp hạng độ tuổi ưa thích</sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Quét và cập nhật kích thước cài đặt của trò chơi nếu như phát hiện ra tập tin của chúng được chỉnh sửa từ lần quét gần nhất</sys:String>
     <sys:String x:Key="LOCStrechNone">Không có</sys:String>
     <sys:String x:Key="LOCStrechFill">Lấp đầy</sys:String>
     <sys:String x:Key="LOCStrechUniform">Đồng phục</sys:String>
@@ -517,7 +517,7 @@ Nó hiện đang được sử dụng bởi {1} (các) trò chơi và {2} trình
     <sys:String x:Key="LOCGameProviderTitle">Thư viện</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Thủ công</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Tên</sys:String>
-    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">Ổ cài đặt</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Tên tài khoản</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Nền tảng</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Thể loại</sys:String>
@@ -563,7 +563,7 @@ Nếu bị tắt, các trò chơi sử dụng bất kỳ mục nào trong bất 
     <sys:String x:Key="LOCRegionsLabel">Các khu vực</sys:String>
     <sys:String x:Key="LOCSourceLabel">Mã nguồn</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Các đoạn mã nguồn</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Hoạt động gần đây</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Lỗi cơ sở dữ liệu</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Không mở được cơ sở dữ liệu thư viện.</sys:String>
@@ -732,7 +732,7 @@ Vui lòng đính kèm ID sau vào báo cáo sự cố của bạn:</sys:String>
     <sys:String x:Key="LOCHideGame">Ẩn khỏi mục ưa thích</sys:String>
     <sys:String x:Key="LOCUnHideGame">Xóa khỏi danh sách ẩn</sys:String>
     <sys:String x:Key="LOCEditGame">chỉnh sửa</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">Tính toán kích cỡ cài đặt</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
     <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
     <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
@@ -781,7 +781,7 @@ Vui lòng đính kèm ID sau vào báo cáo sự cố của bạn:</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Không thực hiện được chức năng tiện ích mở rộng.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Mở thư mục siêu dữ liệu</sys:String>
     <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">Tự động tính toán kích thước cài đặt bằng Roms nếu trò chơi có hoặc tự động chọn nơi cài đặt game nếu như chưa được thiết lập</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">Ứng dụng khách {0} chưa được cài đặt.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">Ứng dụng khách {0} bây giờ sẽ mở. Vui lòng đăng nhập và sau đó đóng thông báo này.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Đang đợi người dùng đăng nhập, vui lòng đóng phần này khi bạn hoàn tất…</sys:String>
