@@ -207,6 +207,20 @@ namespace Playnite
         }
     }
 
+    public class ReleaseDateFormattingOptions : DateFormattingOptions
+    {
+        private string partialFormat = Constants.DefaultPartialReleaseDateTimeFormat;
+        public string PartialFormat { get => partialFormat; set => SetValue(ref partialFormat, value); }
+
+        public ReleaseDateFormattingOptions() : base()
+        {
+        }
+
+        public ReleaseDateFormattingOptions(string format, bool pastWeekRelativeFormat) : base(format, pastWeekRelativeFormat)
+        {
+        }
+    }
+
     public class PlayniteSettings : ObservableObject
     {
         private static SDK.ILogger logger = SDK.LogManager.GetLogger();
@@ -1988,9 +2002,9 @@ namespace Playnite
             }
         }
 
-        private DateFormattingOptions dateTimeFormatReleaseDate = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        private ReleaseDateFormattingOptions dateTimeFormatReleaseDate = new ReleaseDateFormattingOptions(Constants.DefaultDateTimeFormat, false);
         [RequiresRestart]
-        public DateFormattingOptions DateTimeFormatReleaseDate
+        public ReleaseDateFormattingOptions DateTimeFormatReleaseDate
         {
             get => dateTimeFormatReleaseDate;
             set
