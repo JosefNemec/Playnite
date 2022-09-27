@@ -4285,5 +4285,9 @@ namespace Playnite
         /// Background image search string
         /// </summary>
         public const string SettingsWebImageSearchBackground = "LOCSettingsWebImageSearchBackground";
+        /// <summary>
+        /// Getting add-on information…
+        /// </summary>
+        public const string GettingsAddonInformation = "LOCGettingsAddonInformation";
     }
 }
