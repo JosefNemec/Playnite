@@ -764,6 +764,7 @@ namespace Playnite.ViewModels
                         return;
                     }
 
+                    ProgressActive = true;
                     ProgressStatus = Resources.GetString(LOC.ProgressLibImportFinish);
                     Thread.Sleep(1000);
                     if (addedGames.Any() && downloadMetadata)
