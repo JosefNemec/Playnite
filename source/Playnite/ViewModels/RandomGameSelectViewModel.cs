@@ -79,7 +79,7 @@ namespace Playnite.ViewModels
             get => new RelayCommand(() =>
             {
                 NavigateToGame();
-            });
+            }, () => SelectedGame != null);
         }
 
         public RandomGameSelectViewModel(
