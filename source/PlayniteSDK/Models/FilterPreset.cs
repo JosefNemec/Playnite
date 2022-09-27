@@ -75,7 +75,8 @@ namespace Playnite.SDK.Models
         [Description("LOCGameInstallationStatus")] InstallationStatus = 22,
         [Description("LOCGameNameTitle")] Name = 23,
         [Description("LOCInstallDriveTitle")] InstallDrive = 24,
-        [Description("LOCInstallSizeLabel")] InstallSize = 25
+        [Description("LOCInstallSizeLabel")] InstallSize = 25,
+        [Description("LOCRecentActivityLabel")] RecentActivity = 26
     }
 
     public class FilterPresetSettings
@@ -105,9 +106,11 @@ namespace Playnite.SDK.Models
         public EnumFilterItemProperties CriticScore { get; set; }
         public EnumFilterItemProperties CommunityScore { get; set; }
         public EnumFilterItemProperties LastActivity { get; set; }
+        public EnumFilterItemProperties RecentActivity { get; set; }
         public EnumFilterItemProperties Added { get; set; }
         public EnumFilterItemProperties Modified { get; set; }
         public EnumFilterItemProperties PlayTime { get; set; }
+        public EnumFilterItemProperties InstallSize { get; set; }
     }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 

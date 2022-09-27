@@ -543,7 +543,10 @@ namespace Playnite.Metadata
                         }
 
                         // InstallSize
-                        if (settings.InstallSize.Import)
+                        // Installed games with assigned value are skipped since their scanned size
+                        // using local files will be more accurate than the ones provided via metadata
+                        var isInstalledAndHasValue = game.IsInstalled && game.InstallSize != null;
+                        if (settings.InstallSize.Import && !isInstalledAndHasValue)
                         {
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.InstallSize == null))
                             {

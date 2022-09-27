@@ -26,6 +26,8 @@ namespace Playnite.Database
         Category,
         [Description(LOC.GameLastActivityTitle)]
         LastActivity,
+        [Description(LOC.RecentActivityLabel)]
+        RecentActivity,
         [Description(LOC.GenreLabel)]
         Genre,
         [Description(LOC.GameReleaseYearTitle)]
@@ -46,6 +48,8 @@ namespace Playnite.Database
         Source,
         [Description(LOC.TimePlayed)]
         PlayTime,
+        [Description(LOC.InstallSizeLabel)]
+        InstallSize,
         [Description(LOC.CompletionStatus)]
         CompletionStatus,
         [Description(LOC.UserScore)]
@@ -632,6 +636,9 @@ namespace Playnite.Database
                 case ExplorerField.LastActivity:
                     filters.LastActivity = GetEnumFilter(filter);
                     break;
+                case ExplorerField.RecentActivity:
+                    filters.RecentActivity = GetEnumFilter(filter);
+                    break;
                 case ExplorerField.Added:
                     filters.Added = GetEnumFilter(filter);
                     break;
@@ -640,6 +647,9 @@ namespace Playnite.Database
                     break;
                 case ExplorerField.PlayTime:
                     filters.PlayTime = GetEnumFilter(filter);
+                    break;
+                case ExplorerField.InstallSize:
+                    filters.InstallSize = GetEnumFilter(filter);
                     break;
                 case ExplorerField.Feature:
                     filters.Feature = GetIdFilter(filter);
@@ -829,12 +839,16 @@ namespace Playnite.Database
                     values.AddRange(GenerateEnumValues(typeof(ScoreGroup)));
                     break;
                 case ExplorerField.LastActivity:
+                case ExplorerField.RecentActivity:
                 case ExplorerField.Added:
                 case ExplorerField.Modified:
                     values.AddRange(GenerateEnumValues(typeof(PastTimeSegment)));
                     break;
                 case ExplorerField.PlayTime:
                     values.AddRange(GenerateEnumValues(typeof(PlaytimeCategory)));
+                    break;
+                case ExplorerField.InstallSize:
+                    values.AddRange(GenerateEnumValues(typeof(InstallSizeGroup)));
                     break;
                 case ExplorerField.Feature:
                     values.Add(noneDbObject);

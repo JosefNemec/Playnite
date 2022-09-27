@@ -164,6 +164,9 @@ namespace Playnite.DesktopApp.Controls.Views
             SetLabelTag(nameof(FilterSettings.PlayTime), LOC.TimePlayed);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.PlayTime), typeof(PlaytimeCategory));
 
+            SetLabelTag(nameof(FilterSettings.InstallSize), LOC.InstallSizeLabel);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.InstallSize), typeof(InstallSizeGroup));
+
             SetLabelTag(nameof(FilterSettings.CompletionStatuses), LOC.CompletionStatus);
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.CompletionStatuses), nameof(FilterSettings.CompletionStatuses));
 
@@ -193,6 +196,9 @@ namespace Playnite.DesktopApp.Controls.Views
 
             SetLabelTag(nameof(FilterSettings.LastActivity), LOC.GameLastActivityTitle);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.LastActivity), typeof(PastTimeSegment));
+
+            SetLabelTag(nameof(FilterSettings.RecentActivity), LOC.RecentActivityLabel);
+            SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.RecentActivity), typeof(PastTimeSegment));
 
             SetLabelTag(nameof(FilterSettings.Added), LOC.DateAddedLabel);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.Added), typeof(PastTimeSegment));

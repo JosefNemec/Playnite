@@ -341,6 +341,19 @@ namespace Playnite
                 }
             }
 
+            // ------------------ InstallSize
+            if (filterSettings.InstallSize?.IsSet == true)
+            {
+                if (filterSettings.InstallSize.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (filterSettings.InstallSize.Values.First() == ((int)game.InstallSizeGroup) == false)
+                {
+                    return false;
+                }
+            }
+
             // ------------------ Version
             if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) != true)
             {
@@ -364,6 +377,19 @@ namespace Playnite
                     return false;
                 }
                 else if (!filterSettings.LastActivity.Values.Contains((int)game.LastActivitySegment))
+                {
+                    return false;
+                }
+            }
+
+            // ------------------ Recent Activity
+            if (filterSettings.RecentActivity?.IsSet == true)
+            {
+                if (filterSettings.RecentActivity.Values.Count != 1)
+                {
+                    return false;
+                }
+                else if (!filterSettings.RecentActivity.Values.Contains((int)game.RecentActivitySegment))
                 {
                     return false;
                 }
@@ -641,6 +667,12 @@ namespace Playnite
                 return false;
             }
 
+            // ------------------ InstallSize
+            if (filterSettings.InstallSize?.IsSet == true && !filterSettings.InstallSize.Values.Contains((int)game.InstallSizeGroup))
+            {
+                return false;
+            }
+
             // ------------------ Version
             if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) != true)
             {
@@ -658,6 +690,12 @@ namespace Playnite
 
             // ------------------ Last Activity
             if (filterSettings.LastActivity?.IsSet == true && !filterSettings.LastActivity.Values.Contains((int)game.LastActivitySegment))
+            {
+                return false;
+            }
+
+            // ------------------ Recent Activity
+            if (filterSettings.RecentActivity?.IsSet == true && !filterSettings.RecentActivity.Values.Contains((int)game.RecentActivitySegment))
             {
                 return false;
             }

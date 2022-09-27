@@ -111,6 +111,7 @@
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="ArchiveTests.cs" />
     <Compile Include="BackupTests.cs" />
+    <Compile Include="InstallSizeScanTests.cs" />
     <Compile Include="M3UTests.cs" />
     <Compile Include="SearchViewModelTests.cs" />
     <Compile Include="_TestTools\GameDbTestWrapper.cs" />
@@ -199,6 +200,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Serialization\valid.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\SizeScan\CueNonExistingFiles.cue">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\SizeScan\CueTestFiles.cue">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\SizeScan\Empty0KbFile.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\SizeScan\Empty1KbFile.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\SizeScan\Empty2KbFile.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Sony - PlayStation Vita.db">

@@ -68,5 +68,33 @@ namespace Playnite.Tests
             StringAssert.AreEqualIgnoringCase("46fcb37aa8e69b4ead0d702fd459299d", FileSystem.GetMD5(testFile));
             StringAssert.AreEqualIgnoringCase("D8B22F5D", FileSystem.GetCRC32(testFile));
         }
+
+        [Test]
+        public void DirectorySizeScanTest()
+        {
+            using (var tempPath = TempDirectory.Create())
+            {
+                // Subdirectory is used to verify that called methods work correctly in long paths
+                var subDirName = new string('a', 255);
+                var subDirName2 = new string('b', 30);
+                var subdirPath = Path.Combine(tempPath.TempPath, subDirName, subDirName2);
+                FileSystem.CreateDirectory(subdirPath);
+
+                var filePath = Path.Combine(subdirPath, "DummyFile");
+                var dummyFileLenght = 1024;
+                using (var fileStream = new FileStream(Paths.FixPathLength(filePath), FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    fileStream.SetLength(dummyFileLenght);
+                }
+
+                // We can't check the exact size because it will vary depending on drive
+                // cluster size so we only check if value is higher than zero
+                var dirSizeOnDisk = FileSystem.GetDirectorySizeOnDisk(tempPath.TempPath);
+                Assert.Greater(dirSizeOnDisk, 0);
+
+                var dirSize = FileSystem.GetDirectorySize(tempPath.TempPath);
+                Assert.AreEqual(dummyFileLenght, dirSize);
+            }
+        }
     }
 }
