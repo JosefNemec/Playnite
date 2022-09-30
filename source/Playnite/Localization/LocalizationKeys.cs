@@ -794,9 +794,9 @@ namespace Playnite
         /// </summary>
         public const string ProgressScanningGamesInstallSize = "LOCProgressScanningGamesInstallSize";
         /// <summary>
-        /// Scanning size of imported emulated games…
+        /// Scanning size of imported games…
         /// </summary>
-        public const string ProgressScanningEmulatedGamesInstallSize = "LOCProgressScanningEmulatedGamesInstallSize";
+        public const string ProgressScanningImportedGamesInstallSize = "LOCProgressScanningImportedGamesInstallSize";
         /// <summary>
         /// Library update finished
         /// </summary>
