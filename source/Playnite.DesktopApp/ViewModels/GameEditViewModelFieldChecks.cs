@@ -471,7 +471,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useCompletionStatusChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+                OnPropertyChanged(nameof(ShowGeneralChangeNotif));
             }
         }
 
@@ -752,6 +752,7 @@ namespace Playnite.DesktopApp.ViewModels
                     UseAgeRatingChanges ||
                     UseRegionChanges ||
                     UseSourceChanges ||
+                    UseCompletionStatusChanges ||
                     UseUserScoreChanges ||
                     UseCriticScoreChanges ||
                     UseCommunityScoreChanges);
@@ -780,7 +781,6 @@ namespace Playnite.DesktopApp.ViewModels
                     UsePlaytimeChanges ||
                     UseAddedChanges ||
                     UsePlayCountChanges ||
-                    UseCompletionStatusChanges ||
                     UseNotesChanges ||
                     UseManualChanges);
             }
