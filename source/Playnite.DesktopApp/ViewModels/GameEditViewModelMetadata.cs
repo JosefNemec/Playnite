@@ -38,6 +38,7 @@ namespace Playnite.DesktopApp.ViewModels
         public MetadataFile Icon { get; set; }
         public MetadataFile CoverImage { get; set; }
         public MetadataFile BackgroundImage { get; set; }
+        public ulong? InstallSize { get; set; }
     }
 
     public partial class GameEditViewModel
@@ -204,6 +205,14 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
+            if (newGame.InstallSize != null)
+            {
+                if (oldGame.InstallSize != null && oldGame.InstallSize != newGame.InstallSize)
+                {
+                    diffFields.Add(GameField.InstallSize);
+                }
+            }
+
             return diffFields;
         }
 
@@ -349,6 +358,11 @@ namespace Playnite.DesktopApp.ViewModels
                     EditingGame.BackgroundImage = newBackground;
                 }
             }
+
+            if (newData.InstallSize != null)
+            {
+                EditingGame.InstallSize = newData.InstallSize;
+            }
         }
 
         private string ProcessMetadataFile(string file, string tempFileName)
@@ -403,7 +417,8 @@ namespace Playnite.DesktopApp.ViewModels
                 ReleaseDate = game.ReleaseDate,
                 CommunityScore = game.CommunityScore,
                 CriticScore = game.CriticScore,
-                Links = game.Links
+                Links = game.Links,
+                InstallSize = game.InstallSize
             };
 
             if (game.Genres.HasItems())
@@ -498,7 +513,8 @@ namespace Playnite.DesktopApp.ViewModels
                             Platforms = provider.GetPlatforms(fieldArgs)?.Where(a => a != null).ToHashSet(),
                             Icon = provider.GetIcon(fieldArgs),
                             CoverImage = provider.GetCoverImage(fieldArgs),
-                            BackgroundImage = provider.GetBackgroundImage(fieldArgs)
+                            BackgroundImage = provider.GetBackgroundImage(fieldArgs),
+                            InstallSize = provider.GetInstallSize(fieldArgs)
                         };
 
                         Application.Current.Dispatcher.Invoke(() => PreviewGameData(ConvertGameInfo(metadata)));

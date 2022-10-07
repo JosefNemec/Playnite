@@ -375,7 +375,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useInstallSizeChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -781,7 +781,6 @@ namespace Playnite.DesktopApp.ViewModels
                     UsePlaytimeChanges ||
                     UseAddedChanges ||
                     UsePlayCountChanges ||
-                    UseInstallSizeChanges ||
                     UseNotesChanges ||
                     UseManualChanges);
             }
@@ -803,6 +802,7 @@ namespace Playnite.DesktopApp.ViewModels
                     (UseInstallDirChanges ||
                     UseRomsChanges ||
                     UseInstallStateChanges ||
+                    UseInstallSizeChanges ||
                     UseOverrideInstallState);
             }
         }

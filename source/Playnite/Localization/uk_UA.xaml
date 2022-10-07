@@ -968,8 +968,8 @@
     <sys:String x:Key="LOCTopPanelMainButtonMove">Перемістити кнопку головного меню на бічну панель</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Панель провідника</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Вибір випадкових ігор</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Показує селектор випадкової гри</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Обирає випадкову гру із вигляду</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Вибір випадкової гри зі списку</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Вибрати випадкову гру з поточного списку</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Зберегти налаштування групування та сортування</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Показувати як швидкий фільтр у повноекранному режимі</sys:String>
     <sys:String x:Key="LOCInPast7Days">За минулі 7 днів</sys:String>

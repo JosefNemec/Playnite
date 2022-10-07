@@ -18,6 +18,8 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public class TopPanelWrapperItem : ObservableObject
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         private DesktopAppViewModel model;
         public TopPanelItem PanelItem { get; }
         public RelayCommandBase Command { get; set; }
@@ -39,7 +41,17 @@ namespace Playnite.DesktopApp.ViewModels
         {
             this.model = model;
             PanelItem = item;
-            Command = new RelayCommand(() => PanelItem.Activated?.Invoke());
+            Command = new RelayCommand(() =>
+            {
+                try
+                {
+                    PanelItem.Activated?.Invoke();
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to run top panel extension button action.");
+                }
+            });
             item.PropertyChanged += Item_PropertyChanged;
         }
 

@@ -32,13 +32,25 @@ namespace Playnite.Extensions.Markup
                 return this;
             }
 
-            if (!PathFormat.IsNullOrEmpty())
+            if (!PathFormat.IsNullOrEmpty() && !(Converter is GenericTypeConverter))
             {
-                Converter = new GenericTypeConverter
+                if (Converter != null)
                 {
-                    StringFormat = ThemeFile.GetFilePath(PathFormat, false),
-                    CustomConverter = Converter
-                };
+                    Converter = new GenericTypeConverter
+                    {
+                        StringFormat = ThemeFile.GetFilePath(PathFormat, false),
+                        TestAsFilePath = true,
+                        CustomConverter = Converter
+                    };
+                }
+                else
+                {
+                    Converter = new GenericTypeConverter
+                    {
+                        StringFormat = ThemeFile.GetFilePath(PathFormat, false),
+                        TestAsFilePath = true
+                    };
+                }
             }
 
             return base.ProvideValue(serviceProvider);

@@ -84,6 +84,7 @@ namespace Playnite.DesktopApp.ViewModels
         public DiffItem CommunityScore { get; } = new DiffItem();
         public DiffItem CriticScore { get; } = new DiffItem();
         public DiffItem ReleaseDate { get; } = new DiffItem();
+        public DiffItem InstallSize { get; } = new DiffItem();
         public ListDiffItem<AgeRating> AgeRatings { get; } = new ListDiffItem<AgeRating>();
         public ListDiffItem<Region> Regions { get; } = new ListDiffItem<Region>();
         public ListDiffItem<Series> Series { get; } = new ListDiffItem<Series>();
@@ -187,6 +188,11 @@ namespace Playnite.DesktopApp.ViewModels
                 CommunityScore.Enabled = true;
             }
 
+            if (diffFields.Contains(GameField.InstallSize))
+            {
+                InstallSize.Enabled = true;
+            }
+
             void loadNewListData<T>(ListDiffItem<T> list, List<T> currentGameData, List<T> newGameData, GameField field) where T : DatabaseObject
             {
                 if (diffFields.Contains(field))
@@ -285,6 +291,11 @@ namespace Playnite.DesktopApp.ViewModels
             if (diffFields.Contains(GameField.ReleaseDate) && ReleaseDate.Source == MetadataChangeDataSource.Current)
             {
                 ResultMetadata.ReleaseDate = null;
+            }
+
+            if (diffFields.Contains(GameField.InstallSize) && InstallSize.Source == MetadataChangeDataSource.Current)
+            {
+                ResultMetadata.InstallSize = null;
             }
 
             if (diffFields.Contains(GameField.AgeRatings))
@@ -442,6 +453,7 @@ namespace Playnite.DesktopApp.ViewModels
             CommunityScore.Source = source;
             CriticScore.Source = source;
             ReleaseDate.Source = source;
+            InstallSize.Source = source;
             Icon.Source = source;
             Cover.Source = source;
             Background.Source = source;

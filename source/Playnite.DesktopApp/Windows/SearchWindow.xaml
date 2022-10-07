@@ -52,7 +52,7 @@
         <DockPanel DockPanel.Dock="Top" Margin="10">
             <Button Style="{DynamicResource SearchWindowSearchLabelButton}"
                     Content="{Binding CurrentContextLabel}"
-                    Command="{Binding DeactiveCurrentContextCommand}"
+                    Command="{Binding DeactivateCurrentContextCommand}"
                     Visibility="{Binding CurrentContextLabel, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"

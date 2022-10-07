@@ -887,7 +887,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public override void SelectGame(Guid id)
+        public override void SelectGame(Guid id, bool restoreView = false)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;

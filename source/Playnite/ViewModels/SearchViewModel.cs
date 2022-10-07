@@ -78,7 +78,7 @@ namespace Playnite.ViewModels
                             }
                         }
 
-                        mainModel.SelectGame(game.Id);
+                        mainModel.SelectGame(game.Id, true);
                     });
                 case GameSearchItemAction.OpenMenu:
                     return new ContextSwitchSearchItemAction(LOC.GameSearchItemActionOpenMenu, new GameMenuContext(game, mainModel));
@@ -420,7 +420,7 @@ namespace Playnite.ViewModels
         public RelayCommand<EventArgs> WindowDeactivatedCommand => new RelayCommand<EventArgs>((_) => WindowDeactivated(_));
         public RelayCommand ToggleHintCommand => new RelayCommand(() => ToggleHint());
         public RelayCommand OpenSearchSettingsCommand => new RelayCommand(() => OpenSearchSettings());
-        public RelayCommand DeactiveCurrentContextCommand => new RelayCommand(() => DeactiveCurrentContext());
+        public RelayCommand DeactivateCurrentContextCommand => new RelayCommand(() => DeactivateCurrentContext());
 
         public RelayCommand PrimaryActionCommand { get; }
         public RelayCommand SecondaryActionCommand { get; }
@@ -620,7 +620,7 @@ namespace Playnite.ViewModels
             }, null);
         }
 
-        private void DeactiveCurrentContext()
+        private void DeactivateCurrentContext()
         {
             if (searchContextStack.Count == 1)
             {
@@ -878,7 +878,7 @@ namespace Playnite.ViewModels
             {
                 if (customProviderDeleteAttemps >= 1)
                 {
-                    DeactiveCurrentContext();
+                    DeactivateCurrentContext();
                 }
                 else
                 {

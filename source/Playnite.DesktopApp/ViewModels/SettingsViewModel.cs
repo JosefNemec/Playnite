@@ -349,6 +349,7 @@ namespace Playnite.DesktopApp.ViewModels
             get => new RelayCommand(() =>
             {
                 settings.DateTimeFormatReleaseDate.Format = Constants.DefaultDateTimeFormat;
+                settings.DateTimeFormatReleaseDate.PartialFormat = Constants.DefaultPartialReleaseDateTimeFormat;
             });
         }
 
@@ -376,6 +377,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         public object DateTimeFormatReleaseDateExample =>
             ReleaseDateToStringConverter.Instance.Convert(new ReleaseDate(DateTime.Now), typeof(string), Settings.DateTimeFormatReleaseDate, CultureInfo.CurrentCulture);
+
+        public object DateTimeFormatPartialReleaseDateExample =>
+            ReleaseDateToStringConverter.Instance.Convert(new ReleaseDate(1999, 6), typeof(string), Settings.DateTimeFormatReleaseDate, CultureInfo.CurrentCulture);
 
         public SettingsViewModel(
             IGameDatabaseMain database,
@@ -423,6 +427,7 @@ namespace Playnite.DesktopApp.ViewModels
             Settings.DateTimeFormatReleaseDate.PropertyChanged += (_, __) =>
             {
                 OnPropertyChanged(nameof(DateTimeFormatReleaseDateExample));
+                OnPropertyChanged(nameof(DateTimeFormatPartialReleaseDateExample));
                 editedFields.AddMissing(nameof(Settings.DateTimeFormatReleaseDate));
             };
 

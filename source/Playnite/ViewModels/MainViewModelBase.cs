@@ -764,6 +764,7 @@ namespace Playnite.ViewModels
                         return;
                     }
 
+                    ProgressActive = true;
                     ProgressStatus = Resources.GetString(LOC.ProgressLibImportFinish);
                     Thread.Sleep(1000);
                     if (addedGames.Any() && downloadMetadata)
@@ -824,7 +825,7 @@ namespace Playnite.ViewModels
             await GlobalTaskHandler.CancelAndWaitAsync();
         }
 
-        public virtual void SelectGame(Guid id)
+        public virtual void SelectGame(Guid id, bool restoreView = false)
         {
         }
 

@@ -14,7 +14,7 @@ General workflow for importing games is:
   - If you want the same directory to be re-scanned on startup (or manually) enable "Save as auto-scan" option. You can later edit saved scanner from emulator configuration window, "Auto-scan configuration" tab.
 
 > [!NOTE]
-> It's highly recommended to use automatically imported emulators and built-in profiles for better game import experience. Some built-in emulators (for example RPCS3 and ScummVM) use more advanced import mechanism then just matching file names and you won't be able to utilize it with custom profiles.
+> It's highly recommended to use automatically imported emulators and built-in profiles for better game import experience. Some built-in emulators (for example RPCS3 and ScummVM) use more advanced import mechanism than just matching file names and you won't be able to utilize it with custom profiles.
 
 > [!NOTE]
 > Playnite currently doesn't have built-in support for any arcade emulator. You will have to configure those manually. Built-in support for more well known arcade emulators will be added [in future](https://github.com/JosefNemec/Playnite/issues/2407). If you are having issues with non-arcade emulators, please open GitHub issue (games not being imported or launched properly).

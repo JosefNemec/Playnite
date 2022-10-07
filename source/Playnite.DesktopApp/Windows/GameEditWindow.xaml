@@ -263,7 +263,7 @@
                                          UpdateSourceTrigger="PropertyChanged" 
                                          ValidatesOnDataErrors="True"
                                          NotifyOnValidationError="True"
-                                         Converter="{StaticResource ReleaseDateToStringConverter}">
+                                         Converter="{pcon:EditingReleaseDateToStringConverter}">
                                     <Binding.ValidationRules>
                                         <pcon:ReleaseDateFieldValidation />
                                     </Binding.ValidationRules>

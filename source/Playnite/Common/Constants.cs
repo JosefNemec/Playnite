@@ -10,6 +10,8 @@ namespace Playnite.Common
     public static class Constants
     {
         public const string DefaultDateTimeFormat = "d";
+        public const string DefaultPartialReleaseDateTimeFormat = "y";
+
         public static string DateUiFormat
         {
             get;
@@ -20,7 +22,6 @@ namespace Playnite.Common
             get;
         } = CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
 
-        
         public static char[] ListSeparators
         {
             get;
