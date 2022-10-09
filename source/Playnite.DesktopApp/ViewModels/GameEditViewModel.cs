@@ -232,6 +232,20 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool romExists = false;
+        public bool RomExists
+        {
+            get
+            {
+                return romExists;
+            }
+            set
+            {
+                romExists = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool ShowIncludeLibraryPluginAction
         {
             get => IsMultiGameEdit || !EditingGame.IsCustomGame;
@@ -1157,12 +1171,18 @@ namespace Playnite.DesktopApp.ViewModels
             var newRom = new GameRom("NewRom", "NewPath");
             newRom.PropertyChanged += Rom_PropertyChanged;
             EditingGame.Roms.Add(newRom);
+            RomExists = true;
         }
 
         public void RemoveRom(GameRom rom)
         {
             rom.PropertyChanged -= Rom_PropertyChanged;
             EditingGame.Roms.Remove(rom);
+            if (EditingGame.Roms.Count == 0)
+            {
+                EditingGame.CalcInstallSizeUsingDir = true;
+                RomExists = false;
+            }
         }
 
         public void MoveRomUp(GameRom rom)
