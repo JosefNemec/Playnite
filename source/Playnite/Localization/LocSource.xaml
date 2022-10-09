@@ -599,6 +599,8 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Add Link</sys:String>
     <sys:String x:Key="LOCAddRom">Add ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Save Changes</sys:String>
+    <sys:String x:Key="LOCUseInstallDirOverRomSize">Calculate size using install directory</sys:String>
+    <sys:String x:Key="LOCUseInstallDirOverRomSizeTooltip">If this is set to false it'll calculate based on ROM size. This option will be disabled if there is no ROM.</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">Apply field changes to game(s) being edited.</sys:String>
     <sys:String x:Key="LOCAddAction">Add Action</sys:String>
     <sys:String x:Key="LOCDeleteAction">Remove</sys:String>
