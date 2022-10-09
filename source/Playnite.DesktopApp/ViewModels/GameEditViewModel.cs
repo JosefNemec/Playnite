@@ -237,6 +237,13 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
+                if (EditingGame.Roms.HasItems())
+                {
+                    romExists = true;
+                } else
+                {
+                    romExists = false;
+                }    
                 return romExists;
             }
             set
