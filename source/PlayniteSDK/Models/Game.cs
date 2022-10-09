@@ -77,6 +77,8 @@ namespace Playnite.SDK.Models
         ///
         Version = 33,
         ///
+        CalcInstallSizeUsingDir = 34,
+        ///
         SourceId = 36,
         ///
         CompletionStatus = 37,
@@ -699,6 +701,23 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged(nameof(InstallationStatus));
             }
         }
+
+        private bool calcInstallSizeUsingDir = true;
+        /// <summary>
+        /// Gets or sets value indicating whether when calculating install size it will use dir or rom
+        /// Obviously, if there is no rom it will default to dir
+        /// </summary>
+        public bool CalcInstallSizeUsingDir
+        {
+            get => calcInstallSizeUsingDir;
+            set
+            {
+                calcInstallSizeUsingDir = value;
+                OnPropertyChanged();
+
+            }
+        }
+
 
         private bool overrideInstallState;
         /// <summary>
@@ -1807,6 +1826,11 @@ namespace Playnite.SDK.Models
                     tro.IsInstalled = IsInstalled;
                 }
 
+                if (calcInstallSizeUsingDir != tro.calcInstallSizeUsingDir)
+                {
+                    tro.calcInstallSizeUsingDir = calcInstallSizeUsingDir;
+                }
+
                 if (Playtime != tro.Playtime)
                 {
                     tro.Playtime = Playtime;
@@ -2095,6 +2119,11 @@ namespace Playnite.SDK.Models
             {
                 changes.Add(GameField.IsInstalled);
                 changes.Add(GameField.InstallationStatus);
+            }
+
+            if (CalcInstallSizeUsingDir != otherGame.CalcInstallSizeUsingDir)
+            {
+                changes.Add(GameField.CalcInstallSizeUsingDir);
             }
 
             if (Playtime != otherGame.Playtime)
