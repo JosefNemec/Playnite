@@ -1,4 +1,4 @@
-///
+﻿///
 /// DO NOT MODIFY! Automatically generated via buildLocConstants.ps1 script.
 /// 
 namespace Playnite
@@ -2161,6 +2161,14 @@ namespace Playnite
         /// Save Changes
         /// </summary>
         public const string SaveChanges = "LOCSaveChanges";
+        /// <summary>
+        /// Calculate size using install directory
+        /// </summary>
+        public const string UseInstallDirOverRomSize = "LOCUseInstallDirOverRomSize";
+        /// <summary>
+        /// If this is set to false it'll calculate based on ROM size. This option will be disabled if there is no ROM.
+        /// </summary>
+        public const string UseInstallDirOverRomSizeTooltip = "LOCUseInstallDirOverRomSizeTooltip";
         /// <summary>
         /// Apply field changes to game(s) being edited.
         /// </summary>
