@@ -510,7 +510,7 @@ namespace Playnite
         public ulong? CalculateGameSize(Game game, bool checkLastScanDate)
         {
             long size = 0;
-            if (game.Roms.HasItems())
+            if (!game.CalcInstallSizeUsingDir)
             {
                 var expandedGame = GetExpandedGameForRomsSizeScan(game);
                 var romsFilesPaths = new List<string>();

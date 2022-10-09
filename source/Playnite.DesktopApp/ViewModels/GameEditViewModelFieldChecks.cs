@@ -267,6 +267,18 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useCalcSizeOptionChanges;
+        public bool UseCalcSizeOptionChanges
+        {
+            get => useCalcSizeOptionChanges;
+            set
+            {
+                useCalcSizeOptionChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
+            }
+        }
+
         private bool useLinksChanges;
         public bool UseLinksChanges
         {
@@ -803,7 +815,8 @@ namespace Playnite.DesktopApp.ViewModels
                     (UseInstallDirChanges ||
                     UseRomsChanges ||
                     UseInstallStateChanges ||
-                    UseOverrideInstallState);
+                    UseOverrideInstallState ||
+                    UseCalcSizeOptionChanges);
             }
         }
 
@@ -945,6 +958,18 @@ namespace Playnite.DesktopApp.ViewModels
                         UseInstallStateChanges = true;
                     }
                     break;
+
+                case nameof(Game.CalcInstallSizeUsingDir):
+                    if (IsSingleGameEdit)
+                    {
+                        UseCalcSizeOptionChanges = Game.CalcInstallSizeUsingDir != EditingGame.CalcInstallSizeUsingDir;
+                    }
+                    else
+                    {
+                        useCalcSizeOptionChanges = true;
+                    }
+                    break;
+
                 case nameof(Game.Description):
                     if (IsSingleGameEdit)
                     {
