@@ -898,6 +898,17 @@
                                   VerticalAlignment="Center"
                                   Visibility="{Binding ShowOverrideInstallStateOption, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   IsChecked="{Binding EditingGame.OverrideInstallState}"/>
+
+                        <!-- CalculateUsingInstallDirOrRom -->
+                        <TextBlock Text="{DynamicResource LOCUseInstallDirOverRomSize}"
+                                   Grid.Column="1" Grid.Row="1"
+                                   Margin="0,5,5,5"
+                                   VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="1" Grid.Column="2" Margin="5,5,5,5"
+                              VerticalAlignment="Center"
+                              ToolTip="{DynamicResource LOCUseInstallDirOverRomSizeTooltip}"
+                              IsEnabled="{Binding RomExists}"
+                              IsChecked="{Binding EditingGame.CalcInstallSizeUsingDir}"/>
                         
                         <!-- InstallSize -->
                         <CheckBox Grid.Column="0" Grid.Row="4" Style="{StaticResource SaveChangesCheck}"
