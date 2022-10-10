@@ -871,7 +871,10 @@ namespace Playnite.ViewModels
 
         public void RunStartupScript()
         {
-            RunAppScript(AppSettings.AppStartupScript, "startup");
+            if (!App.CmdLine.SafeStartup)
+            {
+                RunAppScript(AppSettings.AppStartupScript, "startup");
+            }
         }
 
         public void RunShutdowScript()
