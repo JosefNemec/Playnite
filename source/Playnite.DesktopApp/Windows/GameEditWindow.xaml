@@ -1143,7 +1143,7 @@
                         Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                         pbeh:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
-                        <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}"
+                        <ContextMenu Placement="Top" MinWidth="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}"
                                      ItemsSource="{Binding MetadataDownloadOptions}">
                             <ContextMenu.Resources>
                                 <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">

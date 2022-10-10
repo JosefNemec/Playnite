@@ -4289,5 +4289,9 @@ namespace Playnite
         /// Getting add-on information…
         /// </summary>
         public const string GettingsAddonInformation = "LOCGettingsAddonInformation";
+        /// <summary>
+        /// No metadata source is available
+        /// </summary>
+        public const string NoMetadataSource = "LOCNoMetadataSource";
     }
 }

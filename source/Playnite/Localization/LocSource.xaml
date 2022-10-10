@@ -1207,5 +1207,5 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover image search string</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Background image search string</sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Getting add-on information…</sys:String>
-        
+    <sys:String x:Key="LOCNoMetadataSource">No metadata source is available</sys:String>    
 </ResourceDictionary>
