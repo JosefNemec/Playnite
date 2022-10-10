@@ -6,11 +6,13 @@
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
     <StackPanel Margin="5">
         <StackPanel.Resources>
+            <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
             <CollectionViewSource x:Key="DevelExtenionsSource" Source="{Binding Settings.DevelExtenions}">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="Item" />
@@ -19,7 +21,7 @@
         </StackPanel.Resources>
         <TextBlock Margin="0,0,0,5" Text="{DynamicResource LOCSettingsExternalExtensions}" Style="{DynamicResource BaseTextBlockStyle}" />
         <ListView DockPanel.Dock="Top" Name="ListDevelExtensions"
-                  SelectionMode="Extended" Height="200"
+                  SelectionMode="Extended" Height="300"
                   ItemsSource="{Binding Source={StaticResource DevelExtenionsSource}}">
             <ListView.View>
                 <GridView>
@@ -37,15 +39,21 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button FontFamily="Marlett" Content="r"
+                                        Command="{Binding Data.RemoveDevelExtensionCommand, Source={StaticResource Proxy}}"
+                                        CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Orientation="Horizontal">
             <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,0" MinWidth="80"
                     Command="{Binding AddDevelExtensionCommand}" />
-            <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,0,0" MinWidth="80"
-                    Command="{Binding RemoveDevelExtensionCommand}" 
-                    CommandParameter="{Binding SelectedItems, ElementName=ListDevelExtensions}"/>
         </StackPanel>
         <CheckBox Content="{DynamicResource LOCDevelTraceLogEnable}" Margin="0,15,0,0"
                   IsChecked="{Binding Settings.TraceLogEnabled}" />

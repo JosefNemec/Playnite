@@ -164,34 +164,22 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> AddDevelExtensionCommand
+        public RelayCommand AddDevelExtensionCommand
         {
-            get => new RelayCommand<object>((a) =>
+            get => new RelayCommand(() =>
             {
-                var res = dialogs.SelectString(LOC.SettingsNewExternalExtensionBox, "", "");
-                if (res.Result && !res.SelectedString.IsNullOrEmpty())
-                {
-                    if (Settings.DevelExtenions.FirstOrDefault(s => s.Item.Equals(res.SelectedString, StringComparison.OrdinalIgnoreCase)) != null)
-                    {
-                        return;
-                    }
-
-                    Settings.DevelExtenions.Add(new SelectableItem<string>(res.SelectedString) { Selected = true });
-                    Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
-                }
+                Settings.DevelExtenions.Add(new SelectableItem<string>("<change me>") { Selected = true });
+                Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
             });
         }
 
-        public RelayCommand<IList<object>> RemoveDevelExtensionCommand
+        public RelayCommand<SelectableItem<string>> RemoveDevelExtensionCommand
         {
-            get => new RelayCommand<IList<object>>((items) =>
+            get => new RelayCommand<SelectableItem<string>>((item) =>
             {
-                foreach (SelectableItem<string> item in items.ToList())
-                {
-                    Settings.DevelExtenions.Remove(item);
-                    Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
-                }
-            }, (items) => items != null && items.Count > 0);
+                Settings.DevelExtenions.Remove(item);
+                Settings.DevelExtenions = Settings.DevelExtenions.GetClone();
+            });
         }
 
         public RelayCommand<RoutedPropertyChangedEventArgs<object>> SettingsTreeSelectedItemChangedCommand
