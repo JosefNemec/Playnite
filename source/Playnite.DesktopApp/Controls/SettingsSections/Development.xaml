@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
@@ -22,7 +23,7 @@
                   ItemsSource="{Binding Source={StaticResource DevelExtenionsSource}}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="90" Header="{DynamicResource LOCEnabledTitle}">
+                    <GridViewColumn Width="70" Header="{DynamicResource LOCEnabledTitle}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Selected}" />
@@ -32,7 +33,7 @@
                     <GridViewColumn Width="400" Header="{DynamicResource LOCPathLabel}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Item}" Padding="0,1,0,1"/>
+                                <pctrls:PathSelectionBox Text="{Binding Item}" ShowDirectorySelector="True" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
