@@ -417,7 +417,7 @@ namespace Playnite.ViewModels
         public RelayCommand<KeyEventArgs> TextBoxKeyDownCommand => new RelayCommand<KeyEventArgs>((keyArgs) => TextBoxKeyDown(keyArgs));
         public RelayCommand<KeyEventArgs> TextBoxKeyUpCommand => new RelayCommand<KeyEventArgs>((keyArgs) => TextBoxKeyUp(keyArgs));
         public RelayCommand<EventArgs> WindowClosedCommand => new RelayCommand<EventArgs>((_) => WindowClosed(_));
-        public RelayCommand<EventArgs> WindowDeactivatedCommand => new RelayCommand<EventArgs>((_) => WindowDeactivated(_));
+        public RelayCommand<EventArgs> WindowLostKeyboardFocusCommand => new RelayCommand<EventArgs>((_) => WindowLostKeyboardFocus(_));
         public RelayCommand ToggleHintCommand => new RelayCommand(() => ToggleHint());
         public RelayCommand OpenSearchSettingsCommand => new RelayCommand(() => OpenSearchSettings());
         public RelayCommand DeactiveCurrentContextCommand => new RelayCommand(() => DeactiveCurrentContext());
@@ -547,7 +547,7 @@ namespace Playnite.ViewModels
             window.Close();
         }
 
-        private void WindowDeactivated(EventArgs args)
+        private void WindowLostKeyboardFocus(EventArgs args)
         {
             // The view would get automatically closed once you switch to debugger...
             if (Debugger.IsAttached)

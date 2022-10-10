@@ -43,8 +43,8 @@
         <i:EventTrigger EventName="Closed" >
             <i:InvokeCommandAction Command="{Binding WindowClosedCommand}" />
         </i:EventTrigger>
-        <i:EventTrigger EventName="Deactivated" >
-            <i:InvokeCommandAction Command="{Binding WindowDeactivatedCommand}" />
+        <i:EventTrigger EventName="LostKeyboardFocus" >
+            <i:InvokeCommandAction Command="{Binding WindowLostKeyboardFocusCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
