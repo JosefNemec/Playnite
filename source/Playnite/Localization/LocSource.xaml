@@ -659,6 +659,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Update All</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Created By:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Updated:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Module:</sys:String>
     <sys:String x:Key="LOCLibrary">Library</sys:String>
     <sys:String x:Key="LOCStatistics">Statistics</sys:String>

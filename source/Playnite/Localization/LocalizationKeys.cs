@@ -2402,6 +2402,10 @@ namespace Playnite
         /// </summary>
         public const string ExtensionVersion = "LOCExtensionVersion";
         /// <summary>
+        /// Updated:
+        /// </summary>
+        public const string ExtensionUpdated = "LOCExtensionUpdated";
+        /// <summary>
         /// Module:
         /// </summary>
         public const string ExtensionModule = "LOCExtensionModule";
