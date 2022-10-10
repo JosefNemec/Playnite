@@ -72,6 +72,8 @@ namespace Playnite.Database
         GameScannersSettings GetGameScannersSettings();
         void SetGameScannersSettings(GameScannersSettings settings);
         List<string> GetImportedRomFiles(string emulatorDir);
+        bool GetGameMatchesFilter(Game game, FilterSettings filterSettings);
+        IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings);
     }
 
     public partial class GameDatabase : IGameDatabaseMain, IDisposable

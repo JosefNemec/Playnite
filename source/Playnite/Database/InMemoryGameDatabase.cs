@@ -184,5 +184,25 @@ namespace Playnite.Database
         {
             throw new NotImplementedException();
         }
+
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

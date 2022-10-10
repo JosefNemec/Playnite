@@ -196,5 +196,20 @@ namespace Playnite.SDK
         /// <param name="sourcePlugin">Source library plugin.</param>
         /// <returns>Imported game.</returns>
         Game ImportGame(GameMetadata game, LibraryPlugin sourcePlugin);
+
+        /// <summary>
+        /// Checks if the game matches specified filter settings.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="filterSettings"></param>
+        /// <returns></returns>
+        bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings);
+
+        /// <summary>
+        /// Returns enumeration of all games matching specified filter settings.
+        /// </summary>
+        /// <param name="filterSettings"></param>
+        /// <returns></returns>
+        IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings);
     }
 }

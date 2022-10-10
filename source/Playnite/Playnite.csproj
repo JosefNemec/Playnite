@@ -236,6 +236,7 @@
     <Compile Include="Controls\HotKeyBox.cs" />
     <Compile Include="Converters\NullableUlongBytesSizeToStringConverter.cs" />
     <Compile Include="Converters\TicksToTimeSpanConverter.cs" />
+    <Compile Include="Database\GameDatabase_Filters.cs" />
     <Compile Include="DateTimes.cs" />
     <Compile Include="Extensions\Markup\PluginConverter.cs" />
     <Compile Include="ItemSelector.cs" />

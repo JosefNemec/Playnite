@@ -1,4 +1,5 @@
-﻿using Playnite.Plugins;
+﻿using Playnite.Database;
+using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -16,7 +17,7 @@ namespace Playnite.FullscreenApp
         private FullscreenViewSettings viewSettings;
 
         public FullscreenCollectionView(
-            IGameDatabase database,
+            IGameDatabaseMain database,
             PlayniteSettings settings,
             ExtensionFactory extensions) : base(database, extensions, settings.Fullscreen.FilterSettings)
         {

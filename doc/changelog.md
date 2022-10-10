@@ -1,5 +1,9 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.6.0
+
+* New
+  * Added `GetGameMatchesFilter` and `GetFilteredGames` methods to [IGameDatabase](xref:Playnite.SDK.IGameDatabase)
 
 #### 6.5.0
 
