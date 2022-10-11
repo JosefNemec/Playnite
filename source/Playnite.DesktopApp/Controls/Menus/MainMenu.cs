@@ -229,7 +229,7 @@ namespace Playnite.DesktopApp.Controls
             emulationUpdateItem.Items.Clear();
             AddMenuChild(emulationUpdateItem.Items, "LOCUpdateAll", mainModel.UpdateEmulationDirsCommand);
             emulationUpdateItem.Items.Add(new Separator());
-            foreach (var config in mainModel.Database.GameScanners)
+            foreach (var config in mainModel.Database.GameScanners.OrderBy(a => a.Name))
             {
                 var item = new MenuItem
                 {
