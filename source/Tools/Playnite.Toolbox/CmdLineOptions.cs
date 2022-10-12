@@ -18,6 +18,12 @@ namespace Playnite.Toolbox
         LibraryPlugin
     }
 
+    public enum ManifestType
+    {
+        Installer,
+        Addon
+    }
+
     [Verb("new", HelpText = "Generate new add-on from template.")]
     public class NewCmdLineOptions
     {
@@ -43,5 +49,14 @@ namespace Playnite.Toolbox
     {
         [Value(0, Required = true, HelpText = "Theme directory to update.")]
         public string Directory { get; set; }
+    }
+
+    [Verb("verify", HelpText = "Verify addon manifest.")]
+    public class VerifyManifestOptions
+    {
+        [Value(0, Required = true, HelpText = "Manifest type.")]
+        public ManifestType Type { get; set; }
+        [Value(1, Required = true, HelpText = "Full manifest file path.")]
+        public string ManifestPath { get; set;}
     }
 }

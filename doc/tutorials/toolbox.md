@@ -85,4 +85,19 @@ Toolbox.exe pack "C:\Playnite\Themes\Fullscreen\TestingFullscreen" "c:\somefolde
 
 ... will create `c:\somefolder\TestingFullscreen.pthm` package.
 
+Verify manifests
+---------------------
 
+```cmd
+Toolbox.exe verify <manifest_type> <manifest_past>
+```
+
+`<manifest_type>` - `addon` for addon browser manifest or `installer` for package installer manifest. `addon` verifies linked installer manifest automatically.
+
+`<manifest_past>` - Path to manifest yaml file. Local full path or HTTP URLs are supported.
+
+```cmd
+Toolbox.exe verify addon "https://github.com/JosefNemec/PlayniteAddonDatabase/blob/master/addons/library/GogLibrary_Builtin.yaml"
+
+Toolbox.exe verify installer "c:\Devel\PlayniteExtensions\manifests\GogLibrary_Builtin.yaml"
+```

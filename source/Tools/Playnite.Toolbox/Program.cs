@@ -38,10 +38,11 @@ namespace Playnite.Toolbox
                 with.HelpWriter = null;
             });
 
-            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions>(args);
+            var result = cmdlineParser.ParseArguments<NewCmdLineOptions, PackCmdLineOptions, UpdateCmdLineOptions, VerifyManifestOptions>(args);
             result.WithParsed<NewCmdLineOptions>(ProcessNewOptions)
                 .WithParsed<PackCmdLineOptions>(ProcessPackOptions)
                 .WithParsed<UpdateCmdLineOptions>(ProcessUpdateOptions)
+                .WithParsed<VerifyManifestOptions>(ProcessVerifyOptions)
                 .WithNotParsed(errs => DisplayHelp(result, errs));
             if (result.Tag == ParserResultType.NotParsed)
             {
@@ -204,6 +205,29 @@ namespace Playnite.Toolbox
             {
                 AppResult = 1;
                 logger.Error(e, "Failed to update extension." + Environment.NewLine + e.Message);
+            }
+        }
+
+        public static void ProcessVerifyOptions(VerifyManifestOptions options)
+        {
+            try
+            {
+                switch (options.Type)
+                {
+                    case ManifestType.Installer:
+                        AppResult = Verify.VerifyInstallerManifest(options.ManifestPath, out var _) ? 0 : 1;
+                        break;
+                    case ManifestType.Addon:
+                        AppResult = Verify.VerifyAddonManifest(options.ManifestPath) ? 0 : 1;
+                        break;
+                    default:
+                        throw new NotSupportedException();
+                }
+            }
+            catch (Exception e) when(!Debugger.IsAttached)
+            {
+                AppResult = 1;
+                logger.Error(e, "Failed to verify manifest." + Environment.NewLine + e.Message);
             }
         }
     }

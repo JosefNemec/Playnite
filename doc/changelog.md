@@ -4,6 +4,7 @@
 
 * New
   * Added `GetGameMatchesFilter` and `GetFilteredGames` methods to [IGameDatabase](xref:Playnite.SDK.IGameDatabase)
+  * [Toolbox](tutorials/toolbox.md) utility can now verify addon and installer manifests.
 
 #### 6.5.0
 
