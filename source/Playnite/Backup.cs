@@ -233,7 +233,7 @@ namespace Playnite
                                 File.Delete(origFile);
                             }
 
-                            configEntry.ExtractToFile(origFile);
+                            configEntry.ExtractToFile(Paths.FixPathLength(origFile));
                         }
                     }
                 }
@@ -252,7 +252,7 @@ namespace Playnite
                         if (entry.FullName.StartsWith(libPrefix, StringComparison.OrdinalIgnoreCase) &&
                             entry.FullName.Count(a => a == Path.DirectorySeparatorChar) == 1)
                         {
-                            entry.ExtractToFile(Path.Combine(options.LibraryDir, entry.Name));
+                            entry.ExtractToFile(Paths.FixPathLength(Path.Combine(options.LibraryDir, entry.Name)));
                         }
                     }
                 }
@@ -269,7 +269,7 @@ namespace Playnite
                             {
                                 var outFile = Path.Combine(outputDir, entry.FullName.Replace(dirPrefix, ""));
                                 FileSystem.PrepareSaveFile(outFile);
-                                entry.ExtractToFile(outFile);
+                                entry.ExtractToFile(Paths.FixPathLength(outFile));
                             }
                         }
                     }
@@ -309,7 +309,7 @@ namespace Playnite
                             {
                                 var outFile = Path.Combine(outputDir, entry.FullName.Replace(dirPrefix, ""));
                                 FileSystem.PrepareSaveFile(outFile);
-                                entry.ExtractToFile(outFile);
+                                entry.ExtractToFile(Paths.FixPathLength(outFile));
                             }
                         }
                     }
