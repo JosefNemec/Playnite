@@ -122,16 +122,9 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(updateItem.Items, "LOCUpdateAll", mainModel.UpdateGamesCommand);
             emulationUpdateItem = AddMenuChild(updateItem.Items, "LOCMenuUpdateEmulatedDirs", null);
             updateItem.Items.Add(new Separator());
-            foreach (var plugin in mainModel.Extensions.LibraryPlugins)
+            foreach (var plugin in mainModel.Extensions.LibraryPlugins.OrderBy(a => a.Name))
             {
-                var item = new MenuItem
-                {
-                    Header = plugin.Name,
-                    Command = mainModel.UpdateLibraryCommand,
-                    CommandParameter = plugin
-                };
-
-                updateItem.Items.Add(item);
+                AddMenuChild(updateItem.Items, plugin.Name, mainModel.UpdateLibraryCommand, plugin, plugin.LibraryIcon);
             }
 
             // Random game select
