@@ -234,7 +234,7 @@ namespace Playnite.Common
                 return path;
             }
 
-            if ((path.Length >= 260 || forcePrefix) && !path.StartsWith(longPathPrefix))
+            if ((path.Length >= 258 || forcePrefix) && !path.StartsWith(longPathPrefix))
             {
                 if (path.StartsWith(@"\\"))
                 {
