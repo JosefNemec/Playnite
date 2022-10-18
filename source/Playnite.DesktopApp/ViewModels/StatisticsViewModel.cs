@@ -314,7 +314,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         private GameStats FillData(bool filtered)
         {
-            ulong total = 0;
+            ulong totalGames = 0;
+            ulong totalGamesWithPlayTime = 0;
             ulong installed = 0;
             ulong notinstalled = 0;
             ulong hidden = 0;
@@ -334,8 +335,13 @@ namespace Playnite.DesktopApp.ViewModels
                     continue;
                 }
 
-                total++;
-                totalPlaytime += game.Playtime;
+                totalGames++;
+                if (game.Playtime > 0)
+                {
+                    totalGamesWithPlayTime++;
+                    totalPlaytime += game.Playtime;
+                }
+
                 if (game.IsInstalled)
                 {
                     installed++;
@@ -373,15 +379,15 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 CompletionStates = compStats.
                     OrderByDescending(a => a.Value).
-                    Select(a => new BaseStatInfo(database.CompletionStatuses[a.Key].Name, a.Value, total)).
+                    Select(a => new BaseStatInfo(database.CompletionStatuses[a.Key].Name, a.Value, totalGames)).
                     ToList(),
-                Favorite = new BaseStatInfo("", favorite, total),
-                Hidden = new BaseStatInfo("", hidden, total),
-                Installed = new BaseStatInfo("", installed, total),
-                NotInstalled = new BaseStatInfo("", notinstalled, total),
-                TotalCount = total,
+                Favorite = new BaseStatInfo("", favorite, totalGames),
+                Hidden = new BaseStatInfo("", hidden, totalGames),
+                Installed = new BaseStatInfo("", installed, totalGames),
+                NotInstalled = new BaseStatInfo("", notinstalled, totalGames),
+                TotalCount = totalGames,
                 TotalPlayTime = totalPlaytime,
-                AvaragePlayTime = total > 0 ? totalPlaytime / total : 0,
+                AvaragePlayTime = totalGamesWithPlayTime > 0 ? totalPlaytime / totalGamesWithPlayTime : 0,
                 TopPlayed = database.Games.
                     Where(a => !filtered || PassesFilter(a)).
                     Where(a => !a.Hidden || (a.Hidden && IncludeHidden)).
