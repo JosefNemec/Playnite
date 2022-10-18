@@ -693,6 +693,16 @@ namespace Playnite.Emulators
                 }
             }
 
+            // gdi files are basically cue files for Dreamcast dumps
+            if (supportedExtensions.ContainsString("gdi", StringComparison.OrdinalIgnoreCase))
+            {
+                // ToList is needed here because we are potentionally modifing original files collection when playlist files are excluded
+                foreach (var gdiFile in files.ToList().Where(a => a.EndsWith(".gdi", StringComparison.OrdinalIgnoreCase)).ToList())
+                {
+                    processPlayListFile(gdiFile, (mFile) => GdiFile.GetEntries(mFile).Select(a => Path.Combine(directory, a.Path)).ToList());
+                }
+            }
+
             foreach (var file in files)
             {
                 if (cancelToken.IsCancellationRequested)

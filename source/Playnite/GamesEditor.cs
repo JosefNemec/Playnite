@@ -529,6 +529,10 @@ namespace Playnite
                     {
                         AddPlaylistRomFilesPathsToList(rom, romsFilesPaths, M3U.GetEntries(rom.Path).Select(a => a.Path));
                     }
+                    else if (rom.Path.EndsWith(".gdi", StringComparison.OrdinalIgnoreCase))
+                    {
+                        AddPlaylistRomFilesPathsToList(rom, romsFilesPaths, GdiFile.GetEntries(rom.Path).Select(a => a.Path));
+                    }
                     else
                     {
                         romsFilesPaths.Add(rom.Path);
