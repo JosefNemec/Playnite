@@ -330,6 +330,11 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             get
             {
+                if (ActiveFilterPreset != null)
+                {
+                    return false;
+                }
+
                 if (!AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty())
                 {
                     return false;
