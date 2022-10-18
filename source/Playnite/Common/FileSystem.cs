@@ -354,13 +354,22 @@ namespace Playnite.Common
         private static long GetDirectorySize(DirectoryInfo dirInfo)
         {
             long size = 0;
-            // Add file sizes.
-            foreach (FileInfo fileInfo in dirInfo.GetFiles())
+            try
             {
-                size += GetFileSize(fileInfo);
+                foreach (FileInfo fileInfo in dirInfo.GetFiles())
+                {
+                    size += GetFileSize(fileInfo);
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                // Directory not being found here means that directory is a symlink
+                // with an invalid target path.
+                // TODO Rework with proper symlinks handling with FileSystemInfo.ResolveLinkTarget
+                // method after Net runtime upgrade
+                return size;
             }
 
-            // Add subdirectory sizes.
             foreach (DirectoryInfo subdirInfo in dirInfo.GetDirectories())
             {
                 if (!IsDirectorySubdirSafeToRecurse(subdirInfo))
@@ -379,17 +388,24 @@ namespace Playnite.Common
             return GetFileSizeOnDisk(new FileInfo(Paths.FixPathLength(path)));
         }
 
-        public static long GetFileSizeOnDisk(FileInfo info)
+        public static long GetFileSizeOnDisk(FileInfo fileInfo)
         {
+            // Method will fail if file is a symlink that has a target
+            // that does not exist. To avoid, we can check its lenght before continuing
+            if (fileInfo.Length == 0)
+            {
+                return 0;
+            }
+
             // From https://stackoverflow.com/a/3751135
-            int result = Kernel32.GetDiskFreeSpaceW(info.Directory.Root.FullName, out uint sectorsPerCluster, out uint bytesPerSector, out _, out _);
+            int result = Kernel32.GetDiskFreeSpaceW(fileInfo.Directory.Root.FullName, out uint sectorsPerCluster, out uint bytesPerSector, out _, out _);
             if (result == 0)
             {
                 throw new System.ComponentModel.Win32Exception();
             }
             
             uint clusterSize = sectorsPerCluster * bytesPerSector;
-            uint losize = Kernel32.GetCompressedFileSizeW(Paths.FixPathLength(info.FullName), out uint hosize);
+            uint losize = Kernel32.GetCompressedFileSizeW(Paths.FixPathLength(fileInfo.FullName), out uint hosize);
             int error = Marshal.GetLastWin32Error();
             if (losize == 0xFFFFFFFF && error != 0)
             {
@@ -410,9 +426,20 @@ namespace Playnite.Common
             long size = 0;
 
             // Add file sizes.
-            foreach (FileInfo fileInfo in dirInfo.GetFiles())
+            try
             {
-                size += GetFileSizeOnDisk(fileInfo);
+                foreach (FileInfo fileInfo in dirInfo.GetFiles())
+                {
+                    size += GetFileSizeOnDisk(fileInfo);
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                // Directory not being found here means that directory is a symlink
+                // with an invalid target path.
+                // TODO Rework with proper symlinks handling with FileSystemInfo.ResolveLinkTarget
+                // method after Net runtime upgrade
+                return size;
             }
 
             // Add subdirectory sizes.
