@@ -836,6 +836,7 @@ namespace Playnite.Emulators
         {
             if (databases.HasItems())
             {
+                file = Paths.FixPathLength(file);
                 DatGame datRec = null;
                 string datRecSource = null;
                 List<string> crcs = new List<string>();
