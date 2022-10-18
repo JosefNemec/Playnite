@@ -604,6 +604,7 @@ namespace Playnite.FullscreenApp.ViewModels
         private void UpdateCursorSettings()
         {
             Computer.SetMouseCursorVisibility(!AppSettings.Fullscreen.HideMouserCursor);
+            WindowManager.SetEnableMouseInput(!AppSettings.Fullscreen.HideMouserCursor);
         }
 
         public void OpenMainMenu()

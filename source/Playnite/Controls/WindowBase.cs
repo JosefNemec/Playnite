@@ -249,6 +249,14 @@ namespace Playnite.Controls
                     InvalidateMeasure();
                 }
             };
+
+            if (PlayniteApplication.Current?.AppSettings != null)
+            {
+                if (PlayniteApplication.Current.Mode == SDK.ApplicationMode.Fullscreen)
+                {
+                    IsHitTestVisible = !PlayniteApplication.Current.AppSettings.Fullscreen.HideMouserCursor;
+                }
+            }
         }
 
         public WindowBase(string savePositionName, bool saveSize = true) : this()
