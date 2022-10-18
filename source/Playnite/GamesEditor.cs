@@ -603,7 +603,7 @@ namespace Playnite
             {
                 return;
             }
-            
+
             var rootDir = Path.GetDirectoryName(rom.Path);
             pathsList.AddRange
             (
@@ -651,7 +651,6 @@ namespace Playnite
                         resources.GetString("LOCCalculateGameSizeErrorCaption"),
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
             }, new GlobalProgressOptions(textTitle, false) { IsIndeterminate = true });
         }
 
@@ -690,7 +689,7 @@ namespace Playnite
                     }
                 }
             }, new GlobalProgressOptions(textTitle, true) { IsIndeterminate = false });
-            
+
             if (errorsCount > 0)
             {
                 var errorMessage = ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount)
@@ -1338,17 +1337,25 @@ namespace Playnite
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Source);
             gameStartups.TryRemove(game.Id, out _);
-            if (Application.Mode == ApplicationMode.Desktop)
+
+            var restore = false;
+            if (Application.Mode == ApplicationMode.Desktop && AppSettings.AfterGameClose == AfterGameCloseOptions.Restore)
             {
-                if (AppSettings.AfterGameClose == AfterGameCloseOptions.Restore)
-                {
-                    Application.Restore();
-                }
+                restore = true;
             }
-            else
+            else if (Application.Mode == ApplicationMode.Fullscreen)
             {
-                Application.Restore();
+                restore = true;
                 AppSettings.Fullscreen.IsMusicMuted = false;
+            }
+
+            if (restore)
+            {
+                // This delay apparently fixes issues with Playnite not restoring properly after game exits.
+                // The window will restore, but application will not regain active state.
+                // This was mainly reported to happen with some emulators, like RPCS3, no idea why.
+                Thread.Sleep(1000);
+                Application.Restore();
             }
 
             if (AppSettings.DiscordPresenceEnabled)
