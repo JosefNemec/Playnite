@@ -595,6 +595,11 @@ namespace Playnite.ViewModels
 
         public void UpdateGamesInstallSizes(CancellationToken token, IEnumerable<Game> games, string progressMessageLocKey)
         {
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+
             try
             {
                 ProgressActive = true;
