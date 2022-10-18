@@ -348,17 +348,17 @@ namespace Playnite.Common
 
         public static long GetDirectorySize(string path)
         {
-            return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)));
+            return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)), false);
         }
 
-        private static long GetDirectorySize(DirectoryInfo dirInfo)
+        private static long GetDirectorySize(DirectoryInfo dirInfo, bool getSizeOnDisk)
         {
             long size = 0;
             try
             {
                 foreach (FileInfo fileInfo in dirInfo.GetFiles())
                 {
-                    size += GetFileSize(fileInfo);
+                    size += getSizeOnDisk ? GetFileSizeOnDisk(fileInfo) : GetFileSize(fileInfo);
                 }
             }
             catch (DirectoryNotFoundException)
@@ -377,7 +377,7 @@ namespace Playnite.Common
                     continue;
                 }
 
-                size += GetDirectorySize(subdirInfo.FullName);
+                size += GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(subdirInfo.FullName)), getSizeOnDisk);
             }
 
             return size;
@@ -418,42 +418,7 @@ namespace Playnite.Common
 
         public static long GetDirectorySizeOnDisk(string path)
         {
-            return GetDirectorySizeOnDisk(new DirectoryInfo(Paths.FixPathLength(path)));
-        }
-
-        public static long GetDirectorySizeOnDisk(DirectoryInfo dirInfo)
-        {
-            long size = 0;
-
-            // Add file sizes.
-            try
-            {
-                foreach (FileInfo fileInfo in dirInfo.GetFiles())
-                {
-                    size += GetFileSizeOnDisk(fileInfo);
-                }
-            }
-            catch (DirectoryNotFoundException)
-            {
-                // Directory not being found here means that directory is a symlink
-                // with an invalid target path.
-                // TODO Rework with proper symlinks handling with FileSystemInfo.ResolveLinkTarget
-                // method after Net runtime upgrade
-                return size;
-            }
-
-            // Add subdirectory sizes.
-            foreach (DirectoryInfo subdirInfo in dirInfo.GetDirectories())
-            {
-                if (!IsDirectorySubdirSafeToRecurse(subdirInfo))
-                {
-                    continue;
-                }
-                
-                size += GetDirectorySizeOnDisk(subdirInfo.FullName);
-            }
-
-            return size;
+            return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)), true);
         }
 
         private static bool IsDirectorySubdirSafeToRecurse(DirectoryInfo childDirectory)
