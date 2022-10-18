@@ -20,9 +20,13 @@
             </CollectionViewSource>
         </StackPanel.Resources>
         <TextBlock Margin="0,0,0,5" Text="{DynamicResource LOCSettingsExternalExtensions}" Style="{DynamicResource BaseTextBlockStyle}" />
-        <ListView DockPanel.Dock="Top" Name="ListDevelExtensions"
-                  SelectionMode="Extended" Height="300"
+        <ListView DockPanel.Dock="Top" Name="ListDevelExtensions" Height="300"
                   ItemsSource="{Binding Source={StaticResource DevelExtenionsSource}}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                    <Setter Property="Focusable" Value="False"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="70" Header="{DynamicResource LOCEnabledTitle}">
