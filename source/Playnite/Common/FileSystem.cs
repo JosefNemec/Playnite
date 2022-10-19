@@ -346,9 +346,9 @@ namespace Playnite.Common
             return fi.Length;
         }
 
-        public static long GetDirectorySize(string path)
+        public static long GetDirectorySize(string path, bool getSizeOnDisk)
         {
-            return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)), false);
+            return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)), getSizeOnDisk);
         }
 
         private static long GetDirectorySize(DirectoryInfo dirInfo, bool getSizeOnDisk)
@@ -377,7 +377,7 @@ namespace Playnite.Common
                     continue;
                 }
 
-                size += GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(subdirInfo.FullName)), getSizeOnDisk);
+                size += GetDirectorySize(subdirInfo.FullName, getSizeOnDisk);
             }
 
             return size;
@@ -414,11 +414,6 @@ namespace Playnite.Common
 
             var size = (long)hosize << 32 | losize;
             return ((size + clusterSize - 1) / clusterSize) * clusterSize;
-        }
-
-        public static long GetDirectorySizeOnDisk(string path)
-        {
-            return GetDirectorySize(new DirectoryInfo(Paths.FixPathLength(path)), true);
         }
 
         private static bool IsDirectorySubdirSafeToRecurse(DirectoryInfo childDirectory)
