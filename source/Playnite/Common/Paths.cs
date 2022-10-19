@@ -234,7 +234,10 @@ namespace Playnite.Common
                 return path;
             }
 
-            if ((path.Length >= 260 || forcePrefix) && !path.StartsWith(longPathPrefix))
+            // While the MAX_PATH value is 260 characters, a lower value is used because
+            // methods can append "\" and string terminator characters to paths and
+            // make them surpass the limit
+            if ((path.Length >= 258 || forcePrefix) && !path.StartsWith(longPathPrefix))
             {
                 if (path.StartsWith(@"\\"))
                 {

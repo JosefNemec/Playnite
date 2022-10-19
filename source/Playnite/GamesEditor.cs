@@ -588,14 +588,7 @@ namespace Playnite
                     }
                 }
 
-                if (AppSettings.InstallSizeScanUseSizeOnDisk)
-                {
-                    size = FileSystem.GetDirectorySizeOnDisk(expandedGame.InstallDirectory);
-                }
-                else
-                {
-                    size = FileSystem.GetDirectorySize(expandedGame.InstallDirectory);
-                }
+                size = FileSystem.GetDirectorySize(expandedGame.InstallDirectory, AppSettings.InstallSizeScanUseSizeOnDisk);
             }
 
             return (ulong)size;
