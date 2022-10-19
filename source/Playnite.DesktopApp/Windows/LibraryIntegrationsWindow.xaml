@@ -43,7 +43,7 @@
         <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource WindowPanelSeparatorBrush}"
                 DockPanel.Dock="Left">
             <ListBox MinWidth="160" BorderThickness="0" ScrollViewer.CanContentScroll="False"
-                     ItemsSource="{Binding Extensions.LibraryPlugins}"
+                     ItemsSource="{Binding LibraryPlugins}"
                      DisplayMemberPath="Name">
                 <ListBox.Resources>
                     <DataTemplate DataType="{x:Type Separator}">

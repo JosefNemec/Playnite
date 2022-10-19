@@ -44,6 +44,8 @@ namespace Playnite.DesktopApp.ViewModels
         private Dictionary<Guid, PluginSettingsItem> loadedPluginSettings = new Dictionary<Guid, PluginSettingsItem>();
 
         public ExtensionFactory Extensions { get; set; }
+        public List<LibraryPlugin> LibraryPlugins { get; set; }
+        public List<MetadataPlugin> MetadataPlugins { get; set; }
 
         private UserControl selectedSectionView;
         public UserControl SelectedSectionView
@@ -206,6 +208,8 @@ namespace Playnite.DesktopApp.ViewModels
             this.settings = settings;
             this.application = application;
             Extensions = extensions;
+            LibraryPlugins = extensions.LibraryPlugins.OrderBy(a => a.Name).ToList();
+            MetadataPlugins = extensions.MetadataPlugins.OrderBy(a => a.Name).ToList();
 
             sectionViews = new Dictionary<View, UserControl>()
             {
@@ -256,7 +260,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             DesktopThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
             FullscreenThemeList = ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
-            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && ((GenericPlugin)a.Plugin).Properties?.HasSettings == true).ToList();
+            GenericPlugins = Extensions.Plugins.Values.Where(a => a.Description.Type == ExtensionType.GenericPlugin && ((GenericPlugin)a.Plugin).Properties?.HasSettings == true).OrderBy(a => a.Description.Name).ToList();
             AnyGenericPluginSettings = GenericPlugins.HasItems();
         }
 
