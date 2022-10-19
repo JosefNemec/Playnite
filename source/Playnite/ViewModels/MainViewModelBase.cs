@@ -617,7 +617,7 @@ namespace Playnite.ViewModels
                         if (token.IsCancellationRequested)
                         {
                             Logger.Info($"Library Install Size scan was cancelled");
-                            return;
+                            break;
                         }
 
                         try

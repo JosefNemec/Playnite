@@ -666,6 +666,13 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                 }
 
+                if (!GlobalTaskHandler.IsActive)
+                {
+                    GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                    GlobalTaskHandler.ProgressTask = Task.Run(() => UpdateGamesInstallSizes(GlobalTaskHandler.CancelToken.Token, addedGames, LOC.ProgressScanningImportedGamesInstallSize));
+                    await GlobalTaskHandler.ProgressTask;
+                }
+
                 await SetSortingNames(addedGames);
             }
         }
@@ -685,6 +692,13 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
+                }
+
+                if (!GlobalTaskHandler.IsActive)
+                {
+                    GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                    GlobalTaskHandler.ProgressTask = Task.Run(() => UpdateGamesInstallSizes(GlobalTaskHandler.CancelToken.Token, addedGames, LOC.ProgressScanningImportedGamesInstallSize));
+                    await GlobalTaskHandler.ProgressTask;
                 }
 
                 await SetSortingNames(addedGames);
@@ -708,6 +722,13 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
+            }
+
+            if (!GlobalTaskHandler.IsActive)
+            {
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.ProgressTask = Task.Run(() => UpdateGamesInstallSizes(GlobalTaskHandler.CancelToken.Token, model.ImportedGames, LOC.ProgressScanningImportedGamesInstallSize));
+                await GlobalTaskHandler.ProgressTask;
             }
 
             await SetSortingNames(model.ImportedGames);
