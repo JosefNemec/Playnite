@@ -222,6 +222,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importing emulated games from {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Downloading library updates…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Scanning size of games in library…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Scanning size of imported games…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Library update finished</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Releasing resources…</sys:String>
     <!--Menu-->
