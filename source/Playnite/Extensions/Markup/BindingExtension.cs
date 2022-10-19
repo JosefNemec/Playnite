@@ -85,7 +85,11 @@ namespace Playnite.Extensions.Markup
                     binding.Converter = new BooleanToVisibilityConverter();
                 }
 
-                if (provider.TargetProperty.GetType() == typeof(DependencyProperty))
+                if (provider.TargetProperty == null)
+                {
+                    return binding;
+                }
+                else if (provider.TargetProperty.GetType() == typeof(DependencyProperty))
                 {
                     return BindingOperations.SetBinding(
                         provider.TargetObject as DependencyObject,
