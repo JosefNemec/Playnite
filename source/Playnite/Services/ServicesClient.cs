@@ -16,6 +16,12 @@ namespace Playnite.Services
 {
     public class ServicesClient : BaseServicesClient
     {
+        public class RecommendedAddons
+        {
+            public Dictionary<string, string> Libraries { get; set; }
+            public Dictionary<string, string> Generic { get; set; }
+        }
+
         private static ILogger logger = LogManager.GetLogger();
 
         public ServicesClient() : this(ConfigurationManager.AppSettings["ServicesUrl"])
@@ -80,6 +86,19 @@ namespace Playnite.Services
         public string[] GetAddonBlacklist()
         {
             return ExecuteGetRequest<string[]>("/addons/blacklist") ?? new string[0];
+        }
+
+        public RecommendedAddons GetDefaultExtensions()
+        {
+            var stringData = ExecuteGetRequest<string>("/addons/defaultextensions");
+            if (stringData.IsNullOrEmpty())
+            {
+                return new RecommendedAddons();
+            }
+            else
+            {
+                return Serialization.FromJson<RecommendedAddons>(stringData);
+            }
         }
     }
 }

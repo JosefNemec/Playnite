@@ -1690,6 +1690,14 @@ namespace Playnite
         /// </summary>
         public const string FirstDownloadingAddon = "LOCFirstDownloadingAddon";
         /// <summary>
+        /// Downloading list of recommended integrations…
+        /// </summary>
+        public const string DefaultAddonListDownload = "LOCDefaultAddonListDownload";
+        /// <summary>
+        /// Failed to download list of recommended integrations.
+        /// </summary>
+        public const string DefaultAddonListDownloadError = "LOCDefaultAddonListDownloadError";
+        /// <summary>
         /// Configure Platforms and Emulators
         /// </summary>
         public const string PlatformsWindowTitle = "LOCPlatformsWindowTitle";

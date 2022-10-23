@@ -61,7 +61,7 @@
                     <TextBlock Text="{DynamicResource LOCFirstExternalTitle}" VerticalAlignment="Center" FontSize="16" DockPanel.Dock="Top"/>
                     <TextBlock Text="{DynamicResource LOCFirstImportIntroduction}" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,20,0,20"/>
 
-                    <ItemsControl ItemsSource="{Binding RecommendedAddons}"
+                    <ItemsControl ItemsSource="{Binding RecommendeLibrariesList}"
                                   HorizontalAlignment="Stretch" VerticalAlignment="Top">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

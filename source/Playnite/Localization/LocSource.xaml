@@ -468,6 +468,8 @@ More integrations can be installed later from "Add-ons" menu.</sys:String>
 
 You can try to re-download integrations from add-ons menu after first run wizard finishes.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Downloading {0} integration…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Downloading list of recommended integrations…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Failed to download list of recommended integrations. You can try and re-download integrations later via the Addons menu.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configure Platforms and Emulators</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Configure Emulators</sys:String>
