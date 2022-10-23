@@ -1216,7 +1216,7 @@ namespace Playnite.Database
                 else
                 {
                     var addedGames = new List<Game>();
-                    foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
+                    foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }) ?? new List<GameMetadata>())
                     {
                         if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
                         {
