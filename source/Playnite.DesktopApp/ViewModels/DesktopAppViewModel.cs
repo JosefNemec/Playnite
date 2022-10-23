@@ -274,7 +274,10 @@ namespace Playnite.DesktopApp.ViewModels
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.MessageEventArgs e)
         {
             App.Notifications.Remove(e.Message.Id);
-            AppSettings.NotificationPanelVisible = false;
+            if (App.Notifications.Messages.Count == 0)
+            {
+                AppSettings.NotificationPanelVisible = false;
+            }
             e.Message.ActivationAction();
         }
 
