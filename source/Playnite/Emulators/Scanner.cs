@@ -475,7 +475,7 @@ namespace Playnite.Emulators
                 return new List<ScannedGame>();
             }
 
-            var platforms = profile.Platforms?.Select(a => database.Platforms[a].SpecificationId).Where(a => !a.IsNullOrEmpty()).ToList();
+            var platforms = profile.Platforms?.Select(a => database.Platforms[a]?.SpecificationId).Where(a => !a.IsNullOrEmpty()).ToList();
             return ScanDirectory(
                 directory,
                 profile.ImageExtensions.Select(a => a.Trim()).ToList(),
@@ -612,6 +612,11 @@ namespace Playnite.Emulators
                         if (cancelToken.IsCancellationRequested)
                         {
                             return;
+                        }
+
+                        if (!File.Exists(childPath))
+                        {
+                            continue;
                         }
 
                         fileScanCallback?.Invoke(childPath);
