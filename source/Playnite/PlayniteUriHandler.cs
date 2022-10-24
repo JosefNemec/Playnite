@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Playnite
 {
@@ -20,6 +21,7 @@ namespace Playnite
     public class PlayniteUriHandler : IUriHandlerAPI
     {
         private static readonly ILogger logger = LogManager.GetLogger();
+        private static readonly char[] uriSplitter = new char[] { '/' };
 
         internal readonly Dictionary<string, Action<PlayniteUriEventArgs>> Handlers =
             new Dictionary<string, Action<PlayniteUriEventArgs>>();
@@ -53,22 +55,38 @@ namespace Playnite
             }
         }
 
+        public static (string source, string[] arguments) ParseUri(string uri)
+        {
+            var split = uri.Split(uriSplitter, StringSplitOptions.RemoveEmptyEntries);
+            if (split.Length < 2)
+            {
+                throw new Exception("playnite:// uri missing parameters.");
+            }
+
+            var source = split[1];
+            var arguments = new string[0];
+            if (split.Length > 2)
+            {
+                arguments = split.Skip(2).Select(a => HttpUtility.UrlDecode(a)).ToArray();
+            }
+
+            return (source, arguments);
+        }
+
         internal void ProcessUri(string uri)
         {
             logger.Info($"Processing Playnite URI {uri}");
-            var url = new Uri(uri);
-            var source = url.Host;
-            var args = url.LocalPath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-            var handler = Handlers.FirstOrDefault(a => a.Key.Equals(source, StringComparison.OrdinalIgnoreCase));
-            if (handler.Value == null)
-            {
-                logger.Error($"URI handler {source} is not registered.");
-                return;
-            }
-
             try
             {
-                handler.Value.Invoke(new PlayniteUriEventArgs { Arguments = args });
+                var (source, arguments) = ParseUri(uri);
+                var handler = Handlers.FirstOrDefault(a => a.Key.Equals(source, StringComparison.OrdinalIgnoreCase));
+                if (handler.Value == null)
+                {
+                    logger.Error($"URI handler {source} is not registered.");
+                    return;
+                }
+
+                handler.Value.Invoke(new PlayniteUriEventArgs { Arguments = arguments });
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
