@@ -369,7 +369,7 @@
   Id: pc_dos
   IgdbId: 13
   Databases: [DOS]
-  Emulators: [pcem, scummvm]
+  Emulators: [pcem, scummvm, dosbox]
   
 - Name: PC (Windows)
   Id: pc_windows
