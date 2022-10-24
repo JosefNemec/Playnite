@@ -149,7 +149,11 @@ namespace Playnite.Windows
             // Make sure that position is part of at least one connected screen
             foreach (var monitor in Computer.GetScreens())
             {
-                if (monitor.WorkingArea.Contains((int)(x * dpi.DpiScaleX), (int)(y * dpi.DpiScaleY)))
+                // 8 pixel offset is there for cases where a window is maximized using drag to top of the screen.
+                // Window's position is then, for some reason, set with -8,-8 pixel offset which whould make constrain check to fail.
+                x = (int)(x * dpi.DpiScaleX) + 8;
+                y = (int)(y * dpi.DpiScaleY) + 8;
+                if (monitor.WorkingArea.Contains(x, y))
                 {
                     window.Left = x;
                     window.Top = y;
