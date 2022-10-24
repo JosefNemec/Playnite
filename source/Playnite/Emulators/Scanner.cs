@@ -198,10 +198,11 @@ namespace Playnite.Emulators
             var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
+            var dirToScan = PlaynitePaths.ExpandVariables(scanner.Directory, emulator.InstallDir, true);
             if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
-                    scanner.Directory,
+                    dirToScan,
                     emulator,
                     customProfile,
                     cancelToken,
@@ -213,7 +214,7 @@ namespace Playnite.Emulators
             else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
-                    scanner.Directory,
+                    dirToScan,
                     emulator,
                     builtinProfile,
                     cancelToken,
@@ -593,7 +594,7 @@ namespace Playnite.Emulators
                         }
                     }
 
-                    if (importedFiles.ContainsString(filePath, StringComparison.OrdinalIgnoreCase))
+                    if (importedFiles.ContainsString(Path.GetFullPath(filePath), StringComparison.OrdinalIgnoreCase))
                     {
                         return;
                     }
@@ -736,7 +737,7 @@ namespace Playnite.Emulators
                     continue;
                 }
 
-                if (importedFiles.ContainsString(file, StringComparison.OrdinalIgnoreCase))
+                if (importedFiles.ContainsString(Path.GetFullPath(file), StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }

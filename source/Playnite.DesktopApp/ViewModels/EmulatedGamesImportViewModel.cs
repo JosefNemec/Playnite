@@ -343,10 +343,26 @@ namespace Playnite.DesktopApp.ViewModels
                     return;
                 }
 
-                if (config.Directory.IsNullOrEmpty() || !Directory.Exists(config.Directory))
+                if (config.Directory.IsNullOrEmpty())
                 {
                     Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigDirectoryError), "");
                     return;
+                }
+                else
+                {
+                    var emulator = database.Emulators[config.EmulatorId];
+                    if (emulator == null)
+                    {
+                        Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigNoEmulatorError), "");
+                        return;
+                    }
+
+                    var dirToScan = PlaynitePaths.ExpandVariables(config.Directory, emulator.InstallDir, true);
+                    if (!Directory.Exists(dirToScan))
+                    {
+                        Dialogs.ShowErrorMessage(resources.GetString(LOC.ScanConfigError) + "\n" + resources.GetString(LOC.ScanConfigDirectoryError), "");
+                        return;
+                    }
                 }
             }
 

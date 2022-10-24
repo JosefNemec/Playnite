@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Playnite.Common;
+using Playnite.SDK;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -61,5 +63,23 @@ namespace Playnite
         public static string SafeStartupFlagFile => Path.Combine(ConfigRootPath, "safestart.flag");
         public static string BackupActionFile => Path.Combine(ConfigRootPath, "backup.json");
         public static string RestoreBackupActionFile => Path.Combine(ConfigRootPath, "restoreBackup.json");
+
+        public static string ExpandVariables(string inputString, string emulatorDir = null, bool fixSeparators = false)
+        {
+            if (string.IsNullOrEmpty(inputString) || !inputString.Contains('{'))
+            {
+                return inputString;
+            }
+
+            var result = inputString;
+            if (!emulatorDir.IsNullOrEmpty())
+            {
+                emulatorDir = emulatorDir.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath);
+            }
+
+            result = result.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath);
+            result = result.Replace(ExpandableVariables.EmulatorDirectory, emulatorDir);
+            return fixSeparators ? Paths.FixSeparators(result) : result;
+        }
     }
 }
