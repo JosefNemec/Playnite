@@ -1211,5 +1211,9 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover image search string</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Background image search string</sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Getting add-on information…</sys:String>
-    <sys:String x:Key="LOCNoMetadataSource">No metadata source is available</sys:String>    
+    <sys:String x:Key="LOCNoMetadataSource">No metadata source is available</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Play action settings</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Use scanner settings</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Select profile on startup</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Select emulator on startup</sys:String>
 </ResourceDictionary>

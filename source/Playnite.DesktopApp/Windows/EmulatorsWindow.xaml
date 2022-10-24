@@ -394,7 +394,8 @@
                                     IsEnabled="{Binding SelectedItem, ElementName=ListScannerConfigs, Converter={StaticResource NullToBoolConverter}}"
                                     DataContext="{Binding SelectedScanner}">
                             <TabItem Header="{DynamicResource LOCGeneralLabel}">
-                                <GridEx AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="11" StarRows="11"
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <GridEx AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="12" StarRows="12"
                                         Margin="5,5,5,0">
                                     <controls:GridEx.Resources>
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
@@ -444,6 +445,11 @@
                                     <TextBox Text="{Binding CrcExcludeFileTypes, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ListToStringConverter}}"
                                              ToolTip="{DynamicResource LOCEmuCrcExcludeFileTypesTooltip}"/>
 
+                                    <!--Play action settings-->
+                                    <TextBlock Text="{DynamicResource LOCScannerConfigPlayActionSettings}" />
+                                    <ComboBox VerticalAlignment="Center"
+                                              pbeh:SelectorBehaviors.EnumSource="{x:Type psdkm:ScannerConfigPlayActionSettings}"
+                                              SelectedValue="{Binding PlayActionSettings}"/>
 
                                     <!--Startup scan-->
                                     <CheckBox Content="{DynamicResource LOCEmuScanIncludeGlobalUpdate}"
@@ -481,6 +487,7 @@
                                               Grid.ColumnSpan="2" Margin="0,10,10,5"
                                               IsChecked="{Binding ScanInsideArchives}"/>
                                 </GridEx>
+                                </ScrollViewer>
                             </TabItem>
                             <TabItem Header="{DynamicResource LOCExclusions}">
                                 <GridEx Margin="5,5,5,0" RowCount="6" StarRows="1,3" ColumnCount="1" AutoLayoutColumns="1" StarColumns="0">

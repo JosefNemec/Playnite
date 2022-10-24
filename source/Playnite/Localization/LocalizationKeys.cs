@@ -1694,7 +1694,7 @@ namespace Playnite
         /// </summary>
         public const string DefaultAddonListDownload = "LOCDefaultAddonListDownload";
         /// <summary>
-        /// Failed to download list of recommended integrations.
+        /// Failed to download list of recommended integrations. You can try and re-download integrations later via the Addons menu.
         /// </summary>
         public const string DefaultAddonListDownloadError = "LOCDefaultAddonListDownloadError";
         /// <summary>
@@ -4309,5 +4309,21 @@ namespace Playnite
         /// No metadata source is available
         /// </summary>
         public const string NoMetadataSource = "LOCNoMetadataSource";
+        /// <summary>
+        /// Play action settings
+        /// </summary>
+        public const string ScannerConfigPlayActionSettings = "LOCScannerConfigPlayActionSettings";
+        /// <summary>
+        /// Use scanner settings
+        /// </summary>
+        public const string ScannerConfigPlayActionSettingsScanner = "LOCScannerConfigPlayActionSettingsScanner";
+        /// <summary>
+        /// Select profile on startup
+        /// </summary>
+        public const string ScannerConfigPlayActionSettingsSelectProfile = "LOCScannerConfigPlayActionSettingsSelectProfile";
+        /// <summary>
+        /// Select emulator on startup
+        /// </summary>
+        public const string ScannerConfigPlayActionSettingsSelectEmulator = "LOCScannerConfigPlayActionSettingsSelectEmulator";
     }
 }

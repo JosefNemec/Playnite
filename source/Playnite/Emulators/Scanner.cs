@@ -1173,6 +1173,16 @@ namespace Playnite.Emulators
                 Name = Name
             };
 
+            if (sourceConfig.PlayActionSettings == ScannerConfigPlayActionSettings.SelectProfiteOnStart)
+            {
+                playAction.EmulatorProfileId = null;
+            }
+            else if (sourceConfig.PlayActionSettings == ScannerConfigPlayActionSettings.SelectEmulatorOnStart)
+            {
+                playAction.EmulatorProfileId = null;
+                playAction.EmulatorId = Guid.Empty;
+            }
+
             game.GameActions = new ObservableCollection<GameAction> { playAction };
             if (Roms.HasItems())
             {

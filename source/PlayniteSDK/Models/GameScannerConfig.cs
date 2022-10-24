@@ -1,12 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    ///
+    /// </summary>
+    public enum ScannerConfigPlayActionSettings
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCScannerConfigPlayActionSettingsScanner")]
+        ScannerSettings,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCScannerConfigPlayActionSettingsSelectProfile")]
+        SelectProfiteOnStart,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCScannerConfigPlayActionSettingsSelectEmulator")]
+        SelectEmulatorOnStart
+    }
+
     /// <summary>
     /// Represents emulated game scanner configuration.
     /// </summary>
@@ -194,6 +217,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private ScannerConfigPlayActionSettings playActionSettings = ScannerConfigPlayActionSettings.ScannerSettings;
+        /// <summary>
+        /// Gets or sets play action settings for imported games.
+        /// </summary>
+        public ScannerConfigPlayActionSettings PlayActionSettings
+        {
+            get => playActionSettings;
+            set
+            {
+                playActionSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -263,6 +300,11 @@ namespace Playnite.SDK.Models
                 if (OverridePlatformId != tro.OverridePlatformId)
                 {
                     tro.OverridePlatformId = OverridePlatformId;
+                }
+
+                if (PlayActionSettings != tro.PlayActionSettings)
+                {
+                    tro.PlayActionSettings = PlayActionSettings;
                 }
             }
             else

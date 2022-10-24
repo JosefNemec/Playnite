@@ -10,7 +10,7 @@
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:dctrls="clr-namespace:Playnite.DesktopApp.Controls"
         xmlns:pvm="clr-namespace:Playnite.DesktopApp.ViewModels"
-        xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
+        xmlns:psdkm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"       
         xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"     
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -177,11 +177,16 @@
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                                     <TextBlock Text="{DynamicResource LOCEmuOverridePlatform}" VerticalAlignment="Center"
                                                ToolTip="{DynamicResource LOCEmuOverridePlatformTooltip}" />
-                                    <ComboBox VerticalAlignment="Center" Margin="10,0,0,0" MinWidth="150"
+                                    <ComboBox VerticalAlignment="Center" Margin="10,0,00,0" MinWidth="150"
                                               ToolTip="{DynamicResource LOCEmuOverridePlatformTooltip}"
                                               SelectedValue="{Binding OverridePlatformId}" SelectedValuePath="Id"
                                               DisplayMemberPath="Name"
                                               ItemsSource="{Binding Data.OverridePlatforms, Source={StaticResource BindingProxy}}"/>
+                                    <TextBlock Text="{DynamicResource LOCScannerConfigPlayActionSettings}"
+                                               Margin="20,0,10,0" VerticalAlignment="Center" />
+                                    <ComboBox VerticalAlignment="Center"
+                                              pbeh:SelectorBehaviors.EnumSource="{x:Type psdkm:ScannerConfigPlayActionSettings}"
+                                              SelectedValue="{Binding PlayActionSettings}"/>
                                 </StackPanel>
                                 <DockPanel Margin="0,10,0,10">
                                     <TextBlock Text="{DynamicResource LOCEmuScanDirectory}" VerticalAlignment="Center" />
