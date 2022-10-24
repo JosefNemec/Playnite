@@ -551,7 +551,10 @@ namespace Playnite.Metadata
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.InstallSize == null))
                             {
                                 gameData = ProcessField(game, settings.InstallSize, MetadataField.InstallSize, (a) => a.InstallSize, existingStoreData, existingPluginData, cancelToken);
-                                game.InstallSize = gameData?.InstallSize == null ? game.InstallSize : gameData.InstallSize;
+                                if (gameData?.InstallSize != null)
+                                {
+                                    game.InstallSize = gameData.InstallSize;
+                                }
                             }
                         }
 
