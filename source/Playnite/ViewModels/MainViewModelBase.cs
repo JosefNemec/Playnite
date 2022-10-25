@@ -971,7 +971,8 @@ namespace Playnite.ViewModels
                     BackupFile = backupFile,
                     DataDir = PlaynitePaths.ConfigRootPath,
                     LibraryDir = GameDatabase.GetFullDbPath(AppSettings.DatabasePath),
-                    RestoreItems = selectedRestoreItems
+                    RestoreItems = selectedRestoreItems,
+                    RestoreLibrarySettingsPath = AppSettings.DatabasePath
                 };
 
                 FileSystem.WriteStringToFile(PlaynitePaths.RestoreBackupActionFile, Serialization.ToJson(options));

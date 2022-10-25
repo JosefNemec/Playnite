@@ -125,13 +125,14 @@ namespace Playnite.Common
 
                 foreach (var f in Directory.GetFiles(path))
                 {
-                    var attr = File.GetAttributes(f);
+                    var file = Paths.FixPathLength(f);
+                    var attr = File.GetAttributes(file);
                     if ((attr & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
                     {
-                        File.SetAttributes(f, attr ^ FileAttributes.ReadOnly);
+                        File.SetAttributes(file, attr ^ FileAttributes.ReadOnly);
                     }
 
-                    File.Delete(f);
+                    File.Delete(file);
                 }
 
                 var dirAttr = File.GetAttributes(path);
@@ -403,7 +404,7 @@ namespace Playnite.Common
             {
                 throw new System.ComponentModel.Win32Exception();
             }
-            
+
             uint clusterSize = sectorsPerCluster * bytesPerSector;
             uint losize = Kernel32.GetCompressedFileSizeW(Paths.FixPathLength(fileInfo.FullName), out uint hosize);
             int error = Marshal.GetLastWin32Error();

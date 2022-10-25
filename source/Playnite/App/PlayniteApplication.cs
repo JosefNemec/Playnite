@@ -543,12 +543,12 @@ namespace Playnite
                 {
                     if (backupOptions == null || !backupOptions.ClosedWhenDone)
                     {
-                        Restart(new CmdLineOptions { SkipLibUpdate = true });
+                        Restart(new CmdLineOptions { SkipLibUpdate = true }, false);
                     }
                 }
 
                 FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
-                Quit();
+                Quit(false);
                 return;
             }
             else if (!CmdLine.RestoreBackup.IsNullOrEmpty())
@@ -579,12 +579,12 @@ namespace Playnite
                 {
                     if (restoreOptions == null || !restoreOptions.ClosedWhenDone)
                     {
-                        Restart(new CmdLineOptions { SkipLibUpdate = true });
+                        Restart(new CmdLineOptions { SkipLibUpdate = true }, false);
                     }
                 }
 
                 FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
-                Quit();
+                Quit(false);
                 return;
             }
 
@@ -1095,17 +1095,28 @@ namespace Playnite
             XInputGesture.CancellationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? XInputButton.A : XInputButton.B;
         }
 
-        public void Quit()
+        public void Quit(bool saveSettings = true)
         {
             logger.Info("Shutting down Playnite");
+            if (saveSettings)
+            {
+                AppSettings?.SaveSettings();
+            }
+
             ReleaseResources();
             CurrentNative.Shutdown(0);
         }
 
-        public void QuitAndStart(string path, string arguments, bool asAdmin = false)
+        public void QuitAndStart(string path, string arguments, bool asAdmin = false, bool saveSettings = true)
         {
             logger.Info("Shutting down Playnite and starting an app.");
+            if (saveSettings)
+            {
+                AppSettings?.SaveSettings();
+            }
+
             ReleaseResources();
+
             try
             {
                 ProcessStarter.StartProcess(path, arguments, asAdmin);
@@ -1120,9 +1131,9 @@ namespace Playnite
             CurrentNative.Shutdown(0);
         }
 
-        public abstract void Restart();
+        public abstract void Restart(bool saveSettings = true);
 
-        public abstract void Restart(CmdLineOptions options);
+        public abstract void Restart(CmdLineOptions options, bool saveSettings = true);
 
         public virtual void ReleaseResources(bool releaseCefSharp = true)
         {
@@ -1170,7 +1181,6 @@ namespace Playnite
                     }
 
                     GamesEditor?.Dispose();
-                    AppSettings?.SaveSettings();
                     Controllers?.Dispose();
                     Extensions?.Dispose();
                 }

@@ -49,6 +49,7 @@ namespace Playnite
         public List<BackupDataItem> RestoreItems { get; set; }
         public bool ClosedWhenDone { get; set; }
         public bool CancelIfGameRunning { get; set; }
+        public string RestoreLibrarySettingsPath { get; set; }
     }
 
     public class Backup
@@ -228,13 +229,28 @@ namespace Playnite
                         if (configEntry != null)
                         {
                             var origFile = Path.Combine(options.DataDir, config);
-                            if (File.Exists(origFile))
-                            {
-                                File.Delete(origFile);
-                            }
-
+                            FileSystem.DeleteFile(origFile);
                             configEntry.ExtractToFile(Paths.FixPathLength(origFile));
                         }
+                    }
+
+                    if (!options.RestoreLibrarySettingsPath.IsNullOrEmpty())
+                    {
+                        // We are doing direct string replacement because proper serialization might not be safe here.
+                        // We don't know what settings model version is the original file and potential conversion will
+                        // be left to setting load on next startup.
+                        var mainConfigFile = Paths.FixPathLength(Path.Combine(options.DataDir, PlaynitePaths.ConfigFileName));
+                        var resultLine = $"\"{nameof(PlayniteSettings.DatabasePath)}\": {Newtonsoft.Json.JsonConvert.ToString(options.RestoreLibrarySettingsPath)},";
+                        var configContent = File.ReadAllLines(mainConfigFile);
+                        for (int i = 0; i < configContent.Length; i++)
+                        {
+                            if (configContent[i].Contains($"\"{nameof(PlayniteSettings.DatabasePath)}\""))
+                            {
+                                configContent[i] = resultLine;
+                            }
+                        }
+
+                        File.WriteAllLines(mainConfigFile, configContent);
                     }
                 }
 
@@ -283,6 +299,7 @@ namespace Playnite
                         void cleanThemeModeDir(ApplicationMode mode)
                         {
                             var modeDir = Path.Combine(outputDir, ThemeManager.GetThemeRootDir(mode));
+                            FileSystem.CreateDirectory(modeDir, false);
                             foreach (var dir in Directory.GetDirectories(modeDir))
                             {
                                 // Default themes must not be deleted since they are never included in the backup
@@ -336,7 +353,7 @@ namespace Playnite
             using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Read))
             {
                 var entires = archive.Entries;
-                if (entires.Any(a => a.FullName.StartsWith(Path.Combine(libraryEntryRoot, GameDatabase.filesDirName), StringComparison.OrdinalIgnoreCase)))
+                if (entires.Any(a => a.FullName.StartsWith(libraryFilesEntryRoot, StringComparison.OrdinalIgnoreCase)))
                 {
                     selections.Add(BackupDataItem.LibraryFiles);
                 }

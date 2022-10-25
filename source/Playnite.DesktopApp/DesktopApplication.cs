@@ -118,15 +118,15 @@ namespace Playnite.DesktopApp
             base.ReleaseResources(releaseCefSharp);
         }
 
-        public override void Restart()
+        public override void Restart(bool saveSettings)
         {
-            Restart(new CmdLineOptions { MasterInstance = true });
+            Restart(new CmdLineOptions { MasterInstance = true }, saveSettings);
         }
 
-        public override void Restart(CmdLineOptions options)
+        public override void Restart(CmdLineOptions options, bool saveSettings)
         {
             options.MasterInstance = true;
-            QuitAndStart(PlaynitePaths.DesktopExecutablePath, options.ToString());
+            QuitAndStart(PlaynitePaths.DesktopExecutablePath, options.ToString(), saveSettings: saveSettings);
         }
 
         public override void InstantiateApp()

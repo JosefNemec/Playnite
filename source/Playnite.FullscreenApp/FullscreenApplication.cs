@@ -178,15 +178,15 @@ namespace Playnite.FullscreenApp
             MainModel?.MinimizeWindow();
         }
 
-        public override void Restart()
+        public override void Restart(bool saveSettings)
         {
-            Restart(new CmdLineOptions { MasterInstance = true });
+            Restart(new CmdLineOptions { MasterInstance = true }, saveSettings);
         }
 
-        public override void Restart(CmdLineOptions options)
+        public override void Restart(CmdLineOptions options, bool saveSettings)
         {
             options.MasterInstance = true;
-            QuitAndStart(PlaynitePaths.FullscreenExecutablePath, options.ToString());
+            QuitAndStart(PlaynitePaths.FullscreenExecutablePath, options.ToString(), saveSettings: saveSettings);
         }
 
         public override void ShowWindowsNotification(string title, string body, Action action)
