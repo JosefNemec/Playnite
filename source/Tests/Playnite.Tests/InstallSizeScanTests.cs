@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.Tests
@@ -17,6 +18,9 @@ namespace Playnite.Tests
         [Test]
         public void UpdateGameInstallSizeTest()
         {
+            // Thread.Sleep(50) is there because the scan can be sometimes so fast that the date would not change
+            // despite scan being actually done.
+
             var resourcesRootDir = Path.Combine(PlayniteTests.ResourcesPath, "SizeScan");
             var playniteSettings = new PlayniteSettings()
             {
@@ -49,12 +53,14 @@ namespace Playnite.Tests
             // Not installed games shouldn't be scanned
             game.IsInstalled = false;
             game.Roms[0].Path = @"{InstallDir}\CueTestFiles.cue";
+            Thread.Sleep(50);
             gamesEditor.UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, checkLastScanDate);
             Assert.AreEqual(null, game.InstallSize);
             Assert.AreEqual(null, game.LastSizeScanDate);
 
             // Installed games should be scanned
             game.IsInstalled = true;
+            Thread.Sleep(50);
             gamesEditor.UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, checkLastScanDate);
             Assert.AreEqual(1024, game.InstallSize);
             Assert.AreNotEqual(null, game.LastSizeScanDate);
@@ -62,6 +68,7 @@ namespace Playnite.Tests
             // Size scan shouldn't happen if data is not missing and "onlyIfDataMissing" is true
             var previousLastSizeScanDate = game.LastSizeScanDate;
             game.Roms.Add(new GameRom("RomName", @"{InstallDir}\Empty2KbFile.bin"));
+            Thread.Sleep(50);
             gamesEditor.UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, checkLastScanDate);
             Assert.AreEqual(1024, game.InstallSize);
             Assert.AreEqual(previousLastSizeScanDate, game.LastSizeScanDate);
@@ -69,6 +76,7 @@ namespace Playnite.Tests
             // Size scan should happen if "onlyIfDataMissing" is false
             onlyIfDataMissing = false;
             previousLastSizeScanDate = game.LastSizeScanDate;
+            Thread.Sleep(50);
             gamesEditor.UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, checkLastScanDate);
             Assert.AreEqual(3072, game.InstallSize);
             Assert.AreNotEqual(previousLastSizeScanDate, game.LastSizeScanDate);
@@ -80,6 +88,7 @@ namespace Playnite.Tests
             game.Roms = null;
             game.InstallSize = null;
             game.LastSizeScanDate = null;
+            Thread.Sleep(50);
             gamesEditor.UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, checkLastScanDate);
             Assert.AreNotEqual(null, game.InstallSize);
             Assert.Greater(game.InstallSize, previousInstallSize);
@@ -89,6 +98,7 @@ namespace Playnite.Tests
             game.InstallSize = null;
             game.LastSizeScanDate = null;
             game.InstallDirectory = Path.Combine(resourcesRootDir, "PathThatDoesNotExists");
+            Thread.Sleep(50);
             gamesEditor.UpdateGameSize(game, onlyIfDataMissing, updateGameOnLibrary, checkLastScanDate);
             Assert.AreEqual(null, game.InstallSize);
             Assert.AreEqual(null, game.LastSizeScanDate);
