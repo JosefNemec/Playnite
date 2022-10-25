@@ -85,5 +85,18 @@ namespace Playnite.SDK.Models
 
             return true;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public GameRom GetCopy()
+        {
+            return new GameRom
+            {
+                Name = Name,
+                Path = Path
+            };
+        }
     }
 }

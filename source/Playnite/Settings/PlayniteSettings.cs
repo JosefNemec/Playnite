@@ -2164,7 +2164,7 @@ namespace Playnite
         {
             get
             {
-                return !File.Exists(PlaynitePaths.UninstallerPath);
+                return PlaynitePaths.IsPortable;
             }
         }
 

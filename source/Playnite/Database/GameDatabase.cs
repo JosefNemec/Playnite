@@ -71,7 +71,7 @@ namespace Playnite.Database
         void SetCompletionStatusSettings(CompletionStatusSettings settings);
         GameScannersSettings GetGameScannersSettings();
         void SetGameScannersSettings(GameScannersSettings settings);
-        List<string> GetImportedRomFiles(string emulatorDir);
+        HashSet<string> GetImportedRomFiles(string emulatorDir);
         bool GetGameMatchesFilter(Game game, FilterSettings filterSettings);
         IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings);
     }
@@ -1392,9 +1392,9 @@ namespace Playnite.Database
             fileLocks.TryRemove(filePath, out var removed);
         }
 
-        public List<string> GetImportedRomFiles(string emulatorDir)
+        public HashSet<string> GetImportedRomFiles(string emulatorDir)
         {
-            var importedRoms = new List<string>();
+            var importedRoms = new HashSet<string>();
             foreach (var game in Games.Where(a => a.Roms.HasItems()))
             {
                 try
@@ -1419,7 +1419,7 @@ namespace Playnite.Database
 
                         if (!absPath.IsNullOrEmpty())
                         {
-                            importedRoms.AddMissing(absPath);
+                            importedRoms.Add(absPath);
                         }
                     }
                 }

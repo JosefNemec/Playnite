@@ -153,7 +153,7 @@ namespace Playnite.Emulators
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
         private readonly IGameDatabaseMain database;
-        internal List<string> importedFiles;
+        internal HashSet<string> importedFiles;
         private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
 
         public GameScanner(
@@ -614,7 +614,7 @@ namespace Playnite.Emulators
                             return;
                         }
 
-                        if (!File.Exists(childPath))
+                        if (!FileSystem.FileExists(childPath))
                         {
                             continue;
                         }

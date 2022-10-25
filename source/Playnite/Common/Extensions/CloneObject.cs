@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Reflection;
 using Playnite.SDK.Data;
 using Playnite.Common;
+using Playnite.SDK.Models;
 
 namespace System
 {
@@ -33,6 +34,56 @@ namespace System
             }
 
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source, jsonSerializerSettings));
+        }
+
+        public static Game GetClone(this Game source)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            return source.GetCopy();
+        }
+
+        public static GameAction GetClone(this GameAction source)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            return source.GetCopy();
+        }
+
+        public static CustomEmulatorProfile GetClone(this CustomEmulatorProfile source)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            return source.GetCopy();
+        }
+
+        public static BuiltInEmulatorProfile GetClone(this BuiltInEmulatorProfile source)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            return source.GetCopy();
+        }
+
+        public static Emulator GetClone(this Emulator source)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+
+            return source.GetCopy();
         }
 
         public static U GetClone<T, U>(this T source)

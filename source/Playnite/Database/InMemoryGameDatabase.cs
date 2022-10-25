@@ -180,7 +180,7 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public List<string> GetImportedRomFiles(string emulatorDir)
+        public HashSet<string> GetImportedRomFiles(string emulatorDir)
         {
             throw new NotImplementedException();
         }
