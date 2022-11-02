@@ -127,17 +127,7 @@ Troubleshooting
 
 If you encounter any issue when using built-in emulator configurations/profiles, please [open new issue on GitHub](https://github.com/JosefNemec/Playnite/issues/) to let us know and we will fix it.
 
-### Game runs properly when launched manually from an emulator but not from Playnite
-
-Playnite uses [command line arguments](https://www.bleepingcomputer.com/tutorials/understanding-command-line-arguments-and-how-to-use-them/) to tell specific emulator what game to start. But since some emulators can behave differently when a game is launched via command line compared to launched from emulator's UI, you can see games behaving differently when launched from Playnite.
-
-This can be an issue in either Playnite or in an emulator:
-
-- In case of an issue in Playnite, it means that Playnite is not passing correct arguments to an emulator, which usually happens when an emulator has been updated and requires different set of arguments (usually happens when using built-in emulator profiles) or if you set wrong arguments in your custom profile. You can test this by running an emulator manually from command prompt using the same command line arguments that Playnite uses (which can be seen on emulator config view). If the issue is in built-in emulator profile using wrong arguments, please open [new issue](https://github.com/JosefNemec/Playnite/issues/) in Playnite's repository for the profile to be updated.
-
-- In case of an issue in an emulator, it means that Playnite is passing correct arguments, but there is a bug in the emulator which causes games to run badly when started from command line. The only solution for this is to contact emulator's developers and ask them to fix the issue in the emulator itself.
-
-### Game run properly when launched manually from an emulator, but not from Playnite
+### Game runs properly when launched manually from an emulator, but not from Playnite
 
 Playnite uses [command line arguments](https://www.bleepingcomputer.com/tutorials/understanding-command-line-arguments-and-how-to-use-them/) to tell specific emulator what game to start. But since some emulators can behave differently when a game is launched via command line compared to launched from emulator's UI, you can see games behaving differently when launched from Playnite.
 
