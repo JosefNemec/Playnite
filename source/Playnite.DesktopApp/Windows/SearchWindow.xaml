@@ -53,7 +53,8 @@
             <Button Style="{DynamicResource SearchWindowSearchLabelButton}"
                     Content="{Binding CurrentContextLabel}"
                     Command="{Binding DeactiveCurrentContextCommand}"
-                    Visibility="{Binding CurrentContextLabel, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}" />
+                    Visibility="{Binding CurrentContextLabel, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                    AutomationProperties.Name="{DynamicResource LOCBackLabel}" />
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
                         VerticalAlignment="Center" Margin="5,0,5,0"
@@ -64,7 +65,8 @@
                 <Ellipse Name="Dot3" Fill="{StaticResource GlyphBrush}" Opacity=".1" Width="8" Height="8" Margin="2,0,0,0"/>
             </StackPanel>
             <Button DockPanel.Dock="Right" Style="{DynamicResource SearchWindowSettignsButton}"
-                    pbeh:LeftClickContextMenuBehavior.Enabled="True">
+                    pbeh:LeftClickContextMenuBehavior.Enabled="True"
+                    AutomationProperties.Name="{DynamicResource LOCSettingsLabel}">
                 <Button.ContextMenu>
                     <ContextMenu Placement="Bottom">
                         <MenuItem Header="{DynamicResource LOCSearchFilterUninstalled}" HeaderStringFormat="{}{0} [F2]"
@@ -77,12 +79,14 @@
             </Button>
             <Button DockPanel.Dock="Right" Style="{DynamicResource SearchWindowInfoButton}"
                     Visibility="{Binding CurrentContextHint, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
-                    Command="{Binding ToggleHintCommand}"/>
+                    Command="{Binding ToggleHintCommand}"
+                    AutomationProperties.Name="{DynamicResource LOCMenuHelpTitle}"/>
             <ToggleButton DockPanel.Dock="Right" Style="{DynamicResource SearchWindowActionButton}"
                           Command="{Binding OpenMenuCommand}"
                           Content="&#xefa2;" FontFamily="{StaticResource FontIcoFont}"
                           IsChecked="{Binding MenuAction.Selected, Mode=OneWay}"
-                          Visibility="{Binding MenuAction, Converter={StaticResource NullToVisibilityConverter}}" />
+                          Visibility="{Binding MenuAction, Converter={StaticResource NullToVisibilityConverter}}"
+                          AutomationProperties.Name="{DynamicResource LOCGameMenu}"/>
             <ToggleButton DockPanel.Dock="Right" Style="{DynamicResource SearchWindowActionButton}"
                           Command="{Binding SecondaryActionCommand}"
                           Content="{Binding SelectedSearchItem.SecondaryAction.Name}"

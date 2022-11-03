@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -250,6 +251,9 @@ namespace Playnite.FullscreenApp.Controls.Views
                 AssignButtonWithCommand(ref ButtonProgramUpdate, "PART_ButtonProgramUpdate", mainModel.OpenUpdatesCommand);
                 AssignButtonWithCommand(ref ButtonMainMenu, "PART_ButtonMainMenu", mainModel.OpenMainMenuCommand);
                 AssignButtonWithCommand(ref ButtonNotifications, "PART_ButtonNotifications", mainModel.OpenNotificationsMenuCommand);
+                AutomationProperties.SetName(ButtonProgramUpdate, LOC.UpdateIsAvailableNotificationBody.GetLocalized());
+                AutomationProperties.SetName(ButtonMainMenu, LOC.ApplicationMenu.GetLocalized());
+                AutomationProperties.SetName(ButtonNotifications, LOC.Notifications.GetLocalized());
 
                 if (ButtonProgramUpdate != null)
                 {

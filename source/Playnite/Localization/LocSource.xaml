@@ -502,6 +502,7 @@ It's currently being used by {1} game(s).</sys:String>
 It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Settings help</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sort By</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Sort Direction</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Group By</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascending</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descending</sys:String>
@@ -1216,4 +1217,10 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Use scanner settings</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Select profile on startup</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Select emulator on startup</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automatic</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Always on</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Always off</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Accessibility (screen reader) support</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Application menu</sys:String>
+    <sys:String x:Key="LOCGameMenu">Game menu</sys:String>
 </ResourceDictionary>

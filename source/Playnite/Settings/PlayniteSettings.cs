@@ -51,6 +51,16 @@ namespace Playnite
         Backup = 25
     }
 
+    public enum AccessibilityInterfaceOptions
+    {
+        [Description(LOC.Automatic)]
+        Auto,
+        [Description(LOC.AlwaysOn)]
+        AlwaysOn,
+        [Description(LOC.AlwaysOff)]
+        AlwaysOff
+    }
+
     public enum GameSearchItemAction
     {
         [Description(LOC.GameSearchItemActionPlay)]
@@ -2158,6 +2168,11 @@ namespace Playnite
 
         private string webImageSarchBackgroundTerm = "{Name} wallpaper";
         public string WebImageSarchBackgroundTerm { get => webImageSarchBackgroundTerm; set => SetValue(ref webImageSarchBackgroundTerm, value); }
+
+        // See OnCreateAutomationPeer comment in WindowBase.cs for why this exists.
+        private AccessibilityInterfaceOptions accessibilityInterface = AccessibilityInterfaceOptions.Auto;
+        [RequiresRestart]
+        public AccessibilityInterfaceOptions AccessibilityInterface { get => accessibilityInterface; set => SetValue(ref accessibilityInterface, value); }
 
         [JsonIgnore]
         public static bool IsPortable

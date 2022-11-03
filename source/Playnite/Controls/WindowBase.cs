@@ -1,4 +1,5 @@
-﻿using Playnite.Native;
+﻿using Playnite.Common;
+using Playnite.Native;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace Playnite.Controls
     public class WindowBase : Window, INotifyPropertyChanged
     {
         public readonly WindowPositionHandler PositionHandler;
-        private readonly EmptyWindowAutomationPeer automationPeer;
+        private readonly EmptyWindowAutomationPeer emptyAutomationPeer;
         private HwndSource hwndSource;
         private readonly Dictionary<int, Action> hotKeyHandlers = new Dictionary<int, Action>();
 
@@ -99,9 +100,30 @@ namespace Playnite.Controls
             remove { RemoveHandler(ActivatedRoutedEvent, value); }
         }
 
+        // The reason we currently don't have accessibility/automation interaface enabled is because of performance.
+        // For some reason certain controls, like listviews, degrade a lot performance wise when accessibility is enabled.
+        // It doesn't seem to be an issue in Playnite itself from my testing (content of listview basically doesn't matter),
+        // so most likely WPF bug.
         protected override AutomationPeer OnCreateAutomationPeer()
         {
-            return automationPeer;
+            var acc = PlayniteApplication.Current?.AppSettings.AccessibilityInterface;
+            if (acc != null)
+            {
+                switch (acc.Value)
+                {
+                    case AccessibilityInterfaceOptions.Auto:
+                        return Computer.GetScreenReaderActive() ? base.OnCreateAutomationPeer() : emptyAutomationPeer;
+                    case AccessibilityInterfaceOptions.AlwaysOn:
+                        return base.OnCreateAutomationPeer();
+                    case AccessibilityInterfaceOptions.AlwaysOff:
+                    default:
+                        return emptyAutomationPeer;
+                }
+            }
+            else
+            {
+                return emptyAutomationPeer;
+            }
         }
 
         public bool HasChildWindow
@@ -196,7 +218,7 @@ namespace Playnite.Controls
 
         public WindowBase() : base()
         {
-            automationPeer = new EmptyWindowAutomationPeer(this);
+            emptyAutomationPeer = new EmptyWindowAutomationPeer(this);
             Style defaultStyle = (Style)Application.Current?.TryFindResource(typeof(WindowBase));
             if (defaultStyle != null)
             {

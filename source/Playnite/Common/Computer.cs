@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Playnite.Common
 {
@@ -423,6 +424,30 @@ namespace Playnite.Common
             }
 
             return screen.DeviceName;
+        }
+
+        public static bool GetScreenReaderActive()
+        {
+            // In theory this method should be using SystemParametersInfo API with SPI_GETSCREENREADER
+            // but according to my testing that returns screen reader presence even if no screen reader is running.
+            // No idea why, so for now we will just check for Narrator, NVDA and JAWS readers.
+
+            if (Process.GetProcessesByName("narrator").HasItems())
+            {
+                return true;
+            }
+
+            if (Process.GetProcessesByName("nvda").HasItems())
+            {
+                return true;
+            }
+
+            if (Process.GetProcessesByName("jfw").HasItems())
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

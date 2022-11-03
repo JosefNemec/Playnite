@@ -61,12 +61,18 @@
                                     Focusable="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     
                     <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuGeneralButtonTemplate}" CommandParameter="0"
-                                     pbeh:FocusBahaviors.OnVisibilityFocus="True" />
-                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuVisualsButtonTemplate}" CommandParameter="1" />
-                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuAudioButtonTemplate}" CommandParameter="5" />
-                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuLayoutButtonTemplate}" CommandParameter="2" />
-                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuMenusButtonTemplate}" CommandParameter="3" />
-                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuInputButtonTemplate}" CommandParameter="4" />
+                                     pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                                     AutomationProperties.Name="{DynamicResource LOCSettingsLabel}"/>
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuVisualsButtonTemplate}" CommandParameter="1"
+                                     AutomationProperties.Name="{DynamicResource LOCSettingsFSSectionVisuals}" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuAudioButtonTemplate}" CommandParameter="5"
+                                     AutomationProperties.Name="{DynamicResource LOCSettingsFSSectionAudio}" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuLayoutButtonTemplate}" CommandParameter="2"
+                                     AutomationProperties.Name="{DynamicResource LOCSettingsFSSectionLayout}" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuMenusButtonTemplate}" CommandParameter="3"
+                                     AutomationProperties.Name="{DynamicResource LOCSettingsFSSectionMenus}" />
+                    <pctrls:ButtonEx ContentTemplate="{DynamicResource SettingsMenuInputButtonTemplate}" CommandParameter="4"
+                                     AutomationProperties.Name="{DynamicResource LOCSettingsFSSection}" />
 
                     <TextBlock Style="{StaticResource TextBlockBaseStyle}"
                                Text="{DynamicResource LOCSettingsRestartNotification}"

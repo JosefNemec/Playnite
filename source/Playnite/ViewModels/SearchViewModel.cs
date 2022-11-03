@@ -255,6 +255,11 @@ namespace Playnite.ViewModels
                 AdditionalInfo.Add(item.Game.ReleaseDate.Value.Year.ToString());
             }
         }
+
+        public override string ToString()
+        {
+            return GameView?.Name;
+        }
     }
 
     public class SearchItemWrapper : SearchItem
@@ -311,6 +316,11 @@ namespace Playnite.ViewModels
             Description = item.Description;
             MenuAction = item.MenuAction;
             SecondaryAction = item.SecondaryAction;
+        }
+
+        public override string ToString()
+        {
+            return Item?.Name;
         }
     }
 

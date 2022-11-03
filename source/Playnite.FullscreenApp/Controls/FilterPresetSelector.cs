@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -63,6 +64,10 @@ namespace Playnite.FullscreenApp.Controls
                     };
 
                     BindingTools.SetBinding(item,
+                         AutomationProperties.NameProperty,
+                         preset,
+                         nameof(preset.Name));
+                     BindingTools.SetBinding(item,
                         CheckBox.IsCheckedProperty,
                         mainModel,
                         nameof(mainModel.ActiveFilterPreset),

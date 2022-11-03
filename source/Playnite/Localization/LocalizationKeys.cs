@@ -1814,6 +1814,10 @@ namespace Playnite
         /// </summary>
         public const string MenuSortByTitle = "LOCMenuSortByTitle";
         /// <summary>
+        /// Sort Direction
+        /// </summary>
+        public const string MenuSortByDirection = "LOCMenuSortByDirection";
+        /// <summary>
         /// Group By
         /// </summary>
         public const string MenuGroupByTitle = "LOCMenuGroupByTitle";
@@ -4325,5 +4329,29 @@ namespace Playnite
         /// Select emulator on startup
         /// </summary>
         public const string ScannerConfigPlayActionSettingsSelectEmulator = "LOCScannerConfigPlayActionSettingsSelectEmulator";
+        /// <summary>
+        /// Automatic
+        /// </summary>
+        public const string Automatic = "LOCAutomatic";
+        /// <summary>
+        /// Always on
+        /// </summary>
+        public const string AlwaysOn = "LOCAlwaysOn";
+        /// <summary>
+        /// Always off
+        /// </summary>
+        public const string AlwaysOff = "LOCAlwaysOff";
+        /// <summary>
+        /// Accessibility (screen reader) support
+        /// </summary>
+        public const string SettingsAccessibilityInterface = "LOCSettingsAccessibilityInterface";
+        /// <summary>
+        /// Application menu
+        /// </summary>
+        public const string ApplicationMenu = "LOCApplicationMenu";
+        /// <summary>
+        /// Game menu
+        /// </summary>
+        public const string GameMenu = "LOCGameMenu";
     }
 }

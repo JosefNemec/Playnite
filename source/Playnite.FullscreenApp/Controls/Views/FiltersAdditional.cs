@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -81,6 +82,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                          FocusBahaviors.FocusBindingProperty,
                          mainModel,
                          nameof(mainModel.FilterAdditionalPanelVisible));
+                    AutomationProperties.SetName(ButtonBack, LOC.BackLabel.GetLocalized());
                 }
 
                 ItemsHost = Template.FindName("PART_ItemsHost", this) as ItemsControl;
