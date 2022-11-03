@@ -2,11 +2,6 @@ param(
     $ImportArgs
 )
 
-if (-not [System.IO.Directory]::Exists($ImportArgs.ScanDirectory))
-{
-    return
-}
-
 function Get-IniContent()
 {
     param(
@@ -42,8 +37,12 @@ function Get-IniContent()
 $scummvmConfig = Join-Path $env:APPDATA "ScummVM\scummvm.ini"
 if (!(Test-Path $scummvmConfig))
 {
-    $ImportArgs.PlayniteApi.Dialogs.ShowErrorMessage("Couldn't find ScummVM config file at $scummvmConfig", "") | Out-Null
-    return
+    $scummvmConfig = Join-Path $ImportArgs.ScanDirectory "scummvm.ini"
+    if (!(Test-Path $scummvmConfig))
+    {
+        $ImportArgs.PlayniteApi.Dialogs.ShowErrorMessage("Couldn't find ScummVM config file at $scummvmConfig", "") | Out-Null
+        return
+    }
 }
 
 $config = Get-IniContent $scummvmConfig
