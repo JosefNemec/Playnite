@@ -1169,7 +1169,7 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuExclusionNoConfigError">Exclusions can be only added to saved scanner configurations.</sys:String>
     <sys:String x:Key="LOCEmuExclusionAddedMessage">Exclusions have been added to "{0}" scanner.</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatform">Override platform</sys:String>
-    <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set scanner will assign this platform to all games, overwriting any automatically detected platforms.</sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set, scanner will assign this platform to all games, overwriting any automatically detected platforms.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Include commands in default search</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled, commands won't be included in default search until # prefix is used.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Fields to be displayed for game results:</sys:String>
