@@ -945,6 +945,15 @@
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
                                 <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border Padding="{TemplateBinding Padding}" Background="Transparent">
+                                                <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.View>
@@ -952,7 +961,7 @@
                                 <GridViewColumn Width="300" Header="{DynamicResource LOCNameLabel}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox Text="{Binding Name}" Margin="5"
+                                            <TextBox Text="{Binding Name}" Margin="0,5,0,0"
                                                      VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -960,7 +969,7 @@
                                 <GridViewColumn Width="350" Header="{DynamicResource LOCPathLabel}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <pctrls:PathSelectionBox Text="{Binding Path}" Margin="5"
+                                            <pctrls:PathSelectionBox Text="{Binding Path}" Margin="0,5,0,0"
                                                                      VerticalAlignment="Stretch" VerticalContentAlignment="Center"
                                                                      ShowFileSelector="True"/>
                                         </DataTemplate>
@@ -969,7 +978,7 @@
                                 <GridViewColumn Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                                 <Button FontFamily="Marlett" Content="5" Margin="0,0,5,0"
                                                     Command="{Binding Data.MoveUpRomCommand, Source={StaticResource Proxy}}"
                                                     CommandParameter="{Binding}"/>
