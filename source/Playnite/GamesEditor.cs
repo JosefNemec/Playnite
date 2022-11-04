@@ -1599,10 +1599,12 @@ namespace Playnite
                             }
 
                             selectEmuAdded = true;
-                            foreach (var emu in supportedEmus.Keys)
+                            foreach (var supEmu in supportedEmus.OrderBy(a => a.Key.Name))
                             {
-                                var profCount = supportedEmus[emu].Count;
-                                foreach (var profile in supportedEmus[emu])
+                                var emu = supEmu.Key;
+                                var profiles = supEmu.Value;
+                                var profCount = profiles.Count;
+                                foreach (var profile in profiles.OrderBy(a => a.Name))
                                 {
                                     addAction(profCount == 1 ? emu.Name : $"{emu.Name}: {profile.Name}", profile, new EmulationPlayAction
                                     {
