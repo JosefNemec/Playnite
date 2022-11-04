@@ -1,0 +1,9 @@
+Id: m64py
+Name: M64Py
+Website: 'https://m64py.sourceforge.net/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_64]
+    StartupExecutable: ^m64py\.exe$
+    ImageExtensions: [gzip, bzip2, zip, rar, 7z, n64, z64, v64, ndd, d64]
