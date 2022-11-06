@@ -577,7 +577,9 @@ namespace Playnite.Metadata
                     {
                         foreach (var plugin in existingPluginData.Values)
                         {
-                            plugin.Dispose();
+                            // This will be null in case a plugin provider says it can provide metadata for a field,
+                            // but then actually doesn't return any metadata provider implementation.
+                            plugin?.Dispose();
                         }
                     }
                 }
