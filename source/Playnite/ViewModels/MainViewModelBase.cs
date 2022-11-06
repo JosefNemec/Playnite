@@ -620,6 +620,11 @@ namespace Playnite.ViewModels
                             break;
                         }
 
+                        if (Database.Games[game.Id] == null)
+                        {
+                            continue; // This can happen if a user deleted game after import before we got here
+                        }
+
                         try
                         {
                             App.GamesEditor.UpdateGameSize(game, false, true, true);
@@ -814,6 +819,12 @@ namespace Playnite.ViewModels
                                 {
                                     break;
                                 }
+
+                                if (Database.Games[game.Id] == null)
+                                {
+                                    continue; // This can happen if a user deleted game after import before we got here
+                                }
+
                                 string sortingName = c.Convert(game.Name);
                                 if (sortingName != game.Name)
                                 {
