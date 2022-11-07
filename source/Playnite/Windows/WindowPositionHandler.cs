@@ -142,6 +142,9 @@ namespace Playnite.Windows
             };
         }
 
+        // TODO: this needs complete rework when per display DPI support is enabled in P11.
+        // Stored position must be saved in DPI independent (in 100% scaling) coordinates and relative to active display,
+        // not relative to the whole desktop. Otherwise it gets messy in mixed DPI multi-monitor environments.
         private void ConstrainWindow(int x, int y)
         {
             var dpi = VisualTreeHelper.GetDpi(window);
@@ -149,14 +152,21 @@ namespace Playnite.Windows
             // Make sure that position is part of at least one connected screen
             foreach (var monitor in Computer.GetScreens())
             {
-                // 8 pixel offset is there for cases where a window is maximized using drag to top of the screen.
-                // Window's position is then, for some reason, set with -8,-8 pixel offset which whould make constrain check to fail.
-                x = (int)(x * dpi.DpiScaleX) + 8;
-                y = (int)(y * dpi.DpiScaleY) + 8;
-                if (monitor.WorkingArea.Contains(x, y))
+                var xTest = (int)(x * dpi.DpiScaleX);
+                var yTest = (int)(y * dpi.DpiScaleY);
+                if (monitor.WorkingArea.Contains(xTest, yTest))
                 {
                     window.Left = x;
                     window.Top = y;
+                    positioned = true;
+                    break;
+                }
+                else if (monitor.WorkingArea.Contains(xTest + 8, yTest + 8))
+                {
+                    // 8 pixel offset is there for cases where a window is maximized using drag to top of the screen.
+                    // Window's position is then, for some reason, set with -8,-8 pixel offset which would make constrain check to fail.
+                    window.Left = x + 8;
+                    window.Top = y + 8;
                     positioned = true;
                     break;
                 }
