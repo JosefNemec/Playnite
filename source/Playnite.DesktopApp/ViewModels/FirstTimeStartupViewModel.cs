@@ -194,7 +194,7 @@ namespace Playnite.DesktopApp.ViewModels
                 var listDownRes = dialogs.ActivateGlobalProgress((prg) =>
                 {
                     recommendedExtensions = backendClient.GetDefaultExtensions();
-                }, new GlobalProgressOptions(LOC.DefaultAddonListDownload, false) { IsIndeterminate = false });
+                }, new GlobalProgressOptions(LOC.DefaultAddonListDownload, false) { IsIndeterminate = true });
 
                 if (!recommendedExtensions.Libraries.HasItems())
                 {
