@@ -225,6 +225,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importerar emulerade spel från {0}</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Hämtar biblioteksuppdateringar…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliotekets uppdatering slutförd</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Frigör resurser…</sys:String>
     <!--Menu-->
@@ -457,6 +458,8 @@ Den nya mappen kommer inte börja användas förens Playnite startas om.</sys:St
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigurera Plattformar och Emulatorer</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Konfigurera emulatorer</sys:String>
@@ -489,6 +492,7 @@ Den används för tillfället av {1} spel.</sys:String>
 Den används för tillfället av {1} spel och {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Inställningar hjälp</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sortera efter</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Gruppera efter</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Stigande</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Fallande</sys:String>
@@ -646,6 +650,7 @@ Var vänlig bifoga följande ID i din felanmälan: </sys:String>
     <sys:String x:Key="LOCUpdateAll">Uppdatera alla</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Skapad av:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
     <sys:String x:Key="LOCLibrary">Bibliotek</sys:String>
     <sys:String x:Key="LOCStatistics">Statistik</sys:String>
@@ -1122,5 +1127,16 @@ Var vänlig bifoga följande ID i din felanmälan: </sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

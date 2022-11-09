@@ -220,6 +220,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">라이브러리 업데이트 중…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">라이브러리 업데이트 완료</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">리소스 해제 중...</sys:String>
     <!--Menu-->
@@ -460,6 +461,8 @@
 또한 Playnite 로고 메뉴를 눌러서 이후에도 다른 게임을 추가할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">플랫폼 및 에뮬레이터 설정</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">에뮬레이터 설정</sys:String>
@@ -492,6 +495,7 @@
 현재 {1} 게임과 {2} 에뮬레이터에서 사용되고 있습니다.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">설정 도움말</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">정렬 기준</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">묶기 기준</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">오름차순</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">내림차순</sys:String>
@@ -649,6 +653,7 @@
     <sys:String x:Key="LOCUpdateAll">모두 업데이트</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">작성자:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">버전:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">모듈:</sys:String>
     <sys:String x:Key="LOCLibrary">라이브러리</sys:String>
     <sys:String x:Key="LOCStatistics">통계</sys:String>
@@ -1151,5 +1156,16 @@
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

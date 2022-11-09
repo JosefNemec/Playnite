@@ -222,6 +222,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importerer emulerte spill fra {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Laster ned biblioteksoppdateringer …</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Analyserer størrelse på spill i biblioteket…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Finner størrelsen til importerte spill …</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Biblioteksoppdatering vellykket</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Frigir ressurser …</sys:String>
     <!--Menu-->
@@ -467,6 +468,8 @@ Du kan også legge til et hvilket som helst annet spill senere ved å klikke på
 
 Du kan prøve å laste ned integrasjoner på nytt fra utvidelsesmenyen etter at førstekjøringsveiviseren er ferdig.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Laster ned integrasjonen {0} …</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Laster ned liste over anbefalte integrasjoner …</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Kunne ikke laste ned liste over anbefalte integrasjoner. Du kan prøve å laste ned integrasjoner senere fra tilleggsmenyen.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigurer plattformer og emulatorer</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Konfigurer emulatorer</sys:String>
@@ -499,6 +502,7 @@ Den brukes for øyeblikket av {1} spill.</sys:String>
 Den brukes for øyeblikket av {1} spill og {2} emulator(er).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Hjelp til innstillinger</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sorter etter</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Sorteringsretning</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Grupper etter</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Stigende</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Synkende</sys:String>
@@ -565,7 +569,7 @@ Ved deaktivering vil alle spill som passer med et hvilket som helst aktivt filte
     <sys:String x:Key="LOCRegionsLabel">Regioner</sys:String>
     <sys:String x:Key="LOCSourceLabel">Kilde</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Kilder</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel">Nyeste aktivitet</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Siste aktivitet</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Databasefeil</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Åpning av biblioteksdatabasen mislyktes.</sys:String>
@@ -659,6 +663,7 @@ Mer informasjon er tilgjengelig på https://playnite.link/cefstartup</sys:String
     <sys:String x:Key="LOCUpdateAll">Oppdater alle</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Laget av:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versjon:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Oppdatert:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
     <sys:String x:Key="LOCLibrary">Bibliotek</sys:String>
     <sys:String x:Key="LOCStatistics">Statistikk</sys:String>
@@ -767,7 +772,7 @@ Mer informasjon er tilgjengelig på https://playnite.link/cefstartup</sys:String
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Vil du avbryte spillovervåking?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Installasjonsovervåking kjører for øyeblikket. Vil du avbryte prosessen og returnere spillet til sin tidligere tilstand?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Spillutførelsesovervåking kjører for øyeblikket. Vil du avbryte prosessen og returnere spillet til sin tidligere tilstand?</sys:String>
-    <sys:String x:Key="LOCTimePlayed">Tid spilt</sys:String>
+    <sys:String x:Key="LOCTimePlayed">Spilletid</sys:String>
     <sys:String x:Key="LOCLastPlayed">Sist spilt</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}t {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutter</sys:String>
@@ -1207,5 +1212,16 @@ Det angitte datoformatet vil bli brukt til alle andre datoer.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Søkestreng for ikonbilde</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Søkestreng for omslagsbilde</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Søkestreng for bakgrunnsbilde</sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation">Henter tilleggsinformasjon …</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">Ingen metadatakilde er tilgjengelig</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Innstillinger for spillhandlinger</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Bruk skanneinnstillinger</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Velg profil ved oppstart</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Velg emulator ved oppstart</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automatisk</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Alltid på</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Alltid av</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Tilgjengelighetsstøtte (skjermleser)</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Applikasjonsmeny</sys:String>
+    <sys:String x:Key="LOCGameMenu">Spillmeny</sys:String>
 </ResourceDictionary>

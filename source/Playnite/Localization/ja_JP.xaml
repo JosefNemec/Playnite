@@ -127,7 +127,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">最後のプレイ</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">最もプレイされたゲーム</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">プレイ回数</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">インストール容量</sys:String>
     <sys:String x:Key="LOCFolderLabel">フォルダー</sys:String>
     <sys:String x:Key="LOCNotesLabel">備考</sys:String>
     <sys:String x:Key="LOCAddedLabel">追加日</sys:String>
@@ -141,7 +141,7 @@
     <sys:String x:Key="LOCCloseLabel">閉じる</sys:String>
     <sys:String x:Key="LOCCancelLabel">キャンセル</sys:String>
     <sys:String x:Key="LOCConfirmLabel">確認</sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel">リセット</sys:String>
     <sys:String x:Key="LOCYesLabel">はい</sys:String>
     <sys:String x:Key="LOCNoLabel">いいえ</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">ようこそ</sys:String>
@@ -222,6 +222,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames">{0} からエミュレートゲームをインポートしています...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">ライブラリの更新をダウンロード中...</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">ライブラリの更新完了</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">リソースを解放中...</sys:String>
     <!--Menu-->
@@ -344,7 +345,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">アプリウィンドウが閉じられたときにPlayniteをシステムトレイに最小化</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">ゲーム起動時：</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">ゲーム終了後:</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">日付の書式:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">これにより、リンクされているすべてのサービスからログアウトします。 アプリケーションの再起動が必要です。続行しますか？</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">キャッシュをクリアしますか？</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">新しいテーマを適用するにはPlayniteの再起動が必要です。</sys:String>
@@ -466,6 +467,8 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
 
 最初の実行ウィザードが終了した後に、アドオンメニューから統合機能を再ダウンロードしてみてください。</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">{0} 機能をダウンロードしています...</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">プラットフォームとエミュレータを設定する</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">エミュレータを設定する</sys:String>
@@ -498,6 +501,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
 現在 {1} 個のゲームおよび {2} 個のエミュレータで使用されています。</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">設定ヘルプ</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">並べ替え</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">グループ化</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">昇順</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">降順</sys:String>
@@ -518,7 +522,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCGameProviderTitle">ライブラリ</sys:String>
     <sys:String x:Key="LOCGameManualTitle">マニュアル</sys:String>
     <sys:String x:Key="LOCGameNameTitle">タイトル</sys:String>
-    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">インストール先</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">アカウント名</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">プラットフォーム</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">カテゴリー</sys:String>
@@ -658,6 +662,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCUpdateAll">一括更新</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">開発元：</sys:String>
     <sys:String x:Key="LOCExtensionVersion">バージョン：</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">モジュール：</sys:String>
     <sys:String x:Key="LOCLibrary">ライブラリ</sys:String>
     <sys:String x:Key="LOCStatistics">統計</sys:String>
@@ -735,10 +740,10 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCHideGame">このゲームを非表示</sys:String>
     <sys:String x:Key="LOCUnHideGame">隠しから削除</sys:String>
     <sys:String x:Key="LOCEditGame">編集</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">インストール容量を計算</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
     <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">インストール容量</sys:String>
     <sys:String x:Key="LOCSetGameCategory">カテゴリーを設定</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">進行状況</sys:String>
     <sys:String x:Key="LOCRemoveGame">削除</sys:String>
@@ -1194,5 +1199,16 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

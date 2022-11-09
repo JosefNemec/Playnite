@@ -78,7 +78,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCGameStartError">Gagal memulai game: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Gagal memulai aksi: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Gagal membuka lokasi game: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Tidak dapat menemukan besar instalasi permainan: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
     <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">Gagal membuat shortcut: {0}</sys:String>
@@ -91,7 +91,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Unduhan metadata resmi tidak tersedia.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Tidak ada permainan yang terpilih.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Eksekusi skrip game gagal.</sys:String>
-    <sys:String x:Key="LOCErrorApplicationScript"></sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript">Eksekusi skrip aplikasi gagal.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Eksekusi skrip global gagal.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Eksekusi skrip emulator gagal</sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction">Eksekusi aksi skrip Play gagal.</sys:String>
@@ -125,7 +125,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCLastPlayedLabel">Terakhir dimainkan</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Paling sering dimainkan</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Jumlah Main</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">Besar Instalasi</sys:String>
     <sys:String x:Key="LOCFolderLabel">Folder</sys:String>
     <sys:String x:Key="LOCNotesLabel">Catatan</sys:String>
     <sys:String x:Key="LOCAddedLabel">Ditambahkan</sys:String>
@@ -139,7 +139,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCCloseLabel">Tutup</sys:String>
     <sys:String x:Key="LOCCancelLabel">Batal</sys:String>
     <sys:String x:Key="LOCConfirmLabel"></sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel">Setel ulang</sys:String>
     <sys:String x:Key="LOCYesLabel">Ya</sys:String>
     <sys:String x:Key="LOCNoLabel">Tidak</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Selamat Datang</sys:String>
@@ -220,6 +220,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Mengimpor game emulasi dari {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Mengupdate library...</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Update library selesai</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
     <!--Menu-->
@@ -269,7 +270,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Tinggi gambar cover game</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Tinggi ikon di daftar game</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fon aplikasi</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceMonoFont"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont">Huruf monospace</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posisi panel filter</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posisi panel Explorer</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering gambar cover</sys:String>
@@ -297,8 +298,8 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performa</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
     <sys:String x:Key="LOCSettingsUpdating"></sys:String>
-    <sys:String x:Key="LOCSettingsSearch"></sys:String>
-    <sys:String x:Key="LOCSettingsBackup"></sys:String>
+    <sys:String x:Key="LOCSettingsSearch">Cari</sys:String>
+    <sys:String x:Key="LOCSettingsBackup">Cadangkan</sys:String>
     <sys:String x:Key="LOCMenuBackupData"></sys:String>
     <sys:String x:Key="LOCMenuRestoreBackup"></sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import perubahan library secara otomatis</sys:String>
@@ -342,7 +343,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Ketika game dimulai:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Setelah gim ditutup:</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Format tanggal:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Semua akun akan dilogout. Aplikasi harus dimuat ulang. Lanjutkan?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Bersihkan Cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite harus dimuat ulang untuk mengganti tema.</sys:String>
@@ -362,9 +363,9 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportMode"></sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Selalu</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Tidak pernah</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
@@ -398,12 +399,12 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Jangan tutup setelah sesi permainan lebih pendek dari (dalam detik)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Otomatis matikan klien berikut:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Tutup klien secara otomatis</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Perintah buka folder</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
@@ -438,7 +439,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Deteksi Automatis dari Berkas...</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Memindai…</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">Memindai {0}…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Konfigurasi Awal</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
@@ -450,6 +451,8 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
 Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigurasi Platform dan Emulator</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Setel Emulator</sys:String>
@@ -480,6 +483,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sortir</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Kelompokkan Berdasarkan</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Menaik</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Menurun</sys:String>
@@ -487,7 +491,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCMenuGroupProvider">Grup berdasarkan Provider</sys:String>
     <sys:String x:Key="LOCMenuGroupCategory">Grup berdasarkan Kategori</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Grup berdasarkan Platform</sys:String>
-    <sys:String x:Key="LOCViewType"></sys:String>
+    <sys:String x:Key="LOCViewType">Tipe Tampilan</sys:String>
     <sys:String x:Key="LOCMenuView">Tampil</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Panel Filter</sys:String>
@@ -511,7 +515,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCGameTagsTitle">Tag</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">Publisher</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Status Instalasi</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle"></sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">Cocokkan semua filter</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Terinstal</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Terinstal</sys:String>
@@ -562,7 +566,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCStartGenericError"></sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCURLFormatError">Tidak bisa membuka link, URL format tidak valid.</sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCAppStartupError">Gagal dalam menjalankan aplikasi.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Gagal menginisialisasi XInput interface.</sys:String>
@@ -572,7 +576,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCUseExeIcon">Gunakan ikon aplikasi</sys:String>
     <sys:String x:Key="LOCImageURL">URL Gambar</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Tambah Link</sys:String>
-    <sys:String x:Key="LOCAddRom"></sys:String>
+    <sys:String x:Key="LOCAddRom">Tambahkan ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Simpan Perubahan</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCAddAction">Tambah Aksi</sys:String>
@@ -634,6 +638,7 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCUpdateAll">Perbarui Semua</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Dibuat Oleh:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versi:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
     <sys:String x:Key="LOCLibrary">Koleksi</sys:String>
     <sys:String x:Key="LOCStatistics">Statistik</sys:String>
@@ -1112,5 +1117,16 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

@@ -82,7 +82,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCGameOpenLocationError">Installationspfad kann nicht geöffnet werden: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeError">Installationsgröße konnte nicht ermitteln werden: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Fehler bei Ermittlung der Installationsgröße</sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Bei der Ermittlung der Installationsgröße sind {0} Fehler aufgetreten</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Beim Ermitteln der Installationsgröße sind {0} Fehler aufgetreten</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Verknüpfung konnte nicht erstellt werden: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Handbuch konnte nicht geöffnet werden: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Spiel kann nicht installiert werden: {0}</sys:String>
@@ -221,7 +221,8 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCProgressImportinGames">Spiele von {0} werden importiert …</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Emulierte Spiele werden von {0} importiert …</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Bibliotheksaktualisierungen werden heruntergeladen …</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Ermittle Größe der Spiele in der Bibliothek…</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Größe der Bibliotheksspiele wird ermittelt …</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Größe der importierten Spiele wird eingescannt …</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliotheksaktualisierung abgeschlossen</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Ressourcen werden freigegeben …</sys:String>
     <!--Menu-->
@@ -468,6 +469,8 @@ Weiterhin kannst du jederzeit weitere Spiele inzufügen, indem du auf das Playni
 
 Du kannst versuchen, diese erneut aus dem Add-on-Menü herunterzuladen, nachdem der Assistent für die erste Ausführung abgeschlossen ist.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">{0}-Integration wird heruntergeladen …</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Liste der empfohlenen Integrationen wird heruntergeladen …</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Liste der empfohlenen Integrationen konnte nicht heruntergeladen werden. Du kannst die Integrationen später über das Addon-Menü erneut herunterladen.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Plattformen &amp; Emulatoren konfigurieren</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Emulatoren konfigurieren</sys:String>
@@ -500,6 +503,7 @@ Er wird derzeit von {1} Spiel(en) verwendet.</sys:String>
 Sie wird derzeit von {1} Spiel(en) und {2} Emulator(en) verwendet.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Hilfe zu Einstellungen</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sortieren nach</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Sortierrichtung</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Gruppieren nach</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Aufsteigend</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Absteigend</sys:String>
@@ -660,6 +664,7 @@ Mehr Informationen unter https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alle aktualisieren</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Erstellt von:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Aktualisiert:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
     <sys:String x:Key="LOCLibrary">Bibliothek</sys:String>
     <sys:String x:Key="LOCStatistics">Statistik</sys:String>
@@ -777,8 +782,8 @@ Mehr Informationen unter https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Desktopmodus wird geöffnet …</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Vollbildmodus wird geöffnet …</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Spielebibliothek wird geladen …</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage">Installationsgröße wird berechnet…</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Installationsgröße von {0} wird berechnet…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">Installationsgröße wird berechnet …</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Installationsgröße von {0} wird berechnet …</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Skriptdatei konnte nicht installiert werden.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Skript wurde erfolgreich installiert.</sys:String>
     <sys:String x:Key="LOCInstallScript">Skript installieren</sys:String>
@@ -1094,7 +1099,7 @@ Mehr Informationen unter https://playnite.link/nahimicsucks</sys:String>
 
 Mehr Informationen unter https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Warnung anzeigen, falls Playnite mit erhöhten Berechtigungen ausgeführt wird</sys:String>
-    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">Ermittle die reale Größe auf dem Laufwerk bei der Berechnung der Installationsgröße</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">Beim Berechnen der Installationsgröße die tatsächliche Größe auf dem Laufwerk ermitteln</sys:String>
     <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">Wenn aktiviert, werden die Scans langsamer und die tatsächliche Größe ermittelt, die die Dateien auf dem Laufwerk einnehmen.
 Wenn deaktiviert, werden die Scans schneller und die Größe der Dateien selbst wird verwendet.</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">Folgende Add-on(s) wurden als potentiell problematisch gemeldet, entweder wegen starker Beeinträchtigung der Stabilität/Leistung oder wegen Sicherheitsbedenken. Wir empfehlen nachdrücklich diese zu deinstallieren:
@@ -1207,5 +1212,16 @@ Das angegebene Datumsformat wird für alle anderen Daten verwendet.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Icon-Bildsuche-String</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover-Bildsuche-String</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Hintergrund-Bildsuche-String</sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation">Informationen zu Add-ons werden abgerufen …</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">Keine Metadatenquelle verfügbar</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Einstellungen für »Spielen«-Aktion</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Scannereinstellungen verwenden</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Profil beim Start auswählen</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Emulator beim Start auswählen</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automatisch</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Immer an</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Immer aus</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Unterstützung für Barrierefreiheit (Bildschirmleser)</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Anwendungsmenü</sys:String>
+    <sys:String x:Key="LOCGameMenu">Spielmenü</sys:String>
 </ResourceDictionary>

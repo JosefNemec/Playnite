@@ -222,6 +222,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importowanie emulowanych gier z {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Aktualizowanie biblioteki…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Skanowanie rozmiaru gier w bibliotece...</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Skanowanie rozmiaru importowanych gier...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Ukończono aktualizację biblioteki</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Zwalnianie zasobów…</sys:String>
     <!--Menu-->
@@ -469,6 +470,8 @@ Aby dodać inne gry poźniej, kliknij na logo Playnite.
 
 Możesz spróbować pobrać ponownie integracje z menu dodatków po zakończeniu kreatora pierwszego uruchomienia.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Pobieranie {0} integracji...</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Pobieranie listy rekomendowanych integracji…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Nie udało się pobrać listy zalecanych integracji. Możesz spróbować ponownie pobrać integrację później w menu Dodatki.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfiguruj platformy i emulatory</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Konfiguracja emulatorów</sys:String>
@@ -501,6 +504,7 @@ Emulator jest wykorzystywany przez następującą liczbę gier {1}.</sys:String>
 Platforma jest wykorzystywana przez następującą liczbę gier {1} i emulatorów {2}.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Pomoc ustawień</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sortuj według</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Kierunek sortowania</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Grupuj według</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Rosnąco</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Malejąco</sys:String>
@@ -661,6 +665,7 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aktualizuj wszystko</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Autor:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Wersja:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Zaktualizowano:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Moduł:</sys:String>
     <sys:String x:Key="LOCLibrary">Biblioteka</sys:String>
     <sys:String x:Key="LOCStatistics">Statystyki</sys:String>
@@ -1211,5 +1216,16 @@ Określony format daty będzie używany dla wszystkich innych dat.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Ciąg wyszukiwania obrazów ikon</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Ciąg wyszukiwania obrazu okładki</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Ciąg wyszukiwania obrazów w tle</sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation">Pobieranie informacji o dodatku…</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">Brak źródła metadanych</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Otwórz ustawienia akcji</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Użyj ustawień skanera</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Wybierz profil przy uruchamianiu</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Wybierz emulator przy starcie</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automatyczny</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Zawsze włączone</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Zawsze wyłączone</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Dostępność (czytnik ekranu)</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Menu aplikacji</sys:String>
+    <sys:String x:Key="LOCGameMenu">Menu gry</sys:String>
 </ResourceDictionary>

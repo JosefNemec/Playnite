@@ -222,6 +222,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Đang nhập các trò chơi giả lập từ {0}</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Đang tải xuống các bản cập nhập thư viện...</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Đang quét dung lượng trò chơi trong thư viện...</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Cập nhật thư viện thành công</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Đang thả ra các tài nguyên</sys:String>
     <!--Menu-->
@@ -465,6 +466,8 @@ Các tích hợp khác có thể được cài đặt sau từ menu &quot;Tiện
 
 Bạn có thể thử tải xuống lại các tích hợp từ menu tiện ích bổ sung sau khi trình hướng dẫn chạy lần đầu tiên kết thúc.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Đang tải xuống tích hợp {0}…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Định cấu hình nền tảng và trình giả lập</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Định cấu hình Trình giả lập</sys:String>
@@ -497,6 +500,7 @@ Nó hiện đang được sử dụng bởi {1} trò chơi.</sys:String>
 Nó hiện đang được sử dụng bởi {1} (các) trò chơi và {2} trình mô phỏng.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Trợ giúp cài đặt</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sắp xếp theo</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Nhóm theo</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Theo tăng dần</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Xếp giảm dần</sys:String>
@@ -655,6 +659,7 @@ Vui lòng đính kèm ID sau vào báo cáo sự cố của bạn:</sys:String>
     <sys:String x:Key="LOCUpdateAll">Cập nhật tất cả</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Tạo bởi:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Phiên bản:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Mô-đun:</sys:String>
     <sys:String x:Key="LOCLibrary">Thư viện</sys:String>
     <sys:String x:Key="LOCStatistics">Số liệu thống kê</sys:String>
@@ -1190,5 +1195,16 @@ Playnite sẽ tự động khởi động lại để bắt đầu quá trình s
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

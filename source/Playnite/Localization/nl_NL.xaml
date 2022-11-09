@@ -82,9 +82,9 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCGameStartError">Kan het spel niet starten: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Kan de actie niet starten: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan de spellocatie niet openen: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Kon de installatiegrootte van het spel niet detecteren: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Fout bij installatiegrootte scan</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Er waren {0} fouten tijdens het scannen van de installatiegrootte</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Snelkoppeling maken mislukt: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Kan handleiding niet openen: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan het spel niet installeren: {0}</sys:String>
@@ -129,7 +129,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCLastPlayedLabel">Laatst Gespeeld</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Meest gespeeld</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Aantal Keer Gespeeld</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">Installatiegrootte</sys:String>
     <sys:String x:Key="LOCFolderLabel">Map</sys:String>
     <sys:String x:Key="LOCNotesLabel">Notities</sys:String>
     <sys:String x:Key="LOCAddedLabel">Toegevoegd</sys:String>
@@ -188,14 +188,14 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCPastMonth">Afgelopen Maand</sys:String>
     <sys:String x:Key="LOCPastYear">Afgelopen Jaar</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Meer dan 1 jaar geleden</sys:String>
-    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
-    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
-    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
-    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
-    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
-    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
-    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
-    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0 tot 100MB</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100MB tot 1GB</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1GB tot 5GB</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5GB tot 10GB</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10GB tot 20GB</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20GB tot 40GB</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40GB tot 100GB</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB of meer</sys:String>
     <sys:String x:Key="LOCImportCompleted">Importeren succesvol voltooid.</sys:String>
     <sys:String x:Key="LOCAllGames">Alle Spellen</sys:String>
     <sys:String x:Key="LOCGameId">Spel Id</sys:String>
@@ -223,7 +223,8 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCProgressImportinGames">{0} spellen aan het importeren…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importeer geemuleerde games van {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Bibliotheek updates aan het downloaden…</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Scannen van spelgrootte in bibliotheek…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Grootte van geïmporteerde spellen scannen…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Biblotheekupdate afgerond</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Bronnen vrijgeven…</sys:String>
     <!--Menu-->
@@ -346,7 +347,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCSettingsCloseToTray">Minimaliseer Playnite naar systeemvak wanneer de applicatie is gesloten</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Als een spel start:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Na het sluiten van het spel:</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Datumnotatie:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Dit logt je uit bij alle gelinkte services. Herstart van applicatie is nodig. Wil je verdergaan?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Leeg Cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Om het thema toe te passen moet Playnite opnieuw opgestart worden</sys:String>
@@ -416,8 +417,8 @@ Wanneer uitgeschakeld, worden achtergrondafbeeldingen enkel wanneer nodig gedown
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Geef een waarschuwing weer wanneer te grote gamemedia worden toegekend.</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">&quot;Open map&quot;-commando</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Gewenste leeftijdsclassificatie-organisatie</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Update installatiegrootte van spellen bij update bibliotheek</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Scant en werkt de installatiegrootte van spellen bij als blijkt dat de bestanden zijn gewijzigd sinds de laatste scan</sys:String>
     <sys:String x:Key="LOCStrechNone">Geen</sys:String>
     <sys:String x:Key="LOCStrechFill">Vullen</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniform</sys:String>
@@ -467,6 +468,8 @@ Je kunt later ook een ander spel toevoegen door op het Playnite-icoon te klikken
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Downloaden van één of meerdere extensions is mislukt.
 Je kan proberen deze opnieuw te downloaden via het add-ons menu na de eerste keer opstarten.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Integratie {0} downloaden...</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Lijst van aanbevolen integraties aan het downloaden…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Downloaden van lijst van aanbevolen integraties mislukt. U kunt later proberen om de integraties opnieuw te downloaden via het Uitbreidingen menu.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Platforms en emulators configureren</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Emulators configureren</sys:String>
@@ -501,6 +504,7 @@ Het wordt momenteel gebruikt door {1} game(s) en {2} emulator(s).Begin the Emula
 </sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Instellingen hulp</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sorteren op</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Sorteerrichting</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Groeperen Op</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Oplopend</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Aflopend</sys:String>
@@ -521,7 +525,7 @@ Het wordt momenteel gebruikt door {1} game(s) en {2} emulator(s).Begin the Emula
     <sys:String x:Key="LOCGameProviderTitle">Leverancier</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Handleiding</sys:String>
     <sys:String x:Key="LOCGameNameTitle">Naam</sys:String>
-    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">Installatieschijf</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Account Naam</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Categorie(ën)</sys:String>
@@ -567,7 +571,7 @@ Indien uitgescshakeld: spellen die voldoen aan tenminste één item in elk filte
     <sys:String x:Key="LOCRegionsLabel">Regio's</sys:String>
     <sys:String x:Key="LOCSourceLabel">Bron</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Bronnen</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Recente Activiteit</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Databasefout</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Openen van de bibliotheek database is mislukt.</sys:String>
@@ -663,6 +667,7 @@ Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Alles bijwerken</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Aangemaakt door:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versie:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Bijgewerkt:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Module:</sys:String>
     <sys:String x:Key="LOCLibrary">Bibliotheek</sys:String>
     <sys:String x:Key="LOCStatistics">Statistieken</sys:String>
@@ -740,10 +745,10 @@ Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCHideGame">Verberg deze game</sys:String>
     <sys:String x:Key="LOCUnHideGame">Verwijder uit verborgen</sys:String>
     <sys:String x:Key="LOCEditGame">Bewerk…</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">Bereken installatiegrootte</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">Installatiegrootte berekenen (alle spellen)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">Installatiegrootte berekenen (alleen ontbrekende gegevens)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">Installatiegrootte</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Categorie Instellen...</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Stel Voltooiingstatus in</sys:String>
     <sys:String x:Key="LOCRemoveGame">Verwijderen</sys:String>
@@ -763,7 +768,7 @@ Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Niet beschikbaar als sommige acties nog bezig zijn.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Beschrijvingstekst is HTML syntax sensitief</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Speltijd wordt opgenomen in seconden.</sys:String>
-    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">Installatiegrootte is aangegeven in bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Datum van uitgave moet in 'jaar-maand-dag' datumnotatie. Maand en Dag kunnen weggelaten worden.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Waarden van 0 tot 100 of leeg voor geen score.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's ontwikkeling is ondersteund door de volgende patrons:</sys:String>
@@ -782,16 +787,16 @@ Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Openen Desktop modus…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Openen volledig scherm modus…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Laden spel bibliotheek…</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">Installatiegrootte berekenen…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Installatiegrootte van {0} berekenen…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Kan script bestand niet installeren.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script succesvol geïnstalleerd.</sys:String>
     <sys:String x:Key="LOCInstallScript">Installatiescript</sys:String>
     <sys:String x:Key="LOCScriptError">Scriptfout</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Uitvoeren van extensie functie mislukt.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Open metadata map</sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">Berekenen</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">Berekent automatisch de installatiegrootte met behulp van de Roms als die er zijn, of als het spel een installatiemap heeft</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} client is niet geïnstalleerd.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} client zal nu openen. Log in a.u.b. en sluit dan dit bericht.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Wachten op aanmelding van gebruiker, sluit dit alstublieft af wanneer je klaar bent…</sys:String>
@@ -984,8 +989,8 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
     <sys:String x:Key="LOCTopPanelMainButtonMove">Verhuis hoofdmenuknop naar de zijbalk</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Verkenningspaneel</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Kies een willekeurig spel</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Willekeurige spelkiezer bekijken</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Kies een willekeurig spel uit de zichtbare lijst</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Bewaar sorteer- en groeperingsinstellingen</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Toon als snelfilter in Fullscreen modus</sys:String>
     <sys:String x:Key="LOCInPast7Days">In de afgelopen 7 dagen</sys:String>
@@ -1085,7 +1090,7 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCEmuImportWithRelativePaths">Importeren via relatieve paden</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">Indien mogelijk spelbestanden importeren met behulp van relatieve paden ten opzichte van Playnite's installatiemap of de emulator's installatiemap.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">Submappen scannen</sys:String>
-    <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanInsideArchives">Scan in archieven</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Scanner toevoegen</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Opgeslagen scanner toevoegen</sys:String>
     <sys:String x:Key="LOCStartScan">Scan starten</sys:String>
@@ -1094,13 +1099,13 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status die toegewezen wordt aan spellen die voor het eerst gespeeld zijn</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Kon de Powershell script runtime niet initializeren. Als u Windows 7 gebruikt, probeer dan PowerShell 5.1 (opnieuw) te installeren om dit op te lossen.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset met de opgegeven naam bestaat al. Preset updaten met nieuwe instellingen?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
-    <sys:String x:Key="LOCSortingNameRemovedArticles"></sys:String>
-    <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillButton"></sys:String>
-    <sys:String x:Key="LOCSettingsSortingLabel"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillProgress"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Automatisch sorteernaam invullen voor automatisch toegevoegde spellen</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Wanneer je spellen toevoegt via een bibliotheek update, een emulator map scan, of een normale map scan, vult dit automatisch het &quot;Sorteernaam&quot; veld met een beter sorteerbare weergave van de spelnaam. Bijvoorbeeld: &quot;The Witcher 3&quot; krijgt een Sorteernaam van &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles">Deze woorden zullen verwijderd worden van het begin van de automatisch ingevulde sorteernaam:</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Gebruik dit voor het negeren van woorden aan het begin van een naam voor sorteerdoeleinden. De standaardwaarde is &quot;The&quot;, &quot;An&quot; en &quot;A&quot;.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillButton">Vul Sorteernaam voor spellen zonder</sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">Sortering</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillProgress">Vullen Sorteernaam waardes…</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic service is gedetecteerd op dit systeem. Van deze service is bekend dat hij rendering problemen bij Playnite (en andere apps) kan veroorzaken.
 
 Als je grafische corruptie of andere rendering problemen in Playnite ervaart, bevelen we aan deze service uit te zetten of Nahimic service compleet te de-installeren.
@@ -1110,8 +1115,9 @@ Meer informatie is te vinden op https://playnite.link/nahimicsucks</sys:String>
 
 Meer informatie op https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">Toon waarschuwing als Playnite met administrator rechten draait</sys:String>
-    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
-    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">Krijg de werkelijke grootte op de schijf bij het berekenen van de grootte van spellen</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">Indien ingeschakeld, zijn scans langzamer en krijgen ze de werkelijke grootte die bestanden innemen op de schijf.
+Indien uitgeschakeld, zijn scans sneller en zal de grootte van de bestanden zelf worden gebruikt.</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">De volgende extensie(s) zijn gerapporteerd als mogelijk problematisch, door grote stabiliteits- of prestatie-impact of beveiligingsproblemen. We raden sterk aan deze te verwijderen:
 
 {0}
@@ -1121,23 +1127,25 @@ Meer informatie op https://playnite.link/adminfaq</sys:String>
 Alleen ondersteund voor: Google Drive, DropBox, OneDrive </sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Scan met versimpelde methode zonder bestandsinhoud te bekijken</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Bestanden worden geïmporteerd met een minder accurate methode die geen bestandsinhoud op de lokale schijf vereist.</sys:String>
-    <sys:String x:Key="LOCMetadatSetAllFieldsToValue"></sys:String>
-    <sys:String x:Key="LOCOverrideInstallState"></sys:String>
-    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCOptionOnlyManually"></sys:String>
-    <sys:String x:Key="LOCOptionOnceADay"></sys:String>
-    <sys:String x:Key="LOCOptionOnceAWeek"></sys:String>
-    <sys:String x:Key="LOCOptionOnEveryStartup"></sys:String>
-    <sys:String x:Key="LOCCheckProgramUpdates"></sys:String>
-    <sys:String x:Key="LOCCheckAddonUpdates"></sys:String>
-    <sys:String x:Key="LOCCheckLibraryUpdates"></sys:String>
-    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates"></sys:String>
-    <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
-    <sys:String x:Key="LOCMenuSetFields"></sys:String>
-    <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
-    <sys:String x:Key="LOCOpen"></sys:String>
-    <sys:String x:Key="LOCActivate"></sys:String>
-    <sys:String x:Key="LOCAssign"></sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Op alle toepassen</sys:String>
+    <sys:String x:Key="LOCOverrideInstallState">Installatiestatus overschrijven</sys:String>
+    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">Wanneer ingesteld, negeert Playnite de installatiestatus (inclusief installatie directory) die is ingesteld door de integratieplugin die dit spel importeert.
+        
+Deze optie werkt mogelijk niet volledig met plugins die een specifieke game import methode gebruiken, tenzij ze ook rekening houden met deze overschrijving.</sys:String>
+    <sys:String x:Key="LOCOptionOnlyManually">Alleen handmatig</sys:String>
+    <sys:String x:Key="LOCOptionOnceADay">Eens per dag</sys:String>
+    <sys:String x:Key="LOCOptionOnceAWeek">Eens per week</sys:String>
+    <sys:String x:Key="LOCOptionOnEveryStartup">Bij elke start</sys:String>
+    <sys:String x:Key="LOCCheckProgramUpdates">Controleren op programma-updates</sys:String>
+    <sys:String x:Key="LOCCheckAddonUpdates">Controleren op add-on updates</sys:String>
+    <sys:String x:Key="LOCCheckLibraryUpdates">Bibliotheken bijwerken</sys:String>
+    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">Scan emulatiemappen</sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">Inclusief verborgen spellen</sys:String>
+    <sys:String x:Key="LOCMenuSetFields">Velden bewerken</sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll">Selecteer / Deselecteer alle</sys:String>
+    <sys:String x:Key="LOCOpen">Open</sys:String>
+    <sys:String x:Key="LOCActivate">Activeren</sys:String>
+    <sys:String x:Key="LOCAssign">Toewijzen</sys:String>
     <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
     <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalled"></sys:String>
@@ -1192,11 +1200,11 @@ Alleen ondersteund voor: Google Drive, DropBox, OneDrive </sys:String>
     <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
     <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
-    <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
-    <sys:String x:Key="LOCSettingsRotatingBackups"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems"></sys:String>
+    <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Automatische data-back-up</sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupFrequency">Automatische back-up frequentie</sys:String>
+    <sys:String x:Key="LOCSettingsBackupFolder">Back-up map</sys:String>
+    <sys:String x:Key="LOCSettingsRotatingBackups">Roterende back-ups</sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">Aanvullende gegevens toevoegen:</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">Toon alleen meldingen voor patch releases</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">Wanneer ingeschakeld, zullen alleen updates die beschikbaar zijn voor momenteel geïnstalleerde hoofdrelease resulteren in een update notificatie.
@@ -1208,5 +1216,16 @@ Nieuwe grote releases resulteren niet in een update notificatie.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Speel Actie instellingen</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Instellingen voor scanner gebruiken</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Selecteer profiel bij opstarten</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Selecteer emulator bij het opstarten</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automatisch</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Altijd aan</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Altijd uit</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Toegankelijkheid (schermlezer) ondersteuning</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Applicatie menu</sys:String>
+    <sys:String x:Key="LOCGameMenu">Spel menu</sys:String>
 </ResourceDictionary>

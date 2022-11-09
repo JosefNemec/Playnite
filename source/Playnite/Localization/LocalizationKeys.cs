@@ -2922,7 +2922,7 @@ namespace Playnite
         /// </summary>
         public const string InstallSizeCalculate = "LOCInstallSizeCalculate";
         /// <summary>
-        /// Automatically calculates the install size using the Roms if the game has any or the installation directory if it has been set
+        /// Automatically calculates the install size using the ROMs if the game has any or the installation directory if it has been set
         /// </summary>
         public const string InstallSizeCalculateEditButtonTooltip = "LOCInstallSizeCalculateEditButtonTooltip";
         /// <summary>
@@ -4174,7 +4174,7 @@ namespace Playnite
         /// </summary>
         public const string EmuOverridePlatform = "LOCEmuOverridePlatform";
         /// <summary>
-        /// When set scanner will assign this platform to all games, overwriting any automatically detected platforms.
+        /// When set, scanner will assign this platform to all games, overwriting any automatically detected platforms.
         /// </summary>
         public const string EmuOverridePlatformTooltip = "LOCEmuOverridePlatformTooltip";
         /// <summary>

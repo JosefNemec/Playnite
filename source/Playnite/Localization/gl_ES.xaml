@@ -220,6 +220,7 @@ Se escolles a opción &quot;Engadir á lista de exclusións&quot;, evitarase que
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importando xogos emulados de {0} ...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Descargando actualizacións da biblioteca…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Actualización da biblio rematada</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Liberando recursos...</sys:String>
     <!--Menu-->
@@ -470,6 +471,8 @@ Podes instalar máis integracións despóis dende o menú de &quot;Complementos&
 
 Podes tentar de descargar as integración dende o menú de complementos despóis de que o asistente de inicio remate.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Descargando a integración de {0}...</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configurar plataformas e emuladores</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Configurar emuladores</sys:String>
@@ -502,6 +505,7 @@ Actualmente está a ser usado por {1} xogos.</sys:String>
 Actualmente está a ser usado por {1} xogos e {2} emuladores.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Axuda de configuración</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Ordenar por</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Agrupar por</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendente</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendente</sys:String>
@@ -662,6 +666,7 @@ Máis información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Actualizar todo</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Creado por:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versión:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Módulo:</sys:String>
     <sys:String x:Key="LOCLibrary">Biblioteca</sys:String>
     <sys:String x:Key="LOCStatistics">Estatísticas</sys:String>
@@ -1181,5 +1186,16 @@ Máis información en https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

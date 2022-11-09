@@ -202,6 +202,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Teegi värskenduste allalaadimine…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish"></sys:String>
     <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
     <!--Menu-->
@@ -434,6 +435,8 @@ Rohkem integratsioone saab hiljem paigaldada menüüst &quot;Lisad&quot;.</sys:S
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Algseadistus on lõpetatud. Pidage meeles, et kõiki sätteid saab hiljem muuta, samuti peamenüüst lisada täiendavaid integratsioone.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">{0} integratsiooni allalaadimine…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Seadista paltvormid ja emulaatorid</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Seadista emulaatorid</sys:String>
@@ -464,6 +467,7 @@ Rohkem integratsioone saab hiljem paigaldada menüüst &quot;Lisad&quot;.</sys:S
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sorteeri</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Rühmita</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Kasvav</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Kahanev</sys:String>
@@ -618,6 +622,7 @@ Rohkem integratsioone saab hiljem paigaldada menüüst &quot;Lisad&quot;.</sys:S
     <sys:String x:Key="LOCUpdateAll">Värskenda kõiki</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Autor:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versioon:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Moodul:</sys:String>
     <sys:String x:Key="LOCLibrary">Teek</sys:String>
     <sys:String x:Key="LOCStatistics">Statistika</sys:String>
@@ -1094,5 +1099,16 @@ Rohkem integratsioone saab hiljem paigaldada menüüst &quot;Lisad&quot;.</sys:S
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>
