@@ -251,9 +251,9 @@ namespace Playnite.FullscreenApp.Controls.Views
                 AssignButtonWithCommand(ref ButtonProgramUpdate, "PART_ButtonProgramUpdate", mainModel.OpenUpdatesCommand);
                 AssignButtonWithCommand(ref ButtonMainMenu, "PART_ButtonMainMenu", mainModel.OpenMainMenuCommand);
                 AssignButtonWithCommand(ref ButtonNotifications, "PART_ButtonNotifications", mainModel.OpenNotificationsMenuCommand);
-                AutomationProperties.SetName(ButtonProgramUpdate, LOC.UpdateIsAvailableNotificationBody.GetLocalized());
-                AutomationProperties.SetName(ButtonMainMenu, LOC.ApplicationMenu.GetLocalized());
-                AutomationProperties.SetName(ButtonNotifications, LOC.Notifications.GetLocalized());
+                if (ButtonProgramUpdate != null) AutomationProperties.SetName(ButtonProgramUpdate, LOC.UpdateIsAvailableNotificationBody.GetLocalized());
+                if (ButtonMainMenu != null) AutomationProperties.SetName(ButtonMainMenu, LOC.ApplicationMenu.GetLocalized());
+                if (ButtonNotifications != null) AutomationProperties.SetName(ButtonNotifications, LOC.Notifications.GetLocalized());
 
                 if (ButtonProgramUpdate != null)
                 {
