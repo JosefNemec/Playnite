@@ -916,8 +916,8 @@ Zum Abschließen ist ein Neustart erforderlich. Möchtest du die Einstellungen z
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Alle aktuell installierten Erweiterungen für die Bibliotheksintegration können hier konfiguriert werden.
 
 Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwende im Hauptmenü die Option »Add-ons«.</sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop">Designs Desktop</sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren">Designs Vollbild</sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">Desktop-Designs</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Vollbild-Designs</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Wird durchsucht …</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">Das Add-on ist mit dieser Version von Playnite nicht kompatibel.</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Das Installationspaket des Add-ons konnte nicht heruntergeladen werden.</sys:String>
