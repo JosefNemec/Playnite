@@ -300,7 +300,8 @@ namespace Playnite.DesktopApp.ViewModels
                     Name = rom.Name.Name,
                     Platforms = game.Platforms?.ToList(),
                     Regions = game.Regions?.ToList(),
-                    SourceConfig = game.SourceConfig
+                    SourceConfig = game.SourceConfig,
+                    SourceEmulator = game.SourceEmulator
                 };
 
                 GameList.Insert(GameList.IndexOf(game) + 1, newGame);
