@@ -187,22 +187,22 @@ namespace Playnite.Database
 
         public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
         {
-            throw new NotImplementedException();
+            yield break;
         }
 
         public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings)
         {
-            throw new NotImplementedException();
+            yield break;
         }
     }
 }
