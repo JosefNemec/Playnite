@@ -10,7 +10,6 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public partial class GameEditViewModel
     {
-        private bool updateLastScanDate;
         private bool useNameChanges;
         public bool UseNameChanges
         {
@@ -1093,16 +1092,6 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseInstallSizeChanges = true;
-                    }
-                    break;
-                case nameof(Game.LastSizeScanDate):
-                    if (IsSingleGameEdit)
-                    {
-                        updateLastScanDate = Game.LastSizeScanDate != EditingGame.LastSizeScanDate;
-                    }
-                    else
-                    {
-                        updateLastScanDate = true;
                     }
                     break;
                 case nameof(Game.SeriesIds):
