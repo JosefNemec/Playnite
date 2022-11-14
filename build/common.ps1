@@ -53,20 +53,14 @@ function global:Get-MsBuildPath()
 
     if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
     {
-        $VSWHERE_CMD = "..\source\packages\vswhere.2.6.7\tools\vswhere.exe"
+        $VSWHERE_CMD = "..\source\packages\vswhere.*\tools\vswhere.exe"
         if (-not (Get-Command -Name $VSWHERE_CMD -Type Application -ErrorAction Ignore))
         {
-            Invoke-Nuget "install vswhere -Version 2.6.7 -SolutionDirectory `"$solutionDir`"" | Out-Null
+            Invoke-Nuget "install vswhere -SolutionDirectory `"$solutionDir`"" | Out-Null
         }
     }
 
-    $path = & $VSWHERE_CMD -version "[15.0,16.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe" -latest | Select-Object -First 1
-    if ($path -and (Test-Path $path))
-    {
-        return $path
-    }
-
-    $path = & $VSWHERE_CMD -version "[16.0,17.0)" -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe" -latest | Select-Object -First 1
+    $path = & $VSWHERE_CMD -latest -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe" -latest | Select-Object -First 1
     if ($path -and (Test-Path $path))
     {
         return $path
