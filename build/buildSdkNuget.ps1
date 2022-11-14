@@ -1,4 +1,6 @@
-﻿param(
+﻿#Requires -Version 7
+
+param(
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
     [string]$OutputPath = (Join-Path $PWD "$($Configuration)SDK"),
