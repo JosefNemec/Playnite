@@ -1,5 +1,10 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.7.0
+
+* New
+  * Added overload to `ExpandGameVariables` function for expanding `{EmulatorDir}` variable.
+
 #### 6.6.0
 
 * New
