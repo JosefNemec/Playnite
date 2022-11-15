@@ -15,6 +15,7 @@ using System.Windows;
 using Playnite.Plugins;
 using System.Threading;
 using Playnite.Database;
+using static Microsoft.Scripting.Hosting.Shell.ConsoleHostOptions;
 
 namespace Playnite.API
 {
@@ -22,6 +23,7 @@ namespace Playnite.API
     {
         string ExpandGameVariables(Game game, string inputString);
         GameAction ExpandGameVariables(Game game, GameAction action);
+        string ExpandGameVariables(Game game, string inputString, string emulatorDir);
         void StartGame(Guid gameId);
         void InstallGame(Guid gameId);
         void UninstallGame(Guid gameId);
@@ -52,6 +54,11 @@ namespace Playnite.API
         public string ExpandGameVariables(Game game, string inputString)
         {
             return game?.ExpandVariables(inputString);
+        }
+
+        public string ExpandGameVariables(Game game, string inputString, string emulatorDir)
+        {
+            return game?.ExpandVariables(inputString, emulatorDir: emulatorDir);
         }
 
         public GameAction ExpandGameVariables(Game game, GameAction action)
@@ -139,6 +146,11 @@ namespace Playnite.API
         public string ExpandGameVariables(Game game, string inputString)
         {
             return RootApi.ExpandGameVariables(game, inputString);
+        }
+
+        public string ExpandGameVariables(Game game, string inputString, string emulatorDir)
+        {
+            return RootApi.ExpandGameVariables(game, inputString, emulatorDir);
         }
 
         public GameAction ExpandGameVariables(Game game, GameAction action)
