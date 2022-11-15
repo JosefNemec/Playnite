@@ -83,7 +83,7 @@
     <sys:String x:Key="LOCGameOpenLocationError">לא ניתן לפתוח את מיקום המשחק: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeError">לא ניתן לזהות את גודל ההתקנה של המשחק: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeErrorCaption">סריקת גודל ההתקנה נכשלה</sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">היו {0} שגיאות במהלך סריקת גודל ההתקנה</sys:String>
     <sys:String x:Key="LOCGameShortcutError">נכשל ביצירת קיצור דרך: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">פתיחת המדריך נכשלה: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">לא ניתן להתקין את המשחק: {0}</sys:String>
