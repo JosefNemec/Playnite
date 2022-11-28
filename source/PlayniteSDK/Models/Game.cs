@@ -1222,7 +1222,7 @@ namespace Playnite.SDK.Models
             {
                 if (platformIds?.Any() == true && DatabaseReference != null)
                 {
-                    return new List<Platform>(DatabaseReference?.Platforms.Get(platformIds).OrderBy(a => a.Name));
+                    return DatabaseReference?.Platforms.Get(platformIds).OrderBy(a => a.Name).ToList();
                 }
 
                 return null;
@@ -1658,6 +1658,71 @@ namespace Playnite.SDK.Models
         public override string ToString()
         {
             return Name;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public Game GetCopy()
+        {
+            return new Game
+            {
+                Id = Id,
+                GameId = GameId,
+                PluginId = PluginId,
+                Name = Name,
+                Icon = Icon,
+                CoverImage = CoverImage,
+                BackgroundImage = BackgroundImage,
+                Description = Description,
+                Notes = Notes,
+                Hidden = Hidden,
+                Favorite = Favorite,
+                InstallDirectory = InstallDirectory,
+                LastActivity = LastActivity,
+                SortingName = SortingName,
+                ReleaseDate = ReleaseDate,
+                IsInstalled = IsInstalled,
+                IsInstalling = IsInstalling,
+                IsLaunching = IsLaunching,
+                IsUninstalling = IsUninstalling,
+                IsRunning = IsRunning,
+                Playtime = Playtime,
+                Added = Added,
+                Modified = Modified,
+                PlayCount = PlayCount,
+                InstallSize = InstallSize,
+                LastSizeScanDate = LastSizeScanDate,
+                Version = Version,
+                GenreIds = GenreIds?.ToList(),
+                PlatformIds = PlatformIds?.ToList(),
+                PublisherIds = PublisherIds?.ToList(),
+                DeveloperIds = DeveloperIds?.ToList(),
+                CategoryIds = CategoryIds?.ToList(),
+                TagIds = TagIds?.ToList(),
+                FeatureIds = FeatureIds?.ToList(),
+                SeriesIds = SeriesIds?.ToList(),
+                AgeRatingIds = AgeRatingIds?.ToList(),
+                RegionIds = RegionIds?.ToList(),
+                SourceId = SourceId,
+                CompletionStatusId = CompletionStatusId,
+                UserScore = UserScore,
+                CriticScore = CriticScore,
+                CommunityScore = CommunityScore,
+                PreScript = PreScript,
+                PostScript = PostScript,
+                GameStartedScript = GameStartedScript,
+                UseGlobalPostScript = UseGlobalPostScript,
+                UseGlobalPreScript = UseGlobalPreScript,
+                UseGlobalGameStartedScript = UseGlobalGameStartedScript,
+                Manual = Manual,
+                IncludeLibraryPluginAction = IncludeLibraryPluginAction,
+                OverrideInstallState = OverrideInstallState,
+                GameActions = GameActions?.Select(a => a.GetCopy()).ToObservable(),
+                Links = Links?.Select(a => a.GetCopy()).ToObservable(),
+                Roms = Roms?.Select(a => a.GetCopy()).ToObservable(),
+            };
         }
 
         /// <inheritdoc/>

@@ -263,7 +263,7 @@
                                          UpdateSourceTrigger="PropertyChanged" 
                                          ValidatesOnDataErrors="True"
                                          NotifyOnValidationError="True"
-                                         Converter="{StaticResource ReleaseDateToStringConverter}">
+                                         Converter="{pcon:EditingReleaseDateToStringConverter}">
                                     <Binding.ValidationRules>
                                         <pcon:ReleaseDateFieldValidation />
                                     </Binding.ValidationRules>
@@ -939,42 +939,62 @@
                             Command="{Binding AddRomCommand}" DockPanel.Dock="Top"/>
                     <CheckBox Name="CheckSaveRoms" Content="{DynamicResource LOCSaveChanges}" Margin="10,5,5,0" DockPanel.Dock="Top"
                               IsChecked="{Binding UseRomsChanges}" Style="{StaticResource SaveChangesCheck}"/>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,5,10,10" DockPanel.Dock="Top">
-                        <ItemsControl IsTabStop="False" Grid.IsSharedSizeScope="True"
-                                        ItemsSource="{Binding EditingGame.Roms}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="-5,0,-5,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="A" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
 
-                                        <TextBox Text="{Binding Name}" Grid.Column="0" Grid.Row="0" Margin="5"
-                                                    VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
-                                        <pctrls:PathSelectionBox Text="{Binding Path}" Grid.Column="1" Grid.Row="0" Margin="5"
-                                                                 VerticalAlignment="Stretch" VerticalContentAlignment="Center"
-                                                                 ShowFileSelector="True"/>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="5">
-                                            <Button FontFamily="Marlett" Content="5" Margin="0,0,5,0"
+                    <ListView Margin="10,5,10,10" DockPanel.Dock="Top"
+                              ItemsSource="{Binding EditingGame.Roms}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border Padding="{TemplateBinding Padding}" Background="Transparent">
+                                                <GridViewRowPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="300" Header="{DynamicResource LOCNameLabel}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Name}" Margin="0,5,0,0"
+                                                     VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="350" Header="{DynamicResource LOCPathLabel}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <pctrls:PathSelectionBox Text="{Binding Path}" Margin="0,5,0,0"
+                                                                     VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                                                                     ShowFileSelector="True"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                                <Button FontFamily="Marlett" Content="5" Margin="0,0,5,0"
                                                     Command="{Binding Data.MoveUpRomCommand, Source={StaticResource Proxy}}"
                                                     CommandParameter="{Binding}"/>
-                                            <Button FontFamily="Marlett" Content="6" Margin="0,0,5,0"
+                                                <Button FontFamily="Marlett" Content="6" Margin="0,0,5,0"
                                                     Command="{Binding Data.MoveDownRomCommand, Source={StaticResource Proxy}}"
                                                     CommandParameter="{Binding}"/>
-                                            <Button FontFamily="Marlett" Content="r"
+                                                <Button FontFamily="Marlett" Content="r"
                                                     Command="{Binding Data.RemoveRomCommand, Source={StaticResource Proxy}}"
                                                     CommandParameter="{Binding}"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </DockPanel>                
             </TabItem>
 
@@ -1143,7 +1163,7 @@
                         Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                         pbeh:LeftClickContextMenuBehavior.Enabled="True">
                     <Button.ContextMenu>
-                        <ContextMenu Placement="Top" Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}"
+                        <ContextMenu Placement="Top" MinWidth="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}"
                                      ItemsSource="{Binding MetadataDownloadOptions}">
                             <ContextMenu.Resources>
                                 <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">

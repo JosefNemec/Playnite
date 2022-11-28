@@ -14,7 +14,8 @@
                           d:DesignHeight="{StaticResource DesignHeight}"
                           d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
                           KeyboardNavigation.DirectionalNavigation="Contained"
-                          KeyboardNavigation.TabNavigation="Contained">
+                          KeyboardNavigation.TabNavigation="Cycle"
+                          KeyboardNavigation.ControlTabNavigation="Cycle">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="350" />

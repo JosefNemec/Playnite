@@ -222,6 +222,7 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importando juegos emulados de {0} ...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Descargando actualizaciones de la biblioteca…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Escaneando el tamaño de los juegos en la librería…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Escaneando el tamaño de los juegos importados…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Actualización de biblioteca finalizada</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Liberando recursos…</sys:String>
     <!--Menu-->
@@ -469,6 +470,8 @@ También puedes añadir cualquier otro juego más adelante haciendo clic en el m
 
 Puedes intentar volver a descargar las integraciones desde el menú de complementos después de finalizar el asistente de primera ejecución.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Descargando integración de {0} ...</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Descargando lista de integraciones recomendadas…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">No se ha podido descargar la lista de integraciones recomendadas. Puedes intentar volver a descargar las integraciones más tarde a través del menú de complementos.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configurar Plataformas y Emuladores</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Configurar Emuladores</sys:String>
@@ -501,6 +504,7 @@ Actualmente está siendo utilizado por {1} juego(s).</sys:String>
 Actualmente está siendo utilizado por {1} juego(s) y {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Ayuda de Configuración</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Ordenar por</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Dirección de Ordenamiento</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Agrupar por</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendente</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendente</sys:String>
@@ -661,6 +665,7 @@ Más información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Actualizar todo</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Creado por:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versión:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Actualizado:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Módulo:</sys:String>
     <sys:String x:Key="LOCLibrary">Biblioteca</sys:String>
     <sys:String x:Key="LOCStatistics">Estadísticas</sys:String>
@@ -1208,5 +1213,16 @@ El formato de fecha especificado se utilizará para todas las demás fechas.</sy
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Cadena de búsqueda de imágenes de icono</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cadena de búsqueda de imagen de portada</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Cadena de búsqueda de imágenes de fondo</sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation">Obteniendo información del complemento…</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">No hay fuentes de metadatos disponibles</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Ajustes de Acción de Juego</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Usar ajustes de escáner</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Seleccionar perfil a iniciar</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Seleccionar emulador al iniciar</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automático</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Siempre activado</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Siempre desactivado</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Soporte de accesibilidad (lector de pantalla)</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Menú de aplicación</sys:String>
+    <sys:String x:Key="LOCGameMenu">Menú del juego</sys:String>
 </ResourceDictionary>

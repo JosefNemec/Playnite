@@ -1,3 +1,5 @@
+#Requires -Version 7
+
 $ErrorActionPreference = "Stop"
 & .\common.ps1
 

@@ -48,50 +48,62 @@
                     <pctrls:ButtonEx x:Name="PART_ButtonPickRandomGame"
                                      ContentTemplate="{DynamicResource MainMenuRandomGameButtonTemplate}"
                                      Command="{Binding SelectRandomGameCommand}"
-                                     pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+                                     pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuSelectRandomGame}"/>
                     <pctrls:ButtonEx x:Name="PART_ButtonUpdateLibrary"
                                      ContentTemplate="{DynamicResource MainMenuLibUpdateButtonTemplate}"
                                      Command="{Binding UpdateGamesCommand}"
-                                     Visibility="{Binding MainModel.ProgressActive, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                                     Visibility="{Binding MainModel.ProgressActive, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuReloadLibrary}"/>
                     <pctrls:ButtonEx x:Name="PART_ButtonCancelLibraryUpdate"
                                      ContentTemplate="{DynamicResource MainMenuCancelLibUpdateButtonTemplate}"
                                      Command="{Binding CancelProgressCommand}"
-                                     Visibility="{Binding MainModel.ProgressActive, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                     Visibility="{Binding MainModel.ProgressActive, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuCancelLibraryUpdate}"/>
                     <pctrls:ButtonEx x:Name="PART_ButtonSettings"
                                      ContentTemplate="{DynamicResource MainMenuSettingsButtonTemplate}"
-                                     Command="{Binding OpenSettingsCommand}"/>
+                                     Command="{Binding OpenSettingsCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCSettingsLabel}"/>
                     <Canvas Height="20" />
                     <pctrls:ButtonEx x:Name="PART_ButtonExitPlaynite"
                                      ContentTemplate="{DynamicResource MainMenuExitPlayniteButtonTemplate}"
-                                     Command="{Binding ExitCommand}" />
+                                     Command="{Binding ExitCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCExitPlaynite}" />
                     <pctrls:ButtonEx x:Name="PART_ButtonSwitchToDesktop"
                                      ContentTemplate="{DynamicResource MainMenuSwithDesktopButtonTemplate}"
-                                     Command="{Binding SwitchToDesktopCommand}" />
+                                     Command="{Binding SwitchToDesktopCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCBackToDesktopMode}"  />
                     <Canvas Height="20" />
                     <pctrls:ButtonEx x:Name="PART_ButtonShutdownSystem"
                                      ContentTemplate="{DynamicResource MainMenuShutdowButtonTemplate}"
                                      Command="{Binding ShutdownSystemCommand}"
-                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowShutdown, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowShutdown, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuShutdownSystem}"/>
                     <pctrls:ButtonEx x:Name="PART_ButtonSleepSystem"
                                      ContentTemplate="{DynamicResource MainMenuSuspendButtonTemplate}"
                                      Command="{Binding SleepSystemCommand}"
-                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowSuspend, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowSuspend, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuSuspendSystem}" />
                     <pctrls:ButtonEx x:Name="PART_ButtonHibernateSystem"
                                      ContentTemplate="{DynamicResource MainMenuHibernateButtonTemplate}"
                                      Command="{Binding HibernateSystemCommand}"
-                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowHibernate, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowHibernate, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuHibernateSystem}" />
                     <pctrls:ButtonEx x:Name="PART_ButtonRestartSystem"
                                      ContentTemplate="{DynamicResource MainMenuRestartButtonTemplate}"
                                      Command="{Binding RestartSystemCommand}"
-                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowRestart, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowRestart, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuRestartSystem}"/>
 
                     <Canvas Height="40" />
                     <pctrls:ButtonEx x:Name="PART_ButtonFeedback"
                                      ContentTemplate="{DynamicResource MainMenuHelpButtonTemplate}"
-                                     Command="{Binding OpenHelpCommand}" />
+                                     Command="{Binding OpenHelpCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuHelpTitle}" />
                     <pctrls:ButtonEx x:Name="PART_ButtonPatreon"
                                      ContentTemplate="{DynamicResource MainMenuPatreonButtonTemplate}"
-                                     Command="{Binding OpenPatreonCommand}" />
+                                     Command="{Binding OpenPatreonCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuPatreonSupport}" />
                 </StackPanel>
             </Border>
 

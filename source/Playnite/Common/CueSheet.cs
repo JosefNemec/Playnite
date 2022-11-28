@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Playnite
         public static List<CueFileEntry> GetFileEntries(string cuePath)
         {
             var files = new List<CueFileEntry>();
-            foreach (var line in File.ReadAllLines(cuePath))
+            foreach (var line in File.ReadAllLines(Paths.FixPathLength(cuePath)))
             {
                 if (!line.IsNullOrWhiteSpace())
                 {

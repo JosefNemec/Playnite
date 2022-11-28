@@ -406,6 +406,25 @@ namespace Playnite.SDK.Models
 
             return true;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public BuiltInEmulatorProfile GetCopy()
+        {
+            return new BuiltInEmulatorProfile
+            {
+                Id = Id,
+                BuiltInProfileName = BuiltInProfileName,
+                Name = Name,
+                ExitScript = ExitScript,
+                PostScript = PostScript,
+                PreScript = PreScript,
+                CustomArguments = CustomArguments,
+                OverrideDefaultArgs = OverrideDefaultArgs,
+            };
+        }
     }
 
     /// <summary>
@@ -559,11 +578,6 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
-            if (!string.Equals(Name, other.Name, StringComparison.Ordinal))
-            {
-                return false;
-            }
-
             if (!string.Equals(ExitScript, other.ExitScript, StringComparison.Ordinal))
             {
                 return false;
@@ -585,6 +599,28 @@ namespace Playnite.SDK.Models
             }
 
             return true;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public CustomEmulatorProfile GetCopy()
+        {
+            return new CustomEmulatorProfile
+            {
+                Id = Id,
+                Name = Name,
+                Platforms = Platforms?.ToList(),
+                ImageExtensions = ImageExtensions?.ToList(),
+                Executable = Executable,
+                Arguments = Arguments,
+                WorkingDirectory = WorkingDirectory,
+                ExitScript = ExitScript,
+                PostScript = PostScript,
+                PreScript = PreScript,
+                StartupScript = StartupScript
+            };
         }
     }
 
@@ -798,6 +834,23 @@ namespace Playnite.SDK.Models
             {
                 throw new ArgumentException($"Target object has to be of type {GetType().Name}");
             }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public Emulator GetCopy()
+        {
+            return new Emulator
+            {
+                Id = Id,
+                Name = Name,
+                CustomProfiles = CustomProfiles?.Select(a => a.GetCopy()).ToObservable(),
+                BuiltinProfiles = BuiltinProfiles?.Select(a => a.GetCopy()).ToObservable(),
+                BuiltInConfigId = BuiltInConfigId,
+                InstallDir = InstallDir
+            };
         }
     }
 }

@@ -44,18 +44,18 @@ Playnite provides some built-in global variables that scripts can use to get mor
 
 | Variable | Description |
 | :-- | :-- |
-| PlayniteApi | Instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI). |
-| Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
-| SourceAction | Custom [game action](xref:Playnite.SDK.Models.GameAction) used to start a game. |
-| SelectedRomFile | ROM file selected when running a game with multiple ROMs assigned. |
-| StartedProcessId | Process ID of original started process. Might not be available depending on how a game was started. |
+| $PlayniteApi | Instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI). |
+| $Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
+| $SourceAction | Custom [game action](xref:Playnite.SDK.Models.GameAction) used to start a game. |
+| $SelectedRomFile | ROM file selected when running a game with multiple ROMs assigned. |
+| $StartedProcessId | Process ID of original started process. Might not be available depending on how a game was started. |
 
 Emulator scripts have additional variables provided:
 
 | Variable | Description |
 | :-- | :-- |
-| Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
-| EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
+| $Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
+| $EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
 
 Cancelling game startup
 ---------------------
@@ -114,9 +114,17 @@ $process.Dispose()
 
 | Variable | Description |
 | :-- | :-- |
-| PlayniteApi | Instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI). |
-| Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
-| IsPlayAction | Indicates whether an action was started as play action. |
+| $PlayniteApi | Instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI). |
+| $Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
+| $IsPlayAction | Indicates whether an action was started as play action. |
+
+Following variables are only available to [emulator startup scripts](emulators.md#startup-script).
+
+| Variable | Description |
+| :-- | :-- |
+| $Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
+| $EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
+| $RomPath | ROM path selected to launch. |
 
 Examples
 ---------------------

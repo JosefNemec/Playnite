@@ -44,7 +44,7 @@
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
             <GridEx ColumnCount="3" StarColumns="1,2"
                     Margin="5,0,5,0"
-                    RowCount="40" AutoLayoutColumns="3">
+                    RowCount="41" AutoLayoutColumns="3">
                 <Canvas />
                 <TextBlock Text="{DynamicResource LOCMetadataDiffCurrent}"  />
                 <TextBlock Text="{DynamicResource LOCMetadataDiffNew}"  />
@@ -377,6 +377,26 @@
                     </RadioButton.Content>
                 </RadioButton>
 
+                <!--InstallSize-->
+                <Separator Grid.ColumnSpan="3"
+                           Visibility="{Binding InstallSize.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock Text="{DynamicResource LOCInstallSizeLabel}"
+                           Visibility="{Binding InstallSize.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <RadioButton Visibility="{Binding InstallSize.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"                             
+                             IsChecked="{Binding InstallSize.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.Current}}"
+                             GroupName="InstallSize">
+                    <RadioButton.Content>
+                        <TextBlock Text="{Binding CurrentGame.InstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" />
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Visibility="{Binding InstallSize.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                             IsChecked="{Binding InstallSize.Source, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static dvm:MetadataChangeDataSource.New}}"
+                             GroupName="InstallSize">
+                    <RadioButton.Content>
+                        <TextBlock Text="{Binding NewGame.InstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}"  />
+                    </RadioButton.Content>
+                </RadioButton>
+                
                 <!--Icon-->
                 <Separator Grid.ColumnSpan="3"
                            Visibility="{Binding Icon.Enabled, Converter={StaticResource BooleanToVisibilityConverter}}" />

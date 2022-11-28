@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -187,6 +188,7 @@ namespace Playnite.FullscreenApp.Controls
                 if (ButtonBack != null)
                 {
                     ButtonBack.Command = closeCommand;
+                    AutomationProperties.SetName(ButtonBack, LOC.BackLabel.GetLocalized());
                 }
 
                 ButtonClear = Template.FindName("PART_ButtonClear", this) as ButtonBase;

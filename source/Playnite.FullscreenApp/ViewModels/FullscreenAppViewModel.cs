@@ -330,6 +330,11 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             get
             {
+                if (ActiveFilterPreset != null)
+                {
+                    return false;
+                }
+
                 if (!AppSettings.Fullscreen.FilterSettings.Name.IsNullOrEmpty())
                 {
                     return false;
@@ -604,6 +609,7 @@ namespace Playnite.FullscreenApp.ViewModels
         private void UpdateCursorSettings()
         {
             Computer.SetMouseCursorVisibility(!AppSettings.Fullscreen.HideMouserCursor);
+            WindowManager.SetEnableMouseInput(!AppSettings.Fullscreen.HideMouserCursor);
         }
 
         public void OpenMainMenu()
@@ -887,7 +893,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
-        public override void SelectGame(Guid id)
+        public override void SelectGame(Guid id, bool restoreView = false)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             SelectedGame = viewEntry;
@@ -1011,7 +1017,7 @@ namespace Playnite.FullscreenApp.ViewModels
             if (ItemSelector.SelectSingle<FilterPreset>(
                 LOC.SettingsTopPanelFilterPresetsItem,
                 "",
-                Database.FilterPresets.Select(a => new SelectableNamedObject<FilterPreset>(a, a.Name)).ToList(),
+                Database.FilterPresets.OrderBy(a => a.Name).Select(a => new SelectableNamedObject<FilterPreset>(a, a.Name)).ToList(),
                 out var selectedPreset))
             {
                 ActiveFilterPreset = selectedPreset;

@@ -220,6 +220,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Preberajú sa aktualizácie knižníc…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Aktualizácia knižnice dokončená</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Uvoľnujú sa zdroje…</sys:String>
     <!--Menu-->
@@ -457,6 +458,8 @@ Nezabudnite, že ľubovoľnú vlastnú hru pre ľubovoľnú platformu môžete p
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Počiatočné nastavenie bolo dokončené. Nezabudnite, že všetky nastavenia môžete neskôr zmeniť v ponuke „Nastavenia“.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Nastaviť platformy a emulátory</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Konfigurovať emulátory</sys:String>
@@ -489,6 +492,7 @@ Momentálne ho používa {1} hier.</sys:String>
 Monetálne ju používa {1} hier a {2} emulátorov.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Nápoveda k nastaveniam</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Zoradiť podľa</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Zoskupiť podľa</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Vzostupne</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Zostupne</sys:String>
@@ -646,6 +650,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aktualizovať všetko</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Vytvoril:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Verzia:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Modul:</sys:String>
     <sys:String x:Key="LOCLibrary">Knižnica</sys:String>
     <sys:String x:Key="LOCStatistics">Štatistiky</sys:String>
@@ -1148,5 +1153,16 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

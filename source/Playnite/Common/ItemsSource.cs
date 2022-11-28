@@ -18,6 +18,11 @@ namespace Playnite.Common
                 Name = name;
                 Value = value;
             }
+
+            public override string ToString()
+            {
+                return Name;
+            }
         }
 
         public static IEnumerable<EnumItem> GetEnumSources(Type enumType)

@@ -84,5 +84,10 @@ namespace Playnite.API.DesignData
         {
             throw new NotImplementedException();
         }
+
+        public string ExpandGameVariables(Game game, string inputString, string emulatorDir)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

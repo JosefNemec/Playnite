@@ -325,8 +325,8 @@ namespace Playnite.DesktopApp.ViewModels
             AvailablePlatforms = new SelectableDbItemList(database.Platforms);
             OverridePlatforms = database.Platforms.OrderBy(a => a.Name).ToList();
             OverridePlatforms.Insert(0, new Platform(LOC.None.GetLocalized()) { Id = Guid.Empty });
-            EditingEmulators = database.Emulators.GetClone().OrderBy(a => a.Name).ToObservable();
-            EditingScanners = database.GameScanners.GetClone().ToObservable();
+            EditingEmulators = database.Emulators.ToList().GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingScanners = database.GameScanners.ToList().GetClone().OrderBy(a => a.Name).ToObservable();
             SelectedEmulator = EditingEmulators.Count > 0 ? EditingEmulators[0] : null;
             SelectedScanner = EditingScanners.Count > 0 ? EditingScanners[0] : null;
             GlobalScanSettings = database.GetGameScannersSettings();

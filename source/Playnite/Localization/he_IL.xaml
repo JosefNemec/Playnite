@@ -81,9 +81,9 @@
     <sys:String x:Key="LOCGameStartError">אי אפשר להתחיל משחק: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">לא ניתן להחיל את הפעולה: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">לא ניתן לפתוח את מיקום המשחק: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">לא ניתן לזהות את גודל ההתקנה של המשחק: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">סריקת גודל ההתקנה נכשלה</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">היו {0} שגיאות במהלך סריקת גודל ההתקנה</sys:String>
     <sys:String x:Key="LOCGameShortcutError">נכשל ביצירת קיצור דרך: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">פתיחת המדריך נכשלה: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">לא ניתן להתקין את המשחק: {0}</sys:String>
@@ -224,6 +224,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames">מיבא משחקי אמולטורים מ {0}...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">מוריד עדכוני ספריה…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">עדכון הספריה הושלם</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">משחרר משאבים…</sys:String>
     <!--Menu-->
@@ -466,6 +467,8 @@
 אתה יכול גם להוסיף כל משחק אחר בהמשך על ידי לחיצה על תפריט הלוגו של Playnite. </sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">מוריד אינטגרציה {0}</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">הגדר פלטפורמות ואמולטורים</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">הגדר אמולטורים</sys:String>
@@ -498,6 +501,7 @@
 היא כרגע בשימוש על ידי {1} משחק(ים) ו {2} אמולטור(ים).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">עזרה בהגדרות</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">מיין לפי</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">קבץ לפי</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">סדר עולה</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">סדר יורד</sys:String>
@@ -656,6 +660,7 @@
     <sys:String x:Key="LOCUpdateAll">עדכן הכל</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">נוצר על-ידי:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">גירסה:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">מודול:</sys:String>
     <sys:String x:Key="LOCLibrary">ספריה</sys:String>
     <sys:String x:Key="LOCStatistics">סטטיסטיקה</sys:String>
@@ -1136,5 +1141,16 @@
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

@@ -16,20 +16,12 @@ namespace Playnite
         {
             var progPath = PlaynitePaths.ProgramPath;
             var allFiles = new List<string>();
-            foreach (var file in Directory.GetFiles(progPath, "*.*", SearchOption.AllDirectories))
+            foreach (var file in Directory.GetFiles(progPath, "*.*", SearchOption.TopDirectoryOnly))
             {
                 try
                 {
-                    var subName = file.Replace(progPath, "").Trim(Path.DirectorySeparatorChar);
-                    if (subName.StartsWith("library", StringComparison.OrdinalIgnoreCase) ||
-                        subName.StartsWith("browsercache", StringComparison.OrdinalIgnoreCase) ||
-                        subName.StartsWith("cache", StringComparison.OrdinalIgnoreCase))
-                    {
-                        continue;
-                    }
-
                     var fInfo = new FileInfo(file);
-                    allFiles.Add(subName + ", " + fInfo.Length);
+                    allFiles.Add(fInfo.Name + ", " + fInfo.Length);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

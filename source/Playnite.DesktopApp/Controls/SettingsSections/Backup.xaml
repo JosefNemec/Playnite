@@ -48,11 +48,11 @@
             <CheckBox Content="{DynamicResource LOCBackupOptionGameMedia}" Margin="20,0,0,10"
                       IsChecked="{Binding Settings.AutoBackupIncludeLibFiles}"/>
             <CheckBox Content="{DynamicResource LOCBackupOptionExtensions}" Margin="20,0,0,10"
-                      IsChecked="{Binding Settings.AutoBackupIncludeExtensionsData}"/>
-            <CheckBox Content="{DynamicResource LOCBackupOptionThemes}" Margin="20,0,0,10"
                       IsChecked="{Binding Settings.AutoBackupIncludeExtensions}"/>
-            <CheckBox Content="{DynamicResource LOCBackupOptionExtensionsData}" Margin="20,0,0,10"
+            <CheckBox Content="{DynamicResource LOCBackupOptionThemes}" Margin="20,0,0,10"
                       IsChecked="{Binding Settings.AutoBackupIncludeThemes}"/>
+            <CheckBox Content="{DynamicResource LOCBackupOptionExtensionsData}" Margin="20,0,0,10"
+                      IsChecked="{Binding Settings.AutoBackupIncludeExtensionsData}"/>
         </StackPanel>
 
         <Button Content="{DynamicResource LOCMenuHelpTitle}"

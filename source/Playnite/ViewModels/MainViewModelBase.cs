@@ -567,7 +567,7 @@ namespace Playnite.ViewModels
 
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateLibraryInstallSizes(token);
+                    UpdateGamesInstallSizes(token, Database.Games, LOC.ProgressScanningGamesInstallSize);
                 }
 
                 return addedGames;
@@ -586,33 +586,43 @@ namespace Playnite.ViewModels
                 var addedGames = ImportLibraryGames(plugin, token);
                 if (AppSettings.ScanLibInstallSizeOnLibUpdate)
                 {
-                    UpdateLibraryInstallSizes(token);
+                    UpdateGamesInstallSizes(token, Database.Games, LOC.ProgressScanningGamesInstallSize);
                 }
 
                 return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
 
-        public void UpdateLibraryInstallSizes(CancellationToken token)
+        public void UpdateGamesInstallSizes(CancellationToken token, IEnumerable<Game> games, string progressMessageLocKey)
         {
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+
             try
             {
                 ProgressActive = true;
                 ProgressValue = 0;
-                ProgressTotal = Database.Games.Count + 1;
+                ProgressTotal = games.Count() + 1;
 
                 Logger.Info($"Starting Library Install Size scan");
-                ProgressStatus = Resources.GetString(LOC.ProgressScanningGamesInstallSize);
+                ProgressStatus = Resources.GetString(progressMessageLocKey);
                 var errorStrings = new List<string>();
                 var errorsCount = 0;
                 using (Database.Games.BufferedUpdate())
                 {
-                    foreach (var game in Database.Games)
+                    foreach (var game in games)
                     {
                         if (token.IsCancellationRequested)
                         {
                             Logger.Info($"Library Install Size scan was cancelled");
-                            return;
+                            break;
+                        }
+
+                        if (Database.Games[game.Id] == null)
+                        {
+                            continue; // This can happen if a user deleted game after import before we got here
                         }
 
                         try
@@ -720,7 +730,13 @@ namespace Playnite.ViewModels
         {
             await UpdateLibraryData((token) =>
             {
-                return ImportEmulatedGames(config, token);
+                var addedGames = ImportEmulatedGames(config, token);
+                if (AppSettings.ScanLibInstallSizeOnLibUpdate)
+                {
+                    UpdateGamesInstallSizes(token, addedGames, LOC.ProgressScanningImportedGamesInstallSize);
+                }
+
+                return addedGames;
             }, AppSettings.DownloadMetadataOnImport);
         }
 
@@ -732,6 +748,11 @@ namespace Playnite.ViewModels
                 foreach (var scanConfig in Database.GameScanners.Where(a => a.InGlobalUpdate))
                 {
                     addedGames.AddRange(ImportEmulatedGames(scanConfig, token));
+                }
+
+                if (AppSettings.ScanLibInstallSizeOnLibUpdate)
+                {
+                    UpdateGamesInstallSizes(token, addedGames, LOC.ProgressScanningImportedGamesInstallSize);
                 }
 
                 return addedGames;
@@ -764,6 +785,7 @@ namespace Playnite.ViewModels
                         return;
                     }
 
+                    ProgressActive = true;
                     ProgressStatus = Resources.GetString(LOC.ProgressLibImportFinish);
                     Thread.Sleep(1000);
                     if (addedGames.Any() && downloadMetadata)
@@ -797,6 +819,12 @@ namespace Playnite.ViewModels
                                 {
                                     break;
                                 }
+
+                                if (Database.Games[game.Id] == null)
+                                {
+                                    continue; // This can happen if a user deleted game after import before we got here
+                                }
+
                                 string sortingName = c.Convert(game.Name);
                                 if (sortingName != game.Name)
                                 {
@@ -824,7 +852,7 @@ namespace Playnite.ViewModels
             await GlobalTaskHandler.CancelAndWaitAsync();
         }
 
-        public virtual void SelectGame(Guid id)
+        public virtual void SelectGame(Guid id, bool restoreView = false)
         {
         }
 
@@ -870,7 +898,10 @@ namespace Playnite.ViewModels
 
         public void RunStartupScript()
         {
-            RunAppScript(AppSettings.AppStartupScript, "startup");
+            if (!App.CmdLine.SafeStartup)
+            {
+                RunAppScript(AppSettings.AppStartupScript, "startup");
+            }
         }
 
         public void RunShutdowScript()
@@ -951,7 +982,8 @@ namespace Playnite.ViewModels
                     BackupFile = backupFile,
                     DataDir = PlaynitePaths.ConfigRootPath,
                     LibraryDir = GameDatabase.GetFullDbPath(AppSettings.DatabasePath),
-                    RestoreItems = selectedRestoreItems
+                    RestoreItems = selectedRestoreItems,
+                    RestoreLibrarySettingsPath = AppSettings.DatabasePath
                 };
 
                 FileSystem.WriteStringToFile(PlaynitePaths.RestoreBackupActionFile, Serialization.ToJson(options));

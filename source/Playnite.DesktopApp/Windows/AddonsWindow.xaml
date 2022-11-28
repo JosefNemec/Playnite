@@ -64,9 +64,9 @@
                 </TreeViewItem>
                 <Separator />
                 <TreeViewItem Header="{DynamicResource LOCExtensionsSettings}" IsExpanded="True">
-                    <TreeViewItem Header="{DynamicResource LOCLibraries}" ItemsSource="{Binding Extensions.LibraryPlugins}"
+                    <TreeViewItem Header="{DynamicResource LOCLibraries}" ItemsSource="{Binding LibraryPlugins}"
                                   DisplayMemberPath="Name" />
-                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" ItemsSource="{Binding Extensions.MetadataPlugins}"
+                    <TreeViewItem Header="{DynamicResource LOCMetadataProviders}" ItemsSource="{Binding MetadataPlugins}"
                                   DisplayMemberPath="Name" />
                     <TreeViewItem Header="{DynamicResource LOCExtensionGeneric}" ItemsSource="{Binding GenericPlugins}"
                                   DisplayMemberPath="Description.Name"

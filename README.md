@@ -42,7 +42,7 @@ Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach a diagnostics package, which can be created from inside the "About Playnite..." submenu.
 
-Biggest community around Playnite currently gathers on our [Discord server](https://discord.gg/hSFvmN6) and [Forums](https://playnite.link/forum). You can also follow [@AppPlaynite](https://twitter.com/AppPlaynite) for general updates.
+Biggest community around Playnite currently gathers on our [Discord server](https://discord.gg/hSFvmN6) and [Reddit](https://www.reddit.com/r/playnite/). You can also follow [@AppPlaynite](https://twitter.com/AppPlaynite) for general updates.
 
 Contributions
 ---------

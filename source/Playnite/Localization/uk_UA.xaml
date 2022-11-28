@@ -221,6 +221,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Імпортування емульованих ігор з {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Завантаження оновлень бібліотеки...</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Сканування розміру ігор у бібліотеці…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Сканування розміру імпортованих ігор…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Оновлення бібліотеки завершено</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Звільнення ресурсів...</sys:String>
     <!--Menu-->
@@ -468,6 +469,8 @@
 
 Ви можете спробувати повторно завантажити інтеграції з меню надбудов після завершення майстра першого запуску. </sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Завантаження інтеграції {0}… </sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Завантаження списку рекомендованих інтеграцій…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Не вдалося завантажити список рекомендованих інтеграцій. Ви можете спробувати повторно завантажити інтеграції пізніше через меню Надбудови.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Налаштування платформ та емуляторів</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Налаштування емуляторів</sys:String>
@@ -500,6 +503,7 @@
 Наразі вона використовується {1} грою(ами) та {2} емулятором(ами).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Довідка про налаштування</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Сортувати за</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Напрямок сортування</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Групування</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Зростанням</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Спаданням</sys:String>
@@ -660,6 +664,7 @@
     <sys:String x:Key="LOCUpdateAll">Оновити все</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Створено:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Версія:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Оновлено:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Модуль:</sys:String>
     <sys:String x:Key="LOCLibrary">Бібліотека</sys:String>
     <sys:String x:Key="LOCStatistics">Статистика</sys:String>
@@ -968,8 +973,8 @@
     <sys:String x:Key="LOCTopPanelMainButtonMove">Перемістити кнопку головного меню на бічну панель</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Панель провідника</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Вибір випадкових ігор</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Показує селектор випадкової гри</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Обирає випадкову гру із вигляду</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Вибір випадкової гри зі списку</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Вибрати випадкову гру з поточного списку</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Зберегти налаштування групування та сортування</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Показувати як швидкий фільтр у повноекранному режимі</sys:String>
     <sys:String x:Key="LOCInPast7Days">За минулі 7 днів</sys:String>
@@ -1209,5 +1214,16 @@ Playnite автоматично перезапуститься та почне �
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Рядок пошуку зображення значка</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Рядок пошуку зображення обкладинки</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Рядок пошуку фонового зображення</sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation">Отримання інформації про надбудову…</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">Немає доступних джерел метаданих</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Налаштування дії &quot;Грати&quot;</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Використовувати параметри сканера</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Вибирати профіль при запуску</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Вибирати емулятор при запуску</sys:String>
+    <sys:String x:Key="LOCAutomatic">Автоматично</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Завжди увімкнено</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Завжди вимкнено</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Підтримка спеціальних функцій (зчитування з екрана)</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Меню програми</sys:String>
+    <sys:String x:Key="LOCGameMenu">Меню гри</sys:String>
 </ResourceDictionary>

@@ -48,25 +48,15 @@ namespace Playnite.DesktopApp.ViewModels
         private List<PluginSettingsItem> selectedPlugins { get; } = new List<PluginSettingsItem>();
         private int selectedPluginIndex = 0;
         private ServicesClient backendClient;
+        ServicesClient.RecommendedAddons recommendedExtensions = new ServicesClient.RecommendedAddons();
 
         public bool ShowFinishButton
         {
             get => SelectedIndex == Pages.Finish;
         }
 
-        public List<RecommendedAddon> RecommendedAddons { get; } = new List<RecommendedAddon>
-        {
-            new RecommendedAddon("AmazonLibrary_Builtin", "Amazon / Twitch"),
-            new RecommendedAddon("BattlenetLibrary_Builtin", "Battle.net"),
-            new RecommendedAddon("EpicGamesLibrary_Builtin", "Epic Games Store"),
-            new RecommendedAddon("GogLibrary_Builtin", "GOG"),
-            new RecommendedAddon("HumbleLibrary_Builtin", "Humble"),
-            new RecommendedAddon("ItchioLibrary_Builtin", "itch.io"),
-            new RecommendedAddon("OriginLibrary_Builtin", "Origin"),
-            new RecommendedAddon("SteamLibrary_Builtin", "Steam"),
-            new RecommendedAddon("UplayLibrary_Builtin", "Ubisoft Connect"),
-            new RecommendedAddon("XboxLibrary_Builtin", "Xbox GamePass / MS Store"),
-        };
+        private List<RecommendedAddon> recommendeLibrariesList;
+        public List<RecommendedAddon> RecommendeLibrariesList { get => recommendeLibrariesList; set => SetValue(ref recommendeLibrariesList, value); }
 
         private PlayniteSettings settings = new PlayniteSettings();
         public PlayniteSettings Settings
@@ -199,84 +189,89 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void NavigateNext()
         {
+            if (SelectedIndex == Pages.Intro)
+            {
+                var listDownRes = dialogs.ActivateGlobalProgress((prg) =>
+                {
+                    recommendedExtensions = backendClient.GetDefaultExtensions();
+                }, new GlobalProgressOptions(LOC.DefaultAddonListDownload, false) { IsIndeterminate = true });
+
+                if (!recommendedExtensions.Libraries.HasItems())
+                {
+                    if (listDownRes.Error != null)
+                    {
+                        logger.Error(listDownRes.Error, "Failed to get list of default extensions.");
+                    }
+
+                    dialogs.ShowErrorMessage(LOC.DefaultAddonListDownloadError.GetLocalized() + $"\n\n{listDownRes.Error?.Message}", "");
+                    SelectedIndex = Pages.Finish;
+                    return;
+                }
+
+                RecommendeLibrariesList = recommendedExtensions.Libraries.Select(a => new RecommendedAddon(a.Value, a.Key)).ToList();
+                SelectedIndex++;
+                return;
+            }
+
             if (SelectedIndex == Pages.ProviderSelect)
             {
-                var selectedLibs = RecommendedAddons.Where(a => a.Selected == true).ToList();
-                selectedLibs.Add(new RecommendedAddon("IGDBMetadata_Builtin", "IGDB"));
-
-                if (selectedLibs.HasItems())
+                var selectedLibs = RecommendeLibrariesList.Where(a => a.Selected == true).ToList();
+                var allPassed = true;
+                dialogs.ActivateGlobalProgress((prg) =>
                 {
-                    var allPassed = true;
-                    dialogs.ActivateGlobalProgress((prg) =>
+                    prg.ProgressMaxValue = selectedLibs.Count + recommendedExtensions.Generic?.Count ?? 0;
+                    prg.CurrentProgressValue = 0;
+
+                    foreach (var lib in selectedLibs)
                     {
-                        prg.ProgressMaxValue = selectedLibs.Count;
-                        prg.CurrentProgressValue = 0;
-
-                        foreach (var lib in selectedLibs)
+                        prg.CurrentProgressValue++;
+                        prg.Text = resources.GetString(LOC.FirstDownloadingAddon).Format(lib.Name);
+                        if (!DownloadAndInstallAddon(lib.Item))
                         {
-                            prg.CurrentProgressValue++;
-                            prg.Text = resources.GetString(LOC.FirstDownloadingAddon).Format(lib.Name);
-
-                            try
-                            {
-                                var addon = backendClient.GetAddon(lib.Item);
-                                var man = addon.InstallerManifest;
-                                var package = man.GetLatestCompatiblePackage();
-                                if (package == null)
-                                {
-                                    logger.Error($"Can't install addon {lib.Item}, no compatible package found.");
-                                    continue;
-                                }
-
-                                var localPath = addon.GetTargetDownloadPath();
-                                FileSystem.DeleteFile(localPath);
-                                FileSystem.PrepareSaveFile(localPath);
-                                HttpDownloader.DownloadFile(package.PackageUrl, localPath);
-                                ExtensionInstaller.QueuePackageInstall(localPath);
-                            }
-                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                            {
-                                allPassed = false;
-                                logger.Error(e, $"Failed to firt time setup addon {lib.Item}");
-                            }
+                            allPassed = false;
                         }
-                    }, new GlobalProgressOptions("", false) { IsIndeterminate = false });
-
-                    if (!allPassed)
-                    {
-                        dialogs.ShowErrorMessage(LOC.FirstPluginDownloadError, "");
                     }
 
-                    ExtensionInstaller.InstallExtensionQueue();
-                    extensions.LoadPlugins(null, false, null);
-                    foreach (var lib in extensions.LibraryPlugins)
+                    foreach (var genericPlugin in recommendedExtensions.Generic ?? new Dictionary<string, string>())
                     {
-                        selectedPlugins.Add(new PluginSettingsItem()
+                        prg.CurrentProgressValue++;
+                        prg.Text = resources.GetString(LOC.FirstDownloadingAddon).Format(genericPlugin.Key);
+                        if (!DownloadAndInstallAddon(genericPlugin.Value))
                         {
-                            Name = lib.Name,
-                            View = lib.GetSettingsView(true),
-                            Settings = lib.GetSettings(true),
-                            Icon = lib.LibraryIcon
-                        });
+                            allPassed = false;
+                        }
                     }
+                }, new GlobalProgressOptions("", false) { IsIndeterminate = false });
 
-                    if (selectedPlugins.HasItems())
-                    {
-                        SelectedIndex++;
-                        SetPluginConfiguration(selectedPlugins[0]);
-                    }
-                    else
-                    {
-                        SelectedIndex = Pages.Finish;
-                    }
+                if (!allPassed)
+                {
+                    dialogs.ShowErrorMessage(LOC.FirstPluginDownloadError, "");
+                }
 
-                    return;
+                ExtensionInstaller.InstallExtensionQueue();
+                extensions.LoadPlugins(null, false, null);
+                foreach (var lib in extensions.LibraryPlugins)
+                {
+                    selectedPlugins.Add(new PluginSettingsItem
+                    {
+                        Name = lib.Name,
+                        View = lib.GetSettingsView(true),
+                        Settings = lib.GetSettings(true),
+                        Icon = lib.LibraryIcon
+                    });
+                }
+
+                if (selectedPlugins.HasItems())
+                {
+                    SelectedIndex++;
+                    SetPluginConfiguration(selectedPlugins[0]);
                 }
                 else
                 {
                     SelectedIndex = Pages.Finish;
-                    return;
                 }
+
+                return;
             }
 
             if (SelectedIndex == Pages.ProviderConfig && SelectedLibraryPlugin != null)
@@ -300,6 +295,34 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             SelectedIndex++;
+        }
+
+        private bool DownloadAndInstallAddon(string addonId)
+        {
+            try
+            {
+                var addon = backendClient.GetAddon(addonId);
+                var man = addon.InstallerManifest;
+                var package = man.GetLatestCompatiblePackage();
+                if (package == null)
+                {
+                    logger.Error($"Can't install addon {addonId}, no compatible package found.");
+                    return false;
+                }
+
+                var localPath = addon.GetTargetDownloadPath();
+                FileSystem.DeleteFile(localPath);
+                FileSystem.PrepareSaveFile(localPath);
+                HttpDownloader.DownloadFile(package.PackageUrl, localPath);
+                ExtensionInstaller.QueuePackageInstall(localPath);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, $"Failed to firt time setup addon {addonId}");
+                return false;
+            }
+
+            return true;
         }
     }
 }

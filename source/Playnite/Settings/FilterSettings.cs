@@ -1182,6 +1182,42 @@ namespace Playnite
             };
         }
 
+        public static FilterSettings FromSdkFilterSettings(SdkModels.FilterPresetSettings settings)
+        {
+            return new FilterSettings
+            {
+                IsInstalled = settings.IsInstalled,
+                IsUnInstalled = settings.IsUnInstalled,
+                Hidden = settings.Hidden,
+                Favorite = settings.Favorite,
+                Name = settings.Name,
+                Version = settings.Version,
+                ReleaseYear = StringFilterItemProperties.FromSdkModel(settings.ReleaseYear),
+                Genre = IdItemFilterItemProperties.FromSdkModel(settings.Genre),
+                Platform = IdItemFilterItemProperties.FromSdkModel(settings.Platform),
+                Publisher = IdItemFilterItemProperties.FromSdkModel(settings.Publisher),
+                Developer = IdItemFilterItemProperties.FromSdkModel(settings.Developer),
+                Category = IdItemFilterItemProperties.FromSdkModel(settings.Category),
+                Tag = IdItemFilterItemProperties.FromSdkModel(settings.Tag),
+                Series = IdItemFilterItemProperties.FromSdkModel(settings.Series),
+                Region = IdItemFilterItemProperties.FromSdkModel(settings.Region),
+                Source = IdItemFilterItemProperties.FromSdkModel(settings.Source),
+                AgeRating = IdItemFilterItemProperties.FromSdkModel(settings.AgeRating),
+                Library = IdItemFilterItemProperties.FromSdkModel(settings.Library),
+                CompletionStatuses = IdItemFilterItemProperties.FromSdkModel(settings.CompletionStatuses),
+                Feature = IdItemFilterItemProperties.FromSdkModel(settings.Feature),
+                UserScore = EnumFilterItemProperties.FromSdkModel(settings.UserScore),
+                CriticScore = EnumFilterItemProperties.FromSdkModel(settings.CriticScore),
+                CommunityScore = EnumFilterItemProperties.FromSdkModel(settings.CommunityScore),
+                LastActivity = EnumFilterItemProperties.FromSdkModel(settings.LastActivity),
+                RecentActivity = EnumFilterItemProperties.FromSdkModel(settings.RecentActivity),
+                Added = EnumFilterItemProperties.FromSdkModel(settings.Added),
+                Modified = EnumFilterItemProperties.FromSdkModel(settings.Modified),
+                PlayTime = EnumFilterItemProperties.FromSdkModel(settings.PlayTime),
+                InstallSize = EnumFilterItemProperties.FromSdkModel(settings.InstallSize)
+            };
+        }
+
         public void ApplyFilter(SdkModels.FilterPresetSettings settings)
         {
             var filterChanges = new List<string>();
@@ -1363,195 +1399,6 @@ namespace Playnite
             if (Feature?.Equals(settings.Feature) != true)
             {
                 Feature = IdItemFilterItemProperties.FromSdkModel(settings.Feature);
-                filterChanges.Add(nameof(Feature));
-            }
-
-            SuppressFilterChanges = false;
-            OnFilterChanged(filterChanges);
-        }
-
-        public void ApplyFilter(FilterSettings settings)
-        {
-            var filterChanges = new List<string>();
-            SuppressFilterChanges = true;
-
-            if (UseAndFilteringStyle != settings.UseAndFilteringStyle)
-            {
-                UseAndFilteringStyle = settings.UseAndFilteringStyle;
-                filterChanges.Add(nameof(UseAndFilteringStyle));
-            }
-
-            if (Name != settings.Name)
-            {
-                Name = settings.Name;
-                filterChanges.Add(nameof(Name));
-            }
-
-            if (Genre?.Equals(settings.Genre) != true)
-            {
-                Genre = settings.Genre;
-                filterChanges.Add(nameof(Genre));
-            }
-
-            if (Platform?.Equals(settings.Platform) != true)
-            {
-                Platform = settings.Platform;
-                filterChanges.Add(nameof(Platform));
-            }
-
-            if (ReleaseYear?.Equals(settings.ReleaseYear) != true)
-            {
-                ReleaseYear = settings.ReleaseYear;
-                filterChanges.Add(nameof(ReleaseYear));
-            }
-
-            if (Version != settings.Version)
-            {
-                Version = settings.Version;
-                filterChanges.Add(nameof(Version));
-            }
-
-            if (Publisher?.Equals(settings.Publisher) != true)
-            {
-                Publisher = settings.Publisher;
-                filterChanges.Add(nameof(Publisher));
-            }
-
-            if (Developer?.Equals(settings.Developer) != true)
-            {
-                Developer = settings.Developer;
-                filterChanges.Add(nameof(Developer));
-            }
-
-            if (Category?.Equals(settings.Category) != true)
-            {
-                Category = settings.Category;
-                filterChanges.Add(nameof(Category));
-            }
-
-            if (Tag?.Equals(settings.Tag) != true)
-            {
-                Tag = settings.Tag;
-                filterChanges.Add(nameof(Tag));
-            }
-
-            if (IsInstalled != settings.IsInstalled)
-            {
-                IsInstalled = settings.IsInstalled;
-                filterChanges.Add(nameof(IsInstalled));
-            }
-
-            if (IsUnInstalled != settings.IsUnInstalled)
-            {
-                IsUnInstalled = settings.IsUnInstalled;
-                filterChanges.Add(nameof(IsUnInstalled));
-            }
-
-            if (Hidden != settings.Hidden)
-            {
-                Hidden = settings.Hidden;
-                filterChanges.Add(nameof(Hidden));
-            }
-
-            if (Favorite != settings.Favorite)
-            {
-                Favorite = settings.Favorite;
-                filterChanges.Add(nameof(Favorite));
-            }
-
-            if (Series?.Equals(settings.Series) != true)
-            {
-                Series = settings.Series;
-                filterChanges.Add(nameof(Series));
-            }
-
-            if (Region?.Equals(settings.Region) != true)
-            {
-                Region = settings.Region;
-                filterChanges.Add(nameof(Region));
-            }
-
-            if (Source?.Equals(settings.Source) != true)
-            {
-                Source = settings.Source;
-                filterChanges.Add(nameof(Source));
-            }
-
-            if (AgeRating?.Equals(settings.AgeRating) != true)
-            {
-                AgeRating = settings.AgeRating;
-                filterChanges.Add(nameof(AgeRating));
-            }
-
-            if (Library?.Equals(settings.Library) != true)
-            {
-                Library = settings.Library;
-                filterChanges.Add(nameof(Library));
-            }
-
-            if (CompletionStatuses?.Equals(settings.CompletionStatuses) != true)
-            {
-                CompletionStatuses = settings.CompletionStatuses;
-                filterChanges.Add(nameof(CompletionStatuses));
-            }
-
-            if (UserScore?.Equals(settings.UserScore) != true)
-            {
-                UserScore = settings.UserScore;
-                filterChanges.Add(nameof(UserScore));
-            }
-
-            if (CriticScore?.Equals(settings.CriticScore) != true)
-            {
-                CriticScore = settings.CriticScore;
-                filterChanges.Add(nameof(CriticScore));
-            }
-
-            if (CommunityScore?.Equals(settings.CommunityScore) != true)
-            {
-                CommunityScore = settings.CommunityScore;
-                filterChanges.Add(nameof(CommunityScore));
-            }
-
-            if (LastActivity?.Equals(settings.LastActivity) != true)
-            {
-                LastActivity = settings.LastActivity;
-                filterChanges.Add(nameof(LastActivity));
-            }
-
-            if (RecentActivity?.Equals(settings.RecentActivity) != true)
-            {
-                RecentActivity = settings.RecentActivity;
-                filterChanges.Add(nameof(RecentActivity));
-            }
-
-            if (Added?.Equals(settings.Added) != true)
-            {
-                Added = settings.Added;
-                filterChanges.Add(nameof(Added));
-            }
-
-            if (Modified?.Equals(settings.Modified) != true)
-            {
-                Modified = settings.Modified;
-                filterChanges.Add(nameof(Modified));
-            }
-
-            if (PlayTime?.Equals(settings.PlayTime) != true)
-            {
-                PlayTime = settings.PlayTime;
-                filterChanges.Add(nameof(PlayTime));
-            }
-
-            if (InstallSize?.Equals(settings.InstallSize) != true)
-            {
-                InstallSize = settings.InstallSize;
-                filterChanges.Add(nameof(InstallSize));
-            }
-
-            if (Feature?.Equals(settings.Feature) != true)
-            {
-                Feature = settings.Feature;
                 filterChanges.Add(nameof(Feature));
             }
 

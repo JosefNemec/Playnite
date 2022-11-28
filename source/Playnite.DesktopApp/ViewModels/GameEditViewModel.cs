@@ -42,10 +42,15 @@ namespace Playnite.DesktopApp.ViewModels
 
             public string Name { get; set; }
 
-            public RelayCommand<object> DownloadCommand
+            public RelayCommand DownloadCommand
             {
-                get => new RelayCommand<object>((a) =>
+                get => new RelayCommand(() =>
                 {
+                    if (Downloader == null)
+                    {
+                        return;
+                    }
+
                     if (Downloader is MetadataPlugin plugin)
                     {
                         editModel.DownloadPluginData(plugin);
@@ -427,6 +432,14 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     logger.Error(e, $"Failed to get library metadata downloader {LibraryPlugin?.GetType()}");
                 }
+
+                if (!MetadataDownloadOptions.HasItems())
+                {
+                    MetadataDownloadOptions.Add(new MetadataDownloadOption(this, dialogs, resources)
+                    {
+                        Name = LOC.NoMetadataSource.GetLocalized()
+                    });
+                }
             }
         }
 
@@ -684,12 +697,12 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UseInstallSizeChanges)
                 {
-                    game.InstallSize = EditingGame.InstallSize;
-                }
+                    if (game.InstallSize != EditingGame.InstallSize)
+                    {
+                        game.LastSizeScanDate = DateTime.Now;
+                    }
 
-                if (updateLastScanDate)
-                {
-                    game.LastSizeScanDate = EditingGame.LastSizeScanDate;
+                    game.InstallSize = EditingGame.InstallSize;
                 }
 
                 if (UseSeriesChanges)

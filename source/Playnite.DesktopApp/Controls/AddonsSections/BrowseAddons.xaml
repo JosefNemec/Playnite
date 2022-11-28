@@ -85,12 +85,12 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="Version:" />
+                        <TextBlock Text="{DynamicResource LOCExtensionVersion}" />
                         <TextBlock Text="{Binding LatestPackage.Version}" FontWeight="Bold" Margin="5,0,0,0" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="Updated:" />
+                        <TextBlock Text="{DynamicResource LOCExtensionUpdated}" />
                         <TextBlock Text="{Binding LatestPackage.ReleaseDate, Converter={StaticResource NullableDateToStringConverter}}" FontWeight="Bold" Margin="5,0,0,0" />
                     </StackPanel>
 

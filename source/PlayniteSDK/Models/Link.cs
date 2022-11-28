@@ -78,5 +78,18 @@ namespace Playnite.SDK.Models
 
             return true;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public Link GetCopy()
+        {
+            return new Link
+            {
+                Name = Name,
+                Url = Url
+            };
+        }
     }
 }

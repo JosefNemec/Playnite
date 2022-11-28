@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Playnite.SDK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -88,6 +89,21 @@ namespace Playnite
             }
 
             return date.ToString(options.Format ?? Common.Constants.DateUiFormat);
+        }
+
+        public static string ToDisplayString(this ReleaseDate date, ReleaseDateFormattingOptions options = null)
+        {
+            if (date.Month == null && date.Day == null)
+            {
+                return date.Year.ToString();
+            }
+
+            if (date.Month != null &&  date.Day == null)
+            {
+                return date.Date.ToString(options.PartialFormat ?? Common.Constants.DefaultPartialReleaseDateTimeFormat);
+            }
+
+            return date.Date.ToDisplayString(options);
         }
     }
 }

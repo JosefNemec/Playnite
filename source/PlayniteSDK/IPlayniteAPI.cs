@@ -82,6 +82,15 @@ namespace Playnite.SDK
         string ExpandGameVariables(Game game, string inputString);
 
         /// <summary>
+        /// Expands dynamic game variables in specified string.
+        /// </summary>
+        /// <param name="game">Game to use dynamic variables from.</param>
+        /// <param name="inputString">String containing dynamic variables.</param>
+        /// <param name="emulatorDir">String to be used to expand {EmulatorDir} variable if present.</param>
+        /// <returns>String with replaces variables.</returns>
+        string ExpandGameVariables(Game game, string inputString, string emulatorDir);
+
+        /// <summary>
         /// Expands dynamic game variables in specified game action.
         /// </summary>
         /// <param name="game">Game to use dynamic variables from.</param>

@@ -51,6 +51,16 @@ namespace Playnite
         Backup = 25
     }
 
+    public enum AccessibilityInterfaceOptions
+    {
+        [Description(LOC.Automatic)]
+        Auto,
+        [Description(LOC.AlwaysOn)]
+        AlwaysOn,
+        [Description(LOC.AlwaysOff)]
+        AlwaysOff
+    }
+
     public enum GameSearchItemAction
     {
         [Description(LOC.GameSearchItemActionPlay)]
@@ -204,6 +214,20 @@ namespace Playnite
         {
             Format = format;
             PastWeekRelativeFormat = pastWeekRelativeFormat;
+        }
+    }
+
+    public class ReleaseDateFormattingOptions : DateFormattingOptions
+    {
+        private string partialFormat = Constants.DefaultPartialReleaseDateTimeFormat;
+        public string PartialFormat { get => partialFormat; set => SetValue(ref partialFormat, value); }
+
+        public ReleaseDateFormattingOptions() : base()
+        {
+        }
+
+        public ReleaseDateFormattingOptions(string format, bool pastWeekRelativeFormat) : base(format, pastWeekRelativeFormat)
+        {
         }
     }
 
@@ -1988,9 +2012,9 @@ namespace Playnite
             }
         }
 
-        private DateFormattingOptions dateTimeFormatReleaseDate = new DateFormattingOptions(Constants.DefaultDateTimeFormat, false);
+        private ReleaseDateFormattingOptions dateTimeFormatReleaseDate = new ReleaseDateFormattingOptions(Constants.DefaultDateTimeFormat, false);
         [RequiresRestart]
-        public DateFormattingOptions DateTimeFormatReleaseDate
+        public ReleaseDateFormattingOptions DateTimeFormatReleaseDate
         {
             get => dateTimeFormatReleaseDate;
             set
@@ -2145,12 +2169,17 @@ namespace Playnite
         private string webImageSarchBackgroundTerm = "{Name} wallpaper";
         public string WebImageSarchBackgroundTerm { get => webImageSarchBackgroundTerm; set => SetValue(ref webImageSarchBackgroundTerm, value); }
 
+        // See OnCreateAutomationPeer comment in WindowBase.cs for why this exists.
+        private AccessibilityInterfaceOptions accessibilityInterface = AccessibilityInterfaceOptions.Auto;
+        [RequiresRestart]
+        public AccessibilityInterfaceOptions AccessibilityInterface { get => accessibilityInterface; set => SetValue(ref accessibilityInterface, value); }
+
         [JsonIgnore]
         public static bool IsPortable
         {
             get
             {
-                return !File.Exists(PlaynitePaths.UninstallerPath);
+                return PlaynitePaths.IsPortable;
             }
         }
 
@@ -2563,7 +2592,7 @@ namespace Playnite
             switch (CheckForProgramUpdates)
             {
                 case UpdateCheckFrequency.OnceADay:
-                    return (DateTimes.Now - LastProgramUpdateCheck).TotalHours > 23;
+                    return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2577,7 +2606,7 @@ namespace Playnite
             switch (CheckForAddonUpdates)
             {
                 case UpdateCheckFrequency.OnceADay:
-                    return (DateTimes.Now - LastAddonUpdateCheck).TotalHours > 23;
+                    return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2591,7 +2620,7 @@ namespace Playnite
             switch (CheckForProgramUpdates)
             {
                 case UpdateCheckFrequency.OnceADay:
-                    return (DateTimes.Now - LastProgramUpdateCheck).TotalHours > 23;
+                    return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2605,7 +2634,7 @@ namespace Playnite
             switch (CheckForAddonUpdates)
             {
                 case UpdateCheckFrequency.OnceADay:
-                    return (DateTimes.Now - LastAddonUpdateCheck).TotalHours > 23;
+                    return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2619,7 +2648,7 @@ namespace Playnite
             switch (CheckForLibraryUpdates)
             {
                 case LibraryUpdateCheckFrequency.OnceADay:
-                    return (DateTimes.Now - LastLibraryUpdateCheck).TotalHours > 23;
+                    return DateTimes.Now.Date != LastLibraryUpdateCheck.Date;
                 case LibraryUpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastLibraryUpdateCheck).TotalDays > 6;
                 case LibraryUpdateCheckFrequency.Manually:
@@ -2635,7 +2664,7 @@ namespace Playnite
             switch (CheckForEmulatedLibraryUpdates)
             {
                 case LibraryUpdateCheckFrequency.OnceADay:
-                    return (DateTimes.Now - LastEmuLibraryUpdateCheck).TotalHours > 23;
+                    return DateTimes.Now.Date != LastEmuLibraryUpdateCheck.Date;
                 case LibraryUpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastEmuLibraryUpdateCheck).TotalDays > 6;
                 case LibraryUpdateCheckFrequency.Manually:
@@ -2656,7 +2685,7 @@ namespace Playnite
             switch (AutoBackupFrequency)
             {
                 case AutoBackupFrequency.OnceADay:
-                    return (DateTimes.Now - LastAutoBackup).TotalHours > 23;
+                    return DateTimes.Now.Date != LastAutoBackup.Date;
                 case AutoBackupFrequency.OnceAWeek:
                     return (DateTimes.Now - LastAutoBackup).TotalDays > 6;
                 default:

@@ -53,6 +53,8 @@
             <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" CanUserResizeRows="False"
                       GridLinesVisibility="None" IsReadOnly="True" RowHeaderWidth="0"
                       SelectionMode="Single" Margin="5"
+                      EnableRowVirtualization="True" VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                      ScrollViewer.CanContentScroll="True"
                       BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"                      
                       ItemsSource="{Binding Source={StaticResource EmulatorSources}}" DockPanel.Dock="Bottom">
                 <DataGrid.RowStyle>

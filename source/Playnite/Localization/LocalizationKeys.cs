@@ -794,6 +794,10 @@ namespace Playnite
         /// </summary>
         public const string ProgressScanningGamesInstallSize = "LOCProgressScanningGamesInstallSize";
         /// <summary>
+        /// Scanning size of imported games…
+        /// </summary>
+        public const string ProgressScanningImportedGamesInstallSize = "LOCProgressScanningImportedGamesInstallSize";
+        /// <summary>
         /// Library update finished
         /// </summary>
         public const string ProgressLibImportFinish = "LOCProgressLibImportFinish";
@@ -1686,6 +1690,14 @@ namespace Playnite
         /// </summary>
         public const string FirstDownloadingAddon = "LOCFirstDownloadingAddon";
         /// <summary>
+        /// Downloading list of recommended integrations…
+        /// </summary>
+        public const string DefaultAddonListDownload = "LOCDefaultAddonListDownload";
+        /// <summary>
+        /// Failed to download list of recommended integrations. You can try and re-download integrations later via the Addons menu.
+        /// </summary>
+        public const string DefaultAddonListDownloadError = "LOCDefaultAddonListDownloadError";
+        /// <summary>
         /// Configure Platforms and Emulators
         /// </summary>
         public const string PlatformsWindowTitle = "LOCPlatformsWindowTitle";
@@ -1801,6 +1813,10 @@ namespace Playnite
         /// Sort By
         /// </summary>
         public const string MenuSortByTitle = "LOCMenuSortByTitle";
+        /// <summary>
+        /// Sort Direction
+        /// </summary>
+        public const string MenuSortByDirection = "LOCMenuSortByDirection";
         /// <summary>
         /// Group By
         /// </summary>
@@ -2402,6 +2418,10 @@ namespace Playnite
         /// </summary>
         public const string ExtensionVersion = "LOCExtensionVersion";
         /// <summary>
+        /// Updated:
+        /// </summary>
+        public const string ExtensionUpdated = "LOCExtensionUpdated";
+        /// <summary>
         /// Module:
         /// </summary>
         public const string ExtensionModule = "LOCExtensionModule";
@@ -2902,7 +2922,7 @@ namespace Playnite
         /// </summary>
         public const string InstallSizeCalculate = "LOCInstallSizeCalculate";
         /// <summary>
-        /// Automatically calculates the install size using the Roms if the game has any or the installation directory if it has been set
+        /// Automatically calculates the install size using the ROMs if the game has any or the installation directory if it has been set
         /// </summary>
         public const string InstallSizeCalculateEditButtonTooltip = "LOCInstallSizeCalculateEditButtonTooltip";
         /// <summary>
@@ -4154,7 +4174,7 @@ namespace Playnite
         /// </summary>
         public const string EmuOverridePlatform = "LOCEmuOverridePlatform";
         /// <summary>
-        /// When set scanner will assign this platform to all games, overwriting any automatically detected platforms.
+        /// When set, scanner will assign this platform to all games, overwriting any automatically detected platforms.
         /// </summary>
         public const string EmuOverridePlatformTooltip = "LOCEmuOverridePlatformTooltip";
         /// <summary>
@@ -4285,5 +4305,53 @@ namespace Playnite
         /// Background image search string
         /// </summary>
         public const string SettingsWebImageSearchBackground = "LOCSettingsWebImageSearchBackground";
+        /// <summary>
+        /// Getting add-on information…
+        /// </summary>
+        public const string GettingsAddonInformation = "LOCGettingsAddonInformation";
+        /// <summary>
+        /// No metadata source is available
+        /// </summary>
+        public const string NoMetadataSource = "LOCNoMetadataSource";
+        /// <summary>
+        /// Play action settings
+        /// </summary>
+        public const string ScannerConfigPlayActionSettings = "LOCScannerConfigPlayActionSettings";
+        /// <summary>
+        /// Use scanner settings
+        /// </summary>
+        public const string ScannerConfigPlayActionSettingsScanner = "LOCScannerConfigPlayActionSettingsScanner";
+        /// <summary>
+        /// Select profile on startup
+        /// </summary>
+        public const string ScannerConfigPlayActionSettingsSelectProfile = "LOCScannerConfigPlayActionSettingsSelectProfile";
+        /// <summary>
+        /// Select emulator on startup
+        /// </summary>
+        public const string ScannerConfigPlayActionSettingsSelectEmulator = "LOCScannerConfigPlayActionSettingsSelectEmulator";
+        /// <summary>
+        /// Automatic
+        /// </summary>
+        public const string Automatic = "LOCAutomatic";
+        /// <summary>
+        /// Always on
+        /// </summary>
+        public const string AlwaysOn = "LOCAlwaysOn";
+        /// <summary>
+        /// Always off
+        /// </summary>
+        public const string AlwaysOff = "LOCAlwaysOff";
+        /// <summary>
+        /// Accessibility (screen reader) support
+        /// </summary>
+        public const string SettingsAccessibilityInterface = "LOCSettingsAccessibilityInterface";
+        /// <summary>
+        /// Application menu
+        /// </summary>
+        public const string ApplicationMenu = "LOCApplicationMenu";
+        /// <summary>
+        /// Game menu
+        /// </summary>
+        public const string GameMenu = "LOCGameMenu";
     }
 }

@@ -13,7 +13,7 @@ If you need to reference theme files based on game property, use `ThemeFileBindi
 
 For example to bind to an image based on game's platform name:
 ```xml 
-<Image Source="{ThemeFileBinding Game.Platform.Name, PathFormat='Platforms/{0}.jpg'}" />
+<Image Source="{ThemeFileBinding Game.Platforms[0].Name, PathFormat='Platforms/{0}.jpg'}" />
 ```
 
 Adding video to a theme

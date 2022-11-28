@@ -81,7 +81,7 @@ namespace Playnite.DesktopApp
         }
 
         public DesktopCollectionView(
-            IGameDatabase database,
+            IGameDatabaseMain database,
             PlayniteSettings settings,
             ExtensionFactory extensions) : base(database, extensions, settings.FilterSettings)
         {

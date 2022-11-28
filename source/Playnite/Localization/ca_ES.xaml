@@ -222,6 +222,7 @@ Si seleccioneu l'opció &quot;Afegeix a la llista d'exclusions&quot;, s'evitarà
     <sys:String x:Key="LOCProgressImportinEmulatedGames">S'estan important jocs emulats de {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">S'estan baixant les actualitzacions de la biblioteca…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">S'ha acabat l’actualització de la biblioteca</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">S'estan alliberant els recursos…</sys:String>
     <!--Menu-->
@@ -465,6 +466,8 @@ També pots afegir més jocs seleccionant el menú del logo Playnite</sys:String
 
 Pots provar de tornar a descarregar les integracions des del menú de complements un cop finalitzi l'assistent de la primera execució.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">S'està baixant la integració de {0}...</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configura Plataformes i Emuladors</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Configurar emuladors</sys:String>
@@ -497,6 +500,7 @@ Actualment està sent utilitzat per {1} jocs.</sys:String>
 Actualment està sent utilitzat per {1} jocs i {2} emuladors.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Ajuda de configuració</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Ordenar per</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Agrupa per</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendent</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendent</sys:String>
@@ -655,6 +659,7 @@ Si us plau, connecta el següent ID al vostre informe d'error:</sys:String>
     <sys:String x:Key="LOCUpdateAll">Actualitzar tot</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Creat per:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versió:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Mòdul:</sys:String>
     <sys:String x:Key="LOCLibrary">Biblioteca</sys:String>
     <sys:String x:Key="LOCStatistics">Estadístiques</sys:String>
@@ -1155,5 +1160,16 @@ Imatges de fons: {2} megapíxels</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

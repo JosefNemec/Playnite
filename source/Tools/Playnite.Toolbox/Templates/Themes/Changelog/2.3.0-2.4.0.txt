@@ -1,0 +1,4 @@
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/CustomControls/GameMenu.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/SearchView.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/GameDetails.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/GameStatus.xaml

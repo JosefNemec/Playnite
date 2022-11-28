@@ -15,19 +15,19 @@ namespace Playnite.Tests.Models
     [TestFixture]
     public class CopyDiffToTests
     {
-        public List<T> GenerateList<T>(int size, Random random, Func<T> generator = null)
+        public List<T> GenerateList<T>(int size, Random random, bool boolState, Func<T> generator = null)
         {
             var items = new List<T>(size);
-            Enumerable.Range(1, random.Next(1, size)).ForEach(a => items.Add(generator == null ? GenerateObject<T>(random) : generator()));
+            Enumerable.Range(1, random.Next(1, size)).ForEach(a => items.Add(generator == null ? GenerateObject<T>(random, boolState) : generator()));
             return items;
         }
 
-        public ObservableCollection<T> GenerateObservableList<T>(int size, Random random, Func<T> generator = null)
+        public ObservableCollection<T> GenerateObservableList<T>(int size, Random random, bool boolState, Func<T> generator = null)
         {
-            return GenerateList<T>(size, random, generator).ToObservable();
+            return GenerateList<T>(size, random, boolState, generator).ToObservable();
         }
 
-        public T GenerateObject<T>(Random random)
+        public T GenerateObject<T>(Random random, bool boolState)
         {
             var obj = typeof(T).CrateInstance<T>();
             foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(prop => prop.GetCustomAttribute(typeof(Playnite.SDK.Data.DontSerializeAttribute)) == null))
@@ -38,7 +38,7 @@ namespace Playnite.Tests.Models
                 }
                 else if (prop.PropertyType == typeof(List<string>))
                 {
-                    prop.SetValue(obj, GenerateList<string>(5, random, () => PlayniteTests.GetRandomString(random.Next(10, 100))));
+                    prop.SetValue(obj, GenerateList<string>(5, random, boolState, () => PlayniteTests.GetRandomString(random.Next(10, 100))));
                 }
                 else if (prop.PropertyType == typeof(Guid))
                 {
@@ -46,11 +46,11 @@ namespace Playnite.Tests.Models
                 }
                 else if (prop.PropertyType == typeof(List<Guid>))
                 {
-                    prop.SetValue(obj, GenerateList<Guid>(5, random, () => Guid.NewGuid()));
+                    prop.SetValue(obj, GenerateList<Guid>(5, random, boolState, () => Guid.NewGuid()));
                 }
                 else if (prop.PropertyType == typeof(bool))
                 {
-                    prop.SetValue(obj, random.NextDouble() >= 0.5 ? true : false);
+                    prop.SetValue(obj, boolState);
                 }
                 else if (prop.PropertyType == typeof(DateTime?))
                 {
@@ -70,7 +70,7 @@ namespace Playnite.Tests.Models
                 }
                 else if (prop.PropertyType == typeof(List<int>))
                 {
-                    prop.SetValue(obj, GenerateList<int>(5, random, () => random.Next(0, 100)));
+                    prop.SetValue(obj, GenerateList<int>(5, random, boolState, () => random.Next(0, 100)));
                 }
                 else if (prop.PropertyType.IsEnum)
                 {
@@ -85,13 +85,13 @@ namespace Playnite.Tests.Models
                 else if (prop.PropertyType.FullName.StartsWith("Playnite.SDK.Models"))
                 {
                     var genMethod = typeof(CopyDiffToTests).GetMethod(nameof(GenerateObject)).MakeGenericMethod(prop.PropertyType);
-                    prop.SetValue(obj, genMethod.Invoke(this, new object[] { random }));
+                    prop.SetValue(obj, genMethod.Invoke(this, new object[] { random, boolState }));
                 }
                 else if (prop.PropertyType.FullName.Contains("ObservableCollection`1[[Playnite.SDK.Models"))
                 {
                     var baseType = prop.PropertyType.BaseType.GetGenericArguments()[0];
                     var genMethod = typeof(CopyDiffToTests).GetMethod(nameof(GenerateObservableList)).MakeGenericMethod(baseType);
-                    prop.SetValue(obj, genMethod.Invoke(this, new object[] { 5, random, null }));
+                    prop.SetValue(obj, genMethod.Invoke(this, new object[] { 5, random, boolState, null }));
                 }
                 else
                 {
@@ -106,8 +106,8 @@ namespace Playnite.Tests.Models
         public void GameCopyDiffToTest()
         {
             var random = new Random();
-            var generated = GenerateObject<Game>(random);
-            var generated2 = GenerateObject<Game>(random);
+            var generated = GenerateObject<Game>(random, false);
+            var generated2 = GenerateObject<Game>(random, true);
             generated2.Id = generated.Id;
             var empty = new Game() { Id = generated.Id };
             generated.CopyDiffTo(empty);
@@ -129,8 +129,8 @@ namespace Playnite.Tests.Models
         public void CopyDiffToTest<T>() where T : DatabaseObject
         {
             var random = new Random();
-            var generated = GenerateObject<T>(random);
-            var generated2 = GenerateObject<T>(random);
+            var generated = GenerateObject<T>(random, false);
+            var generated2 = GenerateObject<T>(random, true);
             generated2.Id = generated.Id;
             var empty = typeof(T).CrateInstance<T>();
             empty.Id = generated.Id;
@@ -160,6 +160,27 @@ namespace Playnite.Tests.Models
             CopyDiffToTest<GameSource>();
             CopyDiffToTest<Tag>();
             CopyDiffToTest<AppSoftware>();
+        }
+
+        [Test]
+        public void GetCopyTest()
+        {
+            var random = new Random();
+
+            var game = GenerateObject<Game>(random, true);
+            Assert.AreEqual(Serialization.ToJson(game), Serialization.ToJson(game.GetCopy()));
+
+            var gameAction = GenerateObject<GameAction>(random, true);
+            Assert.AreEqual(Serialization.ToJson(gameAction), Serialization.ToJson(gameAction.GetCopy()));
+
+            var cusProfile = GenerateObject<CustomEmulatorProfile>(random, true);
+            Assert.AreEqual(Serialization.ToJson(cusProfile), Serialization.ToJson(cusProfile.GetCopy()));
+
+            var buiProfile = GenerateObject<BuiltInEmulatorProfile>(random, true);
+            Assert.AreEqual(Serialization.ToJson(buiProfile), Serialization.ToJson(buiProfile.GetCopy()));
+
+            var emulator = GenerateObject<Emulator>(random, true);
+            Assert.AreEqual(Serialization.ToJson(emulator), Serialization.ToJson(emulator.GetCopy()));
         }
     }
 }

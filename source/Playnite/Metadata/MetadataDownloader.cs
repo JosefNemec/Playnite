@@ -551,7 +551,10 @@ namespace Playnite.Metadata
                             if (!settings.SkipExistingValues || (settings.SkipExistingValues && game.InstallSize == null))
                             {
                                 gameData = ProcessField(game, settings.InstallSize, MetadataField.InstallSize, (a) => a.InstallSize, existingStoreData, existingPluginData, cancelToken);
-                                game.InstallSize = gameData?.InstallSize == null ? game.InstallSize : gameData.InstallSize;
+                                if (gameData?.InstallSize != null)
+                                {
+                                    game.InstallSize = gameData.InstallSize;
+                                }
                             }
                         }
 
@@ -574,7 +577,9 @@ namespace Playnite.Metadata
                     {
                         foreach (var plugin in existingPluginData.Values)
                         {
-                            plugin.Dispose();
+                            // This will be null in case a plugin provider says it can provide metadata for a field,
+                            // but then actually doesn't return any metadata provider implementation.
+                            plugin?.Dispose();
                         }
                     }
                 }

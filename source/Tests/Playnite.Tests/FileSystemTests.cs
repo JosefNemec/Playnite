@@ -89,10 +89,10 @@ namespace Playnite.Tests
 
                 // We can't check the exact size because it will vary depending on drive
                 // cluster size so we only check if value is higher than zero
-                var dirSizeOnDisk = FileSystem.GetDirectorySizeOnDisk(tempPath.TempPath);
+                var dirSizeOnDisk = FileSystem.GetDirectorySize(tempPath.TempPath, true);
                 Assert.Greater(dirSizeOnDisk, 0);
 
-                var dirSize = FileSystem.GetDirectorySize(tempPath.TempPath);
+                var dirSize = FileSystem.GetDirectorySize(tempPath.TempPath, false);
                 Assert.AreEqual(dummyFileLenght, dirSize);
             }
         }

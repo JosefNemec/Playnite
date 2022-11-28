@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Verify.cs" />
     <Compile Include="CmdLineOptions.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Paths.cs" />

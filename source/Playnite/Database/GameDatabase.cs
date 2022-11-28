@@ -71,7 +71,9 @@ namespace Playnite.Database
         void SetCompletionStatusSettings(CompletionStatusSettings settings);
         GameScannersSettings GetGameScannersSettings();
         void SetGameScannersSettings(GameScannersSettings settings);
-        List<string> GetImportedRomFiles(string emulatorDir);
+        HashSet<string> GetImportedRomFiles(string emulatorDir);
+        bool GetGameMatchesFilter(Game game, FilterSettings filterSettings);
+        IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings);
     }
 
     public partial class GameDatabase : IGameDatabaseMain, IDisposable
@@ -1214,7 +1216,7 @@ namespace Playnite.Database
                 else
                 {
                     var addedGames = new List<Game>();
-                    foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }))
+                    foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }) ?? new List<GameMetadata>())
                     {
                         if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
                         {
@@ -1269,7 +1271,7 @@ namespace Playnite.Database
                                 }
                             }
 
-                            if (playtimeImportMode == PlaytimeImportMode.Always)
+                            if (playtimeImportMode == PlaytimeImportMode.Always && newGame.Playtime > 0)
                             {
                                 if (existingGame.Playtime != newGame.Playtime)
                                 {
@@ -1390,9 +1392,9 @@ namespace Playnite.Database
             fileLocks.TryRemove(filePath, out var removed);
         }
 
-        public List<string> GetImportedRomFiles(string emulatorDir)
+        public HashSet<string> GetImportedRomFiles(string emulatorDir)
         {
-            var importedRoms = new List<string>();
+            var importedRoms = new HashSet<string>();
             foreach (var game in Games.Where(a => a.Roms.HasItems()))
             {
                 try
@@ -1417,7 +1419,7 @@ namespace Playnite.Database
 
                         if (!absPath.IsNullOrEmpty())
                         {
-                            importedRoms.AddMissing(absPath);
+                            importedRoms.Add(absPath);
                         }
                     }
                 }

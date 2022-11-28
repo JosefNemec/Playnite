@@ -31,10 +31,6 @@ namespace Playnite.Tests
         {
             Assert.IsTrue(PlayniteSettings.IsPortable);
             Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
-
-            File.WriteAllText(PlaynitePaths.UninstallerPath, "");
-            Assert.IsFalse(PlayniteSettings.IsPortable);
-            Assert.AreEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
         }
 
         [Test]

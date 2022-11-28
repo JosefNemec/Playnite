@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -271,6 +272,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ButtonEditGame,
                     Button.CommandProperty,
                     nameof(GameDetailsViewModel.EditGameCommand));
+                AutomationProperties.SetName(ButtonEditGame, LOC.EditGame.GetLocalized());
             }
 
             HtmlDescription = Template.FindName("PART_HtmlDescription", this) as HtmlTextView;

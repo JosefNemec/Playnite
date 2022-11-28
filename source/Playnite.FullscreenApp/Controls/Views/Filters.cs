@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -116,6 +117,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
             PanelItemsHost.Items.Add(SelectSortBy);
+            AutomationProperties.SetName(SelectSortBy, LOC.MenuSortByTitle.GetLocalized());
 
             var SelectSortDirection = new ComboBoxEx();
             SelectSortDirection.SetResourceReference(ComboBoxEx.StyleProperty, "FilterPanelComboBoxEx");
@@ -130,6 +132,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
             PanelItemsHost.Items.Add(SelectSortDirection);
+            AutomationProperties.SetName(SelectSortDirection, LOC.MenuSortByDirection.GetLocalized());
 
             desc = new TextBlock();
             desc.Text = ResourceProvider.GetString(LOC.SettingsTopPanelFilterPresetsItem);
@@ -149,6 +152,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 mode: BindingMode.TwoWay);
             ComboFilterPresets.DisplayMemberPath = nameof(FilterPreset.Name);
             PanelItemsHost.Items.Add(ComboFilterPresets);
+            AutomationProperties.SetName(ComboFilterPresets, LOC.SettingsTopPanelFilterPresetsItem.GetLocalized());
 
             var ButtonSaveFilter = new ButtonEx();
             BindingTools.SetBinding(ButtonSaveFilter,
@@ -157,6 +161,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 nameof(mainModel.AddFilterPresetCommand));
             ButtonSaveFilter.SetResourceReference(ButtonEx.ContentTemplateProperty, "FilterPanelAddPresetTemplate");
             ButtonSaveFilter.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelFilterPresetActionButton");
+            AutomationProperties.SetName(ButtonSaveFilter, LOC.FilterPresetSave.GetLocalized());
 
             var ButtonRenameFilter = new ButtonEx();
             BindingTools.SetBinding(ButtonRenameFilter,
@@ -169,6 +174,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 nameof(mainModel.ActiveFilterPreset));
             ButtonRenameFilter.SetResourceReference(ButtonEx.ContentTemplateProperty, "FilterPanelRenamePresetTemplate");
             ButtonRenameFilter.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelFilterPresetActionButton");
+            AutomationProperties.SetName(ButtonRenameFilter, LOC.RenameTitle.GetLocalized());
 
             var ButtonDeleteFilter = new ButtonEx();
             BindingTools.SetBinding(ButtonDeleteFilter,
@@ -181,6 +187,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 nameof(mainModel.ActiveFilterPreset));
             ButtonDeleteFilter.SetResourceReference(ButtonEx.ContentTemplateProperty, "FilterPanelRemovePresetTemplate");
             ButtonDeleteFilter.SetResourceReference(ButtonEx.StyleProperty, "FilterPanelFilterPresetActionButton");
+            AutomationProperties.SetName(ButtonDeleteFilter, LOC.DeleteAction.GetLocalized());
 
             var filterButtonGrid = new UniformGrid { Columns = 3 };
             filterButtonGrid.Children.Add(ButtonSaveFilter);

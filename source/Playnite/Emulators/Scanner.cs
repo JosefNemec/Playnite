@@ -153,7 +153,7 @@ namespace Playnite.Emulators
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
         private readonly IGameDatabaseMain database;
-        internal List<string> importedFiles;
+        internal HashSet<string> importedFiles;
         private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
 
         public GameScanner(
@@ -198,10 +198,11 @@ namespace Playnite.Emulators
             var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
             var builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
+            var dirToScan = PlaynitePaths.ExpandVariables(scanner.Directory, emulator.InstallDir, true);
             if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
-                    scanner.Directory,
+                    dirToScan,
                     emulator,
                     customProfile,
                     cancelToken,
@@ -213,7 +214,7 @@ namespace Playnite.Emulators
             else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
             {
                 games = ScanDirectory(
-                    scanner.Directory,
+                    dirToScan,
                     emulator,
                     builtinProfile,
                     cancelToken,
@@ -474,7 +475,7 @@ namespace Playnite.Emulators
                 return new List<ScannedGame>();
             }
 
-            var platforms = profile.Platforms?.Select(a => database.Platforms[a].SpecificationId).Where(a => !a.IsNullOrEmpty()).ToList();
+            var platforms = profile.Platforms?.Select(a => database.Platforms[a]?.SpecificationId).Where(a => !a.IsNullOrEmpty()).ToList();
             return ScanDirectory(
                 directory,
                 profile.ImageExtensions.Select(a => a.Trim()).ToList(),
@@ -593,7 +594,7 @@ namespace Playnite.Emulators
                         }
                     }
 
-                    if (importedFiles.ContainsString(filePath, StringComparison.OrdinalIgnoreCase))
+                    if (importedFiles.ContainsString(Path.GetFullPath(filePath), StringComparison.OrdinalIgnoreCase))
                     {
                         return;
                     }
@@ -611,6 +612,11 @@ namespace Playnite.Emulators
                         if (cancelToken.IsCancellationRequested)
                         {
                             return;
+                        }
+
+                        if (!FileSystem.FileExists(childPath))
+                        {
+                            continue;
                         }
 
                         fileScanCallback?.Invoke(childPath);
@@ -693,6 +699,16 @@ namespace Playnite.Emulators
                 }
             }
 
+            // gdi files are basically cue files for Dreamcast dumps
+            if (supportedExtensions.ContainsString("gdi", StringComparison.OrdinalIgnoreCase))
+            {
+                // ToList is needed here because we are potentionally modifing original files collection when playlist files are excluded
+                foreach (var gdiFile in files.ToList().Where(a => a.EndsWith(".gdi", StringComparison.OrdinalIgnoreCase)).ToList())
+                {
+                    processPlayListFile(gdiFile, (mFile) => GdiFile.GetEntries(mFile).Select(a => Path.Combine(directory, a.Path)).ToList());
+                }
+            }
+
             foreach (var file in files)
             {
                 if (cancelToken.IsCancellationRequested)
@@ -726,7 +742,7 @@ namespace Playnite.Emulators
                     continue;
                 }
 
-                if (importedFiles.ContainsString(file, StringComparison.OrdinalIgnoreCase))
+                if (importedFiles.ContainsString(Path.GetFullPath(file), StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
@@ -836,6 +852,7 @@ namespace Playnite.Emulators
         {
             if (databases.HasItems())
             {
+                file = Paths.FixPathLength(file);
                 DatGame datRec = null;
                 string datRecSource = null;
                 List<string> crcs = new List<string>();
@@ -1160,6 +1177,16 @@ namespace Playnite.Emulators
                 IsPlayAction = true,
                 Name = Name
             };
+
+            if (sourceConfig.PlayActionSettings == ScannerConfigPlayActionSettings.SelectProfiteOnStart)
+            {
+                playAction.EmulatorProfileId = null;
+            }
+            else if (sourceConfig.PlayActionSettings == ScannerConfigPlayActionSettings.SelectEmulatorOnStart)
+            {
+                playAction.EmulatorProfileId = null;
+                playAction.EmulatorId = Guid.Empty;
+            }
 
             game.GameActions = new ObservableCollection<GameAction> { playAction };
             if (Roms.HasItems())

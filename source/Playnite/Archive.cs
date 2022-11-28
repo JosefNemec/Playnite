@@ -1,4 +1,5 @@
-﻿using SharpCompress.Archives;
+﻿using Playnite.Common;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,7 +48,7 @@ namespace Playnite
                     return;
                 }
 
-                archive.CreateEntryFromFile(file, Path.Combine(entryName, Path.GetFileName(file)));
+                archive.CreateEntryFromFile(Paths.FixPathLength(file), Path.Combine(entryName, Path.GetFileName(file)));
             }
 
             if (cancelToken.IsCancellationRequested)

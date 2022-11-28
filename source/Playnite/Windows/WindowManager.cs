@@ -64,5 +64,16 @@ namespace Playnite.Windows
                 }
             }
         }
+
+        public static void SetEnableMouseInput(bool enable)
+        {
+            foreach (var wnd in PlayniteApplication.CurrentNative.Windows)
+            {
+                if (wnd is WindowBase window)
+                {
+                    window.IsHitTestVisible = enable;
+                }
+            }
+        }
     }
 }

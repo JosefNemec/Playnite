@@ -70,13 +70,12 @@ namespace Playnite.Converters
         {
             if (value is ReleaseDate date)
             {
-                if (parameter != null && date.Month != null && date.Day != null)
+                if (parameter is ReleaseDateFormattingOptions options)
                 {
-                    if (parameter is DateFormattingOptions options)
-                    {
-                        return date.Date.ToDisplayString(options);
-                    }
-
+                    return date.ToDisplayString(options);
+                }
+                else if (date.Month != null && date.Day != null)
+                {
                     return date.Date.ToString(Common.Constants.DateUiFormat);
                 }
                 else
@@ -87,6 +86,41 @@ namespace Playnite.Converters
             else if (value == null)
             {
                 return string.Empty;
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var str = value as string;
+            if (str.IsNullOrEmpty())
+            {
+                return null;
+            }
+
+            return ReleaseDate.Deserialize(str);
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+
+    public class EditingReleaseDateToStringConverter : MarkupExtension, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is ReleaseDate date)
+            {
+                return date.Serialize();
+            }
+            else if (value == null)
+            {
+                return null;
             }
             else
             {

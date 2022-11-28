@@ -10,7 +10,6 @@ namespace Playnite.DesktopApp.ViewModels
 {
     public partial class GameEditViewModel
     {
-        private bool updateLastScanDate;
         private bool useNameChanges;
         public bool UseNameChanges
         {
@@ -375,7 +374,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 useInstallSizeChanges = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+                OnPropertyChanged(nameof(ShowInstallChangeNotif));
             }
         }
 
@@ -781,7 +780,6 @@ namespace Playnite.DesktopApp.ViewModels
                     UsePlaytimeChanges ||
                     UseAddedChanges ||
                     UsePlayCountChanges ||
-                    UseInstallSizeChanges ||
                     UseNotesChanges ||
                     UseManualChanges);
             }
@@ -803,6 +801,7 @@ namespace Playnite.DesktopApp.ViewModels
                     (UseInstallDirChanges ||
                     UseRomsChanges ||
                     UseInstallStateChanges ||
+                    UseInstallSizeChanges ||
                     UseOverrideInstallState);
             }
         }
@@ -1093,16 +1092,6 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseInstallSizeChanges = true;
-                    }
-                    break;
-                case nameof(Game.LastSizeScanDate):
-                    if (IsSingleGameEdit)
-                    {
-                        updateLastScanDate = Game.LastSizeScanDate != EditingGame.LastSizeScanDate;
-                    }
-                    else
-                    {
-                        updateLastScanDate = true;
                     }
                     break;
                 case nameof(Game.SeriesIds):

@@ -3,6 +3,7 @@ using Playnite.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,32 +17,53 @@ namespace Playnite.Converters
     {
         public IValueConverter CustomConverter { get; set; }
         public string StringFormat { get; set; }
+        public bool TestAsFilePath { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             try
             {
+                object actualValue = value;
+                if (!StringFormat.IsNullOrEmpty() && value is string)
+                {
+                    actualValue = string.Format(StringFormat, value);
+                }
+
                 if (CustomConverter != null)
                 {
-                    if (StringFormat.IsNullOrEmpty())
+                    if (TestAsFilePath && actualValue is string filePath)
                     {
-                        return CustomConverter.Convert(value, targetType, parameter, culture);
+                        if (File.Exists(filePath))
+                        {
+                            return CustomConverter.Convert(filePath, targetType, parameter, culture);
+                        }
+                        else
+                        {
+                            return DependencyProperty.UnsetValue;
+                        }
                     }
                     else
                     {
-                        return CustomConverter.Convert(string.Format(StringFormat, value), targetType, parameter, culture);
+                        return CustomConverter.Convert(actualValue, targetType, parameter, culture);
                     }
                 }
                 else
                 {
                     var converter = TypeDescriptor.GetConverter(targetType);
-                    if (StringFormat.IsNullOrEmpty())
+                    if (TestAsFilePath && actualValue is string filePath)
                     {
-                        return converter.ConvertFrom(value);
+                        if (File.Exists(filePath))
+                        {
+                            return converter.ConvertFrom(filePath);
+                        }
+                        else
+                        {
+                            return DependencyProperty.UnsetValue;
+                        }
                     }
                     else
                     {
-                        return converter.ConvertFrom(string.Format(StringFormat, value));
+                        return converter.ConvertFrom(actualValue);
                     }
                 }
             }

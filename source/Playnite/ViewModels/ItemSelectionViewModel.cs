@@ -103,6 +103,11 @@ namespace Playnite.ViewModels
 
         private void ToggleSelection()
         {
+            if (!Items.HasItems())
+            {
+                return;
+            }
+
             var toggle = !Items[0].Selected;
             Items.ForEach(a => a.Selected = toggle);
         }

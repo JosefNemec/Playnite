@@ -334,9 +334,17 @@ namespace Playnite.Common
 
                         manifestPath = Path.Combine(package.InstalledLocation.Path, manifestPath);
                         var manifest = new XmlDocument();
-                        manifest.Load(manifestPath);
+                        using (var stream = new FileStream(manifestPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        {
+                            manifest.Load(stream);
+                        }
 
                         var apxApp = manifest.SelectSingleNode(@"/*[local-name() = 'Package']/*[local-name() = 'Applications']//*[local-name() = 'Application'][1]");
+                        if (apxApp.Attributes["Id"] == null)
+                        {
+                            continue;
+                        }
+
                         var appId = apxApp.Attributes["Id"].Value;
 
                         var visuals = apxApp.SelectSingleNode(@"//*[local-name() = 'VisualElements']");

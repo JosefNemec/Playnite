@@ -192,7 +192,7 @@
   Id: nintendo_64
   IgdbId: 4
   Databases: [Nintendo - Nintendo 64, Nintendo - Nintendo 64DD]
-  Emulators: [bizhawk, m64p, project64, retroarch, rosaliesmupengui, simple64]
+  Emulators: [bizhawk, m64p, project64, retroarch, rosaliesmupengui, simple64, m64py]
 
 - Name: Nintendo Wii
   Id: nintendo_wii
@@ -369,7 +369,7 @@
   Id: pc_dos
   IgdbId: 13
   Databases: [DOS]
-  Emulators: [pcem, scummvm]
+  Emulators: [pcem, scummvm, dosbox]
   
 - Name: PC (Windows)
   Id: pc_windows

@@ -12,7 +12,7 @@
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
              xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="600">
+             d:DesignHeight="1000" d:DesignWidth="600">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
@@ -252,6 +252,18 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
+                    <TextBox Margin="0,5,0,0">
+                        <TextBox.Text>
+                            <Binding Path="Settings.DateTimeFormatReleaseDate.PartialFormat"
+                                     UpdateSourceTrigger="PropertyChanged" 
+                                     ValidatesOnDataErrors="True"
+                                     NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <pcon:DateTimeFormatToStringValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <CheckBox Content="{DynamicResource LOCSettingsPastWeekRelativeFormat}" Margin="0,5,0,0"
                               ToolTip="{DynamicResource LOCSettingsPastWeekRelativeFormatTooltip}"
                               IsChecked="{Binding Settings.DateTimeFormatReleaseDate.PastWeekRelativeFormat}" />
@@ -259,7 +271,10 @@
                 <Button Content="{DynamicResource LOCResetLabel}" Margin="10,10,0,0" VerticalAlignment="Top"
                         Command="{Binding ResetDateTimeFormatReleaseDateCommand}" />
 
-                <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatReleaseDateExample}" />
+                <StackPanel Margin="10,10,0,0" VerticalAlignment="Top">
+                    <TextBlock  Text="{Binding DateTimeFormatReleaseDateExample}" />
+                    <TextBlock  Text="{Binding DateTimeFormatPartialReleaseDateExample}" Margin="0,15,0,0" />
+                </StackPanel>
 
                 <!--RecentActivity-->
                 <TextBlock Text="{DynamicResource LOCRecentActivityLabel}"

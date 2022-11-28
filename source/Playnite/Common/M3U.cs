@@ -25,7 +25,7 @@ namespace Playnite
         {
             var entries = new List<M3UEntry>();
             var currentEntry = new M3UEntry();
-            foreach (var line in File.ReadAllLines(filePath))
+            foreach (var line in File.ReadAllLines(Paths.FixPathLength(filePath)))
             {
                 if (line.IsNullOrWhiteSpace() || line == "#EXTM3U")
                 {

@@ -1,5 +1,21 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.7.0
+
+* New
+  * Added overload to `ExpandGameVariables` function for expanding `{EmulatorDir}` variable.
+
+#### 6.6.0
+
+* New
+  * Added `GetGameMatchesFilter` and `GetFilteredGames` methods to [IGameDatabase](xref:Playnite.SDK.IGameDatabase)
+  * [Toolbox](tutorials/toolbox.md) utility can now verify addon and installer manifests.
+
+#### 6.5.0
+
+* New
+  * Exposed filtering options for install size and recent activity fields
+
 #### 6.4.0
 
 * New

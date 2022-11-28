@@ -274,7 +274,10 @@ namespace Playnite.DesktopApp.ViewModels
         private void DesktopAppViewModel_ActivationRequested(object sender, NotificationsAPI.MessageEventArgs e)
         {
             App.Notifications.Remove(e.Message.Id);
-            AppSettings.NotificationPanelVisible = false;
+            if (App.Notifications.Messages.Count == 0)
+            {
+                AppSettings.NotificationPanelVisible = false;
+            }
             e.Message.ActivationAction();
         }
 
@@ -666,6 +669,13 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                 }
 
+                if (!GlobalTaskHandler.IsActive)
+                {
+                    GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                    GlobalTaskHandler.ProgressTask = Task.Run(() => UpdateGamesInstallSizes(GlobalTaskHandler.CancelToken.Token, addedGames, LOC.ProgressScanningImportedGamesInstallSize));
+                    await GlobalTaskHandler.ProgressTask;
+                }
+
                 await SetSortingNames(addedGames);
             }
         }
@@ -685,6 +695,13 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         Logger.Warn("Skipping metadata download for manually added games, some global task is already in progress.");
                     }
+                }
+
+                if (!GlobalTaskHandler.IsActive)
+                {
+                    GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                    GlobalTaskHandler.ProgressTask = Task.Run(() => UpdateGamesInstallSizes(GlobalTaskHandler.CancelToken.Token, addedGames, LOC.ProgressScanningImportedGamesInstallSize));
+                    await GlobalTaskHandler.ProgressTask;
                 }
 
                 await SetSortingNames(addedGames);
@@ -708,6 +725,13 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Logger.Warn("Skipping metadata download for manually added emulated games, some global task is already in progress.");
                 }
+            }
+
+            if (!GlobalTaskHandler.IsActive)
+            {
+                GlobalTaskHandler.CancelToken = new CancellationTokenSource();
+                GlobalTaskHandler.ProgressTask = Task.Run(() => UpdateGamesInstallSizes(GlobalTaskHandler.CancelToken.Token, model.ImportedGames, LOC.ProgressScanningImportedGamesInstallSize));
+                await GlobalTaskHandler.ProgressTask;
             }
 
             await SetSortingNames(model.ImportedGames);
@@ -738,7 +762,7 @@ namespace Playnite.DesktopApp.ViewModels
             model.OpenView();
         }
 
-        public override void SelectGame(Guid id)
+        public override void SelectGame(Guid id, bool restoreView = false)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             if (viewEntry != null)
@@ -746,13 +770,13 @@ namespace Playnite.DesktopApp.ViewModels
                 SelectedGames = new List<GamesCollectionViewEntry>(1) { viewEntry };
             }
 
-            if (Window?.Window?.IsActive == false)
+            if (restoreView && Window?.Window?.IsActive == false)
             {
                 Window.RestoreWindow();
             }
         }
 
-        public void SelectGames(IEnumerable<Guid> gameIds)
+        public void SelectGames(IEnumerable<Guid> gameIds, bool restoreView = false)
         {
             if (!gameIds.HasItems())
             {
@@ -765,7 +789,7 @@ namespace Playnite.DesktopApp.ViewModels
                 SelectedGames = entries.ToList();
             }
 
-            if (Window?.Window?.IsActive == false)
+            if (restoreView && Window?.Window?.IsActive == false)
             {
                 Window.RestoreWindow();
             }

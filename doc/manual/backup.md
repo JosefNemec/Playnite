@@ -75,6 +75,7 @@ Playnite.DesktopApp.exe --backup "c:\test\backup_config.json"
 | RestoreItems | List of [items](#backup-items) (their integer values) to be restore from backup files. |
 | ClosedWhenDone | If set to `true`, Playnite will stay closed after restore procedure is finished. |
 | CancelIfGameRunning | If set to `true` Playnite won't start restore procedure if a game is currently running existing Playnite instance. |
+| RestoreLibrarySettingsPath | Settings value path for game library folder to be applied after restoring application settings. Useful in cases where you are recovering backup from installation that points to a different game library folder (for example installed vs portable installations). If empty, path saved in the backup will be used. |
 
 ### Example
 

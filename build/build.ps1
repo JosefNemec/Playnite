@@ -1,4 +1,6 @@
-﻿param(
+﻿#Requires -Version 7
+
+param(
     # Build configuration
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",

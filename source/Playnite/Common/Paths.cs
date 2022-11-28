@@ -92,23 +92,36 @@ namespace Playnite.Common
 
         public static string FixSeparators(string path)
         {
-            if (string.IsNullOrEmpty(path))
+            if (path.IsNullOrWhiteSpace())
             {
                 return path;
             }
 
-            var isUnc = path.StartsWith(@"\\");
-            var newPath = path.Replace('\\', Path.DirectorySeparatorChar);
-            newPath = newPath.Replace('/', Path.DirectorySeparatorChar);
-            newPath = Regex.Replace(newPath, string.Format(@"\{0}+", Path.DirectorySeparatorChar), Path.DirectorySeparatorChar.ToString());
-            if (isUnc && newPath.StartsWith(@"\"))
+            char prev = default;
+            var sb = new StringBuilder(path.Length);
+            for (int i = 0; i < path.Length; i++)
             {
-                return @"\" + newPath;
+                var current = path[i];
+                if (current == Path.AltDirectorySeparatorChar)
+                {
+                    current = Path.DirectorySeparatorChar;
+                }
+
+                if (prev != current || current != Path.DirectorySeparatorChar ||
+                    (current == Path.DirectorySeparatorChar && prev != Path.DirectorySeparatorChar))
+                {
+                    prev = current;
+                    sb.Append(current);
+                    continue;
+                }
             }
-            else
+
+            if (path.StartsWith(@"\\"))
             {
-                return newPath;
+                sb.Insert(0, @"\");
             }
+
+            return sb.ToString();
         }
 
         private static string Normalize(string path)
@@ -234,7 +247,10 @@ namespace Playnite.Common
                 return path;
             }
 
-            if ((path.Length >= 260 || forcePrefix) && !path.StartsWith(longPathPrefix))
+            // While the MAX_PATH value is 260 characters, a lower value is used because
+            // methods can append "\" and string terminator characters to paths and
+            // make them surpass the limit
+            if ((path.Length >= 258 || forcePrefix) && !path.StartsWith(longPathPrefix))
             {
                 if (path.StartsWith(@"\\"))
                 {

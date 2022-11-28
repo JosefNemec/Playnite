@@ -222,6 +222,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importing emulated games from {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Downloading library updates…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Scanning size of games in library…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Scanning size of imported games…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Library update finished</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Releasing resources…</sys:String>
     <!--Menu-->
@@ -467,6 +468,8 @@ More integrations can be installed later from "Add-ons" menu.</sys:String>
 
 You can try to re-download integrations from add-ons menu after first run wizard finishes.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Downloading {0} integration…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Downloading list of recommended integrations…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Failed to download list of recommended integrations. You can try and re-download integrations later via the Addons menu.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configure Platforms and Emulators</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Configure Emulators</sys:String>
@@ -499,6 +502,7 @@ It's currently being used by {1} game(s).</sys:String>
 It's currently being used by {1} game(s) and {2} emulator(s).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Settings help</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sort By</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Sort Direction</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Group By</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascending</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descending</sys:String>
@@ -659,6 +663,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Update All</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Created By:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Version:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Updated:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Module:</sys:String>
     <sys:String x:Key="LOCLibrary">Library</sys:String>
     <sys:String x:Key="LOCStatistics">Statistics</sys:String>
@@ -785,7 +790,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Failed to execute extension function.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Open metadata folder</sys:String>
     <sys:String x:Key="LOCInstallSizeCalculate">Calculate</sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">Automatically calculates the install size using the Roms if the game has any or the installation directory if it has been set</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">Automatically calculates the install size using the ROMs if the game has any or the installation directory if it has been set</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} client is not installed.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} client will now open. Please sign in and then close this message.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Waiting for user to sign in, please close this when you're done…</sys:String>
@@ -1164,7 +1169,7 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuExclusionNoConfigError">Exclusions can be only added to saved scanner configurations.</sys:String>
     <sys:String x:Key="LOCEmuExclusionAddedMessage">Exclusions have been added to "{0}" scanner.</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatform">Override platform</sys:String>
-    <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set scanner will assign this platform to all games, overwriting any automatically detected platforms.</sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set, scanner will assign this platform to all games, overwriting any automatically detected platforms.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Include commands in default search</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled, commands won't be included in default search until # prefix is used.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Fields to be displayed for game results:</sys:String>
@@ -1206,5 +1211,16 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Icon image search string</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover image search string</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Background image search string</sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation">Getting add-on information…</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">No metadata source is available</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Play action settings</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Use scanner settings</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Select profile on startup</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Select emulator on startup</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automatic</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Always on</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Always off</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Accessibility (screen reader) support</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Application menu</sys:String>
+    <sys:String x:Key="LOCGameMenu">Game menu</sys:String>
 </ResourceDictionary>

@@ -180,9 +180,29 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public List<string> GetImportedRomFiles(string emulatorDir)
+        public HashSet<string> GetImportedRomFiles(string emulatorDir)
         {
             throw new NotImplementedException();
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        {
+            return true;
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
+        {
+            yield break;
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings)
+        {
+            return true;
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings)
+        {
+            yield break;
         }
     }
 }

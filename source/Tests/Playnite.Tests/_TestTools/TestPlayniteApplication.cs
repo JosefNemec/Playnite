@@ -40,12 +40,12 @@ namespace Playnite.Tests
             throw new NotImplementedException();
         }
 
-        public override void Restart()
+        public override void Restart(bool saveSettings)
         {
             throw new NotImplementedException();
         }
 
-        public override void Restart(CmdLineOptions options)
+        public override void Restart(CmdLineOptions options, bool saveSettings)
         {
             throw new NotImplementedException();
         }

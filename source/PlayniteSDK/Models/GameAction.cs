@@ -362,5 +362,29 @@ namespace Playnite.SDK.Models
 
             return true;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public GameAction GetCopy()
+        {
+            return new GameAction
+            {
+                AdditionalArguments = AdditionalArguments,
+                Arguments = Arguments,
+                EmulatorId = EmulatorId,
+                EmulatorProfileId = EmulatorProfileId,
+                IsPlayAction = IsPlayAction,
+                Name = Name,
+                OverrideDefaultArgs = OverrideDefaultArgs,
+                Path = Path,
+                Script = Script,
+                TrackingMode = TrackingMode,
+                TrackingPath = TrackingPath,
+                Type = Type,
+                WorkingDir = WorkingDir
+            };
+        }
     }
 }

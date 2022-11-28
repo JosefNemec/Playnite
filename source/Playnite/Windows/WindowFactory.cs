@@ -58,6 +58,7 @@ namespace Playnite.Windows
             {
                 Window = CreateNewWindowInstance();
                 Window.Closed += Window_Closed;
+                Window.Loaded += Window_Loaded;
                 Window.DataContext = dataContext;
                 logger.Debug($"Show dialog window {GetType()}: {Window.Id}");
 
@@ -78,7 +79,6 @@ namespace Playnite.Windows
 
                 asDialog = true;
                 WasClosed = false;
-                initFinishedEvent.Set();
                 result = Window.ShowDialog();
             }, null);
 
@@ -95,18 +95,19 @@ namespace Playnite.Windows
                     logger.Debug($"Opening window that was closed previously {GetType()}, old Id: {Window.Id}");
                     Window = CreateNewWindowInstance();
                     Window.Closed += Window_Closed;
+                    Window.Loaded += Window_Loaded;
                 }
 
                 if (Window == null)
                 {
                     Window = CreateNewWindowInstance();
                     Window.Closed += Window_Closed;
+                    Window.Loaded += Window_Loaded;
                 }
 
                 logger.Debug($"Show window {GetType()}: {Window.Id}");
                 Window.DataContext = dataContext;
                 WasClosed = false;
-                initFinishedEvent.Set();
                 Window.Show();
             }, null);
         }
@@ -115,6 +116,13 @@ namespace Playnite.Windows
         {
             WasClosed = true;
             Window.Closed -= Window_Closed;
+            Window.Loaded -= Window_Loaded;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window.Loaded -= Window_Loaded; // Loaded can be in theory called more than once so we remove handler on first hit
+            initFinishedEvent.Set();
         }
 
         public void RestoreWindow()

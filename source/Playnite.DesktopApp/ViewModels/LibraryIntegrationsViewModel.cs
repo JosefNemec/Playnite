@@ -20,6 +20,7 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
+        private readonly ExtensionFactory extensions;
         private bool closingHanled = false;
 
         private Dictionary<Guid, PluginSettingsItem> loadedPluginSettings = new Dictionary<Guid, PluginSettingsItem>();
@@ -32,7 +33,7 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public ExtensionFactory Extensions { get; set; }
+        public List<LibraryPlugin> LibraryPlugins { get; set; }
 
         private UserControl selectedSectionView;
         public UserControl SelectedSectionView
@@ -78,7 +79,8 @@ namespace Playnite.DesktopApp.ViewModels
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
-            Extensions = extensions;
+            this.extensions = extensions;
+            LibraryPlugins = extensions.LibraryPlugins.OrderBy(a => a.Name).ToList();
             SelectedSectionView = new Controls.SettingsSections.LibrariesConfigWindowInfo() { DataContext = this }; ;
         }
 
@@ -92,7 +94,7 @@ namespace Playnite.DesktopApp.ViewModels
             var item = args.AddedItems[0];
             if (item is Plugin plugin)
             {
-                SelectedSectionView = PluginSettingsHelper.GetPluginSettingsView(plugin.Id, Extensions, loadedPluginSettings);
+                SelectedSectionView = PluginSettingsHelper.GetPluginSettingsView(plugin.Id, extensions, loadedPluginSettings);
             }
             else
             {

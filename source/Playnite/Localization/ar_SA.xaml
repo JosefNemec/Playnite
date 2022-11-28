@@ -231,6 +231,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames">إستيراد ألعاب المحاكيات من {0}</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">جاري تحميل تحديثات المكتبة…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">تم الانتهاء من تحديث المكتبة</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">جاري تحرير الموارد…</sys:String>
     <!--Menu-->
@@ -495,6 +496,8 @@
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">فشل عملية تحميل واحدة أو أكثر من الإضافات.
 يمكنك إعادة تحميل الإضافات من قائمة الإضافات بعد عملية التثبيت لأول مرة.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">تحميل {0} دمج</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">تهيئة المنصات والمحاكيات</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">تهيئة المحاكيات</sys:String>
@@ -527,6 +530,7 @@
 حاليًا يتم استخدامها من طرف {1} لعبة و {2} محاكيًا.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">مساعدة في الإعدادات</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">رتب حسب</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">تجميع حسب</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">تصاعدى</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">تنازلي</sys:String>
@@ -693,6 +697,7 @@
     <sys:String x:Key="LOCUpdateAll">تحديث الكل</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">أنشئ من طرف:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">النسخة:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">الوحدة:</sys:String>
     <sys:String x:Key="LOCLibrary">مكتبة</sys:String>
     <sys:String x:Key="LOCStatistics">الإحصائيات</sys:String>
@@ -1261,5 +1266,16 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>

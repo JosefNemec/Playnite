@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+             xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
@@ -43,7 +45,15 @@
                 </Hyperlink>
             </TextBlock>
         </StackPanel>
-        
+
+        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">            
+            <ContentControl Content="{DynamicResource LOCSettingsAccessibilityInterface}"
+                            ContentStringFormat="{}{0} *" VerticalAlignment="Center"/>
+            <ComboBox Margin="10,0,0,0" MinWidth="100"
+                      SelectedValue="{Binding Settings.AccessibilityInterface}"
+                      pbeh:SelectorBehaviors.EnumSource="{x:Type p:AccessibilityInterfaceOptions}" />
+        </StackPanel>
+
         <Button Name="ButtonClearWebCace" Content="{DynamicResource LOCSettingsClearWebCache}"
                 HorizontalAlignment="Left" Margin="0,45,0,0"
                 ToolTip="{DynamicResource LOCSettingsClearWebCacheTooltip}" ToolTipService.InitialShowDelay="0"

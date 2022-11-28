@@ -221,7 +221,7 @@ namespace Playnite.Tests.Emulators
 
                 // Playlist already imported test
                 scanResults = new Dictionary<string, List<ScannedRom>>();
-                scanner.importedFiles = new List<string> { cuePath };
+                scanner.importedFiles = new HashSet<string> { cuePath };
                 scanner.ScanDirectoryBase(
                   tempPath.TempPath,
                   new List<string> { "bin", "cue" },

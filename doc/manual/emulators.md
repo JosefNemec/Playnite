@@ -14,7 +14,7 @@ General workflow for importing games is:
   - If you want the same directory to be re-scanned on startup (or manually) enable "Save as auto-scan" option. You can later edit saved scanner from emulator configuration window, "Auto-scan configuration" tab.
 
 > [!NOTE]
-> It's highly recommended to use automatically imported emulators and built-in profiles for better game import experience. Some built-in emulators (for example RPCS3 and ScummVM) use more advanced import mechanism then just matching file names and you won't be able to utilize it with custom profiles.
+> It's highly recommended to use automatically imported emulators and built-in profiles for better game import experience. Some built-in emulators (for example RPCS3 and ScummVM) use more advanced import mechanism than just matching file names and you won't be able to utilize it with custom profiles.
 
 > [!NOTE]
 > Playnite currently doesn't have built-in support for any arcade emulator. You will have to configure those manually. Built-in support for more well known arcade emulators will be added [in future](https://github.com/JosefNemec/Playnite/issues/2407). If you are having issues with non-arcade emulators, please open GitHub issue (games not being imported or launched properly).
@@ -103,13 +103,15 @@ Profiles handle how game is started and imported.
 
 ### Startup script
 
-If your profile contains `Startup script` code, Playnite will use that instead of general profile settings to launch an emulator. Emulator startup scripts works in the same way as [game startup scripts](gameScripts.md#startup-script). The only different is that emulator script have some additional variables available:
+If your profile contains `Startup script` code, Playnite will use that instead of general profile settings to launch an emulator. Emulator startup script works in the same way as [game startup scripts](gameScripts.md#startup-script). The only difference is that emulator script has some additional variables available:
 
 | Variable | Description |
 | :-- | :-- |
-| Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
-| EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
-| RomPath | ROM path selected to launch. |
+| $Emulator | [Emulator](xref:Playnite.SDK.Models.Emulator) selected to launch a game. |
+| $EmulatorProfile | [Emulator profile](xref:Playnite.SDK.Models.EmulatorProfile) selected to launch a game. |
+| $RomPath | ROM path selected to launch. |
+| $PlayniteApi | Instance of [Playnite API](xref:Playnite.SDK.IPlayniteAPI). |
+| $Game | [Game](xref:Playnite.SDK.Models.Game) library object for current game session. |
 
 ### Custom profile example
 
@@ -128,16 +130,6 @@ Troubleshooting
 If you encounter any issue when using built-in emulator configurations/profiles, please [open new issue on GitHub](https://github.com/JosefNemec/Playnite/issues/) to let us know and we will fix it.
 
 ### Game runs properly when launched manually from an emulator but not from Playnite
-
-Playnite uses [command line arguments](https://www.bleepingcomputer.com/tutorials/understanding-command-line-arguments-and-how-to-use-them/) to tell specific emulator what game to start. But since some emulators can behave differently when a game is launched via command line compared to launched from emulator's UI, you can see games behaving differently when launched from Playnite.
-
-This can be an issue in either Playnite or in an emulator:
-
-- In case of an issue in Playnite, it means that Playnite is not passing correct arguments to an emulator, which usually happens when an emulator has been updated and requires different set of arguments (usually happens when using built-in emulator profiles) or if you set wrong arguments in your custom profile. You can test this by running an emulator manually from command prompt using the same command line arguments that Playnite uses (which can be seen on emulator config view). If the issue is in built-in emulator profile using wrong arguments, please open [new issue](https://github.com/JosefNemec/Playnite/issues/) in Playnite's repository for the profile to be updated.
-
-- In case of an issue in an emulator, it means that Playnite is passing correct arguments, but there is a bug in the emulator which causes games to run badly when started from command line. The only solution for this is to contact emulator's developers and ask them to fix the issue in the emulator itself.
-
-### Game run properly when launched manually from an emulator, but not from Playnite
 
 Playnite uses [command line arguments](https://www.bleepingcomputer.com/tutorials/understanding-command-line-arguments-and-how-to-use-them/) to tell specific emulator what game to start. But since some emulators can behave differently when a game is launched via command line compared to launched from emulator's UI, you can see games behaving differently when launched from Playnite.
 

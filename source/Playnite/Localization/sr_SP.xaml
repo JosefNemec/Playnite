@@ -220,6 +220,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Увоз емулираних игара из {0}...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Преузимање ажурирања библиотеке…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Завршено ажурирање библиотеке</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Ослобађање ресурса…</sys:String>
     <!--Menu-->
@@ -460,6 +461,8 @@
 Такође можете и да додате било коју другу игру касније тако што кликнете на логотип Playnite-а.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Преузимам {0} интеграцију…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Конфигуриши платформе и емулаторе</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Конфигуриши емулаторе</sys:String>
@@ -492,6 +495,7 @@
 Тренутно је(их) користи(е) {1} игра(е) и {2} емулатор(а).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Помоћ око подешавања</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Сортирај по</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Групиши по</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Растући редослед</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Опадајући редослед</sys:String>
@@ -649,6 +653,7 @@
     <sys:String x:Key="LOCUpdateAll">Ажурирај све</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Направио:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Верзија:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
     <sys:String x:Key="LOCExtensionModule">Модул:</sys:String>
     <sys:String x:Key="LOCLibrary">Библиотека</sys:String>
     <sys:String x:Key="LOCStatistics">Статистика</sys:String>
@@ -1165,5 +1170,16 @@
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-        
+    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
+    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn"></sys:String>
+    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu"></sys:String>
 </ResourceDictionary>
