@@ -55,16 +55,16 @@ namespace Playnite.Native
             set { _y = value; }
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals([NotNullWhen(true)] object? obj)
         {
-            if (obj is POINT)
+            if (obj is POINT point)
             {
-                var point = (POINT)obj;
-
                 return point._x == _x && point._y == _y;
             }
+
             return base.Equals(obj);
         }
+
         public override int GetHashCode()
         {
             return _x.GetHashCode() ^ _y.GetHashCode();
@@ -180,20 +180,17 @@ namespace Playnite.Native
             };
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals([NotNullWhen(true)] object? obj)
         {
-            try
+            if (obj is RECT rc)
             {
-                var rc = (RECT)obj;
                 return rc._bottom == _bottom
                     && rc._left == _left
                     && rc._right == _right
                     && rc._top == _top;
             }
-            catch (InvalidCastException)
-            {
-                return false;
-            }
+
+            return base.Equals(obj);
         }
 
         public bool IsEmpty

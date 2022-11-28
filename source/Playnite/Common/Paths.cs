@@ -65,18 +65,18 @@ namespace Playnite.Common
         {
             try
             {
-                if (string.IsNullOrEmpty(path))
+                if (path.IsNullOrEmpty())
                 {
                     return false;
                 }
 
-                if (string.IsNullOrEmpty(Path.GetExtension(path)))
+                if (Path.GetExtension(path).IsNullOrEmpty())
                 {
                     return false;
                 }
 
-                string drive = Path.GetPathRoot(path);
-                if (!string.IsNullOrEmpty(drive) && !Directory.Exists(drive))
+                var drive = Path.GetPathRoot(path);
+                if (!drive.IsNullOrEmpty() && !Directory.Exists(drive))
                 {
                     return false;
                 }

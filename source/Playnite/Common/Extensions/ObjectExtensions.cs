@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ZstdSharp;
 
 namespace System
 {
@@ -29,29 +31,59 @@ namespace System
 
         public static object CrateInstance(this Type type)
         {
-            return Activator.CreateInstance(type);
+            var obj = Activator.CreateInstance(type);
+            if (obj is null)
+            {
+                throw new Exception($"Failed to create instance of {type.Name}");
+            }
+
+            return obj;
         }
 
         public static T CrateInstance<T>(this Type type)
         {
-            return (T)Activator.CreateInstance(type);
+            var obj = Activator.CreateInstance(type);
+            if (obj is not T)
+            {
+                throw new Exception($"Failed to create instance of {type.Name}");
+            }
+
+            return (T)obj;
         }
 
         public static T CrateInstance<T>(this Type type, params object[] parameters)
         {
-            return (T)Activator.CreateInstance(type, parameters);
+            var obj = Activator.CreateInstance(type, parameters);
+            if (obj is not T)
+            {
+                throw new Exception($"Failed to create instance of {type.Name}");
+            }
+
+            return (T)obj;
         }
 
         public static object CreateGenericInstance(Type genericTypeDefinition, Type genericType)
         {
             Type resultType = genericTypeDefinition.MakeGenericType(genericType);
-            return Activator.CreateInstance(resultType);
+            var obj = Activator.CreateInstance(resultType);
+            if (obj is null)
+            {
+                throw new Exception($"Failed to create generic instance of {genericTypeDefinition.Name}>{genericType.Name}");
+            }
+
+            return obj;
         }
 
         public static object CreateGenericInstance(Type genericTypeDefinition, Type genericType, params object[] parameters)
         {
             Type resultType = genericTypeDefinition.MakeGenericType(genericType);
-            return Activator.CreateInstance(resultType, parameters);
+            var obj = Activator.CreateInstance(resultType, parameters);
+            if (obj is null)
+            {
+                throw new Exception($"Failed to create generic instance of {genericTypeDefinition.Name}>{genericType.Name}");
+            }
+
+            return obj;
         }
 
         public static bool HasPropertyAttribute<TAttribute>(this Type type, string propertyName) where TAttribute : Attribute
@@ -67,7 +99,7 @@ namespace System
             }
         }
 
-        public static bool IsGenericList(this Type type, out Type itemType)
+        public static bool IsGenericList(this Type type, [NotNullWhen(true)] out Type? itemType)
         {
             var isGeneric = type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>));
             if (isGeneric)

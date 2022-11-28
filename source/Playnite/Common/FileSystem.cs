@@ -10,6 +10,7 @@ using Playnite.SDK;
 using System.Diagnostics;
 using Playnite.Native;
 using System.Runtime.InteropServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Playnite.Common
 {
@@ -54,7 +55,12 @@ namespace Playnite.Common
         public static void PrepareSaveFile(string path)
         {
             path = Paths.FixPathLength(path);
-            CreateDirectory(Path.GetDirectoryName(path));
+            var dir = Path.GetDirectoryName(path);
+            if (!dir.IsNullOrEmpty())
+            {
+                CreateDirectory(dir);
+            }
+
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -174,7 +180,7 @@ namespace Playnite.Common
         public static string ReadFileAsStringSafe(string path, int retryAttempts = 5)
         {
             path = Paths.FixPathLength(path);
-            IOException ioException = null;
+            IOException? ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
                 try
@@ -195,7 +201,7 @@ namespace Playnite.Common
         public static byte[] ReadFileAsBytesSafe(string path, int retryAttempts = 5)
         {
             path = Paths.FixPathLength(path);
-            IOException ioException = null;
+            IOException? ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
                 try
@@ -216,7 +222,7 @@ namespace Playnite.Common
         public static Stream CreateWriteFileStreamSafe(string path, int retryAttempts = 5)
         {
             path = Paths.FixPathLength(path);
-            IOException ioException = null;
+            IOException? ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
                 try
@@ -237,7 +243,7 @@ namespace Playnite.Common
         public static Stream OpenReadFileStreamSafe(string path, int retryAttempts = 5)
         {
             path = Paths.FixPathLength(path);
-            IOException ioException = null;
+            IOException? ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
                 try
@@ -271,7 +277,7 @@ namespace Playnite.Common
         public static void WriteStringToFileSafe(string path, string content, int retryAttempts = 5)
         {
             path = Paths.FixPathLength(path);
-            IOException ioException = null;
+            IOException? ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
                 try
@@ -298,7 +304,7 @@ namespace Playnite.Common
                 return;
             }
 
-            IOException ioException = null;
+            IOException? ioException = null;
             for (int i = 0; i < retryAttempts; i++)
             {
                 try
@@ -399,7 +405,7 @@ namespace Playnite.Common
             }
 
             // From https://stackoverflow.com/a/3751135
-            int result = Kernel32.GetDiskFreeSpaceW(fileInfo.Directory.Root.FullName, out uint sectorsPerCluster, out uint bytesPerSector, out _, out _);
+            int result = Kernel32.GetDiskFreeSpaceW(fileInfo.Directory!.Root.FullName, out uint sectorsPerCluster, out uint bytesPerSector, out _, out _);
             if (result == 0)
             {
                 throw new System.ComponentModel.Win32Exception();
@@ -464,17 +470,17 @@ namespace Playnite.Common
             }
         }
 
-        public static bool FileExistsOnAnyDrive(string filePath, out string existringPath)
+        public static bool FileExistsOnAnyDrive(string filePath, [NotNullWhen(true)] out string? existringPath)
         {
             return PathExistsOnAnyDrive(filePath, path => File.Exists(path), out existringPath);
         }
 
-        public static bool DirectoryExistsOnAnyDrive(string directoryPath, out string existringPath)
+        public static bool DirectoryExistsOnAnyDrive(string directoryPath, [NotNullWhen(true)] out string? existringPath)
         {
             return PathExistsOnAnyDrive(directoryPath, path => Directory.Exists(path), out existringPath);
         }
 
-        private static bool PathExistsOnAnyDrive(string originalPath, Predicate<string> predicate, out string existringPath)
+        private static bool PathExistsOnAnyDrive(string originalPath, Predicate<string> predicate, [NotNullWhen(true)] out string? existringPath)
         {
             originalPath = Paths.FixPathLength(originalPath);
             existringPath = null;
@@ -532,7 +538,7 @@ namespace Playnite.Common
             return File.GetLastWriteTime(Paths.FixPathLength(path));
         }
 
-        public static void ReplaceStringInFile(string path, string oldValue, string newValue, Encoding encoding = null)
+        public static void ReplaceStringInFile(string path, string oldValue, string newValue, Encoding? encoding = null)
         {
             encoding = encoding ?? Encoding.UTF8;
             var fileContent = File.ReadAllText(path, encoding);

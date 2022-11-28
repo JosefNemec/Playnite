@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -44,12 +45,12 @@ namespace System
             return Regex.Replace(str, @"[™©®]", remplacement);
         }
 
-        public static bool IsNullOrEmpty(this string source)
+        public static bool IsNullOrEmpty([NotNullWhen(false)] this string? source)
         {
             return string.IsNullOrEmpty(source);
         }
 
-        public static bool IsNullOrWhiteSpace(this string source)
+        public static bool IsNullOrWhiteSpace([NotNullWhen(false)] this string? source)
         {
             return string.IsNullOrWhiteSpace(source);
         }
@@ -69,7 +70,7 @@ namespace System
             return source.Remove(source.LastIndexOf(value, comp));
         }
 
-        public static string ToTileCase(this string source, CultureInfo culture = null)
+        public static string ToTileCase(this string source, CultureInfo? culture = null)
         {
             if (source.IsNullOrEmpty())
             {
