@@ -458,6 +458,7 @@ namespace Playnite
             logger.Info("Shutting down application because of session ending.");
             // Don't dispose CefSharp here because of bug in CefSharp during system shutdown
             // https://github.com/JosefNemec/Playnite/issues/866
+            AppSettings?.SaveSettings();
             ReleaseResources(false);
             CurrentNative.Shutdown(0);
         }
