@@ -37,7 +37,7 @@ namespace Playnite.Database
             return string.Equals(
                 regex.Replace(x, ""),
                 regex.Replace(y, ""),
-                StringComparison.OrdinalIgnoreCase);
+                StringComparison.InvariantCultureIgnoreCase);
         }
 
         public static bool FieldEquals<T>(T x, string y) where T : DatabaseObject
