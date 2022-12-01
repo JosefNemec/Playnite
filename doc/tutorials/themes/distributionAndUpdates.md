@@ -33,8 +33,6 @@ Uploading themes
 
 The best place to share themes is via [Playnite add-on database](https://github.com/JosefNemec/PlayniteAddonDatabase), submitting a theme there will make it available in Playnite's built-in add-on browser and will also enable easy theme installation and updates.
 
-It's also recommended to submit theme entry to official Playnite forum, specifically [add-on database](https://playnite.link/forum/forum-3.html) sub-forum.
-
 Updating themes
 ---------------------
 

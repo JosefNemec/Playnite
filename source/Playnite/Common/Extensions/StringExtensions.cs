@@ -152,7 +152,7 @@ namespace System
 
         public static bool IsHttpUrl(this string str)
         {
-            if (string.IsNullOrEmpty(str))
+            if (string.IsNullOrWhiteSpace(str))
             {
                 return false;
             }
@@ -162,7 +162,7 @@ namespace System
 
         public static bool IsUri(this string str)
         {
-            if (string.IsNullOrEmpty(str))
+            if (string.IsNullOrWhiteSpace(str))
             {
                 return false;
             }
@@ -172,7 +172,7 @@ namespace System
 
         public static string UrlEncode(this string str)
         {
-            if (string.IsNullOrEmpty(str))
+            if (string.IsNullOrWhiteSpace(str))
             {
                 return str;
             }
@@ -182,7 +182,7 @@ namespace System
 
         public static string UrlDecode(this string str)
         {
-            if (string.IsNullOrEmpty(str))
+            if (string.IsNullOrWhiteSpace(str))
             {
                 return str;
             }

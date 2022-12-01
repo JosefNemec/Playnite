@@ -454,7 +454,21 @@ namespace Playnite
                     installDirectory = newPath;
                 }
 
-                installDirectory = game.ExpandVariables(installDirectory);
+                string emuDir = null;
+                if (game.InstallDirectory.Contains(ExpandableVariables.EmulatorDirectory, StringComparison.OrdinalIgnoreCase))
+                {
+                    var action = game.GameActions.FirstOrDefault(a => a.IsPlayAction && a.Type == GameActionType.Emulator && a.EmulatorId != Guid.Empty);
+                    if (action != null)
+                    {
+                        var emu = Database.Emulators[action.EmulatorId];
+                        if (emu != null)
+                        {
+                            emuDir = Paths.FixSeparators(emu.InstallDir.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath, StringComparison.OrdinalIgnoreCase));
+                        }
+                    }
+                }
+
+                installDirectory = game.ExpandVariables(installDirectory, true, emuDir);
                 Commands.GlobalCommands.NavigateDirectoryCommand.Execute(installDirectory);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)

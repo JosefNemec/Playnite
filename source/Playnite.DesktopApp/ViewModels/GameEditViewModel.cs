@@ -874,17 +874,32 @@ namespace Playnite.DesktopApp.ViewModels
                     return;
                 }
 
-                foreach (var icon in Directory.GetFiles(PlaynitePaths.TempPath, tempIconFileName + ".*"))
+                foreach (var icon in Directory.GetFiles(PlaynitePaths.TempPath, tempEditingIconFileName + ".*"))
                 {
                     File.Delete(icon);
                 }
 
-                foreach (var cover in Directory.GetFiles(PlaynitePaths.TempPath, tempCoverFileName + ".*"))
+                foreach (var icon in Directory.GetFiles(PlaynitePaths.TempPath, tempDownloadIconFileName + ".*"))
+                {
+                    File.Delete(icon);
+                }
+
+                foreach (var cover in Directory.GetFiles(PlaynitePaths.TempPath, tempEditingCoverFileName + ".*"))
                 {
                     File.Delete(cover);
                 }
 
-                foreach (var bk in Directory.GetFiles(PlaynitePaths.TempPath, tempBackgroundFileName + ".*"))
+                foreach (var cover in Directory.GetFiles(PlaynitePaths.TempPath, tempDownloadCoverFileName + ".*"))
+                {
+                    File.Delete(cover);
+                }
+
+                foreach (var bk in Directory.GetFiles(PlaynitePaths.TempPath, tempEditingBackgroundFileName + ".*"))
+                {
+                    File.Delete(bk);
+                }
+
+                foreach (var bk in Directory.GetFiles(PlaynitePaths.TempPath, tempDownloadBackgroundFileName + ".*"))
                 {
                     File.Delete(bk);
                 }
@@ -911,7 +926,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var icon = ProcessMetadataFile(path, tempIconFileName);
+            var icon = ProcessMetadataFile(path, tempEditingIconFileName);
             if (string.IsNullOrEmpty(icon))
             {
                 return;
@@ -948,7 +963,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void DropIcon(DragEventArgs args)
         {
             var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".tga", ".exe", ".tif", ".webp" };
-            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempIconFileName);
+            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempEditingIconFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.Icon = path;
@@ -958,7 +973,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectIcon()
         {
-            var path = ProcessMetadataFile(dialogs.SelectIconFile(), tempIconFileName);
+            var path = ProcessMetadataFile(dialogs.SelectIconFile(), tempEditingIconFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.Icon = path;
@@ -968,7 +983,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectCover()
         {
-            var path = ProcessMetadataFile(dialogs.SelectImagefile(), tempCoverFileName);
+            var path = ProcessMetadataFile(dialogs.SelectImagefile(), tempEditingCoverFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.CoverImage = path;
@@ -979,7 +994,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void DropCover(DragEventArgs args)
         {
             var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif", ".webp" };
-            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempCoverFileName);
+            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempEditingCoverFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.CoverImage = path;
@@ -989,7 +1004,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SelectBackground()
         {
-            var path = ProcessMetadataFile(dialogs.SelectImagefile(), tempBackgroundFileName);
+            var path = ProcessMetadataFile(dialogs.SelectImagefile(), tempEditingBackgroundFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.BackgroundImage = path;
@@ -1000,7 +1015,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void DropBackground(DragEventArgs args)
         {
             var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif", ".webp" };
-            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempBackgroundFileName);
+            var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempEditingBackgroundFileName);
             if (!string.IsNullOrEmpty(path))
             {
                 EditingGame.BackgroundImage = path;
@@ -1010,7 +1025,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetBackgroundUrl()
         {
-            var image = SelectUrlImage(tempBackgroundFileName);
+            var image = SelectUrlImage(tempEditingBackgroundFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = image;
@@ -1019,7 +1034,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetIconUrl()
         {
-            var image = SelectUrlImage(tempIconFileName);
+            var image = SelectUrlImage(tempEditingIconFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.Icon = image;
@@ -1028,7 +1043,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void SetCoverUrl()
         {
-            var image = SelectUrlImage(tempCoverFileName);
+            var image = SelectUrlImage(tempEditingCoverFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.CoverImage = image;

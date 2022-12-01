@@ -16,7 +16,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class ToolsConfigWindow : WindowBase
     {
-        public ToolsConfigWindow() : base()
+        public ToolsConfigWindow() : base(nameof(ToolsConfigWindow), true)
         {
             InitializeComponent();
         }

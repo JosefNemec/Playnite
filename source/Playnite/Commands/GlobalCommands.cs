@@ -47,7 +47,7 @@ namespace Playnite.Commands
                 }
                 else
                 {
-                    Process.Start(path);
+                    ProcessStarter.StartProcess("explorer.exe", $"\"{path}\"");
                 }
             }
             catch (Exception e) when (!Debugger.IsAttached)

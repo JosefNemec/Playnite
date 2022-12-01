@@ -73,7 +73,6 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
-        private GameDatabase database;
         private List<GameField> diffFields;
 
         public Game CurrentGame { get; set; }
@@ -147,7 +146,6 @@ namespace Playnite.DesktopApp.ViewModels
         public ComparableMetadatGameData ResultMetadata { get; private set; }
 
         public MetadataComparisonViewModel(
-            GameDatabase database,
             IWindowFactory window,
             IDialogsFactory dialogs,
             IResourceProvider resources,
@@ -155,7 +153,6 @@ namespace Playnite.DesktopApp.ViewModels
             ComparableMetadatGameData newData,
             List<GameField> diffFields)
         {
-            this.database = database;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;

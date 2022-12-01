@@ -82,5 +82,3 @@ Distribution
 Use [Toolbox](../toolbox.md#packing-extensions) utility to package an extension or a theme and distribute `.pext` or `.pthm` file to users.
 
 The best place to share extensions is via [Playnite add-on database](https://github.com/JosefNemec/PlayniteAddonDatabase), submitting an add-on there will make it available in Playnite's built-in add-on browser and will also enable easy add-on installation and updates.
-
-It's also recommended to submit add-on entry to official Playnite forum, specifically [add-on database](https://playnite.link/forum/forum-3.html) sub-forum.
