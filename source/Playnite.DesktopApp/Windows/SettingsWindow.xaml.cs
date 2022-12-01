@@ -22,7 +22,7 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class SettingsWindow : WindowBase
     {
-        public SettingsWindow() : base()
+        public SettingsWindow() : base(nameof(SettingsWindow), true)
         {
             InitializeComponent();
         }

@@ -2,6 +2,7 @@
 using Playnite.Common.Web;
 using Playnite.Database;
 using Playnite.DesktopApp.Windows;
+using Playnite.Emulators;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -43,22 +44,28 @@ namespace Playnite.DesktopApp.ViewModels
 
     public partial class GameEditViewModel
     {
-        private const string tempIconFileName = "temp_preview_icon";
-        private const string tempCoverFileName = "temp_preview_cover";
-        private const string tempBackgroundFileName = "temp_preview_background";
+        private const string tempEditingIconFileName = "temp_edit_preview_icon";
+        private const string tempEditingCoverFileName = "temp_edit_preview_cover";
+        private const string tempEditingBackgroundFileName = "temp_edit_preview_background";
+
+        private const string tempDownloadIconFileName = "temp_download_preview_icon";
+        private const string tempDownloadCoverFileName = "temp_download_preview_cover";
+        private const string tempDownloadBackgroundFileName = "temp_download_preview_background";
 
         private List<GameField> GetDisplayDiffFields(Game oldGame, ComparableMetadatGameData newGame)
         {
             var diffFields = new List<GameField>();
-            void checkListChanged<T>(List<T> oldData, List<T> newData, GameField field) where T : DatabaseObject
+            void checkListChanged<T>(SelectableDbItemList oldData, IEnumerable<T> newData, GameField field) where T : DatabaseObject
             {
-                if (!oldData.HasItems() && newData.HasItems())
+                var oldFields = oldData.Where(a => a.Selected == true).Select(a => a.Item.Name).ToList();
+                var newFields = newData?.Select(a => a.Name).ToList() ?? new List<string>();
+                if (!oldFields.HasItems() && newFields.HasItems())
                 {
                     diffFields.Add(field);
                     return;
                 }
 
-                if (newData.HasItems() && oldData.HasItems() && !oldData.Select(a => a.Id).IsListEqual(newData.Select(b => b.Id)))
+                if (newFields.HasItems() && oldFields.HasItems() && !oldFields.IsListEqual(newFields, new GameFieldComparer()))
                 {
                     diffFields.Add(field);
                 }
@@ -91,15 +98,15 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            checkListChanged(oldGame.AgeRatings, newGame.AgeRatings, GameField.AgeRatings);
-            checkListChanged(oldGame.Regions, newGame.Regions, GameField.Regions);
-            checkListChanged(oldGame.Series, newGame.Series, GameField.Series);
-            checkListChanged(oldGame.Platforms, newGame.Platforms, GameField.Platforms);
-            checkListChanged(oldGame.Developers, newGame.Developers, GameField.Developers);
-            checkListChanged(oldGame.Publishers, newGame.Publishers, GameField.Publishers);
-            checkListChanged(oldGame.Genres, newGame.Genres, GameField.Genres);
-            checkListChanged(oldGame.Tags, newGame.Tags, GameField.Tags);
-            checkListChanged(oldGame.Features, newGame.Features, GameField.Features);
+            checkListChanged(AgeRatings, newGame.AgeRatings, GameField.AgeRatings);
+            checkListChanged(Regions, newGame.Regions, GameField.Regions);
+            checkListChanged(Series, newGame.Series, GameField.Series);
+            checkListChanged(Platforms, newGame.Platforms, GameField.Platforms);
+            checkListChanged(Developers, newGame.Developers, GameField.Developers);
+            checkListChanged(Publishers, newGame.Publishers, GameField.Publishers);
+            checkListChanged(Genres, newGame.Genres, GameField.Genres);
+            checkListChanged(Tags, newGame.Tags, GameField.Tags);
+            checkListChanged(Features, newGame.Features, GameField.Features);
 
             if (newGame.ReleaseDate != null)
             {
@@ -135,7 +142,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (newGame.Icon != null && !oldGame.Icon.IsNullOrEmpty())
             {
-                var newIcon = ProcessMetadataFile(newGame.Icon, tempIconFileName);
+                var newIcon = ProcessMetadataFile(newGame.Icon, tempDownloadIconFileName);
                 if (newIcon != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.Icon);
@@ -159,7 +166,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (newGame.CoverImage != null && !oldGame.CoverImage.IsNullOrEmpty())
             {
-                var newCover = ProcessMetadataFile(newGame.CoverImage, tempCoverFileName);
+                var newCover = ProcessMetadataFile(newGame.CoverImage, tempDownloadCoverFileName);
                 if (newCover != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.CoverImage);
@@ -183,7 +190,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (newGame.BackgroundImage != null && !oldGame.BackgroundImage.IsNullOrEmpty())
             {
-                var newBack = ProcessMetadataFile(newGame.BackgroundImage, tempBackgroundFileName);
+                var newBack = ProcessMetadataFile(newGame.BackgroundImage, tempDownloadBackgroundFileName);
                 if (newBack != null)
                 {
                     var currentPath = ImageSourceManager.GetImagePath(EditingGame.BackgroundImage);
@@ -222,7 +229,6 @@ namespace Playnite.DesktopApp.ViewModels
             if (diffItems.HasItems())
             {
                 var comp = new MetadataComparisonViewModel(
-                    database,
                     new MetadataComparisonWindowFactory(),
                     dialogs,
                     resources,
@@ -241,11 +247,11 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        public void AddNewAndSetItems<T>(List<T> items, IItemCollection<T> dbCollection, SelectableDbItemList selectList) where T : DatabaseObject
+        public void AddNewAndSetFieldList<T>(List<T> items, SelectableDbItemList selectList) where T : DatabaseObject
         {
             foreach (var item in items)
             {
-                if (dbCollection[item.Id] == null)
+                if (selectList.FirstOrDefault(a => a.Item.Id == item.Id) == null)
                 {
                     selectList.Add(item);
                 }
@@ -264,47 +270,47 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (newData.Developers.HasItems())
             {
-                AddNewAndSetItems(newData.Developers, database.Companies, Developers);
+                AddNewAndSetFieldList(newData.Developers, Developers);
             }
 
             if (newData.Publishers.HasItems())
             {
-                AddNewAndSetItems(newData.Publishers, database.Companies, Publishers);
+                AddNewAndSetFieldList(newData.Publishers, Publishers);
             }
 
             if (newData.Genres.HasItems())
             {
-                AddNewAndSetItems(newData.Genres, database.Genres, Genres);
+                AddNewAndSetFieldList(newData.Genres, Genres);
             }
 
             if (newData.Tags.HasItems())
             {
-                AddNewAndSetItems(newData.Tags, database.Tags, Tags);
+                AddNewAndSetFieldList(newData.Tags, Tags);
             }
 
             if (newData.Features.HasItems())
             {
-                AddNewAndSetItems(newData.Features, database.Features, Features);
+                AddNewAndSetFieldList(newData.Features, Features);
             }
 
             if (newData.AgeRatings.HasItems())
             {
-                AddNewAndSetItems(newData.AgeRatings, database.AgeRatings, AgeRatings);
+                AddNewAndSetFieldList(newData.AgeRatings, AgeRatings);
             }
 
             if (newData.Regions.HasItems())
             {
-                AddNewAndSetItems(newData.Regions, database.Regions, Regions);
+                AddNewAndSetFieldList(newData.Regions, Regions);
             }
 
             if (newData.Series.HasItems())
             {
-                AddNewAndSetItems(newData.Series, database.Series, Series);
+                AddNewAndSetFieldList(newData.Series, Series);
             }
 
             if (newData.Platforms.HasItems())
             {
-                AddNewAndSetItems(newData.Platforms, database.Platforms, Platforms);
+                AddNewAndSetFieldList(newData.Platforms, Platforms);
             }
 
             if (newData.ReleaseDate != null)
@@ -334,7 +340,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (newData.CoverImage != null)
             {
-                var newCover = ProcessMetadataFile(newData.CoverImage, tempCoverFileName);
+                var newCover = ProcessMetadataFile(newData.CoverImage, tempEditingCoverFileName);
                 if (newCover != null)
                 {
                     EditingGame.CoverImage = newCover;
@@ -343,7 +349,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (newData.Icon != null)
             {
-                var newIcon = ProcessMetadataFile(newData.Icon, tempIconFileName);
+                var newIcon = ProcessMetadataFile(newData.Icon, tempEditingIconFileName);
                 if (newIcon != null)
                 {
                     EditingGame.Icon = newIcon;
@@ -352,7 +358,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (newData.BackgroundImage != null)
             {
-                var newBackground = ProcessMetadataFile(newData.BackgroundImage, tempBackgroundFileName);
+                var newBackground = ProcessMetadataFile(newData.BackgroundImage, tempEditingBackgroundFileName);
                 if (newBackground != null)
                 {
                     EditingGame.BackgroundImage = newBackground;
@@ -408,6 +414,81 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        public IEnumerable<T> GetOrGenerateNewFieldItem<T>(HashSet<MetadataProperty> properties, SelectableDbItemList selectList) where T : DatabaseObject
+        {
+            foreach (var property in properties)
+            {
+                if (property is MetadataNameProperty nameProp)
+                {
+                    if (nameProp.Name.IsNullOrWhiteSpace())
+                    {
+                        continue;
+                    }
+
+                    var existingItem = selectList.FirstOrDefault(a => a.Item.Name?.Equals(nameProp.Name, StringComparison.OrdinalIgnoreCase) == true);
+                    if (existingItem != null)
+                    {
+                        yield return (T)existingItem.Item;
+                    }
+                    else
+                    {
+                        yield return typeof(T).CrateInstance<T>(nameProp.Name);
+                    }
+                }
+                else if (property is MetadataIdProperty idProp)
+                {
+                    var existingItem = selectList.FirstOrDefault(a => a.Item.Id == idProp.Id);
+                    if (existingItem != null)
+                    {
+                        yield return  (T)existingItem.Item;
+                    }
+                }
+                else if (property is MetadataSpecProperty specProp)
+                {
+                    if (typeof(T) == typeof(Platform))
+                    {
+                        var platSpec = Emulation.Platforms.FirstOrDefault(a => a.Id == specProp.Id || a.Name == specProp.Id);
+                        if (platSpec != null)
+                        {
+                            var exPlat = selectList.FirstOrDefault(a => ((Platform)a.Item).SpecificationId == platSpec.Id);
+                            if (exPlat != null)
+                            {
+                                yield return (T)exPlat.Item;
+                            }
+                            else
+                            {
+                                yield return (T)(new Platform(platSpec.Name) { SpecificationId = platSpec.Id } as DatabaseObject);
+                            }
+                        }
+                    }
+                    else if (typeof(T) == typeof(Region))
+                    {
+                        var regionSpec = Emulation.Regions.FirstOrDefault(a => a.Id == specProp.Id || a.Name == specProp.Id);
+                        if (regionSpec != null)
+                        {
+                            var exRegion = selectList.FirstOrDefault(a => ((Region)a.Item).SpecificationId == regionSpec.Id);
+                            if (exRegion != null)
+                            {
+                                yield return (T)exRegion.Item;
+                            }
+                            else
+                            {
+                                yield return (T)(new Region(regionSpec.Name) { SpecificationId = regionSpec.Id } as DatabaseObject);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new NotSupportedException($"{property.GetType()} property type is not supported in {typeof(T)} collection.");
+                    }
+                }
+                else
+                {
+                    throw new NotSupportedException($"{property.GetType()} property type is not supported in {typeof(T)} collection.");
+                }
+            }
+        }
+
         ComparableMetadatGameData ConvertGameInfo(GameMetadata game)
         {
             var result = new ComparableMetadatGameData
@@ -423,62 +504,62 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (game.Genres.HasItems())
             {
-                result.Genres = (database.Genres as GenresCollection).GetOrGenerate(game.Genres).Where(a => a != null).ToList();
+                result.Genres = GetOrGenerateNewFieldItem<Genre>(game.Genres, Genres).ToList();
             }
 
             if (game.Developers.HasItems())
             {
-                result.Developers = (database.Companies as CompaniesCollection).GetOrGenerate(game.Developers).Where(a => a != null).ToList();
+                result.Developers = GetOrGenerateNewFieldItem<Company>(game.Developers, Developers).ToList();
             }
 
             if (game.Publishers.HasItems())
             {
-                result.Publishers = (database.Companies as CompaniesCollection).GetOrGenerate(game.Publishers).Where(a => a != null).ToList();
+                result.Publishers = GetOrGenerateNewFieldItem<Company>(game.Publishers, Publishers).ToList();
             }
 
             if (game.Tags.HasItems())
             {
-                result.Tags = (database.Tags as TagsCollection).GetOrGenerate(game.Tags).Where(a => a != null).ToList();
+                result.Tags = GetOrGenerateNewFieldItem<Tag>(game.Tags, Tags).ToList();
             }
 
             if (game.Features.HasItems())
             {
-                result.Features = (database.Features as FeaturesCollection).GetOrGenerate(game.Features).Where(a => a != null).ToList();
+                result.Features = GetOrGenerateNewFieldItem<GameFeature>(game.Features, Features).ToList();
             }
 
             if (game.AgeRatings.HasItems())
             {
-                result.AgeRatings = (database.AgeRatings as AgeRatingsCollection).GetOrGenerate(game.AgeRatings).Where(a => a != null).ToList();
+                result.AgeRatings = GetOrGenerateNewFieldItem<AgeRating>(game.AgeRatings, AgeRatings).ToList();
             }
 
             if (game.Series.HasItems())
             {
-                result.Series = (database.Series as SeriesCollection).GetOrGenerate(game.Series).Where(a => a != null).ToList();
+                result.Series = GetOrGenerateNewFieldItem<Series>(game.Series, Series).ToList();
             }
 
             if (game.Regions.HasItems())
             {
-                result.Regions = (database.Regions as RegionsCollection).GetOrGenerate(game.Regions).Where(a => a != null).ToList();
+                result.Regions = GetOrGenerateNewFieldItem<Region>(game.Regions, Regions).ToList();
             }
 
             if (game.Platforms.HasItems())
             {
-                result.Platforms = (database.Platforms as PlatformsCollection).GetOrGenerate(game.Platforms).Where(a => a != null).ToList();
+                result.Platforms = GetOrGenerateNewFieldItem<Platform>(game.Platforms, Platforms).ToList();
             }
 
             if (game.CoverImage != null)
             {
-                result.CoverImage = new MetadataFile(ProcessMetadataFile(game.CoverImage, tempCoverFileName));
+                result.CoverImage = new MetadataFile(ProcessMetadataFile(game.CoverImage, tempDownloadCoverFileName));
             }
 
             if (game.Icon != null)
             {
-                result.Icon = new MetadataFile(ProcessMetadataFile(game.Icon, tempIconFileName));
+                result.Icon = new MetadataFile(ProcessMetadataFile(game.Icon, tempDownloadIconFileName));
             }
 
             if (game.BackgroundImage != null)
             {
-                result.BackgroundImage = new MetadataFile(ProcessMetadataFile(game.BackgroundImage, tempBackgroundFileName));
+                result.BackgroundImage = new MetadataFile(ProcessMetadataFile(game.BackgroundImage, tempDownloadBackgroundFileName));
             }
 
             return result;
@@ -593,7 +674,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             var searchTerm = appSettings.WebImageSarchIconTerm.IsNullOrWhiteSpace() ? $"{EditingGame.Name} icon" : appSettings.WebImageSarchIconTerm;
             searchTerm = ReplaceImageSearchVariables(searchTerm);
-            var image = SelectGoogleImage(searchTerm, tempIconFileName);
+            var image = SelectGoogleImage(searchTerm, tempEditingIconFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.Icon = image;
@@ -604,7 +685,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             var searchTerm = appSettings.WebImageSarchCoverTerm.IsNullOrWhiteSpace() ? $"{EditingGame.Name} cover" : appSettings.WebImageSarchCoverTerm;
             searchTerm = ReplaceImageSearchVariables(searchTerm);
-            var image = SelectGoogleImage(searchTerm, tempCoverFileName);
+            var image = SelectGoogleImage(searchTerm, tempEditingCoverFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.CoverImage = image;
@@ -615,7 +696,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             var searchTerm = appSettings.WebImageSarchBackgroundTerm.IsNullOrWhiteSpace() ? $"{EditingGame.Name} wallpaper" : appSettings.WebImageSarchBackgroundTerm;
             searchTerm = ReplaceImageSearchVariables(searchTerm);
-            var image = SelectGoogleImage(searchTerm, tempBackgroundFileName);
+            var image = SelectGoogleImage(searchTerm, tempEditingBackgroundFileName);
             if (!image.IsNullOrEmpty())
             {
                 EditingGame.BackgroundImage = image;

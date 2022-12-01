@@ -22,9 +22,9 @@ namespace Playnite
     {
         public static CustomEmulatorProfile ExpandVariables(this CustomEmulatorProfile profile, Game game, string emulatorDir, string romPath)
         {
-            var g = game.GetClone();
+            var g = game.GetCopy();
             g.Roms = new System.Collections.ObjectModel.ObservableCollection<GameRom> { new GameRom("", romPath) };
-            var expaded = profile.GetClone();
+            var expaded = profile.GetCopy();
             expaded.Arguments = g.ExpandVariables(expaded.Arguments, false, emulatorDir);
             expaded.WorkingDirectory = g.ExpandVariables(expaded.WorkingDirectory, true, emulatorDir);
             expaded.Executable = g.ExpandVariables(expaded.Executable, true, emulatorDir);
@@ -36,7 +36,7 @@ namespace Playnite
     {
         public static GameAction ExpandVariables(this GameAction action, Game game)
         {
-            var expaded = action.GetClone();
+            var expaded = action.GetCopy();
             expaded.AdditionalArguments = game.ExpandVariables(expaded.AdditionalArguments);
             expaded.Arguments = game.ExpandVariables(expaded.Arguments);
             expaded.WorkingDir = game.ExpandVariables(expaded.WorkingDir, true);
@@ -159,7 +159,7 @@ namespace Playnite
 
         public static Game ExpandGame(this Game game, bool fixSeparators = false, string emulatorDir = null, string romPath = null)
         {
-            var g = game.GetClone();
+            var g = game.GetCopy();
             g.InstallDirectory = g.StringExpand(g.InstallDirectory, fixSeparators, emulatorDir, romPath);
             g.Roms.ForEach(rom => rom.Path = g.StringExpand(rom.Path, fixSeparators, emulatorDir, romPath));
             return g;
@@ -191,7 +191,7 @@ namespace Playnite
             if (!game.InstallDirectory.IsNullOrWhiteSpace())
             {
                 result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
-                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).Last());
+                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).LastOrDefault());
             }
 
             if (romPath.IsNullOrEmpty() && game.Roms.HasItems())
@@ -244,7 +244,7 @@ namespace Playnite
             if (!game.InstallDirectory.IsNullOrWhiteSpace())
             {
                 result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
-                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).Last());
+                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).LastOrDefault());
             }
 
             if (game.Roms.HasItems())

@@ -194,32 +194,45 @@ namespace Playnite.DesktopApp.ViewModels
             var filePath = dialogs.SelectFile("*.exe,*.lnk|*.exe;*.lnk");
             if (!filePath.IsNullOrEmpty())
             {
-                var program = Programs.GetProgramData(filePath);
-                var app = new AppSoftware(program.Name)
+                if (filePath.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || filePath.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
                 {
-                    Path = program.Path,
-                    Arguments = program.Arguments,
-                    WorkingDir = program.WorkDir
-                };
+                    var program = Programs.GetProgramData(filePath);
+                    var app = new AppSoftware(program.Name)
+                    {
+                        Path = program.Path,
+                        Arguments = program.Arguments,
+                        WorkingDir = program.WorkDir
+                    };
 
-                if (!program.Icon.IsNullOrEmpty())
-                {
-                    if (program.Icon.EndsWith(".ico", StringComparison.OrdinalIgnoreCase))
+                    if (!program.Icon.IsNullOrEmpty())
                     {
-                        app.Icon = program.Icon;
-                    }
-                    else
-                    {
-                        var icoPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".ico");
-                        if (IconExtractor.ExtractMainIconFromFile(program.Icon, icoPath))
+                        if (program.Icon.EndsWith(".ico", StringComparison.OrdinalIgnoreCase))
                         {
-                            app.Icon = icoPath;
+                            app.Icon = program.Icon;
+                        }
+                        else
+                        {
+                            var icoPath = Path.Combine(PlaynitePaths.TempPath, Guid.NewGuid() + ".ico");
+                            if (IconExtractor.ExtractMainIconFromFile(program.Icon, icoPath))
+                            {
+                                app.Icon = icoPath;
+                            }
                         }
                     }
-                }
 
-                EditingApps.Add(app);
-                SelectedApp = app;
+                    EditingApps.Add(app);
+                    SelectedApp = app;
+                }
+                else
+                {
+                    var app = new AppSoftware(Path.GetFileNameWithoutExtension(filePath))
+                    {
+                        Path = filePath
+                    };
+
+                    EditingApps.Add(app);
+                    SelectedApp = app;
+                }
             }
         }
 

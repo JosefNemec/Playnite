@@ -186,17 +186,17 @@ namespace Playnite.Controllers
 
                     if (action.OverrideDefaultArgs)
                     {
-                        startupArgs = Game.ExpandVariables(action.Arguments, false, null, romPath);
+                        startupArgs = Game.ExpandVariables(action.Arguments, false, emulator.InstallDir, romPath);
                     }
                     else
                     {
                         if (builtIn.OverrideDefaultArgs)
                         {
-                            startupArgs = Game.ExpandVariables(builtIn.CustomArguments, false, null, romPath);
+                            startupArgs = Game.ExpandVariables(builtIn.CustomArguments, false, emulator.InstallDir, romPath);
                         }
                         else
                         {
-                            startupArgs = Game.ExpandVariables(profileDef.StartupArguments, false, null, romPath);
+                            startupArgs = Game.ExpandVariables(profileDef.StartupArguments, false, emulator.InstallDir, romPath);
                         }
 
                         if (!action.AdditionalArguments.IsNullOrEmpty())
