@@ -191,7 +191,7 @@ namespace Playnite
             if (!game.InstallDirectory.IsNullOrWhiteSpace())
             {
                 result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
-                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).Last());
+                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).LastOrDefault());
             }
 
             if (romPath.IsNullOrEmpty() && game.Roms.HasItems())
@@ -244,7 +244,7 @@ namespace Playnite
             if (!game.InstallDirectory.IsNullOrWhiteSpace())
             {
                 result = result.Replace(ExpandableVariables.InstallationDirectory, game.InstallDirectory);
-                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).Last());
+                result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).LastOrDefault());
             }
 
             if (game.Roms.HasItems())
