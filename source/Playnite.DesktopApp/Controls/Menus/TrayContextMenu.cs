@@ -3,6 +3,7 @@ using Playnite.Common;
 using Playnite.DesktopApp.Markup;
 using Playnite.DesktopApp.ViewModels;
 using Playnite.SDK;
+using Playnite.SDK.Models;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -84,25 +85,18 @@ namespace Playnite.DesktopApp.Controls
 
             foreach (var game in mainModel.GamesEditor.QuickLaunchItems)
             {
-                object icon = null;
-                if (!game.Icon.IsNullOrEmpty())
-                {
-                    var path = mainModel.Database.GetFullFilePath(game.Icon);
-                    if (File.Exists(path))
-                    {
-                        icon = Images.GetImageFromFile(path);
-                    }
-                }
+                AddMenuChild(Items, game.Name, mainModel.StartGameCommand, game, GetGameIcon(game));
+            }
 
-                if (icon == null)
+            var favoriteGames = mainModel.GamesEditor.FavoriteQuickLaunchItems;
+            if (favoriteGames.HasItems())
+            {
+                Items.Add(new Separator());
+                var favoritesItem = AddMenuChild(Items, "LOCQuickFilterFavorites", null);
+                foreach (var game in favoriteGames)
                 {
-                    var resourceIcon = ResourceProvider.GetResource("DefaultGameIcon") as BitmapImage;
-                    var image = new Image() { Source = resourceIcon };
-                    RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
-                    icon = image;
+                    AddMenuChild(favoritesItem.Items, game.Name, mainModel.StartGameCommand, game, GetGameIcon(game));
                 }
-
-                AddMenuChild(Items, game.Name, mainModel.StartGameCommand, game, icon);
             }
 
             Items.Add(new Separator());
@@ -142,6 +136,29 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Add(new Separator());
             AddMenuChild(Items, "LOCExitAppLabel", mainModel.ShutdownCommand);
+        }
+
+        private object GetGameIcon(Game game)
+        {
+            object icon = null;
+            if (!game.Icon.IsNullOrEmpty())
+            {
+                var path = mainModel.Database.GetFullFilePath(game.Icon);
+                if (File.Exists(path))
+                {
+                    icon = Images.GetImageFromFile(path);
+                }
+            }
+
+            if (icon == null)
+            {
+                var resourceIcon = ResourceProvider.GetResource("DefaultGameIcon") as BitmapImage;
+                var image = new Image() { Source = resourceIcon };
+                RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
+                icon = image;
+            }
+
+            return icon;
         }
     }
 }
