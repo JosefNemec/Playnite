@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,6 @@ namespace System.Collections.Generic
         /// <returns></returns>
         public static ObservableCollection<T> ToObservable<T>(this IEnumerable<T> source)
         {
-            if (source == null)
-            {
-                return null;
-            }
-
             return new ObservableCollection<T>(source);
         }
 
@@ -34,7 +30,7 @@ namespace System.Collections.Generic
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static bool HasItems<T>(this IEnumerable<T> source)
+        public static bool HasItems<T>([NotNullWhen(true)] this IEnumerable<T>? source)
         {
             return source?.Any() == true;
         }
@@ -46,7 +42,7 @@ namespace System.Collections.Generic
         /// <param name="source"></param>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public static bool HasItems<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        public static bool HasItems<T>([NotNullWhen(true)] this IEnumerable<T>? source, Func<T, bool> predicate)
         {
             return source?.Any(predicate) == true;
         }
@@ -102,7 +98,7 @@ namespace System.Collections.Generic
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static bool HasNonEmptyItems(this IEnumerable<string> source)
+        public static bool HasNonEmptyItems([NotNullWhen(true)] this IEnumerable<string>? source)
         {
             return source?.Any(a => !string.IsNullOrEmpty(a)) == true;
         }
@@ -114,28 +110,20 @@ namespace System.Collections.Generic
         /// <param name="target"></param>
         /// <param name="comparison"></param>
         /// <returns>True if target collection contains items that are also part of source collection.</returns>
-        public static bool IntersectsPartiallyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        public static bool IntersectsPartiallyWith([NotNullWhen(true)] this IEnumerable<string> source, [NotNullWhen(true)] IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
-            if (source == null && target == null)
+            if (source != null && target != null)
             {
-                return false;
-            }
-
-            if ((source == null && target != null) || (source != null && target == null))
-            {
-                return false;
-            }
-
-            var intersects = false;
-            foreach (var sourceItem in source)
-            {
-                if (target.Any(a => a?.IndexOf(sourceItem, comparison) >= 0))
+                foreach (var sourceItem in source)
                 {
-                    return true;
+                    if (target.Any(a => a?.IndexOf(sourceItem, comparison) >= 0))
+                    {
+                        return true;
+                    }
                 }
             }
 
-            return intersects;
+            return false;
         }
 
         /// <summary>
@@ -145,34 +133,26 @@ namespace System.Collections.Generic
         /// <param name="target"></param>
         /// <param name="comparison"></param>
         /// <returns>True if target collection contains items that are also part of source collection.</returns>
-        public static bool IntersectsExactlyWith(this IEnumerable<string> source, IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        public static bool IntersectsExactlyWith([NotNullWhen(true)] this IEnumerable<string> source, [NotNullWhen(true)] IEnumerable<string> target, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
-            if (source == null && target == null)
+            if (source != null && target != null)
             {
-                return false;
-            }
-
-            if ((source == null && target != null) || (source != null && target == null))
-            {
-                return false;
-            }
-
-            var intersects = false;
-            foreach (var sourceItem in source)
-            {
-                if (target.Any(a => a?.Equals(sourceItem, comparison) == true))
+                foreach (var sourceItem in source)
                 {
-                    return true;
+                    if (target.Any(a => a?.Equals(sourceItem, comparison) == true))
+                    {
+                        return true;
+                    }
                 }
             }
 
-            return intersects;
+            return false;
         }
 
         /// <summary>
         /// Checks if source collection contains specified string completely.
         /// </summary>
-        public static bool ContainsString(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        public static bool ContainsString([NotNullWhen(true)] this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             return source?.Any(a => a?.Equals(value, comparison) == true) == true;
         }
@@ -180,7 +160,7 @@ namespace System.Collections.Generic
         /// <summary>
         /// Checks if part of specified string is part of the collection.
         /// </summary>
-        public static bool ContainsStringPartial(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        public static bool ContainsStringPartial([NotNullWhen(true)] this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             return source?.Any(a => a?.IndexOf(value, comparison) >= 0) == true;
         }
@@ -188,7 +168,7 @@ namespace System.Collections.Generic
         /// <summary>
         /// Checks if source collection contains part of specified string.
         /// </summary>
-        public static bool ContainsPartOfString(this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
+        public static bool ContainsPartOfString([NotNullWhen(true)] this IEnumerable<string> source, string value, StringComparison comparison = StringComparison.InvariantCultureIgnoreCase)
         {
             return source?.Any(a => value?.IndexOf(a, comparison) >= 0) == true;
         }
@@ -196,114 +176,94 @@ namespace System.Collections.Generic
         /// <summary>
         /// Checks if two collections contain the same items in any order.
         /// </summary>
-        public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        public static bool IsListEqual<T>([NotNullWhen(true)] this IEnumerable<T> source, [NotNullWhen(true)] IEnumerable<T> target)
         {
-            if (source == null && target == null)
+            if (source != null && target != null)
             {
+                if (source.Count() != target.Count())
+                {
+                    return false;
+                }
+
+                if (source.Except(target).Any())
+                {
+                    return false;
+                }
+
+                if (target.Except(source).Any())
+                {
+                    return false;
+                }
+
                 return true;
             }
 
-            if ((source == null && target != null) || (source != null && target == null))
-            {
-                return false;
-            }
-
-            if (source.Count() != target.Count())
-            {
-                return false;
-            }
-
-            if (source.Except(target).Any())
-            {
-                return false;
-            }
-
-            if (target.Except(source).Any())
-            {
-                return false;
-            }
-
-            return true;
+            return false;
         }
 
         /// <summary>
         /// Checks if two collections contain the same items in any order.
         /// </summary>
-        public static bool IsListEqual<T>(this IEnumerable<T> source, IEnumerable<T> target, IEqualityComparer<T> comparer)
+        public static bool IsListEqual<T>([NotNullWhen(true)] this IEnumerable<T> source, [NotNullWhen(true)] IEnumerable<T> target, IEqualityComparer<T> comparer)
         {
-            if (source == null && target == null)
+            if (source != null && target != null)
             {
+                if (source.Count() != target.Count())
+                {
+                    return false;
+                }
+
+                if (source.Except(target, comparer).Any())
+                {
+                    return false;
+                }
+
+                if (target.Except(source, comparer).Any())
+                {
+                    return false;
+                }
+
                 return true;
             }
 
-            if ((source == null && target != null) || (source != null && target == null))
-            {
-                return false;
-            }
-
-            if (source.Count() != target.Count())
-            {
-                return false;
-            }
-
-            if (source.Except(target, comparer).Any())
-            {
-                return false;
-            }
-
-            if (target.Except(source, comparer).Any())
-            {
-                return false;
-            }
-
-            return true;
+            return false;
         }
 
         /// <summary>
         /// Checks if two collections contain the same items in the same order.
         /// </summary>
-        public static bool IsListEqualExact<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        public static bool IsListEqualExact<T>([NotNullWhen(true)] this IEnumerable<T> source, [NotNullWhen(true)] IEnumerable<T> target)
         {
-            if (source == null && target == null)
+            if (source != null && target != null)
             {
-                return true;
+                if (source.Count() != target.Count())
+                {
+                    return false;
+                }
+
+                return source.SequenceEqual(target);
             }
 
-            if ((source == null && target != null) || (source != null && target == null))
-            {
-                return false;
-            }
-
-            if (source.Count() != target.Count())
-            {
-                return false;
-            }
-
-            return source.SequenceEqual(target);
+            return false;
         }
 
         /// <summary>
         /// Check if collection contains all items from other collection (in any order).
         /// </summary>
-        public static bool Contains<T>(this IEnumerable<T> source, IEnumerable<T> target)
+        public static bool Contains<T>([NotNullWhen(true)] this IEnumerable<T> source, [NotNullWhen(true)] IEnumerable<T> target)
         {
-            if (source == null && target == null)
+            if (source != null && target != null)
             {
-                return true;
+                var targetCount = target.Count();
+                if (targetCount > source.Count())
+                {
+                    return false;
+                }
+
+                return target.Intersect(source).Count() == targetCount;
             }
 
-            if ((source == null && target != null) || (source != null && target == null))
-            {
-                return false;
-            }
-
-            var targetCount = target.Count();
-            if (targetCount > source.Count())
-            {
-                return false;
-            }
-
-            return target.Intersect(source).Count() == targetCount;
+            return false;
         }
 
         /// <summary>
@@ -462,11 +422,6 @@ namespace System.Collections.Generic
         /// <returns></returns>
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
         {
-            if (source == null)
-            {
-                return null;
-            }
-
             if (!source.HasItems())
             {
                 return new HashSet<T>();

@@ -24,13 +24,13 @@ namespace System.Collections.Generic
         /// <summary>
         /// Occurs when a property value changes
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Invokes PropertyChanged events.
         /// </summary>
         /// <param name="name">Name of property that changed.</param>
-        public void OnPropertyChanged([CallerMemberName]string name = null)
+        public void OnPropertyChanged([CallerMemberName]string? name = null)
         {
             if (!SuppressNotifications)
             {
@@ -45,7 +45,7 @@ namespace System.Collections.Generic
         /// <param name="property"></param>
         /// <param name="value"></param>
         /// <param name="propertyName"></param>
-        protected void SetValue<T>(ref T property, T value, [CallerMemberName]string propertyName = null)
+        protected void SetValue<T>(ref T property, T value, [CallerMemberName]string? propertyName = null)
         {
             property = value;
             OnPropertyChanged(propertyName);

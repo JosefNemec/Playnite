@@ -83,7 +83,7 @@ namespace Playnite.SDK
     /// </summary>
     public static class LogManager
     {
-        private static ILogProvider logManager;
+        private static ILogProvider? logManager;
 
         /// <summary>
         /// Initializes log manager using specific log provider.
@@ -105,7 +105,7 @@ namespace Playnite.SDK
             {
                 var asmName = Assembly.GetCallingAssembly().GetName().Name;
                 var isCore = asmName == "Playnite.DesktopApp" || asmName == "Playnite.FullscreenApp" || asmName == "Playnite";
-                var className = (new StackFrame(1)).GetMethod().DeclaringType.Name;
+                var className = new StackFrame(1).GetMethod()?.DeclaringType?.Name ?? "uknown";
                 if (isCore)
                 {
                     return logManager.GetLogger(className);
