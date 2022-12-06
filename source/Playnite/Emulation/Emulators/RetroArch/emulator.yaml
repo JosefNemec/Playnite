@@ -771,3 +771,17 @@ Profiles:
     ImageExtensions: [exe, psexe, cue, bin, img, iso, chd, pbp, ecm, mds, psf, m3u]
     ProfileFiles: ['cores\duckstation_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
+
+  - Name: blueMSX
+    StartupArguments: '-L ".\cores\bluemsx_libretro.dll" "{ImagePath}"'
+    Platforms: [msx]
+    ImageExtensions: [rom, dsk, cas, m3u]
+    ProfileFiles: ['cores\bluemsx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: fMSX
+    StartupArguments: '-L ".\cores\fmsx_libretro.dll" "{ImagePath}"'
+    Platforms: [msx]
+    ImageExtensions: [rom, dsk, cas, m3u]
+    ProfileFiles: ['cores\fmsx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$

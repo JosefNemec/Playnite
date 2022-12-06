@@ -116,6 +116,12 @@
   Databases: [Mattel - Intellivision]
   Emulators: [bizhawk, retroarch]
 
+- Name: MSX
+  Id: msx
+  IgdbId: 27
+  Databases: [Microsoft - MSX]
+  Emulators: [retroarch]
+
 - Name: GCE Vectrex
   Id: vectrex
   IgdbId: 67
