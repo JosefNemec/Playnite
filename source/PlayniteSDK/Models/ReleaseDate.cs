@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +10,7 @@ namespace Playnite.SDK.Models
     /// <summary>
     /// Represents game release date.
     /// </summary>
-    [Serializable]
-    public struct ReleaseDate : IComparable, IComparable<ReleaseDate>, IEquatable<ReleaseDate>, ISerializable
+    public struct ReleaseDate : IComparable, IComparable<ReleaseDate>, IEquatable<ReleaseDate>
     {
         private static readonly char[] serSplitter = new char[] { '-' };
         /// <summary>
@@ -94,29 +92,8 @@ namespace Playnite.SDK.Models
         {
         }
 
-        /// <summary>
-        /// Creates new instance of <see cref="ReleaseDate"/>.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="context"></param>
-        public ReleaseDate(SerializationInfo info, StreamingContext context)
-        {
-            var serDate = Deserialize(info.GetString(nameof(ReleaseDate)));
-            Year = serDate.Year;
-            Month = serDate.Month;
-            Day = serDate.Day;
-            if (Year == default(int))
-            {
-                Date = default(DateTime);
-            }
-            else
-            {
-                Date = new DateTime(Year, Month ?? 1, Day ?? 1);
-            }
-        }
-
         /// <inheritdoc/>
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is ReleaseDate date)
             {
@@ -135,7 +112,7 @@ namespace Playnite.SDK.Models
         }
 
         /// <inheritdoc/>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is ReleaseDate date)
             {
@@ -285,12 +262,6 @@ namespace Playnite.SDK.Models
             {
                 return Year.ToString();
             }
-        }
-
-        /// <inheritdoc/>
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue(nameof(ReleaseDate), Serialize());
         }
     }
 }

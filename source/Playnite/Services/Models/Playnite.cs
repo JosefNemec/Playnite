@@ -8,9 +8,9 @@ namespace PlayniteServices.Models
 {
     public class User
     {
-        public string Id { get; set; }
-        public string WinVersion { get; set; }
-        public string PlayniteVersion { get; set; }
+        public string? Id { get; set; }
+        public string? WinVersion { get; set; }
+        public string? PlayniteVersion { get; set; }
         public DateTime LastLaunch { get; set; }
         public bool Is64Bit { get; set; }
     }
