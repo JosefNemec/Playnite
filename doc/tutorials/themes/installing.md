@@ -15,3 +15,14 @@ Copy theme folder into `%AppData%\Playnite\Themes\Desktop|Fullscreen` directory.
 ### Portable Playnite installation
 
 Copy theme folder into `\Themes\Desktop|Fullscreen` folder inside Playnite's installation directory.
+
+Change active theme
+---------------------
+
+### Desktop view
+
+While in desktop view, go into **Settings > Appearance > Theme** & choose an installed theme via the dropdown
+
+### Fullscreen view
+
+While in fullscreen view, go into **Settings > Visuals > Theme** & choose an installed theme via the dropdown
