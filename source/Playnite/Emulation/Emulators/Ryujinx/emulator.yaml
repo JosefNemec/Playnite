@@ -7,3 +7,9 @@ Profiles:
     Platforms: [nintendo_switch]
     ImageExtensions: [xci, nsp]
     StartupExecutable: ^ryujinx\.exe$
+Profiles:
+  - Name: Avalonia
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_switch]
+    ImageExtensions: [xci, nsp]
+    StartupExecutable: ^ryujinx\.ava\.exe$
