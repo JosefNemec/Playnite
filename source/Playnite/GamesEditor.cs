@@ -95,6 +95,18 @@ namespace Playnite
             }
         }
 
+        public List<Game> FavoriteQuickLaunchItems
+        {
+            get
+            {
+                return Database.Games.
+                    Where(a => a.Favorite && a.IsInstalled &&
+                        (!a.Hidden || (a.Hidden && AppSettings.ShowHiddenInQuickLaunch))).
+                    OrderBy(a => a.Name).
+                    ToList();
+            }
+        }
+
         public GamesEditor(
             GameDatabase database,
             GameControllerFactory controllerFactory,
