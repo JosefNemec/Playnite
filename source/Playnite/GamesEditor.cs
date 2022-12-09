@@ -1166,6 +1166,7 @@ namespace Playnite
 
                 if (AppSettings.QuickLaunchItems > 0)
                 {
+                    var catString = resources.GetString(LOC.QuickFilterRecentlyPlayed);
                     foreach (var lastGame in QuickLaunchItems)
                     {
                         var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
@@ -1174,7 +1175,7 @@ namespace Playnite
                             Title = lastGame.Name,
                             Arguments = args,
                             Description = string.Empty,
-                            CustomCategory = "Recent",
+                            CustomCategory = catString,
                             ApplicationPath = PlaynitePaths.DesktopExecutablePath
                         };
 
