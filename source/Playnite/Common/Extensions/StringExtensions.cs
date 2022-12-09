@@ -141,17 +141,17 @@ namespace System
             return Regex.Replace(path, @"(\.[A-Za-z0-9]+)+$", "");
         }
 
-        public static bool Contains(this string str, string value, StringComparison comparisonType)
+        public static bool Contains([NotNullWhen(true)] this string str, string value, StringComparison comparisonType)
         {
             return str?.IndexOf(value, 0, comparisonType) != -1;
         }
 
-        public static bool ContainsAny(this string str, char[] chars)
+        public static bool ContainsAny([NotNullWhen(true)] this string str, char[] chars)
         {
             return str?.IndexOfAny(chars) >= 0;
         }
 
-        public static bool IsHttpUrl(this string str)
+        public static bool IsHttpUrl([NotNullWhen(true)] this string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {
@@ -161,7 +161,7 @@ namespace System
             return Regex.IsMatch(str, @"^https?:\/\/", RegexOptions.IgnoreCase);
         }
 
-        public static bool IsUri(this string str)
+        public static bool IsUri([NotNullWhen(true)] this string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {
