@@ -574,11 +574,19 @@ namespace Playnite.DesktopApp.ViewModels
                         {
                             break;
                         }
-                        string sortingName = c.Convert(game.Name);
-                        if (sortingName != game.Name)
+
+                        var dbGame = Database.Games[game.Id];
+                        // This can be null in theory if a user deletes the game while overall library update procedure is in progress.
+                        if (dbGame == null)
                         {
-                            game.SortingName = sortingName;
-                            Database.Games.Update(game);
+                            continue;
+                        }
+
+                        string sortingName = c.Convert(dbGame.Name);
+                        if (sortingName != dbGame.Name)
+                        {
+                            dbGame.SortingName = sortingName;
+                            Database.Games.Update(dbGame);
                         }
                     }
                 }
