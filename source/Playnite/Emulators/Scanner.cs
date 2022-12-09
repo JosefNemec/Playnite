@@ -720,7 +720,7 @@ namespace Playnite.Emulators
                 foreach (var supportedExt in supportedExtensions)
                 {
                     // This is done this way to support nested extensions like PICO-8's .p8.png
-                    if (file.EndsWith("." + supportedExt))
+                    if (file.EndsWith("." + supportedExt, StringComparison.OrdinalIgnoreCase))
                     {
                         ext = supportedExt;
                         break;
@@ -863,7 +863,7 @@ namespace Playnite.Emulators
                     {
                         var archFiles = Archive.GetArchiveFiles(file);
                         var supportedFiles = archFiles.Where(a =>
-                            supportedExtensions.ContainsString(Path.GetExtension(a).TrimStart('.')));
+                            supportedExtensions.ContainsString(Path.GetExtension(a).TrimStart('.'), StringComparison.OrdinalIgnoreCase));
                         foreach (var supportedFile in supportedFiles)
                         {
                             logger.Trace($"Getting rom crc from archive file '{supportedFile}'\r\n {file}");
@@ -1277,10 +1277,10 @@ namespace Playnite.Emulators
         public ScannedRom(string path, string scannedExtension)
         {
             Path = path;
-            if (path.EndsWith("." + scannedExtension))
+            if (path.EndsWith("." + scannedExtension, StringComparison.OrdinalIgnoreCase))
             {
                 var fileName = System.IO.Path.GetFileName(path);
-                Name = new RomName(fileName.Substring(0, fileName.LastIndexOf("." + scannedExtension)));
+                Name = new RomName(fileName.Substring(0, fileName.LastIndexOf("." + scannedExtension, StringComparison.OrdinalIgnoreCase)));
             }
             else
             {
