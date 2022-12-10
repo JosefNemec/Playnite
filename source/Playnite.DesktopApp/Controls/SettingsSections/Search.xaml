@@ -40,6 +40,11 @@
                           DockPanel.Dock="Top" Margin="0,15,0,0"
                           IsChecked="{Binding Settings.IncludeCommandsInDefaultSearch}" />
 
+                <CheckBox Content="{DynamicResource SearchBoxSearchWithAcronyms}"
+                          ToolTip="{DynamicResource SearchBoxSearchWithAcronymsTooltip}"
+                          DockPanel.Dock="Top" Margin="0,15,0,0"
+                          IsChecked="{Binding Settings.SearchBoxSearchWithAcronyms}" />
+                
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0" DockPanel.Dock="Top" >
                     <TextBlock VerticalAlignment="Center" Margin="0,0,10,0"
                                Text="{DynamicResource LOCSearchSettingsSystemWideShortcut}"/>

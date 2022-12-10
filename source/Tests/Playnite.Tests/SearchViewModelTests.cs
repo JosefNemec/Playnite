@@ -28,6 +28,16 @@ namespace Playnite.Tests
             Assert.IsTrue(SearchViewModel.MatchTextFilter(null, null));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("", null));
             Assert.IsTrue(SearchViewModel.MatchTextFilter(null, ""));
+
+            // Acronym tests
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("gow", "Gears of War", true));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("goW", " Gears of War", true));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("GOW", "god of war 3", true));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("gOw3", "god of war 3", true));
+            Assert.IsFalse(SearchViewModel.MatchTextFilter("gOw3", "god of war 2", true));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("COD", "Call of Duty®: Modern Warfare® II", true));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("CODMW", "Call of Duty®: Modern Warfare® II", true));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("cod", "Call of Duty ®", true));
         }
 
         [Test]
