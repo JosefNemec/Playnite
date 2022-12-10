@@ -378,6 +378,25 @@ namespace Playnite
             }
         }
 
+        private bool nameSearchWithAcronyms;
+        public bool NameSearchWithAcronyms
+        {
+            get
+            {
+                return nameSearchWithAcronyms;
+            }
+
+            set
+            {
+                if (nameSearchWithAcronyms != value)
+                {
+                    nameSearchWithAcronyms = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(NameSearchWithAcronyms));
+                }
+            }
+        }
+
         private IdItemFilterItemProperties genre;
         public IdItemFilterItemProperties Genre
         {
@@ -1190,6 +1209,7 @@ namespace Playnite
                 IsUnInstalled = settings.IsUnInstalled,
                 Hidden = settings.Hidden,
                 Favorite = settings.Favorite,
+                NameSearchWithAcronyms = settings.NameSearchWithAcronyms,
                 Name = settings.Name,
                 Version = settings.Version,
                 ReleaseYear = StringFilterItemProperties.FromSdkModel(settings.ReleaseYear),
@@ -1233,6 +1253,12 @@ namespace Playnite
             {
                 Name = settings.Name;
                 filterChanges.Add(nameof(Name));
+            }
+
+            if (NameSearchWithAcronyms != settings.NameSearchWithAcronyms)
+            {
+                NameSearchWithAcronyms = settings.NameSearchWithAcronyms;
+                filterChanges.Add(nameof(NameSearchWithAcronyms));
             }
 
             if (Genre?.Equals(settings.Genre) != true)

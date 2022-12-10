@@ -4186,6 +4186,14 @@ namespace Playnite
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
         /// <summary>
+        /// Search using acronyms
+        /// </summary>
+        public const string SearchBoxSearchWithAcronyms = "SearchBoxSearchWithAcronyms";
+        /// <summary>
+        /// When enabled, search results will include items whose acronym matches the search term.
+        /// </summary>
+        public const string SearchBoxSearchWithAcronymsTooltip = "SearchBoxSearchWithAcronymsTooltip";
+        /// <summary>
         /// Fields to be displayed for game results:
         /// </summary>
         public const string SearchViewGameFieldOptions = "LOCSearchViewGameFieldOptions";
