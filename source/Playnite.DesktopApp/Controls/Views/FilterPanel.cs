@@ -138,7 +138,6 @@ namespace Playnite.DesktopApp.Controls.Views
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Libraries), nameof(FilterSettings.Library), false);
 
             SetLabelTag(nameof(FilterSettings.Name), LOC.NameLabel, new StringNullOrEmptyToBoolConverter(), nameof(FilterSettings.Name));
-            SetToggleFilterWithTooltip(nameof(FilterSettings.NameSearchWithAcronyms), LOC.SearchBoxSearchWithAcronyms, LOC.SearchBoxSearchWithAcronymsTooltip);
             SetFilterSearchBoxFilter(nameof(FilterSettings.Name));
 
             SetLabelTag(nameof(FilterSettings.Genre), LOC.GenreLabel);

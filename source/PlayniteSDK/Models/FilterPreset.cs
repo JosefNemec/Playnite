@@ -86,7 +86,6 @@ namespace Playnite.SDK.Models
         public bool IsUnInstalled { get; set; }
         public bool Hidden { get; set; }
         public bool Favorite { get; set; }
-        public bool NameSearchWithAcronyms { get; set; }
         public string Name { get; set; }
         public string Version { get; set; }
         public StringFilterItemProperties ReleaseYear { get; set; }
