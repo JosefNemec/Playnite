@@ -53,13 +53,14 @@
                             Command="{Binding RemoveAppCommand}"
                             CommandParameter="{Binding SelectedApp}"/>
                 </StackPanel>
-                <ListBox DockPanel.Dock="Top"
+                <ListBox DockPanel.Dock="Top" Name="ListTools"
                          DisplayMemberPath="Name"
                          ItemsSource="{Binding EditingApps}"
                          SelectedItem="{Binding SelectedApp, Mode=TwoWay}"/>
             </DockPanel>
 
-            <StackPanel Grid.Column="1" DataContext="{Binding SelectedApp}" Margin="5,0,0,0">
+            <StackPanel Grid.Column="1" DataContext="{Binding SelectedApp}" Margin="5,0,0,0"
+                        IsEnabled="{Binding SelectedItem, ElementName=ListTools, Converter={StaticResource NullToBoolConverter}}">
                 <TextBlock Text="{DynamicResource LOCNameLabel}" Margin="5,0,5,0"  />
                 <TextBox Margin="5"
                          Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>     
