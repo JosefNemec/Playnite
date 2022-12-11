@@ -189,18 +189,29 @@ namespace Playnite.Emulators
                 throw new Exception("Emulator not found.");
             }
 
+            if (scanner.EmulatorProfileId.IsNullOrEmpty())
+            {
+                throw new Exception("No emulator profile specified.");
+            }
+
             importedFiles = database.GetImportedRomFiles(emulator.InstallDir);
             var globalScanConfig = database.GetGameScannersSettings();
             var crcExclusions = string.Join(";",
                 ListExtensions.Merge(globalScanConfig.CrcExcludeFileTypes, scanner.CrcExcludeFileTypes).
                 Select(a => a.ToLower().Trim()).ToHashSet());
-
-            var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
-            var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
-            var builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
             var dirToScan = PlaynitePaths.ExpandVariables(scanner.Directory, emulator.InstallDir, true);
-            if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
+
+            CustomEmulatorProfile customProfile = null;
+            BuiltInEmulatorProfile builtinProfile = null;
+            EmulatorDefinitionProfile builtinProfileDef = null;
+            if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix, StringComparison.Ordinal))
             {
+                customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
+                if (customProfile == null)
+                {
+                    throw new Exception("Assigned custom emulator profile not found.");
+                }
+
                 games = ScanDirectory(
                     dirToScan,
                     emulator,
@@ -211,8 +222,20 @@ namespace Playnite.Emulators
                     scanner.ScanInsideArchives,
                     fileScanCallback);
             }
-            else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
+            else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix, StringComparison.Ordinal))
             {
+                builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
+                if (builtinProfile == null)
+                {
+                    throw new Exception("Assigned built-in emulator profile not found.");
+                }
+
+                builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile.BuiltInProfileName);
+                if (builtinProfileDef == null)
+                {
+                    throw new Exception("Assigned built-in emulator profile definition not found.");
+                }
+
                 games = ScanDirectory(
                     dirToScan,
                     emulator,
