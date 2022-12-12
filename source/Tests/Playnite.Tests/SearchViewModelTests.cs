@@ -33,6 +33,8 @@ namespace Playnite.Tests
             Assert.IsTrue(SearchViewModel.MatchTextFilter("gow", "Gears of War", true));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("goW", " Gears of War", true));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("GOW", "god of war 3", true));
+            Assert.IsFalse(SearchViewModel.MatchTextFilter(" GOW", "god of war 3", true));
+            Assert.IsFalse(SearchViewModel.MatchTextFilter("GOW ", "god of war 3", true));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("GOW", "god   of war   3", true));
             Assert.IsFalse(SearchViewModel.MatchTextFilter("g OW", "god of war 3", true));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("gOw3", "god of war 3", true));

@@ -94,6 +94,14 @@ namespace System
                 return false;
             }
 
+            for (int i = 0; i < acronymStart.Length; i++)
+            {
+                if (!char.IsLetterOrDigit(acronymStart[i]))
+                {
+                    return false;
+                }
+            }
+
             var acronymIndex = 0;
             for (int i = 0; i < input.Length; i++)
             {
