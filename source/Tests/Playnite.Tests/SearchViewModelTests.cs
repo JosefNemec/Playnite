@@ -30,6 +30,7 @@ namespace Playnite.Tests
             Assert.IsTrue(SearchViewModel.MatchTextFilter(null, "", false));
 
             // Acronym tests
+            Assert.IsFalse(SearchViewModel.MatchTextFilter("g", "Gears of War", true));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("gow", "Gears of War", true));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("goW", " Gears of War", true));
             Assert.IsTrue(SearchViewModel.MatchTextFilter("GOW", "god of war 3", true));
