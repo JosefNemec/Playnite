@@ -141,6 +141,7 @@ namespace Playnite.ViewModels
         public RelayCommand CancelProgressCommand { get; private set; }
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
         public RelayCommand StartInteractivePowerShellCommand { get; private set; }
+        public RelayCommand RestartApp { get; private set; }
         public RelayCommand RestartInSafeMode { get; private set; }
         public RelayCommand BackupDataCommand { get; private set; }
         public RelayCommand RestoreDataBackupCommand { get; private set; }
@@ -213,6 +214,7 @@ namespace Playnite.ViewModels
                 }
             });
 
+            RestartApp = new RelayCommand(() => RestartAppSkipLibUpdate()); 
             RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
             BackupDataCommand = new RelayCommand(() => BackupData());
             RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
@@ -907,6 +909,12 @@ namespace Playnite.ViewModels
         public void RunShutdowScript()
         {
             RunAppScript(AppSettings.AppShutdownScript, "shutdown");
+        }
+
+        public void RestartAppSkipLibUpdate()
+        {
+            CloseView();
+            App.Restart(new CmdLineOptions { SkipLibUpdate = true });
         }
 
         public void RestartAppSafe()
