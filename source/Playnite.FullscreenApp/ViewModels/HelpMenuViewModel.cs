@@ -20,6 +20,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public RelayCommand CloseCommand => new RelayCommand(() => Close());
         public RelayCommand SendFeedbackCommand => new RelayCommand(() => SendFeedback());
+        public RelayCommand RestartAppCommand => new RelayCommand(() => RestartApp());
         public RelayCommand RestartInSafeModeCommand => new RelayCommand(() => RestartInSafeMode());
 
         public HelpMenuViewModel(
@@ -44,6 +45,12 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Close();
             NavigateUrlCommand.Navigate(PlayniteEnvironment.ReleaseChannel == ReleaseChannel.Beta ? UrlConstants.IssuesTesting : UrlConstants.Issues);
+        }
+
+        public void RestartApp()
+        {
+            Close();
+            MainModel.RestartAppSkipLibUpdate();
         }
 
         public void RestartInSafeMode()
