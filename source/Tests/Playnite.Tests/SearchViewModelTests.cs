@@ -49,10 +49,10 @@ namespace Playnite.Tests
         public void CzechCultureMatchTextFilterTest()
         {
             // ch is a separate character in Czech so this would fail with wrong culture settings in string comparison
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("c", "has chalupa"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("cupa", "has chalčupa"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("čupa", "has chalčupa"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("cupa", "has chalČupa"));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("c", "has chalupa", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("cupa", "has chalčupa", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("čupa", "has chalčupa", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("cupa", "has chalČupa", false));
         }
     }
 }
