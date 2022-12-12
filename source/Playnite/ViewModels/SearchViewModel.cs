@@ -165,7 +165,7 @@ namespace Playnite.ViewModels
             if (args.SearchTerm.StartsWith("/"))
             {
                 var pluginSearch = args.SearchTerm.Substring(1).Trim();
-                foreach (var provider in searchProviders.Where(a => SearchViewModel.MatchTextFilter(pluginSearch, a.Name)))
+                foreach (var provider in searchProviders.Where(a => SearchViewModel.MatchTextFilter(pluginSearch, a.Name, false)))
                 {
                     yield return new SearchItem(provider.Name, new ContextSwitchSearchItemAction(LOC.Activate, provider.Context))
                     {
@@ -655,7 +655,7 @@ namespace Playnite.ViewModels
             return results;
         }
 
-        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart = false)
+        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart)
         {
             if (filter.IsNullOrWhiteSpace())
             {

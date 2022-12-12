@@ -15,19 +15,19 @@ namespace Playnite.Tests
         [SetCulture("en-US")]
         public void MatchTextFilterTest()
         {
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("c", "has chalupa"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("op stea", "open steam settings"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("op STea", "open settings steam"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("open steam", "open steam settings"));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("", "open steam settings"));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("c", "has chalupa", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("op stea", "open steam settings", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("op STea", "open settings steam", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("open steam", "open steam settings", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("", "open steam settings", false));
 
-            Assert.IsFalse(SearchViewModel.MatchTextFilter("opass stea", "open steam settings"));
-            Assert.IsFalse(SearchViewModel.MatchTextFilter("test", ""));
+            Assert.IsFalse(SearchViewModel.MatchTextFilter("opass stea", "open steam settings", false));
+            Assert.IsFalse(SearchViewModel.MatchTextFilter("test", "", false));
 
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("", ""));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter(null, null));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter("", null));
-            Assert.IsTrue(SearchViewModel.MatchTextFilter(null, ""));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("", "", false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter(null, null, false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter("", null, false));
+            Assert.IsTrue(SearchViewModel.MatchTextFilter(null, "", false));
 
             // Acronym tests
             Assert.IsTrue(SearchViewModel.MatchTextFilter("gow", "Gears of War", true));
