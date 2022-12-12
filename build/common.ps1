@@ -1,4 +1,4 @@
-﻿
+﻿#Requires -Version 7
 
 $global:NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
