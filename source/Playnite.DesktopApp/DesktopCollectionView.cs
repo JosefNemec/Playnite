@@ -101,6 +101,7 @@ namespace Playnite.DesktopApp
             Database.CompletionStatuses.ItemUpdated += CompletionStatuses_ItemUpdated;
             viewSettings = settings.ViewSettings;
             viewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            settings.PropertyChanged += Settings_PropertyChanged;
             using (CollectionView.DeferRefresh())
             {
                 SetViewDescriptions();
@@ -124,8 +125,18 @@ namespace Playnite.DesktopApp
             Database.Features.ItemUpdated -= Features_ItemUpdated;
             Database.CompletionStatuses.ItemUpdated -= CompletionStatuses_ItemUpdated;
             viewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
+            settings.PropertyChanged -= Settings_PropertyChanged;
             ClearItems();
             base.Dispose();
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteSettings.NameFilterSearchWithAcronyms))
+            {
+                Logger.Debug("Refreshing collection view filter.");
+                CollectionView.Refresh();
+            }
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
