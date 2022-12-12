@@ -89,7 +89,7 @@ namespace System
         public static bool IsStartOfStringAcronym(this string acronymStart, string input)
         {
             if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(acronymStart)
-                || acronymStart.Length > 2 || acronymStart.Length > input.Length)
+                || acronymStart.Length < 2 || acronymStart.Length > input.Length)
             {
                 return false;
             }
