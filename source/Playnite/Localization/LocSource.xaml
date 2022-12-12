@@ -1172,8 +1172,9 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set, scanner will assign this platform to all games, overwriting any automatically detected platforms.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Include commands in default search</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled, commands won't be included in default search until # prefix is used.</sys:String>
-    <sys:String x:Key="SearchBoxSearchWithAcronyms">Search using acronyms</sys:String>
+    <sys:String x:Key="SearchBoxSearchWithAcronyms">Support search using acronyms</sys:String>
     <sys:String x:Key="SearchBoxSearchWithAcronymsTooltip">When enabled, search results will include items whose acronym matches the search term.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Support search using acronyms for name filter</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Fields to be displayed for game results:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Hidden Status</sys:String>
 

@@ -19,7 +19,7 @@ namespace Playnite.FullscreenApp
         public FullscreenCollectionView(
             IGameDatabaseMain database,
             PlayniteSettings settings,
-            ExtensionFactory extensions) : base(database, extensions, settings.Fullscreen.FilterSettings)
+            ExtensionFactory extensions) : base(database, extensions, settings.Fullscreen.FilterSettings, settings)
         {
             this.settings = settings;
             Database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;

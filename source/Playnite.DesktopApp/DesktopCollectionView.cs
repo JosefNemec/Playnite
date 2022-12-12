@@ -21,7 +21,7 @@ namespace Playnite.DesktopApp
             ListGrouped
         }
 
-        private PlayniteSettings settings;
+        private readonly PlayniteSettings settings;
         private ViewSettings viewSettings;
         private GroupableField? currentGrouping = null;
 
@@ -83,7 +83,7 @@ namespace Playnite.DesktopApp
         public DesktopCollectionView(
             IGameDatabaseMain database,
             PlayniteSettings settings,
-            ExtensionFactory extensions) : base(database, extensions, settings.FilterSettings)
+            ExtensionFactory extensions) : base(database, extensions, settings.FilterSettings, settings)
         {
             this.settings = settings;
             Database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;

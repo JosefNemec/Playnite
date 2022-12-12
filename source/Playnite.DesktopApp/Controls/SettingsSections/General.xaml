@@ -150,6 +150,11 @@
                 Content="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdate}"
                 ToolTip="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdateTooltip}"
                 IsChecked="{Binding Settings.ScanLibInstallSizeOnLibUpdate}"/>
+
+        <CheckBox Name="CheckNameFilterSearchWithAcronyms" Margin="5,15,5,5"
+                Content="{DynamicResource NameFilterSearchWithAcronyms}"
+                ToolTip="{DynamicResource SearchBoxSearchWithAcronymsTooltip}"
+                IsChecked="{Binding Settings.NameFilterSearchWithAcronyms}"/>
         
         <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
                    ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"

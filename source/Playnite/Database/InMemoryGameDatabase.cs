@@ -185,22 +185,22 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             return true;
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             yield break;
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings)
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             return true;
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings)
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             yield break;
         }

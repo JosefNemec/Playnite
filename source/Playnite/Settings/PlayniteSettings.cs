@@ -1861,6 +1861,17 @@ namespace Playnite
             }
         }
 
+        private bool nameFilterSearchWithAcronyms = false;
+        public bool NameFilterSearchWithAcronyms
+        {
+            get => nameFilterSearchWithAcronyms;
+            set
+            {
+                nameFilterSearchWithAcronyms = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double topPanelSectionSeparatorWidth = 15;
         public double TopPanelSectionSeparatorWidth
         {
