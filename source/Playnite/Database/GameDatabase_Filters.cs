@@ -11,15 +11,25 @@ namespace Playnite.Database
     {
         public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
         {
-            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings));
+            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), false);
         }
 
         public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
         {
-            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings));
+            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), false);
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings)
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        {
+            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), nameFilterSearchWithAcronyms);
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        {
+            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), nameFilterSearchWithAcronyms);
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             if (!filterSettings.IsActive)
             {
@@ -35,19 +45,19 @@ namespace Playnite.Database
 
             if (filterSettings.UseAndFilteringStyle)
             {
-                return FilterByStyleAnd(game, filterSettings);
+                return FilterByStyleAnd(game, filterSettings, nameFilterSearchWithAcronyms);
             }
             else
             {
-                return FilterByStyleOr(game, filterSettings);
+                return FilterByStyleOr(game, filterSettings, nameFilterSearchWithAcronyms);
             }
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings)
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             foreach (var game in Games)
             {
-                if (GetGameMatchesFilter(game, filterSettings))
+                if (GetGameMatchesFilter(game, filterSettings, nameFilterSearchWithAcronyms))
                 {
                     yield return game;
                 }
@@ -241,7 +251,7 @@ namespace Playnite.Database
             return filter.Values.Contains((int)score);
         }
 
-        private bool FilterByStyleAnd(Game game, FilterSettings filterSettings)
+        private bool FilterByStyleAnd(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             // ------------------ Installed
             bool installedResult = false;
@@ -296,23 +306,9 @@ namespace Playnite.Database
             }
 
             // ------------------ Name filter
-            if (!filterSettings.Name.IsNullOrEmpty())
+            if (!GetNameFilterResult(game, filterSettings, nameFilterSearchWithAcronyms))
             {
-                if (game.Name.IsNullOrEmpty())
-                {
-                    return false;
-                }
-                else if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
-                {
-                    if (game.GetNameGroup() != filterSettings.Name[1])
-                    {
-                        return false;
-                    }
-                }
-                else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
-                {
-                    return false;
-                }
+                return false;
             }
 
             // ------------------ Release Year
@@ -550,7 +546,7 @@ namespace Playnite.Database
             return true;
         }
 
-        private bool FilterByStyleOr(Game game, FilterSettings filterSettings)
+        private bool FilterByStyleOr(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             // ------------------ Installed
             bool installedResult = false;
@@ -629,23 +625,9 @@ namespace Playnite.Database
             }
 
             // ------------------ Name filter
-            if (!filterSettings.Name.IsNullOrEmpty())
+            if (!GetNameFilterResult(game, filterSettings, nameFilterSearchWithAcronyms))
             {
-                if (game.Name.IsNullOrEmpty())
-                {
-                    return false;
-                }
-                else if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
-                {
-                    if (game.GetNameGroup() != filterSettings.Name[1])
-                    {
-                        return false;
-                    }
-                }
-                else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
-                {
-                    return false;
-                }
+                return false;
             }
 
             // ------------------ Release Year
@@ -839,6 +821,40 @@ namespace Playnite.Database
             }
 
             return true;
+        }
+
+        private bool GetNameFilterResult(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        {
+            if (filterSettings.Name.IsNullOrEmpty())
+            {
+                return true;
+            }
+
+            if (game.Name.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            var nameResult = true;
+            if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+            {
+                if (game.GetNameGroup() != filterSettings.Name[1])
+                {
+                    nameResult = false;
+                }
+            }
+            else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                nameResult = false;
+            }
+
+            if (!nameResult && nameFilterSearchWithAcronyms &&
+                filterSettings.Name.IsStartOfStringAcronym(game.Name))
+            {
+                nameResult = true;
+            }
+
+            return nameResult;
         }
     }
 }
