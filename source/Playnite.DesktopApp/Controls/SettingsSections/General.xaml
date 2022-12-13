@@ -153,7 +153,7 @@
 
         <CheckBox Name="CheckNameFilterSearchWithAcronyms" Margin="5,15,5,5"
                 Content="{DynamicResource NameFilterSearchWithAcronyms}"
-                ToolTip="{DynamicResource SearchBoxSearchWithAcronymsTooltip}"
+                ToolTip="{DynamicResource NameFilterSearchWithAcronymsTooltip}"
                 IsChecked="{Binding Settings.NameFilterSearchWithAcronyms}"/>
         
         <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"

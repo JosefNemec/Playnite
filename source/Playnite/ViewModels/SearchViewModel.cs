@@ -117,7 +117,7 @@ namespace Playnite.ViewModels
                 return false;
             }
 
-            if (!SearchViewModel.MatchTextFilter(searchTerm, game.Name, mainModel.AppSettings.SearchBoxSearchWithAcronyms))
+            if (!SearchViewModel.MatchTextFilter(searchTerm, game.Name, true))
             {
                 return false;
             }
@@ -134,7 +134,7 @@ namespace Playnite.ViewModels
                     commands = mainModel.GetSearchCommands().ToList();
                 }
 
-                foreach (var command in commands.Where(a => SearchViewModel.MatchTextFilter(keyword, a.Name, mainModel.AppSettings.SearchBoxSearchWithAcronyms)))
+                foreach (var command in commands.Where(a => SearchViewModel.MatchTextFilter(keyword, a.Name, true)))
                 {
                     yield return command;
                 }
@@ -214,7 +214,7 @@ namespace Playnite.ViewModels
                 };
             }
 
-            foreach (var tool in mainModel.Database.SoftwareApps.Where(a => SearchViewModel.MatchTextFilter(searchTerm, a.Name, mainModel.AppSettings.SearchBoxSearchWithAcronyms)))
+            foreach (var tool in mainModel.Database.SoftwareApps.Where(a => SearchViewModel.MatchTextFilter(searchTerm, a.Name, true)))
             {
                 yield return new SearchItem(tool.Name, LOC.Open, () => mainModel.StartSoftwareTool(tool), tool.Icon);
             }
@@ -646,7 +646,7 @@ namespace Playnite.ViewModels
             var results = new List<SearchItem>();
             foreach (var item in toFilter)
             {
-                if (MatchTextFilter(filter, item.Name, mainModel.AppSettings.SearchBoxSearchWithAcronyms))
+                if (MatchTextFilter(filter, item.Name, true))
                 {
                     results.Add(item);
                 }

@@ -1850,17 +1850,6 @@ namespace Playnite
             }
         }
 
-        private bool searchBoxSearchWithAcronyms = true;
-        public bool SearchBoxSearchWithAcronyms
-        {
-            get => searchBoxSearchWithAcronyms;
-            set
-            {
-                searchBoxSearchWithAcronyms = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool nameFilterSearchWithAcronyms = false;
         public bool NameFilterSearchWithAcronyms
         {
