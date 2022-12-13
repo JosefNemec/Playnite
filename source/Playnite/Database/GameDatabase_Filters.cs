@@ -9,6 +9,16 @@ namespace Playnite.Database
 {
     public partial class GameDatabase : IGameDatabaseMain, IDisposable
     {
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        {
+            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), false);
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
+        {
+            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), false);
+        }
+
         public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), nameFilterSearchWithAcronyms);

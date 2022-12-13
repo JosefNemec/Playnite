@@ -107,6 +107,16 @@ namespace Playnite.API
             database.EndBufferUpdate();
         }
 
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        {
+            return database.GetGameMatchesFilter(game, filterSettings, false);
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
+        {
+            return database.GetFilteredGames(filterSettings, false);
+        }
+
         public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             return database.GetGameMatchesFilter(game, filterSettings, nameFilterSearchWithAcronyms);

@@ -190,6 +190,11 @@ namespace Playnite.Database
             return true;
         }
 
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
+        {
+            yield break;
+        }
+
         public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             yield break;
@@ -203,6 +208,11 @@ namespace Playnite.Database
         public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
         {
             yield break;
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        {
+            return true;
         }
     }
 }
