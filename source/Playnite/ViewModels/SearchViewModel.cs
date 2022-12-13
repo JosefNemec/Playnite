@@ -105,7 +105,7 @@ namespace Playnite.ViewModels
             return new ContextSwitchSearchItemAction(LOC.GameSearchItemActionOpenMenu, new GameMenuContext(game, mainModel));
         }
 
-        private bool GameFilter(Game game, string searchTerm, GameSearchFilterSettings settings)
+        private bool GameFilter(Game game, string searchTerm, GameSearchFilterSettings settings, bool matchTargetAcronymStart)
         {
             if (game.Hidden && !settings.Hidden)
             {
@@ -117,7 +117,7 @@ namespace Playnite.ViewModels
                 return false;
             }
 
-            if (!SearchViewModel.MatchTextFilter(searchTerm, game.Name, true))
+            if (!SearchViewModel.MatchTextFilter(searchTerm, game.Name, matchTargetAcronymStart))
             {
                 return false;
             }
@@ -179,7 +179,7 @@ namespace Playnite.ViewModels
             if (args.SearchTerm.IsNullOrWhiteSpace())
             {
                 foreach (var game in mainModel.Database.Games.
-                    Where(a => a.LastActivity != null && GameFilter(a, string.Empty, args.GameFilterSettings)).
+                    Where(a => a.LastActivity != null && GameFilter(a, string.Empty, args.GameFilterSettings, true)).
                     OrderByDescending(a => a.LastActivity).
                     Take(20))
                 {
@@ -203,7 +203,7 @@ namespace Playnite.ViewModels
             }
 
             foreach (var game in mainModel.Database.Games.
-                Where(g => GameFilter(g, searchTerm, args.GameFilterSettings)).
+                Where(g => GameFilter(g, searchTerm, args.GameFilterSettings, true)).
                 Take(60).
                 OrderBy(a => a.Name))
             {
@@ -641,12 +641,12 @@ namespace Playnite.ViewModels
             SetCurrentContext(searchContextStack.Peek());
         }
 
-        private List<SearchItem> FilterSearchResults(List<SearchItem> toFilter, string filter)
+        private List<SearchItem> FilterSearchResults(List<SearchItem> toFilter, string filter, bool matchTargetAcronymStart)
         {
             var results = new List<SearchItem>();
             foreach (var item in toFilter)
             {
-                if (MatchTextFilter(filter, item.Name, true))
+                if (MatchTextFilter(filter, item.Name, matchTargetAcronymStart))
                 {
                     results.Add(item);
                 }
@@ -740,7 +740,7 @@ namespace Playnite.ViewModels
                         }
                         else
                         {
-                            return FilterSearchResults(context.AutoSearchCache, SearchTerm);
+                            return FilterSearchResults(context.AutoSearchCache, SearchTerm, true);
                         }
                     }
                     else
