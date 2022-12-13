@@ -222,7 +222,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Импортируем эмулированные игры из {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Загружаем обновления библиотеки…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Сканирование размера игр в библиотеке…</sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Сканирование размера импортируемых игр…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Обновление библиотеки завершено</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Освобождаем ресурсы…</sys:String>
     <!--Menu-->
@@ -472,8 +472,8 @@
 
 Можете попробовать снова загрузить интеграции из меню аддонов по завершению начальной настройки.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Загрузка интеграции {0} …</sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Загрузка списка рекомендованных интеграций…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Не удалось загрузить список рекомендованных интеграций. Вы можете попробовать снова загрузить интеграции позже через меню Дополнений.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Настройка платформы и эмулятора</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Настроить эмуляторы</sys:String>
@@ -506,7 +506,7 @@
 Она используется в играх ({1} шт.) и эмуляторах ({2} шт.)</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Настройки справки</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Сортировать</sys:String>
-    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Порядок сортировки</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Группировать</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">По возрастанию</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">По убыванию</sys:String>
@@ -1222,14 +1222,14 @@ Playnite будет автоматически перезапущен для н�
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Строка поиска фонового изображения</sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Получение информации о дополнении…</sys:String>
     <sys:String x:Key="LOCNoMetadataSource">Нет доступного источника данных</sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
-    <sys:String x:Key="LOCAutomatic"></sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
-    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
-    <sys:String x:Key="LOCApplicationMenu"></sys:String>
-    <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Настройки действия Играть</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Использовать настройки сканирования</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Выбрать профиль при запуске</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Выбрать эмулятор при запуске</sys:String>
+    <sys:String x:Key="LOCAutomatic">Автоматически</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Всегда вкл.</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Всегда выкл.</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Поддержка спец. возможностей (чтения с экрана)</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Меню приложения</sys:String>
+    <sys:String x:Key="LOCGameMenu">Меню игры</sys:String>
 </ResourceDictionary>

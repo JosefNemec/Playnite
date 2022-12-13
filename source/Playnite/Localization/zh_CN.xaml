@@ -922,7 +922,7 @@
     <sys:String x:Key="LOCAddonErrorDownloadFailed">无法下载附加组件安装包。</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError">无法下载附加组件的 manifest 文件。</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart">更改将在应用程序重开后生效。</sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall">该插件已被计划安装。</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">该附加组件已被计划安装。</sys:String>
     <sys:String x:Key="LOCAddonInstall">安装</sys:String>
     <sys:String x:Key="LOCAddonUninstall">卸载</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>

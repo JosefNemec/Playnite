@@ -469,7 +469,7 @@ Máshonnan származó játékot hozzáadhatsz a 'Playnite' logós főmenüből (
 
 Megpróbálhatod újra letölteni őket a bővítmények menüből, miután lefutott a varázsló.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">{0} integráció letöltése…</sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Az ájánlott integrációk listájának letöltése...</sys:String>
     <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Platformok és emulátorok beállítása</sys:String>
@@ -713,7 +713,7 @@ Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:St
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Frissítés letöltése és telepítése sikertelen.</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">Egy háttérfolyamat jelenleg is fut. Megszakítod, és folytatod a frissítés telepítését?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Egy háttérfolyamat jelenleg is fut. Megszakítod, és bezárod a Playnite-ot?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Egy háttérfolyamat jelenleg is fut. A módok közötti váltás befelyezi a háttérfolyamatot. Szeretnéd folytatni?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Egy háttérfolyamat jelenleg is fut. A módok közötti váltás befejezi a háttérfolyamatot. Szeretnéd folytatni?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite frissítés elérhető</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Témalista újratöltése</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Kiválasztott téma használata</sys:String>
@@ -1204,12 +1204,12 @@ A már megadott dátumformátum lesz érvényes az összes többire.</sys:String
     <sys:String x:Key="LOCNoMetadataSource">Metaadat forrás nem elérhető</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
-    <sys:String x:Key="LOCAutomatic"></sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Profil kiválasztása indításkor</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Emulátor kiválasztása indításkor</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automatikus</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Mindig be</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Mindig ki</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
     <sys:String x:Key="LOCApplicationMenu"></sys:String>
-    <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCGameMenu">Játékmenü</sys:String>
 </ResourceDictionary>
