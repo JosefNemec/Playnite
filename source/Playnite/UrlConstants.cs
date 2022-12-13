@@ -14,6 +14,7 @@ namespace Playnite
         public const string Discord = @"https://discord.gg/BrtABqe";
         public const string Twitter = @"https://twitter.com/AppPlaynite";
         public const string Reddit = @"https://www.reddit.com/r/playnite/";
+        public const string Github = @"https://github.com/JosefNemec/Playnite";
         public const string SdkDocs = @"https://playnite.link/docs/";
         public const string Wiki = @"https://github.com/JosefNemec/Playnite/wiki";
         public const string Forum = @"https://playnite.link/forum/";
