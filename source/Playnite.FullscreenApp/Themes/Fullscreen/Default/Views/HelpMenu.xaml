@@ -19,6 +19,10 @@
                    Margin="20,30,40,30" />
     </DataTemplate>
 
+    <DataTemplate x:Key="HelpMenuRestartPlayniteButtonTemplate">
+        <TextBlock Text="{DynamicResource LOCCrashRestartPlaynite}" VerticalAlignment="Center" />
+    </DataTemplate>
+
     <DataTemplate x:Key="HelpMenuSafeModeButtonTemplate">
         <TextBlock Text="{DynamicResource LOCCrashRestartSafe}" VerticalAlignment="Center" />
     </DataTemplate>
