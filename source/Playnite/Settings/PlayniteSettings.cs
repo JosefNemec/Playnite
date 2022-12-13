@@ -2501,6 +2501,7 @@ namespace Playnite
         public static void ConfigureLogger()
         {
             var config = new LoggingConfiguration();
+            config.DefaultCultureInfo = new System.Globalization.CultureInfo("en-US");
 #if DEBUG
             var consoleTarget = new ColoredConsoleTarget()
             {
