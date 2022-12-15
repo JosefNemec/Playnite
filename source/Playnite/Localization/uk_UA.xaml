@@ -1175,6 +1175,8 @@ SHIFT-ENTER: відкрити меню елементу</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Коли задано, сканер призначить цю платформу всім іграм, перезаписуючи будь-які автоматично виявлені платформи.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Включити команди до стандартного пошуку</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Коли вимкнено, команди не будуть включені в пошук за умовчанням, доки не буде використано префікс #.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Підтримка пошуку з використанням абревіатур для фільтра назви</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Якщо увімкнено, результати пошуку включатимуть елементи, абревіатура яких відповідає пошуковому терміну.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Показувати поля для результатів пошуку гри:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Прихований статус</sys:String>
 

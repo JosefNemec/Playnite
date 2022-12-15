@@ -1173,6 +1173,8 @@ UMSCHALT-EINGABETASTE: Elementmenü öffnen</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Falls aktiviert, wird der Scanner diese Plattform allen Spielen zuweisen und jegliche automatisch erkannten Plattformen übergehen.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Befehle in Standardsuche einbeziehen</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Falls deaktiviert, werden Befehle nicht in der Standardsuche berücksichtigt, es sei denn, es wird das Zeichen »#« vorangestellt.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Suche mit Abkürzungen für Namensfilter unterstützen</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Wenn aktiviert, enthalten Suchergebnisse Elemente, deren Abkürzung mit dem Suchbegriff übereinstimmt.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Für Spieleergebnisse anzuzeigende Felder:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Versteckter Status</sys:String>
 

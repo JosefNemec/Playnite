@@ -1180,6 +1180,8 @@ SHIFT-ENTER: открыть меню элементов</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">При включении сканер привяжет эту платформу ко всем играм, заменив все автоматически определенные платформы.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Включить команды в поиск по умолчанию</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">При отключении команды не будут включены в поиск по умолчанию, пока не будет использован префикс #.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Искать по первым буквам названий</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Если включено, в результаты поиска попадут совпадения по введенной аббревиатуре.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Отобр. поля в результатах поиска игры:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Скрытый статус</sys:String>
 

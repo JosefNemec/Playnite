@@ -1177,6 +1177,8 @@ SHIFT-ENTER: otwórz menu pozycji</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Kiedy ustawiony, skaner przypiszę tę platformę do wszystkich gier, nadpisując automatycznie wykryte platformy.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Dołącz polecenia w domyślnym wyszukiwaniu</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Po wyłączeniu, polecenia nie będą uwzględniane w domyślnym wyszukiwaniu, dopóki nie zostanie użyty prefiks #.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Pola wyświetlane dla wyników gry:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Ukryty Status</sys:String>
 

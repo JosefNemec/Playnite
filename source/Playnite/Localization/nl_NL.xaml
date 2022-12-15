@@ -143,7 +143,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCCloseLabel">Sluiten</sys:String>
     <sys:String x:Key="LOCCancelLabel">Annuleren</sys:String>
     <sys:String x:Key="LOCConfirmLabel">Bevestigen</sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel">Reset</sys:String>
     <sys:String x:Key="LOCYesLabel">Ja</sys:String>
     <sys:String x:Key="LOCNoLabel">Nee</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Welkom</sys:String>
@@ -1183,6 +1183,8 @@ Deze optie werkt mogelijk niet volledig met plugins die een specifieke game impo
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Velden die worden weergegeven voor spellen in zoekresultaten:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Verborgen Status</sys:String>
 

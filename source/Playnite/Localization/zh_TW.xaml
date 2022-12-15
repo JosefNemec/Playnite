@@ -1173,6 +1173,8 @@ SHIFT-ENTER: 開啟項目列表</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">打開此選項時掃描器會把這個平台資訊指定到所有遊戲，並覆載所有已經偵測到的平台資訊。</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">在預設搜尋中包含指令內容</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">當這個選項被停用時，未使用#前綴的話，預設搜尋將不會包含指令內容。</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
     <sys:String x:Key="LOCHiddenStatus">隱藏狀態</sys:String>
 

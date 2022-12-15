@@ -1174,6 +1174,8 @@ SHIFT-ENTER: abrir menú de elementos</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Cuando se establece el escáner asignará esta plataforma a todos los juegos, sobrescribiendo cualquier plataforma detectada automáticamente.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Incluye comandos en la búsqueda por defecto</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Cuando se desactiva, los comandos no se incluirán en la búsqueda por defecto hasta que se utilice # el prefijo.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Soportar búsqueda usando acrónimos para filtro de nombres</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Cuando está activado, los resultados de búsqueda incluirán elementos cuyo acrónimo coincide con el término de búsqueda.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Campos a mostrar para los resultados de juegos:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Estado oculto</sys:String>
 

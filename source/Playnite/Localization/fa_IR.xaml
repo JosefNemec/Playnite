@@ -1171,6 +1171,8 @@ SHIFT-ENTER: منوی مورد را باز کنید</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">هنگامی که اسکنر تنظیم شود، این پلتفرم را به همه بازی‌ها اختصاص می‌دهد و پلتفرم‌های شناسایی شده به‌طور خودکار را بازنویسی می‌کند.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">شامل دستورات در جستجوی پیش فرض</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">وقتی غیرفعال است، تا زمانی که از پیشوند # استفاده نشود، دستورها در جستجوی پیش‌فرض گنجانده نمی‌شوند.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">فیلدهایی که برای نتایج بازی نمایش داده می شوند:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">وضعیت پنهان</sys:String>
 

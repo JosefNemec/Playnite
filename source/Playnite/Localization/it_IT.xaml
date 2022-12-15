@@ -1184,6 +1184,8 @@ SHIFT-ENTER: apri il menu item</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Quando impostato lo scanner assegnerà questa piattaforma a tutti i giochi, sovrascrivendo le piattaforme automaticamente rilevate.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Includi i comandi nella ricerca predefinita</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Quando disabilitato, i comandi non saranno inclusi nella ricerca predefinita finché non verrà utilizzato il prefisso #</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Supporta la ricerca usando gli acronimi per il filtro nomi</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Se abilitata, i risultati della ricerca includeranno elementi il cui acronimo corrisponde al termine di ricerca.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Campi da visualizzare per i risultati del gioco:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Stato Nascosto</sys:String>
 

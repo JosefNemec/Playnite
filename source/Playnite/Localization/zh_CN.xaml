@@ -1170,6 +1170,8 @@ SHIFT-ENTER：打开项目菜单</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">设置时，扫描器将为所有游戏指定此平台，覆盖任何自动检测到的平台。</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">在默认搜索中包含命令</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">禁用时，除非使用 # 前缀，否则在默认搜索中不包含命令。</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">在名称筛选器中支持使用首字母缩写搜索</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">如果启用，搜索结果将包括首字母缩写符合搜索词的项目。</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">游戏搜索结果中显示的字段：</sys:String>
     <sys:String x:Key="LOCHiddenStatus">隐藏状态</sys:String>
 

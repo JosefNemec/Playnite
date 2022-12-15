@@ -1172,6 +1172,8 @@ SHIFT-ENTER: otevřít menu položky</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Skener přiřadí tuto platformu všem hrám nehledě na automaticky detekovanou platformu.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Zahrnout příkazy ve výchozím hledání</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Pokud je zakázáno, příkazy nebudou zahrnuty ve výchozím vyhledávání dokud nebude použit # prefix.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Podpora vyhledávání pomocí akronymů ve filtru jmen</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Pokud je povoleno, výsledky hledání budou obsahovat položky, jejichž akronym odpovídá hledanému výrazu.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Zobrazit pole hry ve výsledcích hledání:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Skrytý stav</sys:String>
 

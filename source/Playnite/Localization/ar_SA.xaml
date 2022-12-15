@@ -1229,6 +1229,8 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">عند تعيين الماسح الضوئي سيقوم بتعيين هذه المنصة لجميع الألعاب، و الكتابة فوق أي منصات مكتشفة تلقائيا.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">تضمين الأوامر في البحث الافتراضي</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">عند التعطيل، لن يتم تضمين الأوامر في البحث الافتراضي حتى يتم استخدام البادئة # .</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">الحقول التي سيتم عرضها لنتائج اللعبة:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">الحالة المخفية</sys:String>
 

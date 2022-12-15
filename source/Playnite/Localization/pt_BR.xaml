@@ -221,7 +221,7 @@ Selecionar a opção &quot;adicionar a lista de exclusão&quot; impedirá que o 
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Importando jogos emulados de {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Baixando atualizações da biblioteca…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Verificando o tamanho dos jogos na biblioteca…</sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Verificando tamanho dos jogos importados…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Atualização da biblioteca concluída</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Liberando recursos…</sys:String>
     <!--Menu-->
@@ -469,8 +469,8 @@ Você também sempre pode adicionar mais jogos clicando no menu no logo do Playn
 
 Você pode tentar baixar novamente as integrações pelo menu de extensões após o assistente de primeira execução terminar.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">Baixando {0} integrações...</sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Baixando lista de integrações recomendadas…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Falha ao baixar a lista de integrações recomendadas. Você pode tentar e baixar novamente as integrações mais tarde através do menu de extensões.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Configurar plataformas e emuladores</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Configurar emuladores</sys:String>
@@ -503,7 +503,7 @@ Ele está sendo usado por {1} jogos(s).</sys:String>
 Ela está sendo usada por {1} jogos(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Ajuda para configuração</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Classificar por</sys:String>
-    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Direção de classificação</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Agrupar por</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendente</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendente</sys:String>
@@ -1173,6 +1173,8 @@ SHIFT-ENTER: abrir menu de itens</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Quando definido, o scanner atribuirá esta plataforma a todos os jogos, substituindo quaisquer plataformas detectadas automaticamente.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Incluir comandos na pesquisa padrão</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Quando desativado, os comandos não serão incluídos na pesquisa padrão até que o prefixo # seja usado.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Suportar pesquisa usando acrônimos para filtro de nomes</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Quando ativado, os resultados da pesquisa incluirão itens cujo acrônimo corresponda ao termo de pesquisa.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Campos a serem exibidos para os resultados do jogo:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Status Oculto</sys:String>
 
@@ -1214,14 +1216,14 @@ O formato de data especificado será usado em todas as outras datas.</sys:String
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">String de pesquisa de imagens de fundo</sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Obtendo informações do complemento…</sys:String>
     <sys:String x:Key="LOCNoMetadataSource">Nenhuma fonte de metadados está disponível</sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
-    <sys:String x:Key="LOCAutomatic"></sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
-    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
-    <sys:String x:Key="LOCApplicationMenu"></sys:String>
-    <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">Reproduzir configurações de ação</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Usar configurações do scanner</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Selecionar perfil na inicialização</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Selecionar emulador na inicialização</sys:String>
+    <sys:String x:Key="LOCAutomatic">Automático</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Sempre ligado</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Sempre desligado</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Suporte de acessibilidade (leitor de tela)</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Menu do aplicativo</sys:String>
+    <sys:String x:Key="LOCGameMenu">Menu do jogo</sys:String>
 </ResourceDictionary>

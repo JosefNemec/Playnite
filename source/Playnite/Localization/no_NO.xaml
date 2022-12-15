@@ -1173,6 +1173,8 @@ SHIFT-ENTER: åpne elementmeny</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Når dette er valgt vil skanningen tilordne denne plattformen til alle spill, og samtidig overskrive automatisk angitte plattformer.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Inkluder kommandoer i standardsøk</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Når deaktivert, vil ikke kommandoer inkluderes i standard søk med mindre #-prefiks er brukt.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Felter som skal vises for spillresultater:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Skjult status</sys:String>
 

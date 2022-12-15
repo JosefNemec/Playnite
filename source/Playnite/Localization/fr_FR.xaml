@@ -1171,6 +1171,8 @@ MAJ-ENTREE : ouvre le menu de l'élément</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Lorsque défini, le scanner assignera cette plate-forme à tous les jeux, écrasant toutes les plateformes détectées automatiquement.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Inclure les commandes dans la recherche par défaut</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Lorsque cette option est désactivée, les commandes ne seront pas incluses dans la recherche par défaut jusqu'à ce que le préfixe # soit utilisé.</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Prise en charge des acronymes dans les résultats de recherche</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Lorsque cette option est activée, la recherche inclue des résultats dont l'acronyme correspond au terme recherché.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Informations à afficher pour les résultats de recherche :</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Statut affiché/masqué</sys:String>
 
