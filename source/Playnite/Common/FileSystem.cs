@@ -497,7 +497,6 @@ namespace Playnite.Common
                     return false;
                 }
 
-                var rootPath = Path.GetPathRoot(originalPath);
                 var availableDrives = DriveInfo.GetDrives().Where(d => d.IsReady);
                 foreach (var drive in availableDrives)
                 {

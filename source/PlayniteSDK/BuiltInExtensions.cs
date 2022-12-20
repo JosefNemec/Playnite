@@ -117,9 +117,9 @@ namespace Playnite.SDK
         /// <returns></returns>
         public static BuiltinExtension GetExtensionFromId(Guid id)
         {
-            if (ExtensionList.ContainsKey(id))
+            if (ExtensionList.TryGetValue(id, out BuiltinExtension value))
             {
-                return ExtensionList[id];
+                return value;
             }
             else
             {

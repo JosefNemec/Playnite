@@ -41,12 +41,12 @@ namespace Playnite.SDK.Models
         /// <param name="year"></param>
         public ReleaseDate(int year)
         {
-            if (year == default(int))
+            if (year == default)
             {
-                Year = default(int);
-                Month = default(int?);
-                Day = default(int?);
-                Date = default(DateTime);
+                Year = default;
+                Month = default;
+                Day = default;
+                Date = default;
             }
             else
             {
