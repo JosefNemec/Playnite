@@ -1,5 +1,10 @@
 ### To get automatically notified about SDK changes, you can subscribe to [change tracking issue](https://github.com/JosefNemec/Playnite/issues/1425) on GitHub.
 
+#### 6.9.0
+
+* New
+  * Added `OnGameStartupCancelled` application event which is called when an extension [cancels game startup](tutorials/extensions/events.md#cancelling-game-startup).
+
 #### 6.8.0
 
 * New

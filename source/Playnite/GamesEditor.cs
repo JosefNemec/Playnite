@@ -289,6 +289,7 @@ namespace Playnite
                 void cancelStartup(string message)
                 {
                     logger.Warn(message);
+                    controllers.InvokeOnGameStartupCancelled(this, game.GetCopy());
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
@@ -299,7 +300,7 @@ namespace Playnite
 
                 var startingArgs = new SDK.Events.OnGameStartingEventArgs
                 {
-                    Game = game.GetClone(),
+                    Game = game.GetCopy(),
                     SourceAction = (playAction as GameAction)?.GetClone(),
                     SelectedRomFile = (playAction as EmulationPlayAction)?.SelectedRomPath
                 };
@@ -1528,7 +1529,7 @@ namespace Playnite
                 var scriptVars = new Dictionary<string, object>
                 {
                     {  "PlayniteApi", Application.PlayniteApiGlobal },
-                    {  "Game", game.GetClone() }
+                    {  "Game", game.GetCopy() }
                 };
 
                 vars?.ForEach(a => scriptVars.AddOrUpdate(a.Key, a.Value));

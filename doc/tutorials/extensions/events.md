@@ -14,6 +14,7 @@ Available Events
 | OnGameStarting | Before game is started. | [OnGameStartingEventArgs](xref:Playnite.SDK.Events.OnGameStartingEventArgs) |
 | OnGameStarted | Game started running. | [OnGameStartedEventArgs](xref:Playnite.SDK.Events.OnGameStartedEventArgs) |
 | OnGameStopped | Game stopped running.  | [OnGameStoppedEventArgs](xref:Playnite.SDK.Events.OnGameStoppedEventArgs) |
+| OnGameStartupCancelled | Game startup was cancelled. | [OnGameStartupCancelledEventArgs](xref:Playnite.SDK.Events.OnGameStartupCancelledEventArgs) |
 | OnGameInstalled | Game is installed. | [OnGameInstalledEventArgs](xref:Playnite.SDK.Events.OnGameInstalledEventArgs) |
 | OnGameUninstalled | Game is uninstalled. | [OnGameUninstalledEventArgs](xref:Playnite.SDK.Events.OnGameUninstalledEventArgs) |
 | OnGameSelected | Game selection changed. | [OnGameSelectedEventArgs](xref:Playnite.SDK.Events.OnGameSelectedEventArgs) |

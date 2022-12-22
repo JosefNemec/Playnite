@@ -47,7 +47,11 @@ namespace Playnite.SDK.Events
         /// <summary>
         ///
         /// </summary>
-        OnGameSelected
+        OnGameSelected,
+        /// <summary>
+        ///
+        /// </summary>
+        OnGameStartupCancelled
     }
 
     /// <summary>
@@ -127,6 +131,17 @@ namespace Playnite.SDK.Events
         /// Gets started process ID. Might not be valid for all started games depending on how the game was started.
         /// </summary>
         public int StartedProcessId { get; internal set; }
+    }
+
+    /// <summary>
+    /// Represents arguments for the event when a game is installed.
+    /// </summary>
+    public class OnGameStartupCancelledEventArgs
+    {
+        /// <summary>
+        /// Gets or sets game object initiating the event.
+        /// </summary>
+        public Game Game { get; internal set; }
     }
 
     /// <summary>

@@ -27,6 +27,7 @@ namespace Playnite.Controllers
         public event EventHandler<GameStoppedEventArgs> Stopped;
         public event EventHandler<GameUninstalledEventArgs> Uninstalled;
         public event EventHandler<GameInstalledEventArgs> Installed;
+        public event EventHandler<OnGameStartupCancelledEventArgs> StartupCancelled;
 
         public GameControllerFactory()
         {
@@ -186,6 +187,11 @@ namespace Playnite.Controllers
         internal void InvokeOnStarting(object sender, OnGameStartingEventArgs e)
         {
             Starting?.Invoke(this, e);
+        }
+
+        internal void InvokeOnGameStartupCancelled(object sernder, Game game)
+        {
+            StartupCancelled?.Invoke(this, new OnGameStartupCancelledEventArgs { Game = game });
         }
     }
 }
