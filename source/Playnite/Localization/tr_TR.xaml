@@ -1009,7 +1009,7 @@ XInput girişlerini fare/klavye girişlerine çeviren araçlar kullanıyorsanız
     <sys:String x:Key="LOCGameIsStarting">{0} başlıyor…</sys:String>
     <sys:String x:Key="LOCGameIsRunning">{0} çalışıyor…</sys:String>
     <sys:String x:Key="LOCTextInputCapitalize">Büyük Harfler</sys:String>
-    <sys:String x:Key="LOCTextInputSpace"></sys:String>
+    <sys:String x:Key="LOCTextInputSpace">Boşluk</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode">Görüntü işleme ölçekleyicisi</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">Alternatif</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced">Dengelenmiş</sys:String>
@@ -1029,7 +1029,7 @@ Daha iyi kalite, orta hız, düşük bellek kullanımı.</sys:String>
     
 Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız, sorunun kaynağı olup olmadığını görmek için önce bunları devre dışı bırakmayı/kaldırmayı deneyin.</sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">Başlangıçta seç</sys:String>
-    <sys:String x:Key="LOCEmulatorSelectOnStart"></sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart">Başlangıçta seç</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Gömülü modüller</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Gömülü profiller</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Özel profiller</sys:String>
@@ -1157,8 +1157,8 @@ Yalnızca şunlar için desteklenir: Google Drive, DropBox, OneDrive</sys:String
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronyms">Ad filtresi için kısaltmalar kullanarak arama desteği</sys:String>
+    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">Etkinleştirildiğinde, arama sonuçları, kısaltması arama terimiyle eşleşen öğeleri içerecektir.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
     <sys:String x:Key="LOCHiddenStatus"></sys:String>
 
