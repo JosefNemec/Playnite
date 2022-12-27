@@ -942,7 +942,8 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCLicenseDecline">Decline</sys:String>
     <sys:String x:Key="LOCIncludePluginGameActions">Include library integration play actions</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Select action</sys:String>
-    <sys:String x:Key="LOCActionTrackingMode">Tracking mode</sys:String>
+    <sys:String x:Key="LOCActionTrackingMode">Tracking Mode</sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">Tracking Path</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">File</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>

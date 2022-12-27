@@ -143,7 +143,7 @@ namespace Playnite.Controllers
 
                     startupDir = expandedProfile.WorkingDirectory;
                     startupPath = expandedProfile.Executable;
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), expandedProfile.GetClone());
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), expandedProfile.GetClone(), expandedProfile.TrackingMode, expandedProfile.TrackingPath);
                 }
             }
             else if (currentEmuProfile is BuiltInEmulatorProfile builtIn)
@@ -205,7 +205,7 @@ namespace Playnite.Controllers
                         }
                     }
 
-                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), builtIn.GetClone());
+                    StartEmulatorProcess(startupPath, startupArgs, startupDir, emulator.InstallDir, romPath, asyncExec, emulator.GetClone(), builtIn.GetClone(), TrackingMode.Process);
                 }
             }
             else
@@ -214,7 +214,17 @@ namespace Playnite.Controllers
             }
         }
 
-        private void StartEmulatorProcess(string path, string args, string workDir, string emulatorDir, string romPath, bool asyncExec, Emulator emulator, EmulatorProfile emuProfile)
+        private void StartEmulatorProcess(
+            string path,
+            string args,
+            string workDir,
+            string emulatorDir,
+            string romPath,
+            bool asyncExec,
+            Emulator emulator,
+            EmulatorProfile emuProfile,
+            TrackingMode trackingMode,
+            string trackingPath = null)
         {
             startedRomFile = romPath;
             startedEmulator = emulator;
@@ -224,15 +234,51 @@ namespace Playnite.Controllers
             if (asyncExec)
             {
                 ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath, emulator, emuProfile);
-
-                procMon = new ProcessMonitor();
-                procMon.TreeDestroyed += Monitor_EmulatedTreeDestroyed;
                 var process = ProcessStarter.StartProcess(path, args, workDir);
 
-                stopWatch = Stopwatch.StartNew();
-                ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
-                InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = process.Id });
-                procMon.WatchProcessTree(process);
+                void gameStarted(int processId)
+                {
+                    stopWatch = Stopwatch.StartNew();
+                    ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
+                    InvokeOnStarted(new GameStartedEventArgs { StartedProcessId = processId });
+                }
+
+                procMon = new ProcessMonitor();
+                procMon.TreeStarted += (_, treeArgs) => gameStarted(treeArgs.StartedId);
+                procMon.TreeDestroyed += (_, __) =>
+                {
+                    stopWatch.Stop();
+                    ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile);
+                    InvokeOnStopped(new GameStoppedEventArgs { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
+                };
+
+                if (trackingMode == TrackingMode.Default || trackingMode == TrackingMode.Process)
+                {
+                    gameStarted(process.Id);
+                    procMon.WatchProcessTree(process);
+                }
+                else if (trackingMode == TrackingMode.OriginalProcess)
+                {
+                    gameStarted(process.Id);
+                    procMon.WatchSingleProcess(process);
+                }
+                else if (trackingMode == TrackingMode.Directory)
+                {
+                    var watchDir = trackingPath.IsNullOrEmpty() ? emulatorDir : trackingPath;
+                    if (!watchDir.IsNullOrEmpty() && FileSystem.DirectoryExists(watchDir))
+                    {
+                        stopWatch = Stopwatch.StartNew();
+                        procMon.WatchDirectoryProcesses(watchDir, false);
+                    }
+                    else
+                    {
+                        InvokeOnStopped(new GameStoppedEventArgs());
+                    }
+                }
+                else
+                {
+                    throw new NotSupportedException();
+                }
             }
             else
             {
@@ -441,8 +487,12 @@ namespace Playnite.Controllers
                 }
 
                 procMon = new ProcessMonitor();
-                procMon.TreeStarted += ProcMon_TreeStarted;
-                procMon.TreeDestroyed += Monitor_TreeDestroyed;
+                procMon.TreeStarted += (_, treeArgs) => InvokeOnStarted(new GameStartedEventArgs { StartedProcessId = treeArgs.StartedId });
+                procMon.TreeDestroyed += (_, __) =>
+                {
+                    stopWatch.Stop();
+                    InvokeOnStopped(new GameStoppedEventArgs { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
+                };
 
                 if (action.TrackingMode == TrackingMode.Default)
                 {
@@ -519,7 +569,7 @@ namespace Playnite.Controllers
                 {
                     if (proc != null)
                     {
-                        InvokeOnStarted(new GameStartedEventArgs());
+                        InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
                         stopWatch = Stopwatch.StartNew();
                         procMon.WatchSingleProcess(proc);
                     }
@@ -562,24 +612,6 @@ namespace Playnite.Controllers
 
             watcherToken?.Dispose();
             currentEmuProfile = null;
-        }
-
-        private void ProcMon_TreeStarted(object sender, ProcessMonitor.TreeStartedEventArgs args)
-        {
-            InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = args.StartedId });
-        }
-
-        private void Monitor_TreeDestroyed(object sender, EventArgs args)
-        {
-            stopWatch.Stop();
-            InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
-        }
-
-        private void Monitor_EmulatedTreeDestroyed(object sender, EventArgs args)
-        {
-            stopWatch.Stop();
-            ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile);
-            InvokeOnStopped(new GameStoppedEventArgs() { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
         }
 
         private string CheckPath(string sourcePath, string changeProp, FileSystemItem pathType)

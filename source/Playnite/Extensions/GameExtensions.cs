@@ -28,6 +28,7 @@ namespace Playnite
             expaded.Arguments = g.ExpandVariables(expaded.Arguments, false, emulatorDir);
             expaded.WorkingDirectory = g.ExpandVariables(expaded.WorkingDirectory, true, emulatorDir);
             expaded.Executable = g.ExpandVariables(expaded.Executable, true, emulatorDir);
+            expaded.TrackingPath = g.ExpandVariables(expaded.TrackingPath, true, emulatorDir);
             return expaded;
         }
     }
@@ -182,7 +183,7 @@ namespace Playnite
         // TODO rework this whole mess into something better and more maintainable :|
         private static string StringExpand(this Game game, string inputString, bool fixSeparators = false, string emulatorDir = null, string romPath = null)
         {
-            if (string.IsNullOrEmpty(inputString) || !inputString.Contains('{'))
+            if (string.IsNullOrWhiteSpace(inputString) || !inputString.Contains('{'))
             {
                 return inputString;
             }
