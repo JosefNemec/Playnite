@@ -41,7 +41,7 @@
                     Command="{Binding BrowseCommand}"
                     Padding="10,0,10,0" Margin="10,0,10,0"/>
                     <TextBox DockPanel.Dock="Left" VerticalContentAlignment="Center"
-                     Text="{Binding DestionationFolder}" />
+                             Text="{Binding DestionationFolder,UpdateSourceTrigger=PropertyChanged}" />
                 </DockPanel>
 
                 <CheckBox Content="Portable" HorizontalAlignment="Left"
