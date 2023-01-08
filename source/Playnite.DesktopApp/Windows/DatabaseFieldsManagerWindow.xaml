@@ -383,7 +383,7 @@
                                 Command="{Binding MoveUpFilterPresetCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
                         <Button Name="ButtonMoveDownFilterPreset" FontFamily="Marlett" Content="6" Margin="5"
-                                Command="{Binding MovedDownFilterPresetCommand}"
+                                Command="{Binding MoveDownFilterPresetCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
                     </StackPanel>
                     <ListBox Name="ListFilterPresets"
