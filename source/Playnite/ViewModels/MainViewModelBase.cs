@@ -125,12 +125,16 @@ namespace Playnite.ViewModels
 
         public List<FilterPreset> SortedFilterPresets
         {
-            get => Database.FilterPresets.OrderBy(a => a.Name).ToList();
+            get => Database.FilterPresets
+                .OrderBy(i => Database.GetFilterPresetsSettings().SortingOrder.IndexOf(i.Id))
+                .ToList();
         }
 
         public List<FilterPreset> SortedFilterFullscreenPresets
         {
-            get => Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection).OrderBy(a => a.Name).ToList();
+            get => Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection)
+                .OrderBy(i => Database.GetFilterPresetsSettings().SortingOrder.IndexOf(i.Id))
+                .ToList();
         }
 
         public bool IsDisposing { get; set; } = false;
@@ -214,11 +218,19 @@ namespace Playnite.ViewModels
                 }
             });
 
-            RestartApp = new RelayCommand(() => RestartAppSkipLibUpdate()); 
+            RestartApp = new RelayCommand(() => RestartAppSkipLibUpdate());
             RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
             BackupDataCommand = new RelayCommand(() => BackupData());
             RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
+            var filterPresetsCollection = (database.FilterPresets as FilterPresetsCollection);
+            filterPresetsCollection.OnSettingsUpdated += FilterPresetsCollection_OnSettingsUpdated;
             database.FilterPresets.ItemCollectionChanged += FilterPresets_ItemCollectionChanged;
+        }
+
+        private void FilterPresetsCollection_OnSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
+        {
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
         }
 
         private void FilterPresets_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<FilterPreset> e)

@@ -863,7 +863,7 @@ namespace Playnite.Database
                     break;
                 case ExplorerField.Presets:
                     values.Clear();
-                    values.AddRange(database.FilterPresets.OrderBy(a => a.Name).Select(a => new SelectionObject(a)));
+                    values.AddRange(mainModel.SortedFilterPresets.Select(a => new SelectionObject(a)));
                     break;
                 case ExplorerField.Name:
                     values.Add(new SelectionObject("^#", "#"));

@@ -160,6 +160,16 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
+        public FilterPresetsSettings GetFilterPresetsSettings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetFilterPresetsSettings(FilterPresetsSettings settings)
+        {
+            throw new NotImplementedException();
+        }
+
         public CompletionStatusSettings GetCompletionStatusSettings()
         {
             throw new NotImplementedException();

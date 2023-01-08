@@ -68,7 +68,9 @@ namespace Playnite.Database
         IDisposable BufferedUpdate();
         List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode);
         CompletionStatusSettings GetCompletionStatusSettings();
+        FilterPresetsSettings GetFilterPresetsSettings();
         void SetCompletionStatusSettings(CompletionStatusSettings settings);
+        void SetFilterPresetsSettings(FilterPresetsSettings settings);
         GameScannersSettings GetGameScannersSettings();
         void SetGameScannersSettings(GameScannersSettings settings);
         HashSet<string> GetImportedRomFiles(string emulatorDir);
@@ -1308,6 +1310,16 @@ namespace Playnite.Database
                     return addedGames;
                 }
             }
+        }
+
+        public FilterPresetsSettings GetFilterPresetsSettings()
+        {
+            return (FilterPresets as FilterPresetsCollection).GetSettings();
+        }
+
+        public void SetFilterPresetsSettings(FilterPresetsSettings settings)
+        {
+            (FilterPresets as FilterPresetsCollection).SetSettings(settings);
         }
 
         public CompletionStatusSettings GetCompletionStatusSettings()

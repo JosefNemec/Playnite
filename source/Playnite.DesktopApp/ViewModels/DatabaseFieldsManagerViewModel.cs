@@ -565,6 +565,11 @@ namespace Playnite.DesktopApp.ViewModels
             get;
         }
 
+        public FilterPresetsSettings FilterPresetsSettings
+        {
+            get;
+        }
+
         public RelayCommand<IList<object>> RemoveFilterPresetCommand
         {
             get => new RelayCommand<IList<object>>((a) =>
@@ -579,6 +584,30 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 RenameItem(EditingFilterPresets, a.First() as FilterPreset);
             }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> MoveUpFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                var index = EditingFilterPresets.IndexOf(a.First() as FilterPreset);
+                if (index != 0)
+                {
+                    EditingFilterPresets.Move(index, index - 1);
+                }
+            });
+        }
+
+        public RelayCommand<IList<object>> MoveDownFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                var index = EditingFilterPresets.IndexOf(a.First() as FilterPreset);
+                if (index != EditingFilterPresets.Count - 1)
+                {
+                    EditingFilterPresets.Move(index, index + 1);
+                }
+            });
         }
 
         #endregion FilterPresets
@@ -613,7 +642,6 @@ namespace Playnite.DesktopApp.ViewModels
             EditingRegions = database.Regions.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingSeries = database.Series.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingSources = database.Sources.GetClone().OrderBy(a => a.Name).ToObservable();
-            EditingFilterPresets = database.FilterPresets.GetClone().ToObservable();
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingCompletionStatuses = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
@@ -639,6 +667,10 @@ namespace Playnite.DesktopApp.ViewModels
             });
 
             CompletionStatusSettings = database.GetCompletionStatusSettings();
+            FilterPresetsSettings = database.GetFilterPresetsSettings();
+            EditingFilterPresets = database.FilterPresets.GetClone()
+                .OrderBy(i => FilterPresetsSettings.SortingOrder.IndexOf(i.Id))
+                .ToObservable();
         }
 
         public void OpenView()
@@ -668,6 +700,7 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateDbCollection(database.CompletionStatuses, EditingCompletionStatuses);
                 UpdatePlatformsCollection();
                 UpdateCompletionStatusSettings();
+                UpdateFilterPresetsSettings();
             }
 
             window.Close(true);
@@ -992,6 +1025,16 @@ namespace Playnite.DesktopApp.ViewModels
             if (!CompletionStatusSettings.IsEqualJson(dbSet))
             {
                 database.SetCompletionStatusSettings(CompletionStatusSettings);
+            }
+        }
+
+        private void UpdateFilterPresetsSettings()
+        {
+            var dbSet = database.GetFilterPresetsSettings();
+            FilterPresetsSettings.SortingOrder = EditingFilterPresets.Select(x => x.Id).ToList();
+            if (!FilterPresetsSettings.IsEqualJson(dbSet))
+            {
+                database.SetFilterPresetsSettings(FilterPresetsSettings);
             }
         }
     }

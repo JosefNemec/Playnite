@@ -379,6 +379,12 @@
                         <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,25,5"
                                 Command="{Binding RemoveFilterPresetCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                        <Button Name="ButtonMoveUpFilterPreset" FontFamily="Marlett" Content="5" Margin="5"
+                                Command="{Binding MoveUpFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                        <Button Name="ButtonMoveDownFilterPreset" FontFamily="Marlett" Content="6" Margin="5"
+                                Command="{Binding MovedDownFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
                     </StackPanel>
                     <ListBox Name="ListFilterPresets"
                              DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
