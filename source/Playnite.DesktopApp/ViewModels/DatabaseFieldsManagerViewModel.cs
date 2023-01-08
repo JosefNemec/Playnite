@@ -595,7 +595,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     EditingFilterPresets.Move(index, index - 1);
                 }
-            });
+            }, (a) => a?.Count == 1);
         }
 
         public RelayCommand<IList<object>> MoveDownFilterPresetCommand
@@ -607,7 +607,7 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     EditingFilterPresets.Move(index, index + 1);
                 }
-            });
+            }, (a) => a?.Count == 1);
         }
 
         #endregion FilterPresets
