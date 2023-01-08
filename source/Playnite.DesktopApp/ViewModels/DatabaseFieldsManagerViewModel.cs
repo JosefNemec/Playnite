@@ -558,6 +558,31 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion CompletionStatuses
 
+        #region FilterPresets
+
+        public ObservableCollection<FilterPreset> EditingFilterPresets
+        {
+            get;
+        }
+
+        public RelayCommand<IList<object>> RemoveFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingFilterPresets, a.Cast<FilterPreset>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(EditingFilterPresets, a.First() as FilterPreset);
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion FilterPresets
+
         public RelayCommand<object> SaveCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -588,6 +613,7 @@ namespace Playnite.DesktopApp.ViewModels
             EditingRegions = database.Regions.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingSeries = database.Series.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingSources = database.Sources.GetClone().OrderBy(a => a.Name).ToObservable();
+            EditingFilterPresets = database.FilterPresets.GetClone().ToObservable();
             EditingTags = database.Tags.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingFeatures = database.Features.GetClone().OrderBy(a => a.Name).ToObservable();
             EditingCompletionStatuses = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
@@ -636,6 +662,7 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateDbCollection(database.Regions, EditingRegions);
                 UpdateDbCollection(database.Series, EditingSeries);
                 UpdateDbCollection(database.Sources, EditingSources);
+                UpdateDbCollection(database.FilterPresets, EditingFilterPresets);
                 UpdateDbCollection(database.Tags, EditingTags);
                 UpdateDbCollection(database.Features, EditingFeatures);
                 UpdateDbCollection(database.CompletionStatuses, EditingCompletionStatuses);

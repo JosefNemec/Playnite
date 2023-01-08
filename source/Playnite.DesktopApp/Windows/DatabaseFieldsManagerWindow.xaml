@@ -369,6 +369,23 @@
                 </DockPanel>
             </TabItem>
 
+            <!--FilterPresets-->
+            <TabItem Header="{DynamicResource LOCSettingsTopPanelFilterPresetsItem}">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
+                                Command="{Binding RenameFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,25,5"
+                                Command="{Binding RemoveFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                    </StackPanel>
+                    <ListBox Name="ListFilterPresets"
+                             DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
+                             ItemsSource="{Binding EditingFilterPresets}" DisplayMemberPath="Name" />
+                </DockPanel>
+            </TabItem>
+            
         </TabControl>
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">

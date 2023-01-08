@@ -218,6 +218,13 @@ namespace Playnite.ViewModels
             RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
             BackupDataCommand = new RelayCommand(() => BackupData());
             RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
+            database.FilterPresets.ItemCollectionChanged += FilterPresets_ItemCollectionChanged;
+        }
+
+        private void FilterPresets_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<FilterPreset> e)
+        {
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
         }
 
         private PlayniteSettings appSettings;
@@ -357,9 +364,6 @@ namespace Playnite.ViewModels
                 {
                     ActiveFilterPreset = null;
                 }
-
-                OnPropertyChanged(nameof(SortedFilterPresets));
-                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
         }
 
@@ -420,9 +424,6 @@ namespace Playnite.ViewModels
                     Database.FilterPresets.Add(preset);
                     ActiveFilterPreset = preset;
                 }
-
-                OnPropertyChanged(nameof(SortedFilterPresets));
-                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
         }
 
