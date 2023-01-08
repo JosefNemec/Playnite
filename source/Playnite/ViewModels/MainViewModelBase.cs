@@ -125,16 +125,25 @@ namespace Playnite.ViewModels
 
         public List<FilterPreset> SortedFilterPresets
         {
-            get => Database.FilterPresets
-                .OrderBy(i => Database.GetFilterPresetsSettings().SortingOrder.IndexOf(i.Id))
-                .ToList();
+            
+            get
+            {
+                var sortingOrder = Database.GetFilterPresetsSettings().SortingOrder;
+                return Database.FilterPresets
+                    .OrderBy(i => sortingOrder.IndexOf(i.Id))
+                    .ToList();
+            }
         }
 
         public List<FilterPreset> SortedFilterFullscreenPresets
         {
-            get => Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection)
-                .OrderBy(i => Database.GetFilterPresetsSettings().SortingOrder.IndexOf(i.Id))
-                .ToList();
+            get
+            {
+                var sortingOrder = Database.GetFilterPresetsSettings().SortingOrder;
+                return Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection)
+                    .OrderBy(i => sortingOrder.IndexOf(i.Id))
+                    .ToList();
+            }
         }
 
         public bool IsDisposing { get; set; } = false;
