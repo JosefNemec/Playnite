@@ -564,6 +564,26 @@ namespace Playnite.DesktopApp
             // It can throw weird exceptions in virtualization panel, directly in WPF (without known fix from MS).
             // https://github.com/JosefNemec/Playnite/issues/796
 
+            if (args.RemovedItems.Any() && args.AddedItems.Any())
+            {
+                var removeIds = new HashSet<Guid>(args.RemovedItems.Select(a => a.Id));
+                var toReplaceItems = args.AddedItems.Where(x => removeIds.Contains(x.Id))?.ToList();
+
+                foreach (var item in toReplaceItems)
+                {
+                    var itemToReplace = Items.SingleOrDefault(x => x.Id == item.Id);
+
+                    if (itemToReplace != null)
+                    {
+                        itemToReplace = new GamesCollectionViewEntry(item, GetLibraryPlugin(item), settings);
+                    }
+                }
+
+                var replacedIds = new HashSet<Guid>(toReplaceItems.Select(x => x.Id));
+                args.AddedItems = args.AddedItems.Where(x => !replacedIds.Contains(x.Id)).ToList();
+                args.RemovedItems = args.RemovedItems.Where(x => !replacedIds.Contains(x.Id)).ToList();
+            }
+
             if (args.RemovedItems.Count > 0)
             {
                 var removeIds = new HashSet<Guid>(args.RemovedItems.Select(a => a.Id));
