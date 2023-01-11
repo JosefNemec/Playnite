@@ -83,3 +83,5 @@ Development
 ---------
 
 See the [wiki](https://github.com/JosefNemec/Playnite/wiki/Building) for info about building and setting up the development environment.
+
+test
