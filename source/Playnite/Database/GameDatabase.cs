@@ -1279,7 +1279,11 @@ namespace Playnite.Database
                                     existingGameUpdated = true;
                                 }
 
-                                if (existingGame.LastActivity == null && newGame.LastActivity != null)
+                                // The LastActivity value of the newGame is only applied if newer than
+                                // the existing game, to prevent cases of DRM free games being launched without
+                                // the client or offline, which would prevent the date from being updated in the service
+                                if (newGame.LastActivity != null && 
+                                    (existingGame.LastActivity == null || newGame.LastActivity > existingGame.LastActivity))
                                 {
                                     existingGame.LastActivity = newGame.LastActivity;
                                     existingGameUpdated = true;
