@@ -386,9 +386,24 @@
                                 Command="{Binding MoveDownFilterPresetCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
                     </StackPanel>
-                    <ListBox Name="ListFilterPresets"
-                             DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
-                             ItemsSource="{Binding EditingFilterPresets}" DisplayMemberPath="Name" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1" Grid.Row="0" Margin="5,10,5,10"
+                                    Visibility="{Binding SelectedItem, ElementName=ListFilterPresets, Converter={StaticResource NullToVisibilityConverter}}">
+                            <CheckBox Content="{DynamicResource LOCFilterPresetShowOnFSTopPanel}"
+                                      IsChecked="{Binding SelectedItem.ShowInFullscreeQuickSelection, ElementName=ListFilterPresets}" />
+                        </StackPanel>
+                        <ListBox Name="ListFilterPresets" Grid.Column="0" Grid.Row="0"
+                                 DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
+                                 ItemsSource="{Binding EditingFilterPresets}" DisplayMemberPath="Name" />
+                    </Grid>
+
                 </DockPanel>
             </TabItem>
             
