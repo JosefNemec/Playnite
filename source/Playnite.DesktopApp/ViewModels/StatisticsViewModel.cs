@@ -95,7 +95,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             public BaseStatInfo(string name, ulong value, ulong total) : this(name, value)
             {
-                if (total != 0)
+                if (total > 0 && value <= total)
                 {
                     Percentage = Convert.ToInt32(((double)value / (double)total) * 100);
                 }
