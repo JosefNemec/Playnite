@@ -10,6 +10,7 @@ using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -235,7 +236,23 @@ namespace Playnite.Controllers
             if (asyncExec)
             {
                 ExecuteEmulatorScript(currentEmuProfile.PreScript, emulatorDir, romPath, emulator, emuProfile);
-                var process = ProcessStarter.StartProcess(path, args, workDir);
+                Process process = null;
+                try
+                {
+                    process = ProcessStarter.StartProcess(path, args, workDir);
+                }
+                catch (Win32Exception exc)
+                {
+                    // 2 is ERROR_FILE_NOT_FOUND
+                    if (exc.NativeErrorCode == 2)
+                    {
+                        throw new FileNotFoundException(LOC.ErrorEmulatorExecutableNotFound.GetLocalized());
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
 
                 void gameStarted(int processId)
                 {
