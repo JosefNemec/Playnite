@@ -51,8 +51,7 @@ namespace Playnite.Common
         {
             var dialog = new CommonOpenFileDialog()
             {
-                IsFolderPicker = true,
-                Title = "Select Folder..."
+                IsFolderPicker = true
             };
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);

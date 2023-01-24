@@ -252,14 +252,14 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         menu.Items.Add(new MenuItem
                         {
-                            Header = "Built-in: " + profile,
+                            Header = $"{LOC.EmulatorBuiltInProfile.GetLocalized()}: {profile}",
                             Command = new RelayCommand<object>((_) => AddBuiltinEmulatorProfile(SelectedEmulator, profile))
                         });
                     }
 
                     menu.Items.Add(new MenuItem
                     {
-                        Header = "Custom profile",
+                        Header = LOC.EmulatorCustomProfile.GetLocalized(),
                         Command = new RelayCommand<object>((_) => AddCustomEmulatorProfile(SelectedEmulator))
                     });
 

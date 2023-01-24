@@ -3398,9 +3398,13 @@ namespace Playnite
         /// </summary>
         public const string SelectActionTitle = "LOCSelectActionTitle";
         /// <summary>
-        /// Tracking mode
+        /// Tracking Mode
         /// </summary>
         public const string ActionTrackingMode = "LOCActionTrackingMode";
+        /// <summary>
+        /// Tracking Path
+        /// </summary>
+        public const string ActionTrackingPath = "LOCActionTrackingPath";
         /// <summary>
         /// Link
         /// </summary>
@@ -3733,6 +3737,10 @@ namespace Playnite
         /// Custom profiles
         /// </summary>
         public const string EmulatorCustomProfiles = "LOCEmulatorCustomProfiles";
+        /// <summary>
+        /// Custom profile
+        /// </summary>
+        public const string EmulatorCustomProfile = "LOCEmulatorCustomProfile";
         /// <summary>
         /// Handled by a built-in script
         /// </summary>
@@ -4186,6 +4194,14 @@ namespace Playnite
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
         /// <summary>
+        /// Support search using acronyms for name filter
+        /// </summary>
+        public const string NameFilterSearchWithAcronyms = "NameFilterSearchWithAcronyms";
+        /// <summary>
+        /// When enabled, search results will include items whose acronym matches the search term.
+        /// </summary>
+        public const string NameFilterSearchWithAcronymsTooltip = "NameFilterSearchWithAcronymsTooltip";
+        /// <summary>
         /// Fields to be displayed for game results:
         /// </summary>
         public const string SearchViewGameFieldOptions = "LOCSearchViewGameFieldOptions";
@@ -4353,5 +4369,13 @@ namespace Playnite
         /// Game menu
         /// </summary>
         public const string GameMenu = "LOCGameMenu";
+        /// <summary>
+        /// Program folder
+        /// </summary>
+        public const string ProgramFolder = "LOCProgramFolder";
+        /// <summary>
+        /// User data directory
+        /// </summary>
+        public const string UserDataFolder = "LOCUserDataFolder";
     }
 }

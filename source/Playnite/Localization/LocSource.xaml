@@ -1040,6 +1040,7 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Built-in profiles</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Built-in profile</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Custom profiles</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">Custom profile</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Handled by a built-in script</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emulator specification</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Platform specification</sys:String>
@@ -1226,4 +1227,6 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface">Accessibility (screen reader) support</sys:String>
     <sys:String x:Key="LOCApplicationMenu">Application menu</sys:String>
     <sys:String x:Key="LOCGameMenu">Game menu</sys:String>
+    <sys:String x:Key="LOCProgramFolder">Program folder</sys:String>
+    <sys:String x:Key="LOCUserDataFolder">User data directory</sys:String>
 </ResourceDictionary>
