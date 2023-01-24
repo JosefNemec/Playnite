@@ -49,6 +49,7 @@ namespace Playnite.Controllers
         private Emulator startedEmulator;
         private EmulatorProfile startedEmulatorProfile;
         private string startedEmulatorDir;
+        private int startedEmuProcessId;
 
         public GenericPlayController(
             GameDatabase db,
@@ -238,6 +239,7 @@ namespace Playnite.Controllers
 
                 void gameStarted(int processId)
                 {
+                    startedEmuProcessId = processId;
                     stopWatch = Stopwatch.StartNew();
                     ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
                     InvokeOnStarted(new GameStartedEventArgs { StartedProcessId = processId });
@@ -306,7 +308,8 @@ namespace Playnite.Controllers
                     {  "SourceAction", StartingArgs.SourceAction },
                     {  "SelectedRomFile", romPath },
                     {  "Emulator", emulator },
-                    {  "EmulatorProfile", emuProfile }
+                    {  "EmulatorProfile", emuProfile },
+                    {  "StartedProcessId", startedEmuProcessId }
                 };
 
                 var expandedScript = Game.ExpandVariables(script, false, emulatorDir, romPath);
