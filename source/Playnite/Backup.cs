@@ -35,6 +35,7 @@ namespace Playnite
         public string DataDir { get; set; }
         public string LibraryDir { get; set; }
         public string OutputFile { get; set; }
+        public string OutputDir { get; set; }
         public List<BackupDataItem> BackupItems { get; set; }
         public bool ClosedWhenDone  { get; set; }
         public bool CancelIfGameRunning { get; set; }
@@ -71,9 +72,14 @@ namespace Playnite
 
         public static void BackupData(BackupOptions options, CancellationToken cancelToken)
         {
-            if (options.OutputFile.IsNullOrWhiteSpace())
+            if (options.OutputDir.IsNullOrEmpty() && options.OutputFile.IsNullOrEmpty())
             {
                 throw new Exception("Backup output path not specified!");
+            }
+
+            if (!options.OutputDir.IsNullOrEmpty())
+            {
+                options.OutputFile = Path.Combine(options.OutputDir, GetAutoBackupFileName());
             }
 
             if (options.BackupItems == null)
@@ -412,8 +418,13 @@ namespace Playnite
                 options.BackupItems.Add(BackupDataItem.LibraryFiles);
             }
 
-            options.OutputFile = Path.Combine(settings.AutoBackupDir, $"{autoBackupFileName}-{DateTime.Now.ToString(backupDateFormat)}.zip");
+            options.OutputDir = settings.AutoBackupDir;
             return options;
+        }
+
+        private static string GetAutoBackupFileName()
+        {
+            return $"{autoBackupFileName}-{DateTime.Now.ToString(backupDateFormat)}.zip";
         }
     }
 }
