@@ -62,14 +62,22 @@ namespace Playnite.Converters
     }
 
     public class NiceListToStringConverter : MarkupExtension, IValueConverter
-    {        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
             {
                 return string.Empty;
             }
 
-            return string.Join(", ", (IEnumerable<object>)value);
+            if (value is IEnumerable<dynamic>)
+            {
+                return string.Join(", ", (IEnumerable<object>)value);
+            }
+            else
+            {
+                return value.ToString();
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -104,11 +112,6 @@ namespace Playnite.Converters
     {
         private const string defaultSeperator = ",";
 
-        public static string MakeString(IEnumerable<string> source)
-        {
-            return string.Join(",", source);
-        }
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
@@ -122,7 +125,14 @@ namespace Playnite.Converters
                 sep = customSep;
             }
 
-            return string.Join(sep, (IEnumerable<object>)value);
+            if (value is IEnumerable<dynamic>)
+            {
+                return string.Join(sep, (IEnumerable<object>)value);
+            }
+            else
+            {
+                return value.ToString();
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -173,7 +183,14 @@ namespace Playnite.Converters
                 return string.Empty;
             }
 
-            return string.Join("\n", (IEnumerable<object>)value);
+            if (value is IEnumerable<dynamic>)
+            {
+                return string.Join("\n", (IEnumerable<object>)value);
+            }
+            else
+            {
+                return value.ToString();
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
