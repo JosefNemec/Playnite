@@ -61,26 +61,14 @@ namespace Playnite.DesktopApp.ViewModels
                 var newFields = newData?.Select(a => a.Name).ToList() ?? new List<string>();
                 if (!oldFields.HasItems() && newFields.HasItems())
                 {
-                    diffFields.Add(field);
                     return;
                 }
 
-                if (newFields.HasItems() && oldFields.HasItems() && !oldFields.IsListEqual(newFields, new GameFieldComparer()))
+                if (newFields.HasItems() && oldFields.HasItems() && !oldFields.IsListEqual(newFields, GameFieldComparer.Instance))
                 {
                     diffFields.Add(field);
                 }
             }
-
-            //void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
-            //{
-            //    if (!other.IsNullOrEmpty())
-            //    {
-            //        if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
-            //        {
-            //            diffFields.Add(field);
-            //        }
-            //    }
-            //}
 
             if (!newGame.Name.IsNullOrEmpty())
             {
@@ -212,7 +200,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (newGame.InstallSize != null)
+            if (!oldGame.IsInstalled && newGame.InstallSize != null)
             {
                 if (oldGame.InstallSize != null && oldGame.InstallSize != newGame.InstallSize)
                 {
@@ -365,7 +353,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (newData.InstallSize != null)
+            if (!EditingGame.IsInstalled && newData.InstallSize != null)
             {
                 EditingGame.InstallSize = newData.InstallSize;
             }
