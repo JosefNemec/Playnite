@@ -87,7 +87,7 @@ namespace Playnite.DesktopApp.Controls
 
         protected override void OnDecreaseSmall()
         {
-            base.OnDecreaseLarge();
+            base.OnDecreaseSmall();
             UpdateFinalValue();
         }
     }
