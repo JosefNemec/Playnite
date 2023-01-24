@@ -70,17 +70,17 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (!newGame.Name.IsNullOrEmpty())
+            if (!newGame.Name.IsNullOrWhiteSpace())
             {
-                if (!oldGame.Name.IsNullOrEmpty() && !string.Equals(oldGame.Name, newGame.Name, StringComparison.OrdinalIgnoreCase))
+                if (!oldGame.Name.IsNullOrWhiteSpace() && !string.Equals(oldGame.Name, newGame.Name, StringComparison.InvariantCultureIgnoreCase))
                 {
                     diffFields.Add(GameField.Name);
                 }
             }
 
-            if (!newGame.Description.IsNullOrEmpty())
+            if (!newGame.Description.IsNullOrWhiteSpace())
             {
-                if (!oldGame.Description.IsNullOrEmpty() && !string.Equals(oldGame.Description, newGame.Description, StringComparison.Ordinal))
+                if (!oldGame.Description.IsNullOrWhiteSpace() && !string.Equals(oldGame.Description, newGame.Description, StringComparison.InvariantCultureIgnoreCase))
                 {
                     diffFields.Add(GameField.Description);
                 }
@@ -251,7 +251,7 @@ namespace Playnite.DesktopApp.ViewModels
         private void LoadNewMetadata(ComparableMetadatGameData newData)
         {
             ShowCheckBoxes = true;
-            if (!string.IsNullOrEmpty(newData.Name))
+            if (!newData.Name.IsNullOrWhiteSpace() && !string.Equals(newData.Name, EditingGame.Name, StringComparison.InvariantCultureIgnoreCase))
             {
                 EditingGame.Name = newData.Name;
             }
@@ -306,7 +306,7 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.ReleaseDate = newData.ReleaseDate;
             }
 
-            if (!newData.Description.IsNullOrEmpty())
+            if (!newData.Description.IsNullOrWhiteSpace() && !string.Equals(newData.Description, EditingGame.Description, StringComparison.InvariantCultureIgnoreCase))
             {
                 EditingGame.Description = newData.Description;
             }
