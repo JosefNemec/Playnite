@@ -2489,10 +2489,12 @@ namespace Playnite
         {
             try
             {
+                logger.Info("Saving backup app settings");
                 FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
                 SaveSettingFile(this, PlaynitePaths.BackupConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.BackupWindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.BackupFullscreenConfigFilePath);
+                logger.Info("Settings backup saved successfully");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
