@@ -398,6 +398,14 @@ namespace Playnite.Common
                 return 0;
             }
 
+            // Method will fail when checking a file that's not valid on Windows,
+            // for example files used by Proton containing a colon (:).
+            // 'Directory' will be null when encountering such a file.
+            if (fileInfo.Directory is null)
+            {
+                return 0;
+            }
+
             // From https://stackoverflow.com/a/3751135
             int result = Kernel32.GetDiskFreeSpaceW(fileInfo.Directory.Root.FullName, out uint sectorsPerCluster, out uint bytesPerSector, out _, out _);
             if (result == 0)
