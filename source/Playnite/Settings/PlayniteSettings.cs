@@ -2472,10 +2472,12 @@ namespace Playnite
         {
             try
             {
+                logger.Info("Saving app settings");
                 FileSystem.CreateDirectory(PlaynitePaths.ConfigRootPath);
                 SaveSettingFile(this, PlaynitePaths.ConfigFilePath);
                 SaveSettingFile(WindowPositions, PlaynitePaths.WindowPositionsPath);
                 SaveSettingFile(Fullscreen, PlaynitePaths.FullscreenConfigFilePath);
+                logger.Info("Settings saved successfully");
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
