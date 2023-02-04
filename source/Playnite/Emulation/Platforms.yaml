@@ -126,7 +126,7 @@
   Id: nec_turbografx_cd
   IgdbId: 150
   Databases: [NEC - PC Engine CD - TurboGrafx-CD]
-  Emulators: [bizhawk, higan, mednafen, retroarch]
+  Emulators: [bizhawk, higan, mednafen, mesen, retroarch]
 
 - Name: NEC PC-FX
   Id: nec_pcfx
@@ -138,13 +138,13 @@
   Id: nec_turbografx_16
   IgdbId: 86
   Databases: [NEC - PC Engine - TurboGrafx 16]
-  Emulators: [bizhawk, higan, mednafen, retroarch]
+  Emulators: [bizhawk, higan, mednafen, mesen, retroarch]
 
 - Name: NEC SuperGrafx
   Id: nec_supergrafx
   IgdbId: 128
   Databases: [NEC - PC Engine SuperGrafx]
-  Emulators: [bizhawk, higan, mednafen, retroarch]
+  Emulators: [bizhawk, higan, mednafen, mesen, retroarch]
 
 - Name: Nintendo Family Computer Disk System
   Id: nintendo_famicom_disk
@@ -162,19 +162,19 @@
   Id: nintendo_super_nes
   IgdbId: 19
   Databases: [Nintendo - Super Nintendo Entertainment System]
-  Emulators: [bsnes, snes9x, bizhawk, bsnes-hd, bsnes-mt, higan, mednafen, mesen-s, zsnes, retroarch]
+  Emulators: [bsnes, snes9x, bizhawk, bsnes-hd, bsnes-mt, higan, mednafen, mesen, mesen-s, zsnes, retroarch]
 
 - Name: Nintendo Game Boy
   Id: nintendo_gameboy
   IgdbId: 33
   Databases: [Nintendo - Game Boy]
-  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
+  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
 
 - Name: Nintendo Game Boy Color
   Id: nintendo_gameboycolor
   IgdbId: 22
   Databases: [Nintendo - Game Boy Color]
-  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
+  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
 
 - Name: Nintendo Game Boy Advance
   Id: nintendo_gameboyadvance
