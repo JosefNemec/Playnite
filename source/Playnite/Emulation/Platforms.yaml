@@ -19,7 +19,7 @@
   Id: atari_2600
   IgdbId: 59
   Databases: [Atari - 2600]
-  Emulators: [stella, bizhawk, retroarch]
+  Emulators: [ares, stella, bizhawk, retroarch]
 
 - Name: Atari 8-bit
   Id: atari_8bit
@@ -60,19 +60,19 @@
   Id: bandai_wonderswan
   IgdbId: 57
   Databases: [Bandai - WonderSwan]
-  Emulators: [bizhawk, higan, mednafen, retroarch]
+  Emulators: [ares, bizhawk, higan, mednafen, retroarch]
 
 - Name: Bandai WonderSwan Color
   Id: bandai_wonderswan_color
   IgdbId: 123
   Databases: [Bandai - WonderSwan Color]
-  Emulators: [bizhawk, higan, mednafen, retroarch]
+  Emulators: [ares, bizhawk, higan, mednafen, retroarch]
 
 - Name: Coleco ColecoVision
   Id: coleco_vision
   IgdbId: 68
   Databases: [Coleco - ColecoVision]
-  Emulators: [bizhawk, fbalpha]
+  Emulators: [ares, bizhawk, fbalpha]
 
 - Name: Commodore 64
   Id: commodore_64
@@ -116,6 +116,18 @@
   Databases: [Mattel - Intellivision]
   Emulators: [bizhawk, retroarch]
 
+- Name: Microsoft MSX
+  Id: microsoft_msx
+  IgdbId: 27
+  Databases: [Microsoft - MSX]
+  Emulators: [ares]
+
+- Name: Microsoft MSX2
+  Id: microsoft_msx2
+  IgdbId: 53
+  Databases: [Microsoft - MSX2]
+  Emulators: [ares]
+
 - Name: GCE Vectrex
   Id: vectrex
   IgdbId: 67
@@ -126,7 +138,7 @@
   Id: nec_turbografx_cd
   IgdbId: 150
   Databases: [NEC - PC Engine CD - TurboGrafx-CD]
-  Emulators: [bizhawk, higan, mednafen, mesen, retroarch]
+  Emulators: [ares, bizhawk, higan, mednafen, mesen, retroarch]
 
 - Name: NEC PC-FX
   Id: nec_pcfx
@@ -138,13 +150,13 @@
   Id: nec_turbografx_16
   IgdbId: 86
   Databases: [NEC - PC Engine - TurboGrafx 16]
-  Emulators: [bizhawk, higan, mednafen, mesen, retroarch]
+  Emulators: [ares, bizhawk, higan, mednafen, mesen, retroarch]
 
 - Name: NEC SuperGrafx
   Id: nec_supergrafx
   IgdbId: 128
   Databases: [NEC - PC Engine SuperGrafx]
-  Emulators: [bizhawk, higan, mednafen, mesen, retroarch]
+  Emulators: [ares, bizhawk, higan, mednafen, mesen, retroarch]
 
 - Name: Nintendo Family Computer Disk System
   Id: nintendo_famicom_disk
@@ -156,31 +168,31 @@
   Id: nintendo_nes
   IgdbId: 18
   Databases: [Nintendo - Nintendo Entertainment System]
-  Emulators: [bizhawk, fceux, higan, mednafen, mesen, nestopia, punes, retroarch]
+  Emulators: [ares, bizhawk, fceux, higan, mednafen, mesen, nestopia, punes, retroarch]
 
 - Name: Nintendo SNES
   Id: nintendo_super_nes
   IgdbId: 19
   Databases: [Nintendo - Super Nintendo Entertainment System]
-  Emulators: [bsnes, snes9x, bizhawk, bsnes-hd, bsnes-mt, higan, mednafen, mesen, mesen-s, zsnes, retroarch]
+  Emulators: [ares, bsnes, snes9x, bizhawk, bsnes-hd, bsnes-mt, higan, mednafen, mesen, mesen-s, zsnes, retroarch]
 
 - Name: Nintendo Game Boy
   Id: nintendo_gameboy
   IgdbId: 33
   Databases: [Nintendo - Game Boy]
-  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
+  Emulators: [ares, bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
 
 - Name: Nintendo Game Boy Color
   Id: nintendo_gameboycolor
   IgdbId: 22
   Databases: [Nintendo - Game Boy Color]
-  Emulators: [bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
+  Emulators: [ares, bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, sameboy, visualboyadvance, visualboyadvance-m, retroarch, bgb]
 
 - Name: Nintendo Game Boy Advance
   Id: nintendo_gameboyadvance
   IgdbId: 24
   Databases: [Nintendo - Game Boy Advance]
-  Emulators: [bizhawk, gbe+, higan, mednafen, mgba, nanoboyadvance, visualboyadvance, visualboyadvance-m]
+  Emulators: [ares, bizhawk, gbe+, higan, mednafen, mgba, nanoboyadvance, visualboyadvance, visualboyadvance-m]
 
 - Name: Nintendo Virtual Boy
   Id: nintendo_virtualboy
@@ -192,7 +204,7 @@
   Id: nintendo_64
   IgdbId: 4
   Databases: [Nintendo - Nintendo 64, Nintendo - Nintendo 64DD]
-  Emulators: [bizhawk, m64p, project64, retroarch, rosaliesmupengui, simple64, m64py]
+  Emulators: [ares, bizhawk, m64p, project64, retroarch, rosaliesmupengui, simple64, m64py]
 
 - Name: Nintendo Wii
   Id: nintendo_wii
@@ -240,7 +252,7 @@
   Id: sega_gamegear
   IgdbId: 35
   Databases: [Sega - Game Gear]
-  Emulators: [bizhawk, higan, kegafusion, mednafen, retroarch]
+  Emulators: [ares, bizhawk, higan, kegafusion, mednafen, retroarch]
 
 - Name: Sega Genesis
   Id: sega_genesis
@@ -252,25 +264,25 @@
   Id: sega_32x
   IgdbId: 30
   Databases: [Sega - 32X]
-  Emulators: [kegafusion, retroarch]
+  Emulators: [ares, kegafusion, retroarch]
 
 - Name: Sega CD
   Id: sega_cd
   IgdbId: 78
   Databases: [Sega - Mega-CD - Sega CD]
-  Emulators: [kegafusion, retroarch]
+  Emulators: [ares, kegafusion, retroarch]
 
 - Name: Sega Master System
   Id: sega_mastersystem
   IgdbId: 64
   Databases: [Sega - Master System - Mark III]
-  Emulators: [bizhawk, higan, kegafusion, mednafen, retroarch]
+  Emulators: [ares, bizhawk, higan, kegafusion, mednafen, retroarch]
 
 - Name: Sega Saturn
   Id: sega_saturn
   IgdbId: 32
   Databases: [Sega - Saturn]
-  Emulators: [bizhawk, mednafen, yabuse, retroarch]
+  Emulators: [ares, bizhawk, mednafen, yabuse, retroarch]
   
 - Name: Sinclair ZX Spectrum
   Id: sinclair_zxspectrum
@@ -289,17 +301,22 @@
   Databases: [Sinclair - ZX Spectrum +3]
   Emulators: [fuse, retroarch]
 
+- Name: SNK Neo Geo AES
+  Id: snk_neogeo_aes
+  IgdbId: 80
+  Emulators: [ares]
+
 - Name: SNK Neo Geo Pocket
   Id: snk_neogeopocket
   IgdbId: 119
   Databases: [SNK - Neo Geo Pocket]
-  Emulators: [bizhawk, mednafen, retroarch]
+  Emulators: [ares, bizhawk, mednafen, retroarch]
 
 - Name: SNK Neo Geo Pocket Color
   Id: snk_neogeopocket_color
   IgdbId: 120
   Databases: [SNK - Neo Geo Pocket Color]
-  Emulators: [bizhawk, mednafen, retroarch]
+  Emulators: [ares, bizhawk, mednafen, retroarch]
 
 - Name: SNK Neo Geo CD
   Id: snk_neogeo_cd
@@ -311,7 +328,7 @@
   Id: sony_playstation
   IgdbId: 7
   Databases: [Sony - PlayStation]
-  Emulators: [epsxe, duckstation, bizhawk, mednafen, pcsxr-pgxp, retroarch]
+  Emulators: [ares, epsxe, duckstation, bizhawk, mednafen, pcsxr-pgxp, retroarch]
 
 - Name: Sony PlayStation 2
   Id: sony_playstation2
