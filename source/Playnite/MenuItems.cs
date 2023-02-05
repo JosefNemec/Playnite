@@ -23,6 +23,7 @@ namespace Playnite
         private static object unFavoriteIcon;
         private static object hideIcon;
         private static object unHideIcon;
+        private static object hdrIcon;
         private static object browseIcon;
         private static object shortcutIcon;
         private static object installIcon;
@@ -43,6 +44,7 @@ namespace Playnite
                     unFavoriteIcon = MenuHelpers.GetIcon("RemoveFavoritesIcon");
                     hideIcon = MenuHelpers.GetIcon("HideIcon");
                     unHideIcon = MenuHelpers.GetIcon("UnHideIcon");
+                    hdrIcon = MenuHelpers.GetIcon("HdrIcon");
                     browseIcon = MenuHelpers.GetIcon("OpenFolderIcon");
                     shortcutIcon = MenuHelpers.GetIcon("DesktopShortcutIcon");
                     installIcon = MenuHelpers.GetIcon("InstallIcon");
@@ -235,6 +237,16 @@ namespace Playnite
                 LOC.Activate,
                 () => model.App.GamesEditor.ToggleHideGame(game))
                 { Icon = game.Hidden ? unHideIcon : hideIcon });
+
+            // Toggle HDR
+            if (HdrUtilities.IsHdrSupported())
+            {
+                items.Add(new SearchItem(
+                    game.Hdr ? LOC.DisableHdr : LOC.EnableHdr,
+                    LOC.Activate,
+                    () => model.App.GamesEditor.ToggleHdrGame(game))
+                    { Icon = hdrIcon });
+            }
 
             // Edit
             items.Add(new SearchItem(LOC.EditGame, LOC.Activate, () => model.EditGame(game), editIcon));

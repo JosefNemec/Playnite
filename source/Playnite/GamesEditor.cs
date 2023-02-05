@@ -66,6 +66,7 @@ namespace Playnite
         private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
         private readonly ConcurrentDictionary<Guid, IPowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, IPowerShellRuntime>();
         private readonly IActionSelector actionSelector;
+        private bool? wasHdrEnabled;
 
         public PlayniteApplication Application;
 
@@ -324,6 +325,12 @@ namespace Playnite
                     {  "SourceAction", startingArgs.SourceAction },
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
+
+                if (game.Hdr)
+                {
+
+                    wasHdrEnabled = HdrUtilities.EnableHdr(true);
+                }
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
                 {
@@ -746,6 +753,23 @@ namespace Playnite
             }
         }
 
+        public void SetHdr(Game game, bool state)
+        {
+            game.Hdr = state;
+            Database.Games.Update(game);
+        }
+
+        public void SetHdr(List<Game> games, bool state)
+        {
+            using (Database.BufferedUpdate())
+            {
+                foreach (var game in games)
+                {
+                    SetHdr(game, state);
+                }
+            }
+        }
+
         public void ToggleHideGame(Game game)
         {
             game.Hidden = !game.Hidden;
@@ -778,6 +802,12 @@ namespace Playnite
                     SetFavoriteGame(game, state);
                 }
             }
+        }
+
+        public void ToggleHdrGame(Game game)
+        {
+            game.Hdr = !game.Hdr;
+            Database.Games.Update(game);
         }
 
         public void ToggleFavoriteGame(Game game)
@@ -1386,8 +1416,14 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
+            if (wasHdrEnabled.HasValue)
+            {
+                HdrUtilities.EnableHdr(wasHdrEnabled.Value);
+            }
+
             ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit);
             ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit);
+
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
                 runtime.Dispose();

@@ -177,7 +177,9 @@ namespace Playnite.SDK.Models
         ///
         LastSizeScanDate = 90,
         ///
-        RecentActivity = 91
+        RecentActivity = 91,
+        ///
+        Hdr = 92
     }
 
     /// <summary>
@@ -257,6 +259,24 @@ namespace Playnite.SDK.Models
                 genreIds = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Genres));
+            }
+        }
+
+        private bool hdr;
+        /// <summary>
+        /// Gets or sets value indicating if the game is should enable HDR while playing.
+        /// </summary>
+        public bool Hdr
+        {
+            get
+            {
+                return hdr;
+            }
+
+            set
+            {
+                hdr = value;
+                OnPropertyChanged();
             }
         }
 
@@ -1677,6 +1697,7 @@ namespace Playnite.SDK.Models
                 BackgroundImage = BackgroundImage,
                 Description = Description,
                 Notes = Notes,
+                Hdr = Hdr,
                 Hidden = Hidden,
                 Favorite = Favorite,
                 InstallDirectory = InstallDirectory,
@@ -1750,6 +1771,11 @@ namespace Playnite.SDK.Models
                 if (!GenreIds.IsListEqual(tro.GenreIds))
                 {
                     tro.GenreIds = GenreIds;
+                }
+
+                if (Hdr != tro.Hdr)
+                {
+                    tro.Hdr = Hdr;
                 }
 
                 if (Hidden != tro.Hidden)
@@ -2025,6 +2051,11 @@ namespace Playnite.SDK.Models
             {
                 changes.Add(GameField.GenreIds);
                 changes.Add(GameField.Genres);
+            }
+
+            if (Hdr != otherGame.hdr)
+            {
+                changes.Add(GameField.Hdr);
             }
 
             if (Hidden != otherGame.Hidden)

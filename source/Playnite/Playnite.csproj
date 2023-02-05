@@ -546,6 +546,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tools\HdrUtilities\HdrUtilities.vcxproj">
+      <Project>{cf6b386f-697c-454b-97cf-e7d653966b1a}</Project>
+      <Name>HdrUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlayniteSDK\Playnite.SDK.csproj">
       <Project>{19bc9097-5705-4352-90e2-99f0c63230d0}</Project>
       <Name>Playnite.SDK</Name>

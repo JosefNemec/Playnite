@@ -591,6 +591,10 @@
       <Project>{AD271E73-8A13-4C4E-BFDC-3076646B59E3}</Project>
       <Name>Playnite</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\HdrUtilities\HdrUtilities.vcxproj">
+      <Project>{cf6b386f-697c-454b-97cf-e7d653966b1a}</Project>
+      <Name>HdrUtilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

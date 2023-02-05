@@ -542,6 +542,9 @@ If disabled, games that use any item in any filter will be included in the view.
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Not installed</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Hidden</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorite</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">HDR</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">If enabled, HDR will be enabled on the primary display before starting the game</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">HDR is not supported on the primary display</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Last Played</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Category</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Description</sys:String>
@@ -740,6 +743,8 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Remove from Favorites</sys:String>
     <sys:String x:Key="LOCHideGame">Hide this game</sys:String>
     <sys:String x:Key="LOCUnHideGame">Remove from Hidden</sys:String>
+    <sys:String x:Key="LOCEnableHdr">Enable HDR</sys:String>
+    <sys:String x:Key="LOCDisableHdr">Disable HDR</sys:String>
     <sys:String x:Key="LOCEditGame">Edit…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Calculate install size</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">Calculate install size (All games)</sys:String>

@@ -174,6 +174,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion Database fields
 
+        public bool IsHdrSupported => HdrUtilities.IsHdrSupported();
+
         private Game editingGame;
         public Game EditingGame
         {
@@ -753,6 +755,11 @@ namespace Playnite.DesktopApp.ViewModels
                 if (UseFavoriteChanges)
                 {
                     game.Favorite = EditingGame.Favorite;
+                }
+
+                if (UseHdrChanges)
+                {
+                    game.Hdr = EditingGame.Hdr;
                 }
 
                 if (UseHiddenChanges)

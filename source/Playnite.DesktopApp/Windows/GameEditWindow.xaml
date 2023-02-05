@@ -546,29 +546,51 @@
                     <CheckBox Grid.Column="2" Grid.Row="7" Margin="3"
                               IsChecked="{Binding EditingGame.Favorite}" />
 
-                    <Canvas Height="20" Grid.Column="0" Grid.Row="8" />
+                    <!-- HDR -->
+                    <TextBlock Grid.Column="1" Grid.Row="8" Text="{DynamicResource LOCGameHdrTitle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="8" Style="{StaticResource SaveChangesCheck}"
+                                IsChecked="{Binding UseHdrChanges}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="8" Margin="3"
+                              IsEnabled="{Binding IsHdrSupported}"
+                              ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
+                              ToolTipService.ShowOnDisabled="True">
+                        <CheckBox.Style>
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                                <Setter Property="ToolTip" Value="{DynamicResource LOCGameHdrTooltip}"/>
+                                <Setter Property="IsChecked" Value="{Binding EditingGame.Hdr}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsHdrSupported}" Value="False">
+                                        <Setter Property="ToolTip" Value="{DynamicResource LOCGameHdrNotSupportedTooltip}"/>
+                                        <Setter Property=" IsChecked" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
+
+                    <Canvas Height="20" Grid.Column="0" Grid.Row="9" />
 
                     <!-- Added -->
-                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{DynamicResource LOCAddedLabel}"/>
-                    <CheckBox Grid.Column="0" Grid.Row="9" Style="{StaticResource SaveChangesCheck}"
+                    <TextBlock Grid.Column="1" Grid.Row="10" Text="{DynamicResource LOCAddedLabel}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="10" Style="{StaticResource SaveChangesCheck}"
                                 IsChecked="{Binding UseAddedChanges}"/>
-                    <DatePicker Grid.Column="2" Grid.Row="9"
+                    <DatePicker Grid.Column="2" Grid.Row="10"
                                 SelectedDate="{Binding EditingGame.Added}"/>
 
                     <!-- Modified -->
-                    <TextBlock Grid.Column="1" Grid.Row="10" Text="{DynamicResource LOCModifiedLabel}"
+                    <TextBlock Grid.Column="1" Grid.Row="11" Text="{DynamicResource LOCModifiedLabel}"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <TextBlock Grid.Column="2" Grid.Row="10" Margin="3,6,3,6"
+                    <TextBlock Grid.Column="2" Grid.Row="11" Margin="3,6,3,6"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Text="{Binding EditingGame.Modified, Converter={StaticResource NullableDateToStringConverter}}"/>
 
                     <!-- Notes -->
-                    <TextBlock Grid.Column="1" Grid.Row="11" Text="{DynamicResource LOCNotesLabel}"
+                    <TextBlock Grid.Column="1" Grid.Row="12" Text="{DynamicResource LOCNotesLabel}"
                                VerticalAlignment="Top" Margin="8,16,10,0" />
-                    <CheckBox Grid.Column="0" Grid.Row="11"  Style="{StaticResource SaveChangesCheck}"
+                    <CheckBox Grid.Column="0" Grid.Row="12"  Style="{StaticResource SaveChangesCheck}"
                               VerticalAlignment="Top" Margin="0,15,0,0"
                               IsChecked="{Binding UseNotesChanges}"/>
-                    <TextBox Grid.Column="2" Grid.Row="11" Margin="0,15,0,0"
+                    <TextBox Grid.Column="2" Grid.Row="12" Margin="0,15,0,0"
                              Text="{Binding EditingGame.Notes, UpdateSourceTrigger=PropertyChanged}"
                              Grid.ColumnSpan="4" TextWrapping="Wrap"
                              AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
@@ -591,6 +613,7 @@
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding LibraryPlugin.Name, FallbackValue='Playnite'}"
                                Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
                 </Grid>
             </TabItem>
 

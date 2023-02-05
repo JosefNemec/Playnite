@@ -1966,6 +1966,18 @@ namespace Playnite
         /// </summary>
         public const string GameFavoriteTitle = "LOCGameFavoriteTitle";
         /// <summary>
+        /// HDR
+        /// </summary>
+        public const string GameHdrTitle = "LOCGameHdrTitle";
+        /// <summary>
+        /// If enabled, HDR will be enabled on the primary display before starting the game
+        /// </summary>
+        public const string GameHdrTooltip = "LOCGameHdrTooltip";
+        /// <summary>
+        /// HDR is not supported on the primary display
+        /// </summary>
+        public const string GameHdrNotSupportedTooltip = "LOCGameHdrNotSupportedTooltip";
+        /// <summary>
         /// Last Played
         /// </summary>
         public const string GameLastActivityTitle = "LOCGameLastActivityTitle";
@@ -2721,6 +2733,14 @@ namespace Playnite
         /// Remove from Hidden
         /// </summary>
         public const string UnHideGame = "LOCUnHideGame";
+        /// <summary>
+        /// Enable HDR
+        /// </summary>
+        public const string EnableHdr = "LOCEnableHdr";
+        /// <summary>
+        /// Disable HDR
+        /// </summary>
+        public const string DisableHdr = "LOCDisableHdr";
         /// <summary>
         /// Edit…
         /// </summary>

@@ -56,6 +56,14 @@
         </StackPanel>
     </DataTemplate>
 
+    <DataTemplate x:Key="GameMenuHdrButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xeef2;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
     <DataTemplate x:Key="GameMenuRemoveButtonTemplate">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="&#xeee4;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24" Width="25"
