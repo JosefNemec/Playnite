@@ -38,6 +38,10 @@
   Databases: [Atari - 7800]
   Emulators: [bizhawk, retroarch]
 
+- Name: Atari Falcon030
+  Id: atari_falcon030
+  Emulators: []
+
 - Name: Atari Lynx
   Id: atari_lynx
   IgdbId: 61
@@ -74,11 +78,21 @@
   Databases: [Coleco - ColecoVision]
   Emulators: [ares, bizhawk, bluemsx, fbalpha]
 
+- Name: Commodore CBM-5x0
+  Id: commodore_cbm5x0
+  Databases: [Commodore - CBM-5x0]
+  Emulators: []
+
 - Name: Commodore 64
   Id: commodore_64
   IgdbId: 15
   Databases: [Commodore - 64, Commodore - 64 (PP), Commodore - 64 (Tapes)]
   Emulators: [bizhawk, winvice, retroarch]
+
+- Name: Commodore CBM-II
+  Id: commodore_cbm2
+  Databases: [Commodore - CBM-II]
+  Emulators: []
 
 - Name: Commodore PET
   Id: commodore_pet
@@ -139,6 +153,12 @@
   IgdbId: 150
   Databases: [NEC - PC Engine CD - TurboGrafx-CD]
   Emulators: [ares, bizhawk, higan, mednafen, mesen, retroarch]
+
+- Name: NEC PC-98
+  Id: nec_pc98
+  IgdbId: 149
+  Databases: [NEC - PC-98]
+  Emulators: []
 
 - Name: NEC PC-FX
   Id: nec_pcfx
@@ -242,6 +262,12 @@
   Databases: []
   Emulators: [ryujinx, yuzu]
 
+- Name: Sega SG-1000
+  Id: sega_sg1000
+  IgdbId: 84
+  Databases: [Sega - SG-1000]
+  Emulators: []
+
 - Name: Sega Dreamcast
   Id: sega_dreamcast
   IgdbId: 23
@@ -284,6 +310,12 @@
   Databases: [Sega - Saturn]
   Emulators: [ares, bizhawk, mednafen, yabuse, retroarch]
   
+- Name: Sharp X68000
+  Id: sharp_x68000
+  IgdbId: 121
+  Databases: [Sharp - X68000]
+  Emulators: []
+
 - Name: Sinclair ZX Spectrum
   Id: sinclair_zxspectrum
   IgdbId: 26
@@ -406,3 +438,19 @@
 - Name: Adobe Flash
   Id: adobe_flash
   Emulators: [flashplayerprojector]
+
+- Name: Thomson MO5
+  Id: thomson_mo5
+  IgdbId: 156
+  Databases: [Thomson - MOTO]
+  Emulators: []
+
+- Name: Thomson TO7
+  Id: thomson_to7
+  Databases: [Thomson - MOTO]
+  Emulators: []
+
+- Name: Watara Supervision
+  Id: watara_supervision
+  Databases: [Watara - Supervision]
+  Emulators: []
