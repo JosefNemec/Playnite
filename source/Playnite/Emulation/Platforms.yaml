@@ -72,7 +72,7 @@
   Id: coleco_vision
   IgdbId: 68
   Databases: [Coleco - ColecoVision]
-  Emulators: [ares, bizhawk, blueMSX, fbalpha]
+  Emulators: [ares, bizhawk, bluemsx, fbalpha]
 
 - Name: Commodore 64
   Id: commodore_64
@@ -120,13 +120,13 @@
   Id: microsoft_msx
   IgdbId: 27
   Databases: [Microsoft - MSX]
-  Emulators: [ares, blueMSX]
+  Emulators: [ares, bluemsx]
 
 - Name: Microsoft MSX2
   Id: microsoft_msx2
   IgdbId: 53
   Databases: [Microsoft - MSX2]
-  Emulators: [ares, blueMSX]
+  Emulators: [ares, bluemsx]
 
 - Name: GCE Vectrex
   Id: vectrex
