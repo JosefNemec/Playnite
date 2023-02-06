@@ -117,6 +117,11 @@ Profiles:
     Platforms: [sega_saturn]
     ImageExtensions: [cue, chd]
     StartupExecutable: ^ares\.exe$
+  - Name: Sega - SG-1000
+    StartupArguments: '--system "SG-1000" "{ImagePath}" --fullscreen'
+    Platforms: [sega_sg1000]
+    ImageExtensions: [sg1000, sg]
+    StartupExecutable: ^ares\.exe$
   - Name: SNK - Neo Geo AES
     StartupArguments: '--system "Neo Geo" "{ImagePath}" --fullscreen'
     Platforms: [snk_neogeo_aes]
