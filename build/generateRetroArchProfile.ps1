@@ -410,11 +410,11 @@ foreach ($platform in $existingPlatformsDefinition) {
         }
         $platformData +=  "Emulators: [{0}]" -f [System.String]::Join(", ", ($platform.Emulators | Sort-Object))
     }
-    else
+    elseif ($isSupportedByRetroArch)
     {
         $platformData +=  "Emulators: [{0}]" -f "retroarch"
     }
-
+    
     $platformDataString = $platformDefinitionTemplate -f $platform.Name, [System.String]::Join("`r`n  ", $platformData)
     $newPlatformsDefinitions += $platformDataString
 }
