@@ -10,12 +10,12 @@ Profiles:
   - Name: Bandai - WonderSwan
     StartupArguments: '--system "WonderSwan" "{ImagePath}" --fullscreen'
     Platforms: [bandai_wonderswan]
-    ImageExtensions: [zip, wsc]
+    ImageExtensions: [zip, ws]
     StartupExecutable: ^ares\.exe$
   - Name: Bandai - WonderSwan Color
     StartupArguments: '--system "WonderSwan Color" "{ImagePath}" --fullscreen'
     Platforms: [bandai_wonderswan_color]
-    ImageExtensions: [zip, ws]
+    ImageExtensions: [zip, wsc]
     StartupExecutable: ^ares\.exe$
   - Name: Coleco - ColecoVision
     StartupArguments: '--system "ColecoVision" "{ImagePath}" --fullscreen'
