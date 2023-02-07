@@ -460,8 +460,8 @@
       <Project>{ad271e73-8a13-4c4e-bfdc-3076646b59e3}</Project>
       <Name>Playnite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tools\HdrUtilities\HdrUtilities.vcxproj">
-      <Project>{cf6b386f-697c-454b-97cf-e7d653966b1a}</Project>
+    <ProjectReference Include="..\Tools\HdrUtilities\HdrUtilities.csproj">
+      <Project>{371ad534-2c99-4dee-b395-297a155605f1}</Project>
       <Name>HdrUtilities</Name>
     </ProjectReference>
   </ItemGroup>

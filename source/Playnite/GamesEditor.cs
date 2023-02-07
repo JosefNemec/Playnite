@@ -326,10 +326,10 @@ namespace Playnite
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
 
+                wasHdrEnabled = HdrUtilities.IsHdrEnabled();
                 if (game.Hdr)
                 {
-
-                    wasHdrEnabled = HdrUtilities.EnableHdr(true);
+                    HdrUtilities.EnableHdr(true);
                 }
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
