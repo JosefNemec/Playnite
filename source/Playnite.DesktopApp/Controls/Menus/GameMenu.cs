@@ -281,7 +281,6 @@ namespace Playnite.DesktopApp.Controls
                 };
 
                 Items.Add(hdrItem);
-
             }
 
             // Edit

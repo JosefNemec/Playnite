@@ -264,7 +264,7 @@ namespace Playnite.SDK.Models
 
         private bool hdr;
         /// <summary>
-        /// Gets or sets value indicating if the game is should enable HDR while playing.
+        /// Gets or sets value indicating if the game is should enable HDR on the primary monitor while playing.
         /// </summary>
         public bool Hdr
         {
