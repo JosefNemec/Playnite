@@ -58,8 +58,6 @@ namespace Playnite.DesktopApp.Controls
         private static object unFavoriteIcon;
         private static object hideIcon;
         private static object unHideIcon;
-        private static object enableHdrIcon;
-        private static object disableHdrIcon;
         private static object browseIcon;
         private static object installSizeIcon;
         private static object shortcutIcon;
@@ -269,20 +267,6 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Add(hideItem);
 
-            // Toggle HDR
-            if (HdrUtilities.IsHdrSupported())
-            {
-                var hdrItem = new MenuItem()
-                {
-                    Header = game.Hdr ? ResourceProvider.GetString(LOC.DisableHdr) : ResourceProvider.GetString(LOC.EnableHdr),
-                    Icon = game.Hdr ? disableHdrIcon : enableHdrIcon,
-                    Command = model.ToggleHdrCommand,
-                    CommandParameter = game
-                };
-
-                Items.Add(hdrItem);
-            }
-
             // Edit
             var editItem = new MenuItem()
             {
@@ -395,30 +379,6 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Add(unHideItem);
 
-            // Set HDR
-            if (HdrUtilities.IsHdrSupported())
-            {
-                var enableHdrItem = new MenuItem()
-                {
-                    Header = ResourceProvider.GetString(LOC.EnableHdr),
-                    Icon = enableHdrIcon,
-                    Command = model.EnableHdrCommand,
-                    CommandParameter = games
-                };
-
-                Items.Add(enableHdrItem);
-
-                var disableHdrItem = new MenuItem()
-                {
-                    Header = ResourceProvider.GetString(LOC.DisableHdr),
-                    Icon = disableHdrIcon,
-                    Command = model.DisableHdrCommand,
-                    CommandParameter = games
-                };
-
-                Items.Add(disableHdrItem);
-            }
-
             // InstallSize
             if (games.Any(x => x.IsInstalled))
             {
@@ -500,8 +460,6 @@ namespace Playnite.DesktopApp.Controls
                 unFavoriteIcon = MenuHelpers.GetIcon("RemoveFavoritesIcon");
                 hideIcon = MenuHelpers.GetIcon("HideIcon");
                 unHideIcon = MenuHelpers.GetIcon("UnHideIcon");
-                enableHdrIcon = MenuHelpers.GetIcon("HdrIcon");
-                disableHdrIcon = MenuHelpers.GetIcon("HdrIcon");
                 browseIcon = MenuHelpers.GetIcon("OpenFolderIcon");
                 installSizeIcon = MenuHelpers.GetIcon("InstallSizeIcon");
                 shortcutIcon = MenuHelpers.GetIcon("DesktopShortcutIcon");
