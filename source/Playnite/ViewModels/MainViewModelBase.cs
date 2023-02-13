@@ -136,7 +136,6 @@ namespace Playnite.ViewModels
         {
             get
             {
-                var sortingOrder = Database.GetFilterPresetsSettings().SortingOrder;
                 return Database.GetSortedFilterPresets(false)
                     .Where(a => a.ShowInFullscreeQuickSelection)
                     .ToList();
