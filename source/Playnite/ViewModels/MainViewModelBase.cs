@@ -128,10 +128,7 @@ namespace Playnite.ViewModels
             
             get
             {
-                var sortingOrder = Database.GetFilterPresetsSettings().SortingOrder;
-                return Database.FilterPresets
-                    .OrderBy(i => sortingOrder.IndexOf(i.Id))
-                    .ToList();
+                return Database.GetSortedFilterPresets(false);
             }
         }
 
@@ -140,8 +137,8 @@ namespace Playnite.ViewModels
             get
             {
                 var sortingOrder = Database.GetFilterPresetsSettings().SortingOrder;
-                return Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection)
-                    .OrderBy(i => sortingOrder.IndexOf(i.Id))
+                return Database.GetSortedFilterPresets(false)
+                    .Where(a => a.ShowInFullscreeQuickSelection)
                     .ToList();
             }
         }

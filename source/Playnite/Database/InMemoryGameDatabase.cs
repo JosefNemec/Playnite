@@ -160,6 +160,11 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
+        public List<FilterPreset> GetSortedFilterPresets(bool getClone)
+        {
+            throw new NotImplementedException();
+        }
+
         public FilterPresetsSettings GetFilterPresetsSettings()
         {
             throw new NotImplementedException();
