@@ -37,6 +37,12 @@ namespace Playnite.Tests.Database
             Platforms.Select(a => a.Id).ToList().ForEach(a => Platforms.Remove(a));
             Assert.AreEqual(0, Platforms.Count);
         }
+
+        public void ClearFilterPresets()
+        {
+            FilterPresets.Select(a => a.Id).ToList().ForEach(a => FilterPresets.Remove(a));
+            Assert.AreEqual(0, FilterPresets.Count);
+        }
     }
 
     [TestFixture]

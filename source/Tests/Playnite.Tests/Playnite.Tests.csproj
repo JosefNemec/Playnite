@@ -105,6 +105,7 @@
     <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
     <Compile Include="Database\EmulatorsCollectionTests.cs" />
+    <Compile Include="Database\FiltersDatabaseTests.cs" />
     <Compile Include="Emulators\EmulationTests.cs" />
     <Compile Include="Emulators\EmulationDatabaseTests.cs" />
     <Compile Include="Emulators\ScannedGameTests.cs" />
