@@ -2734,11 +2734,11 @@ namespace Playnite
         /// </summary>
         public const string UnHideGame = "LOCUnHideGame";
         /// <summary>
-        /// Enable HDR
+        /// Enable HDR Support
         /// </summary>
         public const string EnableHdr = "LOCEnableHdr";
         /// <summary>
-        /// Disable HDR
+        /// Disable HDR Support
         /// </summary>
         public const string DisableHdr = "LOCDisableHdr";
         /// <summary>
