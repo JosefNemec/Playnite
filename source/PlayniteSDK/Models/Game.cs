@@ -262,20 +262,20 @@ namespace Playnite.SDK.Models
             }
         }
 
-        private bool hdr;
+        private bool enableSystemHdr;
         /// <summary>
         /// Gets or sets value indicating if the game is should enable HDR on the primary monitor while playing.
         /// </summary>
-        public bool Hdr
+        public bool EnableSystemHdr
         {
             get
             {
-                return hdr;
+                return enableSystemHdr;
             }
 
             set
             {
-                hdr = value;
+                enableSystemHdr = value;
                 OnPropertyChanged();
             }
         }
@@ -1697,7 +1697,7 @@ namespace Playnite.SDK.Models
                 BackgroundImage = BackgroundImage,
                 Description = Description,
                 Notes = Notes,
-                Hdr = Hdr,
+                EnableSystemHdr = EnableSystemHdr,
                 Hidden = Hidden,
                 Favorite = Favorite,
                 InstallDirectory = InstallDirectory,
@@ -1773,9 +1773,9 @@ namespace Playnite.SDK.Models
                     tro.GenreIds = GenreIds;
                 }
 
-                if (Hdr != tro.Hdr)
+                if (EnableSystemHdr != tro.EnableSystemHdr)
                 {
-                    tro.Hdr = Hdr;
+                    tro.EnableSystemHdr = EnableSystemHdr;
                 }
 
                 if (Hidden != tro.Hidden)
@@ -2053,7 +2053,7 @@ namespace Playnite.SDK.Models
                 changes.Add(GameField.Genres);
             }
 
-            if (Hdr != otherGame.hdr)
+            if (EnableSystemHdr != otherGame.enableSystemHdr)
             {
                 changes.Add(GameField.Hdr);
             }

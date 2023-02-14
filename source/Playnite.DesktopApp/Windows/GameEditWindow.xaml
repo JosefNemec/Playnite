@@ -464,6 +464,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -551,21 +552,18 @@
                     <CheckBox Grid.Column="0" Grid.Row="8" Style="{StaticResource SaveChangesCheck}"
                                 IsChecked="{Binding UseHdrChanges}"/>
                     <CheckBox Grid.Column="2" Grid.Row="8" Margin="3"
-                              IsEnabled="{Binding IsHdrSupported}"
+                              IsChecked="{Binding EditingGame.EnableSystemHdr}"
                               ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"
                               ToolTipService.ShowOnDisabled="True">
-                        <CheckBox.Style>
-                            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-                                <Setter Property="ToolTip" Value="{DynamicResource LOCGameHdrTooltip}"/>
-                                <Setter Property="IsChecked" Value="{Binding EditingGame.Hdr}"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsHdrSupported}" Value="False">
-                                        <Setter Property="ToolTip" Value="{DynamicResource LOCGameHdrNotSupportedTooltip}"/>
-                                        <Setter Property=" IsChecked" Value="False"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </CheckBox.Style>
+                        <CheckBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource LOCGameHdrTooltip}"
+                                           Margin="0"/>
+                                <TextBlock Text="{DynamicResource LOCGameHdrNotSupportedTooltip}"
+                                           Margin="0"
+                                           Visibility="{Binding IsHdrSupported, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </CheckBox.ToolTip>
                     </CheckBox>
 
                     <Canvas Height="20" Grid.Column="0" Grid.Row="9" />

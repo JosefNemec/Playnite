@@ -542,9 +542,9 @@ If disabled, games that use any item in any filter will be included in the view.
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Not installed</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Hidden</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorite</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle">HDR</sys:String>
-    <sys:String x:Key="LOCGameHdrTooltip">If enabled, HDR will be enabled on the primary display before starting the game</sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">HDR is not supported on the primary display</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">Enable HDR Support</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">If enabled, HDR will be enabled on the primary display before starting the game.</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">Note that HDR is not supported on your primary display.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Last Played</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Category</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Description</sys:String>

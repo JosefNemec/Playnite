@@ -1221,10 +1221,10 @@ namespace Playnite.DesktopApp.ViewModels
                         UseHiddenChanges = true;
                     }
                     break;
-                case nameof(Game.Hdr):
+                case nameof(Game.EnableSystemHdr):
                     if (IsSingleGameEdit)
                     {
-                        UseHdrChanges = Game.Hdr != EditingGame.Hdr;
+                        UseHdrChanges = Game.EnableSystemHdr != EditingGame.EnableSystemHdr;
                     }
                     else
                     {

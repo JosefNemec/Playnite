@@ -1,4 +1,5 @@
 ﻿using Playnite.Native;
+using Playnite.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,67 +11,94 @@ namespace Playnite
 {
     public class HdrUtilities
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         /// <summary>
         /// Determines if HDR is supported on the primary display
         /// </summary>
         /// <returns>True if HDR is supported on the primary display, false if unknown or not supported</returns>
         public static bool IsHdrSupported()
         {
-            DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
-            if (!targetInfo.HasValue)
+            try
             {
+                DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
+                if (!targetInfo.HasValue)
+                {
+                    logger.Error("Failed to retrieve primary display target info");
+                    return false;
+                }
+
+                (bool isHdrSupported, _) = GetHdrStatus(targetInfo.Value);
+                return isHdrSupported;
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(string.Format("Failed to check if HDR is supported: {0}", e.Message));
                 return false;
             }
-
-            (bool? isHdrSupported, _) = GetHdrStatus(targetInfo.Value);
-            return isHdrSupported.GetValueOrDefault(false);
         }
 
         /// <summary>
         /// Determines if HDR is enabled on the primary display
         /// </summary>
         /// <returns>True if HDR is enabled on the primary display, false if unknown or not supported</returns>
-        public static bool? IsHdrEnabled()
+        public static bool IsHdrEnabled()
         {
-            DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
-            if (!targetInfo.HasValue)
+            try
             {
+                DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
+                if (!targetInfo.HasValue)
+                {
+                    logger.Error("Failed to retrieve primary display target info");
+                    return false;
+                }
+
+                (_, bool isHdrEnabled) = GetHdrStatus(targetInfo.Value);
+                return isHdrEnabled;
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(string.Format("Failed to check if HDR is enabled: {0}", e.Message));
                 return false;
             }
-
-            (_, bool? isHdrEnabled) = GetHdrStatus(targetInfo.Value);
-            return isHdrEnabled;
         }
 
         /// <summary>
         /// Enables/disables HDR on the primary display
         /// </summary>
         /// <param name="enable">True if enabling HDR, false if disabling HDR</param>
-        public static void EnableHdr(bool enable)
+        public static void SetHdrEnabled(bool enable)
         {
-            DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
-            if (!targetInfo.HasValue)
+            try
             {
-                return;
-            }
-
-            if (IsHdrSupported())
-            {
-                //Enable or Disable HDR
-                var newColorInfo = new DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE()
+                DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
+                if (!targetInfo.HasValue)
                 {
-                    header =
+                    logger.Error("Failed to retrieve primary display target info");
+                    return;
+                }
+
+                if (IsHdrSupported())
+                {
+                    //Enable or Disable HDR
+                    var newColorInfo = new DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE
                     {
-                        type = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE,
-                        adapterId = targetInfo.Value.adapterId,
-                        id = targetInfo.Value.id,
-                        size = (uint)Marshal.SizeOf<DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE>()
-                    }
-                };
+                        header =
+                        {
+                            type = DISPLAYCONFIG_DEVICE_INFO_TYPE.DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE,
+                            adapterId = targetInfo.Value.adapterId,
+                            id = targetInfo.Value.id,
+                            size = (uint)Marshal.SizeOf<DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE>()
+                        },
+                        enableAdvancedColor = enable
+                    };
 
-                newColorInfo.enableAdvancedColor = enable;
-
-                User32.DisplayConfigSetDeviceInfo(ref newColorInfo.header);
+                    User32.DisplayConfigSetDeviceInfo(ref newColorInfo.header);
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(string.Format("Failed to set HDR state: {0}", e.Message));
             }
         }
 
@@ -84,9 +112,10 @@ namespace Playnite
 
         private static DISPLAYCONFIG_PATH_TARGET_INFO? GetPrimaryDisplayTargetInfo()
         {
-            long result = User32.GetDisplayConfigBufferSizes(QUERY_DEVICE_CONFIG_FLAGS.QDC_ONLY_ACTIVE_PATHS, out uint pathCount, out uint modeCount);
+            var result = User32.GetDisplayConfigBufferSizes(QUERY_DEVICE_CONFIG_FLAGS.QDC_ONLY_ACTIVE_PATHS, out uint pathCount, out uint modeCount);
             if (result != WinError.ERROR_SUCCESS)
             {
+                logger.Error("Failed to retrieve display config buffer sizes");
                 return null;
             }
 
@@ -96,20 +125,21 @@ namespace Playnite
             result = User32.QueryDisplayConfig(QUERY_DEVICE_CONFIG_FLAGS.QDC_ONLY_ACTIVE_PATHS, ref pathCount, paths, ref modeCount, modes, IntPtr.Zero);
             if (result != WinError.ERROR_SUCCESS)
             {
+                logger.Error("Failed to retrieve display config info");
                 return null;
             }
 
-            DISPLAYCONFIG_MODE_INFO primaryDisplayMode = modes
+            var primaryDisplayMode = modes
                  .FirstOrDefault(IsPrimaryDisplayMode);
 
-            DISPLAYCONFIG_PATH_TARGET_INFO targetInfo =
+            var targetInfo =
                 paths.FirstOrDefault(p => p.sourceInfo.id == primaryDisplayMode.id)
                 .targetInfo;
 
             return targetInfo;
         }
 
-        private static (bool?, bool?) GetHdrStatus(DISPLAYCONFIG_PATH_TARGET_INFO targetInfo)
+        private static (bool, bool) GetHdrStatus(DISPLAYCONFIG_PATH_TARGET_INFO targetInfo)
         {
             //Retrieve current HDR state
             var colorInfo = new DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO
@@ -123,10 +153,11 @@ namespace Playnite
                 }
             };
 
-            long result = User32.DisplayConfigGetDeviceInfo(ref colorInfo);
+            var result = User32.DisplayConfigGetDeviceInfo(ref colorInfo);
             if (result != WinError.ERROR_SUCCESS)
             {
-                return (null, null);
+                logger.Error("Failed to retrieve advanced color info");
+                return (false, false);
             }
 
             return (colorInfo.advancedColorSupported, colorInfo.advancedColorEnabled);

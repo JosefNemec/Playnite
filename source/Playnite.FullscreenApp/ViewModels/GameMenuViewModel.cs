@@ -95,7 +95,7 @@ namespace Playnite.FullscreenApp.ViewModels
             items.Add(new GameActionItem(ToggleVisibilityCommand, game.Hidden ? ResourceProvider.GetString(LOC.UnHideGame) : ResourceProvider.GetString(LOC.HideGame), "GameMenuVisibilityButtonTemplate"));
             if (HdrUtilities.IsHdrSupported())
             {
-                items.Add(new GameActionItem(ToggleHdrCommand, game.Hdr ? ResourceProvider.GetString(LOC.DisableHdr) : ResourceProvider.GetString(LOC.EnableHdr), "GameMenuHdrButtonTemplate"));
+                items.Add(new GameActionItem(ToggleHdrCommand, game.EnableSystemHdr ? ResourceProvider.GetString(LOC.DisableHdr) : ResourceProvider.GetString(LOC.EnableHdr), "GameMenuHdrButtonTemplate"));
             }
             items.Add(new GameActionItem(SetFieldsCommand, ResourceProvider.GetString(LOC.MenuSetFields), "GameMenuSetFieldsTemplate"));
             items.Add(new GameActionItem(RemoveGameCommand, ResourceProvider.GetString(LOC.RemoveGame), "GameMenuRemoveButtonTemplate"));

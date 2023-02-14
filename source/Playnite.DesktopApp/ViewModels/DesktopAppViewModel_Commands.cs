@@ -555,12 +555,12 @@ namespace Playnite.DesktopApp.ViewModels
 
             EnableHdrCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
-                GamesEditor.SetHdr(a.ToList(), true);
+                GamesEditor.SetHdrSupport(a.ToList(), true);
             });
 
             DisableHdrCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
-                GamesEditor.SetHdr(a.ToList(), false);
+                GamesEditor.SetHdrSupport(a.ToList(), false);
             });
 
             SelectRandomGameCommand = new RelayCommand<object>((a) =>

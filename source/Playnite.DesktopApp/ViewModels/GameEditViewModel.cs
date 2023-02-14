@@ -759,7 +759,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (UseHdrChanges)
                 {
-                    game.Hdr = EditingGame.Hdr;
+                    game.EnableSystemHdr = EditingGame.EnableSystemHdr;
                 }
 
                 if (UseHiddenChanges)
