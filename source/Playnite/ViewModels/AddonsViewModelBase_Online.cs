@@ -67,8 +67,7 @@ namespace Playnite.ViewModels
 
             dialogs.ActivateGlobalProgress((prg) =>
             {
-                prg.ProgressMaxValue = addons.Count();
-                prg.CurrentProgressValue = -1;
+                prg.ProgressMaxValue = addons.Count() + 1;
                 foreach (var update in addons)
                 {
                     try
