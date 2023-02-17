@@ -179,7 +179,7 @@ namespace Playnite.SDK.Models
         ///
         RecentActivity = 91,
         ///
-        Hdr = 92
+        EnableSystemHdr = 92
     }
 
     /// <summary>
@@ -2055,7 +2055,7 @@ namespace Playnite.SDK.Models
 
             if (EnableSystemHdr != otherGame.enableSystemHdr)
             {
-                changes.Add(GameField.Hdr);
+                changes.Add(GameField.EnableSystemHdr);
             }
 
             if (Hidden != otherGame.Hidden)
