@@ -1,773 +1,832 @@
-Id: retroarch
+﻿Id: retroarch
 Name: RetroArch
 Website: 'http://www.retroarch.com/'
 Profiles:
   - Name: 4DO
     StartupArguments: '-L ".\cores\4do_libretro.dll" "{ImagePath}"'
     Platforms: [3do]
-    ImageExtensions: [iso, bin, chd, cue, zip, 7z]
+    ImageExtensions: [7z, bin, chd, cue, iso, zip]
     ProfileFiles: ['cores\4do_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Sinclair ZX 81
+  - Name: 81
     StartupArguments: '-L ".\cores\81_libretro.dll" "{ImagePath}"'
     Platforms: [sinclair_zx81]
-    ImageExtensions: [p, tzx, t81, zip, 7z]
+    ImageExtensions: [7z, p, t81, tzx, zip]
     ProfileFiles: ['cores\81_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
   - Name: Atari800
     StartupArguments: '-L ".\cores\atari800_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_8bit]
-    ImageExtensions: [xfd, atr, atx, cdm, cas, bin, a52, xex, zip, 7z]
+    Platforms: [atari_5200]
+    ImageExtensions: [7z, a52, atr, atx, bin, car, cas, cdm, com, xex, xfd, zip]
     ProfileFiles: ['cores\atari800_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: BlastEm
-    StartupArguments: '-L ".\cores\blastem_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_genesis]
-    ImageExtensions: [md, bin, smd, zip, 7z]
-    ProfileFiles: ['cores\blastem_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bnes/higan
-    StartupArguments: '-L ".\cores\bnes_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_nes]
-    ImageExtensions: [nes, zip, 7z]
-    ProfileFiles: ['cores\bnes_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes C++98 (v085)
-    StartupArguments: '-L ".\cores\bsnes_cplusplus98_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, zip, 7z]
-    ProfileFiles: ['cores\bsnes_cplusplus98_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes-hd beta
-    StartupArguments: '-L ".\cores\bsnes_hd_beta_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, gb, gbc, zip, 7z]
-    ProfileFiles: ['cores\bsnes_hd_beta_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes
-    StartupArguments: '-L ".\cores\bsnes_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, gb, gbc, zip, 7z]
-    ProfileFiles: ['cores\bsnes_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes-mercury Accuracy
-    StartupArguments: '-L ".\cores\bsnes_mercury_accuracy_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, bml, zip, 7z]
-    ProfileFiles: ['cores\bsnes_mercury_accuracy_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes-mercury Balanced
-    StartupArguments: '-L ".\cores\bsnes_mercury_balanced_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, bml, zip, 7z]
-    ProfileFiles: ['cores\bsnes_mercury_balanced_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes-mercury Performance
-    StartupArguments: '-L ".\cores\bsnes_mercury_performance_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, bml, zip, 7z]
-    ProfileFiles: ['cores\bsnes_mercury_performance_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes 2014 Accuracy
-    StartupArguments: '-L ".\cores\bsnes2014_accuracy_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, bml, zip, 7z]
-    ProfileFiles: ['cores\bsnes2014_accuracy_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes 2014 Balanced
-    StartupArguments: '-L ".\cores\bsnes2014_balanced_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, bml, zip, 7z]
-    ProfileFiles: ['cores\bsnes2014_balanced_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: bsnes 2014 Performance
-    StartupArguments: '-L ".\cores\bsnes2014_performance_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, bml, zip, 7z]
-    ProfileFiles: ['cores\bsnes2014_performance_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Caprice32
-    StartupArguments: '-L ".\cores\cap32_libretro.dll" "{ImagePath}"'
-    Platforms: [amstrad_cpc]
-    ImageExtensions: [dsk, sna, zip, tap, cdt, voc, m3u, 7z]
-    ProfileFiles: ['cores\cap32_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Citra Canary/Experimental
-    StartupArguments: '-L ".\cores\citra_canary_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_3ds]
-    ImageExtensions: [3ds, 3dsx, elf, axf, cci, cxi, app, zip, 7z]
-    ProfileFiles: ['cores\citra_canary_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Citra
-    StartupArguments: '-L ".\cores\citra_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_3ds]
-    ImageExtensions: [3ds, 3dsx, elf, axf, cci, cxi, app, zip, 7z]
-    ProfileFiles: ['cores\citra_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: CrocoDS
-    StartupArguments: '-L ".\cores\crocods_libretro.dll" "{ImagePath}"'
-    Platforms: [amstrad_cpc]
-    ImageExtensions: [dsk, sna, kcr, zip, 7z]
-    ProfileFiles: ['cores\crocods_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: DeSmuME
-    StartupArguments: '-L ".\cores\desmume_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_ds]
-    ImageExtensions: [nds, bin, zip, 7z]
-    ProfileFiles: ['cores\desmume_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: DeSmuME 2015
-    StartupArguments: '-L ".\cores\desmume2015_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_ds]
-    ImageExtensions: [nds, bin, zip, 7z]
-    ProfileFiles: ['cores\desmume2015_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Dolphin Launcher
-    StartupArguments: '-L ".\cores\dolphin_launcher_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gamecube, nintendo_wii]
-    ImageExtensions: [elf, dol, gcm, iso, wbfs, ciso, gcz, wad, zip, 7z]
-    ProfileFiles: ['cores\dolphin_launcher_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Dolphin
-    StartupArguments: '-L ".\cores\dolphin_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gamecube, nintendo_wii]
-    ImageExtensions: [gcm, iso, wbfs, ciso, gcz, elf, dol, dff, tgc, wad, zip, 7z, rvz, m3u]
-    ProfileFiles: ['cores\dolphin_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: DOSBox-core
-    StartupArguments: '-L ".\cores\dosbox_core_libretro.dll" "{ImagePath}"'
-    Platforms: [pc_dos]
-    ImageExtensions: [exe, com, bat, conf, cue, iso, zip, 7z]
-    ProfileFiles: ['cores\dosbox_core_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: DOSBox
-    StartupArguments: '-L ".\cores\dosbox_libretro.dll" "{ImagePath}"'
-    Platforms: [pc_dos]
-    ImageExtensions: [exe, com, bat, conf, zip, 7z]
-    ProfileFiles: ['cores\dosbox_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: DOSBox-SVN CE
-    StartupArguments: '-L ".\cores\dosbox_svn_ce_libretro.dll" "{ImagePath}"'
-    Platforms: [pc_dos]
-    ImageExtensions: [exe, com, bat, conf, cue, iso, zip, 7z]
-    ProfileFiles: ['cores\dosbox_svn_ce_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: DOSBox-SVN
-    StartupArguments: '-L ".\cores\dosbox_svn_libretro.dll" "{ImagePath}"'
-    Platforms: [pc_dos]
-    ImageExtensions: [exe, com, bat, conf, cue, iso, zip, 7z]
-    ProfileFiles: ['cores\dosbox_svn_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Emux GB
-    StartupArguments: '-L ".\cores\emux_gb_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [gb, bin, rom, zip, 7z]
-    ProfileFiles: ['cores\emux_gb_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Emux NES
-    StartupArguments: '-L ".\cores\emux_nes_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_nes]
-    ImageExtensions: [nes, bin, rom, zip, 7z]
-    ProfileFiles: ['cores\emux_nes_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Emux SMS
-    StartupArguments: '-L ".\cores\emux_sms_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_mastersystem]
-    ImageExtensions: [sms, bin, rom, zip, 7z]
-    ProfileFiles: ['cores\emux_sms_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: FCEUmm
-    StartupArguments: '-L ".\cores\fceumm_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_nes, nintendo_famicom_disk]
-    ImageExtensions: [fds, nes, unif, unf, zip, 7z]
-    ProfileFiles: ['cores\fceumm_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: fixGB
-    StartupArguments: '-L ".\cores\fixgb_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [gb, gbc, gbs, zip, 7z]
-    ProfileFiles: ['cores\fixgb_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: fixNES
-    StartupArguments: '-L ".\cores\fixnes_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_nes, nintendo_famicom_disk]
-    ImageExtensions: [nes, fds, qd, nsf, zip, 7z]
-    ProfileFiles: ['cores\fixnes_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Flycast GLES2
-    StartupArguments: '-L ".\cores\flycast_gles2_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_dreamcast]
-    ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, lst, zip, dat, 7z, m3u]
-    ProfileFiles: ['cores\flycast_gles2_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Flycast
-    StartupArguments: '-L ".\cores\flycast_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_dreamcast]
-    ImageExtensions: [chd, cdi, iso, elf, bin, cue, gdi, lst, zip, dat, 7z, m3u]
-    ProfileFiles: ['cores\flycast_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: FreeIntv
-    StartupArguments: '-L ".\cores\freeintv_libretro.dll" "{ImagePath}"'
-    Platforms: [mattel_intellivision]
-    ImageExtensions: [int, bin, rom, zip, 7z]
-    ProfileFiles: ['cores\freeintv_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Frodo
-    StartupArguments: '-L ".\cores\frodo_libretro.dll" "{ImagePath}"'
-    Platforms: [commodore_64]
-    ImageExtensions: [d64, t64, x64, p00, lnx, zip, 7z]
-    ProfileFiles: ['cores\frodo_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: FS-UAE
-    StartupArguments: '-L ".\cores\fsuae_libretro.dll" "{ImagePath}"'
-    Platforms: [commodore_amiga]
-    ImageExtensions: [adf, ipf, fs-uae, zip, 7z]
-    ProfileFiles: ['cores\fsuae_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Fuse
-    StartupArguments: '-L ".\cores\fuse_libretro.dll" "{ImagePath}"'
-    Platforms: [sinclair_zxspectrum3, sinclair_zxspectrum]
-    ImageExtensions: [tzx, tap, z80, rzx, scl, trd, zip, 7z]
-    ProfileFiles: ['cores\fuse_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Gambatte
-    StartupArguments: '-L ".\cores\gambatte_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [gb, gbc, dmg, zip, 7z]
-    ProfileFiles: ['cores\gambatte_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Gearboy
-    StartupArguments: '-L ".\cores\gearboy_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [gb, dmg, gbc, cgb, sgb, zip, 7z]
-    ProfileFiles: ['cores\gearboy_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Gearsystem
-    StartupArguments: '-L ".\cores\gearsystem_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_gamegear, sega_mastersystem]
-    ImageExtensions: [sms, gg, sg, bin, rom, zip, 7z]
-    ProfileFiles: ['cores\gearsystem_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Genesis Plus GX
-    StartupArguments: '-L ".\cores\genesis_plus_gx_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_gamegear, sega_mastersystem, sega_cd, sega_genesis]
-    ImageExtensions: [mdx, md, smd, gen, bin, cue, iso, sms, gg, sg, 68k, chd, zip, 7z]
-    ProfileFiles: ['cores\genesis_plus_gx_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Genesis Plus GX Wide
-    StartupArguments: '-L ".\cores\genesis_plus_gx_wide_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_gamegear, sega_mastersystem, sega_cd, sega_genesis]
-    ImageExtensions: [mdx, md, smd, gen, bin, cue, iso, sms, gg, sg, 68k, chd, zip, 7z]
-    ProfileFiles: ['cores\genesis_plus_gx_wide_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: gpSP
-    StartupArguments: '-L ".\cores\gpsp_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboyadvance]
-    ImageExtensions: [gba, bin, zip, 7z]
-    ProfileFiles: ['cores\gpsp_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Handy
-    StartupArguments: '-L ".\cores\handy_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_lynx]
-    ImageExtensions: [lnx, o, zip, 7z]
-    ProfileFiles: ['cores\handy_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Hatari
-    StartupArguments: '-L ".\cores\hatari_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_st]
-    ImageExtensions: [st, msa, zip, stx, dim, ipf, m3u, 7z]
-    ProfileFiles: ['cores\hatari_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: nSide (Super Famicom Balanced)
-    StartupArguments: '-L ".\cores\higan_sfc_balanced_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes, nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [sfc, smc, gb, gbc, bml, rom, zip, 7z]
-    ProfileFiles: ['cores\higan_sfc_balanced_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: higan (Super Famicom Accuracy)
-    StartupArguments: '-L ".\cores\higan_sfc_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes, nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [sfc, smc, gb, gbc, bml, rom, zip, 7z]
-    ProfileFiles: ['cores\higan_sfc_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Ishiiruka
-    StartupArguments: '-L ".\cores\ishiiruka_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gamecube, nintendo_wii]
-    ImageExtensions: [gcm, iso, wbfs, ciso, gcz, elf, dol, dff, tgc, wad, zip, 7z]
-    ProfileFiles: ['cores\ishiiruka_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Kronos
-    StartupArguments: '-L ".\cores\kronos_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_saturn]
-    ImageExtensions: [bin, ccd, chd, cue, iso, mds, zip, 7z]
-    ProfileFiles: ['cores\kronos_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle GBA
-    StartupArguments: '-L ".\cores\mednafen_gba_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboyadvance]
-    ImageExtensions: [gba, agb, bin, zip, 7z]
-    ProfileFiles: ['cores\mednafen_gba_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle Lynx
-    StartupArguments: '-L ".\cores\mednafen_lynx_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_lynx]
-    ImageExtensions: [lnx, o, zip, 7z]
-    ProfileFiles: ['cores\mednafen_lynx_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle NeoPop
-    StartupArguments: '-L ".\cores\mednafen_ngp_libretro.dll" "{ImagePath}"'
-    Platforms: [snk_neogeopocket, snk_neogeopocket_color]
-    ImageExtensions: [ngp, ngc, ngpc, npc, zip, 7z]
-    ProfileFiles: ['cores\mednafen_ngp_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle PCE Fast
-    StartupArguments: '-L ".\cores\mednafen_pce_fast_libretro.dll" "{ImagePath}"'
-    Platforms: [nec_turbografx_16, nec_turbografx_cd]
-    ImageExtensions: [pce, cue, ccd, iso, img, bin, chd, zip, 7z]
-    ProfileFiles: ['cores\mednafen_pce_fast_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle PCE
-    StartupArguments: '-L ".\cores\mednafen_pce_libretro.dll" "{ImagePath}"'
-    Platforms: [nec_supergrafx, nec_turbografx_16, nec_turbografx_cd]
-    ImageExtensions: [pce, cue, ccd, iso, img, bin, chd, zip, 7z]
-    ProfileFiles: ['cores\mednafen_pce_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle PC-FX
-    StartupArguments: '-L ".\cores\mednafen_pcfx_libretro.dll" "{ImagePath}"'
-    Platforms: [nec_pcfx]
-    ImageExtensions: [cue, ccd, toc, chd, zip, 7z]
-    ProfileFiles: ['cores\mednafen_pcfx_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle PSX HW
-    StartupArguments: '-L ".\cores\mednafen_psx_hw_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [cue, toc, m3u, ccd, exe, pbp, chd, zip, 7z]
-    ProfileFiles: ['cores\mednafen_psx_hw_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle PSX
-    StartupArguments: '-L ".\cores\mednafen_psx_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [cue, toc, m3u, ccd, exe, pbp, chd, zip, 7z]
-    ProfileFiles: ['cores\mednafen_psx_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Beetle Saturn
-    StartupArguments: '-L ".\cores\mednafen_saturn_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_saturn]
-    ImageExtensions: [ccd, chd, cue, toc, m3u, zip, 7z]
-    ProfileFiles: ['cores\mednafen_saturn_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
   - Name: Beetle bsnes
     StartupArguments: '-L ".\cores\mednafen_snes_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_super_nes]
-    ImageExtensions: [smc, fig, bs, st, sfc, zip, 7z]
+    ImageExtensions: [7z, bs, fig, sfc, smc, st, zip]
     ProfileFiles: ['cores\mednafen_snes_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
+  - Name: Beetle GBA
+    StartupArguments: '-L ".\cores\mednafen_gba_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [7z, agb, bin, gba, zip]
+    ProfileFiles: ['cores\mednafen_gba_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle Lynx
+    StartupArguments: '-L ".\cores\mednafen_lynx_libretro.dll" "{ImagePath}"'
+    Platforms: [atari_lynx]
+    ImageExtensions: [7z, lnx, o, zip]
+    ProfileFiles: ['cores\mednafen_lynx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle NeoPop
+    StartupArguments: '-L ".\cores\mednafen_ngp_libretro.dll" "{ImagePath}"'
+    Platforms: [snk_neogeopocket, snk_neogeopocket_color]
+    ImageExtensions: [7z, ngc, ngp, ngpc, npc, zip]
+    ProfileFiles: ['cores\mednafen_ngp_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle PCE Fast
+    StartupArguments: '-L ".\cores\mednafen_pce_fast_libretro.dll" "{ImagePath}"'
+    Platforms: [nec_turbografx_16, nec_turbografx_cd]
+    ImageExtensions: [7z, ccd, chd, cue, m3u, pce, toc, zip]
+    ProfileFiles: ['cores\mednafen_pce_fast_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle PCE
+    StartupArguments: '-L ".\cores\mednafen_pce_libretro.dll" "{ImagePath}"'
+    Platforms: [nec_supergrafx, nec_turbografx_16, nec_turbografx_cd]
+    ImageExtensions: [7z, ccd, chd, cue, m3u, pce, sgx, toc, zip]
+    ProfileFiles: ['cores\mednafen_pce_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle PC-FX
+    StartupArguments: '-L ".\cores\mednafen_pcfx_libretro.dll" "{ImagePath}"'
+    Platforms: [nec_pcfx]
+    ImageExtensions: [7z, ccd, chd, cue, toc, zip]
+    ProfileFiles: ['cores\mednafen_pcfx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle PSX HW
+    StartupArguments: '-L ".\cores\mednafen_psx_hw_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, ccd, chd, cue, exe, m3u, pbp, toc, zip]
+    ProfileFiles: ['cores\mednafen_psx_hw_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle PSX
+    StartupArguments: '-L ".\cores\mednafen_psx_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, ccd, chd, cue, exe, m3u, pbp, toc, zip]
+    ProfileFiles: ['cores\mednafen_psx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle Saturn
+    StartupArguments: '-L ".\cores\mednafen_saturn_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_saturn]
+    ImageExtensions: [7z, ccd, chd, cue, m3u, toc, zip]
+    ProfileFiles: ['cores\mednafen_saturn_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Beetle Supafaust
+    StartupArguments: '-L ".\cores\mednafen_supafaust_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bsx, dx2, fig, gd3, gd7, sfc, smc, swc, zip]
+    ProfileFiles: ['cores\mednafen_supafaust_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
   - Name: Beetle SuperGrafx
     StartupArguments: '-L ".\cores\mednafen_supergrafx_libretro.dll" "{ImagePath}"'
-    Platforms: [nec_supergrafx, nec_turbografx_16, nec_turbografx_cd]
-    ImageExtensions: [pce, sgx, cue, ccd, chd, zip, 7z]
+    Platforms: [nec_supergrafx]
+    ImageExtensions: [7z, ccd, chd, cue, pce, sgx, zip]
     ProfileFiles: ['cores\mednafen_supergrafx_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
   - Name: Beetle VB
     StartupArguments: '-L ".\cores\mednafen_vb_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_virtualboy]
-    ImageExtensions: [vb, vboy, bin, zip, 7z]
+    ImageExtensions: [7z, bin, vb, vboy, zip]
     ProfileFiles: ['cores\mednafen_vb_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
   - Name: Beetle WonderSwan
     StartupArguments: '-L ".\cores\mednafen_wswan_libretro.dll" "{ImagePath}"'
     Platforms: [bandai_wonderswan, bandai_wonderswan_color]
-    ImageExtensions: [ws, wsc, pc2, zip, 7z]
+    ImageExtensions: [7z, pc2, ws, wsc, zip]
     ProfileFiles: ['cores\mednafen_wswan_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: melonDS
-    StartupArguments: '-L ".\cores\melonds_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_ds]
-    ImageExtensions: [nds, zip, 7z]
-    ProfileFiles: ['cores\melonds_libretro.dll']
+  - Name: BlastEm
+    StartupArguments: '-L ".\cores\blastem_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_genesis]
+    ImageExtensions: [68k, 7z, bin, gen, md, sgd, smd, zip]
+    ProfileFiles: ['cores\blastem_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Mesen
-    StartupArguments: '-L ".\cores\mesen_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_nes, nintendo_famicom_disk]
-    ImageExtensions: [nes, fds, unf, unif, zip, 7z]
-    ProfileFiles: ['cores\mesen_libretro.dll']
+  - Name: blueMSX
+    StartupArguments: '-L ".\cores\bluemsx_libretro.dll" "{ImagePath}"'
+    Platforms: [microsoft_msx, microsoft_msx2]
+    ImageExtensions: [7z, cas, col, dsk, m3u, mx1, mx2, ri, rom, sc, sg, zip]
+    ProfileFiles: ['cores\bluemsx_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Mesen-S
-    StartupArguments: '-L ".\cores\mesen-s_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, smc, fig, swc, zip, 7z]
-    ProfileFiles: ['cores\mesen-s_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Meteor
-    StartupArguments: '-L ".\cores\meteor_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboyadvance]
-    ImageExtensions: [gba, zip, 7z]
-    ProfileFiles: ['cores\meteor_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: mGBA
-    StartupArguments: '-L ".\cores\mgba_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor, nintendo_gameboyadvance]
-    ImageExtensions: [gb, gbc, gba, zip, 7z]
-    ProfileFiles: ['cores\mgba_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Mupen64Plus-Next (Develop)
-    StartupArguments: '-L ".\cores\mupen64plus_next_develop_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_64]
-    ImageExtensions: [n64, v64, z64, bin, u1, zip, 7z]
-    ProfileFiles: ['cores\mupen64plus_next_develop_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Mupen64Plus-Next GLES3
-    StartupArguments: '-L ".\cores\mupen64plus_next_gles3_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_64]
-    ImageExtensions: [n64, v64, z64, bin, u1, zip, 7z]
-    ProfileFiles: ['cores\mupen64plus_next_gles3_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Mupen64Plus-Next
-    StartupArguments: '-L ".\cores\mupen64plus_next_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_64]
-    ImageExtensions: [n64, v64, z64, bin, u1, zip, 7z]
-    ProfileFiles: ['cores\mupen64plus_next_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: NeoCD
-    StartupArguments: '-L ".\cores\neocd_libretro.dll" "{ImagePath}"'
-    Platforms: [snk_neogeo_cd]
-    ImageExtensions: [cue, chd, zip, 7z]
-    ProfileFiles: ['cores\neocd_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Nestopia
-    StartupArguments: '-L ".\cores\nestopia_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_nes, nintendo_famicom_disk]
-    ImageExtensions: [nes, fds, unf, unif, zip, 7z]
-    ProfileFiles: ['cores\nestopia_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Opera
-    StartupArguments: '-L ".\cores\opera_libretro.dll" "{ImagePath}"'
-    Platforms: [3do]
-    ImageExtensions: [iso, bin, chd, cue, zip, 7z]
-    ProfileFiles: ['cores\opera_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: ParaLLEl (Debug)
-    StartupArguments: '-L ".\cores\parallel_n64_debug_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_64]
-    ImageExtensions: [n64, v64, z64, bin, u1, ndd, zip, 7z]
-    ProfileFiles: ['cores\parallel_n64_debug_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: ParaLLEl N64
-    StartupArguments: '-L ".\cores\parallel_n64_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_64]
-    ImageExtensions: [n64, v64, z64, bin, u1, ndd, zip, 7z]
-    ProfileFiles: ['cores\parallel_n64_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: PCSX ReARMed [Interpreter]
-    StartupArguments: '-L ".\cores\pcsx_rearmed_interpreter_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [bin, cue, img, mdf, pbp, cbn, toc, chd, zip, 7z]
-    ProfileFiles: ['cores\pcsx_rearmed_interpreter_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: PCSX-ReARMed
-    StartupArguments: '-L ".\cores\pcsx_rearmed_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [bin, cue, img, mdf, pbp, toc, cbn, m3u, ccd, chd, zip, 7z]
-    ProfileFiles: ['cores\pcsx_rearmed_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: PCSX ReARMed [NEON]
-    StartupArguments: '-L ".\cores\pcsx_rearmed_libretro_neon.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [bin, cue, img, mdf, pbp, toc, cbn, m3u, chd, zip, 7z]
-    ProfileFiles: ['cores\pcsx_rearmed_libretro_neon.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: PCSX1
-    StartupArguments: '-L ".\cores\pcsx1_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [bin, cue, img, mdf, pbp, toc, cbn, m3u, zip, 7z]
-    ProfileFiles: ['cores\pcsx1_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: PicoDrive
-    StartupArguments: '-L ".\cores\picodrive_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_mastersystem, sega_cd, sega_genesis, sega_32x]
-    ImageExtensions: [bin, gen, smd, md, 32x, cue, iso, sms, 68k, zip, 7z]
-    ProfileFiles: ['cores\picodrive_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Play!
-    StartupArguments: '-L ".\cores\play_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation2]
-    ImageExtensions: [iso, isz, cso, bin, elf, zip, 7z]
-    ProfileFiles: ['cores\play_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: PPSSPP
-    StartupArguments: '-L ".\cores\ppsspp_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_psp]
-    ImageExtensions: [elf, iso, cso, prx, pbp, zip, 7z]
-    ProfileFiles: ['cores\ppsspp_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: ProSystem
-    StartupArguments: '-L ".\cores\prosystem_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_7800]
-    ImageExtensions: [a78, bin, zip, 7z]
-    ProfileFiles: ['cores\prosystem_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: PUAE
-    StartupArguments: '-L ".\cores\puae_libretro.dll" "{ImagePath}"'
-    Platforms: [commodore_amiga]
-    ImageExtensions: [adf, adz, dms, fdi, ipf, hdf, hdz, lha, cue, ccd, nrg, mds, iso, uae, m3u, zip, 7z]
-    ProfileFiles: ['cores\puae_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: QuickNES
-    StartupArguments: '-L ".\cores\quicknes_libretro.dll" "{ImagePath}"'
+  - Name: bnes/higan
+    StartupArguments: '-L ".\cores\bnes_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_nes]
-    ImageExtensions: [nes, zip, 7z]
-    ProfileFiles: ['cores\quicknes_libretro.dll']
+    ImageExtensions: [7z, nes, zip]
+    ProfileFiles: ['cores\bnes_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: RACE
-    StartupArguments: '-L ".\cores\race_libretro.dll" "{ImagePath}"'
-    Platforms: [snk_neogeopocket, snk_neogeopocket_color]
-    ImageExtensions: [ngp, ngc, ngpc, npc, zip, 7z]
-    ProfileFiles: ['cores\race_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Redream
-    StartupArguments: '-L ".\cores\redream_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_dreamcast]
-    ImageExtensions: [gdi, chd, cdi, zip, 7z]
-    ProfileFiles: ['cores\redream_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Rustation
-    StartupArguments: '-L ".\cores\rustation_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [cue, toc, m3u, ccd, exe, zip, 7z]
-    ProfileFiles: ['cores\rustation_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: SameBoy
-    StartupArguments: '-L ".\cores\sameboy_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [gb, gbc, zip, 7z]
-    ProfileFiles: ['cores\sameboy_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: SMS Plus GX
-    StartupArguments: '-L ".\cores\smsplus_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_gamegear, sega_mastersystem]
-    ImageExtensions: [sms, bin, rom, col, gg, zip, 7z]
-    ProfileFiles: ['cores\smsplus_libretro.dll']
-    StartupExecutable: ^retroarch\.exe$
-
-  - Name: Snes9x
-    StartupArguments: '-L ".\cores\snes9x_libretro.dll" "{ImagePath}"'
+  - Name: bsnes 2014 Accuracy
+    StartupArguments: '-L ".\cores\bsnes2014_accuracy_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_super_nes]
-    ImageExtensions: [smc, sfc, swc, fig, bs, zip, 7z]
-    ProfileFiles: ['cores\snes9x_libretro.dll']
+    ImageExtensions: [7z, bml, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes2014_accuracy_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Snes9x 2002
-    StartupArguments: '-L ".\cores\snes9x2002_libretro.dll" "{ImagePath}"'
+  - Name: bsnes 2014 Balanced
+    StartupArguments: '-L ".\cores\bsnes2014_balanced_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_super_nes]
-    ImageExtensions: [smc, fig, sfc, gd3, gd7, dx2, bsx, swc, zip, 7z]
-    ProfileFiles: ['cores\snes9x2002_libretro.dll']
+    ImageExtensions: [7z, bml, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes2014_balanced_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Snes9x 2005
-    StartupArguments: '-L ".\cores\snes9x2005_libretro.dll" "{ImagePath}"'
+  - Name: bsnes 2014 Performance
+    StartupArguments: '-L ".\cores\bsnes2014_performance_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_super_nes]
-    ImageExtensions: [smc, fig, sfc, gd3, gd7, dx2, bsx, swc, zip, 7z]
-    ProfileFiles: ['cores\snes9x2005_libretro.dll']
+    ImageExtensions: [7z, bml, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes2014_performance_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Snes9x 2005 Plus
-    StartupArguments: '-L ".\cores\snes9x2005_plus_libretro.dll" "{ImagePath}"'
+  - Name: bsnes C++98 (v085)
+    StartupArguments: '-L ".\cores\bsnes_cplusplus98_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_super_nes]
-    ImageExtensions: [smc, fig, sfc, gd3, gd7, dx2, bsx, swc, zip, 7z]
-    ProfileFiles: ['cores\snes9x2005_plus_libretro.dll']
+    ImageExtensions: [7z, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes_cplusplus98_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Snes9x 2010
-    StartupArguments: '-L ".\cores\snes9x2010_libretro.dll" "{ImagePath}"'
+  - Name: bsnes
+    StartupArguments: '-L ".\cores\bsnes_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_super_nes]
-    ImageExtensions: [smc, fig, sfc, gd3, gd7, dx2, bsx, swc, zip, 7z]
-    ProfileFiles: ['cores\snes9x2010_libretro.dll']
+    ImageExtensions: [7z, bs, gb, gbc, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Stella
-    StartupArguments: '-L ".\cores\stella_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_2600]
-    ImageExtensions: [a26, bin, zip, 7z]
-    ProfileFiles: ['cores\stella_libretro.dll']
+  - Name: bsnes-hd beta
+    StartupArguments: '-L ".\cores\bsnes_hd_beta_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, gb, gbc, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes_hd_beta_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Stella 2014
-    StartupArguments: '-L ".\cores\stella2014_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_2600]
-    ImageExtensions: [a26, bin, zip, 7z]
-    ProfileFiles: ['cores\stella2014_libretro.dll']
+  - Name: bsnes-mercury Accuracy
+    StartupArguments: '-L ".\cores\bsnes_mercury_accuracy_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bml, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes_mercury_accuracy_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: SwanStation
-    StartupArguments: '-L ".\cores\swanstation_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation]
-    ImageExtensions: [exe, psexe, cue, bin, img, iso, chd, pbp, ecm, mds, psf, m3u]
-    ProfileFiles: ['cores\swanstation_libretro.dll']
+  - Name: bsnes-mercury Balanced
+    StartupArguments: '-L ".\cores\bsnes_mercury_balanced_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bml, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes_mercury_balanced_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: TempGBA
-    StartupArguments: '-L ".\cores\tempgba_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboyadvance]
-    ImageExtensions: [gba, bin, agb, gbz, zip, 7z]
-    ProfileFiles: ['cores\tempgba_libretro.dll']
+  - Name: bsnes-mercury Performance
+    StartupArguments: '-L ".\cores\bsnes_mercury_performance_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bml, sfc, smc, zip]
+    ProfileFiles: ['cores\bsnes_mercury_performance_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: TGB Dual
-    StartupArguments: '-L ".\cores\tgbdual_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
-    ImageExtensions: [gb, gbc, sgb, zip, 7z]
-    ProfileFiles: ['cores\tgbdual_libretro.dll']
+  - Name: Caprice32
+    StartupArguments: '-L ".\cores\cap32_libretro.dll" "{ImagePath}"'
+    Platforms: [amstrad_cpc]
+    ImageExtensions: [7z, cdt, cpr, dsk, m3u, sna, tap, voc, zip]
+    ProfileFiles: ['cores\cap32_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: UAE4ARM
-    StartupArguments: '-L ".\cores\uae4arm_libretro.dll" "{ImagePath}"'
-    Platforms: [commodore_amiga]
-    ImageExtensions: [adf, dms, zip, ipf, adz, uae, 7z]
-    ProfileFiles: ['cores\uae4arm_libretro.dll']
+  - Name: Citra 2018
+    StartupArguments: '-L ".\cores\citra2018_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, 7z, app, axf, cci, cxi, elf, zip]
+    ProfileFiles: ['cores\citra2018_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: VBA Next
-    StartupArguments: '-L ".\cores\vba_next_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboyadvance]
-    ImageExtensions: [gba, zip, 7z]
-    ProfileFiles: ['cores\vba_next_libretro.dll']
+  - Name: Citra Canary/Experimental
+    StartupArguments: '-L ".\cores\citra_canary_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, 7z, app, axf, cci, cxi, elf, zip]
+    ProfileFiles: ['cores\citra_canary_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: VBA-M
-    StartupArguments: '-L ".\cores\vbam_libretro.dll" "{ImagePath}"'
-    Platforms: [nintendo_gameboy, nintendo_gameboycolor, nintendo_gameboyadvance]
-    ImageExtensions: [dmg, gb, gbc, cgb, sgb, gba, zip, 7z]
-    ProfileFiles: ['cores\vbam_libretro.dll']
+  - Name: Citra
+    StartupArguments: '-L ".\cores\citra_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, 7z, app, axf, cci, cxi, elf, zip]
+    ProfileFiles: ['cores\citra_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: vecx
-    StartupArguments: '-L ".\cores\vecx_libretro.dll" "{ImagePath}"'
-    Platforms: [vectrex]
-    ImageExtensions: [bin, vec, zip, 7z]
-    ProfileFiles: ['cores\vecx_libretro.dll']
+  - Name: CrocoDS
+    StartupArguments: '-L ".\cores\crocods_libretro.dll" "{ImagePath}"'
+    Platforms: [amstrad_cpc]
+    ImageExtensions: [7z, dsk, kcr, sna, zip]
+    ProfileFiles: ['cores\crocods_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Virtual Jaguar
-    StartupArguments: '-L ".\cores\virtualjaguar_libretro.dll" "{ImagePath}"'
-    Platforms: [atari_jaguar]
-    ImageExtensions: [j64, jag, rom, abs, cof, bin, prg, zip, 7z]
-    ProfileFiles: ['cores\virtualjaguar_libretro.dll']
+  - Name: DeSmuME 2015
+    StartupArguments: '-L ".\cores\desmume2015_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_ds]
+    ImageExtensions: [7z, bin, nds, zip]
+    ProfileFiles: ['cores\desmume2015_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: YabaSanshiro
-    StartupArguments: '-L ".\cores\yabasanshiro_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_saturn]
-    ImageExtensions: [bin, ccd, chd, cue, iso, mds, zip, 7z]
-    ProfileFiles: ['cores\yabasanshiro_libretro.dll']
+  - Name: DeSmuME
+    StartupArguments: '-L ".\cores\desmume_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_ds]
+    ImageExtensions: [7z, bin, nds, zip]
+    ProfileFiles: ['cores\desmume_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: Yabause
-    StartupArguments: '-L ".\cores\yabause_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_saturn]
-    ImageExtensions: [bin, ccd, chd, cue, iso, mds, zip, 7z]
-    ProfileFiles: ['cores\yabause_libretro.dll']
+  - Name: DirectXBox
+    StartupArguments: '-L ".\cores\directxbox_libretro.dll" "{ImagePath}"'
+    Platforms: [xbox]
+    ImageExtensions: [7z, iso, zip]
+    ProfileFiles: ['cores\directxbox_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
-  - Name: PCSX2
-    StartupArguments: '-L ".\cores\pcsx2_libretro.dll" "{ImagePath}"'
-    Platforms: [sony_playstation2]
-    ImageExtensions: [elf, iso, ciso, chd, cso, bin, mdf, nrg, dump, gz, img, m3u]
-    ProfileFiles: ['cores\pcsx2_libretro.dll']
+  - Name: Dolphin Launcher
+    StartupArguments: '-L ".\cores\dolphin_launcher_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gamecube, nintendo_wii]
+    ImageExtensions: [7z, ciso, dol, elf, gcm, gcz, iso, wad, wbfs, zip]
+    ProfileFiles: ['cores\dolphin_launcher_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
-
+  - Name: Dolphin
+    StartupArguments: '-L ".\cores\dolphin_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gamecube, nintendo_wii]
+    ImageExtensions: [7z, ciso, dff, dol, elf, gcm, gcz, iso, m3u, rvz, tgc, wad, wbfs, zip]
+    ProfileFiles: ['cores\dolphin_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: DOSBox
+    StartupArguments: '-L ".\cores\dosbox_libretro.dll" "{ImagePath}"'
+    Platforms: [pc_dos]
+    ImageExtensions: [7z, bat, com, conf, exe, zip]
+    ProfileFiles: ['cores\dosbox_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: DOSBox
+    StartupArguments: '-L ".\cores\dosbox_pure_libretro.dll" "{ImagePath}"'
+    Platforms: [pc_dos]
+    ImageExtensions: [7z, bat, com, cue, dosz, exe, ima, img, ins, iso, m3u, m3u8, vhd, zip]
+    ProfileFiles: ['cores\dosbox_pure_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: DOSBox-core
+    StartupArguments: '-L ".\cores\dosbox_core_libretro.dll" "{ImagePath}"'
+    Platforms: [pc_dos]
+    ImageExtensions: [7z, bat, com, conf, cue, exe, iso, zip]
+    ProfileFiles: ['cores\dosbox_core_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: DOSBox-SVN CE
+    StartupArguments: '-L ".\cores\dosbox_svn_ce_libretro.dll" "{ImagePath}"'
+    Platforms: [pc_dos]
+    ImageExtensions: [7z, bat, com, conf, cue, exe, iso, zip]
+    ProfileFiles: ['cores\dosbox_svn_ce_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: DOSBox-SVN
+    StartupArguments: '-L ".\cores\dosbox_svn_libretro.dll" "{ImagePath}"'
+    Platforms: [pc_dos]
+    ImageExtensions: [7z, bat, com, conf, cue, exe, iso, zip]
+    ProfileFiles: ['cores\dosbox_svn_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
   - Name: DuckStation
     StartupArguments: '-L ".\cores\duckstation_libretro.dll" "{ImagePath}"'
     Platforms: [sony_playstation]
-    ImageExtensions: [exe, psexe, cue, bin, img, iso, chd, pbp, ecm, mds, psf, m3u]
+    ImageExtensions: [7z, bin, chd, cue, ecm, exe, img, iso, m3u, mds, pbp, psexe, psf, zip]
     ProfileFiles: ['cores\duckstation_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Emux GB
+    StartupArguments: '-L ".\cores\emux_gb_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
+    ImageExtensions: [7z, bin, gb, rom, zip]
+    ProfileFiles: ['cores\emux_gb_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Emux NES
+    StartupArguments: '-L ".\cores\emux_nes_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, bin, nes, rom, zip]
+    ProfileFiles: ['cores\emux_nes_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Emux SMS
+    StartupArguments: '-L ".\cores\emux_sms_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_mastersystem]
+    ImageExtensions: [7z, bin, bms, rom, sms, zip]
+    ProfileFiles: ['cores\emux_sms_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: FCEUmm
+    StartupArguments: '-L ".\cores\fceumm_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, fds, nes, unf, unif, zip]
+    ProfileFiles: ['cores\fceumm_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: fixGB
+    StartupArguments: '-L ".\cores\fixgb_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
+    ImageExtensions: [7z, gb, gbc, gbs, zip]
+    ProfileFiles: ['cores\fixgb_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: fixNES
+    StartupArguments: '-L ".\cores\fixnes_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, fds, nes, nsf, qd, zip]
+    ProfileFiles: ['cores\fixnes_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Flycast GLES2
+    StartupArguments: '-L ".\cores\flycast_gles2_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_dreamcast]
+    ImageExtensions: [7z, bin, cdi, chd, cue, dat, elf, gdi, iso, lst, m3u, zip]
+    ProfileFiles: ['cores\flycast_gles2_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Flycast
+    StartupArguments: '-L ".\cores\flycast_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_dreamcast]
+    ImageExtensions: [7z, bin, cdi, chd, cue, dat, elf, gdi, lst, m3u, zip]
+    ProfileFiles: ['cores\flycast_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: fMSX
+    StartupArguments: '-L ".\cores\fmsx_libretro.dll" "{ImagePath}"'
+    Platforms: [microsoft_msx, microsoft_msx2]
+    ImageExtensions: [7z, cas, dsk, mx1, mx2, rom, zip]
+    ProfileFiles: ['cores\fmsx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: FreeIntv
+    StartupArguments: '-L ".\cores\freeintv_libretro.dll" "{ImagePath}"'
+    Platforms: [mattel_intellivision]
+    ImageExtensions: [7z, bin, int, rom, zip]
+    ProfileFiles: ['cores\freeintv_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Frodo
+    StartupArguments: '-L ".\cores\frodo_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [7z, d64, lnx, p00, t64, x64, zip]
+    ProfileFiles: ['cores\frodo_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: FS-UAE
+    StartupArguments: '-L ".\cores\fsuae_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_amiga]
+    ImageExtensions: [7z, adf, fs-uae, ipf, zip]
+    ProfileFiles: ['cores\fsuae_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Fuse
+    StartupArguments: '-L ".\cores\fuse_libretro.dll" "{ImagePath}"'
+    Platforms: [sinclair_zxspectrum]
+    ImageExtensions: [7z, dsk, rzx, scl, tap, trd, tzx, z80, zip]
+    ProfileFiles: ['cores\fuse_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Gambatte
+    StartupArguments: '-L ".\cores\gambatte_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
+    ImageExtensions: [7z, dmg, gb, gbc, zip]
+    ProfileFiles: ['cores\gambatte_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Gearboy
+    StartupArguments: '-L ".\cores\gearboy_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
+    ImageExtensions: [7z, cgb, dmg, gb, gbc, sgb, zip]
+    ProfileFiles: ['cores\gearboy_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Gearcoleco
+    StartupArguments: '-L ".\cores\gearcoleco_libretro.dll" "{ImagePath}"'
+    Platforms: [coleco_vision]
+    ImageExtensions: [7z, bin, col, cv, rom, zip]
+    ProfileFiles: ['cores\gearcoleco_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Gearsystem
+    StartupArguments: '-L ".\cores\gearsystem_libretro.dll" "{ImagePath}"'
+    Platforms: [coleco_vision, sega_gamegear, sega_mastersystem, SG-1000]
+    ImageExtensions: [7z, bin, gg, rom, sg, sms, zip]
+    ProfileFiles: ['cores\gearsystem_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Genesis Plus GX Wide
+    StartupArguments: '-L ".\cores\genesis_plus_gx_wide_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_cd, sega_gamegear, sega_genesis, sega_mastersystem]
+    ImageExtensions: [68k, 7z, bin, bms, chd, cue, gen, gg, iso, m3u, md, mdx, sg, sgd, smd, sms, zip]
+    ProfileFiles: ['cores\genesis_plus_gx_wide_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Genesis Plus GX
+    StartupArguments: '-L ".\cores\genesis_plus_gx_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_cd, sega_gamegear, sega_genesis, sega_mastersystem]
+    ImageExtensions: [68k, 7z, bin, bms, chd, cue, gen, gg, iso, m3u, md, mdx, sg, sgd, smd, sms, zip]
+    ProfileFiles: ['cores\genesis_plus_gx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: gpSP
+    StartupArguments: '-L ".\cores\gpsp_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [7z, bin, gba, zip]
+    ProfileFiles: ['cores\gpsp_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Handy
+    StartupArguments: '-L ".\cores\handy_libretro.dll" "{ImagePath}"'
+    Platforms: [atari_lynx]
+    ImageExtensions: [7z, lnx, o, zip]
+    ProfileFiles: ['cores\handy_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Hatari
+    StartupArguments: '-L ".\cores\hatari_libretro.dll" "{ImagePath}"'
+    Platforms: [atari_falcon030, atari_st, atari_st, atari_st]
+    ImageExtensions: [7z, dim, ipf, m3u, msa, st, stx, zip]
+    ProfileFiles: ['cores\hatari_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: higan (Super Famicom Accuracy)
+    StartupArguments: '-L ".\cores\higan_sfc_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor, nintendo_super_nes]
+    ImageExtensions: [7z, bml, gb, gbc, rom, sfc, smc, zip]
+    ProfileFiles: ['cores\higan_sfc_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Ishiiruka
+    StartupArguments: '-L ".\cores\ishiiruka_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gamecube, nintendo_wii]
+    ImageExtensions: [7z, ciso, dff, dol, elf, gcm, gcz, iso, tgc, wad, wbfs, zip]
+    ProfileFiles: ['cores\ishiiruka_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Kronos
+    StartupArguments: '-L ".\cores\kronos_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_saturn]
+    ImageExtensions: [7z, ccd, chd, cue, iso, m3u, mds, zip]
+    ProfileFiles: ['cores\kronos_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: melonDS
+    StartupArguments: '-L ".\cores\melonds_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_ds]
+    ImageExtensions: [7z, nds, zip]
+    ProfileFiles: ['cores\melonds_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mesen
+    StartupArguments: '-L ".\cores\mesen_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, fds, nes, unf, unif, zip]
+    ProfileFiles: ['cores\mesen_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mesen-S
+    StartupArguments: '-L ".\cores\mesen-s_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor, nintendo_super_nes]
+    ImageExtensions: [7z, bs, fig, gb, gbc, sfc, smc, swc, zip]
+    ProfileFiles: ['cores\mesen-s_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Meteor
+    StartupArguments: '-L ".\cores\meteor_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [7z, gba, zip]
+    ProfileFiles: ['cores\meteor_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: mGBA
+    StartupArguments: '-L ".\cores\mgba_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboyadvance, nintendo_gameboycolor]
+    ImageExtensions: [7z, gb, gba, gbc, zip]
+    ProfileFiles: ['cores\mgba_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mupen64Plus-Next (Develop)
+    StartupArguments: '-L ".\cores\mupen64plus_next_develop_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, u1, v64, z64, zip]
+    ProfileFiles: ['cores\mupen64plus_next_develop_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mupen64Plus-Next GLES3
+    StartupArguments: '-L ".\cores\mupen64plus_next_gles3_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, u1, v64, z64, zip]
+    ProfileFiles: ['cores\mupen64plus_next_gles3_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mupen64Plus-Next
+    StartupArguments: '-L ".\cores\mupen64plus_next_develop_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, u1, v64, z64, zip]
+    ProfileFiles: ['cores\mupen64plus_next_develop_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mupen64Plus-Next
+    StartupArguments: '-L ".\cores\mupen64plus_next_gles2_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, u1, v64, z64, zip]
+    ProfileFiles: ['cores\mupen64plus_next_gles2_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mupen64Plus-Next
+    StartupArguments: '-L ".\cores\mupen64plus_next_gles3_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, u1, v64, z64, zip]
+    ProfileFiles: ['cores\mupen64plus_next_gles3_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Mupen64Plus-Next
+    StartupArguments: '-L ".\cores\mupen64plus_next_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, u1, v64, z64, zip]
+    ProfileFiles: ['cores\mupen64plus_next_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Neko Project II Kai
+    StartupArguments: '-L ".\cores\np2kai_libretro.dll" "{ImagePath}"'
+    Platforms: [nec_pc98]
+    ImageExtensions: [2hd, 7z, 88d, 98d, cmd, d88, d98, dup, fdd, fdi, hdd, hdi, hdm, hdn, nhd, tfd, thd, xdf, zip]
+    ProfileFiles: ['cores\np2kai_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Neko Project II
+    StartupArguments: '-L ".\cores\nekop2_libretro.dll" "{ImagePath}"'
+    Platforms: [nec_pc98]
+    ImageExtensions: [2hd, 7z, 88d, 98d, cmd, d88, d98, dup, fdd, fdi, hdd, hdi, hdm, nhd, tfd, thd, xdf, zip]
+    ProfileFiles: ['cores\nekop2_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: NeoCD
+    StartupArguments: '-L ".\cores\neocd_libretro.dll" "{ImagePath}"'
+    Platforms: [snk_neogeo_cd]
+    ImageExtensions: [7z, chd, cue, zip]
+    ProfileFiles: ['cores\neocd_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Nestopia
+    StartupArguments: '-L ".\cores\nestopia_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, fds, nes, unf, unif, zip]
+    ProfileFiles: ['cores\nestopia_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: nSide (Super Famicom Accuracy)
+    StartupArguments: '-L ".\cores\higan_sfc_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bml, gb, gbc, rom, sfc, smc, zip]
+    ProfileFiles: ['cores\higan_sfc_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: nSide (Super Famicom Balanced)
+    StartupArguments: '-L ".\cores\higan_sfc_balanced_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bml, gb, gbc, rom, sfc, smc, zip]
+    ProfileFiles: ['cores\higan_sfc_balanced_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Opera
+    StartupArguments: '-L ".\cores\opera_libretro.dll" "{ImagePath}"'
+    Platforms: [3do]
+    ImageExtensions: [7z, bin, chd, cue, iso, zip]
+    ProfileFiles: ['cores\opera_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: ParaLLEl (Debug)
+    StartupArguments: '-L ".\cores\parallel_n64_debug_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, ndd, u1, v64, z64, zip]
+    ProfileFiles: ['cores\parallel_n64_debug_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: ParaLLEl N64
+    StartupArguments: '-L ".\cores\parallel_n64_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_64]
+    ImageExtensions: [7z, bin, n64, ndd, u1, v64, z64, zip]
+    ProfileFiles: ['cores\parallel_n64_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PCem
+    StartupArguments: '-L ".\cores\pcem_libretro.dll" "{ImagePath}"'
+    Platforms: [pc_dos]
+    ImageExtensions: [7z, bat, com, conf, exe, zip]
+    ProfileFiles: ['cores\pcem_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PCSX ReARMed [Interpreter]
+    StartupArguments: '-L ".\cores\pcsx_rearmed_interpreter_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, bin, cbn, chd, cue, img, mdf, pbp, toc, zip]
+    ProfileFiles: ['cores\pcsx_rearmed_interpreter_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PCSX ReARMed [NEON]
+    StartupArguments: '-L ".\cores\pcsx_rearmed_libretro_neon.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, bin, cbn, chd, cue, img, m3u, mdf, pbp, toc, zip]
+    ProfileFiles: ['cores\pcsx_rearmed_libretro_neon.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PCSX1
+    StartupArguments: '-L ".\cores\pcsx1_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, bin, cbn, cue, img, m3u, mdf, pbp, toc, zip]
+    ProfileFiles: ['cores\pcsx1_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PCSX2
+    StartupArguments: '-L ".\cores\pcsx2_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [7z, bin, chd, ciso, cso, cue, dump, elf, gz, img, iso, m3u, mdf, nrg, zip]
+    ProfileFiles: ['cores\pcsx2_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PCSX-ReARMed
+    StartupArguments: '-L ".\cores\pcsx_rearmed_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, bin, cbn, ccd, chd, cue, img, m3u, mdf, pbp, toc, zip]
+    ProfileFiles: ['cores\pcsx_rearmed_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PicoDrive
+    StartupArguments: '-L ".\cores\picodrive_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_32x, sega_cd, sega_genesis, sega_mastersystem]
+    ImageExtensions: [32x, 68k, 7z, bin, chd, cue, gen, iso, m3u, md, sgd, smd, sms, zip]
+    ProfileFiles: ['cores\picodrive_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Play!
+    StartupArguments: '-L ".\cores\play_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [7z, bin, cso, elf, iso, isz, zip]
+    ProfileFiles: ['cores\play_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Potator
+    StartupArguments: '-L ".\cores\potator_libretro.dll" "{ImagePath}"'
+    Platforms: [watara_supervision]
+    ImageExtensions: [7z, bin, sv, zip]
+    ProfileFiles: ['cores\potator_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PPSSPP
+    StartupArguments: '-L ".\cores\ppsspp_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_psp]
+    ImageExtensions: [7z, cso, elf, iso, pbp, prx, zip]
+    ProfileFiles: ['cores\ppsspp_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: ProSystem
+    StartupArguments: '-L ".\cores\prosystem_libretro.dll" "{ImagePath}"'
+    Platforms: [atari_7800]
+    ImageExtensions: [7z, a78, bin, zip]
+    ProfileFiles: ['cores\prosystem_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PUAE
+    StartupArguments: '-L ".\cores\puae_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_amiga]
+    ImageExtensions: [7z, adf, adz, ccd, chd, cue, dms, fdi, hdf, hdz, info, ipf, iso, lha, m3u, mds, nrg, rp9, slave, uae, zip]
+    ProfileFiles: ['cores\puae_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: PX68k
+    StartupArguments: '-L ".\cores\px68k_libretro.dll" "{ImagePath}"'
+    Platforms: [<systemId>]
+    ImageExtensions: [2hd, 7z, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip]
+    ProfileFiles: ['cores\px68k_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: QuickNES
+    StartupArguments: '-L ".\cores\quicknes_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [7z, nes, zip]
+    ProfileFiles: ['cores\quicknes_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: RACE
+    StartupArguments: '-L ".\cores\race_libretro.dll" "{ImagePath}"'
+    Platforms: [snk_neogeopocket, snk_neogeopocket_color]
+    ImageExtensions: [7z, ngc, ngp, ngpc, npc, zip]
+    ProfileFiles: ['cores\race_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Redream
+    StartupArguments: '-L ".\cores\redream_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_dreamcast]
+    ImageExtensions: [7z, cdi, chd, gdi, zip]
+    ProfileFiles: ['cores\redream_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: RetroDream
+    StartupArguments: '-L ".\cores\retrodream_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_dreamcast]
+    ImageExtensions: [7z, cdi, chd, gdi, zip]
+    ProfileFiles: ['cores\retrodream_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Rustation
+    StartupArguments: '-L ".\cores\rustation_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, ccd, cue, exe, m3u, toc, zip]
+    ProfileFiles: ['cores\rustation_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: SameBoy
+    StartupArguments: '-L ".\cores\sameboy_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
+    ImageExtensions: [7z, gb, gbc, zip]
+    ProfileFiles: ['cores\sameboy_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Sinclair ZX 81
+    StartupArguments: '-L ".\cores\81_libretro.dll" "{ImagePath}"'
+    Platforms: [sinclair_zx81]
+    ImageExtensions: [7z, p, t81, tzx, zip]
+    ProfileFiles: ['cores\81_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: SMS Plus GX
+    StartupArguments: '-L ".\cores\smsplus_libretro.dll" "{ImagePath}"'
+    Platforms: [coleco_vision, sega_gamegear, sega_mastersystem, SG-1000]
+    ImageExtensions: [7z, bin, col, gg, rom, sg, sms, zip]
+    ProfileFiles: ['cores\smsplus_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Snes9x 2002
+    StartupArguments: '-L ".\cores\snes9x2002_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bsx, dx2, fig, gd3, gd7, sfc, smc, swc, zip]
+    ProfileFiles: ['cores\snes9x2002_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Snes9x 2005 Plus
+    StartupArguments: '-L ".\cores\snes9x2005_plus_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bsx, dx2, fig, gd3, gd7, sfc, smc, swc, zip]
+    ProfileFiles: ['cores\snes9x2005_plus_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Snes9x 2005
+    StartupArguments: '-L ".\cores\snes9x2005_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bsx, dx2, fig, gd3, gd7, sfc, smc, swc, zip]
+    ProfileFiles: ['cores\snes9x2005_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Snes9x 2010
+    StartupArguments: '-L ".\cores\snes9x2010_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bsx, dx2, fig, gd3, gd7, sfc, smc, swc, zip]
+    ProfileFiles: ['cores\snes9x2010_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Snes9x
+    StartupArguments: '-L ".\cores\snes9x_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [7z, bs, fig, sfc, smc, st, swc, zip]
+    ProfileFiles: ['cores\snes9x_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Stella 2014
+    StartupArguments: '-L ".\cores\stella2014_libretro.dll" "{ImagePath}"'
+    Platforms: [atari_2600]
+    ImageExtensions: [7z, a26, bin, zip]
+    ProfileFiles: ['cores\stella2014_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Stella
+    StartupArguments: '-L ".\cores\stella_libretro.dll" "{ImagePath}"'
+    Platforms: [atari_2600]
+    ImageExtensions: [7z, a26, bin, zip]
+    ProfileFiles: ['cores\stella_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: SwanStation
+    StartupArguments: '-L ".\cores\swanstation_libretro.dll" "{ImagePath}"'
+    Platforms: [sony_playstation]
+    ImageExtensions: [7z, bin, chd, cue, img, m3u, pbp, zip]
+    ProfileFiles: ['cores\swanstation_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: TempGBA
+    StartupArguments: '-L ".\cores\tempgba_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [7z, agb, bin, gba, gbz, zip]
+    ProfileFiles: ['cores\tempgba_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: TGB Dual
+    StartupArguments: '-L ".\cores\tgbdual_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboycolor]
+    ImageExtensions: [7z, gb, gbc, sgb, zip]
+    ProfileFiles: ['cores\tgbdual_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: theodore
+    StartupArguments: '-L ".\cores\theodore_libretro.dll" "{ImagePath}"'
+    Platforms: [thomson_mo5, thomson_to7]
+    ImageExtensions: [7z, fd, k7, m5, m7, rom, sap, zip]
+    ProfileFiles: ['cores\theodore_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: UAE4ARM
+    StartupArguments: '-L ".\cores\uae4arm_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_amiga]
+    ImageExtensions: [7z, adf, adz, ccd, cue, dms, hdf, ipf, iso, lha, uae, wrp, zip]
+    ProfileFiles: ['cores\uae4arm_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VBA Next
+    StartupArguments: '-L ".\cores\vba_next_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [7z, gba, zip]
+    ProfileFiles: ['cores\vba_next_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VBA-M
+    StartupArguments: '-L ".\cores\vbam_libretro.dll" "{ImagePath}"'
+    Platforms: [nintendo_gameboy, nintendo_gameboyadvance, nintendo_gameboycolor]
+    ImageExtensions: [7z, cgb, dmg, gb, gba, gbc, sgb, zip]
+    ProfileFiles: ['cores\vbam_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: vecx
+    StartupArguments: '-L ".\cores\vecx_libretro.dll" "{ImagePath}"'
+    Platforms: [vectrex]
+    ImageExtensions: [7z, bin, vec, zip]
+    ProfileFiles: ['cores\vecx_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE SDL
+    StartupArguments: '-L ".\cores\x64sdl_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [7z, bin, crt, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, p00, prg, t64, tap, x64, x6z, zip]
+    ProfileFiles: ['cores\x64sdl_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE x128
+    StartupArguments: '-L ".\cores\vice_x128_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [7z, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_x128_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE x64
+    StartupArguments: '-L ".\cores\vice_x64_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [7z, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_x64_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE x64sc
+    StartupArguments: '-L ".\cores\vice_x64sc_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [7z, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_x64sc_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE xcbm2
+    StartupArguments: '-L ".\cores\vice_xcbm2_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_cbm2]
+    ImageExtensions: [7z, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_xcbm2_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE xcbm5x0
+    StartupArguments: '-L ".\cores\vice_xcbm5x0_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_cbm5x0]
+    ImageExtensions: [7z, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_xcbm5x0_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE xpet
+    StartupArguments: '-L ".\cores\vice_xpet_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_pet]
+    ImageExtensions: [7z, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_xpet_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE xscpu64
+    StartupArguments: '-L ".\cores\vice_xscpu64_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_64]
+    ImageExtensions: [7z, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_xscpu64_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: VICE xvic
+    StartupArguments: '-L ".\cores\vice_xvic_libretro.dll" "{ImagePath}"'
+    Platforms: [commodore_vci20]
+    ImageExtensions: [20, 40, 60, 7z, a0, b0, bin, cmd, crt, d2m, d4m, d64, d6z, d71, d7z, d80, d81, d82, d8z, g41, g4z, g64, g6z, gz, m3u, nbz, nib, p00, prg, rom, t64, tap, vfl, vsf, x64, x6z, zip]
+    ProfileFiles: ['cores\vice_xvic_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Virtual Jaguar
+    StartupArguments: '-L ".\cores\virtualjaguar_libretro.dll" "{ImagePath}"'
+    Platforms: [atari_jaguar]
+    ImageExtensions: [7z, abs, bin, cof, j64, jag, prg, rom, zip]
+    ProfileFiles: ['cores\virtualjaguar_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: YabaSanshiro
+    StartupArguments: '-L ".\cores\yabasanshiro_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_saturn]
+    ImageExtensions: [7z, bin, ccd, chd, cue, iso, mds, zip]
+    ProfileFiles: ['cores\yabasanshiro_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+  - Name: Yabause
+    StartupArguments: '-L ".\cores\yabause_libretro.dll" "{ImagePath}"'
+    Platforms: [sega_saturn]
+    ImageExtensions: [7z, bin, ccd, chd, cue, iso, m3u, mds, zip]
+    ProfileFiles: ['cores\yabause_libretro.dll']
     StartupExecutable: ^retroarch\.exe$

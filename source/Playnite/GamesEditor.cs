@@ -1225,6 +1225,14 @@ namespace Playnite
                         jumpList.JumpItems.Add(task);
                     }
 
+                    JumpTask fullscreen = new JumpTask
+                    {
+                        Title = resources.GetString(LOC.MenuOpenFullscreen),
+                        ApplicationPath = PlaynitePaths.FullscreenExecutablePath
+                    };
+
+                    jumpList.JumpItems.Add(fullscreen);
+                    
                     JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
                 }
                 else
