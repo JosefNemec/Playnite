@@ -33,7 +33,7 @@ namespace Playnite
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(string.Format("Failed to check if HDR is supported: {0}", e.Message));
+                logger.Error(e, "Failed to check if HDR is supported");
                 return false;
             }
         }
@@ -58,7 +58,7 @@ namespace Playnite
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(string.Format("Failed to check if HDR is enabled: {0}", e.Message));
+                logger.Error(e, "Failed to check if HDR is enabled");
                 return false;
             }
         }
@@ -98,7 +98,7 @@ namespace Playnite
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(string.Format("Failed to set HDR state: {0}", e.Message));
+                logger.Error(e, "Failed to set HDR state");
             }
         }
 
