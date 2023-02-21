@@ -20,6 +20,8 @@ namespace Playnite.Tests.Database
             using (var db = new TestGameDatabase(temp.TempPath))
             {
                 db.OpenDatabase();
+                db.FilterPresets.Select(a => a.Id).ToList().ForEach(a => db.FilterPresets.Remove(a));
+                Assert.AreEqual(0, db.FilterPresets.Count);
                 var addedFilterPresets = new List<FilterPreset>();
                 for (int i = 0; i < 10; i++)
                 {
@@ -48,10 +50,33 @@ namespace Playnite.Tests.Database
                 Assert.AreEqual(addedFilterPresets.Last(), sortedFilterPresets.First());
 
                 // Add a new filter preset and verify that it shows as last item when obtaining sorted Filter Presets
-                var newFilterPreset = new FilterPreset() { Name = "New Filter Preset" };
+                var newFilterPreset = new FilterPreset() { Name = "New Filter Preset 1" };
                 db.FilterPresets.Add(newFilterPreset);
                 sortedFilterPresets = db.GetSortedFilterPresets();
                 Assert.AreEqual(newFilterPreset, sortedFilterPresets.Last());
+
+                // Add multiple new filter presets and verify that they are in sorted order last in the list
+                var newFilterPresets = new List<FilterPreset>
+                {
+                    new FilterPreset() { Name = "New Filter Preset C" },
+                    new FilterPreset() { Name = "New Filter Preset B" },
+                    new FilterPreset() { Name = "New Filter Preset D" },
+                    new FilterPreset() { Name = "New Filter Preset A" }
+                };
+
+                foreach (var filterPreset in newFilterPresets)
+                {
+                    db.FilterPresets.Add(filterPreset);
+                }
+
+                newFilterPresets.Sort((x, y) => x.Name.CompareTo(y.Name));
+                sortedFilterPresets = db.GetSortedFilterPresets();
+                for (int i = 1; i < newFilterPresets.Count + 1; i++)
+                {
+                    var newIndex = newFilterPresets.Count - i;
+                    var sortedIndex = sortedFilterPresets.Count - i;
+                    Assert.AreEqual(newFilterPresets[newIndex].Name, sortedFilterPresets[sortedIndex].Name);
+                }
             }
         }
     }
