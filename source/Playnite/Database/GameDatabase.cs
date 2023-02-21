@@ -69,7 +69,7 @@ namespace Playnite.Database
         List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode);
         CompletionStatusSettings GetCompletionStatusSettings();
         FilterPresetsSettings GetFilterPresetsSettings();
-        List<FilterPreset> GetSortedFilterPresets(bool getClone);
+        List<FilterPreset> GetSortedFilterPresets();
         void SetCompletionStatusSettings(CompletionStatusSettings settings);
         void SetFilterPresetsSettings(FilterPresetsSettings settings);
         GameScannersSettings GetGameScannersSettings();
@@ -1313,12 +1313,11 @@ namespace Playnite.Database
             }
         }
 
-        public List<FilterPreset> GetSortedFilterPresets(bool getClone)
+        public List<FilterPreset> GetSortedFilterPresets()
         {
             var filterPresetsSettings = (FilterPresets as FilterPresetsCollection).GetSettings();
             var sortingOrder = filterPresetsSettings.SortingOrder;
-            var filterPresets = getClone ? FilterPresets.GetClone() : FilterPresets;
-            return filterPresets.OrderBy(x =>
+            return FilterPresets.OrderBy(x =>
             {
                 var index = sortingOrder.IndexOf(x.Id);
                 if (index == -1)

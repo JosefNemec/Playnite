@@ -128,7 +128,7 @@ namespace Playnite.ViewModels
             
             get
             {
-                return Database.GetSortedFilterPresets(false);
+                return Database.GetSortedFilterPresets();
             }
         }
 
@@ -136,7 +136,7 @@ namespace Playnite.ViewModels
         {
             get
             {
-                return Database.GetSortedFilterPresets(false)
+                return Database.GetSortedFilterPresets()
                     .Where(a => a.ShowInFullscreeQuickSelection)
                     .ToList();
             }

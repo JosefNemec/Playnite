@@ -160,7 +160,7 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public List<FilterPreset> GetSortedFilterPresets(bool getClone)
+        public List<FilterPreset> GetSortedFilterPresets()
         {
             throw new NotImplementedException();
         }

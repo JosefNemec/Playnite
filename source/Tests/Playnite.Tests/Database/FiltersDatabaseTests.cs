@@ -20,8 +20,6 @@ namespace Playnite.Tests.Database
             using (var db = new TestGameDatabase(temp.TempPath))
             {
                 db.OpenDatabase();
-                db.ClearFilterPresets();
-
                 var addedFilterPresets = new List<FilterPreset>();
                 for (int i = 0; i < 10; i++)
                 {
@@ -37,7 +35,7 @@ namespace Playnite.Tests.Database
                 };
 
                 db.SetFilterPresetsSettings(newFilterPresetSettings);
-                var sortedFilterPresets = db.GetSortedFilterPresets(true);
+                var sortedFilterPresets = db.GetSortedFilterPresets();
 
                 // Verify that order is the same as when it was set
                 Assert.IsTrue(sortedFilterPresets.Select(x => x.Id).SequenceEqual(addedFilterPresets.Select(x => x.Id)));
@@ -46,13 +44,13 @@ namespace Playnite.Tests.Database
                 newFilterPresetSettings.SortingOrder.Remove(addedFilterPresets.Last().Id);
                 newFilterPresetSettings.SortingOrder.Insert(0, addedFilterPresets.Last().Id);
                 db.SetFilterPresetsSettings(newFilterPresetSettings);
-                sortedFilterPresets = db.GetSortedFilterPresets(true);
+                sortedFilterPresets = db.GetSortedFilterPresets();
                 Assert.AreEqual(addedFilterPresets.Last(), sortedFilterPresets.First());
 
                 // Add a new filter preset and verify that it shows as last item when obtaining sorted Filter Presets
                 var newFilterPreset = new FilterPreset() { Name = "New Filter Preset" };
                 db.FilterPresets.Add(newFilterPreset);
-                sortedFilterPresets = db.GetSortedFilterPresets(true);
+                sortedFilterPresets = db.GetSortedFilterPresets();
                 Assert.AreEqual(newFilterPreset, sortedFilterPresets.Last());
             }
         }
