@@ -1317,20 +1317,19 @@ namespace Playnite.Database
         {
             var filterPresetsSettings = (FilterPresets as FilterPresetsCollection).GetSettings();
             var sortingOrder = filterPresetsSettings.SortingOrder;
-            return FilterPresets.OrderBy(x =>
-            {
-                var index = sortingOrder.IndexOf(x.Id);
-                if (index == -1)
-                {
-                    // The max value is returned to make the item
-                    // show last in order
-                    return sortingOrder.Count;
-                }
-                else
-                {
-                    return index;
-                }
-            }).ToList();
+            var sortingDict = sortingOrder.ToDictionary(x => x, x => sortingOrder.IndexOf(x));
+
+            var savedSortedList = FilterPresets
+                .Where(x => sortingDict.ContainsKey(x.Id))
+                .OrderBy(x => sortingDict[x.Id])
+                .ToList();
+            var unsavedSortedList = FilterPresets
+                .Where(x => !sortingDict.ContainsKey(x.Id))
+                .OrderBy(x => x.Name)
+                .ToList();
+
+            savedSortedList.AddRange(unsavedSortedList);
+            return savedSortedList;
         }
 
         public FilterPresetsSettings GetFilterPresetsSettings()
