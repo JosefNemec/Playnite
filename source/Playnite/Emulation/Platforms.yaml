@@ -64,16 +64,16 @@
   Databases: [Atari - ST]
   Emulators: [retroarch]
   
-- Name: Bandai WonderSwan Color
-  Id: bandai_wonderswan_color
-  IgdbId: 123
-  Databases: [Bandai - WonderSwan Color]
-  Emulators: [ares, bizhawk, higan, mednafen, retroarch]
-  
 - Name: Bandai WonderSwan
   Id: bandai_wonderswan
   IgdbId: 57
   Databases: [Bandai - WonderSwan]
+  Emulators: [ares, bizhawk, higan, mednafen, retroarch]
+  
+- Name: Bandai WonderSwan Color
+  Id: bandai_wonderswan_color
+  IgdbId: 123
+  Databases: [Bandai - WonderSwan Color]
   Emulators: [ares, bizhawk, higan, mednafen, retroarch]
   
 - Name: Coleco ColecoVision
@@ -88,17 +88,17 @@
   Databases: [Commodore - 64, Commodore - 64 (PP), Commodore - 64 (Tapes)]
   Emulators: [bizhawk, retroarch, winvice]
   
-- Name: Commodore Amiga CD32
-  Id: commodore_amiga_cd32
-  IgdbId: 114
-  Databases: [Commodore - Amiga]
-  Emulators: [fs-uae, winuae]
-  
 - Name: Commodore Amiga
   Id: commodore_amiga
   IgdbId: 16
   Databases: [Commodore - Amiga]
   Emulators: [fs-uae, retroarch, winuae]
+  
+- Name: Commodore Amiga CD32
+  Id: commodore_amiga_cd32
+  IgdbId: 114
+  Databases: [Commodore - Amiga]
+  Emulators: [fs-uae, winuae]
   
 - Name: Commodore CBM-5x0
   Id: commodore_cbm5x0
@@ -155,6 +155,12 @@
   Databases: [Microsoft - MSX2]
   Emulators: [ares, bluemsx, retroarch]
   
+- Name: Microsoft Xbox
+  Id: xbox
+  IgdbId: 11
+  Databases: [Microsoft - Xbox]
+  Emulators: [cxbx-reloaded, retroarch, xemu]
+  
 - Name: Microsoft Xbox 360
   Id: xbox360
   IgdbId: 12
@@ -168,12 +174,6 @@
 - Name: Microsoft Xbox Series
   Id: xbox_series
   IgdbId: 169
-  
-- Name: Microsoft Xbox
-  Id: xbox
-  IgdbId: 11
-  Databases: [Microsoft - Xbox]
-  Emulators: [cxbx-reloaded, retroarch, xemu]
   
 - Name: NEC PC-98
   Id: nec_pc98
@@ -235,6 +235,12 @@
   Databases: [Nintendo - Family Computer Disk System]
   Emulators: [fceux, retroarch]
   
+- Name: Nintendo Game Boy
+  Id: nintendo_gameboy
+  IgdbId: 33
+  Databases: [Nintendo - Game Boy]
+  Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
+  
 - Name: Nintendo Game Boy Advance
   Id: nintendo_gameboyadvance
   IgdbId: 24
@@ -245,12 +251,6 @@
   Id: nintendo_gameboycolor
   IgdbId: 22
   Databases: [Nintendo - Game Boy Color]
-  Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
-  
-- Name: Nintendo Game Boy
-  Id: nintendo_gameboy
-  IgdbId: 33
-  Databases: [Nintendo - Game Boy]
   Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
   
 - Name: Nintendo GameCube
@@ -276,17 +276,17 @@
   Databases: [Nintendo - Virtual Boy]
   Emulators: [bizhawk, mednafen, retroarch]
   
-- Name: Nintendo Wii U
-  Id: nintendo_wiiu
-  IgdbId: 41
-  Databases: [Nintendo - Wii U, Nintendo - Wii U (Digital)]
-  Emulators: [cemu, decaf-emu]
-  
 - Name: Nintendo Wii
   Id: nintendo_wii
   IgdbId: 5
   Databases: [Nintendo - Wii, Nintendo - Wii (Digital)]
   Emulators: [dolphin, retroarch]
+  
+- Name: Nintendo Wii U
+  Id: nintendo_wiiu
+  IgdbId: 41
+  Databases: [Nintendo - Wii U, Nintendo - Wii U (Digital)]
+  Emulators: [cemu, decaf-emu]
   
 - Name: PC (DOS)
   Id: pc_dos
@@ -350,22 +350,22 @@
   IgdbId: 84
   Databases: [Sega - SG-1000]
   Emulators: [ares]
-
+  
 - Name: Sharp X68000
   Id: sharp_x68000
   IgdbId: 121
   Databases: [Sharp - X68000]
-  
-- Name: Sinclair ZX Spectrum +3
-  Id: sinclair_zxspectrum3
-  Databases: [Sinclair - ZX Spectrum +3]
-  Emulators: [fuse, retroarch]
   
 - Name: Sinclair ZX Spectrum
   Id: sinclair_zxspectrum
   IgdbId: 26
   Databases: [Sinclair - ZX Spectrum]
   Emulators: [bizhawk, fuse, retroarch]
+  
+- Name: Sinclair ZX Spectrum +3
+  Id: sinclair_zxspectrum3
+  Databases: [Sinclair - ZX Spectrum +3]
+  Emulators: [fuse, retroarch]
   
 - Name: Sinclair ZX81
   Id: sinclair_zx81
@@ -384,17 +384,23 @@
   Databases: [SNK - Neo Geo CD]
   Emulators: [retroarch]
   
+- Name: SNK Neo Geo Pocket
+  Id: snk_neogeopocket
+  IgdbId: 119
+  Databases: [SNK - Neo Geo Pocket]
+  Emulators: [ares, bizhawk, mednafen, retroarch]
+  
 - Name: SNK Neo Geo Pocket Color
   Id: snk_neogeopocket_color
   IgdbId: 120
   Databases: [SNK - Neo Geo Pocket Color]
   Emulators: [ares, bizhawk, mednafen, retroarch]
   
-- Name: SNK Neo Geo Pocket
-  Id: snk_neogeopocket
-  IgdbId: 119
-  Databases: [SNK - Neo Geo Pocket]
-  Emulators: [ares, bizhawk, mednafen, retroarch]
+- Name: Sony PlayStation
+  Id: sony_playstation
+  IgdbId: 7
+  Databases: [Sony - PlayStation]
+  Emulators: [ares, bizhawk, duckstation, epsxe, mednafen, pcsxr-pgxp, retroarch]
   
 - Name: Sony PlayStation 2
   Id: sony_playstation2
@@ -427,12 +433,6 @@
   IgdbId: 46
   Databases: [Sony - PlayStation Vita, Sony - PlayStation Vita (PSN)]
   Emulators: [vita3k]
-  
-- Name: Sony PlayStation
-  Id: sony_playstation
-  IgdbId: 7
-  Databases: [Sony - PlayStation]
-  Emulators: [ares, bizhawk, duckstation, epsxe, mednafen, pcsxr-pgxp, retroarch]
   
 - Name: Thomson MO5
   Id: thomson_mo5
