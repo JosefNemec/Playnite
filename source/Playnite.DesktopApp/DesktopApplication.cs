@@ -74,7 +74,7 @@ namespace Playnite.DesktopApp
             Playnite.Dialogs.SetHandler(Dialogs);
         }
 
-        public override bool Startup()
+        public override async Task<bool> Startup()
         {
             if (!ConfigureApplication())
             {
@@ -85,14 +85,14 @@ namespace Playnite.DesktopApp
             AppUriHandler = MainModel.ProcessUriRequest;
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
-            OpenMainViewAsync(isFirstStart);
+            Task openViewTask = OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
 #pragma warning disable CS4014
             StartUpdateCheckerAsync();
             SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
-            splashScreen?.Close(new TimeSpan(0));
+            await openViewTask;
             return true;
         }
 
@@ -180,7 +180,7 @@ namespace Playnite.DesktopApp
             }
         }
 
-        private async void OpenMainViewAsync(bool isFirstStart)
+        private async Task OpenMainViewAsync(bool isFirstStart)
         {
             if (!isFirstStart)
             {
@@ -207,6 +207,11 @@ namespace Playnite.DesktopApp
 
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
+
+            splashScreen?.Close(new TimeSpan(0));
+
+            CheckAndShowNahimicServicesWarning();
+            CheckAndShowElevatedRightsWarning();
 
             if (isFirstStart)
             {

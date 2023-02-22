@@ -453,6 +453,54 @@ namespace Playnite
 
         public abstract void ConfigureViews();
 
+        protected void CheckAndShowElevatedRightsWarning()
+        {
+            if (PlayniteEnvironment.IsElevated && AppSettings.ShowElevatedRightsWarning)
+            {
+                var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
+                var dontShowResponse = new MessageBoxOption(LOC.DontShowAgainTitle);
+                var res = Dialogs.ShowMessage(
+                    LOC.ElevatedProcessWarning, "",
+                    MessageBoxImage.Warning,
+                    new List<MessageBoxOption> { okResponse, dontShowResponse });
+                if (res == dontShowResponse)
+                {
+                    AppSettings.ShowElevatedRightsWarning = false;
+                }
+            }
+        }
+
+        protected void CheckAndShowNahimicServicesWarning()
+        {
+            try
+            {
+                if (AppSettings.ShowNahimicServiceWarning)
+                {
+                    if (ServiceController.GetServices().FirstOrDefault(a =>
+                        (a.ServiceName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true ||
+                         a.DisplayName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true) &&
+                        a.Status != ServiceControllerStatus.Stopped) != null)
+                    {
+                        var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
+                        var dontShowResponse = new MessageBoxOption(LOC.DontShowAgainTitle);
+                        var res = Dialogs.ShowMessage(
+                            LOC.NahimicServiceWarning, "",
+                            MessageBoxImage.Warning,
+                            new List<MessageBoxOption> { okResponse, dontShowResponse });
+                        if (res == dontShowResponse)
+                        {
+                            AppSettings.ShowNahimicServiceWarning = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception nahExc)
+            {
+                // ServiceController.GetServices() can apparently blow up on Win32Exception sometimes
+                logger.Error(nahExc, "Failed to check for Nahimic service.");
+            }
+        }
+
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
             logger.Info("Shutting down application because of session ending.");
@@ -501,7 +549,7 @@ namespace Playnite
             Process.GetCurrentProcess().Kill();
         }
 
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private async void Application_Startup(object sender, StartupEventArgs e)
         {
             logger.Info($"Application started from '{PlaynitePaths.ProgramPath}'");
             SDK.Data.Markup.Init(new MarkupConverter());
@@ -589,7 +637,8 @@ namespace Playnite
                 return;
             }
 
-            if (!Startup())
+            bool startupResult = await Startup();
+            if (!startupResult)
             {
                 Quit();
                 return;
@@ -622,48 +671,6 @@ namespace Playnite
                         ResourceProvider.GetString(LOC.SpecificThemeLoadSDKError).Format(customTheme.Name) :
                         ResourceProvider.GetString(LOC.SpecificThemeLoadError).Format(customTheme.Name),
                     NotificationType.Error));
-            }
-
-            try
-            {
-                if (AppSettings.ShowNahimicServiceWarning)
-                {
-                    if (ServiceController.GetServices().FirstOrDefault(a =>
-                        (a.ServiceName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true ||
-                         a.DisplayName?.Contains("nahimic", StringComparison.OrdinalIgnoreCase) == true) &&
-                        a.Status != ServiceControllerStatus.Stopped) != null)
-                    {
-                        var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
-                        var dontShowResponse = new MessageBoxOption(LOC.DontShowAgainTitle);
-                        var res = Dialogs.ShowMessage(
-                            LOC.NahimicServiceWarning, "",
-                            MessageBoxImage.Warning,
-                            new List<MessageBoxOption> { okResponse, dontShowResponse });
-                        if (res == dontShowResponse)
-                        {
-                            AppSettings.ShowNahimicServiceWarning = false;
-                        }
-                    }
-                }
-            }
-            catch (Exception nahExc)
-            {
-                // ServiceController.GetServices() can apparently blow up on Win32Exception sometimes
-                logger.Error(nahExc, "Failed to check for Nahimic service.");
-            }
-
-            if (PlayniteEnvironment.IsElevated && AppSettings.ShowElevatedRightsWarning)
-            {
-                var okResponse = new MessageBoxOption(LOC.OKLabel, true, true);
-                var dontShowResponse = new MessageBoxOption(LOC.DontShowAgainTitle);
-                var res = Dialogs.ShowMessage(
-                    LOC.ElevatedProcessWarning, "",
-                    MessageBoxImage.Warning,
-                    new List<MessageBoxOption> { okResponse, dontShowResponse });
-                if (res == dontShowResponse)
-                {
-                    AppSettings.ShowElevatedRightsWarning = false;
-                }
             }
         }
 
@@ -822,7 +829,7 @@ namespace Playnite
             CurrentNative.Run();
         }
 
-        public abstract bool Startup();
+        public abstract Task<bool> Startup();
 
         public bool CheckOtherInstances()
         {

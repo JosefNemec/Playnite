@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.VideoClip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="Video">
+    <UserControl.Resources>
+        <Style x:Key="VideoIconPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsValid, ElementName=Video}" Value="True"/>
+                        <Condition Binding="{Binding IsMouseOver, ElementName=Video}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="VideoIconStyle" TargetType="ContentControl">
+            <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="Opacity" Value="0.5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="NoVideoTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="40"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsValid, ElementName=Video}" Value="False">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <MediaElement x:Name="Media"
+                      Source="{Binding Source, ElementName=Video}"
+                      LoadedBehavior="Manual"
+                      Loaded="OnMediaLoaded"
+                      MediaEnded="OnMediaEnded"
+                      MediaFailed="OnMediaFailed"/>
+
+        <TextBlock Text="{DynamicResource LOCSettingsNoVideoLoaded}" Style="{StaticResource NoVideoTextBlockStyle}"/>
+
+        <StackPanel x:Name="ButtonPanel" Style="{StaticResource VideoIconPanelStyle}">
+            <Button Command="{Binding PlayCommand, ElementName=Video}"
+                    Visibility="{Binding IsPlaying, ElementName=Video, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <ContentControl ContentTemplate="{StaticResource PlayVideoIconTemplate}"
+                                        Style="{StaticResource VideoIconStyle}"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding PauseCommand, ElementName=Video}"
+                    Visibility="{Binding IsPlaying, ElementName=Video, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Normal}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <ContentControl ContentTemplate="{StaticResource PauseVideoIconTemplate}"
+                                        Style="{StaticResource VideoIconStyle}"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding StopCommand, ElementName=Video}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <ContentControl ContentTemplate="{StaticResource StopVideoIconTemplate}"
+                                        Style="{StaticResource VideoIconStyle}"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1062,6 +1062,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsTopPanelLabel = "LOCSettingsTopPanelLabel";
         /// <summary>
+        /// Launch Video
+        /// </summary>
+        public const string SettingsIntroLabel = "LOCSettingsIntroLabel";
+        /// <summary>
         /// Appearance
         /// </summary>
         public const string SettingsAppearanceLabel = "LOCSettingsAppearanceLabel";
@@ -1093,6 +1097,34 @@ namespace Playnite
         /// Metadata
         /// </summary>
         public const string SettingsMetadataLabel = "LOCSettingsMetadataLabel";
+        /// <summary>
+        /// Upload fullscreen launch video
+        /// </summary>
+        public const string SettingsUploadFullscreenIntroVideo = "LOCSettingsUploadFullscreenIntroVideo";
+        /// <summary>
+        /// Play video when launching fullscreen
+        /// </summary>
+        public const string SettingsEnableFullscreenIntroVideo = "LOCSettingsEnableFullscreenIntroVideo";
+        /// <summary>
+        /// Failed to set fullscreen intro video.
+        /// </summary>
+        public const string SettingsFullscreenIntroVideoError = "LOCSettingsFullscreenIntroVideoError";
+        /// <summary>
+        /// Preview
+        /// </summary>
+        public const string SettingsPreviewIntroVideo = "LOCSettingsPreviewIntroVideo";
+        /// <summary>
+        /// No video loaded
+        /// </summary>
+        public const string SettingsNoVideoLoaded = "LOCSettingsNoVideoLoaded";
+        /// <summary>
+        /// Browse
+        /// </summary>
+        public const string SettingsBrowseVideo = "LOCSettingsBrowseVideo";
+        /// <summary>
+        /// Clear
+        /// </summary>
+        public const string SettingsClearVideo = "LOCSettingsClearVideo";
         /// <summary>
         /// Updating
         /// </summary>
@@ -4185,6 +4217,14 @@ namespace Playnite
         /// When disabled, commands won't be included in default search until # prefix is used.
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
+        /// <summary>
+        /// Support search using acronyms for name filter
+        /// </summary>
+        public const string NameFilterSearchWithAcronyms = "NameFilterSearchWithAcronyms";
+        /// <summary>
+        /// When enabled, search results will include items whose acronym matches the search term.
+        /// </summary>
+        public const string NameFilterSearchWithAcronymsTooltip = "NameFilterSearchWithAcronymsTooltip";
         /// <summary>
         /// Fields to be displayed for game results:
         /// </summary>

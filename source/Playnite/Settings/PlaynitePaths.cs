@@ -28,6 +28,7 @@ namespace Playnite
         public const string FullscreenConfigFileName = "fullscreenConfig.json";
         public const string WindowPositionsFileName = "windowPositions.json";
         public const string LocalizationsDirName = "Localization";
+        public const string IntrosDirName = "Intros";
 
         public static string UserProgramDataPath { get; }
         public static string ProgramPath { get; }
@@ -64,6 +65,9 @@ namespace Playnite
         public static string SafeStartupFlagFile { get; }
         public static string BackupActionFile { get; }
         public static string RestoreBackupActionFile { get; }
+
+        public static string IntrosPath { get; }
+        public static string FullscreenIntroFilePath { get; }
 
         public static bool IsPortable { get; }
 
@@ -106,6 +110,9 @@ namespace Playnite
             SafeStartupFlagFile = Path.Combine(ConfigRootPath, "safestart.flag");
             BackupActionFile = Path.Combine(ConfigRootPath, "backup.json");
             RestoreBackupActionFile = Path.Combine(ConfigRootPath, "restoreBackup.json");
+
+            IntrosPath = Path.Combine(ConfigRootPath, IntrosDirName);
+            FullscreenIntroFilePath = Path.Combine(IntrosPath, "FullscreenIntro.mp4");
         }
 
         public static string ExpandVariables(string inputString, string emulatorDir = null, bool fixSeparators = false)

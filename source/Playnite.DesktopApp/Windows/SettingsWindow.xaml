@@ -60,6 +60,7 @@
                     <TreeViewItem Header="{DynamicResource LOCListViewLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceListView}" />
                     <TreeViewItem Header="{DynamicResource LOCSettingsLayoutLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceLayout}" />
                     <TreeViewItem Header="{DynamicResource LOCSettingsTopPanelLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceTopPanel}" />
+                    <TreeViewItem Header="{DynamicResource LOCSettingsIntroLabel}" Tag="{x:Static p:DesktopSettingsPage.AppearanceIntros}" />
                 </TreeViewItem>
                 <TreeViewItem Header="{DynamicResource LOCSettingsSearch}" Tag="{x:Static p:DesktopSettingsPage.Search}" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsUpdating}" Tag="{x:Static p:DesktopSettingsPage.Updates}" />

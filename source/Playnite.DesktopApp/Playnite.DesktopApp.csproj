@@ -169,6 +169,9 @@
     <Compile Include="Controls\NumericDoubleBox.cs" />
     <Compile Include="Controls\LongNumericBox.cs" />
     <Compile Include="Controls\PathSelectionBox.cs" />
+    <Compile Include="Controls\SettingsSections\AppearanceIntros.xaml.cs">
+      <DependentUpon>AppearanceIntros.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingsSections\AppearanceListView.xaml.cs">
       <DependentUpon>AppearanceListView.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,9 @@
     <Compile Include="Controls\Menus\TrayContextMenu.cs" />
     <Compile Include="Controls\Menus\ViewSettingsMenu.cs" />
     <Compile Include="Controls\Menus\MainMenu.cs" />
+    <Compile Include="Controls\VideoClip.xaml.cs">
+      <DependentUpon>VideoClip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Views\ExplorerPanel.cs" />
     <Compile Include="Controls\Views\Library.cs" />
     <Compile Include="Controls\Views\GameOverview.cs" />
@@ -592,6 +598,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\SettingsSections\AppearanceIntros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SettingsSections\AppearanceListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -695,6 +705,10 @@
     <Page Include="Controls\SliderWithPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\VideoClip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GlobalResources.xaml">
       <Generator>MSBuild:Compile</Generator>

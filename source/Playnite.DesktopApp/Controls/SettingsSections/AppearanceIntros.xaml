@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.AppearanceIntros"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
+             xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Margin="20">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{DynamicResource LOCSettingsUploadFullscreenIntroVideo}" VerticalAlignment="Center"/>
+            <Button Content="{DynamicResource LOCSettingsBrowseVideo}" Command="{Binding UploadFullscreenIntroVideoCommand}" Margin="5,0,0,0"/>
+            <Button Content="{DynamicResource LOCSettingsClearVideo}" Command="{Binding ClearIntroVideoCommand}" Margin="5,0,0,0"/>
+        </StackPanel>
+        <TextBlock Text="{DynamicResource LOCSettingsPreviewIntroVideo}" Margin="0,30,0,0"/>
+        <Border BorderBrush="{DynamicResource PopupBorderBrush}" BorderThickness="1" Margin="0,5,0,0">
+            <pctrls:VideoClip Source="{Binding Settings.TemporaryFullscreenIntroUri, Mode=TwoWay}"/>
+        </Border>
+        <CheckBox IsChecked="{Binding Settings.EnableFullscreenIntro}"
+              Content="{DynamicResource LOCSettingsEnableFullscreenIntroVideo}"
+              Margin="0,10,0,0"/>
+    </StackPanel>
+
+</UserControl>

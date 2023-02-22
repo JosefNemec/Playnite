@@ -291,6 +291,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsLabel">Settings</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">General</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelLabel">Top panel</sys:String>
+    <sys:String x:Key="LOCSettingsIntroLabel">Launch Video</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Appearance</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Game Details</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Layout</sys:String>
@@ -299,6 +300,13 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsInputLabel">Input</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Performance</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadata</sys:String>
+    <sys:String x:Key="LOCSettingsUploadFullscreenIntroVideo">Upload fullscreen launch video</sys:String>
+    <sys:String x:Key="LOCSettingsEnableFullscreenIntroVideo">Play video when launching fullscreen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenIntroVideoError">Failed to set fullscreen intro video.</sys:String>
+    <sys:String x:Key="LOCSettingsPreviewIntroVideo">Preview</sys:String>
+    <sys:String x:Key="LOCSettingsNoVideoLoaded">No video loaded</sys:String>
+    <sys:String x:Key="LOCSettingsBrowseVideo">Browse</sys:String>
+    <sys:String x:Key="LOCSettingsClearVideo">Clear</sys:String>
     <sys:String x:Key="LOCSettingsUpdating">Updating</sys:String>
     <sys:String x:Key="LOCSettingsSearch">Search</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Backup</sys:String>

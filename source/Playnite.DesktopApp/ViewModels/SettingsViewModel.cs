@@ -349,6 +349,23 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
+        public RelayCommand UploadFullscreenIntroVideoCommand
+        {
+            get => new RelayCommand(() =>
+            {
+                string filePath = Dialogs.SelectFile("MP4 files (*.mp4)|*.mp4|All files (*.*)|*.*");
+                if (!filePath.IsNullOrEmpty())
+                {
+                    Settings.TemporaryFullscreenIntroUri = new Uri(filePath);
+                }
+            });
+        }
+
+        public RelayCommand ClearIntroVideoCommand
+        {
+            get => new RelayCommand(() => Settings.TemporaryFullscreenIntroUri = null);
+        }
+
         #endregion Commands
 
         public object DateTimeFormatAddedExample =>
@@ -447,7 +464,8 @@ namespace Playnite.DesktopApp.ViewModels
                 { DesktopSettingsPage.Updates, new Controls.SettingsSections.Updates() { DataContext = this } },
                 { DesktopSettingsPage.AppearanceListView, new Controls.SettingsSections.AppearanceListView() { DataContext = this } },
                 { DesktopSettingsPage.Search, new Controls.SettingsSections.Search() { DataContext = this } },
-                { DesktopSettingsPage.Backup, new Controls.SettingsSections.Backup() { DataContext = this } }
+                { DesktopSettingsPage.Backup, new Controls.SettingsSections.Backup() { DataContext = this } },
+                { DesktopSettingsPage.AppearanceIntros, new Controls.SettingsSections.AppearanceIntros() { DataContext = this } }
             };
 
             SelectedSectionView = sectionViews[0];
@@ -517,6 +535,31 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 dialogs.ShowErrorMessage(LOC.SettingsNoBackupDirSpecifiedError);
                 return;
+            }
+
+            if (editedFields.Contains(nameof(Settings.TemporaryFullscreenIntroUri)))
+            {
+                try
+                {
+                    if (Settings.TemporaryFullscreenIntroUri == null)
+                    {
+                        if (File.Exists(PlaynitePaths.FullscreenIntroFilePath))
+                        {
+                            File.Delete(PlaynitePaths.FullscreenIntroFilePath);
+                        }
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(PlaynitePaths.IntrosPath);
+                        File.Copy(Settings.TemporaryFullscreenIntroUri.AbsolutePath, PlaynitePaths.FullscreenIntroFilePath, true);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, "Failed to set fullscreen intro video");
+                    dialogs.ShowErrorMessage(resources.GetString("LOCSettingsFullscreenIntroVideoError")
+                        + Environment.NewLine + e.Message, "");
+                }
             }
 
             if (editedFields.Contains(nameof(Settings.StartOnBoot)) ||

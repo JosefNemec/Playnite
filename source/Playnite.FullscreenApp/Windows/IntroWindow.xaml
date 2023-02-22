@@ -1,0 +1,21 @@
+﻿<Window x:Class="Playnite.FullscreenApp.Windows.IntroWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
+        mc:Ignorable="d"
+        Title="Playnite"
+        Background="Black"
+        WindowStyle="None"
+        x:Name="Window">
+    <Grid>
+        <MediaElement x:Name="Media"
+                      Source="{Binding Source, ElementName=Window}"
+                      MediaEnded="Media_MediaEnded"
+                      MediaFailed="Media_MediaEnded"
+                      Stretch="UniformToFill"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
+    </Grid>
+</Window>

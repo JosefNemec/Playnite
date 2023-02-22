@@ -15,6 +15,7 @@ using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,7 +69,7 @@ namespace Playnite.FullscreenApp
             Playnite.Dialogs.SetHandler(Dialogs);
         }
 
-        public override bool Startup()
+        public override async Task<bool> Startup()
         {
             if (!AppSettings.FirstTimeWizardComplete)
             {
@@ -85,17 +86,18 @@ namespace Playnite.FullscreenApp
             }
 
             InstantiateApp();
+            Task<IntroWindow> introTask = OpenIntro();
             AppUriHandler = MainModel.ProcessUriRequest;
             MigrateDatabase();
             SetupInputs();
-            OpenMainViewAsync();
+            Task openViewTask = OpenMainViewAsync(introTask);
 #pragma warning disable CS4014
             StartUpdateCheckerAsync();
             SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
-            InitializeAudio();
             PropertyChanged += FullscreenApplication_PropertyChanged;
+            await openViewTask;
             return true;
         }
 
@@ -148,15 +150,48 @@ namespace Playnite.FullscreenApp
             }
         }
 
-        private async void OpenMainViewAsync()
+        private Task<IntroWindow> OpenIntro()
+        {
+            var introTaskCompletionSource = new TaskCompletionSource<IntroWindow>();
+            var introTask = introTaskCompletionSource.Task;
+            if (AppSettings.EnableFullscreenIntro)
+            {
+                logger.Debug("Playing fullscreen intro video");
+                IntroWindow introWindow = new IntroWindow()
+                {
+                    Source = new Uri(PlaynitePaths.FullscreenIntroFilePath),
+                    WindowState = WindowState.Minimized
+                };
+                introWindow.IntroEnded += (s, e) => introTaskCompletionSource.TrySetResult(introWindow);
+                introWindow.Closed += (s, e) => introTaskCompletionSource.TrySetResult(introWindow);
+                introWindow.Show();
+            }
+            else
+            {
+                introTaskCompletionSource.SetResult(null);
+            }
+            return introTask;
+        }
+
+        private async Task OpenMainViewAsync(Task<IntroWindow> introTask)
         {
             Extensions.LoadPlugins(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             Extensions.LoadScripts(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             OnExtensionsLoaded();
 
-            splashScreen?.Close(new TimeSpan(0));
+            IntroWindow introWindow = await introTask;
+
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
+
+            splashScreen?.Close(new TimeSpan(0));
+            introWindow?.Close();
+
+            CheckAndShowNahimicServicesWarning();
+            CheckAndShowElevatedRightsWarning();
+
+            InitializeAudio();
+
             await MainModel.ProcessStartupLibUpdate();
 
             // This is most likely safe place to consider application to be started properly

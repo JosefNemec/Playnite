@@ -48,7 +48,8 @@ namespace Playnite
         Updates = 22,
         AppearanceListView = 23,
         Search = 24,
-        Backup = 25
+        Backup = 25,
+        AppearanceIntros = 26
     }
 
     public enum AccessibilityInterfaceOptions
@@ -1134,6 +1135,29 @@ namespace Playnite
         public string InstallInstanceId
         {
             get; set;
+        }
+
+        private Uri temporaryFullscreenIntroUri;
+        [JsonIgnore]
+        public Uri TemporaryFullscreenIntroUri
+        {
+            get => temporaryFullscreenIntroUri;
+            set
+            {
+                temporaryFullscreenIntroUri = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool enableFullscreenIntro;
+        public bool EnableFullscreenIntro
+        {
+            get => enableFullscreenIntro;
+            set
+            {
+                enableFullscreenIntro = value;
+                OnPropertyChanged();
+            }
         }
 
         private List<string> disabledPlugins = new List<string>();
@@ -2247,6 +2271,8 @@ namespace Playnite
             InstallInstanceId = Guid.NewGuid().ToString();
             ItemSpacingMargin = GetItemSpacingMargin();
             FullscreenItemSpacingMargin = GetFullscreenItemSpacingMargin();
+
+            TemporaryFullscreenIntroUri = new Uri(PlaynitePaths.FullscreenIntroFilePath);
             UpdateGridItemHeight();
         }
 
