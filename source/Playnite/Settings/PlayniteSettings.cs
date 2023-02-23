@@ -2047,6 +2047,18 @@ namespace Playnite
             }
         }
 
+        private bool playtimeUseDaysFormat = false;
+        [RequiresRestart]
+        public bool PlaytimeUseDaysFormat
+        {
+            get => playtimeUseDaysFormat;
+            set
+            {
+                playtimeUseDaysFormat = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool installSizeScanUseSizeOnDisk = true;
         public bool InstallSizeScanUseSizeOnDisk
         {
