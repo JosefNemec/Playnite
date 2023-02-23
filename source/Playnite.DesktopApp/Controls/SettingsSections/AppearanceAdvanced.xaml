@@ -184,7 +184,7 @@
             <ContentControl Content="{DynamicResource LOCSettingsDatesFormatsLabel}" Margin="0,15,0,5" 
                             ContentStringFormat="{}{0} *"/>
             
-            <GridEx ColumnCount="4" StarColumns="3" RowCount="5" AutoLayoutColumns="4">            
+            <GridEx ColumnCount="4" StarColumns="3" RowCount="6" AutoLayoutColumns="4">            
                 <!--Added-->
                 <TextBlock Text="{DynamicResource LOCAddedLabel}"
                            Margin="0,10,0,0" VerticalAlignment="Top" />
@@ -326,6 +326,31 @@
                         Command="{Binding ResetDateTimeFormatLastPlayedCommand}" />
 
                 <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatLastPlayedExample}" />
+
+                <!--Added-->
+                <TextBlock Text="{DynamicResource LOCDateAddedLabel}"
+                           Margin="0,15,0,0" VerticalAlignment="Top" />
+                <StackPanel Margin="10,10,0,0" MinWidth="150" VerticalAlignment="Top">
+                    <TextBox>
+                        <TextBox.Text>
+                            <Binding Path="Settings.DateTimeFormatAdded.Format"
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 ValidatesOnDataErrors="True"
+                                 NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <pcon:DateTimeFormatToStringValidation />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <CheckBox Content="{DynamicResource LOCSettingsPastWeekRelativeFormat}" Margin="0,5,0,0"
+                              ToolTip="{DynamicResource LOCSettingsPastWeekRelativeFormatTooltip}"
+                              IsChecked="{Binding Settings.DateTimeFormatAdded.PastWeekRelativeFormat}" />
+                </StackPanel>
+                <Button Content="{DynamicResource LOCResetLabel}" Margin="10,10,0,0" VerticalAlignment="Top"
+                        Command="{Binding ResetDateTimeFormatAddedCommand}" />
+
+                <TextBlock Margin="10,10,0,0" VerticalAlignment="Top" Text="{Binding DateTimeFormatAddedExample}" />
             </GridEx>
 
             <Button Content="{DynamicResource LOCMenuHelpTitle}"

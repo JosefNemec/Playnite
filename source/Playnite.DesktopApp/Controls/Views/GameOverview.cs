@@ -25,6 +25,7 @@ namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ElemPlayTime", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemLastPlayed", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ElemAdded", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemRecentActivity", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemCompletionStatus", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ElemLibrary", Type = typeof(FrameworkElement))]
@@ -89,6 +90,8 @@ namespace Playnite.DesktopApp.Controls.Views
         private FrameworkElement ElemInstallSize;
         private FrameworkElement ElemInstallDirectory;
         private FrameworkElement ElemLastPlayed;
+        private FrameworkElement ElemAdded;
+        private FrameworkElement ElemRecentActivity;
         private FrameworkElement ElemCompletionStatus;
         private FrameworkElement ElemLibrary;
         private FrameworkElement ElemPlatform;
@@ -114,6 +117,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private TextBlock TextDisplayName;
         private TextBlock TextPlayTime;
         private TextBlock TextLastActivity;
+        private TextBlock TextAdded;
         private TextBlock TextInstallSize;
         private TextBlock TextCommunityScore;
         private TextBlock TextCriticScore;
@@ -355,7 +359,8 @@ namespace Playnite.DesktopApp.Controls.Views
             SetElemVisibility(ref ElemInstallSize, "PART_ElemInstallSize", nameof(GameDetailsViewModel.InstallSizeVisibility));
             SetElemVisibility(ref ElemInstallDirectory, "PART_ElemInstallDirectory", nameof(GameDetailsViewModel.InstallDirectoryVisibility));
             SetElemVisibility(ref ElemLastPlayed, "PART_ElemLastPlayed", nameof(GameDetailsViewModel.LastPlayedVisibility));
-            SetElemVisibility(ref ElemLastPlayed, "PART_ElemRecentActivity", nameof(GameDetailsViewModel.RecentActivityVisibility));
+            SetElemVisibility(ref ElemAdded, "PART_ElemAdded", nameof(GameDetailsViewModel.AddedVisibility));
+            SetElemVisibility(ref ElemRecentActivity, "PART_ElemRecentActivity", nameof(GameDetailsViewModel.RecentActivityVisibility));
             SetElemVisibility(ref ElemCompletionStatus, "PART_ElemCompletionStatus", nameof(GameDetailsViewModel.CompletionStatusVisibility));
             SetElemVisibility(ref ElemLibrary, "PART_ElemLibrary", nameof(GameDetailsViewModel.SourceLibraryVisibility));
             SetElemVisibility(ref ElemPlatform, "PART_ElemPlatform", nameof(GameDetailsViewModel.PlatformVisibility));
@@ -425,6 +430,12 @@ namespace Playnite.DesktopApp.Controls.Views
                 nameof(GameDetailsViewModel.LastPlayedVisibility),
                 new DateTimeToLastPlayedConverter(),
                 mainModel.AppSettings.DateTimeFormatLastPlayed);
+
+            SetGameItemTextBinding(ref TextAdded, "PART_TextAdded",
+                nameof(GameDetailsViewModel.Game.Added),
+                nameof(GameDetailsViewModel.AddedVisibility),
+                new NullableDateToStringConverter(),
+                mainModel.AppSettings.DateTimeFormatAdded);
 
             SetGameItemTextBinding(ref TextLastActivity, "PART_TextRecentActivity",
                 nameof(GameDetailsViewModel.Game.RecentActivity),

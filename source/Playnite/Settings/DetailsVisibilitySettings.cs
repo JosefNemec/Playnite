@@ -83,6 +83,21 @@ namespace Playnite
             }
         }
 
+        private bool added = true;
+        public bool Added
+        {
+            get
+            {
+                return added;
+            }
+
+            set
+            {
+                added = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool recentActivity = true;
         public bool RecentActivity
         {
