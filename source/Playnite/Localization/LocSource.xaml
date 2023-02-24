@@ -60,9 +60,9 @@ If you want to help us fix this issue, please send diagnostic information. Thank
     <sys:String x:Key="LOCGameRemoveAskTitle">Remove Game(s)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Cannot remove - Game or installer is running. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Cannot uninstall - Game is running.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove this game?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Are you sure you want to remove {0} games?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Are you sure you want to remove this game?
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Are you sure you want to remove {0}?
 
 Selecting "add to exclusion list" option will prevent game from being imported again next time library is updated.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Are you sure you want to remove {0} games?
