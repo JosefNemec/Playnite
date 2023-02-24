@@ -859,7 +859,7 @@ namespace Playnite
                 {
                     addToExclusionList = true;
                 }
-                else if (result == options[2])
+                else if (result == null || result == options[2])
                 {
                     return;
                 }
