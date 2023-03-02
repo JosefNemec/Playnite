@@ -17,7 +17,7 @@
                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
             </ControlTemplate.Resources>
             <GroupBox Header="{DynamicResource LOCOverviewLabel}" Margin="10" MaxHeight="330">
-                <GridEx GridEx.AutoLayoutColumns="3" GridEx.ColumnCount="3" GridEx.RowCount="20"                        
+                <GridEx GridEx.AutoLayoutColumns="3" GridEx.ColumnCount="3" GridEx.RowCount="21"                        
                         GridEx.StarColumns="0" MinWidth="220" Margin="10">
                     <TextBlock Text="{DynamicResource LOCAll}" Margin="0,3,15,3" />
                     <TextBlock Text="{Binding TotalCount}" Margin="0,3,0,3" TextAlignment="Right" />
@@ -46,6 +46,10 @@
                     <TextBlock Text="{DynamicResource LOCStatsAvaragePlayTime}" Margin="0,3,15,3" />
                     <TextBlock Text="{Binding AvaragePlayTime, Converter={StaticResource PlayTimeToStringConverter}}"
                                        Grid.ColumnSpan="2" Margin="0,3,0,3"/>
+
+                    <TextBlock Text="{DynamicResource LOCStatsTotalInstallSize}" Margin="0,15,15,3"/>
+                    <TextBlock Text="{Binding TotalInstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}"
+                                       Grid.ColumnSpan="2" Margin="0,15,0,3" />
                 </GridEx>
             </GroupBox>
         </ControlTemplate>

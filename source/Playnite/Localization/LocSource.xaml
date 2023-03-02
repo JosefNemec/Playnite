@@ -876,6 +876,7 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Total play time</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Average play time</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Top play time</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Total install size</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Overview</sys:String>
     <sys:String x:Key="LOCSidebar">Sidebar</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Show on Sidebar</sys:String>
