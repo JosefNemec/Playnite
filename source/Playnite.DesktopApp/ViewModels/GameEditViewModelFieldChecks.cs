@@ -522,6 +522,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool useHdrChanges;
+        public bool UseHdrChanges
+        {
+            get
+            {
+                return useHdrChanges;
+            }
+
+            set
+            {
+                useHdrChanges = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ShowAdvancedChangeNotif));
+            }
+        }
+
         private bool useHiddenChanges;
         public bool UseHiddenChanges
         {
@@ -774,7 +790,8 @@ namespace Playnite.DesktopApp.ViewModels
             get
             {
                 return ShowCheckBoxes &&
-                    (UseHiddenChanges ||
+                    (UseHdrChanges ||
+                    UseHiddenChanges ||
                     UseFavoriteChanges ||
                     UseLastActivityChanges ||
                     UsePlaytimeChanges ||
@@ -1202,6 +1219,16 @@ namespace Playnite.DesktopApp.ViewModels
                     else
                     {
                         UseHiddenChanges = true;
+                    }
+                    break;
+                case nameof(Game.EnableSystemHdr):
+                    if (IsSingleGameEdit)
+                    {
+                        UseHdrChanges = Game.EnableSystemHdr != EditingGame.EnableSystemHdr;
+                    }
+                    else
+                    {
+                        UseHdrChanges = true;
                     }
                     break;
                 case nameof(Game.PreScript):

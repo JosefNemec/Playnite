@@ -64,6 +64,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand UninstallGameCommand => new RelayCommand(() => UninstallGame());
         public RelayCommand ToggleFavoritesCommand => new RelayCommand(() => ToggleFavorites());
         public RelayCommand ToggleVisibilityCommand => new RelayCommand(() => ToggleVisibility());
+        public RelayCommand ToggleHdrCommand => new RelayCommand(() => ToggleHdr());
         public RelayCommand RemoveGameCommand => new RelayCommand(() => RemoveGame());
         public RelayCommand<GameAction> ActivateActionCommand => new RelayCommand<GameAction>((a) => ActivateAction(a));
         public RelayCommand SetFieldsCommand => new RelayCommand(() => SetFields());
@@ -92,6 +93,10 @@ namespace Playnite.FullscreenApp.ViewModels
 
             items.Add(new GameActionItem(ToggleFavoritesCommand, game.Favorite ? ResourceProvider.GetString(LOC.RemoveFavoriteGame) : ResourceProvider.GetString(LOC.FavoriteGame), "GameMenuFavoriesButtonTemplate"));
             items.Add(new GameActionItem(ToggleVisibilityCommand, game.Hidden ? ResourceProvider.GetString(LOC.UnHideGame) : ResourceProvider.GetString(LOC.HideGame), "GameMenuVisibilityButtonTemplate"));
+            if (HdrUtilities.IsHdrSupported())
+            {
+                items.Add(new GameActionItem(ToggleHdrCommand, game.EnableSystemHdr ? ResourceProvider.GetString(LOC.DisableHdr) : ResourceProvider.GetString(LOC.EnableHdr), "GameMenuHdrButtonTemplate"));
+            }
             items.Add(new GameActionItem(SetFieldsCommand, ResourceProvider.GetString(LOC.MenuSetFields), "GameMenuSetFieldsTemplate"));
             items.Add(new GameActionItem(RemoveGameCommand, ResourceProvider.GetString(LOC.RemoveGame), "GameMenuRemoveButtonTemplate"));
 
@@ -147,6 +152,12 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Close();
             gamesEditor.ToggleHideGame(Game);
+        }
+
+        public void ToggleHdr()
+        {
+            Close();
+            gamesEditor.ToggleHdrGame(Game);
         }
 
         public void RemoveGame()

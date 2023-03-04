@@ -66,6 +66,7 @@ namespace Playnite
         private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
         private readonly ConcurrentDictionary<Guid, IPowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, IPowerShellRuntime>();
         private readonly IActionSelector actionSelector;
+        private bool wasHdrEnabled;
 
         public PlayniteApplication Application;
 
@@ -324,6 +325,17 @@ namespace Playnite
                     {  "SourceAction", startingArgs.SourceAction },
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
+
+                //Get the current system HDR status only if this is the first game with HDR enabled that is launched
+                if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
+                {
+                    wasHdrEnabled = HdrUtilities.IsHdrEnabled();
+                }
+
+                if (game.EnableSystemHdr)
+                {
+                    HdrUtilities.SetHdrEnabled(true);
+                }
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
                 {
@@ -746,6 +758,23 @@ namespace Playnite
             }
         }
 
+        public void SetHdrSupport(Game game, bool state)
+        {
+            game.EnableSystemHdr = state;
+            Database.Games.Update(game);
+        }
+
+        public void SetHdrSupport(List<Game> games, bool state)
+        {
+            using (Database.BufferedUpdate())
+            {
+                foreach (var game in games)
+                {
+                    SetHdrSupport(game, state);
+                }
+            }
+        }
+
         public void ToggleHideGame(Game game)
         {
             game.Hidden = !game.Hidden;
@@ -778,6 +807,12 @@ namespace Playnite
                     SetFavoriteGame(game, state);
                 }
             }
+        }
+
+        public void ToggleHdrGame(Game game)
+        {
+            game.EnableSystemHdr = !game.EnableSystemHdr;
+            Database.Games.Update(game);
         }
 
         public void ToggleFavoriteGame(Game game)
@@ -1394,8 +1429,15 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
+            //Reset the system HDR state back to its original state if there are no active games requiring HDR
+            if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
+            {
+                HdrUtilities.SetHdrEnabled(wasHdrEnabled);
+            }
+
             ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit);
             ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit);
+
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
                 runtime.Dispose();
