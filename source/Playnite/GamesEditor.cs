@@ -1388,8 +1388,15 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit);
+            var scriptVars = new Dictionary<string, object>();
+            if (args.Source is GenericPlayController genCtrl)
+            {
+                scriptVars["SourceAction"] = genCtrl.StartingArgs?.SourceAction?.GetClone();
+                scriptVars["SelectedRomFile"] = genCtrl.StartingArgs?.SelectedRomFile;
+            }
+
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit, scriptVars);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit, scriptVars);
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
                 runtime.Dispose();
