@@ -1060,6 +1060,13 @@ namespace Playnite
                     InstallOnlineAddon(arguments[1]);
                     break;
 
+                case UriCommands.Search:
+                    if (Mode == ApplicationMode.Desktop)
+                    {
+                        PlayniteApiGlobal.MainView.OpenSearch(arguments.Length >= 2 ? arguments[1] : string.Empty);
+                    }
+                    break;
+
                 default:
                     AppUriHandler(args);
                     break;
