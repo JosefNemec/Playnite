@@ -137,6 +137,12 @@ namespace Playnite.SDK
         void DeleteDomainCookies(string domain);
 
         /// <summary>
+        /// Deletes all cookies from domains matching specified regular expression.
+        /// </summary>
+        /// <param name="domainRegex"></param>
+        void DeleteDomainCookiesRegex(string domainRegex);
+
+        /// <summary>
         /// Deletes cookies.
         /// </summary>
         /// <param name="url">Cookie URL.</param>
