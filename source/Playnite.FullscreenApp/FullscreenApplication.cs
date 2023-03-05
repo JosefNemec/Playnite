@@ -1,4 +1,5 @@
-﻿using Playnite.API;
+﻿using Microsoft.Win32;
+using Playnite.API;
 using Playnite.Audio;
 using Playnite.Common;
 using Playnite.Controllers;
@@ -96,6 +97,7 @@ namespace Playnite.FullscreenApp
             ProcessArguments();
             InitializeAudio();
             PropertyChanged += FullscreenApplication_PropertyChanged;
+            SystemEvents.SessionSwitch += HandleAudioAfterSessionSwitch;
             return true;
         }
 
@@ -210,6 +212,7 @@ namespace Playnite.FullscreenApp
         {
             StopBackgroundSound();
             Audio?.Dispose();
+            SystemEvents.SessionSwitch -= HandleAudioAfterSessionSwitch;
             base.ReleaseResources(releaseCefSharp);
         }
 
@@ -376,6 +379,19 @@ namespace Playnite.FullscreenApp
             if (AppSettings.Fullscreen.BackgroundVolume > 0)
             {
                 PlayBackgroundSound();
+            }
+        }
+
+        private void HandleAudioAfterSessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            //When returning to Playnite after sleeping/hibernating, the audio will likely
+            //have stopped playing. This handles a more generic case of resuming a session
+            //in any scenario and restarts the audio when that happens.
+            if (e.Reason == SessionSwitchReason.SessionUnlock)
+            {
+                StopBackgroundSound();
+                Audio?.Dispose();
+                InitializeAudio();
             }
         }
 
