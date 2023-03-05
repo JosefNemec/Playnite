@@ -1,4 +1,5 @@
-﻿using Playnite.API;
+﻿using NAudio.Wave;
+using Playnite.API;
 using Playnite.Audio;
 using Playnite.Common;
 using Playnite.Controllers;
@@ -132,19 +133,24 @@ namespace Playnite.FullscreenApp
         {
             if (e.PropertyName == nameof(PlayniteApplication.IsActive))
             {
-                if (AppSettings.Fullscreen.MuteInBackground && IsActive == false)
-                {
-                    Audio?.PausePlayback();
-                }
-                else if (AppSettings.Fullscreen.MuteInBackground && IsActive == true)
-                {
-                    Audio?.ResumePlayback();
-                }
+                UpdateAudioState();
 
                 if (XInputDevice != null)
                 {
                     XInputDevice.StandardProcessingEnabled = IsActive;
                 }
+            }
+        }
+
+        private void UpdateAudioState()
+        {
+            if (AppSettings.Fullscreen.MuteInBackground && IsActive == false)
+            {
+                Audio?.PausePlayback();
+            }
+            else if (AppSettings.Fullscreen.MuteInBackground && IsActive == true)
+            {
+                Audio?.ResumePlayback();
             }
         }
 
@@ -323,6 +329,7 @@ namespace Playnite.FullscreenApp
             try
             {
                 Audio = new AudioPlaybackEngine(AppSettings.Fullscreen.AudioInterfaceApi);
+                Audio.PlaybackStopped += HandleAudioPlaybackStopped;
             }
             catch (Exception e)
             {
@@ -377,6 +384,27 @@ namespace Playnite.FullscreenApp
             {
                 PlayBackgroundSound();
             }
+        }
+
+        private async void HandleAudioPlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            //When returning to Playnite after sleeping/hibernating, the audio will likely
+            //have stopped playing. This handles a more generic case of audio stopping for
+            //any unexpected reason and then simply restarting it
+            if (e.Exception != null)
+            {
+                logger.Warn(e.Exception, "Audio playback stopped abnormally");
+                await Task.Delay(500);
+                RestartAudio();
+            }
+        }
+
+        private void RestartAudio()
+        {
+            StopBackgroundSound();
+            Audio?.Dispose();
+            InitializeAudio();
+            UpdateAudioState();
         }
 
         public override PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner)

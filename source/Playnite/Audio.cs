@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Playnite.Audio
 {
@@ -201,6 +202,8 @@ namespace Playnite.Audio
         private readonly MixingSampleProvider mixer;
         private bool isDisposed = false;
 
+        public event EventHandler<StoppedEventArgs> PlaybackStopped;
+
         public AudioPlaybackEngine(AudioInterfaceApi api, int sampleRate = 44100, int channelCount = 2)
         {
             switch (api)
@@ -219,6 +222,7 @@ namespace Playnite.Audio
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             mixer.ReadFully = true;
             outputDevice.Init(mixer);
+            outputDevice.PlaybackStopped += (s, e) => PlaybackStopped?.Invoke(this, e);
             outputDevice.Play();
         }
 
