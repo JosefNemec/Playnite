@@ -265,6 +265,7 @@
     <Compile Include="Database\GameDatabase_Filters.cs" />
     <Compile Include="DateTimes.cs" />
     <Compile Include="Extensions\Markup\PluginConverter.cs" />
+    <Compile Include="HdrUtilities.cs" />
     <Compile Include="ItemSelector.cs" />
     <Compile Include="MenuItems.cs" />
     <Compile Include="HotKey.cs" />

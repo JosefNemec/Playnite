@@ -19,8 +19,8 @@ namespace Playnite.Native
     [StructLayout(LayoutKind.Sequential)]
     public struct POINTL
     {
-        private int x;
-        private int y;
+        public int x;
+        public int y;
     }
 
     [StructLayout(LayoutKind.Sequential)]

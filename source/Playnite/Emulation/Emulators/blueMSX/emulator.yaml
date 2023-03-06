@@ -1,0 +1,19 @@
+Id: bluemsx
+Name: blueMSX
+Website: 'http://bluemsx.msxblue.com/index.htm'
+Profiles:
+  - Name: ColecoVision
+    StartupArguments: '/rom1 "{ImagePath}" /fullscreen /machine "COL - ColecoVision"'
+    Platforms: [coleco_vision]
+    ImageExtensions: [zip, col]
+    StartupExecutable: ^blueMSX\.exe$
+  - Name: MSX
+    StartupArguments: '/rom1 "{ImagePath}" /fullscreen /machine "MSX2+"'
+    Platforms: [microsoft_msx]
+    ImageExtensions: [zip, rom]
+    StartupExecutable: ^blueMSX\.exe$
+  - Name: MSX2
+    StartupArguments: '/rom1 "{ImagePath}" /fullscreen /machine "MSX2+"'
+    Platforms: [microsoft_msx2]
+    ImageExtensions: [zip, rom]
+    StartupExecutable: ^blueMSX\.exe$

@@ -1,0 +1,144 @@
+Id: ares
+Name: ares
+Website: 'https://ares-emu.net/'
+Profiles:
+  - Name: Atari - Atari 2600
+    StartupArguments: '--system "Atari 2600" "{ImagePath}" --fullscreen'
+    Platforms: [atari_2600]
+    ImageExtensions: [zip, a26]
+    StartupExecutable: ^ares\.exe$
+  - Name: Bandai - WonderSwan
+    StartupArguments: '--system "WonderSwan" "{ImagePath}" --fullscreen'
+    Platforms: [bandai_wonderswan]
+    ImageExtensions: [zip, ws]
+    StartupExecutable: ^ares\.exe$
+  - Name: Bandai - WonderSwan Color
+    StartupArguments: '--system "WonderSwan Color" "{ImagePath}" --fullscreen'
+    Platforms: [bandai_wonderswan_color]
+    ImageExtensions: [zip, wsc]
+    StartupExecutable: ^ares\.exe$
+  - Name: Coleco - ColecoVision
+    StartupArguments: '--system "ColecoVision" "{ImagePath}" --fullscreen'
+    Platforms: [coleco_vision]
+    ImageExtensions: [zip, cv, col]
+    StartupExecutable: ^ares\.exe$
+  - Name: Microsoft - MSX
+    StartupArguments: '--system "MSX" "{ImagePath}" --fullscreen'
+    Platforms: [microsoft_msx]
+    ImageExtensions: [zip, msx]
+    StartupExecutable: ^ares\.exe$
+  - Name: Microsoft - MSX2
+    StartupArguments: '--system "MSX2" "{ImagePath}" --fullscreen'
+    Platforms: [microsoft_msx2]
+    ImageExtensions: [zip, msx2]
+    StartupExecutable: ^ares\.exe$
+  - Name: NEC - PC Engine
+    StartupArguments: '--system "PC Engine" "{ImagePath}" --fullscreen'
+    Platforms: [nec_turbografx_16]
+    ImageExtensions: [zip, pce]
+    StartupExecutable: ^ares\.exe$
+  - Name: NEC - PC Engine CD
+    StartupArguments: '--system "PC Engine CD" "{ImagePath}" --fullscreen'
+    Platforms: [nec_turbografx_cd]
+    ImageExtensions: [cue, chd]
+    StartupExecutable: ^ares\.exe$
+  - Name: NEC - SuperGrafx
+    StartupArguments: '--system "SuperGrafx" "{ImagePath}" --fullscreen'
+    Platforms: [nec_supergrafx]
+    ImageExtensions: [zip, sgx]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Nintendo 64
+    StartupArguments: '--system "Nintendo 64" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_64]
+    ImageExtensions: [zip, n64, v64, z64]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Nintendo 64DD
+    StartupArguments: '--system "Nintendo 64DD" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_64]
+    ImageExtensions: [zip, n64dd, ndd]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Game Boy
+    StartupArguments: '--system "Game Boy" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_gameboy]
+    ImageExtensions: [zip, gb]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Game Boy Advance
+    StartupArguments: '--system "Game Boy Advance" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_gameboyadvance]
+    ImageExtensions: [zip, gba]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Game Boy Color
+    StartupArguments: '--system "Game Boy Color" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_gameboycolor]
+    ImageExtensions: [zip, gbc]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Famicom
+    StartupArguments: '--system "Famicom" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [zip, fc, nes, unf, unif]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Famicom Disk System
+    StartupArguments: '--system "Famicom Disk System" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [zip, fds]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Sufami Turbo
+    StartupArguments: '--system "Sufami Turbo" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [zip, st]
+    StartupExecutable: ^ares\.exe$
+  - Name: Nintendo - Super Famicom
+    StartupArguments: '--system "Super Famicom" "{ImagePath}" --fullscreen'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [zip, sfc, smc, swc, fig]
+    StartupExecutable: ^ares\.exe$
+  - Name: Sega - Game Gear
+    StartupArguments: '--system "Game Gear" "{ImagePath}" --fullscreen'
+    Platforms: [sega_gamegear]
+    ImageExtensions: [zip, gg]
+    StartupExecutable: ^ares\.exe$
+  - Name: Sega - Master System
+    StartupArguments: '--system "Master System" "{ImagePath}" --fullscreen'
+    Platforms: [sega_mastersystem]
+    ImageExtensions: [zip, ms, sms]
+    StartupExecutable: ^ares\.exe$
+  - Name: Sega - Mega 32X
+    StartupArguments: '--system "Mega 32X" "{ImagePath}" --fullscreen'
+    Platforms: [sega_32x]
+    ImageExtensions: [zip, 32X]
+    StartupExecutable: ^ares\.exe$
+  - Name: Sega - Mega CD
+    StartupArguments: '--system "Mega CD" "{ImagePath}" --fullscreen'
+    Platforms: [sega_cd]
+    ImageExtensions: [cue, chd]
+    StartupExecutable: ^ares\.exe$
+  - Name: Sega - Saturn
+    StartupArguments: '--system "Saturn" "{ImagePath}" --fullscreen'
+    Platforms: [sega_saturn]
+    ImageExtensions: [cue, chd]
+    StartupExecutable: ^ares\.exe$
+  - Name: Sega - SG-1000
+    StartupArguments: '--system "SG-1000" "{ImagePath}" --fullscreen'
+    Platforms: [sega_sg1000]
+    ImageExtensions: [sg1000, sg]
+    StartupExecutable: ^ares\.exe$
+  - Name: SNK - Neo Geo AES
+    StartupArguments: '--system "Neo Geo" "{ImagePath}" --fullscreen'
+    Platforms: [snk_neogeo_aes]
+    ImageExtensions: [zip, ng]
+    StartupExecutable: ^ares\.exe$
+  - Name: SNK - Neo Geo Pocket
+    StartupArguments: '--system "Neo Geo Pocket" "{ImagePath}" --fullscreen'
+    Platforms: [snk_neogeopocket]
+    ImageExtensions: [zip, ngp]
+    StartupExecutable: ^ares\.exe$
+  - Name: SNK - Neo Geo Pocket Color
+    StartupArguments: '--system "Neo Geo Pocket Color" "{ImagePath}" --fullscreen'
+    Platforms: [snk_neogeopocket_color]
+    ImageExtensions: [zip, ngpc, ngc]
+    StartupExecutable: ^ares\.exe$
+  - Name: Sony - PlayStation
+    StartupArguments: '--system "PlayStation" "{ImagePath}" --fullscreen'
+    Platforms: [sony_playstation]
+    ImageExtensions: [cue, chd, exe]
+    StartupExecutable: ^ares\.exe$
