@@ -544,7 +544,12 @@ namespace Playnite
                 {
                     if (backupOptions == null || !backupOptions.ClosedWhenDone)
                     {
-                        Restart(new CmdLineOptions { SkipLibUpdate = true }, false);
+                        Restart(new CmdLineOptions
+                        {
+                            SkipLibUpdate = true,
+                            StartClosedToTray = CmdLine.StartClosedToTray,
+                            HideSplashScreen = CmdLine.HideSplashScreen
+                        }, false);
                     }
                 }
 
