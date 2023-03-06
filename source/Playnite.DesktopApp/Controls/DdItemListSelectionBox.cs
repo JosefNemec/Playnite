@@ -174,6 +174,34 @@ namespace Playnite.DesktopApp.Controls
             }
 
             UpdateTextStatus();
+
+            if (Template.FindName("Popup", this) is Popup popup)
+            {
+                popup.Opened += (_, __) =>
+                {
+                    if (ShowSearchBox && TextSearchBox != null)
+                    {
+                        TextSearchBox.IsFocused = true;
+                    }
+                };
+
+                popup.Closed += (_, __) =>
+                {
+                    if (ShowSearchBox && TextSearchBox != null)
+                    {
+                        TextSearchBox.IsFocused = false;
+                        TextSearchBox.Text = string.Empty;
+                    }
+                };
+
+                popup.PreviewKeyUp += (_, keyArgs) =>
+                {
+                    if (keyArgs.Key == Key.Escape)
+                    {
+                        popup.IsOpen = false;
+                    }
+                };
+            }
         }
 
         public override void ClearButtonAction(RoutedEventArgs e)
