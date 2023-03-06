@@ -1,4 +1,5 @@
-﻿using Playnite.Native;
+﻿using Playnite.Common;
+using Playnite.Native;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,11 @@ namespace Playnite
         /// <returns>True if HDR is supported on the primary display, false if unknown or not supported</returns>
         public static bool IsHdrSupported()
         {
+            if (Computer.WindowsVersion < WindowsVersion.Win10)
+            {
+                return false;
+            }
+
             try
             {
                 DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
@@ -44,6 +50,11 @@ namespace Playnite
         /// <returns>True if HDR is enabled on the primary display, false if unknown or not supported</returns>
         public static bool IsHdrEnabled()
         {
+            if (Computer.WindowsVersion < WindowsVersion.Win10)
+            {
+                return false;
+            }
+
             try
             {
                 DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
@@ -69,6 +80,11 @@ namespace Playnite
         /// <param name="enable">True if enabling HDR, false if disabling HDR</param>
         public static void SetHdrEnabled(bool enable)
         {
+            if (Computer.WindowsVersion < WindowsVersion.Win10)
+            {
+                return;
+            }
+
             try
             {
                 DISPLAYCONFIG_PATH_TARGET_INFO? targetInfo = GetPrimaryDisplayTargetInfo();
