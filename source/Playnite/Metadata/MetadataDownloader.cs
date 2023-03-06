@@ -314,10 +314,13 @@ namespace Playnite.Metadata
                         // Name
                         if (settings.Name.Import)
                         {
-                            gameData = ProcessField(game, settings.Name, MetadataField.Name, (a) => a.Name, existingStoreData, existingPluginData, cancelToken);
-                            if (!string.IsNullOrEmpty(gameData?.Name))
+                            if (!settings.SkipExistingValues || (settings.SkipExistingValues && string.IsNullOrEmpty(game.Name)))
                             {
-                                game.Name = StringExtensions.RemoveTrademarks(gameData.Name);
+                                gameData = ProcessField(game, settings.Name, MetadataField.Name, (a) => a.Name, existingStoreData, existingPluginData, cancelToken);
+                                if (!string.IsNullOrEmpty(gameData?.Name))
+                                {
+                                    game.Name = StringExtensions.RemoveTrademarks(gameData.Name);
+                                }
                             }
                         }
 
