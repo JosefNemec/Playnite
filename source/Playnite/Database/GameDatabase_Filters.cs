@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK.Models;
+using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +20,17 @@ namespace Playnite.Database
             return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), false);
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
         {
-            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), nameFilterSearchWithAcronyms);
+            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), useFuzzyNameMatch);
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
         {
-            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), nameFilterSearchWithAcronyms);
+            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), useFuzzyNameMatch);
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             if (!filterSettings.IsActive)
             {
@@ -45,19 +46,19 @@ namespace Playnite.Database
 
             if (filterSettings.UseAndFilteringStyle)
             {
-                return FilterByStyleAnd(game, filterSettings, nameFilterSearchWithAcronyms);
+                return FilterByStyleAnd(game, filterSettings, useFuzzyNameMatch);
             }
             else
             {
-                return FilterByStyleOr(game, filterSettings, nameFilterSearchWithAcronyms);
+                return FilterByStyleOr(game, filterSettings, useFuzzyNameMatch);
             }
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             foreach (var game in Games)
             {
-                if (GetGameMatchesFilter(game, filterSettings, nameFilterSearchWithAcronyms))
+                if (GetGameMatchesFilter(game, filterSettings, useFuzzyNameMatch))
                 {
                     yield return game;
                 }
@@ -251,7 +252,7 @@ namespace Playnite.Database
             return filter.Values.Contains((int)score);
         }
 
-        private bool FilterByStyleAnd(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        private bool FilterByStyleAnd(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             // ------------------ Installed
             bool installedResult = false;
@@ -306,7 +307,7 @@ namespace Playnite.Database
             }
 
             // ------------------ Name filter
-            if (!GetNameFilterResult(game, filterSettings, nameFilterSearchWithAcronyms))
+            if (!GetNameFilterResult(game, filterSettings, useFuzzyNameMatch))
             {
                 return false;
             }
@@ -546,7 +547,7 @@ namespace Playnite.Database
             return true;
         }
 
-        private bool FilterByStyleOr(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        private bool FilterByStyleOr(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             // ------------------ Installed
             bool installedResult = false;
@@ -625,7 +626,7 @@ namespace Playnite.Database
             }
 
             // ------------------ Name filter
-            if (!GetNameFilterResult(game, filterSettings, nameFilterSearchWithAcronyms))
+            if (!GetNameFilterResult(game, filterSettings, useFuzzyNameMatch))
             {
                 return false;
             }
@@ -823,7 +824,7 @@ namespace Playnite.Database
             return true;
         }
 
-        private bool GetNameFilterResult(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        private bool GetNameFilterResult(Game game, FilterSettings filterSettings, bool useFuzzyMatch)
         {
             if (filterSettings.Name.IsNullOrEmpty())
             {
@@ -835,26 +836,17 @@ namespace Playnite.Database
                 return false;
             }
 
-            var nameResult = true;
             if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
             {
-                if (game.GetNameGroup() != filterSettings.Name[1])
-                {
-                    nameResult = false;
-                }
-            }
-            else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
-            {
-                nameResult = false;
+                return game.GetNameGroup() == filterSettings.Name[1];
             }
 
-            if (!nameResult && nameFilterSearchWithAcronyms &&
-                filterSettings.Name.IsStartOfStringAcronym(game.Name))
+            if (!useFuzzyMatch || filterSettings.Name[0] == '!' && useFuzzyMatch)
             {
-                nameResult = true;
+                return game.Name.IndexOf(filterSettings.Name.Substring(1), StringComparison.OrdinalIgnoreCase) >= 0;
             }
 
-            return nameResult;
+            return SearchViewModel.MatchTextFilter(filterSettings.Name, game.Name, true);
         }
     }
 }

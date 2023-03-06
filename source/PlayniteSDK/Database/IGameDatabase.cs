@@ -217,16 +217,16 @@ namespace Playnite.SDK
         /// </summary>
         /// <param name="game"></param>
         /// <param name="filterSettings"></param>
-        /// <param name="nameFilterSearchWithAcronyms"></param>
+        /// <param name="useFuzzyNameMatch"></param>
         /// <returns></returns>
-        bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms);
+        bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool useFuzzyNameMatch);
 
         /// <summary>
         /// Returns enumeration of all games matching specified filter settings.
         /// </summary>
         /// <param name="filterSettings"></param>
-        /// <param name="nameFilterSearchWithAcronyms"></param>
+        /// <param name="useFuzzyNameMatch"></param>
         /// <returns></returns>
-        IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms);
+        IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool useFuzzyNameMatch);
     }
 }

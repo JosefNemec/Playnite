@@ -1850,13 +1850,13 @@ namespace Playnite
             }
         }
 
-        private bool nameFilterSearchWithAcronyms = false;
-        public bool NameFilterSearchWithAcronyms
+        private bool fuzzyMatchingInNameFilter = true;
+        public bool FuzzyMatchingInNameFilter
         {
-            get => nameFilterSearchWithAcronyms;
+            get => fuzzyMatchingInNameFilter;
             set
             {
-                nameFilterSearchWithAcronyms = value;
+                fuzzyMatchingInNameFilter = value;
                 OnPropertyChanged();
             }
         }

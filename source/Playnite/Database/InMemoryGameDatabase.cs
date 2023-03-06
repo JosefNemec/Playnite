@@ -185,7 +185,7 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
         {
             return true;
         }
@@ -195,17 +195,17 @@ namespace Playnite.Database
             yield break;
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
         {
             yield break;
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             return true;
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool nameFilterSearchWithAcronyms)
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             yield break;
         }

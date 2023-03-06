@@ -72,8 +72,8 @@ namespace Playnite.Database
         GameScannersSettings GetGameScannersSettings();
         void SetGameScannersSettings(GameScannersSettings settings);
         HashSet<string> GetImportedRomFiles(string emulatorDir);
-        bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool nameFilterSearchWithAcronyms);
-        IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool nameFilterSearchWithAcronyms);
+        bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch);
+        IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool useFuzzyNameMatch);
     }
 
     public partial class GameDatabase : IGameDatabaseMain, IDisposable
@@ -1282,7 +1282,7 @@ namespace Playnite.Database
                                 // The LastActivity value of the newGame is only applied if newer than
                                 // the existing game, to prevent cases of DRM free games being launched without
                                 // the client or offline, which would prevent the date from being updated in the service
-                                if (newGame.LastActivity != null && 
+                                if (newGame.LastActivity != null &&
                                     (existingGame.LastActivity == null || newGame.LastActivity > existingGame.LastActivity))
                                 {
                                     existingGame.LastActivity = newGame.LastActivity;
