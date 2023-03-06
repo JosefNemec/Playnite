@@ -169,7 +169,7 @@ namespace Playnite.DesktopApp.ViewModels
             public BaseStatInfo Favorite { get; set; }
             public ulong TotalPlayTime { get; set; }
             public ulong AvaragePlayTime { get; set; }
-            public ulong? TotalInstallSize { get; set; }
+            public ulong TotalInstallSize { get; set; }
         }
 
         private IGameDatabaseMain database;
@@ -401,7 +401,7 @@ namespace Playnite.DesktopApp.ViewModels
                     OrderByDescending(a => a.Playtime).
                     Take(50).
                     Select(a => new BaseStatInfo(a.Name, a.Playtime, totalPlaytime) { Game = a }).ToList(),
-                TotalInstallSize = totalInstallSize
+                TotalInstallSize = totalInstallSize.Value
             };
         }
 
