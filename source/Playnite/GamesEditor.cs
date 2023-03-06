@@ -27,6 +27,7 @@ using System.Collections.ObjectModel;
 using Playnite.Scripting.PowerShell;
 using Playnite.Windows;
 using System.Windows.Input;
+using System.Security.Cryptography;
 
 namespace Playnite
 {
@@ -868,7 +869,7 @@ namespace Playnite
             if (game.IsCustomGame)
             {
                 if (Dialogs.ShowMessage(
-                    "LOCGameRemoveAskMessage",
+                    string.Format(resources.GetString("LOCGameRemoveAskMessage"), game.Name),
                     "LOCGameRemoveAskTitle",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) != MessageBoxResult.Yes)
@@ -885,7 +886,7 @@ namespace Playnite
                     new MessageBoxOption("LOCNoLabel", false, true)
                 };
                 var result = Dialogs.ShowMessage(
-                    "LOCGameRemoveAskMessageIgnoreOption",
+                    string.Format(resources.GetString("LOCGameRemoveAskMessageIgnoreOption"), game.Name),
                     "LOCGameRemoveAskTitle",
                     MessageBoxImage.Question,
                     options);
@@ -893,7 +894,7 @@ namespace Playnite
                 {
                     addToExclusionList = true;
                 }
-                else if (result == options[2])
+                else if (result == null || result == options[2])
                 {
                     return;
                 }
