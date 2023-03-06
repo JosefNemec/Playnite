@@ -905,7 +905,8 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         var instModel = new InstalledGamesViewModel(
                            new InstalledGamesWindowFactory(),
-                           Dialogs);
+                           Dialogs,
+                           Database);
                         ImportInstalledGames(instModel, path);
                     }
                 }

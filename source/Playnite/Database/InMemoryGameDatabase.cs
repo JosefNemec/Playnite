@@ -214,5 +214,10 @@ namespace Playnite.Database
         {
             return true;
         }
+
+        public HashSet<string> GetImportedExeFiles()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

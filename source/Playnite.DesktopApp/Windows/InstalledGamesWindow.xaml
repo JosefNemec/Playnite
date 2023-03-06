@@ -28,7 +28,7 @@
         <ListView Grid.Column="0" Grid.Row="0" Name="ListPrograms" SelectionMode="Single" Margin="10,5,10,5"
                     VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
                     BorderThickness="{StaticResource ControlBorderThickness}" BorderBrush="{StaticResource NormalBorderBrush}"
-                    ItemsSource="{Binding Programs}" SelectedItem="{Binding SelectedProgram, Mode=TwoWay}"
+                    ItemsSource="{Binding CollectionView}" SelectedItem="{Binding SelectedProgram, Mode=TwoWay}"
                     pbeh:ScrollToSelectedBehavior.Enabled="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
@@ -80,6 +80,8 @@
             <Button TabIndex="3" Name="ButtonDetectInstalled" Content="{DynamicResource LOCDetectInstalled}" DockPanel.Dock="Left"
                     Style="{StaticResource BottomButton}"
                     Command="{Binding DetectInstalledCommand}"/>
+            <CheckBox Content="{DynamicResource LOCEmuScanHideImported}" Margin="10,0,0,0"
+                      IsChecked="{Binding HideImported}" VerticalAlignment="Center" />
             <Button TabIndex="5" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Style="{StaticResource BottomButton}"
                     Command="{Binding CloseCommand}"/>

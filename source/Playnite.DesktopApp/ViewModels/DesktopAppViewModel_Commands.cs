@@ -219,7 +219,8 @@ namespace Playnite.DesktopApp.ViewModels
                 ImportInstalledGames(
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
-                    Dialogs), null);
+                    Dialogs,
+                    Database), null);
             }, (a) => Database?.IsOpen == true);
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
@@ -238,7 +239,8 @@ namespace Playnite.DesktopApp.ViewModels
                 ImportWindowsStoreGames(
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
-                    Dialogs));
+                    Dialogs,
+                    Database));
             }, (a) => Database?.IsOpen == true);
 
             OpenFullScreenCommand = new RelayCommand<object>((a) =>
