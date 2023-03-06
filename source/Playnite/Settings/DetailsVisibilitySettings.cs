@@ -83,7 +83,7 @@ namespace Playnite
             }
         }
 
-        private bool added = true;
+        private bool added = false;
         public bool Added
         {
             get
