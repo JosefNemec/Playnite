@@ -400,7 +400,7 @@ foreach ($existingProfile in $existingEmuDefinition.Profiles) {
 
 # Join generated profiles and validated created profile yaml content
 $profiles = $profiles | Sort-Object
-$profilesString = [System.String]::Join("`r`n", $profiles)
+$profilesString = [System.String]::Join("`n`n", $profiles)
 $emuDefinitionContent = $emuDefinitionTemplate -f $profilesString
 if ((Get-IsYamlValid $emuDefinitionContent) -eq $false)
 {
@@ -444,12 +444,11 @@ foreach ($platform in $existingPlatformsDefinition) {
         $platformData +=  "Emulators: [{0}]" -f "retroarch"
     }
     
-    $platformDataString = $platformDefinitionTemplate -f $platform.Name, [System.String]::Join("`r`n  ", $platformData)
+    $platformDataString = $platformDefinitionTemplate -f $platform.Name, [System.String]::Join("`n  ", $platformData)
     $newPlatformsDefinitions += $platformDataString
 }
 
-$newPlatformsDefinitions = $newPlatformsDefinitions | Sort-Object
-$newPlatformsDefinitionsContent = [System.String]::Join("`r`n  `r`n", $newPlatformsDefinitions)
+$newPlatformsDefinitionsContent = [System.String]::Join("`n  `n", $newPlatformsDefinitions)
 
 # Validate created platforms definition yaml content
 if ((Get-IsYamlValid $newPlatformsDefinitionsContent) -eq $false)
@@ -459,7 +458,7 @@ if ((Get-IsYamlValid $newPlatformsDefinitionsContent) -eq $false)
     return
 }
 
-# Save generated yaml files
-[System.IO.File]::WriteAllLines($retroArchEmuDefinitionPath, $emuDefinitionContent, [System.Text.Encoding]::UTF8)
-[System.IO.File]::WriteAllLines($platformsDefinitionPath, $newPlatformsDefinitionsContent, [System.Text.Encoding]::UTF8)
+# Save generated yaml files. New lines are replaced to maintain CRLF endings
+[System.IO.File]::WriteAllLines($retroArchEmuDefinitionPath, $emuDefinitionContent.Replace("`n","`r`n"), [System.Text.Encoding]::UTF8)
+[System.IO.File]::WriteAllLines($platformsDefinitionPath, $newPlatformsDefinitionsContent.Replace("`n","`r`n"), [System.Text.Encoding]::UTF8)
 Write-Host "RetroArch emulator and Playnite platforms definitions updated and saved successfully!" -ForegroundColor Green
