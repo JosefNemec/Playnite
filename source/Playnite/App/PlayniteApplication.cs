@@ -470,6 +470,13 @@ namespace Playnite
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            // Running under Wine on Deck is not supported
+            if (PlayniteProcess.WorkingSetMemory == 0 && Computer.GetSystemInfo()?.Gpus?.ContainsStringPartial("RADV VANGOGH") == true)
+            {
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
             var exception = (Exception)e.ExceptionObject;
             var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
             logger.Error(exception, "Unhandled exception occured.");
