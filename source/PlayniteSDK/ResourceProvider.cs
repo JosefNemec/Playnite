@@ -32,6 +32,8 @@ namespace Playnite.SDK
     /// </summary>
     public class ResourceProvider : IResourceProvider
     {
+        private static IResourceProvider staticProvider;
+
         /// <summary>
         /// Creates new instance of <see cref="ResourceProvider"/>.
         /// </summary>
@@ -56,8 +58,15 @@ namespace Playnite.SDK
         /// <returns>String resource.</returns>
         public static string GetString(string key)
         {
-            var resource = Application.Current?.TryFindResource(key);
-            return resource == null ? $"<!{key}!>" : resource as string;
+            if (staticProvider != null)
+            {
+                return staticProvider.GetString(key);
+            }
+            else
+            {
+                var resource = Application.Current?.TryFindResource(key);
+                return resource == null ? $"<!{key}!>" : resource as string;
+            }
         }
 
         /// <summary>
@@ -67,7 +76,14 @@ namespace Playnite.SDK
         /// <returns>Application resource.</returns>
         public static object GetResource(string key)
         {
-            return Application.Current?.TryFindResource(key);
+            if (staticProvider != null)
+            {
+                return staticProvider.GetResource(key);
+            }
+            else
+            {
+                return Application.Current?.TryFindResource(key);
+            }
         }
 
         /// <summary>
@@ -79,6 +95,11 @@ namespace Playnite.SDK
         public static T GetResource<T>(string key)
         {
             return (T)Application.Current?.TryFindResource(key);
+        }
+
+        internal static void SetGlobalProvider(IResourceProvider provider)
+        {
+            staticProvider = provider;
         }
     }
 }

@@ -142,7 +142,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                     detectedUnused = a.Contains("2");
                 }).Returns(MessageBoxResult.Yes);
 
-                var vm = new DatabaseFieldsManagerViewModel(db, new Mock<IWindowFactory>().Object, dialogs.Object, new TestResourceProvider());
+                var vm = new DatabaseFieldsManagerViewModel(db, new Mock<IWindowFactory>().Object, dialogs.Object, TestResourceProvider.Instance);
                 vm.RemoveUnusedPlatformsCommand.Execute(null);
                 Assert.IsTrue(detectedUnused);
 
