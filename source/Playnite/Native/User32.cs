@@ -26,6 +26,12 @@ namespace Playnite.Native
         public static extern int DisplayConfigGetDeviceInfo(ref DISPLAYCONFIG_TARGET_DEVICE_NAME deviceName);
 
         [DllImport(dllName)]
+        public static extern int DisplayConfigGetDeviceInfo(ref DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO requestPacket);
+
+        [DllImport(dllName)]
+        public static extern int DisplayConfigSetDeviceInfo(ref DISPLAYCONFIG_DEVICE_INFO_HEADER setPacket);
+
+        [DllImport(dllName)]
         public static extern IntPtr GetForegroundWindow();
 
         [DllImport(dllName)]

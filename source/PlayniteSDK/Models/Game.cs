@@ -177,7 +177,9 @@ namespace Playnite.SDK.Models
         ///
         LastSizeScanDate = 90,
         ///
-        RecentActivity = 91
+        RecentActivity = 91,
+        ///
+        EnableSystemHdr = 92
     }
 
     /// <summary>
@@ -257,6 +259,24 @@ namespace Playnite.SDK.Models
                 genreIds = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Genres));
+            }
+        }
+
+        private bool enableSystemHdr;
+        /// <summary>
+        /// Gets or sets value indicating if the game is should enable HDR on the primary monitor while playing.
+        /// </summary>
+        public bool EnableSystemHdr
+        {
+            get
+            {
+                return enableSystemHdr;
+            }
+
+            set
+            {
+                enableSystemHdr = value;
+                OnPropertyChanged();
             }
         }
 
@@ -1677,6 +1697,7 @@ namespace Playnite.SDK.Models
                 BackgroundImage = BackgroundImage,
                 Description = Description,
                 Notes = Notes,
+                EnableSystemHdr = EnableSystemHdr,
                 Hidden = Hidden,
                 Favorite = Favorite,
                 InstallDirectory = InstallDirectory,
@@ -1750,6 +1771,11 @@ namespace Playnite.SDK.Models
                 if (!GenreIds.IsListEqual(tro.GenreIds))
                 {
                     tro.GenreIds = GenreIds;
+                }
+
+                if (EnableSystemHdr != tro.EnableSystemHdr)
+                {
+                    tro.EnableSystemHdr = EnableSystemHdr;
                 }
 
                 if (Hidden != tro.Hidden)
@@ -2025,6 +2051,11 @@ namespace Playnite.SDK.Models
             {
                 changes.Add(GameField.GenreIds);
                 changes.Add(GameField.Genres);
+            }
+
+            if (EnableSystemHdr != otherGame.enableSystemHdr)
+            {
+                changes.Add(GameField.EnableSystemHdr);
             }
 
             if (Hidden != otherGame.Hidden)

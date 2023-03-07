@@ -164,6 +164,7 @@ $raCoreNameToPlatformIdsTranslate = @{
     "Gearsystem" = @("sega_mastersystem", "sega_gamegear", "SG-1000", "coleco_vision");
     "Genesis Plus GX" = @("sega_mastersystem", "sega_gamegear", "sega_genesis", "sega_cd");
     "Genesis Plus GX Wide" = @("sega_mastersystem", "sega_gamegear", "sega_genesis", "sega_cd");
+    "nSide (Super Famicom Accuracy)" = @("nintendo_super_nes", "nintendo_gameboy", "nintendo_gameboycolor");
     "PicoDrive" = @("sega_mastersystem", "sega_genesis", "sega_cd", "sega_32x");
     "SMS Plus GX" = @("sega_mastersystem", "sega_gamegear", "SG-1000", "coleco_vision");
 }
@@ -260,9 +261,17 @@ $existingProfileReaddTemplate = '  - Name: {0}
     ProfileFiles: [''{4}'']
     StartupExecutable: ^retroarch\.exe$'
 
-$profiles = @()
+$existingEmuDefinition = Get-Content $retroArchEmuDefinitionPath -Raw | ConvertFrom-Yaml
+$usedProfileNames = @()
+$existingProfiles = @{}
+foreach ($existingProfile in $existingEmuDefinition.Profiles) {
+    $existingProfiles[$existingProfile.ProfileFiles[0]] = $existingProfile
+    $usedProfileNames += $existingProfile.Name
+}
+
 $foundCoreNames = @()
 $foundPlatformIds = @()
+$profiles = @()
 $infoPath = Join-Path $RetroArchDir "info"
 $infoFiles = Get-ChildItem $infoPath -Filter "*.info"
 foreach ($infoFile in $infoFiles)
@@ -273,11 +282,29 @@ foreach ($infoFile in $infoFiles)
     }
     
     $coreInfo = ParseInfoFile $infoFile.FullName
-    $coreName = $coreInfo.corename
-    $platformIds = $null
-    if ($raCoreNameToPlatformIdsTranslate.ContainsKey($coreName))
+    $coreFile = "cores\{0}.dll" -f $infoFile.BaseName
+    $platformIds = @()
+    if ($existingProfiles.ContainsKey($coreFile))
     {
-        $platformIds = $raCoreNameToPlatformIdsTranslate[$coreName]
+        $coreName = $existingProfiles[$coreFile].Name
+        $platformIds = $existingProfiles[$coreFile].Platforms
+    }
+    else
+    {
+        if ($usedProfileNames.Contains($coreInfo.corename))
+        {
+            $coreName = "{0} - {1}" -f $coreInfo.corename, $coreInfo.display_name
+        }
+        else
+        {
+            $coreName = $coreInfo.corename
+        }
+    }
+
+    $coreInfoCoreName = $coreInfo.corename
+    if ($raCoreNameToPlatformIdsTranslate.ContainsKey($coreInfoCoreName))
+    {
+        $platformIds = $raCoreNameToPlatformIdsTranslate[$coreInfoCoreName]
     }
     elseif ($null -ne $coreInfo.systemid -and $raSystemIdToPlatformIdsTranslate.ContainsKey($coreInfo.systemid.Trim()))
     {
@@ -285,7 +312,6 @@ foreach ($infoFile in $infoFiles)
     }
     else
     {
-        $platformIds = @()
         $coreInfo.systemname.Split("/", [System.StringSplitOptions]::RemoveEmptyEntries) | ForEach-Object {
             $system = $_.Trim()
             if (($retroarchArcadeSystems -contains $system) -or ($retroarchMiscSystems -contains $system))
@@ -295,7 +321,11 @@ foreach ($infoFile in $infoFiles)
 
             if ($raSystemNameToPlatformIdTranslate.ContainsKey($system))
             {
-                $platformIds += $raSystemNameToPlatformIdTranslate[$system]
+                $platformId = $raSystemNameToPlatformIdTranslate[$system]
+                if ($platformIds -notcontains $platformId)
+                {
+                    $platformIds += $platformId
+                }
             }
             else
             {
@@ -349,29 +379,33 @@ foreach ($infoFile in $infoFiles)
     $profileString = $profileTemplate -f $coreName, $infoFile.BaseName, $platformIdsString, $extensionsString, $infoFile.BaseName
     $profiles += $profileString
     $foundCoreNames += $coreName
+    $usedProfileNames += $coreName
 }
 
 # Previous profiles need to be kept or existing emulator configuration will break
 # Here emulators not generated will be added back
-if (Test-Path $retroArchEmuDefinitionPath -PathType Leaf)
-{
-    $existingEmuDefinition = Get-Content $retroArchEmuDefinitionPath -Raw | ConvertFrom-Yaml
-    foreach ($existingProfile in $existingEmuDefinition.Profiles) {
-        if ($foundCoreNames -notcontains $existingProfile.Name)
-        {
-            $platformIds = [System.String]::Join(", ", ($existingProfile.Platforms | Sort-Object))
-            $extensionsString = [System.String]::Join(", ", ($existingProfile.ImageExtensions | Sort-Object))
-            $profileFilesString = [System.String]::Join(", ", ($existingProfile.ProfileFiles | Sort-Object))
-            $profileString = $existingProfileReaddTemplate -f  $existingProfile.Name, $existingProfile.StartupArguments, $platformIds, $extensionsString, $profileFilesString
-            $profiles += $profileString
-            Write-Host "Existing profile $($existingProfile.Name) not found in newly generated definition and was added back from previous definition" -ForegroundColor Yellow
+foreach ($existingProfile in $existingEmuDefinition.Profiles) {
+    if ($foundCoreNames -notcontains $existingProfile.Name)
+    {
+        foreach ($platformId in $existingProfile.Platforms) {
+            if ($foundPlatformIds -notcontains $platformId)
+            {
+                $foundPlatformIds += $platformId
+            }
         }
+
+        $platformIds = [System.String]::Join(", ", ($existingProfile.Platforms | Sort-Object))
+        $extensionsString = [System.String]::Join(", ", ($existingProfile.ImageExtensions | Sort-Object))
+        $profileFilesString = [System.String]::Join(", ", ($existingProfile.ProfileFiles | Sort-Object))
+        $profileString = $existingProfileReaddTemplate -f  $existingProfile.Name, $existingProfile.StartupArguments, $platformIds, $extensionsString, $profileFilesString
+        $profiles += $profileString
+        Write-Host "Existing profile $($existingProfile.Name) not found in newly generated definition and was added back from previous definition" -ForegroundColor Yellow
     }
 }
 
 # Join generated profiles and validated created profile yaml content
 $profiles = $profiles | Sort-Object
-$profilesString = [System.String]::Join("`r`n", $profiles)
+$profilesString = [System.String]::Join("`n`n", $profiles)
 $emuDefinitionContent = $emuDefinitionTemplate -f $profilesString
 if ((Get-IsYamlValid $emuDefinitionContent) -eq $false)
 {
@@ -415,12 +449,11 @@ foreach ($platform in $existingPlatformsDefinition) {
         $platformData +=  "Emulators: [{0}]" -f "retroarch"
     }
     
-    $platformDataString = $platformDefinitionTemplate -f $platform.Name, [System.String]::Join("`r`n  ", $platformData)
+    $platformDataString = $platformDefinitionTemplate -f $platform.Name, [System.String]::Join("`n  ", $platformData)
     $newPlatformsDefinitions += $platformDataString
 }
 
-$newPlatformsDefinitions = $newPlatformsDefinitions | Sort-Object
-$newPlatformsDefinitionsContent = [System.String]::Join("`r`n  `r`n", $newPlatformsDefinitions)
+$newPlatformsDefinitionsContent = [System.String]::Join("`n  `n", $newPlatformsDefinitions)
 
 # Validate created platforms definition yaml content
 if ((Get-IsYamlValid $newPlatformsDefinitionsContent) -eq $false)
@@ -430,7 +463,7 @@ if ((Get-IsYamlValid $newPlatformsDefinitionsContent) -eq $false)
     return
 }
 
-# Save generated yaml files
-[System.IO.File]::WriteAllLines($retroArchEmuDefinitionPath, $emuDefinitionContent, [System.Text.Encoding]::UTF8)
-[System.IO.File]::WriteAllLines($platformsDefinitionPath, $newPlatformsDefinitionsContent, [System.Text.Encoding]::UTF8)
+# Save generated yaml files. New lines are replaced to maintain CRLF endings
+[System.IO.File]::WriteAllLines($retroArchEmuDefinitionPath, $emuDefinitionContent.Replace("`n","`r`n"), [System.Text.Encoding]::UTF8)
+[System.IO.File]::WriteAllLines($platformsDefinitionPath, $newPlatformsDefinitionsContent.Replace("`n","`r`n"), [System.Text.Encoding]::UTF8)
 Write-Host "RetroArch emulator and Playnite platforms definitions updated and saved successfully!" -ForegroundColor Green
