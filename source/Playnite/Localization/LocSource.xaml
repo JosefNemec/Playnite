@@ -1235,4 +1235,7 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCGameMenu">Game menu</sys:String>
     <sys:String x:Key="LOCProgramFolder">Program folder</sys:String>
     <sys:String x:Key="LOCUserDataFolder">User data directory</sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Library file corruption has been detected, Playnite will now shutdown.
+    
+Open new issue on Playnite's GitHub page with a request to fix corruption in your files.</sys:String>
 </ResourceDictionary>

@@ -486,6 +486,13 @@ namespace Playnite
             // Delete safe startup flag if we are able to handle the crash,
             // safe startup option should show for crashes we are not handling.
             FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
+            if (crashInfo.IsLiteDbCorruptionCrash)
+            {
+                Dialogs.ShowErrorMessage(LOC.DBCorruptionCrashMessage.GetLocalized());
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
             if (crashInfo.IsExtensionCrash)
             {
                 crashModel = new CrashHandlerViewModel(

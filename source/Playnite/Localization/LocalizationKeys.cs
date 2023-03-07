@@ -4397,5 +4397,9 @@ namespace Playnite
         /// User data directory
         /// </summary>
         public const string UserDataFolder = "LOCUserDataFolder";
+        /// <summary>
+        /// Library file corruption has been detected, Playnite will now shutdown.
+        /// </summary>
+        public const string DBCorruptionCrashMessage = "LOCDBCorruptionCrashMessage";
     }
 }
