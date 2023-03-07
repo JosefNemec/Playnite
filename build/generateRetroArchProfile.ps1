@@ -164,6 +164,7 @@ $raCoreNameToPlatformIdsTranslate = @{
     "Gearsystem" = @("sega_mastersystem", "sega_gamegear", "SG-1000", "coleco_vision");
     "Genesis Plus GX" = @("sega_mastersystem", "sega_gamegear", "sega_genesis", "sega_cd");
     "Genesis Plus GX Wide" = @("sega_mastersystem", "sega_gamegear", "sega_genesis", "sega_cd");
+    "nSide (Super Famicom Accuracy)" = @("nintendo_super_nes", "nintendo_gameboy", "nintendo_gameboycolor");
     "PicoDrive" = @("sega_mastersystem", "sega_genesis", "sega_cd", "sega_32x");
     "SMS Plus GX" = @("sega_mastersystem", "sega_gamegear", "SG-1000", "coleco_vision");
 }
@@ -282,9 +283,11 @@ foreach ($infoFile in $infoFiles)
     
     $coreInfo = ParseInfoFile $infoFile.FullName
     $coreFile = "cores\{0}.dll" -f $infoFile.BaseName
+    $platformIds = @()
     if ($existingProfiles.ContainsKey($coreFile))
     {
         $coreName = $existingProfiles[$coreFile].Name
+        $platformIds = $existingProfiles[$coreFile].Platforms
     }
     else
     {
@@ -298,7 +301,6 @@ foreach ($infoFile in $infoFiles)
         }
     }
 
-    $platformIds = $null
     $coreInfoCoreName = $coreInfo.corename
     if ($raCoreNameToPlatformIdsTranslate.ContainsKey($coreInfoCoreName))
     {
@@ -310,7 +312,6 @@ foreach ($infoFile in $infoFiles)
     }
     else
     {
-        $platformIds = @()
         $coreInfo.systemname.Split("/", [System.StringSplitOptions]::RemoveEmptyEntries) | ForEach-Object {
             $system = $_.Trim()
             if (($retroarchArcadeSystems -contains $system) -or ($retroarchMiscSystems -contains $system))
@@ -320,7 +321,11 @@ foreach ($infoFile in $infoFiles)
 
             if ($raSystemNameToPlatformIdTranslate.ContainsKey($system))
             {
-                $platformIds += $raSystemNameToPlatformIdTranslate[$system]
+                $platformId = $raSystemNameToPlatformIdTranslate[$system]
+                if ($platformIds -notcontains $platformId)
+                {
+                    $platformIds += $platformId
+                }
             }
             else
             {
