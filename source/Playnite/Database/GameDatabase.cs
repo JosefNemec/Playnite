@@ -1320,6 +1320,11 @@ namespace Playnite.Database
 
         public List<FilterPreset> GetSortedFilterPresets()
         {
+            if (!IsOpen)
+            {
+                return new List<FilterPreset>();
+            }
+
             var filterPresetsSettings = (FilterPresets as FilterPresetsCollection).GetSettings();
             var sortingOrder = filterPresetsSettings.SortingOrder;
             var savedSortedList = FilterPresets
