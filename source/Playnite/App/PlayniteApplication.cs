@@ -470,8 +470,9 @@ namespace Playnite
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            // Running under Wine on Deck is not supported
-            if (PlayniteProcess.WorkingSetMemory == 0 && Computer.GetSystemInfo()?.Gpus?.ContainsStringPartial("RADV VANGOGH") == true)
+            // Running under Wine is not supported
+            if (PlayniteProcess.WorkingSetMemory == 0 &&
+                Programs.GetUnistallProgramsList().Any(a => a.DisplayName.StartsWith("Wine Mono", StringComparison.OrdinalIgnoreCase)))
             {
                 Process.GetCurrentProcess().Kill();
                 return;
