@@ -322,7 +322,7 @@ namespace Playnite.DesktopApp.ViewModels
             ulong hidden = 0;
             ulong favorite = 0;
             ulong totalPlaytime = 0;
-            ulong? totalInstallSize = 0;
+            ulong totalInstallSize = 0;
 
             var compStats = new Dictionary<Guid, ulong>();
             foreach (var game in database.Games)
@@ -346,7 +346,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (game.InstallSize != null && game.InstallSize > 0)
                 {
-                    totalInstallSize += game.InstallSize;
+                    totalInstallSize += game.InstallSize.Value;
                 }
 
                 if (game.IsInstalled)
@@ -401,7 +401,7 @@ namespace Playnite.DesktopApp.ViewModels
                     OrderByDescending(a => a.Playtime).
                     Take(50).
                     Select(a => new BaseStatInfo(a.Name, a.Playtime, totalPlaytime) { Game = a }).ToList(),
-                TotalInstallSize = totalInstallSize.Value
+                TotalInstallSize = totalInstallSize
             };
         }
 
