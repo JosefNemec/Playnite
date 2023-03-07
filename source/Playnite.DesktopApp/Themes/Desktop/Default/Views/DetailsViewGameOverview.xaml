@@ -107,11 +107,14 @@
                                             
                                         <GridEx Margin="0,5,0,10"
                                                 ColumnCount="2" StarColumns="1"
-                                                RowCount="24" AutoLayoutColumns="2">
+                                                RowCount="25" AutoLayoutColumns="2">
                                             <Grid.Resources>
                                                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                             </Grid.Resources>
 
+                                            <Label Name="PART_ElemAdded" Content="{DynamicResource LOCDateAddedLabel}" />
+                                            <TextBlock Name="PART_TextAdded" VerticalAlignment="Center" />
+                                            
                                             <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" />
                                             <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" />
 
