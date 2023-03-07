@@ -14,6 +14,7 @@
         xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
         xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
         xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
+        xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
@@ -480,7 +481,7 @@
                     <CheckBox Grid.Column="0" Grid.Row="1" Style="{StaticResource SaveChangesCheck}"
                               IsChecked="{Binding UsePlaytimeChanges}"/>
                     <DockPanel Grid.Column="2" Grid.Row="1">
-                        <TextBlock Text="{Binding EditingGame.Playtime, Converter={pcon:PlayTimeToStringConverter}}"
+                        <TextBlock Text="{Binding EditingGame.Playtime, Converter={pcon:PlayTimeToStringConverter}, ConverterParameter={pmrk:Settings PlaytimeUseDaysFormat, DirectValue=True}}"
                                    DockPanel.Dock="Right" />
                         <TextBox ToolTip="{DynamicResource LOCDescriptionPlaytimeSeconds}"
                                  ToolTipService.Placement="Top" ToolTipService.InitialShowDelay="0"

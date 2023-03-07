@@ -412,7 +412,8 @@ namespace Playnite.DesktopApp.Controls.Views
             SetGameItemTextBinding(ref TextPlayTime, "PART_TextPlayTime",
                 nameof(GameDetailsViewModel.Game.Playtime),
                 nameof(GameDetailsViewModel.PlayTimeVisibility),
-                new PlayTimeToStringConverter());
+                new PlayTimeToStringConverter(),
+                mainModel.AppSettings.PlaytimeUseDaysFormat);
 
             SetGameItemTextBinding(ref TextInstallSize, "PART_TextInstallSize",
                 nameof(GameDetailsViewModel.Game.InstallSize),
