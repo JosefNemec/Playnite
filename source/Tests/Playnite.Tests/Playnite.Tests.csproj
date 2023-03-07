@@ -104,6 +104,7 @@
     <Compile Include="Api\PluginDescriptionTests.cs" />
     <Compile Include="App\UpdateTests.cs" />
     <Compile Include="CloneObjectTests.cs" />
+    <Compile Include="Converters\PlayTimeToStringConverterTests.cs" />
     <Compile Include="Database\EmulatorsCollectionTests.cs" />
     <Compile Include="Emulators\EmulationTests.cs" />
     <Compile Include="Emulators\EmulationDatabaseTests.cs" />
