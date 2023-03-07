@@ -125,12 +125,21 @@ namespace Playnite.ViewModels
 
         public List<FilterPreset> SortedFilterPresets
         {
-            get => Database.FilterPresets.OrderBy(a => a.Name).ToList();
+            
+            get
+            {
+                return Database.GetSortedFilterPresets();
+            }
         }
 
         public List<FilterPreset> SortedFilterFullscreenPresets
         {
-            get => Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection).OrderBy(a => a.Name).ToList();
+            get
+            {
+                return Database.GetSortedFilterPresets()
+                    .Where(a => a.ShowInFullscreeQuickSelection)
+                    .ToList();
+            }
         }
 
         public bool IsDisposing { get; set; } = false;
@@ -218,6 +227,21 @@ namespace Playnite.ViewModels
             RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
             BackupDataCommand = new RelayCommand(() => BackupData());
             RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
+            var filterPresetsCollection = (database.FilterPresets as FilterPresetsCollection);
+            filterPresetsCollection.OnSettingsUpdated += FilterPresetsCollection_OnSettingsUpdated;
+            database.FilterPresets.ItemCollectionChanged += FilterPresets_ItemCollectionChanged;
+        }
+
+        private void FilterPresetsCollection_OnSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
+        {
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+        }
+
+        private void FilterPresets_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<FilterPreset> e)
+        {
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
         }
 
         private PlayniteSettings appSettings;
@@ -357,9 +381,6 @@ namespace Playnite.ViewModels
                 {
                     ActiveFilterPreset = null;
                 }
-
-                OnPropertyChanged(nameof(SortedFilterPresets));
-                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
         }
 
@@ -420,9 +441,6 @@ namespace Playnite.ViewModels
                     Database.FilterPresets.Add(preset);
                     ActiveFilterPreset = preset;
                 }
-
-                OnPropertyChanged(nameof(SortedFilterPresets));
-                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
         }
 
