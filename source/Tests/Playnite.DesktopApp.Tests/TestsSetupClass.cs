@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Playnite;
 using Playnite.Common;
+using Playnite.SDK;
 using Playnite.Tests;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,8 @@ namespace Playnite.DesktopApp.Tests
         [OneTimeSetUp]
         public void GlobalSetup()
         {
-            // To register pack:// scheme
-            var current = new Application();
             PlayniteTests.SetEntryAssembly(Assembly.GetExecutingAssembly());
-            FileSystem.CreateDirectory(PlayniteTests.TempPath, true);
-            NLogLogger.IsTraceEnabled = true;
-            PlayniteSettings.ConfigureLogger();
+            Playnite.Tests.TestsSetupClass.OneTimeSetUp();
         }
 
         [OneTimeTearDown]
