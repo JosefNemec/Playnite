@@ -350,7 +350,7 @@
   IgdbId: 84
   Databases: [Sega - SG-1000]
   Emulators: [ares]
-
+  
 - Name: Sharp X68000
   Id: sharp_x68000
   IgdbId: 121
