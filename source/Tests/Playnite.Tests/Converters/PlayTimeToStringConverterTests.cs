@@ -22,29 +22,26 @@ namespace Playnite.Tests.Converters
         [Test]
         public void ConvertLocalizationStringsTest()
         {
-            var LOCPlayedNone = ResourceProvider.GetString("LOCPlayedNone");
-            var LOCPlayedSeconds = ResourceProvider.GetString("LOCPlayedSeconds");
-            var LOCPlayedMinutes = ResourceProvider.GetString("LOCPlayedMinutes");
-            var LOCPlayedHours = ResourceProvider.GetString("LOCPlayedHours");
-            var LOCPlayedDays = ResourceProvider.GetString("LOCPlayedDays");
-
             ulong? zeroSeconds = 0;
             ulong? totalSecondsInMinute = 60;
             ulong? totalSecondsInHour = totalSecondsInMinute * 60;
             ulong? totalSecondsInDay = totalSecondsInHour * 24;
 
             // formatToDaysParameter set to null/false tests
-            Assert.AreEqual(LOCPlayedNone, Convert(zeroSeconds, false));
-            Assert.AreEqual(LOCPlayedSeconds, Convert(totalSecondsInMinute - 1, false));
-            Assert.AreEqual(LOCPlayedMinutes, Convert(totalSecondsInMinute, false));
-            Assert.AreEqual(LOCPlayedHours, Convert(totalSecondsInDay, false));
+            Assert.AreEqual("Not Played", Convert(zeroSeconds, false));
+            Assert.AreEqual("59 seconds", Convert(totalSecondsInMinute - 1, false));
+            Assert.AreEqual("1 minutes", Convert(totalSecondsInMinute, false));
+            Assert.AreEqual("24h 1m", Convert(totalSecondsInDay + totalSecondsInMinute, false));
 
             // formatToDaysParameter set to true
-            Assert.AreEqual(LOCPlayedNone, Convert(zeroSeconds, true));
-            Assert.AreEqual(LOCPlayedSeconds, Convert(totalSecondsInMinute - 1, true));
-            Assert.AreEqual(LOCPlayedMinutes, Convert(totalSecondsInMinute, true));
-            Assert.AreEqual(LOCPlayedHours, Convert(totalSecondsInDay - 1, true));
-            Assert.AreEqual(LOCPlayedDays, Convert(totalSecondsInDay, true));
+            Assert.AreEqual("Not Played", Convert(zeroSeconds, true));
+            Assert.AreEqual("59 seconds", Convert(totalSecondsInMinute - 1, true));
+            Assert.AreEqual("1 minutes", Convert(totalSecondsInMinute, true));
+            Assert.AreEqual("23h 59m", Convert(totalSecondsInDay - 1, true));
+            Assert.AreEqual("1d 0h 0m", Convert(totalSecondsInDay, true));
+
+            var testSeconds = totalSecondsInDay + (totalSecondsInHour * 2) + (totalSecondsInMinute * 30);
+            Assert.AreEqual("1d 2h 30m", Convert(testSeconds, true));
         }
     }
 }
