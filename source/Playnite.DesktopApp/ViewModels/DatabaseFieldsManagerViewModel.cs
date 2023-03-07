@@ -558,6 +558,60 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion CompletionStatuses
 
+        #region FilterPresets
+
+        public ObservableCollection<FilterPreset> EditingFilterPresets
+        {
+            get;
+        }
+
+        public FilterPresetsSettings FilterPresetsSettings
+        {
+            get;
+        }
+
+        public RelayCommand<IList<object>> RemoveFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RemoveItem(EditingFilterPresets, a.Cast<FilterPreset>().ToList());
+            }, (a) => a?.Count > 0);
+        }
+
+        public RelayCommand<IList<object>> RenameFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                RenameItem(EditingFilterPresets, a.First() as FilterPreset);
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> MoveUpFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                var index = EditingFilterPresets.IndexOf(a.First() as FilterPreset);
+                if (index != 0)
+                {
+                    EditingFilterPresets.Move(index, index - 1);
+                }
+            }, (a) => a?.Count == 1);
+        }
+
+        public RelayCommand<IList<object>> MoveDownFilterPresetCommand
+        {
+            get => new RelayCommand<IList<object>>((a) =>
+            {
+                var index = EditingFilterPresets.IndexOf(a.First() as FilterPreset);
+                if (index != EditingFilterPresets.Count - 1)
+                {
+                    EditingFilterPresets.Move(index, index + 1);
+                }
+            }, (a) => a?.Count == 1);
+        }
+
+        #endregion FilterPresets
+
         public RelayCommand<object> SaveCommand
         {
             get => new RelayCommand<object>((a) =>
@@ -613,6 +667,8 @@ namespace Playnite.DesktopApp.ViewModels
             });
 
             CompletionStatusSettings = database.GetCompletionStatusSettings();
+            FilterPresetsSettings = database.GetFilterPresetsSettings();
+            EditingFilterPresets = database.GetSortedFilterPresets().ToObservable();
         }
 
         public void OpenView()
@@ -636,11 +692,13 @@ namespace Playnite.DesktopApp.ViewModels
                 UpdateDbCollection(database.Regions, EditingRegions);
                 UpdateDbCollection(database.Series, EditingSeries);
                 UpdateDbCollection(database.Sources, EditingSources);
+                UpdateDbCollection(database.FilterPresets, EditingFilterPresets);
                 UpdateDbCollection(database.Tags, EditingTags);
                 UpdateDbCollection(database.Features, EditingFeatures);
                 UpdateDbCollection(database.CompletionStatuses, EditingCompletionStatuses);
                 UpdatePlatformsCollection();
                 UpdateCompletionStatusSettings();
+                UpdateFilterPresetsSettings();
             }
 
             window.Close(true);
@@ -965,6 +1023,16 @@ namespace Playnite.DesktopApp.ViewModels
             if (!CompletionStatusSettings.IsEqualJson(dbSet))
             {
                 database.SetCompletionStatusSettings(CompletionStatusSettings);
+            }
+        }
+
+        private void UpdateFilterPresetsSettings()
+        {
+            var dbSet = database.GetFilterPresetsSettings();
+            FilterPresetsSettings.SortingOrder = EditingFilterPresets.Select(x => x.Id).ToList();
+            if (!FilterPresetsSettings.IsEqualJson(dbSet))
+            {
+                database.SetFilterPresetsSettings(FilterPresetsSettings);
             }
         }
     }

@@ -68,7 +68,10 @@ namespace Playnite.Database
         IDisposable BufferedUpdate();
         List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode);
         CompletionStatusSettings GetCompletionStatusSettings();
+        FilterPresetsSettings GetFilterPresetsSettings();
+        List<FilterPreset> GetSortedFilterPresets();
         void SetCompletionStatusSettings(CompletionStatusSettings settings);
+        void SetFilterPresetsSettings(FilterPresetsSettings settings);
         GameScannersSettings GetGameScannersSettings();
         void SetGameScannersSettings(GameScannersSettings settings);
         HashSet<string> GetImportedRomFiles(string emulatorDir);
@@ -1312,6 +1315,32 @@ namespace Playnite.Database
                     return addedGames;
                 }
             }
+        }
+
+        public List<FilterPreset> GetSortedFilterPresets()
+        {
+            var filterPresetsSettings = (FilterPresets as FilterPresetsCollection).GetSettings();
+            var sortingOrder = filterPresetsSettings.SortingOrder;
+            var savedSortedList = FilterPresets
+                .Where(x => sortingOrder.Contains(x.Id))
+                .OrderBy(x => sortingOrder.IndexOf(x.Id))
+                .ToList();
+            var unsavedSortedList = FilterPresets
+                .Where(x => !sortingOrder.Contains(x.Id))
+                .OrderBy(x => x.Name);
+
+            savedSortedList.AddRange(unsavedSortedList);
+            return savedSortedList;
+        }
+
+        public FilterPresetsSettings GetFilterPresetsSettings()
+        {
+            return (FilterPresets as FilterPresetsCollection).GetSettings();
+        }
+
+        public void SetFilterPresetsSettings(FilterPresetsSettings settings)
+        {
+            (FilterPresets as FilterPresetsCollection).SetSettings(settings);
         }
 
         public CompletionStatusSettings GetCompletionStatusSettings()
