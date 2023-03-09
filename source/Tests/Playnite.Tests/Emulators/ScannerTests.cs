@@ -37,6 +37,7 @@ namespace Playnite.Tests.Emulators
                     new System.Threading.CancellationTokenSource().Token,
                     null,
                     true,
+                    true,
                     true);
 
                 Assert.AreEqual(2, scanResults.Count);
@@ -85,6 +86,10 @@ namespace Playnite.Tests.Emulators
                 Assert.AreEqual("Disc 2 - JP - EE", game.Roms[3].Name);
                 Assert.AreEqual("Disc 1 - USA", game.Roms[4].Name);
                 Assert.AreEqual("Disc 2 - USA", game.Roms[5].Name);
+
+                config.MergeRelatedFiles = false;
+                games = scanner.Scan(CancellationToken.None, out var _, out var _);
+                Assert.AreEqual(6, games.Count);
             }
         }
 
@@ -198,6 +203,7 @@ namespace Playnite.Tests.Emulators
                     CancellationToken.None,
                     null,
                     true,
+                    true,
                     true);
 
                 Assert.AreEqual(1, scanResults.Count);
@@ -213,6 +219,7 @@ namespace Playnite.Tests.Emulators
                     scanResults,
                     CancellationToken.None,
                     null,
+                    true,
                     true,
                     true);
 
@@ -230,6 +237,7 @@ namespace Playnite.Tests.Emulators
                   CancellationToken.None,
                   null,
                   true,
+                    true,
                   true);
 
                 Assert.AreEqual(0, scanResults.Count);

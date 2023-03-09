@@ -3910,6 +3910,14 @@ namespace Playnite
         /// </summary>
         public const string EmuImportScanInsideArchives = "LOCEmuImportScanInsideArchives";
         /// <summary>
+        /// Merge related files
+        /// </summary>
+        public const string EmuMergeRelatedFiles = "LOCEmuMergeRelatedFiles";
+        /// <summary>
+        /// Merge related game files, like individual game discs, under one game entry.
+        /// </summary>
+        public const string EmuMergeRelatedFilesTooltip = "LOCEmuMergeRelatedFilesTooltip";
+        /// <summary>
         /// Add scanner
         /// </summary>
         public const string EmuAddScanner = "LOCEmuAddScanner";

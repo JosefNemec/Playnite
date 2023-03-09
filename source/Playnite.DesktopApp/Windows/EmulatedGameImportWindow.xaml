@@ -219,6 +219,9 @@
                                           IsChecked="{Binding ScanSubfolders}"/>
                                 <CheckBox Content="{DynamicResource LOCEmuImportScanInsideArchives}" Margin="0,10,0,0"
                                           IsChecked="{Binding ScanInsideArchives}"/>
+                                <CheckBox Content="{DynamicResource LOCEmuMergeRelatedFiles}" Margin="0,10,0,0"
+                                          ToolTip="{DynamicResource LOCEmuMergeRelatedFilesTooltip}"
+                                          IsChecked="{Binding MergeRelatedFiles}"/>
                                 <CheckBox Content="{DynamicResource LOCEmuSaveScanConfig}"
                                           ToolTip="{DynamicResource LOCEmuSaveScanConfigTooltip}"
                                           ToolTipService.InitialShowDelay="200" Margin="0,10,0,0"

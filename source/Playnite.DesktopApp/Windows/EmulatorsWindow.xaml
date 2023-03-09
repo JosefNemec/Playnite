@@ -406,7 +406,7 @@
                                     DataContext="{Binding SelectedScanner}">
                             <TabItem Header="{DynamicResource LOCGeneralLabel}">
                                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                                <GridEx AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="12" StarRows="12"
+                                <GridEx AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="13" StarRows="13"
                                         Margin="5,5,5,0">
                                     <controls:GridEx.Resources>
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
@@ -497,6 +497,12 @@
                                     <CheckBox Content="{DynamicResource LOCEmuImportScanInsideArchives}"
                                               Grid.ColumnSpan="2" Margin="0,10,10,5"
                                               IsChecked="{Binding ScanInsideArchives}"/>
+                                    
+                                    <!--Merge files-->
+                                    <CheckBox Content="{DynamicResource LOCEmuMergeRelatedFiles}"
+                                              ToolTip="{DynamicResource LOCEmuMergeRelatedFilesTooltip}"
+                                              Grid.ColumnSpan="2" Margin="0,10,10,5"
+                                              IsChecked="{Binding MergeRelatedFiles}"/>
                                 </GridEx>
                                 </ScrollViewer>
                             </TabItem>
