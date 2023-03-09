@@ -345,6 +345,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsCloseToTray">Minimize Playnite to system tray when the application window is closed</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">When game starts:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">After game closes:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Format time played to indicate the number of days played</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Dates formats:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">This will log you out of all linked services. Application restart is required, do you want to proceed?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Clear Cache?</sys:String>
@@ -783,6 +784,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Game execution monitoring is currently running. Do you want to cancel the process and return the game to the previous state?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Time Played</sys:String>
     <sys:String x:Key="LOCLastPlayed">Last Played</sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}d {1}h {2}m</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutes</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} seconds</sys:String>
@@ -885,6 +887,7 @@ Backgrounds: {2} mega pixels</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Total play time</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Average play time</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Top play time</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Total install size</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Overview</sys:String>
     <sys:String x:Key="LOCSidebar">Sidebar</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Show on Sidebar</sys:String>

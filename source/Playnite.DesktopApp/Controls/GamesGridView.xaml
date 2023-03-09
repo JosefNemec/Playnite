@@ -243,7 +243,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CellTemplatePlaytime">
-            <TextBlock Text="{Binding Playtime, Mode=OneWay, Converter={StaticResource PlayTimeToStringConverter}}" />
+            <TextBlock Text="{Binding Playtime, Mode=OneWay, Converter={StaticResource PlayTimeToStringConverter}, ConverterParameter={pmrk:Settings PlaytimeUseDaysFormat, DirectValue=True}}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplatePlayCount">

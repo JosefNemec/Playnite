@@ -180,7 +180,11 @@
 
             <TextBlock Text="{DynamicResource LOCSettingsTextRenderingNotice}"
                        TextWrapping="Wrap" Margin="0,10,0,0"/>
-
+            
+            <CheckBox Content="{DynamicResource LOCSettingsPlaytimeUseDaysFormatLabel}"
+                      ContentStringFormat="{}{0} *" Margin="0,15,0,0"
+                      IsChecked="{Binding Settings.PlaytimeUseDaysFormat}"/>
+            
             <ContentControl Content="{DynamicResource LOCSettingsDatesFormatsLabel}" Margin="0,15,0,5" 
                             ContentStringFormat="{}{0} *"/>
             

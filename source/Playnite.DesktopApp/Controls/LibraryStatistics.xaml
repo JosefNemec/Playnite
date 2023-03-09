@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+             xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="900"
@@ -17,7 +18,7 @@
                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
             </ControlTemplate.Resources>
             <GroupBox Header="{DynamicResource LOCOverviewLabel}" Margin="10" MaxHeight="330">
-                <GridEx GridEx.AutoLayoutColumns="3" GridEx.ColumnCount="3" GridEx.RowCount="20"                        
+                <GridEx GridEx.AutoLayoutColumns="3" GridEx.ColumnCount="3" GridEx.RowCount="21"                        
                         GridEx.StarColumns="0" MinWidth="220" Margin="10">
                     <TextBlock Text="{DynamicResource LOCAll}" Margin="0,3,15,3" />
                     <TextBlock Text="{Binding TotalCount}" Margin="0,3,0,3" TextAlignment="Right" />
@@ -40,12 +41,16 @@
                     <TextBlock Text="{Binding Favorite.Percentage, StringFormat='{}{0}%'}" Margin="15,3,0,3" TextAlignment="Right" />
 
                     <TextBlock Text="{DynamicResource LOCStatsTotalPlayTime}" Margin="0,15,15,3"/>
-                    <TextBlock Text="{Binding TotalPlayTime, Converter={StaticResource PlayTimeToStringConverter}}"
+                    <TextBlock Text="{Binding TotalPlayTime, Converter={StaticResource PlayTimeToStringConverter}, ConverterParameter={pmrk:Settings PlaytimeUseDaysFormat, DirectValue=True}}"
                                        Grid.ColumnSpan="2" Margin="0,15,0,3" />
 
                     <TextBlock Text="{DynamicResource LOCStatsAvaragePlayTime}" Margin="0,3,15,3" />
-                    <TextBlock Text="{Binding AvaragePlayTime, Converter={StaticResource PlayTimeToStringConverter}}"
+                    <TextBlock Text="{Binding AvaragePlayTime, Converter={StaticResource PlayTimeToStringConverter}, ConverterParameter={pmrk:Settings PlaytimeUseDaysFormat, DirectValue=True}}"
                                        Grid.ColumnSpan="2" Margin="0,3,0,3"/>
+
+                    <TextBlock Text="{DynamicResource LOCStatsTotalInstallSize}" Margin="0,15,15,3"/>
+                    <TextBlock Text="{Binding TotalInstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}"
+                                       Grid.ColumnSpan="2" Margin="0,15,0,3" />
                 </GridEx>
             </GroupBox>
         </ControlTemplate>
@@ -63,7 +68,7 @@
                                             Style="{DynamicResource BaseTextBlockStyle}" Width="30"
                                             DockPanel.Dock="Right" Margin="10,3,0,3"
                                             TextAlignment="Right"/>
-                                <TextBlock Text="{Binding Value, Converter={StaticResource PlayTimeToStringConverter}}"
+                                <TextBlock Text="{Binding Value, Converter={StaticResource PlayTimeToStringConverter}, ConverterParameter={pmrk:Settings PlaytimeUseDaysFormat, DirectValue=True}}"
                                             Style="{DynamicResource BaseTextBlockStyle}"
                                             DockPanel.Dock="Right" Margin="0,3,0,3"/>
                                 <TextBlock Margin="0,3,0,3" ToolTip="{Binding Name}">

@@ -242,7 +242,7 @@ namespace Playnite.ViewModels
 
             if (settings.SearchWindowVisibility.PlayTime)
             {
-                AdditionalInfo.Add(PlayTimeToStringConverter.Instance.Convert(item.Game.Playtime, typeof(string), null, CultureInfo.CurrentCulture) as string);
+                AdditionalInfo.Add(PlayTimeToStringConverter.Instance.Convert(item.Game.Playtime, typeof(string), settings.PlaytimeUseDaysFormat, CultureInfo.CurrentCulture) as string);
             }
 
             if (settings.SearchWindowVisibility.Platform && item.Game.Platforms.HasItems())
