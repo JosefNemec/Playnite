@@ -104,6 +104,11 @@
                                      ContentTemplate="{DynamicResource MainMenuPatreonButtonTemplate}"
                                      Command="{Binding OpenPatreonCommand}"
                                      AutomationProperties.Name="{DynamicResource LOCMenuPatreonSupport}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonMinimize"
+                                     ContentTemplate="{DynamicResource MainMenuMinimizeButtonTemplate}"
+                                     Command="{Binding MinimizeCommand}"                                     
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowMinimize, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMinimize}" />
                 </StackPanel>
             </Border>
 

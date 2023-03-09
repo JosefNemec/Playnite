@@ -21,6 +21,7 @@
             <pctrls:CheckBoxEx x:Name="ToggleRestartSystem" Content="{DynamicResource LOCMenuRestartSystem}"  />
             <pctrls:CheckBoxEx x:Name="ToggleSuspendSystem" Content="{DynamicResource LOCMenuSuspendSystem}"  />
             <pctrls:CheckBoxEx x:Name="ToggleHibernateSystem" Content="{DynamicResource LOCMenuHibernateSystem}"  />
+            <pctrls:CheckBoxEx x:Name="ToggleMinimize" Content="{DynamicResource LOCMinimize}"  />
         </StackPanel>
     </StackPanel>
 </UserControl>
