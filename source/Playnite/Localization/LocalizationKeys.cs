@@ -170,7 +170,7 @@ namespace Playnite
         /// </summary>
         public const string GameUninstallRunningError = "LOCGameUninstallRunningError";
         /// <summary>
-        /// Are you sure you want to remove this game?
+        /// Are you sure you want to remove {0}?
         /// </summary>
         public const string GameRemoveAskMessage = "LOCGameRemoveAskMessage";
         /// <summary>
@@ -178,7 +178,7 @@ namespace Playnite
         /// </summary>
         public const string GamesRemoveAskMessage = "LOCGamesRemoveAskMessage";
         /// <summary>
-        /// Are you sure you want to remove this game?
+        /// Are you sure you want to remove {0}?
         /// </summary>
         public const string GameRemoveAskMessageIgnoreOption = "LOCGameRemoveAskMessageIgnoreOption";
         /// <summary>
@@ -4222,13 +4222,13 @@ namespace Playnite
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
         /// <summary>
-        /// Support search using acronyms for name filter
+        /// Use fuzzy matching in name filter
         /// </summary>
-        public const string NameFilterSearchWithAcronyms = "NameFilterSearchWithAcronyms";
+        public const string NameFilterUseFuzzyMatching = "NameFilterUseFuzzyMatching";
         /// <summary>
-        /// When enabled, search results will include items whose acronym matches the search term.
+        /// When enabled, name filter will match game names the same way as global search.
         /// </summary>
-        public const string NameFilterSearchWithAcronymsTooltip = "NameFilterSearchWithAcronymsTooltip";
+        public const string NameFilterUseFuzzyMatchingTooltip = "NameFilterUseFuzzyMatchingTooltip";
         /// <summary>
         /// Fields to be displayed for game results:
         /// </summary>
