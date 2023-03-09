@@ -2185,6 +2185,9 @@ namespace Playnite
         [RequiresRestart]
         public AccessibilityInterfaceOptions AccessibilityInterface { get => accessibilityInterface; set => SetValue(ref accessibilityInterface, value); }
 
+        private bool partialDescriptionLoading = true;
+        public bool PartialDescriptionLoading { get => partialDescriptionLoading; set => SetValue(ref partialDescriptionLoading, value); }
+
         [JsonIgnore]
         public static bool IsPortable
         {

@@ -433,6 +433,10 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCLoginFailed">Authentification failed</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Alternative web view rendering mode</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Use when experiencing issues with web views, for example integration authentication dialogs.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Partial loading of large game descriptions</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Large descriptions can cause noticeable lag when selecting games.
+
+When enabled, only part of description text will be initially loaded with an option to load the rest on demand.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadata Import</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Download Metadata</sys:String>

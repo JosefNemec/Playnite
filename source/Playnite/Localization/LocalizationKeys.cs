@@ -1590,6 +1590,14 @@ namespace Playnite
         /// </summary>
         public const string SettingsAltWebViewRenderingTooltip = "LOCSettingsAltWebViewRenderingTooltip";
         /// <summary>
+        /// Partial loading of large game descriptions
+        /// </summary>
+        public const string SettingsPartialDescriptionLoading = "LOCSettingsPartialDescriptionLoading";
+        /// <summary>
+        /// Large descriptions can cause noticeable lag when selecting games.
+        /// </summary>
+        public const string SettingsPartialDescriptionLoadingTooltip = "LOCSettingsPartialDescriptionLoadingTooltip";
+        /// <summary>
         /// Metadata Import
         /// </summary>
         public const string MetaImportWindowTitle = "LOCMetaImportWindowTitle";

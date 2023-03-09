@@ -289,6 +289,11 @@ namespace Playnite.DesktopApp.Controls.Views
                     HtmlTextView.VisibilityProperty,
                     nameof(GameDetailsViewModel.DescriptionVisibility));
                 HtmlDescription.TemplatePath = ThemeFile.GetFilePath("DescriptionView.html");
+                BindingTools.SetBinding(HtmlDescription,
+                    HtmlTextView.PartialLoadEnabledProperty,
+                    mainModel.AppSettings,
+                    nameof(PlayniteSettings.PartialDescriptionLoading),
+                    mode: BindingMode.OneWay);
             }
 
             TextNotes = Template.FindName("PART_TextNotes", this) as TextBox;
@@ -388,7 +393,7 @@ namespace Playnite.DesktopApp.Controls.Views
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.PluginId)),
                 GetGameBindingPath($"{nameof(GamesCollectionViewEntry.LibraryPlugin)}.{nameof(GamesCollectionViewEntry.LibraryPlugin.Name)}"),
                 nameof(GameDetailsViewModel.SourceLibraryVisibility));
-            
+
             SetGameItemButtonBinding(ref ButtonReleaseDate, "PART_ButtonReleaseDate",
                 nameof(GameDetailsViewModel.SetReleaseDateFilterCommand),
                 GetGameBindingPath(nameof(GamesCollectionViewEntry.ReleaseDate)),
