@@ -1278,6 +1278,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsAfterGameClose = "LOCSettingsAfterGameClose";
         /// <summary>
+        /// Format time played to indicate the number of days played
+        /// </summary>
+        public const string SettingsPlaytimeUseDaysFormatLabel = "LOCSettingsPlaytimeUseDaysFormatLabel";
+        /// <summary>
         /// Dates formats:
         /// </summary>
         public const string SettingsDatesFormatsLabel = "LOCSettingsDatesFormatsLabel";
@@ -2886,6 +2890,10 @@ namespace Playnite
         /// </summary>
         public const string LastPlayed = "LOCLastPlayed";
         /// <summary>
+        /// {0}d {1}h {2}m
+        /// </summary>
+        public const string PlayedDays = "LOCPlayedDays";
+        /// <summary>
         /// {0}h {1}m
         /// </summary>
         public const string PlayedHours = "LOCPlayedHours";
@@ -3193,6 +3201,10 @@ namespace Playnite
         /// Top play time
         /// </summary>
         public const string StatsTopPlayTime = "LOCStatsTopPlayTime";
+        /// <summary>
+        /// Total install size
+        /// </summary>
+        public const string StatsTotalInstallSize = "LOCStatsTotalInstallSize";
         /// <summary>
         /// Overview
         /// </summary>
