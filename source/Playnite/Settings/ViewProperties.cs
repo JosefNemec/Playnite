@@ -500,6 +500,21 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private ListViewColumnProperty roms = new ListViewColumnProperty(GameField.Roms);
+        public ListViewColumnProperty Roms
+        {
+            get
+            {
+                return roms;
+            }
+
+            set
+            {
+                roms = value;
+                OnPropertyChanged();
+            }
+        }
     }
 
     public class ViewSettingsBase : ObservableObject

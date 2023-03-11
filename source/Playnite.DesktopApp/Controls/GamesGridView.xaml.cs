@@ -134,6 +134,7 @@ namespace Playnite.DesktopApp.Controls
             AppSettings.ViewSettings.ListViewColumns.Tags.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.UserScore.PropertyChanged += ListViewColumn_PropertyChanged;
             AppSettings.ViewSettings.ListViewColumns.Version.PropertyChanged += ListViewColumn_PropertyChanged;
+            AppSettings.ViewSettings.ListViewColumns.Roms.PropertyChanged += ListViewColumn_PropertyChanged;
         }
 
         private void ListViewColumn_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -322,6 +323,10 @@ namespace Playnite.DesktopApp.Controls
             else if (field == GameField.RecentActivity)
             {
                 newColumn = CreateColumn(field, SortOrder.RecentActivity, "CellTemplateRecentActivity", "HeaderTemplateRecentActivity");
+            }
+            else if (field == GameField.Roms)
+            {
+                newColumn = CreateColumn(field, SortOrder.RecentActivity, "CellTemplateRoms", "HeaderTemplateRoms");
             }
 
             return newColumn;

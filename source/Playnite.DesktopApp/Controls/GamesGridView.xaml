@@ -24,6 +24,7 @@
         <pcon:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <pcon:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
         <pcon:ObjectToStringConverter x:Key="ObjectToStringConverter" />
+        <pcon:GameRomsToStringConverter x:Key="GameRomsToStringConverter" />
         <pcon:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
             <pcon:EnumToBooleanConverter/>
             <pcon:BooleanToHiddenConverter />
@@ -262,10 +263,22 @@
             </StackPanel>
         </DataTemplate>
         
+        <DataTemplate x:Key="CellTemplateRoms">
+            <TextBlock Text="{Binding Roms, Mode=OneWay, Converter={StaticResource GameRomsToStringConverter}}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplateRoms">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{DynamicResource LOCGameROMTitle}" />
+                <ContentControl Style="{StaticResource SortIndicator}"
+                                Visibility="{pmrk:Settings ViewSettings.SortingOrder, Converter={StaticResource EnumCompVisibilityConverter}, ConverterParameter={x:Static sdkm:SortOrder.InstallSize}}"/>
+            </StackPanel>
+        </DataTemplate>
+
         <DataTemplate x:Key="CellTemplateInstallSize">
             <TextBlock Text="{Binding InstallSize, Mode=OneWay, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" />
         </DataTemplate>
-        
+
         <DataTemplate x:Key="CellTemplatePlayCount">
             <TextBlock Text="{Binding PlayCount, Mode=OneWay}" />
         </DataTemplate>
@@ -487,6 +500,8 @@
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.InstallDirectory.Visible}" />
                         <MenuItem Header="{DynamicResource LOCInstallSizeLabel}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.InstallSize.Visible}" />
+                        <MenuItem Header="{DynamicResource LOCGameROMTitle}"
+                                    IsCheckable="True" IsChecked="{Binding ListViewColumns.Roms.Visible}" />
                         <MenuItem Header="{DynamicResource LOCGameLastActivityTitle}"
                                     IsCheckable="True" IsChecked="{Binding ListViewColumns.LastActivity.Visible}" />
                         <MenuItem Header="{DynamicResource LOCRecentActivityLabel}"
