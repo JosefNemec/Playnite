@@ -534,7 +534,7 @@ namespace Playnite.Emulators
             }
 
             var emuDbs = emuDbProvider(scanPlatforms);
-            var resultRoms = new Dictionary<string, List<ScannedRom>>();
+            var resultGames = new List<ScannedGame>();
 
             try
             {
@@ -542,7 +542,7 @@ namespace Playnite.Emulators
                     directory,
                     supportedExtensions,
                     emuDbs,
-                    resultRoms,
+                    resultGames,
                     cancelToken,
                     crcExludePatterns,
                     scanSubfolders,
@@ -555,14 +555,14 @@ namespace Playnite.Emulators
                 emuDbs.ForEach(a => a.Dispose());
             }
 
-            return resultRoms.Select(a => new ScannedGame { Name = a.Key, Roms = a.Value?.ToObservable() }).ToList();
+            return resultGames;
         }
 
         internal void ScanDirectoryBase(
             string directory,
             List<string> supportedExtensions,
             List<EmulationDatabase.IEmulationDatabaseReader> databases,
-            Dictionary<string, List<ScannedRom>> resultRoms,
+            List<ScannedGame> resultGames,
             CancellationToken cancelToken,
             string crcExludePatterns,
             bool scanSubfolders,
@@ -574,18 +574,27 @@ namespace Playnite.Emulators
             {
                 if (mergeRelatedFiles)
                 {
-                    if (resultRoms.TryGetValue(rom.Name.SanitizedName, out var addedRoms))
+                    var existing = resultGames.FirstOrDefault(a => a.Name == rom.Name.SanitizedName);
+                    if (existing != null)
                     {
-                        addedRoms.Add(rom);
+                        existing.Roms.Add(rom);
                     }
                     else
                     {
-                        resultRoms.Add(rom.Name.SanitizedName, new List<ScannedRom> { rom });
+                        resultGames.Add(new ScannedGame
+                        {
+                            Name = rom.Name.SanitizedName,
+                            Roms = new ObservableCollection<ScannedRom> { rom }
+                        });
                     }
                 }
                 else
                 {
-                    resultRoms.Add(rom.Name.Name, new List<ScannedRom> { rom });
+                    resultGames.Add(new ScannedGame
+                    {
+                        Name = rom.Name.SanitizedName,
+                        Roms = new ObservableCollection<ScannedRom> { rom }
+                    });
                 }
             }
 
@@ -871,7 +880,7 @@ namespace Playnite.Emulators
                         dir,
                         supportedExtensions,
                         databases,
-                        resultRoms,
+                        resultGames,
                         cancelToken,
                         crcExludePatterns,
                         scanSubfolders,

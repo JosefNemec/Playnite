@@ -28,7 +28,7 @@ namespace Playnite.Tests.Emulators
                 FileSystem.CreateFile(Path.Combine(tempPath.TempPath, "game 3.png"));
 
                 var scanner = new GameScanner(new SDK.Models.GameScannerConfig(), null);
-                var scanResults = new Dictionary<string, List<ScannedRom>>();
+                var scanResults = new List<ScannedGame>();
                 scanner.ScanDirectoryBase(
                     tempPath.TempPath,
                     new List<string> { "p8", "p8.png" },
@@ -41,10 +41,10 @@ namespace Playnite.Tests.Emulators
                     true);
 
                 Assert.AreEqual(2, scanResults.Count);
-                Assert.AreEqual("game 1", scanResults["game 1"][0].Name.Name);
-                Assert.AreEqual(path1, scanResults["game 1"][0].Path);
-                Assert.AreEqual("game 2", scanResults["game 2"][0].Name.Name);
-                Assert.AreEqual(path2, scanResults["game 2"][0].Path);
+                Assert.AreEqual("game 1", scanResults[0].Name);
+                Assert.AreEqual(path1, scanResults[0].Roms[0].Path);
+                Assert.AreEqual("game 2", scanResults[1].Name);
+                Assert.AreEqual(path2, scanResults[1].Roms[0].Path);
             }
         }
 
@@ -80,6 +80,7 @@ namespace Playnite.Tests.Emulators
                 Assert.AreEqual(1, games.Count);
                 var game = games[0].ToGame();
                 Assert.AreEqual(6, game.Roms.Count);
+                Assert.AreEqual("test game", game.Name);
                 Assert.AreEqual("Disc 1 - Europe", game.Roms[0].Name);
                 Assert.AreEqual("Disc 2 - Europe", game.Roms[1].Name);
                 Assert.AreEqual("Disc 1 - JP - EE", game.Roms[2].Name);
@@ -90,6 +91,7 @@ namespace Playnite.Tests.Emulators
                 config.MergeRelatedFiles = false;
                 games = scanner.Scan(CancellationToken.None, out var _, out var _);
                 Assert.AreEqual(6, games.Count);
+                games.ForEach(a => Assert.AreEqual("test game", a.Name));
             }
         }
 
@@ -194,7 +196,7 @@ namespace Playnite.Tests.Emulators
                 FileSystem.WriteStringToFile(cuePath, @"FILE ""binfile.bin"" BINARY");
                 FileSystem.CreateFile(binPath);
 
-                var scanResults = new Dictionary<string, List<ScannedRom>>();
+                var scanResults = new List<ScannedGame>();
                 scanner.ScanDirectoryBase(
                     tempPath.TempPath,
                     new List<string> { "bin", "cue" },
@@ -207,11 +209,11 @@ namespace Playnite.Tests.Emulators
                     true);
 
                 Assert.AreEqual(1, scanResults.Count);
-                Assert.IsTrue(scanResults.ContainsKey("cuefile"));
+                Assert.IsNotNull(scanResults.FirstOrDefault(a => a.Name == "cuefile"));
 
                 // Case sensitivity test
                 FileSystem.WriteStringToFile(cuePath, @"FILE ""BINFILE.BIN"" BINARY");
-                scanResults = new Dictionary<string, List<ScannedRom>>();
+                scanResults = new List<ScannedGame>();
                 scanner.ScanDirectoryBase(
                     tempPath.TempPath,
                     new List<string> { "bin", "cue" },
@@ -224,10 +226,10 @@ namespace Playnite.Tests.Emulators
                     true);
 
                 Assert.AreEqual(1, scanResults.Count);
-                Assert.IsTrue(scanResults.ContainsKey("cuefile"));
+                Assert.IsNotNull(scanResults.FirstOrDefault(a => a.Name == "cuefile"));
 
                 // Playlist already imported test
-                scanResults = new Dictionary<string, List<ScannedRom>>();
+                scanResults = new List<ScannedGame>();
                 scanner.importedFiles = new HashSet<string> { cuePath };
                 scanner.ScanDirectoryBase(
                   tempPath.TempPath,
