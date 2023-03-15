@@ -60,11 +60,9 @@ Nếu bạn muốn giúp chúng tôi khắc phục sự cố này, xin vui lòng
     <sys:String x:Key="LOCGameRemoveAskTitle">Xóa (các) trò chơi?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Không thể xóa - Trò chơi hoặc trình cài đặt đang chạy.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Không thể gỡ cài đặt - Trò chơi đang chạy.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Bạn có chắc chắn muốn xóa trò chơi này không?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Bạn có chắc chắn muốn xóa {0} trò chơi này không?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Bạn có chắc chắn muốn xóa trò chơi này không?
-
-Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ngăn trò chơi được thêm lại vào lần sau khi cập nhật thư viện.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Bạn có chắc chắn muốn xóa {0} trò chơi không?
 
 Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ngăn trò chơi được thêm lại vào lần sau khi cập nhật thư viện.</sys:String>
@@ -347,6 +345,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsCloseToTray">Thu nhỏ Playnite vào khay hệ thống khi đóng cửa sổ ứng dụng</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Khi trò chơi bắt đầu:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Sau khi trò chơi kết thúc:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Định dạng ngày tháng:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Điều này sẽ đăng xuất bạn khỏi tất cả các dịch vụ được liên kết. Khởi động lại ứng dụng là bắt buộc, bạn có muốn tiếp tục không?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Xóa bộ nhớ cache?</sys:String>
@@ -431,6 +430,8 @@ Nếu bị tắt, tác phẩm nền chỉ được tải xuống khi cần thi�
     <sys:String x:Key="LOCLoginFailed">Quá trình xác thực đã thất bại</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Chế độ hiển thị chế độ xem web thay thế</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Sử dụng khi gặp sự cố với chế độ xem web, ví dụ: hộp thoại xác thực tích hợp.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Nhập siêu dữ liệu</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Tải xuống siêu dữ liệu</sys:String>
@@ -540,6 +541,9 @@ Nếu bị tắt, các trò chơi sử dụng bất kỳ mục nào trong bất 
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Chưa cài đặt</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Ẩn</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Sản phẩm yêu thích</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Lần chơi cuối</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Thể loại</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Mô tả</sys:String>
@@ -736,6 +740,8 @@ Vui lòng đính kèm ID sau vào báo cáo sự cố của bạn:</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Loại bỏ khỏi mục ưa thích</sys:String>
     <sys:String x:Key="LOCHideGame">Ẩn khỏi mục ưa thích</sys:String>
     <sys:String x:Key="LOCUnHideGame">Xóa khỏi danh sách ẩn</sys:String>
+    <sys:String x:Key="LOCEnableHdr"></sys:String>
+    <sys:String x:Key="LOCDisableHdr"></sys:String>
     <sys:String x:Key="LOCEditGame">chỉnh sửa</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Tính toán kích cỡ cài đặt</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
@@ -770,6 +776,7 @@ Vui lòng đính kèm ID sau vào báo cáo sự cố của bạn:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Giám sát thực thi trò chơi hiện đang chạy. Bạn có muốn hủy quá trình và đưa trò chơi về trạng thái trước đó không?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Thời gian chơi</sys:String>
     <sys:String x:Key="LOCLastPlayed">Lần chơi cuối</sys:String>
+    <sys:String x:Key="LOCPlayedDays"></sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}phút {1}giây</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} phút</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} giây</sys:String>
@@ -872,6 +879,7 @@ Nền: {2} mega pixel</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Tổng thời gian chơi</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Thời gian trung bình</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Tổng thời gian chơi</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
     <sys:String x:Key="LOCOverviewLabel">Tổng quan</sys:String>
     <sys:String x:Key="LOCSidebar">Thanh lệnh bên cạnh</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Hiển thị thanh tiện ích bên trái</sys:String>
@@ -939,6 +947,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
     <sys:String x:Key="LOCIncludePluginGameActions">Bao gồm các hành động chơi tích hợp thư viện</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Chọn hành động</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Trang Theo Dõi</sys:String>
+    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Đường link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Tập tin</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Các trình giả lập</sys:String>
@@ -1035,6 +1044,7 @@ Nếu bạn bắt đầu gặp một số sự cố sau khi cài đặt chủ đ
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Cấu hình tích hợp</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Hồ sơ cài sẵn</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Hồ sơ tùy chỉnh</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Được xử lý bởi một tập lệnh cài sẵn</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Đặc điểm giả lập</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Đặc điểm kỹ thuật nền tảng</sys:String>
@@ -1070,6 +1080,8 @@ Nếu bạn bắt đầu gặp một số sự cố sau khi cài đặt chủ đ
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Thêm máy quét</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Thêm máy quét đã lưu</sys:String>
     <sys:String x:Key="LOCStartScan">Bắt đầu quét</sys:String>
@@ -1159,8 +1171,8 @@ Chỉ hỗ trợ cho: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
     <sys:String x:Key="LOCHiddenStatus"></sys:String>
 
@@ -1209,4 +1221,7 @@ Playnite sẽ tự động khởi động lại để bắt đầu quá trình s
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
     <sys:String x:Key="LOCApplicationMenu"></sys:String>
     <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCUserDataFolder"></sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>

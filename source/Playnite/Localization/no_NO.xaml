@@ -60,9 +60,9 @@ Vil du hjelpe oss med å løse dette problemet, kan du gjerne sende diagnoseinfo
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern spill?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan ikke fjerne — spillet eller installasjonsprogrammet kjører.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan ikke avinstallere — spillet kjører.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne dette spillet?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne {0} spill?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Er du sikker på at du vil fjerne dette spillet?
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Er du sikker på at du vil fjerne {0}?
 
 Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spillet importert på nytt neste gang biblioteket oppdateres.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Er du sikker på at du vil fjerne {0} spill?
@@ -345,6 +345,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCSettingsCloseToTray">Minimer Playnite til systemstatusfeltet når programvinduet lukkes</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Når spillet starter:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Etter at spillet lukkes:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Formater spilletid for å angi antall dager spilt</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Datoformater:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Dette vil logge deg ut av alle tilknyttede tjenester. Restart av applikasjon er nødvendig. Vil du fortsette?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Tøm hurtigminne?</sys:String>
@@ -433,6 +434,10 @@ Om den deaktiveres, blir bakgrunnsbilder først lastet ned når de trengs, noe s
     <sys:String x:Key="LOCLoginFailed">Autentisering mislyktes</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Alternativ rendering-modus for web view</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Bruk ved problemer med web view, som for eksempel i autentiseringsvinduer for integrasjoner.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Delvis lasting av store spillbeskrivelser</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Store beskrivelser kan gi merkbare forsinkelser ved valg av spill.
+
+Når dette valget er aktivert, vil bare en del av beskrivelsen begynne å lastes inn med mulighet for å laste resten på etterspørsel.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importer metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Last ned metadata</sys:String>
@@ -542,6 +547,9 @@ Ved deaktivering vil alle spill som passer med et hvilket som helst aktivt filte
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Ikke installert</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Skjult</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favoritt</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">Aktiver HDR-støtte</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">Når dette valget er aktivert, blir HDR aktivert på hovedskjermen før spill starter.</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">Merk at HDR ikke støttes på din hovedskjerm.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Sist spilt</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategori</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Beskrivelse</sys:String>
@@ -740,6 +748,8 @@ Mer informasjon er tilgjengelig på https://playnite.link/cefstartup</sys:String
     <sys:String x:Key="LOCRemoveFavoriteGame">Fjern fra favoritter</sys:String>
     <sys:String x:Key="LOCHideGame">Skjul dette spillet</sys:String>
     <sys:String x:Key="LOCUnHideGame">Fjern fra skjult</sys:String>
+    <sys:String x:Key="LOCEnableHdr">Aktiver HDR-støtte</sys:String>
+    <sys:String x:Key="LOCDisableHdr">Deaktiver HDR-støtte</sys:String>
     <sys:String x:Key="LOCEditGame">Rediger …</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Beregn installasjonsstørrelse</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">Beregn installasjonsstørrelse (alle spill)</sys:String>
@@ -774,6 +784,7 @@ Mer informasjon er tilgjengelig på https://playnite.link/cefstartup</sys:String
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Spillutførelsesovervåking kjører for øyeblikket. Vil du avbryte prosessen og returnere spillet til sin tidligere tilstand?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Spilletid</sys:String>
     <sys:String x:Key="LOCLastPlayed">Sist spilt</sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}d {1}t {2}m</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}t {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutter</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} sekunder</sys:String>
@@ -879,6 +890,7 @@ Genererer diagnostikkpakke …</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Total spilletid</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Gjennomsnittlig spilletid</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Mest spilt</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Total installasjonsstørrelse</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Oversikt</sys:String>
     <sys:String x:Key="LOCSidebar">Sidepanel</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Vis i sidestolpe</sys:String>
@@ -946,6 +958,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCIncludePluginGameActions">Inkluder spillhandlinger fra biblioteksutvidelser</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Velg handling</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Sporingsmodus</sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">Sporingssti</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Lenke</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Fil</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1040,6 +1053,7 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Innebygde profiler</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Innebygget profil</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Egendefinerte profiler</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">Egendefinert profile</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Håndtert av et innebygget skript</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emulator-valg</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Plattformvalg</sys:String>
@@ -1075,6 +1089,8 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">Importer spillfiler ved hjelp av baner som er relative til Playnites installasjonsmappe eller emulatorers installasjonsmappe hvis mulig.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">Søk gjennom undermapper </sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">Søk gjennom arkiv</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">Slå sammen relaterte filer</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">Slå sammen relaterte spillfiler, som for eksempel individuelle spilldisker, under én spilloppføring.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Legg til skanner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Legg til lagret skanner</sys:String>
     <sys:String x:Key="LOCStartScan">Start søk</sys:String>
@@ -1173,8 +1189,9 @@ SHIFT-ENTER: åpne elementmeny</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Når dette er valgt vil skanningen tilordne denne plattformen til alle spill, og samtidig overskrive automatisk angitte plattformer.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Inkluder kommandoer i standardsøk</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Når deaktivert, vil ikke kommandoer inkluderes i standard søk med mindre #-prefiks er brukt.</sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">Bruk tilnærmede treff i navnefilter</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">Når dette valget er aktivert, vil navnefilter samsvare med spillnavn på samme måte som globalt søk.
+Strengt samsvar kan håndheves i hvert enkelt tilfelle ved å bruke utropstegn (!) før filternavnet!</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Felter som skal vises for spillresultater:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Skjult status</sys:String>
 
@@ -1226,4 +1243,9 @@ Det angitte datoformatet vil bli brukt til alle andre datoer.</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface">Tilgjengelighetsstøtte (skjermleser)</sys:String>
     <sys:String x:Key="LOCApplicationMenu">Applikasjonsmeny</sys:String>
     <sys:String x:Key="LOCGameMenu">Spillmeny</sys:String>
+    <sys:String x:Key="LOCProgramFolder">Programmappe</sys:String>
+    <sys:String x:Key="LOCUserDataFolder">Mappe for brukerdata</sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Feil i bibliotekfil er oppdaget. Playnite avsluttes.
+    
+Åpne ny sak på Playnite's GitHub-side med en forespørsel om å fikse feilen i filene dine.</sys:String>
 </ResourceDictionary>

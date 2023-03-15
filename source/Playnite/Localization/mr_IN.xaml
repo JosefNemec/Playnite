@@ -44,7 +44,7 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">गेम काढावे?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">काढता आले नाही - गेम किंवा इन्स्टॉलर चालू आहे. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">अनइन्स्टॉल करता आले नाही - गेम चालू आहे.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">तुम्हाला नक्की हा गेम काढून टाकायचा आहे का?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">तुम्हाला नक्की {0} गेम काढून टाकायचे आहेत का?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
@@ -166,14 +166,14 @@
     <sys:String x:Key="LOCPastMonth">मागील महिना</sys:String>
     <sys:String x:Key="LOCPastYear">मागील वर्ष</sys:String>
     <sys:String x:Key="LOCMoreThenYear">एक वर्षापूर्वी</sys:String>
-    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
-    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
-    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
-    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
-    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
-    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
-    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
-    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">० ते १०० एम.बी.</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">१०० एम.बी. ते १ जी.बी.</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">१ ते ५ जी.बी.</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">५ ते १० जी.बी.</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">१० ते २० जी.बी.</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">२० ते ४० जी.बी.</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">४० ते १०० जी.बी.</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">१०० जी.बी. किंवा जास्त</sys:String>
     <sys:String x:Key="LOCImportCompleted"></sys:String>
     <sys:String x:Key="LOCAllGames">सर्व गेम</sys:String>
     <sys:String x:Key="LOCGameId">गेम आय.डी.</sys:String>
@@ -325,6 +325,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">अ‍ॅप्लिकेशन विंडो बंद केल्यावर प्लेनाईटला मिनिमाइझ करून सिस्टम ट्रेमध्ये ठेवा</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">गेम सुरू झाल्यावर:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">गेम बंद झाल्यावर:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">याने आपण सर्व जोडलेल्या सुविधांपासून लॉग-आउट व्हाल. अ‍ॅप्लिकेशन रीस्टारट करावं लागेल. पुढे जायचे का?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">कॅश साफ करायचे का?</sys:String>
@@ -407,6 +408,8 @@
     <sys:String x:Key="LOCLoginFailed"></sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">वैकल्पिक वेब दृश्य रेन्डर करण्याचा मोड</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">मेटाडेटा आयात करणे</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">मेटाडेटा डाउनलोड करणे</sys:String>
@@ -506,6 +509,9 @@
     <sys:String x:Key="LOCGameIsUnInstalledTitle">विस्थापित</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">लपवलेला</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">आवडीचा</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">याआधी खेळलेले</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">वर्ग</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">वर्णन</sys:String>
@@ -701,6 +707,8 @@
     <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
     <sys:String x:Key="LOCHideGame">हा गेम लपवा</sys:String>
     <sys:String x:Key="LOCUnHideGame">लपवलेल्यांमधून काढून टाका</sys:String>
+    <sys:String x:Key="LOCEnableHdr"></sys:String>
+    <sys:String x:Key="LOCDisableHdr"></sys:String>
     <sys:String x:Key="LOCEditGame">संपादित करा…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
@@ -735,6 +743,7 @@
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
     <sys:String x:Key="LOCTimePlayed"></sys:String>
     <sys:String x:Key="LOCLastPlayed">याआधी खेळले</sys:String>
+    <sys:String x:Key="LOCPlayedDays"></sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} ता. {1} मि.</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} मिनिटे</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} सेकंद</sys:String>
@@ -812,6 +821,7 @@
     <sys:String x:Key="LOCStatsTotalPlayTime">खेळलेल्याची एकूण कालावधी</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">खेळलेल्याची सरासरी कालावधी</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">खेळलेल्याची कमाल कालावधी</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
     <sys:String x:Key="LOCOverviewLabel"></sys:String>
     <sys:String x:Key="LOCSidebar">साइडबार</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">साइडबारमध्ये दाखवा</sys:String>
@@ -872,6 +882,7 @@
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
     <sys:String x:Key="LOCSelectActionTitle">क्रिया निवडा</sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
+    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">दुवा</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">फाईल</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">एम्युलेटर</sys:String>
@@ -955,6 +966,7 @@
     <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
     <sys:String x:Key="LOCEmulatorSpec"></sys:String>
     <sys:String x:Key="LOCPlatformSpec"></sys:String>
@@ -990,6 +1002,8 @@
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner"></sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
     <sys:String x:Key="LOCStartScan"></sys:String>
@@ -1069,8 +1083,8 @@
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
     <sys:String x:Key="LOCHiddenStatus"></sys:String>
 
@@ -1115,4 +1129,7 @@
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
     <sys:String x:Key="LOCApplicationMenu"></sys:String>
     <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCUserDataFolder"></sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>

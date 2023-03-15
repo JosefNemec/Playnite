@@ -61,13 +61,10 @@
     <sys:String x:Key="LOCGameRemoveRunningError">اللعبة قيد التشغيل - لا يمكنك الإزالة
 </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">لا يمكنك  إزالة تثبيت اللعبة وهي قيد التشغيل.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">هل أنت متأكد من إزالة هذه اللعبة ؟</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">هل أنت متأكد من إزالة {0} الألعاب؟
 </sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">هل أنت متأكد من إزالة {0} الألعاب؟
-
-سيؤدي تحديد خيار &quot;إضافة إلى قائمة الاستبعاد&quot; إلى منع استيراد اللعبة مرة أخرى في المرة التالية التي يتم فيها تحديث المكتبة.
-</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">هل أنت متأكد من إزالة {0} الألعاب؟
 
 سيؤدي تحديد خيار &quot;إضافة إلى قائمة الاستبعاد&quot; إلى منع استيراد الألعاب مرة أخرى في المرة التالية التي يتم فيها تحديث المكتبة.
@@ -86,9 +83,9 @@
     <sys:String x:Key="LOCGameStartError">تعذّر بدأ اللعبة:{0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">تعذّر بدأ الإجراء:{0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">تعذّر فقح موقع اللعبة:{0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">تعذر الكشف عن حجم تثبيت اللعبة: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">خطأ في فحص حجم التثبيت</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">حدث {0} خطأ في أثناء فحص حجم التثبيت</sys:String>
     <sys:String x:Key="LOCGameShortcutError">فشل إنشاء إختصار:{0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">فشل فتح الدليل: {0}
 </sys:String>
@@ -135,7 +132,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">اخر تشغيل</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">الأكثر لعبًا</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">مرات اللعب</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">حجم التثبيت</sys:String>
     <sys:String x:Key="LOCFolderLabel">مجلد</sys:String>
     <sys:String x:Key="LOCNotesLabel">الملاحظات</sys:String>
     <sys:String x:Key="LOCAddedLabel">أضيف</sys:String>
@@ -149,7 +146,7 @@
     <sys:String x:Key="LOCCloseLabel">إغلاق</sys:String>
     <sys:String x:Key="LOCCancelLabel">إلغاء</sys:String>
     <sys:String x:Key="LOCConfirmLabel">تأكيد</sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel">إعادة ضبط</sys:String>
     <sys:String x:Key="LOCYesLabel">نعم</sys:String>
     <sys:String x:Key="LOCNoLabel">لا</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">أهلا وسهلا بكم</sys:String>
@@ -195,14 +192,14 @@
     <sys:String x:Key="LOCPastMonth">الشهر الماضي</sys:String>
     <sys:String x:Key="LOCPastYear">السنة الماضية</sys:String>
     <sys:String x:Key="LOCMoreThenYear">منذ أكثر من سنة</sys:String>
-    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
-    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
-    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
-    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
-    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
-    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
-    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
-    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0 إلى 100 ميغابايت</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100MB إلى 1GB</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1GB إلى 5GB</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5GB إلى 10GB</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10GB إلى 20GB</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20GB إلى 40GB</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40GB إلى 100GB</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB أو أكثر</sys:String>
     <sys:String x:Key="LOCImportCompleted">تم الاستيراد بنجاح.</sys:String>
     <sys:String x:Key="LOCAllGames">جميع الألعاب</sys:String>
     <sys:String x:Key="LOCGameId">معرف اللعبة (ID)</sys:String>
@@ -214,9 +211,9 @@
     <sys:String x:Key="LOCRows">صفوف</sys:String>
     <sys:String x:Key="LOCExecIconMissingPlayAction">لم نستطع الحصول على ملف مشغل اللعبة. لا يوجد اي ملف مشغل للعبة في الوقت الراهن.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">تحميل بيانات التعريف المفقودة فقط</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">تمكين هذا الخيار سيؤدي إلى تخطي تحميل بيانات التعريف لبيانات الأماكن التي تحتوي مسبقًا على معلومات.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">تمكين هذا الخيار سيؤدي إلى تخطي تحميل بيانات التعريف لبيانات الخانات التي تحتوي مسبقًا على معلومات.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">اختيار الألعاب</sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceDescription">المرجو تحديد الألعاب التي يجب تحديثها ببيانات تعريف جديدة:</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">الرجاء تحديد الألعاب التي يجب تحديثها باستخدام البيانات التعريفية الجديدة:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">كل الألعاب الموجودة في قاعدة البيانات</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">كل الالعاب المصفية حاليا</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">الالعاب المحددة فقط</sys:String>
@@ -230,8 +227,8 @@
     <sys:String x:Key="LOCProgressImportinGames">جاري استيراد {0} لعبة…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">إستيراد ألعاب المحاكيات من {0}</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">جاري تحميل تحديثات المكتبة…</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">يتم فحص حجم الألعاب في المكتبة…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">جارٍ فحص حجم الألعاب المستوردة ...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">تم الانتهاء من تحديث المكتبة</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">جاري تحرير الموارد…</sys:String>
     <!--Menu-->
@@ -322,7 +319,7 @@
     <sys:String x:Key="LOCSettingsStartMinimized">تشغيل Playnite مصغر</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">قم بتشغيل Playnite عند بدء تشغيل جهاز الكمبيوتر الخاص بك
 </sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">البدأ مغلقًا في خانة الإشعارات</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">فشل تسجيل Playnite لبدء تشغيله عند بدء تشغيل الحاسوب.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">التشغيل في وضع ملء الشاشة
 </sys:String>
@@ -363,7 +360,8 @@
 </sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">عند تشغيل اللعبة:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">عند إغلاق اللعبة:</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">صيغة التاريخ:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">سيؤذي هذا إلى تسجيل خروجك من جميع الخدمات المرتبطة. يتطلب إعادة تشغيل التطبيق، هل تود المتابعة؟</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">مسح ذاكرة التخزين المؤقت؟</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">مطلوب إعادة تشغيل Playnite لتطبيق السِمة الجديدة</sys:String>
@@ -445,8 +443,8 @@
     <sys:String x:Key="LOCOpenDirectoryCommand">أمر فتح الدليل
 </sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">التصنيف العمري</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">تحديث حجم الألعاب على تحديث المكتبة</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">القيام بمسح وتحديث حجم الألعاب المثبتة إذا تم الاكتشاف أن ملفاتهم قد تم تعديلها منذ آخر فحص</sys:String>
     <sys:String x:Key="LOCStrechNone">لا شيء</sys:String>
     <sys:String x:Key="LOCStrechFill">ملء</sys:String>
     <sys:String x:Key="LOCStrechUniform">متحد</sys:String>
@@ -460,6 +458,8 @@
     <sys:String x:Key="LOCLoginFailed">فشلت المصادقة</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">وضع عرض الويب البديل</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">تستخدم عند مواجة مشاكل مع عرض الويب,على سبيل المثال المصادقة على دمج الحوارات.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">استيراد بيانات التعريف</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">تحميل بيانات التعريف</sys:String>
@@ -496,8 +496,8 @@
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">فشل عملية تحميل واحدة أو أكثر من الإضافات.
 يمكنك إعادة تحميل الإضافات من قائمة الإضافات بعد عملية التثبيت لأول مرة.</sys:String>
     <sys:String x:Key="LOCFirstDownloadingAddon">تحميل {0} دمج</sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">جارٍ تنزيل قائمة عمليات الدمج الموصى بها ...</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">فشل تنزيل قائمة عمليات الدمج الموصى بها. يمكنك محاولة إعادة تنزيل عمليات الدمج لاحقًا عبر قائمة الإضافات.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">تهيئة المنصات والمحاكيات</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">تهيئة المحاكيات</sys:String>
@@ -530,7 +530,7 @@
 حاليًا يتم استخدامها من طرف {1} لعبة و {2} محاكيًا.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">مساعدة في الإعدادات</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">رتب حسب</sys:String>
-    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">اتجاه الترتيب</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">تجميع حسب</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">تصاعدى</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">تنازلي</sys:String>
@@ -551,7 +551,7 @@
     <sys:String x:Key="LOCGameProviderTitle">مكتبة</sys:String>
     <sys:String x:Key="LOCGameManualTitle">يدوي</sys:String>
     <sys:String x:Key="LOCGameNameTitle">الاسم</sys:String>
-    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">تثبيت محرك الأقراص</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">إسم الحساب</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">المنصة</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">الفئة</sys:String>
@@ -570,6 +570,9 @@
     <sys:String x:Key="LOCGameIsUnInstalledTitle">غير مثبت</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">مخفي</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">المفضلة</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">اخر تشغيل</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">الفئة</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">الوصف</sys:String>
@@ -597,7 +600,7 @@
     <sys:String x:Key="LOCRegionsLabel">المناطق</sys:String>
     <sys:String x:Key="LOCSourceLabel">مصدر</sys:String>
     <sys:String x:Key="LOCSourcesLabel">المصادر</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">آخر نشاط</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">خطأ في قاعدة البيانات</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">فشل في فتح قاعدة بيانات المكتبة.</sys:String>
@@ -697,7 +700,7 @@
     <sys:String x:Key="LOCUpdateAll">تحديث الكل</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">أنشئ من طرف:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">النسخة:</sys:String>
-    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">التحديثات:</sys:String>
     <sys:String x:Key="LOCExtensionModule">الوحدة:</sys:String>
     <sys:String x:Key="LOCLibrary">مكتبة</sys:String>
     <sys:String x:Key="LOCStatistics">الإحصائيات</sys:String>
@@ -777,11 +780,13 @@
     <sys:String x:Key="LOCRemoveFavoriteGame">إزالة من المفضلة</sys:String>
     <sys:String x:Key="LOCHideGame">اخفي هذه اللعبة</sys:String>
     <sys:String x:Key="LOCUnHideGame">إزالة من المخفي</sys:String>
+    <sys:String x:Key="LOCEnableHdr"></sys:String>
+    <sys:String x:Key="LOCDisableHdr"></sys:String>
     <sys:String x:Key="LOCEditGame">تعديل…</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">حساب حجم التثبيت</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">حساب حجم التثبيت (جميع الألعاب)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">حساب حجم التثبيت (البيانات المفقودة فقط)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">حجم التثبيت</sys:String>
     <sys:String x:Key="LOCSetGameCategory">تعيين الفئة…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">تعيين حالة الإكمال</sys:String>
     <sys:String x:Key="LOCRemoveGame">حذف</sys:String>
@@ -803,7 +808,7 @@
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">نص الوصف حساس لبناء HTML</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">يتم تسجيل وقت اللعبة بالثواني.
 </sys:String>
-    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">حجم التثبيت مشار إليه بوحدة البايت.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">يجب تحديد تاريخ الإصدار بتنسيق &quot;يوم-شهر-عام&quot;. يمكن حذف قيم الشهر واليوم.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">القيم من 0 إلى 100 أو الفارغة بدون درجة.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">يتم دعم تطوير Playnite من طرف هؤلاء الرُعاة:</sys:String>
@@ -815,6 +820,7 @@
 </sys:String>
     <sys:String x:Key="LOCTimePlayed">وقت اللعب</sys:String>
     <sys:String x:Key="LOCLastPlayed">اخر تشغيل</sys:String>
+    <sys:String x:Key="LOCPlayedDays"></sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} ساعات {1} دقائق</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} دقائق</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} ثواني</sys:String>
@@ -822,16 +828,16 @@
     <sys:String x:Key="LOCOpeningDesktopModeMessage">جاري فتح وضع سطح المكتب…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">فتح في وضع ملء الشاشة…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">جاري تحميل مكتبة الألعاب…</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">حساب حجم التثبيت…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">حساب حجم التثبيت لـ {0}...</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">فشل تثبيت ملف السكريبت.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">تم تثبيت السكريبت بنجاح.</sys:String>
     <sys:String x:Key="LOCInstallScript">تثبيت السكريبت</sys:String>
     <sys:String x:Key="LOCScriptError">خطأ في السكريبت</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">فشل في تنقيذ وظيفة الملحق.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">فتح مجلد بيانات التعريف</sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">احسب</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">حساب حجم التثبيت تلقائياً باستخدام ROMs إذا كانت اللعبة تحتوي عليه أو وجهه تثبيت تم تعيينها</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} عميل غير مثبت.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} عميل سيتفح الآن.المرجو تسجيل الخروج ثم إغلاق هذه الرسالة.</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">في انتظار تسجيل دخول المستخدم، الرجاء إغلاق هذا عند الانتهاء…</sys:String>
@@ -933,6 +939,7 @@
 </sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">أفضل وقت للعب
 </sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
     <sys:String x:Key="LOCOverviewLabel">نظرة عامّة</sys:String>
     <sys:String x:Key="LOCSidebar">الشريط الجانبي</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">عرض على الشريط الجانبي</sys:String>
@@ -1001,6 +1008,7 @@
     <sys:String x:Key="LOCIncludePluginGameActions">تضمين إجراءات بدء اللعبة للمنصات</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">اختر الإجراء</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">طريقة التتبع</sys:String>
+    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">رابط</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">ملف</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">محاكي</sys:String>
@@ -1030,8 +1038,8 @@
     <sys:String x:Key="LOCTopPanelMainButtonMove">نقل زر القائمة الرئيسية إلى اللوحة الجانبية</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">لوحة الاستطلاع</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">اختيار لعبة عشوائية</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">مشاهدة لعبة مختارة عشوائياً</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">حدد لعبة عشوائية من العرض</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">حفظ إعدادات التجميع والفرز</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">إظهار كمرشح سريع في وضع Fullscreen</sys:String>
     <sys:String x:Key="LOCInPast7Days"> في ال 7 أيام الأخيرة</sys:String>
@@ -1097,6 +1105,7 @@
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">التشكيلات الجانبية المدمجة</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">التشكيل الجانبي المدمج</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">التشكيلات المخصصة</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">تم التعامل معها بواسطة برنامج نصي مدمج</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">مواصفات المحاكي</sys:String>
     <sys:String x:Key="LOCPlatformSpec">مواصفات المنصة</sys:String>
@@ -1132,6 +1141,8 @@
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">إذا كان ممكنا استيراد ملفات اللعبة باستخدام المسارات ذات الصلة بمجلد تثبيت Playnite أو مجلد تثبيت المحاكي.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">فحص المجلدات الفرعية</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">فحص داخل الأرشيف</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner">إضافة ماسح</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">إضافة ماسح موجود</sys:String>
     <sys:String x:Key="LOCStartScan">بدء الماسح</sys:String>
@@ -1156,8 +1167,9 @@
 
 مزيد من المعلومات على https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCElevatedProcessWarningShowOption">إظهار تحذير إذا كان Playnite يعمل بامتيازات مرتفعة</sys:String>
-    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
-    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">احصل على الحجم الحقيقي على القرص عند حساب حجم الألعاب</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">في حالة التمكين، ستكون عمليات المسح أبطأ وستحصل على الحجم الحقيقي الذي تستخدمه الملفات في محرك الأقراص.
+في حالة التعطيل، ستكون عمليات المسح أسرع وسوف تستخدم حجم الملفات نفسها.</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">تم الإبلاغ عن الإضافات التالية باعتبارها إشكالية محتملة، إما بسبب تأثير الاستقرار/الأداء العالي أو مشكلات الأمان. نوصي بشدة بإلغاء تثبيتها:
         
 {0}
@@ -1229,8 +1241,8 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">عند تعيين الماسح الضوئي سيقوم بتعيين هذه المنصة لجميع الألعاب، و الكتابة فوق أي منصات مكتشفة تلقائيا.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">تضمين الأوامر في البحث الافتراضي</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">عند التعطيل، لن يتم تضمين الأوامر في البحث الافتراضي حتى يتم استخدام البادئة # .</sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronyms"></sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">الحقول التي سيتم عرضها لنتائج اللعبة:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">الحالة المخفية</sys:String>
 
@@ -1261,23 +1273,28 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">إظهار الإشعارات لإصدارات التصحيح فقط</sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">عند التمكين، فقط التحديثات المتاحة للإصدارات الرئيسية المثبتة حاليا ستؤدي إلى تحديث الإشعار.
 لن تسفر الإصدارات الرئيسية الجديدة عن تحديث الإشعار.</sys:String>
-    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
-    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat">استخدام التواريخ النسبية للأسبوع الماضي</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve">استخدام التواريخ النسبية في تنسيق &quot;اليوم&quot;، &quot;الأمس&quot;، إلخ. إذا كان التاريخ أقل من أسبوع.
+    
+سيتم استخدام تنسيق التاريخ المحدد لجميع التواريخ الأخرى.</sys:String>
 
-    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
-    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
-    <sys:String x:Key="LOCAutomatic"></sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
-    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
-    <sys:String x:Key="LOCApplicationMenu"></sys:String>
-    <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearch">البحث عن صورة ويب</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">سلسلة البحث عن الأيقونة</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">سلسلة البحث عن صورة الغلاف</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground">سلسلة البحث عن صورة الخلفية</sys:String>
+    <sys:String x:Key="LOCGettingsAddonInformation">الحصول على معلومات الإضافة…</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">لا يوجد مصدر لبيانات التعريف</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">إعدادات سلوك التشغيل</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">إعدادات إستخدام الماسح</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">تحديد ملف شخصي عند بدء التشغيل</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">تحديد محاكي عند بدء التشغيل</sys:String>
+    <sys:String x:Key="LOCAutomatic">تلقائي</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">مفعل دائماً</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">معطل دائماً</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">إمكانية الوصول (قارئ الشاشة) الدعم</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">قائمة التطبيق</sys:String>
+    <sys:String x:Key="LOCGameMenu">قائمة اللعبة</sys:String>
+    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCUserDataFolder"></sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>
