@@ -24,7 +24,6 @@
         <pcon:InvertableBooleanToVisibilityConverter x:Key="InvertableBooleanToVisibilityConverter" />
         <pcon:NullToDependencyPropertyUnsetConverter x:Key="NullToDependencyPropertyUnsetConverter" />
         <pcon:ObjectToStringConverter x:Key="ObjectToStringConverter" />
-        <pcon:GameRomsToStringConverter x:Key="GameRomsToStringConverter" />
         <pcon:ValueConverterGroup x:Key="EnumCompVisibilityConverter">
             <pcon:EnumToBooleanConverter/>
             <pcon:BooleanToHiddenConverter />
