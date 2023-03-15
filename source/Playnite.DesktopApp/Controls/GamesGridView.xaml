@@ -264,7 +264,7 @@
         </DataTemplate>
         
         <DataTemplate x:Key="CellTemplateRoms">
-            <TextBlock Text="{Binding Roms, Mode=OneWay, Converter={StaticResource GameRomsToStringConverter}}" />
+            <TextBlock Text="{Binding RomList, Mode=OneWay}" />
         </DataTemplate>
 
         <DataTemplate x:Key="HeaderTemplateRoms">

@@ -224,29 +224,4 @@ namespace Playnite.Converters
             return this;
         }
     }
-
-    public class GameRomsToStringConverter : MarkupExtension, IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value is IList<GameRom> list)
-            {
-                return string.Join(", ", list.Select(a => a.Path));
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
-    }
 }

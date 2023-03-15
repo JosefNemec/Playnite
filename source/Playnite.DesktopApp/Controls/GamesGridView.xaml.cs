@@ -326,7 +326,7 @@ namespace Playnite.DesktopApp.Controls
             }
             else if (field == GameField.Roms)
             {
-                newColumn = CreateColumn(field, SortOrder.RecentActivity, "CellTemplateRoms", "HeaderTemplateRoms");
+                newColumn = CreateColumn(field, SortOrder.RomList, "CellTemplateRoms", "HeaderTemplateRoms");
             }
 
             return newColumn;
