@@ -88,6 +88,9 @@
                 <CheckBox Content="{DynamicResource LOCGameLastActivityTitle}"
                                               IsChecked="{Binding Settings.DetailsVisibility.LastPlayed}"
                                               Margin="0,10,0,0"/>
+                <CheckBox Content="{DynamicResource LOCDateAddedLabel}"
+                                              IsChecked="{Binding Settings.DetailsVisibility.Added}"
+                                              Margin="0,10,0,0"/>
                 <CheckBox Content="{DynamicResource LOCRecentActivityLabel}"
                                               IsChecked="{Binding Settings.DetailsVisibility.RecentActivity}"
                                               Margin="0,10,0,0"/>

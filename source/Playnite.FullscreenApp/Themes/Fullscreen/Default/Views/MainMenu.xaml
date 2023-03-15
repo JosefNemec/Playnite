@@ -116,4 +116,10 @@
             <TextBlock Text="{DynamicResource LOCMenuPatreonSupport}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>
+    
+    <DataTemplate x:Key="MainMenuMinimizeButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{DynamicResource LOCMinimize}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

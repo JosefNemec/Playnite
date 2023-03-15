@@ -58,11 +58,9 @@ Ak nám chcete pomôcť tento problém opraviť, odošlite prosím diagnostický
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstrániť Hru(y)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nedá sa odstrnáť - je spustená hra alebo inštalátor.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nie je možné odinštalovať - hra je spustená.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Naozaj chcete odstrániť túto hru?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Naozaj chcete odstrániť {0} hier?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Naozaj chcete odstrániť túto hru?
-
-Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu importu hry pri nasledujúcej aktualizácii knižnice.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Naozaj chcete odstrániť {0} hier?
 
 Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu importu hier pri nasledujúcej aktualizácii knižnice.</sys:String>
@@ -343,6 +341,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsCloseToTray">Po zatvorení okna aplikácie minimalizovať Playnite do systémovej lišty</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Pri spustení hry:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Po ukončení hry:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Táto akcia vás odhlási zo všetkých pripojených služieb (účtov). Vyžaduje sa reštart aplikácie. Chcete pokračovať?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Vymazať vyrovnávaciu pamäť?</sys:String>
@@ -427,6 +426,8 @@ Ak nie je povolené, obrázky pozadia sa budú preberať len vtedy ak sú potreb
     <sys:String x:Key="LOCLoginFailed">Overenie zlyhalo</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Import metadát</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Prevziať metadáta</sys:String>
@@ -531,6 +532,9 @@ Monetálne ju používa {1} hier a {2} emulátorov.</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Nenainštalované</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Skryté</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Obľúbené</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Naposledy hrané</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategória</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Popis</sys:String>
@@ -727,6 +731,8 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Odstrániť z obľúbenýchOdobrať z obľúbených</sys:String>
     <sys:String x:Key="LOCHideGame">Skryť túto hru</sys:String>
     <sys:String x:Key="LOCUnHideGame">Odstrániť zo skrytých</sys:String>
+    <sys:String x:Key="LOCEnableHdr"></sys:String>
+    <sys:String x:Key="LOCDisableHdr"></sys:String>
     <sys:String x:Key="LOCEditGame">Upraviť…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
@@ -761,6 +767,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Prebieha monitorovanie behu hry, chcete ho ukončiť a vrátiť hru do predchádzajúceho stavu?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Odohraný čas</sys:String>
     <sys:String x:Key="LOCLastPlayed">Naposledy hrané</sys:String>
+    <sys:String x:Key="LOCPlayedDays"></sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minút</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} sekúnd</sys:String>
@@ -864,6 +871,7 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Celkový čas hrania</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Priemerný čas hrania</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Najväčší čas hrania</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
     <sys:String x:Key="LOCOverviewLabel">Prehľad</sys:String>
     <sys:String x:Key="LOCSidebar">Bočný panel</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar"></sys:String>
@@ -924,6 +932,7 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
+    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
     <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
@@ -1007,6 +1016,7 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
     <sys:String x:Key="LOCEmulatorSpec"></sys:String>
     <sys:String x:Key="LOCPlatformSpec"></sys:String>
@@ -1042,6 +1052,8 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner"></sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
     <sys:String x:Key="LOCStartScan"></sys:String>
@@ -1121,6 +1133,8 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
     <sys:String x:Key="LOCHiddenStatus"></sys:String>
 
@@ -1165,4 +1179,7 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
     <sys:String x:Key="LOCApplicationMenu"></sys:String>
     <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCUserDataFolder"></sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>

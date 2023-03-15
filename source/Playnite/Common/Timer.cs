@@ -23,7 +23,7 @@ namespace Playnite.Common
         public void Dispose()
         {
             watch.Stop();
-            logger.Warn($"--- Timer '{name}', {watch.ElapsedMilliseconds} ms to complete.");
+            logger.Debug($"--- Timer '{name}', {watch.ElapsedMilliseconds} ms to complete.");
         }
     }
 

@@ -125,12 +125,21 @@ namespace Playnite.ViewModels
 
         public List<FilterPreset> SortedFilterPresets
         {
-            get => Database.FilterPresets.OrderBy(a => a.Name).ToList();
+            
+            get
+            {
+                return Database.GetSortedFilterPresets();
+            }
         }
 
         public List<FilterPreset> SortedFilterFullscreenPresets
         {
-            get => Database.FilterPresets.Where(a => a.ShowInFullscreeQuickSelection).OrderBy(a => a.Name).ToList();
+            get
+            {
+                return Database.GetSortedFilterPresets()
+                    .Where(a => a.ShowInFullscreeQuickSelection)
+                    .ToList();
+            }
         }
 
         public bool IsDisposing { get; set; } = false;
@@ -141,6 +150,7 @@ namespace Playnite.ViewModels
         public RelayCommand CancelProgressCommand { get; private set; }
         public RelayCommand<object> OpenUpdatesCommand { get; private set; }
         public RelayCommand StartInteractivePowerShellCommand { get; private set; }
+        public RelayCommand RestartApp { get; private set; }
         public RelayCommand RestartInSafeMode { get; private set; }
         public RelayCommand BackupDataCommand { get; private set; }
         public RelayCommand RestoreDataBackupCommand { get; private set; }
@@ -213,9 +223,25 @@ namespace Playnite.ViewModels
                 }
             });
 
+            RestartApp = new RelayCommand(() => RestartAppSkipLibUpdate());
             RestartInSafeMode = new RelayCommand(() => RestartAppSafe());
             BackupDataCommand = new RelayCommand(() => BackupData());
             RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
+            var filterPresetsCollection = (database.FilterPresets as FilterPresetsCollection);
+            filterPresetsCollection.OnSettingsUpdated += FilterPresetsCollection_OnSettingsUpdated;
+            database.FilterPresets.ItemCollectionChanged += FilterPresets_ItemCollectionChanged;
+        }
+
+        private void FilterPresetsCollection_OnSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
+        {
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+        }
+
+        private void FilterPresets_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<FilterPreset> e)
+        {
+            OnPropertyChanged(nameof(SortedFilterPresets));
+            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
         }
 
         private PlayniteSettings appSettings;
@@ -355,9 +381,6 @@ namespace Playnite.ViewModels
                 {
                     ActiveFilterPreset = null;
                 }
-
-                OnPropertyChanged(nameof(SortedFilterPresets));
-                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
         }
 
@@ -418,9 +441,6 @@ namespace Playnite.ViewModels
                     Database.FilterPresets.Add(preset);
                     ActiveFilterPreset = preset;
                 }
-
-                OnPropertyChanged(nameof(SortedFilterPresets));
-                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
             }
         }
 
@@ -909,6 +929,12 @@ namespace Playnite.ViewModels
             RunAppScript(AppSettings.AppShutdownScript, "shutdown");
         }
 
+        public void RestartAppSkipLibUpdate()
+        {
+            CloseView();
+            App.Restart(new CmdLineOptions { SkipLibUpdate = true });
+        }
+
         public void RestartAppSafe()
         {
             CloseView();
@@ -924,7 +950,21 @@ namespace Playnite.ViewModels
         public abstract void OpenSettings(int settingsPageIndex);
         public void StartGame(Game game)
         {
-            App.GamesEditor.PlayGame(game);
+            if (game.IsLaunching || game.IsRunning)
+            {
+                if (Dialogs.ShowMessage(
+                    LOC.CancelMonitoringExecutionAsk,
+                    LOC.CancelMonitoringAskTitle,
+                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    App.GamesEditor.CancelGameMonitoring(game);
+                    App.GamesEditor.PlayGame(game);
+                }
+            }
+            else
+            {
+                App.GamesEditor.PlayGame(game);
+            }
         }
 
         public void InstallGame(Game game)

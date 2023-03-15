@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using DiscordRPC;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,20 @@ namespace Playnite.WebView
         public void DeleteDomainCookies(string domain)
         {
             using (var manager = Cef.GetGlobalCookieManager())
-            using (var destoyer = new CookieDestroyer(domain))
+            using (var destoyer = new CookieDestroyer(domain, false))
+            {
+                MakeSureCookiesExist(manager);
+                if (manager.VisitAllCookies(destoyer))
+                {
+                    destoyer.Finished.WaitOne();
+                }
+            }
+        }
+
+        public void DeleteDomainCookiesRegex(string domainRegex)
+        {
+            using (var manager = Cef.GetGlobalCookieManager())
+            using (var destoyer = new CookieDestroyer(domainRegex, true))
             {
                 MakeSureCookiesExist(manager);
                 if (manager.VisitAllCookies(destoyer))

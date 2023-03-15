@@ -173,20 +173,9 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void AddApp()
         {
-            var res = dialogs.SelectString("LOCEnterName", "LOCAddNewItem", "");
-            if (res.Result && !res.SelectedString.IsNullOrEmpty())
-            {
-                if (EditingApps.Any(a => a.Name.Equals(res.SelectedString, StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    dialogs.ShowErrorMessage("LOCItemAlreadyExists", "");
-                }
-                else
-                {
-                    var newApp = new AppSoftware(res.SelectedString);
-                    EditingApps.Add(newApp);
-                    SelectedApp = newApp;
-                }
-            }
+            var newApp = new AppSoftware("new app");
+            EditingApps.Add(newApp);
+            SelectedApp = newApp;
         }
 
         private void AddAppFromExe()

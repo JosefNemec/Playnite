@@ -20,6 +20,7 @@ using System.Drawing.Imaging;
 using Playnite.Windows;
 using System.Drawing;
 using Playnite.Common.Media.Icons;
+using System.Windows.Data;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -33,7 +34,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public class ImportableProgram : SelectableItem<Program>
         {
-            public readonly static BitmapImage EmptyImage = new BitmapImage();
+            public static BitmapImage EmptyImage { get; set; }
 
             public ProgramType Type
             {
@@ -175,6 +176,29 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private ListCollectionView collectionView;
+        public ListCollectionView CollectionView
+        {
+            get => collectionView;
+            private set
+            {
+                collectionView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool hideImported = true;
+        public bool HideImported
+        {
+            get => hideImported;
+            set
+            {
+                hideImported = value;
+                OnPropertyChanged();
+                CollectionView.Refresh();
+            }
+        }
+
         private bool markImportAll;
         public bool MarkImportAll
         {
@@ -187,6 +211,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private readonly object listSyncLock = new object();
+        private readonly HashSet<string> importedExes;
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
@@ -231,10 +257,15 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public InstalledGamesViewModel(IWindowFactory window, IDialogsFactory dialogs)
+        public InstalledGamesViewModel(IWindowFactory window, IDialogsFactory dialogs, IGameDatabaseMain database)
         {
             this.window = window;
             this.dialogs = dialogs;
+            importedExes = database.GetImportedExeFiles();
+            CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Programs);
+            CollectionView.Filter = ListFilter;
+            BindingOperations.EnableCollectionSynchronization(Programs, listSyncLock);
+            ImportableProgram.EmptyImage = new BitmapImage(); // This is initialized here because the bitmap has to be created on main thread
         }
 
         public bool? OpenView()
@@ -368,7 +399,10 @@ namespace Playnite.DesktopApp.ViewModels
                         }
 
                         progArgs.MainContext.Send(_ =>
-                            Programs = new ObservableCollection<ImportableProgram>(allApps.OrderBy(a => a.Item.Name)), null);
+                        {
+                            Programs.Clear();
+                            Programs.AddRange(allApps.OrderBy(a => a.Item.Name));
+                        }, null);
                     }
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -383,7 +417,8 @@ namespace Playnite.DesktopApp.ViewModels
             try
             {
                 var winApps = Playnite.Common.Programs.GetUWPApps().Select(a => new ImportableProgram(a, ProgramType.UWP));
-                Programs = new ObservableCollection<ImportableProgram>(winApps.OrderBy(a => a.Item.Name));
+                Programs.Clear();
+                Programs.AddRange(winApps.OrderBy(a => a.Item.Name));
             }
                 catch (Exception e) when(!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -413,7 +448,10 @@ namespace Playnite.DesktopApp.ViewModels
                     {
                         var apps = executables.Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Item.Name);
                         progArgs.MainContext.Send(_ =>
-                            Programs = new ObservableCollection<ImportableProgram>(apps), null);
+                        {
+                            Programs.Clear();
+                            Programs.AddRange(apps);
+                        }, null);
                     }
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -443,6 +481,17 @@ namespace Playnite.DesktopApp.ViewModels
 
                 return addedGames;
             }
+        }
+
+        private bool ListFilter(object item)
+        {
+            var program = (ImportableProgram)item;
+            if (HideImported)
+            {
+                return !importedExes.ContainsString(program.Item.Path, StringComparison.OrdinalIgnoreCase);
+            }
+
+            return true;
         }
     }
 }

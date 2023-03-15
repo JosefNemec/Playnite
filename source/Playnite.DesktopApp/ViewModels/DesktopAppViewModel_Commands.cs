@@ -77,10 +77,14 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<Game> OpenManualCommand { get; private set; }
         public RelayCommand<Game> ToggleFavoritesCommand { get; private set; }
         public RelayCommand<Game> ToggleVisibilityCommand { get; private set; }
+        public RelayCommand<Game> ToggleHdrCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsFavoritesCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> SetAsHiddensCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> RemoveAsHiddensCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> EnableHdrCommand { get; private set; }
+        public RelayCommand<IEnumerable<Game>> DisableHdrCommand { get; private set; }
+
         public RelayCommand<Game> AssignGameCategoryCommand { get; private set; }
         public RelayCommand<IEnumerable<Game>> AssignGamesCategoryCommand { get; private set; }
         public RelayCommand<Tuple<Game, CompletionStatus>> SetGameCompletionStatusCommand { get; private set; }
@@ -215,7 +219,8 @@ namespace Playnite.DesktopApp.ViewModels
                 ImportInstalledGames(
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
-                    Dialogs), null);
+                    Dialogs,
+                    Database), null);
             }, (a) => Database?.IsOpen == true);
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
@@ -234,7 +239,8 @@ namespace Playnite.DesktopApp.ViewModels
                 ImportWindowsStoreGames(
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
-                    Dialogs));
+                    Dialogs,
+                    Database));
             }, (a) => Database?.IsOpen == true);
 
             OpenFullScreenCommand = new RelayCommand<object>((a) =>
@@ -485,6 +491,11 @@ namespace Playnite.DesktopApp.ViewModels
                 GamesEditor.ToggleHideGame(a);
             });
 
+            ToggleHdrCommand = new RelayCommand<Game>((a) =>
+            {
+                GamesEditor.ToggleHdrGame(a);
+            });
+
             AssignGameCategoryCommand = new RelayCommand<Game>((a) => AssignCategories(a));
 
             AssignGamesCategoryCommand = new RelayCommand<IEnumerable<Game>>((a) =>
@@ -542,6 +553,16 @@ namespace Playnite.DesktopApp.ViewModels
             RemoveAsHiddensCommand = new RelayCommand<IEnumerable<Game>>((a) =>
             {
                 GamesEditor.SetHideGames(a.ToList(), false);
+            });
+
+            EnableHdrCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetHdrSupport(a.ToList(), true);
+            });
+
+            DisableHdrCommand = new RelayCommand<IEnumerable<Game>>((a) =>
+            {
+                GamesEditor.SetHdrSupport(a.ToList(), false);
             });
 
             SelectRandomGameCommand = new RelayCommand<object>((a) =>

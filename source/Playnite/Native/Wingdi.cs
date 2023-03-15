@@ -131,6 +131,42 @@ namespace Playnite.Native
         public string monitorDevicePath;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO
+    {
+        public DISPLAYCONFIG_DEVICE_INFO_HEADER header;
+        public uint value;
+        public DISPLAYCONFIG_COLOR_ENCODING colorEncoding;
+        public uint bitsPerColorChannel;
+
+        public bool advancedColorSupported => (value & 0x1) == 0x1;
+        public bool advancedColorEnabled => (value & 0x2) == 0x2;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE
+    {
+        public DISPLAYCONFIG_DEVICE_INFO_HEADER header;
+        public uint value;
+
+        public bool enableAdvancedColor
+        {
+            get => (value & 0x1) == 1;
+            set
+            {
+                uint mask = 0x1;
+                if (value)
+                {
+                    this.value |= mask;
+                }
+                else
+                {
+                    this.value &= ~mask;
+                }
+            }
+        }
+    }
+
     public enum DISPLAYCONFIG_MODE_INFO_TYPE : uint
     {
         DISPLAYCONFIG_MODE_INFO_TYPE_SOURCE = 1,
@@ -208,6 +244,23 @@ namespace Playnite.Native
         DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME = 4,
         DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE = 5,
         DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE = 6,
+        DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION = 7,
+        DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION = 8,
+        DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO = 9,
+        DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE = 10,
+        DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL = 11,
+        DISPLAYCONFIG_DEVICE_INFO_GET_MONITOR_SPECIALIZATION = 12,
+        DISPLAYCONFIG_DEVICE_INFO_SET_MONITOR_SPECIALIZATION = 13,
         DISPLAYCONFIG_DEVICE_INFO_FORCE_UINT32 = 0xFFFFFFFF
+    }
+
+    public enum DISPLAYCONFIG_COLOR_ENCODING : uint
+    {
+        DISPLAYCONFIG_COLOR_ENCODING_RGB = 0,
+        DISPLAYCONFIG_COLOR_ENCODING_YCBCR444 = 1,
+        DISPLAYCONFIG_COLOR_ENCODING_YCBCR422 = 2,
+        DISPLAYCONFIG_COLOR_ENCODING_YCBCR420 = 3,
+        DISPLAYCONFIG_COLOR_ENCODING_INTENSITY = 4,
+        DISPLAYCONFIG_COLOR_ENCODING_FORCE_UINT32 = 0xFFFFFFFF
     }
 }

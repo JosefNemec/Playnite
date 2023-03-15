@@ -61,38 +61,26 @@ namespace Playnite.DesktopApp.ViewModels
                 var newFields = newData?.Select(a => a.Name).ToList() ?? new List<string>();
                 if (!oldFields.HasItems() && newFields.HasItems())
                 {
-                    diffFields.Add(field);
                     return;
                 }
 
-                if (newFields.HasItems() && oldFields.HasItems() && !oldFields.IsListEqual(newFields, new GameFieldComparer()))
+                if (newFields.HasItems() && oldFields.HasItems() && !oldFields.IsListEqual(newFields, GameFieldComparer.Instance))
                 {
                     diffFields.Add(field);
                 }
             }
 
-            //void checkItemChanged<T>(T source, string other, GameField field) where T : DatabaseObject
-            //{
-            //    if (!other.IsNullOrEmpty())
-            //    {
-            //        if (source != null && !string.Equals(source.Name, other, StringComparison.OrdinalIgnoreCase))
-            //        {
-            //            diffFields.Add(field);
-            //        }
-            //    }
-            //}
-
-            if (!newGame.Name.IsNullOrEmpty())
+            if (!newGame.Name.IsNullOrWhiteSpace())
             {
-                if (!oldGame.Name.IsNullOrEmpty() && !string.Equals(oldGame.Name, newGame.Name, StringComparison.OrdinalIgnoreCase))
+                if (!oldGame.Name.IsNullOrWhiteSpace() && !string.Equals(oldGame.Name, newGame.Name, StringComparison.InvariantCultureIgnoreCase))
                 {
                     diffFields.Add(GameField.Name);
                 }
             }
 
-            if (!newGame.Description.IsNullOrEmpty())
+            if (!newGame.Description.IsNullOrWhiteSpace())
             {
-                if (!oldGame.Description.IsNullOrEmpty() && !string.Equals(oldGame.Description, newGame.Description, StringComparison.Ordinal))
+                if (!oldGame.Description.IsNullOrWhiteSpace() && !string.Equals(oldGame.Description, newGame.Description, StringComparison.InvariantCultureIgnoreCase))
                 {
                     diffFields.Add(GameField.Description);
                 }
@@ -212,7 +200,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (newGame.InstallSize != null)
+            if (!oldGame.IsInstalled && newGame.InstallSize != null)
             {
                 if (oldGame.InstallSize != null && oldGame.InstallSize != newGame.InstallSize)
                 {
@@ -263,7 +251,7 @@ namespace Playnite.DesktopApp.ViewModels
         private void LoadNewMetadata(ComparableMetadatGameData newData)
         {
             ShowCheckBoxes = true;
-            if (!string.IsNullOrEmpty(newData.Name))
+            if (!newData.Name.IsNullOrWhiteSpace() && !string.Equals(newData.Name, EditingGame.Name, StringComparison.InvariantCultureIgnoreCase))
             {
                 EditingGame.Name = newData.Name;
             }
@@ -318,7 +306,7 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.ReleaseDate = newData.ReleaseDate;
             }
 
-            if (!newData.Description.IsNullOrEmpty())
+            if (!newData.Description.IsNullOrWhiteSpace() && !string.Equals(newData.Description, EditingGame.Description, StringComparison.InvariantCultureIgnoreCase))
             {
                 EditingGame.Description = newData.Description;
             }
@@ -365,7 +353,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
             }
 
-            if (newData.InstallSize != null)
+            if (!EditingGame.IsInstalled && newData.InstallSize != null)
             {
                 EditingGame.InstallSize = newData.InstallSize;
             }

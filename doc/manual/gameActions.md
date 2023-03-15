@@ -22,7 +22,7 @@ Action properties
 | --- | --- |
 | Play action | If enabled, Playnite will treat this action as Play action. Offering as an option when starting a game (if more than one option is available and counting play time from a started by this action. |
 | Type | Action startup type. | 
-| Tracking mode | Only available for Play actions (`File` and `URL` types) since it affects how play time detection works. |
+| Tracking mode | Only available for Play actions (`File` and `URL` types) since it affects how [play time detection](#tracking-mode) works. |
 | Path | File path (or URL) to start. |
 | Arguments | Startup arguments passed to an executable during startup. |
 | Working directory | Working directory set to an executable during startup. |

@@ -369,6 +369,44 @@
                 </DockPanel>
             </TabItem>
 
+            <!--FilterPresets-->
+            <TabItem Header="{DynamicResource LOCSettingsTopPanelFilterPresetsItem}">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                        <Button Content="{DynamicResource LOCRenameTitle}" Margin="5"
+                                Command="{Binding RenameFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                        <Button Content="{DynamicResource LOCRemoveTitle}" Margin="5,5,25,5"
+                                Command="{Binding RemoveFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                        <Button Name="ButtonMoveUpFilterPreset" FontFamily="Marlett" Content="5" Margin="5"
+                                Command="{Binding MoveUpFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                        <Button Name="ButtonMoveDownFilterPreset" FontFamily="Marlett" Content="6" Margin="5"
+                                Command="{Binding MoveDownFilterPresetCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ListFilterPresets}"/>
+                    </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1" Grid.Row="0" Margin="5,10,5,10"
+                                    Visibility="{Binding SelectedItem, ElementName=ListFilterPresets, Converter={StaticResource NullToVisibilityConverter}}">
+                            <CheckBox Content="{DynamicResource LOCFilterPresetShowOnFSTopPanel}"
+                                      IsChecked="{Binding SelectedItem.ShowInFullscreeQuickSelection, ElementName=ListFilterPresets}" />
+                        </StackPanel>
+                        <ListBox Name="ListFilterPresets" Grid.Column="0" Grid.Row="0"
+                                 DockPanel.Dock="Top" Margin="5" SelectionMode="Extended"
+                                 ItemsSource="{Binding EditingFilterPresets}" DisplayMemberPath="Name" />
+                    </Grid>
+
+                </DockPanel>
+            </TabItem>
+            
         </TabControl>
 
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{StaticResource WindowPanelSeparatorBrush}">

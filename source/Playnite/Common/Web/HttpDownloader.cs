@@ -62,6 +62,11 @@ namespace Playnite.Common.Web
             return downloader.DownloadData(url);
         }
 
+        public static byte[] DownloadData(string url, CancellationToken cancelToken)
+        {
+            return downloader.DownloadData(url, cancelToken);
+        }
+
         public static void DownloadFile(string url, string path)
         {
             downloader.DownloadFile(url, path);

@@ -109,12 +109,22 @@ namespace Playnite.API
 
         public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
         {
-            return database.GetGameMatchesFilter(game, filterSettings);
+            return database.GetGameMatchesFilter(game, filterSettings, false);
         }
 
         public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
         {
-            return database.GetFilteredGames(filterSettings);
+            return database.GetFilteredGames(filterSettings, false);
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
+        {
+            return database.GetGameMatchesFilter(game, filterSettings, useFuzzyNameMatch);
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
+        {
+            return database.GetFilteredGames(filterSettings, useFuzzyNameMatch);
         }
     }
 }

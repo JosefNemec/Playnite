@@ -41,6 +41,18 @@ namespace Playnite.Toolbox
             ControlGalleryViewName
         };
 
+        public static List<string> PackageFileBlackListRegex { get; } = new List<string>
+        {
+            @"\.sln$",
+            @"\.csproj$",
+            @"\.csproj\.user$",
+            @"^Fonts\\",
+            @"^\.vs\\",
+            @"^bin\\",
+            @"^obj\\",
+            @"^backup_"
+        };
+
         public static List<FileChange> GetThemeChangelog(Version baseVersion, ApplicationMode mode, string changelogDir)
         {
             if (!Directory.Exists(changelogDir))
@@ -197,13 +209,17 @@ namespace Playnite.Toolbox
                     foreach (var file in Directory.GetFiles(themeDirectory, "*.*", SearchOption.AllDirectories))
                     {
                         var subName = file.Replace(themeDirectory, "").TrimStart(Path.DirectorySeparatorChar);
-                        if (file == targetPath ||
-                            PackageFileBlackList.ContainsString(subName) ||
-                            subName.StartsWith("Fonts\\") ||
-                            subName.StartsWith(".vs\\") ||
-                            subName.StartsWith("bin\\") ||
-                            subName.StartsWith("obj\\") ||
-                            subName.StartsWith("backup_"))
+                        if (file == targetPath)
+                        {
+                            continue;
+                        }
+
+                        if (PackageFileBlackList.Any(a => subName.EndsWith(a, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            continue;
+                        }
+
+                        if (PackageFileBlackListRegex.Any(a => Regex.IsMatch(subName, a, RegexOptions.IgnoreCase)))
                         {
                             continue;
                         }

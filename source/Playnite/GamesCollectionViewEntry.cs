@@ -100,6 +100,7 @@ namespace Playnite
         public List<Guid> FeatureIds => Game.FeatureIds;
         public Guid CompletionStatusId => Game.CompletionStatusId;
         public ObservableCollection<GameRom> Roms => Game.Roms;
+        public string RomList => Game.Roms.HasItems() ? string.Join(", ", Game.Roms.Select(a => a.Path)) : string.Empty;
 
         public object LibraryIcon => GetImageObject(LibraryPlugin?.LibraryIcon, true);
         public object IconObject => GetImageObject(Game.Icon, false);

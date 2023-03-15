@@ -17,7 +17,8 @@ namespace System
         private static readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
         {
             Formatting = Formatting.None,
-            ContractResolver = JsonResolver.Global
+            ContractResolver = JsonResolver.Global,
+            MaxDepth = 128
         };
 
         /// <summary>

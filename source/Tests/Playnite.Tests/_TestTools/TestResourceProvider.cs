@@ -13,6 +13,9 @@ namespace Playnite.Tests
     public class TestResourceProvider : IResourceProvider
     {
         private readonly ResourceDictionary engStringResource;
+
+        public static readonly TestResourceProvider Instance = new TestResourceProvider();
+
         public TestResourceProvider()
         {
             var engSource = Path.Combine(PlaynitePaths.LocalizationsPath, PlaynitePaths.EngLocSourceFileName);

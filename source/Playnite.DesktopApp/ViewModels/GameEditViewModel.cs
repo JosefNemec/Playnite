@@ -174,6 +174,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         #endregion Database fields
 
+        public bool IsHdrSupported => HdrUtilities.IsHdrSupported();
+
         private Game editingGame;
         public Game EditingGame
         {
@@ -755,6 +757,11 @@ namespace Playnite.DesktopApp.ViewModels
                     game.Favorite = EditingGame.Favorite;
                 }
 
+                if (UseHdrChanges)
+                {
+                    game.EnableSystemHdr = EditingGame.EnableSystemHdr;
+                }
+
                 if (UseHiddenChanges)
                 {
                     game.Hidden = EditingGame.Hidden;
@@ -1273,11 +1280,10 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var addedItems = sourceList.Where(a => itemsToAdd.Contains(a.Item.Id) == true && targetCollection[a.Item.Id] == null).ToList();
-            if (addedItems.Any())
-            {
-                targetCollection.Add(addedItems.Select(a => (TItem)a.Item));
-            }
+            // Adding new fields via metadata property object automatically uses GameFieldComparer,
+            // taking care of potential duplicates.
+            var addToDb = sourceList.Where(a => itemsToAdd.Contains(a.Item.Id)).Select(a => new MetadataNameProperty(a.Item.Name)).ToList();
+            targetCollection.Add(addToDb);
         }
 
         public void AddNewItemToDb<TItem>(ObservableCollection<TItem> sourceList, Guid itemToAdd, IItemCollection<TItem> targetCollection) where TItem : DatabaseObject
@@ -1287,10 +1293,12 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var addedItem = sourceList.FirstOrDefault(a => a.Id == itemToAdd && targetCollection[a.Id] == null);
-            if (addedItem != null)
+            var toAdd = sourceList.FirstOrDefault(a => a.Id == itemToAdd && targetCollection[a.Id] == null);
+            if (toAdd != null)
             {
-                targetCollection.Add(addedItem);
+                // Adding new fields via metadata property object automatically uses GameFieldComparer,
+                // taking care of potential duplicates.
+                targetCollection.Add(new MetadataNameProperty(toAdd.Name));
             }
         }
 

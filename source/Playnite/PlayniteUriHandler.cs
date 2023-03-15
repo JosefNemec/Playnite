@@ -16,6 +16,7 @@ namespace Playnite
         public const string CreateDiag = "creatediag";
         public const string ShowGame = "showgame";
         public const string InstallAddon = "installaddon";
+        public const string Search = "search";
     }
 
     public class PlayniteUriHandler : IUriHandlerAPI

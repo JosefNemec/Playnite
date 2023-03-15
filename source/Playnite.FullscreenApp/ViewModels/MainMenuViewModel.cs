@@ -35,6 +35,11 @@ namespace Playnite.FullscreenApp.ViewModels
         }, () => !MainModel.ProgressActive);
         public RelayCommand CancelProgressCommand => new RelayCommand(() => CancelProgress(), () => GlobalTaskHandler.CancelToken?.IsCancellationRequested == false);
         public RelayCommand OpenHelpCommand => new RelayCommand(() => OpenHelp());
+        public RelayCommand MinimizeCommand => new RelayCommand(() =>
+        {
+            Close();
+            MainModel.MinimizeWindow();
+        });
 
         public MainMenuViewModel(
             IWindowFactory window,

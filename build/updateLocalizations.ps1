@@ -14,7 +14,7 @@ $requestHeaders = @{
 }
 
 $locProgressData = New-Object "System.Collections.Specialized.OrderedDictionary"
-$locProgress = Invoke-RestMethod -Headers $requestHeaders -Uri "$urlRoot/projects/$playnitePrjId/languages/progress?limit=100"
+$locProgress = Invoke-RestMethod -Method Get -Headers $requestHeaders -Uri "$urlRoot/projects/$playnitePrjId/files/30/languages/progress?limit=100" ` -ContentType "application/json"
 foreach ($lng in $locProgress.data)
 {
     $locProgressData.Add($lng.data.languageId, $lng.data.translationProgress);

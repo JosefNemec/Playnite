@@ -470,6 +470,14 @@ namespace Playnite
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            // Running under Wine is not supported
+            if (PlayniteProcess.WorkingSetMemory == 0 &&
+                Programs.GetUnistallProgramsList().Any(a => a.DisplayName.StartsWith("Wine Mono", StringComparison.OrdinalIgnoreCase)))
+            {
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
             var exception = (Exception)e.ExceptionObject;
             var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
             logger.Error(exception, "Unhandled exception occured.");
@@ -478,6 +486,13 @@ namespace Playnite
             // Delete safe startup flag if we are able to handle the crash,
             // safe startup option should show for crashes we are not handling.
             FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
+            if (crashInfo.IsLiteDbCorruptionCrash)
+            {
+                Dialogs.ShowErrorMessage(LOC.DBCorruptionCrashMessage.GetLocalized());
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
             if (crashInfo.IsExtensionCrash)
             {
                 crashModel = new CrashHandlerViewModel(
@@ -544,7 +559,12 @@ namespace Playnite
                 {
                     if (backupOptions == null || !backupOptions.ClosedWhenDone)
                     {
-                        Restart(new CmdLineOptions { SkipLibUpdate = true }, false);
+                        Restart(new CmdLineOptions
+                        {
+                            SkipLibUpdate = true,
+                            StartClosedToTray = CmdLine.StartClosedToTray,
+                            HideSplashScreen = CmdLine.HideSplashScreen
+                        }, false);
                     }
                 }
 
@@ -1058,6 +1078,13 @@ namespace Playnite
                     }
 
                     InstallOnlineAddon(arguments[1]);
+                    break;
+
+                case UriCommands.Search:
+                    if (Mode == ApplicationMode.Desktop)
+                    {
+                        PlayniteApiGlobal.MainView.OpenSearch(arguments.Length >= 2 ? arguments[1] : string.Empty);
+                    }
                     break;
 
                 default:

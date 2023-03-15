@@ -170,7 +170,7 @@ namespace Playnite
         /// </summary>
         public const string GameUninstallRunningError = "LOCGameUninstallRunningError";
         /// <summary>
-        /// Are you sure you want to remove this game?
+        /// Are you sure you want to remove {0}?
         /// </summary>
         public const string GameRemoveAskMessage = "LOCGameRemoveAskMessage";
         /// <summary>
@@ -178,7 +178,7 @@ namespace Playnite
         /// </summary>
         public const string GamesRemoveAskMessage = "LOCGamesRemoveAskMessage";
         /// <summary>
-        /// Are you sure you want to remove this game?
+        /// Are you sure you want to remove {0}?
         /// </summary>
         public const string GameRemoveAskMessageIgnoreOption = "LOCGameRemoveAskMessageIgnoreOption";
         /// <summary>
@@ -1278,6 +1278,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsAfterGameClose = "LOCSettingsAfterGameClose";
         /// <summary>
+        /// Format time played to indicate the number of days played
+        /// </summary>
+        public const string SettingsPlaytimeUseDaysFormatLabel = "LOCSettingsPlaytimeUseDaysFormatLabel";
+        /// <summary>
         /// Dates formats:
         /// </summary>
         public const string SettingsDatesFormatsLabel = "LOCSettingsDatesFormatsLabel";
@@ -1589,6 +1593,14 @@ namespace Playnite
         /// Use when experiencing issues with web views, for example integration authentication dialogs.
         /// </summary>
         public const string SettingsAltWebViewRenderingTooltip = "LOCSettingsAltWebViewRenderingTooltip";
+        /// <summary>
+        /// Partial loading of large game descriptions
+        /// </summary>
+        public const string SettingsPartialDescriptionLoading = "LOCSettingsPartialDescriptionLoading";
+        /// <summary>
+        /// Large descriptions can cause noticeable lag when selecting games.
+        /// </summary>
+        public const string SettingsPartialDescriptionLoadingTooltip = "LOCSettingsPartialDescriptionLoadingTooltip";
         /// <summary>
         /// Metadata Import
         /// </summary>
@@ -1965,6 +1977,18 @@ namespace Playnite
         /// Favorite
         /// </summary>
         public const string GameFavoriteTitle = "LOCGameFavoriteTitle";
+        /// <summary>
+        /// Enable HDR Support
+        /// </summary>
+        public const string GameHdrTitle = "LOCGameHdrTitle";
+        /// <summary>
+        /// If enabled, HDR will be enabled on the primary display before starting the game.
+        /// </summary>
+        public const string GameHdrTooltip = "LOCGameHdrTooltip";
+        /// <summary>
+        /// Note that HDR is not supported on your primary display.
+        /// </summary>
+        public const string GameHdrNotSupportedTooltip = "LOCGameHdrNotSupportedTooltip";
         /// <summary>
         /// Last Played
         /// </summary>
@@ -2722,6 +2746,14 @@ namespace Playnite
         /// </summary>
         public const string UnHideGame = "LOCUnHideGame";
         /// <summary>
+        /// Enable HDR Support
+        /// </summary>
+        public const string EnableHdr = "LOCEnableHdr";
+        /// <summary>
+        /// Disable HDR Support
+        /// </summary>
+        public const string DisableHdr = "LOCDisableHdr";
+        /// <summary>
         /// Edit…
         /// </summary>
         public const string EditGame = "LOCEditGame";
@@ -2857,6 +2889,10 @@ namespace Playnite
         /// Last Played
         /// </summary>
         public const string LastPlayed = "LOCLastPlayed";
+        /// <summary>
+        /// {0}d {1}h {2}m
+        /// </summary>
+        public const string PlayedDays = "LOCPlayedDays";
         /// <summary>
         /// {0}h {1}m
         /// </summary>
@@ -3166,6 +3202,10 @@ namespace Playnite
         /// </summary>
         public const string StatsTopPlayTime = "LOCStatsTopPlayTime";
         /// <summary>
+        /// Total install size
+        /// </summary>
+        public const string StatsTotalInstallSize = "LOCStatsTotalInstallSize";
+        /// <summary>
         /// Overview
         /// </summary>
         public const string OverviewLabel = "LOCOverviewLabel";
@@ -3398,9 +3438,13 @@ namespace Playnite
         /// </summary>
         public const string SelectActionTitle = "LOCSelectActionTitle";
         /// <summary>
-        /// Tracking mode
+        /// Tracking Mode
         /// </summary>
         public const string ActionTrackingMode = "LOCActionTrackingMode";
+        /// <summary>
+        /// Tracking Path
+        /// </summary>
+        public const string ActionTrackingPath = "LOCActionTrackingPath";
         /// <summary>
         /// Link
         /// </summary>
@@ -3734,6 +3778,10 @@ namespace Playnite
         /// </summary>
         public const string EmulatorCustomProfiles = "LOCEmulatorCustomProfiles";
         /// <summary>
+        /// Custom profile
+        /// </summary>
+        public const string EmulatorCustomProfile = "LOCEmulatorCustomProfile";
+        /// <summary>
         /// Handled by a built-in script
         /// </summary>
         public const string EmulatorFunctionHandledByScript = "LOCEmulatorFunctionHandledByScript";
@@ -3873,6 +3921,14 @@ namespace Playnite
         /// Scan inside archives
         /// </summary>
         public const string EmuImportScanInsideArchives = "LOCEmuImportScanInsideArchives";
+        /// <summary>
+        /// Merge related files
+        /// </summary>
+        public const string EmuMergeRelatedFiles = "LOCEmuMergeRelatedFiles";
+        /// <summary>
+        /// Merge related game files, like individual game discs, under one game entry.
+        /// </summary>
+        public const string EmuMergeRelatedFilesTooltip = "LOCEmuMergeRelatedFilesTooltip";
         /// <summary>
         /// Add scanner
         /// </summary>
@@ -4186,6 +4242,14 @@ namespace Playnite
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
         /// <summary>
+        /// Use fuzzy matching in name filter
+        /// </summary>
+        public const string NameFilterUseFuzzyMatching = "NameFilterUseFuzzyMatching";
+        /// <summary>
+        /// When enabled, name filter will match game names the same way as global search.
+        /// </summary>
+        public const string NameFilterUseFuzzyMatchingTooltip = "NameFilterUseFuzzyMatchingTooltip";
+        /// <summary>
         /// Fields to be displayed for game results:
         /// </summary>
         public const string SearchViewGameFieldOptions = "LOCSearchViewGameFieldOptions";
@@ -4353,5 +4417,17 @@ namespace Playnite
         /// Game menu
         /// </summary>
         public const string GameMenu = "LOCGameMenu";
+        /// <summary>
+        /// Program folder
+        /// </summary>
+        public const string ProgramFolder = "LOCProgramFolder";
+        /// <summary>
+        /// User data directory
+        /// </summary>
+        public const string UserDataFolder = "LOCUserDataFolder";
+        /// <summary>
+        /// Library file corruption has been detected, Playnite will now shutdown.
+        /// </summary>
+        public const string DBCorruptionCrashMessage = "LOCDBCorruptionCrashMessage";
     }
 }

@@ -160,6 +160,21 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
+        public List<FilterPreset> GetSortedFilterPresets()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FilterPresetsSettings GetFilterPresetsSettings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetFilterPresetsSettings(FilterPresetsSettings settings)
+        {
+            throw new NotImplementedException();
+        }
+
         public CompletionStatusSettings GetCompletionStatusSettings()
         {
             throw new NotImplementedException();
@@ -185,7 +200,7 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
         {
             return true;
         }
@@ -195,14 +210,29 @@ namespace Playnite.Database
             yield break;
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings)
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
+        {
+            yield break;
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             return true;
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings)
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             yield break;
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
+        {
+            return true;
+        }
+
+        public HashSet<string> GetImportedExeFiles()
+        {
+            throw new NotImplementedException();
         }
     }
 }

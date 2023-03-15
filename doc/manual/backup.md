@@ -36,11 +36,14 @@ Data backup and data restore can be started externally via `--backup` and `--res
 | -- | -- |
 | DataDir | Full path to a folder containing Playnite user data. |
 | LibraryDir | Full path to a folder containing Playnite game library files. |
-| OutputFile | Full path to resulting backup file.  |
+| OutputFile | Full path to resulting backup file. |
+| OutputDir | Full path to output folder. Playnite will choose output file name automatically, one that matches rotating backup names. |
 | BackupItems | List of [additional items](#backup-items) (their integer values) to be included in a backup. Settings and core game library files are always included. |
 | ClosedWhenDone | If set to `true`, Playnite will stay closed after backup procedure is finished. |
 | CancelIfGameRunning | If set to `true`, Playnite won't start backup procedure if a game is currently running existing Playnite instance. |
 | RotatingBackups | Number of rotating backup files to be kept. This only works if resulting file name is in `PlayniteBackup-yyyy-MM-dd-HH-mm-ss.zip` format. `0` means only one backup file will be always kept. |
+
+`OutputFile` and `OutputDir` are mutually exclusive. If both are specified, `OutputDir` will be used and resulting file name will be automatically generated.
 
 ### Example
 

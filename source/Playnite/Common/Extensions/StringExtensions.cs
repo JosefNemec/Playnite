@@ -87,6 +87,47 @@ namespace System
             }
         }
 
+        public static bool IsStartOfStringAcronym(this string acronymStart, string input)
+        {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(acronymStart)
+                || acronymStart.Length < 2 || acronymStart.Length > input.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < acronymStart.Length; i++)
+            {
+                if (!char.IsLetterOrDigit(acronymStart[i]))
+                {
+                    return false;
+                }
+            }
+
+            var acronymIndex = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (char.IsLetterOrDigit(input[i]) && (i == 0 || input[i - 1] == ' '))
+                {
+                    if (char.ToUpperInvariant(input[i]) != char.ToUpperInvariant(acronymStart[acronymIndex]))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        acronymIndex++;
+                        // If the acronym index and acronym start length is the same
+                        // it means all the characters have been matched
+                        if (acronymIndex == acronymStart.Length)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private static string RemoveUnlessThatEmptiesTheString(string input, string pattern)
         {
             string output = Regex.Replace(input, pattern, string.Empty);

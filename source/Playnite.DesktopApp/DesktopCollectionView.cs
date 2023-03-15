@@ -21,7 +21,7 @@ namespace Playnite.DesktopApp
             ListGrouped
         }
 
-        private PlayniteSettings settings;
+        private readonly PlayniteSettings settings;
         private ViewSettings viewSettings;
         private GroupableField? currentGrouping = null;
 
@@ -83,7 +83,7 @@ namespace Playnite.DesktopApp
         public DesktopCollectionView(
             IGameDatabaseMain database,
             PlayniteSettings settings,
-            ExtensionFactory extensions) : base(database, extensions, settings.FilterSettings)
+            ExtensionFactory extensions) : base(database, extensions, settings.FilterSettings, settings)
         {
             this.settings = settings;
             Database.Games.ItemCollectionChanged += Database_GamesCollectionChanged;
@@ -101,6 +101,7 @@ namespace Playnite.DesktopApp
             Database.CompletionStatuses.ItemUpdated += CompletionStatuses_ItemUpdated;
             viewSettings = settings.ViewSettings;
             viewSettings.PropertyChanged += ViewSettings_PropertyChanged;
+            settings.PropertyChanged += Settings_PropertyChanged;
             using (CollectionView.DeferRefresh())
             {
                 SetViewDescriptions();
@@ -124,8 +125,18 @@ namespace Playnite.DesktopApp
             Database.Features.ItemUpdated -= Features_ItemUpdated;
             Database.CompletionStatuses.ItemUpdated -= CompletionStatuses_ItemUpdated;
             viewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
+            settings.PropertyChanged -= Settings_PropertyChanged;
             ClearItems();
             base.Dispose();
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(PlayniteSettings.FuzzyMatchingInNameFilter))
+            {
+                Logger.Debug("Refreshing collection view filter.");
+                CollectionView.Refresh();
+            }
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)

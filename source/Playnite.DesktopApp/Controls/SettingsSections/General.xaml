@@ -150,6 +150,11 @@
                 Content="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdate}"
                 ToolTip="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdateTooltip}"
                 IsChecked="{Binding Settings.ScanLibInstallSizeOnLibUpdate}"/>
+
+        <CheckBox Name="CheckFuzzyMatchingInNameFilter" Margin="5,15,5,5"
+                Content="{DynamicResource NameFilterUseFuzzyMatching}"
+                ToolTip="{DynamicResource NameFilterUseFuzzyMatchingTooltip}"
+                IsChecked="{Binding Settings.FuzzyMatchingInNameFilter}"/>
         
         <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
                    ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"

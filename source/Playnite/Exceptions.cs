@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Playnite
@@ -25,6 +26,7 @@ namespace Playnite
 
     public class ExceptionInfo
     {
+        public bool IsLiteDbCorruptionCrash;
         public bool IsExtensionCrash;
         public ExtensionManifest CrashExtension;
     }
@@ -88,12 +90,14 @@ namespace Playnite
                     }
                 }
 
+                var liteDbCrash = Regex.IsMatch(exception.Message, @"'LiteDB\..+?Page'");
                 if (extDesc != null)
                 {
                     return new ExceptionInfo
                     {
                         IsExtensionCrash = true,
-                        CrashExtension = extDesc.Description
+                        CrashExtension = extDesc.Description,
+                        IsLiteDbCorruptionCrash = liteDbCrash
                     };
                 }
                 else
@@ -102,11 +106,18 @@ namespace Playnite
                     // The only stack entry would be Playnite's entry point or no entry at all.
                     if (playniteStackCalls == 0 || playniteStackCalls == 1)
                     {
-                        return new ExceptionInfo { IsExtensionCrash = true };
+                        return new ExceptionInfo
+                        {
+                            IsExtensionCrash = true,
+                            IsLiteDbCorruptionCrash = liteDbCrash
+                        };
                     }
                     else
                     {
-                        return new ExceptionInfo();
+                        return new ExceptionInfo
+                        {
+                            IsLiteDbCorruptionCrash = liteDbCrash
+                        };
                     }
                 }
             }

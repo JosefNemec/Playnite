@@ -45,10 +45,14 @@
                     <ContentControl ContentTemplate="{DynamicResource HelpMenuHeaderTemplate}"
                                     Focusable="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-                    <pctrls:ButtonEx x:Name="PART_ButtonPickRandomGame"
-                                     ContentTemplate="{DynamicResource HelpMenuSafeModeButtonTemplate}"
-                                     Command="{Binding RestartInSafeModeCommand}"
+                    <pctrls:ButtonEx x:Name="PART_ButtonRestartPlaynite"
+                                     ContentTemplate="{DynamicResource HelpMenuRestartPlayniteButtonTemplate}"
+                                     Command="{Binding RestartAppCommand}"
                                      pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+
+                    <pctrls:ButtonEx x:Name="PART_ButtonSafeMode"
+                                     ContentTemplate="{DynamicResource HelpMenuSafeModeButtonTemplate}"
+                                     Command="{Binding RestartInSafeModeCommand}" />
 
                     <pctrls:ButtonEx x:Name="PART_ButtonFeedback"
                                      ContentTemplate="{DynamicResource HelpMenuFeedbackButtonTemplate}"

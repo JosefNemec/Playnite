@@ -95,7 +95,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             public BaseStatInfo(string name, ulong value, ulong total) : this(name, value)
             {
-                if (total != 0)
+                if (total > 0 && value <= total)
                 {
                     Percentage = Convert.ToInt32(((double)value / (double)total) * 100);
                 }
@@ -169,6 +169,7 @@ namespace Playnite.DesktopApp.ViewModels
             public BaseStatInfo Favorite { get; set; }
             public ulong TotalPlayTime { get; set; }
             public ulong AvaragePlayTime { get; set; }
+            public ulong TotalInstallSize { get; set; }
         }
 
         private IGameDatabaseMain database;
@@ -321,6 +322,7 @@ namespace Playnite.DesktopApp.ViewModels
             ulong hidden = 0;
             ulong favorite = 0;
             ulong totalPlaytime = 0;
+            ulong totalInstallSize = 0;
 
             var compStats = new Dictionary<Guid, ulong>();
             foreach (var game in database.Games)
@@ -340,6 +342,11 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     totalGamesWithPlayTime++;
                     totalPlaytime += game.Playtime;
+                }
+
+                if (game.InstallSize != null && game.InstallSize > 0)
+                {
+                    totalInstallSize += game.InstallSize.Value;
                 }
 
                 if (game.IsInstalled)
@@ -393,7 +400,8 @@ namespace Playnite.DesktopApp.ViewModels
                     Where(a => !a.Hidden || (a.Hidden && IncludeHidden)).
                     OrderByDescending(a => a.Playtime).
                     Take(50).
-                    Select(a => new BaseStatInfo(a.Name, a.Playtime, totalPlaytime) { Game = a }).ToList()
+                    Select(a => new BaseStatInfo(a.Name, a.Playtime, totalPlaytime) { Game = a }).ToList(),
+                TotalInstallSize = totalInstallSize
             };
         }
 

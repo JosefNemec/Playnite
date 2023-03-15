@@ -81,7 +81,7 @@
                         <Hyperlink FontSize="12" Focusable="False"
                                    Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
                                    CommandParameter="{Binding InstallDir}">
-                            <Run Text="Program directory"/>
+                            <Run Text="{DynamicResource LOCProgramFolder}"/>
                         </Hyperlink>
                     </TextBlock>
 
@@ -89,7 +89,7 @@
                         <Hyperlink FontSize="12" Focusable="False"                  
                                    Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
                                    CommandParameter="{Binding UserDir}">
-                            <Run Text="User data directory"/>
+                            <Run Text="{DynamicResource LOCUserDataFolder}"/>
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>

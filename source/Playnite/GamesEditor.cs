@@ -27,6 +27,7 @@ using System.Collections.ObjectModel;
 using Playnite.Scripting.PowerShell;
 using Playnite.Windows;
 using System.Windows.Input;
+using System.Security.Cryptography;
 
 namespace Playnite
 {
@@ -66,6 +67,7 @@ namespace Playnite
         private readonly ConcurrentDictionary<Guid, DateTime> gameStartups = new ConcurrentDictionary<Guid, DateTime>();
         private readonly ConcurrentDictionary<Guid, IPowerShellRuntime> scriptRuntimes = new ConcurrentDictionary<Guid, IPowerShellRuntime>();
         private readonly IActionSelector actionSelector;
+        private bool wasHdrEnabled;
 
         public PlayniteApplication Application;
 
@@ -92,6 +94,18 @@ namespace Playnite
                 {
                     return new List<Game>();
                 }
+            }
+        }
+
+        public List<Game> FavoriteQuickLaunchItems
+        {
+            get
+            {
+                return Database.Games.
+                    Where(a => a.Favorite && a.IsInstalled &&
+                        (!a.Hidden || (a.Hidden && AppSettings.ShowHiddenInQuickLaunch))).
+                    OrderBy(a => a.Name).
+                    ToList();
             }
         }
 
@@ -277,6 +291,7 @@ namespace Playnite
                 void cancelStartup(string message)
                 {
                     logger.Warn(message);
+                    controllers.InvokeOnGameStartupCancelled(this, game.GetCopy());
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
@@ -287,7 +302,7 @@ namespace Playnite
 
                 var startingArgs = new SDK.Events.OnGameStartingEventArgs
                 {
-                    Game = game.GetClone(),
+                    Game = game.GetCopy(),
                     SourceAction = (playAction as GameAction)?.GetClone(),
                     SelectedRomFile = (playAction as EmulationPlayAction)?.SelectedRomPath
                 };
@@ -312,6 +327,17 @@ namespace Playnite
                     {  "SourceAction", startingArgs.SourceAction },
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
+
+                //Get the current system HDR status only if this is the first game with HDR enabled that is launched
+                if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
+                {
+                    wasHdrEnabled = HdrUtilities.IsHdrEnabled();
+                }
+
+                if (game.EnableSystemHdr)
+                {
+                    HdrUtilities.SetHdrEnabled(true);
+                }
 
                 if (!ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PreScript, game, game.UseGlobalPreScript, true, GameScriptType.Starting, scriptVars))
                 {
@@ -734,6 +760,23 @@ namespace Playnite
             }
         }
 
+        public void SetHdrSupport(Game game, bool state)
+        {
+            game.EnableSystemHdr = state;
+            Database.Games.Update(game);
+        }
+
+        public void SetHdrSupport(List<Game> games, bool state)
+        {
+            using (Database.BufferedUpdate())
+            {
+                foreach (var game in games)
+                {
+                    SetHdrSupport(game, state);
+                }
+            }
+        }
+
         public void ToggleHideGame(Game game)
         {
             game.Hidden = !game.Hidden;
@@ -766,6 +809,12 @@ namespace Playnite
                     SetFavoriteGame(game, state);
                 }
             }
+        }
+
+        public void ToggleHdrGame(Game game)
+        {
+            game.EnableSystemHdr = !game.EnableSystemHdr;
+            Database.Games.Update(game);
         }
 
         public void ToggleFavoriteGame(Game game)
@@ -821,7 +870,7 @@ namespace Playnite
             if (game.IsCustomGame)
             {
                 if (Dialogs.ShowMessage(
-                    "LOCGameRemoveAskMessage",
+                    string.Format(resources.GetString("LOCGameRemoveAskMessage"), game.Name),
                     "LOCGameRemoveAskTitle",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) != MessageBoxResult.Yes)
@@ -838,7 +887,7 @@ namespace Playnite
                     new MessageBoxOption("LOCNoLabel", false, true)
                 };
                 var result = Dialogs.ShowMessage(
-                    "LOCGameRemoveAskMessageIgnoreOption",
+                    string.Format(resources.GetString("LOCGameRemoveAskMessageIgnoreOption"), game.Name),
                     "LOCGameRemoveAskTitle",
                     MessageBoxImage.Question,
                     options);
@@ -846,7 +895,7 @@ namespace Playnite
                 {
                     addToExclusionList = true;
                 }
-                else if (result == options[2])
+                else if (result == null || result == options[2])
                 {
                     return;
                 }
@@ -1154,6 +1203,7 @@ namespace Playnite
 
                 if (AppSettings.QuickLaunchItems > 0)
                 {
+                    var catString = resources.GetString(LOC.QuickFilterRecentlyPlayed);
                     foreach (var lastGame in QuickLaunchItems)
                     {
                         var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
@@ -1162,7 +1212,7 @@ namespace Playnite
                             Title = lastGame.Name,
                             Arguments = args,
                             Description = string.Empty,
-                            CustomCategory = "Recent",
+                            CustomCategory = catString,
                             ApplicationPath = PlaynitePaths.DesktopExecutablePath
                         };
 
@@ -1178,6 +1228,14 @@ namespace Playnite
                         jumpList.JumpItems.Add(task);
                     }
 
+                    JumpTask fullscreen = new JumpTask
+                    {
+                        Title = resources.GetString(LOC.MenuOpenFullscreen),
+                        ApplicationPath = PlaynitePaths.FullscreenExecutablePath
+                    };
+
+                    jumpList.JumpItems.Add(fullscreen);
+                    
                     JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
                 }
                 else
@@ -1374,8 +1432,21 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit);
+            //Reset the system HDR state back to its original state if there are no active games requiring HDR
+            if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
+            {
+                HdrUtilities.SetHdrEnabled(wasHdrEnabled);
+            }
+
+            var scriptVars = new Dictionary<string, object>();
+            if (args.Source is GenericPlayController genCtrl)
+            {
+                scriptVars["SourceAction"] = genCtrl.StartingArgs?.SourceAction?.GetClone();
+                scriptVars["SelectedRomFile"] = genCtrl.StartingArgs?.SelectedRomFile;
+            }
+
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit, scriptVars);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit, scriptVars);
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
                 runtime.Dispose();
@@ -1515,7 +1586,7 @@ namespace Playnite
                 var scriptVars = new Dictionary<string, object>
                 {
                     {  "PlayniteApi", Application.PlayniteApiGlobal },
-                    {  "Game", game.GetClone() }
+                    {  "Game", game.GetCopy() }
                 };
 
                 vars?.ForEach(a => scriptVars.AddOrUpdate(a.Key, a.Value));

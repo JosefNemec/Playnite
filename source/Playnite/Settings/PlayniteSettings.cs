@@ -1850,6 +1850,17 @@ namespace Playnite
             }
         }
 
+        private bool fuzzyMatchingInNameFilter = true;
+        public bool FuzzyMatchingInNameFilter
+        {
+            get => fuzzyMatchingInNameFilter;
+            set
+            {
+                fuzzyMatchingInNameFilter = value;
+                OnPropertyChanged();
+            }
+        }
+
         private double topPanelSectionSeparatorWidth = 15;
         public double TopPanelSectionSeparatorWidth
         {
@@ -2036,6 +2047,18 @@ namespace Playnite
             }
         }
 
+        private bool playtimeUseDaysFormat = false;
+        [RequiresRestart]
+        public bool PlaytimeUseDaysFormat
+        {
+            get => playtimeUseDaysFormat;
+            set
+            {
+                playtimeUseDaysFormat = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool installSizeScanUseSizeOnDisk = true;
         public bool InstallSizeScanUseSizeOnDisk
         {
@@ -2173,6 +2196,9 @@ namespace Playnite
         private AccessibilityInterfaceOptions accessibilityInterface = AccessibilityInterfaceOptions.Auto;
         [RequiresRestart]
         public AccessibilityInterfaceOptions AccessibilityInterface { get => accessibilityInterface; set => SetValue(ref accessibilityInterface, value); }
+
+        private bool partialDescriptionLoading = true;
+        public bool PartialDescriptionLoading { get => partialDescriptionLoading; set => SetValue(ref partialDescriptionLoading, value); }
 
         [JsonIgnore]
         public static bool IsPortable
@@ -2490,6 +2516,7 @@ namespace Playnite
         public static void ConfigureLogger()
         {
             var config = new LoggingConfiguration();
+            config.DefaultCultureInfo = new System.Globalization.CultureInfo("en-US");
 #if DEBUG
             var consoleTarget = new ColoredConsoleTarget()
             {

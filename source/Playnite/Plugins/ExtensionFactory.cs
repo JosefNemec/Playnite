@@ -106,6 +106,7 @@ namespace Playnite.Plugins
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
             controllers.Uninstalled += Controllers_Uninstalled;
+            controllers.StartupCancelled += Controllers_StartupCancelled;
         }
 
         public void Dispose()
@@ -117,6 +118,7 @@ namespace Playnite.Plugins
             controllers.Started -= Controllers_Started;
             controllers.Stopped -= Controllers_Stopped;
             controllers.Uninstalled -= Controllers_Uninstalled;
+            controllers.StartupCancelled -= Controllers_StartupCancelled;
         }
 
         private void DisposeScripts()
@@ -564,6 +566,33 @@ namespace Playnite.Plugins
                 catch (Exception e)
                 {
                     logger.Error(e, $"Failed to execute OnGameStopped method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
+        private void Controllers_StartupCancelled(object sender, OnGameStartupCancelledEventArgs args)
+        {
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnGameStartupCancelled(args);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to execute OnGameStartupCancelled method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnGameStartupCancelled(args);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to execute OnGameStartupCancelled method from {plugin.Description.Name} plugin.");
                 }
             }
         }

@@ -21,6 +21,7 @@ namespace Playnite
         public static ILogger Logger = LogManager.GetLogger();
         private ExtensionFactory extensions;
         private FilterSettings filterSettings;
+        private readonly PlayniteSettings settings;
 
         public IGameDatabaseMain Database { get; private set; }
         public RangeObservableCollection<GamesCollectionViewEntry> Items { get; private set; }
@@ -37,11 +38,12 @@ namespace Playnite
             }
         }
 
-        public BaseCollectionView(IGameDatabaseMain database, ExtensionFactory extensions, FilterSettings filterSettings)
+        public BaseCollectionView(IGameDatabaseMain database, ExtensionFactory extensions, FilterSettings filterSettings, PlayniteSettings settings)
         {
             Database = database;
             this.extensions = extensions;
             this.filterSettings = filterSettings;
+            this.settings = settings;
             Items = new RangeObservableCollection<GamesCollectionViewEntry>();
             filterSettings.FilterChanged += FilterSettings_FilterChanged;
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Items);
@@ -61,7 +63,7 @@ namespace Playnite
                 return false;
             }
 
-            return Database.GetGameMatchesFilter(entry.Game, filterSettings);
+            return Database.GetGameMatchesFilter(entry.Game, filterSettings, settings.FuzzyMatchingInNameFilter);
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)

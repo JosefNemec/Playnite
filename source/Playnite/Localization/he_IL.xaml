@@ -61,11 +61,9 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">לא ניתן למחוק משום שהמשחק או תוכנת ההתקנה רצים כרגע</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">לא ניתן להסיר התקנה של משחק שרץ</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר משחק זה?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר {0} משחקים?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">האם אתה בטוח שאתה רוצה להסיר את המשחק הזה?
-
-בחירה באפשרות &quot;הוסף לרשימת יוצאים מהכלל&quot; תמנע את ייבוא המשחק שוב בפעם הבאה שהספריה תעודכן.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">האם אתה בטוח שאתה רוצה להסיר את המשחקים {0}?
 
 בחירה באפשרות &quot;הוסף לרשימת יוצאים מהכלל&quot; תמנע את ייבוא המשחקים שוב בפעם הבאה שהספריה תעודכן.</sys:String>
@@ -129,7 +127,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">שוחק לאחרונה</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">הכי משוחקים</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">כמות משחקים</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">גודל ההתקנה</sys:String>
     <sys:String x:Key="LOCFolderLabel">תיקיה</sys:String>
     <sys:String x:Key="LOCNotesLabel">הערות</sys:String>
     <sys:String x:Key="LOCAddedLabel">נוסף</sys:String>
@@ -143,7 +141,7 @@
     <sys:String x:Key="LOCCloseLabel">סגור</sys:String>
     <sys:String x:Key="LOCCancelLabel">ביטול</sys:String>
     <sys:String x:Key="LOCConfirmLabel">לאשר</sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel">אפס</sys:String>
     <sys:String x:Key="LOCYesLabel">כן</sys:String>
     <sys:String x:Key="LOCNoLabel">לא</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">ברוך הבא</sys:String>
@@ -223,8 +221,8 @@
     <sys:String x:Key="LOCProgressImportinGames">מייבא {0} משחקים…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">מיבא משחקי אמולטורים מ {0}...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">מוריד עדכוני ספריה…</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">סורק את גודל המשחקים בספריה</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">סורק את גודל המשחקים מיוובאים</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">עדכון הספריה הושלם</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">משחרר משאבים…</sys:String>
     <!--Menu-->
@@ -347,7 +345,8 @@
     <sys:String x:Key="LOCSettingsCloseToTray">מזער לאייקון בשורת המשימות כאשר חלון האפליקציה סגור</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">כשהמשחק מתחיל:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">אחרי שהמשחק נסגר:</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">פורמט תאריך</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">פעולה זו תנתק אותך מכל החשבונות המחוברים. נדרשת הפעלה מחדש של האפליקציה, האם ברצונך להמשיך?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">לנקות מטמון?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">אתחול Playnite דרוש להחלת ערכת נושא חדשה</sys:String>
@@ -431,6 +430,8 @@
     <sys:String x:Key="LOCLoginFailed">האימות נכשל</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">יבוא נתונים</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">הורד נתונים</sys:String>
@@ -522,7 +523,7 @@
     <sys:String x:Key="LOCGameProviderTitle">ספריה</sys:String>
     <sys:String x:Key="LOCGameManualTitle">ידני</sys:String>
     <sys:String x:Key="LOCGameNameTitle">שם</sys:String>
-    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">קונן התקנה</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">שם חשבון</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">פלטפורמה</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">קטגוריה</sys:String>
@@ -541,6 +542,9 @@
     <sys:String x:Key="LOCGameIsUnInstalledTitle">לא מותקן</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">מוסתר</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">מועדף</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">שוחק לאחרונה</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">קטגוריה</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">תיאור</sys:String>
@@ -737,11 +741,13 @@
     <sys:String x:Key="LOCRemoveFavoriteGame">הסר ממועדפים</sys:String>
     <sys:String x:Key="LOCHideGame">הסתר משחק זה</sys:String>
     <sys:String x:Key="LOCUnHideGame">הסר מהסתרה</sys:String>
+    <sys:String x:Key="LOCEnableHdr"></sys:String>
+    <sys:String x:Key="LOCDisableHdr"></sys:String>
     <sys:String x:Key="LOCEditGame">ערוך…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
     <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">גודל ההתקנה</sys:String>
     <sys:String x:Key="LOCSetGameCategory">הגדר קטגוריה…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">הגדר סטטוס השלמה</sys:String>
     <sys:String x:Key="LOCRemoveGame">הסר</sys:String>
@@ -771,6 +777,7 @@
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
     <sys:String x:Key="LOCTimePlayed">משך המשחק</sys:String>
     <sys:String x:Key="LOCLastPlayed">שוחק לאחרונה</sys:String>
+    <sys:String x:Key="LOCPlayedDays"></sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}ש {1}ד</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} דקות</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} שניות</sys:String>
@@ -852,6 +859,7 @@
     <sys:String x:Key="LOCStatsTotalPlayTime">זמן משחק כולל</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">זמן משחק ממוצע</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">זמן משחק מירבי</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
     <sys:String x:Key="LOCOverviewLabel">סקירה כללית</sys:String>
     <sys:String x:Key="LOCSidebar">סרגל צד</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">הצג בסרגל הצדדי</sys:String>
@@ -912,6 +920,7 @@
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
     <sys:String x:Key="LOCSelectActionTitle">בחר פעולה</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">מצב מעקב</sys:String>
+    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">קישור</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">קובץ</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">אמולטור</sys:String>
@@ -995,6 +1004,7 @@
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">פרופילים מובנים</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">פרופיל מובנה</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">פרופילים מותאמים אישית</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
     <sys:String x:Key="LOCEmulatorSpec"></sys:String>
     <sys:String x:Key="LOCPlatformSpec"></sys:String>
@@ -1030,6 +1040,8 @@
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner"></sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
     <sys:String x:Key="LOCStartScan"></sys:String>
@@ -1109,6 +1121,8 @@
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
     <sys:String x:Key="LOCHiddenStatus"></sys:String>
 
@@ -1153,4 +1167,7 @@
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
     <sys:String x:Key="LOCApplicationMenu"></sys:String>
     <sys:String x:Key="LOCGameMenu"></sys:String>
+    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCUserDataFolder"></sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>

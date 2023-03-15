@@ -1,4 +1,5 @@
 ﻿using Playnite.SDK.Models;
+using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,25 @@ namespace Playnite.Database
     {
         public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings)
         {
-            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings));
+            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), false);
         }
 
         public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings)
         {
-            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings));
+            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), false);
         }
 
-        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings)
+        public bool GetGameMatchesFilter(Game game, FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
+        {
+            return GetGameMatchesFilter(game, FilterSettings.FromSdkFilterSettings(filterSettings), useFuzzyNameMatch);
+        }
+
+        public IEnumerable<Game> GetFilteredGames(FilterPresetSettings filterSettings, bool useFuzzyNameMatch)
+        {
+            return GetFilteredGames(FilterSettings.FromSdkFilterSettings(filterSettings), useFuzzyNameMatch);
+        }
+
+        public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             if (!filterSettings.IsActive)
             {
@@ -35,19 +46,19 @@ namespace Playnite.Database
 
             if (filterSettings.UseAndFilteringStyle)
             {
-                return FilterByStyleAnd(game, filterSettings);
+                return FilterByStyleAnd(game, filterSettings, useFuzzyNameMatch);
             }
             else
             {
-                return FilterByStyleOr(game, filterSettings);
+                return FilterByStyleOr(game, filterSettings, useFuzzyNameMatch);
             }
         }
 
-        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings)
+        public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             foreach (var game in Games)
             {
-                if (GetGameMatchesFilter(game, filterSettings))
+                if (GetGameMatchesFilter(game, filterSettings, useFuzzyNameMatch))
                 {
                     yield return game;
                 }
@@ -241,7 +252,7 @@ namespace Playnite.Database
             return filter.Values.Contains((int)score);
         }
 
-        private bool FilterByStyleAnd(Game game, FilterSettings filterSettings)
+        private bool FilterByStyleAnd(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             // ------------------ Installed
             bool installedResult = false;
@@ -296,23 +307,9 @@ namespace Playnite.Database
             }
 
             // ------------------ Name filter
-            if (!filterSettings.Name.IsNullOrEmpty())
+            if (!GetNameFilterResult(game, filterSettings, useFuzzyNameMatch))
             {
-                if (game.Name.IsNullOrEmpty())
-                {
-                    return false;
-                }
-                else if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
-                {
-                    if (game.GetNameGroup() != filterSettings.Name[1])
-                    {
-                        return false;
-                    }
-                }
-                else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
-                {
-                    return false;
-                }
+                return false;
             }
 
             // ------------------ Release Year
@@ -550,7 +547,7 @@ namespace Playnite.Database
             return true;
         }
 
-        private bool FilterByStyleOr(Game game, FilterSettings filterSettings)
+        private bool FilterByStyleOr(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             // ------------------ Installed
             bool installedResult = false;
@@ -629,23 +626,9 @@ namespace Playnite.Database
             }
 
             // ------------------ Name filter
-            if (!filterSettings.Name.IsNullOrEmpty())
+            if (!GetNameFilterResult(game, filterSettings, useFuzzyNameMatch))
             {
-                if (game.Name.IsNullOrEmpty())
-                {
-                    return false;
-                }
-                else if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
-                {
-                    if (game.GetNameGroup() != filterSettings.Name[1])
-                    {
-                        return false;
-                    }
-                }
-                else if (game.Name.IndexOf(filterSettings.Name, StringComparison.OrdinalIgnoreCase) < 0)
-                {
-                    return false;
-                }
+                return false;
             }
 
             // ------------------ Release Year
@@ -839,6 +822,31 @@ namespace Playnite.Database
             }
 
             return true;
+        }
+
+        private bool GetNameFilterResult(Game game, FilterSettings filterSettings, bool useFuzzyMatch)
+        {
+            if (filterSettings.Name.IsNullOrEmpty())
+            {
+                return true;
+            }
+
+            if (game.Name.IsNullOrEmpty())
+            {
+                return false;
+            }
+
+            if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+            {
+                return game.GetNameGroup() == filterSettings.Name[1];
+            }
+
+            if (!useFuzzyMatch || filterSettings.Name[0] == '!' && useFuzzyMatch)
+            {
+                return game.Name.IndexOf(filterSettings.Name.Substring(1), StringComparison.OrdinalIgnoreCase) >= 0;
+            }
+
+            return SearchViewModel.MatchTextFilter(filterSettings.Name, game.Name, true);
         }
     }
 }
