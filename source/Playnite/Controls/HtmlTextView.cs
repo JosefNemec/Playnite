@@ -237,6 +237,24 @@ namespace Playnite.Controls
                 typeof(HtmlTextView),
                 new PropertyMetadata(true));
 
+        // These are here only for eMixedNite themes, which used them for some reason,
+        // despite the fact they never did anything.
+        public FontFamily FontFamily { get; set; }
+        public static readonly DependencyProperty FontFamilyProperty =
+            DependencyProperty.Register(
+                "FontFamily",
+                typeof(FontFamily),
+                typeof(HtmlTextView),
+                new PropertyMetadata(null));
+
+        public double FontSize { get; set; }
+        public static readonly DependencyProperty FontSizeProperty =
+            DependencyProperty.Register(
+                "FontSize",
+                typeof(double),
+                typeof(HtmlTextView),
+                new PropertyMetadata(0.0));
+
         internal void UpdateTextContent()
         {
             currentLoadedLength = loadPartLength;
