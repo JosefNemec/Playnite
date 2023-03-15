@@ -161,12 +161,12 @@ $retroarchMiscSystems = @(
 )
 
 $raCoreNameToPlatformIdsTranslate = @{
-    "Gearsystem" = @("sega_mastersystem", "sega_gamegear", "SG-1000", "coleco_vision");
+    "Gearsystem" = @("sega_mastersystem", "sega_gamegear", "sega_sg1000", "coleco_vision");
     "Genesis Plus GX" = @("sega_mastersystem", "sega_gamegear", "sega_genesis", "sega_cd");
     "Genesis Plus GX Wide" = @("sega_mastersystem", "sega_gamegear", "sega_genesis", "sega_cd");
     "nSide (Super Famicom Accuracy)" = @("nintendo_super_nes", "nintendo_gameboy", "nintendo_gameboycolor");
     "PicoDrive" = @("sega_mastersystem", "sega_genesis", "sega_cd", "sega_32x");
-    "SMS Plus GX" = @("sega_mastersystem", "sega_gamegear", "SG-1000", "coleco_vision");
+    "SMS Plus GX" = @("sega_mastersystem", "sega_gamegear", "sega_sg1000", "coleco_vision");
 }
 
 $raSystemIdToPlatformIdsTranslate = @{
@@ -220,7 +220,7 @@ $raSystemNameToPlatformIdTranslate = @{
     "Sega Dreamcast" = "sega_dreamcast";
     "Sega Genesis" = "sega_genesis";
     "Sega Master System" = "sega_mastersystem";
-    "Sharp X68000" = "<systemId>";
+    "Sharp X68000" = "sharp_x68000";
     "SNK Neo Geo CD" = "snk_neogeo_cd";
     "Sony PlayStation 2" = "sony_playstation2";
     "STE" = "atari_st";
