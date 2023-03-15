@@ -504,6 +504,21 @@ namespace Playnite
             }
         }
 
+        private bool mainMenuShowMinimize = true;
+        public bool MainMenuShowMinimize
+        {
+            get
+            {
+                return mainMenuShowMinimize;
+            }
+
+            set
+            {
+                mainMenuShowMinimize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool swapStartDetailsAction = false;
         public bool SwapStartDetailsAction
         {

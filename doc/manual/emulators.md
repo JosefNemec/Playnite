@@ -97,9 +97,20 @@ Profiles handle how game is started and imported.
 | --- | --- |
 | Executable | File path to start an emulator. |
 | Arguments | Startup arguments passed to an emulator during startup. |
+| Tracking mode | Affects how [play time detection](#tracking-mode) works. |
 | Working Directory | Working directory set to an emulator during startup. |
 | Supported file types | File extensions separated by `,`. Used to detect ROM files by this profile. If you need to specify empty extension, use `<none>`. |
 | Scripts | Profiles can execute custom scripts in the same way as [game or global scripts](gameScripts.md). |
+
+#### Tracking mode
+
+| Property | Description |
+| --- | --- |
+| Default | Playnite will try to detect and use the best tracking method automatically. |
+| Process | Playnite will track a game as running as long as original emulator process or any of its child processes are running. |
+| Original process | Playnite will track a game as running as long as originally started emulator process is running, child processes are ignored. |
+| Folder | Playnite will track a game as running as long as some process from `Tracking path` folder is running. |
+
 
 ### Startup script
 

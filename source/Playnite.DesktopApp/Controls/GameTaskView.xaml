@@ -142,7 +142,7 @@
             <TextBlock Text="{DynamicResource LOCEmulatorArguments}" Grid.Column="0" Grid.Row="7" />
             <TextBox Name="EmulatorArguments" Grid.Column="1" Grid.Row="7" Text="{Binding Arguments}" />
 
-            <TextBlock Text="Tracking path" Grid.Column="0" Grid.Row="8" />
+            <TextBlock Text="{DynamicResource LOCActionTrackingPath}" Grid.Column="0" Grid.Row="8" />
             <pctrls:PathSelectionBox Grid.Column="1" Grid.Row="8" ShowDirectorySelector="True"
                                      Text="{Binding TrackingPath}"/>
         </Grid>

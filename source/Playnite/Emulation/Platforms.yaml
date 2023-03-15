@@ -349,12 +349,13 @@
   Id: sega_sg1000
   IgdbId: 84
   Databases: [Sega - SG-1000]
-  Emulators: [ares]
+  Emulators: [ares, retroarch]
   
 - Name: Sharp X68000
   Id: sharp_x68000
   IgdbId: 121
   Databases: [Sharp - X68000]
+  Emulators: [retroarch]
   
 - Name: Sinclair ZX Spectrum +3
   Id: sinclair_zxspectrum3

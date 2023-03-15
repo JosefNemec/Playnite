@@ -226,7 +226,6 @@ namespace Playnite.Tests.Metadata
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);
@@ -242,7 +241,6 @@ namespace Playnite.Tests.Metadata
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);
@@ -257,7 +255,6 @@ namespace Playnite.Tests.Metadata
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);
@@ -272,7 +269,6 @@ namespace Playnite.Tests.Metadata
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty, testPlugin.Id }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);
@@ -288,7 +284,6 @@ namespace Playnite.Tests.Metadata
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { Guid.Empty, testPlugin.Id }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);
@@ -305,7 +300,6 @@ namespace Playnite.Tests.Metadata
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id, Guid.Empty }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);
@@ -322,7 +316,6 @@ namespace Playnite.Tests.Metadata
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);
@@ -330,11 +323,11 @@ namespace Playnite.Tests.Metadata
             Assert.IsNull(downloadedMetadata);
 
             // Second data are used if first doesn't have them
+            testPlugin.ReturnMetadata.Description = string.Empty;
             downloadedMetadata = downloader.ProcessField(
                 game,
                 new MetadataFieldSettings(true, new List<Guid> { testPlugin.Id, Guid.Empty }),
                 MetadataField.Description,
-                (a) => a.Description,
                 existingMetadata,
                 existingPluginData,
                 cancelToken.Token);

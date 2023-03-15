@@ -193,7 +193,8 @@ namespace Playnite.Common
         private static readonly ILogger logger = LogManager.GetLogger();
         private static readonly JsonSerializerSettings jsonDesSettings = new JsonSerializerSettings
         {
-            ContractResolver = JsonResolver.Global
+            ContractResolver = JsonResolver.Global,
+            MaxDepth = 128
         };
 
         public static string ToYaml(object obj)
@@ -300,7 +301,8 @@ namespace Playnite.Common
                 Formatting = formatted ? Formatting.Indented : Formatting.None,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = JsonResolver.Global,
-                Converters = converters
+                Converters = converters,
+                MaxDepth = 128
             });
         }
 
@@ -313,7 +315,8 @@ namespace Playnite.Common
                 {
                     Formatting = formatted ? Formatting.Indented : Formatting.None,
                     NullValueHandling = NullValueHandling.Ignore,
-                    ContractResolver = JsonResolver.Global
+                    ContractResolver = JsonResolver.Global,
+                    MaxDepth = 128
                 });
 
                 ser.Serialize(writer, obj);

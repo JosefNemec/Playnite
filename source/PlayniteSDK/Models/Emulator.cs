@@ -518,6 +518,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private TrackingMode trackingMode = TrackingMode.Default;
+        /// <summary>
+        /// Gets or sets executable arguments for File type tasks.
+        /// </summary>
+        public TrackingMode TrackingMode
+        {
+            get => trackingMode;
+            set
+            {
+                trackingMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string trackingPath;
+        /// <summary>
+        /// Gets or sets executable arguments for File type tasks.
+        /// </summary>
+        public string TrackingPath
+        {
+            get => trackingPath;
+            set
+            {
+                trackingPath = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         ///
         /// </summary>
@@ -598,6 +626,16 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
+            if (!string.Equals(TrackingPath, other.TrackingPath, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            if (TrackingMode != other.TrackingMode)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -619,7 +657,9 @@ namespace Playnite.SDK.Models
                 ExitScript = ExitScript,
                 PostScript = PostScript,
                 PreScript = PreScript,
-                StartupScript = StartupScript
+                StartupScript = StartupScript,
+                TrackingMode = TrackingMode,
+                TrackingPath = TrackingPath
             };
         }
     }

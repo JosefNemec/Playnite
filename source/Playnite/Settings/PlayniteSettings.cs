@@ -1850,13 +1850,13 @@ namespace Playnite
             }
         }
 
-        private bool nameFilterSearchWithAcronyms = false;
-        public bool NameFilterSearchWithAcronyms
+        private bool fuzzyMatchingInNameFilter = true;
+        public bool FuzzyMatchingInNameFilter
         {
-            get => nameFilterSearchWithAcronyms;
+            get => fuzzyMatchingInNameFilter;
             set
             {
-                nameFilterSearchWithAcronyms = value;
+                fuzzyMatchingInNameFilter = value;
                 OnPropertyChanged();
             }
         }
@@ -2197,6 +2197,9 @@ namespace Playnite
         [RequiresRestart]
         public AccessibilityInterfaceOptions AccessibilityInterface { get => accessibilityInterface; set => SetValue(ref accessibilityInterface, value); }
 
+        private bool partialDescriptionLoading = true;
+        public bool PartialDescriptionLoading { get => partialDescriptionLoading; set => SetValue(ref partialDescriptionLoading, value); }
+
         [JsonIgnore]
         public static bool IsPortable
         {
@@ -2513,6 +2516,7 @@ namespace Playnite
         public static void ConfigureLogger()
         {
             var config = new LoggingConfiguration();
+            config.DefaultCultureInfo = new System.Globalization.CultureInfo("en-US");
 #if DEBUG
             var consoleTarget = new ColoredConsoleTarget()
             {

@@ -434,6 +434,10 @@ If disabled, background artwork is downloaded only when first needed, using less
     <sys:String x:Key="LOCLoginFailed">Authentification failed</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Alternative web view rendering mode</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Use when experiencing issues with web views, for example integration authentication dialogs.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Partial loading of large game descriptions</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Large descriptions can cause noticeable lag when selecting games.
+
+When enabled, only part of description text will be initially loaded with an option to load the rest on demand.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadata Import</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Download Metadata</sys:String>
@@ -950,7 +954,8 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCLicenseDecline">Decline</sys:String>
     <sys:String x:Key="LOCIncludePluginGameActions">Include library integration play actions</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Select action</sys:String>
-    <sys:String x:Key="LOCActionTrackingMode">Tracking mode</sys:String>
+    <sys:String x:Key="LOCActionTrackingMode">Tracking Mode</sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">Tracking Path</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">File</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1047,6 +1052,7 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Built-in profiles</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Built-in profile</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Custom profiles</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">Custom profile</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Handled by a built-in script</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emulator specification</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Platform specification</sys:String>
@@ -1082,6 +1088,8 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">If possible import game files using paths relative to Playnite's installation folder or emulator's installation folder.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">Scan subfolders</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">Scan inside archives</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">Merge related files</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">Merge related game files, like individual game discs, under one game entry.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Add scanner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Add saved scanner</sys:String>
     <sys:String x:Key="LOCStartScan">Start scan</sys:String>
@@ -1180,8 +1188,9 @@ SHIFT-ENTER: open item menu</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">When set, scanner will assign this platform to all games, overwriting any automatically detected platforms.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Include commands in default search</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">When disabled, commands won't be included in default search until # prefix is used.</sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronyms">Support search using acronyms for name filter</sys:String>
-    <sys:String x:Key="NameFilterSearchWithAcronymsTooltip">When enabled, search results will include items whose acronym matches the search term.</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">Use fuzzy matching in name filter</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip"  xml:space="preserve">When enabled, name filter will match game names the same way as global search.
+Strict matching can be enforced on an individual case by prefixing filter with ! character.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Fields to be displayed for game results:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Hidden Status</sys:String>
 
@@ -1233,4 +1242,9 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface">Accessibility (screen reader) support</sys:String>
     <sys:String x:Key="LOCApplicationMenu">Application menu</sys:String>
     <sys:String x:Key="LOCGameMenu">Game menu</sys:String>
+    <sys:String x:Key="LOCProgramFolder">Program folder</sys:String>
+    <sys:String x:Key="LOCUserDataFolder">User data directory</sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Library file corruption has been detected, Playnite will now shutdown.
+    
+Open new issue on Playnite's GitHub page with a request to fix corruption in your files.</sys:String>
 </ResourceDictionary>

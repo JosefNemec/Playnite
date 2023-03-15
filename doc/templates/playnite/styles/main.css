@@ -44,3 +44,15 @@ p + ul {
 article h4 {
     border-bottom: 0px;
 }
+
+code {
+    color: #c7254e;
+}
+
+.hljs-string {
+    color: #df5000;
+}
+
+.hljs-comment, .hljs-meta {
+    color: #03992b;
+}

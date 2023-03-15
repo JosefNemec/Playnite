@@ -189,18 +189,29 @@ namespace Playnite.Emulators
                 throw new Exception("Emulator not found.");
             }
 
+            if (scanner.EmulatorProfileId.IsNullOrEmpty())
+            {
+                throw new Exception("No emulator profile specified.");
+            }
+
             importedFiles = database.GetImportedRomFiles(emulator.InstallDir);
             var globalScanConfig = database.GetGameScannersSettings();
             var crcExclusions = string.Join(";",
                 ListExtensions.Merge(globalScanConfig.CrcExcludeFileTypes, scanner.CrcExcludeFileTypes).
                 Select(a => a.ToLower().Trim()).ToHashSet());
-
-            var customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
-            var builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
-            var builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile?.BuiltInProfileName);
             var dirToScan = PlaynitePaths.ExpandVariables(scanner.Directory, emulator.InstallDir, true);
-            if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix))
+
+            CustomEmulatorProfile customProfile = null;
+            BuiltInEmulatorProfile builtinProfile = null;
+            EmulatorDefinitionProfile builtinProfileDef = null;
+            if (scanner.EmulatorProfileId.StartsWith(CustomEmulatorProfile.ProfilePrefix, StringComparison.Ordinal))
             {
+                customProfile = emulator.CustomProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
+                if (customProfile == null)
+                {
+                    throw new Exception("Assigned custom emulator profile not found.");
+                }
+
                 games = ScanDirectory(
                     dirToScan,
                     emulator,
@@ -209,10 +220,23 @@ namespace Playnite.Emulators
                     crcExclusions,
                     scanner.ScanSubfolders,
                     scanner.ScanInsideArchives,
+                    scanner.MergeRelatedFiles,
                     fileScanCallback);
             }
-            else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix))
+            else if (scanner.EmulatorProfileId.StartsWith(BuiltInEmulatorProfile.ProfilePrefix, StringComparison.Ordinal))
             {
+                builtinProfile = emulator.BuiltinProfiles?.FirstOrDefault(a => a.Id == scanner.EmulatorProfileId);
+                if (builtinProfile == null)
+                {
+                    throw new Exception("Assigned built-in emulator profile not found.");
+                }
+
+                builtinProfileDef = Emulation.GetProfile(emulator.BuiltInConfigId, builtinProfile.BuiltInProfileName);
+                if (builtinProfileDef == null)
+                {
+                    throw new Exception("Assigned built-in emulator profile definition not found.");
+                }
+
                 games = ScanDirectory(
                     dirToScan,
                     emulator,
@@ -221,6 +245,7 @@ namespace Playnite.Emulators
                     crcExclusions,
                     scanner.ScanSubfolders,
                     scanner.ScanInsideArchives,
+                    scanner.MergeRelatedFiles,
                     fileScanCallback);
             }
             else
@@ -369,6 +394,7 @@ namespace Playnite.Emulators
             string crcExludePatterns,
             bool scanSubfolders,
             bool scanArchives,
+            bool mergeRelatedFiles,
             Action<string> fileScanCallback = null)
         {
             var emuProf = Emulation.GetProfile(emulator.BuiltInConfigId, profile.BuiltInProfileName);
@@ -451,6 +477,7 @@ namespace Playnite.Emulators
                     crcExludePatterns,
                     scanSubfolders,
                     scanArchives,
+                    mergeRelatedFiles,
                     fileScanCallback);
             }
         }
@@ -463,6 +490,7 @@ namespace Playnite.Emulators
             string crcExludePatterns,
             bool scanSubfolders,
             bool scanArchives,
+            bool mergeRelatedFiles,
             Action<string> fileScanCallback = null)
         {
             if (profile == null)
@@ -484,6 +512,7 @@ namespace Playnite.Emulators
                 crcExludePatterns,
                 scanSubfolders,
                 scanArchives,
+                mergeRelatedFiles,
                 fileScanCallback);
         }
 
@@ -495,6 +524,7 @@ namespace Playnite.Emulators
             string crcExludePatterns,
             bool scanSubfolders,
             bool scanArchives,
+            bool mergeRelatedFiles,
             Action<string> fileScanCallback = null)
         {
             logger.Info($"Scanning emulated directory {directory}.");
@@ -504,7 +534,7 @@ namespace Playnite.Emulators
             }
 
             var emuDbs = emuDbProvider(scanPlatforms);
-            var resultRoms = new Dictionary<string, List<ScannedRom>>();
+            var resultGames = new List<ScannedGame>();
 
             try
             {
@@ -512,11 +542,12 @@ namespace Playnite.Emulators
                     directory,
                     supportedExtensions,
                     emuDbs,
-                    resultRoms,
+                    resultGames,
                     cancelToken,
                     crcExludePatterns,
                     scanSubfolders,
                     scanArchives,
+                    mergeRelatedFiles,
                     fileScanCallback);
             }
             finally
@@ -524,29 +555,46 @@ namespace Playnite.Emulators
                 emuDbs.ForEach(a => a.Dispose());
             }
 
-            return resultRoms.Select(a => new ScannedGame { Name = a.Key, Roms = a.Value?.ToObservable() }).ToList();
+            return resultGames;
         }
 
         internal void ScanDirectoryBase(
             string directory,
             List<string> supportedExtensions,
             List<EmulationDatabase.IEmulationDatabaseReader> databases,
-            Dictionary<string, List<ScannedRom>> resultRoms,
+            List<ScannedGame> resultGames,
             CancellationToken cancelToken,
             string crcExludePatterns,
             bool scanSubfolders,
             bool scanArchives,
+            bool mergeRelatedFiles,
             Action<string> fileScanCallback = null)
         {
             void addRom(ScannedRom rom)
             {
-                if (resultRoms.TryGetValue(rom.Name.SanitizedName, out var addedRoms))
+                if (mergeRelatedFiles)
                 {
-                    addedRoms.Add(rom);
+                    var existing = resultGames.FirstOrDefault(a => a.Name == rom.Name.SanitizedName);
+                    if (existing != null)
+                    {
+                        existing.Roms.Add(rom);
+                    }
+                    else
+                    {
+                        resultGames.Add(new ScannedGame
+                        {
+                            Name = rom.Name.SanitizedName,
+                            Roms = new ObservableCollection<ScannedRom> { rom }
+                        });
+                    }
                 }
                 else
                 {
-                    resultRoms.Add(rom.Name.SanitizedName, new List<ScannedRom> { rom });
+                    resultGames.Add(new ScannedGame
+                    {
+                        Name = rom.Name.SanitizedName,
+                        Roms = new ObservableCollection<ScannedRom> { rom }
+                    });
                 }
             }
 
@@ -720,7 +768,7 @@ namespace Playnite.Emulators
                 foreach (var supportedExt in supportedExtensions)
                 {
                     // This is done this way to support nested extensions like PICO-8's .p8.png
-                    if (file.EndsWith("." + supportedExt))
+                    if (file.EndsWith("." + supportedExt, StringComparison.OrdinalIgnoreCase))
                     {
                         ext = supportedExt;
                         break;
@@ -832,11 +880,12 @@ namespace Playnite.Emulators
                         dir,
                         supportedExtensions,
                         databases,
-                        resultRoms,
+                        resultGames,
                         cancelToken,
                         crcExludePatterns,
                         scanSubfolders,
                         scanArchives,
+                        mergeRelatedFiles,
                         fileScanCallback);
                 }
             }
@@ -863,7 +912,7 @@ namespace Playnite.Emulators
                     {
                         var archFiles = Archive.GetArchiveFiles(file);
                         var supportedFiles = archFiles.Where(a =>
-                            supportedExtensions.ContainsString(Path.GetExtension(a).TrimStart('.')));
+                            supportedExtensions.ContainsString(Path.GetExtension(a).TrimStart('.'), StringComparison.OrdinalIgnoreCase));
                         foreach (var supportedFile in supportedFiles)
                         {
                             logger.Trace($"Getting rom crc from archive file '{supportedFile}'\r\n {file}");
@@ -1277,10 +1326,10 @@ namespace Playnite.Emulators
         public ScannedRom(string path, string scannedExtension)
         {
             Path = path;
-            if (path.EndsWith("." + scannedExtension))
+            if (path.EndsWith("." + scannedExtension, StringComparison.OrdinalIgnoreCase))
             {
                 var fileName = System.IO.Path.GetFileName(path);
-                Name = new RomName(fileName.Substring(0, fileName.LastIndexOf("." + scannedExtension)));
+                Name = new RomName(fileName.Substring(0, fileName.LastIndexOf("." + scannedExtension, StringComparison.OrdinalIgnoreCase)));
             }
             else
             {

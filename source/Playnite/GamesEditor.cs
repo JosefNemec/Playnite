@@ -291,6 +291,7 @@ namespace Playnite
                 void cancelStartup(string message)
                 {
                     logger.Warn(message);
+                    controllers.InvokeOnGameStartupCancelled(this, game.GetCopy());
                     controllers.RemovePlayController(game.Id);
                     UpdateGameState(game.Id, null, null, null, null, false);
                 }
@@ -301,7 +302,7 @@ namespace Playnite
 
                 var startingArgs = new SDK.Events.OnGameStartingEventArgs
                 {
-                    Game = game.GetClone(),
+                    Game = game.GetCopy(),
                     SourceAction = (playAction as GameAction)?.GetClone(),
                     SelectedRomFile = (playAction as EmulationPlayAction)?.SelectedRomPath
                 };
@@ -1202,6 +1203,7 @@ namespace Playnite
 
                 if (AppSettings.QuickLaunchItems > 0)
                 {
+                    var catString = resources.GetString(LOC.QuickFilterRecentlyPlayed);
                     foreach (var lastGame in QuickLaunchItems)
                     {
                         var args = new CmdLineOptions() { Start = lastGame.Id.ToString() }.ToString();
@@ -1210,7 +1212,7 @@ namespace Playnite
                             Title = lastGame.Name,
                             Arguments = args,
                             Description = string.Empty,
-                            CustomCategory = "Recent",
+                            CustomCategory = catString,
                             ApplicationPath = PlaynitePaths.DesktopExecutablePath
                         };
 
@@ -1436,9 +1438,15 @@ namespace Playnite
                 HdrUtilities.SetHdrEnabled(wasHdrEnabled);
             }
 
-            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit);
-            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit);
+            var scriptVars = new Dictionary<string, object>();
+            if (args.Source is GenericPlayController genCtrl)
+            {
+                scriptVars["SourceAction"] = genCtrl.StartingArgs?.SourceAction?.GetClone();
+                scriptVars["SelectedRomFile"] = genCtrl.StartingArgs?.SelectedRomFile;
+            }
 
+            ExecuteScriptAction(scriptRuntimes[game.Id], game.PostScript, game, true, false, GameScriptType.Exit, scriptVars);
+            ExecuteScriptAction(scriptRuntimes[game.Id], AppSettings.PostScript, game, game.UseGlobalPostScript, true, GameScriptType.Exit, scriptVars);
             if (scriptRuntimes.TryRemove(game.Id, out var runtime))
             {
                 runtime.Dispose();
@@ -1578,7 +1586,7 @@ namespace Playnite
                 var scriptVars = new Dictionary<string, object>
                 {
                     {  "PlayniteApi", Application.PlayniteApiGlobal },
-                    {  "Game", game.GetClone() }
+                    {  "Game", game.GetCopy() }
                 };
 
                 vars?.ForEach(a => scriptVars.AddOrUpdate(a.Key, a.Value));

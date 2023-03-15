@@ -950,7 +950,21 @@ namespace Playnite.ViewModels
         public abstract void OpenSettings(int settingsPageIndex);
         public void StartGame(Game game)
         {
-            App.GamesEditor.PlayGame(game);
+            if (game.IsLaunching || game.IsRunning)
+            {
+                if (Dialogs.ShowMessage(
+                    LOC.CancelMonitoringExecutionAsk,
+                    LOC.CancelMonitoringAskTitle,
+                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    App.GamesEditor.CancelGameMonitoring(game);
+                    App.GamesEditor.PlayGame(game);
+                }
+            }
+            else
+            {
+                App.GamesEditor.PlayGame(game);
+            }
         }
 
         public void InstallGame(Game game)

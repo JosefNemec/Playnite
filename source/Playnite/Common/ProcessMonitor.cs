@@ -58,7 +58,7 @@ namespace Playnite.Common
             OnTreeDestroyed();
         }
 
-        public async void WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false)
+        public async void WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false, int trackingDelay = 2000)
         {
             logger.Debug($"Watching dir processes {directory}, {alreadyRunning}, {byProcessNames}");
             // Get real path in case that original path is symlink or junction point
@@ -74,11 +74,11 @@ namespace Playnite.Common
 
             if (byProcessNames)
             {
-                await WatchDirectoryByProcessNames(realPath, alreadyRunning);
+                await WatchDirectoryByProcessNames(realPath, alreadyRunning, trackingDelay);
             }
             else
             {
-                await WatchDirectory(realPath, alreadyRunning);
+                await WatchDirectory(realPath, alreadyRunning, trackingDelay);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Playnite.Common
             return executables.Count() > 0;
         }
 
-        private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning)
+        private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning, int trackingDelay = 2000)
         {
             if (!Directory.Exists(directory))
             {
@@ -248,11 +248,11 @@ namespace Playnite.Common
                     return;
                 }
 
-                await Task.Delay(2000);
+                await Task.Delay(trackingDelay);
             }
         }
 
-        private async Task WatchDirectory(string directory, bool alreadyRunning)
+        private async Task WatchDirectory(string directory, bool alreadyRunning, int trackingDelay = 2000)
         {
             if (!Directory.Exists(directory))
             {
@@ -315,7 +315,7 @@ namespace Playnite.Common
                     return;
                 }
 
-                await Task.Delay(2000);
+                await Task.Delay(trackingDelay);
             }
         }
 

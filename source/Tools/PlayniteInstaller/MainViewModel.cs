@@ -146,7 +146,7 @@ namespace PlayniteInstaller
             if (DestionationFolder.StartsWith(@"c:\Program Files", StringComparison.OrdinalIgnoreCase))
             {
                 System.Windows.MessageBox.Show(
-                    "Can't install Playnite to selected directory, use different path.",
+                    "Can't install Playnite to selected directory, use a different path.",
                     "Location not supported",
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -155,7 +155,7 @@ namespace PlayniteInstaller
             if (!FileSystem.CanWriteToFolder(DestionationFolder))
             {
                 System.Windows.MessageBox.Show(
-                    "Can't install Playnite to selected directory, use different path.",
+                    "Can't install Playnite to selected directory, use a different path.",
                     "Access error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

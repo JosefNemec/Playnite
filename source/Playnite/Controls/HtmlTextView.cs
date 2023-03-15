@@ -19,7 +19,7 @@ using TheArtOfDev.HtmlRenderer.WPF;
 
 namespace Playnite.Controls
 {
-    public class HtmlTextView : HtmlPanel
+    public class HtmlTextView : StackPanel
     {
         private const string defaultTemplate = @"
 <!DOCTYPE html>
@@ -54,7 +54,11 @@ namespace Playnite.Controls
 </body>
 </html>";
 
+        private int currentLoadedLength = 0;
+        private readonly int loadPartLength = 10_000;
         internal string templateContent = string.Empty;
+        private readonly HtmlPanel htmlPanel;
+        private readonly Button moreButton;
 
         public string TemplatePath
         {
@@ -213,7 +217,42 @@ namespace Playnite.Controls
             obj.UpdateTextContent();
         }
 
+        public bool PartialLoadEnabled
+        {
+            get
+            {
+                return (bool)GetValue(PartialLoadEnabledProperty);
+            }
+
+            set
+            {
+                SetValue(PartialLoadEnabledProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty PartialLoadEnabledProperty =
+            DependencyProperty.Register(
+                "PartialLoadEnabled",
+                typeof(bool),
+                typeof(HtmlTextView),
+                new PropertyMetadata(true));
+
         internal void UpdateTextContent()
+        {
+            currentLoadedLength = loadPartLength;
+            if (PartialLoadEnabled && !HtmlText.IsNullOrEmpty() && HtmlText.Length > loadPartLength)
+            {
+                moreButton.Visibility = Visibility.Visible;
+                SetHtmlContent(HtmlText.Substring(0, loadPartLength));
+            }
+            else
+            {
+                moreButton.Visibility = Visibility.Hidden;
+                SetHtmlContent(HtmlText ?? string.Empty);
+            };
+        }
+
+        internal void SetHtmlContent(string htmlContent)
         {
             var content = string.Empty;
             if (!templateContent.IsNullOrEmpty())
@@ -229,7 +268,7 @@ namespace Playnite.Controls
             content = content.Replace("{link_foreground}", LinkForeground.ToHtml());
             content = content.Replace("{font_family}", HtmlFontFamily.ToString());
             content = content.Replace("{font_size}", HtmlFontSize.ToString());
-            Text = content.Replace("{text}", HtmlText?.ToString());
+            htmlPanel.Text = content.Replace("{text}", htmlContent);
         }
 
         static HtmlTextView()
@@ -239,10 +278,40 @@ namespace Playnite.Controls
 
         public HtmlTextView()
         {
-            Background = Brushes.Transparent;
+            htmlPanel = new HtmlPanel();
+            htmlPanel.Background = Brushes.Transparent;
 
             // Always use LTR because HtmlPanel doesn't support RTL properly
             FlowDirection = FlowDirection.LeftToRight;
+
+            // This makes performance way better to leave scrolling to be handled by the parent layout
+            ScrollViewer.SetHorizontalScrollBarVisibility(htmlPanel, ScrollBarVisibility.Disabled);
+            ScrollViewer.SetVerticalScrollBarVisibility(htmlPanel, ScrollBarVisibility.Disabled);
+
+            moreButton = new Button
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Content = LOC.LoadMore.GetLocalized(),
+                Visibility = Visibility.Hidden,
+                Margin = new Thickness(0, 0, 0, 5)
+            };
+
+            moreButton.Click += (_, __) =>
+            {
+                currentLoadedLength += loadPartLength;
+                if (currentLoadedLength > HtmlText.Length)
+                {
+                    moreButton.Visibility = Visibility.Hidden;
+                    SetHtmlContent(HtmlText);
+                }
+                else
+                {
+                    SetHtmlContent(HtmlText.Substring(0, currentLoadedLength));
+                }
+            };
+
+            Children.Add(htmlPanel);
+            Children.Add(moreButton);
         }
 
         public override void OnApplyTemplate()

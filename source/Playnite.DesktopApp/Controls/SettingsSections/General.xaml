@@ -151,10 +151,10 @@
                 ToolTip="{DynamicResource LOCSettingsScanLibInstallSizeOnLibUpdateTooltip}"
                 IsChecked="{Binding Settings.ScanLibInstallSizeOnLibUpdate}"/>
 
-        <CheckBox Name="CheckNameFilterSearchWithAcronyms" Margin="5,15,5,5"
-                Content="{DynamicResource NameFilterSearchWithAcronyms}"
-                ToolTip="{DynamicResource NameFilterSearchWithAcronymsTooltip}"
-                IsChecked="{Binding Settings.NameFilterSearchWithAcronyms}"/>
+        <CheckBox Name="CheckFuzzyMatchingInNameFilter" Margin="5,15,5,5"
+                Content="{DynamicResource NameFilterUseFuzzyMatching}"
+                ToolTip="{DynamicResource NameFilterUseFuzzyMatchingTooltip}"
+                IsChecked="{Binding Settings.FuzzyMatchingInNameFilter}"/>
         
         <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
                    ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"

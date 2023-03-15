@@ -11,6 +11,7 @@ namespace Playnite.Database
     public class GameFieldComparer : IEqualityComparer<string>
     {
         private static readonly Regex regex = new Regex(@"[\s-]", RegexOptions.Compiled);
+        public static readonly GameFieldComparer Instance = new GameFieldComparer();
 
         public bool Equals(string x, string y)
         {

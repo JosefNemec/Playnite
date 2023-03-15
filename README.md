@@ -1,6 +1,6 @@
 
 # <img src="https://playnite.link/applogo.png" width="32">  Playnite [![Crowdin](https://badges.crowdin.net/playnite/localized.svg)](https://crowdin.com/project/playnite)
-An open source video game library manager and launcher with support for 3rd party libraries like Steam, GOG, Origin, Battle.net and Ubisoft Connect. Includes game emulation support, providing one unified interface for your games.
+An open source video game library manager and launcher with support for 3rd party libraries like Steam, Epic, GOG, EA App, Battle.net and [others](https://playnite.link/addons.html). Includes game emulation support, providing one unified interface for your games.
 
 Screenshots are available at the [Homepage](http://playnite.link/)
 
@@ -16,7 +16,7 @@ Download
 
 Grab the latest installer or portable package from the [download](https://playnite.link/download.html) page. Playnite will automatically notify you about a new version upon release.
 
-Requirements: Windows 7, 8 or 10 and [.NET Framework 4.6.2](https://www.microsoft.com/en-us/download/details.aspx?id=53344)
+Requirements: Windows 7 and newer.
 
 Extensions
 ---------

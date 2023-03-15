@@ -23,7 +23,8 @@ URI commands
 
 | Command | Description | Example |
 | -- | -- | -- |
-| start | Start a game. | playnite://playnite/start/64f78cd1-0b00-4271-a9e1-89abc55f66cc |
-| showgame | Show game details for specific game. | playnite://playnite/showgame/64f78cd1-0b00-4271-a9e1-89abc55f66cc |
+| start | Start a game. | `playnite://playnite/start/64f78cd1-0b00-4271-a9e1-89abc55f66cc` |
+| showgame | Show game details for specific game. | `playnite://playnite/showgame/64f78cd1-0b00-4271-a9e1-89abc55f66cc` |
+| search | Open global search. Can specify default search keyword. Multi word search terms have to be properly encoded. | `playnite://playnite/search` or `playnite://playnite/search/quake%203` |
 
 Extensions can register custom commands via [Playnite SDK](../tutorials/extensions/uriSupport.md).

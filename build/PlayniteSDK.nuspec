@@ -17,10 +17,12 @@
     <dependencies>
       <group targetFramework=".NETFramework4.6.2" />
     </dependencies>
+    <readme>docs\readme.md</readme>
   </metadata>
   <files>
     <file src="{OutDir}\Playnite.SDK.dll" target="lib\net462\Playnite.SDK.dll" />
     <file src="{OutDir}\Playnite.SDK.xml" target="lib\net462\Playnite.SDK.xml" />
     <file src="..\source\Playnite.DesktopApp\Themes\Desktop\Default\Images\applogo.png" target="images\" />
+    <file src="..\source\PlayniteSDK\readme.md" target="docs\" />
 </files>
 </package>

@@ -40,6 +40,7 @@ namespace Playnite.Common.Web
     public class Downloader : IDownloader
     {
         private static ILogger logger = LogManager.GetLogger();
+        private static readonly string playniteUserAgent = $"Playnite 10";
 
         public Downloader()
         {
@@ -77,6 +78,7 @@ namespace Playnite.Common.Web
                 using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
                 using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
+                    webClient.Headers.Add("User-Agent", playniteUserAgent);
                     return Task.Run(async () => await webClient.DownloadStringTaskAsync(url)).GetAwaiter().GetResult();
                 }
             }
@@ -92,6 +94,7 @@ namespace Playnite.Common.Web
             logger.Debug($"Downloading string content from {url} using {encoding} encoding.");
             using (var webClient = new WebClient { Encoding = encoding })
             {
+                webClient.Headers.Add("User-Agent", playniteUserAgent);
                 return webClient.DownloadString(url);
             }
         }
@@ -106,6 +109,7 @@ namespace Playnite.Common.Web
             logger.Debug($"Downloading string content from {url} using cookies and {encoding} encoding.");
             using (var webClient = new WebClient { Encoding = encoding })
             {
+                webClient.Headers.Add("User-Agent", playniteUserAgent);
                 if (cookies?.Any() == true)
                 {
                     var cookieString = string.Join(";", cookies.Select(a => $"{a.Name}={a.Value}"));
@@ -126,6 +130,7 @@ namespace Playnite.Common.Web
             logger.Debug($"Downloading string content from {url} to {path} using {encoding} encoding.");
             using (var webClient = new WebClient { Encoding = encoding })
             {
+                webClient.Headers.Add("User-Agent", playniteUserAgent);
                 var data = webClient.DownloadString(url);
                 File.WriteAllText(path, data);
             }
@@ -136,7 +141,28 @@ namespace Playnite.Common.Web
             logger.Debug($"Downloading data from {url}.");
             using (var webClient = new WebClient())
             {
+                webClient.Headers.Add("User-Agent", playniteUserAgent);
                 return webClient.DownloadData(url);
+            }
+        }
+
+        public byte[] DownloadData(string url, CancellationToken cancelToken)
+        {
+            logger.Debug($"Downloading data from {url}.");
+
+            try
+            {
+                using (var webClient = new WebClient())
+                using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
+                {
+                    webClient.Headers.Add("User-Agent", playniteUserAgent);
+                    return webClient.DownloadData(url);
+                    }
+                }
+            catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
+            {
+                logger.Warn("Download canceled.");
+                return new byte[0];
             }
         }
 
@@ -146,6 +172,7 @@ namespace Playnite.Common.Web
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
             using (var webClient = new WebClient())
             {
+                webClient.Headers.Add("User-Agent", playniteUserAgent);
                 webClient.DownloadFile(url, path);
             }
         }
@@ -160,6 +187,7 @@ namespace Playnite.Common.Web
                 using (var webClient = new WebClient())
                 using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
+                    webClient.Headers.Add("User-Agent", playniteUserAgent);
                     Task.Run(async () => await webClient.DownloadFileTaskAsync(new Uri(url), path)).Wait();
                 }
             }
@@ -175,6 +203,7 @@ namespace Playnite.Common.Web
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
             using (var webClient = new WebClient())
             {
+                webClient.Headers.Add("User-Agent", playniteUserAgent);
                 webClient.DownloadProgressChanged += (s, e) => progressHandler(e);
                 webClient.DownloadFileCompleted += (s, e) => webClient.Dispose();
                 await webClient.DownloadFileTaskAsync(url, path);

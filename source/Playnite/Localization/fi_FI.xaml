@@ -59,11 +59,9 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCGameRemoveAskTitle">Poista peli(t)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Ei voi poistaa - peli tai asennusohjelma on käynnissä. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Asennusta ei voi poistaa - peli on käynnissä.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Haluatko varmasti poistaa tämän pelin?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Haluatko varmasti poistaa {0} peliä?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Haluatko varmasti poistaa tämän pelin?
-
-Jos valitset &quot;lisää ohituslistalle&quot; -valinnan tätä peliä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Haluatko varmasti poistaa {0} peliä?
 
 Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
@@ -344,6 +342,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsCloseToTray">Pienennä Playnite ilmoitusalueelle kun sovellusikkuna on suljettu</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Kun peli käynnistyy:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Kun peli sulkeutuu:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Päivämäärän esitystapa</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Tämä kirjaa sinut ulos kaikista linkitetyistä palveluista. Sovellus pitää käynnistää uudelleen, haluatko jatkaa?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Tyhjennä välimuisti?</sys:String>
@@ -428,6 +427,8 @@ Jos ei käytössä, taustakuvat ladataan vain kun niitä ensimmäisen kerran tar
     <sys:String x:Key="LOCLoginFailed">Todennus epäonnistui</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Vaihtoehtoinen webnäkymän renderöintitila</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadatan tuonti</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Lataa metadata</sys:String>
@@ -536,6 +537,9 @@ Sitä käyttää tällä hetkellä {1} peli(ä) and {2} emulaattori(a).</sys:Str
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Asentamatta</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Piilotettu</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Suosikki</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Viimeksi pelattu</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategoria</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Kuvaus</sys:String>
@@ -732,6 +736,8 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Poista suosikeista</sys:String>
     <sys:String x:Key="LOCHideGame">Piilota tämä peli</sys:String>
     <sys:String x:Key="LOCUnHideGame">Poista piilotetuista</sys:String>
+    <sys:String x:Key="LOCEnableHdr"></sys:String>
+    <sys:String x:Key="LOCDisableHdr"></sys:String>
     <sys:String x:Key="LOCEditGame">Muokkaa…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Laske asennuksen koko</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
@@ -766,6 +772,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Pelin suorittamisen seuranta on käynnissä. Haluatko peruuttaa prosessin ja palauttaa pelin aiempaan tilaan?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Pelattu aika</sys:String>
     <sys:String x:Key="LOCLastPlayed">Viimeksi pelattu</sys:String>
+    <sys:String x:Key="LOCPlayedDays"></sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minuuttia</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} sekuntia</sys:String>
@@ -868,6 +875,7 @@ Taustakuvat: {2} megapikseliä</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Pelattu aika</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Keskimääräinen peliaika</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Suurin peliaika</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
     <sys:String x:Key="LOCOverviewLabel">Yleiskatsaus</sys:String>
     <sys:String x:Key="LOCSidebar">Sivupalkki</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Näytä sivupalkissa</sys:String>
@@ -933,6 +941,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Valitse toiminto</sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
+    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Linkki</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Tiedosto</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulaattori</sys:String>
@@ -1029,6 +1038,7 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Sisäänrakennetut profiilit</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Sisäänrakennettu profiili</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Mukautetut profiilit</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emulaattorin määritys</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Alustan määritys</sys:String>
@@ -1064,6 +1074,8 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">Skannaa alihakemistoista</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">Skannaa arkistojen sisältä</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Lisää skanneri</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Lisää tallennettu skanneri</sys:String>
     <sys:String x:Key="LOCStartScan">Käynnistä skannaus</sys:String>
@@ -1143,6 +1155,8 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
     <sys:String x:Key="LOCHiddenStatus"></sys:String>
 
@@ -1187,4 +1201,7 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
     <sys:String x:Key="LOCApplicationMenu"></sys:String>
     <sys:String x:Key="LOCGameMenu">Pelivalikko</sys:String>
+    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCUserDataFolder"></sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>

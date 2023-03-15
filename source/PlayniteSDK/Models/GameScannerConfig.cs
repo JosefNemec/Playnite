@@ -231,6 +231,20 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private bool mergeRelatedFiles = true;
+        /// <summary>
+        /// Gets or sets value indicating whether related files, like individual game discs, should be merged under one game entry.
+        /// </summary>
+        public bool MergeRelatedFiles
+        {
+            get => mergeRelatedFiles;
+            set
+            {
+                mergeRelatedFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override void CopyDiffTo(object target)
         {
@@ -305,6 +319,11 @@ namespace Playnite.SDK.Models
                 if (PlayActionSettings != tro.PlayActionSettings)
                 {
                     tro.PlayActionSettings = PlayActionSettings;
+                }
+
+                if (MergeRelatedFiles != tro.MergeRelatedFiles)
+                {
+                    tro.MergeRelatedFiles = MergeRelatedFiles;
                 }
             }
             else

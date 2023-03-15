@@ -162,13 +162,11 @@ namespace Playnite.Windows
                 {
                     try
                     {
-                        // TODO: possible race condition when Closing a window from ProgressViewViewModel
-                        // which can in theory close window (and set dialog result) before a window is actually opened.
                         Window.DialogResult = result;
                     }
                     catch (Exception e)
                     {
-                        logger.Error(e, $"DialogResult fail {GetType()}, {result}");
+                        logger.Error(e, $"DialogResult fail {GetType()}, {Window.Id}, {result}");
                         throw;
                     }
                 }

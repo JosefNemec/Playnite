@@ -424,7 +424,7 @@ Profiles:
 
   - Name: Gearsystem
     StartupArguments: '-L ".\cores\gearsystem_libretro.dll" "{ImagePath}"'
-    Platforms: [coleco_vision, sega_gamegear, sega_mastersystem, SG-1000]
+    Platforms: [coleco_vision, sega_gamegear, sega_mastersystem, sega_sg1000]
     ImageExtensions: [7z, bin, gg, rom, sg, sms, zip]
     ProfileFiles: ['cores\gearsystem_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
@@ -690,7 +690,7 @@ Profiles:
 
   - Name: PX68k
     StartupArguments: '-L ".\cores\px68k_libretro.dll" "{ImagePath}"'
-    Platforms: [<systemId>]
+    Platforms: [sharp_x68000]
     ImageExtensions: [2hd, 7z, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip]
     ProfileFiles: ['cores\px68k_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
@@ -746,7 +746,7 @@ Profiles:
 
   - Name: SMS Plus GX
     StartupArguments: '-L ".\cores\smsplus_libretro.dll" "{ImagePath}"'
-    Platforms: [coleco_vision, sega_gamegear, sega_mastersystem, SG-1000]
+    Platforms: [coleco_vision, sega_gamegear, sega_mastersystem, sega_sg1000]
     ImageExtensions: [7z, bin, col, gg, rom, sg, sms, zip]
     ProfileFiles: ['cores\smsplus_libretro.dll']
     StartupExecutable: ^retroarch\.exe$

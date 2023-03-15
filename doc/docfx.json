@@ -55,6 +55,9 @@
       }
     ],
     "dest": "_site",
+    "globalMetadata": {
+      "_enableSearch": true
+    },
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [

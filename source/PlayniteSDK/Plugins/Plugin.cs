@@ -238,6 +238,13 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when game startup is cancelled.
+        /// </summary>
+        public virtual void OnGameStartupCancelled(OnGameStartupCancelledEventArgs args)
+        {
+        }
+
+        /// <summary>
         /// Called when game has been installed.
         /// </summary>
         public virtual void OnGameInstalled(OnGameInstalledEventArgs args)
