@@ -1280,10 +1280,11 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            // Adding new fields via metadata property object automatically uses GameFieldComparer,
-            // taking care of potential duplicates.
-            var addToDb = sourceList.Where(a => itemsToAdd.Contains(a.Item.Id)).Select(a => new MetadataNameProperty(a.Item.Name)).ToList();
-            targetCollection.Add(addToDb);
+            var addedItems = sourceList.Where(a => itemsToAdd.Contains(a.Item.Id) == true && targetCollection[a.Item.Id] == null).ToList();
+            if (addedItems.Any())
+            {
+                targetCollection.Add(addedItems.Select(a => (TItem)a.Item));
+            }
         }
 
         public void AddNewItemToDb<TItem>(ObservableCollection<TItem> sourceList, Guid itemToAdd, IItemCollection<TItem> targetCollection) where TItem : DatabaseObject
@@ -1293,12 +1294,10 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var toAdd = sourceList.FirstOrDefault(a => a.Id == itemToAdd && targetCollection[a.Id] == null);
-            if (toAdd != null)
+            var addedItem = sourceList.FirstOrDefault(a => a.Id == itemToAdd && targetCollection[a.Id] == null);
+            if (addedItem != null)
             {
-                // Adding new fields via metadata property object automatically uses GameFieldComparer,
-                // taking care of potential duplicates.
-                targetCollection.Add(new MetadataNameProperty(toAdd.Name));
+                targetCollection.Add(addedItem);
             }
         }
 
