@@ -1454,7 +1454,7 @@ namespace Playnite.DesktopApp.ViewModels
             var newItem = CreateNewItemInCollection<Company>(Publishers, publisher);
             if (newItem != null)
             {
-                if (!Developers.Any(a => a.Item.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true))
+                if (!Developers.Any(a => LooseDbNameComparer(a, newItem.Name) == true))
                 {
                     Developers.Add(newItem);
                 }
@@ -1478,7 +1478,7 @@ namespace Playnite.DesktopApp.ViewModels
             var newItem = CreateNewItemInCollection<Company>(Developers, developer);
             if (newItem != null)
             {
-                if (!Publishers.Any(a => a.Item.Name?.Equals(newItem.Name, StringComparison.InvariantCultureIgnoreCase) == true))
+                if (!Publishers.Any(a => LooseDbNameComparer(a, newItem.Name) == true))
                 {
                     Publishers.Add(newItem);
                 }
