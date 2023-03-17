@@ -668,7 +668,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             CompletionStatusSettings = database.GetCompletionStatusSettings();
             FilterPresetsSettings = database.GetFilterPresetsSettings();
-            EditingFilterPresets = database.GetSortedFilterPresets().ToObservable();
+            EditingFilterPresets = database.GetSortedFilterPresets().GetClone().ToObservable();
         }
 
         public void OpenView()
