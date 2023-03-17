@@ -237,23 +237,45 @@ namespace Playnite.Controls
                 typeof(HtmlTextView),
                 new PropertyMetadata(true));
 
-        // These are here only for eMixedNite themes, which used them for some reason,
-        // despite the fact they never did anything.
-        public FontFamily FontFamily { get; set; }
-        public static readonly DependencyProperty FontFamilyProperty =
-            DependencyProperty.Register(
-                "FontFamily",
-                typeof(FontFamily),
-                typeof(HtmlTextView),
-                new PropertyMetadata(null));
+        // These are for theme backwards compatibility since this control is no longer Control but FrameworkElement
+        public FontStyle FontStyle { get; set; }
+        public static readonly DependencyProperty FontStyleProperty = DependencyProperty.Register("FontStyle", typeof(FontStyle), typeof(HtmlTextView));
+
+        public FontStretch FontStretch { get; set; }
+        public static readonly DependencyProperty FontStretchProperty = DependencyProperty.Register("FontStretch", typeof(FontStretch), typeof(HtmlTextView));
 
         public double FontSize { get; set; }
-        public static readonly DependencyProperty FontSizeProperty =
-            DependencyProperty.Register(
-                "FontSize",
-                typeof(double),
-                typeof(HtmlTextView),
-                new PropertyMetadata(0.0));
+        public static readonly DependencyProperty FontSizeProperty = DependencyProperty.Register("FontSize", typeof(double), typeof(HtmlTextView));
+
+        public FontFamily FontFamily { get; set; }
+        public static readonly DependencyProperty FontFamilyProperty = DependencyProperty.Register("FontFamily", typeof(FontFamily), typeof(HtmlTextView));
+
+        public Brush Foreground { get; set; }
+        public static readonly DependencyProperty ForegroundProperty = DependencyProperty.Register("Foreground", typeof(Brush), typeof(HtmlTextView));
+
+        public Thickness BorderThickness { get; set; }
+        public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register("BorderThickness", typeof(Thickness), typeof(HtmlTextView));
+
+        public bool IsTabStop { get; set; }
+        public static readonly DependencyProperty IsTabStopProperty = DependencyProperty.Register("IsTabStop", typeof(bool), typeof(HtmlTextView));
+
+        public VerticalAlignment VerticalContentAlignment { get; set; }
+        public static readonly DependencyProperty VerticalContentAlignmentProperty = DependencyProperty.Register("VerticalContentAlignment", typeof(VerticalAlignment), typeof(HtmlTextView));
+
+        public int TabIndex { get; set; }
+        public static readonly DependencyProperty TabIndexProperty = DependencyProperty.Register("TabIndex", typeof(int), typeof(HtmlTextView));
+
+        public Thickness Padding { get; set; }
+        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register("Padding", typeof(Thickness), typeof(HtmlTextView));
+
+        public FontWeight FontWeight { get; set; }
+        public static readonly DependencyProperty FontWeightProperty = DependencyProperty.Register("FontWeight", typeof(FontWeight), typeof(HtmlTextView));
+
+        public Brush BorderBrush { get; set; }
+        public static readonly DependencyProperty BorderBrushProperty = DependencyProperty.Register("BorderBrush", typeof(Brush), typeof(HtmlTextView));
+
+        public HorizontalAlignment HorizontalContentAlignment { get; set; }
+        public static readonly DependencyProperty HorizontalContentAlignmentProperty = DependencyProperty.Register("HorizontalContentAlignment", typeof(HorizontalAlignment), typeof(HtmlTextView));
 
         internal void UpdateTextContent()
         {
