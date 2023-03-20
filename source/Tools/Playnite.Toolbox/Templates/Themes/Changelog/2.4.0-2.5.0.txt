@@ -1,0 +1,5 @@
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Media.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/DetailsViewGameOverview.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/GridViewGameOverview.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/GameMenu.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/MainMenu.xaml

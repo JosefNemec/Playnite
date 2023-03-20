@@ -413,7 +413,7 @@ namespace Playnite.DesktopApp.ViewModels
                         continue;
                     }
 
-                    var existingItem = selectList.FirstOrDefault(a => a.Item.Name?.Equals(nameProp.Name, StringComparison.OrdinalIgnoreCase) == true);
+                    var existingItem = selectList.FirstOrDefault(a => GameFieldComparer.StringEquals(a.Item.Name, nameProp.Name));
                     if (existingItem != null)
                     {
                         yield return (T)existingItem.Item;
@@ -502,7 +502,18 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (game.Publishers.HasItems())
             {
-                result.Publishers = GetOrGenerateNewFieldItem<Company>(game.Publishers, Publishers).ToList();
+                var publishers = GetOrGenerateNewFieldItem<Company>(game.Publishers, Publishers).ToList();
+                for (int i = 0; i < publishers.Count; i++)
+                {
+                    var p = publishers[i];
+                    var existingDev = result.Developers.FirstOrDefault(d => GameFieldComparer.StringEquals(p.Name, d.Name));
+                    if (existingDev != null && p.Id != existingDev.Id)
+                    {
+                        publishers[i] = existingDev;
+                    }
+                }
+
+                result.Publishers = publishers;
             }
 
             if (game.Tags.HasItems())

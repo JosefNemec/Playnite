@@ -272,10 +272,13 @@ namespace Playnite.Database
 
         public virtual IEnumerable<TItem> GetOrGenerate(IEnumerable<MetadataProperty> properties)
         {
+            var res = new List<TItem>();
             foreach (var property in properties)
             {
-                yield return GetOrGenerate(property);
+                res.Add(GetOrGenerate(property));
             }
+
+            return res;
         }
 
         public virtual TItem Add(MetadataProperty property)
@@ -294,10 +297,13 @@ namespace Playnite.Database
 
         public virtual IEnumerable<TItem> Add(IEnumerable<MetadataProperty> properties)
         {
+            var res = new List<TItem>();
             foreach (var property in properties)
             {
-                yield return Add(property);
+                res.Add(Add(property));
             }
+
+            return res;
         }
 
         public virtual TItem Add(string itemName, Func<TItem, string, bool> existingComparer)
@@ -323,19 +329,20 @@ namespace Playnite.Database
 
         public virtual IEnumerable<TItem> Add(List<string> itemsToAdd, Func<TItem, string, bool> existingComparer)
         {
+            var res = new List<TItem>();
             var toAdd = new List<TItem>();
             foreach (var itemName in itemsToAdd)
             {
                 var existingItem = this.FirstOrDefault(a => existingComparer(a, itemName));
                 if (existingItem != null)
                 {
-                    yield return existingItem;
+                    res.Add(existingItem);
                 }
                 else
                 {
                     var newItem = typeof(TItem).CrateInstance<TItem>(itemName);
                     toAdd.Add(newItem);
-                    yield return newItem;
+                    res.Add(newItem);
                 }
             }
 
@@ -343,6 +350,8 @@ namespace Playnite.Database
             {
                 Add(toAdd);
             }
+
+            return res;
         }
 
         public virtual IEnumerable<TItem> Add(List<string> itemsToAdd)
