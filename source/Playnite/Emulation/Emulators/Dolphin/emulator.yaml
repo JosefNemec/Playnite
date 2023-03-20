@@ -5,7 +5,7 @@ Profiles:
   - Name: Nintendo GameCube
     StartupArguments: '--exec="{ImagePath}" --batch'
     Platforms: [nintendo_gamecube]
-    ImageExtensions: [elf, dol, gcm, tgc, ciso, gcz, iso, wad, dff, rvz]
+    ImageExtensions: [elf, dol, gcm, tgc, ciso, gcz, iso, wad, dff, rvz, m3u]
     StartupExecutable: ^Dolphin\.exe$
   - Name: Nintendo Wii
     StartupArguments: '--exec="{ImagePath}" --batch'

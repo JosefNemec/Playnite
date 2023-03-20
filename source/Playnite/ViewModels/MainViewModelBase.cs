@@ -125,7 +125,6 @@ namespace Playnite.ViewModels
 
         public List<FilterPreset> SortedFilterPresets
         {
-            
             get
             {
                 return Database.GetSortedFilterPresets();
@@ -228,8 +227,11 @@ namespace Playnite.ViewModels
             BackupDataCommand = new RelayCommand(() => BackupData());
             RestoreDataBackupCommand = new RelayCommand(() => RestoreDataBackup());
             var filterPresetsCollection = (database.FilterPresets as FilterPresetsCollection);
-            filterPresetsCollection.OnSettingsUpdated += FilterPresetsCollection_OnSettingsUpdated;
-            database.FilterPresets.ItemCollectionChanged += FilterPresets_ItemCollectionChanged;
+            if (filterPresetsCollection != null)
+            {
+                filterPresetsCollection.OnSettingsUpdated += FilterPresetsCollection_OnSettingsUpdated;
+                database.FilterPresets.ItemCollectionChanged += FilterPresets_ItemCollectionChanged;
+            }
         }
 
         private void FilterPresetsCollection_OnSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
