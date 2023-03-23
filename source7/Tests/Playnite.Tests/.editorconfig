@@ -1,0 +1,18 @@
+[*]
+indent_style = space
+
+[*.cs]
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+dotnet_diagnostic.CA1310.severity = error
+dotnet_diagnostic.CA1307.severity = error
+
+# Naming Styles
+dotnet_diagnostic.IDE1006.severity = none
+
+# NUnit2005: Consider using Assert.That(actual, Is.EqualTo(expected)) instead of Assert.AreEqual(expected, actual)
+dotnet_diagnostic.NUnit2005.severity = none
+# NUnit2006: Consider using Assert.That(actual, Is.Not.EqualTo(expected)) instead of Assert.AreNotEqual(expected, actual)
+dotnet_diagnostic.NUnit2006.severity = none
