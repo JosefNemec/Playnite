@@ -20,12 +20,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Crc32.NET" Version="1.2.0" />
     <PackageReference Include="System.Management" Version="7.0.0" />
+    <PackageReference Include="Vanara.PInvoke.NtDll" Version="3.4.13" />
     <PackageReference Include="Vanara.PInvoke.PowrProf" Version="3.4.13" />
+    <PackageReference Include="Vanara.PInvoke.ShlwApi" Version="3.4.13" />
     <PackageReference Include="Vanara.PInvoke.User32" Version="3.4.13" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PlayniteSDK\PlayniteSDK.csproj" />
-  </ItemGroup>  
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Playnite.Tests" />
+  </ItemGroup>
 </Project>
