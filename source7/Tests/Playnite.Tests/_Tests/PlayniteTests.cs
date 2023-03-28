@@ -4,38 +4,33 @@ using System.Text;
 
 namespace Playnite.Tests;
 
-public static class TestPaths
+public static class TestsVars
 {
-    public static string TestAppDir => Path.Combine(PlaynitePaths.ProgramPath, "TestApp");
-    public const string TestAppExeName = "TestApp.exe";
-    public static string TestAppExePath => Path.Combine(TestAppDir, TestAppExeName);
-    public const string TestAppAppInfoName = "appinfo.json";
-    public static string TestAppAppInfoPath => Path.Combine(TestAppDir, TestAppAppInfoName);
+    public const string ProcessRunTesterProcessName = "ProcessRunTester";
+    public const string ProcessRunTesterKeepRunningArg = "--keeprunning";
+
+    public static string ProcessRunTesterExe { get; }
+    public static string ProcessRunTesterReportFile { get; }
+
+    public static string ResourcesDir { get; }
+    public static string TempDir { get; }
+
+    static TestsVars()
+    {
+        ResourcesDir = Path.Combine(PlaynitePaths.ProgramPath, "Resources");
+        ProcessRunTesterExe = Path.Combine(PlaynitePaths.ProgramPath, "ProcessRunTester.exe");
+        ProcessRunTesterReportFile = Path.Combine(PlaynitePaths.ProgramPath, "processargs.json");
+
+        TempDir = Path.Combine(Path.GetTempPath(), "playnite_unittests");
+        if (!Directory.Exists(TempDir))
+        {
+            Directory.CreateDirectory(TempDir);
+        }
+    }
 }
 
 public static class PlayniteTests
 {
-    private static readonly string randomStringChars = "ABCDEFGHIJKLMNOPQRSTYVWXZabcdefghijklmnopqrstyvwxz0123456789";
-    private static readonly Random randomStringRandom = new Random();
-
-    public static string ResourcesPath => Path.Combine(PlaynitePaths.ProgramPath, "Resources");
-
-    public static string TempPath
-    {
-        get
-        {
-            var path = Path.Combine(Path.GetTempPath(), "playnite_unittests");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            return path;
-        }
-    }
-
-    private static readonly Random random = new Random();
-
     //public static MetadataFile GenerateFakeFile(string directory)
     //{
     //    var file = new byte[20];
@@ -74,25 +69,5 @@ public static class PlayniteTests
     //    api.Setup(a => a.Resources).Returns(new ResourceProvider());
     //    api.Setup(a => a.Notifications).Returns(notification.Object);
     //    return api;
-    //}
-
-    //public static string GetRandomString(int length)
-    //{
-    //    if (length <= 0)
-    //    {
-    //        throw new ArgumentException("0 is not a valid length");
-    //    }
-
-    //    var randomSetLeng = randomStringChars.Length - 1;
-    //    var result = new StringBuilder(length);
-    //    lock (randomStringRandom)
-    //    {
-    //        for (int i = 0; i < length; i++)
-    //        {
-    //            result.Append(randomStringChars[randomStringRandom.Next(0, randomSetLeng)]);
-    //        }
-
-    //        return result.ToString();
-    //    }
     //}
 }

@@ -1,0 +1,10 @@
+{
+    "UpdateUrl": "http://localhost/update/",
+    "UpdateUrl2": "http://localhost:8081/update/",
+    "ServicesUrl": "http://localhost:5000/",
+    "UpdateBranch": "stable",
+    "ThrowAllErrors": "true",
+    "OfflineMode": "true",
+    "PipeEndpoint": "net.pipe://localhost/PlaynitePipe",
+    "AppBranch": "devel"
+}

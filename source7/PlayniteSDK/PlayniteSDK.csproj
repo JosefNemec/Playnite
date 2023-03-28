@@ -16,4 +16,9 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Playnite.Tests" />
+    <InternalsVisibleTo Include="Playnite" />
+  </ItemGroup>
 </Project>

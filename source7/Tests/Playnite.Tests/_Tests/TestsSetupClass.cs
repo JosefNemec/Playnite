@@ -27,7 +27,6 @@ public class TestsSetupClass
         //FileSystem.CreateDirectory(PlayniteTests.TempPath, true);
         //NLogLogger.IsTraceEnabled = true;
         //PlayniteSettings.ConfigureLogger();
-        //SDK.Data.Serialization.Init(new DataSerializer());
         //SDK.Data.SQLite.Init((a, b) => new Sqlite(a, b));
         //ResourceProvider.SetGlobalProvider(TestResourceProvider.Instance);
         //Assert.AreEqual("Filters", ResourceProvider.GetString(LOC.Filters));

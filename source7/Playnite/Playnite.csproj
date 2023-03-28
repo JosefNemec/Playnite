@@ -21,11 +21,14 @@
 
   <ItemGroup>
     <PackageReference Include="Crc32.NET" Version="1.2.0" />
+    <PackageReference Include="PhotoSauce.MagicScaler" Version="0.13.2" />
+    <PackageReference Include="SqlNado" Version="1.3.3" />
     <PackageReference Include="System.Management" Version="7.0.0" />
     <PackageReference Include="Vanara.PInvoke.NtDll" Version="3.4.13" />
     <PackageReference Include="Vanara.PInvoke.PowrProf" Version="3.4.13" />
     <PackageReference Include="Vanara.PInvoke.ShlwApi" Version="3.4.13" />
     <PackageReference Include="Vanara.PInvoke.User32" Version="3.4.13" />
+    <PackageReference Include="YamlDotNet" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,5 +37,11 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="Playnite.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AppConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

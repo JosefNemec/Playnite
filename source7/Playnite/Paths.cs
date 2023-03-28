@@ -30,7 +30,7 @@ public class Paths
             IntPtr.Zero);
 
         var sb = new StringBuilder(Paths.MaxPathLength);
-        var res = Kernel32.GetFinalPathNameByHandle(file, sb, 1024, Kernel32.FinalPathNameOptions.FILE_NAME_NORMALIZED);
+        var res = Kernel32.GetFinalPathNameByHandle(file, sb, (uint)sb.Capacity, Kernel32.FinalPathNameOptions.FILE_NAME_NORMALIZED);
         if (res == 0)
         {
             Win32Error.GetLastError().ThrowIfFailed();
@@ -217,5 +217,37 @@ public class Paths
         {
             return ShlwApi.PathMatchSpecEx(filePath, pattern, ShlwApi.PMSF.PMSF_NORMAL) == 0;
         }
+    }
+
+    public static string FormatLongPath(string path, bool forcePrefix = false)
+    {
+        if (path.IsNullOrWhiteSpace())
+        {
+            return path;
+        }
+
+        // Relative paths don't support long paths
+        // https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=cmd
+        if (!Paths.IsFullPath(path))
+        {
+            return path;
+        }
+
+        // While the MAX_PATH value is 260 characters, a lower value is used because
+        // methods can append "\" and string terminator characters to paths and
+        // make them surpass the limit
+        if ((path.Length >= 258 || forcePrefix) && !path.StartsWith(longPathPrefix, StringComparison.Ordinal))
+        {
+            if (path.StartsWith(@"\\", StringComparison.Ordinal))
+            {
+                return longPathUncPrefix + path.Substring(2);
+            }
+            else
+            {
+                return longPathPrefix + path;
+            }
+        }
+
+        return path;
     }
 }

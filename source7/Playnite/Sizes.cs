@@ -50,13 +50,16 @@ public class AspectRatio : IEquatable<AspectRatio>
         Height = height;
     }
 
-    public override bool Equals(object obj) => Equals(obj as AspectRatio);
+    public override bool Equals(object? obj) => Equals(obj as AspectRatio);
 
-    public bool Equals(AspectRatio other)
+    public bool Equals(AspectRatio? other)
     {
-        return other != null &&
-               Width == other.Width &&
-               Height == other.Height;
+        if (other is null)
+        {
+            return false;
+        }
+
+        return Width == other.Width && Height == other.Height;
     }
 
     public override int GetHashCode()

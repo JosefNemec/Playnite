@@ -92,6 +92,11 @@ public static class ProcessStarter
         return Process.Start(info) ?? throw new Exception("Failed to start process");
     }
 
+    public static int StartProcessWait(string path, string arguments, bool noWindow = false)
+    {
+        return StartProcessWait(path, arguments, string.Empty, noWindow);
+    }
+
     public static int StartProcessWait(string path, string arguments, string workDir, bool noWindow = false)
     {
         logger.Debug($"Starting process: {path}, {arguments}, {workDir}");

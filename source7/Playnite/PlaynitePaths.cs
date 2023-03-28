@@ -24,6 +24,7 @@ public class PlaynitePaths
     public const string FullscreenConfigFileName = "fullscreenConfig.json";
     public const string WindowPositionsFileName = "windowPositions.json";
     public const string LocalizationsDirName = "Localization";
+    public const string AppConfigFileName = "AppConfig.json";
 
     public static string UserProgramDataPath { get; }
     public static string ProgramPath { get; }
@@ -60,6 +61,7 @@ public class PlaynitePaths
     public static string SafeStartupFlagFile { get; }
     public static string BackupActionFile { get; }
     public static string RestoreBackupActionFile { get; }
+    public static string AppConfigFile { get; }
 
     public static bool IsPortable { get; }
 
@@ -102,6 +104,7 @@ public class PlaynitePaths
         SafeStartupFlagFile = Path.Combine(ConfigRootPath, "safestart.flag");
         BackupActionFile = Path.Combine(ConfigRootPath, "backup.json");
         RestoreBackupActionFile = Path.Combine(ConfigRootPath, "restoreBackup.json");
+        AppConfigFile = Path.Combine(ProgramPath, AppConfigFileName);
     }
 
     public static string ExpandVariables(string inputString, string? emulatorDir = null, bool fixSeparators = false)

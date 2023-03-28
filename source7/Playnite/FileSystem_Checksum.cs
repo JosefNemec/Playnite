@@ -46,14 +46,7 @@ public static partial class FileSystem
         }
         else
         {
-            if (GetMD5(path1) == GetMD5(path2))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return GetMD5(path1) == GetMD5(path2);
         }
     }
 }

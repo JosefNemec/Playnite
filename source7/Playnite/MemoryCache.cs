@@ -1,0 +1,131 @@
+﻿using System.Collections.Concurrent;
+using System.Threading;
+
+namespace Playnite;
+
+public class CacheItem
+{
+    public object CacheObject { get; }
+    public DateTime LastAccess { get; internal set; }
+    public DateTime CachedTime { get; }
+    public long Size { get; }
+    public Dictionary<string, object> Metadata { get; } = new();
+
+    public CacheItem(object item, long size)
+    {
+        CacheObject = item;
+        CachedTime = DateTime.Now;
+        LastAccess = CachedTime;
+        Size = size;
+    }
+
+    public CacheItem(object item, long size, Dictionary<string, object> metadata) : this (item, size)
+    {
+        Metadata = metadata;
+    }
+}
+
+public class MemoryCache
+{
+    private static readonly ILogger logger = LogManager.GetLogger();
+    private readonly ConcurrentDictionary<string, CacheItem> cache = new();
+    private readonly long memorySizeLimit = 0;
+    private long currentSize = 0;
+
+    public MemoryCache(long memoryLimit)
+    {
+        memorySizeLimit = memoryLimit;
+    }
+
+    public void Clear()
+    {
+        cache.Clear();
+        currentSize = 0;
+        GC.Collect();
+    }
+
+    private void ReleaseOldestItems()
+    {
+        // ToArray reason:
+        // https://stackoverflow.com/questions/11692389/getting-argument-exception-in-concurrent-dictionary-when-sorting-and-displaying
+        foreach (var item in cache.ToArray().OrderBy(a => a.Value.LastAccess))
+        {
+            if (currentSize > memorySizeLimit)
+            {
+                TryRemove(item.Key, out var removed);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    public bool TryAdd(string id, object item, long size, Dictionary<string, object>? metadata = null)
+    {
+        if (size >= memorySizeLimit)
+        {
+            logger.Warn($"Cannot add item to memory cache. Size: {size}, cache limit: {memorySizeLimit}");
+            return false;
+        }
+
+        Interlocked.Add(ref currentSize, size);
+        if (currentSize > memorySizeLimit)
+        {
+            ReleaseOldestItems();
+        }
+
+        if (metadata == null)
+        {
+            return cache.TryAdd(id, new CacheItem(item, size));
+        }
+        else
+        {
+            return cache.TryAdd(id, new CacheItem(item, size, metadata));
+        }
+    }
+
+    public bool TryRemove(string id, out CacheItem? item)
+    {
+        if (cache.TryRemove(id, out var cacheItem))
+        {
+            item = cacheItem;
+            Interlocked.Add(ref currentSize, -cacheItem.Size);
+            return true;
+        }
+        else
+        {
+            item = null;
+            return false;
+        }
+    }
+
+    public bool TryRemove(string id)
+    {
+        if (cache.TryRemove(id, out var cacheItem))
+        {
+            Interlocked.Add(ref currentSize, -cacheItem.Size);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool TryGet(string id, out CacheItem? item)
+    {
+        if (cache.TryGetValue(id, out var cacheItem))
+        {
+            cacheItem.LastAccess = DateTime.Now;
+            item = cacheItem;
+            return true;
+        }
+        else
+        {
+            item = null;
+            return false;
+        }
+    }
+}
+

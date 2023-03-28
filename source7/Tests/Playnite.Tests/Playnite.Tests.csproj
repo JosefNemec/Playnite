@@ -9,6 +9,9 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\ProcessRunTester\ProcessProperties.cs" Link="_Tests\ProcessProperties.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
@@ -30,7 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Resources\*">
+    <None Update="Resources\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\ProcessRunTester\bin\Debug\net7.0\**">
+      <Visible>false</Visible>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

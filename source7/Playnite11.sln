@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A1210ACC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playnite.Tests", "Tests\Playnite.Tests\Playnite.Tests.csproj", "{C2F12C79-F837-4A62-8552-F3FBA0A8C14D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayniteSDK", "PlayniteSDK\PlayniteSDK.csproj", "{948BC2E4-5335-456A-A030-1F0B04249DB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayniteSDK", "PlayniteSDK\PlayniteSDK.csproj", "{948BC2E4-5335-456A-A030-1F0B04249DB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessRunTester", "Tests\ProcessRunTester\ProcessRunTester.csproj", "{F0DB6745-97EB-4B74-B82C-1234E22E96D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +31,17 @@ Global
 		{948BC2E4-5335-456A-A030-1F0B04249DB0}.Debug|x64.Build.0 = Debug|Any CPU
 		{948BC2E4-5335-456A-A030-1F0B04249DB0}.Release|x64.ActiveCfg = Release|Any CPU
 		{948BC2E4-5335-456A-A030-1F0B04249DB0}.Release|x64.Build.0 = Release|Any CPU
+		{F0DB6745-97EB-4B74-B82C-1234E22E96D3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F0DB6745-97EB-4B74-B82C-1234E22E96D3}.Debug|x64.Build.0 = Debug|Any CPU
+		{F0DB6745-97EB-4B74-B82C-1234E22E96D3}.Release|x64.ActiveCfg = Release|Any CPU
+		{F0DB6745-97EB-4B74-B82C-1234E22E96D3}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C2F12C79-F837-4A62-8552-F3FBA0A8C14D} = {A1210ACC-6A4B-4C63-838F-E3C511B2D2F5}
+		{F0DB6745-97EB-4B74-B82C-1234E22E96D3} = {A1210ACC-6A4B-4C63-838F-E3C511B2D2F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8A35C1A-226D-4635-A071-D45BED24FB88}
