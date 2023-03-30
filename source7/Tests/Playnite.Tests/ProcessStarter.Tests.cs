@@ -8,8 +8,8 @@ public class ProcessStarterTests
     [Test]
     public async Task StartProcessWaitTest()
     {
-        var testProc = ProcessStarter.StartProcess(TestsVars.ProcessRunTesterExe, TestsVars.ProcessRunTesterKeepRunningArg);
-        Assert.AreEqual(1, Process.GetProcessesByName(TestsVars.ProcessRunTesterProcessName).Length);
+        var testProc = ProcessStarter.StartProcess(TestVars.ProcessRunTesterExe, TestVars.ProcessRunTesterKeepRunningArg);
+        Assert.AreEqual(1, Process.GetProcessesByName(TestVars.ProcessRunTesterProcessName).Length);
 
         var ivalidRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, "/f /pid 999999", true);
         Assert.AreEqual(128, ivalidRes);
@@ -17,20 +17,20 @@ public class ProcessStarterTests
         var validRes = ProcessStarter.StartProcessWait(CmdLineTools.TaskKill, $"/f /pid {testProc.Id}", true);
         Assert.AreEqual(0, validRes);
         await Task.Delay(200);
-        Assert.AreEqual(0, Process.GetProcessesByName(TestsVars.ProcessRunTesterExe).Length);
+        Assert.AreEqual(0, Process.GetProcessesByName(TestVars.ProcessRunTesterExe).Length);
     }
 
     [Test]
     public async Task ShellExecuteTest()
     {
-        var procid = ProcessStarter.ShellExecute($"\"{TestsVars.ProcessRunTesterExe}\" {TestsVars.ProcessRunTesterKeepRunningArg}");
+        var procid = ProcessStarter.ShellExecute($"\"{TestVars.ProcessRunTesterExe}\" {TestVars.ProcessRunTesterKeepRunningArg}");
         Assert.AreNotEqual(0, procid);
         await Task.Delay(200);
 
-        Assert.AreEqual(1, Process.GetProcessesByName(TestsVars.ProcessRunTesterProcessName).Length);
+        Assert.AreEqual(1, Process.GetProcessesByName(TestVars.ProcessRunTesterProcessName).Length);
         ProcessStarter.ShellExecute($"{CmdLineTools.TaskKill} /f /pid {procid}");
         await Task.Delay(200);
-        Assert.AreEqual(0, Process.GetProcessesByName(TestsVars.ProcessRunTesterProcessName).Length);
+        Assert.AreEqual(0, Process.GetProcessesByName(TestVars.ProcessRunTesterProcessName).Length);
     }
 
     [Test]

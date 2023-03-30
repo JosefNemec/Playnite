@@ -8,7 +8,7 @@ public class M3UFileTests
     [Test]
     public void GetEntriesTest()
     {
-        var testm3uPath = Path.Combine(TestsVars.ResourcesDir, "test.m3u");
+        var testm3uPath = Path.Combine(TestVars.ResourcesDir, "test.m3u");
         var entires = M3UFile.GetEntries(testm3uPath);
         Assert.AreEqual(14, entires.Count);
 

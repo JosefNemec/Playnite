@@ -21,28 +21,46 @@ public static class Downloader
         httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Playnite", "11"));
     }
 
-    public static async Task<byte[]> DownloadBytes(string url)
+    public static async Task<byte[]> DownloadBytesAsync(string url)
     {
         logger.Debug($"Downloading byte data from {url}.");
         var resp = await httpClient.GetAsync(url);
+        resp.EnsureSuccessStatusCode();
         return await resp.Content.ReadAsByteArrayAsync();
     }
 
-    public static async Task<string> DownloadString(string url)
+    public static async Task<byte[]> DownloadBytesAsync(string url, CancellationToken cancelToken)
+    {
+        logger.Debug($"Downloading byte data from {url}.");
+        var resp = await httpClient.GetAsync(url, cancelToken);
+        resp.EnsureSuccessStatusCode();
+        return await resp.Content.ReadAsByteArrayAsync(cancelToken);
+    }
+
+    public static async Task<string> DownloadStringAsync(string url)
     {
         logger.Debug($"Downloading string from {url}.");
         var resp = await httpClient.GetAsync(url);
+        resp.EnsureSuccessStatusCode();
         return await resp.Content.ReadAsStringAsync();
     }
 
-    public static async Task<string> DownloadString(params string[] mirrors)
+    public static async Task<string> DownloadStringAsync(string url, CancellationToken cancelToken)
+    {
+        logger.Debug($"Downloading string from {url}.");
+        var resp = await httpClient.GetAsync(url, cancelToken);
+        resp.EnsureSuccessStatusCode();
+        return await resp.Content.ReadAsStringAsync(cancelToken);
+    }
+
+    public static async Task<string> DownloadStringAsync(params string[] mirrors)
     {
         logger.Debug($"Downloading string content from multiple mirrors.");
         foreach (var mirror in mirrors)
         {
             try
             {
-                return await DownloadString(mirror);
+                return await DownloadStringAsync(mirror);
             }
             catch (Exception e)
             {
@@ -53,174 +71,87 @@ public static class Downloader
         throw new Exception("Failed to download string from all mirrors.");
     }
 
-    //public string? DownloadString(string url, CancellationToken cancelToken)
-    //{
-    //    logger.Debug($"Downloading string content from {url} using UTF8 encoding.");
+    public static async Task<string> DownloadStringAsync(CancellationToken cancelToken, params string[] mirrors)
+    {
+        logger.Debug($"Downloading string content from multiple mirrors.");
+        foreach (var mirror in mirrors)
+        {
+            if (cancelToken.IsCancellationRequested)
+            {
+                break;
+            }
 
-    //    try
-    //    {
-    //        using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
-    //        using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
-    //        {
-    //            webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //            return Task.Run(async () => await webClient.DownloadStringTaskAsync(url)).GetAwaiter().GetResult();
-    //        }
-    //    }
-    //    catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
-    //    {
-    //        logger.Warn("Download canceled.");
-    //        return null;
-    //    }
-    //}
+            try
+            {
+                return await DownloadStringAsync(mirror, cancelToken);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Failed to download {mirror} string.");
+            }
+        }
 
-    //public string DownloadString(string url, Encoding encoding)
-    //{
-    //    logger.Debug($"Downloading string content from {url} using {encoding} encoding.");
-    //    using (var webClient = new WebClient { Encoding = encoding })
-    //    {
-    //        webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //        return webClient.DownloadString(url);
-    //    }
-    //}
+        throw new Exception("Failed to download string from all mirrors.");
+    }
 
-    //public string DownloadString(string url, List<Cookie> cookies)
-    //{
-    //    return DownloadString(url, cookies, Encoding.UTF8);
-    //}
+    public static async Task DownloadFileAsync(string url, string path)
+    {
+        logger.Debug($"Downloading file from {url} to {path}.");
+        FileSystem.PrepareSaveFile(path);
+        var resp = await httpClient.GetAsync(url);
+        resp.EnsureSuccessStatusCode();
+        using var fs = new FileStream(path, FileMode.Create);
+        await resp.Content.CopyToAsync(fs);
+    }
 
-    //public string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
-    //{
-    //    logger.Debug($"Downloading string content from {url} using cookies and {encoding} encoding.");
-    //    using (var webClient = new WebClient { Encoding = encoding })
-    //    {
-    //        webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //        if (cookies?.Any() == true)
-    //        {
-    //            var cookieString = string.Join(";", cookies.Select(a => $"{a.Name}={a.Value}"));
-    //            webClient.Headers.Add(HttpRequestHeader.Cookie, cookieString);
-    //        }
+    public static async Task DownloadFileAsync(string url, string path, CancellationToken cancelToken)
+    {
+        logger.Debug($"Downloading file from {url} to {path}.");
+        FileSystem.PrepareSaveFile(path);
+        var resp = await httpClient.GetAsync(url, cancelToken);
+        resp.EnsureSuccessStatusCode();
+        using var fs = new FileStream(path, FileMode.Create);
+        await resp.Content.CopyToAsync(fs, cancelToken);
+    }
 
-    //        return webClient.DownloadString(url);
-    //    }
-    //}
+    public static async Task DownloadFileAsync(string url, string path, Action<DownloadProgress> progressHandler, CancellationToken cancelToken)
+    {
+        logger.Debug($"Downloading file from {url} to {path}.");
+        FileSystem.PrepareSaveFile(path);
+        var resp = await httpClient.GetAsync(url, cancelToken);
+        resp.EnsureSuccessStatusCode();
 
-    //public void DownloadString(string url, string path)
-    //{
-    //    DownloadString(url, path, Encoding.UTF8);
-    //}
+        var totalBytes = resp.Content.Headers.ContentLength;
+        using var fs = new FileStream(path, FileMode.Create);
+        if (totalBytes is null)
+        {
+            await resp.Content.CopyToAsync(fs, cancelToken);
+        }
+        else
+        {
+            var progress = new DownloadProgress(totalBytes.Value);
+            var lastPercentage = 0;
+            var buffer = new byte[8192];
+            using var download = await resp.Content.ReadAsStreamAsync(cancelToken);
+            while (true)
+            {
+                var currentRead = await download.ReadAsync(buffer.AsMemory(0, 8192), cancelToken);
+                if (currentRead == 0 || cancelToken.IsCancellationRequested)
+                {
+                    break;
+                }
 
-    //public void DownloadString(string url, string path, Encoding encoding)
-    //{
-    //    logger.Debug($"Downloading string content from {url} to {path} using {encoding} encoding.");
-    //    using (var webClient = new WebClient { Encoding = encoding })
-    //    {
-    //        webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //        var data = webClient.DownloadString(url);
-    //        File.WriteAllText(path, data);
-    //    }
-    //}
+                await fs.WriteAsync(buffer.AsMemory(0, currentRead), cancelToken);
+                progress.Update(progress.ReadBytes + currentRead);
+                if (lastPercentage != progress.PercentageDone)
+                {
+                    progressHandler(progress);
+                }
 
-    //public byte[] DownloadData(string url, CancellationToken cancelToken)
-    //{
-    //    logger.Debug($"Downloading data from {url}.");
-
-    //    try
-    //    {
-    //        using (var webClient = new WebClient())
-    //        using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
-    //        {
-    //            webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //            return webClient.DownloadData(url);
-    //            }
-    //        }
-    //    catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
-    //    {
-    //        logger.Warn("Download canceled.");
-    //        return new byte[0];
-    //    }
-    //}
-
-    //public void DownloadFile(string url, string path)
-    //{
-    //    logger.Debug($"Downloading data from {url} to {path}.");
-    //    FileSystem.CreateDirectory(Path.GetDirectoryName(path));
-    //    using (var webClient = new WebClient())
-    //    {
-    //        webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //        webClient.DownloadFile(url, path);
-    //    }
-    //}
-
-    //public void DownloadFile(string url, string path, CancellationToken cancelToken)
-    //{
-    //    logger.Debug($"Downloading data from {url} to {path}.");
-    //    FileSystem.CreateDirectory(Path.GetDirectoryName(path));
-
-    //    try
-    //    {
-    //        using (var webClient = new WebClient())
-    //        using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
-    //        {
-    //            webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //            Task.Run(async () => await webClient.DownloadFileTaskAsync(new Uri(url), path)).Wait();
-    //        }
-    //    }
-    //    catch (WebException ex) when (ex.Status == WebExceptionStatus.RequestCanceled)
-    //    {
-    //        logger.Warn("Download canceled.");
-    //    }
-    //}
-
-    //public async Task DownloadFileAsync(string url, string path, Action<DownloadProgressChangedEventArgs> progressHandler)
-    //{
-    //    logger.Debug($"Downloading data async from {url} to {path}.");
-    //    FileSystem.CreateDirectory(Path.GetDirectoryName(path));
-    //    using (var webClient = new WebClient())
-    //    {
-    //        webClient.Headers.Add("User-Agent", playniteUserAgent);
-    //        webClient.DownloadProgressChanged += (s, e) => progressHandler(e);
-    //        webClient.DownloadFileCompleted += (s, e) => webClient.Dispose();
-    //        await webClient.DownloadFileTaskAsync(url, path);
-    //    }
-    //}
-
-    //public async Task DownloadFileAsync(IEnumerable<string> mirrors, string path, Action<DownloadProgressChangedEventArgs> progressHandler)
-    //{
-    //    logger.Debug($"Downloading data async from multiple mirrors.");
-    //    foreach (var mirror in mirrors)
-    //    {
-    //        try
-    //        {
-    //            await DownloadFileAsync(mirror, path, progressHandler);
-    //            return;
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            logger.Error(e, $"Failed to download {mirror} file.");
-    //        }
-    //    }
-
-    //    throw new Exception("Failed to download file from all mirrors.");
-    //}
-
-    //public void DownloadFile(IEnumerable<string> mirrors, string path)
-    //{
-    //    logger.Debug($"Downloading data from multiple mirrors.");
-    //    foreach (var mirror in mirrors)
-    //    {
-    //        try
-    //        {
-    //            DownloadFile(mirror, path);
-    //            return;
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            logger.Error(e, $"Failed to download {mirror} file.");
-    //        }
-    //    }
-
-    //    throw new Exception("Failed to download file from all mirrors.");
-    //}
+                lastPercentage = progress.PercentageDone;
+            }
+        }
+    }
 
     public static async Task<HttpStatusCode> GetResponseCode(string url)
     {
@@ -233,6 +164,24 @@ public static class Downloader
         {
             logger.Error(e, $"Failed to get HTTP response for {url}.");
             return HttpStatusCode.ServiceUnavailable;
+        }
+    }
+
+    public class DownloadProgress
+    {
+        public long TotalBytes { get; }
+        public long ReadBytes { get; private set; }
+        public int PercentageDone { get; private set; }
+
+        public DownloadProgress(long totalBytes)
+        {
+            TotalBytes = totalBytes;
+        }
+
+        internal void Update(long readBytesSum)
+        {
+            ReadBytes = readBytesSum;
+            PercentageDone = Convert.ToInt32(((double)ReadBytes / TotalBytes) * 100);
         }
     }
 }

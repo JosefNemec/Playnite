@@ -15,8 +15,8 @@ public class SerializationTests
     [Test]
     public void JsonDerializationTests()
     {
-        var validFile = Path.Combine(TestsVars.ResourcesDir, "Serialization", "valid.json");
-        var invalidFile = Path.Combine(TestsVars.ResourcesDir, "Serialization", "invalid.json");
+        var validFile = Path.Combine(TestVars.ResourcesDir, "Serialization", "valid.json");
+        var invalidFile = Path.Combine(TestVars.ResourcesDir, "Serialization", "invalid.json");
         Exception? serError = null;
         var validJson = File.ReadAllText(validFile);
         var invalidJson = File.ReadAllText(invalidFile);

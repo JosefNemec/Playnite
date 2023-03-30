@@ -408,20 +408,4 @@ public static class ListExtensions
             action(item);
         }
     }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="source"></param>
-    /// <returns></returns>
-    public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
-    {
-        if (!source.HasItems())
-        {
-            return new HashSet<T>();
-        }
-
-        return new HashSet<T>(source);
-    }
 }

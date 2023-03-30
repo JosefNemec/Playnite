@@ -39,7 +39,7 @@ public class FileSystemTests
     [Test]
     public async Task ReadFileAsStringSafeTest()
     {
-        var testPath = Path.Combine(TestsVars.TempDir, "ReadFileAsStringSafeTest.txt");
+        var testPath = Path.Combine(TestVars.TempDir, "ReadFileAsStringSafeTest.txt");
         FileSystem.DeleteFile(testPath);
         var fs = new FileStream(testPath, FileMode.Create);
         fs.Write(new byte[] { 1 }, 0, 1);
@@ -55,7 +55,7 @@ public class FileSystemTests
     [Test]
     public async Task WriteStringToFileSafeTest()
     {
-        var testPath = Path.Combine(TestsVars.TempDir, "WriteStringToFileSafeTest.txt");
+        var testPath = Path.Combine(TestVars.TempDir, "WriteStringToFileSafeTest.txt");
         FileSystem.DeleteFile(testPath);
         var fs = new FileStream(testPath, FileMode.Create);
         Assert.Throws<IOException>(() => FileSystem.WriteStringToFileSafe(testPath, "test"));
@@ -69,7 +69,7 @@ public class FileSystemTests
     [Test]
     public void CheckSumTests()
     {
-        var testFile = Path.Combine(TestsVars.ResourcesDir, "TestIni.ini");
+        var testFile = Path.Combine(TestVars.ResourcesDir, "TestIni.ini");
         StringAssert.AreEqualIgnoringCase("46fcb37aa8e69b4ead0d702fd459299d", FileSystem.GetMD5(testFile));
         StringAssert.AreEqualIgnoringCase("D8B22F5D", FileSystem.GetCRC32(testFile));
     }
@@ -79,7 +79,7 @@ public class FileSystemTests
     {
         using var tempPath = TempDirectory.Create();
         // Subdirectory is used to verify that called methods work correctly in long paths
-        var subdirPath = Path.Combine(tempPath.TempPath, GlobalRandom.GetRandomString(255), GlobalRandom.GetRandomString(50));
+        var subdirPath = Path.Combine(tempPath.TempDir, GlobalRandom.GetRandomString(255), GlobalRandom.GetRandomString(50));
         FileSystem.CreateDirectory(subdirPath);
 
         var filePath = Path.Combine(subdirPath, "DummyFile.file");
@@ -93,10 +93,10 @@ public class FileSystemTests
 
         // We can't check the exact size because it will vary depending on drive
         // cluster size so we only check if value is higher than zero
-        var dirSizeOnDisk = FileSystem.GetDirectorySize(tempPath.TempPath, true);
+        var dirSizeOnDisk = FileSystem.GetDirectorySize(tempPath.TempDir, true);
         Assert.That(dirSizeOnDisk, Is.GreaterThan(0));
 
-        var dirSize = FileSystem.GetDirectorySize(tempPath.TempPath, false);
+        var dirSize = FileSystem.GetDirectorySize(tempPath.TempDir, false);
         Assert.AreEqual(dummyFileLenght, dirSize);
     }
 
@@ -104,7 +104,7 @@ public class FileSystemTests
     public void LongPathTest()
     {
         using var tempPath = TempDirectory.Create();
-        var longDir = Path.Combine(tempPath.TempPath, GlobalRandom.GetRandomString(255), GlobalRandom.GetRandomString(50));
+        var longDir = Path.Combine(tempPath.TempDir, GlobalRandom.GetRandomString(255), GlobalRandom.GetRandomString(50));
         var longFile = Path.Combine(longDir, "file.test");
 
         FileSystem.CreateDirectory(longDir);

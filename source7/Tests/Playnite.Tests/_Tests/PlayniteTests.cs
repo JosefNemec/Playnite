@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Playnite.Tests;
 
-public static class TestsVars
+public static class TestVars
 {
     public const string ProcessRunTesterProcessName = "ProcessRunTester";
     public const string ProcessRunTesterKeepRunningArg = "--keeprunning";
@@ -15,7 +15,7 @@ public static class TestsVars
     public static string ResourcesDir { get; }
     public static string TempDir { get; }
 
-    static TestsVars()
+    static TestVars()
     {
         ResourcesDir = Path.Combine(PlaynitePaths.ProgramPath, "Resources");
         ProcessRunTesterExe = Path.Combine(PlaynitePaths.ProgramPath, "ProcessRunTester.exe");

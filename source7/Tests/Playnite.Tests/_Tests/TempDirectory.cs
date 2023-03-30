@@ -7,7 +7,7 @@ public class TempDirectory : IDisposable
 {
     private readonly bool autoDelete;
 
-    public string TempPath { get; private set; }
+    public string TempDir { get; private set; }
 
     public static TempDirectory Create(bool autoDelete = true, string? dirName = null)
     {
@@ -23,8 +23,8 @@ public class TempDirectory : IDisposable
 
     public TempDirectory(string dirName, bool autoDelete = true)
     {
-        TempPath = Path.Combine(Path.GetTempPath(), "Playnite", dirName);
-        FileSystem.CreateDirectory(TempPath, true);
+        TempDir = Path.Combine(Path.GetTempPath(), "Playnite", dirName);
+        FileSystem.CreateDirectory(TempDir, true);
         this.autoDelete = autoDelete;
     }
 
@@ -32,12 +32,14 @@ public class TempDirectory : IDisposable
     {
         if (autoDelete)
         {
-            FileSystem.DeleteDirectory(TempPath);
+            FileSystem.DeleteDirectory(TempDir);
         }
     }
 
     public override string ToString()
     {
-        return TempPath;
+        return TempDir;
     }
+
+    public static implicit operator string(TempDirectory dir) => dir.TempDir;
 }

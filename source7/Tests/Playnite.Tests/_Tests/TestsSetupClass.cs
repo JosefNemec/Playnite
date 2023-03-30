@@ -32,6 +32,7 @@ public class TestsSetupClass
         //Assert.AreEqual("Filters", ResourceProvider.GetString(LOC.Filters));
 
         SyncContext.SetMainContext(new TestSynchronizationContext());
+        AppConfig.Config.ThrowAllErrors = true;
     }
 
     [OneTimeSetUp]
