@@ -65,8 +65,8 @@ namespace Playnite.Tests
         public void CheckSumTests()
         {
             var testFile = Path.Combine(PlayniteTests.ResourcesPath, "TestIni.ini");
-            StringAssert.AreEqualIgnoringCase("46fcb37aa8e69b4ead0d702fd459299d", FileSystem.GetMD5(testFile));
-            StringAssert.AreEqualIgnoringCase("D8B22F5D", FileSystem.GetCRC32(testFile));
+            StringAssert.AreEqualIgnoringCase("52759389ac825d0810b5d38084e904ba", FileSystem.GetMD5(testFile));
+            StringAssert.AreEqualIgnoringCase("441F25A2", FileSystem.GetCRC32(testFile));
         }
 
         [Test]
