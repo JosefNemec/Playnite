@@ -111,7 +111,12 @@ namespace Playnite.FullscreenApp.Controls.Views
 
             if (e.PropertyName == nameof(FullscreenAppViewModel.ActiveFilterPreset))
             {
-                var panel = ElementTreeHelper.FindVisualChildren<FullscreenTilePanel>(ListGameItems).First();
+                var panel = ElementTreeHelper.FindVisualChildren<FullscreenTilePanel>(ListGameItems).FirstOrDefault();
+                if (panel == null)
+                {
+                    return;
+                }
+
                 if (panel.UseHorizontalLayout)
                 {
                     panel.SetHorizontalOffset(0);
