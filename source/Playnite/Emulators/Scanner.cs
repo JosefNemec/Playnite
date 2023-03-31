@@ -1329,7 +1329,23 @@ namespace Playnite.Emulators
             if (path.EndsWith("." + scannedExtension, StringComparison.OrdinalIgnoreCase))
             {
                 var fileName = System.IO.Path.GetFileName(path);
-                Name = new RomName(fileName.Substring(0, fileName.LastIndexOf("." + scannedExtension, StringComparison.OrdinalIgnoreCase)));
+                if (scannedExtension.Equals("gz", StringComparison.OrdinalIgnoreCase))
+                {
+                    fileName = fileName.TrimEndString(".gz", StringComparison.OrdinalIgnoreCase);
+                    var trimIndex = fileName.LastIndexOf(".", StringComparison.OrdinalIgnoreCase);
+                    if (trimIndex < 0)
+                    {
+                        Name = new RomName(fileName);
+                    }
+                    else
+                    {
+                        Name = new RomName(fileName.Substring(0, trimIndex));
+                    }
+                }
+                else
+                {
+                    Name = new RomName(fileName.Substring(0, fileName.LastIndexOf("." + scannedExtension, StringComparison.OrdinalIgnoreCase)));
+                }
             }
             else
             {

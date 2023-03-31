@@ -49,6 +49,41 @@ namespace Playnite.Tests.Emulators
         }
 
         [Test]
+        public void GzipHandlingTest() // #3357 bug
+        {
+            using (var tempPath = TempDirectory.Create())
+            {
+                var path1 = Path.Combine(tempPath.TempPath, "game 1.iso.gz");
+                var path2 = Path.Combine(tempPath.TempPath, "game 2.test.iso");
+                var path3 = Path.Combine(tempPath.TempPath, "game 3.gz");
+                FileSystem.CreateFile(path1);
+                FileSystem.CreateFile(path2);
+                FileSystem.CreateFile(path3);
+
+                var scanner = new GameScanner(new SDK.Models.GameScannerConfig(), null);
+                var scanResults = new List<ScannedGame>();
+                scanner.ScanDirectoryBase(
+                    tempPath.TempPath,
+                    new List<string> { "gz", "iso" },
+                    null,
+                    scanResults,
+                    new System.Threading.CancellationTokenSource().Token,
+                    null,
+                    true,
+                    true,
+                    true);
+
+                Assert.AreEqual(3, scanResults.Count);
+                Assert.AreEqual("game 1", scanResults[0].Name);
+                Assert.AreEqual(path1, scanResults[0].Roms[0].Path);
+                Assert.AreEqual("game 2.test", scanResults[1].Name);
+                Assert.AreEqual(path2, scanResults[1].Roms[0].Path);
+                Assert.AreEqual("game 3", scanResults[2].Name);
+                Assert.AreEqual(path3, scanResults[2].Roms[0].Path);
+            }
+        }
+
+        [Test]
         public void MultiDiskRegionTest() // #2573 bug
         {
             using (var tempPath = TempDirectory.Create())
