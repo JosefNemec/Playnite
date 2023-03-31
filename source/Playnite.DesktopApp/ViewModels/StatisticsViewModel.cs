@@ -344,7 +344,7 @@ namespace Playnite.DesktopApp.ViewModels
                     totalPlaytime += game.Playtime;
                 }
 
-                if (game.InstallSize != null && game.InstallSize > 0)
+                if (game.IsInstalled && game?.InstallSize > 0)
                 {
                     totalInstallSize += game.InstallSize.Value;
                 }
