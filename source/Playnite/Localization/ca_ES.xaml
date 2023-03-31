@@ -375,7 +375,7 @@ Sempre: Importa el temps de joc per a nous jocs importats i existents a la base 
 Només pels jocs recentment importats: Importa temps de joc només per als nous jocs importats.
 Mai: Mai no importa temps de joc sota cap circumstància.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Sempre</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Només pels jocs recentment importants</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Només pels jocs recentment importats</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Mai</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activar la compatibilitat amb el comandament en mode d'escriptori</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">El botó Guia obre el mode de pantalla completa</sys:String>
@@ -1105,7 +1105,7 @@ Si comences a experimentar alguns problemes després d'instal·lar un tema o una
     <sys:String x:Key="LOCSortingNameRemovedArticles">Aquestes paraules s'eliminaran del principi del valor de nom d'ordenació omplert automàticament:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Utilitza això per ignorar paraules al principi d'una cadena per propòsits d'ordenació. El valor per defecte és &quot;The&quot;, &quot;An&quot; i &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Omplir el nom d'ordenació de jocs sense un</sys:String>
-    <sys:String x:Key="LOCSettingsSortingLabel">Ordenament</sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">Ordenació</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillProgress">Omplint valors de nom d'ordenació...</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">S'ha detectat que el servei Nahimic s'està executant al teu sistema. Se sap que aquest servei causa problemes de renderització a Playnite (i altres aplicacions).
 
@@ -1127,7 +1127,7 @@ Si es desactiva, els escaneigs seran més ràpids i utilitzaran la mida dels mat
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Els fitxers emmagatzemats al núvol no s'escanejaran i importaran si no estan disponibles de manera local.
 Només és compatible amb Google Drive, DropBox i OneDrive</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Escanejar, però utilitzant el mètode simplificat sense el contingut del fitxer</sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">S'emportaran els fitxers, però utilitzant un mètode menys precís que no requereix que el contingut dels fitxers es descarregui i estigui present de manera local.</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">S'importaran els fitxers, però utilitzant un mètode menys precís que no requereix que el contingut dels fitxers es descarregui i estigui present de manera local.</sys:String>
     <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Aplicar-ho a tots</sys:String>
     <sys:String x:Key="LOCOverrideInstallState">Ignorar l'estat de la instal·lació</sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">Si es defineix, Playnite ignorarà l'estat de la instal·lació (incloent-hi el directori d'instal·lació) establert pel plugin d'integració que importa aquest joc.

@@ -60,9 +60,11 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">移除遊戲()?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">無法移除 - 遊戲或安裝程式正在執行. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">無法移除 - 遊戲正在執行.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">你確定要移除{0}嗎？</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">您確定要移除{0}嗎？</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">您確定要移除{0}嗎?
+
+點選&quot;加入除外清單&quot;可防止下次遊戲資料庫更新時再度匯入本遊戲。</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">您確定要移除{0}嗎?
 
 點選&quot;加入除外清單&quot;可防止下次遊戲資料庫更新時再度匯入本遊戲。</sys:String>
@@ -343,7 +345,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">關閉Playnite時將視窗縮小至系統列</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">當遊戲啟動時:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">當遊戲關閉:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">將遊玩時間改以天數顯示</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">日期格式:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">即將登出所有已連結服務並重啟程式，是否繼續?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">清除快取？</sys:String>
@@ -432,8 +434,10 @@
     <sys:String x:Key="LOCLoginFailed">驗證失敗</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">備用網頁視圖渲染模式</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">在網頁視圖中遇到問題時使用，例如跳出整合功能驗證對話框時。</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">敘述較長的情況僅先讀取部分敘述</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">在選擇遊戲時，較長的遊戲敘述會導致明顯的延遲
+
+啟用本選項後系統會自動限制讀取部分敘述，使用者可手動讀取剩餘敘述</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">匯入元資料</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">下載元資料</sys:String>
@@ -543,9 +547,9 @@
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未安裝</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">隱藏</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">我的最愛</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
-    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">啟用 HDR 支援</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">啟用本選項後，在遊戲開始前HDR會在主顯示器被啟用。</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">注意，你的主顯示器不支援HDR</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">最後遊玩</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">分類</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">描述</sys:String>
@@ -744,8 +748,8 @@
     <sys:String x:Key="LOCRemoveFavoriteGame">從「我的最愛」中移除</sys:String>
     <sys:String x:Key="LOCHideGame">隱藏此遊戲</sys:String>
     <sys:String x:Key="LOCUnHideGame">從隱藏列表中移除</sys:String>
-    <sys:String x:Key="LOCEnableHdr"></sys:String>
-    <sys:String x:Key="LOCDisableHdr"></sys:String>
+    <sys:String x:Key="LOCEnableHdr">啟用 HDR 支援</sys:String>
+    <sys:String x:Key="LOCDisableHdr">停用 HDR  支援</sys:String>
     <sys:String x:Key="LOCEditGame">編輯...</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">計算佔用儲存容量</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">計算佔用儲存容量 (所有遊戲)</sys:String>
@@ -780,7 +784,7 @@
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">遊戲運行監控正在執行，是否要取消並將遊戲復原至之前的狀態?</sys:String>
     <sys:String x:Key="LOCTimePlayed">遊玩時數</sys:String>
     <sys:String x:Key="LOCLastPlayed">最後遊玩</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}日 {1}小時 {2}分</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}小時 {1}分鐘</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} 分鐘</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} 秒</sys:String>
@@ -884,7 +888,7 @@
     <sys:String x:Key="LOCStatsTotalPlayTime">總遊玩時間</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">平均遊玩時間</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">最高遊玩時間</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">總計安裝大小</sys:String>
     <sys:String x:Key="LOCOverviewLabel">總覽</sys:String>
     <sys:String x:Key="LOCSidebar">側邊欄</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">在側邊欄顯示</sys:String>
@@ -953,7 +957,7 @@
     <sys:String x:Key="LOCIncludePluginGameActions">包含資料庫整合執行動作</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">選擇動作</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">追蹤模式</sys:String>
-    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">追蹤路徑</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">連結</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">檔案</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">模擬器</sys:String>
@@ -1050,7 +1054,7 @@
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">內建配置檔</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">內建配置檔</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">自訂檔案</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">自訂設定檔</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">由內建腳本控制</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">模擬器格式</sys:String>
     <sys:String x:Key="LOCPlatformSpec">平台格式</sys:String>
@@ -1086,8 +1090,8 @@
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">可能的話匯入遊戲檔案時使用與Playnite安裝資料夾或者模擬器安裝資料夾相關聯的路徑。</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">掃描子資料夾</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">掃描壓縮檔裡的檔案</sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">合併相關檔案</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">合併相關遊戲檔案，例如個別的遊戲光碟等，到同一個遊戲資料中。</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">新增掃描器</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">新增已存檔的掃描器</sys:String>
     <sys:String x:Key="LOCStartScan">開始掃描</sys:String>
@@ -1186,8 +1190,9 @@ SHIFT-ENTER: 開啟項目列表</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">打開此選項時掃描器會把這個平台資訊指定到所有遊戲，並覆載所有已經偵測到的平台資訊。</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">在預設搜尋中包含指令內容</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">當這個選項被停用時，未使用#前綴的話，預設搜尋將不會包含指令內容。</sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">在遊戲名稱過濾器中使用模糊比對</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">啟用時，名稱過濾器會使用等同於全域搜尋的方式來比對遊戲名稱
+你可以透過添加首字元 ! 來個別強制執行精確比對</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">在遊戲結果中顯示的欄位:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">隱藏狀態</sys:String>
 
@@ -1239,7 +1244,9 @@ Playnite將會重新啟動並開始備份資料</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface">輔助功能 (屏幕閱讀器) 支持</sys:String>
     <sys:String x:Key="LOCApplicationMenu">應用程式選單</sys:String>
     <sys:String x:Key="LOCGameMenu">遊戲目錄</sys:String>
-    <sys:String x:Key="LOCProgramFolder"></sys:String>
-    <sys:String x:Key="LOCUserDataFolder"></sys:String>
-    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCProgramFolder">程式資料夾</sys:String>
+    <sys:String x:Key="LOCUserDataFolder">使用者資料夾</sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">偵測到資料庫檔案毀損，Playnite即將自動關閉。
+    
+你可以在Playnite的GitHub頁面新增回報並請求修復你的毀損檔案。</sys:String>
 </ResourceDictionary>

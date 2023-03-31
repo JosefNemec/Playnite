@@ -60,7 +60,7 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">ゲームを削除しますか？</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">削除できません - ゲームかインストーラーが起動しています。</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">アンインストールできません - ゲームが実行中です。</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">{0} を削除してもよろしいですか？</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">{0} ゲームを削除してもよろしいですか？</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">{0} ゲームを削除してもよろしいですか？
@@ -220,7 +220,7 @@
     <sys:String x:Key="LOCProgressImportinEmulatedGames">{0} からエミュレートゲームをインポートしています...</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">ライブラリの更新をダウンロード中...</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">ライブラリ内のゲームのサイズをスキャン中…</sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">インポートされたゲームのサイズをスキャンしています...</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">ライブラリの更新完了</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">リソースを解放中...</sys:String>
     <!--Menu-->
@@ -542,9 +542,9 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未インストール</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">非表示</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">お気に入り</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
-    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">HDRを有効にする</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">有効にすると、ゲームを開始する前にプライマリディスプレイでHDRが有効になります。</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">※HDRはあなたのプライマリディスプレイではサポートされていないことに注意してください。</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">最後のプレイ</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">カテゴリー</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">あらすじ</sys:String>
@@ -743,8 +743,8 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCRemoveFavoriteGame">お気に入りから削除</sys:String>
     <sys:String x:Key="LOCHideGame">このゲームを非表示</sys:String>
     <sys:String x:Key="LOCUnHideGame">隠しから削除</sys:String>
-    <sys:String x:Key="LOCEnableHdr"></sys:String>
-    <sys:String x:Key="LOCDisableHdr"></sys:String>
+    <sys:String x:Key="LOCEnableHdr">HDRを有効にする</sys:String>
+    <sys:String x:Key="LOCDisableHdr">HDRを無効にする</sys:String>
     <sys:String x:Key="LOCEditGame">編集</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">インストール容量を計算</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
@@ -787,7 +787,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCOpeningDesktopModeMessage">デスクトップモードへ切り替え中</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">フルスクリーンモードへ切り替え中</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">ゲームライブラリをロード中</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">インストールサイズを計算中...</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
     <sys:String x:Key="LOCScriptInstallFail">スクリプトファイルのインストールに失敗しました。</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">スクリプトは正常にインストールされました。</sys:String>
@@ -884,7 +884,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">総プレイ時間</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">平均プレイ時間</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">トップのプレイ時間</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">インストールの合計サイズ</sys:String>
     <sys:String x:Key="LOCOverviewLabel">概観</sys:String>
     <sys:String x:Key="LOCSidebar">サイドバー</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">サイドバーに表示</sys:String>
@@ -1050,7 +1050,7 @@ XInput入力をマウス/キーボード入力に変換するツールを使用�
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">ビルトイン プロファイル</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">ビルトイン プロファイル</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">カスタム プロファイル</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">カスタムプロファイル</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">内蔵スクリプトで処理</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">エミュレータの仕様</sys:String>
     <sys:String x:Key="LOCPlatformSpec">プラットフォームの仕様</sys:String>
@@ -1182,11 +1182,11 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
     <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
-    <sys:String x:Key="LOCHiddenStatus"></sys:String>
+    <sys:String x:Key="LOCHiddenStatus">非表示状態</sys:String>
 
     <sys:String x:Key="LOCBackupCancelled">データのバックアップはキャンセルされました。</sys:String>
     <sys:String x:Key="LOCBackupFailed">データのバックアップに失敗しました。</sys:String>
-    <sys:String x:Key="LOCBackupErrorTitle"></sys:String>
+    <sys:String x:Key="LOCBackupErrorTitle">データのバックアップに失敗しました！</sys:String>
     <sys:String x:Key="LOCBackupProgress">データのバックアップ中…</sys:String>
     <sys:String x:Key="LOCBackupRestoreProgress">バックアップからデータを復元しています…</sys:String>
     <sys:String x:Key="LOCBackupRestoreFailed">バックアップからデータを復元できませんでした。</sys:String>
@@ -1213,19 +1213,19 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">アイコン画像検索文字列</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">カバー画像検索文字列</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">背景画像検索文字列</sys:String>
-    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
-    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
+    <sys:String x:Key="LOCGettingsAddonInformation">アドオン情報を取得中...</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">メタデータソースがありません</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettings">プレイアクション設定</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">スキャナ設定を使用する</sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">起動時にプロファイルを選択</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">起動時にエミュレータを選択</sys:String>
     <sys:String x:Key="LOCAutomatic"></sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn">常にオン</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">常にオフ</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
-    <sys:String x:Key="LOCApplicationMenu"></sys:String>
-    <sys:String x:Key="LOCGameMenu"></sys:String>
-    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu">アプリケーションメニュー</sys:String>
+    <sys:String x:Key="LOCGameMenu">ゲームメニュー</sys:String>
+    <sys:String x:Key="LOCProgramFolder">プログラムフォルダ</sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>

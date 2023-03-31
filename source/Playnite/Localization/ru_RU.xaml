@@ -60,9 +60,12 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">Убрать игру(ы) из списка?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Невозможно убрать - запущена игра или установщик.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Невозможно удалить - запущена игра.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Вы уверены, что хотите убрать из списка {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Вы уверены, что хотите убрать из списка эти игры ({0} шт.)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Вы уверены, что хотите убрать из списка {0}?
+
+Опция &quot;добавить в список исключений&quot; предотвратит автоматический импорт игры при следующем обновлении библиотеки.
+</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Вы уверены, что хотите убрать игры ({0} шт.) из списка?
 
 Опция «добавить в исключения» предотвратит их повторное появление в списке при следующем обновлении библиотеки.</sys:String>
@@ -343,7 +346,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">Сворачивать Playnite в трей при закрытии окна приложения</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">При запуске игры:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">После закрытия игры:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Преобразовывать &quot;время в игре&quot; в количество сыгранных дней</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Формат дат:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">После этого вы выйдете из всех связанных служб. Требуется перезапуск программы, продолжить?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Очистить кэш?</sys:String>
@@ -434,8 +437,10 @@
     <sys:String x:Key="LOCLoginFailed">Не удалось авторизоваться</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Альтернативный режим отображения веб-просмотра</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Используйте при возникновении проблем с веб-просмотром, например, с диалогами авторизации интеграции.</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Частичная загрузка длинных описаний игр</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Длинные описания игр могут вызывать заметные зависания при их выборе в интерфейсе.
+
+Если включено, вначале будет загружаться только часть описания, с возможностью загрузить продолжение по запросу.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Импорт метаданных</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Скачать метаданные</sys:String>
@@ -547,9 +552,9 @@
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Не установлено</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Скрыто</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">В избранном</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
-    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">Включить поддержку HDR</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">Если включено, перед запуском игры HDR будет включаться на основном экране.</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">Обратите внимание, что HDR не поддерживается на вашем основном экране.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Последний запуск</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Категория</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Описание</sys:String>
@@ -748,8 +753,8 @@
     <sys:String x:Key="LOCRemoveFavoriteGame">Убрать из избранных</sys:String>
     <sys:String x:Key="LOCHideGame">Скрыть эту игру</sys:String>
     <sys:String x:Key="LOCUnHideGame">Убрать из скрытых</sys:String>
-    <sys:String x:Key="LOCEnableHdr"></sys:String>
-    <sys:String x:Key="LOCDisableHdr"></sys:String>
+    <sys:String x:Key="LOCEnableHdr">Включить поддержку HDR</sys:String>
+    <sys:String x:Key="LOCDisableHdr">Отключить поддержку HDR</sys:String>
     <sys:String x:Key="LOCEditGame">Изменить…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Вычислить размер игры</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">Вычислить размер игры (Все)</sys:String>
@@ -786,7 +791,7 @@
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">В настоящее время ведется мониторинг запуска игры. Вы хотите отменить процесс и вернуть игру в предыдущее состояние?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Времени в игре</sys:String>
     <sys:String x:Key="LOCLastPlayed">Последний запуск</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0} д. {1} ч. {2} м.</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} ч {1} мин</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} мин</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} сек</sys:String>
@@ -889,7 +894,7 @@
     <sys:String x:Key="LOCStatsTotalPlayTime">Общее время</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Время в среднем</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Рекордное время</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Общий размер установки</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Обзор</sys:String>
     <sys:String x:Key="LOCSidebar">Боковая панель</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Показать на боковой панели</sys:String>
@@ -958,7 +963,7 @@
     <sys:String x:Key="LOCIncludePluginGameActions">Включить действие «Играть» из плагина для клиента</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Выберите действие</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Режим поиска</sys:String>
-    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">Путь отслеживания</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Ссылка</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Файл</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Эмулятор</sys:String>
@@ -1055,7 +1060,7 @@
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Предустан. профили</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Предустан. профиль</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Свои профили</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">Пользовательский профиль</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Управляется предустан. скриптом</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Уточнение эмулятора</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Уточнение платформы</sys:String>
@@ -1091,8 +1096,8 @@
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">По возможности импортировать файлы игр, используя пути относительно папки установки Playnite или папки установки эмулятора.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">Сканировать подпапки</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">Сканировать внутри архивов</sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">Объединить связанные файлы</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">Объедининить связанные игровые файлы, такие как, например, отдельные игровые диски, под одной записью.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">Добавить ещё</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">Добавить сохр. условия</sys:String>
     <sys:String x:Key="LOCStartScan">Начать сканирование</sys:String>
@@ -1192,8 +1197,9 @@ SHIFT-ENTER: открыть меню элементов</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">При включении сканер привяжет эту платформу ко всем играм, заменив все автоматически определенные платформы.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Включить команды в поиск по умолчанию</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">При отключении команды не будут включены в поиск по умолчанию, пока не будет использован префикс #.</sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">Использовать нечеткое сопоставление в фильтре по имени</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">Если включено, фильтр по имени будет отбирать игры таким же образом, как и глобальный поиск.
+Можно включить строгое сопоставление для конкретного поиска, введя префикс &quot;!&quot; перед вашим запросом.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Отобр. поля в результатах поиска игры:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Скрытый статус</sys:String>
 
@@ -1246,7 +1252,9 @@ Playnite будет автоматически перезапущен для н�
     <sys:String x:Key="LOCSettingsAccessibilityInterface">Поддержка спец. возможностей (чтения с экрана)</sys:String>
     <sys:String x:Key="LOCApplicationMenu">Меню приложения</sys:String>
     <sys:String x:Key="LOCGameMenu">Меню игры</sys:String>
-    <sys:String x:Key="LOCProgramFolder"></sys:String>
-    <sys:String x:Key="LOCUserDataFolder"></sys:String>
-    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCProgramFolder">Папка программы</sys:String>
+    <sys:String x:Key="LOCUserDataFolder">Папка пользовательских данных</sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Обнаружен поврежденный файл библиотеки, Playnite вынужденно завершит работу.
+    
+Откройте новый тикет с проблемой (&quot;issue&quot;) на странице GitHub Playnite и запросите исправление поврежденных файлов.</sys:String>
 </ResourceDictionary>

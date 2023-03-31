@@ -414,7 +414,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Не закривати після ігрових сесій коротших ніж (в секундах)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Автоматично закривати наступні клієнти:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Автоматичне закриття клієнтів</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">Імпортувати список виключень</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Список виключень при імпорті</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Відображати попередження при призначенні грі завеликих медіа ресурсів</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Команда відкриття теки</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Бажана організація, що визначає віковий рейтинг</sys:String>
