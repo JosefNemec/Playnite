@@ -69,9 +69,9 @@ public class FileSystemTests
     [Test]
     public void CheckSumTests()
     {
-        var testFile = Path.Combine(TestVars.ResourcesDir, "TestIni.ini");
-        StringAssert.AreEqualIgnoringCase("46fcb37aa8e69b4ead0d702fd459299d", FileSystem.GetMD5(testFile));
-        StringAssert.AreEqualIgnoringCase("D8B22F5D", FileSystem.GetCRC32(testFile));
+        var testFile = Path.Combine(TestVars.ResourcesDir, "Test7zip.7z");
+        StringAssert.AreEqualIgnoringCase("6d420aaa961c1b2f5d56d2015a28dde6", FileSystem.GetMD5(testFile));
+        StringAssert.AreEqualIgnoringCase("A9B7F8B5", FileSystem.GetCRC32(testFile));
     }
 
     [Test]
