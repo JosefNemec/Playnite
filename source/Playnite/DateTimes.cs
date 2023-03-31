@@ -54,19 +54,20 @@ namespace Playnite
 
             if (options.PastWeekRelativeFormat)
             {
-                if (date.Date == DateTime.Today)
+                var today = Today;
+                var dayDiff = (today - date.Date).TotalDays;
+
+                if (dayDiff == 0)
                 {
                     return LOC.Today.GetLocalized();
                 }
-
-                if (date.Date.AddDays(1) == DateTime.Today)
+                
+                if (dayDiff == 1)
                 {
                     return LOC.Yesterday.GetLocalized();
                 }
-
-                var currentDate = DateTime.Now;
-                var diff = currentDate - date;
-                if (diff.TotalDays < 7)
+                
+                if (dayDiff > 1 && dayDiff < 7)
                 {
                     switch (date.DayOfWeek)
                     {
@@ -98,7 +99,7 @@ namespace Playnite
                 return date.Year.ToString();
             }
 
-            if (date.Month != null &&  date.Day == null)
+            if (date.Month != null && date.Day == null)
             {
                 return date.Date.ToString(options.PartialFormat ?? Common.Constants.DefaultPartialReleaseDateTimeFormat);
             }

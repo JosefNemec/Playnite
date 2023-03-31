@@ -133,6 +133,7 @@
     <Compile Include="Emulators\EmulatorScannerTests.cs" />
     <Compile Include="Emulators\ScannerTests.cs" />
     <Compile Include="Extensions\BitmapExtensionsTests.cs" />
+    <Compile Include="Extensions\DateTimesTests.cs" />
     <Compile Include="Extensions\NetExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="ArchiveTests.cs" />
