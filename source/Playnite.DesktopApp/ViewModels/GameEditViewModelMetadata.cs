@@ -506,7 +506,7 @@ namespace Playnite.DesktopApp.ViewModels
                 for (int i = 0; i < publishers.Count; i++)
                 {
                     var p = publishers[i];
-                    var existingDev = result.Developers.FirstOrDefault(d => GameFieldComparer.StringEquals(p.Name, d.Name));
+                    var existingDev = result.Developers?.FirstOrDefault(d => GameFieldComparer.StringEquals(p.Name, d.Name));
                     if (existingDev != null && p.Id != existingDev.Id)
                     {
                         publishers[i] = existingDev;
