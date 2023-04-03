@@ -235,6 +235,7 @@ namespace Playnite.Database
             database.Features.ItemUpdated += (s, e) => DatabaseCollection_ItemUpdated(ExplorerField.Feature, e);
             database.FilterPresets.ItemCollectionChanged += (s, e) => DatabaseCollection_ItemCollectionChanged(ExplorerField.Presets, e);
             database.FilterPresets.ItemUpdated += (s, e) => DatabaseCollection_ItemUpdated(ExplorerField.Presets, e);
+            (database.FilterPresets as FilterPresetsCollection).OnSettingsUpdated += Database_OnFilterSettingsUpdated;
             database.Companies.ItemCollectionChanged += (s, e) =>
             {
                 DatabaseCollection_ItemCollectionChanged(ExplorerField.Publisher, e);
@@ -258,6 +259,16 @@ namespace Playnite.Database
             database.SeriesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(ExplorerField.Series);
             database.SourcesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(ExplorerField.Source);
             database.TagsInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(ExplorerField.Tag);
+        }
+
+        private void Database_OnFilterSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
+        {
+            if (SelectedField.Field != ExplorerField.Presets)
+            {
+                return;
+            }
+
+            LoadValues(ExplorerField.Presets);
         }
 
         private void Database_DatabaseCollectionInUseUpdated(ExplorerField field)
@@ -863,7 +874,7 @@ namespace Playnite.Database
                     break;
                 case ExplorerField.Presets:
                     values.Clear();
-                    values.AddRange(mainModel.SortedFilterPresets.Select(a => new SelectionObject(a)));
+                    values.AddRange(database.GetSortedFilterPresets().Select(a => new SelectionObject(a)));
                     break;
                 case ExplorerField.Name:
                     values.Add(new SelectionObject("^#", "#"));
