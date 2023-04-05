@@ -7,7 +7,7 @@
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True"
         ShowTitle="False" ShowCloseButton="False"
         ShowMaximizeButton="False" ShowMinimizeButton="False"
         ResizeMode="NoResize" Width="400"
