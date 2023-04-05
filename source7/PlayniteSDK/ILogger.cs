@@ -137,11 +137,12 @@ public class NullLoggger : ILogger
 public interface ILogProvider
 {
     /// <summary>
-    /// Gets new logger.
+    ///
     /// </summary>
-    /// <param name="loggerName">Logger name.</param>
-    /// <returns>Logger.</returns>
-    ILogger GetLogger(string loggerName);
+    /// <param name="loggerName"></param>
+    /// <param name="logFilePath"></param>
+    /// <returns></returns>
+    ILogger GetLogger(string loggerName, string logFilePath);
 }
 
 /// <summary>
@@ -195,10 +196,7 @@ public static class LogManager
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static ILogger GetLogger(string loggerName)
     {
-        if (string.IsNullOrEmpty(loggerName))
-        {
-            throw new ArgumentNullException(nameof(loggerName));
-        }
+        ArgumentException.ThrowIfNullOrEmpty(loggerName);
 
         if (logManager != null)
         {
