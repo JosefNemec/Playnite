@@ -3,7 +3,7 @@ using static System.Windows.Forms.Design.AxImporter;
 
 namespace Playnite;
 
-public partial class SortableNameConverter
+public class SortableNameConverter
 {
     private readonly List<string> articles;
 
@@ -37,11 +37,9 @@ public partial class SortableNameConverter
     //using [0-9] here instead of \d because \d also matches ٠١٢٣٤٥٦٧٨٩ and I don't know what to do with those
     //the (?i) is a modifier that makes the rest of the regex (to the right of it) case insensitive
     //see https://www.regular-expressions.info/modifiers.html
-    [GeneratedRegex(@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)\b(?<numberword>one|two|three)\b", RegexOptions.ExplicitCapture)]
-    private static partial Regex GetNumberRegex();
+    private static Regex numberRegex = new Regex(@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)\b(?<numberword>one|two|three)\b", RegexOptions.ExplicitCapture | RegexOptions.Compiled);
 
-    [GeneratedRegex(@"(\s*[:-])?(\s+([a-z']+\s+(edition|cut)|hd|collection|remaster(ed)?|remake|ultimate|anthology|game of the))+$", RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase | RegexOptions.NonBacktracking)]
-    private static partial Regex GetIgnoredEndWordsRegex();
+    private static Regex ignoredEndWordsRegex = new Regex(@"(\s*[:-])?(\s+([a-z']+\s+(edition|cut)|hd|collection|remaster(ed)?|remake|ultimate|anthology|game of the))+$", RegexOptions.ExplicitCapture | RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
     /// <summary>
     ///
@@ -67,7 +65,7 @@ public partial class SortableNameConverter
         input = StripArticles(input);
         input = StripEdition(input, out string edition);
 
-        string output = GetNumberRegex().Replace(input, match =>
+        string output = numberRegex.Replace(input, match =>
         {
             if (match.Groups["roman"].Success)
             {
@@ -225,7 +223,7 @@ public partial class SortableNameConverter
 
     private string StripEdition(string input, out string edition)
     {
-        var match = GetIgnoredEndWordsRegex().Match(input);
+        var match = ignoredEndWordsRegex.Match(input);
         if (match.Success)
         {
             edition = match.Value;
