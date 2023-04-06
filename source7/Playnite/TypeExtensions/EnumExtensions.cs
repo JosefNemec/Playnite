@@ -16,7 +16,7 @@ public static class EnumExtensions
     public static string GetDescription(this Enum source)
     {
         var field = source.GetType().GetField(source.ToString());
-        if (field == null)
+        if (field is null)
         {
             return string.Empty;
         }

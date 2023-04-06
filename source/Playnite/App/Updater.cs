@@ -63,20 +63,6 @@ namespace Playnite
             }
         }
 
-        private static Version currentVersion;
-        public static Version CurrentVersion
-        {
-            get
-            {
-                if (currentVersion == null)
-                {
-                    currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-                }
-
-                return currentVersion;
-            }
-        }
-
         public Updater(IPlayniteApplication app) : this(app, new Downloader())
         {
         }

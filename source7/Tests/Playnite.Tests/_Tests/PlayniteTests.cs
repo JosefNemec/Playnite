@@ -17,9 +17,9 @@ public static class TestVars
 
     static TestVars()
     {
-        ResourcesDir = Path.Combine(PlaynitePaths.ProgramPath, "Resources");
-        ProcessRunTesterExe = Path.Combine(PlaynitePaths.ProgramPath, "ProcessRunTester.exe");
-        ProcessRunTesterReportFile = Path.Combine(PlaynitePaths.ProgramPath, "processargs.json");
+        ResourcesDir = Path.Combine(PlaynitePaths.ProgramDir, "Resources");
+        ProcessRunTesterExe = Path.Combine(PlaynitePaths.ProgramDir, "ProcessRunTester.exe");
+        ProcessRunTesterReportFile = Path.Combine(PlaynitePaths.ProgramDir, "processargs.json");
 
         TempDir = Path.Combine(Path.GetTempPath(), "playnite_unittests");
         if (!Directory.Exists(TempDir))

@@ -9,7 +9,7 @@ public class SystemIntegration
     {
         using var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
         using var classes = root.OpenSubKey(@"Software\Classes", true);
-        var openString = $"\"{PlaynitePaths.DesktopExecutablePath}\" --uridata \"%1\"";
+        var openString = $"\"{PlaynitePaths.DesktopExecutableFile}\" --uridata \"%1\"";
         var existing = classes!.OpenSubKey(@"Playnite\shell\open\command");
         if (existing != null && existing.GetValue(string.Empty)?.ToString() == openString)
         {
@@ -39,7 +39,7 @@ public class SystemIntegration
             if (File.Exists(shortcutPath))
             {
                 var existLnk = Programs.GetLnkShortcutData(shortcutPath);
-                if (existLnk.Path == PlaynitePaths.DesktopExecutablePath &&
+                if (existLnk.Path == PlaynitePaths.DesktopExecutableFile &&
                     existLnk.Arguments == args)
                 {
                     return;
@@ -47,7 +47,7 @@ public class SystemIntegration
             }
 
             FileSystem.DeleteFile(shortcutPath);
-            Programs.CreateShortcut(PlaynitePaths.DesktopExecutablePath, args, "", shortcutPath);
+            Programs.CreateShortcut(PlaynitePaths.DesktopExecutableFile, args, "", shortcutPath);
         }
         else
         {
@@ -59,7 +59,7 @@ public class SystemIntegration
     {
         using var root = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
         using var classes = root.OpenSubKey(@"Software\Classes", true);
-        var openString = $"\"{PlaynitePaths.DesktopExecutablePath}\" --installext \"%1\"";
+        var openString = $"\"{PlaynitePaths.DesktopExecutableFile}\" --installext \"%1\"";
         var existing = classes!.OpenSubKey(@"Playnite.ext\shell\open\command");
         if (existing != null && existing.GetValue(string.Empty)?.ToString() == openString)
         {
@@ -72,7 +72,7 @@ public class SystemIntegration
             newEntry.SetValue(string.Empty, "Playnite extension file");
             using (var command = newEntry.CreateSubKey(@"DefaultIcon"))
             {
-                var icoPath = Path.Combine(PlaynitePaths.ProgramPath, "Resources", "playnite_extension.ico");
+                var icoPath = Path.Combine(PlaynitePaths.ProgramDir, "Resources", "playnite_extension.ico");
                 command.SetValue(string.Empty, $"\"{icoPath}\"");
             }
 

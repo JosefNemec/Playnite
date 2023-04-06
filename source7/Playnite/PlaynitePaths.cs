@@ -26,38 +26,38 @@ public class PlaynitePaths
     public const string LocalizationsDirName = "Localization";
     public const string AppConfigFileName = "AppConfig.json";
 
-    public static string UserProgramDataPath { get; }
-    public static string ProgramPath { get; }
-    public static string ConfigRootPath { get; }
-    public static string LocalizationsPath { get; }
-    public static string DataCachePath { get; }
+    public static string UserProgramDataDir { get; }
+    public static string ProgramDir { get; }
+    public static string ConfigRootDir { get; }
+    public static string LocalizationsDir { get; }
+    public static string DataCacheDir { get; }
 
-    public static string DesktopExecutablePath { get; }
-    public static string FullscreenExecutablePath { get; }
-    public static string PlayniteAssemblyPath { get; }
-    public static string PlayniteSDKAssemblyPath { get; }
-    public static string ExtensionsUserDataPath { get; }
-    public static string ExtensionsProgramPath { get; }
-    public static string ExtensionsDataPath { get; }
-    public static string ExtensionQueueFilePath { get; }
-    public static string AddonLicenseAgreementsFilePath { get; }
-    public static string LocalizationsStatusPath { get; }
-    public static string ThemesProgramPath { get; }
-    public static string ThemesUserDataPath { get; }
-    public static string UninstallerPath { get; }
-    public static string BrowserCachePath { get; }
-    public static string TempPath { get; }
-    public static string LogPath { get; }
-    public static string ConfigFilePath { get; }
-    public static string FullscreenConfigFilePath { get; }
-    public static string WindowPositionsPath { get; }
-    public static string BackupConfigFilePath { get; }
-    public static string BackupFullscreenConfigFilePath { get; }
-    public static string BackupWindowPositionsPath { get; }
-    public static string ImagesCachePath { get; }
-    public static string IconsCachePath { get; }
-    public static string JitProfilesPath { get; }
-    public static string EmulationDatabasePath { get; }
+    public static string DesktopExecutableFile { get; }
+    public static string FullscreenExecutableFile { get; }
+    public static string PlayniteAssemblyFile { get; }
+    public static string PlayniteSDKAssemblyFile { get; }
+    public static string ExtensionsUserDataDir { get; }
+    public static string ExtensionsProgramDir { get; }
+    public static string ExtensionsDataDir { get; }
+    public static string ExtensionQueueFile { get; }
+    public static string AddonLicenseAgreementsFile { get; }
+    public static string LocalizationsStatusFile { get; }
+    public static string ThemesProgramDir { get; }
+    public static string ThemesUserDataDir { get; }
+    public static string UninstallerFile { get; }
+    public static string BrowserCacheDir { get; }
+    public static string TempDir { get; }
+    public static string LogFile { get; }
+    public static string ConfigFile { get; }
+    public static string FullscreenConfigFile { get; }
+    public static string WindowPositionsFile { get; }
+    public static string BackupConfigFile { get; }
+    public static string BackupFullscreenConfigFile { get; }
+    public static string BackupWindowPositionsFile { get; }
+    public static string ImagesCacheDir { get; }
+    public static string IconsCacheDir { get; }
+    public static string JitProfilesDir { get; }
+    public static string EmulationDatabaseDir { get; }
     public static string SafeStartupFlagFile { get; }
     public static string BackupActionFile { get; }
     public static string RestoreBackupActionFile { get; }
@@ -67,44 +67,44 @@ public class PlaynitePaths
 
     static PlaynitePaths()
     {
-        UserProgramDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
-        ProgramPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
-        UninstallerPath = Path.Combine(ProgramPath, "unins000.exe");
-        IsPortable = !File.Exists(UninstallerPath);
-        ConfigRootPath = IsPortable ? ProgramPath : UserProgramDataPath;
-        LocalizationsPath = Path.Combine(ProgramPath, LocalizationsDirName);
-        DataCachePath = Path.Combine(ConfigRootPath, "cache");
+        UserProgramDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite");
+        ProgramDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+        UninstallerFile = Path.Combine(ProgramDir, "unins000.exe");
+        IsPortable = !File.Exists(UninstallerFile);
+        ConfigRootDir = IsPortable ? ProgramDir : UserProgramDataDir;
+        LocalizationsDir = Path.Combine(ProgramDir, LocalizationsDirName);
+        DataCacheDir = Path.Combine(ConfigRootDir, "cache");
 
-        DesktopExecutablePath = Path.Combine(ProgramPath, "Playnite.DesktopApp.exe");
-        FullscreenExecutablePath = Path.Combine(ProgramPath, "Playnite.FullscreenApp.exe");
-        PlayniteAssemblyPath = Path.Combine(ProgramPath, "Playnite.dll");
-        PlayniteSDKAssemblyPath = Path.Combine(ProgramPath, "Playnite.SDK.dll");
-        ExtensionsUserDataPath = Path.Combine(ConfigRootPath, ExtensionsDirName);
-        ExtensionsProgramPath = Path.Combine(ProgramPath, ExtensionsDirName);
-        ExtensionsDataPath = Path.Combine(ConfigRootPath, ExtensionsDataDirName);
-        ExtensionQueueFilePath = Path.Combine(ConfigRootPath, "extinstalls.json");
-        AddonLicenseAgreementsFilePath = Path.Combine(ConfigRootPath, "licenseagreements.json");
-        LocalizationsStatusPath = Path.Combine(LocalizationsPath, "locstatus.json");
-        ThemesProgramPath = Path.Combine(ProgramPath, ThemesDirName);
-        ThemesUserDataPath = Path.Combine(ConfigRootPath, ThemesDirName);
+        DesktopExecutableFile = Path.Combine(ProgramDir, "Playnite.DesktopApp.exe");
+        FullscreenExecutableFile = Path.Combine(ProgramDir, "Playnite.FullscreenApp.exe");
+        PlayniteAssemblyFile = Path.Combine(ProgramDir, "Playnite.dll");
+        PlayniteSDKAssemblyFile = Path.Combine(ProgramDir, "Playnite.SDK.dll");
+        ExtensionsUserDataDir = Path.Combine(ConfigRootDir, ExtensionsDirName);
+        ExtensionsProgramDir = Path.Combine(ProgramDir, ExtensionsDirName);
+        ExtensionsDataDir = Path.Combine(ConfigRootDir, ExtensionsDataDirName);
+        ExtensionQueueFile = Path.Combine(ConfigRootDir, "extinstalls.json");
+        AddonLicenseAgreementsFile = Path.Combine(ConfigRootDir, "licenseagreements.json");
+        LocalizationsStatusFile = Path.Combine(LocalizationsDir, "locstatus.json");
+        ThemesProgramDir = Path.Combine(ProgramDir, ThemesDirName);
+        ThemesUserDataDir = Path.Combine(ConfigRootDir, ThemesDirName);
 
-        BrowserCachePath = Path.Combine(ConfigRootPath, "browsercache");
-        TempPath = Path.Combine(Path.GetTempPath(), "Playnite");
-        LogPath = Path.Combine(ConfigRootPath, "playnite.log");
-        ConfigFilePath = Path.Combine(ConfigRootPath, ConfigFileName);
-        FullscreenConfigFilePath = Path.Combine(ConfigRootPath, FullscreenConfigFileName);
-        WindowPositionsPath = Path.Combine(ConfigRootPath, WindowPositionsFileName);
-        BackupConfigFilePath = Path.Combine(ConfigRootPath, "Backup", ConfigFileName);
-        BackupFullscreenConfigFilePath = Path.Combine(ConfigRootPath, "Backup", FullscreenConfigFileName);
-        BackupWindowPositionsPath = Path.Combine(ConfigRootPath, "Backup", WindowPositionsFileName);
-        ImagesCachePath = Path.Combine(DataCachePath, "images");
-        IconsCachePath = Path.Combine(DataCachePath, "icons");
-        JitProfilesPath = Path.Combine(ConfigRootPath, "JITProfiles");
-        EmulationDatabasePath = Path.Combine(ProgramPath, "Emulation", "Database");
-        SafeStartupFlagFile = Path.Combine(ConfigRootPath, "safestart.flag");
-        BackupActionFile = Path.Combine(ConfigRootPath, "backup.json");
-        RestoreBackupActionFile = Path.Combine(ConfigRootPath, "restoreBackup.json");
-        AppConfigFile = Path.Combine(ProgramPath, AppConfigFileName);
+        BrowserCacheDir = Path.Combine(ConfigRootDir, "browsercache");
+        TempDir = Path.Combine(Path.GetTempPath(), "Playnite");
+        LogFile = Path.Combine(ConfigRootDir, "playnite.log");
+        ConfigFile = Path.Combine(ConfigRootDir, ConfigFileName);
+        FullscreenConfigFile = Path.Combine(ConfigRootDir, FullscreenConfigFileName);
+        WindowPositionsFile = Path.Combine(ConfigRootDir, WindowPositionsFileName);
+        BackupConfigFile = Path.Combine(ConfigRootDir, "Backup", ConfigFileName);
+        BackupFullscreenConfigFile = Path.Combine(ConfigRootDir, "Backup", FullscreenConfigFileName);
+        BackupWindowPositionsFile = Path.Combine(ConfigRootDir, "Backup", WindowPositionsFileName);
+        ImagesCacheDir = Path.Combine(DataCacheDir, "images");
+        IconsCacheDir = Path.Combine(DataCacheDir, "icons");
+        JitProfilesDir = Path.Combine(ConfigRootDir, "JITProfiles");
+        EmulationDatabaseDir = Path.Combine(ProgramDir, "Emulation", "Database");
+        SafeStartupFlagFile = Path.Combine(ConfigRootDir, "safestart.flag");
+        BackupActionFile = Path.Combine(ConfigRootDir, "backup.json");
+        RestoreBackupActionFile = Path.Combine(ConfigRootDir, "restoreBackup.json");
+        AppConfigFile = Path.Combine(ProgramDir, AppConfigFileName);
     }
 
     public static string ExpandVariables(string inputString, string? emulatorDir = null, bool fixSeparators = false)
@@ -117,10 +117,10 @@ public class PlaynitePaths
         var result = inputString;
         if (!emulatorDir.IsNullOrEmpty())
         {
-            emulatorDir = emulatorDir.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath, StringComparison.Ordinal);
+            emulatorDir = emulatorDir.Replace(ExpandableVariables.PlayniteDirectory, ProgramDir, StringComparison.Ordinal);
         }
 
-        result = result.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath, StringComparison.Ordinal);
+        result = result.Replace(ExpandableVariables.PlayniteDirectory, ProgramDir, StringComparison.Ordinal);
         result = result.Replace(ExpandableVariables.EmulatorDirectory, emulatorDir, StringComparison.Ordinal);
         return fixSeparators ? Paths.FixSeparators(result) : result;
     }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Playnite.Tests.Extensions
+namespace Playnite.Tests
 {
     [TestFixture]
     public class BitmapExtensionsTests

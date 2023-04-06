@@ -21,4 +21,8 @@
     <InternalsVisibleTo Include="Playnite.Tests" />
     <InternalsVisibleTo Include="Playnite" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+  </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Threading;
 using System.Windows;
 
 namespace Playnite;

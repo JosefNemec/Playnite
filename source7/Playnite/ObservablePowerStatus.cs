@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Playnite;
 

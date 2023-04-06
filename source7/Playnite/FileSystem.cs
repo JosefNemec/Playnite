@@ -241,9 +241,11 @@ namespace Playnite
             File.WriteAllText(path, content);
         }
 
-        public static string ReadStringFromFile(string path)
+        public static string ReadStringFromFile(string path, Encoding? encoding = null)
         {
-            return File.ReadAllText(path);
+            using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            using var sr = new StreamReader(fs, encoding ?? Encoding.Default);
+            return sr.ReadToEnd();
         }
 
         public static void WriteStringToFileSafe(string path, string content, int retryAttempts = 5)

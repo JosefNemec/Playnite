@@ -22,7 +22,7 @@ public class FileSystemTests
     [Test]
     public void CanWriteToFolderTest()
     {
-        Assert.IsTrue(FileSystem.CanWriteToFolder(PlaynitePaths.ProgramPath));
+        Assert.IsTrue(FileSystem.CanWriteToFolder(PlaynitePaths.ProgramDir));
         Assert.IsFalse(FileSystem.CanWriteToFolder(@"c:\Windows\"));
     }
 

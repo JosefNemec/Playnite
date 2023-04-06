@@ -1953,7 +1953,6 @@ namespace Playnite
             }
         }
 
-        private List<string> gameSortingNameRemovedArticles = new List<string> { "The", "A", "An" };
         [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<string> GameSortingNameRemovedArticles
         {
@@ -2199,15 +2198,6 @@ namespace Playnite
 
         private bool partialDescriptionLoading = true;
         public bool PartialDescriptionLoading { get => partialDescriptionLoading; set => SetValue(ref partialDescriptionLoading, value); }
-
-        [JsonIgnore]
-        public static bool IsPortable
-        {
-            get
-            {
-                return PlaynitePaths.IsPortable;
-            }
-        }
 
         [JsonIgnore]
         public WindowPositions WindowPositions
