@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace Playnite;
 
@@ -39,7 +38,7 @@ public class SortableNameConverter
     //see https://www.regular-expressions.info/modifiers.html
     private static Regex numberRegex = new Regex(@"(?<![\w.]|^)((?<roman>[IVXLCDM\u2160-\u2188]+(?!\.))|(?<arabic>[0-9]+))(?=\W|$)|(?i)\b(?<numberword>one|two|three)\b", RegexOptions.ExplicitCapture | RegexOptions.Compiled);
 
-    private static Regex ignoredEndWordsRegex = new Regex(@"(\s*[:-])?(\s+([a-z']+\s+(edition|cut)|hd|collection|remaster(ed)?|remake|ultimate|anthology|game of the))+$", RegexOptions.ExplicitCapture | RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    private static Regex ignoredEndWordsRegex = new Regex(@"(\s*[:-])?(\s+([a-z']+\s+(edition|cut)|hd|collection|remaster(ed)?|remake|ultimate|anthology|game of the))+$", RegexOptions.ExplicitCapture | RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.NonBacktracking);
 
     /// <summary>
     ///
@@ -128,7 +127,7 @@ public class SortableNameConverter
         {
             if (input.StartsWith(article + " ", StringComparison.InvariantCultureIgnoreCase))
             {
-                return input.Substring(article.Length + 1);
+                return input.Substring(article.Length).TrimStart();
             }
         }
         return input;
