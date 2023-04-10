@@ -141,7 +141,7 @@ namespace Playnite.FullscreenApp
                     Audio?.ResumePlayback();
                 }
 
-                if (XInputDevice != null)
+                if (XInputDevice != null && AppSettings.Fullscreen.EnableXinputProcessing)
                 {
                     XInputDevice.StandardProcessingEnabled = IsActive;
                 }
