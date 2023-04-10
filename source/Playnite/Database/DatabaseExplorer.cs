@@ -263,7 +263,7 @@ namespace Playnite.Database
 
         private void Database_OnFilterSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
         {
-            if (SelectedField.Field != ExplorerField.Presets)
+            if (SelectedField?.Field != ExplorerField.Presets)
             {
                 return;
             }
