@@ -50,7 +50,7 @@
   Id: atari_jaguar
   IgdbId: 62
   Databases: [Atari - Jaguar]
-  Emulators: [retroarch, virtualjaguar]
+  Emulators: [bizhawk, retroarch, virtualjaguar]
   
 - Name: Atari Lynx
   Id: atari_lynx
@@ -131,11 +131,17 @@
   Id: vectrex
   IgdbId: 67
   Databases: [GCE - Vectrex]
-  Emulators: [retroarch]
+  Emulators: [bizhawk, retroarch]
   
 - Name: Macintosh
   Id: macintosh
   IgdbId: 14
+  
+- Name: Magnavox Odyssey 2
+  Id: magnavox_odyssey_2
+  IgdbId: 133
+  Databases: [Magnavox - Odyssey 2]
+  Emulators: [bizhawk]
   
 - Name: Mattel Intellivision
   Id: mattel_intellivision
@@ -221,7 +227,13 @@
   Id: nintendo_ds
   IgdbId: 20
   Databases: [Nintendo - Nintendo DS, Nintendo - Nintendo DS (Download Play)]
-  Emulators: [desmume, gbe+, melonds, retroarch]
+  Emulators: [bizhawk, desmume, gbe+, melonds, retroarch]
+  
+- Name: Nintendo DSi
+  Id: nintendo_dsi
+  IgdbId: 159
+  Databases: [Nintendo - Nintendo DSi, Nintendo - Nintendo DSi (Digital)]
+  Emulators: [bizhawk, melonds]
   
 - Name: Nintendo Entertainment System
   Id: nintendo_nes
@@ -435,6 +447,10 @@
   Databases: [Sony - PlayStation]
   Emulators: [ares, bizhawk, duckstation, epsxe, mednafen, pcsxr-pgxp, retroarch]
   
+- Name: Texas Instruments TI-83
+  Id: ti_83
+  Emulators: [bizhawk]
+  
 - Name: Thomson MO5
   Id: thomson_mo5
   IgdbId: 156
@@ -446,6 +462,14 @@
   Databases: [Thomson - MOTO]
   Emulators: [retroarch]
   
+- Name: TIC-80
+  Id: tic_80
+  Emulators: [bizhawk]
+  
+- Name: Uzebox
+  Id: uzebox
+  Emulators: [bizhawk]
+
 - Name: Watara Supervision
   Id: watara_supervision
   Databases: [Watara - Supervision]
