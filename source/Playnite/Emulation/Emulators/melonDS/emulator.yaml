@@ -3,7 +3,7 @@ Name: melonDS
 Website: 'http://melonds.kuribo64.net/'
 Profiles:
   - Name: Default
-    StartupArguments: '"{ImagePath}"'
-    Platforms: [nintendo_ds]
+    StartupArguments: '"{ImagePath}" -f'
+    Platforms: [nintendo_ds, nintendo_dsi]
     ImageExtensions: [nds]
     StartupExecutable: ^melonDS\.exe$

@@ -20,6 +20,12 @@ Profiles:
     ImageExtensions: [a78, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
 
+  - Name: Atari Jaguar
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [atari_jaguar]
+    ImageExtensions: [j64, jag, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+
   - Name: Atari Lynx
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [atari_lynx]
@@ -38,6 +44,18 @@ Profiles:
     ImageExtensions: [prg, d64, g64, crt, tap, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
 
+  - Name: GCE Vectrex
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [vectrex]
+    ImageExtensions: [vec]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Magnavox Odyssey 2
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [magnavox_odyssey_2]
+    ImageExtensions: [o2, bin]
+    StartupExecutable: ^EmuHawk\.exe$
+
   - Name: Mattel Intellivision
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [mattel_intellivision]
@@ -54,6 +72,12 @@ Profiles:
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [nec_turbografx_cd]
     ImageExtensions: [cue, ccd, mds]
+    StartupExecutable: ^EmuHawk\.exe$
+
+  - Name: Nintendo DS/DSi
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_ds, nintendo_dsi]
+    ImageExtensions: [nds]
     StartupExecutable: ^EmuHawk\.exe$
 
   - Name: Nintendo Entertainment System
@@ -146,6 +170,12 @@ Profiles:
     ImageExtensions: [smc, sfc, xml, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
 
+  - Name: Uzebox
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [uzebox]
+    ImageExtensions: [uze]
+    StartupExecutable: ^EmuHawk\.exe$
+
   - Name: WonderSwan
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [bandai_wonderswan]
@@ -162,4 +192,16 @@ Profiles:
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [sinclair_zxspectrum]
     ImageExtensions: [tzx, tap, dsk, pzx, csw, wav, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+    
+  - Name: Texas Instruments TI-83
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [ti_83]
+    ImageExtensions: [83g, 83l, 83p, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+    
+  - Name: TIC-80
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [tic_80]
+    ImageExtensions: [tic, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
