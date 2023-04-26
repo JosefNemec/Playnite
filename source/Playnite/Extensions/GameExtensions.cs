@@ -80,6 +80,7 @@ namespace Playnite
                     }
                 }
 
+                game.GameId = path.MD5();
                 game.Name = Path.GetFileNameWithoutExtension(path);
                 game.InstallDirectory = prog.WorkDir.IsNullOrEmpty() ? fileInfo.Directory.FullName : prog.WorkDir;
                 game.GameActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>
