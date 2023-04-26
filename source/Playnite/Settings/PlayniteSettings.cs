@@ -2183,13 +2183,13 @@ namespace Playnite
         private bool updateNotificationOnPatchesOnly = false;
         public bool UpdateNotificationOnPatchesOnly { get => updateNotificationOnPatchesOnly; set => SetValue(ref updateNotificationOnPatchesOnly, value); }
 
-        private string webImageSarchIconTerm = "{Name} icon";
+        private string webImageSarchIconTerm = "\"{Name}\" icon";
         public string WebImageSarchIconTerm { get => webImageSarchIconTerm; set => SetValue(ref webImageSarchIconTerm, value); }
 
-        private string webImageSarchCoverTerm = "{Name} cover";
+        private string webImageSarchCoverTerm = "\"{Name}\" cover";
         public string WebImageSarchCoverTerm { get => webImageSarchCoverTerm; set => SetValue(ref webImageSarchCoverTerm, value); }
 
-        private string webImageSarchBackgroundTerm = "{Name} wallpaper";
+        private string webImageSarchBackgroundTerm = "\"{Name}\" wallpaper";
         public string WebImageSarchBackgroundTerm { get => webImageSarchBackgroundTerm; set => SetValue(ref webImageSarchBackgroundTerm, value); }
 
         // See OnCreateAutomationPeer comment in WindowBase.cs for why this exists.

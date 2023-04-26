@@ -226,15 +226,15 @@ namespace Playnite.DesktopApp.ViewModels
         public void Search()
         {
             AvailableImages = new List<GoogleImage>();
-            var searchTerm = SearchTerm.Replace('-', ' '); // hyphen would exclude results #2595
-            if (SearchWidth != null && SearchHeight != null && !searchTerm.Contains("imagesize:"))
+            var query = SearchTerm;
+            if (SearchWidth != null && SearchHeight != null && !query.Contains("imagesize:"))
             {
-                searchTerm = $"{searchTerm} imagesize:{SearchWidth}x{SearchHeight}";
+                query = $"{query} imagesize:{SearchWidth}x{SearchHeight}";
             }
 
             if (GlobalProgress.ActivateProgress((_) =>
             {
-                AvailableImages = downloader.GetImages(searchTerm, Transparent).GetAwaiter().GetResult();
+                AvailableImages = downloader.GetImages(query, Transparent).GetAwaiter().GetResult();
             }, new GlobalProgressOptions("LOCDownloadingLabel")).Result == true)
             {
                 if (!AvailableImages.HasItems())
