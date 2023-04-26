@@ -79,7 +79,8 @@ namespace Playnite.Windows
 
                 asDialog = true;
                 WasClosed = false;
-                result = Window.ShowDialog();
+                Window.ShowDialog();
+                result = Window.DialogResultFixed;
             }, null);
 
             return result;
@@ -160,6 +161,12 @@ namespace Playnite.Windows
 
                 if (asDialog)
                 {
+                    // This is a workaround for issue with original DialogResult.
+                    // For some reason, setting DialogResult fails in rare cases on
+                    // "you need to open this window first" exception even when we are for sure
+                    // setting this after the window was already opened, see initFinishedEvent.
+                    Window.DialogResultFixed = result;
+
                     try
                     {
                         Window.DialogResult = result;
@@ -167,7 +174,6 @@ namespace Playnite.Windows
                     catch (Exception e)
                     {
                         logger.Error(e, $"DialogResult fail {GetType()}, {Window.Id}, {result}");
-                        throw;
                     }
                 }
 

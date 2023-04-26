@@ -210,6 +210,7 @@ namespace Playnite.Controls
         public bool IsShown { get; private set; }
         public bool WasClosed { get; private set; }
         public IntPtr Handle { get; private set; }
+        public bool? DialogResultFixed { get; set; } = null;
 
         static WindowBase()
         {
@@ -234,7 +235,7 @@ namespace Playnite.Controls
             TextOptions.SetTextRenderingMode(this, TextRenderingMode);
             Closed += (_, __) =>
             {
-                hwndSource.RemoveHook(HwndHook);
+                hwndSource?.RemoveHook(HwndHook);
                 IsShown = false;
                 WasClosed = true;
                 RaiseEvent(new RoutedEventArgs(ClosedRoutedEvent));
