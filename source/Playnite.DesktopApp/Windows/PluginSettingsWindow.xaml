@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
-        Title="{Binding Title}" Height="450" Width="600">
+        Title="{Binding Title}" Height="600" Width="700">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >
@@ -30,10 +30,7 @@
             <Button Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right" 
                     Style="{StaticResource BottomButton}"
                     Command="{Binding ConfirmCommand}"/>
-        </DockPanel>        
-        <ScrollViewer DockPanel.Dock="Top"
-                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <ContentControl Content="{Binding SettingsView}"/>
-        </ScrollViewer>
+        </DockPanel>
+        <ContentControl DockPanel.Dock="Top" Content="{Binding SettingsView}"/>
     </DockPanel>
 </controls:WindowBase>
