@@ -648,8 +648,13 @@ namespace Playnite.DesktopApp.ViewModels
             CompletionStatusesSelection = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
             CompletionStatusesSelection.Insert(0, new CompletionStatus
             {
-                Name = ResourceProvider.GetString(LOC.None),
+                Name = ResourceProvider.GetString(LOC.RemoveLabel),
                 Id = Guid.Empty
+            });
+            CompletionStatusesSelection.Insert(0, new CompletionStatus
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = Constants.MaxGuidVal
             });
 
             PlatformsSpecifications = Emulation.Platforms.OrderBy(a => a.Name).ToList();

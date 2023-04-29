@@ -1235,7 +1235,7 @@ namespace Playnite
                     };
 
                     jumpList.JumpItems.Add(fullscreen);
-                    
+
                     JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
                 }
                 else
@@ -1333,7 +1333,11 @@ namespace Playnite
                 game.LastActivity = DateTime.Now;
                 game.PlayCount += 1;
                 var comSettings = Database.GetCompletionStatusSettings();
-                if (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == comSettings.DefaultStatus)
+                if (comSettings.PlayedStatus == Constants.MaxGuidVal)
+                {
+                    // Do nothing option
+                }
+                else if (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == comSettings.DefaultStatus)
                 {
                     game.CompletionStatusId = comSettings.PlayedStatus;
                 }
