@@ -138,13 +138,13 @@ Examples
 Start-Process "c:\somepath\someapp.exe" "-some arguments"
 ```
 
-* Set second script to kill the application using [Stop-Process]https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-process?view=powershell-5.1) cmdlet
+* Set second script to kill the application using [Stop-Process](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-process?view=powershell-5.1) cmdlet
 
 ```powershell
 Stop-Process -Name "someapp"
 ```
 
-* If the application requires elevated rights to start then you need to start Playnite as admin too, otherwise the `Stop-Process` will fail due to insufficient privileges.
+* If an application requires elevated rights to start, then you need to use [different method](#cant-shutdown-process) to stop its running process.
 * If you want to start application minimized and application doesn't have native support for it then add `-WindowStyle` argument.
 
 ```powershell
