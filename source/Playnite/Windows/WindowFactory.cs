@@ -198,7 +198,7 @@ namespace Playnite.Windows
                 // not render properly for some reason (will display just black).
                 // BUT we can't call it always otherwise it will bug out restore if atl-tabbing was
                 // used in the past for switching windows, see next comment...
-                if (window.WindowState == WindowState.Minimized)
+                if (window.WindowState == WindowState.Minimized || window.Visibility != Visibility.Visible)
                 {
                     window.Show();
                 }
