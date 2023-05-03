@@ -488,7 +488,7 @@ namespace Playnite.DesktopApp.ViewModels
             var program = (ImportableProgram)item;
             if (HideImported)
             {
-                return !importedExes.ContainsString(program.Item.Path, StringComparison.OrdinalIgnoreCase);
+                return !importedExes.ContainsString(program.Item.Path + program.Item.Arguments ?? string.Empty, StringComparison.OrdinalIgnoreCase);
             }
 
             return true;
