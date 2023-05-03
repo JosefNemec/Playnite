@@ -18,8 +18,12 @@ namespace Playnite.Tests.Web
         [Test]
         public void GetResponseCodeTest()
         {
-            Assert.AreEqual(HttpStatusCode.OK, HttpDownloader.GetResponseCode(@"https://playnite.link/favicon.ico"));
-            Assert.AreEqual(HttpStatusCode.NotFound, HttpDownloader.GetResponseCode(@"https://playnite.link/test.tst"));
+            var resp = HttpDownloader.GetResponseCode(@"https://playnite.link/favicon.ico", out var headers);
+            Assert.AreEqual(HttpStatusCode.OK, resp);
+            Assert.AreEqual("15086", headers["Content-Length"]);
+
+            resp = HttpDownloader.GetResponseCode(@"https://playnite.link/test.tst", out headers);
+            Assert.AreEqual(HttpStatusCode.NotFound, resp);
         }
     }
 }

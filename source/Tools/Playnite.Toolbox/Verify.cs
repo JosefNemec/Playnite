@@ -177,7 +177,7 @@ namespace Playnite.Toolbox
                 return false;
             }
 
-            if (!HttpDownloader.GetResponseCode(url).IsSuccess())
+            if (!HttpDownloader.GetResponseCode(url, out var _).IsSuccess())
             {
                 logger.Error($"{propertyName} doesn't point to reachable HTTP location.\n{url}");
                 passRes = false;

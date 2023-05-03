@@ -720,8 +720,8 @@ namespace Playnite.DesktopApp.ViewModels
                         return null;
                     }
 
-                    var response = HttpDownloader.GetResponseCode(url);
-                    if (response != HttpStatusCode.OK)
+                    var response = HttpDownloader.GetResponseCode(url, out var _);
+                    if (!response.IsSuccess())
                     {
                         logger.Warn("Original Google image request failed: " + response.ToString());
                         url = model.SelectedImage.ThumbUrl;
