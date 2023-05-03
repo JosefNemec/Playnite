@@ -193,16 +193,23 @@ namespace Playnite.Windows
                 // This is the only reliable method that also doesn't result in issues like this:
                 // https://www.reddit.com/r/playnite/comments/f6d73l/bug_full_screen_ui_wont_respond_to_left_stick/
                 // Adapted from https://ask.xiaolee.net/questions/1040342
-                window.Show();
+
+                // Show() call is needed when restoring from minimized state otherwise restored window will
+                // not render properly for some reason (will display just black).
+                // BUT we can't call it always otherwise it will bug out restore if atl-tabbing was
+                // used in the past for switching windows, see next comment...
+                if (window.WindowState == WindowState.Minimized)
+                {
+                    window.Show();
+                }
+
+                // This needs to be set always otherwise restore will not work if user alt-tabbed out of Playnite.
+                // Yeah apparently switching windows is something Windows can't do reliably in 2023...
+                window.WindowState = WindowState.Normal;
                 if (!window.Activate())
                 {
                     window.Topmost = true;
                     window.Topmost = false;
-                }
-
-                if (window.WindowState == WindowState.Minimized)
-                {
-                    window.WindowState = WindowState.Normal;
                 }
 
                 //Get the process ID for this window's thread

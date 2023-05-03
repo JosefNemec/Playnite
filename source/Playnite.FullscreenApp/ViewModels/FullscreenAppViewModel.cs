@@ -412,8 +412,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (AppSettings.Fullscreen.EnableXinputProcessing &&
                 AppSettings.Fullscreen.GuideButtonFocus &&
-                e.Button == XInputButton.Guide &&
-                !App.IsActive)
+                e.Button == XInputButton.Guide)
             {
                 WindowManager.LastActiveWindow?.RestoreWindow();
             }
