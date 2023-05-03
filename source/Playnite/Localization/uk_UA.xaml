@@ -92,7 +92,7 @@
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Офіційне завантаження метаданих недоступне.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Не вибрано жодної гри.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Виконання призначеного грі сценарію не вдалося.</sys:String>
-    <sys:String x:Key="LOCErrorApplicationScript">Не вдалося виконати сценарій додатку. </sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript">Не вдалося виконати сценарій застосунку. </sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Виконання призначеного глобально сценарію не вдалося.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Не вдалося виконати сценарій емулятора. </sys:String>
     <sys:String x:Key="LOCErrorPlayScriptAction">Виконання сценарію дії &quot;Грати&quot; не вдалося.</sys:String>
@@ -243,7 +243,7 @@
     <sys:String x:Key="LOCMenuAddGameManual">Вручну...</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Сканувати автоматично...</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Емульована Гра...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">Додаток Microsoft Store...</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">Застосунок Microsoft Store...</sys:String>
     <sys:String x:Key="LOCMenuAbout">Про Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Надіслати відгук</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">Запустити повноекранний режим</sys:String>
@@ -270,7 +270,7 @@
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Малювати розділювач між панелями</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Висота обкладинки гри</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Висота значків в списку ігор</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont">Шрифт програми</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">Шрифт застосунку</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Моноширинний шрифт</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Позиція панелі фільтру</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Позиція панелі провідника</sys:String>
@@ -341,12 +341,12 @@
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Може вирішити проблеми під час зв'язування облікових записів.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Показувати значок в області сповіщень</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Згорнути Playnite в область сповіщень</sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray">Згорнути Playnite в область сповіщень, якщо закрити вікно програми</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Згорнути Playnite в область сповіщень, якщо закрити вікно застосунку</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Коли гра запускається:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Коли гра закривається:</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Форматувати зіграний час, щоб показувати кількість зіграних днів</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Формати дат:</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn">Ви вийдете з усіх пов'язаних сервісів. Потрібно перезапустити програму, хочете продовжити?</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">Ви вийдете з усіх пов'язаних сервісів. Потрібно перезапустити застосунок, хочете продовжити?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Очистити кеш?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Щоб застосувати нову тему, потрібно перезапустити Playnite</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Отримати більше тем</sys:String>
@@ -441,7 +441,7 @@
     <sys:String x:Key="LOCMetaImportWindowTitle">Імпортування метаданих</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Завантажити метадані</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Задати вибрану конфігурацію для використання під час майбутніх завантажень метаданих.
-Також можна змінити в налаштування програми.</sys:String>
+Також можна змінити в налаштування застосунку.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Майстер імпортування емуляторів</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">Цей майстер проведе вас через процес завантаження та імпорту консольних емуляторів та імпорту емульованих ігор.</sys:String>
@@ -598,7 +598,7 @@
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Не вдається відкрити посилання, URL-адреса має неприпустимий формат.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">Не вдалося запустити програму.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">Не вдалося запустити застосунок.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Не вдалося ініціалізувати компонент вебперегляду. Playnite не може продовжити процес запуску.
 
 Більше інформації на https://playnite.link/cefstartup</sys:String>
@@ -655,7 +655,7 @@
     <sys:String x:Key="LOCCriticScore">Оцінка критиків</sys:String>
     <sys:String x:Key="LOCCommunityScore">Оцінка спільноти</sys:String>
     <sys:String x:Key="LOCGameScripts">Сценарії гри</sys:String>
-    <sys:String x:Key="LOCApplicationScripts">Сценарії програми</sys:String>
+    <sys:String x:Key="LOCApplicationScripts">Сценарії застосунку</sys:String>
     <sys:String x:Key="LOCScripts">Сценарії</sys:String>
     <sys:String x:Key="LOCPlugins">Плагіни</sys:String>
     <sys:String x:Key="LOCMetadataProviders">Джерела метаданих</sys:String>
@@ -731,8 +731,8 @@
     <sys:String x:Key="LOCPreScriptDescription">Сценарій для виконання перед початком гри</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">Сценарій для виконання після виходу з гри</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">Сценарій для виконання після запуску гри</sys:String>
-    <sys:String x:Key="LOCAppScriptStartupDescription">Виконати під час запуску програми</sys:String>
-    <sys:String x:Key="LOCAppScriptShutdownDescription">Виконати під час закриття програми</sys:String>
+    <sys:String x:Key="LOCAppScriptStartupDescription">Виконати під час запуску застосунку</sys:String>
+    <sys:String x:Key="LOCAppScriptShutdownDescription">Виконати під час закриття застосунку</sys:String>
     <sys:String x:Key="LOCScriptTypeStarting">Гра запускає сценарій</sys:String>
     <sys:String x:Key="LOCScriptTypeStarted">Гра запустила сценарій</sys:String>
     <sys:String x:Key="LOCScriptTypeExit">Гра зупинила сценарій</sys:String>
@@ -872,10 +872,10 @@
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Файл із розширенням {0} несумісний.</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Несумісне розширення файлу</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Обране зображення може бути завеликим для оптимальної швидкодії.</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion">Ви впевнені що хочете видалити вибрану тему? Видалення буде заплановано при наступному запуску програми.</sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">Ви впевнені що хочете видалити вибрану тему? Видалення буде заплановано при наступному запуску застосунку.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Вбудовані теми неможливо видалити.</sys:String>
     <sys:String x:Key="LOCThemeUnsupported">Ця тема не підтримує цю версію Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion">Ви впевнені що хочете видалити вибране розширення? Видалення буде заплановано при наступному запуску програми.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">Ви впевнені що хочете видалити вибране розширення? Видалення буде заплановано при наступному запуску застосунку.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Вбудовані розширення неможливо видалити.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Це розширення не підтримує цю версію Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionInstallDir">Тека встановлення</sys:String>
@@ -893,12 +893,12 @@
     <sys:String x:Key="LOCSidebar">Бічна панель</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Показати на бічній панелі</sys:String>
     <sys:String x:Key="LOCSettingsReset">Скинути налаштування</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">Усі налаштування програми будуть скинуті до значень за замовчуванням, за винятком:
+    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">Усі налаштування застосунку будуть скинуті до значень за замовчуванням, за винятком:
 - Розташування бази даних
 - Списку виключень імпорту
 - Налаштувань розширень, включаючи інтеграції з бібліотекою
     
-Щоб завершити процес, потрібно перезавантажити програму. Скинути налаштування?</sys:String>
+Щоб завершити процес, потрібно перезавантажити застосунок. Скинути налаштування?</sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">Для розробників</sys:String>
     <sys:String x:Key="LOCSettingsExternalExtensions">Зовнішні розширення</sys:String>
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox">Введіть повний шлях до теки. </sys:String>    
@@ -934,7 +934,7 @@
     <sys:String x:Key="LOCAddonErrorNotCompatible">Надбудова не сумісна з цією версією Playnite. </sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Не вдалося завантажити інсталяційний пакет надбудови.</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError">Не вдалося завантажити маніфест інсталяції надбудови.</sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart">Щоб застосувати очікувані зміни потрібно перезапустити програму. </sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">Щоб застосувати очікувані зміни потрібно перезапустити застосунок. </sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Ця надбудова запланована для встановлення.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Встановити</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Видалити</sys:String>
@@ -1212,7 +1212,7 @@ SHIFT-ENTER: відкрити меню елементу</sys:String>
     <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve">Виберіть дані для відновлення з указаного файлу резервної копії.
     
 Playnite автоматично перезапуститься та почне процес відновлення з резервної копії.</sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">Виберіть елементи, які будуть включені в резервну копію. Параметри програми та дані бібліотеки ігор включені за замовчуванням.
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">Виберіть елементи, які будуть включені в резервну копію. Параметри застосунку та дані бібліотеки ігор включені за замовчуванням.
     
 Playnite автоматично перезапуститься та почне процес резервного копіювання.</sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Автоматичне резервне копіювання даних</sys:String>
@@ -1243,7 +1243,7 @@ Playnite автоматично перезапуститься та почне �
     <sys:String x:Key="LOCAlwaysOn">Завжди увімкнено</sys:String>
     <sys:String x:Key="LOCAlwaysOff">Завжди вимкнено</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface">Підтримка спеціальних функцій (зчитування з екрана)</sys:String>
-    <sys:String x:Key="LOCApplicationMenu">Меню програми</sys:String>
+    <sys:String x:Key="LOCApplicationMenu">Меню застосунку</sys:String>
     <sys:String x:Key="LOCGameMenu">Меню гри</sys:String>
     <sys:String x:Key="LOCProgramFolder">Тека програми</sys:String>
     <sys:String x:Key="LOCUserDataFolder">Каталог даних користувача</sys:String>

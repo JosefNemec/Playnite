@@ -60,10 +60,12 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">게임을 제거 하시겠습니까?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">제거 불가 - 게임 또는 설치 관리자가 실행 중입니다. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">제거 불가 - 게임이 실행되고 있습니다.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">정말로 {0}을(를) 제거하시겠습니까?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">정말로 게임 {0}개를 제거하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">정말로 {0} 게임을 삭제하시겠습니까?
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">정말 {0}을(를) 제거하시겠습니까?
+
+&quot;제외 목록에 추가&quot; 옵션을 선택하면 다음에 라이브러리가 업데이트될 때 게임을 다시 가져오지 않습니다.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">정말로 {0} 게임을 제거하시겠습니까?
 
 &quot;예외 목록에 추가&quot; 옵션을 선택하면 다음에 라이브러리가 업데이트되도 불러오지 않도록 할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">정말로 현재 사용하지 않는 {0}개의 항목을 제거하시겠습니까?</sys:String>
@@ -343,7 +345,7 @@
     <sys:String x:Key="LOCSettingsCloseToTray">프로그램 창을 닫았을 때 알림 영역으로 Playnite 최소화</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">게임 시작 시:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">게임 종료 시:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">플레이한 일수를 표시하기 위해 플레이 시간 형식 지정</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">날짜 표시 방법:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">연동된 모든 서비스를 로그아웃시킵니다. 응용 프로그램을 재시작해야합니다. 계속하시겠습니까?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">캐시를 삭제하시겠습니까?</sys:String>
@@ -432,8 +434,10 @@
     <sys:String x:Key="LOCLoginFailed">인증 실패</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">대체 웹 페이지 렌더링 사용</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">통합 인증창 등 웹페이지 표시에 문제가 있는 경우에 사용합니다.</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">큰 설명 데이터 부분 로딩</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">설명 데이터가 크면 게임을 선택할 때 눈에 띄게 지연이 발생할 수 있습니다.
+
+이 옵션을 활성화하면 설명 내용의 일부만 처음에 불러오고 나머지는 필요할 때 불러올 수 있습니다.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">메타데이터 가져오기</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">메타데이터 다운로드</sys:String>
@@ -493,7 +497,7 @@
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">에뮬레이터 변화를 저장하시겠습니까?</sys:String>
     <sys:String x:Key="LOCExecutableTitle">실행파일</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">실행 변수</sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle">작업 폴더</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">작업 디렉터리</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">지원되는 파일 유형</sys:String>
     <sys:String x:Key="LOCImportEmulatorsButton">에뮬레이터 불러오기...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">에뮬레이터 다운로드...</sys:String>
@@ -544,9 +548,9 @@
     <sys:String x:Key="LOCGameIsUnInstalledTitle">설치되지 않음</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">숨겨짐</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">즐겨찾기</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
-    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">HDR 지원 활성화</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">활성화하면 게임을 시작하기 전에 기본 디스플레이에서 HDR이 활성화됩니다.</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">기본 디스플레이에서는 HDR이 지원되지 않을 수 있습니다.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">최근 플레이</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">카테고리</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">설명</sys:String>
@@ -746,8 +750,8 @@
     <sys:String x:Key="LOCRemoveFavoriteGame">즐겨찾기에서 제거</sys:String>
     <sys:String x:Key="LOCHideGame">이 게임 숨기기</sys:String>
     <sys:String x:Key="LOCUnHideGame">숨김에서 제거</sys:String>
-    <sys:String x:Key="LOCEnableHdr"></sys:String>
-    <sys:String x:Key="LOCDisableHdr"></sys:String>
+    <sys:String x:Key="LOCEnableHdr">HDR 지원 활성화</sys:String>
+    <sys:String x:Key="LOCDisableHdr">HDR 지원 비활성화</sys:String>
     <sys:String x:Key="LOCEditGame">편집...</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">설치 용량 계산</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">설치 용량 계산 (모든 게임)</sys:String>
@@ -782,7 +786,7 @@
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">게임 실행 모니터링이 실행 중입니다. 중단하고 게임을 이전 상태로 되돌리시겠습니까?</sys:String>
     <sys:String x:Key="LOCTimePlayed">플레이 시간</sys:String>
     <sys:String x:Key="LOCLastPlayed">최근 플레이</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}일 {1}시간 {2}분</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}시간 {1}분</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} 분</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} 초</sys:String>
@@ -881,7 +885,7 @@
     <sys:String x:Key="LOCStatsTotalPlayTime">총 플레이 시간</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">평균 플레이 시간</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">최고 플레이 시간</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">전체 설치 용량</sys:String>
     <sys:String x:Key="LOCOverviewLabel">개요</sys:String>
     <sys:String x:Key="LOCSidebar">사이드바</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">사이드바에 표시</sys:String>
@@ -949,7 +953,7 @@
     <sys:String x:Key="LOCIncludePluginGameActions">라이브러리 통합 플레이 액션 포함</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">동작 선택</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">트래킹 모드</sys:String>
-    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">트래킹 경로</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">링크</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">파일</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">에뮬레이터</sys:String>
@@ -1046,7 +1050,7 @@ XInput 입력을 마우스/키보드 입력으로 변환하는 도구로 인해 
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">내장 프로필</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">내장 프로필</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">사용자 프로필</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">사용자 프로필</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">내장 스크립트로 처리</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">에뮬레이터 사양</sys:String>
     <sys:String x:Key="LOCPlatformSpec">플랫폼 사양</sys:String>
@@ -1082,8 +1086,8 @@ XInput 입력을 마우스/키보드 입력으로 변환하는 도구로 인해 
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">가능한 경우 Playnite의 설치 폴더 또는 에뮬레이터의 설치 폴더와 관련된 경로를 검색하여 게임 파일을 가져옵니다.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">하위 폴더 검색</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">압축파일 내 검색</sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">관련 파일 병합</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">개별 게임 디스크 등의 관련 게임 파일을 하나의 게임 항목 아래에 병합합니다.</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">검색기 추가</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">저장된 검색기 추가</sys:String>
     <sys:String x:Key="LOCStartScan">검색 시작</sys:String>
@@ -1185,8 +1189,9 @@ SHIFT-ENTER: 선택한 항목 메뉴 열기</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">자동으로 인식한 플랫폼 값을 선택한 플랫폼으로 덮어씁니다.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">명령어를 기본 검색에 포함</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">이 옵션을 선택하지 않으면 # 접두어를 사용하지 않을 경우 명령어가 검색결과에 포함되지 않습니다.</sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">이름 필터에서 퍼지 매칭 사용</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">활성화하면 이름 필터가 글로벌 검색과 동일한 방식으로 게임 이름을 검색합니다.
+필터 앞에 ! 문자를 추가하여 대/소문자가 일치한 항목을 검색할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">결과에 표시할 항목</sys:String>
     <sys:String x:Key="LOCHiddenStatus">숨김 상태</sys:String>
 
@@ -1237,7 +1242,9 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface">접근성(스크린 리더) 지원</sys:String>
     <sys:String x:Key="LOCApplicationMenu">프로그램 메뉴</sys:String>
     <sys:String x:Key="LOCGameMenu">게임 메뉴</sys:String>
-    <sys:String x:Key="LOCProgramFolder"></sys:String>
-    <sys:String x:Key="LOCUserDataFolder"></sys:String>
-    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCProgramFolder">프로그램 폴더</sys:String>
+    <sys:String x:Key="LOCUserDataFolder">사용자 데이터 디렉터리</sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">라이브러리 파일 손상이 감지되어 Playnite를 종료합니다.
+    
+Playnite GitHub 페이지에서 손상된 파일을 수정해 달라는 이슈를 생성해 주십시오.</sys:String>
 </ResourceDictionary>

@@ -60,7 +60,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCGameRemoveAskTitle">Oyun(lar) Kaldırılsın mı?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kaldırılamıyor - Oyun veya yükleyici çalışıyor.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kaldırılamıyor - Oyun çalışıyor.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">{0} isimli oyunu kaldırmak istediğinize emin misiniz?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">{0} oyunu kaldırmak istediğinize emin misiniz?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">{0} oyunu kaldırmak istediğinizden emin misiniz?</sys:String>
@@ -76,9 +76,9 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCGameStartError">Oyun başlatılamıyor: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">İşlem başlatılamıyor: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Oyun konumu açılamıyor: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">{0} isimli oyunun kurulum boyutu bulunamadı.</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">İndirme boyutu taraması başarısız</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">İndirme boyutu taranırken {0} hata bulundu</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Kısayol oluşturulamadı: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Manuel olarak açılamadı: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Oyun yüklenemiyor: {0}</sys:String>
@@ -297,9 +297,9 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsMetadataLabel">Üst Veri</sys:String>
     <sys:String x:Key="LOCSettingsUpdating">Güncelleniyor</sys:String>
     <sys:String x:Key="LOCSettingsSearch">Ara</sys:String>
-    <sys:String x:Key="LOCSettingsBackup"></sys:String>
-    <sys:String x:Key="LOCMenuBackupData"></sys:String>
-    <sys:String x:Key="LOCMenuRestoreBackup"></sys:String>
+    <sys:String x:Key="LOCSettingsBackup">Yedekleme</sys:String>
+    <sys:String x:Key="LOCMenuBackupData">Kütüphane Verisini Yedekle</sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">Yedeklemeyi Geri Yükle</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Kütüphanedeki değişiklikleri otomatik olarak içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Geçersiz veritabanı dosyası konumu, uygun dosya yolu ayarlanmalıdır.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Hesap adı boş bırakılamaz.</sys:String>
@@ -342,7 +342,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsAfterGameStart">Oyun başladığında:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Oyun kapandıktan sonra:</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Tarih formatları:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Bu sizi bağlı tüm servislerden çıkarır. Uygulamanın yeniden başlatılması gerekiyor, devam etmek istiyor musunuz?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Önbelleği Temizle?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Yeni temayı uygulamak için playnite yeniden başlatılmalıdır</sys:String>
@@ -365,7 +365,11 @@ Playnite yeniden başlatılıncaya kadar yeni veritabanı konumu kullanılmayaca
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Arkaplan Resmini Ana Ekranda Göster</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Üst verileri yeniden indirmeden mevcut oyunlara geriye dönük olarak uygulanmaz.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Playnite veritabanındaki oyunlar için kitaplık eklentileri tarafından raporlanan oynatma süresini Playnite'ın ne zaman içe aktaracağını yapılandırır. Bu özelliğin kullanılabilmesi için oyun(lar)dan sorumlu kütüphane eklentilerinin desteği gereklidir.
+
+Her Zaman: Playnite veritabanındaki yeni içe aktarılan ve mevcut oyunlar için oyun süresini içe aktarır.
+Yalnızca yeni içe aktarılan oyunlar için: Oynatma süresini yalnızca yeni içe aktarılan oyunlar için içe aktarır.
+Asla: Hiçbir koşulda oyun süresini içe aktarmaz.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Her zaman</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly"></sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Asla</sys:String>
@@ -411,7 +415,7 @@ Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğun
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Çok büyük oyun ortamı atandığında uyarı göster</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Dizin açma komutu</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Tercih edilen yaş derecelendirme kuruluşu</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Kütüphane güncellenirken oyunların kurulum boyutunu güncelle</sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
@@ -512,14 +516,14 @@ Playnite logo menüsünü tıklayarak daha sonra başka bir oyun da ekleyebilirs
     <sys:String x:Key="LOCMenuViewFilterPanel">Filtre Paneli</sys:String>
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">Simge</sys:String>
-    <sys:String x:Key="LOCLibraryIconTitle"></sys:String>
+    <sys:String x:Key="LOCLibraryIconTitle">Kütüphane İkonu</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Kapak Resmi</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Arka Plan Resmi</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sıralama İsmi</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">Kütüphane</sys:String>
     <sys:String x:Key="LOCGameManualTitle">Klavuz</sys:String>
     <sys:String x:Key="LOCGameNameTitle">İsim</sys:String>
-    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">Kurulum Sürücüsü</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Hesap Adı</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Platform</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">Kategori(ler)</sys:String>
@@ -538,7 +542,7 @@ Devre dışı bırakılırsa, herhangi bir filtredeki herhangi bir öğeyi kulla
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Yüklü değil</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Gizli</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favori</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">HDR Desteğini Aç</sys:String>
     <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
     <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Son Oynanma</sys:String>
@@ -642,7 +646,7 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCUserScore">Kullanıcı Puanı</sys:String>
     <sys:String x:Key="LOCCriticScore">Kritik Puanı</sys:String>
     <sys:String x:Key="LOCCommunityScore">Topluluk Puanı</sys:String>
-    <sys:String x:Key="LOCGameScripts"></sys:String>
+    <sys:String x:Key="LOCGameScripts">Oyun scriptleri</sys:String>
     <sys:String x:Key="LOCApplicationScripts"></sys:String>
     <sys:String x:Key="LOCScripts">Komut Dosyaları</sys:String>
     <sys:String x:Key="LOCPlugins">Eklentiler</sys:String>
@@ -737,13 +741,13 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Favorilerden kaldır</sys:String>
     <sys:String x:Key="LOCHideGame">Bu oyunu gizle</sys:String>
     <sys:String x:Key="LOCUnHideGame">Gizlenenlerden Kaldır</sys:String>
-    <sys:String x:Key="LOCEnableHdr"></sys:String>
-    <sys:String x:Key="LOCDisableHdr"></sys:String>
+    <sys:String x:Key="LOCEnableHdr">HDR Desteğini Aç</sys:String>
+    <sys:String x:Key="LOCDisableHdr">HDR Desteğini Kapat</sys:String>
     <sys:String x:Key="LOCEditGame">Düzenle…</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">İndirme boyutu ölç</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
     <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">İndirme boyutu</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Kategori Ayarla…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Tamamlanma Durumu Ayarla</sys:String>
     <sys:String x:Key="LOCRemoveGame">Sil</sys:String>
@@ -763,7 +767,7 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Bazı işlem devam ederken kullanılamaz.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Açıklama metni HTML sözdizimine duyarlıdır.</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Oyun süresi saniye cinsinden kaydedilir.</sys:String>
-    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">İndirme boyutu byte olarak gösterilir.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Çıkış tarihi 'yıl-ay-gün' formatında ayarlanmalıdır. Ay ve Gün değerleri atlanabilir.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0'dan 100'e kadar olan bir değer girin ya da boş bırakın.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'ın gelişimi bu Patronlar tarafından desteklenir:</sys:String>
@@ -773,7 +777,7 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Oyun yürütme izleme şu anda çalışıyor. İşlemi iptal edip oyunu önceki durumuna döndürmek istiyor musunuz?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Oynama Süresi</sys:String>
     <sys:String x:Key="LOCLastPlayed">Son Oynanma</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}g {1}sa {2}dk</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}s {1}dk</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} dakika</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} saniye</sys:String>
@@ -781,15 +785,15 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Masaüstü modunu açıyor…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Tam ekran modunu açıyor…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Oyun kütüphanesi yükleniyor...</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">İndirme boyutu ölçülüyor…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">{0} isimli oyunun indirme boyutu ölçülüyor…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Komut dosyası yüklenemedi.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Komut dosyası başarıyla kuruldu.</sys:String>
     <sys:String x:Key="LOCInstallScript">Komut Dosyasını Yükle</sys:String>
     <sys:String x:Key="LOCScriptError">Komut Dosyası Hatası</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">Uzantı işlevi yürütülemedi.</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">Üst veri klasörünü aç</sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">Hesapla</sys:String>
     <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} istemcisi yüklenmemiş.</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">{0} müşteri şimdi açılacak. Lütfen oturum açın ve ardından bu mesajı kapatın.</sys:String>
@@ -876,7 +880,7 @@ Arka planlar: {2} mega piksel</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Toplam oynama süresi</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Ortalama oynama süresi</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">En uzun oynama süresi</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Toplam indirme boyutu</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Genel bakış</sys:String>
     <sys:String x:Key="LOCSidebar">Kenar Çubuğu</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Кenar Çubuğunda Göster</sys:String>
@@ -960,8 +964,8 @@ Ek entegrasyonlar yüklemek veya kaldırmak istiyorsanız ana menüden &quot;Ekl
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Tekdüze</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">Sadece Öğeler</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">Yalnızca başlangıç ve bitiş</sys:String>
-    <sys:String x:Key="LOCScrollingSensitivity"></sys:String>
-    <sys:String x:Key="LOCSmoothScrolling"></sys:String>
+    <sys:String x:Key="LOCScrollingSensitivity">Kaydırma hassasiyeti</sys:String>
+    <sys:String x:Key="LOCSmoothScrolling">Akıcı kaydırma</sys:String>
     <sys:String x:Key="LOCSmoothScrollingSpeed">Animasyon hızı</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">Öğeyi kaldır?</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage">Bu ögeyi kaldırmak istediğinize emin misiniz?</sys:String>    
@@ -976,7 +980,7 @@ Ek entegrasyonlar yüklemek veya kaldırmak istiyorsanız ana menüden &quot;Ekl
     <sys:String x:Key="LOCTopPanelExplorerSwitch">Keşif Paneli</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Rastgele oyun seçici</sys:String>
     <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Görünümden rastgele oyun seç</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Gruplandırma ve sıralama ayarlarını kaydet</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Tam ekran modunda hızlı filtre olarak göster</sys:String>
     <sys:String x:Key="LOCInPast7Days">Son 7 gün içinde</sys:String>
@@ -1042,7 +1046,7 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Gömülü modüller</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Gömülü profiller</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Özel profiller</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">Özel profil</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Dahili betik tarafından işleniyor</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emülatör özellikleri</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Platform özellikleri</sys:String>
@@ -1076,7 +1080,7 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip">Daha sonra kitaplık güncellemesi sırasında kullanılmak üzere yapılandırmayı kaydeder. Kaydedilen konfigürasyonlar &quot;Emülatörleri Yapılandır&quot; menüsünden yönetilebilir.</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePaths"></sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanSubfolders">Alt klasörleri tara</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
@@ -1115,7 +1119,7 @@ https://playnite.link/adminfaq adresinde daha fazla bilgi alabilirsiniz.</sys:St
 Yalnızca şunlar için desteklenir: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Dosya içeriği olmadan basitleştirilmiş yöntemi kullanarak tara</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">Dosyalar içe aktarılacak, ancak dosya içeriğinin indirilmesini ve yerel olarak sunulmasını gerektirmeyen daha az doğru bir yöntem kullanılacaktır.</sys:String>
-    <sys:String x:Key="LOCMetadatSetAllFieldsToValue"></sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Hepsine uygula</sys:String>
     <sys:String x:Key="LOCOverrideInstallState"></sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCOptionOnlyManually"></sys:String>
@@ -1123,14 +1127,14 @@ Yalnızca şunlar için desteklenir: Google Drive, DropBox, OneDrive</sys:String
     <sys:String x:Key="LOCOptionOnceAWeek"></sys:String>
     <sys:String x:Key="LOCOptionOnEveryStartup"></sys:String>
     <sys:String x:Key="LOCCheckProgramUpdates"></sys:String>
-    <sys:String x:Key="LOCCheckAddonUpdates"></sys:String>
-    <sys:String x:Key="LOCCheckLibraryUpdates"></sys:String>
+    <sys:String x:Key="LOCCheckAddonUpdates">Eklenti güncellemelerini kontrol et</sys:String>
+    <sys:String x:Key="LOCCheckLibraryUpdates">Kütüphaneleri güncelle</sys:String>
     <sys:String x:Key="LOCCheckEmulatedLibraryUpdates"></sys:String>
-    <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">Gizli oyunları dahil et</sys:String>
     <sys:String x:Key="LOCMenuSetFields"></sys:String>
-    <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
-    <sys:String x:Key="LOCOpen"></sys:String>
-    <sys:String x:Key="LOCActivate"></sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll">Hepsini seç / Seçimi kaldır</sys:String>
+    <sys:String x:Key="LOCOpen">Aç</sys:String>
+    <sys:String x:Key="LOCActivate">Etkinleştir</sys:String>
     <sys:String x:Key="LOCAssign"></sys:String>
     <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
     <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>

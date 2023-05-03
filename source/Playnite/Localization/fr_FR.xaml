@@ -1245,5 +1245,5 @@ Le format de date spécifié sera utilisé pour toutes les autres dates.</sys:St
     <sys:String x:Key="LOCUserDataFolder">Répertoire de l'utilisateur</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Une corruption a été détectée dans les fichiers de bibliothèque. Playnite va être fermé.
     
-Si vous voyez ce message, veuillez ouvrir un ticket sur la page Github de Playnite pour demander un correctif à la corruption de vos fichiers.</sys:String>
+Si vous voyez ce message, veuillez ouvrir un ticket sur la page Github de Playnite et demandez un correctif pour la corruption de vos fichiers.</sys:String>
 </ResourceDictionary>
