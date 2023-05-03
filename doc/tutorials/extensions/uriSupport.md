@@ -19,4 +19,4 @@ PlayniteApi.UriHandler.RegisterSource("mysource", (args) =>
 });
 ```
 
-In this example opening ``playnite://mysource/arg1/arg2` will call registered method and pass array of two arguments ("arg1" and "arg2") to it.
+In this example opening `playnite://mysource/arg1/arg2` will call registered method and pass array of two arguments (`arg1` and `arg2`) to it.

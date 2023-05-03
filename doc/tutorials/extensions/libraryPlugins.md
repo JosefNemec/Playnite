@@ -58,34 +58,42 @@ public class LibraryPlugin : LibraryPlugin
         };
     }
 
-    public override IEnumerable<GameInfo> GetGames()
+    public override IEnumerable<GameMetadata> GetGames()
     {
-        return new List<GameInfo>()
+        return new List<GameMetadata>()
         {
-            new GameInfo()
+            new GameMetadata()
             {
-                Name = "Notepad",
-                GameId = "notepad",
-                PlayAction = new GameAction()
+                Name = "Some App",
+                GameId = "some_app_id",
+                GameActions = new List<GameAction>
                 {
-                    Type = GameActionType.File,
-                    Path = "notepad.exe"
+                    new GameAction
+                    {
+                        Type = GameActionType.File,
+                        Path = "c:\some_path\app.exe",
+                        IsPlayAction = true
+                    }
                 },
                 IsInstalled = true,
-                Icon = @"c:\Windows\notepad.exe"
+                Icon = new MetadataFile(@"c:\some_path\app.exe")
             },
-            new GameInfo()
+            new GameMetadata()
             {
                 Name = "Calculator",
                 GameId = "calc",
-                PlayAction = new GameAction()
+                GameActions = new List<GameAction>
                 {
-                    Type = GameActionType.File,
-                    Path = "calc.exe"
+                    new GameAction
+                    {
+                        Type = GameActionType.File,
+                        Path = "calc.exe",
+                        IsPlayAction = true
+                    }
                 },
                 IsInstalled = true,
-                Icon = @"https://playnite.link/applogo.png",
-                BackgroundImage =  @"https://playnite.link/applogo.png"
+                Icon = new MetadataFile(@"https://playnite.link/applogo.png"),
+                BackgroundImage =  new MetadataFile(@"https://playnite.link/applogo.png")
             }
         };
     }

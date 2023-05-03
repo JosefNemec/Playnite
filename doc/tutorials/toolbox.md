@@ -97,7 +97,5 @@ Toolbox.exe verify <manifest_type> <manifest_past>
 `<manifest_past>` - Path to manifest yaml file. Local full path or HTTP URLs are supported.
 
 ```cmd
-Toolbox.exe verify addon "https://github.com/JosefNemec/PlayniteAddonDatabase/blob/master/addons/library/GogLibrary_Builtin.yaml"
-
-Toolbox.exe verify installer "c:\Devel\PlayniteExtensions\manifests\GogLibrary_Builtin.yaml"
+Toolbox.exe verify <manifest_type> <manifest_past>
 ```

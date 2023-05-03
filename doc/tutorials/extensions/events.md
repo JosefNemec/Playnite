@@ -40,7 +40,7 @@ Following example writes name of currently playing game into a text file.
 
 # [C#](#tab/csharp)
 ```csharp
-# To have a code executed on a specific event, override selected event method in your plugin.
+// To have a code executed on a specific event, override selected event method in your plugin.
 public override void OnGameStarted(OnGameStartedEventArgs args)
 {
     logger.Info($"Game started: {args.Game.Name}");

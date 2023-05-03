@@ -6,9 +6,6 @@ Basics
 
 You can add new entries into main menu and game menu. Custom menu entries are currently only supported in Desktop mode.
 
-Basics
----------------------
-
 To add new custom menu entries, implement appropriate menu script/plugin functions. Functions should return list of items that will be addded to a menu. Playnite passes [GetGameMenuItemsArgs](xref:Playnite.SDK.Plugins.GetGameMenuItemsArgs) and [GetMainMenuItemsArgs](xref:Playnite.SDK.Plugins.GetMainMenuItemsArgs) objects when the menu function is called.
 
 You can use those argument objects to decide what elements to return. For example, in case of game menu, `GetGameMenuItemsArgs` contains `Games` field listing all currently selected games that are being used as a source for the game menu.
