@@ -1,7 +1,0 @@
-- name: Tutorials
-  href: tutorials/
-- name: Manual
-  href: manual/
-- name: API Documentation
-  href: api/
-  homepage: api/index.md
