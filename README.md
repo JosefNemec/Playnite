@@ -53,6 +53,11 @@ See the [How to: Translations](https://github.com/JosefNemec/Playnite/wiki/How-t
 See the [How to: Themes](https://github.com/JosefNemec/Playnite/wiki/How-to%3A-Themes) wiki page.
 
 ### Code Contributions
+
+**Code contributions (pull requests) are currently not being accepted while majority of code base is being rewritten for Playnite 11.**
+
+**Please wait with any pull requests after P11 is at least in beta state.**
+
 Please ask in the related issue first before starting implementing something to make sure that nobody else is already working on it. If an issue doesn't exist for your feature/bug fix, create one first.
 
 Regarding code styling, there are only a few major rules:
