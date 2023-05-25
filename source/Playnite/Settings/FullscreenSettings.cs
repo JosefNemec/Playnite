@@ -14,7 +14,8 @@ namespace Playnite
     public enum FullscreenButtonPrompts
     {
         Xbox,
-        PlayStation
+        PlayStation,
+        Nintendo
     }
 
     public enum ActiveFullscreenView : int
