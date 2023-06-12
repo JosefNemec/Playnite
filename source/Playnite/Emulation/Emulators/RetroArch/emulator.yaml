@@ -649,7 +649,7 @@ Profiles:
   - Name: PicoDrive
     StartupArguments: '-L ".\cores\picodrive_libretro.dll" "{ImagePath}"'
     Platforms: [sega_32x, sega_cd, sega_genesis, sega_mastersystem]
-    ImageExtensions: [32x, 68k, 7z, bin, chd, cue, gen, iso, m3u, md, sgd, smd, sms, zip]
+    ImageExtensions: [32x, 68k, 7z, bin, chd, cue, gen, iso, m3u, md, sgd, smd, sms, zip, gg]
     ProfileFiles: ['cores\picodrive_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
