@@ -165,7 +165,7 @@ namespace Playnite.API
 
         public void InstallGame(Guid gameId)
         {
-            InstallGame(gameId);
+            RootApi.InstallGame(gameId);
         }
 
         public void UninstallGame(Guid gameId)
