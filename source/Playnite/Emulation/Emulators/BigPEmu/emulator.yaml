@@ -1,0 +1,9 @@
+Id: bigpemu
+Name: BigPEmu
+Website: 'https://www.richwhitehouse.com/jaguar/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'  
+    Platforms: [atari_jaguar]
+    ImageExtensions: [j64, cof, rom, jag, abs, zip, cue, cdi]
+    StartupExecutable: ^BigPEmu\.exe$
