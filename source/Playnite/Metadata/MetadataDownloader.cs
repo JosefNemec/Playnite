@@ -55,11 +55,6 @@ namespace Playnite.Metadata
                 // Null check because downloader might be from library without official metadata provider
                 downloader?.Dispose();
             }
-
-            foreach (var downloader in metadataDownloaders)
-            {
-                downloader.Dispose();
-            }
         }
 
         private LibraryMetadataProvider GetLibraryMetadataDownloader(Guid pluginId)
