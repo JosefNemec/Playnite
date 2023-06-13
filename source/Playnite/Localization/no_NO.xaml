@@ -15,7 +15,7 @@
     <sys:String x:Key="LOCSaveChangesAskTitle">Lagre endringer?</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">Hjemmeside på www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Kildekode på GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Lag feilrapporteringspakke</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Lag feilrapport-pakke</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Send diagnoseinformasjon</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Om Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Laget av Josef Němec</sys:String>

@@ -308,7 +308,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCSettingsInvalidDBLocation">L'emplacement du fichier de base de données n'est pas valide, le chemin de fichier correct doit être défini.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Le nom du profil ne peut pas être vide.</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Télécharger les métadonnées automatiquement</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized">Réduire dans la barre d'état au démarrage</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">Minimiser la fenêtre au démarrage de l'application</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Lancer Playnite au démarrage de l'ordinateur</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">Lancer Playnite et le réduire dans la barre d'état</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Impossible de lancer Playnite au démarrage de l'ordinateur.</sys:String>
@@ -418,7 +418,7 @@ Si cette option est désactivée, les images de fond ne seront téléchargées q
     <sys:String x:Key="LOCOpenDirectoryCommand">Ouverture des répertoires par invite de commande</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Système d'évaluation d'âge requis par défaut</sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Mettre à jour la taille d'installation des jeux lors de l'actualisation de la bibliothèque</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Analyse et met à jour la taille d'installation des jeux si des fichiers ont été modifiés depuis la dernière analyse.</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Lorsque cette option est activée, la taille des dossiers d'installation de jeux est mise à jour si des fichiers ont été modifiés depuis la dernière analyse.</sys:String>
     <sys:String x:Key="LOCStrechNone">Aucune</sys:String>
     <sys:String x:Key="LOCStrechFill">Remplir (étirement)</sys:String>
     <sys:String x:Key="LOCStrechUniform">Préserver le rapport largeur/hauteur</sys:String>
@@ -432,7 +432,7 @@ Si cette option est désactivée, les images de fond ne seront téléchargées q
     <sys:String x:Key="LOCLoginFailed">Statut : Authentification échouée</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Mode de rendu web alternatif</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Peut résoudre certains problèmes avec les fenêtres web, telles que les fenêtres d'authentification.</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Chargement partiel des longues descriptions</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Chargement partiel des descriptions de jeux</sys:String>
     <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Les descriptions trop longues peuvent ralentir la sélection de certains jeux.
 
 Le chargement partiel permet d'alléger le chargement initial de la description, le reste étant chargé à la demande.</sys:String>
@@ -749,9 +749,9 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDisableHdr">Désactiver le mode HDR</sys:String>
     <sys:String x:Key="LOCEditGame">Modifier les propriétés…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Calculer la taille de l'installation</sys:String>
-    <sys:String x:Key="LOCCalculateGamesAllInstallSize">Calculer la taille de l'installation (Tous les jeux)</sys:String>
-    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">Calculer la taille de l'installation (uniquement les données manquantes)</sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel">Installer la taille</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">Calculer la taille d'installation (tous les jeux)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">Calculer la taille d'installation (uniquement les données manquantes)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">Taille d'installation</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Définir des catégories…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Déterminer la progression</sys:String>
     <sys:String x:Key="LOCRemoveGame">Supprimer</sys:String>
@@ -868,10 +868,10 @@ Images de fond : {2} px (hauteur)</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Le fichier ayant l'extension {0} n'est pas compatible</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Extension de fichier incompatible</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">L'image sélectionnée pourrait être trop lourde pour des performances optimales.</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion">Voulez-vous désinstaller le thème sélectionné ? La désinstallation sera planifiée au prochain lancement de l'application.</sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">Voulez-vous désinstaller le thème sélectionné ? La désinstallation sera planifiée pour le prochain lancement de l'application.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Les thèmes par défaut ne peuvent être désinstallés.</sys:String>
     <sys:String x:Key="LOCThemeUnsupported">Le thème sélectionné est incompatible avec la version actuelle de Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion">Voulez-vous désinstaller l'extension sélectionnée ? La désinstallation sera planifiée au prochain lancement de l'application.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">Voulez-vous désinstaller l'extension sélectionnée ? La désinstallation sera planifiée pour le prochain lancement de l'application.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Les extensions par défaut ne peuvent être désinstallées.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">L'extension sélectionnée est incompatible avec la version actuelle de Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionInstallDir">Emplacement d'installation</sys:String>
@@ -935,10 +935,10 @@ Pour installer ou désinstaller des intégrations, utilisez le gestionnaire d'ex
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Désinstaller</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Déjà installé</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Aucune mise à jour d'extension trouvée</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Aucune mise à jour disponible</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Mettre à jour les extensions</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Notes de version indisponibles</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Planifié pour l'installation</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Installation planifiée</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">Échec du téléchargement</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licence rejetée</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Téléchargement en cours {0}…</sys:String>
@@ -1161,13 +1161,13 @@ MAJ-ENTRÉE : ouvre le menu de l'élément sélectionné dans la liste ci-dessou
     <sys:String x:Key="LOCGameSearchItemActionSwitchTo">Afficher</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionOpenMenu">Menu du jeu</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionEdit">Modifier le jeu</sys:String>
-    <sys:String x:Key="LOCOpenSearch">Lancer la recherche</sys:String>
-    <sys:String x:Key="LOCTopPanelSearchBox">Champ de recherche</sys:String>
-    <sys:String x:Key="LOCTopPanelSearchButton">Bouton de recherche</sys:String>
+    <sys:String x:Key="LOCOpenSearch">Lancer la recherche globale</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox">Barre de recherche</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton">Recherche globale</sys:String>
 
     <sys:String x:Key="LOCSearchSettingsPrimaryAction">Action de lancement principale</sys:String>
     <sys:String x:Key="LOCSearchSettingsSecondaryAction">Action de lancement secondaire</sys:String>
-    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">CTRL-F ouvre la recherche globale au lieu de focaliser la zone de recherche</sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">CTRL-F lance la recherche globale au lieu de focaliser la barre de recherche</sys:String>
     <sys:String x:Key="LOCSearchSettingsSaveFilter">Enregistrer les paramètres de filtre de jeu entre les sessions de recherche</sys:String>
     <sys:String x:Key="LOCSearchSettingsSearchProviders">Moteurs de recherche</sys:String>
     <sys:String x:Key="LOCSearchSettingsDefaultKeyword">Mots-clé par défaut</sys:String>
@@ -1187,9 +1187,9 @@ MAJ-ENTRÉE : ouvre le menu de l'élément sélectionné dans la liste ci-dessou
     <sys:String x:Key="LOCEmuOverridePlatformTooltip">Lorsque défini, le scanner assignera cette plate-forme à tous les jeux, écrasant toutes les plateformes détectées automatiquement.</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault">Inclure les commandes dans la recherche par défaut</sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Lorsque cette option est désactivée, les commandes ne seront pas incluses dans la recherche par défaut jusqu'à ce que le préfixe # soit utilisé.</sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatching">Utiliser une mise en correspondance approximative dans le filtre de nom</sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">Lorsque cette option est activée, le filtre de nom utilisera le même mode de correspondance que la recherche globale.
-Une correspondance stricte peut être forcée au cas par cas en préfixant le filtre avec le caractère &quot;!&quot;</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">Activer la correspondance approximative dans la barre de recherche</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">Lorsque cette option est activée, la barre de recherche utilisera le même mode de correspondance que la recherche globale.
+Une correspondance stricte peut être forcée au cas par cas en préfixant la recherche avec le caractère &quot;!&quot;.</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Informations à afficher pour les résultats de recherche :</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Statut affiché/masqué</sys:String>
 

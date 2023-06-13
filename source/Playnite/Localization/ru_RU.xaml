@@ -8,7 +8,7 @@
     <sys:String x:Key="LOCExitAppLabel">Выход</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Фильтр активен</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Фильтр отключен</sys:String>
-    <sys:String x:Key="LOCAditionalFilters">Дополнит. фильтры</sys:String>
+    <sys:String x:Key="LOCAditionalFilters">Доп. фильтры</sys:String>
     <sys:String x:Key="LOCFilters">Фильтры</sys:String>
     <sys:String x:Key="LOCFilter">Фильтр</sys:String>
     <sys:String x:Key="LOCInvalidDataTitle">Неверные данные</sys:String>
@@ -827,7 +827,7 @@
     <sys:String x:Key="LOCPLaytime500to1000">От 500 до 1000 часов</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite необходимо перезапустить, чтобы завершить установку. Перезапустить сейчас?</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionPackageError">Расширение не упаковано должным образом.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">Расширение упаковано неправильно.</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">Тема не упакована должным образом.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadError">Не удалось загрузить должным образом расширение &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadSDKError">Невозможно загрузить расширение &quot;{0}&quot;, текущая версия Playnite не поддерживается.</sys:String>
@@ -878,10 +878,10 @@
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Файл с расширением {0} не поддерживается.</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Неподдерживаемое расширение файла</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">Выбранный файл изображения может быть слишком большим для оптимальной производительности.</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion">Вы уверены, что хотите удалить выбранную тему? Операция будет поставлена в очередь до следуюещго запуска приложения.</sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">Вы уверены, что хотите удалить выбранную тему? Операция будет поставлена в очередь до следующего запуска приложения.</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">Встроенные темы нельзя удалять.</sys:String>
     <sys:String x:Key="LOCThemeUnsupported">Выбранная тема не поддерживает эту версию Playnite.</sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion">Вы уверены, что хотите удалить выбранное расширение? Операция будет поставлена в очередь до следуюещго запуска приложения.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">Вы уверены, что хотите удалить выбранное расширение? Операция будет поставлена в очередь до следующего запуска приложения.</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">Встроенные расширения нельзя удалять.</sys:String>
     <sys:String x:Key="LOCExtensionUnsupported">Это расширение не поддерживает данную версию Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionInstallDir">Путь установки</sys:String>

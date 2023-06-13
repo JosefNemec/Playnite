@@ -203,7 +203,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCColumns">Columnes</sys:String>
     <sys:String x:Key="LOCRow">Filera</sys:String>
     <sys:String x:Key="LOCRows">Files</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">No s'ha pogut obtenir la icona de l'acció Jugar. No hi ha cap acció de tipus de fitxer present.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">No s'ha pogut obtenir la icona de l'acció Jugar. No hi ha cap acció de tipus fitxer present.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Només descarregar metadades que faltin</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activar aquesta opció farà que s'ometi la descàrrega de metadades pels camps que ja contenen informació.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selecció de jocs</sys:String>

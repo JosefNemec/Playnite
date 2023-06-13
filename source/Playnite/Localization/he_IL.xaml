@@ -61,9 +61,11 @@
     <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">לא ניתן למחוק משום שהמשחק או תוכנת ההתקנה רצים כרגע</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">לא ניתן להסיר התקנה של משחק שרץ</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר את {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר {0} משחקים?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">האם אתה בטוח שאתה רוצה להסיר את {0}?
+
+בחירת &quot;הוסף לרשימת יוצאים מהכלל&quot; תמנע ייבוא מחדש של המשחק בפעם הבאה שהספריה תעודכן.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">האם אתה בטוח שאתה רוצה להסיר את המשחקים {0}?
 
 בחירה באפשרות &quot;הוסף לרשימת יוצאים מהכלל&quot; תמנע את ייבוא המשחקים שוב בפעם הבאה שהספריה תעודכן.</sys:String>
