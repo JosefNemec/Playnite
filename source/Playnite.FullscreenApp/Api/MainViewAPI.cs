@@ -27,7 +27,7 @@ namespace Playnite.FullscreenApp.API
                 }
                 else
                 {
-                    return mainModel.SelectedGames?.Select(a => a.Game).ToList();
+                    return mainModel.SelectedGames?.Where(a => a != null).Select(a => a.Game).ToList();
                 }
             }
         }
