@@ -761,7 +761,7 @@ Bilgi için: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCInstallGame">Kur</sys:String>
     <sys:String x:Key="LOCGameOptions">Oyun Seçenekleri</sys:String>
     <sys:String x:Key="LOCGameDetails">Ayrıntılar</sys:String>
-    <sys:String x:Key="LOCUninstallGame">Oyunu Kaldır</sys:String>
+    <sys:String x:Key="LOCUninstallGame">Kurulumu Kaldır</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Kurulum Konumunu Aç</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Masaüstü Kısayolu Oluştur</sys:String>
     <sys:String x:Key="LOCOpenGameManual">Kılavuzu Aç</sys:String>

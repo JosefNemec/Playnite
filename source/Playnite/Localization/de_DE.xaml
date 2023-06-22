@@ -299,8 +299,8 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsInputLabel">Eingabe</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Leistung</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadaten</sys:String>
-    <sys:String x:Key="LOCSettingsUpdating">Aktualisieren</sys:String>
-    <sys:String x:Key="LOCSettingsSearch">Suchen</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">Aktualisierung</sys:String>
+    <sys:String x:Key="LOCSettingsSearch">Suche</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Sicherung</sys:String>
     <sys:String x:Key="LOCMenuBackupData">Bibliotheksdaten sichern</sys:String>
     <sys:String x:Key="LOCMenuRestoreBackup">Datensicherung wiederherstellen</sys:String>
@@ -1104,7 +1104,7 @@ Falls nach dem Installieren von Designs oder Erweiterungen Probleme auftreten, v
     <sys:String x:Key="LOCSortingNameRemovedArticles">Diese Wörter werden vom Anfang des automatisch ausgefüllten Sortiernamens entfernt:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Verwende diese Option, um für Sortierzwecke Wörter am Anfang einer Zeichenkette zu ignorieren. Standard ist »The«, »An« und »A«.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Sortiernamen ausfüllen für Spiele ohne Sortiernamen</sys:String>
-    <sys:String x:Key="LOCSettingsSortingLabel">Sortieren</sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">Sortierung</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillProgress">Sortiernamen werden mit Werten gefüllt …</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Auf deinem System wurde der Nahimic-Dienst erkannt. Dieser Dienst ist dafür bekannt, Rendering-Probleme in Playnite (und anderen Anwendungen) zu verursachen.        
 
