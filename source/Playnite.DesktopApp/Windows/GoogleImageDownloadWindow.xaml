@@ -125,6 +125,9 @@
             <CheckBox Content="{DynamicResource LOCTransparent}"
                       IsChecked="{Binding Transparent}"
                       DockPanel.Dock="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <CheckBox Content="{DynamicResource LOCUncensored}"
+                      IsChecked="{Binding Uncensored}"
+                      DockPanel.Dock="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
         </DockPanel>
     </Grid>
 </controls:WindowBase>

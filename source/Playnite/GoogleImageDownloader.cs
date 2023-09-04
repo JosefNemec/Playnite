@@ -58,6 +58,10 @@ namespace Playnite
             {
                 url.SetQueryParam("tbs", "ic:trans");
             }
+            if (Settings.WebImageSarchUncensored || Uncensored)
+            {
+                url.SetQueryParam("safe", "off");
+            }
 
             webView.NavigateAndWait(url.ToString());
             if (webView.GetCurrentAddress().StartsWith(@"https://consent.google.com", StringComparison.OrdinalIgnoreCase))

@@ -695,6 +695,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUserSelect">User select</sys:String>
     <sys:String x:Key="LOCLoadMore">Load more</sys:String>
     <sys:String x:Key="LOCTransparent">Transparent</sys:String>
+    <sys:String x:Key="LOCUncensored">Uncensored</sys:String>
     <sys:String x:Key="LOCCollapse">Collapse</sys:String>
     <sys:String x:Key="LOCExpand">Expand</sys:String>
     <sys:String x:Key="LOCCollapseAll">Collapse All</sys:String>
@@ -1230,6 +1231,7 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Icon image search string</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover image search string</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Background image search string</sys:String>
+    <sys:String x:Key="WebImageSarchUncensored">Show uncensored images</sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Getting add-on information…</sys:String>
     <sys:String x:Key="LOCNoMetadataSource">No metadata source is available</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettings">Play action settings</sys:String>

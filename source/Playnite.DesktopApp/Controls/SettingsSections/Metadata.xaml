@@ -72,6 +72,8 @@
                     <TextBox Margin="5" Text="{Binding Settings.WebImageSarchCoverTerm}" />
                     <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchBackground}" />
                     <TextBox Margin="5" Text="{Binding Settings.WebImageSarchBackgroundTerm}" />
+                    <TextBlock Margin="5" VerticalAlignment="Center" Text="{DynamicResource LOCSettingsWebImageSearchUncensored}" />
+                    <TextBox Margin="5" Text="{Binding Settings.WebImageSarchUncensored}" />
                 </GridEx>
                 <Button Content="{DynamicResource LOCMenuHelpTitle}"
                         Margin="15,10,0,0" HorizontalAlignment="Left"
