@@ -37,12 +37,12 @@ namespace Playnite.Common
             StopWatching();
         }
 
-        public async void WatchProcessTree(Process process)
+        public async Task WatchProcessTree(Process process)
         {
             await WatchProcess(process);
         }
 
-        public async void WatchSingleProcess(Process process)
+        public async Task WatchSingleProcess(Process process)
         {
             watcherToken = new CancellationTokenSource();
             while (!process.HasExited)
@@ -58,7 +58,7 @@ namespace Playnite.Common
             OnTreeDestroyed();
         }
 
-        public async void WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false, int trackingDelay = 2000)
+        public async Task WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false, int trackingDelay = 2000)
         {
             logger.Debug($"Watching dir processes {directory}, {alreadyRunning}, {byProcessNames}");
             // Get real path in case that original path is symlink or junction point
@@ -88,7 +88,7 @@ namespace Playnite.Common
             watcherToken?.Dispose();
         }
 
-        public async void WatchUwpApp(string familyName, bool alreadyRunning)
+        public async Task WatchUwpApp(string familyName, bool alreadyRunning)
         {
             logger.Debug($"Starting UWP {familyName} app watcher.");
             watcherToken = new CancellationTokenSource();
