@@ -77,13 +77,13 @@ namespace Playnite.Common.Web
             downloader.DownloadFile(url, path, cancelToken);
         }
 
-        public static HttpStatusCode GetResponseCode(string url, out Dictionary<string, string> headers)
+        public static HttpStatusCode GetResponseCode(string url, CancellationToken cancelToken, out Dictionary<string, string> headers)
         {
             headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
             try
             {
-                var response = httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, url)).GetAwaiter().GetResult();
+                var response = httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, url), cancelToken).GetAwaiter().GetResult();
                 foreach (var header in response.Headers)
                 {
                     headers.Add(header.Key, string.Join(",", header.Value));

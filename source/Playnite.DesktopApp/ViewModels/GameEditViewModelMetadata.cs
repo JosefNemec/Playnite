@@ -720,7 +720,8 @@ namespace Playnite.DesktopApp.ViewModels
                         return null;
                     }
 
-                    var response = HttpDownloader.GetResponseCode(url, out var _);
+                    var cancelToken = new CancellationTokenSource(Common.Timer.SecondsToMilliseconds(5));
+                    var response = HttpDownloader.GetResponseCode(url, cancelToken.Token, out var test);
                     if (!response.IsSuccess())
                     {
                         logger.Warn("Original Google image request failed: " + response.ToString());
