@@ -100,7 +100,6 @@
             <Grid DockPanel.Dock="Left" VerticalAlignment="Center">
                 <TextBox Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"
                          Style="{DynamicResource SearchWindowSearchBox}"
-                         IsEnabled="{Binding SearchEnabled}"
                          Name="TextSearchBox">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewKeyDown">

@@ -363,7 +363,6 @@ namespace Playnite.ViewModels
         private bool filterHintVisible = false;
         private string filterHint;
         private string currentContextLabel;
-        private bool searchEnabled = true;
         #endregion backing fields
 
         private static readonly char[] textMatchSplitter = new char[] { ' ' };
@@ -405,7 +404,6 @@ namespace Playnite.ViewModels
             }
         }
 
-        public bool SearchEnabled { get => searchEnabled; set => SetValue(ref searchEnabled, value); }
         public bool FilterHintVisible { get => filterHintVisible; set => SetValue(ref filterHintVisible, value); }
         public string FilterHint { get => filterHint; set => SetValue(ref filterHint, value); }
         public GameSearchFilterSettings GameFilterSettings { get; set; }
@@ -707,10 +705,6 @@ namespace Playnite.ViewModels
 
             searchDelayTimer.Stop();
             currentSearchToken?.Cancel();
-            if (currentSearchDelay > 0)
-            {
-                syncContext.Send((_) => SearchEnabled = false, null);
-            }
 
             var searchToken = new CancellationTokenSource();
             currentSearchToken = searchToken;
@@ -793,10 +787,6 @@ namespace Playnite.ViewModels
             searchToken.Dispose();
             longSearchTimer.Stop();
             SlowAnimationActive = false;
-            if (currentSearchDelay > 0)
-            {
-                syncContext.Send((_) => SearchEnabled = true, null);
-            }
         }
 
         private void TextBoxKeyDown(KeyEventArgs keyArgs)
