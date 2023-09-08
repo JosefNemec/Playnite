@@ -258,12 +258,12 @@ namespace Playnite
             var properties = new BitmapLoadProperties(0, 0, null, settings.Fullscreen.ImageScalerMode);
             if (settings.Fullscreen.HorizontalLayout)
             {
-                properties.MaxDecodePixelWidth = app.CurrentScreen.Bounds.Width / settings.Fullscreen.Columns;
+                properties.MaxDecodePixelWidth = app.CurrentScreen.Bounds.Width / (settings.Fullscreen.Columns == 0 ? 1 : settings.Fullscreen.Columns);
                 properties.MaxDecodePixelWidth = (int)Math.Round(properties.MaxDecodePixelWidth / dpi.DpiScaleX);
             }
             else
             {
-                properties.MaxDecodePixelHeight = app.CurrentScreen.Bounds.Height / settings.Fullscreen.Rows;
+                properties.MaxDecodePixelHeight = app.CurrentScreen.Bounds.Height / (settings.Fullscreen.Rows == 0 ? 1 : settings.Fullscreen.Rows);
                 properties.MaxDecodePixelHeight = (int)Math.Round(properties.MaxDecodePixelHeight / dpi.DpiScaleY);
             }
 
