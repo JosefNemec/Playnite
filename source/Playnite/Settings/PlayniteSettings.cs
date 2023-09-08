@@ -198,6 +198,16 @@ namespace Playnite
         OnceAWeek = 2
     }
 
+    public enum SafeSearchSettings
+    {
+        [Description(LOC.Default)]
+        Default,
+        [Description(LOC.EnabledTitle)]
+        On,
+        [Description(LOC.DisabledTitle)]
+        Off
+    }
+
     public class DateFormattingOptions : ObservableObject
     {
         private string format;
@@ -2199,6 +2209,9 @@ namespace Playnite
 
         private bool partialDescriptionLoading = true;
         public bool PartialDescriptionLoading { get => partialDescriptionLoading; set => SetValue(ref partialDescriptionLoading, value); }
+
+        private SafeSearchSettings webImageSafeSearch = SafeSearchSettings.Default;
+        public SafeSearchSettings WebImageSafeSearch { get => webImageSafeSearch; set => SetValue(ref webImageSafeSearch, value); }
 
         [JsonIgnore]
         public static bool IsPortable

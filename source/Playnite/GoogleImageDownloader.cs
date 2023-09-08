@@ -45,7 +45,7 @@ namespace Playnite
             webView.Dispose();
         }
 
-        public async Task<List<GoogleImage>> GetImages(string searchTerm, bool transparent = false)
+        public async Task<List<GoogleImage>> GetImages(string searchTerm, SafeSearchSettings safeSearch, bool transparent = false)
         {
             var images = new List<GoogleImage>();
             var parser = new HtmlParser();
@@ -54,6 +54,16 @@ namespace Playnite
             url.SetQueryParam("client", "firefox-b-d");
             url.SetQueryParam("source", "lnt");
             url.SetQueryParam("q", searchTerm);
+
+            if (safeSearch == SafeSearchSettings.On)
+            {
+                url.SetQueryParam("safe", "on");
+            }
+            else if (safeSearch == SafeSearchSettings.Off)
+            {
+                url.SetQueryParam("safe", "off");
+            }
+
             if (transparent)
             {
                 url.SetQueryParam("tbs", "ic:trans");

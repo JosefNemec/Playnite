@@ -101,6 +101,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCErrorStartupNoController">Couldn't determine how to start the game.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Enabled</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Disabled</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remove</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Remove unused</sys:String>
     <sys:String x:Key="LOCRenameTitle">Rename</sys:String>

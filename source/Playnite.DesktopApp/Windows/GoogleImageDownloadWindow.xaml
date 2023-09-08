@@ -7,6 +7,7 @@
         xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
         xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite" 
+        xmlns:p="clr-namespace:Playnite;assembly=Playnite"             
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         mc:Ignorable="d"
@@ -115,13 +116,18 @@
             </TextBox>
         </DockPanel>
 
-        <DockPanel LastChildFill="False" Grid.Row="3" Margin="5,0,5,5">
+        <DockPanel LastChildFill="False" Grid.Row="3" Margin="15,0,5,5">
             <Button Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                     Style="{StaticResource BottomButton}"
                     Command="{Binding CloseCommand}"/>
             <Button Name="ButtonOK" Content="{DynamicResource LOCSelect}" DockPanel.Dock="Right"
                     Style="{StaticResource BottomButton}"
                     Command="{Binding ConfirmCommand}"/>
+            <TextBlock Text="SafeSearch"
+                      DockPanel.Dock="Left" VerticalAlignment="Center"/>
+            <ComboBox pbeh:SelectorBehaviors.EnumSource="{x:Type p:SafeSearchSettings}"
+                      SelectedValue="{Binding SafeSearch}"
+                      DockPanel.Dock="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
             <CheckBox Content="{DynamicResource LOCTransparent}"
                       IsChecked="{Binding Transparent}"
                       DockPanel.Dock="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>

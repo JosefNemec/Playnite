@@ -314,6 +314,10 @@ namespace Playnite
         /// </summary>
         public const string EnabledTitle = "LOCEnabledTitle";
         /// <summary>
+        /// Disabled
+        /// </summary>
+        public const string DisabledTitle = "LOCDisabledTitle";
+        /// <summary>
         /// Remove
         /// </summary>
         public const string RemoveTitle = "LOCRemoveTitle";

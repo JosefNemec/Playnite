@@ -14,6 +14,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -708,6 +709,7 @@ namespace Playnite.DesktopApp.ViewModels
                 new GoogleImageDownloadWindowFactory(),
                 resources,
                 searchTerm,
+                appSettings.WebImageSafeSearch,
                 imageWidth,
                 imageHeight);
             if (model.OpenView() == true)
@@ -718,6 +720,11 @@ namespace Playnite.DesktopApp.ViewModels
                     if (url.IsNullOrEmpty())
                     {
                         return null;
+                    }
+
+                    if (model.SafeSearch != appSettings.WebImageSafeSearch)
+                    {
+                        appSettings.WebImageSafeSearch = model.SafeSearch;
                     }
 
                     var cancelToken = new CancellationTokenSource(Common.Timer.SecondsToMilliseconds(5));
