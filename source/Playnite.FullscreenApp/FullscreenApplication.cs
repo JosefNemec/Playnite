@@ -74,7 +74,8 @@ namespace Playnite.FullscreenApp
             {
                 Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCFullscreenFirstTimeError"), "");
                 ReleaseResources();
-                Process.Start(PlaynitePaths.DesktopExecutablePath);
+                FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
+                ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, new CmdLineOptions() { MasterInstance = true }.ToString());
                 CurrentNative.Shutdown(0);
                 return false;
             }
