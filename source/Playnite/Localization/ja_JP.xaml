@@ -4,17 +4,17 @@
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
     <sys:String x:Key="LanguageName">日本語</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel">言語</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">Playnite の言語</sys:String>
     <sys:String x:Key="LOCExitAppLabel">終了</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">フィルターを有効にする</sys:String>
-    <sys:String x:Key="LOCFilterInactiveLabel">フィルターを無効にする</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">フィルター有効</sys:String>
+    <sys:String x:Key="LOCFilterInactiveLabel">フィルター無効</sys:String>
     <sys:String x:Key="LOCAditionalFilters">追加のフィルター</sys:String>
     <sys:String x:Key="LOCFilters">フィルター</sys:String>
     <sys:String x:Key="LOCFilter">フィルター</sys:String>
     <sys:String x:Key="LOCInvalidDataTitle">無効なデータ</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">変更した内容を保存しますか？</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">ホームページ www.playnite.link</sys:String>
-    <sys:String x:Key="LOCAboutSourceLink">ソースコードは Github dで公開されています</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">ソースコードは Github で公開されています</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">診断パッケージを作成する</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">システム情報を送信する</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Playnite について</sys:String>
@@ -35,80 +35,83 @@
 「クラッシュのレポート」ボタンを使用して、GitHubで新しい問題を作成し、クラッシュを手動でレポートすることもできます。
 
 ご協力ありがとうございます。</sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">拡張機能 &quot;{0}&quot; は回復不能なエラーを起こしました。
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">拡張機能 &quot;{0}&quot; で回復不能なエラーが発生しました。
 
-ログファイルを保存と拡張機能の開発者への報告を推奨します。もしエラーが続くなら拡張機能を無効にしてください。</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">拡張機能 &quot;{0}&quot; は回復不能なエラーを起こしました。
+ログファイルを保存し、問題を拡張機能の開発者に報告することをお勧めします。問題が再発する場合は、拡張機能を無効にしてください。</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">拡張機能 &quot;{0}&quot; で回復不能なエラーが発生しました。
 
-拡張機能の開発者への報告が推奨されます。もしエラーが続くなら拡張機能を無効にしてください。</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">不明な拡張子またはテーマが原因で回復不能なエラーが発生しました。
+この問題を拡張機能の開発者に報告することをお勧めします。問題が再発する場合は、拡張機能を無効にしてください。</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">不明な拡張機能またはテーマが原因で回復不能なエラーが発生しました。
 
-サードパーティのアドオンを無効にし、問題のあるアドオンを隔離して、アドオンの開発者に問題を報告することをお勧めします。</sys:String>
+サードパーティのアドオンを無効にして、問題のあるアドオンを特定し、アドオンの開発者に問題を報告することをお勧めします。</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">回復不能なエラーが発生しました。
 
 この問題の修正を支援する場合は、診断情報を送信してください。よろしくお願いします。</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension">拡張機能を無効化</sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">拡張機能を無効にする</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">ログファイルを保存</sys:String>
-    <sys:String x:Key="LOCCrashSendDiag">診断情報を送る</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">診断情報を送信</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">クラッシュレポート</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite を再起動</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">セーフモードで再起動</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip">サードパーティー製の拡張機能を無効化し、デフォルトテーマを使用します。</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">すべてのサードパーティー製の拡張機能を無効にし、デフォルトテーマを使用します。</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite を終了</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription">クラッシュ前の操作（英語）</sys:String>
-    <sys:String x:Key="LOCLibraryManager">ライブラリーの管理</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">クラッシュ前の操作 (英語)</sys:String>
+    <sys:String x:Key="LOCLibraryManager">ライブラリの管理</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">ゲームを削除しますか？</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">削除できません - ゲームかインストーラーが起動しています。</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">削除できません - ゲームまたはインストーラーが起動しています。</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">アンインストールできません - ゲームが実行中です。</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">{0} を削除してもよろしいですか？</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">{0} ゲームを削除してもよろしいですか？</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">{0} を削除してもよろしいですか？
+
+「除外リストに追加」オプションを選択すると、次回ライブラリが更新されたときにゲームが再びインポートされるのを防ぐことができます。</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">{0} ゲームを削除してもよろしいですか？
 
 「除外リストに追加」オプションを選択すると、次回ライブラリが更新されたときにゲームが再びインポートされるのを防ぐことができます。</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">現在使用されていない {0} の項目を削除しますか？</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">未使用のフィールドは見つかりませんでした。</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">はい（除外リストに追加）</sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">はい (除外リストに追加)</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">このページには保存されていない変更点があります</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">ゲームライブラリのフォーマットを更新中...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">ゲームライブラリのフォーマットを更新中…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">データベースの更新に失敗しました。</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">ゲームライブラリを更新できません。 {0} MBの空き容量が必要です。</sys:String>
     <sys:String x:Key="LOCGameError">ゲームエラー</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">ゲームを開始できませんでした。データベースに'{0}'が見つかりません。</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">ゲームを開始できませんでした。データベースに '{0}' が見つかりません。</sys:String>
     <sys:String x:Key="LOCGameStartError">ゲームを開始できませんでした: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">アクションを開始できませんでした: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">ゲームのインストール先を開くことができません: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeError">ゲームのインストールサイズを検出できませんでした: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeErrorCaption">インストールサイズのスキャン時にエラーが発生しました</sys:String>
     <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">インストールサイズのスキャン中に {0} 個のエラーが発生しました</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">ショートカットを作成できません: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError">マニュアルを開けませんでした：{0}</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">ショートカットの作成に失敗しました: {0}</sys:String>
+    <sys:String x:Key="LOCManualOpenError">マニュアルを開けませんでした: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">ゲームをインストールできません: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">ゲームをアンインストールできません: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">有効なゲーム起動アクションが見つかりませんでした。エミュレータアクションを使用する場合は、ゲームとエミュレーターの構成の間でプラットフォーム定義が一致していることを確認してください。</sys:String>
     <sys:String x:Key="LOCErrorNoInstallAction">インストールの実装は利用できません。</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">このゲームを管理するライブラリプラグインがインストールされていないか、有効になっていません。</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">公式のメタデータダウンロードは利用できません。</sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected">ゲームが選択されていません</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction">ゲームスクリプトの実行に失敗しました</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">ゲームが選択されていません。</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">ゲームスクリプトの実行に失敗しました。</sys:String>
     <sys:String x:Key="LOCErrorApplicationScript">アプリケーションスクリプトの実行に失敗しました。</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction">グローバルスクリプトの実行に失敗しました</sys:String>
-    <sys:String x:Key="LOCErrorEmulatorScriptAction">エミュレータスクリプトの実行に失敗しました</sys:String>
-    <sys:String x:Key="LOCErrorPlayScriptAction">スクリプトアクションの実行に失敗しました</sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0以上がインストールされていません。</sys:String>
-    <sys:String x:Key="LOCErrorStartupNoController">ゲームの起動方法を決定できません。</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">グローバルスクリプトの実行に失敗しました。</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorScriptAction">エミュレータスクリプトの実行に失敗しました。</sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">スクリプトアクションの実行に失敗しました。</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 以降がインストールされていません。</sys:String>
+    <sys:String x:Key="LOCErrorStartupNoController">ゲームを起動する方法を特定できませんでした。</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">有効</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">削除</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">未使用のものを除去する</sys:String>
     <sys:String x:Key="LOCRenameTitle">名前の変更</sys:String>
     <sys:String x:Key="LOCCopyTitle">コピー</sys:String>
     <sys:String x:Key="LOCAddTitle">追加</sys:String>
-    <sys:String x:Key="LOCDefaultIconTitle">デフォルトアイコン</sys:String>
-    <sys:String x:Key="LOCDefaultCoverTitle">デフォルトカバー画像</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle">デフォルトの背景</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">既定のアイコン</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">既定のカバー画像</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">既定の背景画像</sys:String>
     <sys:String x:Key="LOCFinishLabel">終了</sys:String>
-    <sys:String x:Key="LOCNextLabel">次</sys:String>
+    <sys:String x:Key="LOCNextLabel">次へ</sys:String>
     <sys:String x:Key="LOCBackLabel">戻る</sys:String>
     <sys:String x:Key="LOCDoneCapLabel">完了</sys:String>
     <sys:String x:Key="LOCBackCapLabel">戻る</sys:String>
@@ -117,22 +120,22 @@
     <sys:String x:Key="LOCDismiss">消去</sys:String>
     <sys:String x:Key="LOCDismissAll">すべて消去</sys:String>
     <sys:String x:Key="LOCImportLabel">インポート</sys:String>
-    <sys:String x:Key="LOCNameLabel">名前</sys:String>
+    <sys:String x:Key="LOCNameLabel">タイトル</sys:String>
     <sys:String x:Key="LOCAuthorLabel">作者</sys:String>
     <sys:String x:Key="LOCModuleLabel">モジュール</sys:String>
     <sys:String x:Key="LOCSeriesLabel">シリーズ</sys:String>
     <sys:String x:Key="LOCVersionLabel">バージョン</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">最後のプレイ</sys:String>
-    <sys:String x:Key="LOCMostPlayedLabel">最もプレイされたゲーム</sys:String>
+    <sys:String x:Key="LOCMostPlayedLabel">最もプレイした</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">プレイ回数</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel">インストール容量</sys:String>
-    <sys:String x:Key="LOCFolderLabel">フォルダー</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">インストールサイズ</sys:String>
+    <sys:String x:Key="LOCFolderLabel">フォルダ</sys:String>
     <sys:String x:Key="LOCNotesLabel">備考</sys:String>
     <sys:String x:Key="LOCAddedLabel">追加日</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">追加日</sys:String>
     <sys:String x:Key="LOCModifiedLabel">変更日</sys:String>
     <sys:String x:Key="LOCDateModifiedLabel">更新日</sys:String>
-    <sys:String x:Key="LOCWebsiteLabel">Webサイト</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">Web サイト</sys:String>
     <sys:String x:Key="LOCPathLabel">ファイルの場所</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
     <sys:String x:Key="LOCSaveLabel">保存</sys:String>
@@ -150,7 +153,7 @@
     <sys:String x:Key="LOCInstallationLabel">インストール</sys:String>
     <sys:String x:Key="LOCActionsLabel">アクション</sys:String>
     <sys:String x:Key="LOCDownloadingLabel">ダウンロード中</sys:String>
-    <sys:String x:Key="LOCDownloadingMediaLabel">メディアをダウンロード中...</sys:String>
+    <sys:String x:Key="LOCDownloadingMediaLabel">メディアをダウンロード中…</sys:String>
     <sys:String x:Key="LOCLoadingLabel">読み込み中…</sys:String>
     <sys:String x:Key="LOCTypeLabel">タイプ</sys:String>
     <sys:String x:Key="LOCProfileLabel">プロファイル</sys:String>
@@ -158,19 +161,19 @@
     <sys:String x:Key="LOCRemoveLabel">削除</sys:String>
     <sys:String x:Key="LOCDownloadLabel">ダウンロード</sys:String>
     <sys:String x:Key="LOCSearchLabel">検索</sys:String>
-    <sys:String x:Key="LOCSearchResolutionLabel">解像度：</sys:String>
+    <sys:String x:Key="LOCSearchResolutionLabel">解像度:</sys:String>
     <sys:String x:Key="LOCSearchResolutionAnyLabel">すべて</sys:String>
     <sys:String x:Key="LOCZoomLabel">ズーム</sys:String>
-    <sys:String x:Key="LOCListViewLabel">リスト表示</sys:String>
+    <sys:String x:Key="LOCListViewLabel">リストビュー</sys:String>
     <sys:String x:Key="LOCCoversLabel">カバー</sys:String>
-    <sys:String x:Key="LOCGridViewLabel">グリッド表示</sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel">詳細表示</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">グリッドビュー</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">詳細ビュー</sys:String>
     <sys:String x:Key="LOCCustomLabel">カスタム</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCPatronsLabel">パトロン</sys:String>
     <sys:String x:Key="LOCLicenseLabel">ライセンス</sys:String>
-    <sys:String x:Key="LOCContributorsLabel">寄稿者</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Playniteを終了しています...</sys:String>
+    <sys:String x:Key="LOCContributorsLabel">貢献者</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Playnite を終了しています…</sys:String>
     <sys:String x:Key="LOCToday">今日</sys:String>
     <sys:String x:Key="LOCYesterday">昨日</sys:String>
     <sys:String x:Key="LOCMonday">月曜日</sys:String>
@@ -184,71 +187,71 @@
     <sys:String x:Key="LOCPastMonth">過去 1 ヶ月間</sys:String>
     <sys:String x:Key="LOCPastYear">過去 1 年間</sys:String>
     <sys:String x:Key="LOCMoreThenYear">1 年以上前</sys:String>
-    <sys:String x:Key="LOCSizeZeroTo100Mb">0～100MB</sys:String>
-    <sys:String x:Key="LOCSize100MbTo1Gb">100MB～1GB</sys:String>
-    <sys:String x:Key="LOCSize1GbTo5Gb">1GB～5GB</sys:String>
-    <sys:String x:Key="LOCSize5GbTo10Gb">5GB～10GB</sys:String>
-    <sys:String x:Key="LOCSize10GbTo20Gb">10GB～20GB</sys:String>
-    <sys:String x:Key="LOCSize20GbTo40Gb">20GB～40GB</sys:String>
-    <sys:String x:Key="LOCSize40GbTo100Gb">40GB～100GB</sys:String>
-    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB以上</sys:String>
-    <sys:String x:Key="LOCImportCompleted">インポート完了</sys:String>
-    <sys:String x:Key="LOCAllGames">全てのゲーム</sys:String>
-    <sys:String x:Key="LOCGameId">ゲームID</sys:String>
-    <sys:String x:Key="LOCDatabaseId">データベースID</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0 から 100MB</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100MB から 1GB</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1GB から 5GB</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5GB から 10GB</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10GB から 20GB</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20GB から 40GB</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40GB から 100GB</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB 以上</sys:String>
+    <sys:String x:Key="LOCImportCompleted">インポートが正常に完了しました。</sys:String>
+    <sys:String x:Key="LOCAllGames">すべてのゲーム</sys:String>
+    <sys:String x:Key="LOCGameId">ゲーム ID</sys:String>
+    <sys:String x:Key="LOCDatabaseId">データベース ID</sys:String>
     <sys:String x:Key="LOCPresets">プリセット</sys:String>
     <sys:String x:Key="LOCColumn">列</sys:String>
     <sys:String x:Key="LOCColumns">列</sys:String>
     <sys:String x:Key="LOCRow">行</sys:String>
-    <sys:String x:Key="LOCRows">行:</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Playアクションからアイコンを取得できませんでした。 ファイルタイプのアクションはありません。</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmpty">存在しないmetadataのみダウンロード</sys:String>
+    <sys:String x:Key="LOCRows">行</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Play アクションからアイコンを取得できませんでした。 ファイルタイプのアクションはありません。</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">不足しているメタデータのみをダウンロード</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">このオプションを有効にすると、すでに情報が含まれているデータフィールドのメタデータのダウンロードがスキップされます。</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">ゲームセレクト</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">どのゲームを新しいメタデータで更新するか選択してください。</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">データベースに登録されているすべてのゲーム</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceFiltered">現在フィルタリングされているすべてのゲーム</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceSelected">選択されたゲームのみ</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">現在フィルターが適用されているすべてのゲーム</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">選択したゲームのみ</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">公式ストア</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaDescriptionFields">Playniteによって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif">Playniteが使用するデータを改善するために、上のロゴをクリックしてigdb.comデータベースの更新に貢献することを検討してください。</sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">Playnite によって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">Playnite が使用するデータを改善するために、上のロゴをクリックして igdb.com データベースの更新に貢献することを検討してください。</sys:String>
     <!--Progress string-->
-    <sys:String x:Key="LOCProgressMetadata">メタデーターを取得中...</sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames">インストール済のゲームをインポート中...</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">{0} のゲームをインポート中...</sys:String>
-    <sys:String x:Key="LOCProgressImportinEmulatedGames">{0} からエミュレートゲームをインポートしています...</sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames">ライブラリの更新をダウンロード中...</sys:String>
+    <sys:String x:Key="LOCProgressMetadata">メタデータを取得中…</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">インストール済みのゲームをインポート中…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">{0} のゲームをインポート中…</sys:String>
+    <sys:String x:Key="LOCProgressImportinEmulatedGames">{0} からエミュレータのゲームをインポート中…</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">ライブラリの更新をダウンロード中…</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">ライブラリ内のゲームのサイズをスキャン中…</sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">インポートされたゲームのサイズをスキャンしています...</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">インポートされたゲームのサイズをスキャン中…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">ライブラリの更新完了</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources">リソースを解放中...</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">リソースを解放中…</sys:String>
     <!--Menu-->
-    <sys:String x:Key="LOCMenuConfigurationTitle">コンフィグ</sys:String>
-    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">設定...</sys:String>
-    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">プラットフォーム・エミュレータ</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">エミュレータの設定...</sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle">ライブラリーの管理...</sys:String>
+    <sys:String x:Key="LOCMenuConfigurationTitle">設定</sys:String>
+    <sys:String x:Key="LOCMenuPlayniteSettingsTitle">設定…</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">プラットフォームとエミュレータ</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">エミュレータの設定…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">ライブラリの管理…</sys:String>
     <sys:String x:Key="LOCMenuTools">ツール</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata">メタデータを取得...</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools">ソフトウェアツール...</sys:String>
-    <sys:String x:Key="LOCMenuConfigureIntegrations">連携設定</sys:String>
-    <sys:String x:Key="LOCMenuOpenClient">外部アプリを開く</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">メタデータを取得…</sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">ソフトウェアツール…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">連携設定…</sys:String>
+    <sys:String x:Key="LOCMenuOpenClient">サードパーティークライアントを開く</sys:String>
     <sys:String x:Key="LOCMenuClients">サードパーティークライアント</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">ゲームライブラリを更新</sys:String>
-    <sys:String x:Key="LOCMenuCancelLibraryUpdate">ライブラリのアップグレードをキャンセル</sys:String>
-    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">エミュレートフォルダーをアップデートする</sys:String>
+    <sys:String x:Key="LOCMenuCancelLibraryUpdate">ライブラリの更新をキャンセル</sys:String>
+    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">エミュレータゲームのフォルダを更新</sys:String>
     <sys:String x:Key="LOCMenuAddGame">ゲームを追加</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual">手動追加...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">自動スキャン...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">エミュレーターのゲームを追加...</sys:String>
-    <sys:String x:Key="LOCMenuAddWindowsStore">マイクロソフトストアアプリケーション...</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">手動追加…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">自動スキャン…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">エミュレータゲームを追加…</sys:String>
+    <sys:String x:Key="LOCMenuAddWindowsStore">マイクロソフトストアアプリケーション…</sys:String>
     <sys:String x:Key="LOCMenuAbout">Playnite について</sys:String>
     <sys:String x:Key="LOCMenuIssues">フィードバックを送信</sys:String>
     <sys:String x:Key="LOCMenuOpenFullscreen">フルスクリーンモードに切り替え</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">関連リンク</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">ヘルプ</sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport">Patreonでサポート</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Patreon でサポート</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK ドキュメンテーション</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">システムの再起動</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">システムのシャットダウン</sys:String>
@@ -256,36 +259,36 @@
     <sys:String x:Key="LOCMenuHibernateSystem">システムの休止</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">ゲームをランダムに選択</sys:String>
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDetailsPanelItems">詳細パネルに表示されるゲームフィールド：</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing">項目の間隔</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">詳細パネルに表示されるゲームフィールド:</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">アイテムの間隔</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">グリッドアイテムの背景を描画する</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">グリッドアイテムの境界幅</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">ゲームアイコンのソースがない場合</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">ゲームカバーのソースがない場合</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">ゲーム背景のソースがない場合</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">ゲーム詳細の垂直方向の間隔</sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">グリッド表示の詳細の表示場所</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition">ゲームリストの詳細表示の場所</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">グリッドビューの詳細表示の位置</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">ゲームリストの詳細表示の位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">パネル間のセパレーターを描画する</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">ゲームカバー画像の高さ</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">ゲームリストアイコンの高さ</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">フォント</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">等幅フォント</sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition">フィルターパネルの場所</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition">エクスプローラーパネルの場所</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">フィルターパネルの位置</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">エクスプローラーパネルの位置</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">カバーアートのレンダリング</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">ターゲットのアスペクト比</sys:String>
     <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">以下のオプションは、フルスクリーンモードでのレンダリングにも影響します！</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">ストレッチモード</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVDボックス</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Gamesストア</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD ボックス</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSquare">四角</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steamバナー</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam　縦カバー</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam バナー</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam 縦カバー</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">変更を適用するために再起動が必要です。</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* 変更を適用するためには再起動が必要です。</sys:String>
     <sys:String x:Key="LOCSettingsLabel">設定</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">一般設定</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelLabel">トップパネル</sys:String>
@@ -293,11 +296,11 @@
     <sys:String x:Key="LOCSettingsGameDetailsLabel">ゲーム詳細</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">レイアウト</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">詳細設定</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLabel">フルスクリーン設定</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">フルスクリーン</sys:String>
     <sys:String x:Key="LOCSettingsInputLabel">入力</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">パフォーマンス</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">メタデータ</sys:String>
-    <sys:String x:Key="LOCSettingsUpdating">アップデート中...</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">更新</sys:String>
     <sys:String x:Key="LOCSettingsSearch">検索</sys:String>
     <sys:String x:Key="LOCSettingsBackup">バックアップ</sys:String>
     <sys:String x:Key="LOCMenuBackupData">ライブラリデータのバックアップ</sys:String>
@@ -305,59 +308,59 @@
     <sys:String x:Key="LOCSettingsImportLabel">ライブラリの変更を自動的にインポート</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">データベースファイルの場所が無効です。正しいファイルパスを設定する必要があります。</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">アカウント名は空にできません。</sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">ゲームをインポートした後にメタデータをダウンロード</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized">最小化で起動</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot">PC起動時にPlayniteを起動</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">コンピュータの起動時に、Playniteを実行するよう登録することができませんでした。</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">ゲームのインポート後にメタデータをダウンロード</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">最小化した状態で起動</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">PC 起動時に Playnite を起動</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">トレイに閉じた状態で起動</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">コンピュータの起動時に、Playnite を実行するよう登録することができませんでした。</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">フルスクリーンモードで起動</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">非同期画像読み込み</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">遅いイメージロード時間と引き換えに、ゲームリストのスクロールの滑らかさを改善します。</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">カバー画像がない場合はゲーム名を表示する</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">グリッドビューにゲーム名を表示する</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">画像の読み込み時間を遅くする代わりに、ゲームリストのスクロールの滑らかさを向上させることができます。</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">カバー画像がない場合はゲーム名を表示</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">グリッドビューでゲーム名を表示</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">インストールされていないゲームの暗転表示</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">詳細ビューリストにゲームのアイコンを表示する</sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount">グループの説明にアイテム数を表示する</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">フィルタおよびエクスプローラパネルに割り当てられたフィールドのみを表示</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">詳細ビューリストにゲームのアイコンを表示</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">グループの説明にアイテム数を表示</sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">フィルターおよびエクスプローラーパネルで未使用の項目を隠す</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">ハードウェアアクセラレーションを無効にする</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">表示崩れなどのUIの問題が発生した場合に使用します。</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">クイックランチリストの非表示ゲームを表示</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">ジャンプリストとトレイメニューリストに影響を与えます。</sys:String>
-    <sys:String x:Key="LOCSettingsQuicLaunchItems">クイックランチの項目数</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">ウィンドウ背景にゲーム背景を使用する。</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">表示崩れなどの UI の問題が発生した場合に使用します。</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">クイック起動リストに非表示ゲームを表示</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">ジャンプリストとトレイメニューリストに影響します。</sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">クイック起動の項目数</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">ウィンドウの背景にゲームの背景画像を使用する</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">背景をぼかす</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">高品質</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">背景を暗くする</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">グリッド表示</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">グリッドビューで表示</sys:String>
     <sys:String x:Key="LOCSettingsSkin">テーマ</sys:String>
     <sys:String x:Key="LOCSettingsSkinColor">テーマのプロファイル</sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen">フルスクリーンモード用テーマ</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen">フルスクリーンモード用テーマのプロファイル</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">フルスクリーンテーマ</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">フルスクリーンテーマのプロファイル</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">データベースの場所</sys:String>
-    <sys:String x:Key="LOCSettingsLoginStatus">ログイン状態：</sys:String>
+    <sys:String x:Key="LOCSettingsLoginStatus">ログイン状態:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite 設定</sys:String>
-    <sys:String x:Key="LOCSettingsClearWebCache">Webキャッシュを削除</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCache">Web キャッシュを削除</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">アカウントのリンク中に発生した問題を解決できる可能性があります。</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">システムトレイアイコンを表示する</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray">システムトレイへ最小化</sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray">アプリウィンドウが閉じられたときにPlayniteをシステムトレイに最小化</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameStart">ゲーム起動時：</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">システムトレイアイコンを表示</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Playnite をシステムトレイに最小化</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">アプリウィンドウを閉じたときに Playnite をシステムトレイに最小化</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">ゲーム起動時:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">ゲーム終了後:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">プレイ日数を示すプレイ時間に書式を適用</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">日付の書式:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">これにより、リンクされているすべてのサービスからログアウトします。 アプリケーションの再起動が必要です。続行しますか？</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">キャッシュをクリアしますか？</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">新しいテーマを適用するにはPlayniteの再起動が必要です。</sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes">その他のテーマを入手</sys:String>
-    <sys:String x:Key="LOCSettingsCreateThemes">新しいテーマの作成</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">新しいテーマを適用するには Playnite の再起動が必要です。</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">さらにテーマを入手</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">新しいテーマを作る</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">さらに拡張機能を入手</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">新しい拡張機能を作る</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">翻訳を手伝う</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">新しい設定を有効にするためにPlayniteを再起動する必要があります。すぐに再起動しますか？
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">新しい設定を適用するためには Playnite を再起動する必要があります。今すぐ再起動しますか？
 
-現在進行中のタスク（ダウンロード）は再起動でキャンセルされます。</sys:String>
-    <sys:String x:Key="LOCSettingsRestartTitle">Playniteを再起動しますか？</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playniteはライブラリファイルを自動的に移動しません。場所を変更する前にそれらを移動/コピーする必要があります。ターゲットの場所にライブラリが存在しない場合、新しいライブラリが作成されます。
+現在進行中のタスク (ダウンロード) は再起動でキャンセルされます。</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Playnite を再起動しますか？</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite はライブラリファイルを自動的に移動しません。場所を変更する前にそれらを移動/コピーする必要があります。ターゲットの場所にライブラリが存在しない場合、新しいライブラリが作成されます。
 
 新しいデータベースの場所は、アプリケーションの再起動後にのみ使用されます。</sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">「閉じる」アクションが設定されている場合は、ゲームプレイ時間が記録されません。</sys:String>
@@ -367,54 +370,59 @@
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">メイン画面に背景画像を表示</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">メタデータを再ダウンロードせずに既存のゲームに遡って適用することはありません。</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportMode">ゲームのプレイ時間をライブラリにインポート:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">常に表示</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Playnite データベース内のゲームについて、ライブラリプラグインから報告されたプレイ時間をいつ Playnite にインポートするかを設定します。
+この機能を利用するには、ゲームの処理を行うライブラリプラグインのサポートが必要です。
+
+常に有効: Playnite データベース内の新しくインポートされたゲームと既存のゲームのプレイ時間をインポートします。
+新しくインポートされたゲームのみ: 新しくインポートされたゲームのプレイ時間のみをインポートします。
+常に無効: いかなる状況でもプレイ時間をインポートしません。</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">常に有効</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">新しくインポートされたゲームのみ</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">常に無効</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">デスクトップモードでゲームコントローラーのサポートを有効にします。</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">ガイドボタンでフルスクリーンモードを開く</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">新しく取り込んだゲームのメタデータの自動ダウンロード設定</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">ターゲットのディスプレイ</sys:String>
-    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">常にプライマリーのディスプレイを使用する</sys:String>
+    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">常にプライマリディスプレイを使用する</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">ゲームのタイトルを表示</sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryStatus">バッテリーの状態を表示</sys:String>
-    <sys:String x:Key="LOCSettingsShowBatteryPercentage">バッテリー残量の表示</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryStatus">バッテリー状態を表示</sys:String>
+    <sys:String x:Key="LOCSettingsShowBatteryPercentage">バッテリー残量を表示</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">時計を表示</sys:String>
-    <sys:String x:Key="LOCSettingsHideMouseCursor">マウスカーソルを非表示にする</sys:String>
+    <sys:String x:Key="LOCSettingsHideMouseCursor">マウスカーソルを隠す</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">クイックフィルター内のインストールゲームのみ表示</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">ボタン表記</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">レイアウト</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">横スクロール表示</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">以下のオプションから選択</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable">利用可能な設定がありません。</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">利用可能な設定がありません</sys:String>
     <sys:String x:Key="LOCSettingsErrorLoadingSettings">設定の読み込みに失敗しました</sys:String>
     <sys:String x:Key="LOCSettingsScriptingNotice">これらのスクリプトは、ライブラリ内のすべてのゲームに対して実行されます。ゲームの詳細を編集する際に、個々のスクリプトを各ゲームに個別に割り当てることができます。</sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">背景画像の遷移をアニメーション化する</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">背景画像の遷移をアニメーション化</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">フォントサイズ</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">オート</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">自動</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">エイリアス</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">グレースケール</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">クリアタイプ</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">最適</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">表示</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode">書式設定</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode">テキストのレンダリング モード</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice">現在テキストのレンダリングとフォーマットのオプションは、ゲームの説明テキストには適用されません。</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">Ideal (最適)</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Display (GDI 互換)</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">テキストの書式設定</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">テキストのレンダリングモード</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">テキストのレンダリングと書式のオプションは現在、ゲームの説明文には適用されません。</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">背景画像のプリロード</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">有効にすると、Playniteはメタデータのダウンロード中に背景のアートワークをダウンロードし、より多くのディスク容量を使用して、オフライン時にアートワークを利用できるようにします。
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">有効にすると、Playnite はメタデータのダウンロード中に背景のアートワークをダウンロードし、より多くのディスク容量を使用して、オフライン時にアートワークを利用できるようにします。
 
 無効にすると、背景アートワークは最初に必要なときにのみダウンロードされ、スペースが少なくなりますが、アートワークが表示される前に遅延が発生し、オフライン時には一部の画像が利用できなくなる場合があります。</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">ゲーム終了時に他のクライアント（Steam等）を自動的に終了する</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">クライアントシャットダウンの猶予期間（秒）</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">ゲームのセッションが指定時間（秒）より短いときに閉じない</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">以下のクライアントは自動的に閉じる：</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">ゲーム終了時に他のクライアント (Steam 等) を自動的に終了する</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">クライアントシャットダウンの猶予期間 (秒)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">ゲームのセッションが指定時間 (秒) より短いときに閉じない</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">以下のクライアントを自動的に閉じる:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">クライアント自動終了</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">除外リストのインポート</sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">大きすぎるゲームメディアを割り当てるときに警告を表示する</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">インポートの除外リスト</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">大きすぎるゲームメディアを割り当てるときに警告を表示</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">ディレクトリを開くコマンド</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">年齢制限機関の設定</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">ライブラリの更新時にゲームのインストールサイズを更新</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">前回のスキャン以降にファイルの変更が検出された場合、ゲームのインストールサイズをスキャンして更新します。</sys:String>
     <sys:String x:Key="LOCStrechNone">無し</sys:String>
     <sys:String x:Key="LOCStrechFill">埋める</sys:String>
     <sys:String x:Key="LOCStrechUniform">均等</sys:String>
@@ -424,12 +432,14 @@
     <sys:String x:Key="LOCDockTop">上</sys:String>
     <sys:String x:Key="LOCDockBottom">下</sys:String>
     <sys:String x:Key="LOCImportError">インポートエラー</sys:String>
-    <sys:String x:Key="LOCLoginRequired">認証が必要</sys:String>
-    <sys:String x:Key="LOCLoginFailed">認証に失敗</sys:String>
+    <sys:String x:Key="LOCLoginRequired">認証が必要です</sys:String>
+    <sys:String x:Key="LOCLoginFailed">認証に失敗しました</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">ウェブビューの代替レンダリングモード</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">内蔵認証ダイアログなどのウェブビューで問題が発生する場合に使用します。</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">大きなゲーム説明文を分割して読み込む</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">大きな説明文はゲームの選択時に顕著なラグを引き起こす可能性があります。
+
+有効にすると、説明文の一部のみが最初に読み込まれ、残りは必要に応じて読み込まれるようになります。</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">メタデータのインポート</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">メタデータを取得</sys:String>
@@ -439,17 +449,17 @@
     <sys:String x:Key="LOCEmuWizardWindowTitle">エミュレーションインポートウィザード</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro">このウィザードは、コンソールエミュレータのダウンロードとインポート、エミュレートされたゲームのインポート手順を案内します。</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">後から、いつでもメインメニューを介して、エミュレータやゲームを追加することができます。(エミュレータ設定の場合は[ツール]メニュー、エミュレートゲームの場合は[ゲームの追加]メニュー)</sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription">以下はPlayniteが認識し自動的に設定できるエミュレータのリストです。あなたはこれらのウェブサイトを訪問し、ダウンロードしてインストールすることができます。エミュレータをインストールしたら、次の画面に進んでそれらをPlayniteにインポートします。
+    <sys:String x:Key="LOCEmuDownloadDescription">以下は Playnite が認識し自動的に設定できるエミュレータのリストです。あなたはこれらのウェブサイトを訪問し、ダウンロードしてインストールすることができます。エミュレータをインストールしたら、次の画面に進んでそれらを Playnite にインポートします。
         
 また、後で設定メニューからカスタムエミュレータを設定してインポートすることもできます。</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">「フォルダから自動検出」ボタンを押すと、PCにインストールされているエミュレータをインポートできます。Playniteは選択されたフォルダから既知のエミュレータを探し、それらをインポートするオプションを提供します。ボタンを複数回使用して複数のフォルダからインポートすることができ、エミュレータは現在のリストの一番下に追加されます。</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">「フォルダから自動検出」ボタンを押すと、PC にインストールされているエミュレータをインポートできます。Playnite は選択されたフォルダから既知のエミュレータを探し、それらをインポートするオプションを提供します。ボタンを複数回使用して複数のフォルダからインポートすることができ、エミュレータは現在のリストの一番下に追加されます。</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro">「エミュレータを使用してフォルダをスキャン」ボタンを押すことでゲームをインポートできます。適切なエミュレータを選択すると、Playniteにどのファイルタイプをスキャンしてインポートするかを指示します。ボタンを複数回使用して複数のフォルダからインポートすることができ、ゲームは現在のリストの一番下に追加されます。</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">インポート用に選択されたエミュレーターがありません。 最初にエミュレータを設定しないと、エミュレートされたゲームを自動的にインポートすることはできません。 続行してインポート処理を終了しますか？</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playniteにエミュレータが設定されていません。 エミュレータを最初に設定し、適切なファイルタイプを選択しないとゲームをインポートできません。 今すぐエミュレータを追加しますか？</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">インポート用のエミュレータが選択されていません。エミュレータを設定しない限り、エミュレートされたゲームを自動的にインポートすることはできません。 インポート処理を続行して終了してもよろしいですか？</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Playnite に設定されたエミュレータがありません。まずエミュレータを設定し、適切なファイルタイプを選択しなければ、ゲームをインポートすることはできません。エミュレータを追加しますか？</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">エミュレータを使用してフォルダをスキャン</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">ファイルを選択</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">フォルダから自動検出</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">エミュレータの設定...</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">フォルダから自動検出…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">エミュレータの設定…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">スキャン中</sys:String>
     <sys:String x:Key="LOCEmuWizardScanningSpecific">{0} をスキャン中…</sys:String>
     <!--FirstTime Wizard-->
@@ -458,60 +468,60 @@
         
 いつでも'Playnite'のメインメニューから、あらゆるプラットフォーム用のカスタムゲームを追加できます。   
     </sys:String>
-    <sys:String x:Key="LOCFirstExternalTitle">統合ライブラリ</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">以下のサービスから自動的にゲームをインポートします。それ以降のゲームの変更(インストール状況)はPlayniteの起動時または手動で起動されたときに自動的に更新されます。選択した設定は、初回およびそれ以降のすべてのインポートに影響します。</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">ライブラリ連携</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">以下は Playnite がサポートしているライブラリの一覧です。インストールしたいものを選択してください。
+
+「アドオン」メニューから追加の連携機能をインストールすることができます。</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">設定完了</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初期設定は完了しました。「設定」メニューから後で設定を変更できます。
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">初期設定が完了しました。メインメニューから追加の連携を追加するだけでなく、後ですべての設定を変更できることを忘れないでください。</sys:String>
+    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">1 つ以上の拡張機能のダウンロードに失敗しました。
 
-Playniteロゴメニューをクリックすればほかのゲームを追加できます。</sys:String>
-    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">1つまたは複数の拡張機能のダウンロードに失敗しました。
-
-最初の実行ウィザードが終了した後に、アドオンメニューから統合機能を再ダウンロードしてみてください。</sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon">{0} 機能をダウンロードしています...</sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
+ウィザードの初回実行が終了したら、アドオンメニューから連携機能の再ダウンロードをお試しください。</sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">{0} 連携機能をダウンロードしています…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">推奨される連携リストをダウンロード中…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">推奨される連携リストをダウンロードできませんでした。後でアドオンメニューから再ダウンロードできます。</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">プラットフォームとエミュレータを設定する</sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle">エミュレータを設定する</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">エミュレータの設定</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">プラットフォーム</sys:String>
     <sys:String x:Key="LOCPlatformTitle">プラットフォーム</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">エミュレータ</sys:String>
     <sys:String x:Key="LOCEmulatorTitle">エミュレータ</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">プラットフォームを追加</sys:String>
-    <sys:String x:Key="LOCSelectIconTitle">アイコンの選択</sys:String>
-    <sys:String x:Key="LOCSelectCoverTitle">カバーの選択</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">アイコンを選択</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">カバーを選択</sys:String>
     <sys:String x:Key="LOCSelectImageTitle">画像を選択</sys:String>
     <sys:String x:Key="LOCSelectItemTitle">項目を選択</sys:String>
     <sys:String x:Key="LOCSelectBackgroundTitle">背景を選択</sys:String>
-    <sys:String x:Key="LOCSelectFileTitle">ファイルの選択</sys:String>
-    <sys:String x:Key="LOCSelectUrlTitle">URLの選択</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">ファイルを選択</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">URL を選択</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">エミュレータを追加</sys:String>
     <sys:String x:Key="LOCSupportedPlatformsTitle">サポートされているプラットフォーム</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">プラットフォームの変更を保存しますか？</sys:String>
     <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">エミュレータの変更を保存しますか？</sys:String>
-    <sys:String x:Key="LOCExecutableTitle">実行可能</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">実行ファイル</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">引数</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">作業フォルダ</sys:String>
     <sys:String x:Key="LOCSupportedFilesTitle">サポートされているファイルの種類</sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton">エミュレータをインポートする</sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton">エミュレータをダウンロードする</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">エミュレータをインポート…</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">エミュレータをダウンロード…</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">既知のエミュレータプロファイルからプリセット引数を読み込む</sys:String>
     <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">エミュレータ {0} を削除してもよろしいですか？       
 現在 {1} 個のゲームで使用されています。</sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">プラットフォーム {0} を削除してもよろしいですか？       
 現在 {1} 個のゲームおよび {2} 個のエミュレータで使用されています。</sys:String>
-    <sys:String x:Key="LOCEmulatorSettingsHelp">設定ヘルプ</sys:String>
+    <sys:String x:Key="LOCEmulatorSettingsHelp">設定のヘルプ</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">並べ替え</sys:String>
-    <sys:String x:Key="LOCMenuSortByDirection">ソート順</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">並べ替え方向</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">グループ化</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">昇順</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">降順</sys:String>
-    <sys:String x:Key="LOCMenuGroupDont">グループ分けしない</sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider">ライブラリでグループ分け</sys:String>
-    <sys:String x:Key="LOCMenuGroupCategory">カテゴリーでグループ分け</sys:String>
-    <sys:String x:Key="LOCMenuGroupPlatform">プラットフォームでグループ分け</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">グループ化しない</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">ライブラリでグループ化</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">カテゴリーでグループ化</sys:String>
+    <sys:String x:Key="LOCMenuGroupPlatform">プラットフォームでグループ化</sys:String>
     <sys:String x:Key="LOCViewType">ビュータイプ</sys:String>
-    <sys:String x:Key="LOCMenuView">表示</sys:String>
+    <sys:String x:Key="LOCMenuView">ビュー</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">エクスプローラーパネル</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">フィルターパネル</sys:String>
     <!--Game fields-->
@@ -533,33 +543,33 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCGameDevelopersTitle">開発元</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">タグ</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">パブリッシャー</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus">インストール状況</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">インストール状態</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTitle">すべてに一致</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">有効にすると、すべてのフィルタの項目を使用しているゲームだけがビューに含まれます。
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">有効にすると、すべてのフィルターの項目を使用しているゲームだけがビューに含まれます。
 無効の場合、いずれかのフィルターの項目を使用しているゲームがビューに含まれます。</sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle">インストール済</sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle">インストール済</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">インストール済み</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">インストール済み</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">未インストール</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">非表示</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">お気に入り</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle">HDRを有効にする</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">HDR を有効にする</sys:String>
     <sys:String x:Key="LOCGameHdrTooltip">有効にすると、ゲームを開始する前にプライマリディスプレイでHDRが有効になります。</sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">※HDRはあなたのプライマリディスプレイではサポートされていないことに注意してください。</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">※HDR はあなたのプライマリディスプレイではサポートされていないことに注意してください。</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">最後のプレイ</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">カテゴリー</sys:String>
-    <sys:String x:Key="LOCGameDescriptionTitle">あらすじ</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle">インストール先</sys:String>
+    <sys:String x:Key="LOCGameDescriptionTitle">説明</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">インストールフォルダ</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">カバー画像</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">関連リンク</sys:String>
-    <sys:String x:Key="LOCGameROMTitle">ROM/ISOイメージのパス</sys:String>
+    <sys:String x:Key="LOCGameROMTitle">ROM/ISO イメージのパス</sys:String>
     <sys:String x:Key="LOCGenreLabel">ジャンル</sys:String>
     <sys:String x:Key="LOCGenresLabel">ジャンル</sys:String>
-    <sys:String x:Key="LOCCompanyLabel">会社</sys:String>
+    <sys:String x:Key="LOCCompanyLabel">企業</sys:String>
     <sys:String x:Key="LOCCompaniesLabel">企業</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">開発元</sys:String>
     <sys:String x:Key="LOCDevelopersLabel">開発元</sys:String>
     <sys:String x:Key="LOCPublisherLabel">パブリッシャー</sys:String>
-    <sys:String x:Key="LOCPublishersLabel">発行者</sys:String>
+    <sys:String x:Key="LOCPublishersLabel">パブリッシャー</sys:String>
     <sys:String x:Key="LOCCategoryLabel">カテゴリー</sys:String>
     <sys:String x:Key="LOCCategoriesLabel">カテゴリー</sys:String>
     <sys:String x:Key="LOCTagLabel">タグ</sys:String>
@@ -570,61 +580,61 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCAgeRatingsLabel">年齢別レーティング</sys:String>
     <sys:String x:Key="LOCRegionLabel">地域</sys:String>
     <sys:String x:Key="LOCRegionsLabel">地域</sys:String>
-    <sys:String x:Key="LOCSourceLabel">データ元</sys:String>
+    <sys:String x:Key="LOCSourceLabel">ソース</sys:String>
     <sys:String x:Key="LOCSourcesLabel">ソース</sys:String>
     <sys:String x:Key="LOCRecentActivityLabel">最近のアクティビティ</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">データベースエラー</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenError">ライブラリデータベースのオープンに失敗しました。</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError">ライブラリデータベースを開けませんでした。</sys:String>
     <sys:String x:Key="LOCDatabaseNotOpenedError">データベースが開かれていません。</sys:String>
     <sys:String x:Key="LOCDatabaseOpenAccessError">ライブラリデータベースにアクセスできません。ファイル &quot;{0}&quot;は別のプロセスによって使用されているか、アクセスできない場所にあります。</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationError">診断パッケージを作成できませんでした。</sys:String>
     <sys:String x:Key="LOCDiagPackageUploadError">診断パッケージを自動的にアップロードできませんでした。</sys:String>
-    <sys:String x:Key="LOCDiagPackageSentSuccess">診断の情報の送信に成功しました。</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">診断情報が正常に送信されました。</sys:String>
     <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">診断パッケージが作成され、正常にアップロードされました。
 クラッシュレポートに次のIDを添付してください:</sys:String>
 
-    <sys:String x:Key="LOCLibraryImportError">{0}からゲームをインポートできませんでした。</sys:String>
-    <sys:String x:Key="LOCLibraryImportEmulatedError">{0}からエミュレートされたゲームをインポートできませんでした。</sys:String>
+    <sys:String x:Key="LOCLibraryImportError">{0} からゲームをインポートできませんでした。</sys:String>
+    <sys:String x:Key="LOCLibraryImportEmulatedError">{0} からエミュレータゲームをインポートできませんでした。</sys:String>
     <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">選択したエミュレータプロファイルではゲームを検索できません。プロファイルにファイル拡張子やプラットフォームが含まれていません。</sys:String>
-    <sys:String x:Key="LOCStartGenericError">Playniteは起動に失敗しました。実行中のすべてのPlayniteのプログラムを閉じてからやり直してください。</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playnite は起動に失敗しました。実行中のすべての Playnite のプログラムを閉じてからやり直してください。</sys:String>
     <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">テーマ &quot;{0}&quot;、カラープロファイル &quot;{1}&quot;の適用に失敗しました。
         
 {2}</sys:String>
-    <sys:String x:Key="LOCURLFormatError">リンクを開けません。URLが無効な形式です。</sys:String>
+    <sys:String x:Key="LOCURLFormatError">リンクを開けません。URL が無効な形式です。</sys:String>
     <sys:String x:Key="LOCAppStartupError">アプリケーションの起動に失敗しました。</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Webビューコンポーネントの初期化に失敗しました。Playniteは起動処理を続けることができません。
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Webview コンポーネントの初期化に失敗しました。Playnite は起動処理を続行できません。
 
 詳細は https://playnite.link/cefstartup</sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">定義ファイルがないか壊れているためエミュレータをインポートできません。</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">XInputのインターフェースの初期化に失敗しました</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">定義ファイルが見つからないか壊れているため、エミュレータをインポートできません。</sys:String>
+    <sys:String x:Key="LOCXInputInitErrorMessage">XInput インターフェースの初期化に失敗しました。</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">メニューアクションの実行に失敗しました。</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ゲーム詳細を編集</sys:String>
     <sys:String x:Key="LOCUseExeIcon">プレイアクションから</sys:String>
     <sys:String x:Key="LOCImageURL">画像 URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">関連リンクを追加</sys:String>
-    <sys:String x:Key="LOCAddRom">ROMの追加</sys:String>
+    <sys:String x:Key="LOCAddRom">ROM の追加</sys:String>
     <sys:String x:Key="LOCSaveChanges">保存</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip">編集中のゲームにフィールドの変更を適用します。</sys:String>
     <sys:String x:Key="LOCAddAction">アクションの追加</sys:String>
     <sys:String x:Key="LOCDeleteAction">アクションの削除</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">プレイアクションの削除</sys:String>
     <sys:String x:Key="LOCAddGames">ゲームを追加</sys:String>
-    <sys:String x:Key="LOCScanFolder">フォルダをスキャンする</sys:String>
+    <sys:String x:Key="LOCScanFolder">フォルダをスキャン…</sys:String>
     <sys:String x:Key="LOCDetectInstalled">インストール済みを検出</sys:String>
-    <sys:String x:Key="LOCBrowse">参照</sys:String>
+    <sys:String x:Key="LOCBrowse">参照…</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Playnite を開く</sys:String>
     <sys:String x:Key="LOCProfileSettings">プロファイル設定</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">ゲーム名は空欄にできません。</sys:String>
     <sys:String x:Key="LOCEmptyTrackingFolderError">ゲームアクショントラッキングディレクトリを空にすることはできません。</sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError">メタデータを検索する前にゲーム名を空欄にすることはできません。</sys:String>
     <sys:String x:Key="LOCInvalidGameData">無効なゲームデータ</sys:String>
-    <sys:String x:Key="LOCURLInputInfo">http:// または https:// で始まる有効なWeb URLを入力してください。</sys:String>
+    <sys:String x:Key="LOCURLInputInfo">http:// または https:// で始まる有効な Web URL を入力してください。</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">URLの選択</sys:String>
     <sys:String x:Key="LOCMetadataDownloadError">メタデータをダウンロードできませんでした: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">ダウンロードエラー</sys:String>
-    <sys:String x:Key="LOCClearFilters">フィルター解除</sys:String>
+    <sys:String x:Key="LOCClearFilters">フィルターを解除</sys:String>
     <sys:String x:Key="LOCPrivateAccount">非公開アカウント</sys:String>
     <sys:String x:Key="LOCPublicAccount">公開アカウント</sys:String>
     <sys:String x:Key="LOCAPIKey">API キー</sys:String>
@@ -635,16 +645,16 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCUninstalling">アンインストール中</sys:String>
     <sys:String x:Key="LOCGameLaunching">起動中</sys:String>
     <sys:String x:Key="LOCGameRunning">実行中</sys:String>
-    <sys:String x:Key="LOCInvalidURL">無効なURL</sys:String>
+    <sys:String x:Key="LOCInvalidURL">無効な URL</sys:String>
     <sys:String x:Key="LOCDoNothing">何もしない</sys:String>
     <sys:String x:Key="LOCMinimize">最小化</sys:String>
     <sys:String x:Key="LOCRestoreWindow">ウィンドウを復元する</sys:String>
     <sys:String x:Key="LOCClose">終了</sys:String>
     <sys:String x:Key="LOCChange">変更</sys:String>
     <sys:String x:Key="LOCAdvanced">高度な設定</sys:String>
-    <sys:String x:Key="LOCNever">未プレイ</sys:String>
-    <sys:String x:Key="LOCCompletionStatus">進行状況</sys:String>
-    <sys:String x:Key="LOCCompletionStatuses">進行状況</sys:String>
+    <sys:String x:Key="LOCNever">値なし</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">プレイ状況</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">プレイ状況</sys:String>
     <sys:String x:Key="LOCUserScore">スコア</sys:String>
     <sys:String x:Key="LOCCriticScore">批評家スコア</sys:String>
     <sys:String x:Key="LOCCommunityScore">ユーザースコア</sys:String>
@@ -656,18 +666,18 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCExtensions">拡張機能</sys:String>
     <sys:String x:Key="LOCExtensionID">拡張 ID</sys:String>
     <sys:String x:Key="LOCReloadScripts">スクリプトの再読み込み</sys:String>
-    <sys:String x:Key="LOCStartInteractivePowerShell">インタラクティブSDK PowerShell</sys:String>
+    <sys:String x:Key="LOCStartInteractivePowerShell">インタラクティブ SDK PowerShell</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">すべてのスクリプトが正常に再読み込みされました。</sys:String>
     <sys:String x:Key="LOCNoGamesFound">指定された検索/フィルター条件に一致するゲームは見つかりませんでした</sys:String>
     <sys:String x:Key="LOCNoItemsFound">アイテムが見つかりません</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">デスクトップモードに切り替え</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Playnite を終了</sys:String>
     <sys:String x:Key="LOCLibraries">ライブラリ</sys:String>
-    <sys:String x:Key="LOCUpdateAll">一括更新</sys:String>
-    <sys:String x:Key="LOCExtensionCreatedBy">開発元：</sys:String>
-    <sys:String x:Key="LOCExtensionVersion">バージョン：</sys:String>
-    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
-    <sys:String x:Key="LOCExtensionModule">モジュール：</sys:String>
+    <sys:String x:Key="LOCUpdateAll">すべて更新</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">開発元:</sys:String>
+    <sys:String x:Key="LOCExtensionVersion">バージョン:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">更新日:</sys:String>
+    <sys:String x:Key="LOCExtensionModule">モジュール:</sys:String>
     <sys:String x:Key="LOCLibrary">ライブラリ</sys:String>
     <sys:String x:Key="LOCStatistics">統計</sys:String>
     <sys:String x:Key="LOCAll">すべて</sys:String>
@@ -684,7 +694,7 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCDefault">デフォルト</sys:String>
     <sys:String x:Key="LOCSelect">選択</sys:String>
     <sys:String x:Key="LOCSelectAll">すべて選択</sys:String>
-    <sys:String x:Key="LOCDeselectAll">全て選択解除</sys:String>
+    <sys:String x:Key="LOCDeselectAll">すべての選択を解除</sys:String>
     <sys:String x:Key="LOCFirst">最初</sys:String>
     <sys:String x:Key="LOCRandom">ランダム</sys:String>
     <sys:String x:Key="LOCUserSelect">ユーザー選択</sys:String>
@@ -705,53 +715,53 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCMedataDiffWindowTitle">インポートするメタデータの選択</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">インポートするゲームを選択</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">メタデータ検索</sys:String>
-    <sys:String x:Key="LOCUpdaterWindowTitle">利用可能なアップデート</sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">更新が利用可能です</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">最終更新からの変更点</sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate">更新をダウンロードしてインストールする</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">更新をダウンロードしてインストール</sys:String>
     <sys:String x:Key="LOCCheckForUpdates">更新を確認</sys:String>
     <sys:String x:Key="LOCUpdateError">更新エラー</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">新しいバージョンを確認できませんでした。</sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">新しいバージョンが見つかりません。最新です。</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">新しいバージョンは見つかりませんでした。最新版です。</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">更新のダウンロードとインストールに失敗しました。</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">いくつかのバックグラウンドタスクが現在進行中です。キャンセルしてアップデートを続けますか？</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">いくつかのバックグラウンドタスクが現在進行中です。 キャンセルしてPlayniteを終了しますか？</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">いくつかのバックグラウンドタスクが現在進行中です。キャンセルして更新を続けますか？</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">いくつかのバックグラウンドタスクが現在進行中です。 キャンセルして Playnite を終了しますか？</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">いくつかのバックグラウンドタスクが現在進行中です。モードを切り替えるとタスクがキャンセルされますが、それでも切り替えますか?</sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">このアプリの更新が利用可能です。</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite の更新が利用可能です。</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">テーマリストを再読み込み</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">選択したテーマを適用</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">ファイルの変更を監視する</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip">ソースファイルが変更されたとき、自動的にテーマを適用する</sys:String>
     <sys:String x:Key="LOCScriptRuntime">スクリプト実行時間</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription">ゲームを開始する前に実行するスクリプト</sys:String>
-    <sys:String x:Key="LOCPostScriptDescription">ゲームを終了した後に実行するスクリプト</sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription">ゲームを開始した後に実行するスクリプト</sys:String>
-    <sys:String x:Key="LOCAppScriptStartupDescription">アプリケーション起動時に実行</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">ゲームの開始前に実行</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">ゲームの終了後に実行</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">ゲームの開始後に実行</sys:String>
+    <sys:String x:Key="LOCAppScriptStartupDescription">アプリケーションの起動時に実行</sys:String>
     <sys:String x:Key="LOCAppScriptShutdownDescription">アプリケーションのシャットダウン時に実行</sys:String>
     <sys:String x:Key="LOCScriptTypeStarting">ゲーム起動時のスクリプト</sys:String>
     <sys:String x:Key="LOCScriptTypeStarted">ゲーム実行時のスクリプト</sys:String>
     <sys:String x:Key="LOCScriptTypeExit">ゲーム終了時のスクリプト</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">グローバルスクリプトの実行</sys:String>
     <sys:String x:Key="LOCStatsGlobal">全般</sys:String>
-    <sys:String x:Key="LOCStatsFiltered">フィルター</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">フィルター済み</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">現在</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">新規</sys:String>
     <sys:String x:Key="LOCTestScript">スクリプトをテスト</sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">選択した項目のみを表示する</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">選択した項目のみを表示</sys:String>
     <!--Game actions-->
-    <sys:String x:Key="LOCSaveAsDefault">デフォルトとして保存する</sys:String>
+    <sys:String x:Key="LOCSaveAsDefault">デフォルトとして保存</sys:String>
     <sys:String x:Key="LOCFavoriteGame">お気に入りに追加</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">お気に入りから削除</sys:String>
     <sys:String x:Key="LOCHideGame">このゲームを非表示</sys:String>
-    <sys:String x:Key="LOCUnHideGame">隠しから削除</sys:String>
-    <sys:String x:Key="LOCEnableHdr">HDRを有効にする</sys:String>
-    <sys:String x:Key="LOCDisableHdr">HDRを無効にする</sys:String>
-    <sys:String x:Key="LOCEditGame">編集</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize">インストール容量を計算</sys:String>
-    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel">インストール容量</sys:String>
+    <sys:String x:Key="LOCUnHideGame">非表示から削除</sys:String>
+    <sys:String x:Key="LOCEnableHdr">HDR を有効にする</sys:String>
+    <sys:String x:Key="LOCDisableHdr">HDR を無効にする</sys:String>
+    <sys:String x:Key="LOCEditGame">編集…</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">インストールサイズを計算</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">インストールサイズを計算する (すべてのゲーム)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">インストールサイズを計算する (不足しているデータのみ)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">インストールサイズ</sys:String>
     <sys:String x:Key="LOCSetGameCategory">カテゴリーを設定</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus">進行状況</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">プレイ状況を設定</sys:String>
     <sys:String x:Key="LOCRemoveGame">削除</sys:String>
     <sys:String x:Key="LOCPlayGame">プレイ</sys:String>
     <sys:String x:Key="LOCInstallGame">インストール</sys:String>
@@ -764,70 +774,70 @@ Playniteロゴメニューをクリックすればほかのゲームを追加で
     <sys:String x:Key="LOCMoreAction">さらに表示</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin">ライブラリプラグインで管理</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip">ゲームの開始プロセスは、このゲームを担当するライブラリプラグインによって管理されます。</sys:String>
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">'{0}' ゲームに関する関連情報は指定されたページにはありません。</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">ヒント：[編集]メニューオプションを使用して単一のゲームを編集しながら、より高度なメタデータダウンロードプロセスを使用できます。</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">指定されたページにゲーム「{0}」に関する関連情報は見つかりませんでした。</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">ヒント:「編集」メニューオプションで単一のゲームを編集中、より高度なメタデータのダウンロード処理を使用できます。</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">何らかのアクションが進行中のときは利用できません。</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">説明テキストはHTML構文に依存します</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">説明テキストは HTML 構文に依存します</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">ゲーム時間は秒で記録されます。</sys:String>
-    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">インストールサイズはバイト単位で表示されます。</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">発売日は「年-月-日」形式で設定する必要があります。月と日の値は省略可能です。</sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues">0から100までの値、またはスコアなしの場合は空です。</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playniteの開発はこれらの利用者によって支えられています:</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">0 から 100 までの値、またはスコアなしの場合は空です。</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite の開発はこれらの利用者によって支えられています:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">コード、ローカライゼーション、その他の貢献者の順番は特に決まっていません:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">ゲームモニタリングをキャンセルしますか？</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">インストールモニタリングが現在実行中です。プロセスをキャンセルしてゲームを以前の状態に戻しますか？</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">ゲーム実行モニタリングが現在実行中です。プロセスをキャンセルしてゲームを以前の状態に戻しますか？</sys:String>
     <sys:String x:Key="LOCTimePlayed">プレイ時間</sys:String>
     <sys:String x:Key="LOCLastPlayed">最後のプレイ</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0} 日 {1} 時間 {2} 分</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} 時間 {1} 分</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} 分</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} 秒</sys:String>
     <sys:String x:Key="LOCPlayedNone">未プレイ</sys:String>
-    <sys:String x:Key="LOCOpeningDesktopModeMessage">デスクトップモードへ切り替え中</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage">フルスクリーンモードへ切り替え中</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase">ゲームライブラリをロード中</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage">インストールサイズを計算中...</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">デスクトップモードへ切り替え中…</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">フルスクリーンモードへ切り替え中…</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">ゲームライブラリをロード中…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">インストールサイズを計算中…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">{0} のインストール容量を計算中…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">スクリプトファイルのインストールに失敗しました。</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">スクリプトは正常にインストールされました。</sys:String>
     <sys:String x:Key="LOCInstallScript">スクリプトのインストール</sys:String>
     <sys:String x:Key="LOCScriptError">スクリプトエラー</sys:String>
     <sys:String x:Key="LOCScriptExecutionError">拡張機能の実行に失敗しました。</sys:String>
     <sys:String x:Key="LOCOpenMetadataFolder">メタデータフォルダを開く</sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">計算</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">ゲームに ROM がある場合はそれを、インストールディレクトリが設定されている場合はそれを使用して、インストールサイズを自動的に計算します。</sys:String>
     <sys:String x:Key="LOCClientNotInstalledError">{0} クライアントがインストールされていません。</sys:String>
     <sys:String x:Key="LOCSignInExternalNotif">クライアントが開きます。サインインしてからこのメッセージを閉じてください。</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">ユーザーがログインするのを待っています。完了したら閉じてください。</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError">ゲームのインストールディレクトリが見つかりません。</sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings">無効なゲームアクション設定。</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">ゲームのインストールフォルダが見つかりません。</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">無効なゲームアクション設定です。</sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink">アカウント同期問題のトラブルシューティング</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues">問題解決</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">問題のトラブルシューティング</sys:String>
     <sys:String x:Key="LOCRenameItem">アイテムの名前を変更</sys:String>
     <sys:String x:Key="LOCAddNewItem">新しいアイテムの追加</sys:String>
     <sys:String x:Key="LOCEnterName">名前を入力</sys:String>
     <sys:String x:Key="LOCEnterNewName">新しい名前を入力</sys:String>
-    <sys:String x:Key="LOCPLaytimeLessThenAnHour">1時間未満</sys:String>
-    <sys:String x:Key="LOCPLaytime1to10">1～10時間</sys:String>
-    <sys:String x:Key="LOCPLaytime10to100">10～100時間</sys:String>
-    <sys:String x:Key="LOCPLaytime100to500">100～500時間</sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000">500～1000時間</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus">1000時間以上</sys:String>
-    <sys:String x:Key="LOCExtInstallationRestartNotif">インストールを完了するために再起動が必要です。すぐに再起動しますか？</sys:String>
+    <sys:String x:Key="LOCPLaytimeLessThenAnHour">1 時間未満</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">1 から 10 時間</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">10 から 100 時間</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">100 から 500 時間</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">500 から 1000 時間</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">1000 時間以上</sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">インストールを完了するためには再起動が必要です。今すぐ再起動しますか？</sys:String>
     <sys:String x:Key="LOCGeneralExtensionPackageError">拡張機能は適切にパッケージされていません。</sys:String>
     <sys:String x:Key="LOCGeneralThemePackageError">テーマは適切にパッケージされていません。</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError">拡張機能 &quot;{0}&quot; は正常に読み込めませんでした。</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">現在のPlayniteのバージョンはサポートされていないため、「{0}」拡張機能はロードできません。</sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError">テーマ &quot;{0}&quot; は正常に読み込めませんでした。</sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadSDKError">現在のPlayniteのバージョンはサポートされていないため、「{0}」テーマはロードできません。</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">拡張機能は正常に読み込めませんでした。</sys:String>    
-    <sys:String x:Key="LOCGeneralThemeLoadError">テーマは正常に読み込めませんでした。</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">テーマ/拡張機能にサポートされていないAPIが使用されています。</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">インストールが成功しました。</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">拡張機能をインストールしますか？</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">拡張機能 &quot;{0}&quot; を正常に読み込めませんでした。</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">拡張機能 &quot;{0}&quot; を読み込むことができません。現在の Playnite バージョンではサポートされていません。</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">テーマ &quot;{0}&quot; を正常に読み込めませんでした。</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">テーマ &quot;{0}&quot; を読み込むことができません。現在の Playnite のバージョンではサポートされていません。</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">拡張機能を正常に読み込めませんでした。</sys:String>    
+    <sys:String x:Key="LOCGeneralThemeLoadError">テーマを正常に読み込めませんでした。</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">テーマ/拡張機能にサポートされていない API が使用されています。</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">インストールに成功しました。</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">アドオンをインストールしますか？</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">全般</sys:String>
-    <sys:String x:Key="LOCAddonInstallFaild">アドオン「{0}」のインストールに失敗しました。</sys:String>
+    <sys:String x:Key="LOCAddonInstallFaild">アドオン &quot;{0}&quot; のインストールに失敗しました。</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">拡張機能のインストールに失敗しました。
 
 {0}</sys:String>
@@ -864,27 +874,27 @@ Version {2}</sys:String>
 表紙: {1} メガピクセル
 背景: {2} メガピクセル</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">パフォーマンス警告</sys:String>
-    <sys:String x:Key="LOCDontShowAgainTitle">再び表示しない</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">ファイル拡張子{0}は互換性がありません。</sys:String>
+    <sys:String x:Key="LOCDontShowAgainTitle">次回から表示しない</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">ファイル拡張子 {0} は互換性がありません。</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">互換性のないファイル拡張子</sys:String>
     <sys:String x:Key="LOCLargeMediaWarningTooltip">選択された画像は最適なパフォーマンスには大きすぎる可能性があります。</sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion">選択したテーマをアンインストールしますか？アンインストールは次回アプリ起動時に行われます。</sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint">ビルトインテーマはアンインストールできません。</sys:String>
-    <sys:String x:Key="LOCThemeUnsupported">このテーマは現在のPlayniteではサポートされていません。</sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion">選択したテーマをアンインストールしますか？アンインストールは次回アプリ起動時に行われます。</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">このテーマは現在の Playnite ではサポートされていません。</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">選択した拡張機能をアンインストールしますか？アンインストールは次回アプリ起動時に行われます。</sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint">ビルトインテーマはアンインストールできません。</sys:String>
-    <sys:String x:Key="LOCExtensionUnsupported">この拡張機能は現在のPlayniteではサポートされていません。</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir">インストールディレクトリ</sys:String>
-    <sys:String x:Key="LOCExtensionDataDir">データ保存ディレクトリー</sys:String>
-    <sys:String x:Key="LOCDiagGenerating">診断パッケージを生成中...</sys:String>
-    <sys:String x:Key="LOCDiagUploading">診断パッケージをアップロード中...</sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported">この拡張機能は現在の Playnite ではサポートされていません。</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">インストールフォルダ</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">データフォルダ</sys:String>
+    <sys:String x:Key="LOCDiagGenerating">診断パッケージを生成中…</sys:String>
+    <sys:String x:Key="LOCDiagUploading">診断パッケージをアップロード中…</sys:String>
     <sys:String x:Key="LOCAddFromExe">ファイルのインポート...</sys:String>
     <sys:String x:Key="LOCWhatIsThis">これは何ですか？</sys:String>
     <sys:String x:Key="LOCConfirumationAskGeneric">実行してもいいですか？</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">総プレイ時間</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">平均プレイ時間</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">トップのプレイ時間</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize">インストールの合計サイズ</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">合計インストールサイズ</sys:String>
     <sys:String x:Key="LOCOverviewLabel">概観</sys:String>
     <sys:String x:Key="LOCSidebar">サイドバー</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">サイドバーに表示</sys:String>
@@ -892,7 +902,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">以下を除くすべてのアプリケーションの設定が初期化されます。
 - データベースの場所
 - インポート除外リスト
-- ライブラリ統合を含む拡張機能の設定
+- ライブラリ連携を含む拡張機能の設定
     
 処理を終了するには、アプリケーションの再起動が必要です。設定をリセットしますか？</sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">開発者向け</sys:String>
@@ -903,63 +913,63 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">フォーラム</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">ニュース</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">ストアページ</sys:String>
-    <sys:String x:Key="LOCFullscreenFirstTimeError">初回設定はまだ完了していません。Playniteは手順を完了させるためにデスクトップモードで再起動します。</sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">初回設定はまだ完了していません。Playnite は手順を完了させるためにデスクトップモードで再起動します。</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">最近のプレイ</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">お気に入り</sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed">最もプレイされたゲーム</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">最もプレイしたゲーム</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">すべて</sys:String>
-    <sys:String x:Key="LOCGameListFiltered">適用されたフィルタがあります</sys:String>
-    <sys:String x:Key="LOCGameListExtraFiltered">適用されたフィルタがあります</sys:String>
-    <sys:String x:Key="LOCGameListSearchResults">次の条件での検索結果：</sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists">同じ名前の アイテムが既に存在します</sys:String>
+    <sys:String x:Key="LOCGameListFiltered">フィルターが適用されています。</sys:String>
+    <sys:String x:Key="LOCGameListExtraFiltered">追加のフィルターが適用されています。</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">次の条件での検索結果:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">同じ名前のアイテムが既に存在します。</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">選択を現在のフィルターに制限する</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">別のものを選ぶ</sys:String>
-    <sys:String x:Key="LOCMenuAddons">アドオン</sys:String>
-    <sys:String x:Key="LOCExtensionsInstalled">インストール済</sys:String>
+    <sys:String x:Key="LOCMenuAddons">アドオン…</sys:String>
+    <sys:String x:Key="LOCExtensionsInstalled">インストール済み</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">拡張機能の設定</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">参照</sys:String>
-    <sys:String x:Key="LOCExtensionsUpdates">アップデート</sys:String>
-    <sys:String x:Key="LOCExtensionsUpdatesCount">{0}を更新</sys:String>
+    <sys:String x:Key="LOCExtensionsUpdates">更新</sys:String>
+    <sys:String x:Key="LOCExtensionsUpdatesCount">{0} を更新</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">インストールされた拡張機能およびテーマの管理とその設定は、新しい「アドオン」メニューに移されました。</sys:String>
-    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">現在インストールされているライブラリ連携拡張機能は、すべてここで設定することができます。
+    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">現在インストールされているライブラリ連携拡張機能はすべて、ここで設定できます。
 
-追加の連携をインストールまたはアンインストールしたい場合は、メインメニューから「アドオン」オプションを使用します。</sys:String>
+追加の連携をインストールまたはアンインストールしたい場合は、メインメニューから「アドオン」オプションを使用してください。</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">デスクトップテーマ</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">フルスクリーンテーマ</sys:String>
     <sys:String x:Key="LOCAddonsSearching">検索中…</sys:String>
-    <sys:String x:Key="LOCAddonErrorNotCompatible">アドオンは、このバージョンのPlayniteと互換性がありません。</sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible">アドオンは、このバージョンの Playnite と互換性がありません。</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">アドオンインストールパッケージのダウンロードに失敗しました。</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError">アドオンインストールマニフェストのダウンロードに失敗しました。</sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart">変更を適用するには、アプリケーションの再起動が必要です。</sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">変更を適用するにはアプリケーションの再起動が必要です。</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">このアドオンはインストール予定です。</sys:String>
     <sys:String x:Key="LOCAddonInstall">インストール</sys:String>
     <sys:String x:Key="LOCAddonUninstall">アンインストール</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">インストール済み</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">新しいアドオンのアップデートはありません。</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">新しいアドオンの更新は見つかりませんでした。</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">アドオンの更新</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">更新履歴は利用できません</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">インストールの予定</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">インストール予定</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">ダウンロードに失敗しました</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">ライセンスが拒否されました</sys:String>
-    <sys:String x:Key="LOCAddonDownloadingAddon">{0}をダウンロード中</sys:String>
-    <sys:String x:Key="LOCAddonLookingForUpdates">アドオンのアップデートを探しています...</sys:String>
-    <sys:String x:Key="LOCAddonUpdatesAvailable">1つ以上のアドオンアップデートが可能です。</sys:String>
-    <sys:String x:Key="LOCAddonSelectToUpdate">アップデートする項目を選択</sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon">{0} をダウンロード中…</sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">アドオンの更新を検索中...</sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable">1 つ以上のアドオンの更新が利用可能です。</sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate">更新する項目を選択</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">拡張機能開発インスタンス</sys:String>
-    <sys:String x:Key="LOCAddonLicenseWindowTitle">{0}ライセンス契約</sys:String>
-    <sys:String x:Key="LOCLicenseAccept">同意する</sys:String>
-    <sys:String x:Key="LOCLicenseDecline">拒否する</sys:String>
-    <sys:String x:Key="LOCIncludePluginGameActions">ライブラリ統合プレイアクションを含める</sys:String>
+    <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} ライセンス契約</sys:String>
+    <sys:String x:Key="LOCLicenseAccept">同意</sys:String>
+    <sys:String x:Key="LOCLicenseDecline">拒否</sys:String>
+    <sys:String x:Key="LOCIncludePluginGameActions">ライブラリ連携プレイアクションを含める</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">アクションを選択</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">トラッキングモード</sys:String>
-    <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">トラッキングパス</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">リンク</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">ファイル</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">エミュレータ</sys:String>
     <sys:String x:Key="LOCGameActionTypeScript">スクリプト</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDefault">デフォルト</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">プロセス</sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDirectory">フォルダー</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDirectory">フォルダ</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">元のプロセス</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">メッセージをログに記録する</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">以下の変更は、現在選択されているすべてのゲームのデータを上書きします。</sys:String>    
@@ -972,58 +982,58 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCSmoothScrollingSpeed">アニメーション速度</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">アイテムを削除しますか？</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage">このアイテムを削除してもよろしいですか？</sys:String>    
-    <sys:String x:Key="LOCSettingsTopPanelItems">トップパネルに表示するボタン：</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelItems">トップパネルに表示するボタン:</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">全般的な表示設定</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem">グループ設定</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelSortingItem">並べ替え設定</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">フィルタープリセット</sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition">プラグインの位置</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">プラグインの項目の位置</sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth">セクションセパレータの幅</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">メインメニューボタンをサイドバーに移動</sys:String>
     <sys:String x:Key="LOCTopPanelExplorerSwitch">エクスプローラーパネル</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">ランダムゲームピッカー</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">ランダムゲームピッカー</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">ビューからランダムにゲームを選択</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">グループ化と並べ替えの設定を保存する</sys:String>
-    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">フルスクリーンモードでクイックフィルターとして表示する</sys:String>
-    <sys:String x:Key="LOCInPast7Days">過去7日間</sys:String>
-    <sys:String x:Key="LOCInPast31Days">過去31日間</sys:String>
-    <sys:String x:Key="LOCInPast365Days">過去365日間</sys:String>
-    <sys:String x:Key="LOCMoreThan365DaysAgo">365日以上前</sys:String>
+    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">フルスクリーンモードでクイックフィルターとして表示</sys:String>
+    <sys:String x:Key="LOCInPast7Days">過去 7 日間</sys:String>
+    <sys:String x:Key="LOCInPast31Days">過去 31 日間</sys:String>
+    <sys:String x:Key="LOCInPast365Days">過去 365 日間</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">365 日以上前</sys:String>
     <sys:String x:Key="LOCConfigure">設定</sys:String>
     <sys:String x:Key="LOCFilterPresetSave">プリセットを保存</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">ゲーム開始後に最小化する</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">ゲーム開始後、Playniteを最小化する。
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">ゲーム開始後に最小化</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">ゲームを開始した後、Playnite を最小化します。
 
 無効にすると、ゲーム起動時に入力フォーカスが当たらないという問題が発生することがあります。</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">文字サイズ</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">フォントサイズ小</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">XInputデバイス対応</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">無効の場合、PlayniteはXInputインターフェースの入力を一切受け付けません。
+    <sys:String x:Key="LOCSettingsXInputProcessing">XInput デバイス対応</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">無効の場合、Playnite は XInput インターフェースの入力を一切受け付けません。
 
-XInput入力をマウス/キーボード入力に変換するツールを使用していて、Playniteで二重入力になってしまう場合は無効にしてください。</sys:String>
+XInput 入力をマウス/キーボード入力に変換するツールを使用していて、Playnite で二重入力になってしまう場合は無効にしてください。</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">メインメニューに項目を表示する:</sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">X/Aメインビューボタンを入れ替える</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">X/A メインビューボタンを入れ替える</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">ゲームを開始したりメインビューにゲームの詳細を表示するためにボタンの割当を入れ替えます。</sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">確認/キャンセルボタン設定を入れ替えます</sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">確認とキャンセルのための A/B ボタンの割り当てを反転します。</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">プライマリーコントローラーのみ</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">有効な場合にのみプライマリコントローラからの入力を受け付けます。</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">ガイドボタンでPlayniteにフォーカス</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">ガイドボタンで Playnite にフォーカス</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">インターフェイスの音量</sys:String>
-    <sys:String x:Key="LOCSettingsMusiVolume">バックグランド音量</sys:String>
-    <sys:String x:Key="LOCSettingsMuteBackground">バックグラウンドでミュートにする</sys:String>
+    <sys:String x:Key="LOCSettingsMusiVolume">バックグラウンド音量</sys:String>
+    <sys:String x:Key="LOCSettingsMuteBackground">バックグラウンドでミュート</sys:String>
     <sys:String x:Key="LOCErrorAudioInterfaceInit">オーディオインターフェースの初期化に失敗しました。</sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApi">出力API</sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">音声出力に使用するAPIです。サウンドに問題がある場合は変更してください。</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi">出力 API</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">音声出力に使用する API です。サウンドに問題がある場合は変更してください。</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">一般</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionVisuals">外観</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionAudio">音声</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionLayout">レイアウト</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionMenus">メニュー</sys:String>
     <sys:String x:Key="LOCSettingsFSSection">入力</sys:String>
-    <sys:String x:Key="LOCGameIsStarting">{0} は起動中です…</sys:String>
-    <sys:String x:Key="LOCGameIsRunning">{0} は実行中です…</sys:String>
+    <sys:String x:Key="LOCGameIsStarting">{0} を起動中…</sys:String>
+    <sys:String x:Key="LOCGameIsRunning">{0} を実行中…</sys:String>
     <sys:String x:Key="LOCTextInputCapitalize">Caps</sys:String>
     <sys:String x:Key="LOCTextInputSpace">スペース</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode">画像レンダリングスケーラー</sys:String>
@@ -1042,31 +1052,31 @@ XInput入力をマウス/キーボード入力に変換するツールを使用�
     <sys:String x:Key="LOCSelectFileTooltip">ファイルを選択</sys:String>
     <sys:String x:Key="LOCSelectDirectoryTooltip">フォルダを選択…</sys:String>
     <sys:String x:Key="LOCStartupScript">起動スクリプト</sys:String>
-    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">拡張機能とテーマのどちらともPlayniteのパフォーマンス、安定性、セキュリティに大きな影響を与える可能性がありますので、ご注意ください。
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">拡張機能とテーマのどちらとも Playnite のパフォーマンス、安定性、セキュリティに大きな影響を与える可能性がありますので、ご注意ください。
     
 テーマや拡張機能をインストールした後に何らかの問題が発生した場合は、まずそれらを無効化またはアンインストールして、問題の原因であるかどうかを確認してください。</sys:String>
-    <sys:String x:Key="LOCGameActionSelectOnStart">起動時に選択する</sys:String>
+    <sys:String x:Key="LOCGameActionSelectOnStart">起動時に選択</sys:String>
     <sys:String x:Key="LOCEmulatorSelectOnStart">起動時に選択</sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfiles">ビルトイン プロファイル</sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfile">ビルトイン プロファイル</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfiles">カスタム プロファイル</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfiles">ビルトインプロファイル</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfile">ビルトインプロファイル</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfiles">カスタムプロファイル</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfile">カスタムプロファイル</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">内蔵スクリプトで処理</sys:String>
-    <sys:String x:Key="LOCEmulatorSpec">エミュレータの仕様</sys:String>
-    <sys:String x:Key="LOCPlatformSpec">プラットフォームの仕様</sys:String>
-    <sys:String x:Key="LOCRegionSpec">地域の仕様</sys:String>
-    <sys:String x:Key="LOCEmulatorPreScriptDescription">エミュレータを起動する前に実行する</sys:String>
-    <sys:String x:Key="LOCEmulatorPostScriptDescription">エミュレータを起動した後に実行する</sys:String>
-    <sys:String x:Key="LOCEmulatorStartedScriptDescription">エミュレータ終了後に実行する</sys:String>
+    <sys:String x:Key="LOCEmulatorSpec">エミュレータの指定</sys:String>
+    <sys:String x:Key="LOCPlatformSpec">プラットフォームの指定</sys:String>
+    <sys:String x:Key="LOCRegionSpec">地域の指定</sys:String>
+    <sys:String x:Key="LOCEmulatorPreScriptDescription">エミュレータの起動前に実行</sys:String>
+    <sys:String x:Key="LOCEmulatorPostScriptDescription">エミュレータの起動後に実行</sys:String>
+    <sys:String x:Key="LOCEmulatorStartedScriptDescription">エミュレータの終了後に実行</sys:String>
     <sys:String x:Key="LOCErrorEmulatorExecutableNotFound">エミュレータの実行ファイルが見つかりません。</sys:String>
-    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound">エミュレータの仕様が見つかりません。</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound">エミュレータの指定が見つかりません。</sys:String>
     <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound">エミュレータ起動スクリプトが見つかりません。</sys:String>
     <sys:String x:Key="LOCSplitEmuImportSplitGames">別々のゲームとして分割する</sys:String>
     <sys:String x:Key="LOCSplitEmuImportMergeGames">1つのゲームに統合する</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform">プラットフォームの設定</sys:String>
-    <sys:String x:Key="LOCEmuImportAssignRegion">リージョン設定</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignRegion">地域を設定</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">フォルダをスキャン</sys:String>
-    <sys:String x:Key="LOCEmuScanConfigurations">設定をスキャンする</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">スキャン設定</sys:String>
     <sys:String x:Key="LOCEmuCrcExcludeFileTypes">チェックサムスキャンからパターンを除外する</sys:String>
     <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">指定されたパターンに一致するファイルは、チェックサムのスキャンを行わず、ファイル名でマッチングされます。詳細はエミュレータのヘルプを参照してください。</sys:String>
     <sys:String x:Key="LOCEmuScanEmulator">エミュレータでのスキャン</sys:String>    
@@ -1074,48 +1084,49 @@ XInput入力をマウス/キーボード入力に変換するツールを使用�
     <sys:String x:Key="LOCScanConfigNoEmulatorError">エミュレータまたはエミュレータプロファイルが設定されていません。</sys:String>
     <sys:String x:Key="LOCScanConfigDirectoryError">スキャンするディレクトリが指定されていないか、存在しません。</sys:String>
     <sys:String x:Key="LOCScanConfigError">スキャン設定が正しく設定されていません。</sys:String>    
-    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">バルクスキャンのオートスキャンに含める</sys:String>    
+    <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate">一括スキャンのオートスキャンに含める</sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed">エミュレータのフォルダをスキャンできませんでした。</sys:String>
-    <sys:String x:Key="LOCEmulatedGameScanFailed">エミュレートされたゲームのフォルダをスキャンできませんでした。</sys:String>
-    <sys:String x:Key="LOCEmuScanHideImported">インポートを非表示</sys:String>
-    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">インポートするプロファイル：</sys:String>
-    <sys:String x:Key="LOCEmuAutoScanConfigurations">オートスキャンした設定</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfig">オートスキャンした設定としてセーブする</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">ライブラリアップデート時に使用するため、設定を保存します。保存された設定は「エミュレータの設定」メニューで管理できます。</sys:String>
+    <sys:String x:Key="LOCEmulatedGameScanFailed">エミュレータゲームのフォルダをスキャンできませんでした。</sys:String>
+    <sys:String x:Key="LOCEmuScanHideImported">インポート済みを非表示</sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">インポートするプロファイル:</sys:String>
+    <sys:String x:Key="LOCEmuAutoScanConfigurations">オートスキャン設定</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfig">オートスキャン設定として保存</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">ライブラリの更新時に使用するために設定を保存します。保存した設定は「エミュレータの設定」メニューで管理できます。</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePaths">相対パスを使用してインポート</sys:String>
-    <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">可能であれば、Playnite のインストールフォルダまたはエミュレータのインストールフォルダからの相対パスを使用してゲームをインポートしてください。</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">サブフォルダをスキャン</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives">アーカイブ内をスキャン</sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">関連ファイルを統合する</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">個々のゲームディスクのように、関連するゲームファイルを 1 つのゲームエントリの下に統合します。</sys:String>
     <sys:String x:Key="LOCEmuAddScanner">スキャナを追加</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner">保存したスキャナを追加</sys:String>
     <sys:String x:Key="LOCStartScan">スキャンを開始</sys:String>
-    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">特定のフォルダをスキャンするために、エミュレータのスキャン設定を追加する。ゲームをインポートする前に、エミュレーターが適切に設定されていることを確認してください（「ライブラリ」→「エミュレーターの設定」メニューから）。</sys:String>
-    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">新しく追加されたゲームに割り当てられるデフォルトのステータス</sys:String>
+    <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">特定のフォルダをスキャンするために、エミュレータのスキャン設定を追加します。ゲームをインポートする前に、エミュレータが適切に設定されていることを確認してください（「ライブラリ」→「エミュレータの設定」メニューから）。</sys:String>
+    <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">新しく追加されたゲームに付与される既定のステータス</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">初めてプレイするゲームに付与されるステータス</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">PowerShellスクリプトランタイムの初期化に失敗しました。Windows 7を使用している場合は、PowerShell 5.1を (再) インストールすると問題が解決します。</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">PowerShell スクリプトランタイムの初期化に失敗しました。Windows 7 を使用している場合は、PowerShell 5.1 を (再) インストールすると問題が解決します。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">指定された名前のフィルタープリセットはすでに存在します。新しい設定でプリセットをアップデートしますか？</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">バッチ追加したゲームのソート名を自動的に入力</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">ライブラリの更新、エミュレータフォルダのスキャン、または通常のフォルダのスキャンを介してゲームを追加するとき。 自動的に「並べ替え名」フィールドに、ゲーム名のソート可能な表記を入力します。 例えば「The Witcher 3」は「Witcher 03」の並べ替え名を取得します</sys:String>
-    <sys:String x:Key="LOCSortingNameRemovedArticles">これらの単語は自動的に入力された並べ替え名の最初から削除されます:</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">一括追加したゲームのソート用タイトルを自動的に入力</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">ライブラリの更新、エミュレータフォルダのスキャン、または通常のフォルダのスキャンを介してゲームを追加するとき、 「ソート用タイトル」フィールドにソートに適したゲーム名が自動的に入力されます。例えば、「The Witcher 3」は「Witcher 03」のソート用タイトルが入力されます。</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles">これらの単語は自動的に入力されたソート用タイトルの先頭から削除されます:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">並べ替えの目的で文字列の先頭にある単語を無視する場合に使用します。デフォルトは &quot;The&quot;, &quot;An&quot;, &quot;A&quot; です。</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillButton">並べ替え名を入力してください</sys:String>
-    <sys:String x:Key="LOCSettingsSortingLabel">並び替え</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillProgress">並べ替え名の値を入力しています…</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimicサービスがシステムで実行されていることが検出されました。このサービスは、Playnite（および他のアプリ）にレンダリングの問題を引き起こすことが知られています。
+    <sys:String x:Key="LOCSortingNameAutofillButton">ソート用タイトルのないゲームにソート名を設定</sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">並べ替え</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillProgress">ソート用タイトルの値を設定中…</sys:String>
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">Nahimic サービスがシステムで実行されていることが検出されました。このサービスは、Playnite  (および他のアプリ) にレンダリングの問題を引き起こすことが知られています。
 
-もしPlayniteでグラフィックの破損やその他のレンダリングの問題が発生した場合、Nahimicサービスを無効にするか完全にアンインストールすることをお勧めします。
+もし Playnite でグラフィックの破損やその他のレンダリングの問題が発生した場合、Nahimic サービスを無効にするか完全にアンインストールすることをお勧めします。
 
-詳細については以下のURLを参照してください。
+詳細については以下の URL を参照してください。
 https://playnite.link/nahimicsucks</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playniteは管理者権限で実行されています。インストールされているすべての拡張機能と、Playniteから起動されたすべてのゲーム/アプリに管理者権限を与えるため、これはお勧めしません。
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite は管理者権限で実行されています。インストールされているすべての拡張機能と、Playnite から起動されたすべてのゲーム/アプリに管理者権限を与えるため、これはお勧めしません。
 
 詳細については以下のURLを参照してください。
 https://playnite.link/adminfaq</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Playniteが管理者権限で実行されている場合に警告を表示する</sys:String>
-    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
-    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">Playnite が管理者権限で実行されている場合に警告を表示</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">ゲームのサイズを計算するときにドライブ上の実際のサイズを取得する</sys:String>
+    <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">有効にすると、スキャンは遅くなり、ファイルがドライブで使用する実際のサイズを取得します。
+無効にすると、スキャンはより高速になり、ファイルのサイズ自体が使用されます。</sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">次のアドオンは、高い安定性/パフォーマンスへの影響またはセキュリティの問題のいずれかが原因で、潜在的に問題があると報告されています。 アンインストールすることを強くお勧めします。
         
 {0}
@@ -1127,29 +1138,33 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">ファイルはインポートされますが、ファイルの内容をダウンロードしてローカルに表示する必要がない、精度の低い方法を使用します。</sys:String>
     <sys:String x:Key="LOCMetadatSetAllFieldsToValue">すべてに適用</sys:String>
     <sys:String x:Key="LOCOverrideInstallState">インストール状態を上書き</sys:String>
-    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">設定すると、Playnite はこのゲームをインポートする連携プラグインによって設定されたインストール状態 (インストールディレクトリを含む) を無視します。
+
+このオプションは、特定のゲームのインポート方法を使用するプラグインでは、このオーバーライドオプションも考慮に入れない限り、完全に動作しない場合があります。</sys:String>
     <sys:String x:Key="LOCOptionOnlyManually">手動のみ</sys:String>
     <sys:String x:Key="LOCOptionOnceADay">1日に1回</sys:String>
     <sys:String x:Key="LOCOptionOnceAWeek">週に1回</sys:String>
     <sys:String x:Key="LOCOptionOnEveryStartup">すべての起動時</sys:String>
-    <sys:String x:Key="LOCCheckProgramUpdates">プログラムの更新を確認する</sys:String>
-    <sys:String x:Key="LOCCheckAddonUpdates">アドオンの更新を確認する</sys:String>
+    <sys:String x:Key="LOCCheckProgramUpdates">プログラムの更新を確認</sys:String>
+    <sys:String x:Key="LOCCheckAddonUpdates">アドオンの更新を確認</sys:String>
     <sys:String x:Key="LOCCheckLibraryUpdates">ライブラリを更新</sys:String>
-    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">エミュレーションフォルダをスキャン</sys:String>
-    <sys:String x:Key="LOCStatsIncludeHidden">隠されたゲームを含む</sys:String>
+    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">エミュレータゲームのフォルダをスキャン</sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">非表示ゲームを含める</sys:String>
     <sys:String x:Key="LOCMenuSetFields">フィールドを編集</sys:String>
     <sys:String x:Key="LOCItemSelectionSelectDeselectAll">すべて選択/選択解除</sys:String>
     <sys:String x:Key="LOCOpen">開く</sys:String>
     <sys:String x:Key="LOCActivate">有効にする</sys:String>
     <sys:String x:Key="LOCAssign">割り当て</sys:String>
-    <sys:String x:Key="LOCDefaultSearchDescription">ゲームを検索する入力を開始… ヘルプは[F1]</sys:String>
-    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDefaultSearchDescription">ゲームを検索するために入力を開始… [F1] でヘルプを表示</sys:String>
+    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"># で始めると、利用可能なコマンドのリストが表示されます。
+/ で始めると、利用可能な検索プロバイダ/プラグインのリストが表示されます。
+検索キーワードを入力し、最後に Space を入力すると、すぐにその検索に切り替わります。</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalled">未インストールのゲームを含める</sys:String>
-    <sys:String x:Key="LOCSearchFilterHidden">隠されたゲームを含める</sys:String>
+    <sys:String x:Key="LOCSearchFilterHidden">非表示ゲームを含める</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalledIncluded">アンインストールされたゲームを含める</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalledExcluded">アンインストールされたゲームを除外する</sys:String>
-    <sys:String x:Key="LOCSearchFilterHiddenIncluded">隠されたゲームを含める</sys:String>
-    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">隠されたゲームを除外する</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenIncluded">非表示ゲームを含める</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">非表示ゲームを除外する</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionPlay">プレイまたはインストール</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionSwitchTo">詳細に移動</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionOpenMenu">ゲームメニュー</sys:String>
@@ -1160,7 +1175,7 @@ https://playnite.link/adminfaq</sys:String>
 
     <sys:String x:Key="LOCSearchSettingsPrimaryAction">第１ゲームアクション</sys:String>
     <sys:String x:Key="LOCSearchSettingsSecondaryAction">第２ゲームアクション</sys:String>
-    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">Ctrl+Fキーを押すと、検索ボックスをフォーカスするのではなく、グローバル検索が開きます</sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">Ctrl+F で検索ボックスにフォーカスする代わりにグローバル検索を開く</sys:String>
     <sys:String x:Key="LOCSearchSettingsSaveFilter">検索セッション間でゲームフィルターの設定を保存</sys:String>
     <sys:String x:Key="LOCSearchSettingsSearchProviders">検索プロバイダー</sys:String>
     <sys:String x:Key="LOCSearchSettingsDefaultKeyword">デフォルトのキーワード</sys:String>
@@ -1176,19 +1191,20 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCEmuExclusionNoConfigError">除外は、保存されたスキャナ設定にのみ追加できます。</sys:String>
     <sys:String x:Key="LOCEmuExclusionAddedMessage">&quot;{0}&quot; スキャナーに除外しました。</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatform">プラットフォームを上書き</sys:String>
-    <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
-    <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
-    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatformTooltip">設定すると、スキャナはこのプラットフォームをすべてのゲームに割り当て、自動的に検出されたプラットフォームを上書きします。</sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefault">デフォルトの検索にコマンドを含める</sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">無効にすると、# プレフィックス が使用されるまで、コマンドはデフォルトの検索に含まれません。</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">名前フィルターであいまい検索を使用</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">有効にすると、名前フィルターはグローバル検索と同じようにゲーム名をマッチさせます。
+フィルターの前に ! 文字を付けることで、個々のケースに対して厳密なマッチングを行うことができます。</sys:String>
+    <sys:String x:Key="LOCSearchViewGameFieldOptions">ゲーム結果に表示されるフィールド:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">非表示状態</sys:String>
 
     <sys:String x:Key="LOCBackupCancelled">データのバックアップはキャンセルされました。</sys:String>
     <sys:String x:Key="LOCBackupFailed">データのバックアップに失敗しました。</sys:String>
     <sys:String x:Key="LOCBackupErrorTitle">データのバックアップに失敗しました！</sys:String>
     <sys:String x:Key="LOCBackupProgress">データのバックアップ中…</sys:String>
-    <sys:String x:Key="LOCBackupRestoreProgress">バックアップからデータを復元しています…</sys:String>
+    <sys:String x:Key="LOCBackupRestoreProgress">バックアップからデータを復元中…</sys:String>
     <sys:String x:Key="LOCBackupRestoreFailed">バックアップからデータを復元できませんでした。</sys:String>
     <sys:String x:Key="LOCBackupOptionSettings">設定</sys:String>
     <sys:String x:Key="LOCBackupOptionLibrary">ゲームライブラリ</sys:String>
@@ -1196,36 +1212,45 @@ https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions">インストールされている拡張機能</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData">拡張機能データ</sys:String>
     <sys:String x:Key="LOCBackupOptionThemes">インストールされているテーマ</sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve">指定したバックアップファイルから復元するデータを選択してください。
+    
+Playnite は自動的に再起動し、バックアップの復元処理を開始します。</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">データのバックアップに含める項目を選択します。アプリケーションの設定とゲームライブラリのデータは、デフォルトで含まれます。
+
+Playnite は自動的に再起動し、バックアップ処理を開始します。</sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">データの自動バックアップ</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency">自動バックアップ間隔</sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder">バックアップフォルダ</sys:String>
     <sys:String x:Key="LOCSettingsRotatingBackups">バックアップの循環</sys:String>
-    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">追加データを含める：</sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">追加データを含める:</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError">自動バックアップが有効な場合は、バックアップフォルダを設定する必要があります。</sys:String>
-    <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
-    <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
-    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatches">パッチリリースの通知のみを表示</sys:String>
+    <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve">有効にすると、現在インストールされているメジャーリリースで利用可能な更新のみが更新通知されます。
+新しいメジャーリリースの更新は通知されません。</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormat">過去 1 週間に相対日付を使用</sys:String>
+    <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve">日付が 1 週間以内の場合は、「今日」、「昨日」などの相対日付を使用します。
+    
+指定された日付書式は、その他すべての日付に使用されます。</sys:String>
 
     <sys:String x:Key="LOCSettingsWebImageSearch">ウェブ画像検索</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">アイコン画像検索文字列</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">カバー画像検索文字列</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchBackground">背景画像検索文字列</sys:String>
-    <sys:String x:Key="LOCGettingsAddonInformation">アドオン情報を取得中...</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">アイコン画像の検索文字列</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">カバー画像の検索文字列</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground">背景画像の検索文字列</sys:String>
+    <sys:String x:Key="LOCGettingsAddonInformation">アドオン情報を取得中…</sys:String>
     <sys:String x:Key="LOCNoMetadataSource">メタデータソースがありません</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettings">プレイアクション設定</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">スキャナ設定を使用する</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">起動時にプロファイルを選択</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">起動時にエミュレータを選択</sys:String>
-    <sys:String x:Key="LOCAutomatic"></sys:String>
+    <sys:String x:Key="LOCAutomatic">自動</sys:String>
     <sys:String x:Key="LOCAlwaysOn">常にオン</sys:String>
     <sys:String x:Key="LOCAlwaysOff">常にオフ</sys:String>
-    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">アクセシビリティ(スクリーンリーダー)のサポート</sys:String>
     <sys:String x:Key="LOCApplicationMenu">アプリケーションメニュー</sys:String>
     <sys:String x:Key="LOCGameMenu">ゲームメニュー</sys:String>
     <sys:String x:Key="LOCProgramFolder">プログラムフォルダ</sys:String>
-    <sys:String x:Key="LOCUserDataFolder"></sys:String>
-    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUserDataFolder">ユーザーデータディレクトリ</sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">ライブラリファイルの破損が検出されました。Playnite はシャットダウンします。
+    
+Playnite の Github ページで新しい issue を開き、ファイルの破損の修正をリクエストしてください。</sys:String>
 </ResourceDictionary>

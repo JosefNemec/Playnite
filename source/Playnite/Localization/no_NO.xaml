@@ -15,7 +15,7 @@
     <sys:String x:Key="LOCSaveChangesAskTitle">Lagre endringer?</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">Hjemmeside på www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Kildekode på GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Lag feilrapport-pakke</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Opprett diagnostikkpakke</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Send diagnoseinformasjon</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Om Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Laget av Josef Němec</sys:String>
@@ -32,7 +32,7 @@ Ubestemt - Ingen endringer (ved redigering av flere spill)</sys:String>
 
 Hvis du vil hjelpe oss med å løse dette problemet, kan du kort beskrive handlingene som ble utført før krasjet, og deretter sende diagnoseinformasjon. Hvis du er tilkoblet internett, blir pakken lastet opp til Playnite-serveren for analyse.
 
-Alternativt kan du trykke på 'Rapporter krasj'-knappen for å opprette en ny oppføring på GitHub og rapportere krasjet manuelt.
+Alternativt kan du trykke på 'Rapporter krasj'-knappen for å opprette en ny issue på GitHub og rapportere krasjet manuelt.
 
 Takk for hjelpen.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Utvidelsen &quot;{0}&quot; forårsaket en uopprettelig feil.
@@ -40,31 +40,31 @@ Takk for hjelpen.</sys:String>
 Vi anbefaler at du lagrer loggfilen og rapporterer problemet til utvikleren av utvidelsen. Hvis problemet fortsetter bør du deaktivere utvidelsen.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Utvidelsen&quot;{0}&quot; forårsaket en uopprettelig feil.
 
-Vi anbefaler at du rapporterer problemet til utvikleren av utvidelsen. Hvis problemet fortsetter bør du deaktivere utvidelsen.</sys:String>
+Vi anbefaler at du rapporterer problemet til utvikleren av utvidelsen. Hvis problemet fortsetter, deaktivere utvidelsen.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">En ukjent utvidelse eller et ukjent tema forårsaket en uopprettelig feil.
 
 Vi anbefaler at du deaktiverer tredjepartstillegg etter tur for å isolere den som skaper problemer, og rapporterer feilen til utvikleren av tillegget.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">En uopprettelig feil har oppstått.
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Uopprettelig feil oppstod.
 
-Vil du hjelpe oss med å løse dette problemet, kan du gjerne sende diagnoseinformasjon. Takk.</sys:String>
+Hvis du vil hjelpe oss med å løse dette problemet, gjerne send oss diagnoseinformasjon. Takk.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Deaktiver utvidelse</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Lagre loggfil</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Send diagnoseinformasjon</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Rapporter programstopp</sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite">Start Playnite på nytt</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe">Start på nytt i trygg modus</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip">Deaktiverer alle tredjepartsutvidelser og tar i bruk standardtema.</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Rapporter krasj</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Restart Playnite</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Restart i trygg modus</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">Deaktivering av alle tredjepartsutvidelser og bruker av standardtema.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Lukk Playnite</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription">Handlinger som ble utført før krasjet (på engelsk):</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Utførte handlinger før krasjet (på Engelsk):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Biblioteksbehandler</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Fjern spill?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">Kan ikke fjerne — spillet eller installasjonsprogrammet kjører.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Kan ikke avinstallere — spillet kjører.</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">Kan ikke fjerne — Spillet eller installatøren kjører. </sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Kan ikke avinstallere - Spill kjører.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Er du sikker på at du vil fjerne {0} spill?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Er du sikker på at du vil fjerne {0}?
 
-Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spillet importert på nytt neste gang biblioteket oppdateres.</sys:String>
+Ved å velge &quot;legg til ekskluderingsliste&quot;, forhindrer du spillet i å bli importert igjen neste gang biblioteket oppdateres.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Er du sikker på at du vil fjerne {0} spill?
 
 Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spillene importert på nytt neste gang biblioteket oppdateres.</sys:String>
@@ -72,9 +72,9 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Ingen ubrukte felt ble funnet.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (legg til ekskluderingslisten)</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Det er ulagrede endringer i denne seksjonen</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">Oppdaterer spillbibiliotekformat …</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">Oppdaterer formatet til spillbiblioteket…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Databaseoppdatering feilet.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan ikke oppdatere spillbibliotek. {0} MB med tilgjengelig plass er påkrevd.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan ikke oppdatere spillbibliotek. {0} MB av tilgjengelig plass er nødvendig.</sys:String>
     <sys:String x:Key="LOCGameError">Spillfeil</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Kan ikke starte spill. '{0}' ble ikke funnet i databasen.</sys:String>
     <sys:String x:Key="LOCGameStartError">Kan ikke starte spill: {0}</sys:String>
@@ -82,8 +82,8 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCGameOpenLocationError">Kan ikke åpne spillokasjon: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeError">Kunne ikke finne spillinstallasjonsstørrelse: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Feil ved skanning av installasjonsstørrelse</sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Det oppstod {0} feil under skanning av installasjonsstørrelse</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">Oppretting av snarvei feilet: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Det oppstod {0} feil under installasjonsstørrelse skanning</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Opprettelse av snarvei feilet: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Kunne ikke åpne manualen: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Kan ikke installere spill: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Kan ikke avinstallere spill: {0}</sys:String>
@@ -101,6 +101,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCErrorStartupNoController">Kunne ikke avgjøre hvordan spillet skal startes.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktivert</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Deaktivert</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Fjern</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Fjern ubrukte oppføringer</sys:String>
     <sys:String x:Key="LOCRenameTitle">Endre navn</sys:String>
@@ -997,7 +998,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCInPast365Days">Siste 365 dager</sys:String>
     <sys:String x:Key="LOCMoreThan365DaysAgo">Mer enn 365 dager</sys:String>
     <sys:String x:Key="LOCConfigure">Konfigurer</sys:String>
-    <sys:String x:Key="LOCFilterPresetSave">Lagre forhåndsinnstilling</sys:String>
+    <sys:String x:Key="LOCFilterPresetSave">Lagre oppsett</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Minimer etter at spill er startet</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Minimer Playnite etter at spill er startet.
 

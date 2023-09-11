@@ -102,6 +102,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCErrorStartupNoController">Nem lehet hogy elindítani a játékot.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Bekapcsolva</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Letiltva</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Eltávolítás</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Nem használtak törlése</sys:String>
     <sys:String x:Key="LOCRenameTitle">Átnevez</sys:String>

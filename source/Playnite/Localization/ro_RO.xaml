@@ -97,6 +97,7 @@ Dacă doriți să ne ajutați să rezolvăm această problemă, vă rugăm să t
     <sys:String x:Key="LOCErrorStartupNoController"></sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activat</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Elimină</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Șterge titlul nefolosit</sys:String>
     <sys:String x:Key="LOCRenameTitle">Redenumire</sys:String>

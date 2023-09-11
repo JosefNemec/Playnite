@@ -41,7 +41,9 @@ Vi anbefaler at du gemmer log filen og rapporterer problemet til udvidelsens udv
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Udvidelse &quot;{0}&quot; har forårsaget en uoprettelig fejl. 
 
 Vi anbefaler at du rapporterer problemet til udvidelsens udvikler. Hvis problemet fortsætter med at opstå, deaktiver da udvidelsen.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Ukendt udvidelse eller tema forårsagede en uoprettelig fejl.
+
+Vi anbefaler at deaktiverer tredjeparts tilføjelser, isolere den problematiske og rapporterer denne til dens udvikler.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Uoprettelig fejl opstod.
 
 Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk information. Tak.</sys:String>
@@ -63,8 +65,10 @@ Hvis du vil hjælpe os med at rette problemet, så send os diagnostisk informati
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Er du sikker på, at du vil fjerne {0}?
 
 Valg af &quot;Tilføj til udelukkelsesliste&quot; vil forhindre spillet i at blive importeret igen, næste gang biblioteket opdateres.</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Er du sikker på, at du vil fjerne {0} spil?
+
+Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive importeret igen, næste gang biblioteket opdateres.</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Er du sikker på, at du vil fjerne {0} enheder, der i øjeblikket ikke er i brug?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Ingen ubrugte felter fundet.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (Tilføj til undtagelsesliste)</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Der er ændringer i denne sektion, som ikke er gemt.</sys:String>
@@ -76,7 +80,7 @@ Valg af &quot;Tilføj til udelukkelsesliste&quot; vil forhindre spillet i at bli
     <sys:String x:Key="LOCGameStartError">Kan ikke starte spillet: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Kan ikke gennemføre handling: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Kan ikke åbne spil-placering: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Kunne ikke finde størrelsen på installeret spil: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Installationstørrelses scanningsfejl</sys:String>
     <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
     <sys:String x:Key="LOCGameShortcutError">Fejl ved oprettelse af genvej: {0}</sys:String>
@@ -97,6 +101,7 @@ Valg af &quot;Tilføj til udelukkelsesliste&quot; vil forhindre spillet i at bli
     <sys:String x:Key="LOCErrorStartupNoController"></sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktivér</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Fjern</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Fjern ubrugte</sys:String>
     <sys:String x:Key="LOCRenameTitle">Omdøb</sys:String>

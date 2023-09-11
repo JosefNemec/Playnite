@@ -101,6 +101,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">無法確定遊戲啟動方式</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">啟用</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">停用</sys:String>
     <sys:String x:Key="LOCRemoveTitle">移除</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">清除未用的</sys:String>
     <sys:String x:Key="LOCRenameTitle">重新命名</sys:String>

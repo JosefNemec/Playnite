@@ -97,6 +97,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCErrorStartupNoController"></sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Povolené</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Odstrániť</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Odstrániť nepoužité</sys:String>
     <sys:String x:Key="LOCRenameTitle">Premenovať</sys:String>

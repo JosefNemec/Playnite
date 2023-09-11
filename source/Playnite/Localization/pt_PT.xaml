@@ -101,6 +101,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCErrorStartupNoController">Não foi possível determinar como iniciar o jogo.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ativo</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remover</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Remover não utilizados</sys:String>
     <sys:String x:Key="LOCRenameTitle">Alterar nome</sys:String>
@@ -347,7 +348,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsAfterGameStart">Quando o jogo inicia:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Após o jogo fechar:</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Formatar tempo jogado para indicar o número de dias jogados</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Formato da data:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Isto eliminará o acesso de todos os serviços ligados. É necessário reiniciar o programa, pretendes continuar?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Limpar Cache?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">É necessário reiniciar o Playnite para aplicar o novo tema</sys:String>
@@ -355,7 +356,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsCreateThemes">Criar novo tema</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Obter mais extensões</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Criar nova extensão</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization"></sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Ajude-nos a traduzir o Playnite</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Reiniciar Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
@@ -369,7 +370,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Sempre</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Nunca</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode"></sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botão Guia do comando abre o modo de Ecrã Inteiro</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
@@ -846,19 +847,19 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
     <sys:String x:Key="LOCAddFromExe"></sys:String>
-    <sys:String x:Key="LOCWhatIsThis"></sys:String>
-    <sys:String x:Key="LOCConfirumationAskGeneric"></sys:String>
+    <sys:String x:Key="LOCWhatIsThis">O que é isto?</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">Tens a certeza de que pretendes fazer isto?</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime"></sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime"></sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime"></sys:String>
     <sys:String x:Key="LOCStatsTotalInstallSize">Tamanho total da instalação</sys:String>
     <sys:String x:Key="LOCOverviewLabel"></sys:String>
-    <sys:String x:Key="LOCSidebar"></sys:String>
+    <sys:String x:Key="LOCSidebar">Barra lateral</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar"></sys:String>
     <sys:String x:Key="LOCSettingsReset"></sys:String>
     <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsForDevelopers"></sys:String>
-    <sys:String x:Key="LOCSettingsExternalExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsForDevelopers">Para desenvolvedores</sys:String>
+    <sys:String x:Key="LOCSettingsExternalExtensions">Extensões externas</sys:String>
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox"></sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">Troféus</sys:String>
@@ -877,11 +878,11 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limitar seleção ao filtro atual</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Escolher outro</sys:String>
     <sys:String x:Key="LOCMenuAddons"></sys:String>
-    <sys:String x:Key="LOCExtensionsInstalled"></sys:String>
+    <sys:String x:Key="LOCExtensionsInstalled">Instalado</sys:String>
     <sys:String x:Key="LOCExtensionsSettings"></sys:String>
     <sys:String x:Key="LOCExtensionsBrowse"></sys:String>
-    <sys:String x:Key="LOCExtensionsUpdates"></sys:String>
-    <sys:String x:Key="LOCExtensionsUpdatesCount"></sys:String>
+    <sys:String x:Key="LOCExtensionsUpdates">Atualizações</sys:String>
+    <sys:String x:Key="LOCExtensionsUpdatesCount">Atualizações ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo"></sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop"></sys:String>
@@ -892,8 +893,8 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError"></sys:String>
     <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
-    <sys:String x:Key="LOCAddonInstall"></sys:String>
-    <sys:String x:Key="LOCAddonUninstall"></sys:String>
+    <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
+    <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled"></sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
@@ -907,18 +908,18 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle"></sys:String>
-    <sys:String x:Key="LOCLicenseAccept"></sys:String>
-    <sys:String x:Key="LOCLicenseDecline"></sys:String>
+    <sys:String x:Key="LOCLicenseAccept">Aceitar</sys:String>
+    <sys:String x:Key="LOCLicenseDecline">Recusar</sys:String>
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Caminho de rastreamento</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
-    <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
+    <sys:String x:Key="LOCGameActionTypeFile">Ficheiro</sys:String>
+    <sys:String x:Key="LOCGameActionTypeEmulator">Emulador</sys:String>
     <sys:String x:Key="LOCGameActionTypeScript"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingModeProcess">Processo</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
@@ -929,8 +930,8 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
     <sys:String x:Key="LOCScrollingSensitivity"></sys:String>
     <sys:String x:Key="LOCSmoothScrolling"></sys:String>
-    <sys:String x:Key="LOCSmoothScrollingSpeed"></sys:String>
-    <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
+    <sys:String x:Key="LOCSmoothScrollingSpeed">Velocidade da animação</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemTitle">Remover item?</sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
@@ -946,15 +947,15 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions"></sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel"></sys:String>
-    <sys:String x:Key="LOCInPast7Days"></sys:String>
-    <sys:String x:Key="LOCInPast31Days"></sys:String>
-    <sys:String x:Key="LOCInPast365Days"></sys:String>
-    <sys:String x:Key="LOCMoreThan365DaysAgo"></sys:String>
+    <sys:String x:Key="LOCInPast7Days">Nos últimos 7 dias</sys:String>
+    <sys:String x:Key="LOCInPast31Days">Nos últimos 31 dias</sys:String>
+    <sys:String x:Key="LOCInPast365Days">Nos últimos 365 dias</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">Mais de 365 dias atrás</sys:String>
     <sys:String x:Key="LOCConfigure"></sys:String>
     <sys:String x:Key="LOCFilterPresetSave"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsFontSize"></sys:String>
+    <sys:String x:Key="LOCSettingsFontSize">Tamanho da Letra</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
@@ -974,9 +975,9 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral"></sys:String>
     <sys:String x:Key="LOCSettingsFSSectionVisuals"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionAudio"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionAudio">Áudio</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionLayout"></sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionMenus"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionMenus">Menus</sys:String>
     <sys:String x:Key="LOCSettingsFSSection"></sys:String>
     <sys:String x:Key="LOCGameIsStarting"></sys:String>
     <sys:String x:Key="LOCGameIsRunning"></sys:String>
@@ -984,11 +985,11 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCTextInputSpace"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingBalanced">Equilibrado</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingQuality">Qualidade</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSelectFileTooltip"></sys:String>
-    <sys:String x:Key="LOCSelectDirectoryTooltip"></sys:String>
+    <sys:String x:Key="LOCSelectFileTooltip">Selecionar ficheiro...</sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip">Seleccionar pasta...</sys:String>
     <sys:String x:Key="LOCStartupScript"></sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart"></sys:String>
@@ -1034,7 +1035,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFiles">Combinar arquivos relacionados</sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">Combine arquivos de jogos relacionados, como jogos individuais, numa entrada de jogo.</sys:String>
-    <sys:String x:Key="LOCEmuAddScanner"></sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">Adicionar scanner</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
     <sys:String x:Key="LOCStartScan"></sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
@@ -1066,7 +1067,7 @@ Mais informação em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCMetadatSetAllFieldsToValue"></sys:String>
     <sys:String x:Key="LOCOverrideInstallState"></sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCOptionOnlyManually"></sys:String>
+    <sys:String x:Key="LOCOptionOnlyManually">Apenas manualmente</sys:String>
     <sys:String x:Key="LOCOptionOnceADay"></sys:String>
     <sys:String x:Key="LOCOptionOnceAWeek"></sys:String>
     <sys:String x:Key="LOCOptionOnEveryStartup"></sys:String>
@@ -1077,7 +1078,7 @@ Mais informação em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
     <sys:String x:Key="LOCMenuSetFields"></sys:String>
     <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
-    <sys:String x:Key="LOCOpen"></sys:String>
+    <sys:String x:Key="LOCOpen">Abrir</sys:String>
     <sys:String x:Key="LOCActivate"></sys:String>
     <sys:String x:Key="LOCAssign"></sys:String>
     <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
@@ -1089,11 +1090,11 @@ Mais informação em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenIncluded"></sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenalledExcluded"></sys:String>
     <sys:String x:Key="LOCGameSearchItemActionPlay"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionSwitchTo"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionSwitchTo">Ir para detalhes</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionOpenMenu"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionEdit"></sys:String>
-    <sys:String x:Key="LOCOpenSearch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSearchBox"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit">Editar jogo</sys:String>
+    <sys:String x:Key="LOCOpenSearch">Abrir pesquisa</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox">Caixa de pesquisa</sys:String>
     <sys:String x:Key="LOCTopPanelSearchButton"></sys:String>
 
     <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
@@ -1106,7 +1107,7 @@ Mais informação em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
     <sys:String x:Key="LOCSearchTitle"></sys:String>
     <sys:String x:Key="LOCExtensionSettingsMenu"></sys:String>
-    <sys:String x:Key="LOCExclusions"></sys:String>
+    <sys:String x:Key="LOCExclusions">Exclusões</sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
     <sys:String x:Key="LOCEmuImportAddROMExclusionList"></sys:String>
@@ -1129,12 +1130,12 @@ A correspondência estrita pode ser imposta em um caso individual, prefixando o 
     <sys:String x:Key="LOCBackupProgress"></sys:String>
     <sys:String x:Key="LOCBackupRestoreProgress"></sys:String>
     <sys:String x:Key="LOCBackupRestoreFailed"></sys:String>
-    <sys:String x:Key="LOCBackupOptionSettings"></sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings">Definições</sys:String>
     <sys:String x:Key="LOCBackupOptionLibrary"></sys:String>
     <sys:String x:Key="LOCBackupOptionGameMedia"></sys:String>
-    <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions">Extensões instaladas</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
-    <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes">Temas instalados</sys:String>
     <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
@@ -1158,9 +1159,9 @@ A correspondência estrita pode ser imposta em um caso individual, prefixando o 
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
-    <sys:String x:Key="LOCAutomatic"></sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCAutomatic">Automático</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Sempre ligado</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Sempre desligado</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
     <sys:String x:Key="LOCApplicationMenu"></sys:String>
     <sys:String x:Key="LOCGameMenu"></sys:String>

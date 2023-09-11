@@ -97,6 +97,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">نحوه شروع بازی مشخص نشد.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">فعال شده</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">حذف</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">حذف بلا استفاده</sys:String>
     <sys:String x:Key="LOCRenameTitle">تغییر نام</sys:String>

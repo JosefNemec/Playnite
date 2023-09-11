@@ -100,6 +100,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">Не вдалося визначити, як розпочати гру.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Увімкнено</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Вимкнено</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Вилучити</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Прибрати невикористані</sys:String>
     <sys:String x:Key="LOCRenameTitle">Перейменувати</sys:String>
@@ -272,7 +273,7 @@
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Висота значків в списку ігор</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Шрифт застосунку</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Моноширинний шрифт</sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition">Позиція панелі фільтру</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Позиція панелі фільтрів</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Позиція панелі провідника</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Відтворення обкладинок</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Бажане співвідношення сторін</sys:String>
@@ -319,7 +320,7 @@
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Затемнювати видалені ігри</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Відображати значки ігор у списку детального перегляду</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Показувати кількість елементів в описі груп</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Показувати лише визначені поля на панелях фільтра і провідника</sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Показувати лише визначені поля на панелях фільтрів і провідника</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Вимкнути апаратне прискорення</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Використовуйте під час блимання або подібних проблем інтерфейсу користувача</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Показувати приховані ігри в списках швидкого запуску</sys:String>
@@ -386,7 +387,7 @@
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Показувати процент заряду батареї</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Показувати годинник</sys:String>
     <sys:String x:Key="LOCSettingsHideMouseCursor">Сховати курсор</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Лише встановлені в Швидких Фільтрах</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Лише встановлені у Швидких Фільтрах</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Підказки кнопок контролера</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Розташування</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Горизонтальна прокрутка</sys:String>
@@ -541,8 +542,8 @@
     <sys:String x:Key="LOCGamePublishersTitle">Видавець</sys:String>
     <sys:String x:Key="LOCGameInstallationStatus">Стан установки</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTitle">Відповідність всім фільтрам</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Якщо увімкнено, будуть відображатися тільки ігри що відповідають всім пунктам у всіх фільтрах.
-Якщо вимкнено, будуть відображатися ігри що відповідають будь-яким пунктам у будь-яких фільтрах.</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Якщо увімкнено, будуть показані тільки ігри що відповідають всім пунктам у всіх фільтрах.
+Якщо вимкнено, будуть показані ігри що відповідають будь-яким пунктам у будь-яких фільтрах.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">Встановлені</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Не встановлено</sys:String>
@@ -738,7 +739,7 @@
     <sys:String x:Key="LOCScriptTypeExit">Гра зупинила сценарій</sys:String>
     <sys:String x:Key="LOCExecuteGlobalScript">Виконати глобальний сценарій</sys:String>
     <sys:String x:Key="LOCStatsGlobal">Глобально</sys:String>
-    <sys:String x:Key="LOCStatsFiltered">Відфільтровано </sys:String>
+    <sys:String x:Key="LOCStatsFiltered">Відфільтровано</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">Поточні</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">Нові</sys:String>
     <sys:String x:Key="LOCTestScript">Випробувати сценарій</sys:String>
@@ -980,7 +981,7 @@
     <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">Загальні налаштування перегляду</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Налаштування групування</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelSortingItem">Параметри сортування</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Пресети фільтрів</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Шаблони фільтрів</sys:String>
     <sys:String x:Key="LOCTopPanelPluginPanelPosition">Позиція елементів плагіну</sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth">Ширина роздільника секцій</sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove">Перемістити кнопку головного меню на бічну панель</sys:String>
@@ -995,7 +996,7 @@
     <sys:String x:Key="LOCInPast365Days">За минулі 365 днів</sys:String>
     <sys:String x:Key="LOCMoreThan365DaysAgo">Більше 365 днів тому</sys:String>
     <sys:String x:Key="LOCConfigure">Настроїти</sys:String>
-    <sys:String x:Key="LOCFilterPresetSave">Зберегти пресет</sys:String>
+    <sys:String x:Key="LOCFilterPresetSave">Зберегти шаблон</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Згорнути після початку гри</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Згорнути Playnite після початку гри.
 
@@ -1098,7 +1099,7 @@
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Стан за замовчуванням, призначений для нещодавно доданих ігор</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, призначений іграм, які граються вперше</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Не вдалося ініціалізувати середовище виконання сценарію PowerShell. Якщо ви користуєтесь Windows 7, спробуйте (повторно) встановити PowerShell 5.1, щоб вирішити проблему.</sys:String>
-    <sys:String x:Key="LOCFilterPresetNameConflict">Пресет фільтра із зазначеною назвою вже існує. Оновити пресет з новими налаштуваннями? </sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">Шаблон фільтрів із зазначеною назвою вже існує. Оновити шаблон з новими налаштуваннями? </sys:String>
     <sys:String x:Key="LOCSortingNameAutofill">Автоматично заповнювати поле &quot;Сортування&quot; для ігор доданих пакетом</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillTooltip">Коли ви додаєте ігри за допомогою оновлення бібліотеки, сканування теки емулятора або звичайного сканування теки, автоматично заповнювати поле «Сортування» найбільш слушною для сортування назвою гри, наприклад «The Witcher 3» отримає назву сортування &quot;Witcher 03&quot;</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Ці слова буде видалено з початку автоматично заповненого поля &quot;Сортування&quot;:</sys:String>

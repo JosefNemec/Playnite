@@ -57,7 +57,7 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostycz
     <sys:String x:Key="LOCCrashClosePlaynite">Wyjdź z Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Opisz jak doszło do błędu (w języku angielskim):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Menedżer bibliotek</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć grę/y?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nie można usunąć - gra lub instalator działa w tle.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nie można odinstalować uruchomionej gry.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Czy na pewno chcesz usunąć {0}?</sys:String>
@@ -101,6 +101,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCErrorStartupNoController">Nie można określić jak uruchomić grę.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Włączone</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Usuń</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Usuń nieużywane</sys:String>
     <sys:String x:Key="LOCRenameTitle">Zmień nazwę</sys:String>
@@ -649,12 +650,12 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCClose">Zamknij</sys:String>
     <sys:String x:Key="LOCChange">Zmień</sys:String>
     <sys:String x:Key="LOCAdvanced">Zaawansowane</sys:String>
-    <sys:String x:Key="LOCNever">Nigdy</sys:String>
+    <sys:String x:Key="LOCNever">–</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Stopień ukończenia</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Stopień ukończenia</sys:String>
-    <sys:String x:Key="LOCUserScore">Ocena użytkowników</sys:String>
-    <sys:String x:Key="LOCCriticScore">Ocena recenzentów</sys:String>
-    <sys:String x:Key="LOCCommunityScore">Ocena społeczności</sys:String>
+    <sys:String x:Key="LOCUserScore">Ocena</sys:String>
+    <sys:String x:Key="LOCCriticScore">Krytycy</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Gracze</sys:String>
     <sys:String x:Key="LOCGameScripts">Skrypty gry</sys:String>
     <sys:String x:Key="LOCApplicationScripts">Skrypty aplikacji</sys:String>
     <sys:String x:Key="LOCScripts">Skrypty</sys:String>
@@ -748,7 +749,7 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSaveAsDefault">Zapisz jako domyślne</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Dodaj do ulubionych</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Usuń z ulubionych</sys:String>
-    <sys:String x:Key="LOCHideGame">Ukryj tą grę</sys:String>
+    <sys:String x:Key="LOCHideGame">Ukryj grę</sys:String>
     <sys:String x:Key="LOCUnHideGame">Usuń z ukrytych</sys:String>
     <sys:String x:Key="LOCEnableHdr">Włącz obsługę HDR</sys:String>
     <sys:String x:Key="LOCDisableHdr">Wyłącz obsługę HDR</sys:String>
@@ -787,11 +788,11 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Monitorowanie wykonania gry jest aktualnie uruchomione, czy chcesz anulować proces i przywrócić grę do poprzedniego stanu?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Czas gry</sys:String>
     <sys:String x:Key="LOCLastPlayed">Ostatnio grane</sys:String>
-    <sys:String x:Key="LOCPlayedDays">{0}d {1}godz. {2}min.</sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}d {1}g {2}m</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
-    <sys:String x:Key="LOCPlayedMinutes">{0} minut(y)</sys:String>
+    <sys:String x:Key="LOCPlayedMinutes">{0}m</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} sekund(y)</sys:String>
-    <sys:String x:Key="LOCPlayedNone">Nie uruchamiano</sys:String>
+    <sys:String x:Key="LOCPlayedNone">–</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Otwieranie trybu pulpitu…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Otwieranie trybu pełnoekranowego…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Ładowanie biblioteki gier…</sys:String>

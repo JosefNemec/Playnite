@@ -102,6 +102,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">Не удалось определить, как запустить игру.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Включено</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Откл.</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Убрать</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Удалить неиспользуемые</sys:String>
     <sys:String x:Key="LOCRenameTitle">Переименовать</sys:String>

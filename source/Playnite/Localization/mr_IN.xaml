@@ -81,6 +81,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">गेम सुरू कसा करायचा हे निश्चित करता आले नाही.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">सक्षम</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">काढून टाका</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">न वापरलेले काढून टाका</sys:String>
     <sys:String x:Key="LOCRenameTitle">नाव बदला</sys:String>

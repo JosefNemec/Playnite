@@ -101,6 +101,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">게임을 시작하는 방법을 결정하지 못했습니다.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">제거</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">사용되지 않는 항목 제거</sys:String>
     <sys:String x:Key="LOCRenameTitle">이름 바꾸기</sys:String>

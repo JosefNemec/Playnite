@@ -99,6 +99,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCErrorStartupNoController">Tidak dapat menentukan cara memulai game.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktifkan</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Hapus</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Hapus yang tidak digunakan</sys:String>
     <sys:String x:Key="LOCRenameTitle">Ubah Nama</sys:String>

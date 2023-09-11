@@ -98,6 +98,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCErrorStartupNoController">Pelin aloittaminen ei onnistunut.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Käytössä</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Poista</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Poista käyttämättömät</sys:String>
     <sys:String x:Key="LOCRenameTitle">Nimeä uudelleen</sys:String>

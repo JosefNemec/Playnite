@@ -60,9 +60,14 @@ Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diag
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan niet verwijderen - Game of de installer is bezig.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan niet deinstalleren - Game is bezig.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Weet u zeker dat u {0} wilt verwijderen?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Weet u zeker dat u {0} spellen wilt verwijderen?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Weet u zeker dat u {0} wilt verwijderen?
+
+Het selecteren van de &quot;Ja (voeg toe aan uitsluitingslijst)&quot; optie zorgt ervoor dat bij het updaten van de bibliotheek, deze game niet opnieuw wordt geïmporteerd.
+
+
+</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Weet u zeker dat u {0} spellen wilt verwijderen?
 
 Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voorkomen dat de game de volgende keer dat de bibliotheek wordt bijgewerkt, opnieuw wordt geïmporteerd.
@@ -100,6 +105,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCErrorStartupNoController">Kon niet bepalen hoe de game te starten.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ingeschakeld</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Verwijderen</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Verwijder ongebruikt</sys:String>
     <sys:String x:Key="LOCRenameTitle">Hernoemen</sys:String>
@@ -411,7 +417,7 @@ Wanneer uitgeschakeld, worden achtergrondafbeeldingen enkel wanneer nodig gedown
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Sluit niet af na gamesessies die minder lang duurden dan (in seconden)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Sluit automatisch de volgende clients af:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Sluit clients automatisch</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">Import uitsluitings lijst</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Importeer uitsluitings lijst</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Geef een waarschuwing weer wanneer te grote gamemedia worden toegekend.</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">&quot;Open map&quot;-commando</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Gewenste leeftijdsclassificatie-organisatie</sys:String>
@@ -785,7 +791,7 @@ Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Spel executie monitoring wordt momenteel uitgevoerd. Wil je het proces annuleren en het spel terugbrengen naar de vorige staat?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Tijd Gespeeld</sys:String>
     <sys:String x:Key="LOCLastPlayed">Laatst Gespeeld</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}d {1}u {2}m</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}u {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minuten</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} seconden</sys:String>
@@ -896,7 +902,7 @@ Achtergronden: {2} megapixels</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Totale speeltijd</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Gemiddelde speeltijd</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Hoogste Speeltijd</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Totale installatiegrootte</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Overzicht</sys:String>
     <sys:String x:Key="LOCSidebar">Zijbalk</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Toon in zijbalk</sys:String>
@@ -1064,7 +1070,7 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Ingebouwde profielen</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Ingebouwd profiel</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">Aangepaste profielen</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">Aangepast profiel</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Afgehandeld door een ingebouwd script</sys:String>
     <sys:String x:Key="LOCEmulatorSpec">Emulatorspecificatie</sys:String>
     <sys:String x:Key="LOCPlatformSpec">Platformspecificatie</sys:String>
@@ -1157,7 +1163,7 @@ Deze optie werkt mogelijk niet volledig met plugins die een specifieke game impo
     <sys:String x:Key="LOCOpen">Open</sys:String>
     <sys:String x:Key="LOCActivate">Activeren</sys:String>
     <sys:String x:Key="LOCAssign">Toewijzen</sys:String>
-    <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
+    <sys:String x:Key="LOCDefaultSearchDescription">Begin met typen om een spel te zoeken... [F1] voor hulp</sys:String>
     <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalled"></sys:String>
     <sys:String x:Key="LOCSearchFilterHidden"></sys:String>
@@ -1165,13 +1171,13 @@ Deze optie werkt mogelijk niet volledig met plugins die een specifieke game impo
     <sys:String x:Key="LOCSearchFilterUninstalledExcluded"></sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenIncluded"></sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenalledExcluded"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionPlay"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionSwitchTo"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionPlay">Spelen of installeren</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionSwitchTo">Ga naar details</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionOpenMenu"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionEdit"></sys:String>
-    <sys:String x:Key="LOCOpenSearch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSearchBox"></sys:String>
-    <sys:String x:Key="LOCTopPanelSearchButton"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit">Bewerk spel</sys:String>
+    <sys:String x:Key="LOCOpenSearch">Open zoeken</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox">Zoekbalk</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton">Zoekknop</sys:String>
 
     <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSecondaryAction"></sys:String>
@@ -1182,15 +1188,15 @@ Deze optie werkt mogelijk niet volledig met plugins die een specifieke game impo
     <sys:String x:Key="LOCSearchSettingsCustomKeyword"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
     <sys:String x:Key="LOCSearchTitle"></sys:String>
-    <sys:String x:Key="LOCExtensionSettingsMenu"></sys:String>
-    <sys:String x:Key="LOCExclusions"></sys:String>
+    <sys:String x:Key="LOCExtensionSettingsMenu">Extensie instelling</sys:String>
+    <sys:String x:Key="LOCExclusions">Uitsluitingen</sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
     <sys:String x:Key="LOCEmuImportAddROMExclusionList"></sys:String>
-    <sys:String x:Key="LOCEmuImportAddFolderExclusionList"></sys:String>
+    <sys:String x:Key="LOCEmuImportAddFolderExclusionList">Map toevoegen aan uitsluitingslijst</sys:String>
     <sys:String x:Key="LOCEmuExclusionNoConfigError"></sys:String>
     <sys:String x:Key="LOCEmuExclusionAddedMessage"></sys:String>
-    <sys:String x:Key="LOCEmuOverridePlatform"></sys:String>
+    <sys:String x:Key="LOCEmuOverridePlatform">Platform overschrijven</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
@@ -1199,18 +1205,18 @@ Deze optie werkt mogelijk niet volledig met plugins die een specifieke game impo
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Velden die worden weergegeven voor spellen in zoekresultaten:</sys:String>
     <sys:String x:Key="LOCHiddenStatus">Verborgen Status</sys:String>
 
-    <sys:String x:Key="LOCBackupCancelled"></sys:String>
-    <sys:String x:Key="LOCBackupFailed"></sys:String>
-    <sys:String x:Key="LOCBackupErrorTitle"></sys:String>
-    <sys:String x:Key="LOCBackupProgress"></sys:String>
-    <sys:String x:Key="LOCBackupRestoreProgress"></sys:String>
+    <sys:String x:Key="LOCBackupCancelled">Gegevens back-up geannuleerd</sys:String>
+    <sys:String x:Key="LOCBackupFailed">Gegevens back-up mislukt.</sys:String>
+    <sys:String x:Key="LOCBackupErrorTitle">Fout in data back-up</sys:String>
+    <sys:String x:Key="LOCBackupProgress">Gegevens back-up bezig...</sys:String>
+    <sys:String x:Key="LOCBackupRestoreProgress">Data herstellen van back-up...</sys:String>
     <sys:String x:Key="LOCBackupRestoreFailed"></sys:String>
-    <sys:String x:Key="LOCBackupOptionSettings"></sys:String>
-    <sys:String x:Key="LOCBackupOptionLibrary"></sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings">Instellingen</sys:String>
+    <sys:String x:Key="LOCBackupOptionLibrary">Bibliotheek</sys:String>
     <sys:String x:Key="LOCBackupOptionGameMedia"></sys:String>
-    <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions">Geïnstalleerde Extensies</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
-    <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes">Geïnstalleerde Thema's</sys:String>
     <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Automatische data-back-up</sys:String>
@@ -1241,7 +1247,7 @@ Nieuwe grote releases resulteren niet in een update notificatie.</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface">Toegankelijkheid (schermlezer) ondersteuning</sys:String>
     <sys:String x:Key="LOCApplicationMenu">Applicatie menu</sys:String>
     <sys:String x:Key="LOCGameMenu">Spel menu</sys:String>
-    <sys:String x:Key="LOCProgramFolder"></sys:String>
-    <sys:String x:Key="LOCUserDataFolder"></sys:String>
+    <sys:String x:Key="LOCProgramFolder">Programma map</sys:String>
+    <sys:String x:Key="LOCUserDataFolder">Gebruikers data locatie</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
 </ResourceDictionary>

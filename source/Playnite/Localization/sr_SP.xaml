@@ -97,6 +97,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">Неуспешно одређивање начина покретања игре</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Омогућено</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Обриши</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Обриши све некоришћено</sys:String>
     <sys:String x:Key="LOCRenameTitle">Преименуј</sys:String>

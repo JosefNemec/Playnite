@@ -102,6 +102,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCErrorStartupNoController">Kunde inte avgöra hur spelet ska startas.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktiverad</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Ta bort</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Ta bort oanvända</sys:String>
     <sys:String x:Key="LOCRenameTitle">Byt namn</sys:String>

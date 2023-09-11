@@ -99,6 +99,7 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCErrorStartupNoController">Nije moguće utvrditi kako pokrenuti igru</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Uključeno</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Obriši</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Obriši nekorišćeno</sys:String>
     <sys:String x:Key="LOCRenameTitle">Preimenuj</sys:String>

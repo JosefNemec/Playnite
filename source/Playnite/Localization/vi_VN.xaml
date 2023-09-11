@@ -101,6 +101,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCErrorStartupNoController">Không thể tìm cách bắt đầu trò chơi.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Đã kích hoạt</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Xóa bỏ</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Tẩy bỏ phần không sử dụng.</sys:String>
     <sys:String x:Key="LOCRenameTitle">Đổi Tên</sys:String>

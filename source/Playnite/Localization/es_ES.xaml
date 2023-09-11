@@ -101,6 +101,7 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCErrorStartupNoController">No se pudo determinar cómo comenzar el juego.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activado</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Deshabilitado</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Eliminar</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Eliminar los no usados</sys:String>
     <sys:String x:Key="LOCRenameTitle">Renombrar</sys:String>

@@ -46,7 +46,7 @@ Sorunu uzantının geliştiricisine bildirmenizi öneririz. Sorun tekrarlanmaya 
 3. taraf eklentileri devre dışı bırakmanızı, sorunlu olanı ayırmanızı ve sorunu eklentinin geliştiricisine bildirmenizi öneririz.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz hata oluştu.
         
-Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgilerini gönderin. Teşekkür ederim.</sys:String>
+Bu sorunu çözmemize yardımcı olmak için lütfen tanılama bilgilerini gönderin. Teşekkürler.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Uzantıyı devre dışı bırak</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Günlük dosyasını kaydet</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Tanılama bilgilerini gönder</sys:String>
@@ -90,7 +90,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Bu oyundan sorumlu kütüphane eklentisi devre dışı bırakılmış veya kurulmamış.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Resmi üst veri indirmesi mevcut değil.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Hiçbir oyun seçilmedi.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction">Oyunun betik eylemi çalıştırılırken hata.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">Oyun betiği çalıştırılamadı.</sys:String>
     <sys:String x:Key="LOCErrorApplicationScript">Uygulama betik yürütme başarısız.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Genel betik eylemi çalıştırılırken hata.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Emülatör betik yürütme başarısız.</sys:String>
@@ -99,6 +99,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCErrorStartupNoController">Oyunun nasıl başlatılacağı belirlenemedi.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Etkin</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Devre dışı</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Kaldır</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Kullanılmayanı kaldır</sys:String>
     <sys:String x:Key="LOCRenameTitle">Adlandır</sys:String>
@@ -131,7 +132,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCAddedLabel">Eklenme</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Eklenme Tarihi</sys:String>
     <sys:String x:Key="LOCModifiedLabel">Değiştirilme</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">Değiştirme Tarihi</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">Değiştirilme Tarihi</sys:String>
     <sys:String x:Key="LOCWebsiteLabel">Web Sayfası</sys:String>
     <sys:String x:Key="LOCPathLabel">Yol</sys:String>
     <sys:String x:Key="LOCOKLabel">TAMAM</sys:String>
@@ -267,7 +268,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Izgara görünümü ayrıntı konumu</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Ayrıntılı görünüm oyun listesi konumu</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Paneller arası ayraç koy</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Oyun kapağı resmi yüksekliği</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Oyun kapak görseli yüksekliği</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Oyun listesi simge yüksekliği</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Uygulama yazı tipi</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Eş aralıklı yazı tipi</sys:String>
@@ -278,7 +279,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Aşağıdaki seçenekler tam ekran kipinde kare işlemeyi etkiler!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Uzatma kipi</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD Kutusu</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Mağazası</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSquare">Kare</sys:String>
@@ -301,7 +302,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsSearch">Ara</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Yedekle</sys:String>
     <sys:String x:Key="LOCMenuBackupData">Kütüphane Verisini Yedekle</sys:String>
-    <sys:String x:Key="LOCMenuRestoreBackup">Yedeklemeyi Geri Yükle</sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">Veri Yedeğini Geri Yükle</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Kütüphanedeki değişiklikleri otomatik içeri aktar</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Geçersiz veritabanı dosyası konumu, uygun dosya yolu ayarlanmalıdır.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Hesap adı boş bırakılamaz.</sys:String>
@@ -312,7 +313,7 @@ Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen tanılama bilgiler
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Bilgisayar başladığında başlatmak için Playnite kaydı yapılamadı.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Tam ekran kipinde başlat</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Görüntüleri arka planda yükle</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Daha yavaş görüntü yükleme süreleri karşılığında oyun listelerinin kaydırma düzgünlüğünü artırır.</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Daha yavaş görüntü yükleme süreleri karşılığında oyun listelerinin kaydırma akıcılığını artırır.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Kapak resmi eksik olduğunda oyunun adını göster</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Izgara görünümünde oyun adlarını göster</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Kurulu olmayan oyunları koyulaştır</sys:String>
@@ -433,9 +434,9 @@ Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğun
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Alternatif web görünümü oluşturma modu</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Web görünümleriyle ilgili sorunlarla karşılaştığınızda kullanın, örneğin entegrasyon kimlik doğrulama iletişim kutuları.</sys:String>
     <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Çok uzun oyun tanımlarını kısmen yükle</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Çok uzun tanım metinleri, oyun seçimini değiştirirken farkedilir ölçüde gecikmelere yol açabilir.
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Çok uzun açıklamalar, oyun seçimini değiştirirken fark edilir ölçüde gecikmelere yol açabilir.
 
-Bu seçenek aktifken, başlangıçta tanım metninin sadece baş kısmı yüklenecek, metnin geri kalanı istendiğinde ekrana getirilebilecektir.</sys:String>
+Etkinleştirildiğinde, ilk başta açıklama metninin bir kısmı yüklenecek, metnin geri kalanı istendiğinde ekrana getirilebilecektir.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Üst Veriyi İçe Aktar</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Üst Veri İndir</sys:String>

@@ -101,6 +101,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCErrorStartupNoController">Impossible de déterminer une action de lancement.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activé(e)</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Désactivé</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Supprimer</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Supprimer les données inutilisées</sys:String>
     <sys:String x:Key="LOCRenameTitle">Renommer</sys:String>
@@ -785,7 +786,7 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minutes</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} secondes</sys:String>
-    <sys:String x:Key="LOCPlayedNone">[Pas encore lancé]</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Non joué</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Retour au bureau…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Ouverture du mode plein écran…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Chargement de la bibliothèque…</sys:String>
@@ -904,9 +905,9 @@ L'application va redémarrer pour achever ce processus. Voulez-vous réinitialis
     <sys:String x:Key="LOCCommonLinksNews">Actualités</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">Page du magasin</sys:String>
     <sys:String x:Key="LOCFullscreenFirstTimeError">La configuration initiale n'est pas achevée. Playnite va maintenant redémarrer en mode Bureau pour continuer la procédure.</sys:String>
-    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Lancés récemment</sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Joués récemment</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Favoris</sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed">Temps de jeu</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">Les plus joués</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Tous</sys:String>
     <sys:String x:Key="LOCGameListFiltered">Des filtres sont actifs</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered">Des filtres additionnels sont actifs</sys:String>

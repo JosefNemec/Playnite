@@ -101,6 +101,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">Не можах да определя как да стартирам играта.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Активирано</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Премахване</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Премахване на неизползваните</sys:String>
     <sys:String x:Key="LOCRenameTitle">Преименуване</sys:String>
@@ -542,10 +543,10 @@
     <sys:String x:Key="LOCUseFilterStyleAndTitle">Съвпада с всички филтри</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Ако е разрешено, само игри, които използват всички елементи във всички филтри, ще бъдат включени в изгледа.
 Ако е деактивирано, игрите, които използват който и да е елемент във всеки филтър, ще бъдат включени в изгледа.</sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle">Инсталиран</sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle">Инсталиран</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle">Не е инсталиран</sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle">Скрит</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Инсталирани</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Инсталирани</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Не инсталирани</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Скрити</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Любими</sys:String>
     <sys:String x:Key="LOCGameHdrTitle">Активиране на HDR поддръжка</sys:String>
     <sys:String x:Key="LOCGameHdrTooltip">Ако е активиран, HDR ще бъде активиран на основния дисплей преди стартиране на играта.</sys:String>
@@ -617,7 +618,7 @@
     <sys:String x:Key="LOCRemovePlayAction">Премахване на действие за възпроизвеждане</sys:String>
     <sys:String x:Key="LOCAddGames">Добавяне на игри</sys:String>
     <sys:String x:Key="LOCScanFolder">Сканиране на папка…</sys:String>
-    <sys:String x:Key="LOCDetectInstalled">Откриване на инсталиран</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">Откриване на инсталирани</sys:String>
     <sys:String x:Key="LOCBrowse">Преглед...</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Отворете Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Настройки на профила</sys:String>

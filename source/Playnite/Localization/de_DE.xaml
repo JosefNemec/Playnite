@@ -101,6 +101,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCErrorStartupNoController">Es konnte nicht herausgefunden werden, wie das Spiel gestartet wird.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktiviert</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Deaktiviert</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Entfernen</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Nicht Verwendete entfernen</sys:String>
     <sys:String x:Key="LOCRenameTitle">Umbenennen</sys:String>

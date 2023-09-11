@@ -101,6 +101,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCErrorStartupNoController">Nepodařilo se určit postup kterým hru spustit.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Povoleno</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Zakázáno</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Odstranit</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Odstranit nepoužité</sys:String>
     <sys:String x:Key="LOCRenameTitle">Přejmenovat</sys:String>

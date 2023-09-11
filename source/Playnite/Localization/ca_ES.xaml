@@ -101,6 +101,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCErrorStartupNoController">No s'ha pogut determinar com obrir el joc.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activat</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Desactivat</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Eliminar</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Eliminar els no utilitzats</sys:String>
     <sys:String x:Key="LOCRenameTitle">Canviar el nom</sys:String>

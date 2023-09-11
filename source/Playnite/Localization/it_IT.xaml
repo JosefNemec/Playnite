@@ -35,7 +35,7 @@ Se vuoi aiutarci a risolvere questo problema, per favore descrivi brevemente le 
 In alternativa, puoi cliccare sul pulsante &quot;Segnala Crash&quot; per creare un nuovo problema su GitHub e segnalare il crash manualmente.
 
 Grazie per il tuo aiuto.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Estensione &quot;{0}&quot; ha causato un errore irreparabile.
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">L'Estensione &quot;{0}&quot; ha causato un errore irreparabile.
 
 Consigliamo di salvare il file di registro e di riportare il problema allo sviluppatore dell'estensione. Se il problema persiste, disattivare l'estensione.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Estensione &quot;{0}&quot; ha causato un errore irreparabile.
@@ -101,6 +101,7 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCErrorStartupNoController">Impossibile determinare come avviare il gioco.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Abilitato</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Disattivato</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Rimuovi</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Rimuovere i titoli inutilizzati</sys:String>
     <sys:String x:Key="LOCRenameTitle">Rinomina</sys:String>
