@@ -16,6 +16,7 @@ using Playnite.Windows;
 using System.Windows;
 using Playnite.Common.Media.Icons;
 using Playnite.Emulators;
+using System.Threading;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -740,7 +741,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             string addNewFile(string path, Guid parent)
             {
-                var newPath = database.AddFile(path, parent, true);
+                var newPath = database.AddFile(path, parent, true, CancellationToken.None);
                 if (Paths.AreEqual(Path.GetDirectoryName(path), PlaynitePaths.TempPath))
                 {
                     File.Delete(path);

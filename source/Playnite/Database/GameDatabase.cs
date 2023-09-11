@@ -58,8 +58,8 @@ namespace Playnite.Database
         void OpenDatabase();
         string GetFileStoragePath(Guid parentId);
         string GetFullFilePath(string dbPath);
-        string AddFile(MetadataFile file, Guid parentId, bool isImage);
-        string AddFile(string path, Guid parentId, bool isImage);
+        string AddFile(MetadataFile file, Guid parentId, bool isImage, CancellationToken cancelToken);
+        string AddFile(string path, Guid parentId, bool isImage, CancellationToken cancelToken);
         void RemoveFile(string dbPath);
         BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null);
         void CopyFile(string dbPath, string targetPath);
@@ -793,7 +793,7 @@ namespace Playnite.Database
             return Path.Combine(FilesDirectoryPath, dbPath);
         }
 
-        public string AddFile(MetadataFile file, Guid parentId, bool isImage)
+        public string AddFile(MetadataFile file, Guid parentId, bool isImage, CancellationToken cancelToken)
         {
             if (!file.HasImageData)
             {
@@ -804,7 +804,7 @@ namespace Playnite.Database
             string localPath = null;
             try
             {
-                localPath = file.GetLocalFile(CancellationToken.None);
+                localPath = file.GetLocalFile(cancelToken);
             }
             catch (Exception e)
             {
@@ -816,7 +816,7 @@ namespace Playnite.Database
                 return null;
             }
 
-            var finalFile = AddFile(localPath, parentId, isImage);
+            var finalFile = AddFile(localPath, parentId, isImage, cancelToken);
             if (localPath.StartsWith(PlaynitePaths.TempPath))
             {
                 FileSystem.DeleteFile(localPath);
@@ -825,7 +825,7 @@ namespace Playnite.Database
             return finalFile;
         }
 
-        public string AddFile(string path, Guid parentId, bool isImage)
+        public string AddFile(string path, Guid parentId, bool isImage, CancellationToken cancelToken)
         {
             CheckDbState();
             var targetDir = Path.Combine(FilesDirectoryPath, parentId.ToString());
@@ -838,7 +838,7 @@ namespace Playnite.Database
                     var extension = Path.GetExtension(new Uri(path).AbsolutePath);
                     var fileName = Guid.NewGuid().ToString() + extension;
                     var downPath = Path.Combine(targetDir, fileName);
-                    HttpDownloader.DownloadFile(path, downPath);
+                    HttpDownloader.DownloadFile(path, downPath, cancelToken);
                     if (isImage)
                     {
                         var converted = Images.ConvertToCompatibleFormat(downPath, Path.Combine(targetDir, Path.GetFileNameWithoutExtension(fileName)));
@@ -1165,17 +1165,17 @@ namespace Playnite.Database
 
             if (game.Icon != null)
             {
-                toAdd.Icon = AddFile(game.Icon, toAdd.Id, true);
+                toAdd.Icon = AddFile(game.Icon, toAdd.Id, true, CancellationToken.None);
             }
 
             if (game.CoverImage != null)
             {
-                toAdd.CoverImage = AddFile(game.CoverImage, toAdd.Id, true);
+                toAdd.CoverImage = AddFile(game.CoverImage, toAdd.Id, true, CancellationToken.None);
             }
 
             if (game.BackgroundImage != null)
             {
-                toAdd.BackgroundImage = AddFile(game.BackgroundImage, toAdd.Id, true);
+                toAdd.BackgroundImage = AddFile(game.BackgroundImage, toAdd.Id, true, CancellationToken.None);
             }
 
             toAdd.IncludeLibraryPluginAction = true;

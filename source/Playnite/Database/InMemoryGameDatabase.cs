@@ -115,12 +115,12 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public string AddFile(MetadataFile file, Guid parentId, bool isImage)
+        public string AddFile(MetadataFile file, Guid parentId, bool isImage, CancellationToken cancelToken)
         {
             throw new NotImplementedException();
         }
 
-        public string AddFile(string path, Guid parentId, bool isImage)
+        public string AddFile(string path, Guid parentId, bool isImage, CancellationToken cancelToken)
         {
             throw new NotImplementedException();
         }

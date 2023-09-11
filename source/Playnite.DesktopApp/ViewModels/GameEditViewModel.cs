@@ -27,6 +27,7 @@ using Playnite.Common.Media.Icons;
 using System.Diagnostics;
 using Playnite.SDK.Exceptions;
 using Playnite.Scripting.PowerShell;
+using System.Threading;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -822,7 +823,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.Icon))
                     {
-                        game.Icon = database.AddFile(EditingGame.Icon, game.Id, true);
+                        game.Icon = database.AddFile(EditingGame.Icon, game.Id, true, CancellationToken.None);
                     }
                 }
 
@@ -834,7 +835,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.CoverImage))
                     {
-                        game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id, true);
+                        game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id, true, CancellationToken.None);
                     }
                 }
 
@@ -850,7 +851,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.BackgroundImage))
                     {
-                        game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id, true);
+                        game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id, true, CancellationToken.None);
                     }
                 }
 

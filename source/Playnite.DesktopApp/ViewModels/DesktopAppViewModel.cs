@@ -887,7 +887,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                             if (!icoPath.IsNullOrEmpty())
                             {
-                                game.Icon = Database.AddFile(icoPath, game.Id, true);
+                                game.Icon = Database.AddFile(icoPath, game.Id, true, CancellationToken.None);
                             }
 
                             Database.Games.Add(game);

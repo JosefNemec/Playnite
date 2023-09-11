@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.DesktopApp.ViewModels
@@ -124,7 +125,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             string addNewFile(string path, Guid parent)
             {
-                var newPath = database.AddFile(path, parent, true);
+                var newPath = database.AddFile(path, parent, true, CancellationToken.None);
                 if (Paths.AreEqual(Path.GetDirectoryName(path), PlaynitePaths.TempPath))
                 {
                     File.Delete(path);
