@@ -78,12 +78,6 @@ namespace Playnite.Common
             {
                 var data = GetLnkShortcutData(file.FullName);
                 var name = Path.GetFileNameWithoutExtension(file.Name);
-                if (File.Exists(data.Path))
-                {
-                    var versionInfo = FileVersionInfo.GetVersionInfo(data.Path);
-                    name = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : Path.GetFileNameWithoutExtension(file.FullName);
-                }
-
                 var program = new Program
                 {
                     Path = data.Path,
