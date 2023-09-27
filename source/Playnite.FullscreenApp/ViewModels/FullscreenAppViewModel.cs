@@ -694,7 +694,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             SubFilterControl = new FilterEnumListSelection(this, isPrimaryFilter)
             {
-                Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title,
+                Title = title.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(title) : title,
                 EnumType = enumType
             };
 
@@ -713,7 +713,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             SubFilterControl = new FilterStringListSelection(this, isPrimaryFilter)
             {
-                Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title
+                Title = title.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(title) : title
             };
 
             BindingOperations.SetBinding(SubFilterControl, FilterStringListSelection.ItemsListProperty, new Binding()
@@ -737,7 +737,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             SubFilterControl = new FilterDbItemtSelection(this, isPrimaryFilter)
             {
-                Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title
+                Title = title.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(title) : title
             };
 
             BindingOperations.SetBinding(SubFilterControl, FilterDbItemtSelection.ItemsListProperty, new Binding()

@@ -61,7 +61,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 item.Header = "<NO_STRING>";
             }
-            else if (locString.StartsWith("LOC"))
+            else if (locString.StartsWith("LOC", StringComparison.Ordinal))
             {
                 item.SetResourceReference(MenuItem.HeaderProperty, locString);
             }

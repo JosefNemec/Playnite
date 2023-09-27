@@ -73,7 +73,7 @@ namespace Playnite.DesktopApp.Controls
                 InputGestureText = command?.GestureText
             };
 
-            if (locString?.StartsWith("LOC") == true)
+            if (locString?.StartsWith("LOC", StringComparison.Ordinal) == true)
             {
                 item.SetResourceReference(MenuItem.HeaderProperty, locString);
             }

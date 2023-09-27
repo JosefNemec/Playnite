@@ -320,7 +320,7 @@ namespace Playnite.DesktopApp.Windows
             {
                 var title = option.Title;
                 var button = new Button();
-                button.Content = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
+                button.Content = title.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(title) : title;
                 button.Style = ResourceProvider.GetResource("BottomButton") as Style;
                 button.Tag = option;
                 button.IsDefault = option.IsDefault;
@@ -349,7 +349,7 @@ namespace Playnite.DesktopApp.Windows
 
         private void SetStrings(string messageText, string messageCaption)
         {
-            if (messageText?.StartsWith("LOC") == true)
+            if (messageText?.StartsWith("LOC", StringComparison.Ordinal) == true)
             {
                 Text = ResourceProvider.GetString(messageText);
             }
@@ -358,7 +358,7 @@ namespace Playnite.DesktopApp.Windows
                 Text = messageText;
             }
 
-            if (messageCaption?.StartsWith("LOC") == true)
+            if (messageCaption?.StartsWith("LOC", StringComparison.Ordinal) == true)
             {
                 Caption = ResourceProvider.GetString(messageCaption);
             }

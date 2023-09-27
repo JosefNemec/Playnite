@@ -127,7 +127,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private TopPanelItem AssignPanelButton(string contentTemplate, ContextMenu menu, string tooltip, out TopPanelWrapperItem panelItem)
         {
-            tooltip = tooltip.StartsWith("LOC") ? ResourceProvider.GetString(tooltip) : tooltip;
+            tooltip = tooltip.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(tooltip) : tooltip;
             panelItem = new TopPanelWrapperItem(new SDK.Plugins.TopPanelItem { Title = tooltip }, mainModel);
             var item = new TopPanelItem() { DataContext = panelItem };
             item.SetResourceReference(TopPanelItem.ContentTemplateProperty, contentTemplate);
@@ -139,7 +139,7 @@ namespace Playnite.DesktopApp.Controls.Views
 
         private TopPanelItem AssignPanelButton(string contentTemplate, RelayCommandBase command, string tooltip, out TopPanelWrapperItem panelItem)
         {
-            tooltip = tooltip.StartsWith("LOC") ? ResourceProvider.GetString(tooltip) : tooltip;
+            tooltip = tooltip.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(tooltip) : tooltip;
             panelItem = new TopPanelWrapperItem(new SDK.Plugins.TopPanelItem { Title = tooltip }, mainModel)
             {
                 Command = command
