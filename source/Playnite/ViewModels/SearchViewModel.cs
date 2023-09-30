@@ -380,6 +380,7 @@ namespace Playnite.ViewModels
         private CancellationTokenSource currentSearchToken;
         private int customProviderDeleteAttemps = 0;
         private readonly Stack<SearchContext> searchContextStack = new Stack<SearchContext>();
+        private const double defaultMinimumJaronWinklerSimilarity = 0.90;
         private bool isClosing = false;
 
         private string searchTerm;
@@ -655,7 +656,7 @@ namespace Playnite.ViewModels
             return results;
         }
 
-        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart)
+        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart, double minimumJaronWinklerSimilarity = defaultMinimumJaronWinklerSimilarity)
         {
             if (filter.IsNullOrWhiteSpace())
             {
@@ -672,7 +673,7 @@ namespace Playnite.ViewModels
                 return true;
             }
 
-            if (filter.GetJaroWinklerSimilarityIgnoreCase(toMatch) >= 0.90)
+            if (filter.GetJaroWinklerSimilarityIgnoreCase(toMatch) >= minimumJaronWinklerSimilarity)
             {
                 return true;
             }
