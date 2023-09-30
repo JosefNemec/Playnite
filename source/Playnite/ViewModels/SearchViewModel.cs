@@ -205,6 +205,8 @@ namespace Playnite.ViewModels
             foreach (var game in mainModel.Database.Games.
                 Where(g => GameFilter(g, searchTerm, args.GameFilterSettings, true))
                 .OrderBy(a => a.Name.GetLevenshteinDistanceIgnoreCase(searchTerm))
+                .ThenBy(x => x.Name)
+                .ThenByDescending(x => x.IsInstalled)
                 .Take(60))
             {
                 yield return new GameSearchItem(game, GetPrimaryGameAction(game))
