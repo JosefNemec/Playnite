@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Playnite.Tests.Extensions
 {
     [TestFixture]
-    public class StringExtensionTests
+    public class StringExtensionsTests
     {
         [Test]
         public void JeroWrenklinSimilarityTests()
