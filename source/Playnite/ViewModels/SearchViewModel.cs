@@ -672,6 +672,11 @@ namespace Playnite.ViewModels
                 return true;
             }
 
+            if (filter.GetJaroWinklerSimilarityIgnoreCase(toMatch) >= 0.90)
+            {
+                return true;
+            }
+
             if (filter.Length > toMatch.Length)
             {
                 return false;
