@@ -352,13 +352,23 @@ namespace System
             return CultureInfo.CurrentCulture.CompareInfo.IndexOf(source, value, compareOptions) >= 0;
         }
 
+        public static int GetLevenshteinDistanceIgnoreCase(this string source, string value)
+        {
+            return GetLevenshteinDistance(source, value, charCaseInsensitiveComparer);
+        }
+
+        public static int GetLevenshteinDistance(this string source, string value)
+        {
+            return GetLevenshteinDistance(source, value, EqualityComparer<char>.Default);
+        }
+
         //From https://github.com/DanHarltey/Fastenshtein
         /// <summary>
         /// Compares the two values to find the minimum Levenshtein distance. 
         /// Thread safe.
         /// </summary>
         /// <returns>Difference. 0 complete match.</returns>
-        public static int GetLevenshteinDistance(this string value1, string value2)
+        public static int GetLevenshteinDistance(this string value1, string value2, IEqualityComparer<char> comparer)
         {
             if (value2.Length == 0)
             {
@@ -387,7 +397,7 @@ namespace System
                     int currentCost = cost;
                     cost = costs[j];
 
-                    if (value1Char != value2[j])
+                    if (!comparer.Equals(value1Char, value2[j]))
                     {
                         if (previousCost < currentCost)
                         {
