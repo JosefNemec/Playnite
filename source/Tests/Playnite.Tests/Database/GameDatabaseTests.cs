@@ -11,6 +11,7 @@ using Moq;
 using NUnit.Framework;
 using Playnite.Settings;
 using Playnite.Common;
+using System.Threading;
 
 namespace Playnite.Tests.Database
 {
@@ -103,9 +104,9 @@ namespace Playnite.Tests.Database
                 db.OpenDatabase();
                 var game = new Game("Test");
                 db.Games.Add(game);
-                game.Icon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                game.BackgroundImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                game.CoverImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                game.Icon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                game.BackgroundImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                game.CoverImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
 
                 Assert.IsNotEmpty(game.Icon);
                 Assert.IsNotEmpty(game.BackgroundImage);

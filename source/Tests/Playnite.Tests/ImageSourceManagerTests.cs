@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -51,7 +52,7 @@ namespace Playnite.Tests
             using (var db = new GameDatabase(temp.TempPath))
             {
                 db.OpenDatabase();
-                var image = db.AddFile(file, Guid.NewGuid(), true);
+                var image = db.AddFile(file, Guid.NewGuid(), true, CancellationToken.None);
                 ImageSourceManager.SetDatabase(db);
                 var result = ImageSourceManager.GetImage(image, false);
                 Assert.AreEqual(typeof(BitmapImage), result.GetType());
