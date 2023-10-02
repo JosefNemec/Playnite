@@ -118,11 +118,11 @@ namespace Playnite
             var result = inputString;
             if (!emulatorDir.IsNullOrEmpty())
             {
-                emulatorDir = emulatorDir.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath);
+                emulatorDir = emulatorDir.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath, StringComparison.Ordinal);
             }
 
-            result = result.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath);
-            result = result.Replace(ExpandableVariables.EmulatorDirectory, emulatorDir);
+            result = result.Replace(ExpandableVariables.PlayniteDirectory, ProgramPath, StringComparison.Ordinal);
+            result = result.Replace(ExpandableVariables.EmulatorDirectory, emulatorDir, StringComparison.Ordinal);
             return fixSeparators ? Paths.FixSeparators(result) : result;
         }
     }

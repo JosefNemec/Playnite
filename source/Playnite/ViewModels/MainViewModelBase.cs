@@ -981,7 +981,10 @@ namespace Playnite.ViewModels
         {
             try
             {
-                ProcessStarter.StartProcess(app.Path, app.Arguments, app.WorkingDir);
+                ProcessStarter.StartProcess(
+                    PlaynitePaths.ExpandVariables(app.Path, fixSeparators: true),
+                    PlaynitePaths.ExpandVariables(app.Arguments),
+                    PlaynitePaths.ExpandVariables(app.WorkingDir, fixSeparators: true));
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
