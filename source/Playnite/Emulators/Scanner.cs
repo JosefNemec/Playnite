@@ -152,6 +152,8 @@ namespace Playnite.Emulators
         private static readonly string[] supportedArchiveExt = new string[] { "rar", "7z", "zip", "tar", "bzip2", "gzip", "lzip" };
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
+        private List<string> fileExclusions;
+        private List<string> directoryExclusions;
         private readonly IGameDatabaseMain database;
         internal HashSet<string> importedFiles;
         private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
@@ -200,6 +202,22 @@ namespace Playnite.Emulators
                 ListExtensions.Merge(globalScanConfig.CrcExcludeFileTypes, scanner.CrcExcludeFileTypes).
                 Select(a => a.ToLower().Trim()).ToHashSet());
             var dirToScan = PlaynitePaths.ExpandVariables(scanner.Directory, emulator.InstallDir, true);
+
+            if (scanner.ExcludedFiles.HasItems())
+            {
+                fileExclusions = scanner.ExcludedFiles.
+                    Where(a => !a.IsNullOrWhiteSpace()).
+                    Select(a => Path.Combine(dirToScan, a.Trim())).
+                    ToList();
+            }
+
+            if (scanner.ExcludedDirectories.HasItems())
+            {
+                directoryExclusions = scanner.ExcludedDirectories.
+                    Where(a => !a.IsNullOrWhiteSpace()).
+                    Select(a => Path.Combine(dirToScan, a.Trim()).TrimEnd(Paths.DirectorySeparators)).
+                    ToList();
+            }
 
             CustomEmulatorProfile customProfile = null;
             BuiltInEmulatorProfile builtinProfile = null;
@@ -613,9 +631,9 @@ namespace Playnite.Emulators
             }
 
             fileScanCallback?.Invoke(directory);
-            if (scanner.ExcludedFiles.HasItems())
+            if (fileExclusions.HasItems())
             {
-                foreach (var excFile in scanner.ExcludedFiles.Where(a => !a.IsNullOrWhiteSpace()).Select(a => Path.Combine(directory, a.Trim())))
+                foreach (var excFile in fileExclusions)
                 {
                     var match = files.FirstOrDefault(a => a.Equals(excFile, StringComparison.OrdinalIgnoreCase));
                     if (match != null)
@@ -857,11 +875,11 @@ namespace Playnite.Emulators
 
             if (scanSubfolders)
             {
-                if (scanner.ExcludedDirectories.HasItems())
+                if (directoryExclusions.HasItems())
                 {
-                    foreach (var excDir in scanner.ExcludedDirectories.Where(a => !a.IsNullOrWhiteSpace()).Select(a => Path.Combine(directory, a.Trim())))
+                    foreach (var excDir in directoryExclusions)
                     {
-                        var match = dirs.FirstOrDefault(a => a.TrimEnd(Paths.DirectorySeparators).Equals(excDir.TrimEnd(Paths.DirectorySeparators), StringComparison.OrdinalIgnoreCase));
+                        var match = dirs.FirstOrDefault(a => a.TrimEnd(Paths.DirectorySeparators).Equals(excDir, StringComparison.OrdinalIgnoreCase));
                         if (match != null)
                         {
                             dirs.Remove(match);
