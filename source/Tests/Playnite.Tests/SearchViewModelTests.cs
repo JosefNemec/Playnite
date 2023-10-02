@@ -47,6 +47,15 @@ namespace Playnite.Tests
             Assert.IsFalse(SearchViewModel.MatchTextFilter("GOW ", "god of war 3", true));
             Assert.IsFalse(SearchViewModel.MatchTextFilter("gOw3", "god of war 2", true));
             Assert.IsFalse(SearchViewModel.MatchTextFilter("g OW", "god of war 3", true));
+
+            // JaroWinklerSimilarity tests
+            var filter = "mario pary";
+            var minimumSimilarity = 0.90;
+            var gameNames = new List<string> { "Mario Party", "Mario Party 1", "Mario Party 2", "Mario Party Advance", "Mario Tennis", "Super Mario 64" };
+            foreach (var gameName in gameNames)
+            {
+                Assert.AreEqual(filter.GetJaroWinklerSimilarityIgnoreCase(gameName) >= minimumSimilarity, SearchViewModel.MatchTextFilter(filter, gameName, false, minimumSimilarity));
+            }
         }
 
         [Test]

@@ -203,9 +203,11 @@ namespace Playnite.ViewModels
             }
 
             foreach (var game in mainModel.Database.Games.
-                Where(g => GameFilter(g, searchTerm, args.GameFilterSettings, true)).
-                Take(60).
-                OrderBy(a => a.Name))
+                Where(g => GameFilter(g, searchTerm, args.GameFilterSettings, true))
+                .OrderBy(a => a.Name.GetLevenshteinDistanceIgnoreCase(searchTerm))
+                .ThenBy(x => x.Name)
+                .ThenByDescending(x => x.IsInstalled)
+                .Take(60))
             {
                 yield return new GameSearchItem(game, GetPrimaryGameAction(game))
                 {
@@ -378,6 +380,7 @@ namespace Playnite.ViewModels
         private CancellationTokenSource currentSearchToken;
         private int customProviderDeleteAttemps = 0;
         private readonly Stack<SearchContext> searchContextStack = new Stack<SearchContext>();
+        private const double defaultMinimumJaronWinklerSimilarity = 0.90;
         private bool isClosing = false;
 
         private string searchTerm;
@@ -653,7 +656,7 @@ namespace Playnite.ViewModels
             return results;
         }
 
-        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart)
+        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart, double minimumJaronWinklerSimilarity = defaultMinimumJaronWinklerSimilarity)
         {
             if (filter.IsNullOrWhiteSpace())
             {
@@ -666,6 +669,11 @@ namespace Playnite.ViewModels
             }
 
             if (filter.IsNullOrWhiteSpace() && toMatch.IsNullOrWhiteSpace())
+            {
+                return true;
+            }
+
+            if (filter.GetJaroWinklerSimilarityIgnoreCase(toMatch) >= minimumJaronWinklerSimilarity)
             {
                 return true;
             }
