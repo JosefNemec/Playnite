@@ -1203,7 +1203,16 @@ namespace Playnite
                 logger.Error(e, "Failed to stop pipe server.");
             }
 
-            Discord?.Dispose();
+            // Rare crash report of DiscordRPC not being loaded properly and then crashing on this
+            try
+            {
+                Discord?.Dispose();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to dispose Discord RPC.");
+            }
+
             updateCheckTimer?.Dispose();
             MainModelBase?.RunShutdowScript();
             Extensions?.NotifiyOnApplicationStopped();
