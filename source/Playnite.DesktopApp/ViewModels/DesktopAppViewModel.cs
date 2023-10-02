@@ -1242,7 +1242,7 @@ namespace Playnite.DesktopApp.ViewModels
             // Help
             yield return new SearchItem(LOC.MenuAbout, LOC.Open, () => OpenAboutCommand.Execute(null), "AboutPlayniteIcon");
             yield return new SearchItem(LOC.CrashRestartSafe, LOC.Activate, () => RestartInSafeMode.Execute(null));
-            yield return createItemG(LOC.MenuHelpTitle, "Wiki / FAQ", GlobalCommands.NavigateUrlCommand, UrlConstants.Wiki);
+            yield return createItemG(LOC.MenuHelpTitle, LOC.OpenGameManual, GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
             yield return createItemG(LOC.MenuHelpTitle, LOC.MenuIssues, ReportIssueCommand);
             yield return createItemG(LOC.MenuHelpTitle, LOC.SDKDocumentation, GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
 
