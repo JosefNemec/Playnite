@@ -398,6 +398,7 @@ namespace Playnite.FullscreenApp.ViewModels
             app.Controllers.Started += Controllers_Started;
             app.Controllers.Starting += Controllers_Starting;
             app.Controllers.Stopped += Controllers_Stopped;
+            app.Controllers.StartupCancelled += Controllers_StartupCancelled;
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
 
@@ -416,6 +417,11 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 WindowManager.LastActiveWindow?.RestoreWindow();
             }
+        }
+
+        private void Controllers_StartupCancelled(object sender, OnGameStartupCancelledEventArgs e)
+        {
+            Controllers_Stopped(sender, new GameStoppedEventArgs());
         }
 
         private void Controllers_Stopped(object sender, GameStoppedEventArgs e)
