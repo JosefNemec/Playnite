@@ -26,11 +26,11 @@ See the [extensions portal](https://playnite.link/docs/) for tutorials and the f
 
 FAQ
 ---------
-Can be found [on the wiki](https://github.com/JosefNemec/Playnite/wiki/Frequently-Asked-Questions)
+The FAQ can be found [in the docs](https://api.playnite.link/docs/manual/gettingStarted/helpAndTroubleshooting/faq.html)
 
 Known Issues
 ---------
-The list of known issues and solutions can be found [on the wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
+The list of known issues and solutions can be found [in the docs](https://api.playnite.link/docs/manual/gettingStarted/helpAndTroubleshooting/knownIssues.html).
 
 Privacy Statement
 ---------
