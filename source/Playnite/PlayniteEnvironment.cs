@@ -37,6 +37,8 @@ namespace Playnite
             }
         }
 
+        public static string DocsRootUrl => PlayniteSettings.GetAppConfigValue("DocsRootUrl");
+
         public static string AppBranch => PlayniteSettings.GetAppConfigValue("AppBranch");
 
         public static bool ThrowAllErrors => PlayniteSettings.GetAppConfigBoolValue("ThrowAllErrors") && Debugger.IsAttached;

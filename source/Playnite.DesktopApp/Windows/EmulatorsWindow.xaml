@@ -42,7 +42,7 @@
                         Command="{Binding ConfirmCommand}"/>
                 <Button Content="{DynamicResource LOCMenuHelpTitle}"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/emulators.html"                        
+                        CommandParameter="{}{DocsRootUrl}/manual/features/emulationSupport/emulationSupportOverview.html"                        
                         DockPanel.Dock="Left" Style="{StaticResource BottomButton}"/>
             </DockPanel>
         </Border>

@@ -166,7 +166,7 @@
                   pbeh:SelectorBehaviors.EnumSource="{x:Type sdk:PlaytimeImportMode}" />
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                           CommandParameter="https://playnite.link/docs/{AppBranch}/manual/playtimeImport.html">
+                           CommandParameter="{}{DocsRootUrl}/manual/playtimeImport.html">
                     <Run Text="{DynamicResource LOCMenuHelpTitle}" />
                 </Hyperlink>
             </TextBlock>

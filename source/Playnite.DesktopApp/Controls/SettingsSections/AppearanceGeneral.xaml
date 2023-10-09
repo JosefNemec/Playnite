@@ -42,7 +42,7 @@
             </TextBlock>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://playnite.link/docs/tutorials/themes/introduction.html">
+                            CommandParameter="{}{DocsRootUrl}/tutorials/themes/introduction.html">
                     <Run Text="{DynamicResource LOCSettingsCreateThemes}" />
                 </Hyperlink>
             </TextBlock>

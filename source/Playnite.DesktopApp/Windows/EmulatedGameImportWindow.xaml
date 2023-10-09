@@ -283,7 +283,7 @@
                         Visibility="{Binding IsScanSetup, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 <Button Content="{DynamicResource LOCMenuHelpTitle}"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/emulators.html#game-import-support"                        
+                        CommandParameter="{}{DocsRootUrl}/manual/features/emulationSupport/emulationSupportOverview.html"                        
                         DockPanel.Dock="Left" Style="{StaticResource BottomButton}"/>
             </DockPanel>
         </Border>
