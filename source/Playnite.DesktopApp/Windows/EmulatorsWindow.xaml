@@ -16,7 +16,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{DynamicResource LOCEmulatorsWindowTitle}"
-        Width="1024" Height="768"
+        Width="1024" Height="720"
         AutomationProperties.AutomationId="WindowEmulators"
         x:Name="WindowEmulators">
 
