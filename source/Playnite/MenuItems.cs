@@ -65,7 +65,7 @@ namespace Playnite
             {
                 try
                 {
-                    var plugItems = plugin.Plugin.GetSearchGlobalCommands();
+                    var plugItems = plugin.Plugin.GetSearchGlobalCommands()?.ToList();
                     if (plugItems.HasItems())
                     {
                         items.AddRange(plugItems);

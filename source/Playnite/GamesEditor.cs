@@ -1639,7 +1639,7 @@ namespace Playnite
 
                 try
                 {
-                    var ctrls = plugin.Plugin.GetPlayActions(new GetPlayActionsArgs { Game = game });
+                    var ctrls = plugin.Plugin.GetPlayActions(new GetPlayActionsArgs { Game = game })?.ToList();
                     if (ctrls.HasItems())
                     {
                         controllers.AddRange(ctrls);
@@ -1748,7 +1748,7 @@ namespace Playnite
             {
                 try
                 {
-                    var actions = plugin.Plugin.GetInstallActions(new GetInstallActionsArgs { Game = game });
+                    var actions = plugin.Plugin.GetInstallActions(new GetInstallActionsArgs { Game = game })?.ToList();
                     if (actions.HasItems())
                     {
                         allActions.AddRange(actions);
@@ -1770,7 +1770,7 @@ namespace Playnite
             {
                 try
                 {
-                    var actions = plugin.Plugin.GetUninstallActions(new GetUninstallActionsArgs { Game = game });
+                    var actions = plugin.Plugin.GetUninstallActions(new GetUninstallActionsArgs { Game = game })?.ToList();
                     if (actions.HasItems())
                     {
                         allActions.AddRange(actions);
