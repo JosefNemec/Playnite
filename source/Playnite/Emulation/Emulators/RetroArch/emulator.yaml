@@ -670,7 +670,7 @@ Profiles:
   - Name: PPSSPP
     StartupArguments: '-L ".\cores\ppsspp_libretro.dll" "{ImagePath}"'
     Platforms: [sony_psp]
-    ImageExtensions: [7z, cso, elf, iso, pbp, prx, zip]
+    ImageExtensions: [7z, cso, elf, iso, pbp, prx, zip, chd]
     ProfileFiles: ['cores\ppsspp_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
