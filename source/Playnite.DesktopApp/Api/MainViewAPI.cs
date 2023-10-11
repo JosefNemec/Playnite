@@ -38,6 +38,8 @@ namespace Playnite.DesktopApp.API
             set => mainModel.AppSettings.ViewSettings.GamesViewType = value;
         }
 
+        public FullscreenView ActiveFullscreenView { get; } = FullscreenView.List;
+
         public SortOrder SortOrder
         {
             get => mainModel.AppSettings.ViewSettings.SortingOrder;

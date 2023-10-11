@@ -38,6 +38,11 @@ namespace Playnite.FullscreenApp.API
             set { }
         }
 
+        public FullscreenView ActiveFullscreenView
+        {
+            get => mainModel.GameDetailsVisible ? FullscreenView.Details : FullscreenView.List;
+        }
+
         public SortOrder SortOrder
         {
             get => mainModel.AppSettings.Fullscreen.ViewSettings.SortingOrder;
