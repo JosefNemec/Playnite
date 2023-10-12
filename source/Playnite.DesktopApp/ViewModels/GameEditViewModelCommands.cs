@@ -2,6 +2,7 @@
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,7 +112,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                ConfirmDialog();
+                ConfirmDialog(false);
             });
         }
 
@@ -119,7 +120,15 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get => new RelayCommand<object>((a) =>
             {
-                CloseView();
+                CancelDialog();
+            });
+        }
+
+        public RelayCommand<CancelEventArgs> WindowClosingCommand
+        {
+            get => new RelayCommand<CancelEventArgs>((a) =>
+            {
+                WindowClosing(a);
             });
         }
 

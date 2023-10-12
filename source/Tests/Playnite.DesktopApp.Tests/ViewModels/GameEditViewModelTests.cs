@@ -51,7 +51,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
                 model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
                 model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);
-                model.ConfirmDialog();
+                model.ConfirmDialog(false);
 
                 Assert.AreNotEqual(game.Icon, origIcon);
                 Assert.AreNotEqual(game.CoverImage, origImage);
@@ -114,7 +114,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
                 model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
                 model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);
-                model.ConfirmDialog();
+                model.ConfirmDialog(false);
 
                 Assert.AreEqual(3, Directory.GetFiles(db.GetFileStoragePath(games[0].Id)).Count());
                 Assert.AreEqual(3, Directory.GetFiles(db.GetFileStoragePath(games[1].Id)).Count());

@@ -83,6 +83,7 @@ namespace Playnite.DesktopApp.ViewModels
         private GameDatabase database;
         private ExtensionFactory extensions;
         private PlayniteSettings appSettings;
+        private bool ignoreClosingEvent = false;
 
         public string IconMetadata
         {
@@ -451,9 +452,58 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseView(bool? result = false)
+        // Required for cases where a window is closed using ALT-F4 or via X button
+        private void WindowClosing(CancelEventArgs e)
+        {
+            if (ignoreClosingEvent)
+            {
+                return;
+            }
+
+            var res = CheckUnsavedChanges();
+            if (res == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
+            else if (res == MessageBoxResult.Yes)
+            {
+                ConfirmDialog(true);
+                return;
+            }
+        }
+
+        private MessageBoxResult CheckUnsavedChanges()
+        {
+            if (!EditingGame.IsEqualJson(Game))
+            {
+                return dialogs.ShowMessage(LOC.UnsavedChangesAskMessage, "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+            }
+
+            return MessageBoxResult.None;
+        }
+
+        public void CancelDialog()
+        {
+            var res = CheckUnsavedChanges();
+            if (res == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            else if (res == MessageBoxResult.Yes)
+            {
+                ConfirmDialog(false);
+                return;
+            }
+
+            ignoreClosingEvent = true;
+            CloseView(false, false);
+        }
+
+        public void CloseView(bool result, bool alreadyClosing)
         {
             CleanupTempFiles();
+
             try
             {
                 LibraryPluginMetadataDownloader?.Dispose();
@@ -463,10 +513,13 @@ namespace Playnite.DesktopApp.ViewModels
                 logger.Error(e, $"Failed to dispose library metadata downloader {LibraryPluginMetadataDownloader.GetType()}");
             }
 
-            window.Close(result);
+            if (!alreadyClosing)
+            {
+                window.Close(result);
+            }
         }
 
-        public void ConfirmDialog()
+        public void ConfirmDialog(bool alreadyClosing)
         {
             try
             {
@@ -870,7 +923,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             database.Games.EndBufferUpdate();
-            CloseView(true);
+            ignoreClosingEvent = true;
+            CloseView(true, alreadyClosing);
         }
 
         internal void CleanupTempFiles()

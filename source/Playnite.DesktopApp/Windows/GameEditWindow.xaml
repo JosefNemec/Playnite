@@ -23,7 +23,13 @@
         WindowStartupLocation="CenterOwner"
         x:Name="mainWindow"
         AutomationProperties.AutomationId="WindowGameEdit">
-
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <controls:WindowBase.Resources>
         <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
         <pcon:ReleaseDateToStringConverter x:Key="ReleaseDateToStringConverter" />

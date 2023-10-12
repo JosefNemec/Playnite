@@ -4433,5 +4433,9 @@ namespace Playnite
         /// Library file corruption has been detected, Playnite will now shutdown.
         /// </summary>
         public const string DBCorruptionCrashMessage = "LOCDBCorruptionCrashMessage";
+        /// <summary>
+        /// Do you want to save changes you made?
+        /// </summary>
+        public const string UnsavedChangesAskMessage = "LOCUnsavedChangesAskMessage";
     }
 }
