@@ -1,0 +1,9 @@
+Id: ruffle
+Name: Ruffle
+Website: 'https://ruffle.rs/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [adobe_flash]
+    ImageExtensions: [swf]
+    StartupExecutable: ^ruffle\.exe$

@@ -6,7 +6,7 @@
   
 - Name: Adobe Flash
   Id: adobe_flash
-  Emulators: [flashplayerprojector]
+  Emulators: [flashplayerprojector, ruffle]
   
 - Name: Amstrad CPC
   Id: amstrad_cpc
