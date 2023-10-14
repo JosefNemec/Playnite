@@ -177,7 +177,11 @@ namespace Playnite.Database
             }
             if (filter.Ids.HasItems())
             {
-                if (listData == null || !listData.HasItems())
+                if (filter.Ids.Count == 1 && filter.Ids[0] == Guid.Empty && !listData.HasItems())
+                {
+                    return true;
+                }
+                else if (listData == null || !listData.HasItems())
                 {
                     return false;
                 }
