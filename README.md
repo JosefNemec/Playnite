@@ -18,41 +18,39 @@ Grab the latest installer or portable package from the [download](https://playni
 
 Requirements: Windows 7 and newer.
 
-Extensions
+FAQ, Known Issues, user manual
 ---------
-Playnite can be extended with plugins (written in .NET languages) or by scripts (PowerShell and IronPython are currently supported).
-
-See the [extensions portal](https://playnite.link/docs/) for tutorials and the full API documentation.
-
-FAQ
----------
-Can be found [on the wiki](https://github.com/JosefNemec/Playnite/wiki/Frequently-Asked-Questions)
-
-Known Issues
----------
-The list of known issues and solutions can be found [on the wiki](https://github.com/JosefNemec/Playnite/wiki/Known-Issues).
-
-Privacy Statement
----------
-Playnite doesn't store any user information and you don't need to provide any information to import installed games. Account connection process is usually done via official login web forms and only the web session cookies or tokens are stored, the same way when you login to those services via the web browser.
-
-All information about your library is stored locally on your PC.
+Can be found [here](https://api.playnite.link/docs/)
 
 Questions, issues etc.
 ---------
 If you find a bug please file an [issue](https://github.com/JosefNemec/Playnite/issues) and if relevant (crashes, broken features) please attach a diagnostics package, which can be created from inside the "About Playnite..." submenu.
 
-Biggest community around Playnite currently gathers on our [Discord server](https://discord.gg/hSFvmN6) and [Reddit](https://www.reddit.com/r/playnite/). You can also follow [@AppPlaynite](https://twitter.com/AppPlaynite) for general updates.
+Biggest community around Playnite currently gathers on our [Discord server](https://playnite.link/discord) and [Reddit](https://www.reddit.com/r/playnite/).
 
-Contributions
+Privacy Statement
 ---------
-### Translations
-See the [How to: Translations](https://github.com/JosefNemec/Playnite/wiki/How-to:-Translations) wiki page.
+Playnite itself doesn't store any user information and you generally don't need to provide any information to import installed games. All game library data is stored locally on your PC.
 
-### Themes
-See the [How to: Themes](https://github.com/JosefNemec/Playnite/wiki/How-to%3A-Themes) wiki page.
+Account connection process depends on how a library plugin is implemented, but is usually done via official login web forms and only the web session cookies or tokens are stored, the same way when you login to those services via the web browser.
 
-### Code Contributions
+Add-ons
+---------
+Playnite can be extended with plugins (written in .NET languages), PowerShell scripts and user interface themes.
+
+See the [extensions portal](https://api.playnite.link/docs/tutorials/index.html) for more information about how to make these addons.
+
+Translations
+---------
+
+We use Crowdin to manage localization, please join our project if you want to submit translations:
+
+https://crowdin.com/project/playnite
+
+Proofreading changes to original English strings can be submitted by creating pull request for [LocSource.xaml](https://github.com/JosefNemec/Playnite/blob/devel/source/Playnite/Localization/LocSource.xaml) file.
+
+Code Contributions
+---------
 
 **Code contributions (pull requests) are currently not being accepted while majority of code base is being rewritten for Playnite 11.**
 
