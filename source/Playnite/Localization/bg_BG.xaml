@@ -1248,4 +1248,5 @@ Playnite автоматично ще се рестартира, за да ста
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Открито е повреда на файла на библиотеката, Playnite ще се изключи.
     
 Отворете нов проблем в GitHub страницата на Playnite с искане за коригиране на повреда във вашите файлове.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

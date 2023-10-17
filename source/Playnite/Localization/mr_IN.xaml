@@ -14,7 +14,7 @@
     <sys:String x:Key="LOCInvalidDataTitle">अवैध डेटा</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">बदल सेव्ह करावे?</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">मुखपृष्ठ: www.playnite.link</sys:String>
-    <sys:String x:Key="LOCAboutSourceLink"></sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">GitHub येथे सोर्स कोड पाहा</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">निदानी पाकीट निर्माण करा</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">निदानी माहिती पाठवा</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">प्लेनाइटविषयी माहिती</sys:String>
@@ -31,26 +31,30 @@
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension"></sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">एक्स्टेंशन अक्षम करा</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">लॉग फाइल सेव्ह करा</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">निदान माहिती पाठवा</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">क्रॅशचा अहवाल द्या</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">प्लेनाइट रीस्टार्ट करा</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">सेफ मोडमध्ये रीस्टार्ट करा</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip"></sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">सर्व बाह्य एक्स्टेंशन अक्षम करून डीफॉल्ट थीम वापरत आहे.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">प्लेनाइटहून बाहेर पडा</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">क्रॅश व्हायच्या आधी आपण केलेल्या क्रिया (इंग्रजीत):</sys:String>
     <sys:String x:Key="LOCLibraryManager">लायब्ररी व्यवस्थापक</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">गेम काढावे?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">काढता आले नाही - गेम किंवा इन्स्टॉलर चालू आहे. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">अनइन्स्टॉल करता आले नाही - गेम चालू आहे.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">{0} नक्की काढून टाकायचे आहे का?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">तुम्हाला नक्की {0} गेम काढून टाकायचे आहेत का?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">{0} नक्की काढून टाकायचे आहे का?
+
+&quot;वगळायच्या यादीत जोडा&quot; हा पर्याय निवडल्याने पुढच्या अपडेटच्या वेळी दिलेला गेम पुन्हा आयात केला जाणार नाही.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">{0} गेम नक्की काढून टाकायचे आहेत का?
+
+&quot;वगळायच्या यादीत जोडा&quot; हा पर्याय निवडल्याने पुढच्या अपडेटच्या वेळी दिलेले गेम पुन्हा आयात केला जाणार नाहीत.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">न वापरलेले असे कोणतेही रकाने सापडले नाहीत.</sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">होय (वगळायच्या यादीत जोडा)</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">या भागात सेव्ह न केलेले बदल आहेत</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">गेम लायब्ररी स्वरूप अपडेट करत आहे…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">डेटाबेस अपडेट अपयशी झाले.</sys:String>
@@ -60,11 +64,11 @@
     <sys:String x:Key="LOCGameStartError">गेम सुरू करता आला नाही: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">क्रिया सुरू करता आला नाही: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">गेम स्थान उघडता आले नाही: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">गेमच्या स्थापनेचा आकार शोधून काढता आला नाही: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">स्थापना आकार स्कॅन त्रुटी</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">स्थापना आकार स्कॅन करताना {0} त्रुट्या आढळल्या</sys:String>
     <sys:String x:Key="LOCGameShortcutError">शॉर्टकट बनवण्यात अपयशी: {0}</sys:String>
-    <sys:String x:Key="LOCManualOpenError"></sys:String>
+    <sys:String x:Key="LOCManualOpenError">मॅन्युअल उघडण्यात अयशस्वी: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">गेम स्थापित करता आला नाही: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">गेम विस्थापित करता आला नाही: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
@@ -72,16 +76,16 @@
     <sys:String x:Key="LOCErrorLibraryPluginNotFound"></sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader"></sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">कोणताही गेम निवडलेला नाही.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorApplicationScript"></sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">गेमची स्क्रिप्ट कार्यवाही अयशस्वी झाली.</sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript">अ‍ॅप्लिकेशनची स्क्रिप्ट कार्यवाही अयशस्वी झाली.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">जागतिक स्क्रिप्ट कार्यवाही अयशस्वी झाली.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorScriptAction">एम्युलेटरची स्क्रिप्ट कार्यवाही अयशस्वी झाली.</sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">खेळायची स्क्रिप्ट क्रिया कार्यवाही अयशस्वी झाली.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 किंवा त्याची नवीन आवृत्ती स्थापित नाही.</sys:String>
     <sys:String x:Key="LOCErrorStartupNoController">गेम सुरू कसा करायचा हे निश्चित करता आले नाही.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">सक्षम</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">अक्षम</sys:String>
     <sys:String x:Key="LOCRemoveTitle">काढून टाका</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">न वापरलेले काढून टाका</sys:String>
     <sys:String x:Key="LOCRenameTitle">नाव बदला</sys:String>
@@ -108,7 +112,7 @@
     <sys:String x:Key="LOCLastPlayedLabel">याआधी खेळलेले</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">सर्वात जास्त खेळलेले</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">खेळल्याची मोजणी</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">स्थापनेचा आकार</sys:String>
     <sys:String x:Key="LOCFolderLabel">फोल्डर</sys:String>
     <sys:String x:Key="LOCNotesLabel">टिप</sys:String>
     <sys:String x:Key="LOCAddedLabel">जोडले</sys:String>
@@ -122,11 +126,11 @@
     <sys:String x:Key="LOCCloseLabel">बंद करा</sys:String>
     <sys:String x:Key="LOCCancelLabel">रद्द करा</sys:String>
     <sys:String x:Key="LOCConfirmLabel">निश्चित करा</sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCResetLabel">रिसेट</sys:String>
     <sys:String x:Key="LOCYesLabel">होय</sys:String>
     <sys:String x:Key="LOCNoLabel">नाही</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">सुस्वागतम</sys:String>
-    <sys:String x:Key="LOCLocalUserLabel"></sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">स्थानिक प्रयोक्ता</sys:String>
     <sys:String x:Key="LOCGeneralLabel">साधारण</sys:String>
     <sys:String x:Key="LOCMediaLabel">माध्यमे</sys:String>
     <sys:String x:Key="LOCLinksLabel">दुवा</sys:String>
@@ -148,7 +152,7 @@
     <sys:String x:Key="LOCCoversLabel">कव्हर</sys:String>
     <sys:String x:Key="LOCGridViewLabel">ग्रिड दृश्य</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">तपशील दृश्य</sys:String>
-    <sys:String x:Key="LOCCustomLabel"></sys:String>
+    <sys:String x:Key="LOCCustomLabel">सानुकूल</sys:String>
     <sys:String x:Key="LOCURLLabel">यू.आर.एल.</sys:String>
     <sys:String x:Key="LOCPatronsLabel">पेट्रन</sys:String>
     <sys:String x:Key="LOCLicenseLabel">परवाना</sys:String>
@@ -175,7 +179,7 @@
     <sys:String x:Key="LOCSize20GbTo40Gb">२० ते ४० जी.बी.</sys:String>
     <sys:String x:Key="LOCSize40GbTo100Gb">४० ते १०० जी.बी.</sys:String>
     <sys:String x:Key="LOCSizeMoreThan100Gb">१०० जी.बी. किंवा जास्त</sys:String>
-    <sys:String x:Key="LOCImportCompleted"></sys:String>
+    <sys:String x:Key="LOCImportCompleted">यशस्वीरित्या आयात प्रक्रिया पूर्ण झाली.</sys:String>
     <sys:String x:Key="LOCAllGames">सर्व गेम</sys:String>
     <sys:String x:Key="LOCGameId">गेम आय.डी.</sys:String>
     <sys:String x:Key="LOCDatabaseId">डेटाबेस आय.डी.</sys:String>
@@ -184,38 +188,38 @@
     <sys:String x:Key="LOCColumns">स्तंभ</sys:String>
     <sys:String x:Key="LOCRow">ओळ</sys:String>
     <sys:String x:Key="LOCRows">ओळी</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmpty"></sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">&quot;खेळा&quot; क्रियेने आयकन मिळवता आला नाही. &quot;फाइल&quot; प्रकारची कोणतीही क्रिया उपस्थित नाही.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">केवळ नसलेला मेटाडेटा डाउनलोड करा</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">हा पर्याय सक्षम केल्याने ज्या डेटा रकान्यांमध्ये आधीच माहिती आङे, त्यांसाठी मेटाडेटा डाउनलोड केला जाणार नाही.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">गेम निवड</sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceDescription"></sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceDescription">नवीन मेटाडेटाने कोणते गेम अपडेट करायचे आहेत हे निवडा:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">डेटाबेसमधील सर्व गेम</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">या वेळी गाळलेले सर्व गेम</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">केवळ निवडलेले गेम</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">अधिकृत दुकान</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
-    <sys:String x:Key="LOCMetaDescriptionFields"></sys:String>
-    <sys:String x:Key="LOCMetaIgdbContribNotif"></sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">प्लेनाइटने कोणते रकाने आपोआप भरले पाहिजेत व कोणत्या स्रोतांपासून डेटा मिळवली पाहिजे हे निवडा.</sys:String>
+    <sys:String x:Key="LOCMetaIgdbContribNotif">वरील लोगोवर क्लिक करून igdb.com च्या डेटाबेसला अपडेट करायचा विचार करा. प्लेनाइट जो डेटा वापरतो तो या योगदानाने सुधारेल.</sys:String>
     <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">मेटाडेटा डाउनलोड करत आहे…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">इनस्टॉल केलेले गेम आयात करत आहे…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">{0} गेम आयात करत आहे…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames">एम्युलेट केलेले गेम {0} पासून आयात करत आहे…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">लायब्ररी अपडेट डाउनलोड करत आहे…</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">लायब्ररीतील गेम्सचा आकार स्कॅन करत आहे…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">आयात केलेल्या गेम्सचा आकार स्कॅन करत आहे…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">लायब्ररी अपडेट पूर्ण झाले</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources"></sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">संसाधन सोडून देत आहे…</sys:String>
     <!--Menu-->
-    <sys:String x:Key="LOCMenuConfigurationTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigurationTitle">कॉन्फिगरेशन</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">सेटिंग्झ…</sys:String>
     <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">प्लॅटफॉर्म आणि एम्युलेटर</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle"></sys:String>
-    <sys:String x:Key="LOCMenuLibraryManagerTitle"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">एम्युलेटर कॉन्फिगर करा…</sys:String>
+    <sys:String x:Key="LOCMenuLibraryManagerTitle">लायब्ररी व्यवस्थापक…</sys:String>
     <sys:String x:Key="LOCMenuTools">साधने</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">मेटाडेटा डाउनलोड करा…</sys:String>
     <sys:String x:Key="LOCMenuSoftwareTools">सॉफ्टवेअर साधने…</sys:String>
-    <sys:String x:Key="LOCMenuConfigureIntegrations"></sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">एकत्रिकरण कॉन्फिगर करा…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">थर्ड पार्टी क्लायंट उघडा</sys:String>
     <sys:String x:Key="LOCMenuClients">थर्ड पार्टी क्लायंट</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">गेम लायब्ररी अपडेट करा</sys:String>
@@ -223,43 +227,43 @@
     <sys:String x:Key="LOCMenuUpdateEmulatedDirs">एम्युलेट केलेले फोल्डर अपडेट करा</sys:String>
     <sys:String x:Key="LOCMenuAddGame">गेम जोडा</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">हाताने…</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled"></sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">आपोआप स्कॅन करा…</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">एम्युलेट केलेला गेम…</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">मायक्रोसॉफ्ट स्टोअर अ‍ॅप्लिकेशन…</sys:String>
     <sys:String x:Key="LOCMenuAbout">प्लेनाइटविषयी माहिती</sys:String>
     <sys:String x:Key="LOCMenuIssues">फीडबॅक पाठवा</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen"></sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">फुलस्क्रीन मोड सुरू करा</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">दुवा</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">मदत</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">पेट्रीऑनवर समर्थन करा</sys:String>
-    <sys:String x:Key="LOCSDKDocumentation"></sys:String>
+    <sys:String x:Key="LOCSDKDocumentation">एसडीके दस्तऐवज</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">सिस्टम रीस्टार्ट करा</sys:String>
-    <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
-    <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">सिस्टम बंद करा</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">सिस्टम विलंबित करा</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">सिस्टम हायबरनेट करा</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">यादृच्छिकरित्या गेम निवडा</sys:String>
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemSpacing"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">तपशील पॅनलवर दाखवले जाणारे गेमचे रकाने:</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemSpacing">वस्तू अंतरण</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">ग्रिड वस्तू पार्श्वभूमी दर्शवा</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">ग्रिड वस्तू सीमेची रुंदी</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">गेम आयकन स्रोत अनुपस्थित</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">गेम कव्हर स्रोत अनुपस्थित</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">गेम पार्श्वभूमी स्रोत अनुपस्थित</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">गेम कव्हर चित्राची उंची</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">गेम यादी आयकनची उंची</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">अ‍ॅप्लिकेशन फाँट</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">मोनोस्पेस्ड फाँट</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">गाळणी पट्टी स्थान</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">एक्सप्लोरर पॅनलचे स्थान</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">कव्हर प्रतिमा रेंडरिंग</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">प्रसर गुणोत्तर निशाण</sys:String>
     <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">खालील पर्यायांचा फुलस्क्रीन मोडमधील टाइल रेंडरिंगला देखील परिणाम पडेल!</sys:String>
-    <sys:String x:Key="LOCSettingsStrechModeLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsStrechModeLabel">खेचा</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">डी.व्ही.डी. बॉक्स</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">एपिक गेम्स स्टोअर</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
@@ -291,19 +295,19 @@
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">गेम आयात केल्यावर मेटाडेटा डाउनलोड करा</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">प्लेनाईट मिनिमाइझ करून सुरू करा</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">प्लेनाईट कम्प्यूटर सुरू केल्याबरोबर सुरू करा</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">सुरू करताना बंद करून ट्रेमध्ये ठेवा</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">कम्प्यूटर सुरू केल्याबरोबर प्लेनाईट सुरू करणे याची नोंद करण्यात अपयशी</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">फुलस्क्रीन मोडमध्ये सुरू करा</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">असंकालिकपणे प्रतिमा लोड करा</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">गेम याद्यांमध्ये स्क्रोलिंग सुधारून सुरळीत होऊ शकते, पण चित्र लोड व्हायचा वेळ कमी होऊ शकेल</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">कव्हर प्रतिमा गहाळ असल्यास गेमचे नाव दाखवा</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">ग्रि़ड दृश्यात गेमचे नाव दाखवा</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">स्थापित न केलेले गेम अंधारा</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">तपशील दृश्य यादीत गेम आयकन दाखवा</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">गटाच्या वर्णनांवर वस्तूंची मोजणी दाखवा</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">गाळणी आणि एक्सप्लोरर पॅनलांवर केवळ नेमलेले रकाने दाखवा</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">हार्डवेअर अ‍ॅक्सलरेशन अक्षम करा</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">स्टटरिंग किंवा त्यासारख्या यूआय समस्या अनुभवल्यास याचा वापर करावा</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">जलद सुरूवात यादींत लपवलेले गेम दाखवा</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">जम्प यादी आणि ट्रे मेन्यू यादी यांवर परिणाम होईल.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">जलद सुरूवात वस्तूंची संख्या</sys:String>
@@ -327,14 +331,14 @@
     <sys:String x:Key="LOCSettingsAfterGameStart">गेम सुरू झाल्यावर:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">गेम बंद झाल्यावर:</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">दिनांक स्वरूप: </sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">याने आपण सर्व जोडलेल्या सुविधांपासून लॉग-आउट व्हाल. अ‍ॅप्लिकेशन रीस्टारट करावं लागेल. पुढे जायचे का?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">कॅश साफ करायचे का?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">नवीन थीम लागू करायला प्लेनाईट रीस्टार्ट करावे लागणार आहे</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">अधिक थीम मिळवा</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">नवीन थीम बनवा</sys:String>
-    <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsGetExtensions">अधिक एक्स्टेंशन मिळवा</sys:String>
+    <sys:String x:Key="LOCSettingsCreateExtensions">नवीन एक्स्टेंशन बनवा</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">प्लेनाईटचा अनुवाद करण्यात आमची मदत करा</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">नवीन सेटिंग्झ लागू करण्यासाठी प्लेनाईट रीस्टार्ट करावे लागेल. आता रीस्टार्ट करावे का?
 
@@ -343,7 +347,7 @@
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">प्लेनाईट आपल्या लायब्ररीच्या फायली आपोआप हलवू शकत नाही. स्थान बदलण्या अगोदर आपण फायली स्वहस्ते मूव्ह/कॉपी केल्या पाहिजेत. निशाण स्थानावर लायब्ररी नसल्यास नवीन लायब्ररी निर्माण केली जाईल.
 
 प्लेनाईट रीस्टार्ट करेपर्यंत हे नवीन डेटाबेस स्थान वापरले जाणार नाही. </sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">&quot;बंद करा&quot; हा पर्याय सेट असला तर खेळायची कालावधी रेकॉर्ड केली जाणार नाही.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">ओळींची संख्या</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">स्थंभांची संख्या</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">तपशील दृश्यात दिसणार्‍या ओळींची संख्या</sys:String>
@@ -385,28 +389,28 @@
     <sys:String x:Key="LOCSettingsTextRenderingNotice">मजकूर रेंडर आणि फॉरमॅट पद्धती यावेळी गेम वर्णनांसाठी वापरल्या जात नाहीत.</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">पार्श्वभूमी प्रतिमा प्रीलोड करा</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">गेम बंद झाल्यानंतर बाह्य क्लाएंट आपोआप बंद करा</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">खालील क्लाएंट आपोआप बंद करा: </sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">क्लायंट आपोआप बंद करा</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">वगळायची यादी आयात करा</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">फोल्डर उघडण्याचा आदेश</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">लायब्ररी अपडेट झाल्यावर गेम्सच्या स्थापनांचे आकार अपडेट करा</sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">कोणतेही नाही</sys:String>
     <sys:String x:Key="LOCStrechFill">भरा</sys:String>
-    <sys:String x:Key="LOCStrechUniform"></sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
+    <sys:String x:Key="LOCStrechUniform">एकसमान</sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">भरण्यास एकसमान</sys:String>
     <sys:String x:Key="LOCDockLeft">डाविकडे</sys:String>
     <sys:String x:Key="LOCDockRight">उजवीकडे</sys:String>
     <sys:String x:Key="LOCDockTop">वर</sys:String>
     <sys:String x:Key="LOCDockBottom">खाली</sys:String>
     <sys:String x:Key="LOCImportError">आयात करण्यात त्रुटी</sys:String>
-    <sys:String x:Key="LOCLoginRequired"></sys:String>
-    <sys:String x:Key="LOCLoginFailed"></sys:String>
+    <sys:String x:Key="LOCLoginRequired">प्रमाणीकरणाची गरज आहे</sys:String>
+    <sys:String x:Key="LOCLoginFailed">प्रमाणीकरण अयशस्वी झाली</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">वैकल्पिक वेब दृश्य रेन्डर करण्याचा मोड</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
@@ -416,7 +420,7 @@
     <sys:String x:Key="LOCDownloadMetaButton">मेटाडेटा डाउनलोड करणे</sys:String>
     <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
     <!--Emulator Import-->
-    <sys:String x:Key="LOCEmuWizardWindowTitle"></sys:String>
+    <sys:String x:Key="LOCEmuWizardWindowTitle">एम्युलेशन आयात विझर्ड</sys:String>
     <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
     <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
@@ -424,28 +428,28 @@
     <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanGames"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames">एम्युलेटर वापरून फोल्डर स्कॅन करा</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">फायली निवडा</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning"></sys:String>
-    <sys:String x:Key="LOCEmuWizardScanningSpecific"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanEmulator">फोल्डरमधून आपोआप शोधून काढा…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">एम्युलेटर कॉन्फिगर करा…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">स्कॅन करत आहे…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">{0} स्कॅन करत आहे…</sys:String>
     <!--FirstTime Wizard-->
-    <sys:String x:Key="LOCFirstWindowTitle"></sys:String>
+    <sys:String x:Key="LOCFirstWindowTitle">पहिल्या वेळीचे कॉन्फिगरेशन</sys:String>
     <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstExternalTitle"></sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">लायब्ररी एकत्रीकरण</sys:String>
     <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedTitle"></sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">कॉन्फिगरेशन पूर्ण झाले</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">{0} एकत्रीकरण डाउनलोड करत आहे…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">सुचवलेले एकत्रीकरणाची यादी डाउनलोड करत आहे…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">सुचवलेल्या एकत्रीकरणाची यादी डाउनलोड करताना अयशस्वी झाले. काही वेळा नंतर अ‍ॅडऑन मेन्यूमधून एकत्रीकरण पुन्हा डाउनलोड करायचा आपण प्रयत्न करू शकता.</sys:String>
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle"></sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">प्लॅटफॉर्म आणि एम्युलेटर कॉन्फिगर करा</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">एम्युलेटर कॉन्फिगर करा</sys:String>
     <sys:String x:Key="LOCPlatformsTitle">प्लॅटफॉर्म</sys:String>
-    <sys:String x:Key="LOCPlatformTitle"></sys:String>
+    <sys:String x:Key="LOCPlatformTitle">प्लॅटफॉर्म</sys:String>
     <sys:String x:Key="LOCEmulatorsTitle">एम्युलेटर</sys:String>
     <sys:String x:Key="LOCEmulatorTitle">एम्युलेटर</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">प्लॅटफॉर्म जोडा</sys:String>
@@ -467,11 +471,13 @@
     <sys:String x:Key="LOCImportEmulatorsButton">एम्युलेटर आयात करा…</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">एम्युलेटर डाउनलोड करा…</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmulatorSettingsHelp"></sys:String>
-    <sys:String x:Key="LOCMenuSortByTitle"></sys:String>
-    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">तुम्हाला {0} हा एम्युलेटर नक्की काढून टाकायचा आहे का?
+सध्या {1} गेम किंवा गेम्स त्याच्या वापर करत आहेत.</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">तुम्हाला {0} हा प्लॅटफॉर्म नक्की काढून टाकायचा आहे का?
+सध्या {1} गेम्स व {2} एम्युलेटर त्याच्या वापर करत आहेत.</sys:String>
+    <sys:String x:Key="LOCEmulatorSettingsHelp">सेटिंग मदत</sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">क्रमवारी</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">क्रमवारी दिशा</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">याने गट बनवा</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">चढत्या क्रमात</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">उतरत्या क्रमात</sys:String>
@@ -481,22 +487,22 @@
     <sys:String x:Key="LOCMenuGroupPlatform">प्लॅटफॉर्मप्रमाणे गट बनवा</sys:String>
     <sys:String x:Key="LOCViewType">दृश्याचा प्रकार</sys:String>
     <sys:String x:Key="LOCMenuView">दृश्य</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel"></sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">एक्सप्लोरर पॅनल</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">गाळणी पट्टी</sys:String>
     <!--Game fields-->
     <sys:String x:Key="LOCGameIconTitle">आयकन</sys:String>
-    <sys:String x:Key="LOCLibraryIconTitle"></sys:String>
+    <sys:String x:Key="LOCLibraryIconTitle">लायब्ररी आयकन</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">कव्हर प्रतिमा</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">पार्श्वभूमी प्रतिमा</sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle"></sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">क्रमातील नाव</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">लायब्ररी</sys:String>
     <sys:String x:Key="LOCGameManualTitle">माहितीपुस्तिका</sys:String>
     <sys:String x:Key="LOCGameNameTitle">नाव</sys:String>
-    <sys:String x:Key="LOCInstallDriveTitle"></sys:String>
+    <sys:String x:Key="LOCInstallDriveTitle">स्थापनेची ड्राइव्ह</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">अकाउंटचे नाव</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">प्लॅटफॉर्म</sys:String>
     <sys:String x:Key="LOCGameCategoriesTitle">वर्ग</sys:String>
-    <sys:String x:Key="LOCGameGenresTitle"></sys:String>
+    <sys:String x:Key="LOCGameGenresTitle">शैली</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">रिलीझ तारीख</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">रिलीझ वर्ष</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">विकासक</sys:String>
@@ -510,7 +516,7 @@
     <sys:String x:Key="LOCGameIsUnInstalledTitle">विस्थापित</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">लपवलेला</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">आवडीचा</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">एचडीआर समर्थन सक्षम करा</sys:String>
     <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
     <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">याआधी खेळलेले</sys:String>
@@ -519,9 +525,9 @@
     <sys:String x:Key="LOCGameInstallDirTitle">स्थापना फोल्डर</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">कव्हर प्रतिमा</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">दुवा</sys:String>
-    <sys:String x:Key="LOCGameROMTitle"></sys:String>
-    <sys:String x:Key="LOCGenreLabel"></sys:String>
-    <sys:String x:Key="LOCGenresLabel"></sys:String>
+    <sys:String x:Key="LOCGameROMTitle">इमेज, रॉम किंवा आयएसओचा मार्ग</sys:String>
+    <sys:String x:Key="LOCGenreLabel">शैली</sys:String>
+    <sys:String x:Key="LOCGenresLabel">शैल्या</sys:String>
     <sys:String x:Key="LOCCompanyLabel">कंपनी</sys:String>
     <sys:String x:Key="LOCCompaniesLabel">कंपन्या</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">विकासक</sys:String>
@@ -532,15 +538,15 @@
     <sys:String x:Key="LOCCategoriesLabel">वर्ग</sys:String>
     <sys:String x:Key="LOCTagLabel">खूणचिट्ठी</sys:String>
     <sys:String x:Key="LOCTagsLabel">खूणचिट्ठ्या</sys:String>
-    <sys:String x:Key="LOCFeatureLabel"></sys:String>
-    <sys:String x:Key="LOCFeaturesLabel"></sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel"></sys:String>
-    <sys:String x:Key="LOCAgeRatingsLabel"></sys:String>
+    <sys:String x:Key="LOCFeatureLabel">फीचर</sys:String>
+    <sys:String x:Key="LOCFeaturesLabel">फीचर</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">वयाचे रेटिंग</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">वयाचे रेटिंग</sys:String>
     <sys:String x:Key="LOCRegionLabel">प्रदेश</sys:String>
     <sys:String x:Key="LOCRegionsLabel">प्रदेश</sys:String>
     <sys:String x:Key="LOCSourceLabel">स्रोत</sys:String>
     <sys:String x:Key="LOCSourcesLabel">स्रोत</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">अलीकडील उपक्रम</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">डेटाबेस त्रुटी</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">लायब्ररी डेटाबेस उघडण्यात अपयशी.</sys:String>
@@ -576,25 +582,25 @@
     <sys:String x:Key="LOCDeleteAction">काढून टाका</sys:String>
     <sys:String x:Key="LOCRemovePlayAction"></sys:String>
     <sys:String x:Key="LOCAddGames">गेम जोडा</sys:String>
-    <sys:String x:Key="LOCScanFolder"></sys:String>
-    <sys:String x:Key="LOCDetectInstalled"></sys:String>
-    <sys:String x:Key="LOCBrowse"></sys:String>
+    <sys:String x:Key="LOCScanFolder">फोल्डर स्कॅन करा…</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">स्थापित असलेले शोधून काढा</sys:String>
+    <sys:String x:Key="LOCBrowse">चाळा…</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">प्लेनाइट उघडा</sys:String>
-    <sys:String x:Key="LOCProfileSettings"></sys:String>
+    <sys:String x:Key="LOCProfileSettings">प्रोफाइल सेटिंग</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">गेमचे नाव रिकामे ठेवले जाऊ शकत नाही.</sys:String>
     <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
-    <sys:String x:Key="LOCEmptyGameNameMetaSearchError"></sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">मेटेाडेटाचा शोध घेण्याअगोदर गेमचे नाव रिकामे असू शकत नाही.</sys:String>
     <sys:String x:Key="LOCInvalidGameData">अवैध गेम डेटा</sys:String>
-    <sys:String x:Key="LOCURLInputInfo"></sys:String>
+    <sys:String x:Key="LOCURLInputInfo">http:// किंवा https:// यांनी सुरू होणारे वैध वेब यूआरएल प्रविष्ट करा</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">यू.आर.एल. निवडा</sys:String>
-    <sys:String x:Key="LOCMetadataDownloadError"></sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">मेटाडेटा डाउनलोड करण्यात अयशस्वी: {0}</sys:String>
     <sys:String x:Key="LOCDownloadError">डाउनलोड त्रुटी</sys:String>
     <sys:String x:Key="LOCClearFilters">गाळण्या पुसून टाका</sys:String>
     <sys:String x:Key="LOCPrivateAccount">खाजगी खाते</sys:String>
-    <sys:String x:Key="LOCPublicAccount"></sys:String>
-    <sys:String x:Key="LOCAPIKey"></sys:String>
-    <sys:String x:Key="LOCStartupError"></sys:String>
-    <sys:String x:Key="LOCSkinError"></sys:String>
+    <sys:String x:Key="LOCPublicAccount">सार्वजनिक खाते</sys:String>
+    <sys:String x:Key="LOCAPIKey">API की</sys:String>
+    <sys:String x:Key="LOCStartupError">सुरू करताना त्रुटी</sys:String>
+    <sys:String x:Key="LOCSkinError">थीम त्रुटी</sys:String>
     <sys:String x:Key="LOCClearAll">सर्व पुसून टाका</sys:String>
     <sys:String x:Key="LOCSetupRunning">स्थापित करत आहे</sys:String>
     <sys:String x:Key="LOCUninstalling">विस्थापित करत आहे</sys:String>
@@ -608,8 +614,8 @@
     <sys:String x:Key="LOCChange">बदला</sys:String>
     <sys:String x:Key="LOCAdvanced">प्रगत</sys:String>
     <sys:String x:Key="LOCNever">कधीच नाही</sys:String>
-    <sys:String x:Key="LOCCompletionStatus"></sys:String>
-    <sys:String x:Key="LOCCompletionStatuses"></sys:String>
+    <sys:String x:Key="LOCCompletionStatus">पूर्ण केल्याची स्थिती</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">पूर्ण केल्याच्या स्थित्या</sys:String>
     <sys:String x:Key="LOCUserScore">प्रयोक्त्यांचा स्कोर</sys:String>
     <sys:String x:Key="LOCCriticScore">समीक्षकांचा स्कोर</sys:String>
     <sys:String x:Key="LOCCommunityScore">सामूहिक स्कोर</sys:String>
@@ -618,20 +624,20 @@
     <sys:String x:Key="LOCScripts">स्क्रिप्ट</sys:String>
     <sys:String x:Key="LOCPlugins">प्लगइन</sys:String>
     <sys:String x:Key="LOCMetadataProviders">मेटाडेटा स्रोत</sys:String>
-    <sys:String x:Key="LOCExtensions"></sys:String>
-    <sys:String x:Key="LOCExtensionID"></sys:String>
+    <sys:String x:Key="LOCExtensions">एक्स्टेंशन</sys:String>
+    <sys:String x:Key="LOCExtensionID">एक्स्टेंशन आयडी</sys:String>
     <sys:String x:Key="LOCReloadScripts">स्क्रिप्ट रीलोड करा</sys:String>
     <sys:String x:Key="LOCStartInteractivePowerShell"></sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess"></sys:String>
     <sys:String x:Key="LOCNoGamesFound">दिलेल्या शोध/गाळणी निकषासाठी कोणतेही गेम सापडले नाहीत</sys:String>
     <sys:String x:Key="LOCNoItemsFound">कोणत्याही वस्तू सापडल्या नाहीत</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode"></sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">डेस्कटॉप मोड चालू करा</sys:String>
     <sys:String x:Key="LOCExitPlaynite">प्लेनाइटहून बाहेर पडा</sys:String>
     <sys:String x:Key="LOCLibraries">लायब्ररी</sys:String>
     <sys:String x:Key="LOCUpdateAll">सर्व अपडेट करा</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">निर्माता:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">आवृत्ती:</sys:String>
-    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">अपडेट केले:</sys:String>
     <sys:String x:Key="LOCExtensionModule">मॉड्यूल:</sys:String>
     <sys:String x:Key="LOCLibrary">लायब्ररी</sys:String>
     <sys:String x:Key="LOCStatistics">आकडेवारी</sys:String>
@@ -649,16 +655,16 @@
     <sys:String x:Key="LOCDefault">डीफॉल्ट</sys:String>
     <sys:String x:Key="LOCSelect">निवडा</sys:String>
     <sys:String x:Key="LOCSelectAll">सर्व निवडा</sys:String>
-    <sys:String x:Key="LOCDeselectAll"></sys:String>
+    <sys:String x:Key="LOCDeselectAll">सर्व निवडी काढा</sys:String>
     <sys:String x:Key="LOCFirst">पहिले</sys:String>
     <sys:String x:Key="LOCRandom">यादृच्छिक</sys:String>
     <sys:String x:Key="LOCUserSelect"></sys:String>
     <sys:String x:Key="LOCLoadMore">अधिक लोड करा</sys:String>
     <sys:String x:Key="LOCTransparent">पारदर्शक</sys:String>
-    <sys:String x:Key="LOCCollapse"></sys:String>
-    <sys:String x:Key="LOCExpand"></sys:String>
-    <sys:String x:Key="LOCCollapseAll"></sys:String>
-    <sys:String x:Key="LOCExpandAll"></sys:String>
+    <sys:String x:Key="LOCCollapse">संक्षिप्त करा</sys:String>
+    <sys:String x:Key="LOCExpand">विस्तारा</sys:String>
+    <sys:String x:Key="LOCCollapseAll">सर्व संक्षिप्त करा</sys:String>
+    <sys:String x:Key="LOCExpandAll">सर्व विस्तारा</sys:String>
     <sys:String x:Key="LOCOther">इतर</sys:String>
     <sys:String x:Key="LOCThemes">थीम</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">एम्युलेटर आर्ग्युमेंट</sys:String>
@@ -666,27 +672,27 @@
     <sys:String x:Key="LOCCustomArguments"></sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments"></sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments"></sys:String>
-    <sys:String x:Key="LOCIsPlayAction"></sys:String>
-    <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
-    <sys:String x:Key="LOCGameImportWindowTitle"></sys:String>
+    <sys:String x:Key="LOCIsPlayAction">खेळायची क्रिया</sys:String>
+    <sys:String x:Key="LOCMedataDiffWindowTitle">आयात करायचा मेटाडेटा निवडा</sys:String>
+    <sys:String x:Key="LOCGameImportWindowTitle">आयात करायचे गेम निवडा</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">मेटाडेटा शोध</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">अपडेट उपलब्ध</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo"></sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate"></sys:String>
-    <sys:String x:Key="LOCCheckForUpdates"></sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">अपडेट डाउनलोड करून स्थापित करा</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">अपडेटकरीता तपासा</sys:String>
     <sys:String x:Key="LOCUpdateError">अपडेट करण्यात त्रुटी</sys:String>
-    <sys:String x:Key="LOCUpdateCheckFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage"></sys:String>
-    <sys:String x:Key="LOCGeneralUpdateFailMessage"></sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">नवीन आवृत्तीचा तपास घेण्यात अयशस्वी.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">कोणतीही नवीन आवृत्ती सापडली नाही. आपल्याकडे आधीच नवीनतम आवृत्ती आहे.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">अपडेट डाउनलोड करून स्थापित करण्यात अयशस्वी.</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">सध्या पार्श्वभूमीत कोणतेतरी कार्य चालू आहे. ते रद्द करून अपडेट चालू ठेवायचे आहे का?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">सध्या पार्श्वभूमीत कोणतेतरी कार्य चालू आहे. ते रद्द करून प्लेनाइट बंद करायचे आहे का?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">सध्या पार्श्वभूमीत कोणतेतरी कार्य चालू आहे. मोड बदलल्याने ते कार्य रद्द केले जाईल. तरीही मोड बदलायचा आहे का?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">प्लेनाईटसाठी अपडेट उपलब्ध आहे</sys:String>
-    <sys:String x:Key="LOCThemeTestReloadList"></sys:String>
-    <sys:String x:Key="LOCThemeTestApplySkin"></sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">थीम्सची यादी पुनः लोड करा</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">निवडलेली थीम लागू करा</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges"></sys:String>
     <sys:String x:Key="LOCThemeTestWatchChangesTooltip"></sys:String>
-    <sys:String x:Key="LOCScriptRuntime"></sys:String>
+    <sys:String x:Key="LOCScriptRuntime">स्क्रिप्ट रनटाइम</sys:String>
     <sys:String x:Key="LOCPreScriptDescription">गेम सुरू करण्याआधी बजावा</sys:String>
     <sys:String x:Key="LOCPostScriptDescription">गेमहून बाहेर पडताना बजावा</sys:String>
     <sys:String x:Key="LOCGameStartedScriptDescription">गेम सुरू झाल्यानंतर बजावा</sys:String>
@@ -700,23 +706,23 @@
     <sys:String x:Key="LOCStatsFiltered">गाळलेले</sys:String>
     <sys:String x:Key="LOCMetadataDiffCurrent">वर्तमान</sys:String>
     <sys:String x:Key="LOCMetadataDiffNew">नवीन</sys:String>
-    <sys:String x:Key="LOCTestScript"></sys:String>
+    <sys:String x:Key="LOCTestScript">चाचणी स्क्रिप्ट</sys:String>
     <sys:String x:Key="LOCOnlyItemsSelectedTooltip">केवळ निवडलेल्या वस्तु दाखवा.</sys:String>
     <!--Game actions-->
-    <sys:String x:Key="LOCSaveAsDefault"></sys:String>
-    <sys:String x:Key="LOCFavoriteGame"></sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame"></sys:String>
+    <sys:String x:Key="LOCSaveAsDefault">डीफॉल्ट म्हणून सेव्ह करा</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">आवडीच्या गेम्समध्ये जोडा</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">आवडीच्या गेम्समधून काढून टाका</sys:String>
     <sys:String x:Key="LOCHideGame">हा गेम लपवा</sys:String>
     <sys:String x:Key="LOCUnHideGame">लपवलेल्यांमधून काढून टाका</sys:String>
-    <sys:String x:Key="LOCEnableHdr"></sys:String>
-    <sys:String x:Key="LOCDisableHdr"></sys:String>
+    <sys:String x:Key="LOCEnableHdr">एचडीआर समर्थन सक्षम करा</sys:String>
+    <sys:String x:Key="LOCDisableHdr">एचडीआर समर्थन अक्षम करा</sys:String>
     <sys:String x:Key="LOCEditGame">संपादित करा…</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesAllInstallSize"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesMissingInstallSize"></sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel"></sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">स्थापनेचा आकार मोजा</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">स्थापनेचा आकार मोजा (सर्व गेम्ससाठी)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">स्थापनेचा आकार मोजा (केवळ नसलेल्या डेटासाठी)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">स्थापनेचा आकार</sys:String>
     <sys:String x:Key="LOCSetGameCategory">वर्ग सेट करा…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus"></sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">पूर्ण केल्याची स्थिती सेट करा</sys:String>
     <sys:String x:Key="LOCRemoveGame">काढून टाका</sys:String>
     <sys:String x:Key="LOCPlayGame">खेळा</sys:String>
     <sys:String x:Key="LOCInstallGame">स्थापित करा</sys:String>
@@ -727,24 +733,24 @@
     <sys:String x:Key="LOCCreateDesktopShortcut">डेस्कटॉप शॉर्टकट बनवा</sys:String>
     <sys:String x:Key="LOCOpenGameManual">माहितीपुस्तिका उघडा</sys:String>
     <sys:String x:Key="LOCMoreAction">अधिक</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">लायब्ररी प्लगइनद्वारे व्यवस्था</sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage"></sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip"></sys:String>
-    <sys:String x:Key="LOCProgreessAvailabilityMessage"></sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip"></sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">दिलेल्या पानावर '{0}' गेमविषयी कोणतीही निगडित माहिती सापडली नाही.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">टीप: एक गेम संपादित करत असताना अधिक आधुनिक मेटाडेटा डाउनलो प्रक्रियेचा वापर करू शकता. &quot;संपादन&quot; मेन्यू पर्याय पाहा.</sys:String>
+    <sys:String x:Key="LOCProgreessAvailabilityMessage">एखादे कार्य चालू असताना हे उपलब्ध नाही.</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">वर्णन मजकुरात एचटीएमएल सिंटॅक्स वापरले जाईल</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">खेळलेल्याची कालावधी सेकंदांमध्ये नोंदवली जाते.</sys:String>
-    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
-    <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues"></sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">स्थापनेचा आकार बाइटमध्ये दर्शवला जाईल.</sys:String>
+    <sys:String x:Key="LOCReleaseDateTooltip">रिलीझ दिनांक &quot;वर्ष-महिना-दिवस&quot; या स्वरूपात सेट केले पाहिजे. महिना आणि दिवस यांचे मूल्य वगळले तरी चालतील.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">0 पासून 100 पर्यंतचे मूल्य, किंवा स्कोअर द्यायचा नसेल तर रिकामे ठेवा.</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">प्लेनाइटचा विकासाचे समर्थन या पेट्रन्सने केले:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">कोड, भाषांतर व इतर योगदानकर्ता, अनुक्रमात न लावता:</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">गेमचे अनुबोधन रद्द करावे का?</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">स्थापना अनुबोधन सध्या चालू आहे. ही प्रक्रिया रद्द करून गेमला आधीच्या स्थितीत परत करायचे आहे का?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk"></sys:String>
-    <sys:String x:Key="LOCTimePlayed"></sys:String>
+    <sys:String x:Key="LOCTimePlayed">खेळल्याची कालावधी</sys:String>
     <sys:String x:Key="LOCLastPlayed">याआधी खेळले</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}दि {1}ता {2}मि</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0} ता. {1} मि.</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} मिनिटे</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} सेकंद</sys:String>
@@ -752,20 +758,20 @@
     <sys:String x:Key="LOCOpeningDesktopModeMessage">डेस्कटॉप मोडमध्ये उघडत आहे…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">फुलस्क्रीन मोडमध्ये उघडत आहे…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">गेम लायब्ररी लोड कर आहे…</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
-    <sys:String x:Key="LOCScriptInstallFail"></sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">स्थापनेचा आकार मोजत आहे…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">{0} च्या स्थापनेचा आकार मोजत आहे…</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">स्क्रिप्ट फाइल स्थापित करण्यात अयशस्वी.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">स्क्रिप्ट यशस्वीरित्या स्थापित केली.</sys:String>
     <sys:String x:Key="LOCInstallScript">स्क्रिप्ट स्थापित करा</sys:String>
     <sys:String x:Key="LOCScriptError">स्क्रिप्टमध्ये त्रुटी</sys:String>
     <sys:String x:Key="LOCScriptExecutionError"></sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder"></sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculate"></sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">मेटाडेटा फोल्डर उघडा</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">मोजा</sys:String>
     <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip"></sys:String>
-    <sys:String x:Key="LOCClientNotInstalledError"></sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif"></sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage"></sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError"></sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} हा क्लाएंट स्थापित नाही.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} क्लाएंट आता उघडला जाईल. कृपया त्यात साइन-इन करा व मगच हा संदेश बंद करा.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">प्रयोक्ता साइन-इन होण्यास थांबले आहे. तसे झाल्यावर हा संदेश बंद करा…</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">गेमच्या स्थापनेचा फोल्डर सापडला नाही.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings"></sys:String>
     <sys:String x:Key="LOCTroubleShootingAccountLink"></sys:String>
     <sys:String x:Key="LOCTroubleShootingIssues"></sys:String>
@@ -780,11 +786,11 @@
     <sys:String x:Key="LOCPLaytime500to1000">५०० ते १००० तास</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">१००० पेक्षा अधिक तास</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">स्थापना पूर्ण करण्यास पेलनाईट रीस्टार्ट करावे लागणार आहे. आता रीस्टार्ट करायचे का?</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">एक्स्टेंशन नीट पॅकेज केले नाही.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">थीम नीट पॅकेज केली नाही.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">&quot;{0}&quot; हे एक्स्टेंशन नीट लोड होण्यात अयशस्वी.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">&quot;{0}&quot; हे एक्स्टेंशन लोड करता आले नाही. प्लेनाइटची सध्याची आवृत्ती समर्थित नाही.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">&quot;{0}&quot; ही थीम नीट लोड करण्यात अपयशी.</sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionLoadError"></sys:String>    
     <sys:String x:Key="LOCGeneralThemeLoadError"></sys:String>
@@ -808,11 +814,11 @@
     <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">ही थीम प्लेनाइटच्या या आवृत्तीचे समर्थन करत नाही.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">निवडलेले एक्स्टेंशन नक्की विस्थापित करायचे आहे का? अ‍ॅप्लिकेशन यापुढे सुरू करताना विस्थापन रांगेत लावले जाईल. </sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint">एकत्रित एक्स्टेंशन विस्थापित करता येत नाहीत.</sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported">हे एक्स्टेंशन प्लेनाइटच्या या आवृत्तीचे समर्थन करत नाही.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">स्थापना फोल्डर</sys:String>
     <sys:String x:Key="LOCExtensionDataDir">डेटा फोल्डर</sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
@@ -822,14 +828,14 @@
     <sys:String x:Key="LOCStatsTotalPlayTime">खेळलेल्याची एकूण कालावधी</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">खेळलेल्याची सरासरी कालावधी</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">खेळलेल्याची कमाल कालावधी</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
-    <sys:String x:Key="LOCOverviewLabel"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">एकूण स्थापनेचा आकार</sys:String>
+    <sys:String x:Key="LOCOverviewLabel">विहंगावलोकन</sys:String>
     <sys:String x:Key="LOCSidebar">साइडबार</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">साइडबारमध्ये दाखवा</sys:String>
-    <sys:String x:Key="LOCSettingsReset"></sys:String>
+    <sys:String x:Key="LOCSettingsReset">सेटिंग रिसेट करा</sys:String>
     <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">विकासकांकरिता</sys:String>
-    <sys:String x:Key="LOCSettingsExternalExtensions"></sys:String>
+    <sys:String x:Key="LOCSettingsExternalExtensions">बाह्य एक्स्टेंशन</sys:String>
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox">संपूर्ण फोल्डर पाथ प्रविष्ट करा.</sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">अचीव्हमेंट</sys:String>
@@ -843,20 +849,20 @@
     <sys:String x:Key="LOCQuickFilterAllGames">सर्व</sys:String>
     <sys:String x:Key="LOCGameListFiltered">गाळण्या वापरल्या आहेत.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered">अधिक गाळण्या वापरल्या आहेत.</sys:String>
-    <sys:String x:Key="LOCGameListSearchResults"></sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">या शोधाचे परिणाम दाखवत आहे:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">याच नावाची वस्तू आधीपासून अस्तित्वात आहे.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">वर्तमान गाळण्यांपुरती निवड मर्यादित करा</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">दूसरा निवडा</sys:String>
     <sys:String x:Key="LOCMenuAddons">अ‍ॅडऑन…</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">स्थापित</sys:String>
-    <sys:String x:Key="LOCExtensionsSettings"></sys:String>
+    <sys:String x:Key="LOCExtensionsSettings">एक्स्टेंशन सेटिंग</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">चाळा</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">अपडेट</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">अपडेट ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo"></sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop"></sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren"></sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">थीम - डेस्कटॉप</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">थीम - फुलस्क्रीन</sys:String>
     <sys:String x:Key="LOCAddonsSearching">शोध घेत आहे…</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible"></sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed"></sys:String>
@@ -871,11 +877,11 @@
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">चेन्जलॉग उपलब्ध नाही</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">डाउनलोड अयशस्वी</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">परवाना नाकारला गेला</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} डाउनलोड करत आहे…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
-    <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate">अपडेट करण्यास वस्तू निवडा</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle"></sys:String>
     <sys:String x:Key="LOCLicenseAccept">स्वीकारा</sys:String>
@@ -888,61 +894,63 @@
     <sys:String x:Key="LOCGameActionTypeFile">फाईल</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">एम्युलेटर</sys:String>
     <sys:String x:Key="LOCGameActionTypeScript">स्क्रिप्ट</sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDefault">डीफॉल्ट</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeProcess">प्रक्रिया</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">फोल्डर</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">कोणतेही नाही</sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeUniform"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly"></sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly"></sys:String>
-    <sys:String x:Key="LOCScrollingSensitivity"></sys:String>
-    <sys:String x:Key="LOCSmoothScrolling"></sys:String>
-    <sys:String x:Key="LOCSmoothScrollingSpeed"></sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeUniform">एकसमान</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">केवळ वस्तू</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">केवळ सुरुवातीला व शेवटला</sys:String>
+    <sys:String x:Key="LOCScrollingSensitivity">स्क्रोल संवेदनशीलता</sys:String>
+    <sys:String x:Key="LOCSmoothScrolling">सुरळीत स्क्रोल</sys:String>
+    <sys:String x:Key="LOCSmoothScrollingSpeed">अ‍ॅनिमेशन वेग</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle">वस्तु काढून टाकायची का?</sys:String>
-    <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
+    <sys:String x:Key="LOCAskRemoveItemMessage">ही वस्तू नक्की काढून टाकायची आहे का?</sys:String>    
     <sys:String x:Key="LOCSettingsTopPanelItems">ही बटणे वरच्या पट्ट्यावर दाखवा:</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">साधारण दृश्य सेटिंग</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelSortingItem"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">क्रमवारी सेटिंग</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">गाळणी प्रीसेट</sys:String>
     <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
     <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
     <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
-    <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton"></sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch">एक्सप्लोरर पॅनल</sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">यादृच्छिक गेम निवडक</sys:String>
     <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton"></sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip"></sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">दृश्यातून एखादे गेम यादृच्छिकरित्या निवडा</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">गट बनवायचे व क्रमवारी लावायचे सेटिंग सेव्ह करा</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">फुलस्क्रीन मोडमध्ये जलद गाळणी म्हणून दाखवा</sys:String>
     <sys:String x:Key="LOCInPast7Days">गेल्या 7 दिवसांत</sys:String>
     <sys:String x:Key="LOCInPast31Days">गेल्या ३१ दिवसांत</sys:String>
     <sys:String x:Key="LOCInPast365Days">गेल्या ३६५ दिवसांत</sys:String>
     <sys:String x:Key="LOCMoreThan365DaysAgo">३६५ पेक्षा जास्त दिवसांपूर्वी</sys:String>
-    <sys:String x:Key="LOCConfigure"></sys:String>
+    <sys:String x:Key="LOCConfigure">कॉन्फिगर</sys:String>
     <sys:String x:Key="LOCFilterPresetSave">प्रीसेट सेव्ह करा</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">गेम सुरू केल्यानंतर मिनिमाइझ करा</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">एखादा गेम सुरू केल्यानंतर प्लेनाइट मिनिमाइझ करा.
+
+हे अक्षम केले तर गेम सुरू केल्यावर गेममध्ये इनपुट न मिळण्याच्या समस्या आढळू शकतील!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">फाँट आकार</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">छोटा फाँट आकार</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">XInput यंत्र समर्थन</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
+    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">मेन मेन्यूवर वस्तू दाखवा:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons"></sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions"></sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnly"></sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnly">केवळ प्राथमिक कंट्रोलर</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">सक्षम केल्यावर केवळ प्राथमिक कंट्रोलरपासून इनपुट स्वीकारले जाईल.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceVolume">इंटरफेस व्हॉल्यूम</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">पार्श्वभूमी व्हॉल्यूम</sys:String>
-    <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>
-    <sys:String x:Key="LOCErrorAudioInterfaceInit"></sys:String>
+    <sys:String x:Key="LOCSettingsMuteBackground">पार्श्वभूमीत असताना म्यूट करा</sys:String>
+    <sys:String x:Key="LOCErrorAudioInterfaceInit">ऑडियो इंटरफेस आरंभ करण्यात अयशस्वी.</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApi">आउटपुट API</sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApiDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">ऑडियो आउटपुटसाठी वापरला जाणारा API. आवाजात समस्या अनुभवत असलात तर हे बदला.</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">साधारण</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionVisuals"></sys:String>
     <sys:String x:Key="LOCSettingsFSSectionAudio">ऑडिओ</sys:String>
@@ -951,19 +959,19 @@
     <sys:String x:Key="LOCSettingsFSSection">इनपुट</sys:String>
     <sys:String x:Key="LOCGameIsStarting">{0} सुरू होत आहे…</sys:String>
     <sys:String x:Key="LOCGameIsRunning">{0} चालू आहे…</sys:String>
-    <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
-    <sys:String x:Key="LOCTextInputSpace"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
+    <sys:String x:Key="LOCTextInputCapitalize">कॅपिटल</sys:String>
+    <sys:String x:Key="LOCTextInputSpace">स्पेस</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode">चित्र रेंडर करणारे स्केलर</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">वैकल्पिक</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingQuality"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingQuality">गुणवत्ता</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSelectFileTooltip">फाईल निवडा…</sys:String>
     <sys:String x:Key="LOCSelectDirectoryTooltip">फोल्डर निवडा…</sys:String>
-    <sys:String x:Key="LOCStartupScript"></sys:String>
+    <sys:String x:Key="LOCStartupScript">स्टार्टअप स्क्रिप्ट</sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCGameActionSelectOnStart"></sys:String>
-    <sys:String x:Key="LOCEmulatorSelectOnStart"></sys:String>
+    <sys:String x:Key="LOCGameActionSelectOnStart">स्टार्टअपच्या वेळी निवडा</sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart">स्टार्टअपच्या वेळी निवडा</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
@@ -982,20 +990,20 @@
     <sys:String x:Key="LOCSplitEmuImportMergeGames"></sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform">प्लॅटफॉर्म सेट करा</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">प्रदेश सेट करा</sys:String>
-    <sys:String x:Key="LOCEmuScanDirectory"></sys:String>
-    <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
-    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
-    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
+    <sys:String x:Key="LOCEmuScanDirectory">फोल्डर स्कॅन करा</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">कॉन्फिगरेशन स्कॅन करा</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">चेकसम स्कॅनमधून पॅटर्न वगळा</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">विनिर्दिष्ट केलेल्या पॅटर्नांशी जुळणार्‍या फायली चेकसमसाठी स्कॅन केल्या जाणार नाहीत. त्याऐवजी त्यांची जुळणी फाइलच्या नावाशी होईल. अधिक माहितीसाठी एम्युलेटर मदत पान पाहा.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">एम्युलेटरने स्कॅन करा</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">नवीन कॉन्फिगरेशन सेव्ह करताना नाव सेट केले पाहिजेच.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">एम्युलेटर किंवा एम्युलेटर प्रोफाइल सेट केले नाही.</sys:String>
     <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
     <sys:String x:Key="LOCScanConfigError"></sys:String>    
     <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
     <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">आयात केलेले लपवा</sys:String>
-    <sys:String x:Key="LOCEmuImportProfilesToImportHeader"></sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">आयात करायचे प्रोफाइल:</sys:String>
     <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
@@ -1005,9 +1013,9 @@
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuAddScanner"></sys:String>
-    <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
-    <sys:String x:Key="LOCStartScan"></sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">स्कॅनर जोडा</sys:String>
+    <sys:String x:Key="LOCEmuAddSavedScanner">वाचवून ठेवलेला स्कॅनर जोडा</sys:String>
+    <sys:String x:Key="LOCStartScan">स्कॅन सुरू करा</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">ही स्थिती पहिल्यांदाच खेळल्यावर गेम्सना नेमली जाते</sys:String>
@@ -1018,7 +1026,7 @@
     <sys:String x:Key="LOCSortingNameRemovedArticles"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton"></sys:String>
-    <sys:String x:Key="LOCSettingsSortingLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">क्रमवारी</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillProgress"></sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve"></sys:String>
@@ -1026,60 +1034,61 @@
     <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption"></sys:String>
     <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFiles">स्कॅनमधून ऑनलाइन फाइल वगळा</sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">स्थानिक पातळीवर उपलब्ध नसल्यास क्लाउड स्टोरेजवर साठवलेल्या फायली स्कॅन करून आयात केल्या जाणार नाहीत.
+केवळ यांसाठी समर्थित आहे: गूगल ड्राइव्ह, ड्रॉपबॉक्स, वनड्राइव्ह</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
-    <sys:String x:Key="LOCMetadatSetAllFieldsToValue"></sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue">सर्वांवर लागू करा</sys:String>
     <sys:String x:Key="LOCOverrideInstallState"></sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCOptionOnlyManually"></sys:String>
-    <sys:String x:Key="LOCOptionOnceADay"></sys:String>
-    <sys:String x:Key="LOCOptionOnceAWeek"></sys:String>
-    <sys:String x:Key="LOCOptionOnEveryStartup"></sys:String>
+    <sys:String x:Key="LOCOptionOnceADay">दिवसातून एकदा</sys:String>
+    <sys:String x:Key="LOCOptionOnceAWeek">आठवड्यातून एकदा</sys:String>
+    <sys:String x:Key="LOCOptionOnEveryStartup">प्रत्येक स्टार्टअपला</sys:String>
     <sys:String x:Key="LOCCheckProgramUpdates"></sys:String>
     <sys:String x:Key="LOCCheckAddonUpdates"></sys:String>
-    <sys:String x:Key="LOCCheckLibraryUpdates"></sys:String>
-    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates"></sys:String>
-    <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
-    <sys:String x:Key="LOCMenuSetFields"></sys:String>
+    <sys:String x:Key="LOCCheckLibraryUpdates">लायब्ररी अपडेट करा</sys:String>
+    <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">एम्युलेशन फोल्डर स्कॅन करा</sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">लपवलेले गेम सामील करा</sys:String>
+    <sys:String x:Key="LOCMenuSetFields">रकाने संपादित करा</sys:String>
     <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
-    <sys:String x:Key="LOCOpen"></sys:String>
+    <sys:String x:Key="LOCOpen">उघडा</sys:String>
     <sys:String x:Key="LOCActivate"></sys:String>
-    <sys:String x:Key="LOCAssign"></sys:String>
-    <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
+    <sys:String x:Key="LOCAssign">नेमणूक करा</sys:String>
+    <sys:String x:Key="LOCDefaultSearchDescription">गेम्सचा शोध घेण्यास टाइप करायला सुरुवात करा… मदतीसाठी [F1] दाबा</sys:String>
     <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalled"></sys:String>
-    <sys:String x:Key="LOCSearchFilterHidden"></sys:String>
+    <sys:String x:Key="LOCSearchFilterHidden">लपवलेले गेम सामील करा</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalledIncluded"></sys:String>
-    <sys:String x:Key="LOCSearchFilterUninstalledExcluded"></sys:String>
-    <sys:String x:Key="LOCSearchFilterHiddenIncluded"></sys:String>
-    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">विस्थापित गेम वगळून</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenIncluded">लपवलेले गेम सामील करून</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">लपवलेले गेम सामील नसून</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionPlay"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionSwitchTo"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionOpenMenu"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionEdit"></sys:String>
-    <sys:String x:Key="LOCOpenSearch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSearchBox"></sys:String>
-    <sys:String x:Key="LOCTopPanelSearchButton"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionSwitchTo">तपशील पाहा</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionOpenMenu">गेम मेन्यू</sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit">गेम संपादित करा</sys:String>
+    <sys:String x:Key="LOCOpenSearch">शोध घ्या</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox">शोध पट्टी</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton">शोध बटण</sys:String>
 
     <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSecondaryAction"></sys:String>
     <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSaveFilter"></sys:String>
-    <sys:String x:Key="LOCSearchSettingsSearchProviders"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsSearchProviders">शोध पुरवणारे</sys:String>
     <sys:String x:Key="LOCSearchSettingsDefaultKeyword"></sys:String>
     <sys:String x:Key="LOCSearchSettingsCustomKeyword"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
-    <sys:String x:Key="LOCSearchTitle"></sys:String>
+    <sys:String x:Key="LOCSearchTitle">प्लेनाइट शोध</sys:String>
     <sys:String x:Key="LOCExtensionSettingsMenu"></sys:String>
-    <sys:String x:Key="LOCExclusions"></sys:String>
+    <sys:String x:Key="LOCExclusions">वगळलेले</sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
-    <sys:String x:Key="LOCEmuImportAddROMExclusionList"></sys:String>
-    <sys:String x:Key="LOCEmuImportAddFolderExclusionList"></sys:String>
-    <sys:String x:Key="LOCEmuExclusionNoConfigError"></sys:String>
-    <sys:String x:Key="LOCEmuExclusionAddedMessage"></sys:String>
+    <sys:String x:Key="LOCEmuImportAddROMExclusionList">फाइल वगळायच्या यादीत जोडा</sys:String>
+    <sys:String x:Key="LOCEmuImportAddFolderExclusionList">फोल्डर वगळायच्या यादीत जोडा</sys:String>
+    <sys:String x:Key="LOCEmuExclusionNoConfigError">वगळायच्या वस्तू केवळ सेव्ह केलेल्या स्कॅनर कॉन्फिगरेशनशी जोडता येतात.</sys:String>
+    <sys:String x:Key="LOCEmuExclusionAddedMessage">&quot;{0}&quot; स्कॅनर यात वगळायच्या वस्तू जोडण्यात आल्या आहेत.</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatform"></sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
@@ -1087,34 +1096,34 @@
     <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
     <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
-    <sys:String x:Key="LOCHiddenStatus"></sys:String>
+    <sys:String x:Key="LOCHiddenStatus">लपवल्याची स्थिती</sys:String>
 
-    <sys:String x:Key="LOCBackupCancelled"></sys:String>
-    <sys:String x:Key="LOCBackupFailed"></sys:String>
-    <sys:String x:Key="LOCBackupErrorTitle"></sys:String>
-    <sys:String x:Key="LOCBackupProgress"></sys:String>
-    <sys:String x:Key="LOCBackupRestoreProgress"></sys:String>
+    <sys:String x:Key="LOCBackupCancelled">डेटा बॅकअप रद्द करण्यात आले.</sys:String>
+    <sys:String x:Key="LOCBackupFailed">डेटा बॅकअप अयशस्वी.</sys:String>
+    <sys:String x:Key="LOCBackupErrorTitle">डेटा बॅकअप त्रुटी</sys:String>
+    <sys:String x:Key="LOCBackupProgress">डेटा बॅकअप चालू आहे…</sys:String>
+    <sys:String x:Key="LOCBackupRestoreProgress">बॅकअपमधून डेटा पुनःस्थापित करत आहे…</sys:String>
     <sys:String x:Key="LOCBackupRestoreFailed"></sys:String>
-    <sys:String x:Key="LOCBackupOptionSettings"></sys:String>
-    <sys:String x:Key="LOCBackupOptionLibrary"></sys:String>
-    <sys:String x:Key="LOCBackupOptionGameMedia"></sys:String>
-    <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
-    <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
-    <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings">सेटिंग</sys:String>
+    <sys:String x:Key="LOCBackupOptionLibrary">गेम लायब्ररी</sys:String>
+    <sys:String x:Key="LOCBackupOptionGameMedia">गेम लायब्ररी मीडिया</sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions">स्थापित केलेले एक्स्टेंशन</sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensionsData">एक्स्टेंशन डेटा</sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes">स्थापित केलेल्या थीम</sys:String>
     <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
-    <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
+    <sys:String x:Key="LOCSettingsBackupFolder">बाकअप फोल्डर</sys:String>
     <sys:String x:Key="LOCSettingsRotatingBackups"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">अधिक डेटा सामील करा:</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatchesToolip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsPastWeekRelativeFormat"></sys:String>
     <sys:String x:Key="LOCSettingsPastWeekRelativeFormatTooltip" xml:space="preserve"></sys:String>
 
-    <sys:String x:Key="LOCSettingsWebImageSearch"></sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearch">वेब चित्र शोध</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
@@ -1124,13 +1133,14 @@
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
-    <sys:String x:Key="LOCAutomatic"></sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
+    <sys:String x:Key="LOCAutomatic">आपोआप</sys:String>
+    <sys:String x:Key="LOCAlwaysOn">नेहमीच चालू</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">नेहमीच बंद</sys:String>
     <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
-    <sys:String x:Key="LOCApplicationMenu"></sys:String>
-    <sys:String x:Key="LOCGameMenu"></sys:String>
-    <sys:String x:Key="LOCProgramFolder"></sys:String>
+    <sys:String x:Key="LOCApplicationMenu">अ‍ॅप्लिकेशन मेन्यू</sys:String>
+    <sys:String x:Key="LOCGameMenu">गेम मेन्यू</sys:String>
+    <sys:String x:Key="LOCProgramFolder">प्रोग्राम फोल्डर</sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

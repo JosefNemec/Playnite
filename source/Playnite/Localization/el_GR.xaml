@@ -103,7 +103,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">Ο τρόπος εκκίνησης παιχνιδιού δεν μπορεί να καθοριστεί.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ενεργοποιημένο</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Απενεργοποιημένο</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Αφαίρεση</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Αφαίρεση αχρησιμοποίητων</sys:String>
     <sys:String x:Key="LOCRenameTitle">Μετονομασία</sys:String>
@@ -1247,4 +1247,5 @@ SHIFT-ENTER: άνοιγμα μενού στοιχείων</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Έχουν εντοπιστεί κατεστραμμένα αρχεία βιβλιοθήκης, το Playnite θα τερματιστεί.
     
 Ανοίξτε νέο ζήτημα στη σελίδα GitHub του Playnite με αίτημα να διορθωθεί το πρόβλημα στα αρχεία σας.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

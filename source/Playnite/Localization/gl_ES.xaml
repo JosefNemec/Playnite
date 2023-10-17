@@ -1245,4 +1245,5 @@ O formato de data especificado usarase para todas as outras datas.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Detectouse un ficheiro da biblioteca danado, polo que Playnite vai pecharse.
 
 Abre un problema na páxina de GitHub de Playnite e solicita que se arranxe o problema cos teus ficheiros.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

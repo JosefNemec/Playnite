@@ -1236,4 +1236,5 @@ A már megadott dátumformátum lesz érvényes az összes többire.</sys:String
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Adatbázisfájl sérülést észleltem, a Playnite le fog állni.
     
 Kérlek nyiss egy új jegyet a Playnite GitHub oldalán angolul, kérve, hogy javítsák meg a sérült könyvtárfájlt.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Szeretnéd menteni változtatásaidat?</sys:String>
 </ResourceDictionary>

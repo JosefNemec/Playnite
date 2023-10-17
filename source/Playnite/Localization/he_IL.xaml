@@ -1207,4 +1207,5 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCProgramFolder"></sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

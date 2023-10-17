@@ -22,7 +22,9 @@
     <sys:String x:Key="LOCCategoryWindowTitle">Kategooria määramine</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Määra kategooriad</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Lisa kategooria</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Märgistatud - Määra kategooria
+Märgistamata - Eemalda kategooria
+Määratlemata - Ei muuda (mitme mängu korraga muutmisel)</sys:String>
     <sys:String x:Key="LOCNoCategory">Kategooriata</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platvormita</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Ups! Miskit läks valesti…</sys:String>
@@ -42,7 +44,9 @@ Soovitame sellest probleemist teavitada laienduse arendajat. Probleemi järjepid
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Tundmatu laiendus või teema põhjustas parandamatu tõrke.
 
 Soovitame keelata 3. osapoole lisad, isoleerida problemaatilise ja teavitada sellest veast lisa arendajat.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ilmnes parandamatu tõrge.
+
+Kui soovid aidata meil seda probleemi lahendada, saada meile diagnostikateave. Aitäh.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Keela laiendus</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Salvesta logifail</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Saada diagn. teave</sys:String>
@@ -56,7 +60,7 @@ Soovitame keelata 3. osapoole lisad, isoleerida problemaatilise ja teavitada sel
     <sys:String x:Key="LOCGameRemoveAskTitle">Eemalda mäng(ud)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Ei saa eemaldada - Mäng või installija on töötab. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Ei saa desinstallida - Mäng töötab.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Kas oled kindel, et tahad eemaldada mängu {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Kindel, et soovite eemaldada {0} mängu?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Kas oled kindel, et soovid eemaldada mängu {0}?
 
@@ -64,25 +68,25 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mängu u
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Kas oled kindel, et soovid eemaldada {0} mängu?
 
 Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge uuesti järgmisel teegi värskendamisel.</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage"></sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage"></sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Kas oled kindel, et tahad eemaldada {0} kirjet, mida hetkel ei kasutata?</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Kasutamata väljasid ei leitud.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Jah (lisa välistamiste loendisse)</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif"></sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Siin jaotises on muudatusi, mida pole salvestatud.</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Mänguteegi formaadi uuendamine</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Andmebaasi värskendamine ebaõnnestus.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Ei saa mängude teeki värskendada. Nõutud on {0} MB vaba ruumi.</sys:String>
-    <sys:String x:Key="LOCGameError"></sys:String>
+    <sys:String x:Key="LOCGameError">MänguViga</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame"></sys:String>
-    <sys:String x:Key="LOCGameStartError"></sys:String>
+    <sys:String x:Key="LOCGameStartError">Ei saa käivitada mängu: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Ei saa tegevust käivitada: {0}</sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
-    <sys:String x:Key="LOCGameShortcutError"></sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">Ei saa avada mängu asukohta: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Ei saanud tuvastada mängu installi suurust: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Viga installi suuruse skannimisel</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Installi suuruse arvutamisel esines {0} viga</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">Ei saanud otseteed luua: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError"></sys:String>
-    <sys:String x:Key="LOCGameInstallError"></sys:String>
-    <sys:String x:Key="LOCGameUninstallError"></sys:String>
+    <sys:String x:Key="LOCGameInstallError">Ei saa installida mängu: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">Ei saa desinstallida mängu: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
     <sys:String x:Key="LOCErrorNoInstallAction"></sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Selle mängu eest vastutav teegi plugin on keelatud või installimata.</sys:String>
@@ -218,7 +222,7 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCProgressImportinGames">{0}'i mängude importimine…</sys:String>
     <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Teegi värskenduste allalaadimine…</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Teegis olevate mängude suuruse skannimine…</sys:String>
     <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Imporditud mängude suuruse skannimine…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Teegi värskendamine valmis</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Ressursside vabastamine…</sys:String>
@@ -230,7 +234,7 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Teegihaldur…</sys:String>
     <sys:String x:Key="LOCMenuTools">Tööriistad</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Laadi alla metaandmed…</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools"></sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">Tarkvara vahendid…</sys:String>
     <sys:String x:Key="LOCMenuConfigureIntegrations">Seadista integratsioone…</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Ava 3. osapoole klient</sys:String>
     <sys:String x:Key="LOCMenuClients">3. osapoole kliendid</sys:String>
@@ -259,21 +263,21 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCSettingsGridItemSpacing">Üksuste vahe</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ruudustiku piirjoonte paksus</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Puuduva mänguikooni allikas</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuduva mängu kaanepildi allikas</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Puuduva mängu taustpildi allikas</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Mängu üksikasjade vertikaalne vahe</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Ruudustiku vaates üksikasjade asukoht</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Joonesta paneelide vahele eraldaja</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Mängude kaanepildi kõrgus</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Mängude loendi ikooni kõrgus</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Rakenduse font</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Ühelaiuste märkidega font</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Filtrite paneeli asukoht</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Exploreri paneeli asukoht</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kaanepildi renderdamine</sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Siht-kuvasuhe</sys:String>
     <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Venitusrežiim</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">DVD karp</sys:String>
@@ -317,11 +321,11 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Tumenda paigaldamata mängud</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Näita üksikasjalikus vaates mängude ikoone</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Näita rühmade kirjeldustes üksuste arvu</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Näita paneelidel Filtrid ja Explorer ainult määratud välju</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Keela riistvara graafikakiirendi</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Näita kiirkäivitusloendites peidetud mänge</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Mõjutab Tööülesannete ja süsteemisalve menüüloendeid.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Kiirkäivitusüksuste arv</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Hägusta tausta</sys:String>
@@ -375,7 +379,7 @@ Mitte kunagi: Ei impordi mänguaega mitte mingil juhul.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Ainult äsja imporditud mängudel</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Mitte kunagi</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Luba juhtpuldi tugi Töölaua režiimis</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Nupp Guide avab Täisekraani režiimi</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Automaatse metaandmete allalaadimise sätted värskelt imporditud mängudele.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Sihtkuvar</sys:String>
     <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Alati kasuta esmast kuvarit</sys:String>
@@ -385,7 +389,7 @@ Mitte kunagi: Ei impordi mänguaega mitte mingil juhul.</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Näita kella</sys:String>
     <sys:String x:Key="LOCSettingsHideMouseCursor">Peida hiirekursor</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled"></sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Juhtpuldi nuppude stiil</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Paigutus</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Horisontaalne kerimine</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Vali üks alajaotis</sys:String>
@@ -410,12 +414,12 @@ Mitte kunagi: Ei impordi mänguaega mitte mingil juhul.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Ära sulge pärast mänguseansse, mis on lühemad kui (sekundites)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automaatselt sulge järgnevad kliendid:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Autom. klientide sulgemine</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Impordi välistamiste loend</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Hoiata liiga suure mängumeedia määramisel</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Eelistatud vanusepiirangu organisatsioon</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Värskenda mängude installi suurust teegi värskendamisel</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Skannib ja värskendab mängude installi suurust, kui tuvastatakse, et nende faile on pärast viimast skannimist muudetud</sys:String>
     <sys:String x:Key="LOCStrechNone">Puudub</sys:String>
     <sys:String x:Key="LOCStrechFill">Täida</sys:String>
     <sys:String x:Key="LOCStrechUniform">Säilita kuvasuhe</sys:String>
@@ -424,7 +428,7 @@ Mitte kunagi: Ei impordi mänguaega mitte mingil juhul.</sys:String>
     <sys:String x:Key="LOCDockRight">Paremal</sys:String>
     <sys:String x:Key="LOCDockTop">Üleval</sys:String>
     <sys:String x:Key="LOCDockBottom">All</sys:String>
-    <sys:String x:Key="LOCImportError"></sys:String>
+    <sys:String x:Key="LOCImportError">Viga importimisel</sys:String>
     <sys:String x:Key="LOCLoginRequired">Autentimine vajalik</sys:String>
     <sys:String x:Key="LOCLoginFailed">Autentimine ebaõnnestus</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Alternatiivne veebivaate kuvamisrežiim</sys:String>
@@ -480,8 +484,8 @@ Rohkem integratsioone saab hiljem paigaldada menüüst &quot;Lisad&quot;.</sys:S
     <sys:String x:Key="LOCSelectUrlTitle">Vali URL</sys:String>
     <sys:String x:Key="LOCAddEmulatorTitle">Lisa emulaator</sys:String>
     <sys:String x:Key="LOCSupportedPlatformsTitle">Toetatud platvorm(id)</sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle"></sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle"></sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">Kas tahad platvormi muudatused salvestada?</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">Kas tahad emulaatori muudatused salvestada?</sys:String>
     <sys:String x:Key="LOCExecutableTitle">Täitmisprogramm</sys:String>
     <sys:String x:Key="LOCArgumentsTitle">Argumendid</sys:String>
     <sys:String x:Key="LOCWorkingDirTitle">Töökaust</sys:String>
@@ -489,7 +493,8 @@ Rohkem integratsioone saab hiljem paigaldada menüüst &quot;Lisad&quot;.</sys:S
     <sys:String x:Key="LOCImportEmulatorsButton">Impordi emulaatoreid…</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Laadi emulaatorid alla…</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Kas oled kindel, et tahad eemaldada emulaatori {0}?
+Seda kasutab hetkel {1} mäng(u).</sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">Kas oled kindel, et tahad eemaldada platvormi {0}?
 Seda kasutab hetkel {1} mäng(u) ja {2} emulaator(it).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Sätete abi</sys:String>
@@ -535,8 +540,8 @@ Kui keelatud, kaasatakse vaates mängud, mis kasutavad mistahes filtri mistahes 
     <sys:String x:Key="LOCGameHiddenTitle">Peidetud</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Lemmik</sys:String>
     <sys:String x:Key="LOCGameHdrTitle">Luba HDR tugi</sys:String>
-    <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">Kui lubatud, lubatakse HDR põhiekraanil enne mängu käivitamist.</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">Pane tähele, et sinu põhiekraan ei toeta HDR-i.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Viimati mängitud</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategooria</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Kirjeldus</sys:String>
@@ -564,7 +569,7 @@ Kui keelatud, kaasatakse vaates mängud, mis kasutavad mistahes filtri mistahes 
     <sys:String x:Key="LOCRegionsLabel">Piirkonnad</sys:String>
     <sys:String x:Key="LOCSourceLabel">Allikas</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Allikad</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel"></sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Viimatised tegevused</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Andmebaasi tõrge</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Teegi andmebaasi avamine ebaõnnestus.</sys:String>
@@ -584,7 +589,7 @@ Palun lisa oma probleemi raportile järgnev ID:</sys:String>
 
 {2}</sys:String>
     <sys:String x:Key="LOCURLFormatError">Ei saaviidet avada, URL on sobimatus vormingus.</sys:String>
-    <sys:String x:Key="LOCAppStartupError"></sys:String>
+    <sys:String x:Key="LOCAppStartupError">Ei saanud rakendust käivitada.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">Veebivaate komponendi käivitamine ebaõnnestus. Playnite ei saa käivitumise protsessiga edasi minna.
 
 Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
@@ -596,7 +601,7 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUseExeIcon"></sys:String>
     <sys:String x:Key="LOCImageURL">Pildi URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Lisa viide</sys:String>
-    <sys:String x:Key="LOCAddRom"></sys:String>
+    <sys:String x:Key="LOCAddRom">Lisa ROM</sys:String>
     <sys:String x:Key="LOCSaveChanges">Salvesta muudatused</sys:String>
     <sys:String x:Key="LOCGameEditChangeSaveTooltip"></sys:String>
     <sys:String x:Key="LOCAddAction">Lisa tegevus</sys:String>
@@ -608,11 +613,11 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCBrowse">Sirvi…</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Ava Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Profiili seaded</sys:String>
-    <sys:String x:Key="LOCEmptyGameNameError"></sys:String>
+    <sys:String x:Key="LOCEmptyGameNameError">Mängu nimi ei või olla tühi.</sys:String>
     <sys:String x:Key="LOCEmptyTrackingFolderError"></sys:String>
     <sys:String x:Key="LOCEmptyGameNameMetaSearchError"></sys:String>
-    <sys:String x:Key="LOCInvalidGameData"></sys:String>
-    <sys:String x:Key="LOCURLInputInfo"></sys:String>
+    <sys:String x:Key="LOCInvalidGameData">Vigased mängu andmed</sys:String>
+    <sys:String x:Key="LOCURLInputInfo">Sisesta kehtiv veebi URL, mille alguses kas http:// või https://</sys:String>
     <sys:String x:Key="LOCURLInputInfoTitile">Vali URL</sys:String>
     <sys:String x:Key="LOCMetadataDownloadError"></sys:String>
     <sys:String x:Key="LOCDownloadError">Allalaadimise viga</sys:String>
@@ -658,7 +663,7 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateAll">Värskenda kõiki</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Autor:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Versioon:</sys:String>
-    <sys:String x:Key="LOCExtensionUpdated"></sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">Uuendatud:</sys:String>
     <sys:String x:Key="LOCExtensionModule">Moodul:</sys:String>
     <sys:String x:Key="LOCLibrary">Teek</sys:String>
     <sys:String x:Key="LOCStatistics">Statistika</sys:String>
@@ -676,11 +681,11 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDefault">Vaikimisi</sys:String>
     <sys:String x:Key="LOCSelect">Vali</sys:String>
     <sys:String x:Key="LOCSelectAll">Vali kõik</sys:String>
-    <sys:String x:Key="LOCDeselectAll"></sys:String>
+    <sys:String x:Key="LOCDeselectAll">Tühista kõik valikud</sys:String>
     <sys:String x:Key="LOCFirst">Esimene</sys:String>
     <sys:String x:Key="LOCRandom">Juhuslik</sys:String>
-    <sys:String x:Key="LOCUserSelect"></sys:String>
-    <sys:String x:Key="LOCLoadMore"></sys:String>
+    <sys:String x:Key="LOCUserSelect">Kasutaja valik</sys:String>
+    <sys:String x:Key="LOCLoadMore">Laadi rohkem</sys:String>
     <sys:String x:Key="LOCTransparent">Läbipaistev</sys:String>
     <sys:String x:Key="LOCCollapse">Ahenda</sys:String>
     <sys:String x:Key="LOCExpand">Laienda</sys:String>
@@ -705,8 +710,8 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Uue versiooni olemasolu kontroll ebaõnnestus.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Uut versiooni ei leitud, sul on ajakohane versioon.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Värskenduse allalaadimine ja installimine ebaõnnestus.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Mõni taustatöö on praegu pooleli. Kas tahad selle katkestada ja värskendamisega edasi minna?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Mõni taustatöö on praegu pooleli. Kas tahad selle katkestada ja Playnite'i sulgeda?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Playnite'ile on saadaval värskendus</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Laadi teemade loend uuesti</sys:String>
@@ -761,7 +766,7 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Pole saadaval, kui mõni tegevus on käimas.</sys:String>
     <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Kirjelduse tekst on HTML süntaksi tundlik</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Mänguaega loetakse sekundites.</sys:String>
-    <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">Installi suurus on näidatud baitides.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Väljalaske kuupäev tuleb määrata 'aasta-kuu-päev' formaadis. Kuu ja päeva väärtused saab välja jätta.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Skoori väärtus vahemikus 0 kuni 100 või tühi.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'i arengut on toetanud järgmised patroonid:</sys:String>
@@ -780,7 +785,7 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Täisekraani režiimi avamine…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Mänguteegi laadimine…</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeMessage">Installi suuruse arvutamine…</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Mängu {0} installi suuruse arvutamine…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail"></sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Skript on edukalt paigaldatud.</sys:String>
     <sys:String x:Key="LOCInstallScript"></sys:String>
@@ -823,8 +828,15 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Laiendust ei saanud paigaldada.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Kas tahad paigaldada uue laienduse?
+
+{0}
+Autor {1}
+Versioon {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Kas tahad värskendada laienduse &quot;{0}&quot;?
+
+Praegune versioon: {1}
+Uus versioon: {2}</sys:String>
     <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Teemat ei saanud paigaldada.
 
 {0}</sys:String>
@@ -837,7 +849,9 @@ Versioon {2}</sys:String>
 
 Praegune versioon: {1}
 Uus versioon: {2}</sys:String>
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">Sa oled Playnite'ist lahkumas ja avamas järgnevat veebiaadressi oma vaikimisi veebibrauseris. Kas tahad jätkata?
+
+{0}</sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Valitud pilt/pildid võivad optimaalse jõudluse jaoks olla liiga suured. Väga suurte piltide kasutamine võib halvendada kasutajaliidese reageerimist ja suurendada mälukasutust. 
 
 Suurimad soovitatavad resolutsioonid:
@@ -865,7 +879,7 @@ Taustapildid: {2} megapikslit</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Mänguaeg kokku</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Keskmine mänguaeg</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Kõrgeim mänguaeg</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Installi kogusuurus</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Ülevaade</sys:String>
     <sys:String x:Key="LOCSidebar">Külgriba</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">Näita külgribal</sys:String>
@@ -889,10 +903,10 @@ Protsessi lõpetamiseks on vajalik rakenduse taaskäivitamine. Kas tahad sätete
     <sys:String x:Key="LOCQuickFilterFavorites">Lemmikud</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Enim mängitud</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">Kõik</sys:String>
-    <sys:String x:Key="LOCGameListFiltered"></sys:String>
+    <sys:String x:Key="LOCGameListFiltered">Rakendatud on filtreid.</sys:String>
     <sys:String x:Key="LOCGameListExtraFiltered"></sys:String>
     <sys:String x:Key="LOCGameListSearchResults"></sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists"></sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">Sellise nimega üksus on juba olemas.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter"></sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Vali teine</sys:String>
     <sys:String x:Key="LOCMenuAddons">Lisad…</sys:String>
@@ -902,24 +916,26 @@ Protsessi lõpetamiseks on vajalik rakenduse taaskäivitamine. Kas tahad sätete
     <sys:String x:Key="LOCExtensionsUpdates">Värskendused</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">Värskendused ({0})</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">Paigaldatud laienduste ja teemade, k.a nende sätete, haldamine on liigutatud uude menüüsse &quot;Lisad&quot;.</sys:String>
-    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Siin saab seadistada kõiki praegu installitud teegi integratsioonide laiendusi.
+
+Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Lisad&quot; peamenüüs.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Töölaua teemad</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">Täisekraani teemad</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Otsimine…</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible"></sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed"></sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError"></sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">Ootel muudatuste rakendamiseks on vaja rakendus taaskäivitada.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
     <sys:String x:Key="LOCAddonInstall">Paigalda</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalli</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Juba installitud</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Lisade värskendusi ei leitud.</sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">Värskenda lisasid</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Muudatuste logi pole saadaval</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Installimiseks plaanitud</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">Allalaadimine ebaõnnestus</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Litsentsist keelduti</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Allalaadimine {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Lisade värskenduste otsimine…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Vähemalt ühele lisale on saadaval värskendus.</sys:String>
@@ -929,7 +945,7 @@ Protsessi lõpetamiseks on vajalik rakenduse taaskäivitamine. Kas tahad sätete
     <sys:String x:Key="LOCLicenseAccept">Nõustu</sys:String>
     <sys:String x:Key="LOCLicenseDecline">Keeldu</sys:String>
     <sys:String x:Key="LOCIncludePluginGameActions"></sys:String>
-    <sys:String x:Key="LOCSelectActionTitle"></sys:String>
+    <sys:String x:Key="LOCSelectActionTitle">Tegevuse valimine</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Jälgimise viis</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Jälgitav rada</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
@@ -951,28 +967,30 @@ Protsessi lõpetamiseks on vajalik rakenduse taaskäivitamine. Kas tahad sätete
     <sys:String x:Key="LOCSmoothScrollingSpeed">Animatsiooni kiirus</sys:String>
     <sys:String x:Key="LOCAskRemoveItemTitle"></sys:String>
     <sys:String x:Key="LOCAskRemoveItemMessage"></sys:String>    
-    <sys:String x:Key="LOCSettingsTopPanelItems"></sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelItems">Näita ülemisel paneelil nuppe:</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">Üldised vaate sätted</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGroupingItem">Rühmitamise sätted</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelSortingItem">Sortimise sätted</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem"></sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition"></sys:String>
-    <sys:String x:Key="LOCTopPanelSeparatorWidth"></sys:String>
-    <sys:String x:Key="LOCTopPanelMainButtonMove"></sys:String>
-    <sys:String x:Key="LOCTopPanelExplorerSwitch"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">Filtri eelseadistused</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">Plugina üksuste asukoht</sys:String>
+    <sys:String x:Key="LOCTopPanelSeparatorWidth">Jaotiste eraldaja laius</sys:String>
+    <sys:String x:Key="LOCTopPanelMainButtonMove">Liiguta peamenüü nupp külgribale</sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch">Exploreri paneel</sys:String>
     <sys:String x:Key="LOCTopPanelSelectRandomGameButton">Suvalise mängu valija</sys:String>
     <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Vaatest suvalise mängu valija</sys:String>
     <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Vali vaatest suvaline mäng</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Salvesta rühmitamise ja sortimise sätted</sys:String>
     <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Näita kiirfiltrina täisekraani režiimil</sys:String>
     <sys:String x:Key="LOCInPast7Days">Viimase 7 päeva jooksul</sys:String>
-    <sys:String x:Key="LOCInPast31Days"></sys:String>
-    <sys:String x:Key="LOCInPast365Days"></sys:String>
-    <sys:String x:Key="LOCMoreThan365DaysAgo"></sys:String>
+    <sys:String x:Key="LOCInPast31Days">Viimase 31 päeva jooksul</sys:String>
+    <sys:String x:Key="LOCInPast365Days">Viimase 365 päeva jooksul</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">Rohkem kui 365 päeva tagasi</sys:String>
     <sys:String x:Key="LOCConfigure">Seadista</sys:String>
-    <sys:String x:Key="LOCFilterPresetSave"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFilterPresetSave">Salvesta eelseadistus</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Pärast mängu käivitamist minimeeri aken</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Pärast mängu käivitamist minimeeri Playnite.
+
+Selle keelamine võib kaasa tuua olukorra, kus mängud ei saa käivitumisel sisendeid kasutada!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Fondi suurus</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Fondi suurus väike</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">XInput seadme tugi</sys:String>
@@ -981,10 +999,10 @@ Protsessi lõpetamiseks on vajalik rakenduse taaskäivitamine. Kas tahad sätete
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"></sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons"></sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions"></sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnly"></sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Pöörab A/B nuppude seostamise kinnitamiseks ja tühistamiseks.</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Ainult esmane juhtpult</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Kui lubatud, lubatakse ainult esmase juhtpuldi sisendid.</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Nupp Guide toob Playnite'i esile</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Liidese helitugevus</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Tausta helitugevus</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Vaigista, kui taustal</sys:String>
@@ -1011,12 +1029,12 @@ Protsessi lõpetamiseks on vajalik rakenduse taaskäivitamine. Kas tahad sätete
     <sys:String x:Key="LOCStartupScript"></sys:String>
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">Vali käivitumisel</sys:String>
-    <sys:String x:Key="LOCEmulatorSelectOnStart"></sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart">Vali käivitumisel</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfiles">Integreeritud profiilid</sys:String>
     <sys:String x:Key="LOCEmulatorBuiltInProfile">Integreeritud profiil</sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
-    <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfiles">Kohandatud profiilid</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">Kohandatud profiil</sys:String>
+    <sys:String x:Key="LOCEmulatorFunctionHandledByScript">Käsitletud sisseehitatud skripti poolt</sys:String>
     <sys:String x:Key="LOCEmulatorSpec"></sys:String>
     <sys:String x:Key="LOCPlatformSpec"></sys:String>
     <sys:String x:Key="LOCRegionSpec"></sys:String>
@@ -1026,36 +1044,36 @@ Protsessi lõpetamiseks on vajalik rakenduse taaskäivitamine. Kas tahad sätete
     <sys:String x:Key="LOCErrorEmulatorExecutableNotFound">Emulaatori täitmisprogrammi ei leitud.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound"></sys:String>
     <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound"></sys:String>
-    <sys:String x:Key="LOCSplitEmuImportSplitGames"></sys:String>
-    <sys:String x:Key="LOCSplitEmuImportMergeGames"></sys:String>
-    <sys:String x:Key="LOCEmuImportAssignPlatform"></sys:String>
-    <sys:String x:Key="LOCEmuImportAssignRegion"></sys:String>
+    <sys:String x:Key="LOCSplitEmuImportSplitGames">Eralda eri mängudeks</sys:String>
+    <sys:String x:Key="LOCSplitEmuImportMergeGames">Ühenda üheks mänguks</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignPlatform">Määra platvorm</sys:String>
+    <sys:String x:Key="LOCEmuImportAssignRegion">Määra regioon</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">Skanni kausta</sys:String>
     <sys:String x:Key="LOCEmuScanConfigurations"></sys:String>
     <sys:String x:Key="LOCEmuCrcExcludeFileTypes"></sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuScanEmulator"></sys:String>    
-    <sys:String x:Key="LOCScanConfigNameError"></sys:String>
-    <sys:String x:Key="LOCScanConfigNoEmulatorError"></sys:String>
-    <sys:String x:Key="LOCScanConfigDirectoryError"></sys:String>
-    <sys:String x:Key="LOCScanConfigError"></sys:String>    
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">Määratud mustri(te)le vastavate failide kontrollsummat ei kontrollita ja need vastendatakse failinimega. Lisateabe saamiseks vaata emulaatori abilehte.</sys:String>
+    <sys:String x:Key="LOCEmuScanEmulator">Skanni emulaatoriga</sys:String>    
+    <sys:String x:Key="LOCScanConfigNameError">Uue seadistuse salvestamiseks on vaja määrata nimi.</sys:String>
+    <sys:String x:Key="LOCScanConfigNoEmulatorError">Emulaator või emulaatori profiil on määramata.</sys:String>
+    <sys:String x:Key="LOCScanConfigDirectoryError">Skannitav kaust on määratlemata või seda pole olemas.</sys:String>
+    <sys:String x:Key="LOCScanConfigError">Skannimine pole õigesti seadistatud.</sys:String>    
     <sys:String x:Key="LOCEmuScanIncludeGlobalUpdate"></sys:String>    
-    <sys:String x:Key="LOCEmulatorScanFailed"></sys:String>
-    <sys:String x:Key="LOCEmulatedGameScanFailed"></sys:String>
+    <sys:String x:Key="LOCEmulatorScanFailed">Ei saanud kaustast emulaatoreid skannida.</sys:String>
+    <sys:String x:Key="LOCEmulatedGameScanFailed">Ei saanud kausta(de)st emuleeritud mänge skannida.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported"></sys:String>
-    <sys:String x:Key="LOCEmuImportProfilesToImportHeader"></sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">Profiilid, mis importida:</sys:String>
     <sys:String x:Key="LOCEmuAutoScanConfigurations"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig"></sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePaths">Impordi suhtelisi radasid kasutades</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">Võimalusel impordi mängufailid, kasutades Playnite'i installimiskausta või emulaatori installimiskausta suhtes suhtelisi radasid.</sys:String>
-    <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
-    <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuAddScanner"></sys:String>
-    <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
-    <sys:String x:Key="LOCStartScan"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanSubfolders">Skanni alamkaustu</sys:String>
+    <sys:String x:Key="LOCEmuImportScanInsideArchives">Skanni arhiividest</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">Ühenda seotud failid</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip">Ühenda seotud mängufailid, näiteks eraldi mänguplaadid, ühte mängukirjesse.</sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">Lisa skannija</sys:String>
+    <sys:String x:Key="LOCEmuAddSavedScanner">Lisa salvestatud skannija</sys:String>
+    <sys:String x:Key="LOCStartScan">Käivita skannimine</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">Äsja lisatud mängudele määratud vaikeolek</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Esmakordselt mängitud mängudele määratud olek</sys:String>
@@ -1080,7 +1098,8 @@ Rohkem teavet lehel https://playnite.link/adminfaq</sys:String>
 {0}
     </sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFiles"></sys:String>
-    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Pilves salvestatud faile ei skannita ega impordita, kui need pole kohalikult saadaval.
+Toetatud ainult teenustes: Google Drive, DropBox, OneDrive</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
     <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Rakenda kõigile</sys:String>
@@ -1094,53 +1113,59 @@ Rohkem teavet lehel https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCCheckAddonUpdates">Kontrolli lisade värskendusi</sys:String>
     <sys:String x:Key="LOCCheckLibraryUpdates"></sys:String>
     <sys:String x:Key="LOCCheckEmulatedLibraryUpdates"></sys:String>
-    <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
-    <sys:String x:Key="LOCMenuSetFields"></sys:String>
-    <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
-    <sys:String x:Key="LOCOpen"></sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">Kaasa peidetud mängud</sys:String>
+    <sys:String x:Key="LOCMenuSetFields">Muuda väljasid</sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll">Vali kõik / tühista valik</sys:String>
+    <sys:String x:Key="LOCOpen">Ava</sys:String>
     <sys:String x:Key="LOCActivate">Aktiveeri</sys:String>
-    <sys:String x:Key="LOCAssign"></sys:String>
+    <sys:String x:Key="LOCAssign">Määra</sys:String>
     <sys:String x:Key="LOCDefaultSearchDescription">Mängude otsimiseks alusta trükkimist… [F1] abi saamiseks</sys:String>
-    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve">Alustades märgiga #, kuvatakse saadaolevate käskude loend.
+Alustades märgiga /, kuvatakse saadaolevate otsingupakkujate/pluginate loend.
+Otsingu märksõna sisestamine ja TÜHIKuga lõpetamine lülitub kohe sellele otsingule.
+
+TAB: lülitustoiming
+ENTER: aktiveerib valitud toimingu
+SHIFT-ENTER: avab üksuse menüü</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalled">Kaasa paigaldamata mängud</sys:String>
     <sys:String x:Key="LOCSearchFilterHidden">Kaasa peidetud mängud</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalledIncluded">Paigaldamata mängud kaasatud</sys:String>
-    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Paigaldamata mängud välja jäetud</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Paigaldamata mängud välistatud</sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenIncluded">Peidetud mängud kaasatud</sys:String>
-    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">Peidetud mängud välja jäetud</sys:String>
+    <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">Peidetud mängud välistatud</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionPlay">Mängi või Installi</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionSwitchTo">Mine üksikasjade juurde</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionOpenMenu">Mängu menüü</sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionEdit"></sys:String>
-    <sys:String x:Key="LOCOpenSearch"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit">Muuda mängu üksikasju</sys:String>
+    <sys:String x:Key="LOCOpenSearch">Ava otsing</sys:String>
     <sys:String x:Key="LOCTopPanelSearchBox">Otsingu kast</sys:String>
     <sys:String x:Key="LOCTopPanelSearchButton">Otsingu nupp</sys:String>
 
-    <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
-    <sys:String x:Key="LOCSearchSettingsSecondaryAction"></sys:String>
-    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsPrimaryAction">Esmane mängu tegevus</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSecondaryAction">Teisene mängu tegevus</sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">CTRL-F avab otsingukasti fookustamise asemel otsingukasti</sys:String>
     <sys:String x:Key="LOCSearchSettingsSaveFilter"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSearchProviders">Otsinguteenuse pakkujad</sys:String>
-    <sys:String x:Key="LOCSearchSettingsDefaultKeyword"></sys:String>
-    <sys:String x:Key="LOCSearchSettingsCustomKeyword"></sys:String>
-    <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsDefaultKeyword">Vaikimisi märksõna</sys:String>
+    <sys:String x:Key="LOCSearchSettingsCustomKeyword">Kohandatud märksõna</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSystemWideShortcut">Süsteemiülene otseklahv</sys:String>
     <sys:String x:Key="LOCSearchTitle">Playnite'i otsing</sys:String>
     <sys:String x:Key="LOCExtensionSettingsMenu">Laienduste sätted</sys:String>
-    <sys:String x:Key="LOCExclusions">Väljajätud</sys:String>
+    <sys:String x:Key="LOCExclusions">Välistamised</sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
     <sys:String x:Key="LOCEmuImportAddROMExclusionList">Lisa fail välistamiste loendisse</sys:String>
     <sys:String x:Key="LOCEmuImportAddFolderExclusionList">Lisa kaust välistamiste loendisse</sys:String>
-    <sys:String x:Key="LOCEmuExclusionNoConfigError"></sys:String>
-    <sys:String x:Key="LOCEmuExclusionAddedMessage"></sys:String>
+    <sys:String x:Key="LOCEmuExclusionNoConfigError">Välistamisi saab lisada ainult salvestatud skannijate seadistustele.</sys:String>
+    <sys:String x:Key="LOCEmuExclusionAddedMessage">Välistamised on lisatud skannijale &quot;{0}&quot;.</sys:String>
     <sys:String x:Key="LOCEmuOverridePlatform"></sys:String>
     <sys:String x:Key="LOCEmuOverridePlatformTooltip"></sys:String>
     <sys:String x:Key="LOCSearchIncludeCommandsInDefault"></sys:String>
-    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip"></sys:String>
-    <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
+    <sys:String x:Key="LOCSearchIncludeCommandsInDefaultTooltip">Kui keelatud, ei kaasata vaikimisi otsingusse käske ilma eesliidet # kasutamata.</sys:String>
+    <sys:String x:Key="NameFilterUseFuzzyMatching">Nimefiltris kasuta hägusat vastendamist</sys:String>
     <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Mängude tulemuste jaoks näidatavad väljad:</sys:String>
-    <sys:String x:Key="LOCHiddenStatus"></sys:String>
+    <sys:String x:Key="LOCHiddenStatus">Peidetuse olek</sys:String>
 
     <sys:String x:Key="LOCBackupCancelled">Andmete varundamine katkestati.</sys:String>
     <sys:String x:Key="LOCBackupFailed">Andmete varundamine ebaõnnestus.</sys:String>
@@ -1154,8 +1179,12 @@ Rohkem teavet lehel https://playnite.link/adminfaq</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensions">Paigaldatud laiendused</sys:String>
     <sys:String x:Key="LOCBackupOptionExtensionsData">Laienduste andmed</sys:String>
     <sys:String x:Key="LOCBackupOptionThemes">Paigaldatud teemad</sys:String>
-    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve">Vali, millised andmed taastada määratletud varukoopiast.
+    
+Playnite taaskäivitub automaatselt, et varukoopia taastamisega alustada.</sys:String>
+    <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve">Vali, millised andmed varundamisse kaasata. Rakenduse sätted ja mängude teegi andmed kaasatakse vaikimisi.
+    
+Playnite taaskäivitub automaatselt, et varundamisega alustada.</sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup">Automaatne andmete varundamine</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupFrequency">Automaatsete varundamiste sagedus</sys:String>
     <sys:String x:Key="LOCSettingsBackupFolder">Varunduste kaust</sys:String>
@@ -1176,16 +1205,19 @@ Kõigi teiste kuupäevade puhul kasutatakse määratud kuupäeva formaati.</sys:
     <sys:String x:Key="LOCGettingsAddonInformation">Lisa teabe hankimine…</sys:String>
     <sys:String x:Key="LOCNoMetadataSource">Ühtki metaandmete allikat pole saadaval</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Kasuta skanneri sätteid</sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">Kasuta skannija sätteid</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">Vali profiil käivitumisel</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">Vali emulaator käivitumisel</sys:String>
     <sys:String x:Key="LOCAutomatic">Automaatne</sys:String>
-    <sys:String x:Key="LOCAlwaysOn"></sys:String>
-    <sys:String x:Key="LOCAlwaysOff"></sys:String>
-    <sys:String x:Key="LOCSettingsAccessibilityInterface"></sys:String>
+    <sys:String x:Key="LOCAlwaysOn">Alati lubatud</sys:String>
+    <sys:String x:Key="LOCAlwaysOff">Alati keelatud</sys:String>
+    <sys:String x:Key="LOCSettingsAccessibilityInterface">Ligipääsetavuse (ekraanilugeja) tugi</sys:String>
     <sys:String x:Key="LOCApplicationMenu">Rakenduse menüü</sys:String>
     <sys:String x:Key="LOCGameMenu">Mängu menüü</sys:String>
     <sys:String x:Key="LOCProgramFolder">Programmi kaust</sys:String>
     <sys:String x:Key="LOCUserDataFolder">Kasutaja andmete kaust</sys:String>
-    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Tuvastati rikutud teegifailid, Playnite nüüd sulgub.
+    
+Ava Playnite'i GitHubi lehel uus vearaport taotlusega parandada oma rikutud failid.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Kas tahad tehtud muudatused salvestada?</sys:String>
 </ResourceDictionary>

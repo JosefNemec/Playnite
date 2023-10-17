@@ -101,7 +101,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">게임을 시작하는 방법을 결정하지 못했습니다.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">활성화</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">비활성화</sys:String>
     <sys:String x:Key="LOCRemoveTitle">제거</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">사용되지 않는 항목 제거</sys:String>
     <sys:String x:Key="LOCRenameTitle">이름 바꾸기</sys:String>
@@ -1248,4 +1248,5 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">라이브러리 파일 손상이 감지되어 Playnite를 종료합니다.
     
 Playnite GitHub 페이지에서 손상된 파일을 수정해 달라는 이슈를 생성해 주십시오.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

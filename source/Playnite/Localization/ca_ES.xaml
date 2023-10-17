@@ -721,9 +721,9 @@ Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">No s'ha pogut comprovar si hi ha una versió nova.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No s’ha trobat cap versió nova, estàs al dia.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">No s'ha pogut descarregar i instal·lar l'actualització.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Alguna tasca en segon pla està en curs. Vols cancel·lar-la i continuar amb l'actualització?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Alguna tasca en segon pla està en curs. Vols cancel·lar-la i sortir de Playnite?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Alguna tasca en segon pla està en curs. Si canvies de mode, la tasca es cancel·larà, vols canviar de totes maneres?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Hi ha alguna tasca en curs en segon pla. Vols cancel·lar-la i continuar amb l'actualització?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Hi ha alguna tasca en curs en segon pla. Vols cancel·lar-la i sortir de Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Hi ha alguna tasca en curs en segon pla. Si es canvia de mode, la tasca es cancel·larà. Vols canviar de totes maneres?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Hi ha disponible una actualització per Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Tornar a carregar la llista de temes</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Aplicar el tema seleccionat</sys:String>
@@ -1250,4 +1250,5 @@ El format de data especificat s'utilitzarà per a les altres dates.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">S'ha detectat un fitxer de la biblioteca danyat. Playnite ara es tancarà.
     
 Obre una nova incidència a la pàgina de GitHub de Playnite amb una sol·licitud per corregir els teus fitxers danyats.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Vols desar els canvis que has fet?</sys:String>
 </ResourceDictionary>

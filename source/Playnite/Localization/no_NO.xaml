@@ -32,7 +32,7 @@ Ubestemt - Ingen endringer (ved redigering av flere spill)</sys:String>
 
 Hvis du vil hjelpe oss med å løse dette problemet, kan du kort beskrive handlingene som ble utført før krasjet, og deretter sende diagnoseinformasjon. Hvis du er tilkoblet internett, blir pakken lastet opp til Playnite-serveren for analyse.
 
-Alternativt kan du trykke på 'Rapporter krasj'-knappen for å opprette en ny issue på GitHub og rapportere krasjet manuelt.
+Alternativt kan du trykke på &quot;Rapporter krasj&quot;-knappen for å opprette en ny issue på GitHub og rapportere krasjet manuelt.
 
 Takk for hjelpen.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Utvidelsen &quot;{0}&quot; forårsaket en uopprettelig feil.
@@ -1249,4 +1249,5 @@ Det angitte datoformatet vil bli brukt til alle andre datoer.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Feil i bibliotekfil er oppdaget. Playnite avsluttes.
     
 Åpne ny sak på Playnite's GitHub-side med en forespørsel om å fikse feilen i filene dine.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Vil du lagre endringene du har gjort?</sys:String>
 </ResourceDictionary>

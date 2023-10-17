@@ -1250,4 +1250,5 @@ Playnite將會重新啟動並開始備份資料</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">偵測到資料庫檔案毀損，Playnite即將自動關閉。
     
 你可以在Playnite的GitHub頁面新增回報並請求修復你的毀損檔案。</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">是否要儲存所做的更改？</sys:String>
 </ResourceDictionary>

@@ -1253,4 +1253,5 @@ Playnite は自動的に再起動し、バックアップ処理を開始しま�
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">ライブラリファイルの破損が検出されました。Playnite はシャットダウンします。
     
 Playnite の Github ページで新しい issue を開き、ファイルの破損の修正をリクエストしてください。</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

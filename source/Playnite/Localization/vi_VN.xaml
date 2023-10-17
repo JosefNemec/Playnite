@@ -101,7 +101,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCErrorStartupNoController">Không thể tìm cách bắt đầu trò chơi.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Đã kích hoạt</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Đã tắt</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Xóa bỏ</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Tẩy bỏ phần không sử dụng.</sys:String>
     <sys:String x:Key="LOCRenameTitle">Đổi Tên</sys:String>
@@ -1250,4 +1250,5 @@ Những bản vá mới sẽ không hiển thị ở thông báo cập nhật.</
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Đã phát hiện file thư viện bị hư hại, sẽ thoát Playnite.
     
 Mở issue mới trên trang GitHub của Playnite để đề xuất sửa file bị hư hại của bạn.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Bạn có muốn lưu các thay đổi không?</sys:String>
 </ResourceDictionary>

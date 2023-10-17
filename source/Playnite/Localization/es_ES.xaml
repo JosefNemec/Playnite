@@ -1250,4 +1250,5 @@ El formato de fecha especificado se utilizará para todas las demás fechas.</sy
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Se ha detectado corrupción en el archivo de la biblioteca, Playnite se cerrará.
     
 Abre un nuevo problema en la página de GitHub de Playnite con una solicitud para corregir la corrupción en tus archivos.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">¿Quieres guardar los cambios que realizados?</sys:String>
 </ResourceDictionary>

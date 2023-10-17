@@ -1260,4 +1260,5 @@ Il formato di data specificato verrà utilizzato per tutte le altre date.</sys:S
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">È stata rilevata la corruzione del file della libreria, Playnite ora verrà arrestato.
     
 Apri un nuovo problema sulla pagina GitHub di Playnite con una richiesta di correggere la corruzione nei tuoi file.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Vuoi salvare le modifiche?</sys:String>
 </ResourceDictionary>

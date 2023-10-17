@@ -60,9 +60,11 @@ Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagn
     <sys:String x:Key="LOCGameRemoveAskTitle">Hapus Game yang dipilih?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Tidak dapat menghapus - Game atau penginstal sedang berjalan. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Tidak bisa mencopot - Game sedang berjalan.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Apakah Anda yakin ingin menghapus {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Anda yakin ingin membuang game {0}?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Apakah Anda yakin ingin menghapus {0}?
+
+Dengan memilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimpor lagi pada saat perpustakaan diperbarui.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Kamu yakin ingin menghapus game {0}?
 
 Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimpor lagi saat perpustakaan diperbarui.</sys:String>
@@ -99,7 +101,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCErrorStartupNoController">Tidak dapat menentukan cara memulai game.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktifkan</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Dinonaktifkan</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Hapus</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Hapus yang tidak digunakan</sys:String>
     <sys:String x:Key="LOCRenameTitle">Ubah Nama</sys:String>
@@ -261,8 +263,8 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Kolom game untuk ditampilkan pada bilah detail:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Spasi antar item</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground"></sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin"></sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">Gambar latar belakang item grid</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Lebar batas item grid</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Sumber icon game tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Sumber cover game tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Sumber background game tidak ditemukan</sys:String>
@@ -278,7 +280,7 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posisi panel Explorer</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering gambar cover</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Target rasio aspek</sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote"></sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Opsi berikut ini juga memengaruhi rendering ubin dalam mode Layar Penuh!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Regang gambar</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Boks DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Game Store</sys:String>
@@ -304,14 +306,14 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsSearch">Cari</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Cadangkan</sys:String>
     <sys:String x:Key="LOCMenuBackupData">Cadangkan Data Pustaka</sys:String>
-    <sys:String x:Key="LOCMenuRestoreBackup"></sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">Pulihkan Cadangan Data</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Import perubahan library secara otomatis</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Lokasi file database invalid, silahkan set path yang benar.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Nama akun tidak boleh kosong</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Download metadata setelah mengimpor game</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Luncurkan Playnite diperkecil.</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Luncurkan Playnite ketika menyala.</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">Mulai dengan ditutup ke baki</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Gagal menambahkan Playnite ke daftar start up</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Luncurkan dalam Mode Layar Penuh</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Muat gambar secara Asinkron</sys:String>
@@ -321,11 +323,11 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Gelapkan game yang belum terpasang</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Tampilkan ikon game di Tampilan List</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Perlihatkan jumlah  dalam deskripsi group</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Hanya menampilkan bidang yang ditetapkan pada panel filter dan explorer</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Matikan Hardware Acceleration</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Gunakan ketika bereksperimen dengan lag atau masalah UI</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Menampilkan game tersembunyi di daftar quick launch</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Mempengaruhi Jump List (Daftar Langsung) dan daftar menu baki.</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Jumlah objek mulai cepat</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Gunakan gambar background terpilih sebagai background window</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Blurkan background</sys:String>
@@ -346,7 +348,7 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsCloseToTray">Sembunyikan Playnite ke bilah sistem ketika jendela aplikasi ditutup</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Ketika game dimulai:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Setelah gim ditutup:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Format waktu yang dimainkan untuk menunjukkan jumlah hari yang dimainkan</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Format tanggal:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Semua akun akan dilogout. Aplikasi harus dimuat ulang. Lanjutkan?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Bersihkan Cache?</sys:String>
@@ -359,20 +361,24 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite perlu dijalankan ulang untuk menerapkan pengaturan baru. Mulai ulang sekarang?</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Mulai Ulang Playnite?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite tidak dapat memindahkan file pustaka anda secara otomatis. Anda harus memindahkan/menyalin file secara manual sebelum mengubah lokasi. Jika tidak ada pustaka di lokasi target, pustaka baru akan dibuat.</sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Waktu bermain tidak akan direkam jika aksi &quot;Tutup&quot; diatur.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Jumlah baris</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Jumlah kolom</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRowDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">Jumlah baris tampilan detail</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Tampilkan Gambar Background di Layar Utama</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Tidak berlaku retrospektif untuk game yang sudah ada tanpa mengunduh ulang metadata.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportMode">Impor waktu bermain game di pustaka:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Mengonfigurasi kapan Playnite harus mengimpor waktu bermain yang dilaporkan oleh plugin perpustakaan untuk game di database Playnite. Dukungan dari plugin perpustakaan yang bertanggung jawab menangani game diperlukan untuk dapat menggunakan fitur ini.
+
+Selalu: Mengimpor waktu bermain untuk game yang baru diimpor dan game yang sudah ada di basis data Playnite.
+Hanya untuk game yang baru diimpor: Mengimpor waktu bermain hanya untuk game yang baru diimpor.
+Tidak pernah: Tidak pernah mengimpor waktu bermain dalam keadaan apa pun.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Selalu</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Hanya untuk game yang baru saja diimpor</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Tidak pernah</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Hidupkan dukungan controller di mode Desktop</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Tombol &quot;Guide&quot; membuka mode Layar Penuh</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Pengaturan unduhan Metadata otomatis untuk game yang baru diimpor.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Layar tujuan</sys:String>
     <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Selalu gunakan layar utama</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Tampilkan Judul Game</sys:String>
@@ -387,8 +393,8 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsSelectChildSection">Pilih salah satu sub-bagian</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Tidak ada setelan tersedia</sys:String>
     <sys:String x:Key="LOCSettingsErrorLoadingSettings">Gagal memuat pengaturan</sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Skrip ini dijalankan untuk setiap game di perpustakaan. Skrip individual dapat ditetapkan ke setiap game secara terpisah saat mengedit detail game.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animasi transisi gambar latar belakang</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Ukuran font</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Otomatis</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">Tajam</sys:String>
@@ -398,24 +404,26 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Monitor</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Mode pemformatan teks</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mode render teks</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Metode rendering dan pemformatan teks saat ini tidak digunakan untuk deskripsi game.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Memuat gambar latar belakang terlebih dahulu</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Jika diaktifkan, Playnite akan mengunduh artwork latar belakang saat mengunduh metadata, menggunakan lebih banyak ruang disk dan membuat artwork tersedia saat offline.
+
+Jika dinonaktifkan, artwork latar belakang hanya akan diunduh saat pertama kali dibutuhkan, menggunakan lebih sedikit ruang, tetapi dapat mengakibatkan penundaan sebelum artwork ditampilkan dan beberapa gambar mungkin tidak tersedia saat offline.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Secara otomatis menutup client pihak ketiga setelah game keluar</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Penundaan penutupan client (dalam hitungan detik)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Jangan tutup setelah sesi permainan lebih pendek dari (dalam detik)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Otomatis matikan klien berikut:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Tutup klien secara otomatis</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Impor Daftar Pengecualian</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Menampilkan peringatan saat menetapkan media game yang terlalu besar</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Perintah buka folder</sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Organisasi pemeringkatan usia yang diutamakan</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Perbarui ukuran penginstalan game pada pembaruan perpustakaan</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Memindai dan memperbarui ukuran penginstalan game jika terdeteksi bahwa file-file tersebut telah dimodifikasi sejak pemindaian terakhir</sys:String>
     <sys:String x:Key="LOCStrechNone">Tidak ada</sys:String>
     <sys:String x:Key="LOCStrechFill">Isi</sys:String>
     <sys:String x:Key="LOCStrechUniform">Seragam</sys:String>
-    <sys:String x:Key="LOCStrechUniformToFill"></sys:String>
+    <sys:String x:Key="LOCStrechUniformToFill">Menyesuaikan desain pada bagian yang akan diisi</sys:String>
     <sys:String x:Key="LOCDockLeft">Kiri</sys:String>
     <sys:String x:Key="LOCDockRight">Kanan</sys:String>
     <sys:String x:Key="LOCDockTop">Atas</sys:String>
@@ -423,42 +431,51 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCImportError">Error Import</sys:String>
     <sys:String x:Key="LOCLoginRequired">Login dibutuhkan</sys:String>
     <sys:String x:Key="LOCLoginFailed">Login gagal</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">Mode rendering tampilan web alternatif</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Gunakan saat mengalami masalah dengan tampilan web, misalnya dialog autentikasi integrasi.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Memuat sebagian dari deskripsi game yang panjang</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Deskripsi yang panjang dapat menyebabkan lag saat memilih game.
+
+Ketika diaktifkan, hanya sebagian teks deskripsi yang akan dimuat pada awal dengan opsi untuk memuat sisanya sesuai permintaan.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Import Metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Download Metadata</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Mengatur konfigurasi yang dipilih untuk digunakan pada unduhan metadata di masa mendatang.
+Dapat juga diubah dalam pengaturan aplikasi</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Panduan Import Emulator</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Wizard ini akan memandu Anda melalui proses mengunduh dan mengimpor emulator konsol dan mengimpor game emulasi.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Ingatlah bahwa Anda selalu dapat menambahkan emulator dan/atau game tambahan di kemudian hari melalui menu utama (di bawah menu &quot;Library&quot; untuk pengaturan Emulator dan menu &quot; Tambah Game&quot; untuk game emulasi).</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Di bawah ini adalah daftar emulator yang dapat dikenali dan dikonfigurasikan secara otomatis oleh Playnite. Anda dapat mengunduh penginstal emulator dari situs web mereka. Setelah emulator terinstal (secara manual), Anda dapat mengimpornya pada dialog konfigurasi emulator.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Anda dapat mengimpor emulator apa pun yang terinstal di PC Anda dengan mengeklik tombol 'Autodetect Dari Folder...'. Playnite akan mencari folder yang dipilih untuk emulator yang dikenal dan memberikan opsi untuk mengimpornya. Anda dapat menggunakan tombol ini beberapa kali untuk mengimpor emulator dari folder yang berbeda. Emulator akan ditambahkan ke bagian bawah daftar saat ini.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">Anda dapat mengimpor game dengan mengeklik tombol 'Pindai Folder Menggunakan Emulator'. Memilih emulator yang sesuai akan memberi tahu Playnite jenis file mana yang harus dipindai dan diimpor. Anda dapat menggunakan tombol ini beberapa kali untuk mengimpor game dari folder yang berbeda. Game akan ditambahkan ke bagian bawah daftar saat ini.</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Tidak ada emulator dipilih untuk diimpor. Anda tidak bisa mengimport game emulasi secara otomatis tanpa memilih emulator terlebih dahulu. Apa anda yakin untuk melanjutkan dan tutup proses impor game?</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">Tidak ada emulator yang dikonfigurasi di Playnite. Anda tidak dapat mengimpor game tanpa mengonfigurasi emulator terlebih dahulu dan memilih jenis file yang sesuai. Apakah Anda ingin menambahkan beberapa emulator sekarang?</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanGames">Cari folder menggunakan Emulator</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Pilih file</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Deteksi Automatis dari Berkas...</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator"></sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Konfigurasi Emulator…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanning">Memindai…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanningSpecific">Memindai {0}…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Konfigurasi Awal</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Proses ini akan memandu Anda melalui impor otomatis dan konfigurasi perpustakaan game eksternal. Playnite dapat mengimpor game secara otomatis dari beberapa layanan game, seperti Steam atau GOG.
+
+Ingatlah bahwa Anda juga dapat menambahkan game kustom atau game emulasi secara manual untuk platform apa pun nanti dari menu utama.</sys:String>
     <sys:String x:Key="LOCFirstExternalTitle">Integrasi Library</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Berikut ini adalah daftar beberapa integrasi perpustakaan yang didukung Playnite. Pilih salah satu yang ingin Anda instal.
+
+Integrasi lainnya dapat diinstal nanti dari menu &quot; Add-ons&quot;.</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfigurasi telah Selesai</sys:String>
     <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Setelan awal sudah selesai. Ingat bahwa Anda bisa mengubah kembali semua setelan kapan saja di menu 'Setelan'
 
 Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sys:String>
-    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload"></sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownloadError"></sys:String>
+    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Gagal mengunduh satu atau beberapa ekstensi.
+
+Anda dapat mencoba mengunduh ulang integrasi dari menu add-ons setelah wizard pertama kali selesai.</sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">Mengunduh integrasi {0}…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">Mengunduh daftar integrasi yang direkomendasikan…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">Gagal mengunduh daftar integrasi yang direkomendasikan. Anda dapat mencoba dan mengunduh ulang integrasi nanti melalui menu Addons.</sys:String>
     <!--Platforms Settings-->
     <sys:String x:Key="LOCPlatformsWindowTitle">Konfigurasi Platform dan Emulator</sys:String>
     <sys:String x:Key="LOCEmulatorsWindowTitle">Setel Emulator</sys:String>
@@ -485,7 +502,8 @@ Kamu juga bisa menambah game lainnya kapanpun dengan mengklik logo Playnite.</sy
     <sys:String x:Key="LOCImportEmulatorsButton">Impor Emulator...</sys:String>
     <sys:String x:Key="LOCDownloadEmulatorsButton">Download Emulator...</sys:String>
     <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">muat argumen preset dari profil emulator yang tersedia</sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">Apakah Anda yakin ingin menghapus emulator {0}?
+Emulator ini sedang digunakan oleh game {1}.</sys:String>
     <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Bantuan pengaturan</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Sortir</sys:String>
@@ -1158,4 +1176,5 @@ Versi {2}</sys:String>
     <sys:String x:Key="LOCProgramFolder"></sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

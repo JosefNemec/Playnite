@@ -1248,4 +1248,5 @@ Diğer tüm tarihler için belirtilen tarih biçimi kullanılacaktır.</sys:Stri
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Kütüphane dosyasında arıza tespit edildi, Playnite şimdi sonlandırılacak.
 
 Playnite GitHub sayfasında yeni bir hata kaydı oluşturarak arızalı dosyalarınızın tamir edilmesini talep edin.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Yaptığınız değişiklikleri kaydetmek istiyor musunuz?</sys:String>
 </ResourceDictionary>

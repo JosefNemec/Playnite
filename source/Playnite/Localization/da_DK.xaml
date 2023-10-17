@@ -1152,4 +1152,5 @@ Streng matchning kan håndhæves på en individuel sag ved at præfikse filter m
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Biblioteksfil korruption er blevet opdaget, Playnite vil nu lukke.
     
 Åbn et nyt problem på Playnites GitHub-side med en anmodning om at fikse korruptionen i dine filer.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

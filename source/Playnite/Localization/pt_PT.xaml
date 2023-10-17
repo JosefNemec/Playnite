@@ -81,7 +81,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCGameStartActionError">Não foi possível iniciar a ação: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Não foi possível abrir a localização do jogo: {0}</sys:String>
     <sys:String x:Key="LOCCalculateGameSizeError">Não foi possível detectar o tamanho de instalação do jogo: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Erro ao pesquisar o tamanho da instalação</sys:String>
     <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">Ocorreram {0} erros durante a procura do tamanho da instalação</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Falha ao criar atalho: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Falha ao abrir o manual: {0}</sys:String>
@@ -101,7 +101,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCErrorStartupNoController">Não foi possível determinar como iniciar o jogo.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ativo</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Desativado</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Remover</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Remover não utilizados</sys:String>
     <sys:String x:Key="LOCRenameTitle">Alterar nome</sys:String>
@@ -274,7 +274,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Altura da imagem da capa do jogo</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Altura dos ícones da lista de jogos</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fonte da aplicação</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceMonoFont"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont">Fonte monoespaçada</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posicionamento do painel de filtros</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posicionamento do painel do explorador</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Renderização de arte da capa</sys:String>
@@ -305,14 +305,14 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsSearch">Pesquisa</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Cópia de segurança</sys:String>
     <sys:String x:Key="LOCMenuBackupData"></sys:String>
-    <sys:String x:Key="LOCMenuRestoreBackup"></sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">Restaurar cópia de segurança</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar alterações da biblioteca automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Localização do ficheiro da base de dados inválida, um caminho correto deve ser definido.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Nome de conta não pode estar vazio.</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Transferir metadados após importar jogos</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Executar o Playnite minimizado</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Abrir Playnite quando o seu computador for ligado</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">Iniciar minimizado na bandeja</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Falha ao registar o Playnite para iniciar quando o computador iniciar.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Iniciar no Modo de Ecrã Inteiro</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Carregamento assíncrono de imagens</sys:String>
@@ -325,9 +325,9 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostrar somente campos selecionados nos painéis de filtro e explorador</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desativar aceleração de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usa em caso de bloqueios ou problemas similares com a interface</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Mostrar jogos ocultos nas listas de início rápido</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsQuicLaunchItems"></sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">Número de itens de início rápido</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utilizar a imagem de fundo do jogo como fundo da janela</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Desfocar fundo</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">Alta Qualidade</sys:String>
@@ -342,9 +342,9 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsWindowTitle">Definições do Playnite</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Limpar web cache</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Pode resolver problemas encontrados ao ligar contas.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray"></sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray"></sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Mostrar ícone de bandeja</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">Minimizar o Playnite para a bandeja do sistema</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Minimizar o Playnite para a bandeja do sistema quando a janela da aplicação for fechada</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Quando o jogo inicia:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Após o jogo fechar:</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Formatar tempo jogado para indicar o número de dias jogados</sys:String>
@@ -497,7 +497,7 @@ Está atualmente a ser usado por {1} jogo(s).</sys:String>
 Está atualmente a ser usada por {1} jogo(s) e {2} emulador(es).</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">Ajuda de configurações</sys:String>
     <sys:String x:Key="LOCMenuSortByTitle">Ordenar Por</sys:String>
-    <sys:String x:Key="LOCMenuSortByDirection"></sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">Sentido da ordenação</sys:String>
     <sys:String x:Key="LOCMenuGroupByTitle">Agrupar Por</sys:String>
     <sys:String x:Key="LOCMenuSortAscending">Ascendente</sys:String>
     <sys:String x:Key="LOCMenuSortDescending">Descendente</sys:String>
@@ -593,7 +593,7 @@ Por favor, anexe o seguinte ID ao seu problema reportado:</sys:String>
 Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Não foi possível importar os emuladores devido a ficheiros de definições em falta ou corrompidos.</sys:String>
     <sys:String x:Key="LOCXInputInitErrorMessage">Falha ao inicializar a interface XInput. </sys:String>
-    <sys:String x:Key="LOCMenuActionExecError"></sys:String>
+    <sys:String x:Key="LOCMenuActionExecError">Falha ao executar ação do menu.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar Detalhes do Jogo</sys:String>
     <sys:String x:Key="LOCUseExeIcon">De Ação de Jogo</sys:String>
@@ -1170,4 +1170,5 @@ A correspondência estrita pode ser imposta em um caso individual, prefixando o 
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Corrupção no arquivo da biblioteca foi detectada. O Playnite será desligado.
     
 Abra um novo problema na página do GitHub do Playnite com um pedido para corrigir seus arquivos.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Deseja guardar as alterações efetuadas?</sys:String>
 </ResourceDictionary>

@@ -1228,10 +1228,10 @@ Neue Hauptversionen werden nicht zu einer Updatebenachrichtigung führen.</sys:S
     
 Das angegebene Datumsformat wird für alle anderen Daten verwendet.</sys:String>
 
-    <sys:String x:Key="LOCSettingsWebImageSearch">Webbild-Suche</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Icon-Bildsuche-String</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Cover-Bildsuche-String</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchBackground">Hintergrund-Bildsuche-String</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearch">Web-Bildsuche</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Suchzeichenfolge für Symbolbilder</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Suchzeichenfolge für Coverbilder</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchBackground">Suchzeichenfolge für Hintergrundbilder</sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Informationen zu Add-ons werden abgerufen …</sys:String>
     <sys:String x:Key="LOCNoMetadataSource">Keine Metadatenquelle verfügbar</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettings">Einstellungen für »Spielen«-Aktion</sys:String>
@@ -1249,4 +1249,5 @@ Das angegebene Datumsformat wird für alle anderen Daten verwendet.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Die Bibliotheksdatei wurde beschädigt, Playnite wird nun heruntergefahren.
     
 Melde das Problem auf der GitHub-Seite von Playnite mit einer Anfrage, die Beschädigung deiner Dateien zu beheben.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

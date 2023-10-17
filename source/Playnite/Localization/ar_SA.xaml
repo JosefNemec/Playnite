@@ -1305,4 +1305,5 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">تم اكتشاف تلف في ملفات المكتبة، سيتم إيقاف تشغيل Playnite الآن.
     
 افتح مشكلة جديدة على صفحة GitHub الخاصة بـ Playniite مع طلب لإصلاح التلف في ملفاتك.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
 </ResourceDictionary>

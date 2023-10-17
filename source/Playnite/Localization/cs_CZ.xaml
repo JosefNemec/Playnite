@@ -1248,4 +1248,5 @@ Zadaný formát data bude použit pro všechny ostatní data.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Bylo zjištěno poškození souboru knihovny, Playnite se nyní vypne.
     
 Reportujte problém na Playnite stránce GitHubu s požadavkem na opravu souborů.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Chcete uložit provedené změny?</sys:String>
 </ResourceDictionary>
