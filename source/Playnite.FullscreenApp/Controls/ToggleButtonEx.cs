@@ -25,9 +25,9 @@ namespace Playnite.FullscreenApp.Controls
 
         private void Ex_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e is XInputEventArgs xinput)
+            if (e is GameControllerInputEventArgs controllerInput)
             {
-                if (xinput.XButton == XInputGesture.ConfirmationBinding)
+                if (controllerInput.Button == GameControllerGesture.ConfirmationBinding)
                 {
                     OnClick();
                     e.Handled = true;

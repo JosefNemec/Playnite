@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Input"
+﻿<local:SettingsSectionControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Input"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,19 +15,21 @@
         <pctrls:CheckBoxEx x:Name="ToggleMouseCursor"
                            pbeh:FocusBahaviors.OnVisibilityFocus="True"
                            Content="{DynamicResource LOCSettingsHideMouseCursor}"  />
-        <pctrls:CheckBoxEx x:Name="ToggleXInput"
-                           Content="{DynamicResource LOCSettingsXInputProcessing}"
-                           Tag="{DynamicResource LOCSettingsXInputProcessingDescription}"/>
         <pctrls:CheckBoxEx x:Name="ToggleSwapXA"
+                           IsEnabled="{Binding IsChecked, ElementName=ToggleControllerInput}"
                            Content="{DynamicResource LOCSettingsSwapMainViewXAButtons}"
                            Tag="{DynamicResource LOCSettingsSwapMainViewXAButtonsDescriptions}"/>
         <pctrls:CheckBoxEx x:Name="ToggleSwapConfirmCancel"
+                           IsEnabled="{Binding IsChecked, ElementName=ToggleControllerInput}"
                            Content="{DynamicResource LOCSettingsSwapConfirmCancelButtons}"
                            Tag="{DynamicResource LOCSettingsSwapConfirmCancelButtonsDescriptions}"/>
-        <pctrls:CheckBoxEx x:Name="TogglePrimaryControllerOnly"
-                           Content="{DynamicResource LOCSettingsPrimaryControllerOnly}"
-                           Tag="{DynamicResource LOCSettingsPrimaryControllerOnlyDescription}"/>
         <pctrls:CheckBoxEx x:Name="ToggleGuideFocus"
+                           IsEnabled="{Binding IsChecked, ElementName=ToggleControllerInput}"
                            Content="{DynamicResource LOCSettingsRefocusOnGuidButton}"/>
+        <pctrls:CheckBoxEx x:Name="ToggleControllerInput"
+                           Content="{DynamicResource LOCSettingsXInputProcessing}"
+                           Tag="{DynamicResource LOCSettingsXInputProcessingDescription}"/>
+        <StackPanel Name="StackControllers" Margin="50,0,0,0"
+                    IsEnabled="{Binding IsChecked, ElementName=ToggleControllerInput}" />
     </StackPanel>
-</UserControl>
+</local:SettingsSectionControl>

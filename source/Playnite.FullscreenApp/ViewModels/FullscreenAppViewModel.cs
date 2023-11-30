@@ -1,4 +1,5 @@
 ﻿using Playnite.API;
+using Playnite.Audio;
 using Playnite.Commands;
 using Playnite.Common;
 using Playnite.Controls;
@@ -28,6 +29,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using static SDL2.SDL_mixer;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
@@ -37,6 +39,8 @@ namespace Playnite.FullscreenApp.ViewModels
         private readonly SynchronizationContext context;
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
+        private AudioEngine audio => FullscreenApplication.Audio;
+        private readonly FullscreenApplication app;
 
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
@@ -378,8 +382,9 @@ namespace Playnite.FullscreenApp.ViewModels
             PlayniteSettings settings,
             GamesEditor gamesEditor,
             ExtensionFactory extensions,
-            PlayniteApplication app) : base(database, app, dialogs, resources, extensions, window)
+            FullscreenApplication app) : base(database, app, dialogs, resources, extensions, window)
         {
+            this.app = app;
             context = SynchronizationContext.Current;
             GamesEditor = gamesEditor;
             AppSettings = settings;
@@ -409,11 +414,11 @@ namespace Playnite.FullscreenApp.ViewModels
             AdjustGameItemsToScreenChanges();
         }
 
-        private void XInputDevice_ButtonUp(object sender, XInputDevice.ButtonUpEventArgs e)
+        private void GameControllerInput_ButtonUp(object sender, GameControllerManager.ButtonUpEventArgs e)
         {
-            if (AppSettings.Fullscreen.EnableXinputProcessing &&
+            if (AppSettings.Fullscreen.EnableGameControllerSupport &&
                 AppSettings.Fullscreen.GuideButtonFocus &&
-                e.Button == XInputButton.Guide)
+                e.Button == ControllerInput.Guide)
             {
                 WindowManager.LastActiveWindow?.RestoreWindow();
             }
@@ -542,33 +547,42 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 UpdateCursorSettings();
             }
-            else if (e.PropertyName == nameof(FullscreenSettings.EnableXinputProcessing))
+            else if (e.PropertyName == nameof(FullscreenSettings.EnableGameControllerSupport))
             {
-                if (App.XInputDevice != null)
+                if (app.GameController != null)
                 {
-                    App.XInputDevice.StandardProcessingEnabled = AppSettings.Fullscreen.EnableXinputProcessing;
+                    app.GameController.StandardProcessingEnabled = AppSettings.Fullscreen.EnableGameControllerSupport;
                 }
+            }
+            else if (e.PropertyName == nameof(FullscreenSettings.InterfaceVolume))
+            {
+                Mix_VolumeChunk(FullscreenApplication.ActivateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
+                Mix_VolumeChunk(FullscreenApplication.NavigateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
-                if (AppSettings.Fullscreen.BackgroundVolume == 0)
+                if (AppSettings.Fullscreen.BackgroundVolume <= 0)
                 {
-                    FullscreenApplication.StopBackgroundSound();
+                    Mix_HaltMusic();
                 }
                 else
                 {
-                    FullscreenApplication.PlayBackgroundSound();
+                    Mix_VolumeMusic(AudioEngine.GetVolume(AppSettings.Fullscreen.BackgroundVolume));
+                    if (Mix_PlayingMusic() != 1)
+                    {
+                        Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
+                    }
                 }
             }
             else if (e.PropertyName == nameof(FullscreenSettings.IsMusicMuted))
             {
-                FullscreenApplication.SetBackgroundSoundVolume(AppSettings.Fullscreen.IsMusicMuted ? 0f : AppSettings.Fullscreen.BackgroundVolume);
-            }
-            else if (e.PropertyName == nameof(FullscreenSettings.PrimaryControllerOnly))
-            {
-                if (App.XInputDevice != null)
+                if (AppSettings.Fullscreen.IsMusicMuted)
                 {
-                    App.XInputDevice.PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly;
+                    Mix_HaltMusic();
+                }
+                else
+                {
+                    Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
                 }
             }
 
@@ -584,7 +598,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (e.PropertyName == nameof(FullscreenSettings.SwapConfirmCancelButtons))
             {
-                App.UpdateXInputBindings();
+                app.UpdateConfirmCancelBindings();
             }
         }
 
@@ -839,9 +853,9 @@ namespace Playnite.FullscreenApp.ViewModels
 
         protected void InitializeView()
         {
-            if (App.XInputDevice != null)
+            if (app.GameController != null)
             {
-                App.XInputDevice.ButtonUp += XInputDevice_ButtonUp;
+                app.GameController.ButtonUp += GameControllerInput_ButtonUp;
             }
 
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);

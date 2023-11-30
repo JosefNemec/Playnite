@@ -157,9 +157,9 @@ namespace Playnite.FullscreenApp.Controls.Views
             ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenGameMenuCommand, Key = swapStartInput ? Key.A : Key.X });
             ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = swapStartInput ? Key.X : Key.A });
             ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ActivateSelectedCommand, Key = Key.Enter });
-            ListGameItems.InputBindings.Add(new XInputBinding(mainModel.OpenGameMenuCommand, XInputButton.Start));
-            ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ToggleGameDetailsCommand, swapStartInput ? XInputButton.X : XInputButton.A));
-            ListGameItems.InputBindings.Add(new XInputBinding(mainModel.ActivateSelectedCommand, swapStartInput ? XInputButton.A : XInputButton.X));
+            ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.OpenGameMenuCommand, ControllerInput.Start));
+            ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.ToggleGameDetailsCommand, swapStartInput ? ControllerInput.X : ControllerInput.A));
+            ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.ActivateSelectedCommand, swapStartInput ? ControllerInput.A : ControllerInput.X));
 
             ButtonPlay?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? "ButtonPromptA" : "ButtonPromptX");
             ButtonInstall?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? "ButtonPromptA" : "ButtonPromptX");
@@ -238,12 +238,12 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SwitchToDesktopCommand, Key = Key.F11 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectFilterPresetCommand, Key = Key.R });
 
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.PrevFilterViewCommand, XInputButton.LeftShoulder));
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.NextFilterViewCommand, XInputButton.RightShoulder));
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.OpenSearchCommand, XInputButton.Y));
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.ToggleFiltersCommand, XInputButton.RightStick));
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.OpenMainMenuCommand, XInputButton.Back));
-                    ViewHost.InputBindings.Add(new XInputBinding(mainModel.SelectFilterPresetCommand, XInputButton.LeftStick));
+                    ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.PrevFilterViewCommand, ControllerInput.LeftShoulder));
+                    ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.NextFilterViewCommand, ControllerInput.RightShoulder));
+                    ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.OpenSearchCommand, ControllerInput.Y));
+                    ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.ToggleFiltersCommand, ControllerInput.RightStick));
+                    ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.OpenMainMenuCommand, ControllerInput.Back));
+                    ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.SelectFilterPresetCommand, ControllerInput.LeftStick));
                 }
 
                 MainHost = Template.FindName("PART_MainHost", this) as FrameworkElement;

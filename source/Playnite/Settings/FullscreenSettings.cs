@@ -428,18 +428,32 @@ namespace Playnite
             }
         }
 
-        private bool enableXinputProcessing = true;
-        [RequiresRestart]
-        public bool EnableXinputProcessing
+        private bool enableGameControllerSupport = true;
+        public bool EnableGameControllerSupport
         {
             get
             {
-                return enableXinputProcessing;
+                return enableGameControllerSupport;
             }
 
             set
             {
-                enableXinputProcessing = value;
+                enableGameControllerSupport = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> disabledGameControllers = new List<string>();
+        public List<string> DisabledGameControllers
+        {
+            get
+            {
+                return disabledGameControllers;
+            }
+
+            set
+            {
+                disabledGameControllers = value;
                 OnPropertyChanged();
             }
         }
@@ -594,21 +608,6 @@ namespace Playnite
             }
         }
 
-        private bool primaryControllerOnly = true;
-        public bool PrimaryControllerOnly
-        {
-            get
-            {
-                return primaryControllerOnly;
-            }
-
-            set
-            {
-                primaryControllerOnly = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool guideButtonFocus = false;
         public bool GuideButtonFocus
         {
@@ -620,22 +619,6 @@ namespace Playnite
             set
             {
                 guideButtonFocus = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private AudioInterfaceApi audioInterfaceApi = AudioInterfaceApi.WASAPI;
-        [RequiresRestart]
-        public AudioInterfaceApi AudioInterfaceApi
-        {
-            get
-            {
-                return audioInterfaceApi;
-            }
-
-            set
-            {
-                audioInterfaceApi = value;
                 OnPropertyChanged();
             }
         }

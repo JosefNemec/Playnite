@@ -2174,10 +2174,6 @@ namespace Playnite
         /// </summary>
         public const string EmulatorImportNoDefinitionsError = "LOCEmulatorImportNoDefinitionsError";
         /// <summary>
-        /// Failed to initialize XInput interface.
-        /// </summary>
-        public const string XInputInitErrorMessage = "LOCXInputInitErrorMessage";
-        /// <summary>
         /// Failed to execute menu action.
         /// </summary>
         public const string MenuActionExecError = "LOCMenuActionExecError";
@@ -3622,11 +3618,11 @@ namespace Playnite
         /// </summary>
         public const string SettingsFontSizeSmall = "LOCSettingsFontSizeSmall";
         /// <summary>
-        /// XInput Device Support
+        /// Game controller support
         /// </summary>
         public const string SettingsXInputProcessing = "LOCSettingsXInputProcessing";
         /// <summary>
-        /// If disabled, Playnite won't accept any XInput interface inputs.
+        /// If disabled, Playnite won't accept any game controller inputs.
         /// </summary>
         public const string SettingsXInputProcessingDescription = "LOCSettingsXInputProcessingDescription";
         /// <summary>

@@ -36,15 +36,13 @@ namespace Playnite
         private ILogger logger = LogManager.GetLogger();
         private const string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
-        private bool resourcesReleased = false;
+        public bool ResourcesReleased { get; private set; } = false;
         private PipeService pipeService;
         private PipeServer pipeServer;
         private System.Threading.Timer updateCheckTimer;
         private bool installingAddon = false;
         private AddonLoadError themeLoadError = AddonLoadError.None;
         private ThemeManifest customTheme;
-
-        public XInputDevice XInputDevice { get; private set; }
 
         private bool isActive;
         public bool IsActive
@@ -75,7 +73,6 @@ namespace Playnite
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
         public ServicesClient ServicesClient { get; private set; }
-        public static bool SoundsEnabled { get; set; } = true;
         public MainViewModelBase MainModelBase { get; set; }
         public List<ExtensionInstallResult> ExtensionsInstallResult { get; set; }
         public NotificationsAPI Notifications { get; }
@@ -120,7 +117,7 @@ namespace Playnite
             {
                 if (CheckOtherInstances() || CmdLine.Shutdown)
                 {
-                    resourcesReleased = true;
+                    ResourcesReleased = true;
                     Environment.Exit(0);
                     return;
                 }
@@ -1101,36 +1098,6 @@ namespace Playnite
             }
         }
 
-        public void SetupInputs()
-        {
-            try
-            {
-                if (XInputDevice == null)
-                {
-                    XInputDevice = new XInputDevice(InputManager.Current)
-                    {
-                        SimulateAllKeys = false,
-                        SimulateNavigationKeys = true,
-                        PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly,
-                        StandardProcessingEnabled = AppSettings.Fullscreen.EnableXinputProcessing
-                    };
-                }
-
-                UpdateXInputBindings();
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed intitialize XInput");
-                Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCXInputInitErrorMessage"), "");
-            }
-        }
-
-        public void UpdateXInputBindings()
-        {
-            XInputGesture.ConfirmationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? XInputButton.B : XInputButton.A;
-            XInputGesture.CancellationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? XInputButton.A : XInputButton.B;
-        }
-
         public void Quit(bool saveSettings = true)
         {
             logger.Info("Shutting down Playnite");
@@ -1173,7 +1140,7 @@ namespace Playnite
 
         public virtual void ReleaseResources(bool releaseCefSharp = true)
         {
-            if (resourcesReleased)
+            if (ResourcesReleased)
             {
                 return;
             }
@@ -1248,7 +1215,7 @@ namespace Playnite
             }
 
             Database?.Dispose();
-            resourcesReleased = true;
+            ResourcesReleased = true;
         }
 
         private void CheckAddonBlacklist()

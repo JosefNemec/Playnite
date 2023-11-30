@@ -141,9 +141,6 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
-    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
-    </Reference>
     <Reference Include="Nett, Version=0.10.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
       <HintPath>..\packages\Nett.0.10.1\lib\Net40\Nett.dll</HintPath>
     </Reference>
@@ -229,9 +226,6 @@
       <HintPath>..\..\references\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="XInputDotNetPure">
-      <HintPath>..\..\references\XInputDotNetPure.dll</HintPath>
-    </Reference>
     <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YamlDotNet.5.4.0\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
@@ -270,6 +264,8 @@
     <Compile Include="MenuItems.cs" />
     <Compile Include="HotKey.cs" />
     <Compile Include="MenuHelpers.cs" />
+    <Compile Include="SDL2.cs" />
+    <Compile Include="SDL2_mixer.cs" />
     <Compile Include="Settings\SearchWindowVisibilitySettings.cs" />
     <Compile Include="SortableNameConverter.cs" />
     <Compile Include="Common\FileSystem_Checksum.cs" />
@@ -537,7 +533,7 @@
     <Compile Include="Windows\ProgressWindowFactory.cs" />
     <Compile Include="Windows\UpdateWindowFactory.cs" />
     <Compile Include="Windows\WindowManager.cs" />
-    <Compile Include="Input\XInputBinding.cs" />
+    <Compile Include="Input\GameController.cs" />
     <Compile Include="Windows\WindowFactory.cs" />
     <Compile Include="Windows\WindowPositionHandler.cs" />
   </ItemGroup>
@@ -761,24 +757,24 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ContentWithTargetPath Include="..\..\references\XInputInterface.dll">
-      <Link>Dependencies\XInputInterface.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>XInputInterface.dll</TargetPath>
-    </ContentWithTargetPath>
     <None Include="..\..\references\CefSharpRedist\*.*">
       <TargetPath>%(Filename)%(Extension)</TargetPath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <ContentWithTargetPath Include="..\..\references\msvcr110.dll">
-      <Link>Dependencies\msvcr110.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>msvcr110.dll</TargetPath>
-    </ContentWithTargetPath>
     <ContentWithTargetPath Include="..\..\references\sqlite3.x86.dll">
       <Link>Dependencies\sqlite3.x86.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>sqlite3.x86.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\SDL2.dll">
+      <Link>Dependencies\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>SDL2.dll</TargetPath>
+    </ContentWithTargetPath>
+    <ContentWithTargetPath Include="..\..\references\SDL2_mixer.dll">
+      <Link>Dependencies\SDL2_mixer.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>SDL2_mixer.dll</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup>
@@ -794,7 +790,11 @@
     <Resource Include="Resources\Images\DesignCover.jpg" />
     <Resource Include="Resources\Images\DesignIcon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="gamecontrollerdb.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

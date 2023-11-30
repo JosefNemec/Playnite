@@ -22,7 +22,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
     /// <summary>
     /// Interaction logic for Visuals.xaml
     /// </summary>
-    public partial class General : UserControl
+    public partial class General : SettingsSectionControl
     {
         public General()
         {

@@ -21,7 +21,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
     /// <summary>
     /// Interaction logic for Visuals.xaml
     /// </summary>
-    public partial class Menus : UserControl
+    public partial class Menus : SettingsSectionControl
     {
         public Menus()
         {

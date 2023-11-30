@@ -94,47 +94,92 @@ namespace Playnite.Extensions.Markup
             };
         }
 
-        public static string GetFilePath(string relPath, bool checkExistance = true)
+        public static string GetFilePath(string relPath, bool checkExistance = true, bool matchByRegex = false)
         {
-            return GetFilePath(relPath, ThemeManager.DefaultTheme, ThemeManager.CurrentTheme, checkExistance);
+            return GetFilePath(relPath, ThemeManager.DefaultTheme, ThemeManager.CurrentTheme, checkExistance, matchByRegex);
         }
 
-        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, bool checkExistance = true)
+        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, bool checkExistance = true, bool matchByRegex = false)
         {
-            return GetFilePath(relPath, defaultTheme, ThemeManager.CurrentTheme, checkExistance);
+            return GetFilePath(relPath, defaultTheme, ThemeManager.CurrentTheme, checkExistance, matchByRegex);
         }
 
-        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, ThemeManifest currentTheme, bool checkExistance = true)
+        public static string GetFilePath(string relPath, ThemeManifest defaultTheme, ThemeManifest currentTheme, bool checkExistance = true, bool matchByRegex = false)
         {
-            var relativePath = Paths.FixSeparators(relPath).TrimStart(new char[] { Path.DirectorySeparatorChar });
-
-            if (currentTheme != null)
+            if (matchByRegex)
             {
-                var themePath = Path.Combine(currentTheme.DirectoryPath, relativePath);
-                if (File.Exists(themePath) && checkExistance)
+                relPath = relPath.TrimStart(new char[] { Path.DirectorySeparatorChar });
+                string searchFile(string dir)
                 {
-                    return themePath;
-                }
-                else if (!checkExistance)
-                {
-                    return themePath;
-                }
-            }
+                    foreach (var file in Directory.EnumerateFiles(dir, "*.*", SearchOption.AllDirectories))
+                    {
+                        if (Regex.IsMatch(file.Replace(dir, string.Empty, StringComparison.OrdinalIgnoreCase), relPath, RegexOptions.IgnoreCase))
+                        {
+                            return file;
+                        }
+                    }
 
-            if (defaultTheme != null)
+                    return null;
+                }
+
+                if (currentTheme != null)
+                {
+                    var match = searchFile(currentTheme.DirectoryPath.EndWithDirSeparator());
+                    if (!match.IsNullOrEmpty())
+                    {
+                        return match;
+                    }
+                }
+
+                if (defaultTheme != null)
+                {
+                    var match = searchFile(defaultTheme.DirectoryPath.EndWithDirSeparator());
+                    if (!match.IsNullOrEmpty())
+                    {
+                        return match;
+                    }
+                }
+
+                return null;
+            }
+            else
             {
-                var defaultPath = Path.Combine(defaultTheme.DirectoryPath, relativePath);
-                if (File.Exists(defaultPath) && checkExistance)
+                relPath = Paths.FixSeparators(relPath).TrimStart(new char[] { Path.DirectorySeparatorChar });
+                string searchFile(string dir)
                 {
-                    return defaultPath;
-                }
-                else if (!checkExistance)
-                {
-                    return defaultPath;
-                }
-            }
+                    var themePath = Path.Combine(dir, relPath);
+                    if (File.Exists(themePath) && checkExistance)
+                    {
+                        return themePath;
+                    }
+                    else if (!checkExistance)
+                    {
+                        return themePath;
+                    }
 
-            return null;
+                    return null;
+                }
+
+                if (currentTheme != null)
+                {
+                    var match = searchFile(currentTheme.DirectoryPath);
+                    if (!match.IsNullOrEmpty())
+                    {
+                        return match;
+                    }
+                }
+
+                if (defaultTheme != null)
+                {
+                    var match = searchFile(defaultTheme.DirectoryPath);
+                    if (!match.IsNullOrEmpty())
+                    {
+                        return match;
+                    }
+                }
+
+                return null;
+            }
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)

@@ -25,9 +25,9 @@ namespace Playnite.FullscreenApp.Controls
 
         private void ComboBoxEx_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e is XInputEventArgs xinput)
+            if (e is GameControllerInputEventArgs controllerInput)
             {
-                if (xinput.XButton == XInputGesture.ConfirmationBinding)
+                if (controllerInput.Button == GameControllerGesture.ConfirmationBinding)
                 {
                     if (IsDropDownOpen)
                     {
@@ -39,7 +39,7 @@ namespace Playnite.FullscreenApp.Controls
                     }
                     e.Handled = true;
                 }
-                else if (xinput.XButton == XInputGesture.CancellationBinding)
+                else if (controllerInput.Button == GameControllerGesture.CancellationBinding)
                 {
                     if (IsDropDownOpen)
                     {

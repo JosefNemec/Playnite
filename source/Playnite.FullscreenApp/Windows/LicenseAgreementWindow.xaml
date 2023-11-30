@@ -18,7 +18,7 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>
-        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding DeclineCommand}" />
+        <pin:GameControllerInputBinding Button="{Binding Path=(pin:GameControllerGesture.CancellationBinding)}" Command="{Binding DeclineCommand}" />
         <KeyBinding Key="Backspace" Command="{Binding DeclineCommand}" />
     </c:WindowBase.InputBindings>
 

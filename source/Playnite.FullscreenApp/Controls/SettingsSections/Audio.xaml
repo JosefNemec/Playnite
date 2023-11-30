@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Audio"
+﻿<local:SettingsSectionControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Audio"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,16 +26,5 @@
         <pctrls:CheckBoxEx x:Name="ToggleMuteInBackground"
                             Style="{DynamicResource SettingsSectionCheckbox}"
                             Content="{DynamicResource LOCSettingsMuteBackground}" />
-
-        <DockPanel LastChildFill="False">
-            <TextBlock Text="{DynamicResource LOCSettingsAudioOutputApi}"
-                       Style="{DynamicResource SettingsSectionText}" />
-            <TextBlock Text="*" Margin="5,0,0,0"
-                       Style="{DynamicResource SettingsSectionText}" />
-            <pctrls:ComboBoxEx x:Name="SelectAudioApi"                               
-                               DockPanel.Dock="Right"
-                               Style="{DynamicResource SettingsSectionCombobox}"
-                               Tag="{DynamicResource LOCSettingsAudioOutputApiDescription}"/>
-        </DockPanel>
     </StackPanel>
-</UserControl>
+</local:SettingsSectionControl>

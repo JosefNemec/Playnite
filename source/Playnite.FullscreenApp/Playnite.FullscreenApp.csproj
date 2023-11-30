@@ -115,9 +115,6 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
-    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
-    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -156,6 +153,7 @@
     </ApplicationDefinition>
     <Compile Include="Api\MainViewAPI.cs" />
     <Compile Include="Commands\GlobalCommands.cs" />
+    <Compile Include="Controls\SettingsSections\SettingsSectionControl.cs" />
     <Compile Include="Controls\ToggleButtonEx.cs" />
     <Compile Include="Controls\FilterPresetSelector.cs" />
     <Compile Include="Controls\GameListItem.cs" />

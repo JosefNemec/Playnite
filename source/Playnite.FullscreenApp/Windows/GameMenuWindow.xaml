@@ -19,7 +19,7 @@
     <c:WindowBase.InputBindings>
         <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
         <KeyBinding Key="Backspace" Command="{Binding CloseCommand}" />
-        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
+        <pin:GameControllerInputBinding Button="{Binding Path=(pin:GameControllerGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
     </c:WindowBase.InputBindings>
     
     <Viewbox>
