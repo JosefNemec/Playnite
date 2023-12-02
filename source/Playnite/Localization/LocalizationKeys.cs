@@ -2182,10 +2182,6 @@ namespace Playnite
         /// </summary>
         public const string GameEditWindowTitle = "LOCGameEditWindowTitle";
         /// <summary>
-        /// From Play action
-        /// </summary>
-        public const string UseExeIcon = "LOCUseExeIcon";
-        /// <summary>
         /// Image URL
         /// </summary>
         public const string ImageURL = "LOCImageURL";

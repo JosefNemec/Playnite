@@ -140,14 +140,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public RelayCommand<object> UseExeIconCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                UseExeIcon();
-            });
-        }
-
         public RelayCommand<DragEventArgs> DropIconCommand
         {
             get => new RelayCommand<DragEventArgs>((args) =>

@@ -606,7 +606,6 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Failed to execute menu action.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edit Game Details</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">From Play action</sys:String>
     <sys:String x:Key="LOCImageURL">Image URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Add Link</sys:String>
     <sys:String x:Key="LOCAddRom">Add ROM</sys:String>
