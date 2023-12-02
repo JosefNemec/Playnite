@@ -175,7 +175,9 @@ namespace Playnite
         [Description(LOC.OptionOnceADay)]
         OnceADay = 1,
         [Description(LOC.OptionOnceAWeek)]
-        OnceAWeek = 2
+        OnceAWeek = 2,
+        [Description(LOC.OptionOnlyManually)]
+        Manually = 3
     }
 
     public enum LibraryUpdateCheckFrequency
@@ -2631,6 +2633,8 @@ namespace Playnite
         {
             switch (CheckForProgramUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
@@ -2645,6 +2649,8 @@ namespace Playnite
         {
             switch (CheckForAddonUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
@@ -2659,6 +2665,8 @@ namespace Playnite
         {
             switch (CheckForProgramUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
@@ -2673,6 +2681,8 @@ namespace Playnite
         {
             switch (CheckForAddonUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
