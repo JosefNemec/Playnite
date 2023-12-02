@@ -3446,6 +3446,14 @@ namespace Playnite
         /// </summary>
         public const string ActionTrackingPath = "LOCActionTrackingPath";
         /// <summary>
+        /// Initial tracking delay
+        /// </summary>
+        public const string ActionTrackingTrackingDelay = "LOCActionTrackingTrackingDelay";
+        /// <summary>
+        /// Tracking frequency
+        /// </summary>
+        public const string ActionTrackingFrequency = "LOCActionTrackingFrequency";
+        /// <summary>
         /// Link
         /// </summary>
         public const string GameActionTypeLink = "LOCGameActionTypeLink";

@@ -23,6 +23,9 @@
             <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" >
                 <Setter Property="Margin" Value="3" />
             </Style>
+            <Style TargetType="pctrls:NullIntNumericBox" BasedOn="{StaticResource {x:Type pctrls:NullIntNumericBox}}" >
+                <Setter Property="Margin" Value="3" />
+            </Style>
             <Style TargetType="pctrls:PathSelectionBox" BasedOn="{StaticResource {x:Type pctrls:PathSelectionBox}}" >
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="3" />
@@ -91,7 +94,9 @@
                 <RowDefinition Name="RowDefaultArguments" Height="{Binding ShowDefaultArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
                 <RowDefinition Name="RowAdditionalArgs" Height="{Binding ShowAdditionalArgumentsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
                 <RowDefinition Name="RowCustomEmulatorArgs" Height="{Binding ShowCustomEmulatorArgsRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
-                <RowDefinition Name="RowTrackingPath" Height="{Binding ShowTrackingPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>                
+                <RowDefinition Name="RowTrackingPath" Height="{Binding ShowTrackingPathRow, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+                <RowDefinition Name="RowTrackingInitDelay" Height="{Binding ShowTrackingTimeRows, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
+                <RowDefinition Name="RowTrackingFrequency" Height="{Binding ShowTrackingTimeRows, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay, Converter={StaticResource BoolToAutoWidthConverter}}"/>
             </Grid.RowDefinitions>
 
             <TextBlock Text="{DynamicResource LOCPathLabel}" Grid.Column="0" Grid.Row="0" />            
@@ -145,6 +150,16 @@
             <TextBlock Text="{DynamicResource LOCActionTrackingPath}" Grid.Column="0" Grid.Row="8" />
             <pctrls:PathSelectionBox Grid.Column="1" Grid.Row="8" ShowDirectorySelector="True"
                                      Text="{Binding TrackingPath}"/>
+
+            <TextBlock Text="{DynamicResource LOCActionTrackingTrackingDelay}" Grid.Column="0" Grid.Row="9" />
+            <pctrls:NullIntNumericBox Grid.Column="1" Grid.Row="9"
+                                      Value="{Binding InitialTrackingDelay}"
+                                      MinValue="0" />
+
+            <TextBlock Text="{DynamicResource LOCActionTrackingFrequency}" Grid.Column="0" Grid.Row="10" />
+            <pctrls:NullIntNumericBox Grid.Column="1" Grid.Row="10"
+                                      Value="{Binding TrackingFrequency}"
+                                      MinValue="0" />
         </Grid>
     </Grid>
 </UserControl>

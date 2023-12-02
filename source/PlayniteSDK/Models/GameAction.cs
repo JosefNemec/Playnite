@@ -251,6 +251,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private int initialTrackingDelay = 0;
+        /// <summary>
+        /// Gets or sets delay in milliseconds before tracking actually starts.
+        /// </summary>
+        public int InitialTrackingDelay
+        {
+            get => initialTrackingDelay;
+            set
+            {
+                initialTrackingDelay = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int trackingFrequency = 2000;
+        /// <summary>
+        /// Gets or sets delay in milliseconds before tracking actually starts.
+        /// </summary>
+        public int TrackingFrequency
+        {
+            get => trackingFrequency;
+            set
+            {
+                trackingFrequency = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -360,6 +388,16 @@ namespace Playnite.SDK.Models
                 return false;
             }
 
+            if (InitialTrackingDelay != other.InitialTrackingDelay)
+            {
+                return false;
+            }
+
+            if (TrackingFrequency != other.TrackingFrequency)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -383,7 +421,9 @@ namespace Playnite.SDK.Models
                 TrackingMode = TrackingMode,
                 TrackingPath = TrackingPath,
                 Type = Type,
-                WorkingDir = WorkingDir
+                WorkingDir = WorkingDir,
+                InitialTrackingDelay = InitialTrackingDelay,
+                TrackingFrequency = TrackingFrequency
             };
         }
     }

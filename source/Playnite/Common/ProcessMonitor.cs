@@ -58,7 +58,7 @@ namespace Playnite.Common
             OnTreeDestroyed();
         }
 
-        public async Task WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false, int trackingDelay = 2000)
+        public async Task WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false, int trackingFrequency = 2000, int trackingStartDelay = 0)
         {
             logger.Debug($"Watching dir processes {directory}, {alreadyRunning}, {byProcessNames}");
             // Get real path in case that original path is symlink or junction point
@@ -74,11 +74,11 @@ namespace Playnite.Common
 
             if (byProcessNames)
             {
-                await WatchDirectoryByProcessNames(realPath, alreadyRunning, trackingDelay);
+                await WatchDirectoryByProcessNames(realPath, alreadyRunning, trackingFrequency, trackingStartDelay);
             }
             else
             {
-                await WatchDirectory(realPath, alreadyRunning, trackingDelay);
+                await WatchDirectory(realPath, alreadyRunning, trackingFrequency, trackingStartDelay);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Playnite.Common
             return executables.Count() > 0;
         }
 
-        private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning, int trackingDelay = 2000)
+        private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning, int trackingDelay = 2000, int trackingStartDelay = 0)
         {
             if (!Directory.Exists(directory))
             {
@@ -190,6 +190,13 @@ namespace Playnite.Common
             var processStarted = false;
             var foundProcessId = 0;
             var failCount = 0;
+
+            if (trackingStartDelay > 0)
+            {
+                // Delay throws on canellation so we need to handle it in this ugly way
+                var delay = Task.Delay(trackingStartDelay, watcherToken.Token);
+                await delay.ContinueWith(task => { });
+            }
 
             while (true)
             {
@@ -252,7 +259,7 @@ namespace Playnite.Common
             }
         }
 
-        private async Task WatchDirectory(string directory, bool alreadyRunning, int trackingDelay = 2000)
+        private async Task WatchDirectory(string directory, bool alreadyRunning, int trackingDelay = 2000, int trackingStartDelay = 0)
         {
             if (!Directory.Exists(directory))
             {
@@ -264,6 +271,13 @@ namespace Playnite.Common
             var processStarted = false;
             var foundProcessId = 0;
             var failCount = 0;
+
+            if (trackingStartDelay > 0)
+            {
+                // Delay throws on canellation so we need to handle it in this ugly way
+                var delay = Task.Delay(trackingStartDelay, watcherToken.Token);
+                await delay.ContinueWith(task => { });
+            }
 
             while (true)
             {
