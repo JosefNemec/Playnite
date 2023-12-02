@@ -89,7 +89,6 @@ namespace Playnite.DesktopApp
             LoadTrayIcon();
 #pragma warning disable CS4014
             StartUpdateCheckerAsync();
-            SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
             splashScreen?.Close(new TimeSpan(0));

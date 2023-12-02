@@ -1338,26 +1338,6 @@ namespace Playnite
                 Common.Timer.HoursToMilliseconds(4));
         }
 
-        public async Task SendUsageDataAsync()
-        {
-            if (PlayniteEnvironment.InOfflineMode)
-            {
-                return;
-            }
-
-            await Task.Run(() =>
-            {
-                try
-                {
-                    ServicesClient.PostUserUsage(AppSettings.InstallInstanceId);
-                }
-                catch (Exception exc)
-                {
-                    logger.Warn(exc, "Failed to post user usage data.");
-                }
-            });
-        }
-
         public bool MigrateDatabase()
         {
             if (GameDatabase.GetMigrationRequired(AppSettings.DatabasePath))

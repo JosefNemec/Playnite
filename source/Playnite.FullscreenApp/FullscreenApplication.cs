@@ -100,7 +100,6 @@ namespace Playnite.FullscreenApp
             InitializeAudio();
             OpenMainViewAsync();
             StartUpdateCheckerAsync();
-            SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
             PropertyChanged += FullscreenApplication_PropertyChanged;
