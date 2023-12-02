@@ -185,7 +185,6 @@ namespace Playnite.DesktopApp.Controls
             var linksItem = AddMenuChild(Items, "LOCMenuLinksTitle", null);
             AddMenuChild(linksItem.Items, "Discord", GlobalCommands.NavigateUrlCommand, UrlConstants.Discord, "Images/discord.png");
             AddMenuChild(linksItem.Items, "Reddit", GlobalCommands.NavigateUrlCommand, UrlConstants.Reddit, "Images/reddit.png");
-            AddMenuChild(linksItem.Items, "Twitter", GlobalCommands.NavigateUrlCommand, UrlConstants.Twitter, "Images/twitter.png");
 
             // Help
             var helpItem = AddMenuChild(Items, "LOCMenuHelpTitle", null);
