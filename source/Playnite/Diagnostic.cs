@@ -124,35 +124,6 @@ namespace Playnite
                         logger.Error(e, "Failed gather system info.");
                     }
 
-                    // Uninstall regkey export
-                    try
-                    {
-                        var regKeyPath = Path.Combine(diagTemp, "uninstall.txt");
-                        var programs = Programs.GetUnistallProgramsList();
-                        File.WriteAllText(regKeyPath, Serialization.ToJson(programs, true));
-                        archive.CreateEntryFromFile(regKeyPath, Path.GetFileName(regKeyPath));
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, "Failed gather install app list.");
-                    }
-
-                    // UWP app info
-                    try
-                    {
-                        if (Computer.WindowsVersion == WindowsVersion.Win10 || Computer.WindowsVersion == WindowsVersion.Win11)
-                        {
-                            var uwpInfoPath = Path.Combine(diagTemp, "uwp.txt");
-                            var uwpApps = Programs.GetUWPApps();
-                            File.WriteAllText(uwpInfoPath, Serialization.ToJson(uwpApps, true));
-                            archive.CreateEntryFromFile(uwpInfoPath, Path.GetFileName(uwpInfoPath));
-                        }
-                    }
-                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                    {
-                        logger.Error(e, "Failed gather UWP install list.");
-                    }
-
                     // Playnite info
                     var playnitePath = Path.Combine(diagTemp, "playniteInfo.txt");
                     var playniteInfo = new Dictionary<string, object>
