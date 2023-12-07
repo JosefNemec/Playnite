@@ -82,6 +82,7 @@ namespace Playnite.Database
         public override void Add(Game item)
         {
             item.Added = DateTime.Now;
+            item.Modified = item.Added;
             base.Add(item);
         }
 
@@ -90,6 +91,7 @@ namespace Playnite.Database
             foreach (var item in items)
             {
                 item.Added = DateTime.Now;
+                item.Modified = item.Added;
             }
 
             base.Add(items);
