@@ -47,13 +47,13 @@ Profiles:
   - Name: GCE Vectrex
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [vectrex]
-    ImageExtensions: [vec]
+    ImageExtensions: [vec, zip]
     StartupExecutable: ^EmuHawk\.exe$
 
   - Name: Magnavox Odyssey 2
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [magnavox_odyssey_2]
-    ImageExtensions: [o2, bin]
+    ImageExtensions: [o2, bin, zip]
     StartupExecutable: ^EmuHawk\.exe$
 
   - Name: Mattel Intellivision
@@ -77,7 +77,7 @@ Profiles:
   - Name: Nintendo DS/DSi
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [nintendo_ds, nintendo_dsi]
-    ImageExtensions: [nds]
+    ImageExtensions: [nds, zip]
     StartupExecutable: ^EmuHawk\.exe$
 
   - Name: Nintendo Entertainment System
@@ -173,7 +173,7 @@ Profiles:
   - Name: Uzebox
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [uzebox]
-    ImageExtensions: [uze]
+    ImageExtensions: [uze, zip]
     StartupExecutable: ^EmuHawk\.exe$
 
   - Name: WonderSwan
