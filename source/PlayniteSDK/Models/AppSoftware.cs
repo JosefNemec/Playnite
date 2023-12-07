@@ -1,11 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Playnite.SDK.Models
 {
+    /// <summary>
+    ///
+    /// </summary>
+    public enum AppSoftwareType
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCDefault")]
+        Standard,
+        /// <summary>
+        ///
+        /// </summary>
+        [Description("LOCGameActionTypeScript")]
+        Script
+    }
+
     /// <summary>
     /// Represents general application software.
     /// </summary>
@@ -81,6 +99,34 @@ namespace Playnite.SDK.Models
             }
         }
 
+        private AppSoftwareType appType = AppSoftwareType.Standard;
+        /// <summary>
+        /// Gets or sets type.
+        /// </summary>
+        public AppSoftwareType AppType
+        {
+            get => appType;
+            set
+            {
+                appType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string script;
+        /// <summary>
+        /// Gets or sets script to execute if type is set to script type.
+        /// </summary>
+        public string Script
+        {
+            get => script;
+            set
+            {
+                script = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Creates new instance of <see cref="AppSoftware"/>.
         /// </summary>
@@ -127,6 +173,16 @@ namespace Playnite.SDK.Models
                 if (ShowOnSidebar != tro.ShowOnSidebar)
                 {
                     tro.ShowOnSidebar = ShowOnSidebar;
+                }
+
+                if (AppType != tro.AppType)
+                {
+                    tro.AppType = AppType;
+                }
+
+                if (!string.Equals(Script, tro.Script, StringComparison.Ordinal))
+                {
+                    tro.Script = Script;
                 }
             }
             else
