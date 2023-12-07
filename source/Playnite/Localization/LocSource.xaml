@@ -643,6 +643,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Do nothing</sys:String>
     <sys:String x:Key="LOCMinimize">Minimize</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restore window</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restore window only when launched from UI</sys:String>
     <sys:String x:Key="LOCClose">Close</sys:String>
     <sys:String x:Key="LOCChange">Change</sys:String>
     <sys:String x:Key="LOCAdvanced">Advanced</sys:String>

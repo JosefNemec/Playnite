@@ -950,7 +950,7 @@ namespace Playnite.ViewModels
         }
 
         public abstract void OpenSettings(int settingsPageIndex);
-        public void StartGame(Game game)
+        public void StartGame(Game game, bool launchedFromUI)
         {
             if (game.IsLaunching || game.IsRunning)
             {
@@ -960,12 +960,12 @@ namespace Playnite.ViewModels
                     MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     App.GamesEditor.CancelGameMonitoring(game);
-                    App.GamesEditor.PlayGame(game);
+                    App.GamesEditor.PlayGame(game, launchedFromUI);
                 }
             }
             else
             {
-                App.GamesEditor.PlayGame(game);
+                App.GamesEditor.PlayGame(game, launchedFromUI);
             }
         }
 

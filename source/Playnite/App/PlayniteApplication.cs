@@ -722,7 +722,7 @@ namespace Playnite
                         }
                         else
                         {
-                            GamesEditor.PlayGame(game);
+                            GamesEditor.PlayGame(game, false);
                         }
                     }
                     else
@@ -1066,7 +1066,7 @@ namespace Playnite
                         }
                         else
                         {
-                            GamesEditor.PlayGame(game);
+                            GamesEditor.PlayGame(game, false);
                         }
                     }
                     else

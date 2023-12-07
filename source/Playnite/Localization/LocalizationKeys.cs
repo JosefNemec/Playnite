@@ -2330,6 +2330,10 @@ namespace Playnite
         /// </summary>
         public const string RestoreWindow = "LOCRestoreWindow";
         /// <summary>
+        /// Restore window only when launched from UI
+        /// </summary>
+        public const string RestoreWindowOnlyFromUI = "LOCRestoreWindowOnlyFromUI";
+        /// <summary>
         /// Close
         /// </summary>
         public const string Close = "LOCClose";

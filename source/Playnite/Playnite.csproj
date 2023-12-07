@@ -362,12 +362,10 @@
     <Compile Include="Controls\GridEx.cs" />
     <Compile Include="Controls\HtmlTextView.cs" />
     <Compile Include="Controls\WindowBase.cs" />
-    <Compile Include="Converters\AfterGameCloseOptionToStringConverter.cs" />
     <Compile Include="Converters\DockToStringConverter.cs" />
     <Compile Include="Converters\InvertedBoolenConverter.cs" />
     <Compile Include="Converters\ObjectToStringConverter.cs" />
     <Compile Include="Converters\StrechToStringConverter.cs" />
-    <Compile Include="Converters\AfterGameLaunchOptionToStringConverter.cs" />
     <Compile Include="Converters\BidirectionalEnumAndNumberConverter.cs" />
     <Compile Include="Converters\BooleanToHiddenConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />

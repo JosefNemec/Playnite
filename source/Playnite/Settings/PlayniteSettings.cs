@@ -77,15 +77,24 @@ namespace Playnite
 
     public enum AfterLaunchOptions
     {
+        [Description(LOC.DoNothing)]
         None,
+        [Description(LOC.Minimize)]
         Minimize,
+        [Description(LOC.Close)]
         Close
     }
 
     public enum AfterGameCloseOptions
     {
+        [Description(LOC.DoNothing)]
         None,
-        Restore
+        [Description(LOC.RestoreWindow)]
+        Restore,
+        [Description(LOC.RestoreWindowOnlyFromUI)]
+        RestoreOnlyFromUI,
+        [Description(LOC.ExitPlaynite)]
+        Exit
     }
 
     public enum ApplicationView
@@ -1096,7 +1105,7 @@ namespace Playnite
             }
         }
 
-        private AfterGameCloseOptions afterGameClose = AfterGameCloseOptions.Restore;
+        private AfterGameCloseOptions afterGameClose = AfterGameCloseOptions.RestoreOnlyFromUI;
         public AfterGameCloseOptions AfterGameClose
         {
             get

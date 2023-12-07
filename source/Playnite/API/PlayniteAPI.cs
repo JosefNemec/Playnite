@@ -77,7 +77,7 @@ namespace Playnite.API
             {
                 // Run on main thread for edge cases like this:
                 // https://www.reddit.com/r/playnite/comments/slyg99/boot_another_game_as_a_play_action/
-                execContext.Send((_) => gameEditor.PlayGame(game), null);
+                execContext.Send((_) => gameEditor.PlayGame(game, false), null);
             }
         }
 

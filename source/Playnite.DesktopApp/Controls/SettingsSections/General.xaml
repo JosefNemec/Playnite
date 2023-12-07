@@ -30,42 +30,6 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <StackPanel Margin="20">
-        <StackPanel.Resources>
-            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                                x:Key="AfterLaunchOptionsEnumValues">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="p:AfterLaunchOptions" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
-            <pcon:AfterGameLaunchOptionToStringConverter x:Key="AfterGameLaunchOptionToStringConverter" />
-            <ComboBox x:Key="ComboAfterGameOptions" x:Shared="False"
-                      SelectedValue="{Binding AfterLaunch}"
-                      ItemsSource="{Binding Source={StaticResource AfterLaunchOptionsEnumValues}}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource AfterGameLaunchOptionToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
-                                x:Key="AfterCloseOptionsEnumValues">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="p:AfterGameCloseOptions" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
-            <pcon:AfterGameCloseOptionToStringConverter x:Key="AfterGameCloseOptionToStringConverter" />
-            <ComboBox x:Key="ComboAfterGameCloseOptions" x:Shared="False"
-                      VerticalAlignment="Center"
-                      SelectedValue="{Binding AfterGameClose}"
-                      ItemsSource="{Binding Source={StaticResource AfterCloseOptionsEnumValues}}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource AfterGameCloseOptionToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel.Resources>
-
         <DockPanel Margin="0,0,0,10" LastChildFill="False">
             <ContentControl Content="{DynamicResource LOCLanguageSettingsLabel}" 
                             ContentStringFormat="{}{0} *"
@@ -85,18 +49,17 @@
         <StackPanel Orientation="Horizontal" Margin="5,15,5,0">
             <TextBlock Text="{DynamicResource LOCSettingsAfterGameStart}" Margin="0,0,5,0"
                        VerticalAlignment="Center" />
-            <ContentControl DataContext="{Binding Settings}"
-                            ToolTipService.InitialShowDelay="0" VerticalAlignment="Center"
-                            ToolTip="{DynamicResource LOCSettingsClosePlaytimeNotif}"
-                            Content="{StaticResource ComboAfterGameOptions}" />
-        </StackPanel>
+                <ComboBox ToolTipService.InitialShowDelay="0" VerticalAlignment="Center"
+                          ToolTip="{DynamicResource LOCSettingsClosePlaytimeNotif}"
+                          SelectedValue="{Binding Settings.AfterLaunch}"
+                          pbeh:SelectorBehaviors.EnumSource="{x:Type p:AfterLaunchOptions}"/>
+            </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="5,10,5,5">
             <TextBlock Text="{DynamicResource LOCSettingsAfterGameClose}" Margin="0,0,5,0"
                        VerticalAlignment="Center" />
-            <ContentControl DataContext="{Binding Settings}"
-                            Content="{StaticResource ComboAfterGameCloseOptions}"
-                            VerticalAlignment="Center"/>
+                <ComboBox SelectedValue="{Binding Settings.AfterGameClose}"
+                          pbeh:SelectorBehaviors.EnumSource="{x:Type p:AfterGameCloseOptions}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="5,20,0,0" >

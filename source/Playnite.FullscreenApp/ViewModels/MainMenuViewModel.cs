@@ -90,7 +90,7 @@ namespace Playnite.FullscreenApp.ViewModels
             if (model.SelectedAction == RandomGameSelectAction.Play)
             {
                 MainModel.SelectGame(model.SelectedGame.Id);
-                MainModel.GamesEditor.PlayGame(model.SelectedGame);
+                MainModel.GamesEditor.PlayGame(model.SelectedGame, true);
             }
             else if (model.SelectedAction == RandomGameSelectAction.Navigate)
             {

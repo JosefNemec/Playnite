@@ -57,6 +57,18 @@ namespace Playnite
         public Task CancelTask { get; set; }
     }
 
+    public class RunningGame
+    {
+        public Guid Id { get; set; }
+        public bool LauchedFromUI { get; set; }
+
+        public RunningGame(Guid id, bool lauchedFromUI)
+        {
+            Id = id;
+            LauchedFromUI = lauchedFromUI;
+        }
+    }
+
     public class GamesEditor : ObservableObject, IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -75,7 +87,7 @@ namespace Playnite
         public GameDatabase Database { get; private set; }
         public IDialogsFactory Dialogs { get; private set; }
         public PlayniteSettings AppSettings { get; private set; }
-        public List<Guid> RunningGames { get; } = new List<Guid>();
+        public Dictionary<Guid, RunningGame> RunningGames { get; } = new Dictionary<Guid, RunningGame>();
 
         public List<Game> QuickLaunchItems
         {
@@ -163,7 +175,7 @@ namespace Playnite
         {
             if (game.IsInstalled)
             {
-                PlayGame(game);
+                PlayGame(game, true);
             }
             else
             {
@@ -171,7 +183,7 @@ namespace Playnite
             }
         }
 
-        public void PlayGame(Game game)
+        public void PlayGame(Game game, bool launchedFromUI)
         {
             if (!game.IsInstalled)
             {
@@ -298,6 +310,7 @@ namespace Playnite
 
                 controllers.RemovePlayController(game.Id);
                 controllers.AddController(controller);
+                RunningGames.Add(game.Id, new RunningGame(game.Id, launchedFromUI));
                 UpdateGameState(game.Id, null, null, null, null, true);
 
                 var startingArgs = new SDK.Events.OnGameStartingEventArgs
@@ -1295,7 +1308,7 @@ namespace Playnite
         {
             if (running == true || launching == true)
             {
-                RunningGames.AddMissing(id);
+                RunningGames.AddMissing(id, new RunningGame(id, true));
             }
             else if (running == false || launching == false)
             {
@@ -1402,6 +1415,7 @@ namespace Playnite
             var game = args.Source.Game;
             logger.Info($"Game {game.Name} stopped after {args.SessionLength} seconds.");
 
+            var runningGame = RunningGames[game.Id];
             RunningGames.Remove(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
@@ -1413,6 +1427,10 @@ namespace Playnite
 
             var restore = false;
             if (Application.Mode == ApplicationMode.Desktop && AppSettings.AfterGameClose == AfterGameCloseOptions.Restore)
+            {
+                restore = true;
+            }
+            if (Application.Mode == ApplicationMode.Desktop && AppSettings.AfterGameClose == AfterGameCloseOptions.RestoreOnlyFromUI && runningGame.LauchedFromUI)
             {
                 restore = true;
             }
@@ -1457,6 +1475,11 @@ namespace Playnite
             }
 
             Extensions.InvokeOnGameStopped(game, args.SessionLength, false);
+            if (Application.Mode == ApplicationMode.Desktop && AppSettings.AfterGameClose == AfterGameCloseOptions.Exit)
+            {
+                Application.Quit();
+            }
+
             if (AppSettings.ClientAutoShutdown.ShutdownClients && !game.IsCustomGame)
             {
                 if (args.SessionLength <= AppSettings.ClientAutoShutdown.MinimalSessionTime)

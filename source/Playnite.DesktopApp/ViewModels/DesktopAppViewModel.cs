@@ -996,7 +996,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (model.SelectedAction == RandomGameSelectAction.Play)
             {
                 SelectGame(model.SelectedGame.Id);
-                GamesEditor.PlayGame(model.SelectedGame);
+                GamesEditor.PlayGame(model.SelectedGame, true);
             }
             else if (model.SelectedAction == RandomGameSelectAction.Navigate)
             {

@@ -377,7 +377,7 @@ namespace Playnite.DesktopApp.Controls
             var game = entry.Game;
             if (game.IsInstalled)
             {
-                PlayniteApplication.Current.GamesEditor.PlayGame(game);
+                PlayniteApplication.Current.GamesEditor.PlayGame(game, true);
             }
             else
             {
