@@ -188,7 +188,7 @@ namespace Playnite.DesktopApp.Controls
 
             // Help
             var helpItem = AddMenuChild(Items, "LOCMenuHelpTitle", null);
-            AddMenuChild(helpItem.Items, "LOCOpenGameManual", GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
+            AddMenuChild(helpItem.Items, "LOCUserManual", GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
             AddMenuChild(helpItem.Items, "LOCMenuIssues", mainModel.ReportIssueCommand);
             AddMenuChild(helpItem.Items, "LOCSDKDocumentation", GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
             helpItem.Items.Add(new Separator());

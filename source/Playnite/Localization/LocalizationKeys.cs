@@ -4441,5 +4441,9 @@ namespace Playnite
         /// Do you want to save changes you made?
         /// </summary>
         public const string UnsavedChangesAskMessage = "LOCUnsavedChangesAskMessage";
+        /// <summary>
+        /// Portable installation
+        /// </summary>
+        public const string PortableInstallation = "LOCPortableInstallation";
     }
 }

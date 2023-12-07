@@ -11,7 +11,11 @@
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{DynamicResource LOCAboutWindowTitle}" ResizeMode="NoResize" Height="400" Width="500"
         AutomationProperties.AutomationId="WindowAbout" ShowMinimizeButton="False" ShowMaximizeButton="False">
-    
+
+    <controls:WindowBase.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    </controls:WindowBase.Resources>
+
     <DockPanel Margin="5">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
             <Button TabIndex="4" Name="ButtonCreatePackage" Content="{DynamicResource LOCAboutCreateDiagButton}" Style="{StaticResource BottomButton}"
@@ -23,23 +27,49 @@
         </DockPanel>
 
         <GridEx DockPanel.Dock="Top" Margin="10"
-                ColumnCount="3" StarColumns="1">
+                ColumnCount="3" StarColumns="2">
             <Image Source="{pmrk:ThemeFile 'Images/applogo.png'}" Width="64" Height="64" RenderOptions.BitmapScalingMode="Fant"
-                   Grid.Column="0"  />
+                   Grid.Column="0" />
 
-            <StackPanel Margin="15,0,0,0" Grid.Column="1">
-                <Label Name="TextVersionInfo" Content="{Binding VersionInfo}" Foreground="{StaticResource TextBrush}" FontSize="20"/>           
-                <TextBlock Text="{DynamicResource LOCAboutAuthor}" Foreground="LightGray"/>
+            <StackPanel Grid.Column="1" Margin="30,0,30,0">
+                <TextBlock Text="{Binding VersionInfo}" />
+                <TextBlock Text="{Binding SDKVersion}" Margin="0,5,0,0" />
+                <TextBlock Text="{Binding ThemeApiVersion}" Margin="0,5,0,0" />
+                <TextBlock Text="{DynamicResource LOCPortableInstallation}" Margin="0,5,0,0"
+                           Visibility="{Binding IsPortable, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
                 <TextBlock>
-                    <Hyperlink Name="HyperlinkHomepage" FontSize="12" NavigateUri="http://www.playnite.link"
+                    <Hyperlink NavigateUri="https://www.playnite.link"
                                Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
-                        <Run Text="{DynamicResource LOCAboutHomePageLink}"/>
+                        <Run Text="https://www.playnite.link"/>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock>
-                    <Hyperlink Name="HyperlinkSource" FontSize="12" NavigateUri="https://github.com/JosefNemec/Playnite/"
+                <TextBlock Margin="0,5,0,0">
+                    <Hyperlink NavigateUri="https://playnite.link/docs/"
+                               Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
+                        <Run Text="{DynamicResource LOCUserManual}"/>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="0,5,0,0">
+                    <Hyperlink NavigateUri="https://github.com/JosefNemec/Playnite/"
                                Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" CommandParameter="{Binding NavigateUri, RelativeSource={RelativeSource Self}}">
                         <Run Text="{DynamicResource LOCAboutSourceLink}"/>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="0,5,0,0">
+                    <Hyperlink Focusable="False"
+                               Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
+                               CommandParameter="{Binding InstallDir}">
+                        <Run Text="{DynamicResource LOCProgramFolder}"/>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="0,5,0,0">
+                    <Hyperlink Focusable="False"                  
+                               Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
+                               CommandParameter="{Binding UserDir}">
+                        <Run Text="{DynamicResource LOCUserDataFolder}"/>
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>
@@ -70,29 +100,6 @@
                          HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto"
                          Text="{Binding Contributors, Mode=OneWay}"/>
                 </DockPanel>
-            </TabItem>
-
-            <TabItem Header="{DynamicResource LOCOther}">
-                <StackPanel Margin="5">
-                    <TextBlock Text="{Binding SDKVersion}" />
-                    <TextBlock Text="{Binding ThemeApiVersion}" Margin="0,5,0,5" />
-
-                    <TextBlock>
-                        <Hyperlink FontSize="12" Focusable="False"
-                                   Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
-                                   CommandParameter="{Binding InstallDir}">
-                            <Run Text="{DynamicResource LOCProgramFolder}"/>
-                        </Hyperlink>
-                    </TextBlock>
-
-                    <TextBlock Margin="0,5,0,5">
-                        <Hyperlink FontSize="12" Focusable="False"                  
-                                   Command="{x:Static pcmd:GlobalCommands.NavigateDirectoryCommand}"
-                                   CommandParameter="{Binding UserDir}">
-                            <Run Text="{DynamicResource LOCUserDataFolder}"/>
-                        </Hyperlink>
-                    </TextBlock>
-                </StackPanel>
             </TabItem>
         </TabControl>
     </DockPanel>
