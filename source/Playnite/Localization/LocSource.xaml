@@ -252,11 +252,14 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Help</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Support on Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual">User manual</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restart System</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Turn Off System</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernate System</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Lock System</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Log Out User</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Pick a Random Game</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Game fields to be displayed on details panel:</sys:String>

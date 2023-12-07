@@ -287,6 +287,16 @@ namespace Playnite.Common
             return Powrprof.SetSuspendState(true, true, false);
         }
 
+        public static bool Lock()
+        {
+            return User32.LockWorkStation();
+        }
+
+        public static bool Logout()
+        {
+            return User32.ExitWindowsEx(0, 0);
+        }
+
         public static ComputerScreen ToComputerScreen(this Screen screen)
         {
             if (screen == null)

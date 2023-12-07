@@ -533,6 +533,36 @@ namespace Playnite
             }
         }
 
+        private bool mainMenuShowLogout = false;
+        public bool MainMenuShowLogout
+        {
+            get
+            {
+                return mainMenuShowLogout;
+            }
+
+            set
+            {
+                mainMenuShowLogout = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuShowLock = false;
+        public bool MainMenuShowLock
+        {
+            get
+            {
+                return mainMenuShowLock;
+            }
+
+            set
+            {
+                mainMenuShowLock = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool swapStartDetailsAction = false;
         public bool SwapStartDetailsAction
         {

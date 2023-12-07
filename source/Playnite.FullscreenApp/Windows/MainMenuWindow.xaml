@@ -94,6 +94,16 @@
                                      Command="{Binding RestartSystemCommand}"
                                      Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowRestart, Converter={StaticResource BooleanToVisibilityConverter}}"
                                      AutomationProperties.Name="{DynamicResource LOCMenuRestartSystem}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonLockSystem"
+                                  ContentTemplate="{DynamicResource MainMenuLockSystemButtonTemplate}"
+                                  Command="{Binding LockSystemCommand}"
+                                  Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowLock, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  AutomationProperties.Name="{DynamicResource LOCMenuRestartSystem}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonLogoutUser"
+                                  ContentTemplate="{DynamicResource MainMenuLogoutUserButtonTemplate}"
+                                  Command="{Binding LogoutUserCommand}"
+                                  Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowLogout, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  AutomationProperties.Name="{DynamicResource LOCMenuRestartSystem}"/>
 
                     <Canvas Height="40" />
                     <pctrls:ButtonEx x:Name="PART_ButtonFeedback"

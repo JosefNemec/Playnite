@@ -122,4 +122,20 @@
             <TextBlock Text="{DynamicResource LOCMinimize}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuLockSystemButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xef7a;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuLockSystem}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuLogoutUserButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefe9;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuLogoutUser}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

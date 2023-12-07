@@ -910,6 +910,10 @@ namespace Playnite
         /// </summary>
         public const string MenuPatreonSupport = "LOCMenuPatreonSupport";
         /// <summary>
+        /// User manual
+        /// </summary>
+        public const string UserManual = "LOCUserManual";
+        /// <summary>
         /// SDK Documentation
         /// </summary>
         public const string SDKDocumentation = "LOCSDKDocumentation";
@@ -929,6 +933,14 @@ namespace Playnite
         /// Hibernate System
         /// </summary>
         public const string MenuHibernateSystem = "LOCMenuHibernateSystem";
+        /// <summary>
+        /// Lock System
+        /// </summary>
+        public const string MenuLockSystem = "LOCMenuLockSystem";
+        /// <summary>
+        /// Log Out User
+        /// </summary>
+        public const string MenuLogoutUser = "LOCMenuLogoutUser";
         /// <summary>
         /// Pick a Random Game
         /// </summary>
