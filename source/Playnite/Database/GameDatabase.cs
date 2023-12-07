@@ -1440,7 +1440,7 @@ namespace Playnite.Database
                 {
                     foreach (var rom in game.Roms)
                     {
-                        if (rom.Path.IsNullOrWhiteSpace() || rom.Name.IsNullOrWhiteSpace())
+                        if (rom.Path.IsNullOrWhiteSpace())
                         {
                             continue;
                         }
