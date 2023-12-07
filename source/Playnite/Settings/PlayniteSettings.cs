@@ -2224,6 +2224,8 @@ namespace Playnite
         private SafeSearchSettings webImageSafeSearch = SafeSearchSettings.Default;
         public SafeSearchSettings WebImageSafeSearch { get => webImageSafeSearch; set => SetValue(ref webImageSafeSearch, value); }
 
+        public Guid LastSelectedGame { get; set; }
+
         [JsonIgnore]
         public static bool IsPortable
         {
