@@ -667,6 +667,8 @@ namespace Playnite.DesktopApp.ViewModels
         private string ReplaceImageSearchVariables(string input)
         {
             input = input.Replace("{Name}", editingGame.Name, StringComparison.OrdinalIgnoreCase);
+            var yearToReplace = editingGame.ReleaseDate.HasValue ? editingGame.ReleaseDate.Value.Year.ToString() : string.Empty;
+            input = input.Replace("{ReleaseYear}", yearToReplace, StringComparison.OrdinalIgnoreCase);
             return input.Replace("{Platform}", editingGame.Platforms?.FirstOrDefault()?.Name, StringComparison.OrdinalIgnoreCase);
         }
 
