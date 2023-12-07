@@ -84,6 +84,7 @@ namespace Playnite.DesktopApp.ViewModels
         private ExtensionFactory extensions;
         private PlayniteSettings appSettings;
         private bool ignoreClosingEvent = false;
+        private readonly MultiEditGame originalMultiGameObj;
 
         public string IconMetadata
         {
@@ -309,6 +310,7 @@ namespace Playnite.DesktopApp.ViewModels
             IsSingleGameEdit = false;
             IsMultiGameEdit = true;
             EditingGame = GameTools.GetMultiGameEditObject(Games);
+            originalMultiGameObj = EditingGame.GetClone<Game, MultiEditGame>();
             ShowCheckBoxes = true;
             ShowMetaDownload = false;
             Init(database, window, dialogs, resources, extensions, appSettings, EditingGame as MultiEditGame);
@@ -475,7 +477,8 @@ namespace Playnite.DesktopApp.ViewModels
 
         private MessageBoxResult CheckUnsavedChanges()
         {
-            if (!EditingGame.IsEqualJson(Game))
+            var compareObj = IsMultiGameEdit ? originalMultiGameObj : Game;
+            if (!EditingGame.IsEqualJson(compareObj))
             {
                 return dialogs.ShowMessage(LOC.UnsavedChangesAskMessage, "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
             }
