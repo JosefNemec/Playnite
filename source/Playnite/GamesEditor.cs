@@ -1567,6 +1567,15 @@ namespace Playnite
                 }
             }
 
+            try
+            {
+                UpdateGameSize(dbGame, false, false, false);
+            }
+            catch
+            {
+                // Already logged
+            }
+
             Database.Games.Update(dbGame);
             controllers.RemoveController(args.Source);
         }
