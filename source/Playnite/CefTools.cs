@@ -41,7 +41,7 @@ namespace Playnite
             // Firefox user agent gives the best compatibility because some websites complain
             // about unsecure browser if we try to pretend to be Chrome (which is CefSharp's default).
             // Plugins can change this on an individual level anyways.
-            settings.UserAgent = $"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0 Playnite/{PlayniteApplication.CurrentVersion.ToString(2)}";
+            settings.UserAgent = $"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0 Playnite/{PlayniteApplication.CurrentVersion.ToString(2)}";
             IsInitialized = Cef.Initialize(settings);
         }
 
