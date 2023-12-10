@@ -13,7 +13,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using YamlDotNet.Serialization;
 
 namespace Playnite.Emulators
 {
@@ -148,12 +147,20 @@ namespace Playnite.Emulators
 
     public class GameScanner
     {
+        public class ScanExclusion
+        {
+            public string Path;
+            public bool Absolute = true;
+            public bool MatchByRegex = false;
+        }
+
         private static readonly ILogger logger = LogManager.GetLogger();
         private static readonly string[] supportedArchiveExt = new string[] { "rar", "7z", "zip", "tar", "bzip2", "gzip", "lzip" };
         private readonly Dictionary<string, bool> isGoogleDriveCache = new Dictionary<string, bool>();
         private readonly GameScannerConfig scanner;
-        private List<string> fileExclusions;
-        private List<string> directoryExclusions;
+        private List<ScanExclusion> fileExclusions;
+        private List<ScanExclusion> directoryExclusions;
+
         private readonly IGameDatabaseMain database;
         internal HashSet<string> importedFiles;
         private readonly Func<List<string>, List<EmulationDatabase.IEmulationDatabaseReader>> emuDbProvider;
@@ -203,21 +210,8 @@ namespace Playnite.Emulators
                 Select(a => a.ToLower().Trim()).ToHashSet());
             var dirToScan = PlaynitePaths.ExpandVariables(scanner.Directory, emulator.InstallDir, true);
 
-            if (scanner.ExcludedFiles.HasItems())
-            {
-                fileExclusions = scanner.ExcludedFiles.
-                    Where(a => !a.IsNullOrWhiteSpace()).
-                    Select(a => Path.Combine(dirToScan, a.Trim())).
-                    ToList();
-            }
-
-            if (scanner.ExcludedDirectories.HasItems())
-            {
-                directoryExclusions = scanner.ExcludedDirectories.
-                    Where(a => !a.IsNullOrWhiteSpace()).
-                    Select(a => Path.Combine(dirToScan, a.Trim()).TrimEnd(Paths.DirectorySeparators)).
-                    ToList();
-            }
+            fileExclusions = ParseExclusions(dirToScan, scanner.ExcludedFiles);
+            directoryExclusions = ParseExclusions(dirToScan, scanner.ExcludedDirectories);
 
             CustomEmulatorProfile customProfile = null;
             BuiltInEmulatorProfile builtinProfile = null;
@@ -402,6 +396,126 @@ namespace Playnite.Emulators
             }
 
             return games;
+        }
+
+        public static List<ScanExclusion> ParseExclusions(string rootDir, List<string> exclusions)
+        {
+            var result = new List<ScanExclusion>();
+            if (!exclusions.HasItems())
+            {
+                return result;
+            }
+
+            foreach (var excl in exclusions)
+            {
+                if (excl.IsNullOrWhiteSpace())
+                {
+                    continue;
+                }
+
+                var exclusion = new ScanExclusion();
+                for (int i = 0; i < excl.Length; i++)
+                {
+                    if (excl[i] == '>')
+                    {
+                        exclusion.Absolute = false;
+                    }
+                    else if (excl[i] == '?')
+                    {
+                        exclusion.MatchByRegex = true;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                if (exclusion.Absolute)
+                {
+                    if (exclusion.MatchByRegex)
+                    {
+                        exclusion.Path = Regex.Escape(rootDir.EndWithDirSeparator()) + excl.TrimStart('>', '?').Trim();
+                    }
+                    else
+                    {
+                        exclusion.Path = Path.Combine(rootDir, excl.TrimStart('>', '?').Trim());
+                    }
+                }
+                else
+                {
+                    exclusion.Path = excl.TrimStart('>', '?').Trim();
+                }
+
+                result.Add(exclusion);
+            }
+
+            return result;
+        }
+
+        public static List<string> GetFileExclusionMatches(List<string> files, List<ScanExclusion> exclusions)
+        {
+            var matches = new List<string>();
+            foreach (var excFile in exclusions)
+            {
+                if (excFile.MatchByRegex)
+                {
+                    // exclusion parser already appends root path if needed so same match can be done here
+                    // for any level match and absolute path match
+                    var match = files.Where(a => Regex.IsMatch(a, excFile.Path, RegexOptions.IgnoreCase));
+                    matches.AddMissing(match);
+                }
+                else if (excFile.Absolute)
+                {
+                    var match = files.FirstOrDefault(a => a.Equals(excFile.Path, StringComparison.OrdinalIgnoreCase));
+                    if (match != null)
+                    {
+                        matches.AddMissing(match);
+                    }
+                }
+                else if (!excFile.Absolute)
+                {
+                    var comp = excFile.Path.PrefixWithDirSeparator();
+                    var match = files.Where(a => a.EndsWith(comp, StringComparison.OrdinalIgnoreCase));
+                    matches.AddMissing(match);
+                }
+                else
+                {
+                    throw new Exception("Uknown file exclusion configuration.");
+                }
+            }
+
+            return matches;
+        }
+
+        public static List<string> GetDirectoryExclusionMatches(List<string> dirs, List<ScanExclusion> exclusions)
+        {
+            var matches = new List<string>();
+            foreach (var excDir in exclusions)
+            {
+                if (excDir.MatchByRegex)
+                {
+                    // exclusion parser already appends root path if needed so same match can be done here
+                    // for any level match and absolute path match
+                    var match = dirs.Where(a => Regex.IsMatch(a.TrimEnd(Paths.DirectorySeparators), excDir.Path, RegexOptions.IgnoreCase));
+                    matches.AddMissing(match);
+                }
+                else if (excDir.Absolute && !excDir.MatchByRegex)
+                {
+                    var match = dirs.FirstOrDefault(a => a.TrimEnd(Paths.DirectorySeparators).Equals(excDir.Path.TrimEnd(Paths.DirectorySeparators), StringComparison.OrdinalIgnoreCase));
+                    if (match != null)
+                    {
+                        matches.AddMissing(match);
+                    }
+                }
+                else if (!excDir.Absolute && !excDir.MatchByRegex)
+                {
+                    var comp = excDir.Path.PrefixWithDirSeparator().TrimEnd(Paths.DirectorySeparators);
+                    var match = dirs.Where(a => a.TrimEnd(Paths.DirectorySeparators).EndsWith(comp, StringComparison.OrdinalIgnoreCase));
+                    matches.AddMissing(match);
+                }
+            }
+
+            return matches;
         }
 
         private List<ScannedGame> ScanDirectory(
@@ -633,13 +747,10 @@ namespace Playnite.Emulators
             fileScanCallback?.Invoke(directory);
             if (fileExclusions.HasItems())
             {
-                foreach (var excFile in fileExclusions)
+                var matches = GetFileExclusionMatches(files, fileExclusions);
+                if (matches.HasItems())
                 {
-                    var match = files.FirstOrDefault(a => a.Equals(excFile, StringComparison.OrdinalIgnoreCase));
-                    if (match != null)
-                    {
-                        files.Remove(match);
-                    }
+                    matches.ForEach(a => files.Remove(a));
                 }
             }
 
@@ -877,13 +988,10 @@ namespace Playnite.Emulators
             {
                 if (directoryExclusions.HasItems())
                 {
-                    foreach (var excDir in directoryExclusions)
+                    var matches = GetDirectoryExclusionMatches(dirs, directoryExclusions);
+                    if (matches.HasItems())
                     {
-                        var match = dirs.FirstOrDefault(a => a.TrimEnd(Paths.DirectorySeparators).Equals(excDir, StringComparison.OrdinalIgnoreCase));
-                        if (match != null)
-                        {
-                            dirs.Remove(match);
-                        }
+                        matches.ForEach(a => dirs.Remove(a));
                     }
                 }
 

@@ -342,6 +342,21 @@ namespace System
             return source.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
         }
 
+        public static string PrefixWithDirSeparator(this string source)
+        {
+            if (source.IsNullOrWhiteSpace())
+            {
+                return source;
+            }
+
+            if (source[0] == Path.DirectorySeparatorChar)
+            {
+                return source;
+            }
+
+            return Path.DirectorySeparatorChar + source;
+        }
+
         public static bool ContainsInvariantCulture(this string source, string value, CompareOptions compareOptions)
         {
             return CultureInfo.InvariantCulture.CompareInfo.IndexOf(source, value, compareOptions) >= 0;
@@ -364,7 +379,7 @@ namespace System
 
         //From https://github.com/DanHarltey/Fastenshtein
         /// <summary>
-        /// Compares the two values to find the minimum Levenshtein distance. 
+        /// Compares the two values to find the minimum Levenshtein distance.
         /// Thread safe.
         /// </summary>
         /// <returns>Difference. 0 complete match.</returns>
@@ -531,6 +546,5 @@ namespace System
 
             return lWeight + 0.1 * lPos * (1.0 - lWeight);
         }
-
     }
 }
