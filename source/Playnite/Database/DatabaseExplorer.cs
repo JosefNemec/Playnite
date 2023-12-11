@@ -65,7 +65,9 @@ namespace Playnite.Database
         [Description(LOC.FeatureLabel)]
         Feature,
         [Description(LOC.GameNameTitle)]
-        Name
+        Name,
+        [Description(LOC.GameInstallationStatus)]
+        InstallStatus
     }
 
     // TODO: Rewrite this mess.
@@ -678,6 +680,25 @@ namespace Playnite.Database
                 case ExplorerField.Name:
                     filters.Name = GetStringFilter(filter);
                     break;
+                case ExplorerField.InstallStatus:
+                    var installed = false;
+                    var uninstalled = false;
+                    if (filter?.Value is bool instStat)
+                    {
+                        installed = instStat;
+                        uninstalled = !instStat;
+                    }
+
+                    filters.SuppressFilterChanges = true;
+                    filters.IsInstalled = installed;
+                    filters.IsUnInstalled = uninstalled;
+                    filters.SuppressFilterChanges = false;
+                    filters.OnFilterChanged(new List<string>
+                    {
+                        nameof(filters.IsInstalled),
+                        nameof(filters.IsUnInstalled)
+                    });
+                    break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -879,6 +900,10 @@ namespace Playnite.Database
                 case ExplorerField.Name:
                     values.Add(new SelectionObject("^#", "#"));
                     values.AddRange(Enumerable.Range('A', 26).Select(a => new SelectionObject("^" + ((char)a).ToString(), ((char)a).ToString())));
+                    break;
+                case ExplorerField.InstallStatus:
+                    values.Add(new SelectionObject(true, LOC.GameIsInstalledTitle.GetLocalized()));
+                    values.Add(new SelectionObject(false, LOC.GameIsUnInstalledTitle.GetLocalized()));
                     break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
