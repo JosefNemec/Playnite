@@ -86,6 +86,16 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
         private void LoadControllers()
         {
             StackControllers.Children.Clear();
+            if (app.GameController.Controllers.Count == 0)
+            {
+                StackControllers.Children.Add(new TextBlock
+                {
+                    Text = LOC.NoControllersDetected.GetLocalized(),
+                    Style = FindResource("TextBlockBaseStyle") as Style
+                });
+                return;
+            }
+
             foreach (var controller in app.GameController.Controllers)
             {
                 var check = new CheckBoxEx()

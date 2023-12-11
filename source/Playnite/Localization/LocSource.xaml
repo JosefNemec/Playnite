@@ -1254,4 +1254,5 @@ The specified date format will be used for all other dates.</sys:String>
 Open new issue on Playnite's GitHub page with a request to fix corruption in your files.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Do you want to save changes you made?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Portable installation</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">No controllers detected</sys:String>
 </ResourceDictionary>

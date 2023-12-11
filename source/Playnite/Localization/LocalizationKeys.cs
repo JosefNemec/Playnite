@@ -4457,5 +4457,9 @@ namespace Playnite
         /// Portable installation
         /// </summary>
         public const string PortableInstallation = "LOCPortableInstallation";
+        /// <summary>
+        /// No controllers detected
+        /// </summary>
+        public const string NoControllersDetected = "LOCNoControllersDetected";
     }
 }
